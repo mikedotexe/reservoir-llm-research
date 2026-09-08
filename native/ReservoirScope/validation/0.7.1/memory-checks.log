@@ -1,0 +1,53 @@
+PASS 1: No observation means no line, even when the presentation clock advances
+PASS 2: The first valid measured sample establishes the default source origin and both marks
+PASS 3: A newly observed generation begins bright and collecting
+PASS 4: Rising and falling measured fill shape the collecting high and low marks
+PASS 5: At half-life an old line reaches half opacity without seeding an unobserved successor
+PASS 6: A measurement exactly thirty source seconds later starts a bright successor beside the half-faded line
+PASS 7: The retiring generation freezes precisely when the successor begins collecting
+PASS 8: Later extremes shape only the new generation and leave the fading old measurements unchanged
+PASS 9: Both generations fade continuously by source age, independently of their fill values
+PASS 10: An old generation remains just before sixty seconds and disappears at its exact lifetime
+PASS 11: The third generation replaces the expired first generation without keeping a third visible line
+PASS 12: Equal fill and equal source time may count as a distinct ordered sample while retaining the first extreme
+PASS 13: Repeated display frames at a paused source clock change neither geometry nor fading
+PASS 14: The live accumulator does not leak its latest observation into an earlier source time
+PASS 15: A source gap can expire all measured lines without manufacturing new fill
+PASS 16: The first measurement after a long gap joins its fixed source-time generation at its actual age
+PASS 17: Invalid measured fill nan cannot advance the accepted clock or retire marks
+PASS 18: Invalid measured fill inf cannot advance the accepted clock or retire marks
+PASS 19: Invalid measured fill -inf cannot advance the accepted clock or retire marks
+PASS 20: Invalid measured fill -0.1 cannot advance the accepted clock or retire marks
+PASS 21: Invalid measured fill 100.1 cannot advance the accepted clock or retire marks
+PASS 22: Invalid source time nan cannot create a generation
+PASS 23: Invalid source time inf cannot create a generation
+PASS 24: Invalid source time -inf cannot create a generation
+PASS 25: Duplicate and earlier ordinals cannot move the accepted source clock even with a later claimed timestamp
+PASS 26: A newer ordinal with a backward source timestamp cannot erase or reshape a generation
+PASS 27: An established context cannot silently change its fixed generation origin
+PASS 28: Rejected observations do not consume ordinals needed by subsequent valid measurements
+PASS 29: An invalid presentation clock produces no visible marks
+PASS 30: A new source context clears old generations and may restart its clock and ordinal
+PASS 31: Exactly empty and full are valid measured extrema
+PASS 32: An invalid first sample in a new context cannot inherit the previous source's lines
+PASS 33: A future or invalid explicit origin is rejected without establishing the new source clock
+PASS 34: An explicit reset can establish a context while clearing every observation and generation
+PASS 35: An unscoped reset clears the source identity too
+PASS 36: A replay jump consumes all skipped measured extremes in both visible generations
+PASS 37: Rewinding restores the earlier generation and excludes every future low and successor
+PASS 38: Replaying after a rewind deterministically reconstructs the same source-time memories
+PASS 39: Recorded playback expires and replaces generations at the same exact boundaries as live observation
+PASS 40: An empty recording or negative cursor exposes no watermark history
+PASS 41: Recorded cursor indexing is retained and a cursor beyond the recording uses its final prefix
+PASS 42: A mismatched recorded prefix cannot present measurements from later than its source clock
+PASS 43: Malformed recorded observations retain their cursor positions without poisoning later valid prefixes
+PASS 44: Replacement activation batches use the same thirty-second epoch grid despite differing first observations
+PASS 45: A replacement batch reports only its own retained measurements and does not pretend to retain missing observations
+PASS 46: An epoch-aligned rolling batch replaces the oldest generation without resetting the newer interval
+PASS 47: Normal motion fades monotonically and linearly from full brightness to zero over sixty source seconds
+PASS 48: Reduce Motion uses stable collecting and retiring levels while preserving the same measured lifetime
+PASS 49: A future range and an invalid display clock cannot produce a visible or collecting line
+PASS 50: A long observed stream retains at most two nonempty measured generations
+PASS 51: A finite clock too coarse to resolve the display lifetime cannot create an immortal line
+PASS 52: Large adjacent source ordinals remain exact without conversion to a floating-point identity
+52 fill watermark memory checks passed.

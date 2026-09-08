@@ -1,0 +1,33 @@
+{
+  "verified_at_utc": "2026-09-07T05:42:11.405263+00:00",
+  "app_path": "/Users/mikepurvis/.cache/reservoir-research/ReservoirScope-build/current/Reservoir Scope.app",
+  "binary_sha256": "ccb798501a6101dcc6664f342e10bb9799f0661d7ccf8fe0b42ead8ddaaa75e1",
+  "architecture": "arm64 macOS 14+",
+  "tested_device": "Apple M1 Max",
+  "rendering": "direct MetalKit; immutable storageModeShared buffers",
+  "signature_verification": "codesign --verify --deep --strict passed",
+  "python_checks_passed": 8,
+  "native_fixture_checks_passed": 12,
+  "runtime_qa": [
+    "final bundle opened with both datasets",
+    "fill/spectral/trajectory views inspected",
+    "PCA row increment changed projected/full/residual distances",
+    "PC2 selection changed signed node loadings",
+    "live health stream received source-stamped observations",
+    "missing live leak/cascade shown unavailable",
+    "live polling stopped after verification"
+  ],
+  "not_tested": [
+    "M4 target performance",
+    "GPU profiling and energy use",
+    "live per-node state projection",
+    "Neural Engine workload"
+  ],
+  "source_sha256": {
+    "native/ReservoirScope/Sources/ReservoirScope/ReservoirScopeApp.swift": "f12979aae54dfcdd8f420544940a2605e6730a27926d1dd32bae768c6592c516",
+    "native/ReservoirScope/Sources/ReservoirScope/LiveTelemetry.swift": "65edaf5700aaf6729abe6da84532d7015cc4a97ca5139603fe2f7f62b3371922",
+    "native/ReservoirScope/Sources/ReservoirScope/ResourceBundle.swift": "22eb2c127d7692702a48d3f9cd4ab41057912ccd4cae6d25d23a7d248e3b4079",
+    "native/ReservoirScope/Sources/ReservoirScope/ReservoirScene.swift": "9896212e5416488f720bf3d912128505e7f433958badfc5ee1109261039ba506",
+    "native/ReservoirScope/Sources/ReservoirScope/Evidence.swift": "ebaf59a49ac2e4298273273980c558bdbca9dec2469f23928e093a17e3c9c7b2"
+  }
+}

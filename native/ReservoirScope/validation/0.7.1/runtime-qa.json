@@ -1,0 +1,28 @@
+{
+  "verified_at_utc": "2026-09-08T04:44:06.933589+00:00",
+  "version": "0.7.1",
+  "build": "10",
+  "binary_sha256": "dacc87b867f9e077dae5a086f8772d767f8afcd72fd108be35e8c6bcd353fe11",
+  "device": "Apple M1 Max",
+  "method": "Native accessibility inspection and native window screenshot via CUA; independently calculated bundled-data expectations",
+  "native_checks": [
+    "Freshly reopened final bundle defaults to 20\u00d7, shown as the highlighted adjacent speed choice.",
+    "Reference zones begins at cursor 0 with one forming high/low pair of 67.31%.",
+    "Cursor 13 has forming high/low 68.71%, one observation; earlier high 75.44% and low 63.31%, matching the independent inclusive-prefix probe.",
+    "Cursor 13 native screenshot shows readable cards, solid forming geometry and dashed retiring geometry aligned with the Metal reference lens at the selected 72% boundary.",
+    "Cursor 26 has forming high/low 66.02%, one observation; earlier high 74.73% and low 59.90%. The initial pair has expired, matching the independent probe.",
+    "Playback advances to final cursor 506 and stops. Final forming range 74.72% / 62.65% and earlier range 75.43% / 61.53% match the independent probe.",
+    "Play from the end restarts and advances through early ranges again."
+  ],
+  "inspection_limits": [
+    "Existing macOS Reduce Motion setting retained. Continuous fade endpoints and static reduced-motion phases verified by the offscreen render checks; native visual inspection used existing preferences.",
+    "Native UI automation delayed and once disconnected while playback was running. Re-read confirmed advancement and automatic end stop; no precise interactive pause latency assertion is made.",
+    "Pause/seek/clock behavior is covered by model/source tests and implementation review; this receipt does not claim a native timing measurement.",
+    "Fresh live sources, M4 profiling, energy and presentation latency were not tested in this overlay iteration."
+  ],
+  "recorded_expectations": "recorded-memory-expectations.json",
+  "offscreen_evidence": "watermark-view/checks.json",
+  "offscreen_visual_review": "watermark-view/visual-review.json",
+  "source_changes_scope": "Research viewer only; no live producer, reservoir controller, GPU reservoir renderer or packaged evidence resource changed.",
+  "final_window_state": "Reference zones, 72% Elevated enters selected, Recorded source, 20\u00d7 highlighted, stopped at final cursor 506, both live follow and smooth fill off."
+}

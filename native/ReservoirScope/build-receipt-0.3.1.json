@@ -1,0 +1,64 @@
+{
+  "verified_at_utc": "2026-09-07T06:28:43.295731+00:00",
+  "version": "0.3.1",
+  "build": "4",
+  "app_path": "/Users/mikepurvis/.cache/reservoir-research/ReservoirScope-build/current/Reservoir Scope.app",
+  "binary_sha256": "48ca43c3e92872fa635f9bd30728bd98982741fc10f7ddd74b7ad0dc06885f4c",
+  "architecture": "arm64 macOS14+",
+  "tested_device": "Apple M1 Max",
+  "rendering": "direct MetalKit; storageModeShared geometry buffers",
+  "signature_verification": "codesign --verify --deep --strict passed",
+  "staged_source_verification": "All nine Swift source hashes match the compiled staging package",
+  "python_checks_passed": 8,
+  "native_fixture_checks_passed": 42,
+  "runtime_qa": [
+    "Final signed bundle opened with bundled evidence",
+    "Real existing activation feed accepted 180-frame batches after explicit native file selection",
+    "Reference Zones displayed co-recorded fill/stage, recorder observation time and unavailable P/I",
+    "Source time advanced from Sep 6 23:27:15 to 23:27:36 Pacific; fill and stage updated",
+    "Live State Trajectory rendered actual projected states and current squared-distance fraction, full/projected/omitted distances and frozen mode loadings",
+    "Historical basis retention and unverified live node-layout compatibility stayed explicit",
+    "Fill sphere followed the same live source with unavailable leak, spectrum and P/I; recorder time continued to Sep 6 23:31:00 Pacific",
+    "Live state mode left running in the native State Trajectory view"
+  ],
+  "runtime_issue": "Initial automatic file open on the network mount stalled in Foundation open while UI stayed responsive. Explicit file selection resolved it; cause was not established and no wall-clock read timeout is implemented.",
+  "benchmark": {
+    "version": "0.3.0",
+    "build": "3",
+    "binary_sha256": "3c69bff57a745fc1e06c6dfd64c4bf3ae1eb1905d67648f08a455590e97588a2",
+    "devices": [
+      "Apple M1 Max",
+      "Apple M4 Pro"
+    ],
+    "runs_per_host": 3,
+    "measured_frames": 720,
+    "analysis": "analyses/2026-09-06-reservoir-native-profiling.md",
+    "scope": "Finite offscreen rendering with identical binary and evidence; excludes live ingestion, SwiftUI/display, energy and input latency",
+    "version_distinction": "Current 0.3.1 clarifies interface/error labels; renderer and profiler unchanged. Measurements remain attributed to the retained 0.3.0 executable."
+  },
+  "prior_runtime_qa": [
+    "build-receipt-0.1.0.json",
+    "build-receipt-0.2.0.json"
+  ],
+  "not_tested": [
+    "Interactive M4 window/display profiling",
+    "Sustained performance, energy and memory bandwidth",
+    "Neural Engine workload",
+    "Authenticated successful-step/controller linkage; producer v1 does not supply it"
+  ],
+  "source_sha256": {
+    "native/ReservoirScope/Sources/ReservoirScope/Evidence.swift": "ebaf59a49ac2e4298273273980c558bdbca9dec2469f23928e093a17e3c9c7b2",
+    "native/ReservoirScope/Sources/ReservoirScope/LiveState.swift": "87f155c189a0c176f1ed10b2a7df2ac10bd672b3dd2ce536131a0cc3d9ee0fe7",
+    "native/ReservoirScope/Sources/ReservoirScope/LiveTelemetry.swift": "65edaf5700aaf6729abe6da84532d7015cc4a97ca5139603fe2f7f62b3371922",
+    "native/ReservoirScope/Sources/ReservoirScope/Profiling.swift": "7f2583c0f379c64be4b3d3a6c729d6cdda12b5a99091bcdc2e0c1965884ba0a9",
+    "native/ReservoirScope/Sources/ReservoirScope/ReferenceZones.swift": "2ce4df2568cc0895ac648a2e0ff3738d9dad6098d23cd1502257545a80e45a34",
+    "native/ReservoirScope/Sources/ReservoirScope/ReplayClock.swift": "8326a47becab81b6fb6f2c1550a51226dde9b203a027d1909b14ccc6d9e5ff81",
+    "native/ReservoirScope/Sources/ReservoirScope/ReservoirScene.swift": "c32bb177dd26702ab316e5b45fecb2dcd2f5265f44b16054a39256660b1a16a8",
+    "native/ReservoirScope/Sources/ReservoirScope/ReservoirScopeApp.swift": "c4ba7103e14838722fbfab062cbc98f3f4eff16b262882ca21f6681cf8043892",
+    "native/ReservoirScope/Sources/ReservoirScope/ResourceBundle.swift": "22eb2c127d7692702a48d3f9cd4ab41057912ccd4cae6d25d23a7d248e3b4079"
+  },
+  "resource_sha256": {
+    "data.json": "03ebfb620c2371023a39de308eb16c292d31b313ead7dcb07db5df3dd0c6749d",
+    "state-geometry.json": "5e90207e7dfd1d395b249d3bb5d668afa0f86b6d3e0e6383eda7b9eb52514317"
+  }
+}

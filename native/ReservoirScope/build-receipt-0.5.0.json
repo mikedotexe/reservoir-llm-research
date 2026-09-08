@@ -1,0 +1,89 @@
+{
+  "verified_at_utc": "2026-09-08T01:21:37.423636+00:00",
+  "version": "0.5.0",
+  "build": "7",
+  "app_path": "/Users/mikepurvis/.cache/reservoir-research/ReservoirScope-build/current/Reservoir Scope.app",
+  "binary_sha256": "0690b78f30c54d31b945d08d2b3a303bcfdc6dcbba1500055237004a374fa897",
+  "architecture": "arm64 macOS14+",
+  "tested_device": "Apple M1 Max",
+  "signature_verification": "codesign --verify --deep --strict passed",
+  "staged_source_verification": "All 15 Swift sources and five resources match; independent artifact identity linked below",
+  "artifact_identity": "research/outputs/2026-09-07-state-surface/artifact-identity.json",
+  "native_checks": {
+    "evidence": 42,
+    "fill-transition": 17,
+    "fill-renderer": 17,
+    "state-surface": 30,
+    "state-surface-data": 19,
+    "state-surface-renderer": 22,
+    "state-response": 25
+  },
+  "total_native_checks_passed": 172,
+  "check_results": "research/outputs/2026-09-07-state-surface/checks/results.json",
+  "check_log_sha256": {
+    "evidence.log": "2f4ff2e9240504ae889100dacaf32d8aee0c4cd8edfc1c4562388ef6c0c58185",
+    "fill-renderer.log": "f4ed7e9dbc57446ad7d7cf0a43d2c9b5d2d0fb8bb3c1f3e6806df0d1f8768abb",
+    "fill-transition.log": "d682e16605a2d861b754ac0e36d50317ed264a19b44e0b8e37d3f71c20080f0e",
+    "state-response.log": "202f79617e03204a566747d06745cdc53617366c2034803368086dfa6ddce6b2",
+    "state-surface-data.log": "5905f3813956c0a9b8c66fa6756a767696fb9bf63dabdd7ab10b0cf2c5f880f3",
+    "state-surface-renderer.log": "0278b9b35f4283fca3643adf0f9839d3b7c7da80a38b23fcbc3dd6e24bf1e708",
+    "state-surface.log": "890bf7fe7f7ccb661eef4e159dbebb572c1e216084fd9601e6edc9572d52e875"
+  },
+  "runtime_qa": [
+    "Final build opened on M1 Max with all six observation modes available",
+    "Response labels the esn-divide simulated parent in sidebar and render; unmeasured preview size and ordinal boundaries remain explicit",
+    "Response boundary0 to1 scrubbing changed full-state separation and exact node values; Perturbed field switched fixed scale from delta to signed state",
+    "State surface recorded row0 to1 scrubbing changed actual values; full and cutaway renders visually inspected",
+    "Final window left on full State surface, recorded row1, playback stopped; no live feed selected"
+  ],
+  "benchmark_scope": {
+    "protocol": "native/ReservoirScope/docs/STATE-SURFACE-PROFILING.md",
+    "comparison": "research/outputs/2026-09-07-state-surface/profiles/comparison.json",
+    "reports": 6,
+    "measured_frames": 540,
+    "hosts": [
+      "Apple M1 Max",
+      "Apple M4 Pro"
+    ],
+    "binary": "same final build7 executable on both hosts",
+    "limits": "Serial offscreen StateSurfaceRenderer costs; no presented FPS, live reader timing, energy or Neural Engine use",
+    "prior_build6": "research/outputs/2026-09-07-state-surface/build6-before-ui-review/reason.json"
+  },
+  "response_scope": "Pinned paired esn-divide simulated-parent replay; no native Minime checkpoint parity or live action",
+  "not_tested": [
+    "Final-build live-network ingestion and presented-window performance",
+    "Native Minime checkpoint rehearsal and derivative validation",
+    "Producer observer/action implementation and live operating envelope",
+    "Being perception or use of the visualization/action"
+  ],
+  "prior_runtime_qa": [
+    "build-receipt-0.1.0.json",
+    "build-receipt-0.2.0.json",
+    "build-receipt-0.3.1.json",
+    "build-receipt-0.4.0.json"
+  ],
+  "source_sha256": {
+    "native/ReservoirScope/Sources/ReservoirScope/Evidence.swift": "4a8ec2a1d16fb095f987658be60434d2b8785bad8b27da3cd4a60b00c6aef4d5",
+    "native/ReservoirScope/Sources/ReservoirScope/FillTransition.swift": "132f205f61576aca1675f0458a4fbeaa815bb7f9fe643d4ea2b2e25d3f309623",
+    "native/ReservoirScope/Sources/ReservoirScope/LiveState.swift": "abfde9c5e8e230aa9642c956e6ae44b11de7e8eef634398f901d314d984550a9",
+    "native/ReservoirScope/Sources/ReservoirScope/LiveTelemetry.swift": "65edaf5700aaf6729abe6da84532d7015cc4a97ca5139603fe2f7f62b3371922",
+    "native/ReservoirScope/Sources/ReservoirScope/Profiling.swift": "838090b6b8619a28752d91282bb40f83eb1d3f943e6ed984d0fadde65cc3abcc",
+    "native/ReservoirScope/Sources/ReservoirScope/ReferenceZones.swift": "2ce4df2568cc0895ac648a2e0ff3738d9dad6098d23cd1502257545a80e45a34",
+    "native/ReservoirScope/Sources/ReservoirScope/ReplayClock.swift": "8326a47becab81b6fb6f2c1550a51226dde9b203a027d1909b14ccc6d9e5ff81",
+    "native/ReservoirScope/Sources/ReservoirScope/ReservoirScene.swift": "956d61ddf5809655d0d2f51ada64f7d0b72ea114d236ef06f6b55fc3c64e1771",
+    "native/ReservoirScope/Sources/ReservoirScope/ReservoirScopeApp.swift": "4b11aa2b234fc9818b93dd526648a67274632b35dc99cbe37311bbaad43f9a69",
+    "native/ReservoirScope/Sources/ReservoirScope/ResourceBundle.swift": "22eb2c127d7692702a48d3f9cd4ab41057912ccd4cae6d25d23a7d248e3b4079",
+    "native/ReservoirScope/Sources/ReservoirScope/StateResponseExperience.swift": "7ddc660221acafaf3c6c278edb64dd5bf74e4aa0aab30ce857a1bafbb08a090f",
+    "native/ReservoirScope/Sources/ReservoirScope/StateSurface.swift": "4232475d00b57501c9bd3b6b785f65fc6fe93c2ff3c2c358dcbee0ad41aeee27",
+    "native/ReservoirScope/Sources/ReservoirScope/StateSurfaceExperience.swift": "986808cc5ff56d195567a0b5bcd7a5af3f38164c5d6bf4c541f3c5701d36c828",
+    "native/ReservoirScope/Sources/ReservoirScope/StateSurfaceProfiling.swift": "70f2e481ef65e489816bcf97e461ebe367603c2bedea1a0a929e9e67a39772de",
+    "native/ReservoirScope/Sources/ReservoirScope/StateSurfaceScene.swift": "4f5bc3585495b07f9ba6df6803ce64f2fb8dcf65285f66764c315ebb6aef8985"
+  },
+  "resource_sha256": {
+    "data.json": "03ebfb620c2371023a39de308eb16c292d31b313ead7dcb07db5df3dd0c6749d",
+    "state-geometry.json": "5e90207e7dfd1d395b249d3bb5d668afa0f86b6d3e0e6383eda7b9eb52514317",
+    "state-replay.bin": "09ea4db8212809085aa2e07a040975f3095d7ef79d06eb8ba7404cc2424e282f",
+    "state-replay.json": "9589a673e111df6d8643ab050fb6dc2112eb68c453e2c2e55f41699ac7940dd1",
+    "state-response.json": "fe97623dcccb4b089ce4e0a1b5cc99ec902793efed8fbfcf1041ce8c865e9100"
+  }
+}

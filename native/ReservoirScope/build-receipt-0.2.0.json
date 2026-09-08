@@ -1,0 +1,39 @@
+{
+  "verified_at_utc": "2026-09-07T05:58:57.600822+00:00",
+  "version": "0.2.0",
+  "app_path": "/Users/mikepurvis/.cache/reservoir-research/ReservoirScope-build/current/Reservoir Scope.app",
+  "binary_sha256": "600c7f37499eb87c87619b27e81cff9ef9b735211d9ddb9254aa474c107114c4",
+  "architecture": "arm64 macOS14+",
+  "tested_device": "Apple M1 Max",
+  "rendering": "direct MetalKit; immutable storageModeShared buffers",
+  "signature_verification": "codesign --verify --deep --strict passed",
+  "python_checks_passed": 8,
+  "native_fixture_checks_passed": 21,
+  "saved_data_reproduction": "507 samples and all statistics reproduced exactly from saved evidence",
+  "runtime_qa": [
+    "final bundle opened with both datasets; all four tabs loaded",
+    "Reference Zones native Metal lens and selected-arc leader label visually inspected",
+    "PI onset and78% warning annotation meanings verified against source contract",
+    "recorded playback advanced to the final timestamp",
+    "scrubbing and switching Fill/Reference Zones retained observation505 and its time/value",
+    "in-app animation provenance guide opened and inspected",
+    "portrait/square/landscape projection helper checks passed including crop edges",
+    "live mode remains off after verification; synthetic live checks passed"
+  ],
+  "prior_runtime_qa": "build-receipt-0.1.0.json retains prior actual read-only live feed validation",
+  "not_tested": [
+    "M4 target performance",
+    "GPU profiling and energy use",
+    "live per-node state projection",
+    "Neural Engine workload"
+  ],
+  "source_sha256": {
+    "native/ReservoirScope/Sources/ReservoirScope/Evidence.swift": "ebaf59a49ac2e4298273273980c558bdbca9dec2469f23928e093a17e3c9c7b2",
+    "native/ReservoirScope/Sources/ReservoirScope/LiveTelemetry.swift": "65edaf5700aaf6729abe6da84532d7015cc4a97ca5139603fe2f7f62b3371922",
+    "native/ReservoirScope/Sources/ReservoirScope/ReferenceZones.swift": "2ce4df2568cc0895ac648a2e0ff3738d9dad6098d23cd1502257545a80e45a34",
+    "native/ReservoirScope/Sources/ReservoirScope/ReplayClock.swift": "8326a47becab81b6fb6f2c1550a51226dde9b203a027d1909b14ccc6d9e5ff81",
+    "native/ReservoirScope/Sources/ReservoirScope/ReservoirScene.swift": "ca14a501cbe575e5acfe9c8d1b7842d8248fa21cfed0ee5e2bd1ebafee967bc3",
+    "native/ReservoirScope/Sources/ReservoirScope/ReservoirScopeApp.swift": "33431f55471e31ba861f509f1a0d69047b99ca68b9d288423a43821f0071f5c3",
+    "native/ReservoirScope/Sources/ReservoirScope/ResourceBundle.swift": "22eb2c127d7692702a48d3f9cd4ab41057912ccd4cae6d25d23a7d248e3b4079"
+  }
+}

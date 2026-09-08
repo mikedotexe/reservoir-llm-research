@@ -1,0 +1,58 @@
+{
+  "verified_at_utc": "2026-09-07T06:48:32.668517+00:00",
+  "version": "0.4.0",
+  "build": "5",
+  "app_path": "/Users/mikepurvis/.cache/reservoir-research/ReservoirScope-build/current/Reservoir Scope.app",
+  "binary_sha256": "557a785f134df9ecd373cccf42920bd4f87aa4fc7096a2c3fbeea097c6cdfc3a",
+  "architecture": "arm64 macOS14+",
+  "tested_device": "Apple M1 Max",
+  "signature_verification": "codesign --verify --deep --strict passed",
+  "staged_source_verification": "All ten Swift source hashes match the compiled staging package",
+  "native_evidence_checks_passed": 42,
+  "fill_transition_checks_passed": 17,
+  "runtime_qa": [
+    "Final build opened; Follow health snapshots and Smooth fill transitions visible below Fill and Reference Zones",
+    "Native Reduce Motion state was on and easing was off by default",
+    "Labeled synthetic health fixture displayed raw fill and synthetic stage with no invented PI",
+    "Final build exposes explicit per-app motion permission; system setting unchanged",
+    "User continued exploring the native app; final motion checks ran offscreen. No persistent per-app Reduce Motion override was enabled by the agent."
+  ],
+  "render_qa": {
+    "device": "Apple M1 Max",
+    "offscreen_commands": 20,
+    "dimensions": "256x256 single sample",
+    "cache_comparisons": "Ten cache-versus-fresh exact pixel comparisons passed",
+    "view_lifecycle": "Seven actual MTKView mode checks passed: start, active, duplicate, disable, fault/nonanimated, source switch, settled",
+    "source": "Tests/FillRendererChecks.swift; check-fill-renderer.sh",
+    "limits": "Offscreen correctness and view configuration checks, not a presented frame-rate measurement."
+  },
+  "prior_runtime_qa": [
+    "build-receipt-0.1.0.json",
+    "build-receipt-0.2.0.json",
+    "build-receipt-0.3.1.json"
+  ],
+  "benchmark_scope": "Retained 0.3.0 M1 Max/M4 Pro profiles are a prior baseline. They do not measure 0.4 easing or fixed-mesh caching.",
+  "not_tested": [
+    "0.4 M4 performance, energy or sustained interactive frame rate",
+    "Runtime system Reduce Motion setting change; setting intentionally left unchanged",
+    "Producer identity/timing gaps remain as documented"
+  ],
+  "source_sha256": {
+    "native/ReservoirScope/Sources/ReservoirScope/Evidence.swift": "ebaf59a49ac2e4298273273980c558bdbca9dec2469f23928e093a17e3c9c7b2",
+    "native/ReservoirScope/Sources/ReservoirScope/FillTransition.swift": "132f205f61576aca1675f0458a4fbeaa815bb7f9fe643d4ea2b2e25d3f309623",
+    "native/ReservoirScope/Sources/ReservoirScope/LiveState.swift": "87f155c189a0c176f1ed10b2a7df2ac10bd672b3dd2ce536131a0cc3d9ee0fe7",
+    "native/ReservoirScope/Sources/ReservoirScope/LiveTelemetry.swift": "65edaf5700aaf6729abe6da84532d7015cc4a97ca5139603fe2f7f62b3371922",
+    "native/ReservoirScope/Sources/ReservoirScope/Profiling.swift": "7f2583c0f379c64be4b3d3a6c729d6cdda12b5a99091bcdc2e0c1965884ba0a9",
+    "native/ReservoirScope/Sources/ReservoirScope/ReferenceZones.swift": "2ce4df2568cc0895ac648a2e0ff3738d9dad6098d23cd1502257545a80e45a34",
+    "native/ReservoirScope/Sources/ReservoirScope/ReplayClock.swift": "8326a47becab81b6fb6f2c1550a51226dde9b203a027d1909b14ccc6d9e5ff81",
+    "native/ReservoirScope/Sources/ReservoirScope/ReservoirScene.swift": "d5be876dd4d581da1b800f76fc1357ee50fbdc25389d2862fb531d4745683bcb",
+    "native/ReservoirScope/Sources/ReservoirScope/ReservoirScopeApp.swift": "543db834c5aadafe754a42388508d5ef7b4ae8643d276d5fe7ee0391858375d0",
+    "native/ReservoirScope/Sources/ReservoirScope/ResourceBundle.swift": "22eb2c127d7692702a48d3f9cd4ab41057912ccd4cae6d25d23a7d248e3b4079"
+  },
+  "resource_sha256": {
+    "data.json": "03ebfb620c2371023a39de308eb16c292d31b313ead7dcb07db5df3dd0c6749d",
+    "state-geometry.json": "5e90207e7dfd1d395b249d3bb5d668afa0f86b6d3e0e6383eda7b9eb52514317"
+  },
+  "fill_renderer_checks_passed": 17,
+  "total_native_checks_passed": 76
+}

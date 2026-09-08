@@ -1,0 +1,22 @@
+{
+  "schema": "reservoir.state_replay.v1",
+  "subject": "Minime native ESN retained activation coordinates",
+  "dtype": "<f4",
+  "layout": "row_major",
+  "binary_file": "state-replay.bin",
+  "rows": 1024,
+  "dimensions": 128,
+  "byte_count": 524288,
+  "source_sha256": "09ea4db8212809085aa2e07a040975f3095d7ef79d06eb8ba7404cc2424e282f",
+  "geometry_sha256": "5e90207e7dfd1d395b249d3bb5d668afa0f86b6d3e0e6383eda7b9eb52514317",
+  "captured_at_utc": "2026-09-07T05:11:52.328Z",
+  "row_order": "oldest_to_newest",
+  "per_row_timestamps_available": false,
+  "paired_fill_available": false,
+  "node_layout_id": null,
+  "source_geometry": "visualizations/reservoir-3d/state-geometry.json",
+  "source_snapshot": "visualizations/reservoir-3d/captured-states-09ea4db821280908.bin",
+  "provenance": "Same original bytes used to fit the frozen basis; capture time is an observation of the file, not a timestamp for any row.",
+  "identity_limit": "Coordinate positions preserve recorded order. No authenticated node-layout, boot/session, successful-step identifier or per-row fill/controller join exists.",
+  "reproduction": "python3 probes/reservoir_state_surface_replay.py"
+}

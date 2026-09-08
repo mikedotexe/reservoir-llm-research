@@ -1,0 +1,49 @@
+{
+  "reviewed_at_utc": "2026-09-08T04:32:48.478049+00:00",
+  "scope": "Visual inspection of final offscreen production SwiftUI overlay PNGs; synthetic measurements; no Metal backdrop or native window.",
+  "result": "pass",
+  "notes": [
+    "Compact outside-crop labels and scope header are separate, and both cards fit within the image.",
+    "Current solid lines and older dashed lines are visually distinct during overlap.",
+    "Near expiry, older geometry fades away while the current measured range remains visible.",
+    "Out-of-crop values retain labels without projected arcs or leaders.",
+    "After a source gap, the no-recent-fill explanation remains visible with no stale geometry."
+  ],
+  "inspected_pngs": {
+    "524x300-outside-crop.png": "a9003fc05305ab57731c90fae59cc1eb7bcbab2752fe272e4ebb2d0496d66d1b",
+    "524x300-overlap.png": "2576ca31757867ed7290054071120042ec85a98a1b1b321fe1c7c5b5f1afc82c",
+    "840x469-outside-crop.png": "e186dc789690e00e8d3a1cceaa6f6fb99bc1ab619695333b48dd16cf9a1e1bb2",
+    "840x469-expiring.png": "cc3b05cb87c09eff3166eb70ef174df0d5d75d2ed65b1bf5622a74ebef950dd0",
+    "524x300-empty-gap.png": "0d7f8ca82c8c85ce9a801b4e726d23ee02d66283c18724e9532f3b7d767f24cd"
+  },
+  "all_png_sha256": {
+    "524x300-empty-gap.png": "0d7f8ca82c8c85ce9a801b4e726d23ee02d66283c18724e9532f3b7d767f24cd",
+    "524x300-equal.png": "11ab885f7aa7c2d245bf6211c874e6ce8fd18d3e69d6e3f08084c71b7261a72d",
+    "524x300-expired-current-only.png": "8e35da94194e9675a2b2b600bc2514887b38552cfce4a079ba221f5f5de9750d",
+    "524x300-expired-old.png": "8e35da94194e9675a2b2b600bc2514887b38552cfce4a079ba221f5f5de9750d",
+    "524x300-expiring-current-only.png": "14c16c11859e5647be38a42dd6e15a41dfeab68ce596a50b60a530f5d7032fe7",
+    "524x300-expiring.png": "8ffc33cead0205273d79e0d540556763f0c3a3a91db3d3ba29f81d44bcb76f5b",
+    "524x300-first-forming.png": "6d73b78416d576ad3fc81ccacfd792c2c0d4b6bdf0a8d721718b2b10e551d119",
+    "524x300-half-life-new-forming.png": "39b5a0bd98ec87b2a5ffba4b1def819b4768f60fa898356d86c1c61a12870c36",
+    "524x300-outside-crop.png": "a9003fc05305ab57731c90fae59cc1eb7bcbab2752fe272e4ebb2d0496d66d1b",
+    "524x300-overlap-current-only.png": "eaef18c6f09cf26eda8f394a86ba0b3ee24c27a30a76ce1ca4b5ba280727f842",
+    "524x300-overlap.png": "2576ca31757867ed7290054071120042ec85a98a1b1b321fe1c7c5b5f1afc82c",
+    "524x300-reduced-motion-expiry.png": "32515195c36c346e5383c4a6d45561300fae3f87a09fed051de3999f3fc1ef1e",
+    "524x300-reduced-motion-late.png": "b9c92150831eea6cb993662ac16b9a39c74ebacfd72b9541089a9bc54783fbaf",
+    "524x300-reduced-motion.png": "b9c92150831eea6cb993662ac16b9a39c74ebacfd72b9541089a9bc54783fbaf",
+    "840x469-empty-gap.png": "dc3e047099be03807dea0fc9507564f92331dd5a6349c909cc2f35d0e2fc6cf1",
+    "840x469-equal.png": "df3be6b82c8160274c2472752c91ff28af4a6670eb365e1ed87b655050a289c5",
+    "840x469-expired-current-only.png": "c9a9305815f65f32854f4156acb35c5b29436ab6a4d05aeafda09974a54a74f4",
+    "840x469-expired-old.png": "c9a9305815f65f32854f4156acb35c5b29436ab6a4d05aeafda09974a54a74f4",
+    "840x469-expiring-current-only.png": "51f4551f574b33b6b1a3faab7dc31034ab3fbeda82dce34cec7fd71f52598c12",
+    "840x469-expiring.png": "cc3b05cb87c09eff3166eb70ef174df0d5d75d2ed65b1bf5622a74ebef950dd0",
+    "840x469-first-forming.png": "7a040e2da5bec11b168510c03087e192bc15b124a977d90f641b8dd82b62bd29",
+    "840x469-half-life-new-forming.png": "efe684a914b9344e9074216b5baf7d07712fee1d020a31821fde42658378cfb8",
+    "840x469-outside-crop.png": "e186dc789690e00e8d3a1cceaa6f6fb99bc1ab619695333b48dd16cf9a1e1bb2",
+    "840x469-overlap-current-only.png": "be1e18e89cddd9420f16218a7339b95139da577279feba3a4ef3316deb6bb93d",
+    "840x469-overlap.png": "fde02264791f6cb616771f144a5bb2d9c013451419f1eca545ae6b989df85fdf",
+    "840x469-reduced-motion-expiry.png": "e6fd90144a576afb3605b5e1229a274b33e6a29b339ab5bea61057adef6b7146",
+    "840x469-reduced-motion-late.png": "5b2aa585f0eb4a063c8ef052144995870143d838904cfa8e54c7e88ae57d6bcc",
+    "840x469-reduced-motion.png": "5b2aa585f0eb4a063c8ef052144995870143d838904cfa8e54c7e88ae57d6bcc"
+  }
+}
