@@ -1,5 +1,7 @@
 # Reservoir Scope
 
+Continuing this work: [Agent handoff — main, shared paths, build and checks](HANDOFF.md).
+
 A native macOS observatory for Minime's reservoir telemetry and measured state geometry. **Version 0.7.1 gives Reference Zones overlapping, fading high- and low-water marks.** Each pair preserves its measured values while a fresh range forms halfway through its lifetime. The existing views retain native action receipt inspection, actual state surfaces and optional curved live-fill transitions. The [animation guide](docs/ANIMATION-DATA.md#observed-high-and-low-water-marks) explains the new marks; the [state-surface guide](docs/STATE-SURFACE.md) preserves the state and action mappings. The [build receipt](build-receipt.json) identifies the packaged viewer and its validation.
 
 The retained previous **0.5.0 build 7** passed **172 native checks** and was visually inspected.
