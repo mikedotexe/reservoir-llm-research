@@ -308,3 +308,16 @@ despite some uptake of evidence roles and caller details. This is a limit on the
 specific comparison, not a Being-level conclusion. The provider controls remain
 live; contextual activation feedback remains offline. No new sampling or sensory
 intervention was introduced by the navigation rollout.
+
+## September 10 follow-through: evidence position
+
+The subsequent [fixed-block order comparison](2026-09-10-study-evidence-order.md)
+accounts for eight planned trials: seven model-EOS responses, one preserved
+admission refusal and three complete pairs from one historical Minime episode.
+Neither order produces a central correction in those pairs. With fresh code last,
+the three paired responses propose retaining or resolving the unsupported account;
+with recall last, they continue exploring. The separate unpaired answer chooses a
+real source identifier, without correcting the fixture interpretation. These are
+isolated MLX prompt results, not live Being learning. No prompt retune or activation
+feedback was deployed; the next proposed comparison concerns question premises and
+a correct-account control. Board mirroring remains pending.
