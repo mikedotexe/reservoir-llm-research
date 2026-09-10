@@ -293,3 +293,6 @@ Final integration is recorded on Astrid `main` at `3b457d1e06`; Minime `main` re
 `e719cd7`. Research commits are local: this repository has no configured remote.
 Raw packets remain in its existing ignored `research/outputs/` store, with final
 SHA-256 evidence indexes. Unrelated native-application edits remain untouched.
+
+Cooperative stewardship resumed at generation 435 after verification. The final
+resume receipt is retained and included in the rollout evidence index.
