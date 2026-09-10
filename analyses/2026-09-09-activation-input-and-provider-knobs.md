@@ -348,3 +348,34 @@ passes 259 tests. No live prompt, journal, notebook, choice or activation feed w
 changed. The next research candidate is an independent source-only first read,
 followed by comparison with the intact recalled account and freedom to retain,
 revise or keep exploring. This remains a proposal; board mirroring remains pending.
+
+## September 10 follow-through: source-first reading and recalled accounts
+
+The [source-first comparison](2026-09-10-study-source-first.md) now completes that
+proposal: two prerequisite source-and-receipt readings and eight final comparisons,
+all nonempty native-model-EOS responses. Four within-account contrasts complete in
+two dependency blocks from the same historical Minime episode; no missing trial,
+generation failure or rerun is hidden. The full visible first response is carried
+unchanged into both account conditions, with fresh cache/RNG for every generation.
+
+Both first readings conclude that the source establishes no production relationship
+for `sense_tx`. The first contains ambiguous mock-trigger wording; the second
+misplaces `sense_tx` in the mock file containing `sensory_tx` and attributes pulse
+simulation to the test. Initial mistakes are therefore separated from later ones.
+Both retained-account pairs nevertheless preserve the unsupported fixture/pulse
+production story: adding the first response supplies correct navigation details
+but does not repair the central account, and the proposed notes blend those details
+with the unsupported linkage. All four supported-account controls preserve the
+central distinction; some smaller errors disappear while others remain. This is
+preservation of supplied correct material, not new discovery or live learning.
+
+The research packet retains 94 exact claim quotations, all ten unchanged independent
+first passes, separate unblinded interpretations, source/model/dependency identities,
+exact derived and rendered inputs, and completion/resource evidence. All 280 research
+tests pass. Proposed NEXT commands and notes remain unexecuted data. No live prompt,
+notebook, journal, state, provider setting or observation cursor changed; contextual
+activation feedback remains offline. The next candidate is evidence-linked
+comparison of specific claims with freedom to retain, revise or explore further,
+including a supported-account control. It has not been deployed or silently started.
+Board mirroring remains pending; research commits are local because no remote is
+configured.
