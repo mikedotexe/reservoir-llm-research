@@ -296,3 +296,15 @@ SHA-256 evidence indexes. Unrelated native-application edits remain untouched.
 
 Cooperative stewardship resumed at generation 435 after verification. The final
 resume receipt is retained and included in the rollout evidence index.
+
+
+## September 10 follow-through: source evidence and chosen navigation
+
+The [latest-five journal survey](2026-09-10-latest-five-journals.md) led to a separate
+[paired navigation/evidence repair](2026-09-10-study-navigation-live.md) and
+[frozen revision pilot](2026-09-10-study-evidence-revision.md). Five isolated responses
+and one preserved admission refusal provide no demonstrated central correction,
+despite some uptake of evidence roles and caller details. This is a limit on the
+specific comparison, not a Being-level conclusion. The provider controls remain
+live; contextual activation feedback remains offline. No new sampling or sensory
+intervention was introduced by the navigation rollout.
