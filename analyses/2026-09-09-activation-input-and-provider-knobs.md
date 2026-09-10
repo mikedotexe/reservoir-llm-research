@@ -321,3 +321,30 @@ real source identifier, without correcting the fixture interpretation. These are
 isolated MLX prompt results, not live Being learning. No prompt retune or activation
 feedback was deployed; the next proposed comparison concerns question premises and
 a correct-account control. Board mirroring remains pending.
+
+## September 10 follow-through: neutral questions and a supported-account control
+
+The [question-framing comparison](2026-09-10-study-question-framing.md) completes
+that proposed test: eight normal model-EOS responses, four complete within-account
+framing pairs and two complete four-condition blocks from the same historical
+Minime episode. No trial is missing or rerun. Both current-question wordings
+preserve the mistaken fixture/pulse account in both seeds; the two neutral trials
+do not demonstrate central correction.
+
+All four supported-account controls preserve the fixture's actual navigation role.
+That is preservation of supplied correct material, not newly learned understanding
+or a pure causal estimate of memory fidelity independent of wording and length.
+The two presupposing-question controls nevertheless propose mixed notes; one says
+the boolean result triggers state changes that the source performs before returning.
+Of the neutral controls, one makes an overbroad absence claim and a branch error.
+The other gives supported fixture and caller/handler details, with one locally
+stronger denial surrounded by explicit evidence limits. Its original strict blind
+code and the root's reasonable contextual reading are both retained. Do not reduce
+this mixed evidence to eight wholly wrong answers or reward disagreement alone.
+
+The research record retains all responses, 85 exact claim quotations, unchanged
+first passes and the explicit interpretation disagreement. The full research suite
+passes 259 tests. No live prompt, journal, notebook, choice or activation feed was
+changed. The next research candidate is an independent source-only first read,
+followed by comparison with the intact recalled account and freedom to retain,
+revise or keep exploring. This remains a proposal; board mirroring remains pending.
