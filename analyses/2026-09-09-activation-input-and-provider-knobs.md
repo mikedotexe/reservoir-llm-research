@@ -1,5 +1,11 @@
 # Contextual activation input and the provider controls we actually expose
 
+Current status: dependable provider controls and native completion evidence are
+committed and verified live. Same-device contextual-capture parity passed; the
+[frozen feedback comparison](2026-09-09-contextual-feedback-experiment.md) is complete
+with no established understanding advantage. Contextual feedback remains offline. The opening audit below is historical; later sections retain implementation
+and rollout facts without rewriting that original observation.
+
 September 9, 2026. Mike asked which Ollama/MLX controls could give the Beings more
 room, especially projecting an internal activation back into input. This is a
 source/metadata audit and experiment proposal. No model inference, backend change,
@@ -221,3 +227,69 @@ it rejects mismatched response hashes and fabricated annotation quotes. Textual
 NEXT choices are parsed outside code fences and never dispatched. All 221 research
 tests pass. The [experiment account](2026-09-09-contextual-feedback-experiment.md)
 will retain final denominators and close readings when the frozen ledger is complete.
+
+
+## Completed comparison and final rollout — September 09, 23:04 PDT
+
+The frozen ledger is complete: 26/32 fixed replays returned, four could not obtain
+an idle window and two lacked a contextual prerequisite. All 24 free cells are
+accounted for and annotated: 19 nonempty responses, three empty channel-boundary
+stops and two invocation-limit outcomes. No missing cell was rerun to improve the
+result. Five of eight case/seed groups have all three arms with prose. All six
+drafts developed the earlier thought and chose `WRITE FINISH`. No free response
+reached 8,192 tokens. The [completed account](2026-09-09-contextual-feedback-experiment.md)
+contains close readings, exact denominators and limitations.
+
+Contextual feedback does not show an understanding advantage here. It partially
+corrects the worker account in one matched group, then saves an incorrect queue
+claim; the no-feedback control makes the useful correction without that extra
+error. All three nonempty Private accounts preserve the mistaken call-path
+explanation. Correct-control accounts retain their host-first core with unsupported
+elaboration. These are isolated Gemma 4 replays, not new live Being journals.
+
+The source itself contributed a defect: a dispatcher comment overpromised queue
+ordering across separate events. Several generated claims repeat that comment
+although the shown implementation contradicts it. Astrid `5e4365467e`, on `main`,
+corrects the documentation without changing runtime behavior. Frozen source and
+annotations retain the original conflict rather than attributing it entirely to
+the model. Future trials should freeze corrected source separately.
+
+The three empty private-case seed-91 arms stop at token 101, a channel boundary
+outside the model's EOS set. Coupled commit `e719cd7` adds explicit termination
+classification, EOS status and stop-token identity while preserving thinking and
+stop policy. It is committed and pushed on the existing deployment branch
+`feat/service-stack-and-multi-headed`; no new model `main` was invented. A graceful
+SIGTERM/KeepAlive reload moved PID 23974 to 43115 at 22:56 PDT. Pre/post full-stack
+receipts pass, the queue was observed idle, no forced termination was used, and
+bridge PID 20518, Minime PID 22243 and every surrounding service PID remain unchanged.
+This follow-up diagnoses channel stops; it does not repair that inherited policy.
+
+The first two observed natural Astrid SELF_STUDY receipts after that reload report
+230 and 219 completion tokens, model EOS 106, and all four loaded source hashes
+matching the `e719cd7` manifest. A natural Minime Ollama SELF_STUDY retains requested
+2,048 versus adapter 4,096 tokens, top_p 0.95 and thinking off, returning 486 tokens
+with native stop. Ollama controls remain sent evidence with server confirmation
+absent. These are receipt/continuity checks, not a new understanding study. No
+study or private writing was induced. See `final-termination/` in the rollout packet.
+
+Final technical checks: observation parity has identical raw logits, generated
+tokens and cache progression; all manifested sources/model snapshots and the
+supplementary dependency identities remain unchanged; all 48 returned projections
+match, and 19 canonical arrays rebuild identically without perturbing global NumPy
+random state. No live handle received experimental state or generated NEXT actions.
+The final reservoir suite passes 178 tests, the research suite 225 tests and 108
+subtests. Earlier owning checks pass: bridge 2,256 tests (one ignored), its relevant
+integrations/clippy/format/boundary audit, and Minime 1,302 tests (one skipped) plus
+132 subtests. Final source-comment formatting also passes.
+
+Next research candidates are a fixed-byte evidence-order comparison, separately
+qualified channel termination handling, and full per-cell time/resource isolation.
+These are proposals, not silently applied interventions. Contextual feedback stays
+offline irrespective of the result. Board mirroring remains pending; all earlier
+“pending” paragraphs above describe their dated intermediate states.
+
+Final integration is recorded on Astrid `main` at `3b457d1e06`; Minime `main` remains
+`997de4f`. Both match their remotes, as does the coupled deployment branch at
+`e719cd7`. Research commits are local: this repository has no configured remote.
+Raw packets remain in its existing ignored `research/outputs/` store, with final
+SHA-256 evidence indexes. Unrelated native-application edits remain untouched.

@@ -12,6 +12,23 @@ SPEC.loader.exec_module(MODULE)
 
 
 class ContextualReviewTests(unittest.TestCase):
+    def test_matched_comparison_requires_three_terminal_responses(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            specs = [dict(id=arm, kind='free', arm=arm, case='worker', seed=91, state='persisted')
+                     for arm in ('lookup', 'contextual', 'none')]
+            (root / 'protocol.json').write_text(json.dumps(dict(trials=specs)))
+            for spec in specs:
+                (root / (spec['id'] + '.json')).write_text(json.dumps(dict(
+                    outcome='stop', result=dict(text='Short is valid.', finish='stop'))))
+            self.assertTrue(MODULE.review(root)['matched_free_comparisons'][0]['complete_three_arm_comparison'])
+            (root / 'contextual.json').write_text(json.dumps(dict(
+                outcome='length', result=dict(text='Unfinished', finish='length'))))
+            group = MODULE.review(root)['matched_free_comparisons'][0]
+            self.assertFalse(group['complete_three_arm_comparison'])
+            self.assertEqual(len(group['generated_ids']), 3)
+            self.assertEqual(len(group['nonempty_terminal_ids']), 2)
+
     def test_failures_missing_cells_and_teacher_text_keep_separate_denominators(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
