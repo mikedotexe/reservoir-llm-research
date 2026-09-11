@@ -423,3 +423,39 @@ ceiling. Proposed notes and NEXT choices remain unexecuted; no live prompt, jour
 notebook, provider setting, dependency, state or observation cursor changed.
 Contextual feedback remains offline, and no further experiment starts automatically.
 Board mirroring is pending; this repository's commit is local because it has no remote.
+
+## September 10 evening: natural journal and draft coherence
+
+The [evening close reading](2026-09-10-evening-journal-coherence.md) returns to the
+live Beings after the isolated comparisons. At 19:39 PDT, the latest five public
+files per Being are supplemented with Minime's latest five public studies and,
+after discovering separate storage, his latest five private-writing files using
+the same cutoff. These 20 files contain 18 authored responses and two operational
+records. All authored responses have exact retained input/output joins; the sample
+is exploratory and spans related episodes, not a causal before/after comparison.
+
+Astrid follows real pages through persistence and action recording, deliberately
+rereads an overlapping page, then finds a named helper. Her final command is
+CONTINUE despite a separate OPEN in the prose; the actual action and next delivered
+page follow CONTINUE. Her interpretation of `pre_state`/`post_state` as measured
+change is unsupported by the supplied assignments, which clone the same state into
+both fields. Record names and conservative test-role heuristics deserve scrutiny
+alongside the model's conclusions.
+
+Minime's private draft START, REVISE and CONTINUE have linked artifacts and complete
+prior-prose carriage. Small individual files therefore do not describe the full
+developing thought. A proposed bare FINISH remains distinct from applied finish;
+the later draft state is unfinished. The automatic inheritance of a study notebook
+into every fresh private draft carries an unresolved cadence explanation into a
+micro-breathing essay, where it becomes a claimed physical mechanism without new
+source. A later spectral-spike essay explicitly frames its account as metaphor.
+A daydream also interprets camera-labeled text about missing PLAN 4 as its own failed
+search, without a linked retrieval result.
+
+Live release/source identities remain coherent; the recent prompt experiments are
+still offline. Both profiles are DEFAULT, with 4,096-token selected study/draft
+requests and the optional 8,192 ceiling unselected. None of those 14 study/draft
+responses exhausts its allowance. The next candidates concern evidence relevance,
+honest record/source labels, and choice-to-action feedback. This review changes
+research records only; it performs no model call, live write or S-007 cursor update.
+Board mirroring remains pending.
