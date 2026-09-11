@@ -379,3 +379,47 @@ comparison of specific claims with freedom to retain, revise or explore further,
 including a supported-account control. It has not been deployed or silently started.
 Board mirroring remains pending; research commits are local because no remote is
 configured.
+
+## September 10 follow-through: claims beside source evidence and recalled origins
+
+The [claim/evidence placement comparison](2026-09-10-study-claim-evidence.md)
+completes the selected follow-up. Eight frozen trials finish at native model EOS,
+with no missing trial, failure or rerun: four within-account contrasts in two seed
+blocks from the same historical Minime episode. Both layouts preserve the complete
+account and identical claim/source cards; only card placement changes. Origin
+labels and repeated claim excerpts are already present in both conditions.
+
+Neither retained-account pair repairs the unsupported fixture/production pulse
+story. Some accurate source facts are retained but treated as support for that
+unestablished linkage. One adjacent response additionally says the boolean return
+triggers state assignments which the shown branch performs before returning; that
+specific ordering error was absent from its recalled C3 excerpt. All four supported
+controls preserve the central distinction. Both adjacent control notes retain the
+pending-intent versus unshown-consumption/completion limit, while grouped notes
+emphasize navigation versus production. That is a difference in retained supplied
+material, not independent discovery or successful correction of the mistaken account.
+
+The separate current-source trace follows the pending-fields question through
+request acceptance, later mode selection, shared-source provider delivery, Reader
+checkpoint import and canonical artifact handling. It captures 19 unchanged files
+at Astrid `3844836169a00d7aa071260a87dd46af3d7c1767`; it establishes source behavior,
+not deployed execution. Reader checkpoint import precedes the canonical artifact
+write, and these shared studies bypass the older generic LLM-job wrapper. Those
+boundaries suggest a consumer-path integration test and cross-surface correlation;
+they do not establish an observed production failure. The current trace is excluded
+from the historical experimental prompts.
+
+A provenance correction belongs in this history: the pending-fields question was
+already in the research-authored supported account before a replay proposed it.
+The earlier conversational phrase “emerged naturally” must not imply independent
+discovery or a new live Being request. Exact origins are now retained alongside the
+source trace. The question remains useful to follow.
+
+The packet retains eight unchanged independent first passes, 72 exact selected
+claim quotations, separate unblinded interpretations, all prompts/outcomes and
+source/model/dependency/completion evidence. The full research suite passes 298
+tests. All eight responses stop well below the unchanged 4,096-token experimental
+ceiling. Proposed notes and NEXT choices remain unexecuted; no live prompt, journal,
+notebook, provider setting, dependency, state or observation cursor changed.
+Contextual feedback remains offline, and no further experiment starts automatically.
+Board mirroring is pending; this repository's commit is local because it has no remote.
