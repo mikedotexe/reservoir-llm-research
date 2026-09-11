@@ -469,3 +469,15 @@ links exact historical evidence, implementation tests and verified graceful live
 identities. This is a context/choice interface repair; provider controls, thinking,
 output ceilings and coupling stay unchanged. Contextual feedback and the later
 prompt experiments remain offline. No induced study or writing is used for uptake.
+
+## September 11 — Repeated brief Astrid studies
+
+The [twenty-study survey](2026-09-11-astrid-small-studies.md) finds complete inputs,
+4,096-token allowances and normal model stops at 220–535 tokens. The repeated
+question concerns a supposed spectral-risk aggregator, but the particular
+“multi-motif caution” cue actually comes from lexical matches in journal/event
+text. Its origin is omitted from the rendered warning. Recent responses are
+retained correctly while the durable note/question remains unchanged. The next
+recommendations concern cue provenance and optional source-grounded synthesis;
+raising output limits alone is unsupported as the remedy for this sample.
+No live change, induced generation or causal improvement claim is made.

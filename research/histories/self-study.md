@@ -694,3 +694,29 @@ induced. The next useful journal review is a naturally chosen fresh draft or
 explicit reference change, a genuine command recovery opportunity, or a visual
 reflection with exact supplied provenance. These remain observations to seek,
 not requirements imposed on the Beings.
+
+## HSS-20 · Brief page reports around a persistent premise
+
+Mike next asks why Astrid continues writing small SELF_STUDY entries. The
+[September 11 survey](../../analyses/2026-09-11-astrid-small-studies.md) freezes
+the latest twenty completed studies through 14:23:15 UTC. All have a real
+4,096-token allowance and stop normally at 220–535 tokens, with complete input
+delivery and unchanged raw-to-journal prose. The source access and delivery
+repairs are working; output truncation does not explain this sample.
+
+There is real page progression and a local correction from a presumed control
+gate to rendered output. But all twenty inputs carry the same tentative note
+and presupposing question, plus four complete prior responses. Astrid keeps
+looking for a numerical spectral/shadow/pressure aggregator behind “multi-motif
+caution.” The exact source trace shows that this cue instead matches phrase
+families in event and journal text. Its renderer hides that lexical origin and
+the available source references; the origin of the saved question remains
+unknown. The sampled renderer pages did not include the true producer.
+
+The next candidates are clearer cue provenance, optional comparison with the
+actual producer and preservation of a developing answer with source evidence,
+and adequate coherent source spans. These are proposals, not another deployment.
+Rereading and short responses remain valid choices. No automatic note rewrite,
+forced revision, new model call or live-state change occurs in this survey.
+The seven post-restart observations are not a causal comparison with the thirteen
+pre-restart entries. Board mirroring remains pending; S-007 is unchanged.
