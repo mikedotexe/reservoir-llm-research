@@ -459,3 +459,13 @@ responses exhausts its allowance. The next candidates concern evidence relevance
 honest record/source labels, and choice-to-action feedback. This review changes
 research records only; it performs no model call, live write or S-007 cursor update.
 Board mirroring remains pending.
+
+## September 11 — Journal coherence repairs following natural use
+
+Mike approved the three actionable seams from the evening survey: unrelated study
+notes inherited by new drafts, prose/command divergence and visual-description
+provenance. The [owning research account](2026-09-11-journal-coherence-repairs.md)
+links exact historical evidence, implementation tests and verified graceful live
+identities. This is a context/choice interface repair; provider controls, thinking,
+output ceilings and coupling stay unchanged. Contextual feedback and the later
+prompt experiments remain offline. No induced study or writing is used for uptake.
