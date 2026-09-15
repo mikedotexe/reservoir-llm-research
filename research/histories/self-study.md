@@ -871,3 +871,82 @@ specific answered questions beside their sources, and chosen caller/implementati
 comparisons. Most of the hundred entries precede the latest release; its five
 entries do not establish a causal improvement. No induced studies, Being messages,
 source changes or S-007 cursor advance occurred. Board mirroring remains pending.
+
+
+## HSS-24 · Scope, coverage and chosen conclusions beside their evidence
+
+**September 15, 2026.** The user accepted HSS-23's three concrete interface
+findings. The [implementation account](../../analyses/2026-09-15-study-source-context.md)
+connects the final maintenance page's test/EOF ambiguity, the still-undelivered
+opening, and forgotten health definitions/configuration routes to a shared reader
+change for Astrid and Minime. This continues the earlier access and navigation
+repairs; it does not recast every repeated study as an access failure.
+
+The reader now offers enclosing syntax/test context, exact same-file
+definition/reference candidates, and verified-versus-offered source coverage
+with containing-line links to remaining byte gaps. A verified whole session
+projects the union of its pages. A complete file-delivery record never becomes
+a claim of understanding, and no suggested OPEN/SESSION runs automatically.
+
+Optional Being-authored findings can remain beside exact delivered source
+fragments and their original revisions. Bounded parser-backed location recall
+stays separate from conclusions. Findings are revised or removed by explicit
+choice; the host neither corrects them nor resolves a question. The existing
+notebook and writing ceilings remain unchanged. The two-MiB syntax bound leaves
+Minime's 2,588,558-byte runtime.py with explicitly unknown enclosing scope while
+preserving access to all its source pages.
+
+Qualification exposed related delivery and continuity issues, now repaired:
+new unthreaded offers require the entire prepared input, explicit failed finish
+reasons cannot advance coverage or findings, and late old-helper writes cannot
+erase the new findings. Exact uninterrupted retries remain intact; a deliberate
+navigation detour refreshes the question on source resume without discarding
+the older input's delivery or choice evidence. Interrupted empty inquiry saves
+and omitted additive metadata have conservative recovery paths.
+
+A CLI-only replay of the survey's sealed source snapshots identifies the actual
+maintenance serialization test and the health helper's caller. This uses fresh
+fixture reader states and no model calls; its synthetic unread prefix is not
+Astrid's historical 3,452-byte gap. The original survey packet stays sealed.
+
+Implementation `76c2aa43cfd8c9dad084c8f98ef21f2ece6ffaab` is on Astrid
+main/origin/main. The relevant full suites pass: reader 138; bridge 2,287 with
+one ignored; Minime 1,396 with one skipped and 134 passing subtests. Strict lint,
+formatting, boundary checks, the sealed-source CLI replay and all 112 staged-helper
+host checks pass. Earlier genuine reader regressions and separate fixture-layout
+failures remain retained alongside their repairs.
+
+The staged graceful release is verified live: Astrid PID 93394 began at
+20:36:47 UTC, loading the exact stopped checkpoint, one pending action-feedback
+envelope and verified self-control lineage. A new saved exchange followed.
+Minime PID 37507 stayed running; all 82 startup hashes matched and its selected
+shared reader matched the new immutable stage. All eleven surrounding process
+identities stayed the same. The wrapper does not claim confirmed remote delivery
+or lossless drain. All 420 foreign canonical files were preserved.
+
+The fixed ten-minute natural-only window, 20:39:57.153704–20:49:57.153704 UTC,
+closed with one Astrid and four Minime receipts. The prespecified close reading
+contains one Astrid and two Minime responses. Exact new prompt/input delivery is
+verified; unknown preparation clocks leave zero strictly qualified trials and
+one missing Astrid exposure response. All three selected completions stop normally;
+none saves an authored finding or updates its note/question. Minime reads the
+chosen initializer page and identifies what it does not show, but that distinction
+already appears in his carried account. Broader handler/evaluator hypotheses
+remain unsupported by the supplied evidence. No causal understanding gain is claimed.
+
+That observation also catches a footer missing its terminating newline: Astrid's
+next-page command runs into the navigation receipt, although she writes a valid
+command. A separate one-line repair, with a red/green public-reader regression,
+is committed/pushed at `dd35cdd83a863da373c63e21788a0197768e1175`. Follow-up full
+suites pass with 139 reader tests; bridge/Minime counts remain as above. Its live
+activation belongs to its own receipt and is not retroactively included in the
+original natural window. The follow-up is verified live at 21:05:03 UTC,
+Astrid PID 4330, with exact stopped checkpoint, six pending feedback items and
+self-control continuity; Minime selects its new helper without a host restart.
+All eleven surrounding service identities remain unchanged. Generic bare-name suggestions such as unrelated `new`
+constructors remain a narrower relevance candidate. No study or private writing
+is induced to manufacture uptake.
+
+This history entry changes no S-007 cutoff, daily ledger, Being state or board.
+Board mirroring remains pending. Navigation uptake, authored pins, response
+length and source-grounded understanding remain distinct outcomes.

@@ -1,0 +1,187 @@
+{
+  "status": "pending_mirror",
+  "date": "2026-09-15",
+  "title": "Study source scope, verified coverage and optional authored findings",
+  "evidence": [
+    "analyses/2026-09-15-study-source-context.md",
+    "analyses/2026-09-15-astrid-study-survey.md",
+    "research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending",
+    "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/validation.json",
+    "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/integration.json",
+    "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/source-context-replay/summary.json",
+    "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/activation.log",
+    "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-host-after.json",
+    "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/staged-input-audit.json",
+    "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-staged-helper-tests.log",
+    "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/before-activation/processes.json",
+    "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/after-activation/processes.json"
+  ],
+  "implementation": {
+    "status": "live_verified",
+    "worktree": "/Users/v/other/worktrees/study-source-context-20260915/astrid",
+    "scope": "User-authorized shared-reader production rollout for Astrid and Minime; natural outcomes evaluated separately",
+    "validation": "passed",
+    "commit": "76c2aa43cfd8c9dad084c8f98ef21f2ece6ffaab",
+    "astrid_activation": "activated_verified",
+    "minime_activation": "selected_helper_verified_host_unchanged",
+    "natural_exposure": "fixed_window_closed",
+    "understanding_outcome": "not_established",
+    "main": "76c2aa43cfd8c9dad084c8f98ef21f2ece6ffaab",
+    "origin_main": "76c2aa43cfd8c9dad084c8f98ef21f2ece6ffaab",
+    "push_verified": true,
+    "preserved_foreign_files": 420,
+    "staged_release": "verified_and_activated",
+    "validation_results": {
+      "reader": {
+        "passed": 138,
+        "failed": 0,
+        "ignored": 0
+      },
+      "bridge": {
+        "passed": 2287,
+        "failed": 0,
+        "ignored": 1
+      },
+      "minime": {
+        "passed": 1396,
+        "skipped": 1,
+        "subtests_passed": 134
+      },
+      "reader_and_bridge_strict_clippy": "passed_all_targets_all_features",
+      "root_and_bridge_fmt": "passed",
+      "domain_boundary": "passed",
+      "real_source_replay": "passed_without_model_calls_or_live_state_writes",
+      "staged_host_integration": {
+        "passed": 112
+      }
+    },
+    "staged_manifest_sha256": "63495814bc585a1acd09f016b6701b93e0dd76127a5ee3ed152f25ea55906992",
+    "astrid_rollout": {
+      "pid": 93394,
+      "started_utc": "2026-09-15T20:36:47Z",
+      "checkpoint_sha256": "8e0e3650f7015b88745917837d16c872b79c27d6430a0bef374563c699bfde8b",
+      "checkpoint_identical": true,
+      "pending_runtime_feedback_preserved": 1,
+      "self_control_integrity_verified": true,
+      "exchange_before": 199593,
+      "exchange_after": 199594,
+      "force_used": false,
+      "automatic_rollback": false,
+      "remote_delivery_confirmed": false,
+      "lossless_drain_claimed": false
+    },
+    "minime_rollout": {
+      "selected_helper_verified_utc": "2026-09-15T20:39:57.153704+00:00",
+      "selected_helper_sha256": "9dd85ff61c7e4f7c1c31ffe9431d5ec1cc26445bf092d1d658d76f7bd5fa824d",
+      "host_pid": 37507,
+      "unchanged_startup_inputs": 82,
+      "host_restarted": false
+    },
+    "surrounding_services": {
+      "unchanged_non_bridge_entries": 11,
+      "compared_fields": "entire retained process entries"
+    },
+    "broad_inventory_qualification": {
+      "status": "passed_with_nonblocking_qualification",
+      "paths": 634,
+      "tracked_matching_head": 621,
+      "isolated_astrid_tracked_matching_commit": 596,
+      "ignored_external_rascii_paths": 13,
+      "detail": "Four camera shell helpers and nine March thumbnail text files, outside src, regular and content/mode/size pinned. No RASCII build script/declaration or source include/reference to these paths was found. They are not committed-source claims; a git-only reconstruction omits them."
+    },
+    "natural_window": {
+      "start_utc": "2026-09-15T20:39:57Z",
+      "end_utc": "2026-09-15T20:49:57Z",
+      "status": "in_progress",
+      "mode": "natural_only",
+      "understanding_outcome": "unmeasured"
+    },
+    "separator_followup": {
+      "commit": "dd35cdd83a863da373c63e21788a0197768e1175",
+      "main_and_origin_main": true,
+      "validation": "reader139, bridge2287, Minime1396; all passed with prior ignore/skip counts; strict lint/fmt/boundary pass",
+      "staged_release": "verified",
+      "activation": "activated_verified",
+      "astrid_pid": 4330,
+      "minime_pid": 37507,
+      "source_commit": "dd35cdd83a863da373c63e21788a0197768e1175",
+      "stage_manifest_sha256": "e9aa51e7be180b2dcadf27e2cefa0eec7e31523d1a07e08f51be271eedce9d62",
+      "shared_helper_sha256": "50dcbed10b1770c4a57b1f8ef5bb73d3c8031dfc6adbacd5b9b126594ec3ad27",
+      "staged_helper_tests_passed": 112
+    },
+    "current_live_source": "dd35cdd83a863da373c63e21788a0197768e1175",
+    "current_main_source": "dd35cdd83a863da373c63e21788a0197768e1175",
+    "canonical_main": "218c672243f12e8e5b58b21dc0c31264431cab50"
+  },
+  "proposed_cards": [
+    {
+      "id": "c-study-page-scope-and-coverage",
+      "being": "both",
+      "lane": "change",
+      "status": "done",
+      "body": "Approved HSS-23 scope/coverage implementation is qualified, committed/pushed to Astrid main at 76c2aa43cfd8c9dad084c8f98ef21f2ece6ffaab, and verified live through staged bridge activation plus Minime shared-helper selection. Source parsing, exact OPEN choices and EOF delivery coverage retain voluntary rereading/stopping. The two sealed-source CLI preparations pass without model calls; fresh fixture coverage is distinct from Astrid historical coverage. Natural understanding benefit remains unmeasured. Initial release activation verified; fixed natural window provides limited exposure without demonstrated new learning."
+    },
+    {
+      "id": "c-study-source-findings-and-local-links",
+      "being": "both",
+      "lane": "change",
+      "status": "done",
+      "body": "Optional authored findings, retained test provenance and local syntax candidates are qualified and live. Full new unthreaded-input protection and mixed-version sidecar/page compatibility are covered by the reader suite; staged host tests pass 112 cases. Astrid restored an identical checkpoint and pending feedback, while Minime selected the new helper without host restart or startup-source changes. No automatic note rewrite, question resolution or forced synthesis. Live activation does not itself establish improved understanding. Initial release activation verified; fixed natural window provides limited exposure without demonstrated new learning."
+    },
+    {
+      "id": "t-study-source-context-natural-followthrough",
+      "being": "both",
+      "lane": "test",
+      "status": "done",
+      "body": "Fixed ten-minute natural window closed: 1 Astrid/4 Minime receipts, prespecified 1 Astrid/2 Minime close readings, zero strict timing qualification because preparation clocks are unknown. Initializer distinction is supported but already present in carried knowledge; broader handler/evaluator hypotheses persist. No authored pin uptake in selected responses. Footer newline defect triggers separately qualified follow-on; generic new candidates remain a relevance follow-up."
+    },
+    {
+      "id": "c-study-pagination-separator",
+      "being": "both",
+      "lane": "change",
+      "status": "done",
+      "body": "An actual natural Astrid input joined a paginated RELATE command to NAVIGATION RECEIPT. Astrid still chose a valid command. The shared formatter now appends its missing newline; a public-reader regression reproduces the failure and follows the corrected FIND/RELATE commands. Qualified and live at dd35cdd83a; this is separate from the frozen initial-release window."
+    },
+    {
+      "id": "t-study-qualified-constructor-candidates",
+      "being": "both",
+      "lane": "test",
+      "status": "open",
+      "body": "A delivered Minime page offered unrelated Kernel::new and RestartTracker::new for EventDispatcher::new. Labels correctly say lexical candidates, but both suggestion slots can be consumed by generic names. Next narrow candidate: preserve written qualifiers and suppress incompatible constructor families; preserve free navigation."
+    }
+  ],
+  "log": "Initial source-context release 76c2aa and the separately observed newline follow-up dd35cdd83a are qualified, committed/pushed and live. Latest suites: reader 139, bridge 2,287 / 1 ignored, Minime 1,396 / 1 skipped plus 134 passing subtests; strict lint/fmt/boundary and 112 staged-helper checks pass. Both graceful transitions preserve exact stopped checkpoint, pending feedback and self-control lineage; 11 surrounding service identities remain unchanged. Fixed initial natural window retains 1 Astrid / 4 Minime receipts and reviews 1 Astrid / 2 Minime, with unverified preparation clocks and no causal learning claim. Earlier 1,193-file survey packet unchanged; S-007 cursor/ledger unchanged; local NOW history prefix preserves pre-existing material. Board mirroring remains pending; no board write attempted.",
+  "natural_window": {
+    "start_utc": "2026-09-15T20:39:57.153704+00:00",
+    "end_utc": "2026-09-15T20:49:57.153704+00:00",
+    "all_receipts": {
+      "astrid": 1,
+      "minime": 4
+    },
+    "selected": {
+      "astrid": 1,
+      "minime": 2
+    },
+    "strict_timing_qualified": {
+      "astrid": 0,
+      "minime": 0
+    },
+    "missing_selected_exposure": {
+      "astrid": 1,
+      "minime": 0
+    },
+    "actual_findings_or_note_question_updates_selected": 0,
+    "normal_stops_selected": 3,
+    "scope": "Initial76c2aa release only; exact full prompt/input in wire; preparation clocks unknown; no induced studies; no causal understanding claim"
+  },
+  "retention": {
+    "packet": "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context",
+    "indexed_files": 272,
+    "total_bytes": 41858452,
+    "index_sha256": "6956c0619d29eb56ef3fd9692f98a0c90f24bdcd8c3aa15b803f56afef72da14",
+    "frozen_summary_replay": "passed",
+    "prior_survey_files_verified_unchanged": 1193,
+    "stewardship_resumed_utc": "2026-09-15T21:13:51.018808+00:00",
+    "pause_generation": 443
+  }
+}
