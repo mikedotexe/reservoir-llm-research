@@ -1,0 +1,423 @@
+{
+  "schema": "final_git_baseline_disposition_v1",
+  "observed_at_utc": "2026-09-15T21:36:41.689120+00:00",
+  "read_only": true,
+  "git_operations": "Read-only status, ls-files, check-ignore, rev-parse with optional locks disabled.",
+  "repositories": {
+    "astrid": {
+      "head": "fe3f438f1d31666e6e6e3d8ff408f6d2120eab3b",
+      "baseline_head": "218c672243f12e8e5b58b21dc0c31264431cab50",
+      "baseline_manifest": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/astrid-baseline.json",
+      "baseline_manifest_sha256": "2224836f02de061bde6ce3199b65f5e9e4f71f7c76a26ba2d7cb01b195038620",
+      "baseline_paths": 420,
+      "disposition_counts": {
+        "tracked_authorized_modified": 12,
+        "tracked_identical_original": 405,
+        "archived_exact_original_tracked": 3
+      },
+      "backup_exact_count": 420,
+      "backup_mismatches": [],
+      "mode_changes": [],
+      "authorized_changes_from_baseline": [
+        {
+          "path": "CHANGELOG.md",
+          "owner": "/root",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "crates/astrid-events/src/bus.rs",
+          "owner": "/root",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "crates/astrid-source-study/tests/continue_never_recovers_reach.rs",
+          "owner": "/root/reader_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": "/Users/v/other/astrid/docs/steward-notes/archived-reader-probes-20260915/continue_never_recovers_reach.rs"
+        },
+        {
+          "path": "crates/astrid-source-study/tests/in_file_producer_walk_reach.rs",
+          "owner": "/root/reader_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "crates/astrid-source-study/tests/page_walk_producer_reach.rs",
+          "owner": "/root/reader_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "crates/astrid-source-study/tests/path_recovery.rs",
+          "owner": "/root/reader_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": "/Users/v/other/astrid/docs/steward-notes/archived-reader-probes-20260915/path_recovery.rs"
+        },
+        {
+          "path": "crates/astrid-source-study/tests/placeholder_bracket_path_reach.rs",
+          "owner": "/root/reader_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": "/Users/v/other/astrid/docs/steward-notes/archived-reader-probes-20260915/placeholder_bracket_path_reach.rs"
+        },
+        {
+          "path": "crates/astrid-source-study/tests/scan_limit_catalog_reach.rs",
+          "owner": "/root/reader_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "crates/astrid-source-study/tests/search_evidence.rs",
+          "owner": "/root/reader_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "crates/astrid-source-study/tests/walked_past_definition_reach.rs",
+          "owner": "/root/reader_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "docs/steward-notes/AI_BEINGS_FEEDBACK_TO_CHANGE_LEDGER.md",
+          "owner": "/root",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "scripts/proactive_scan.py",
+          "owner": "/root",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        }
+      ],
+      "absent_paths_preserved_exactly_in_archive": [
+        {
+          "original": "crates/astrid-source-study/tests/bare_topic_candidate_gate_reach.rs",
+          "archive": "/Users/v/other/astrid/docs/steward-notes/archived-reader-probes-20260915/bare_topic_candidate_gate_reach.rs"
+        },
+        {
+          "original": "crates/astrid-source-study/tests/map_topic_scope_reach.rs",
+          "archive": "/Users/v/other/astrid/docs/steward-notes/archived-reader-probes-20260915/map_topic_scope_reach.rs"
+        },
+        {
+          "original": "crates/astrid-source-study/tests/page_enclosing_scope_reach.rs",
+          "archive": "/Users/v/other/astrid/docs/steward-notes/archived-reader-probes-20260915/page_enclosing_scope_reach.rs"
+        }
+      ],
+      "ignored_baseline_paths": [],
+      "untracked_leftovers": [],
+      "new_untracked_archive_paths": [],
+      "working_tree_clean": true,
+      "tracked_pending_status": {},
+      "status_stable_during_scan": true
+    },
+    "minime": {
+      "head": "12cbf5740e1cc751a2beb09ec5bb5fad742af459",
+      "baseline_head": "12cbf5740e1cc751a2beb09ec5bb5fad742af459",
+      "baseline_manifest": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/minime-baseline.json",
+      "baseline_manifest_sha256": "584f0ea91075627177898ea264900c8194758da4b6380e5876c09e79c9e0d578",
+      "baseline_paths": 0,
+      "disposition_counts": {},
+      "backup_exact_count": 0,
+      "backup_mismatches": [],
+      "mode_changes": [],
+      "authorized_changes_from_baseline": [],
+      "absent_paths_preserved_exactly_in_archive": [],
+      "ignored_baseline_paths": [],
+      "untracked_leftovers": [],
+      "new_untracked_archive_paths": [],
+      "working_tree_clean": true,
+      "tracked_pending_status": {},
+      "status_stable_during_scan": true
+    },
+    "reservoir-llm-research": {
+      "head": "43f44ad9d97535c7faccd34f25a8d8bfbd45f8a3",
+      "baseline_head": "dafb098b50750e106a90a6ccba8a00d88a843f9d",
+      "baseline_manifest": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/reservoir-llm-research-baseline.json",
+      "baseline_manifest_sha256": "f3191a39978934f3ac9de545d4476dff29821052ab68171d34b7bcc035418faa",
+      "baseline_paths": 658,
+      "disposition_counts": {
+        "tracked_authorized_modified": 13,
+        "tracked_identical_original": 546,
+        "ignored_identical_original": 97,
+        "untracked_identical_original_pending_authorized_integration": 2
+      },
+      "backup_exact_count": 658,
+      "backup_mismatches": [],
+      "mode_changes": [],
+      "authorized_changes_from_baseline": [
+        {
+          "path": ".gitignore",
+          "owner": "/root/research_git_audit or /root/native_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "essentials/reservoir/Reservoir.swift",
+          "owner": "/root/research_git_audit or /root/native_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "native/ReservoirScope/HANDOFF.md",
+          "owner": "/root/research_git_audit or /root/native_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "native/ReservoirScope/README.md",
+          "owner": "/root/research_git_audit or /root/native_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "native/ReservoirScope/Sources/ReservoirScope/ActionComparisonExperience.swift",
+          "owner": "/root/research_git_audit or /root/native_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "native/ReservoirScope/build-app.sh",
+          "owner": "/root/research_git_audit or /root/native_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "native/ReservoirScope/verify-app-identity.py",
+          "owner": "/root/research_git_audit or /root/native_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "probes/reservoir_3d_state_geometry.py",
+          "owner": "/root/research_git_audit or /root/native_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "pyproject.toml",
+          "owner": "/root/research_git_audit or /root/native_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "research/NOW.md",
+          "owner": "/root/research_git_audit or /root/native_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "research/TOOLS.md",
+          "owner": "/root/research_git_audit or /root/native_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "tests/test_reservoir_3d_state_geometry.py",
+          "owner": "/root/research_git_audit or /root/native_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        },
+        {
+          "path": "tests/test_study_inquiries.py",
+          "owner": "/root/research_git_audit or /root/native_git_audit",
+          "original_preserved_in_backup": true,
+          "exact_archive": null
+        }
+      ],
+      "absent_paths_preserved_exactly_in_archive": [],
+      "ignored_baseline_paths": [
+        "native/ReservoirScope/Sources/ReservoirScope/Resources/essentials-workspace.txt",
+        "native/ReservoirScope/validation/0.10.0/build.log",
+        "native/ReservoirScope/validation/0.10.0/essentials-layout/build.log",
+        "native/ReservoirScope/validation/0.10.0/exploration-layout/build.log",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/legacy-128-retained-row0.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/legacy-32-negative.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/legacy-32-opposed.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/legacy-32-positive.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/legacy-32-stage1-step1.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/legacy-32-stage1-step12.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/legacy-32-zero.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/pristine/legacy-128-retained-row0.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/pristine/legacy-32-negative.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/pristine/legacy-32-opposed.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/pristine/legacy-32-positive.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/pristine/legacy-32-stage1-step1.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/pristine/legacy-32-stage1-step12.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/pristine/legacy-32-zero.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/topography-128-retained-row0.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/topography-32-negative.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/topography-32-opposed.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/topography-32-positive.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/topography-32-stage1-step1.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/topography-32-stage1-step12.bgra",
+        "native/ReservoirScope/validation/0.10.0/topographic-renderer/topography-32-zero.bgra",
+        "native/ReservoirScope/validation/0.10.1/build.log",
+        "native/ReservoirScope/validation/0.11.0/action-cli-before-save-fix.log",
+        "native/ReservoirScope/validation/0.11.0/action-comparison-layout/build.log",
+        "native/ReservoirScope/validation/0.11.0/action-http-before-save-fix.log",
+        "native/ReservoirScope/validation/0.11.0/action-inspector-layout/build.log",
+        "native/ReservoirScope/validation/0.11.0/actions-ui/core-build.log",
+        "native/ReservoirScope/validation/0.11.0/build-final.log",
+        "native/ReservoirScope/validation/0.11.0/build.log",
+        "native/ReservoirScope/validation/0.11.0/core-build.log",
+        "native/ReservoirScope/validation/0.11.0/example-build.log",
+        "native/ReservoirScope/validation/0.11.0/native-before-final-sample.txt",
+        "native/ReservoirScope/validation/0.11.0/shared-camera/build.log",
+        "native/ReservoirScope/validation/0.6.0/build-before-ui-label-review.log",
+        "native/ReservoirScope/validation/0.6.0/build.log",
+        "native/ReservoirScope/validation/0.6.0/pre-json-roundtrip/artifact-identity.json",
+        "native/ReservoirScope/validation/0.6.0/pre-json-roundtrip/build.log",
+        "native/ReservoirScope/validation/0.6.0/pre-json-roundtrip/runtime-qa.json",
+        "native/ReservoirScope/validation/0.6.0/pre-json-roundtrip/status.json",
+        "native/ReservoirScope/validation/0.7.0/build-before-compact-layout.log",
+        "native/ReservoirScope/validation/0.7.0/build-before-speed-buttons.log",
+        "native/ReservoirScope/validation/0.7.0/build-initial.log",
+        "native/ReservoirScope/validation/0.7.0/build.log",
+        "native/ReservoirScope/validation/0.7.0/watermark-view/preview-before-compact-fix/524x300-equal-new-record.png",
+        "native/ReservoirScope/validation/0.7.0/watermark-view/preview-before-compact-fix/524x300-equal-resting.png",
+        "native/ReservoirScope/validation/0.7.0/watermark-view/preview-before-compact-fix/524x300-outside-crop-new-record.png",
+        "native/ReservoirScope/validation/0.7.0/watermark-view/preview-before-compact-fix/524x300-outside-crop-resting.png",
+        "native/ReservoirScope/validation/0.7.0/watermark-view/preview-before-compact-fix/524x300-separated-new-record.png",
+        "native/ReservoirScope/validation/0.7.0/watermark-view/preview-before-compact-fix/524x300-separated-resting.png",
+        "native/ReservoirScope/validation/0.7.0/watermark-view/preview-before-compact-fix/840x469-equal-new-record.png",
+        "native/ReservoirScope/validation/0.7.0/watermark-view/preview-before-compact-fix/840x469-equal-resting.png",
+        "native/ReservoirScope/validation/0.7.0/watermark-view/preview-before-compact-fix/840x469-outside-crop-new-record.png",
+        "native/ReservoirScope/validation/0.7.0/watermark-view/preview-before-compact-fix/840x469-outside-crop-resting.png",
+        "native/ReservoirScope/validation/0.7.0/watermark-view/preview-before-compact-fix/840x469-separated-new-record.png",
+        "native/ReservoirScope/validation/0.7.0/watermark-view/preview-before-compact-fix/840x469-separated-resting.png",
+        "native/ReservoirScope/validation/0.7.0/watermark-view/preview-before-compact-fix/checks.json",
+        "native/ReservoirScope/validation/0.7.0/watermark-view/preview-before-compact-fix/sources.json",
+        "native/ReservoirScope/validation/0.7.1/build-before-review.log",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/524x300-empty-gap.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/524x300-equal.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/524x300-expired-current-only.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/524x300-expired-old.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/524x300-expiring-current-only.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/524x300-expiring.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/524x300-first-forming.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/524x300-half-life-new-forming.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/524x300-outside-crop.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/524x300-overlap-current-only.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/524x300-overlap.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/524x300-reduced-motion-expiry.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/524x300-reduced-motion.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/840x469-empty-gap.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/840x469-equal.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/840x469-expired-current-only.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/840x469-expired-old.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/840x469-expiring-current-only.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/840x469-expiring.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/840x469-first-forming.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/840x469-half-life-new-forming.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/840x469-outside-crop.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/840x469-overlap-current-only.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/840x469-overlap.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/840x469-reduced-motion-expiry.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/840x469-reduced-motion.png",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/checks.json",
+        "native/ReservoirScope/validation/0.7.1/watermark-view/preview-before-compact-fix/sources.json",
+        "native/ReservoirScope/validation/0.8.0/build-before-layout.log",
+        "native/ReservoirScope/validation/0.8.0/build.log",
+        "native/ReservoirScope/validation/0.8.0/essentials-layout/build.log",
+        "native/ReservoirScope/validation/0.8.0/essentials-run-layout/build.log",
+        "native/ReservoirScope/validation/0.8.0/native-sample.txt",
+        "native/ReservoirScope/validation/0.9.0/build.log",
+        "native/ReservoirScope/validation/0.9.0/exploration-layout/build.log"
+      ],
+      "untracked_leftovers": [
+        "native/ReservoirScope/validation/0.6.0/pre-json-roundtrip/esn-divide-consumer.log",
+        "native/ReservoirScope/validation/0.6.0/pre-json-roundtrip/native-action-consumer.log"
+      ],
+      "new_untracked_archive_paths": [],
+      "working_tree_clean": false,
+      "tracked_pending_status": {
+        ".gitignore": " M"
+      },
+      "status_stable_during_scan": true,
+      "planned_native_ignore_count": 97,
+      "native_ignores_exact": true,
+      "retained_consumer_logs_pending_root_commit": [
+        "native/ReservoirScope/validation/0.6.0/pre-json-roundtrip/esn-divide-consumer.log",
+        "native/ReservoirScope/validation/0.6.0/pre-json-roundtrip/native-action-consumer.log"
+      ]
+    }
+  },
+  "unexplained": [],
+  "missing_original_work": [],
+  "active_ownership": {
+    "/root": "Final Git staging, integration account, diagnostics, and two retained consumer logs plus narrowed .gitignore.",
+    "/root/reader_git_audit": "Reader test qualification and archive integration; six exact original archives verified."
+  },
+  "reader_archives": [
+    {
+      "original": "/Users/v/other/astrid/crates/astrid-source-study/tests/path_recovery.rs",
+      "archive": "/Users/v/other/astrid/docs/steward-notes/archived-reader-probes-20260915/path_recovery.rs",
+      "matches_original": true
+    },
+    {
+      "original": "/Users/v/other/astrid/crates/astrid-source-study/tests/bare_topic_candidate_gate_reach.rs",
+      "archive": "/Users/v/other/astrid/docs/steward-notes/archived-reader-probes-20260915/bare_topic_candidate_gate_reach.rs",
+      "matches_original": true
+    },
+    {
+      "original": "/Users/v/other/astrid/crates/astrid-source-study/tests/continue_never_recovers_reach.rs",
+      "archive": "/Users/v/other/astrid/docs/steward-notes/archived-reader-probes-20260915/continue_never_recovers_reach.rs",
+      "matches_original": true
+    },
+    {
+      "original": "/Users/v/other/astrid/crates/astrid-source-study/tests/map_topic_scope_reach.rs",
+      "archive": "/Users/v/other/astrid/docs/steward-notes/archived-reader-probes-20260915/map_topic_scope_reach.rs",
+      "matches_original": true
+    },
+    {
+      "original": "/Users/v/other/astrid/crates/astrid-source-study/tests/page_enclosing_scope_reach.rs",
+      "archive": "/Users/v/other/astrid/docs/steward-notes/archived-reader-probes-20260915/page_enclosing_scope_reach.rs",
+      "matches_original": true
+    },
+    {
+      "original": "/Users/v/other/astrid/crates/astrid-source-study/tests/placeholder_bracket_path_reach.rs",
+      "archive": "/Users/v/other/astrid/docs/steward-notes/archived-reader-probes-20260915/placeholder_bracket_path_reach.rs",
+      "matches_original": true
+    }
+  ],
+  "research_instructions": {
+    "AGENTS.md": {
+      "unchanged_from_initial_review": true,
+      "sha256": "139de0d0e60aaa2145d4c3f1a88dc6025cc26701d60c407eaa6645ebf73a4899"
+    },
+    "CLAUDE.md": {
+      "unchanged_from_initial_review": true,
+      "sha256": "9bda38b2a6c7b3dfe5094461ec66d3da3f2b947cf21e6a8f28ac40c4eea30e62"
+    }
+  },
+  "final_source_manifests": {
+    "research-foundation-source-hashes.json": {
+      "paths": 129,
+      "mismatches": [
+        ".gitignore"
+      ],
+      "explained": "Root narrowed pre-json-roundtrip ignore to *.json so two qualification logs can be committed."
+    },
+    "research-history-source-hashes.json": {
+      "paths": 165,
+      "mismatches": [],
+      "explained": null
+    },
+    "native-final-source-hashes.json": {
+      "paths": 268,
+      "mismatches": [],
+      "explained": null
+    }
+  },
+  "summary": {
+    "baseline_paths": 1078,
+    "all_original_backups_exact": true,
+    "unexplained_count": 0,
+    "missing_original_work_count": 0,
+    "qualification": "Point-in-time audit while authorized reader/root integration remains active. No path or index changes by auditor."
+  },
+  "path_ledger": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/final-disposition-ledger.jsonl"
+}
