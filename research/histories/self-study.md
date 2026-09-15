@@ -720,3 +720,43 @@ Rereading and short responses remain valid choices. No automatic note rewrite,
 forced revision, new model call or live-state change occurs in this survey.
 The seven post-restart observations are not a causal comparison with the thirteen
 pre-restart entries. Board mirroring remains pending; S-007 is unchanged.
+
+## HSS-21 · Minime's catalog traversal outlasts its evidence
+
+After several days away, Mike asks whether Minime's many short studies are useful
+or indicate a problem. The [September 15 survey](../../analyses/2026-09-15-minime-study-survey.md)
+reads the latest hundred studies through 08:06:32 Pacific, spanning 03:49–08:04.
+All hundred have exact generation/shared-input/journal links and normal stops at
+121–312 tokens against a 4,096-token allowance. There is no truncation, cleanup
+loss or journal compression. Every available next-choice pair reaches the matching
+completed study job. The September 11 release remains selected.
+
+But the supplied material is 99 maps and one EOF notice, with no fresh code pages.
+Minime traverses repository pages 99–126, resumes an exhausted source bookmark,
+visits the home map four times and starts repository pages 1–67 again. Seventy of
+the 95 repository pages list only historical steward-note paths. He identifies
+promising source links, yet continues paging to locate them. The same saved note
+and question persist, including when he explicitly emits updates.
+
+The inquiry asks which bridge `EventSubscriber` turns `capsules_loaded` into a
+global initialization-to-active transition. Our separately retained source audit
+shows the trait is crate-private, the kernel publishes a ready notification, and
+the inspected CLI handles command refresh/history hydration. The proposed bridge
+trait implementation contradicts that visibility; the broader state-transition
+story is unsupported in the inspected path. This evidence was not newly supplied
+to Minime in the hundred studies. Forty-five responses correctly acknowledge
+that they received no new source, without changing their navigation strategy.
+
+This extends the daily account's earlier repeated recovery sequences: interfaces
+can deliver exactly what was chosen while the inquiry struggles to obtain useful
+evidence. Proposed repairs are compact directory/component navigation with the
+full catalog retained, exact topic recovery and literal event searches, clear
+map-next/source-resume choices, optional factual navigation receipts, and a
+source-grounded comparison of the saved premise. No forced novelty, silent note
+rewrite, higher writing minimum or induced study follows from the finding.
+
+A separate source audit finds that the old similarity gate can still replace
+journal prose with summaries, although it did not affect this cohort. It remains
+a maintenance proposal, not the explanation for the observed small files.
+This pass changes research records only; S-007's cursor and prior sealed packets
+remain unchanged. Board mirroring is pending.
