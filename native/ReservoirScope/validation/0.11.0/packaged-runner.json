@@ -1,0 +1,26 @@
+{
+  "schema": "essentials.packaged_runner_checks.v1",
+  "at_utc": "2026-09-10T17:13:16.926625+00:00",
+  "status": "passed",
+  "cli_path": "/Users/mikepurvis/.cache/reservoir-research/ReservoirScope-build/current/Reservoir Scope.app/Contents/MacOS/essentials-run",
+  "cli_sha256": "a0a03d74883a2739fe31b722237fc3765e6244ae8b1bc5d56f2483bb0a85bcac",
+  "fixed_recipe_runs": 8,
+  "malformed_exports_rejected": 12,
+  "isolated_http_cases": 5,
+  "saved_format_records_verified": 6,
+  "commands": [
+    "python3 essentials/tests/action_cli_smoke.py --cli PACKAGED_CLI --output native/ReservoirScope/validation/0.11.0/action-cli.json",
+    "python3 essentials/tests/action_http_smoke.py --cli PACKAGED_CLI --output native/ReservoirScope/validation/0.11.0/action-http.json",
+    "PACKAGED_CLI verify RECORD (six paths retained in packaged-formats.json)"
+  ],
+  "receipts_sha256": {
+    "native/ReservoirScope/validation/0.11.0/action-cli.json": "9d40f1b6bdad6d9ed816941f1f5fcc0663c840cc4d80afd3ddbfff0d2f99c933",
+    "native/ReservoirScope/validation/0.11.0/action-http.json": "ac763d915ee4fd75709d31c3bc710cb2aac33b77ad36e5cf422cd0fbea24b560",
+    "native/ReservoirScope/validation/0.11.0/packaged-formats.json": "41c3be53448fc2b776b92c5f5a062e59f60b77b7c23f1324919d4ca2ecc21703"
+  },
+  "logs_sha256": {
+    "native/ReservoirScope/validation/0.11.0/action-cli.log": "ac31741cdd420e28d4c89f51c6a88b39ede6fdd6114545a5dbf9373c4e5e1133",
+    "native/ReservoirScope/validation/0.11.0/action-http.log": "7eccb09cf2ed05b3f1ccd24293eacb984e52b1689172a5d047552076c9cdbb4a"
+  },
+  "scope": "Packaged runner; synthetic fixtures and newly owned ephemeral loopback ports only. No real model, existing endpoint or live being accessed."
+}

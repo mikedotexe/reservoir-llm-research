@@ -1,0 +1,56 @@
+PASS 1: Explicit 128 map exactly preserves the native standard map
+PASS 2: Empty and oversized networks reject before constructing or rendering a map
+PASS 3: 1 coordinates have exactly 1 sites and unpadded interpolation rows
+PASS 4: 1-coordinate interpolation preserves a constant field
+PASS 5: 1-coordinate field retains every exact input without padding
+PASS 6: 1-coordinate meshes preserve volume, containment, normals and exact marker intersections
+PASS 7: 1-coordinate default mesh infers the same explicit drawing map
+PASS 8: 1-coordinate GPU signed field agrees with CPU within 3e-6
+PASS 9: 1-coordinate GPU last-node impulse field agrees with CPU within 3e-6
+PASS 10: 2 coordinates have exactly 2 sites and unpadded interpolation rows
+PASS 11: 2-coordinate interpolation preserves a constant field
+PASS 12: 2-coordinate field retains every exact input without padding
+PASS 13: 2-coordinate meshes preserve volume, containment, normals and exact marker intersections
+PASS 14: 2-coordinate default mesh infers the same explicit drawing map
+PASS 15: 2-coordinate GPU signed field agrees with CPU within 3e-6
+PASS 16: 2-coordinate GPU last-node impulse field agrees with CPU within 3e-6
+PASS 17: 8 coordinates have exactly 8 sites and unpadded interpolation rows
+PASS 18: 8-coordinate interpolation preserves a constant field
+PASS 19: 8-coordinate field retains every exact input without padding
+PASS 20: 8-coordinate meshes preserve volume, containment, normals and exact marker intersections
+PASS 21: 8-coordinate default mesh infers the same explicit drawing map
+PASS 22: 8-coordinate GPU signed field agrees with CPU within 3e-6
+PASS 23: 8-coordinate GPU last-node impulse field agrees with CPU within 3e-6
+PASS 24: 32 coordinates have exactly 32 sites and unpadded interpolation rows
+PASS 25: 32-coordinate interpolation preserves a constant field
+PASS 26: 32-coordinate field retains every exact input without padding
+PASS 27: 32-coordinate meshes preserve volume, containment, normals and exact marker intersections
+PASS 28: 32-coordinate default mesh infers the same explicit drawing map
+PASS 29: 32-coordinate GPU signed field agrees with CPU within 3e-6
+PASS 30: 32-coordinate GPU last-node impulse field agrees with CPU within 3e-6
+PASS 31: 128 coordinates have exactly 128 sites and unpadded interpolation rows
+PASS 32: 128-coordinate interpolation preserves a constant field
+PASS 33: 128-coordinate field retains every exact input without padding
+PASS 34: 128-coordinate meshes preserve volume, containment, normals and exact marker intersections
+PASS 35: 128-coordinate default mesh infers the same explicit drawing map
+PASS 36: 128-coordinate GPU signed field agrees with CPU within 3e-6
+PASS 37: 128-coordinate GPU last-node impulse field agrees with CPU within 3e-6
+PASS 38: An explicit 32-coordinate atlas rejects 128 values
+PASS 39: Renderer switches atomically to exactly 32 coordinates
+PASS 40: 32-coordinate picking returns an actual coordinate index
+PASS 41: Exactly32 exact-node markers are submitted and visibly alter the frame
+PASS 42: Selection outside the actual 32-coordinate range rejects without replacing the accepted map
+PASS 43: Renderer switches atomically to exactly 128 coordinates
+PASS 44: 128-coordinate picking returns an actual coordinate index
+PASS 45: Exactly128 exact-node markers are submitted and visibly alter the frame
+PASS 46: Selection outside the actual 128-coordinate range rejects without replacing the accepted map
+PASS 47: Renderer switches atomically to exactly 1 coordinates
+PASS 48: 1-coordinate picking returns an actual coordinate index
+PASS 49: Exactly1 exact-node markers are submitted and visibly alter the frame
+PASS 50: Selection outside the actual 1-coordinate range rejects without replacing the accepted map
+PASS 51: Renderer switches atomically to exactly 32 coordinates
+PASS 52: 32-coordinate picking returns an actual coordinate index
+PASS 53: Exactly32 exact-node markers are submitted and visibly alter the frame
+PASS 54: Selection outside the actual 32-coordinate range rejects without replacing the accepted map
+PASS 55: Returning from 128 and 1 to 32 restores identical pixels
+55 dynamic-coordinate checks passed; images: /Volumes/M3 Volya._smb._tcp.local/other/reservoir-llm-research/native/ReservoirScope/validation/0.10.0/dynamic-nodes; max GPU error: 2.980232238769531e-07

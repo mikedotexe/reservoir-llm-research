@@ -1,0 +1,138 @@
+{
+  "schema": "reservoir.qualification_identity.v1",
+  "at_utc": "2026-09-10T17:27:37.659079+00:00",
+  "version": "0.11.0",
+  "build": 15,
+  "status": "passed",
+  "scope": "Independent identity binding of retained qualifications to final research-local source and package. No tests rerun and no production files changed.",
+  "artifact_identity": {
+    "path": "native/ReservoirScope/validation/0.11.0/artifact-identity.json",
+    "sha256": "f82d3b5323115fa1917c1c98207cc7878e21bd86c5bc568ee0fb8814eea75765",
+    "app_path": "/Users/mikepurvis/.cache/reservoir-research/ReservoirScope-build/current/Reservoir Scope.app",
+    "app_binary_sha256": "460b1ad0dd8c1ad264aeb909845cdc111f2236ba3c14a52ec602cd6bfa39007b",
+    "runner_sha256": "a0a03d74883a2739fe31b722237fc3765e6244ae8b1bc5d56f2483bb0a85bcac",
+    "native_source_count": 27,
+    "core_and_runner_source_count": 14,
+    "packaged_resource_count": 12,
+    "all_source_and_resource_hashes_rechecked": true,
+    "signature_verification_retained_exit_code": 0
+  },
+  "qualifications": [
+    {
+      "receipt": "native/ReservoirScope/validation/0.11.0/core-tests.json",
+      "receipt_sha256": "2c9f001f4d92be7d8dea6fe227d2597d1be7c9c53e311b4bd80608d203f9860a",
+      "tests_passed": 51,
+      "compiled_or_test_source_count": 21,
+      "reviewed_context_source_count": 0,
+      "packaged_production_source_count": 14,
+      "all_recorded_sources_match_current": true,
+      "all_recorded_production_sources_match_final_package": true,
+      "retained_evidence_sha256": {
+        "native/ReservoirScope/validation/0.11.0/core-tests.log": "8f92b42d2427c7738dbf02852b3b80ea44c96ac516f5011a25f47257cb524132"
+      }
+    },
+    {
+      "receipt": "native/ReservoirScope/validation/0.11.0/actions-ui/receipt.json",
+      "receipt_sha256": "7e0d28550e1284a348663f54adf0ed4963c05d18df5ed060886691d277a4f8c6",
+      "lifecycle_checks_passed": 40,
+      "verifier_mutations_rejected": 3,
+      "compiled_or_test_source_count": 17,
+      "reviewed_context_source_count": 0,
+      "packaged_production_source_count": 15,
+      "all_recorded_sources_match_current": true,
+      "all_recorded_production_sources_match_final_package": true,
+      "retained_evidence_sha256": {
+        "native/ReservoirScope/validation/0.11.0/actions-ui/run.log": "610e64ff7777c1489c7044cf679909affd9d88fd0a336f3889226f4b372b48e5",
+        "native/ReservoirScope/validation/0.11.0/actions-ui/core-build.log": "7a8678bcaa2cda048bdc0afb7b8b22f8361bfc94eab3d0d2814b04166779772b",
+        "native/ReservoirScope/validation/0.11.0/actions-ui/verifier-mutation-audit.log": "aa89fb84ae024fa09a70fcc739f442823287da0150d0fbc95a0c90a1d716d877",
+        "native/ReservoirScope/validation/0.11.0/actions-ui/VerifierMutationAudit.swift": "11138270796253d5ce8e3b0cf26330bd1558e15dcf12def796ba309975d0f4e4"
+      }
+    },
+    {
+      "receipt": "native/ReservoirScope/validation/0.11.0/shared-camera/receipt.json",
+      "receipt_sha256": "7cf51c495c35ed47432c4ea20c2371191404352aa74aa0fec2360a84e3be3c35",
+      "checks_passed": 9,
+      "compiled_or_test_source_count": 3,
+      "reviewed_context_source_count": 0,
+      "packaged_production_source_count": 2,
+      "all_recorded_sources_match_current": true,
+      "all_recorded_production_sources_match_final_package": true,
+      "retained_evidence_sha256": {
+        "native/ReservoirScope/validation/0.11.0/shared-camera/run.log": "f8353cbf8a5a4bb8608ebfeffbfda4ba0fad7a4d63674cc5efaab77270fbae5d"
+      }
+    },
+    {
+      "receipt": "native/ReservoirScope/validation/0.11.0/renderer-receipt.json",
+      "receipt_sha256": "57835f600ddd75da4ab8ca34eb185e1f77a3bc479aa9c1d614ae002e4f57e14a",
+      "checks_passed": 43,
+      "compiled_or_test_source_count": 4,
+      "reviewed_context_source_count": 0,
+      "packaged_production_source_count": 2,
+      "all_recorded_sources_match_current": true,
+      "all_recorded_production_sources_match_final_package": true,
+      "retained_evidence_sha256": {
+        "native/ReservoirScope/validation/0.11.0/renderer.log": "60d2331c018cda542f44e54f3229db73a6938f24cc16b2c9d4f6d9336fe8a64c"
+      }
+    },
+    {
+      "receipt": "native/ReservoirScope/validation/0.11.0/action-comparison-layout/receipt.json",
+      "receipt_sha256": "1dde9e3b3c39625e401e803f383cf5b70c01d557c17218e1f0d06e14be0da09b",
+      "checks_passed": 25,
+      "compiled_or_test_source_count": 6,
+      "reviewed_context_source_count": 1,
+      "packaged_production_source_count": 6,
+      "all_recorded_sources_match_current": true,
+      "all_recorded_production_sources_match_final_package": true,
+      "retained_evidence_sha256": {
+        "native/ReservoirScope/validation/0.11.0/action-comparison-layout/run.log": "31d1c098d9d84afcdd525982efe4c4ea596387c764d11ac016ecf27cde15c42a",
+        "native/ReservoirScope/validation/0.11.0/action-comparison-layout/layout.json": "4b3bc1430991d258686e8e359dbba7d7fd52c1917da13366deb8e74bcc23cd8a"
+      }
+    },
+    {
+      "receipt": "native/ReservoirScope/validation/0.11.0/action-inspector-layout/receipt.json",
+      "receipt_sha256": "c15df42e9616b11f87fe9b0ec598427c52ae1734a6fac152a07752f7aeca690e",
+      "checks_passed": 5,
+      "disclosures": 7,
+      "native_scrolls": 9,
+      "compiled_or_test_source_count": 6,
+      "reviewed_context_source_count": 1,
+      "packaged_production_source_count": 6,
+      "all_recorded_sources_match_current": true,
+      "all_recorded_production_sources_match_final_package": true,
+      "retained_evidence_sha256": {
+        "native/ReservoirScope/validation/0.11.0/action-inspector-layout/run.log": "ebd8751159a42dc18c8847da29985c27766f0732c3bff695f46778dee0826be8",
+        "native/ReservoirScope/validation/0.11.0/action-inspector-layout/layout.json": "a622b2377d80bdf5e5a08a3f2124264173e1c35f5afdec47bf9f95b9bbe4f047",
+        "native/ReservoirScope/validation/0.11.0/action-inspector-layout/accessibility.log": "23251987bc355b4b3465f0f42e03a5c76370af036b024e5b5d428cb9b0cabd57"
+      }
+    }
+  ],
+  "unique_qualified_source_count": 34,
+  "all_qualified_current_sources_match": true,
+  "all_qualified_packaged_production_sources_match": true,
+  "core_archive_comparison": {
+    "tested_archive_sha256": "830787437ed596e66e5bd0147c1db972bdef4af7f440d5920993773a95771442",
+    "final_archive_sha256": "0a999899264231d33a9f39c17be010d50d05d00fd60527193581f42ce8a6bd52",
+    "byte_identical_archives": false,
+    "same_member_names_and_sizes": true,
+    "object_files_compared": 13,
+    "sole_difference": "Each object has differing bytes only inside its 16-byte __LLVM,__swift_modhash section. Archive symbol-table payload is identical.",
+    "all_object_bytes_outside_module_hash_identical": true,
+    "executable_code_and_all_other_sections_identical": true,
+    "method": "Parsed both BSD ar archives and Mach-O section headers; removed only the identified 16-byte module-hash section from each object, then compared every remaining byte.",
+    "functional_rerun_required": false
+  },
+  "packaged_runner_qualifications": {
+    "all_tested_runner_hashes_match_final": true,
+    "receipts_sha256": {
+      "native/ReservoirScope/validation/0.11.0/action-cli.json": "9d40f1b6bdad6d9ed816941f1f5fcc0663c840cc4d80afd3ddbfff0d2f99c933",
+      "native/ReservoirScope/validation/0.11.0/action-http.json": "ac763d915ee4fd75709d31c3bc710cb2aac33b77ad36e5cf422cd0fbea24b560",
+      "native/ReservoirScope/validation/0.11.0/packaged-formats.json": "41c3be53448fc2b776b92c5f5a062e59f60b77b7c23f1324919d4ca2ecc21703",
+      "native/ReservoirScope/validation/0.11.0/packaged-runner.json": "e11497f73572704f182055b5b1a1a80f66bb9e188984cbd900ba291c64241448"
+    },
+    "fixed_recipe_runs": 8,
+    "malformed_exports_rejected": 12,
+    "isolated_http_cases": 5,
+    "saved_format_records_verified": 6
+  },
+  "limitations": "Source and object identity binds the recorded checks to this package; it does not expand their declared behavioral scopes or claim live-model validation."
+}

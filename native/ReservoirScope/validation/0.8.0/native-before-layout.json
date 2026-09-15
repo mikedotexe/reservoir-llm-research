@@ -1,0 +1,18 @@
+{
+  "binary_sha256": "b3158b4bb619c14adcdee386b59cd2a980e3032687b4bbafedb10dfce29d28f2",
+  "observed": [
+    "Subject switch opened Essentials independently of recorded baseline",
+    "Stage 2 before load displayed unavailable measurements and dash bars",
+    "Stage 2 verified 300-step example and scrubbed to step151 with prepared example context",
+    "Stage 3 verified 300-step example and displayed exact turn5 prompt, observed150 and applied151",
+    "Stage 4 ready view exposed separate fill and controller labels"
+  ],
+  "issue": "After Run on stage4, accessibility requests timed out and the initial output check found no completed file. A later check confirmed the run completed and saved successfully. Native sampling showed heavy intrinsic window sizing; the repair reduces that sizing cost without changing calculations.",
+  "sample": "native-sample.txt",
+  "test_process_cleanup": "Only the stalled research viewer test process was terminated; no being process was involved.",
+  "later_completed_run": {
+    "file": "research/outputs/essentials/stage-4-217469B9-480A-4123-8B0A-1A8F4A963E86.json",
+    "sha256": "2fe6156d2996d4b99eb9f365130913c47d82d6307be7efe879c0b295a1d41fdd",
+    "matches_canonical_bytes": true
+  }
+}

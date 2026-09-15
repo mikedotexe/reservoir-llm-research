@@ -1,0 +1,43 @@
+PASS 1: Actual bundled replay and PCA evidence decode: 507 rows, 1024 states, 128 nodes, 3 axes
+PASS 2: Recorded clocks, observed fill range, and projection loss remain available
+PASS 3: Live geometry uses the frozen mean and axes, preserves residual distance, and never clips to the historical radius
+PASS 4: Recorder times, co-recorded fill/stage, and per-state retained distance remain distinct from nominal cadence and fit variance
+PASS 5: The actual bundled frozen PCA basis accepts finite 128-node activation frames
+PASS 6: Non-orthogonal PCA axes are rejected before live projection
+PASS 7: A mean with the wrong node count is rejected
+PASS 8: An unaudited activation policy is rejected
+PASS 9: Every frame's node count is validated independently of the header
+PASS 10: A producer-sanitized vector is withheld instead of displaying replacement zeros as measured state
+PASS 11: Invalid fill is rejected rather than visually clamped
+PASS 12: Duplicate source frames are rejected
+PASS 13: Reversed recorder clocks are rejected
+PASS 14: Frame-count and 2 MiB limits bound both decoded geometry and file reads
+PASS 15: Identical bytes do not invent a fresh activation observation
+PASS 16: Changed contents at the same source clock preserve the last accepted batch and raise an error
+PASS 17: A new batch cannot rewrite an already observed overlapping frame
+PASS 18: Rolling source batches replace the full displayed batch instead of appending or bridging snapshots
+PASS 19: A recorder clock reset starts a replacement batch and explicitly leaves boot identity unverified
+PASS 20: Activation monitoring starts stopped with no implicit file access
+PASS 21: Actual read-only polling holds identical bytes without refreshing their observation time
+PASS 22: A malformed source keeps the last accepted geometry with an explicit error
+PASS 23: Stopping activation monitoring disables further polling
+PASS 24: Reference annotations preserve distinct identities and inspectable source anchors
+PASS 25: Structural PI allowance is one-sided and begins strictly above target plus allowance
+PASS 26: Coincident Elevated and PI references retain different equality rules and meanings
+PASS 27: Hysteresis release includes equality and stays distinct from re-entry
+PASS 28: Every plotted position follows supplied evidence, including independently configured PI target
+PASS 29: Missing optional hysteresis values remain absent instead of acquiring invented thresholds
+PASS 30: Invalid scalar observations cannot satisfy reference-boundary comparisons
+PASS 31: Delayed playback wakeups preserve elapsed time, including a change of speed
+PASS 32: Playback restart excludes paused time; duplicate wakeups invent no progress
+PASS 33: Live monitor starts stopped and performs no implicit read
+PASS 34: Unavailable leak/spectrum/radius stay missing; source clock is preserved
+PASS 35: P/I use recorded controller error/integral, independently of later snapshot fill
+PASS 36: Duplicate source sequence does not append an invented observation
+PASS 37: Decreasing engine time is rejected within one session
+PASS 38: New session replaces the ring, preventing a line across an engine reset
+PASS 39: Decreasing source wall time is rejected
+PASS 40: Missing source time causes an explicit error; local poll time never substitutes
+PASS 41: Recovery-path observation does not acquire ordinary-path P/I terms
+PASS 42: Stopping disables further polling
+42 checks passed. Fixture-only reads; no live-system paths accessed.

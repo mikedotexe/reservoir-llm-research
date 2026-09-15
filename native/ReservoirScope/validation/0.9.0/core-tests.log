@@ -1,0 +1,88 @@
+Building for debugging...
+[0/4] Write swift-version--58304C5D6DBC2206.txt
+Build complete! (0.72s)
+Test Suite 'All tests' started at 2026-09-09 19:35:51.700.
+Test Suite 'EssentialsPackageTests.xctest' started at 2026-09-09 19:35:51.701.
+Test Suite 'ExplorationTests' started at 2026-09-09 19:35:51.701.
+Test Case '-[EssentialsTests.ExplorationTests testContributionsReconstructControlledHandUpdate]' started.
+Test Case '-[EssentialsTests.ExplorationTests testContributionsReconstructControlledHandUpdate]' passed (0.008 seconds).
+Test Case '-[EssentialsTests.ExplorationTests testDefaultExplorationIsExactlyQuietWithoutHiddenPulseOrBias]' started.
+Test Case '-[EssentialsTests.ExplorationTests testDefaultExplorationIsExactlyQuietWithoutHiddenPulseOrBias]' passed (0.013 seconds).
+Test Case '-[EssentialsTests.ExplorationTests testImportKeepsStoredValidEigenvectorOrientation]' started.
+Test Case '-[EssentialsTests.ExplorationTests testImportKeepsStoredValidEigenvectorOrientation]' passed (0.049 seconds).
+Test Case '-[EssentialsTests.ExplorationTests testLiveLeakNoiseAndValidationDoNotShiftRandomStream]' started.
+Test Case '-[EssentialsTests.ExplorationTests testLiveLeakNoiseAndValidationDoNotShiftRandomStream]' passed (0.011 seconds).
+Test Case '-[EssentialsTests.ExplorationTests testRecurrenceOffDecaysAndOnUsesPreviousState]' started.
+Test Case '-[EssentialsTests.ExplorationTests testRecurrenceOffDecaysAndOnUsesPreviousState]' passed (0.010 seconds).
+Test Case '-[EssentialsTests.ExplorationTests testRoundTripAndResumptionPreserveControlsFieldStateAndNoise]' started.
+Test Case '-[EssentialsTests.ExplorationTests testRoundTripAndResumptionPreserveControlsFieldStateAndNoise]' passed (0.449 seconds).
+Test Case '-[EssentialsTests.ExplorationTests testSensoryRisingEdgeStartsFreshAndOffHasNoMeasurement]' started.
+Test Case '-[EssentialsTests.ExplorationTests testSensoryRisingEdgeStartsFreshAndOffHasNoMeasurement]' passed (0.056 seconds).
+Test Case '-[EssentialsTests.ExplorationTests testSinglePulseAndRepeatingExternalInputHaveDistinctRecordedTiming]' started.
+Test Case '-[EssentialsTests.ExplorationTests testSinglePulseAndRepeatingExternalInputHaveDistinctRecordedTiming]' passed (0.051 seconds).
+Test Case '-[EssentialsTests.ExplorationTests testStepCapAndEmptyRecordAreExplicit]' started.
+Test Case '-[EssentialsTests.ExplorationTests testStepCapAndEmptyRecordAreExplicit]' passed (2.552 seconds).
+Test Case '-[EssentialsTests.ExplorationTests testVerifierRejectsTamperingAcrossControlsContributionsAndSpectra]' started.
+Test Case '-[EssentialsTests.ExplorationTests testVerifierRejectsTamperingAcrossControlsContributionsAndSpectra]' passed (0.158 seconds).
+Test Suite 'ExplorationTests' passed at 2026-09-09 19:35:55.060.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 3.358 (3.359) seconds
+Test Suite 'MechanismTests' started at 2026-09-09 19:35:55.060.
+Test Case '-[EssentialsTests.MechanismTests testBadInputDoesNotAdvanceStateAndDecodedModelIsValidated]' started.
+Test Case '-[EssentialsTests.MechanismTests testBadInputDoesNotAdvanceStateAndDecodedModelIsValidated]' passed (0.002 seconds).
+Test Case '-[EssentialsTests.MechanismTests testCodecIsFiniteDeterministicAndDoesNotInventEmbedding]' started.
+Test Case '-[EssentialsTests.MechanismTests testCodecIsFiniteDeterministicAndDoesNotInventEmbedding]' passed (0.001 seconds).
+Test Case '-[EssentialsTests.MechanismTests testConstantDirectionAndZeroInputCannotManufactureTargetRank]' started.
+Test Case '-[EssentialsTests.MechanismTests testConstantDirectionAndZeroInputCannotManufactureTargetRank]' passed (0.220 seconds).
+Test Case '-[EssentialsTests.MechanismTests testControllerDirectionSlewDeadbandAndBounds]' started.
+Test Case '-[EssentialsTests.MechanismTests testControllerDirectionSlewDeadbandAndBounds]' passed (0.000 seconds).
+Test Case '-[EssentialsTests.MechanismTests testDisplaySummaryIsEightModesWhileFillUsesAllModes]' started.
+Test Case '-[EssentialsTests.MechanismTests testDisplaySummaryIsEightModesWhileFillUsesAllModes]' passed (0.000 seconds).
+Test Case '-[EssentialsTests.MechanismTests testRecurrenceUsesPreviousStateBiasThenLeakThenNoise]' started.
+Test Case '-[EssentialsTests.MechanismTests testRecurrenceUsesPreviousStateBiasThenLeakThenNoise]' passed (0.000 seconds).
+Test Case '-[EssentialsTests.MechanismTests testRegulatorChangesRealFieldWithSameForcing]' started.
+Test Case '-[EssentialsTests.MechanismTests testRegulatorChangesRealFieldWithSameForcing]' passed (1.249 seconds).
+Test Case '-[EssentialsTests.MechanismTests testSensoryRankOneUpdateAndEigenvectorResidual]' started.
+Test Case '-[EssentialsTests.MechanismTests testSensoryRankOneUpdateAndEigenvectorResidual]' passed (0.000 seconds).
+Test Case '-[EssentialsTests.MechanismTests testSplitMixKnownSequenceAndSeededWeights]' started.
+Test Case '-[EssentialsTests.MechanismTests testSplitMixKnownSequenceAndSeededWeights]' passed (0.003 seconds).
+Test Suite 'MechanismTests' passed at 2026-09-09 19:35:56.537.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 1.475 (1.476) seconds
+Test Suite 'RuntimeTests' started at 2026-09-09 19:35:56.537.
+Test Case '-[EssentialsTests.RuntimeTests testAllStagesReplayAndAvailability]' started.
+Test Case '-[EssentialsTests.RuntimeTests testAllStagesReplayAndAvailability]' passed (1.388 seconds).
+Test Case '-[EssentialsTests.RuntimeTests testBackendFailureAndEmptyReplyDoNotBecomeFeedback]' started.
+Test Case '-[EssentialsTests.RuntimeTests testBackendFailureAndEmptyReplyDoNotBecomeFeedback]' passed (0.706 seconds).
+Test Case '-[EssentialsTests.RuntimeTests testEnabledDisabledHaveSameForcingNoiseAndReplies]' started.
+Test Case '-[EssentialsTests.RuntimeTests testEnabledDisabledHaveSameForcingNoiseAndReplies]' passed (2.123 seconds).
+Test Case '-[EssentialsTests.RuntimeTests testExactLanguageFeedbackAndFrozenSimulation]' started.
+Test Case '-[EssentialsTests.RuntimeTests testExactLanguageFeedbackAndFrozenSimulation]' passed (0.404 seconds).
+Test Case '-[EssentialsTests.RuntimeTests testLocalEndpointMustBeExplicitAndCannotRedirectToRemote]' started.
+Test Case '-[EssentialsTests.RuntimeTests testLocalEndpointMustBeExplicitAndCannotRedirectToRemote]' passed (0.000 seconds).
+Test Case '-[EssentialsTests.RuntimeTests testMalformedAndTamperedRecordsAreRejected]' started.
+Test Case '-[EssentialsTests.RuntimeTests testMalformedAndTamperedRecordsAreRejected]' passed (1.910 seconds).
+Test Case '-[EssentialsTests.RuntimeTests testProviderCompletionMetadataAndIncompleteOutput]' started.
+Test Case '-[EssentialsTests.RuntimeTests testProviderCompletionMetadataAndIncompleteOutput]' passed (1.791 seconds).
+Test Case '-[EssentialsTests.RuntimeTests testRecipeDefaultsAndBounds]' started.
+Test Case '-[EssentialsTests.RuntimeTests testRecipeDefaultsAndBounds]' passed (0.000 seconds).
+Test Case '-[EssentialsTests.RuntimeTests testSeededRepeatabilityAndRoundTrip]' started.
+Test Case '-[EssentialsTests.RuntimeTests testSeededRepeatabilityAndRoundTrip]' passed (0.868 seconds).
+Test Case '-[EssentialsTests.RuntimeTests testStopDuringWaitingStatusDoesNotDispatchProvider]' started.
+Test Case '-[EssentialsTests.RuntimeTests testStopDuringWaitingStatusDoesNotDispatchProvider]' passed (0.372 seconds).
+Test Case '-[EssentialsTests.RuntimeTests testStopRejectsLateFeedback]' started.
+Test Case '-[EssentialsTests.RuntimeTests testStopRejectsLateFeedback]' passed (0.354 seconds).
+Test Case '-[EssentialsTests.RuntimeTests testTaskCancellationRejectsLateFeedback]' started.
+Test Case '-[EssentialsTests.RuntimeTests testTaskCancellationRejectsLateFeedback]' passed (0.353 seconds).
+Test Case '-[EssentialsTests.RuntimeTests testTimeoutRetainsFailureAndNeverAppliesReply]' started.
+Test Case '-[EssentialsTests.RuntimeTests testTimeoutRetainsFailureAndNeverAppliesReply]' passed (0.384 seconds).
+Test Suite 'RuntimeTests' passed at 2026-09-09 19:36:07.192.
+	 Executed 13 tests, with 0 failures (0 unexpected) in 10.654 (10.656) seconds
+Test Suite 'EssentialsPackageTests.xctest' passed at 2026-09-09 19:36:07.192.
+	 Executed 32 tests, with 0 failures (0 unexpected) in 15.487 (15.491) seconds
+Test Suite 'All tests' passed at 2026-09-09 19:36:07.192.
+	 Executed 32 tests, with 0 failures (0 unexpected) in 15.487 (15.493) seconds
+ESSENTIALS_UNREACHABLE_QUALIFICATION {"constant_direction":{"final_fill_pct":3.9292631056797811,"rank":1,"retention_at_upper_bound":0.995},"outcome":"Target remains unreachable; controller does not invent input, spectral rank, or displayed fill.","schema":"essentials.unreachable_rank_qualification.v1","step_count":120,"zero_input_and_covariance":{"final_fill_pct":0,"retention_at_upper_bound":0.995}}
+ESSENTIALS_REGULATION_QUALIFICATION {"actual_covariance_differs":true,"baseline":{"maximum_fill_pct":81.889381487260565,"mean_absolute_target_error_pct":11.924755885049205,"mean_fill_pct":79.924755885049223,"minimum_fill_pct":78.281135878518214,"retention":0.95499999999999996},"common_forcing":true,"dt_seconds":0.33333333333333331,"evaluation_n":300,"evaluation_steps_inclusive":[301,600],"field_dimension":32,"field_seed":98,"fixture":"independent_seeded_uniform_66d_inputs","input_dimension":66,"input_seed":42,"only_intervention":"covariance_retention_controller","passes_lower_absolute_target_error":true,"random_generator":"SplitMix64","regulated":{"maximum_fill_pct":74.235493846830508,"maximum_retention":0.95478856136640011,"mean_absolute_target_error_pct":4.1599371436015193,"mean_fill_pct":72.159937143601525,"minimum_fill_pct":68.683100805876123,"minimum_retention":0.88478856136640005},"schema":"essentials.regulation_qualification.v1","scope":"Synthetic reduced-model qualification; not production parity or guaranteed target attainment.","step_count":600,"target_deadband_pct":4,"target_fill_pct":68}
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

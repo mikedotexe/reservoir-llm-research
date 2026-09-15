@@ -1,0 +1,72 @@
+{
+  "schema": "essentials.numerical_qualification.v1",
+  "date": "2026-09-09",
+  "platform": "arm64 macOS, Apple Swift 6.3.3, Accelerate LAPACK",
+  "command": "swift test --scratch-path /tmp/essentials-mechanism-build --filter MechanismTests",
+  "numerical_tests_passed": 9,
+  "numerical_tests_failed": 0,
+  "source_sha256": {
+    "essentials/reservoir/Reservoir.swift": "c1fa7148a4b63f57def03ef5a0d21dad2069f130cb150e34f0b8f2f02da1c779",
+    "essentials/spectral_bridge/SensoryField.swift": "8993986044309fefc911a052a9ef201c4f6efcd01afe63239512be4502022809",
+    "essentials/spectral_bridge/TextCodec.swift": "46e55a2d33d37d561be0cecbdf5c5124330fcda7ffb2fce8a874c7ee664bd290",
+    "essentials/regulation/Regulation.swift": "63ef074bf615a63a28a7c15f813b8e76f975ad9efc57a273f48ad15e0a07137b",
+    "essentials/tests/MechanismTests.swift": "90990d8c03d6560806f03a44a33b47bac83b9e9ba0aedf92ecf4d2792d10a1ee"
+  },
+  "paired_retention": {
+    "actual_covariance_differs": true,
+    "baseline": {
+      "maximum_fill_pct": 81.88938148726056,
+      "mean_absolute_target_error_pct": 11.924755885049205,
+      "mean_fill_pct": 79.92475588504922,
+      "minimum_fill_pct": 78.28113587851821,
+      "retention": 0.955
+    },
+    "common_forcing": true,
+    "dt_seconds": 0.3333333333333333,
+    "evaluation_n": 300,
+    "evaluation_steps_inclusive": [
+      301,
+      600
+    ],
+    "field_dimension": 32,
+    "field_seed": 98,
+    "fixture": "independent_seeded_uniform_66d_inputs",
+    "input_dimension": 66,
+    "input_seed": 42,
+    "only_intervention": "covariance_retention_controller",
+    "passes_lower_absolute_target_error": true,
+    "random_generator": "SplitMix64",
+    "regulated": {
+      "maximum_fill_pct": 74.23549384683051,
+      "maximum_retention": 0.9547885613664001,
+      "mean_absolute_target_error_pct": 4.159937143601519,
+      "mean_fill_pct": 72.15993714360152,
+      "minimum_fill_pct": 68.68310080587612,
+      "minimum_retention": 0.8847885613664
+    },
+    "schema": "essentials.regulation_qualification.v1",
+    "scope": "Synthetic reduced-model qualification; not production parity or guaranteed target attainment.",
+    "step_count": 600,
+    "target_deadband_pct": 4,
+    "target_fill_pct": 68
+  },
+  "unreachable_rank": {
+    "constant_direction": {
+      "final_fill_pct": 3.929263105679781,
+      "rank": 1,
+      "retention_at_upper_bound": 0.995
+    },
+    "outcome": "Target remains unreachable; controller does not invent input, spectral rank, or displayed fill.",
+    "schema": "essentials.unreachable_rank_qualification.v1",
+    "step_count": 120,
+    "zero_input_and_covariance": {
+      "final_fill_pct": 0,
+      "retention_at_upper_bound": 0.995
+    }
+  },
+  "notes": [
+    "The retention fixture is separate from the viewer's pulse-and-reply demonstration.",
+    "Every reported value is emitted by MechanismTests; playback or an LLM is not involved.",
+    "The regulated average is near the upper edge of the target band; no claim of strict convergence or production equivalence."
+  ]
+}

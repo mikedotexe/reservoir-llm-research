@@ -1,0 +1,149 @@
+{
+  "format": "essentials-actions-ui-qualification-v1",
+  "generated_utc": "2026-09-10T17:09:27.473338+00:00",
+  "app_release": "0.11.0",
+  "app_build": 15,
+  "lifecycle_checks_passed": 40,
+  "verifier_mutations_rejected": 3,
+  "commands": [
+    "ESSENTIALS_BUILD_DIR=/tmp/essentials-actions-vm-core zsh essentials/build.sh",
+    "native/ReservoirScope/check-actions-ui.sh /tmp/essentials-actions-vm-core/lib",
+    "xcrun swiftc -parse-as-library -swift-version 6 -I /tmp/essentials-actions-vm-core/lib -L /tmp/essentials-actions-vm-core/lib -lEssentialsCore -framework Accelerate VerifierMutationAudit.swift -o /tmp/actions-verifier-audit && /tmp/actions-verifier-audit"
+  ],
+  "swift_version": "Apple Swift version 6.3.3 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)\nTarget: arm64-apple-macosx26.0",
+  "sources": [
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ResourceBundle.swift",
+      "sha256": "22eb2c127d7692702a48d3f9cd4ab41057912ccd4cae6d25d23a7d248e3b4079",
+      "retained_copy": "ResourceBundle.swift"
+    },
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ActionComparisonViewModel.swift",
+      "sha256": "ee355ef49933ddb4258e13de964bf9028ce790bbc034199f8b1a4bd8a8d457d2",
+      "retained_copy": "ActionComparisonViewModel.swift"
+    },
+    {
+      "path": "native/ReservoirScope/Tests/ActionComparisonViewModelChecks.swift",
+      "sha256": "99d8ee381bb5e9507b6c473308467ce447e0bdf8c7c92c0c9b628bcefc49922d",
+      "retained_copy": "ActionComparisonViewModelChecks.swift"
+    },
+    {
+      "path": "native/ReservoirScope/check-actions-ui.sh",
+      "sha256": "350a705f3cfce1ee9e8717cac4b4b352183fa89a50f5e9b31bc6e02de07b23fa",
+      "retained_copy": "check-actions-ui.sh"
+    }
+  ],
+  "compiled_core_sources": [
+    {
+      "path": "essentials/actions/ActionComparisonSession.swift",
+      "compiled_copy_sha256": "f0a9899b27744627f3b84f1ceb1dc56715b3c17530d61aaf34db5faa27935f84",
+      "repository_source_sha256": "f0a9899b27744627f3b84f1ceb1dc56715b3c17530d61aaf34db5faa27935f84",
+      "same_content": true
+    },
+    {
+      "path": "essentials/actions/ActionMechanisms.swift",
+      "compiled_copy_sha256": "f8afcfdd16f17e4f608834003622031d45695d2be3e8a1fefc9ab4d3bf3bae4b",
+      "repository_source_sha256": "f8afcfdd16f17e4f608834003622031d45695d2be3e8a1fefc9ab4d3bf3bae4b",
+      "same_content": true
+    },
+    {
+      "path": "essentials/actions/ActionTypes.swift",
+      "compiled_copy_sha256": "6b5b7f794711a11af74ebc87e9756cbf3c151b4a6fa8342480ded4a0605b5f48",
+      "repository_source_sha256": "6b5b7f794711a11af74ebc87e9756cbf3c151b4a6fa8342480ded4a0605b5f48",
+      "same_content": true
+    },
+    {
+      "path": "essentials/actions/ActionVerification.swift",
+      "compiled_copy_sha256": "afdd3d4e8c4444cf9136720960c16de094d3ebbab18d47ef028adb7266f79fd6",
+      "repository_source_sha256": "afdd3d4e8c4444cf9136720960c16de094d3ebbab18d47ef028adb7266f79fd6",
+      "same_content": true
+    },
+    {
+      "path": "essentials/llm/Language.swift",
+      "compiled_copy_sha256": "312e81af7d9ff6c63d431ee66cdca717f76100b727a565e7bf792114ba491d0a",
+      "repository_source_sha256": "312e81af7d9ff6c63d431ee66cdca717f76100b727a565e7bf792114ba491d0a",
+      "same_content": true
+    },
+    {
+      "path": "essentials/regulation/Regulation.swift",
+      "compiled_copy_sha256": "63ef074bf615a63a28a7c15f813b8e76f975ad9efc57a273f48ad15e0a07137b",
+      "repository_source_sha256": "63ef074bf615a63a28a7c15f813b8e76f975ad9efc57a273f48ad15e0a07137b",
+      "same_content": true
+    },
+    {
+      "path": "essentials/reservoir/Reservoir.swift",
+      "compiled_copy_sha256": "c1fa7148a4b63f57def03ef5a0d21dad2069f130cb150e34f0b8f2f02da1c779",
+      "repository_source_sha256": "c1fa7148a4b63f57def03ef5a0d21dad2069f130cb150e34f0b8f2f02da1c779",
+      "same_content": true
+    },
+    {
+      "path": "essentials/reservoir/ReservoirExploration.swift",
+      "compiled_copy_sha256": "4aae098c6de7d360847b3bcbcbeef08f8a0aa7de853db3837e720682d68db878",
+      "repository_source_sha256": "4aae098c6de7d360847b3bcbcbeef08f8a0aa7de853db3837e720682d68db878",
+      "same_content": true
+    },
+    {
+      "path": "essentials/spectral_bridge/SensoryField.swift",
+      "compiled_copy_sha256": "8993986044309fefc911a052a9ef201c4f6efcd01afe63239512be4502022809",
+      "repository_source_sha256": "8993986044309fefc911a052a9ef201c4f6efcd01afe63239512be4502022809",
+      "same_content": true
+    },
+    {
+      "path": "essentials/spectral_bridge/TextCodec.swift",
+      "compiled_copy_sha256": "46e55a2d33d37d561be0cecbdf5c5124330fcda7ffb2fce8a874c7ee664bd290",
+      "repository_source_sha256": "46e55a2d33d37d561be0cecbdf5c5124330fcda7ffb2fce8a874c7ee664bd290",
+      "same_content": true
+    },
+    {
+      "path": "essentials/stages/EssentialsSession.swift",
+      "compiled_copy_sha256": "55aa46a2713c5f44585d311d0ac36723c29b5d7d1263c6543288668cafd7d228",
+      "repository_source_sha256": "55aa46a2713c5f44585d311d0ac36723c29b5d7d1263c6543288668cafd7d228",
+      "same_content": true
+    },
+    {
+      "path": "essentials/stages/RunTypes.swift",
+      "compiled_copy_sha256": "fa8ae6ed594cd36029d27f416dc6029662016fa6701b5ad1cdfa4ff9c6d6fc83",
+      "repository_source_sha256": "fa8ae6ed594cd36029d27f416dc6029662016fa6701b5ad1cdfa4ff9c6d6fc83",
+      "same_content": true
+    },
+    {
+      "path": "essentials/stages/Verification.swift",
+      "compiled_copy_sha256": "400fafb610018795c2dff3b7429e800a705b6b1c42411682e3fec01103fad668",
+      "repository_source_sha256": "400fafb610018795c2dff3b7429e800a705b6b1c42411682e3fec01103fad668",
+      "same_content": true
+    }
+  ],
+  "all_core_sources_match_repository": true,
+  "compiled_libraries": [
+    {
+      "path": "/tmp/essentials-actions-vm-core/lib/libEssentialsCore.a",
+      "sha256": "830787437ed596e66e5bd0147c1db972bdef4af7f440d5920993773a95771442",
+      "bytes": 1869728
+    },
+    {
+      "path": "/tmp/essentials-actions-vm-core/lib/EssentialsCore.swiftmodule",
+      "sha256": "afeaf297bba2e6d063e9300d02b3ecf078cad30ca37adde9b58dafdb411f83f5",
+      "bytes": 523760
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "run.log",
+      "sha256": "610e64ff7777c1489c7044cf679909affd9d88fd0a336f3889226f4b372b48e5"
+    },
+    {
+      "path": "core-build.log",
+      "sha256": "7a8678bcaa2cda048bdc0afb7b8b22f8361bfc94eab3d0d2814b04166779772b"
+    },
+    {
+      "path": "verifier-mutation-audit.log",
+      "sha256": "aa89fb84ae024fa09a70fcc739f442823287da0150d0fbc95a0c90a1d716d877"
+    },
+    {
+      "path": "VerifierMutationAudit.swift",
+      "sha256": "11138270796253d5ce8e3b0cf26330bd1558e15dcf12def796ba309975d0f4e4"
+    }
+  ],
+  "boundaries": "Controlled clocks, memory-only journal and record stores, fake language backends; no network or live-being access. MainActor UI lifecycle, not native rendering/layout qualification.",
+  "package_identity": "Compare recorded source hashes with final 0.11.0 build-15 package identity. Separate native layout and package receipts are produced by the root and viewer agents."
+}

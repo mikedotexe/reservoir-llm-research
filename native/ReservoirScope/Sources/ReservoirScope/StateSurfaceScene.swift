@@ -2,6 +2,12 @@ import SwiftUI
 import MetalKit
 import simd
 
+enum StateSurfacePresentation: String, CaseIterable, Identifiable {
+    case surface, topography
+    var id: Self { self }
+    var title: String { self == .surface ? "Surface" : "Topography" }
+}
+
 struct StateSurfaceRenderInput: Equatable {
     var values: [Double]
     var lower: Double
@@ -12,6 +18,8 @@ struct StateSurfaceRenderInput: Equatable {
     var selectedNode: Int
     var showSites = true
     var flatLighting = false
+    var presentation: StateSurfacePresentation = .surface
+    var nodeCount: Int { values.count }
 }
 
 struct StateSurfaceMetrics: Equatable {
@@ -24,11 +32,34 @@ struct StateSurfaceMetrics: Equatable {
     }
 }
 
+struct StateSurfaceCameraPose: Equatable {
+    var yaw: Float = -0.42
+    var pitch: Float = 0.16
+    var distance: Float = 3.5
+}
+
+/// A comparison shares camera motion directly between renderers. It does not
+/// publish SwiftUI updates or rebuild meshes when a user orbits either surface.
+@MainActor final class StateSurfaceCamera: ObservableObject {
+    private(set) var pose = StateSurfaceCameraPose()
+    private let renderers = NSHashTable<StateSurfaceRenderer>.weakObjects()
+    fileprivate func attach(_ renderer: StateSurfaceRenderer) {
+        renderers.add(renderer); renderer.applyCamera(pose)
+    }
+    fileprivate func detach(_ renderer: StateSurfaceRenderer) { renderers.remove(renderer) }
+    fileprivate func update(_ pose: StateSurfaceCameraPose) {
+        self.pose = pose
+        for renderer in renderers.allObjects { renderer.applyCamera(pose) }
+    }
+    func reset() { update(StateSurfaceCameraPose()) }
+}
+
 struct StateSurfaceScene: NSViewRepresentable {
     var input: StateSurfaceRenderInput
     var accessibilitySubject = "Native reservoir"
     var onSelect: (Int) -> Void
     var onMetrics: (StateSurfaceMetrics) -> Void
+    var camera: StateSurfaceCamera? = nil
     func makeCoordinator() -> Coordinator { Coordinator() }
     func makeNSView(context: Context) -> StateSurfaceMetalView {
         let view = StateSurfaceMetalView(frame: .zero, device: MTLCreateSystemDefaultDevice())
@@ -42,6 +73,7 @@ struct StateSurfaceScene: NSViewRepresentable {
             let renderer = try StateSurfaceRenderer(device: device, sampleCount: view.sampleCount)
             context.coordinator.renderer = renderer
             view.renderer = renderer; renderer.view = view; view.delegate = renderer
+            renderer.useSharedCamera(camera)
         } catch {
             let label = NSTextField(wrappingLabelWithString: error.localizedDescription)
             label.frame = NSRect(x: 20, y: 20, width: 500, height: 70); view.addSubview(label)
@@ -50,6 +82,7 @@ struct StateSurfaceScene: NSViewRepresentable {
     }
     func updateNSView(_ view: StateSurfaceMetalView, context: Context) {
         view.onSelect = onSelect
+        context.coordinator.renderer?.useSharedCamera(camera)
         do {
             if try context.coordinator.renderer?.update(input) == true,
                let mesh = context.coordinator.renderer?.mesh {
@@ -63,9 +96,13 @@ struct StateSurfaceScene: NSViewRepresentable {
             let metrics = StateSurfaceMetrics(appliedRelief: 0, volumeError: .nan, fallback: error.localizedDescription)
             DispatchQueue.main.async { onMetrics(metrics) }
         }
-        view.setAccessibilityLabel("\(accessibilitySubject) state surface. Fixed coordinate map. Drag to orbit; click a surface patch to inspect its nearest mapped coordinate. Arrow keys orbit, Space resets. Values and geometry use accepted observations without temporal easing.")
+        let mapping = input.presentation == .topography
+            ? "Topography of the interpolated state. Positive values rise, negative values fall. Contours every 0.2 activation units; a light contour marks zero. This map does not show network connectivity."
+            : "State surface on a fixed drawing map."
+        view.setAccessibilityLabel("\(accessibilitySubject). \(input.nodeCount) coordinates. \(mapping) Drag to orbit; click a surface patch to inspect its nearest mapped coordinate. Arrow keys orbit, Space resets. Values and geometry use accepted observations without temporal easing.")
     }
     static func dismantleNSView(_ view: StateSurfaceMetalView, coordinator: Coordinator) {
+        coordinator.renderer?.useSharedCamera(nil)
         view.delegate = nil; view.renderer = nil; coordinator.renderer = nil
     }
     final class Coordinator { var renderer: StateSurfaceRenderer? }
@@ -119,7 +156,10 @@ private struct SurfaceVertex {
 private struct SurfaceUniforms {
     var mvp: simd_float4x4
     var model: simd_float4x4
+    // Fixed lower/upper scale, flat-lighting flag, actual coordinate count.
     var scale: SIMD4<Float>
+    // Optional state topography, fixed contour spacing, reserved, reserved.
+    var style: SIMD4<Float>
 }
 private struct SurfaceDraw {
     var buffer: MTLBuffer
@@ -129,7 +169,7 @@ private struct SurfaceDraw {
 }
 
 /// CPU validates the actual relief mesh at observation changes. Metal evaluates
-/// the 128-coordinate field and lighting from immutable shared resources.
+/// the actual coordinate field and lighting from immutable shared resources.
 @MainActor final class StateSurfaceRenderer: NSObject, MTKViewDelegate {
     weak var view: MTKView?
     let device: MTLDevice
@@ -137,17 +177,20 @@ private struct SurfaceDraw {
     private let pipeline: MTLRenderPipelineState
     private let depth: MTLDepthStencilState
     private let ghostDepth: MTLDepthStencilState
-    private let weights: MTLBuffer
-    private let atlas = StateSurfaceAtlas.standard
+    private var weights: MTLBuffer
+    private var atlas = StateSurfaceAtlas.standard
+    private var atlasCache: [String: StateSurfaceAtlas] = [:]
     private var nodeBuffer: MTLBuffer?
     private var draws: [SurfaceDraw] = []
     private var current: StateSurfaceRenderInput?
     private(set) var mesh: StateSurfaceMesh?
-    private var yaw: Float = -0.42, pitch: Float = 0.16, distance: Float = 3.5
+    private(set) var cameraPose = StateSurfaceCameraPose()
+    private weak var sharedCamera: StateSurfaceCamera?
     private(set) var submittedFrames = 0
     private(set) var lastSubmitCPUms = 0.0
     var bufferBytes: Int { weights.length + (nodeBuffer?.length ?? 0) + draws.reduce(0) { $0 + $1.buffer.length } }
     var vertexCount: Int { draws.reduce(0) { $0 + $1.count } }
+    var nodeCount: Int { atlas.coordinateCount }
 
     init(device: MTLDevice, sampleCount: Int = 1) throws {
         self.device = device
@@ -177,12 +220,43 @@ private struct SurfaceDraw {
 
     @discardableResult func update(_ input: StateSurfaceRenderInput) throws -> Bool {
         guard current != input else { return false }
-        guard input.values.count == 128, input.values.allSatisfy(\.isFinite), input.lower.isFinite,
-              input.upper.isFinite, input.lower < input.upper, (0..<128).contains(input.selectedNode) else {
+        guard (1...StateSurfaceAtlas.nodeCount).contains(input.nodeCount), input.values.allSatisfy(\.isFinite), input.lower.isFinite,
+              input.upper.isFinite, input.lower < input.upper, input.values.indices.contains(input.selectedNode) else {
             throw SurfaceRenderError("Invalid state-surface observation.")
         }
-        let shapeChanged = current.map { $0.values != input.values || $0.lower != input.lower || $0.upper != input.upper || $0.fillPct != input.fillPct || $0.relief != input.relief } ?? true
-        let nextMesh = try shapeChanged ? StateSurfaceMath.mesh(values: input.values, scale: input.lower...input.upper, fillPct: input.fillPct, relief: input.relief) : mesh!
+        // A node-count change installs a complete new map and immutable weights
+        // only after all validation/allocation succeeds. Submitted draws retain
+        // their earlier buffers; no observation is padded to the native size.
+        let topographic = input.presentation == .topography
+        let rows = topographic ? 64 : 32, columns = topographic ? 128 : 64
+        let key = "\(input.nodeCount)-\(rows)-\(columns)"
+        let atlas: StateSurfaceAtlas
+        if self.atlas.coordinateCount == input.nodeCount && self.atlas.rows == rows && self.atlas.columns == columns {
+            atlas = self.atlas
+        } else if let cached = atlasCache[key] {
+            atlas = cached
+        } else {
+            atlas = try input.nodeCount == StateSurfaceAtlas.nodeCount && !topographic ? .standard
+                : StateSurfaceAtlas(nodeCount: input.nodeCount, rows: rows, columns: columns)
+        }
+        let nextWeights: MTLBuffer
+        if atlas.layoutVersion == self.atlas.layoutVersion { nextWeights = weights }
+        else {
+            guard let buffer = atlas.interpolationWeights.withUnsafeBytes({ device.makeBuffer(bytes: $0.baseAddress!, length: $0.count, options: .storageModeShared) }) else {
+                throw SurfaceRenderError("Unable to allocate coordinate-map weights.")
+            }
+            nextWeights = buffer
+        }
+        let shapeChanged = current.map { $0.values != input.values || $0.lower != input.lower || $0.upper != input.upper || $0.fillPct != input.fillPct || $0.relief != input.relief || $0.presentation != input.presentation } ?? true
+        let nextMesh: StateSurfaceMesh
+        if !shapeChanged { nextMesh = mesh! }
+        else if topographic {
+            nextMesh = try StateSurfaceMath.topographicMesh(atlas: atlas, values: input.values,
+                scale: input.lower...input.upper, relief: input.relief)
+        } else {
+            nextMesh = try StateSurfaceMath.mesh(atlas: atlas, values: input.values,
+                scale: input.lower...input.upper, fillPct: input.fillPct, relief: input.relief)
+        }
         let values = input.values.map(Float.init)
         guard let nodes = values.withUnsafeBytes({ device.makeBuffer(bytes: $0.baseAddress!, length: $0.count, options: .storageModeShared) }) else {
             throw SurfaceRenderError("Unable to allocate an observation buffer.")
@@ -203,7 +277,7 @@ private struct SurfaceDraw {
             }
         }
         try append(triangles, .triangle)
-        if input.cutaway && input.fillPct > 0 {
+        if input.cutaway && (topographic || input.fillPct > 0) {
             var cap: [SurfaceVertex] = []
             for i in atlas.cutBoundary.indices {
                 let a = Int(atlas.cutBoundary[i]), b = Int(atlas.cutBoundary[(i + 1) % atlas.cutBoundary.count])
@@ -223,11 +297,13 @@ private struct SurfaceDraw {
                 }
             }
         }
+        if !topographic {
         for axis in 0..<3 { ring(1.002, axis: axis, code: 0) }
         // This exact reference carries the scalar fill; local lobes never classify a rail.
         for axis in 0..<3 { ring(Float(nextMesh.referenceRadius), axis: axis, code: 1, dashed: true) }
         try append(lines, .line, reference: true)
-        if input.showSites && input.fillPct > 0 {
+        }
+        if input.showSites && (topographic || input.fillPct > 0) {
             var sites: [SurfaceVertex] = []
             for i in atlas.sites.indices where !input.cutaway || atlas.sites[i].z <= 0 {
                 let p = nextMesh.sitePositions[i] + atlas.sites[i] * 0.006
@@ -235,14 +311,31 @@ private struct SurfaceDraw {
             }
             try append(sites, .point)
         }
+        self.atlas = atlas; weights = nextWeights
+        atlasCache[key] = atlas
         current = input; mesh = nextMesh; nodeBuffer = nodes; draws = nextDraws
         view?.needsDisplay = true
         return true
     }
     func clear() { draws = []; mesh = nil; current = nil; nodeBuffer = nil; view?.needsDisplay = true }
-    func orbit(dx: Float, dy: Float) { yaw += dx * 0.009; pitch = min(1.35,max(-1.35,pitch + dy * 0.009)); view?.needsDisplay = true }
-    func zoom(delta: Float) { distance = min(7,max(2.1,distance * exp(-delta * 0.006))); view?.needsDisplay = true }
-    func resetCamera() { yaw = -0.42; pitch = 0.16; distance = 3.5; view?.needsDisplay = true }
+    func useSharedCamera(_ camera: StateSurfaceCamera?) {
+        guard sharedCamera !== camera else { return }
+        sharedCamera?.detach(self); sharedCamera = camera; camera?.attach(self)
+    }
+    fileprivate func applyCamera(_ pose: StateSurfaceCameraPose) { cameraPose = pose; view?.needsDisplay = true }
+    private func changeCamera(_ pose: StateSurfaceCameraPose) {
+        if let sharedCamera { sharedCamera.update(pose) } else { applyCamera(pose) }
+    }
+    func orbit(dx: Float, dy: Float) {
+        var pose = cameraPose
+        pose.yaw += dx * 0.009; pose.pitch = min(1.35,max(-1.35,pose.pitch + dy * 0.009))
+        changeCamera(pose)
+    }
+    func zoom(delta: Float) {
+        var pose = cameraPose; pose.distance = min(7,max(2.1,pose.distance * exp(-delta * 0.006)))
+        changeCamera(pose)
+    }
+    func resetCamera() { changeCamera(StateSurfaceCameraPose()) }
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) { view.needsDisplay = true }
     func draw(in view: MTKView) {
         let start = ProcessInfo.processInfo.systemUptime
@@ -253,12 +346,13 @@ private struct SurfaceDraw {
         submittedFrames += 1; lastSubmitCPUms = (ProcessInfo.processInfo.systemUptime - start) * 1000
     }
     private func uniforms(size: CGSize) -> SurfaceUniforms {
-        let model = simd_float4x4(simd_quatf(angle: pitch, axis: SIMD3(1,0,0))) * simd_float4x4(simd_quatf(angle: yaw, axis: SIMD3(0,1,0)))
-        var camera = matrix_identity_float4x4; camera.columns.3.z = -distance
+        let model = simd_float4x4(simd_quatf(angle: cameraPose.pitch, axis: SIMD3(1,0,0))) * simd_float4x4(simd_quatf(angle: cameraPose.yaw, axis: SIMD3(0,1,0)))
+        var camera = matrix_identity_float4x4; camera.columns.3.z = -cameraPose.distance
         let aspect = Float(max(1,size.width) / max(1,size.height)), y: Float = 1 / tan(0.64 / 2), near: Float = 0.1, far: Float = 30
         let projection = simd_float4x4(SIMD4(y/aspect,0,0,0), SIMD4(0,y,0,0), SIMD4(0,0,far/(near-far),-1), SIMD4(0,0,near*far/(near-far),0))
         return SurfaceUniforms(mvp: projection * camera * model, model: model,
-            scale: SIMD4(Float(current?.lower ?? -1),Float(current?.upper ?? 1),current?.flatLighting == true ? 1 : 0,0))
+            scale: SIMD4(Float(current?.lower ?? -1),Float(current?.upper ?? 1),current?.flatLighting == true ? 1 : 0,Float(atlas.coordinateCount)),
+            style: SIMD4(current?.presentation == .topography ? 1 : 0, 0.2, 0, 0))
     }
     func encode(command: MTLCommandBuffer, pass: MTLRenderPassDescriptor, size: CGSize) -> Bool {
         guard size.width > 0, size.height > 0, let encoder = command.makeRenderCommandEncoder(descriptor: pass) else { return false }
@@ -266,6 +360,7 @@ private struct SurfaceDraw {
             var u = uniforms(size: size)
             encoder.setRenderPipelineState(pipeline); encoder.setDepthStencilState(depth); encoder.setCullMode(.none)
             encoder.setVertexBytes(&u, length: MemoryLayout<SurfaceUniforms>.stride, index: 1)
+            encoder.setFragmentBytes(&u, length: MemoryLayout<SurfaceUniforms>.stride, index: 1)
             encoder.setVertexBuffer(weights, offset: 0, index: 2); encoder.setVertexBuffer(nodes, offset: 0, index: 3)
             // Every generation is immutable. Metal retains buffers through completion.
             for draw in draws {
@@ -317,10 +412,11 @@ private struct SurfaceDraw {
     #include <metal_stdlib>
     using namespace metal;
     struct V { float4 p; float4 n; float4 info; };
-    struct U { float4x4 mvp; float4x4 model; float4 scale; };
-    struct O { float4 p [[position]]; float3 color; float pointSize [[point_size]]; float marker; };
-    float field(uint index, device const float* weights, device const float* values) {
-        float result=0; for(uint i=0;i<128;i++) result += weights[index*128+i]*values[i]; return result;
+    struct U { float4x4 mvp; float4x4 model; float4 scale; float4 style; };
+    struct O { float4 p [[position]]; float3 color; float pointSize [[point_size]]; float marker;
+        float value; float3 normal; float kind [[flat]]; };
+    float field(uint index, uint nodes, device const float* weights, device const float* values) {
+        float result=0; for(uint i=0;i<nodes;i++) result += weights[index*nodes+i]*values[i]; return result;
     }
     float3 mappedColor(float value, float2 range) {
         float t=clamp((value-range.x)/(range.y-range.x),0.0f,1.0f);
@@ -332,10 +428,11 @@ private struct SurfaceDraw {
         constant U& u [[buffer(1)]], device const float* weights [[buffer(2)]], device const float* values [[buffer(3)]]) {
         V v=vertices[id]; O o; o.p=u.mvp*v.p; o.pointSize=3.5; o.marker=0;
         uint kind=uint(v.info.y); float value=0;
-        if(kind==0) value=field(uint(v.info.x),weights,values);
+        if(kind==0) value=field(uint(v.info.x),uint(u.scale.w),weights,values);
         if(kind==2) { value=values[uint(v.info.x)]; o.pointSize=v.info.w>0 ? 12 : 4; o.marker=1; }
         o.color=mappedColor(value,u.scale.xy);
-        if(kind==0 && u.scale.z<0.5) {
+        o.value=value; o.normal=(u.model*v.n).xyz; o.kind=float(kind);
+        if(kind==0 && u.scale.z<0.5 && u.style.x<0.5) {
             float3 n=normalize((u.model*v.n).xyz);
             float light=0.48+0.52*max(0.0f,dot(n,normalize(float3(-0.5,0.8,1))));
             o.color*=light; o.color+=float3(0.10,0.17,0.20)*pow(max(0.0f,n.z),18.0f);
@@ -345,13 +442,42 @@ private struct SurfaceDraw {
         if(kind==3) o.color=float3(0.035,0.07,0.10); // unmeasured cut face, not interpolated state
         return o;
     }
-    fragment float4 surface_fragment(O in [[stage_in]], float2 point [[point_coord]]) {
+    fragment float4 surface_fragment(O in [[stage_in]], float2 point [[point_coord]],
+        constant U& u [[buffer(1)]]) {
         if(in.marker>0.5 && length(point-0.5)>0.5) discard_fragment();
+        if(u.style.x>0.5 && in.kind<0.5) {
+            // Interpolate the scalar before applying the diverging palette. This
+            // avoids interpolating two different color branches across a triangle.
+            float3 color=mappedColor(in.value,u.scale.xy);
+            if(u.scale.z<0.5) {
+                float3 n=normalize(in.normal);
+                float light=0.48+0.52*max(0.0f,dot(n,normalize(float3(-0.5,0.8,1))));
+                color*=light;
+            }
+            // Isolines refer to fixed activation values, not triangle edges or
+            // procedural texture. Pixel derivatives antialias their width.
+            float derivative=fwidth(in.value);
+            float width=max(derivative,0.000001f);
+            float interval=u.style.y;
+            float separation=abs(in.value-interval*round(in.value/interval));
+            float contour=1-smoothstep(width*0.35f,width*1.15f,separation);
+            float zero=1-smoothstep(width*0.6f,width*1.8f,abs(in.value));
+            float visible=smoothstep(0.000002f,0.00002f,derivative);
+            color=mix(color,color*0.50f,contour*0.75f*visible);
+            color=mix(color,float3(0.73,0.87,0.84),zero*0.40f*visible);
+            return float4(color,1);
+        }
         return float4(in.color,1);
     }
+    // Preserve the existing native128 fixture interface; production uses u.scale.w.
     kernel void surface_field_check(device const float* weights [[buffer(0)]], device const float* values [[buffer(1)]],
         device float* output [[buffer(2)]], constant uint& count [[buffer(3)]], uint index [[thread_position_in_grid]]) {
-        if(index<count) output[index]=field(index,weights,values);
+        if(index<count) output[index]=field(index,128,weights,values);
+    }
+    kernel void surface_dynamic_field_check(device const float* weights [[buffer(0)]], device const float* values [[buffer(1)]],
+        device float* output [[buffer(2)]], constant uint& count [[buffer(3)]], constant uint& nodes [[buffer(4)]],
+        uint index [[thread_position_in_grid]]) {
+        if(index<count) output[index]=field(index,nodes,weights,values);
     }
     """
 }

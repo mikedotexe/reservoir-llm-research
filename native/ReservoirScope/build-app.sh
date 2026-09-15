@@ -5,6 +5,8 @@ task_dir="${0:A:h}"
 repo_dir="${task_dir:h:h}"
 native_cache="${XDG_CACHE_HOME:-$HOME/.cache}/reservoir-research/ReservoirScope-build"
 resource_dir="$task_dir/Sources/ReservoirScope/Resources"
+core_cache="$native_cache/essentials"
+ESSENTIALS_BUILD_DIR="$core_cache" zsh "$repo_dir/essentials/build.sh"
 mkdir -p "$resource_dir"
 cp "$repo_dir/visualizations/reservoir-3d/data.json" "$resource_dir/data.json"
 cp "$repo_dir/visualizations/reservoir-3d/state-geometry.json" "$resource_dir/state-geometry.json"
@@ -12,14 +14,18 @@ native_response="$repo_dir/research/outputs/2026-09-07-native-state-actions/nati
 if [[ -f "$native_response" ]]; then
   cp "$native_response" "$resource_dir/native-action-response.json"
 fi
+for stage in 1 2 3 4; do
+  cp "$repo_dir/essentials/examples/essentials-stage-$stage.json" "$resource_dir/essentials-stage-$stage.json"
+done
+cp "$repo_dir/essentials/examples/essentials-actions-feedback.json" "$resource_dir/essentials-actions-feedback.json"
+print -r -- "$repo_dir" > "$resource_dir/essentials-workspace.txt"
 staged_package="$native_cache/package"
-mkdir -p "$staged_package/Sources"
-cp "$task_dir/Package.swift" "$staged_package/Package.swift"
-cp -R "$task_dir/Sources/ReservoirScope" "$staged_package/Sources/"
+zsh "$task_dir/stage-sources.sh" "$task_dir" "$staged_package"
 cd "$native_cache"
 mkdir -p "$native_cache/build"
 swiftc -parse-as-library -swift-version 5 -O \
   -target "$(uname -m)-apple-macosx14.0" \
+  -I "$core_cache/lib" -L "$core_cache/lib" -lEssentialsCore -framework Accelerate \
   "$staged_package"/Sources/ReservoirScope/*.swift \
   -o "$native_cache/build/ReservoirScope"
 install_dir="$native_cache/current"
@@ -27,10 +33,13 @@ staging_dir="$(mktemp -d "$native_cache/app-stage.XXXXXX")"
 app_dir="$staging_dir/Reservoir Scope.app"
 mkdir -p "$app_dir/Contents/MacOS" "$app_dir/Contents/Resources"
 cp -X "$native_cache/build/ReservoirScope" "$app_dir/Contents/MacOS/ReservoirScope"
+cp -X "$core_cache/bin/essentials-run" "$app_dir/Contents/MacOS/essentials-run"
 cp -X "$resource_dir/data.json" "$resource_dir/state-geometry.json" "$resource_dir/state-replay.json" "$resource_dir/state-replay.bin" "$resource_dir/state-response.json" "$app_dir/Contents/Resources/"
 if [[ -f "$resource_dir/native-action-response.json" ]]; then
   cp -X "$resource_dir/native-action-response.json" "$app_dir/Contents/Resources/"
 fi
+cp -X "$resource_dir"/essentials-stage-*.json "$resource_dir/essentials-workspace.txt" "$app_dir/Contents/Resources/"
+cp -X "$resource_dir/essentials-actions-feedback.json" "$app_dir/Contents/Resources/"
 cat > "$app_dir/Contents/Info.plist" <<'PLIST'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -40,12 +49,13 @@ cat > "$app_dir/Contents/Info.plist" <<'PLIST'
 <key>CFBundleIdentifier</key><string>research.reservoir.scope</string>
 <key>CFBundleExecutable</key><string>ReservoirScope</string>
 <key>CFBundlePackageType</key><string>APPL</string>
-<key>CFBundleShortVersionString</key><string>0.7.1</string>
-<key>CFBundleVersion</key><string>10</string>
+<key>CFBundleShortVersionString</key><string>0.11.0</string>
+<key>CFBundleVersion</key><string>15</string>
 <key>LSMinimumSystemVersion</key><string>14.0</string>
 <key>NSHighResolutionCapable</key><true/>
 </dict></plist>
 PLIST
+codesign --force --sign - "$app_dir/Contents/MacOS/essentials-run"
 codesign --force --deep --sign - "$app_dir"
 codesign --verify --deep --strict "$app_dir"
 mkdir -p "$install_dir"

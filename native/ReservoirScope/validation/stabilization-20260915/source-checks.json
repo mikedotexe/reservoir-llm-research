@@ -1,0 +1,307 @@
+{
+  "schema": "reservoir-scope.source-stabilization.v1",
+  "checked_at_utc": "2026-09-15T21:30:28.597202+00:00",
+  "scope": "Source stabilization of the Essentials/Reservoir Scope feature snapshot. Offline builds, scripted fixtures and offscreen checks only; no installed app identity, launch, deployment, live reads, or model inference.",
+  "host": {
+    "hardware": "Apple M4 Pro",
+    "toolchain": "Apple Swift version 6.2.4 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)\nTarget: arm64-apple-macosx26.0",
+    "platform": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.2\nBuildVersion:\t\t25G83"
+  },
+  "fixes": [
+    {
+      "path": "essentials/reservoir/Reservoir.swift",
+      "problem": "Swift 6.2.4 could not type-check the inferred nested row-sum expression.",
+      "change": "Explicit Double closure result and accumulator, with a named row slice. RNG calls, slice bounds and reduction order are unchanged."
+    },
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ActionComparisonExperience.swift",
+      "problem": "Swift 6.2.4 reported ambiguous CGFloat/Double division in the difference plot.",
+      "change": "Explicit CGFloat coordinate conversions preserve the existing plot mapping."
+    },
+    {
+      "path": "native/ReservoirScope/build-app.sh",
+      "problem": "Copying a source directory into a reused staging cache could retain and compile removed Swift files.",
+      "change": "The production stage-sources.sh helper mirrors the source subtree with rsync --delete. Package compilation and installation behavior remain unchanged. The identity verifier records the staging-helper hash."
+    }
+  ],
+  "historical_package": {
+    "receipt": "../../build-receipt.json",
+    "receipt_sha256": "2ff9f846b8252b4bf5c42115038a1051af0725abdb30c9d2b36711e5715e0ba6",
+    "version": "0.11.0",
+    "build": "15",
+    "verified_at_utc": "2026-09-10T17:20:20.551822+00:00",
+    "status": "Historical receipt kept byte-for-byte. Two current production source files intentionally differ; the source build was not installed or launched.",
+    "source_differences": [
+      {
+        "path": "essentials/reservoir/Reservoir.swift",
+        "packaged_source_sha256": "c1fa7148a4b63f57def03ef5a0d21dad2069f130cb150e34f0b8f2f02da1c779",
+        "checked_source_sha256": "63eea4dbfe5f3f50abbf3156cbc4d7a219a345967d0c4d761e3023d9058a6303"
+      },
+      {
+        "path": "native/ReservoirScope/Sources/ReservoirScope/ActionComparisonExperience.swift",
+        "packaged_source_sha256": "738f186807f85497176c4b3ccf59bdfe46251585310c52187d02e3a3e82683f2",
+        "checked_source_sha256": "caffdd76c19f5cd8261e0e5ae4437a4a416a86d4061c7a3de1c41ed2a0a1c485"
+      }
+    ],
+    "build_script_differences": {
+      "viewer": {
+        "packaged": "de4d152c2cb7084b09eafd0338f48c5b63346ce6c3795b0c5808910c5eb22909",
+        "checked": "c7c45d683a04370281caa627f982247b65091b6915cd60657df31ec00c80348b"
+      },
+      "viewer_staging": {
+        "packaged": null,
+        "checked": "701bb056815363d73c4edff396c6105c21b7c28c3fcb180f0bca2ff4e822d814"
+      }
+    }
+  },
+  "checks": [
+    {
+      "status": "passed",
+      "command": "swift test --package-path essentials --scratch-path \"$CHECK_DIR/swiftpm\"",
+      "count": 51,
+      "scope": "XCTest tests",
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-core-tests-fixed.log",
+      "log_sha256": "d1fdbe10bf0258a8a38867b8de896f5e313d4672d884c855ed3397e91f233eda"
+    },
+    {
+      "status": "passed",
+      "command": "ESSENTIALS_BUILD_DIR=\"$CHECK_DIR/core\" zsh essentials/build.sh",
+      "count": null,
+      "scope": "optimized standalone core and CLI compile",
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-core-build-fixed.log",
+      "log_sha256": "5ee7171fc59692479fc3b34a72b8518098b08aeadb1ce922528d62f9eae2522b"
+    },
+    {
+      "status": "passed",
+      "command": "swift build --package-path native/ReservoirScope --scratch-path \"$CHECK_DIR/viewer-swiftpm\"",
+      "count": null,
+      "scope": "complete SwiftPM viewer build only",
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-viewer-build-fixed.log",
+      "log_sha256": "51bf4fc7aac7e15e670326cd51986cca6f173159eef70bed9d007a24ac8e389f"
+    },
+    {
+      "status": "passed",
+      "command": "bash native/ReservoirScope/check-state-surface.sh",
+      "count": 30,
+      "scope": "legacy surface checks",
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-legacy-math.log",
+      "log_sha256": "890bf7fe7f7ccb661eef4e159dbebb572c1e216084fd9601e6edc9572d52e875"
+    },
+    {
+      "status": "passed",
+      "command": "bash native/ReservoirScope/check-topographic-surface.sh",
+      "count": 23,
+      "scope": "topographic numerical checks",
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-topographic-math.log",
+      "log_sha256": "3c8781b9d0355c6c10666905067c5901723b1d31c1a7a9f27baa7e1bc80d3244"
+    },
+    {
+      "status": "passed",
+      "command": "bash native/ReservoirScope/check-dynamic-state-surface.sh \"$CHECK_DIR/dynamic\"",
+      "count": 55,
+      "scope": "CPU/GPU dynamic coordinate checks",
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-dynamic.log",
+      "log_sha256": "d05f3c8047b8f3c61454be98272237ff1d1cfec5c25c8eb9933baa14451c43f2"
+    },
+    {
+      "status": "passed",
+      "command": "bash native/ReservoirScope/check-shared-state-camera.sh \"$CHECK_DIR/shared-camera\"",
+      "count": 9,
+      "scope": "shared camera checks",
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-shared-camera.log",
+      "log_sha256": "d043015137c316ae1731d59d4e4b215e1c87f16007b9d0ad0eb43f0aeb0ab5a0"
+    },
+    {
+      "status": "passed",
+      "command": "bash native/ReservoirScope/check-topographic-renderer.sh \"$CHECK_DIR/topographic-renderer\" native/ReservoirScope/validation/0.10.0/topographic-renderer/previous",
+      "count": 43,
+      "scope": "offscreen renderer checks, including 7 exact legacy image matches",
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-topographic-renderer.log",
+      "log_sha256": "4b698cf2808d58a8ebfcd74c5a7a8af1060eb6652b721b4f71634d6081ec8ff5"
+    },
+    {
+      "status": "passed",
+      "command": "bash native/ReservoirScope/check-essentials-ui.sh \"$CHECK_DIR/core/lib\"",
+      "count": 17,
+      "scope": "controlled lifecycle checks",
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-essentials-lifecycle.log",
+      "log_sha256": "ed120e6fc04ae0091eaeaad6be3da05bb11dc2c68c57705d5ac9aaa1a32ceba0"
+    },
+    {
+      "status": "passed",
+      "command": "bash native/ReservoirScope/check-exploration-ui.sh \"$CHECK_DIR/core/lib\"",
+      "count": 28,
+      "scope": "controlled lifecycle checks",
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-exploration-lifecycle.log",
+      "log_sha256": "c5e0dbcf7ca83d16398019b7f19521b3716e9d59d2702956f18140cea67d8be0"
+    },
+    {
+      "status": "passed",
+      "command": "bash native/ReservoirScope/check-actions-ui.sh \"$CHECK_DIR/core/lib\"",
+      "count": 40,
+      "scope": "controlled lifecycle checks",
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-actions-lifecycle.log",
+      "log_sha256": "610e64ff7777c1489c7044cf679909affd9d88fd0a336f3889226f4b372b48e5"
+    },
+    {
+      "status": "passed",
+      "command": "python3 essentials/tests/action_cli_smoke.py --cli \"$CHECK_DIR/core/bin/essentials-run\" --output \"$CHECK_DIR/action-cli.json\"",
+      "count": 8,
+      "scope": "synthetic paired recipes; 12 malformed exports rejected",
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-action-cli.log",
+      "log_sha256": "5a86a94ac2f4e3a0cd653be04ee581e1eeeee4c2791b029129e0704d9a22533e"
+    },
+    {
+      "status": "passed",
+      "command": "python3 essentials/tests/http_smoke.py --cli \"$CHECK_DIR/core/bin/essentials-run\" --output \"$CHECK_DIR/stage-http.json\"",
+      "count": 5,
+      "scope": "owned ephemeral loopback fixtures, no model inference",
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-stage-http.log",
+      "log_sha256": "1a674581fac7326dca29b7f88bc88aaa4ef97ad9389aa4725ab8747e59f4d60b"
+    },
+    {
+      "status": "passed",
+      "command": "python3 essentials/tests/action_http_smoke.py --cli \"$CHECK_DIR/core/bin/essentials-run\" --output \"$CHECK_DIR/action-http.json\"",
+      "count": 5,
+      "scope": "owned ephemeral loopback fixtures, no model inference",
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-action-http.log",
+      "log_sha256": "56ab94c341869034dddcc9b16c7a2283aca64afcec9dc1f7fcf9a3c9f1895993"
+    },
+    {
+      "status": "passed",
+      "command": "\"$CHECK_DIR/core/bin/essentials-run\" verify essentials/examples/EXAMPLE.json",
+      "count": 5,
+      "scope": "all bundled numerical example records verified",
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-example-verification.log",
+      "log_sha256": "c6915695bcd69cd651d1185464130cc0b0f60f0af103a44162e4bd64ffe0541d"
+    },
+    {
+      "status": "passed",
+      "command": "bash native/ReservoirScope/check-source-staging.sh",
+      "count": 7,
+      "scope": "Production staging helper against temporary source/cache fixtures: stale Swift/resource pruning, exact contents, manifest copy, preservation outside source subtree, deletion on second stage, and repeated-stage stability. No compilation or installation.",
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-source-staging.log",
+      "log_sha256": "a54115d42f8085c97b23dfa08c9f022fc4a6235c100435c9f7bdcf923621a72f"
+    },
+    {
+      "status": "passed",
+      "command": "zsh -n native/ReservoirScope/build-app.sh native/ReservoirScope/stage-sources.sh; bash -n native/ReservoirScope/check-source-staging.sh; Python ast.parse of verify-app-identity.py",
+      "scope": "Syntax checks only; package verifier was not executed."
+    }
+  ],
+  "initial_failures": [
+    {
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-core-tests.log",
+      "log_sha256": "6c2924f29e1a3c3709fac64b90720a11f71c681e3edaae3d673d602fae44f88c",
+      "reason": "Reservoir.swift:55 type-checking limit"
+    },
+    {
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-core-build.log",
+      "log_sha256": "c8abb82f7c9d869ab47c259904f727d08388b9b7e025489be158e96b54539331",
+      "reason": "Same type-checking limit in optimized standalone build"
+    },
+    {
+      "log_file": "/Users/v/other/worktrees/git-stabilization-20260915/evidence/native-viewer-build.log",
+      "log_sha256": "bb2a8b140d7852b6734c340e0056ea4a2c41d18234bdf31b64092cfc390806f2",
+      "reason": "ActionComparisonExperience.swift:512 ambiguous division"
+    }
+  ],
+  "checked_source_sha256": {
+    "essentials/Package.swift": "1ea57d6037b66fcf127e620ab0167db797204506c368e93bd5250a743270c210",
+    "essentials/actions/ActionComparisonSession.swift": "f0a9899b27744627f3b84f1ceb1dc56715b3c17530d61aaf34db5faa27935f84",
+    "essentials/actions/ActionMechanisms.swift": "f8afcfdd16f17e4f608834003622031d45695d2be3e8a1fefc9ab4d3bf3bae4b",
+    "essentials/actions/ActionTypes.swift": "6b5b7f794711a11af74ebc87e9756cbf3c151b4a6fa8342480ded4a0605b5f48",
+    "essentials/actions/ActionVerification.swift": "afdd3d4e8c4444cf9136720960c16de094d3ebbab18d47ef028adb7266f79fd6",
+    "essentials/build.sh": "fc1b42ae4fe37d3d17be4b053101ee5d3c6230a33fab9b84bad2f6dd6026f577",
+    "essentials/llm/Language.swift": "312e81af7d9ff6c63d431ee66cdca717f76100b727a565e7bf792114ba491d0a",
+    "essentials/regulation/Regulation.swift": "63ef074bf615a63a28a7c15f813b8e76f975ad9efc57a273f48ad15e0a07137b",
+    "essentials/reservoir/Reservoir.swift": "63eea4dbfe5f3f50abbf3156cbc4d7a219a345967d0c4d761e3023d9058a6303",
+    "essentials/reservoir/ReservoirExploration.swift": "4aae098c6de7d360847b3bcbcbeef08f8a0aa7de853db3837e720682d68db878",
+    "essentials/runner/Main.swift": "239484de1f8cb609ae9de29f1186c0f3161c5dc8a146c33f09630521b41b07e8",
+    "essentials/spectral_bridge/SensoryField.swift": "8993986044309fefc911a052a9ef201c4f6efcd01afe63239512be4502022809",
+    "essentials/spectral_bridge/TextCodec.swift": "46e55a2d33d37d561be0cecbdf5c5124330fcda7ffb2fce8a874c7ee664bd290",
+    "essentials/stages/EssentialsSession.swift": "55aa46a2713c5f44585d311d0ac36723c29b5d7d1263c6543288668cafd7d228",
+    "essentials/stages/RunTypes.swift": "fa8ae6ed594cd36029d27f416dc6029662016fa6701b5ad1cdfa4ff9c6d6fc83",
+    "essentials/stages/Verification.swift": "400fafb610018795c2dff3b7429e800a705b6b1c42411682e3fec01103fad668",
+    "essentials/tests/ActionComparisonTests.swift": "e2198becd646537dcfde73fb6d0bf42150b99bbf76117ffb4a39e9b4f71ac47b",
+    "essentials/tests/ExplorationTests.swift": "eec9e9051f771b264b4a228deac3272eef07f8a8578363e14171d44694c9c68a",
+    "essentials/tests/MechanismTests.swift": "90990d8c03d6560806f03a44a33b47bac83b9e9ba0aedf92ecf4d2792d10a1ee",
+    "essentials/tests/RuntimeTests.swift": "0f99fdd5b9710f39146809516fb3f4e5fae2c15c091191b59d7c5db6834da8de",
+    "native/ReservoirScope/Package.swift": "e5288741a96fc7c4043b7d65a38d79ec67608ad555d01aaec0635d0961fb3ac8",
+    "native/ReservoirScope/Sources/ReservoirScope/ActionComparisonExperience.swift": "caffdd76c19f5cd8261e0e5ae4437a4a416a86d4061c7a3de1c41ed2a0a1c485",
+    "native/ReservoirScope/Sources/ReservoirScope/ActionComparisonViewModel.swift": "ee355ef49933ddb4258e13de964bf9028ce790bbc034199f8b1a4bd8a8d457d2",
+    "native/ReservoirScope/Sources/ReservoirScope/EssentialsExperience.swift": "9f48598b3067729f09102b62038517f5213e09b9107c6f7fc21252630c4932f7",
+    "native/ReservoirScope/Sources/ReservoirScope/EssentialsViewModel.swift": "78c16b09654f7e0da2de61868a23214f0563dc0cb4cedc890b266d0dfdf38e24",
+    "native/ReservoirScope/Sources/ReservoirScope/Evidence.swift": "4a8ec2a1d16fb095f987658be60434d2b8785bad8b27da3cd4a60b00c6aef4d5",
+    "native/ReservoirScope/Sources/ReservoirScope/ExplorationExperience.swift": "e81743750b9369cb603119ce66eb2aa5ebf8e8fcd68395bc2dada862c55befed",
+    "native/ReservoirScope/Sources/ReservoirScope/ExplorationViewModel.swift": "3c9e29cefd547cfb4c054081a1cbd2a15a3b9e9839199ff5dbd65a825d555a9a",
+    "native/ReservoirScope/Sources/ReservoirScope/FillTransition.swift": "132f205f61576aca1675f0458a4fbeaa815bb7f9fe643d4ea2b2e25d3f309623",
+    "native/ReservoirScope/Sources/ReservoirScope/FillWatermarkMemory.swift": "5631de3f8a1bcbc5ae4c4f03c7bab34ccb04956114d43156e8745b788d83d951",
+    "native/ReservoirScope/Sources/ReservoirScope/FillWatermarks.swift": "091c3db78354828a42da94a3a8fb10b829e6665775414f81d8ebfc3c15b4301f",
+    "native/ReservoirScope/Sources/ReservoirScope/LiveState.swift": "abfde9c5e8e230aa9642c956e6ae44b11de7e8eef634398f901d314d984550a9",
+    "native/ReservoirScope/Sources/ReservoirScope/LiveTelemetry.swift": "65edaf5700aaf6729abe6da84532d7015cc4a97ca5139603fe2f7f62b3371922",
+    "native/ReservoirScope/Sources/ReservoirScope/NativeActionResponse.swift": "11aa1976869d22cdb062487c88fb30739367ba5cf833b32c6272013b7a55e942",
+    "native/ReservoirScope/Sources/ReservoirScope/NativeActionResponseExperience.swift": "ac03a2fdad5a049be8d9027b9151a5ffd20b80f6dfc933d3ad120a4f9c5aa98b",
+    "native/ReservoirScope/Sources/ReservoirScope/Profiling.swift": "838090b6b8619a28752d91282bb40f83eb1d3f943e6ed984d0fadde65cc3abcc",
+    "native/ReservoirScope/Sources/ReservoirScope/ReferenceWatermarksView.swift": "beb89d214c0c60e90bc9122e651b9c64732a5b9e65cdfdd09bb2728f8842ddd2",
+    "native/ReservoirScope/Sources/ReservoirScope/ReferenceZones.swift": "2ce4df2568cc0895ac648a2e0ff3738d9dad6098d23cd1502257545a80e45a34",
+    "native/ReservoirScope/Sources/ReservoirScope/ReplayClock.swift": "8326a47becab81b6fb6f2c1550a51226dde9b203a027d1909b14ccc6d9e5ff81",
+    "native/ReservoirScope/Sources/ReservoirScope/ReservoirScene.swift": "956d61ddf5809655d0d2f51ada64f7d0b72ea114d236ef06f6b55fc3c64e1771",
+    "native/ReservoirScope/Sources/ReservoirScope/ReservoirScopeApp.swift": "81cee6601aed4e96da0965e679636b9c42cf887dba8351cb17a6cc67f3442d4c",
+    "native/ReservoirScope/Sources/ReservoirScope/ResourceBundle.swift": "22eb2c127d7692702a48d3f9cd4ab41057912ccd4cae6d25d23a7d248e3b4079",
+    "native/ReservoirScope/Sources/ReservoirScope/ScopeWorkspace.swift": "c78609ac51a43f6aa205d4034ce55205df0a35d37407316204ce240d4a62feb4",
+    "native/ReservoirScope/Sources/ReservoirScope/StateResponseExperience.swift": "8cfc783710186c2bd17165478a25990e8b397663d4828dcbd348149f0ff188da",
+    "native/ReservoirScope/Sources/ReservoirScope/StateSurface.swift": "d270de8d520b7a4fb39f56196dc96536cfc134c1e4f897b379c8dea92ca79a6d",
+    "native/ReservoirScope/Sources/ReservoirScope/StateSurfaceExperience.swift": "986808cc5ff56d195567a0b5bcd7a5af3f38164c5d6bf4c541f3c5701d36c828",
+    "native/ReservoirScope/Sources/ReservoirScope/StateSurfaceProfiling.swift": "70f2e481ef65e489816bcf97e461ebe367603c2bedea1a0a929e9e67a39772de",
+    "native/ReservoirScope/Sources/ReservoirScope/StateSurfaceScene.swift": "22c345fd4146cbcc242ed69028e4b3bbe82dcab8b55908f70c1cde0a14285177",
+    "native/ReservoirScope/build-app.sh": "c7c45d683a04370281caa627f982247b65091b6915cd60657df31ec00c80348b",
+    "native/ReservoirScope/stage-sources.sh": "701bb056815363d73c4edff396c6105c21b7c28c3fcb180f0bca2ff4e822d814",
+    "native/ReservoirScope/check-source-staging.sh": "0b7a6e6be3f669b56eefbe0a348a90f5c44e6a6b69a765d8af27023c3f328db0",
+    "native/ReservoirScope/verify-app-identity.py": "024382e7c679a371f99b4756ce9ee8294b7c49f4d7380441ab0e7fd8ec1e986d"
+  },
+  "verified_examples": [
+    {
+      "path": "essentials/examples/essentials-actions-feedback.json",
+      "sha256": "25c7ea2d390b3d73339f25a22a7f0d93f6ec23128a310ebf5a194f4445b6dbc7",
+      "exit_code": 0,
+      "output": "Verified 300 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n"
+    },
+    {
+      "path": "essentials/examples/essentials-stage-1.json",
+      "sha256": "dd536371d35d00d085508ffb02d348f335ff569b3bfe57c828403f7ce6da37d0",
+      "exit_code": 0,
+      "output": "Verified 300 steps and 0 language turns, including recurrence, spectra, feedback and regulation.\n"
+    },
+    {
+      "path": "essentials/examples/essentials-stage-2.json",
+      "sha256": "21e7a6b8acb3be59efda3f3381f20ce1820d4927b22f7e42f56b2084c566cc78",
+      "exit_code": 0,
+      "output": "Verified 300 steps and 9 language turns, including recurrence, spectra, feedback and regulation.\n"
+    },
+    {
+      "path": "essentials/examples/essentials-stage-3.json",
+      "sha256": "b1807f2593fffd36e87bd02d842539db6426b342b12b3fde81d0be7b7254389c",
+      "exit_code": 0,
+      "output": "Verified 300 steps and 9 language turns, including recurrence, spectra, feedback and regulation.\n"
+    },
+    {
+      "path": "essentials/examples/essentials-stage-4.json",
+      "sha256": "2fe6156d2996d4b99eb9f365130913c47d82d6307be7efe879c0b295a1d41fdd",
+      "exit_code": 0,
+      "output": "Verified 300 steps and 9 language turns, including recurrence, spectra, feedback and regulation.\n"
+    }
+  ],
+  "renderer_receipt_sha256": "5461a6e0eb9592bbbd97b4115be1a4b6281983370f149ffc1d649822a12099f3",
+  "compile_warnings": [
+    "The Accelerate CLAPACK dsyev_ interface is deprecated in macOS 13.3; existing numerical checks pass."
+  ],
+  "limits": [
+    "Native Package.swift has no SwiftPM test target; behavioral verification uses the listed native check scripts.",
+    "AppKit layout/window scripts and presented UI inspection were not run. Production viewer binary was built but never launched.",
+    "The host-specific workspace hint stays local and is regenerated by build-app.sh when packaging is intentionally requested.",
+    "SwiftPM and standalone binaries are qualification output under the external CHECK_DIR, not the installed app. No package signature/identity verification was claimed.",
+    "Raw renderer output and command logs are retained in local stabilization evidence; existing final qualification JSON/source/image fixtures remain part of the feature snapshot.",
+    "The changed packaging stage was qualified separately against temporary fixtures; build-app.sh and the installed-app verifier were not run."
+  ]
+}

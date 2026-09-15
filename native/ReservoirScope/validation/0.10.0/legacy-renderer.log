@@ -1,0 +1,23 @@
+PASS 1: GPU field matches CPU atlas within 3e-6 for zero
+PASS 2: GPU field matches CPU atlas within 3e-6 for constant
+PASS 3: GPU field matches CPU atlas within 3e-6 for one coordinate
+PASS 4: GPU field matches CPU atlas within 3e-6 for opposed coordinates
+PASS 5: GPU field matches CPU atlas within 3e-6 for retained row 0
+PASS 6: GPU field matches CPU atlas within 3e-6 for retained row 1
+PASS 7: GPU field matches CPU atlas within 3e-6 for retained row 127
+PASS 8: GPU field matches CPU atlas within 3e-6 for retained row 255
+PASS 9: GPU field matches CPU atlas within 3e-6 for retained row 511
+PASS 10: GPU field matches CPU atlas within 3e-6 for retained row 767
+PASS 11: GPU field matches CPU atlas within 3e-6 for retained row 1023
+PASS 12: First retained vector creates a surface observation
+PASS 13: Duplicate observation preserves resources and invents no native draw submission
+PASS 14: The same observation renders identical pixels without time-driven movement
+PASS 15: Surface triangles, reference geometry and exact sites use allocated GPU resources
+PASS 16: A center surface hit selects a mapped coordinate; background clicks select none
+PASS 17: Different accepted retained states change the rendered surface colors
+PASS 18: Actual relief changes pixels while preserving the declared preview volume
+PASS 19: Cutaway changes rendered geometry while retaining the same complete-mesh volume check
+PASS 20: Clicking the opaque unmeasured cut face does not select a hidden back-surface coordinate
+PASS 21: Clearing invalid/unavailable evidence removes old geometry and picking
+PASS 22: Finite checks completed 11 GPU field commands and 6 offscreen frames without a presented window
+22 state-surface renderer checks passed. Device: Apple M1 Max. Maximum GPU field error: 1.7881393432617188e-07. Correctness fixtures only; no profiling timings or live-system reads.

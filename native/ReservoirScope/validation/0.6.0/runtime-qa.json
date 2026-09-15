@@ -1,0 +1,40 @@
+{
+  "verified_at_utc": "2026-09-08T03:48:44.387084+00:00",
+  "qualification_status": "final actual-producer package verified",
+  "version": "0.6.0",
+  "build": "8",
+  "binary_sha256": "d37ee6fc2f9a75775b4a718c1955f5199d4ea364543be0de9271633d5603c206",
+  "native_resource_sha256": "15441269152bb282e2456d4d08fddae398879e4b0410cd08f71e80282f09e807",
+  "producer_source_manifest_sha256": "0c1a8c602996cfa15a50905a1b805686c5dc3f656ce26d03ca981f90f20f8c4e",
+  "device": "Apple M1 Max",
+  "ui_tool": "CUA native app accessibility and screenshots",
+  "runtime_qa": [
+    "Final app imported all eight actual native pulse boundaries from its bundled resource; subject, missing fill, supplied rehearsal clock and final source identity visible",
+    "Final-source pulse 1 to 2 scrubbing updated successful step, signed request, exact ordinary/applied coordinate, difference, noise and effective leak",
+    "Ordinary step and Applied result fields used fixed -1 to1; Action difference retained its full-bundle fixed scale",
+    "Exact coordinate inspector changed from coordinate 0 to 1 with observed values",
+    "Read-only follow of the final bundled atomic file selected step 8, disabled manual playback and reported waiting without inventing frames; follow stopped afterward",
+    "Separate esn-divide simulation remained selectable with original 65 boundaries and distinct provenance",
+    "Final window left on Native action receipts, Action difference, first pulse, coordinate 0, playback stopped and file following off",
+    "Final screenshot visually reviewed after import; final accessibility read confirmed the 15441269 resource and 0c1a8c60 producer source identities"
+  ],
+  "unchanged_source_validation": {
+    "all_17_swift_sources_identical_to_pre_json_roundtrip": true,
+    "prior_receipt": "pre-json-roundtrip/runtime-qa.json",
+    "reused_check": "Raw eight-pulse playback advanced and automatically stopped at final receipt under these identical UI sources before producer metadata regeneration"
+  },
+  "checks": {
+    "native_action_consumer": 37,
+    "esn_divide_consumer": 25
+  },
+  "check_log_sha256": {
+    "native-action-consumer.log": "68437b095f376e31236bbf1ffa3063823f81388f528b102d80c459fb81380852",
+    "esn-divide-consumer.log": "202f79617e03204a566747d06745cdc53617366c2034803368086dfa6ddce6b2"
+  },
+  "limits": [
+    "No live producer, being-facing action or service manipulation",
+    "No performance/energy/presented-FPS qualification of this viewer build",
+    "No full ordinary state trajectory between action receipts, counterfactual branch, measured fill or eigenmode fit",
+    "Screenshot review is retained in the CUA conversation; no documented CUA file-export API was used"
+  ]
+}

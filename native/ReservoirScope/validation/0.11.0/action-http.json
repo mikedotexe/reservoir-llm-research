@@ -1,0 +1,67 @@
+{
+  "schema": "essentials.action_http_qualification.v1",
+  "status": "passed",
+  "at_utc": "2026-09-10T17:12:46.065807+00:00",
+  "cli_sha256": "a0a03d74883a2739fe31b722237fc3765e6244ae8b1bc5d56f2483bb0a85bcac",
+  "script_sha256": "e83d97174cf4ab922c5178ab0b361b478f7534123bd1d48b3f44f51d5109146e",
+  "transport_fixture_sha256": "c6c1aa7759069475ddd2e8f3f3a1e7311a8acb4bc077d036f5d1cf0a267fb9b8",
+  "cases": [
+    {
+      "scenario": "success",
+      "requests": 2,
+      "status": "completed",
+      "steps": 61,
+      "journals": 2,
+      "verified": true,
+      "requests_sha256": [
+        "940086105cfe5b7201cd9a06bf5e0c447e45134bb75623b5f6753ae6ed6de273",
+        "28b002992a12620ee07e5a5ed87cf4cdfc2198de6b57c0756889cbe00418d518"
+      ]
+    },
+    {
+      "scenario": "partial",
+      "requests": 1,
+      "status": "failed",
+      "steps": 30,
+      "journals": 0,
+      "verified": true,
+      "requests_sha256": [
+        "ffb7d27137263ae83923206e95643a0c78216da5c7e434ea3bc678d28476a159"
+      ]
+    },
+    {
+      "scenario": "length",
+      "requests": 1,
+      "status": "failed",
+      "steps": 30,
+      "journals": 0,
+      "verified": true,
+      "requests_sha256": [
+        "24efbf2157cf444977341795bc9da8ada8bfb597ffde5236e05e96611d7120c1"
+      ]
+    },
+    {
+      "scenario": "http_error",
+      "requests": 1,
+      "status": "failed",
+      "steps": 30,
+      "journals": 0,
+      "verified": true,
+      "requests_sha256": [
+        "d24901242eaa7a4ce2c7771fa5db275cff1deb2af73d3f2efe8b489df2f2c3fb"
+      ]
+    },
+    {
+      "scenario": "redirect",
+      "requests": 1,
+      "status": "failed",
+      "steps": 30,
+      "journals": 0,
+      "verified": true,
+      "requests_sha256": [
+        "8786557b7ec8cb0958cb80ac7c9b9687fde21309ad46cf01e3a89b7451935a3d"
+      ]
+    }
+  ],
+  "scope": "Actual bounded chat transport and action/memory/application receipts against owned ephemeral loopback fixtures; no model inference."
+}

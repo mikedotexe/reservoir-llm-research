@@ -1,0 +1,18 @@
+PASS 1: A late open cannot replace a newer stage selection
+PASS 2: Reset invalidates a pending read without restoring the old run
+PASS 3: Leaving Essentials cancels a pending open and pauses playback
+PASS 4: Two overlapping opens retain the most recently requested file
+PASS 5: Substep replay progress does not interpolate observed state values
+PASS 6: Changing speed preserves fractional progress at the old speed
+PASS 7: Pausing records progress through the pause boundary
+PASS 8: Resume excludes paused time and preserves the partial step
+PASS 9: Replay restarts a completed trace at its first recorded step
+PASS 10: Playback clamps at the final frame without inventing new state
+PASS 11: A failed open retains the previous run and exposes the error
+PASS 12: Starting Run invalidates an older open while preserving the active language wait
+PASS 13: Stage selection and reset cannot replace an active run
+PASS 14: Waiting for a full reply never advances simulated time
+PASS 15: Stopping a pending reply retains completed frames and the cancelled turn without feedback
+PASS 16: A backend that completes late cannot mutate the retained stopped run
+PASS 17: A stopped stage remains available after switching away and back
+17 Essentials view-model lifecycle checks passed; controlled memory fixtures only, no HTTP or live files.

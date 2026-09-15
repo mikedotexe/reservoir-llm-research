@@ -1,0 +1,63 @@
+/var/folders/9d/z0hk873x74x8twz9vg2zjvq80000gn/T/reservoir-topographic-build.r7Vmq5/pristine.swift:1482:16: warning: 'init(cString:)' is deprecated: Use String(decoding: array, as: UTF8.self) instead, after truncating the null termination. [#DeprecatedDeclaration]
+1480 |         var bytes = [CChar](repeating: 0, count: size)
+1481 |         guard sysctlbyname(key, &bytes, &size, nil, 0) == 0 else { return nil }
+1482 |         return String(cString: bytes)
+     |                `- warning: 'init(cString:)' is deprecated: Use String(decoding: array, as: UTF8.self) instead, after truncating the null termination. [#DeprecatedDeclaration]
+1483 |     }
+1484 | }
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+0 topographic renderer checks passed; 7 deterministic offscreen frames on Apple M1 Max.
+/var/folders/9d/z0hk873x74x8twz9vg2zjvq80000gn/T/reservoir-topographic-build.r7Vmq5/checks.swift:1543:16: warning: 'init(cString:)' is deprecated: Use String(decoding: array, as: UTF8.self) instead, after truncating the null termination. [#DeprecatedDeclaration]
+1541 |         var bytes = [CChar](repeating: 0, count: size)
+1542 |         guard sysctlbyname(key, &bytes, &size, nil, 0) == 0 else { return nil }
+1543 |         return String(cString: bytes)
+     |                `- warning: 'init(cString:)' is deprecated: Use String(decoding: array, as: UTF8.self) instead, after truncating the null termination. [#DeprecatedDeclaration]
+1544 |     }
+1545 | }
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+PASS 1: Legacy 32-zero pixels remain byte-identical to the pristine renderer
+PASS 2: Legacy 32-positive pixels remain byte-identical to the pristine renderer
+PASS 3: Legacy 32-negative pixels remain byte-identical to the pristine renderer
+PASS 4: Legacy 32-opposed pixels remain byte-identical to the pristine renderer
+PASS 5: Legacy 32-stage1-step1 pixels remain byte-identical to the pristine renderer
+PASS 6: Legacy 32-stage1-step12 pixels remain byte-identical to the pristine renderer
+PASS 7: Legacy 128-retained-row0 pixels remain byte-identical to the pristine renderer
+PASS 8: Dense GPU field matches CPU interpolation within 3e-6 for 32-zero
+PASS 9: Topographic 32-zero retains exactly 32 mapped coordinates
+PASS 10: Topographic 32-zero has finite geometry and unit surface normals
+PASS 11: 32-zero radius follows fixed 0.82 + gain × signed field
+PASS 12: Dense GPU field matches CPU interpolation within 3e-6 for 32-positive
+PASS 13: Topographic 32-positive retains exactly 32 mapped coordinates
+PASS 14: Topographic 32-positive has finite geometry and unit surface normals
+PASS 15: 32-positive radius follows fixed 0.82 + gain × signed field
+PASS 16: Dense GPU field matches CPU interpolation within 3e-6 for 32-negative
+PASS 17: Topographic 32-negative retains exactly 32 mapped coordinates
+PASS 18: Topographic 32-negative has finite geometry and unit surface normals
+PASS 19: 32-negative radius follows fixed 0.82 + gain × signed field
+PASS 20: Dense GPU field matches CPU interpolation within 3e-6 for 32-opposed
+PASS 21: Topographic 32-opposed retains exactly 32 mapped coordinates
+PASS 22: Topographic 32-opposed has finite geometry and unit surface normals
+PASS 23: Dense GPU field matches CPU interpolation within 3e-6 for 32-stage1-step1
+PASS 24: Topographic 32-stage1-step1 retains exactly 32 mapped coordinates
+PASS 25: Topographic 32-stage1-step1 has finite geometry and unit surface normals
+PASS 26: Dense GPU field matches CPU interpolation within 3e-6 for 32-stage1-step12
+PASS 27: Topographic 32-stage1-step12 retains exactly 32 mapped coordinates
+PASS 28: Topographic 32-stage1-step12 has finite geometry and unit surface normals
+PASS 29: Dense GPU field matches CPU interpolation within 3e-6 for 128-retained-row0
+PASS 30: Topographic 128-retained-row0 retains exactly 128 mapped coordinates
+PASS 31: Topographic 128-retained-row0 has finite geometry and unit surface normals
+PASS 32: Duplicate topographic observations retain immutable resources
+PASS 33: Repeated rendering has no time-driven state or geometry movement
+PASS 34: A different saved reservoir state changes topographic pixels
+PASS 35: Rewinding A → B → A restores exact geometry and pixels without temporal easing
+PASS 36: Zero height gain makes a sphere while nonzero gain changes actual geometry and pixels
+PASS 37: Topographic geometry and exact markers do not depend on dummy display fill
+PASS 38: Topographic surface picking returns a real coordinate; background returns none
+PASS 39: Cutaway removes the front display triangles without changing the recorded full surface
+PASS 40: The opaque unmeasured cut face blocks picks through to hidden coordinates
+PASS 41: Hiding sites removes exactly 32 markers and leaves the interpolated surface intact
+PASS 42: Switching 32-node topography back to native128 restores the same legacy pixels
+PASS 43: Clearing an unavailable observation removes old geometry and picking
+43 topographic renderer checks passed; 23 deterministic offscreen frames on Apple M1 Max.

@@ -1,0 +1,31 @@
+{
+  "schema": "reservoir_scope.topography_native_qa.v1",
+  "recorded_at_utc": "2026-09-10T03:06:35.953201+00:00",
+  "version": "0.10.0",
+  "build": "13",
+  "binary_sha256": "c0f11d86629cfcf151cc25ac126b438d9b34a794d804e7b000054241165c6b97",
+  "method": "Presented native-window CUA accessibility and screenshot inspection, with independent comparisons to bundled numerical vectors.",
+  "passed": [
+    "Essentials Explore opens a quiet topographic sphere with no invented contours, 32 exact coordinate controls and a legible Surface/Topography picker.",
+    "Send pulse creates step 1; node 0 -0.063561 appears in both the surface inspector and update contributions.",
+    "Height changes from 0.16 to 0; displayed shape flattens while the recorded state, step and exact node 0 remain unchanged.",
+    "Surface restores the original fixed-size color presentation and reference rings for that same pulse.",
+    "Stage experiments independently defaults to Topography and opens the canonical Stage 1 record atstep 1.",
+    "The focal stage1 node 0 value is0.028603, agreeing with the attached screenshot and original bundled vector.",
+    "Replay changes the landscape with the recorded observations and reachesstep 300; the original 300-frame count is retained.",
+    "Open stage example returns the view to step 1; final app remains paused on the focal topographic state."
+  ],
+  "numeric_comparison": {
+    "stage1_source": "native/ReservoirScope/Sources/ReservoirScope/Resources/essentials-stage-1.json",
+    "step1_node0": 0.028602939487182236,
+    "step1_displayed": 0.028603,
+    "step300_node0": 0.19224274461259566,
+    "step300_displayed": 0.192243
+  },
+  "limits": [
+    "An accessibility-driven Pause click during staged replay did not produce a confirmed paused state before replay completed; no direct native Pause success or button latency claim is made.",
+    "The active replay accessibility observations took about 16 seconds per call; this tool latency is not a presented frame-rate measurement. Automated hosting and model pause checks have separate receipts.",
+    "No new presented FPS, energy, cross-host performance or live-ingestion qualification.",
+    "Native shader edge appearance was inspected visually; no claim of exact subpixel contour-position error is made."
+  ]
+}

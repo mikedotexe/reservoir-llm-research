@@ -1,0 +1,37 @@
+{
+  "schema": "reservoir_scope.topographic_math_checks.v1",
+  "recorded_at": "2026-09-10T02:56:19.767132+00:00",
+  "working_directory": "/Volumes/M3 Volya._smb._tcp.local/other/reservoir-llm-research",
+  "commands": [
+    "native/ReservoirScope/check-topographic-surface.sh",
+    "native/ReservoirScope/check-state-surface.sh"
+  ],
+  "topographic_checks_passed": 23,
+  "topographic_fixture_meshes": 10,
+  "legacy_checks_passed": 30,
+  "legacy_fixture_meshes": 52,
+  "exact_legacy_fingerprint_meshes": 42,
+  "exact_legacy_fingerprint": "38b9d68778ae90292e173b4c9a9c1c6eeab476e4c6a0253dae7ee450ac801bce",
+  "baseline_source_sha256": "882383e1d877c30504dd51b15bf5f9c9763b308c86c9674df7a360a8a3162d42",
+  "source_sha256": {
+    "native/ReservoirScope/Sources/ReservoirScope/StateSurface.swift": "d270de8d520b7a4fb39f56196dc96536cfc134c1e4f897b379c8dea92ca79a6d",
+    "native/ReservoirScope/Tests/TopographicSurfaceChecks.swift": "87baa248cc24a7e2b6d5effe216c6e134ddcc80963ec270e7f4808f2008174d3",
+    "native/ReservoirScope/check-topographic-surface.sh": "43f507ff9fe0f1317e4287041ed4626eae67c429478e196d4ddd78c390852ec3"
+  },
+  "initial_test_correction": "An initial check required bit-identical positions for near-one Float interpolation and clamped oversized input. Replaced this with a 2e-7 geometry tolerance; production code was unchanged.",
+  "original_receipt_sha256": "efd5d1cd0ea239cc795de7b1db2a01b4c158559dac13cff176d3a2d21be17069",
+  "original_log_paths": {
+    "/tmp/reservoir-topographic-math-checks.log": "3c8781b9d0355c6c10666905067c5901723b1d31c1a7a9f27baa7e1bc80d3244",
+    "/tmp/reservoir-topographic-legacy-checks.log": "890bf7fe7f7ccb661eef4e159dbebb572c1e216084fd9601e6edc9572d52e875",
+    "/tmp/reservoir-topographic-math-initial-checks.log": "5bd175f5de45652ae4e028c5bac635213ba5a99f50b513f3622f90cb6bea0685"
+  },
+  "logs": {
+    "native/ReservoirScope/validation/0.10.0/topographic-math.log": "3c8781b9d0355c6c10666905067c5901723b1d31c1a7a9f27baa7e1bc80d3244",
+    "native/ReservoirScope/validation/0.10.0/legacy-math.log": "890bf7fe7f7ccb661eef4e159dbebb572c1e216084fd9601e6edc9572d52e875"
+  },
+  "initial_check_log": {
+    "sha256": "5bd175f5de45652ae4e028c5bac635213ba5a99f50b513f3622f90cb6bea0685",
+    "text": "FAIL: Relief alone clamps out-of-range values; the field and exact inspector retain their original magnitude\nPASS 1: Original 32/128-coordinate atlases and all 42 legacy meshes retain their exact numerical fingerprint\nPASS 2: The default native atlas retains its version and original resolution\nPASS 3: Dense topography samples the same 32 fixed coordinate sites and records its distinct resolution\nPASS 4: Atlas geometry, kernel rows and picking triangles are deterministic\nPASS 5: The dense mesh is closed, consistently wound and seam-free with spherical Euler characteristic\nPASS 6: Cutaway triangles share an exact planar 128-vertex boundary without seam duplicates\nPASS 7: Every dense interpolation weight matches the original normalized spherical Gaussian with kernel 24\nPASS 8: A zero state produces the exact fixed neutral radius without invented structure\nPASS 9: Constant positive and negative fields create peaks at radius 0.98 and valleys at 0.66\nPASS 10: Topographic volume changes with signed state; the compatibility field records measured volume without constraining it\nPASS 11: Each rendered radius directly follows the unchanged signed interpolated field and fixed scale\nPASS 12: Negating the same coordinates reverses the relief around the neutral sphere\nPASS 13: Small signals stay small and wider declared scales reduce relief without normalizing a frame\nPASS 14: Zero gain removes only geometry and requested relief applies directly without hidden backoff\n"
+  },
+  "retention_note": "Copied completed check output into versioned validation; no rerun or production source changes."
+}

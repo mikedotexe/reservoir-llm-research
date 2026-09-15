@@ -31,6 +31,13 @@ def main() -> None:
     output = args.output or native/'validation'/plist['CFBundleShortVersionString']/'artifact-identity.json'
     sources = {str(p.relative_to(root)): sha(p) for p in sorted((native/'Sources/ReservoirScope').glob('*.swift'))}
     resources = {p.name: sha(p) for p in sorted((native/'Sources/ReservoirScope/Resources').iterdir()) if p.is_file()}
+    core_stage = app.parents[1]/'essentials/sources'
+    core_sources = {
+        str(p.relative_to(root/'essentials')): sha(p)
+        for component in ['reservoir', 'spectral_bridge', 'llm', 'regulation', 'stages', 'actions', 'runner']
+        for p in sorted((root/'essentials'/component).glob('*.swift'))
+    }
+    core_matches = all((core_stage/p).exists() and sha(core_stage/p) == h for p,h in core_sources.items())
     source_matches = all((staged/Path(p).name).exists() and sha(staged/Path(p).name) == h for p,h in sources.items())
     resource_matches = all((app/'Contents/Resources'/p).exists() and sha(app/'Contents/Resources'/p) == h for p,h in resources.items())
     sig = subprocess.run(['codesign','--verify','--deep','--strict',str(app)], text=True, capture_output=True)
@@ -39,6 +46,14 @@ def main() -> None:
         'version': plist['CFBundleShortVersionString'], 'build': plist['CFBundleVersion'],
         'app_path': str(app), 'binary_sha256': sha(app/'Contents/MacOS/ReservoirScope'),
         'source_sha256': sources, 'resource_sha256': resources,
+        'essentials_source_sha256': core_sources,
+        'essentials_staged_sources_match': core_matches,
+        'essentials_runner_sha256': sha(app/'Contents/MacOS/essentials-run'),
+        'essentials_library_sha256': sha(app.parents[1]/'essentials/lib/libEssentialsCore.a'),
+        'build_script_sha256': {
+            'viewer': sha(native/'build-app.sh'), 'viewer_staging': sha(native/'stage-sources.sh'),
+            'core': sha(root/'essentials/build.sh')
+        },
         'staged_source_count': len(sources), 'resource_count': len(resources),
         'staged_sources_match': source_matches, 'packaged_resources_match': resource_matches,
         'signature_verify_exit_code': sig.returncode, 'signature_verify_output': sig.stdout + sig.stderr,
@@ -48,9 +63,9 @@ def main() -> None:
     }
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(receipt, indent=2)+'\n')
-    if not (source_matches and resource_matches and sig.returncode == 0):
+    if not (source_matches and resource_matches and core_matches and sig.returncode == 0):
         raise SystemExit('Viewer identity verification failed; inspect the retained receipt.')
-    print(json.dumps({k:v for k,v in receipt.items() if k not in ['source_sha256','resource_sha256']}, indent=2))
+    print(json.dumps({k:v for k,v in receipt.items() if k not in ['source_sha256','resource_sha256','essentials_source_sha256']}, indent=2))
 
 
 if __name__ == '__main__':

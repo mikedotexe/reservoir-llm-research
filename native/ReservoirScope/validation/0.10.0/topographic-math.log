@@ -1,0 +1,24 @@
+PASS 1: Original 32/128-coordinate atlases and all 42 legacy meshes retain their exact numerical fingerprint
+PASS 2: The default native atlas retains its version and original resolution
+PASS 3: Dense topography samples the same 32 fixed coordinate sites and records its distinct resolution
+PASS 4: Atlas geometry, kernel rows and picking triangles are deterministic
+PASS 5: The dense mesh is closed, consistently wound and seam-free with spherical Euler characteristic
+PASS 6: Cutaway triangles share an exact planar 128-vertex boundary without seam duplicates
+PASS 7: Every dense interpolation weight matches the original normalized spherical Gaussian with kernel 24
+PASS 8: A zero state produces the exact fixed neutral radius without invented structure
+PASS 9: Constant positive and negative fields create peaks at radius 0.98 and valleys at 0.66
+PASS 10: Topographic volume changes with signed state; the compatibility field records measured volume without constraining it
+PASS 11: Each rendered radius directly follows the unchanged signed interpolated field and fixed scale
+PASS 12: Negating the same coordinates reverses the relief around the neutral sphere
+PASS 13: Small signals stay small and wider declared scales reduce relief without normalizing a frame
+PASS 14: Zero gain removes only geometry and requested relief applies directly without hidden backoff
+PASS 15: Relief alone clamps out-of-range values; the field and exact inspector retain their original magnitude
+PASS 16: All fixtures have finite bounded radii and unit outward normals computed from their rendered triangles
+PASS 17: Every picking site lies on its actual containing triangle and original indexed ray, including valleys
+PASS 18: Relief preserves the closed mesh and exact cutaway seam, with both halves summing to its measured volume
+PASS 19: Repeated observations give identical geometry, normals and picking positions without animation inputs
+PASS 20: The optional atlas defaults to the compatible original resolution with the actual coordinate count
+PASS 21: Unsupported atlas resolutions fail before allocating a mesh
+PASS 22: Invalid topographic gain and scales fail explicitly
+PASS 23: Malformed or non-finite coordinate fields cannot become visible topography
+23 topographic surface checks passed; 10 synthetic meshes; legacy SHA256 38b9d68778ae90292e173b4c9a9c1c6eeab476e4c6a0253dae7ee450ac801bce.

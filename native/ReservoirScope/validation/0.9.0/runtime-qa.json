@@ -1,0 +1,55 @@
+{
+  "schema": "reservoir_scope.exploration_native_qa.v1",
+  "recorded_at_utc": "2026-09-10T02:48:48.805348+00:00",
+  "version": "0.9.0",
+  "build": "12",
+  "binary_sha256": "7a60bfb25ec9677741a940c058c2b2f613432a7073a0d48114d4b97200bda8bd",
+  "inspection": "Presented native macOS window through CUA accessibility and screenshots; numerical files independently checked with packaged runner.",
+  "passed": [
+    "Final quiet Explore presentation: compact top selector and legible mint Start button; true 32-node inspector, fixed palette and readable controls.",
+    "Native Open dialog loads and verifies the original 15-step recording at cursor step 1; next controls restore from latest recorded step.",
+    "Replay at pace 10 advances stored observations and completes at step 15 without extending history.",
+    "Cutaway checkbox changes presented geometry.",
+    "Continue at pace 3 resumes latest state; switching to Stage experiments pauses exploration; returning retains 33 steps.",
+    "Native Export dialog saves within research outputs; success status appears and step count remains 33.",
+    "Export and autosave are numerically verified, JSON-equivalent and preserve the original 15 frames exactly.",
+    "Final presented step 33 shows node 0 -0.384744 and separate input, recurrent, tanh and leak contributions; rounded node value agrees with exported vector."
+  ],
+  "preliminary_same_mechanism_checks": [
+    "Before final selector/button presentation correction, a manual quiet step remained zero, Send pulse produced state, and recurrence/repeat/sensory switches applied at the next step.",
+    "Running then Pause retained 15 steps; external input was zero by step 15 while recurrent drive and state remained nonzero.",
+    "Scrubbing to step 14 and changing pending leak from 0.55 to 0.65 left applied cursor leak at 0.55."
+  ],
+  "record_verification": [
+    {
+      "path": "research/outputs/essentials/essentials-exploration-native-qa-20260909.json",
+      "sha256": "8bbfee368955821d16006befd550c3ca0cb2d925217dcc0aa6826725361633af",
+      "frames": 33,
+      "exit_code": 0,
+      "stdout": "Verified 33 exploration steps, including applied controls, input, recurrent drive and exact states.",
+      "stderr": ""
+    },
+    {
+      "path": "research/outputs/essentials/exploration-6DE7E730-52E3-4849-AB25-81F91E4F9F1A.json",
+      "sha256": "8bbfee368955821d16006befd550c3ca0cb2d925217dcc0aa6826725361633af",
+      "frames": 33,
+      "exit_code": 0,
+      "stdout": "Verified 33 exploration steps, including applied controls, input, recurrent drive and exact states.",
+      "stderr": ""
+    }
+  ],
+  "export_equals_autosave": true,
+  "imported_prefix_retained_exactly": true,
+  "final_cursor": {
+    "step": 33,
+    "simulated_seconds": 11.0,
+    "node": 0,
+    "displayed_value": -0.384744,
+    "recorded_value": -0.3847444591581798
+  },
+  "limits": [
+    "Native dialogs exercised for one valid input and one research-local export. Malformed input, cancellation, late results and save failure use separate automated lifecycle checks.",
+    "No presented FPS, energy, precise button latency or new hardware comparison is claimed.",
+    "No real model calls or live-being ingestion/control occurred."
+  ]
+}

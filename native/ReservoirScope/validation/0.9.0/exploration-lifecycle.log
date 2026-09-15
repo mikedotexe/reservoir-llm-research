@@ -1,0 +1,29 @@
+PASS 1: Initial state is quiet with a three-step-per-second viewing pace
+PASS 2: Starting never invents a pulse or immediate step
+PASS 3: The first quiet boundary records actual zero state
+PASS 4: A delayed timer advances at most one step without catch-up bursts
+PASS 5: Paused wall time creates no simulated steps
+PASS 6: Resume starts a new viewing deadline excluding paused time
+PASS 7: Running pulse requests coalesce into one recorded pulse at the next boundary
+PASS 8: A paused pulse advances exactly one step
+PASS 9: Edited controls are copied into the next recorded step
+PASS 10: Changing upcoming controls does not alter inspected historical state or controls
+PASS 11: Continue after scrubbing resumes the latest engine state
+PASS 12: Speed changes rebase the viewing deadline
+PASS 13: Viewing speed never changes one-third-second simulation dt
+PASS 14: Leaving stops all progression and keeps history
+PASS 15: Replay selects raw saved states without creating or interpolating steps
+PASS 16: Replay from the end restarts at the first observation
+PASS 17: Reset clears state and preserves chosen controls
+PASS 18: Invalid reset seed is reported without replacing history
+PASS 19: Seed changes take effect on Reset
+PASS 20: Autosaves update one atomic destination per exploration instead of creating duplicate runs
+PASS 21: The latest verified import opens paused at row zero; older reads cannot replace it
+PASS 22: Imported exploration continues exactly from its final state, not the inspected first row
+PASS 23: Reset rejects a pending imported history
+PASS 24: Leaving rejects a late file result
+PASS 25: Malformed import retains the prior state and exposes its error
+PASS 26: An old autosave completion cannot restore a reset source or overwrite its status
+PASS 27: A failed save stays visible after Reset while its earlier snapshot remains retained
+PASS 28: The finite 1,800-step boundary pauses safely and refuses extra state updates
+28 exploration lifecycle checks passed; injected memory I/O only, no model or live files.

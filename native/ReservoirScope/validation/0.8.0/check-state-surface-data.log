@@ -1,0 +1,20 @@
+PASS 1: Original retained binary decodes 1024 ordered states of 128 coordinates
+PASS 2: Every row has a retained-byte source identity; out-of-range selection is unavailable
+PASS 3: Little-endian Float32 decoding preserves original signed values exactly
+PASS 4: All 1024 raw states independently reproduce retained PCA scores and full/residual distances within 1e-12
+PASS 5: Replay identifies its same-byte basis while keeping row time, fill alignment and live node identity unknown
+PASS 6: A one-bit change in retained activation bytes is rejected
+PASS 7: A truncated retained state cannot become a shorter valid replay
+PASS 8: Extra binary bytes exceed the bounded capture read
+PASS 9: Different frozen geometry bytes fail the manifest binding
+PASS 10: Oversized dimensions are rejected before multiplying byte counts
+PASS 11: Unsupported replay claim or path rejected: per_row_timestamps_available
+PASS 12: Unsupported replay claim or path rejected: paired_fill_available
+PASS 13: Unsupported replay claim or path rejected: node_layout_id
+PASS 14: Unsupported replay claim or path rejected: binary_file
+PASS 15: Replay manifest reads are bounded to 16 KiB
+PASS 16: Hash-consistent synthetic NaN is rejected as invalid numeric evidence
+PASS 17: Hash-consistent synthetic infinity is rejected as invalid numeric evidence
+PASS 18: Hash-consistent synthetic activation outside −1…1 is rejected as invalid numeric evidence
+PASS 19: Live decoder preserves every validated coordinate beside its co-recorded fill and unverified layout compatibility
+19 state-surface data checks passed; 1024 retained rows, synthetic failure fixtures only. Maximum PCA error 4.440892098500626e-16, norm error 6.661338147750939e-16.

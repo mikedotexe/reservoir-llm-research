@@ -1,0 +1,87 @@
+{
+  "command": "swift test --package-path essentials --scratch-path /tmp/reservoir-essentials-runtime-build",
+  "example_verification": {
+    "command_pattern": "essentials-run verify essentials/examples/essentials-stage-N.json",
+    "records": [
+      {
+        "cli_verify_exit_code": 0,
+        "context_kinds": [],
+        "controller_steps": 0,
+        "path": "essentials/examples/essentials-stage-1.json",
+        "sha256": "dd536371d35d00d085508ffb02d348f335ff569b3bfe57c828403f7ce6da37d0",
+        "spectral_steps": 0,
+        "status": "completed",
+        "steps": 300,
+        "turns": 0
+      },
+      {
+        "cli_verify_exit_code": 0,
+        "context_kinds": [
+          "preparedExampleContext"
+        ],
+        "controller_steps": 0,
+        "path": "essentials/examples/essentials-stage-2.json",
+        "sha256": "21e7a6b8acb3be59efda3f3381f20ce1820d4927b22f7e42f56b2084c566cc78",
+        "spectral_steps": 300,
+        "status": "completed",
+        "steps": 300,
+        "turns": 9
+      },
+      {
+        "cli_verify_exit_code": 0,
+        "context_kinds": [
+          "languageRequest"
+        ],
+        "controller_steps": 0,
+        "path": "essentials/examples/essentials-stage-3.json",
+        "sha256": "b1807f2593fffd36e87bd02d842539db6426b342b12b3fde81d0be7b7254389c",
+        "spectral_steps": 300,
+        "status": "completed",
+        "steps": 300,
+        "turns": 9
+      },
+      {
+        "cli_verify_exit_code": 0,
+        "context_kinds": [
+          "languageRequest"
+        ],
+        "controller_steps": 300,
+        "path": "essentials/examples/essentials-stage-4.json",
+        "sha256": "2fe6156d2996d4b99eb9f365130913c47d82d6307be7efe879c0b295a1d41fdd",
+        "spectral_steps": 300,
+        "status": "completed",
+        "steps": 300,
+        "turns": 9
+      }
+    ],
+    "total_steps": 1200,
+    "total_turns": 27
+  },
+  "prompt_semantics": "Entropy and shares explicitly describe the leading eight modes. Stage 2 retains preparedExampleContext never sent to a backend; stages 3\u20134 retain languageRequest context, with attempt outcome separate.",
+  "recipe_version": "essentials-v1",
+  "schema": "essentials.runtime_verification.v1",
+  "scope": "Numerical and runtime qualification only. Scripted and injected test backends were used; no model endpoint or being service was contacted. Native rendering and viewer lifecycle checks are separate.",
+  "swift_source_sha256": {
+    "essentials/Package.swift": "e3b459372515580e2fea312a37c74bdaf582497e28a45ea5aa40c101b9ef5dfb",
+    "essentials/llm/Language.swift": "312e81af7d9ff6c63d431ee66cdca717f76100b727a565e7bf792114ba491d0a",
+    "essentials/regulation/Regulation.swift": "63ef074bf615a63a28a7c15f813b8e76f975ad9efc57a273f48ad15e0a07137b",
+    "essentials/reservoir/Reservoir.swift": "c1fa7148a4b63f57def03ef5a0d21dad2069f130cb150e34f0b8f2f02da1c779",
+    "essentials/runner/Main.swift": "620d524a13774bb9da088b4ab5968ad575f2668ebd7c62ee131807941dbdcaab",
+    "essentials/spectral_bridge/SensoryField.swift": "8993986044309fefc911a052a9ef201c4f6efcd01afe63239512be4502022809",
+    "essentials/spectral_bridge/TextCodec.swift": "46e55a2d33d37d561be0cecbdf5c5124330fcda7ffb2fce8a874c7ee664bd290",
+    "essentials/stages/EssentialsSession.swift": "55aa46a2713c5f44585d311d0ac36723c29b5d7d1263c6543288668cafd7d228",
+    "essentials/stages/RunTypes.swift": "fa8ae6ed594cd36029d27f416dc6029662016fa6701b5ad1cdfa4ff9c6d6fc83",
+    "essentials/stages/Verification.swift": "400fafb610018795c2dff3b7429e800a705b6b1c42411682e3fec01103fad668",
+    "essentials/tests/MechanismTests.swift": "90990d8c03d6560806f03a44a33b47bac83b9e9ba0aedf92ecf4d2792d10a1ee",
+    "essentials/tests/RuntimeTests.swift": "0f99fdd5b9710f39146809516fb3f4e5fae2c15c091191b59d7c5db6834da8de"
+  },
+  "tests": {
+    "failures": 0,
+    "log_path": "essentials/tests/runtime-validation.log",
+    "log_sha256": "6b746011cde049991c99520485ae39af573ade6c2668179f8f5dd81fc695f229",
+    "mechanism": 9,
+    "runtime": 13,
+    "total": 22
+  },
+  "verified_at_utc": "2026-09-10T01:47:51.662016+00:00"
+}

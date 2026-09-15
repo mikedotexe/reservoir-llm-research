@@ -91,7 +91,7 @@ check(maxError(flipped.values, projected.values) < 1e-12 && close(flipped.scores
 let emptyModes = try StateSurfaceMath.field(.residual, activations: observed, mean: mean, components: basis, selectedModes: [])
 check(emptyModes.values == deviation.values && emptyModes.reconstructedEnergy == 0,
     "Selecting no modes leaves the entire deviation in the omitted component")
-check(rejects { _ = try StateSurfaceMath.field(.signedActivation, activations: [0]) }
+check(rejects { _ = try StateSurfaceMath.field(.signedActivation, activations: []) }
     && rejects { _ = try StateSurfaceMath.field(.signedActivation, activations: node(0, .nan)) }
     && rejects { _ = try StateSurfaceMath.field(.signedActivation, activations: node(0, Double.greatestFiniteMagnitude)) }
     && rejects { _ = try StateSurfaceMath.field(.residual, activations: node(0)) },

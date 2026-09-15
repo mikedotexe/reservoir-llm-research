@@ -1,0 +1,21 @@
+{
+  "recorded_at_utc": "2026-09-08T04:20:08.638516+00:00",
+  "version": "0.7.0",
+  "build": "9",
+  "binary_sha256": "83b92f68f6776dfd2c7f90cffa7af07c681507eae2c439cf4bcdf3ea4950c278",
+  "method": "Native app opened through CUA; exact packaged executable identified separately; screenshots and accessibility states inspected in the task",
+  "passed": true,
+  "checks": [
+    "Final launch selects 20\u00d7 among adjacent 1\u00d7, 5\u00d7, 10\u00d7, 20\u00d7 and 40\u00d7 buttons.",
+    "Final Reference zones view shows gold high-water and blue low-water labels, source times and curved guides on the right without obscuring the selected reference.",
+    "At recorded index 5, current fill is 73.2%, high 75.44% at 09:09:10 PT, low 67.31% at 09:09:01 PT, and range count is 6; these match independent prefix expectations.",
+    "Selecting 10\u00d7 changes the highlighted choice; restored 20\u00d7 afterward.",
+    "Rewinding to index 0 returns both marks to 67.31%, source time 09:09:01 PT, count 1; future extrema are removed.",
+    "Final displayed app left on Reference zones, recorded source, first observation, 20\u00d7, playback stopped and live following off."
+  ],
+  "limits": [
+    "Fresh live sources were not attached during this iteration; source behavior is fixture-tested and reviewed.",
+    "Brightness endpoints rendered offscreen; the native window was inspected with existing accessibility preferences.",
+    "No performance, energy or M4 comparison was run for this overlay."
+  ]
+}

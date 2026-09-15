@@ -1,0 +1,40 @@
+PASS 1: No observed prefix produces no watermarks
+PASS 2: The first measured observation initializes both marks
+PASS 3: A fast playback jump includes highs and lows in skipped frames
+PASS 4: Tied extrema retain their first source observation and source time
+PASS 5: A later prefix uses actual later record values
+PASS 6: Rewinding excludes every future record
+PASS 7: A cursor beyond the source uses its final prefix without extrapolation
+PASS 8: Live initialization explicitly identifies its first sample and source scope
+PASS 9: Repeated polling of one health snapshot changes neither marks nor count
+PASS 10: A changed payload under an already accepted ordinal cannot replace a mark
+PASS 11: A genuine higher sample reports only a new high
+PASS 12: A genuine lower sample reports only a new low
+PASS 13: A tied live high counts as a sample without restarting the record highlight
+PASS 14: A tied live low retains its first timestamp without a new highlight
+PASS 15: Invalid measured fill nan cannot contaminate extrema
+PASS 16: Invalid measured fill inf cannot contaminate extrema
+PASS 17: Invalid measured fill -inf cannot contaminate extrema
+PASS 18: Invalid measured fill -0.001 cannot contaminate extrema
+PASS 19: Invalid measured fill 100.001 cannot contaminate extrema
+PASS 20: Invalid source time nan cannot create a timestamped record
+PASS 21: Invalid source time inf cannot create a timestamped record
+PASS 22: Invalid source time -inf cannot create a timestamped record
+PASS 23: Rejected invalid samples do not advance the accepted source ordinal
+PASS 24: An older ordinal is rejected even if its payload claims a later source clock
+PASS 25: An older source clock is rejected even if its ordinal is newer
+PASS 26: Distinct ordered observations may share a coarse source timestamp
+PASS 27: A new source session resets history and may restart both source clocks
+PASS 28: An invalid first sample in a new source never inherits the previous source's marks
+PASS 29: An explicit reset clears source identity and observed marks
+PASS 30: An explicit session reset can establish its next source identity
+PASS 31: Exactly empty and full measured fills are valid extrema
+PASS 32: Invalid recorded samples preserve original cursor indexing without inventing fill
+PASS 33: Recorded duplicate and out-of-order samples cannot create false extrema
+PASS 34: A valid later recorded observation remains eligible after rejected samples
+PASS 35: Adjacent large source ordinals remain distinct without conversion to Double
+PASS 36: The record highlight fades monotonically from bright to resting in three seconds
+PASS 37: The highlight eases into its resting appearance and never extrapolates
+PASS 38: Reduce Motion removes the brightness animation without changing measured marks
+PASS 39: An invalid display clock cannot create a flashing mark
+39 fill watermark checks passed.

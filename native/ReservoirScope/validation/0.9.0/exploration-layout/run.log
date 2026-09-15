@@ -1,0 +1,16 @@
+PASS 1: Single steps remain paused and record six actual observations
+PASS 2: Default state stays quiet until a paused Send pulse records a visible response
+PASS 3: Compact layout includes the optional separate sensory-field display
+PASS 4: Exploration displays exactly 32 state coordinates
+PASS 5: Recorded frames retain the actual 32-state / 66-input dimensions
+PASS 6: The native event loop advances a paced exploration
+PASS 7: Pause halts future observations while native timers continue
+PASS 8: Scrubbing displays the exact historical state
+PASS 9: Upcoming settings can change without rewriting the selected observation's controls
+PASS 10: Resuming applies the upcoming controls at a new recorded boundary
+PASS 11: Leaving the exploration halts run and replay progression
+PASS 12: The attached renderer uses exactly 32 nodes and 32 exact markers
+PASS 13: The rendered surface exposes its actual coordinate count to accessibility
+PASS 14: Surface picking resolves an actual exploration node
+PASS 15: Native sizing stays below 150-ms median and one-second individual pass / event-loop gap guards
+Exploration: 15 checks; 39 frames; median 0.0009640001226216555s; maximum 0.04872937500476837s; callback gap 0.06809129170142114s.

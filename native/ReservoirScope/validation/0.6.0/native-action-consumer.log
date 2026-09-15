@@ -1,0 +1,39 @@
+PASS 1: The importer retains all 128 ordinary and applied Float32 coordinates, apart from terminal events
+PASS 2: The full immediate Float32 difference and L2 match the paired states
+PASS 3: Requested dose and actual attenuated application remain distinct
+PASS 4: Step IDs preserve UInt64 precision and retain actual leak and per-node noise
+PASS 5: The complete bundle defines one fixed delta scale and a computed imported-file identity
+PASS 6: Empty reads cannot replace accepted observations
+PASS 7: The 8 MiB limit is enforced before JSON parsing
+PASS 8: A rehearsal cannot be relabeled as a running being
+PASS 9: Unmeasured fill is rejected
+PASS 10: An unverified PCA association is rejected
+PASS 11: Observation clocks cannot become reservoir duration
+PASS 12: Source hashes must have a complete SHA-256 representation
+PASS 13: Malformed state dimensions are rejected
+PASS 14: Out-of-bounds native state is rejected
+PASS 15: A displayed difference must equal every original coordinate difference
+PASS 16: Full-state action size is recomputed rather than trusted
+PASS 17: Maximum displacement is independently validated
+PASS 18: A failed step cannot expose applied-state geometry
+PASS 19: A no-op cannot conceal an actual state change
+PASS 20: Applied states require an exact successful-step ID
+PASS 21: Applied states require effective leak
+PASS 22: Applied states require the actual noise vector
+PASS 23: Duplicate pulse boundaries are rejected
+PASS 24: Successful steps cannot run backwards
+PASS 25: One bundle cannot splice native process identities
+PASS 26: The receipt-count limit is enforced
+PASS 27: An unchanged atomic bundle is accepted without inventing new frames
+PASS 28: An overlapping application receipt is immutable within its source
+PASS 29: An atomic file cannot replace an observed source with an older step
+PASS 30: A new session replaces the whole path instead of joining it
+PASS 31: Unsupported per-receipt fields cannot add a hidden fill or timing claim
+PASS 32: Source hashes cannot change within an existing native session
+PASS 33: A headroom rejection retains its verified zero difference without becoming applied geometry
+PASS 34: A rejected pulse cannot claim a positive actual state displacement
+PASS 35: A supplied rehearsal clock may start at zero without being treated as a measured epoch
+PASS 36: The single-action native contract cannot have two pulses at one successful step
+PASS 37: The retained native producer artifact passes the same complete receipt validation
+NATIVE ARTIFACT: 8 applied boundaries; SHA-256 15441269152bb282e2456d4d08fddae398879e4b0410cd08f71e80282f09e807
+37 native-action response checks passed; synthetic contracts and optional retained native artifact only.

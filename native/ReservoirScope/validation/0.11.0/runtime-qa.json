@@ -1,0 +1,66 @@
+{
+  "schema": "essentials.actions_native_runtime_qa.v1",
+  "at_utc": "2026-09-10T17:24:22.279448+00:00",
+  "status": "passed",
+  "method": "CUA native app accessibility and screenshots in the task conversation; displayed numbers checked against saved record values. This receipt records observed interactions, not an automated presented-frame benchmark.",
+  "app_path": "/Users/mikepurvis/.cache/reservoir-research/ReservoirScope-build/current/Reservoir Scope.app",
+  "binary_sha256": "460b1ad0dd8c1ad264aeb909845cdc111f2236ba3c14a52ec602cd6bfa39007b",
+  "version": "0.11.0",
+  "build": "15",
+  "actions_view_sha256": "738f186807f85497176c4b3ccf59bdfe46251585310c52187d02e3a3e82683f2",
+  "manual_session": {
+    "path": "research/outputs/essentials/actions/9E3E0DD0-C5FA-43D4-9117-E97FACD88F82/run.json",
+    "sha256": "61aba31911afd859008270b118297a33e09a18811a2ae05c32cd3279102521da",
+    "frames": 2,
+    "journal_entries": 1,
+    "packaged_verifier_exit_code": 0,
+    "observed_chain": [
+      "Step1: state node0 -0.063561",
+      "Write journal: complete saved journal; Prepared, not applied; still step1",
+      "Expand complete saved journal and prepared prompt while scrolling inspector",
+      "Step2: state node0 -0.670167; Applied at step2",
+      "Scroll inspector and expand exact48-coordinate return"
+    ]
+  },
+  "example": {
+    "path": "essentials/examples/essentials-actions-feedback.json",
+    "sha256": "25c7ea2d390b3d73339f25a22a7f0d93f6ec23128a310ebf5a194f4445b6dbc7",
+    "frames_per_arm": 300,
+    "displayed_step": 31,
+    "state_vectors_equal_through_step": 30,
+    "observed_rounded_values": {
+      "previous_node0": -0.103797,
+      "current_node0": -0.647102,
+      "node0_difference": -0.543305,
+      "state_difference_rms": 0.536437,
+      "external_difference_rms": 0.0,
+      "semantic_difference_rms": 0.481301
+    },
+    "record_values": {
+      "previous_node0": -0.10379695099846231,
+      "current_node0": -0.6471018332526715,
+      "node0_difference": -0.5433048822542091,
+      "state_difference_rms": 0.5364366731768438,
+      "external_difference_rms": 0.0,
+      "semantic_difference_rms": 0.48130139906536373
+    }
+  },
+  "additional_observations": [
+    "Essentials and Actions workspace switching opens correct controls",
+    "Open example verifies then loads both recorded arms without contacting a model",
+    "Click first action selects shared step30; increment shared cursor reaches31",
+    "Replay advances both arms; Pause replay visibly stops at step58",
+    "Returned to step31, with replay paused and example preserved"
+  ],
+  "resolved_failure": {
+    "earlier_symptom": "SwiftUI transaction/layout loop after requesting an offscreen journal disclosure in earlier build",
+    "sample": "native/ReservoirScope/validation/0.11.0/native-before-final-sample.txt",
+    "fix": "Use eager VStack for the finite inspector sections",
+    "final_check": "Complete journal, exact prompt and48-return expansion plus scrolling and next Step pass in final packaged app; separate presented inspector harness covers seven disclosures"
+  },
+  "limits": [
+    "No actual Ollama generation or live-being access",
+    "No presented FPS, power or cross-host qualification",
+    "Earlier failure sample is retained; current packaged process was responsive for all listed final interactions"
+  ]
+}

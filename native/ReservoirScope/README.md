@@ -2,7 +2,55 @@
 
 Continuing this work: [Agent handoff — main, shared paths, build and checks](HANDOFF.md).
 
-A native macOS observatory for Minime's reservoir telemetry and measured state geometry. **Version 0.7.1 gives Reference Zones overlapping, fading high- and low-water marks.** Each pair preserves its measured values while a fresh range forms halfway through its lifetime. The existing views retain native action receipt inspection, actual state surfaces and optional curved live-fill transitions. The [animation guide](docs/ANIMATION-DATA.md#observed-high-and-low-water-marks) explains the new marks; the [state-surface guide](docs/STATE-SURFACE.md) preserves the state and action mappings. The [build receipt](build-receipt.json) identifies the packaged viewer and its validation.
+September 15 source stabilization fixes Swift 6.2.4 type inference in reservoir
+initialization and the action difference plot. [Offline source checks](validation/stabilization-20260915/source-checks.json)
+qualify these sources separately from the unchanged [September 10 packaged build receipt](build-receipt.json).
+Source staging now prunes files removed from the checkout before compilation.
+The stabilization build was not installed or launched; no live system was contacted.
+
+A native macOS observatory for Minime's reservoir telemetry and measured state geometry.
+**Version 0.11.0 adds Actions & comparisons in Essentials.** Build through the
+eight-version action ladder, write a local journal, and inspect its return through
+the codec or the next prompt. Adjacent versions share cameras, cursor and fixed
+viewing scales. Fixed reply/vector replay and independent generation have separate
+labels and portable records. The [action guide](../../essentials/ACTIONS.md) and
+[implementation account](../../analyses/2026-09-10-essentials-actions.md) explain
+the controls, exact evidence and qualification.
+
+**Version 0.10.1 softens the bright zero-contour seams** while preserving the state
+mapping and fixed contour levels.
+**Version 0.10.0 adds state topography in Essentials:** cyan peaks, purple valleys,
+fixed contour levels and an adjustable Height control. Color, height and contours
+share the same projected state values. The original Surface view remains available.
+The [topography guide](docs/STATE-TOPOGRAPHY.md) explains the mapping and its limits.
+
+**Version 0.9.0 adds hands-on Essentials exploration alongside the four stage experiments.**
+Start or pause the reservoir, advance one step, send a pulse, enable recurrent feedback
+or repeated external input, and adjust parameters while watching actual state.
+The [exploration guide](../../essentials/EXPLORE.md) explains timing, each recorded
+control, the separate sensory field, and replay. The numerical core verifies every
+saved setting and update contribution.
+
+Version 0.8.0 introduced the four runnable stages that rebuild the core mechanisms.
+The top-level **Minime & Astrid / Essentials** switch selects existing observations or
+fresh 32-node reconstructions. Run, Stop, Reset, Replay, scrubbing, exact node inspection,
+and Open/Export use the shared [Essentials core](../../essentials/README.md).
+The [implementation account](../../analyses/2026-09-09-essentials-implementation.md)
+records its scope and checks; the [build receipt](build-receipt.json) identifies the package.
+The [0.9.0 follow-up](../../analyses/2026-09-09-essentials-exploration.md) records the
+interactive controls and their validation.
+
+Essentials progresses through reservoir, spectral bridge, one-voice feedback, and
+reduced regulation. Its default examples use scripted replies; an explicitly configured
+separate local Ollama endpoint is optional. Surface has a fixed display size;
+Topography uses a fixed neutral radius with signed state relief.
+The experimental fill and spectral summaries retain their own definitions, separately
+from production telemetry. The app packages the same headless runner as its UI core.
+
+The preceding 0.7.1 release added overlapping, fading reference watermarks. Existing
+views retain native action receipts, actual state surfaces and optional curved live-fill
+transitions. The [animation guide](docs/ANIMATION-DATA.md#observed-high-and-low-water-marks)
+and [state-surface guide](docs/STATE-SURFACE.md) preserve those mappings.
 
 The retained previous **0.5.0 build 7** passed **172 native checks** and was visually inspected.
 Its separate [state-surface comparison](../../research/outputs/2026-09-07-state-surface/profiles/comparison.md)

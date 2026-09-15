@@ -1,0 +1,43 @@
+{
+  "schema": "essentials.exploration_runtime_checks.v1",
+  "recorded_at_utc": "2026-09-10T02:37:43.880082+00:00",
+  "fixture": "research/outputs/essentials/exploration-qualification-20260909.json",
+  "fixture_sha256": "8b0f8160fea9380d987f62b642e315253bdfdc418a6ce284bbcc4eea8bd5d593",
+  "fixture_steps": 50,
+  "cli": "/tmp/essentials-exploration-runtime-final/bin/essentials-run",
+  "cli_sha256": "852c352ae4f562bf993b5e6a09de18151910b84a18099d8b9db5668fd0139b14",
+  "checks": [
+    {
+      "case": "exploration",
+      "exit_code": 0,
+      "stdout": "Verified 50 exploration steps, including applied controls, input, recurrent drive and exact states.",
+      "stderr": ""
+    },
+    {
+      "case": "legacy",
+      "exit_code": 0,
+      "stdout": "Verified 300 steps and 0 language turns, including recurrence, spectra, feedback and regulation.",
+      "stderr": ""
+    },
+    {
+      "case": "tampered_state",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "essentials-run: Exploration resulting state does not reproduce its numerical history."
+    },
+    {
+      "case": "unknown_format",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "essentials-run: Unknown exploration format."
+    }
+  ],
+  "source_sha256": {
+    "essentials/runner/Main.swift": "751d613c9a72ef610618b9ee3e9ece8229faf669ba259d955463417ef733a1c0",
+    "native/ReservoirScope/Sources/ReservoirScope/ExplorationViewModel.swift": "3c9e29cefd547cfb4c054081a1cbd2a15a3b9e9839199ff5dbd65a825d555a9a",
+    "native/ReservoirScope/Tests/ExplorationViewModelChecks.swift": "f1c10247dd29e65e2429f0187373e6bbfe62ed0301691e4ae2eb5b296fc10ae6",
+    "native/ReservoirScope/check-exploration-ui.sh": "6bfda7aa2f901153875c7e8c89ec649b4a13a564c56fb59476455b76b03643fd",
+    "essentials/reservoir/ReservoirExploration.swift": "4aae098c6de7d360847b3bcbcbeef08f8a0aa7de853db3837e720682d68db878"
+  },
+  "scope": "Synthetic exploration records and injected I/O. No live-being data, model requests or viewer performance claims."
+}

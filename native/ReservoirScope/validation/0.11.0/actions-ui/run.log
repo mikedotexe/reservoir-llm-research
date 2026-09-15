@@ -1,0 +1,41 @@
+PASS 1: Actions starts with a quiet display and three-step-per-second pace
+PASS 2: Run prepares a session without advancing a hidden step
+PASS 3: The first recorded step waits for the viewing boundary
+PASS 4: Paced advance records exact one-third-second simulation time
+PASS 5: A late timer cannot create catch-up bursts
+PASS 6: Stop excludes paused wall time from simulation
+PASS 7: Resume waits for a fresh pacing deadline
+PASS 8: Viewing speed never changes simulated dt
+PASS 9: Replay selects exact historical vectors without creating observations
+PASS 10: Resume after scrubbing restores the latest session without changing historical values
+PASS 11: Leaving stops both clocks
+PASS 12: Rapid selection during preparation exposes only the fully prepared newest pair
+PASS 13: Fixed G/H starts with identical realized inputs and states after a rapid workspace change
+PASS 14: Fixed replay remains runnable with blank optional local-model fields
+PASS 15: Compare with previous prepares two arms on one shared cursor
+PASS 16: Fixed replay avoids backend configuration and starts with matched forcing and state
+PASS 17: Manual writing is available at step one before the first scheduled boundary
+PASS 18: Manual writing saves both journals without secretly advancing time
+PASS 19: A completed journal is not claimed as applied before the next step and cannot repeat at the same boundary
+PASS 20: The saved E journal enters only the next step while D keeps its feedback gate closed
+PASS 21: Separate differences expose semantic return and resulting state under identical external inputs
+PASS 22: A verified comparison retains exact replies, portable journals and application receipts
+PASS 23: The next memory prompt reads the completed saved journal with exact text
+PASS 24: Reset clears the experiment while preserving selected version and settings
+PASS 25: Independent language requires an explicitly supplied endpoint and model
+PASS 26: Versions without language do not require a model configuration
+PASS 27: Only the newest verified file can replace the paused display
+PASS 28: Malformed imports preserve the prior record and display the failure
+PASS 29: Reset invalidates an unfinished import
+PASS 30: The committed observation appears while its language request pauses simulated time
+PASS 31: Stop retains a cancelled action without admitting incomplete journal feedback
+PASS 32: An uncooperative late response cannot replace the cancellation or numerical state
+PASS 33: Step after a cancelled paired action starts a fresh matched session
+PASS 34: Reset during writing rejects every late display callback
+PASS 35: The detached session still saves the final cancelled request as research evidence
+PASS 36: Revisiting a version shows its final retained outcome without reviving the interrupted session
+PASS 37: A failed journal save is visible and cannot open the feedback gate
+PASS 38: An old save completion cannot restore a reset source or overwrite its status
+PASS 39: Failed record saving remains visible after reset
+PASS 40: Autosaves use atomic-writer destinations isolated by research session
+40 action lifecycle checks passed; memory journals, controlled clocks and fake providers only.

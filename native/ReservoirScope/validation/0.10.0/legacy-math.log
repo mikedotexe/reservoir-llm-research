@@ -1,0 +1,31 @@
+PASS 1: The versioned atlas has 128 distinct permanent unit directions
+PASS 2: The bounded sphere uses 1,986 shared vertices and 3,968 triangles
+PASS 3: The mesh is closed and consistently oriented, with the Euler characteristic of a sphere
+PASS 4: Unit mesh volume is positive and within 1% of the ideal sphere; these are distinct quantities
+PASS 5: Cutaway halves share the same full mesh and an exact 64-vertex planar boundary
+PASS 6: Every fixed interpolation row has nonnegative weights summing to one within Float precision
+PASS 7: Interpolation preserves a constant field
+PASS 8: A one-coordinate fixture preserves the exact node while its contextual blend remains bounded
+PASS 9: Opposite signs remain exact and the magnitude view preserves both contributions
+PASS 10: Signed interpolation can cancel; magnitude exposes variation hidden by that cancellation
+PASS 11: Fixed scales never normalize a frame and out-of-range exact values remain available
+PASS 12: Selected reconstruction plus residual recovers every reference-centered coordinate
+PASS 13: Orthonormal reconstruction splits squared distance without losing the omitted energy
+PASS 14: A state in the selected span has zero residual; a perpendicular state remains entirely omitted
+PASS 15: Reversing component signs reverses scores and leaves the reconstructed surface unchanged
+PASS 16: Selecting no modes leaves the entire deviation in the omitted component
+PASS 17: Invalid dimensions, non-finite or Float-overflow state and missing required reference are rejected
+PASS 18: Non-orthonormal references and unavailable selected modes cannot silently change the field
+PASS 19: All 52 closed meshes preserve their measured fill volume within 2 parts per million
+PASS 20: All 52 meshes remain within the container, with positive radii whenever fill is positive
+PASS 21: All 52 meshes have finite unit outward normals, including the empty endpoint fallback
+PASS 22: Every node marker lies on its actual rendered triangle along its permanent atlas ray
+PASS 23: Empty and full fill explicitly flatten relief
+PASS 24: Intermediate fill has actual geometric displacement, not only a color change
+PASS 25: Identical observations create identical geometry with no time-derived motion
+PASS 26: Turning relief off restores the exact undeformed mesh and preserves the independent measured reference
+PASS 27: Cutaway and complete views use one checked geometry; their planar caps add no origin-based tetrahedral volume
+PASS 28: Invalid fill and relief requests fail explicitly
+PASS 29: Renderer and typed-field APIs agree, and the declared fixed scale governs relief without frame normalization
+PASS 30: A renderer cannot supply a zero-width or non-finite relief scale
+30 state-surface checks passed; 52 synthetic meshes; maximum relative volume error 4.0197405571217625e-08.

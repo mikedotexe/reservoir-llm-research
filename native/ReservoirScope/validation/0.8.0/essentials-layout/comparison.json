@@ -1,0 +1,27 @@
+{
+  "baseline": {
+    "completion_layout_seconds": 0.2684077916201204,
+    "elapsed_seconds": 11.489552583312616,
+    "maximum_callback_gap_seconds": 0.5791675832588226,
+    "maximum_layout_seconds": 0.5643049583304673,
+    "median_layout_seconds": 0.2414010833017528,
+    "scope": "Unpresented native window and real AppKit event loop; no presented-window input latency claim",
+    "stage": 4,
+    "updated_frames": 40
+  },
+  "candidate": {
+    "completion_layout_seconds": 0.08094629179686308,
+    "elapsed_seconds": 3.801862624939531,
+    "maximum_callback_gap_seconds": 0.21853979164734483,
+    "maximum_layout_seconds": 0.13893966656178236,
+    "median_layout_limit_seconds": 0.15,
+    "median_layout_seconds": 0.06500625004991889,
+    "scope": "Unpresented native window and real AppKit event loop; no presented-window input latency claim",
+    "single_pass_limit_seconds": 1,
+    "stage": 4,
+    "updated_frames": 40
+  },
+  "baseline_executable_sha256": "4eaa9dd3173f646e5e20f0c7dd9fc8fcb8081b02b0ce816b3cba1b4618fcb4ce",
+  "baseline_assembled_source_sha256": "c1e75748c0c3fce03b57903f89edf8304a885c6429a954dac0968dddf25f08a1",
+  "scope": "40 manually presented retained frames, unpresented AppKit window. This isolates layout cost and does not measure actual Run or presented-window input latency."
+}

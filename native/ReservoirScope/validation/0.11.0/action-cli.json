@@ -1,0 +1,144 @@
+{
+  "schema": "essentials.action_cli_qualification.v1",
+  "at_utc": "2026-09-10T17:12:56.447119+00:00",
+  "cli_sha256": "a0a03d74883a2739fe31b722237fc3765e6244ae8b1bc5d56f2483bb0a85bcac",
+  "script_sha256": "baca302b0bbf6eacd1932139a6435bbe989d163101c05f0e44146bacc9112269",
+  "pairs": [
+    {
+      "recipe": "A-minimal.json",
+      "stage": 1,
+      "steps_per_arm": 91,
+      "journal_count_selected": 0,
+      "first_differing_state_step": null,
+      "maximum_coordinate_difference": 0,
+      "verify": "Verified 91 action steps per arm, journal receipts, prompts, reply tape and applied feedback."
+    },
+    {
+      "recipe": "B-recurrence.json",
+      "stage": 2,
+      "steps_per_arm": 91,
+      "journal_count_selected": 0,
+      "first_differing_state_step": 2,
+      "maximum_coordinate_difference": 0.3429726043642519,
+      "verify": "Verified 91 action steps per arm, journal receipts, prompts, reply tape and applied feedback."
+    },
+    {
+      "recipe": "C-observer.json",
+      "stage": 3,
+      "steps_per_arm": 91,
+      "journal_count_selected": 0,
+      "first_differing_state_step": null,
+      "maximum_coordinate_difference": 0.0,
+      "verify": "Verified 91 action steps per arm, journal receipts, prompts, reply tape and applied feedback."
+    },
+    {
+      "recipe": "D-journal.json",
+      "stage": 4,
+      "steps_per_arm": 91,
+      "journal_count_selected": 3,
+      "first_differing_state_step": null,
+      "maximum_coordinate_difference": 0.0,
+      "verify": "Verified 91 action steps per arm, journal receipts, prompts, reply tape and applied feedback."
+    },
+    {
+      "recipe": "E-feedback.json",
+      "stage": 5,
+      "steps_per_arm": 91,
+      "journal_count_selected": 3,
+      "first_differing_state_step": 31,
+      "maximum_coordinate_difference": 1.567115327405559,
+      "verify": "Verified 91 action steps per arm, journal receipts, prompts, reply tape and applied feedback."
+    },
+    {
+      "recipe": "F-memory.json",
+      "stage": 6,
+      "steps_per_arm": 91,
+      "journal_count_selected": 3,
+      "first_differing_state_step": null,
+      "maximum_coordinate_difference": 0.0,
+      "verify": "Verified 91 action steps per arm, journal receipts, prompts, reply tape and applied feedback."
+    },
+    {
+      "recipe": "G-choice.json",
+      "stage": 7,
+      "steps_per_arm": 91,
+      "journal_count_selected": 2,
+      "first_differing_state_step": 91,
+      "maximum_coordinate_difference": 0.6252894042716775,
+      "verify": "Verified 91 action steps per arm, journal receipts, prompts, reply tape and applied feedback."
+    },
+    {
+      "recipe": "H-regulation.json",
+      "stage": 8,
+      "steps_per_arm": 91,
+      "journal_count_selected": 2,
+      "first_differing_state_step": null,
+      "maximum_coordinate_difference": 0.0,
+      "verify": "Verified 91 action steps per arm, journal receipts, prompts, reply tape and applied feedback."
+    }
+  ],
+  "corruption": [
+    {
+      "case": "changed-state",
+      "rejected": true,
+      "reason": "essentials-run: resulting action state does not replay."
+    },
+    {
+      "case": "wrong-dimension",
+      "rejected": true,
+      "reason": "essentials-run: Invalid state dimensions or finite values."
+    },
+    {
+      "case": "changed-journal-text",
+      "rejected": true,
+      "reason": "essentials-run: Journal content hash differs."
+    },
+    {
+      "case": "changed-journal-hash",
+      "rejected": true,
+      "reason": "essentials-run: Journal content hash differs."
+    },
+    {
+      "case": "premature-feedback-receipt",
+      "rejected": true,
+      "reason": "essentials-run: Journal feedback did not first apply at the next actual step."
+    },
+    {
+      "case": "changed-prompt",
+      "rejected": true,
+      "reason": "essentials-run: Prompt differs from actual sensory observation, policy or saved memory."
+    },
+    {
+      "case": "changed-tape-vector",
+      "rejected": true,
+      "reason": "essentials-run: tape reference-shaped vector does not replay."
+    },
+    {
+      "case": "changed-reference-spectrum",
+      "rejected": true,
+      "reason": "essentials-run: tape reference spectrum does not replay."
+    },
+    {
+      "case": "changed-memory-exposure",
+      "rejected": true,
+      "reason": "essentials-run: Journal exposure does not match the last saved entry."
+    },
+    {
+      "case": "mismatched-selected-stage",
+      "rejected": true,
+      "reason": "essentials-run: Right arm differs from its selected version."
+    },
+    {
+      "case": "mismatched-left-weights",
+      "rejected": true,
+      "reason": "essentials-run: Seeded action weights/projection differ."
+    },
+    {
+      "case": "invented-format",
+      "rejected": true,
+      "reason": "essentials-run: Unsupported run format: unknown-format."
+    }
+  ],
+  "status": "passed",
+  "scope": "Eight synthetic fixed-reply recipes and malformed export rejection through the real CLI; no model or live system contacted."
+}

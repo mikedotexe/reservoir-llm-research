@@ -1,0 +1,10 @@
+PASS 1: Attaching two renderers starts from the same standard camera
+PASS 2: Orbiting one surface updates both camera poses
+PASS 3: A baseline renderer outside the pair keeps its independent camera
+PASS 4: Zooming the other surface updates both camera distances
+PASS 5: Detaching a surface removes it from subsequent synchronized motion
+PASS 6: A reattached surface inherits the current shared pose
+PASS 7: Reset from either view restores both standard poses
+PASS 8: The workspace reset-view control restores both standard poses
+PASS 9: Independent baseline motion cannot alter the pair
+9 shared-camera checks passed.

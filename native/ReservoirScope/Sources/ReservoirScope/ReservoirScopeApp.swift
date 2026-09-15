@@ -11,15 +11,9 @@ enum ReservoirScopeEntry {
 }
 
 struct ReservoirScopeApp: App {
-    @State private var loaded: Result<EvidenceStore, Error> = Result { try EvidenceStore.load() }
     var body: some Scene {
         WindowGroup("Reservoir Scope") {
-            switch loaded {
-            case .success(let evidence): Observatory(evidence: evidence)
-            case .failure(let error):
-                ContentUnavailableView("Evidence could not load", systemImage: "doc.questionmark", description: Text(error.localizedDescription))
-                    .frame(minWidth: 640, minHeight: 400)
-            }
+            ScopeWorkspace()
         }
         .defaultSize(width: 1380, height: 940)
         .windowStyle(.titleBar)
@@ -155,7 +149,7 @@ struct Observatory: View {
         .onReceive(pulse) { _ in advancePlayback() }
         .onReceive(live.$samples) { receiveHealthWatermarks($0) }
         .onReceive(stateLive.$samples) { receiveActivationWatermarks($0) }
-        .onDisappear { live.stop(); stateLive.stop() }
+        .onDisappear { isPlaying = false; live.stop(); stateLive.stop() }
         .sheet(isPresented: $showMethods) { methodsSheet }
     }
 
