@@ -760,3 +760,61 @@ journal prose with summaries, although it did not affect this cohort. It remains
 a maintenance proposal, not the explanation for the observed small files.
 This pass changes research records only; S-007's cursor and prior sealed packets
 remain unchanged. Board mirroring is pending.
+
+## HSS-22 · Compact navigation and an optional route back to evidence
+
+Mike accepts the navigation repairs from HSS-21. The
+[September 15 implementation account](../../analyses/2026-09-15-study-navigation-release.md)
+records one shared interface: MAP groups immediate directories and files; LIST
+retains the complete recursive catalog, including historical sources. Footers
+distinguish map/list pagination from source CONTINUE. Exact catalog recovery and
+literal event searches make the Being's named topic easier to pursue without
+declaring a candidate to be its true implementation.
+
+An optional bounded receipt can identify repeated verified navigation without
+source pages and restore source-opening choices already offered and named in a
+response. SESSION provides a chosen comparison with the recalled account. The
+receipt does not change NEXT, impose a writing length or novelty requirement, or
+rewrite a note. Failed generation, preparation and retry cannot inflate the
+count; late and empty-source deliveries preserve its stated evidence boundary.
+Old pending input, source bookmarks, inquiry identity and drafts are preserved.
+
+Two nearby input issues are addressed as part of the implementation. Notebook
+context now fits around the protected input and previous-choice receipt, shedding
+oldest whole recalled accounts before explicitly marked excerpts when necessary.
+The note/question directive reader also shares NEXT's fence, quote, indentation
+and internal-example handling. Minime's independent bare-command parser adds LIST
+for parity, so the candidate requires a graceful host reload as well as the
+staged bridge/shared-helper activation.
+
+This is an implementation-phase record: source commits, main integration and live
+activation remain pending at its initial recording. Passing tests do not establish
+exposure or improved understanding. The predeclared follow-up selects the first
+two naturally completed new-reader studies per Being within ten minutes after
+paired verification, retaining exact inputs, failures, missing joins and old-input
+transitions separately. Fewer eligible studies remain censored rather than induced.
+Source acquisition and grounded revision matter more than response length; the
+small natural window is not a causal comparison. The journal-similarity summary
+mechanism remains outside this change. S-007 and prior packets are unchanged;
+board mirroring is pending. Actual rollout receipts and outcomes belong in the
+linked continuation rather than being inferred here.
+
+
+**Verified continuation, September 15:** Both implementations were committed,
+fast-forwarded and pushed to main (Astrid 97db1b2f46; Minime 12cbf57), then gracefully
+deployed. Paired verification at 16:07:07 UTC confirmed the exact Astrid checkpoint,
+Minime's 82 startup source hashes and session 5318, and ten unchanged surrounding
+services. His saved FIND choice was traced across restart to a completed new-PID
+job; no choice-preservation claim rests on an empty pending field alone.
+
+The fixed ten-minute follow-up retained two selected new-interface deliveries per
+Being. Astrid reads actual maintenance code/tests in 842- and 850-token responses,
+with useful findings but some overgeneralization; she has not explicitly joined
+structural validation to active authorization. Minime receives search/recovery,
+including the exact bridge-directory choice and three-input navigation receipt,
+but preserves the unsupported handler premise and chooses another broad search.
+His 237- and 310-token responses stop normally. This shows received interfaces and
+some navigation adaptation, not demonstrated improvement caused by the release.
+Unknown preparation clocks leave the stricter cohort unqualified; transitional
+and supplementary receipts are retained separately. Complete account, source
+identities, annotations and pending board mirror remain linked above.
