@@ -1,0 +1,23 @@
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+.research/
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+research/outputs/
+.build/
+.swiftpm/
+
+# Machine-local viewer configuration and superseded capture/build artifacts.
+/native/ReservoirScope/Sources/ReservoirScope/Resources/essentials-workspace.txt
+/native/ReservoirScope/validation/**/*.bgra
+/native/ReservoirScope/validation/**/*build*.log
+/native/ReservoirScope/validation/**/*before*.log
+/native/ReservoirScope/validation/**/native-*.txt
+/native/ReservoirScope/validation/**/preview-before-*/
+/native/ReservoirScope/validation/**/pre-json-roundtrip/
