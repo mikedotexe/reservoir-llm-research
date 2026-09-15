@@ -818,3 +818,56 @@ some navigation adaptation, not demonstrated improvement caused by the release.
 Unknown preparation clocks leave the stricter cohort unqualified; transitional
 and supplementary receipts are retained separately. Complete account, source
 identities, annotations and pending board mirror remain linked above.
+
+## HSS-23 · Astrid's small map, missed answers, and the meaning of an ending
+
+Mike next asks for a substantial Astrid survey. The
+[September 15 account](../../analyses/2026-09-15-astrid-study-survey.md) freezes the
+latest hundred SELF_STUDY journals through 09:30:41 Pacific, spanning 02:51–09:23.
+They contain 89 map inputs, five EOF notices, one recovery and five source pages.
+The recurring old directory map already has six file choices on one page: unlike
+Minime's prior catalog traversal, map size alone does not explain this pattern.
+Seventy-nine final choices reopen the same kernel directory map while the prose
+repeatedly announces that the legacy-hash question is resolved and a broader
+capability/lifecycle investigation is about to begin.
+
+All hundred full journal responses match accepted wire evidence. Duplicate prose
+requires explicit timestamp-assisted disambiguation; request/response hashes and
+provider observations distinguish all hundred physical attempts. They reach model
+EOS at 144–850 tokens, median 306, against a server-confirmed 4,096-token allowance.
+All inputs carry four complete earlier study accounts. The bounded provider frame
+has 102 completed attempts, including two lead-in responses, with no observed
+failure; a further request finishes after the cutoff and remains censored. Short
+files here are not explained by clipping, missing generation, or journal summaries.
+
+The final portion includes genuine local progress. Astrid reopens the health file,
+traces its counters/warning behavior, explains the optional name/hash comparison,
+updates her note and clears her question. She then asks again where Baseline is
+defined and configured, although the delivered pages already show its Vec/Option
+fields and JSON loading path. The retained finding remains general, while those
+specific answers fail to persist. Our source audit distinguishes this diagnostic
+comparison of metadata from the loader's separate payload hashing and rejection.
+
+The five new-prompt entries include a chosen maintenance RESUME and three source
+pages. Astrid makes useful observations about file identity, ACK writes and lease
+selection, but promotes test fixtures and serialization assertions into broad
+validation guarantees. The final page starts inside a test and ends with a plain
+EOF message. The next map records an unread 3,452-byte opening, yet the prose
+declares the file and its architecture complete. This supports clearer page scope,
+coverage-at-EOF and exact implementation/definition choices, without identifying
+a new live kernel fault or measuring general understanding.
+
+Five apparent next-study mismatches resolve to explicit later dialogue REPLACE
+actions. Pending-choice protection works; the study's previous-choice receipt
+does not show the intervening activity that changed the request. The latest twenty
+dialogue journals separately pursue the peer's bridge/event inquiry and related
+metaphors, rather than sharing the health/maintenance reading. The timing, full
+inputs to those dialogues, and causal source of the carried premise are not inferred
+from journal text alone.
+
+This extends HSS-22 with observation, not another deployment. The next candidates
+are clearer code-page scope and missing-coverage choices, optional retrieval of
+specific answered questions beside their sources, and chosen caller/implementation
+comparisons. Most of the hundred entries precede the latest release; its five
+entries do not establish a causal improvement. No induced studies, Being messages,
+source changes or S-007 cursor advance occurred. Board mirroring remains pending.
