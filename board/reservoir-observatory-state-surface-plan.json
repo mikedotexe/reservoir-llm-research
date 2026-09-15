@@ -1,0 +1,42 @@
+{
+  "verified_at_utc": "2026-09-08T00:30:37.838844+00:00",
+  "surface": "authenticated Hold Shelf browser UI",
+  "board_url": "https://claude.ai/code/artifact/f4761d4a-94e8-43ca-882f-ca887956fca0",
+  "verification": "Parent card, new scoped source finding and session log saved and read back through the board UI.",
+  "card": {
+    "coordination_key": "t-reservoir-observatory",
+    "tag": "id:t-reservoir-observatory",
+    "database_document_id": null,
+    "title": "Build a native 3D observatory for reservoir state and regulation",
+    "lane": "test",
+    "status": "done",
+    "being": "system",
+    "scope": "September 7 state-surface and PERTURB design complete; implementation and experiments proposed; S-002 ongoing",
+    "evidence": [
+      "proposals/2026-09-07-reservoir-state-surface-and-perturbation.md",
+      "analyses/2026-09-07-perturb-source-audit.md",
+      "analyses/2026-09-07-reservoir-state-surface-design.md",
+      "research/studies/S-002-reservoir-observatory.md",
+      "native/ReservoirScope/build-receipt.json"
+    ]
+  },
+  "finding": {
+    "coordination_key": "f-perturb-input-routing",
+    "tag": "id:f-perturb-input-routing",
+    "database_document_id": null,
+    "title": "PERTURB selects input features; its two destinations need separate outcomes",
+    "lane": "finding",
+    "status": "verified",
+    "being": "both",
+    "scope": "Inspected source mechanisms and feedback gaps, not deployed identity, live incidence or measured effectiveness."
+  },
+  "log": {
+    "date": "2026-09-07",
+    "title": "Design a measured state surface and audit PERTURB",
+    "database_document_id": null,
+    "verified_present": true
+  },
+  "identity_note": "Browser UI assigned opaque database IDs that were not exposed in the observed interface. Coordination tags and exact titles are retained; no invented document ID.",
+  "prior_receipt": "board/reservoir-observatory-0.4.0.json",
+  "implementation_state": "App remains 0.4.0. No new app build, producer implementation, live intervention, being message or performance experiment in this pass."
+}

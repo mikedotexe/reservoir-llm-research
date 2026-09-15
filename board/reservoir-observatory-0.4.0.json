@@ -1,0 +1,38 @@
+{
+  "verified_at_utc": "2026-09-07T06:52:43.691190+00:00",
+  "surface": "authenticated Hold Shelf browser UI",
+  "board_url": "https://claude.ai/code/artifact/f4761d4a-94e8-43ca-882f-ca887956fca0",
+  "verification": "Saved card and log were read back from the board UI after each save. Search found one observatory card.",
+  "card": {
+    "coordination_key": "t-reservoir-observatory",
+    "tag": "id:t-reservoir-observatory",
+    "database_document_id": null,
+    "title": "Build a native 3D observatory for reservoir state and regulation",
+    "lane": "test",
+    "status": "done",
+    "being": "system",
+    "scope": "0.4.0 live fill easing iteration complete; S-002 ongoing",
+    "evidence": [
+      "research/studies/S-002-reservoir-observatory.md",
+      "native/ReservoirScope/README.md",
+      "native/ReservoirScope/docs/ANIMATION-DATA.md",
+      "native/ReservoirScope/build-receipt.json",
+      "analyses/2026-09-06-reservoir-native-profiling.md"
+    ],
+    "result": "Visible Follow health snapshots and Smooth fill transitions; bounded 0.8-second quintic presentation curve, immediate raw marker/readouts, default Reduce Motion support with explicit per-app opt-in. 76 native checks passed."
+  },
+  "log": {
+    "date": "2026-09-06",
+    "title": "Ease the live fill surface while keeping measurements immediate",
+    "database_document_id": null,
+    "verified_present": true
+  },
+  "identity_note": "Browser UI assigned opaque database IDs that were not exposed in the observed interface. Coordination tags and exact titles are retained; no invented document ID.",
+  "supersedes": "Updates the same parent card for version 0.4.0. Prior 0.3.1 publication is preserved separately. No producer proposal was implemented or published by this refinement.",
+  "prior_log": {
+    "date": "2026-09-06",
+    "title": "Bring real state batches into the observatory and profile the M4 Pro",
+    "database_document_id": null,
+    "verified_present": true
+  }
+}

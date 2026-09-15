@@ -1,0 +1,4060 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 7a1318b..41de92d 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -2,6 +2,8 @@
+ 
+ ## [Unreleased]
+ 
++- **[codex] Adds isolated, source-prepared native state actions and truthful application records.** Integrates the qualified asynchronous covariance/rho repair; adds signed Minime-owner `STATE_NUDGE`, finite `STATE_GESTURE`, cancellation and inspection, with actual model/layout identity, regulator eligibility, expiry, durable admission and completed-step before/after/delta/noise/leak evidence. Eligible gesture boundaries explicitly drain/check GPU work; ordinary operation stays asynchronous. Ambiguous restart outcomes are retained without replay. The native viewer consumes a separately identified rehearsal recording. This is not deployed; legacy sensory PERTURB/NATIVE_GESTURE and temporary leak precedence remain separate. Contract and rollback: `docs/native-state-actions.md`.
++
+ - **[codex] Deployed the addressed inbox reply repair.** Canonical source `63c1ab9` is running in agent PID 12456 after a verified quiet reload. All 70 startup inputs match disk, persisted continuity matches across reload, and the ten other services retained their identities. The parser repair changes two runtime inputs; inference timeouts and conversation history remain separate follow-ups. The authorized rollout receipt and evidence are recorded in `docs/steward-notes/2026-09-06-inbox-reply-boundaries.md`.
+ - **[codex] Adds source-only Transition Afterimages v1.** A bounded Rust observer captures fixed pre/post traces with immutable finals, recovery, explicit coverage and empirical measurements. A shared private-by-author reader adds deliberate keep/open/share actions and default-off, retry-stable fading cues with provider inclusion receipts. Astrid uses the same contract and fixtures. Capture is separately default off; no live rollout or felt-benefit claim. Contract: `docs/steward-notes/2026-09-06-transition-afterimages-v1.md`.
+ 
+diff --git a/docs/native-state-actions.md b/docs/native-state-actions.md
+new file mode 100644
+index 0000000..b39d8eb
+--- /dev/null
++++ b/docs/native-state-actions.md
+@@ -0,0 +1,124 @@
++# Native state actions (implementation, not deployed)
++
++These operations shape Minime's native ESN coordinates directly. They do not
++rename the existing `PERTURB` or `NATIVE_GESTURE` sensory paths. Astrid cannot
++exercise Minime-self authority; a peer-owned application requires a separate,
++explicit mutual adapter. A native node index is not an eigenmode or a semantic
++label. The model hash covers the actual native input/recurrent matrices and
++dimensions; the node-layout hash covers the indexed coordinate order.
++
++## One authored action
++
++`NEXT: STATE_NUDGE {"nodes":{"0":1,"3":-1},"amount":0.001}`
++
++The owner-side action reads the hash-verified local control status, binds to
++its native session/model/layout, normalizes the selected relative node weights
++to a unit direction, quantizes to float32, computes the pattern hash, signs
++through the existing Rust owner CLI and receives durable admission. It then
++collects available actual application events for up to five seconds in the
++same action. It does not require another generation or an additional symbolic
++approval round. The current process still enforces its existing agency stage;
++native mutation is added to bounded-actions/experiments, and inspection and
++cancellation remain available during recovery.
++
++A finite gesture uses explicit offsets among eligible **successful** native
++steps:
++
++`NEXT: STATE_GESTURE {"nodes":{"0":1},"pulses":[{"success_offset":0,"amount":0.001},{"success_offset":2,"amount":-0.001}]}`
++
++A caller may supply a complete unit `direction` instead of `nodes`, plus an
++explicit `identity`, `pattern_id`, `pattern_sha256`, `command_id`,
++`expires_at_unix_ms`, `allow_attenuation` or `supersedes`. Explicit identity/hash
++mismatches are rejected, never rebound. A generated command ID is returned in
++the action artifact. A second gesture must explicitly name an active predecessor
++in `supersedes`; it cannot silently replace that gesture. Use
++`NEXT: STATE_CANCEL actual-command-id` to cancel and `NEXT: STATE_STATUS` to
++inspect capability, requests and application records.
++
++The compiled pilot envelope is L2 amount ≤0.001 per pulse, at most 32 pulses
++with strictly increasing offsets 0–31 and absolute duration ≤60 seconds. The
++default absolute expiry is 30 seconds. Float32 quantization is part of the
++signed payload. The pattern digest is SHA256 of
++`native-state-direction-f32-v1\0`, the vector length as little-endian u64 and
++then every coordinate's little-endian float32 bits. These engineering limits
++are not an empirical claim of subjective comfort or long-run safety.
++
++## Authority and application are separate
++
++The wire remains `self_control.command.v2` with a capability-negotiated optional
++`values.native_state_gesture` extension. It is the sole field, requires
++`one_shot` durability and belongs to the `local_topology` family. The nested
++operation has `schema_version: 1` and strict unknown-field rejection. Ordinary
++V2 messages preserve their previous serialization, including old durable state
++hashes. There is no anonymous native-state message on the sensory socket.
++
++An `accepted` V2 receipt means the owner command is durably recorded. It echoes
++the exact requested values and has empty `applied_values`. Only after that
++commit is it made available to the engine. Signature, pinned identity,
++deployment, revision, nonce, idempotency and expiry checks precede admission.
++An admitted native gesture ID cannot apply again through a new signed envelope.
++
++The native scheduler validates its actual current model/session/layout, pattern
++hash, compiled limits, absolute expiry and explicit supersession at the engine
++boundary. It applies only with an actual regulator observation at most three
++seconds old, named stable-core **Hold** stage, fill 58–72% and finite nonnegative
++native geometry below the 1.32 release reference. Hard recovery, structural
++reentry/recovery/drain, an active division shadow, active shadow influence or
++an attractor pulse preempt it with an exact reason. The ordinary minimum
++sensory admission gate is not a blanket prohibition. A stale or blocked policy
++suspends the schedule without spending its success offsets; absolute expiry
++continues. Existing leak override policy is unchanged and remains a separate
++integration task.
++
++At action boundaries, checked GPU completion precedes native state mutation.
++The normal no-action path remains asynchronous. Native application receipts
++retain the successful step ID, actual before/after vectors and delta, direction
++and hash, realized noise, effective leak, headroom attenuation and measured
++boundary wait. `before` is the same-step normal result immediately before the
++action, **not** a no-action counterfactual continuation. The exact formula is
++`after = float32(before + (attenuation * amount) * direction)` with explicit
++headroom handling; the reported delta is computed from the actual stored
++float32 vectors. `completed` means the finite schedule was exhausted: zero
++amount, float32 resolution and rejected headroom can result in a completed
++schedule with no nonzero application. Read the individual `applied` events.
++
++The receiver durably wraps engine events as
++`minime.native_state.application.v1`, including the authenticated command,
++intent, process and deployment identity. They are published through the
++existing sensory receipt broadcast and retained in the hash-verified local
++status. The native EigenPacket retains the latest native vector application in
++`native_state_action_v1` and the latest scheduler event separately in
++`native_state_action_status_v1`. A completed event cannot erase the rendered
++geometry. Full per-step application records are in the receipt stream/status. The native viewer's first integration
++uses the separately identified offline rehearsal bundle, not this live stream.
++
++Durable JSON uses serde_json's `float_roundtrip` parser feature. Native float32
++vectors are widened when represented as generic JSON values; the default
++parser can move a widened value by one float64 bit on reread. A full signed
++Metal application exposed that mismatch in the strict state hash. Round-trip
++parsing preserves the measured bits without rounding the evidence or relaxing
++integrity verification. Existing package versions and canonical hashing remain
++unchanged; a frozen pre-extension state fixture verifies compatibility.
++
++If a process ends after admission but before a durable terminal event,
++recovery records `application_unknown` and never replays that request. This is
++not a claim that nothing happened. Cancellation prevents future pulses and
++does not undo previous state evolution. Receipts never assert a felt effect.
++
++## Validation and operation
++
++Unit tests cover signature/peer rejection, exact typed payloads, no repeat
++application through idempotency or a new envelope, failed persistence before
++queue publication, restart ambiguity without replay, strict decoding, named
++Hold policy and accepted/actual completion distinctions. The native rehearsal
++exercises numerical application on isolated native engines. No engine or
++being's live workspace was started or changed to run this validation.
++
++The final targeted transport checks passed: 34 owning runtime tests (33 pure
++and one genuine signed-owner → shared bus → Metal step → durable sweep →
++verified status → restart integration), two CLI tests and 16 Python action/
++client tests. The owning `--all-targets` check also passed with
++`division-rehearsal`, the unchanged lockfile and Rust 1.94.1. These are targeted
++checks, not a claim that every repository test was executed. The research
++evidence retains the initial integrity failure, its numeric-bit witness and the
++repaired results rather than discarding the failed attempt.
+diff --git a/minime/Cargo.toml b/minime/Cargo.toml
+index 6d37557..91837cc 100644
+--- a/minime/Cargo.toml
++++ b/minime/Cargo.toml
+@@ -18,7 +18,8 @@ ed25519-dalek = { version = "2", features = ["rand_core"] }
+ hex = "0.4"
+ metal = "0.29"
+ serde = { version = "1", features = ["derive"] }
+-serde_json = "1"
++# Generic JSON receipt values must retain exact float bits across durable hashes.
++serde_json = { version = "1", features = ["float_roundtrip"] }
+ sha2 = "0.10"
+ tokio = { version = "1", features = ["rt-multi-thread", "macros", "sync", "time", "net", "process", "signal", "io-util"] }
+ tokio-tungstenite = "0.21"
+diff --git a/minime/src/bin/native_state_action_replay.rs b/minime/src/bin/native_state_action_replay.rs
+new file mode 100644
+index 0000000..b8762bc
+--- /dev/null
++++ b/minime/src/bin/native_state_action_replay.rs
+@@ -0,0 +1,333 @@
++//! Finite native numerical rehearsal. No runtime, sockets, journals, or model calls.
++//! Ordinary/result vectors are two sides of the same action boundary, not futures.
++use anyhow::{ensure, Context, Result};
++use clap::Parser;
++use minime::esn::state_action::{
++    direction_sha256, NativeStateCommandV1, NativeStateIdentity, StateActionGate,
++    StateActionLimits, StateActionReceipt, StateActionStatus, StateGesture, StatePulse,
++};
++use minime::esn::{EsnSnapshotV2, EsnStepTraceV1, ESN};
++use minime::gpu::Gpu;
++use serde_json::{json, Value};
++use sha2::{Digest, Sha256};
++use std::{
++    fs,
++    path::{Path, PathBuf},
++    time::Instant,
++};
++
++#[derive(Parser)]
++struct Args {
++    #[arg(long)]
++    baseline: PathBuf,
++    #[arg(long)]
++    output: PathBuf,
++}
++
++fn input(t: usize) -> Vec<f32> {
++    (0..66)
++        .map(|i| 0.15_f32 * (((t * 7 + i * 3) as f32) * 0.071_f32).sin())
++        .collect()
++}
++fn save(path: &Path, data: &impl serde::Serialize) -> Result<()> {
++    fs::write(path, serde_json::to_vec_pretty(data)?)?;
++    Ok(())
++}
++fn numeric_snapshot(snapshot: &EsnSnapshotV2) -> Result<Value> {
++    let mut value = serde_json::to_value(snapshot)?;
++    value["spectral"]
++        .as_object_mut()
++        .context("spectral object")?
++        .remove("last_profile");
++    Ok(value)
++}
++fn equal_bits(a: &[f32], b: &[f32]) -> bool {
++    a.len() == b.len() && a.iter().zip(b).all(|(a, b)| a.to_bits() == b.to_bits())
++}
++fn pattern() -> Vec<f32> {
++    let mut direction: Vec<f32> = (0..128).map(|i| ((i as f32) * 0.47_f32).cos()).collect();
++    let norm = direction
++        .iter()
++        .map(|v| f64::from(*v).powi(2))
++        .sum::<f64>()
++        .sqrt() as f32;
++    for v in &mut direction {
++        *v /= norm;
++    }
++    direction
++}
++fn command(
++    identity: NativeStateIdentity,
++    name: &str,
++    scenario: &str,
++    now: u64,
++) -> NativeStateCommandV1 {
++    let direction = pattern();
++    let offsets: Vec<u32> = match scenario {
++        "finite" | "cancel" => (0..8).collect(),
++        "sparse" => vec![0, 3, 7],
++        _ => vec![0],
++    };
++    let pulses = offsets
++        .iter()
++        .enumerate()
++        .map(|(i, offset)| StatePulse {
++            success_offset: *offset,
++            amount: if scenario == "zero" {
++                0.0
++            } else if i % 2 == 0 {
++                0.001
++            } else {
++                -0.001
++            },
++        })
++        .collect();
++    NativeStateCommandV1::Gesture {
++        schema_version: 1,
++        gesture: StateGesture {
++            command_id: name.into(),
++            identity,
++            pattern_id: "cosine-index-0.47-unit-f32-v1".into(),
++            pattern_sha256: direction_sha256(&direction),
++            direction,
++            pulses,
++            expires_at_unix_ms: now + if scenario == "expired" { 1 } else { 60_000 },
++            allow_attenuation: false,
++            supersedes: None,
++        },
++    }
++}
++fn verify_receipt(receipt: &StateActionReceipt, state: &[f32], radius: f32) -> Result<()> {
++    if matches!(
++        receipt.status,
++        StateActionStatus::Applied | StateActionStatus::NoOp
++    ) {
++        let before = receipt.before.as_ref().context("ordinary state")?;
++        let after = receipt.after.as_ref().context("applied result")?;
++        let delta = receipt.delta.as_ref().context("delta")?;
++        ensure!(
++            equal_bits(after, state),
++            "receipt differs from actual native state"
++        );
++        ensure!(
++            before.len() == 128 && after.len() == 128 && delta.len() == 128,
++            "wrong state dimensions"
++        );
++        for ((before, after), delta) in before.iter().zip(after).zip(delta) {
++            ensure!(
++                (after - before).to_bits() == delta.to_bits(),
++                "delta is not exact Float32 difference"
++            );
++        }
++        ensure!(
++            receipt
++                .realized_noise
++                .as_ref()
++                .is_some_and(|noise| noise.len() == 128),
++            "action noise unavailable"
++        );
++        let rms = (state.iter().map(|v| v * v).sum::<f32>() / 128.0).sqrt();
++        ensure!(
++            radius.to_bits() == rms.to_bits(),
++            "geometry does not describe resulting native state"
++        );
++    }
++    Ok(())
++}
++
++fn main() -> Result<()> {
++    let args = Args::parse();
++    ensure!(!args.output.exists(), "output must be a new directory");
++    let source_identity =
++        option_env!("STATE_ACTION_SOURCE_SHA256").context("build with recorded source identity")?;
++    ensure!(
++        source_identity.len() == 64,
++        "invalid recorded source identity"
++    );
++    let baseline_bytes = fs::read(&args.baseline)?;
++    let baseline: Value = serde_json::from_slice(&baseline_bytes)?;
++    ensure!(
++        baseline["schema"] == "research.native_state_action_baseline.v1",
++        "unexpected baseline"
++    );
++    let cases = baseline["cases"].as_array().context("reference cases")?;
++    ensure!(cases.len() == 6, "expected six fixed reference cases");
++    fs::create_dir_all(&args.output)?;
++    let gpu = Gpu::new()?;
++    let mut ordinary_results = Vec::new();
++    for case in cases {
++        let snapshot: EsnSnapshotV2 = serde_json::from_value(case["checkpoint"].clone())?;
++        let mut native = ESN::from_snapshot_v2(&snapshot, &gpu)?;
++        let inputs: Vec<Vec<f32>> = serde_json::from_value(case["inputs"].clone())?;
++        let rhos: Vec<f32> = serde_json::from_value(case["rhos"].clone())?;
++        let expected: Vec<Vec<f32>> = serde_json::from_value(case["path"].clone())?;
++        let mut path = vec![native.x.clone()];
++        let mut traces = Vec::new();
++        ensure!(
++            inputs.len() == 100 && rhos.len() == 100 && expected.len() == 101,
++            "invalid reference dimensions"
++        );
++        for (i, (input, rho)) in inputs.iter().zip(&rhos).enumerate() {
++            native.set_rho_direct(*rho);
++            native.step(input)?;
++            ensure!(
++                equal_bits(&native.x, &expected[i + 1]),
++                "ordinary state changed at step {}",
++                i + 1
++            );
++            path.push(native.x.clone());
++            traces.push(native.last_step_trace().clone());
++        }
++        let final_snapshot = native.snapshot_v2()?;
++        let reference_final: EsnSnapshotV2 =
++            serde_json::from_value(case["final_snapshot"].clone())?;
++        ensure!(
++            numeric_snapshot(&final_snapshot)? == numeric_snapshot(&reference_final)?,
++            "ordinary numerical checkpoint changed"
++        );
++        let expected_traces: Vec<EsnStepTraceV1> = serde_json::from_value(case["traces"].clone())?;
++        ensure!(
++            traces.len() == expected_traces.len()
++                && traces
++                    .iter()
++                    .zip(&expected_traces)
++                    .all(|(a, b)| a.leak.to_bits() == b.leak.to_bits()
++                        && equal_bits(&a.noise, &b.noise)),
++            "ordinary realized control trace changed"
++        );
++        ordinary_results.push(
++            json!({"start":case["start"],"alternating_rho":case["alternating_rho"],
++            "passed":true,"path":path,"traces":traces,"final_snapshot":final_snapshot}),
++        );
++    }
++    save(
++        &args.output.join("ordinary-results.json"),
++        &ordinary_results,
++    )?;
++    let executable_hash = format!("{:x}", Sha256::digest(fs::read(std::env::current_exe()?)?));
++    let mut results = Vec::new();
++    let mut chosen_receipts = None;
++    let now = 1_788_830_000_000_u64;
++    for case in cases.iter().filter(|v| v["alternating_rho"] == false) {
++        let start = case["start"].as_u64().context("start")? as usize;
++        let snapshot: EsnSnapshotV2 = serde_json::from_value(case["checkpoint"].clone())?;
++        for scenario in [
++            "one_shot",
++            "finite",
++            "sparse",
++            "cancel",
++            "expired",
++            "suspended",
++            "zero",
++        ] {
++            let name = format!("native-{start}-{scenario}");
++            let mut native = ESN::from_snapshot_v2(&snapshot, &gpu)?;
++            let identity = native.configure_state_actions(
++                format!("isolated-{name}"),
++                StateActionLimits::default(),
++            )?;
++            let gesture = command(identity.clone(), &name, scenario, now);
++            native.queue_state_command(gesture.clone(), format!("intent-{name}"), now)?;
++            let duplicate = native.queue_state_command(gesture, format!("intent-{name}"), now)?;
++            let mut receipts = native.take_state_action_receipts();
++            let mut frames = Vec::new();
++            let mut restored_after_action: Option<ESN> = None;
++            let mut continuation_verified = false;
++            for offset in 0..20 {
++                let time = now + 10 + (offset as u64) * 10;
++                if scenario == "cancel" && offset == 2 {
++                    native.queue_state_command(
++                        NativeStateCommandV1::Cancel {
++                            schema_version: 1,
++                            command_id: name.clone(),
++                        },
++                        format!("cancel-{name}"),
++                        time,
++                    )?;
++                    receipts.extend(native.take_state_action_receipts());
++                }
++                native.set_state_action_gate(StateActionGate {
++                    sampled_at_unix_ms: time,
++                    valid_until_unix_ms: time + 5,
++                    allowed: scenario != "suspended" || offset >= 2,
++                    reason: Some("declared_rehearsal_gate".into()),
++                });
++                let tick_input = input(start + offset);
++                let elapsed = Instant::now();
++                native.step_with_state_action_time(&tick_input, time)?;
++                let step_us = elapsed.elapsed().as_micros() as u64;
++                if let Some(restored) = restored_after_action.as_mut() {
++                    restored.step(&tick_input)?;
++                    ensure!(
++                        equal_bits(&native.x, &restored.x),
++                        "later dynamics did not continue from the actual applied state"
++                    );
++                    continuation_verified = true;
++                }
++                let new_receipts = native.take_state_action_receipts();
++                for receipt in &new_receipts {
++                    verify_receipt(receipt, &native.x, native.get_geom_radius())?;
++                }
++                frames.push(json!({"successful_step_id":native.successful_step_id(),"input":tick_input,"state":native.x,
++                    "geom_radius":native.get_geom_radius(),"trace":native.last_step_trace(),"elapsed_us":step_us}));
++                if scenario == "one_shot" && offset == 0 {
++                    restored_after_action =
++                        Some(ESN::from_snapshot_v2(&native.snapshot_v2()?, &gpu)?);
++                }
++                receipts.extend(new_receipts);
++            }
++            let applied = receipts
++                .iter()
++                .filter(|r| r.status == StateActionStatus::Applied)
++                .count();
++            let wanted = match scenario {
++                "finite" => 8,
++                "sparse" => 3,
++                "cancel" => 2,
++                "expired" | "zero" => 0,
++                _ => 1,
++            };
++            ensure!(
++                applied == wanted,
++                "wrong application count for {name}: {applied} != {wanted}"
++            );
++            ensure!(
++                native.active_state_action_command_id().is_none(),
++                "gesture did not terminate: {name}"
++            );
++            if scenario == "one_shot" {
++                ensure!(continuation_verified, "missing continuation proof");
++            }
++            let final_snapshot = native.snapshot_v2()?;
++            let record = json!({"scenario":scenario,"start":start,"identity":identity,"duplicate":duplicate,
++                "passed":true,"applications":applied,"later_continuation_verified":continuation_verified,
++                "receipts":receipts,"frames":frames,"final_snapshot":final_snapshot});
++            save(&args.output.join(format!("{name}.json")), &record)?;
++            if scenario == "finite" && start == 96 {
++                chosen_receipts = Some(record["receipts"].clone());
++            }
++            results.push(json!({"scenario":scenario,"start":start,"passed":true,"applications":applied,"path":format!("{name}.json")}));
++        }
++    }
++    let source_hashes = json!({"implementation_sources":source_identity,"executable":executable_hash,
++        "reference_fixture":format!("{:x}",Sha256::digest(&baseline_bytes))});
++    save(
++        &args.output.join("native-action-response.json"),
++        &json!({
++            "schema":"research.native_action_response.v1","subject":"Minime native ESN rehearsal",
++            "scope":"isolated research copy; no running being","source_hashes":source_hashes,
++            "fill":null,"reference_basis":null,
++            "clock":"successful native step ids; supplied rehearsal clock is not measured wall time",
++            "receipts":chosen_receipts.context("selected finite receipt example")?
++        }),
++    )?;
++    save(
++        &args.output.join("summary.json"),
++        &json!({"schema":"research.native_state_actions.results.v1",
++        "source_hashes":source_hashes,"ordinary_cases":ordinary_results.len(),"ordinary_passed":true,
++        "action_cases":results,"default_operation":"async","action_boundaries":"explicit checked GPU completion",
++        "scope":"finite native experiment; no live being or surrounding controller replay"}),
++    )?;
++    println!("Six ordinary continuations and 21 native action cases passed; actual eight-pulse example exported.");
++    Ok(())
++}
+diff --git a/minime/src/esn.rs b/minime/src/esn.rs
+index 2086472..1fefcf8 100644
+--- a/minime/src/esn.rs
++++ b/minime/src/esn.rs
+@@ -22,6 +22,13 @@ use std::{
+ };
+ 
+ use crate::gpu::Gpu;
++#[path = "state_action.rs"]
++pub mod state_action;
++use sha2::{Digest, Sha256};
++use state_action::{
++    NativeStateCommandV1, NativeStateIdentity, QueueOutcome, StateActionEngine, StateActionGate,
++    StateActionLimits, StateActionReceipt,
++};
+ 
+ /// Default exploration noise amplitude injected into the ESN reservoir state.
+ /// Exploration noise injected per tick to break reservoir state correlation.
+@@ -800,6 +807,7 @@ pub struct SpectralSR {
+     async_measurement_enabled: bool,
+     last_profile: EsnProfileSnapshot,
+     pending_rank1: VecDeque<PendingRank1>,
++    completion_failure: Option<String>,
+ 
+     // V₁ spectral damping: redistribute excess energy from dominant eigenvector.
+     // Being-driven: "I want to become a shimmer, not a singular pulse."
+@@ -927,7 +935,13 @@ impl SpectralSR {
+             .map_err(|e| anyhow::anyhow!("Failed to create v1_damp pipeline: {}", e))?;
+ 
+         // Allocate unified memory buffers
+-        let cov = gpu.new_shared((d * d * mem::size_of::<f32>()) as u64);
++        // Research repair candidate: let Metal track dependencies on persistent covariance.
++        let covariance_bytes = (d * d * mem::size_of::<f32>()) as u64;
++        let covariance_aligned = (covariance_bytes + 16383) & !16383;
++        let cov = gpu.dev.new_buffer(
++            covariance_aligned,
++            MTLResourceOptions::StorageModeShared | MTLResourceOptions::HazardTrackingModeTracked,
++        );
+         let x_buf = gpu.new_shared((d * mem::size_of::<f32>()) as u64);
+         let v_buf = gpu.new_shared((d * mem::size_of::<f32>()) as u64);
+         let y_buf = gpu.new_shared((d * mem::size_of::<f32>()) as u64);
+@@ -978,6 +992,7 @@ impl SpectralSR {
+                 ..EsnProfileSnapshot::default()
+             },
+             pending_rank1: VecDeque::new(),
++            completion_failure: None,
+             spectral_damping: 0.02,
+             spectral_target_ratio: 0.50,
+             gpu: gpu as *const Gpu,
+@@ -1090,9 +1105,9 @@ impl SpectralSR {
+     /// Apply trace-preserving v₁ damping to redistribute excess energy from
+     /// the dominant eigenvector direction toward the diagonal.
+     /// Only effective when λ₁ exceeds target_ratio × trace.
+-    fn apply_v1_damping(&self) {
++    fn apply_v1_damping(&mut self) -> Result<()> {
+         if self.spectral_damping <= 0.0 || self.eig1 <= 1e-6 {
+-            return;
++            return Ok(());
+         }
+         let gpu = unsafe { &*self.gpu };
+ 
+@@ -1103,13 +1118,13 @@ impl SpectralSR {
+             trace += unsafe { *cov_ptr.add(i * self.d + i) };
+         }
+         if trace <= 1e-6 || !trace.is_finite() {
+-            return;
++            return Ok(());
+         }
+ 
+         let target_eig1 = self.spectral_target_ratio * trace;
+         let excess = (self.eig1 - target_eig1).max(0.0);
+         if excess <= 1e-6 {
+-            return; // λ₁ already below target — no damping needed
++            return Ok(()); // λ₁ already below target — no damping needed
+         }
+ 
+         // Write cached eigenvector and params to GPU buffers
+@@ -1134,6 +1149,8 @@ impl SpectralSR {
+         enc.end_encoding();
+         cmd.commit();
+         cmd.wait_until_completed();
++        self.check_completed(cmd, "spectral damping")?;
++        Ok(())
+     }
+ 
+     pub fn set_profiling_enabled(&mut self, enabled: bool) {
+@@ -1161,7 +1178,29 @@ impl SpectralSR {
+         gpu.pool.lock().unwrap().release(x_buf);
+     }
+ 
++    fn ensure_healthy(&self) -> Result<()> {
++        if let Some(reason) = &self.completion_failure {
++            return Err(anyhow::anyhow!(reason.clone()));
++        }
++        Ok(())
++    }
++
++    fn check_completed(&mut self, cmd: &CommandBufferRef, operation: &str) -> Result<()> {
++        if cmd.status() != MTLCommandBufferStatus::Completed {
++            let reason = format!(
++                "ESN {operation} did not complete successfully: {:?}",
++                cmd.status()
++            );
++            if self.completion_failure.is_none() {
++                self.completion_failure = Some(reason.clone());
++            }
++            return Err(anyhow::anyhow!(reason));
++        }
++        self.ensure_healthy()
++    }
++
+     fn reap_completed_rank1s(&mut self) -> Result<()> {
++        self.ensure_healthy()?;
+         while let Some(status) = self
+             .pending_rank1
+             .front()
+@@ -1169,22 +1208,16 @@ impl SpectralSR {
+         {
+             match status {
+                 MTLCommandBufferStatus::Completed => {
+-                    if let Some(pending) = self.pending_rank1.pop_front() {
+-                        self.release_pending_x_buf(pending.x_buf);
+-                    }
++                    let pending = self.pending_rank1.pop_front().unwrap();
++                    self.release_pending_x_buf(pending.x_buf);
+                 }
+                 MTLCommandBufferStatus::Error => {
+-                    if let Some(pending) = self.pending_rank1.pop_front() {
+-                        self.release_pending_x_buf(pending.x_buf);
+-                    }
+-                    return Err(anyhow::anyhow!(
+-                        "Background ESN rank-1 command buffer failed"
+-                    ));
++                    // Finish/release every owned command even when the first one fails.
++                    return self.wait_for_pending_rank1s(false).map(|_| ());
+                 }
+                 _ => break,
+             }
+         }
+-
+         Ok(())
+     }
+ 
+@@ -1192,24 +1225,30 @@ impl SpectralSR {
+         let wait_start = measure_wait.then(Instant::now);
+         if let Some(pending) = self.pending_rank1.pop_front() {
+             pending.cmd.wait_until_completed();
+-            if pending.cmd.status() == MTLCommandBufferStatus::Error {
+-                self.release_pending_x_buf(pending.x_buf);
+-                return Err(anyhow::anyhow!(
+-                    "Background ESN rank-1 command buffer failed"
+-                ));
+-            }
++            let result = self.check_completed(&pending.cmd, "background rank-one");
+             self.release_pending_x_buf(pending.x_buf);
++            result?;
+         }
+-
+         Ok(wait_start.map_or(0, |start| micros_u64(start.elapsed())))
+     }
+ 
+     fn wait_for_pending_rank1s(&mut self, measure_wait: bool) -> Result<u64> {
+         let mut total_wait_us = 0_u64;
++        let mut first_error = None;
+         while !self.pending_rank1.is_empty() {
+-            total_wait_us =
+-                total_wait_us.saturating_add(self.wait_for_oldest_pending_rank1(measure_wait)?);
++            match self.wait_for_oldest_pending_rank1(measure_wait) {
++                Ok(wait) => total_wait_us = total_wait_us.saturating_add(wait),
++                Err(error) => {
++                    if first_error.is_none() {
++                        first_error = Some(error);
++                    }
++                }
++            }
++        }
++        if let Some(error) = first_error {
++            return Err(error);
+         }
++        self.ensure_healthy()?;
+         Ok(total_wait_us)
+     }
+ 
+@@ -1355,7 +1394,12 @@ impl SpectralSR {
+         enc.set_compute_pipeline_state(&self.pso_rank1);
+         enc.set_buffer(0, Some(&self.cov), 0);
+         enc.set_buffer(1, Some(&x_buf), 0);
+-        enc.set_buffer(2, Some(&self.rho_buf), 0);
++        // Capture this dispatch's rho; later setters cannot rewrite an in-flight scalar.
++        enc.set_bytes(
++            2,
++            mem::size_of::<f32>() as u64,
++            &self.rho as *const f32 as *const _,
++        );
+         enc.set_buffer(3, Some(&self.dim_buf), 0);
+ 
+         let grid = MTLSize::new((self.d * self.d) as u64, 1, 1);
+@@ -1404,7 +1448,12 @@ impl SpectralSR {
+         enc.set_compute_pipeline_state(&self.pso_rank1);
+         enc.set_buffer(0, Some(&self.cov), 0);
+         enc.set_buffer(1, Some(&self.x_buf), 0);
+-        enc.set_buffer(2, Some(&self.rho_buf), 0);
++        // Capture this dispatch's rho; later setters cannot rewrite an in-flight scalar.
++        enc.set_bytes(
++            2,
++            mem::size_of::<f32>() as u64,
++            &self.rho as *const f32 as *const _,
++        );
+         enc.set_buffer(3, Some(&self.dim_buf), 0);
+ 
+         let grid = MTLSize::new((self.d * self.d) as u64, 1, 1);
+@@ -1415,6 +1464,7 @@ impl SpectralSR {
+         cmd.commit();
+         let wait_start = timing_enabled.then(Instant::now);
+         cmd.wait_until_completed();
++        self.check_completed(cmd, "rank1_ewma_profiled")?;
+         if let Some(start) = wait_start {
+             acc.gpu_wait_us = acc.gpu_wait_us.saturating_add(micros_u64(start.elapsed()));
+         }
+@@ -1431,7 +1481,12 @@ impl SpectralSR {
+         enc.set_compute_pipeline_state(&self.pso_rank1);
+         enc.set_buffer(0, Some(&self.cov), 0);
+         enc.set_buffer(1, Some(&self.x_buf), 0);
+-        enc.set_buffer(2, Some(&self.rho_buf), 0);
++        // Capture this dispatch's rho; later setters cannot rewrite an in-flight scalar.
++        enc.set_bytes(
++            2,
++            mem::size_of::<f32>() as u64,
++            &self.rho as *const f32 as *const _,
++        );
+         enc.set_buffer(3, Some(&self.dim_buf), 0);
+ 
+         let grid = MTLSize::new((self.d * self.d) as u64, 1, 1);
+@@ -1455,7 +1510,7 @@ impl SpectralSR {
+ 
+     /// GPU-accelerated mat-vec: y = C*v
+     fn matvec_profiled(
+-        &self,
++        &mut self,
+         v_in: &[f32],
+         acc: &mut EsnProfileAcc,
+         mode: MatvecProfileMode,
+@@ -1482,6 +1537,7 @@ impl SpectralSR {
+         cmd.commit();
+         let wait_start = timing_enabled.then(Instant::now);
+         cmd.wait_until_completed();
++        self.check_completed(cmd, "matvec_profiled")?;
+         if let Some(start) = wait_start {
+             let wait_us = micros_u64(start.elapsed());
+             acc.gpu_wait_us = acc.gpu_wait_us.saturating_add(wait_us);
+@@ -1594,8 +1650,8 @@ impl SpectralSR {
+         self.encode_rank1_ewma(enc);
+         enc.end_encoding();
+ 
+-        // Metal automatically inserts barriers between encoders in the
+-        // same command buffer, so the updated cov is visible to the matvec.
++        // Covariance is a tracked buffer directly bound by both encoders.
++        // Metal tracks the rank1 write -> matvec read dependency on that resource.
+ 
+         // Encode first matvec: y = C * v
+         let enc2 = cmd.new_compute_command_encoder();
+@@ -1605,6 +1661,7 @@ impl SpectralSR {
+         cmd.commit();
+         let wait_start = timing_enabled.then(Instant::now);
+         cmd.wait_until_completed();
++        self.check_completed(cmd, "rank1_and_power_step_profiled")?;
+         // === End single command buffer (was 2 separate commits) ===
+         if let Some(start) = wait_start {
+             let wait_us = micros_u64(start.elapsed());
+@@ -1679,6 +1736,7 @@ impl SpectralSR {
+ 
+     /// Prime-phased introspection: on schedule, run short power iteration
+     pub fn maybe_introspect(&mut self) -> Result<()> {
++        self.reap_completed_rank1s()?;
+         self.t += 1;
+         let scheduled_pidx = self.pidx;
+         let p = self.primes[scheduled_pidx];
+@@ -1713,6 +1771,7 @@ impl SpectralSR {
+         geom_rel: f32,
+         pressure_rel: f32,
+     ) -> Result<()> {
++        self.reap_completed_rank1s()?;
+         self.t += 1;
+         let scheduled_pidx = self.pidx;
+         let p = self.primes[scheduled_pidx];
+@@ -1720,14 +1779,12 @@ impl SpectralSR {
+         let mut introspection_fired = false;
+         let decision = self.decide_introspection_steps(geom_rel, pressure_rel);
+ 
+-        self.reap_completed_rank1s()?;
+-
+         if self.t % p == 0 {
+             // Batched: rank1 + power iteration with fused first submit
+             self.rank1_and_power_step_profiled(x_host, decision.steps, &mut acc)?;
+             // V₁ damping: redistribute excess energy from dominant eigenvector.
+             // Runs after power iteration when eig1 and v_host are maximally fresh.
+-            self.apply_v1_damping();
++            self.apply_v1_damping()?;
+             introspection_fired = true;
+             self.introspection_count = self.introspection_count.saturating_add(1);
+             // Variable schedule: 20% chance of jumping to a random prime
+@@ -1848,6 +1905,9 @@ pub struct ESN {
+     exploration_noise: f32,
+     rng: fastrand::Rng,
+     last_step_trace: EsnStepTraceV1,
++    // Session/receipt machinery is intentionally excluded from numerical snapshots.
++    state_actions: Option<StateActionEngine>,
++    successful_step_id: u64,
+ 
+     // Scratch buffers
+     rin: Vec<f32>,
+@@ -1949,6 +2009,8 @@ impl ESN {
+             lambda_base,
+             exploration_noise: DEFAULT_EXPLORATION_NOISE,
+             rng: fastrand::Rng::with_seed(0xDEAD_BEEF),
++            state_actions: None,
++            successful_step_id: 0,
+             last_step_trace: EsnStepTraceV1 {
+                 leak: leak_base,
+                 noise: if cfg!(feature = "division-rehearsal") {
+@@ -2029,9 +2091,85 @@ impl ESN {
+         self.lambda_live = lam;
+     }
+ 
++    /// Hash actual native weights and coordinate order, not a caller assertion.
++    pub fn native_state_identity(&self, engine_session_id: &str) -> NativeStateIdentity {
++        let mut model = Sha256::new();
++        model.update(b"minime-native-model-f32-v1\0");
++        model.update((self.res_size as u64).to_le_bytes());
++        model.update((self.in_size as u64).to_le_bytes());
++        for value in self.win.iter().chain(&self.wres) {
++            model.update(value.to_bits().to_le_bytes());
++        }
++        let mut layout = Sha256::new();
++        layout.update(b"minime-native-index-layout-v1\0");
++        layout.update((self.res_size as u64).to_le_bytes());
++        for index in 0..self.res_size {
++            layout.update((index as u64).to_le_bytes());
++        }
++        NativeStateIdentity {
++            engine_session_id: engine_session_id.into(),
++            model_id: format!("{:x}", model.finalize()),
++            node_layout_id: format!("{:x}", layout.finalize()),
++            node_count: self.res_size,
++        }
++    }
++
++    pub fn configure_state_actions(
++        &mut self,
++        engine_session_id: String,
++        limits: StateActionLimits,
++    ) -> Result<NativeStateIdentity> {
++        anyhow::ensure!(
++            self.state_actions.is_none(),
++            "native action session is already configured"
++        );
++        let identity = self.native_state_identity(&engine_session_id);
++        self.state_actions = Some(StateActionEngine::new(identity.clone(), limits)?);
++        Ok(identity)
++    }
++    pub fn queue_state_command(
++        &mut self,
++        command: NativeStateCommandV1,
++        authenticated_intent_id: String,
++        now_unix_ms: u64,
++    ) -> Result<QueueOutcome> {
++        let actions = self
++            .state_actions
++            .as_mut()
++            .ok_or_else(|| anyhow::anyhow!("native state actions not configured"))?;
++        actions.queue(command, authenticated_intent_id, now_unix_ms)
++    }
++    pub fn set_state_action_gate(&mut self, gate: StateActionGate) {
++        if let Some(actions) = self.state_actions.as_mut() {
++            actions.set_gate(gate);
++        }
++    }
++    pub fn take_state_action_receipts(&mut self) -> Vec<StateActionReceipt> {
++        self.state_actions
++            .as_mut()
++            .map_or_else(Vec::new, StateActionEngine::take_receipts)
++    }
++    pub fn state_action_identity(&self) -> Option<NativeStateIdentity> {
++        self.state_actions
++            .as_ref()
++            .map(|actions| self.native_state_identity(&actions.identity.engine_session_id))
++    }
++    pub fn active_state_action_command_id(&self) -> Option<&str> {
++        self.state_actions
++            .as_ref()
++            .and_then(StateActionEngine::active_command_id)
++    }
++    pub fn successful_step_id(&self) -> u64 {
++        self.successful_step_id
++    }
++    /// Deterministic clock only for offline native rehearsal; live step uses wall time.
++    pub fn step_with_state_action_time(&mut self, input: &[f32], now_unix_ms: u64) -> Result<()> {
++        self.step_controlled(input, None, None, None, Some(now_unix_ms))
++    }
++
+     /// Reservoir update step
+     pub fn step(&mut self, input: &[f32]) -> Result<()> {
+-        self.step_controlled(input, None, None, None)
++        self.step_controlled(input, None, None, None, None)
+     }
+ 
+     /// Daughter-shadow update with cross-block drive from the same previous
+@@ -2055,6 +2193,7 @@ impl ESN {
+             Some(external_recurrence),
+             Some(realized_noise),
+             Some(effective_leak),
++            None,
+         )
+     }
+ 
+@@ -2064,8 +2203,39 @@ impl ESN {
+         external_recurrence: Option<&[f32]>,
+         realized_noise: Option<&[f32]>,
+         forced_leak: Option<f32>,
++        supplied_time_ms: Option<u64>,
+     ) -> Result<()> {
+-        assert_eq!(input.len(), self.in_size);
++        let now_unix_ms = supplied_time_ms.unwrap_or_else(native_wall_time_ms);
++        let action_identity = self
++            .state_actions
++            .as_ref()
++            .filter(|actions| actions.has_active())
++            .map(|actions| self.native_state_identity(&actions.identity.engine_session_id));
++        let action_boundary = match (self.state_actions.as_mut(), action_identity.as_ref()) {
++            (Some(actions), Some(identity)) => actions.prepare(identity, now_unix_ms),
++            _ => false,
++        };
++        if input.len() != self.in_size || input.iter().any(|v| !v.is_finite()) {
++            let reason = "native input dimensions or finite values invalid".to_string();
++            if let Some(actions) = self.state_actions.as_mut() {
++                actions.failed_step(now_unix_ms, reason.clone());
++            }
++            return Err(anyhow::anyhow!(reason));
++        }
++        if let Err(error) = self.sr.ensure_healthy() {
++            let _ = self.sr.wait_for_pending_rank1s(false);
++            if let Some(actions) = self.state_actions.as_mut() {
++                actions.failed_step(now_unix_ms, error.to_string());
++            }
++            return Err(error);
++        }
++        if action_boundary && self.x.iter().any(|v| !v.is_finite()) {
++            let reason = "nonfinite native action source state".to_string();
++            if let Some(actions) = self.state_actions.as_mut() {
++                actions.failed_step(now_unix_ms, reason.clone());
++            }
++            return Err(anyhow::anyhow!(reason));
++        }
+ 
+         // Extend input with bias
+         let mut in_ext = vec![0.0f32; self.in_size + 1];
+@@ -2098,11 +2268,41 @@ impl ESN {
+             }
+         }
+ 
++        if action_boundary && self.pre.iter().any(|value| !value.is_finite()) {
++            let reason = "nonfinite native recurrent proposal".to_string();
++            if let Some(actions) = self.state_actions.as_mut() {
++                actions.failed_step(now_unix_ms, reason.clone());
++            }
++            return Err(anyhow::anyhow!(reason));
++        }
++
+         // Spectral self-reference on previous state (batched GPU submits)
+         let prev_geom_rel = self.get_geom_rel();
+         let pressure_rel = self.sr.current_pressure_rel();
+-        self.sr
+-            .maybe_introspect_batched(&self.x, prev_geom_rel, pressure_rel)?;
++        let mut boundary_wait_us = 0;
++        let spectral_result = self
++            .sr
++            .maybe_introspect_batched(&self.x, prev_geom_rel, pressure_rel)
++            .and_then(|_| {
++                if action_boundary {
++                    let wait_start = Instant::now();
++                    let result = self.sr.wait_for_pending_rank1s(false).map(|_| ());
++                    boundary_wait_us = micros_u64(wait_start.elapsed());
++                    self.sr.last_profile.pending_rank1_depth = self.sr.pending_rank1.len();
++                    result
++                } else {
++                    Ok(())
++                }
++            });
++        if let Err(error) = spectral_result {
++            // No action progress, state, RNG or override duration is consumed.
++            // The estimator latches GPU failure; a clean checkpoint requires recovery.
++            let _ = self.sr.wait_for_pending_rank1s(false);
++            if let Some(actions) = self.state_actions.as_mut() {
++                actions.failed_step(now_unix_ms, error.to_string());
++            }
++            return Err(error);
++        }
+         self.adapt_hyperparams(0.0);
+ 
+         // Leaky integration with adaptive leak or a one-shot gated override.
+@@ -2114,7 +2314,8 @@ impl ESN {
+             self.x[i] = (1.0 - a) * self.x[i] + a * self.pre[i];
+         }
+ 
+-        let capture_noise = cfg!(feature = "division-rehearsal") || realized_noise.is_some();
++        let capture_noise =
++            cfg!(feature = "division-rehearsal") || realized_noise.is_some() || action_boundary;
+         let mut noise = if capture_noise {
+             vec![0.0_f32; self.res_size]
+         } else {
+@@ -2145,6 +2346,9 @@ impl ESN {
+         self.last_step_trace.leak = a;
+         if capture_noise {
+             self.last_step_trace.noise = noise;
++        } else {
++            // Never present a preceding action boundary's noise as this tick's trace.
++            self.last_step_trace.noise.clear();
+         }
+ 
+         // Clip for stability
+@@ -2152,6 +2356,24 @@ impl ESN {
+             *xi = xi.clamp(-1.0, 1.0);
+         }
+ 
++        self.successful_step_id = self.successful_step_id.saturating_add(1);
++        if action_boundary {
++            // A GPU wait must not prolong an expired request or stale regulator gate.
++            let applied_at = supplied_time_ms.unwrap_or_else(native_wall_time_ms);
++            if let Some(actions) = self.state_actions.as_mut() {
++                if actions.prepare(action_identity.as_ref().unwrap(), applied_at) {
++                    actions.apply_success(
++                        &mut self.x,
++                        self.successful_step_id,
++                        applied_at,
++                        boundary_wait_us,
++                        a,
++                        &self.last_step_trace.noise,
++                    );
++                }
++            }
++        }
++
+         // Update geometric radius (RMS norm of the reservoir state)
+         let norm_sq: f32 = self.x.iter().map(|v| v * v).sum();
+         let radius = (norm_sq / self.res_size as f32).sqrt();
+@@ -2418,11 +2640,12 @@ impl ESN {
+ 
+     /// Get covariance matrix for external spectral analysis
+     /// Returns (dimension, covariance_data)
+-    pub fn get_covariance(&self) -> (usize, Vec<f32>) {
++    pub fn get_covariance(&mut self) -> Result<(usize, Vec<f32>)> {
++        self.sr.wait_for_pending_rank1s(false)?;
+         let d = self.sr.d;
+         let gpu = unsafe { &*self.sr.gpu };
+         let cov_data = gpu.read_f32(&self.sr.cov, d * d);
+-        (d, cov_data)
++        Ok((d, cov_data))
+     }
+ 
+     /// Capture every stateful component needed to restore deterministic ESN
+@@ -2517,6 +2740,8 @@ impl ESN {
+             lambda_base: snapshot.lambda_base,
+             exploration_noise: snapshot.exploration_noise,
+             rng: fastrand::Rng::with_seed(snapshot.rng_state),
++            state_actions: None,
++            successful_step_id: 0,
+             last_step_trace: EsnStepTraceV1 {
+                 leak: snapshot.leak_live,
+                 noise: if cfg!(feature = "division-rehearsal") {
+@@ -3281,3 +3506,154 @@ mod attractor_fingerprint_tests {
+         assert!(state_rms_from_slice(&first_state) > 0.0);
+     }
+ }
++
++fn native_wall_time_ms() -> u64 {
++    std::time::SystemTime::now()
++        .duration_since(std::time::UNIX_EPOCH)
++        .map_or(0, |duration| {
++            duration.as_millis().min(u128::from(u64::MAX)) as u64
++        })
++}
++
++#[cfg(test)]
++mod native_state_action_tests {
++    use super::*;
++    use state_action::{direction_sha256, StateActionStatus, StateGesture, StatePulse};
++    fn make(gpu: &Gpu) -> ESN {
++        ESN::new(
++            16,
++            6,
++            0.25,
++            0.15,
++            0.95,
++            0.35,
++            0.999,
++            gpu,
++            &mut fastrand::Rng::with_seed(0xAC7105),
++        )
++        .unwrap()
++    }
++    fn configure(esn: &mut ESN, amount: f32) {
++        let identity = esn
++            .configure_state_actions("isolated-native-test".into(), StateActionLimits::default())
++            .unwrap();
++        let mut direction = vec![0.0; 16];
++        direction[0] = 1.0;
++        let gesture = StateGesture {
++            command_id: "native-test-command".into(),
++            identity,
++            pattern_id: "coordinate-0".into(),
++            pattern_sha256: direction_sha256(&direction),
++            direction,
++            pulses: vec![StatePulse {
++                success_offset: 0,
++                amount,
++            }],
++            expires_at_unix_ms: 2000,
++            allow_attenuation: true,
++            supersedes: None,
++        };
++        esn.queue_state_command(
++            NativeStateCommandV1::Gesture {
++                schema_version: 1,
++                gesture,
++            },
++            "native-test-intent".into(),
++            1000,
++        )
++        .unwrap();
++        esn.set_state_action_gate(StateActionGate {
++            sampled_at_unix_ms: 1000,
++            valid_until_unix_ms: 2000,
++            allowed: true,
++            reason: None,
++        });
++    }
++    #[test]
++    fn native_action_receipt_has_real_noise_and_geometry_from_after_state() {
++        let gpu = Gpu::new().unwrap();
++        let mut esn = make(&gpu);
++        configure(&mut esn, 0.001);
++        esn.step_with_state_action_time(&[0.1; 6], 1000).unwrap();
++        let receipt = esn
++            .take_state_action_receipts()
++            .into_iter()
++            .find(|r| r.status == StateActionStatus::Applied)
++            .unwrap();
++        assert_eq!(receipt.realized_noise.as_ref().unwrap().len(), 16);
++        assert_eq!(receipt.after.as_ref().unwrap(), &esn.x);
++        let radius = (esn.x.iter().map(|v| v * v).sum::<f32>() / 16.0).sqrt();
++        assert_eq!(esn.get_geom_radius().to_bits(), radius.to_bits());
++        assert_eq!(receipt.effective_leak, Some(esn.last_step_trace.leak));
++        assert!(esn.sr.pending_rank1.is_empty());
++        assert_eq!(receipt.successful_step_id, Some(1));
++    }
++    #[test]
++    fn failed_native_boundary_preserves_state_rng_override_and_gesture() {
++        let gpu = Gpu::new().unwrap();
++        let mut esn = make(&gpu);
++        configure(&mut esn, 0.001);
++        esn.set_leak_override(0.42, 3, "leak-test".into());
++        let before = esn.x.clone();
++        let rng = esn.rng.get_seed();
++        esn.sr.completion_failure = Some("injected completion failure".into());
++        assert!(esn.step_with_state_action_time(&[0.1; 6], 1000).is_err());
++        assert_eq!(esn.x, before);
++        assert_eq!(esn.rng.get_seed(), rng);
++        assert_eq!(esn.leak_override_status().unwrap().remaining_ticks, 3);
++        assert_eq!(esn.successful_step_id(), 0);
++        assert_eq!(
++            esn.active_state_action_command_id(),
++            Some("native-test-command")
++        );
++        assert!(esn.snapshot_v2().is_err());
++        assert!(esn.get_covariance().is_err());
++        assert!(!esn
++            .take_state_action_receipts()
++            .iter()
++            .any(|r| r.status == StateActionStatus::Applied));
++        // Absolute expiry still terminates an action while the estimator is failed.
++        assert!(esn.step_with_state_action_time(&[0.1; 6], 2000).is_err());
++        assert_eq!(esn.active_state_action_command_id(), None);
++        assert!(esn
++            .take_state_action_receipts()
++            .iter()
++            .any(|r| r.status == StateActionStatus::Expired));
++    }
++    #[test]
++    fn zero_native_action_preserves_exact_ordinary_equations_and_checkpoint_values() {
++        let gpu = Gpu::new().unwrap();
++        let mut ordinary = make(&gpu);
++        let snapshot = ordinary.snapshot_v2().unwrap();
++        let mut zero = ESN::from_snapshot_v2(&snapshot, &gpu).unwrap();
++        configure(&mut zero, -0.0);
++        ordinary
++            .step_with_state_action_time(&[0.1; 6], 1000)
++            .unwrap();
++        zero.step_with_state_action_time(&[0.1; 6], 1000).unwrap();
++        let a = ordinary.snapshot_v2().unwrap();
++        let b = zero.snapshot_v2().unwrap();
++        assert_eq!(a.state, b.state);
++        assert_eq!(a.geom_radius.to_bits(), b.geom_radius.to_bits());
++        assert_eq!(a.geom_baseline.to_bits(), b.geom_baseline.to_bits());
++        assert_eq!(a.rng_state, b.rng_state);
++        assert_eq!(a.leak_live.to_bits(), b.leak_live.to_bits());
++        assert_eq!(a.spectral.covariance, b.spectral.covariance);
++        assert_eq!(a.spectral.tick, b.spectral.tick);
++        assert!(zero
++            .take_state_action_receipts()
++            .iter()
++            .any(|r| r.status == StateActionStatus::NoOp));
++    }
++    #[test]
++    fn numerical_restore_never_resumes_or_reauthorizes_a_pending_action() {
++        let gpu = Gpu::new().unwrap();
++        let mut esn = make(&gpu);
++        configure(&mut esn, 0.001);
++        let snapshot = esn.snapshot_v2().unwrap();
++        let restored = ESN::from_snapshot_v2(&snapshot, &gpu).unwrap();
++        assert!(restored.state_action_identity().is_none());
++        assert!(restored.active_state_action_command_id().is_none());
++        assert_eq!(restored.x, esn.x);
++    }
++}
+diff --git a/minime/src/gpu.rs b/minime/src/gpu.rs
+index 669548b..491b742 100644
+--- a/minime/src/gpu.rs
++++ b/minime/src/gpu.rs
+@@ -55,9 +55,9 @@ impl Gpu {
+     // Page-aligned: rounds up to 16384-byte boundary (Apple Silicon vm_page_size).
+     // This enables the SLC (System Level Cache) fast path for buffers <4MB
+     // and matches MLX's allocation strategy (newBufferWithBytesNoCopy requires
+-    // page-aligned pointers). HazardTrackingModeUntracked tells Metal we manage
+-    // barriers manually (via separate command encoders), avoiding automatic
+-    // hazard tracking overhead.
++    // page-aligned pointers). HazardTrackingModeUntracked disables automatic
++    // dependency tracking. Callers must encode explicit dependencies or allocate
++    // tracked resources; separate encoders alone do not establish that contract.
+     pub fn new_shared(&self, bytes: u64) -> Buffer {
+         const PAGE_SIZE: u64 = 16384;
+         let aligned = (bytes + PAGE_SIZE - 1) & !(PAGE_SIZE - 1);
+diff --git a/minime/src/runtime/cli_and_wire.rs b/minime/src/runtime/cli_and_wire.rs
+index c00bf97..a9cf637 100644
+--- a/minime/src/runtime/cli_and_wire.rs
++++ b/minime/src/runtime/cli_and_wire.rs
+@@ -428,6 +428,13 @@ struct EigenPacket {
+     /// microdose override is active.
+     #[serde(default, skip_serializing_if = "Option::is_none")]
+     esn_leak: Option<f32>,
++    /// Latest actual native application receipt with vectors, identified by native
++    /// session and successful step. This is not a cascade-fill snapshot.
++    #[serde(default, skip_serializing_if = "Option::is_none")]
++    native_state_action_v1: Option<serde_json::Value>,
++    /// Latest scheduler event, kept separate so Completed cannot erase geometry.
++    #[serde(default, skip_serializing_if = "Option::is_none")]
++    native_state_action_status_v1: Option<serde_json::Value>,
+     /// Active direct ESN leak override status, if a one-shot gate is spending.
+     #[serde(default, skip_serializing_if = "Option::is_none")]
+     esn_leak_override_v1: Option<serde_json::Value>,
+diff --git a/minime/src/runtime/orchestration.rs b/minime/src/runtime/orchestration.rs
+index 5aabc5a..411e574 100644
+--- a/minime/src/runtime/orchestration.rs
++++ b/minime/src/runtime/orchestration.rs
+@@ -40,9 +40,9 @@ async fn run_engine(
+             registry.field_count(),
+             registry.revision
+         ),
+-        None => println!(
+-            "📜 Envelope registry absent or malformed — compiled bounds remain the law"
+-        ),
++        None => {
++            println!("📜 Envelope registry absent or malformed — compiled bounds remain the law")
++        }
+     }
+ 
+     let stable_core_runtime = StableCoreRuntime::from_env();
+@@ -536,9 +536,8 @@ async fn run_engine(
+     let legacy_proj_matrix: Vec<f32> = (0..(n * legacy_sensory_dim))
+         .map(|_| rng.f32() * 2.0 - 1.0)
+         .collect();
+-    let proj_matrix =
+-        crate::semantic_body_v2::projection_matrix_v2(&legacy_proj_matrix, n, 0.42)
+-            .map_err(anyhow::Error::msg)?;
++    let proj_matrix = crate::semantic_body_v2::projection_matrix_v2(&legacy_proj_matrix, n, 0.42)
++        .map_err(anyhow::Error::msg)?;
+     let mut csv_header_written = false; // Track if CSV header has been written (used in regulation tick)
+     let mut esn_profile_file = if log_esn_profile {
+         fs::create_dir_all("workspace/logs")?;
+@@ -704,6 +703,10 @@ async fn run_engine(
+     // --- Homeostat regulation state ---
+     let mut last_reg_tick = std::time::Instant::now();
+     let mut last_fill_pct: f32 = 0.0;
++    // Timestamp only an actual regulator observation, never a header reread.
++    let mut native_state_gate_sample_ms: u64 = 0;
++    let mut latest_native_state_application: Option<serde_json::Value> = None;
++    let mut latest_native_state_event: Option<serde_json::Value> = None;
+     // Smoothed fill for dfill/dt computation — shock absorber for transitions.
+     // Minime moment journals 2026-03-26T20:23-20:24: "a swift, almost violent
+     // retraction," "sudden hollowness was startling," "abruptly tethered."
+@@ -900,6 +903,19 @@ async fn run_engine(
+     );
+     sensory_bus.set_legacy_audio_synth_enabled(legacy_audio_synth_enabled);
+     sensory_bus.set_legacy_video_synth_enabled(legacy_video_synth_enabled);
++    if let Some(engine) = esn.as_mut() {
++        let limits = crate::esn::state_action::StateActionLimits::default();
++        let identity = engine.configure_state_actions(
++            format!(
++                "minime-native:{}:{}:{}",
++                std::process::id(),
++                session_id,
++                rescue_scaffold::now_unix_ms()
++            ),
++            limits.clone(),
++        )?;
++        sensory_bus.publish_native_state_capability(identity, limits);
++    }
+     if stable_core_runtime.enabled {
+         sensory_bus.set_live_intake_divisors(0, 0);
+         sensory_bus.set_legacy_audio_synth_enabled(false);
+@@ -1398,18 +1414,57 @@ async fn run_engine(
+                     esn.set_rho_direct(rho_floor);
+                 }
+ 
+-                let reservoir_input = match sensory_bus
+-                    .reservoir_input_v2(&z, !stable_core_runtime.enabled)
+-                {
+-                    Ok(input) => input,
+-                    Err(reason) => {
+-                        eprintln!("⚠️  SemanticBody V2 input rejected: {reason}");
+-                        continue;
+-                    }
+-                };
++                let reservoir_input =
++                    match sensory_bus.reservoir_input_v2(&z, !stable_core_runtime.enabled) {
++                        Ok(input) => input,
++                        Err(reason) => {
++                            eprintln!("⚠️  SemanticBody V2 input rejected: {reason}");
++                            continue;
++                        }
++                    };
+                 // The first 66 values remain exact legacy bytes. The appended
+                 // lane is zero unless Minime has an authenticated owner setting.
+-                match esn.step(&reservoir_input) {
++                let native_now = rescue_scaffold::now_unix_ms();
++                sensory_bus.service_native_state_commands(esn, native_now);
++                if esn.active_state_action_command_id().is_some() {
++                    let division_conflict =
++                        division_coordinator.as_ref().is_some_and(|coordinator| {
++                            coordinator
++                                .status()
++                                .extensions
++                                .get("shadow_runtime_attached")
++                                .and_then(serde_json::Value::as_bool)
++                                == Some(true)
++                        });
++                    let native_block = sensory_bus::native_state_gate_reason(
++                        stable_core_runtime.enabled,
++                        hard_recovery_reset,
++                        matches!(stable_core_stage, OverfillStage::Hold),
++                        stable_core_structural_pi_output.reentry_active
++                            || stable_core_structural_pi_output.recovery_impulse_active
++                            || stable_core_structural_pi_output.low_fill_escape_active
++                            || stable_core_structural_pi_output.high_fill_drain_active,
++                        last_fill_pct,
++                        esn.get_geom_rel(),
++                        division_conflict,
++                        sensory_bus.shadow_influence_status().active,
++                        sensory_bus.attractor_pulse_status().active,
++                    );
++                    esn.set_state_action_gate(crate::esn::state_action::StateActionGate {
++                        sampled_at_unix_ms: native_state_gate_sample_ms,
++                        valid_until_unix_ms: native_state_gate_sample_ms.saturating_add(3_000),
++                        allowed: native_block.is_none(),
++                        reason: native_block.map(str::to_string),
++                    });
++                }
++                let native_step_result = esn.step(&reservoir_input);
++                for value in sensory_bus.collect_native_state_receipts(esn)? {
++                    if value.get("after").is_some_and(serde_json::Value::is_array) {
++                        latest_native_state_application = Some(value.clone());
++                    }
++                    latest_native_state_event = Some(value);
++                }
++                match native_step_result {
+                     Ok(_) => {
+                         last_esn_profile = esn.profile_snapshot();
+                         last_esn_lambda1 = esn.get_eig();
+@@ -3211,13 +3266,21 @@ async fn run_engine(
+                     &esn.x,
+                 ) {
+                     let _ = activation_trace_recorder.write_json(&activation_trace_path);
+-                    if let (Some(observer), Some(frame)) = (&afterimage_observer, activation_trace_recorder.latest_frame()) {
+-                        let mut sample = AfterimageSample::new("activation", frame.t_ms, serde_json::json!({
+-                            "summary": &frame.summary,
+-                            "top_active_node_indexes": &frame.top_active_node_indexes,
+-                            "stage": &frame.stage,
+-                            "esn_lambda1": esn.get_eig(),
+-                        }), minime::activation_trace::ACTIVATION_SAMPLE_INTERVAL_MS);
++                    if let (Some(observer), Some(frame)) = (
++                        &afterimage_observer,
++                        activation_trace_recorder.latest_frame(),
++                    ) {
++                        let mut sample = AfterimageSample::new(
++                            "activation",
++                            frame.t_ms,
++                            serde_json::json!({
++                                "summary": &frame.summary,
++                                "top_active_node_indexes": &frame.top_active_node_indexes,
++                                "stage": &frame.stage,
++                                "esn_lambda1": esn.get_eig(),
++                            }),
++                            minime::activation_trace::ACTIVATION_SAMPLE_INTERVAL_MS,
++                        );
+                         sample.wall_clock_unix_ms = frame.wall_clock_unix_ms;
+                         observer.observe(sample);
+                     }
+@@ -4920,6 +4983,7 @@ async fn run_engine(
+                 } else {
+                     smoothed_fill_pct
+                 };
++                native_state_gate_sample_ms = rescue_scaffold::now_unix_ms();
+ 
+                 // Monotony detection: if fill stays in a narrow band too long, nudge exploration
+                 if (eigenfill_pct - monotony_anchor).abs() > 2.0 {
+@@ -5470,6 +5534,8 @@ async fn run_engine(
+                 effective_dimensionality,
+                 distinguishability_loss,
+                 esn_leak: esn.as_ref().map(|engine| engine.get_leak()),
++                native_state_action_v1: latest_native_state_application.clone(),
++                native_state_action_status_v1: latest_native_state_event.clone(),
+                 esn_leak_override_v1: esn
+                     .as_ref()
+                     .and_then(|engine| engine.leak_override_status())
+diff --git a/minime/src/runtime/tests.rs b/minime/src/runtime/tests.rs
+index 262de2a..d3ec2d5 100644
+--- a/minime/src/runtime/tests.rs
++++ b/minime/src/runtime/tests.rs
+@@ -519,6 +519,8 @@ mod tests {
+             effective_dimensionality: denominator.map(|metrics| metrics.effective_dimensionality),
+             distinguishability_loss: denominator.map(|metrics| metrics.distinguishability_loss),
+             esn_leak: Some(0.65),
++            native_state_action_v1: None,
++            native_state_action_status_v1: None,
+             esn_leak_override_v1: None,
+             structural_entropy: None,
+             spectral_damping_warm_start_review_v1: None,
+@@ -712,6 +714,8 @@ mod tests {
+             effective_dimensionality: None,
+             distinguishability_loss: None,
+             esn_leak: None,
++            native_state_action_v1: None,
++            native_state_action_status_v1: None,
+             esn_leak_override_v1: None,
+             structural_entropy: None,
+             spectral_damping_warm_start_review_v1: None,
+diff --git a/minime/src/self_control_cli.rs b/minime/src/self_control_cli.rs
+index 1faf134..3e17673 100644
+--- a/minime/src/self_control_cli.rs
++++ b/minime/src/self_control_cli.rs
+@@ -80,6 +80,7 @@ impl SelfControlIssueOptions {
+ struct ServerHelloV1 {
+     process_identity: String,
+     deployment_identity: String,
++    native_state_ready: bool,
+ }
+ 
+ #[derive(Clone, Debug)]
+@@ -165,6 +166,9 @@ pub async fn issue(options: SelfControlIssueOptions) -> Result<Value, String> {
+         .await
+         .map_err(|error| format!("connect self-control sensory socket: {error}"))?;
+     let hello = receive_hello(&mut socket).await?;
++    if options.values.native_state_gesture.is_some() && !hello.native_state_ready {
++        return Err("receiver did not negotiate native_state_gesture_v1".to_string());
++    }
+     let mut expected_revision = options.expected_revision;
+     let mut attempts = Vec::new();
+ 
+@@ -373,6 +377,8 @@ async fn receive_hello(
+     Ok(ServerHelloV1 {
+         process_identity: required_text(&value, "server_process_identity")?,
+         deployment_identity: required_text(&value, "server_deployment_identity")?,
++        native_state_ready: supports("native_state_gesture_v1")
++            && supports("native_state_application_v1"),
+     })
+ }
+ 
+@@ -477,6 +483,7 @@ mod tests {
+             &ServerHelloV1 {
+                 process_identity: "pid:server".to_string(),
+                 deployment_identity: "deployment:test".to_string(),
++                native_state_ready: false,
+             },
+             4,
+             100,
+diff --git a/minime/src/self_control_runtime.rs b/minime/src/self_control_runtime.rs
+index 4386478..b302004 100644
+--- a/minime/src/self_control_runtime.rs
++++ b/minime/src/self_control_runtime.rs
+@@ -19,6 +19,7 @@ use crate::{
+ 
+ mod apply;
+ mod deployment_handoff;
++mod native_state;
+ pub(crate) mod storage;
+ 
+ use apply::{
+@@ -124,6 +125,11 @@ struct RuntimeStateV2 {
+     clamp_saturation_by_family: BTreeMap<String, u8>,
+     #[serde(default, skip_serializing_if = "Option::is_none")]
+     pending_command_sha256: Option<String>,
++    #[serde(
++        default,
++        skip_serializing_if = "native_state::NativeAdapterState::is_empty"
++    )]
++    native_state: native_state::NativeAdapterState,
+ }
+ 
+ impl RuntimeStateV2 {
+@@ -141,6 +147,7 @@ impl RuntimeStateV2 {
+             receipts: Vec::new(),
+             clamp_saturation_by_family: BTreeMap::new(),
+             pending_command_sha256: None,
++            native_state: native_state::NativeAdapterState::default(),
+         }
+     }
+ }
+@@ -367,6 +374,7 @@ impl SelfControlRuntime {
+             "pending_transition": state.pending_command_sha256.is_some(),
+             "integrity_verified": true,
+             "felt_effect_established": false,
++            "native_state": state.native_state.status(),
+         }))
+     }
+ 
+@@ -752,6 +760,9 @@ impl SelfControlRuntime {
+         family: &str,
+         now_unix_ms: u64,
+     ) -> SelfControlReceiptV2 {
++        if command.intent.values.native_state_gesture.is_some() {
++            return self.apply_native_state(inner, command, command_sha256, family, now_unix_ms);
++        }
+         if command.intent.authority_class == SelfControlAuthorityClassV2::Mutual
+             || command.intent.family == SelfControlFamilyV2::SharedCoupling
+         {
+@@ -1107,6 +1118,7 @@ impl SelfControlRuntime {
+     fn recover_at_startup(&self, now_unix_ms: u64) -> Result<(), String> {
+         let mut inner = self.inner.lock();
+         inner.state.pending_command_sha256 = None;
++        self.recover_native_state(&mut inner, now_unix_ms);
+         let active = inner.state.active_controls.clone();
+         for (family, control) in active {
+             let expired = control
+@@ -1602,6 +1614,7 @@ fn receipt_id(command_sha256: &str, status: &str, now_unix_ms: u64) -> String {
+ 
+ const fn status_name(status: SelfControlReceiptStatusV2) -> &'static str {
+     match status {
++        SelfControlReceiptStatusV2::Accepted => "accepted",
+         SelfControlReceiptStatusV2::Applied => "applied",
+         SelfControlReceiptStatusV2::Duplicate => "duplicate",
+         SelfControlReceiptStatusV2::Rejected => "rejected",
+diff --git a/minime/src/self_control_runtime/native_state.rs b/minime/src/self_control_runtime/native_state.rs
+new file mode 100644
+index 0000000..59de62c
+--- /dev/null
++++ b/minime/src/self_control_runtime/native_state.rs
+@@ -0,0 +1,244 @@
++//! Durable native-action admission. Numerical checkpoints never replay this queue.
++use super::*;
++use crate::{esn::state_action::NativeStateCommandV1, sensory_bus::NativeStateEnvelope};
++use serde_json::{json, Value};
++
++const MAX_NATIVE_ADMISSIONS: usize = 4096;
++const MAX_NATIVE_APPLICATIONS: usize = 256;
++
++#[derive(Clone, Debug, Serialize, Deserialize)]
++struct Admission {
++    command: SelfControlCommandV2,
++    status: String,
++}
++
++#[derive(Clone, Debug, Default, Serialize, Deserialize)]
++pub(super) struct NativeAdapterState {
++    #[serde(default)]
++    admissions: BTreeMap<String, Admission>,
++    #[serde(default)]
++    gesture_ids: BTreeMap<String, String>,
++    #[serde(default)]
++    applications: Vec<Value>,
++    #[serde(default)]
++    capability: Option<Value>,
++}
++impl NativeAdapterState {
++    pub(super) fn is_empty(&self) -> bool {
++        self.admissions.is_empty()
++            && self.gesture_ids.is_empty()
++            && self.applications.is_empty()
++            && self.capability.is_none()
++    }
++    pub(super) fn status(&self) -> Value {
++        json!({"schema": "minime.native_state.status.v1", "target_being": "minime",
++            "capability": self.capability,
++            "admissions": self.admissions.iter().map(|(id, a)| json!({"intent_id": id,
++                "command_id": a.command.command_id, "status": a.status,
++                "requested_values": a.command.intent.values})).collect::<Vec<_>>(),
++            "recent_applications": self.applications, "felt_effect_established": false})
++    }
++    fn push_application(&mut self, value: Value) {
++        self.applications.push(value);
++        if self.applications.len() > MAX_NATIVE_APPLICATIONS {
++            self.applications
++                .drain(..self.applications.len() - MAX_NATIVE_APPLICATIONS);
++        }
++    }
++}
++
++impl SelfControlRuntime {
++    pub fn native_state_ready(&self) -> bool {
++        self.is_ready() && self.bus.native_state_admission_ready()
++    }
++
++    pub(super) fn apply_native_state(
++        &self,
++        inner: &mut RuntimeInner,
++        command: &SelfControlCommandV2,
++        command_sha256: &str,
++        family: &str,
++        now: u64,
++    ) -> SelfControlReceiptV2 {
++        let native = command.intent.values.native_state_gesture.as_ref().unwrap();
++        let reject = if command.intent.authority_class != SelfControlAuthorityClassV2::SelfOwned
++            || command.intent.actor.being != TARGET_BEING
++        {
++            Some("native_state_requires_minime_owner")
++        } else if command.intent.family != SelfControlFamilyV2::LocalTopology
++            || command.intent.durability != SelfControlDurabilityV2::OneShot
++            || command.intent.values.field_count() != 1
++        {
++            Some("native_state_requires_sole_one_shot")
++        } else if !self.bus.native_state_admission_ready() {
++            Some("native_state_adapter_unavailable")
++        } else if inner
++            .state
++            .native_state
++            .admissions
++            .contains_key(&command.intent.intent_id)
++        {
++            Some("native_state_intent_id_already_admitted")
++        } else if inner.state.native_state.admissions.len() >= MAX_NATIVE_ADMISSIONS {
++            Some("native_state_durable_ledger_full")
++        } else {
++            None
++        };
++        if let Some(reason) = reject {
++            let receipt =
++                self.rejected(command, current_revision(&inner.state, family), now, reason);
++            return self.cache_authenticated(inner, command, command_sha256, receipt, now);
++        }
++        let gesture_key = match native {
++            // The durable owner ledger never reuses gesture IDs, including
++            // across engine sessions. A delayed signed cancellation therefore
++            // cannot accidentally target a different gesture with an old ID.
++            NativeStateCommandV1::Gesture { gesture, .. } => Some(gesture.command_id.clone()),
++            NativeStateCommandV1::Cancel { .. } => None,
++        };
++        if gesture_key
++            .as_ref()
++            .is_some_and(|id| inner.state.native_state.gesture_ids.contains_key(id))
++        {
++            let receipt = self.rejected(
++                command,
++                current_revision(&inner.state, family),
++                now,
++                "native_state_command_id_already_admitted",
++            );
++            return self.cache_authenticated(inner, command, command_sha256, receipt, now);
++        }
++        // Persist the accepted intent BEFORE any engine-visible queue insertion.
++        // If this process dies after commit, recovery says application_unknown;
++        // it never retries a possibly applied state displacement.
++        let intent_id = command.intent.intent_id.clone();
++        inner.state.native_state.admissions.insert(
++            intent_id.clone(),
++            Admission {
++                command: command.clone(),
++                status: "accepted".into(),
++            },
++        );
++        if let Some(key) = gesture_key {
++            inner
++                .state
++                .native_state
++                .gesture_ids
++                .insert(key, intent_id.clone());
++        }
++        inner
++            .state
++            .revision_by_family
++            .insert(family.into(), command.intent.revision);
++        let receipt = self.receipt(
++            command,
++            SelfControlReceiptStatusV2::Accepted,
++            command.intent.revision,
++            now,
++            command.intent.values.clone(),
++            SelfControlValuesV2::default(),
++            ControlSnapshot::default(),
++            Some("native_state_durably_accepted_not_applied".into()),
++            None,
++        );
++        let receipt = self.cache_authenticated(inner, command, command_sha256, receipt, now);
++        if receipt.status != SelfControlReceiptStatusV2::Accepted {
++            return receipt;
++        }
++        if let Err(reason) = self.bus.queue_native_state_command(NativeStateEnvelope {
++            command: native.clone(),
++            authenticated_intent_id: intent_id.clone(),
++            command_expires_at_unix_ms: command.intent.command_expires_at_unix_ms,
++        }) {
++            self.bus
++                .record_native_state_receipt(json!({"schema_version":1, "intent_id":intent_id,
++                "status":"rejected", "observed_at_unix_ms":now, "reason":reason}));
++        }
++        receipt
++    }
++
++    pub(super) fn recover_native_state(&self, inner: &mut RuntimeInner, now: u64) {
++        // Clearing capability prevents a stopped/changed engine being advertised
++        // by the offline status file until the new engine configures its identity.
++        inner.state.native_state.capability = None;
++        let unresolved: Vec<_> = inner
++            .state
++            .native_state
++            .admissions
++            .iter()
++            .filter(|(_, a)| !terminal(&a.status))
++            .map(|(id, a)| (id.clone(), a.command.clone()))
++            .collect();
++        for (id, command) in unresolved {
++            inner
++                .state
++                .native_state
++                .admissions
++                .get_mut(&id)
++                .unwrap()
++                .status = "application_unknown".into();
++            inner.state.native_state.push_application(self.native_application(&command,
++                json!({"schema_version":1,"intent_id":id,"status":"application_unknown",
++                    "observed_at_unix_ms":now,"reason":"process_restart_does_not_replay_native_actions"})));
++        }
++    }
++
++    /// Called by the existing receipt sweeper; returns only durably recorded
++    /// application evidence for broadcast. Failed commits retain their inputs.
++    pub fn sweep_native_state(&self) -> Vec<Value> {
++        let applications = self.bus.take_native_state_receipts();
++        let capability = self.bus.native_state_status();
++        let mut inner = self.inner.lock();
++        if self.disabled_reason.is_some() || inner.integrity_blocked.is_some() {
++            self.bus.restore_native_state_receipts(applications);
++            return Vec::new();
++        }
++        if applications.is_empty() && inner.state.native_state.capability == capability {
++            return Vec::new();
++        }
++        let previous = inner.state.native_state.clone();
++        inner.state.native_state.capability = capability;
++        let mut result = Vec::new();
++        for application in &applications {
++            let Some(intent_id) = application.get("intent_id").and_then(Value::as_str) else {
++                continue;
++            };
++            let Some(admission) = inner.state.native_state.admissions.get_mut(intent_id) else {
++                continue;
++            };
++            if let Some(status) = application.get("status").and_then(Value::as_str) {
++                admission.status = status.to_string();
++            }
++            let wrapped = self.native_application(&admission.command, application.clone());
++            inner.state.native_state.push_application(wrapped.clone());
++            result.push(wrapped);
++        }
++        if self.persist(&inner.state).is_err() {
++            inner.state.native_state = previous;
++            self.bus.restore_native_state_receipts(applications);
++            return Vec::new();
++        }
++        result
++    }
++
++    fn native_application(&self, command: &SelfControlCommandV2, application: Value) -> Value {
++        json!({"schema":"minime.native_state.application.v1", "command_id":command.command_id,
++            "intent_id":command.intent.intent_id, "target_being":TARGET_BEING,
++            "server_process_identity":self.process_identity,
++            "server_deployment_identity":self.deployment_identity,
++            "application":application,"felt_effect_established":false})
++    }
++}
++fn terminal(status: &str) -> bool {
++    matches!(
++        status,
++        "completed"
++            | "cancelled"
++            | "superseded"
++            | "expired"
++            | "identity_mismatch"
++            | "rejected"
++            | "not_active"
++            | "application_unknown"
++    )
++}
+diff --git a/minime/src/self_control_runtime/tests.rs b/minime/src/self_control_runtime/tests.rs
+index 3bef5bc..6474757 100644
+--- a/minime/src/self_control_runtime/tests.rs
++++ b/minime/src/self_control_runtime/tests.rs
+@@ -1511,3 +1511,434 @@ fn envelope_conformance_defers_rollback_while_hard_recovery_blocks_writes() {
+     assert!((fixture.bus.get_regulation_strength() - previous).abs() < 1e-6);
+     std::env::remove_var("MINIME_ENVELOPE_REGISTRY");
+ }
++
++fn native_gesture_values(id: &str) -> SelfControlValuesV2 {
++    use crate::esn::state_action::{
++        direction_sha256, NativeStateCommandV1, NativeStateIdentity, StateGesture, StatePulse,
++    };
++    let direction = vec![1.0, 0.0];
++    SelfControlValuesV2 {
++        native_state_gesture: Some(NativeStateCommandV1::Gesture {
++            schema_version: 1,
++            gesture: StateGesture {
++                command_id: id.into(),
++                identity: NativeStateIdentity {
++                    engine_session_id: "native-session-test".into(),
++                    model_id: "model-test".into(),
++                    node_layout_id: "layout-test".into(),
++                    node_count: 2,
++                },
++                pattern_id: "node-0".into(),
++                pattern_sha256: direction_sha256(&direction),
++                direction,
++                pulses: vec![StatePulse {
++                    success_offset: 0,
++                    amount: 0.001,
++                }],
++                expires_at_unix_ms: NOW + 5000,
++                allow_attenuation: false,
++                supersedes: None,
++            },
++        }),
++        ..SelfControlValuesV2::default()
++    }
++}
++fn native_command(f: &Fixture, id: &str, revision: u64, gesture_id: &str) -> SelfControlCommandV2 {
++    self_command(
++        &f.minime_key,
++        id,
++        &format!("native-nonce-{id}"),
++        SelfControlFamilyV2::LocalTopology,
++        SelfControlActionV2::Set,
++        SelfControlDurabilityV2::OneShot,
++        revision,
++        native_gesture_values(gesture_id),
++        None,
++    )
++}
++fn native_ready(f: &Fixture) {
++    f.bus.set_native_state_status(
++        serde_json::json!({"identity":{"engine_session_id":"native-session-test"}}),
++    );
++}
++
++#[test]
++fn native_state_admission_is_durable_and_does_not_claim_application() {
++    let f = fixture();
++    native_ready(&f);
++    let command = native_command(&f, "native-admit", 1, "g-1");
++    let receipt = f.runtime.process(&command, NOW + 1);
++    assert_eq!(receipt.status, SelfControlReceiptStatusV2::Accepted);
++    assert_eq!(receipt.applied_values.field_count(), 0);
++    assert_eq!(receipt.clamped_values, command.intent.values);
++    let status = SelfControlRuntime::verified_status(&f.root).unwrap();
++    assert_eq!(
++        status["native_state"]["admissions"][0]["status"],
++        "accepted"
++    );
++    let queued = f.bus.take_native_state_command().unwrap();
++    assert_eq!(queued.authenticated_intent_id, command.intent.intent_id);
++    assert!(f.bus.take_native_state_command().is_none());
++}
++
++#[test]
++fn native_state_duplicate_and_new_envelope_cannot_repeat_a_gesture() {
++    let f = fixture();
++    native_ready(&f);
++    let command = native_command(&f, "native-once", 1, "g-once");
++    assert_eq!(
++        f.runtime.process(&command, NOW + 1).status,
++        SelfControlReceiptStatusV2::Accepted
++    );
++    f.bus.take_native_state_command().unwrap();
++    assert_eq!(
++        f.runtime.process(&command, NOW + 2).status,
++        SelfControlReceiptStatusV2::Duplicate
++    );
++    let rebound = native_command(&f, "native-rebound", 2, "g-once");
++    let receipt = f.runtime.process(&rebound, NOW + 3);
++    assert_eq!(receipt.status, SelfControlReceiptStatusV2::Rejected);
++    assert_eq!(
++        receipt.reason.as_deref(),
++        Some("native_state_command_id_already_admitted")
++    );
++    assert!(f.bus.take_native_state_command().is_none());
++}
++
++#[test]
++fn native_state_bad_signature_and_peer_self_owned_never_queue() {
++    let f = fixture();
++    native_ready(&f);
++    let mut unsigned = native_command(&f, "native-unsigned", 1, "g-unsigned");
++    unsigned.authority_proofs.clear();
++    assert_eq!(
++        f.runtime.process(&unsigned, NOW + 1).status,
++        SelfControlReceiptStatusV2::Rejected
++    );
++    let mut peer = native_command(&f, "native-peer", 1, "g-peer");
++    peer.intent.actor.being = "astrid".into();
++    peer.authority_proofs = vec![signed_proof(
++        &peer.intent,
++        "astrid",
++        &f.astrid_key,
++        "peer-native-nonce",
++    )];
++    assert_eq!(
++        f.runtime.process(&peer, NOW + 2).status,
++        SelfControlReceiptStatusV2::Rejected
++    );
++    assert!(f.bus.take_native_state_command().is_none());
++}
++
++#[test]
++fn native_state_restart_reports_unknown_and_never_replays() {
++    let f = fixture();
++    native_ready(&f);
++    let command = native_command(&f, "native-restart", 1, "g-restart");
++    assert_eq!(
++        f.runtime.process(&command, NOW + 1).status,
++        SelfControlReceiptStatusV2::Accepted
++    );
++    f.bus.take_native_state_command().unwrap(); // Could have applied before a crash.
++    let replacement_bus = SensoryBus::new(32, 4, 8);
++    let replacement = SelfControlRuntime::open_with_safety_probe(
++        f.root.clone(),
++        "replacement-process".into(),
++        DEPLOYMENT.into(),
++        replacement_bus.clone(),
++        NOW + 2,
++        || false,
++    )
++    .unwrap();
++    let status = SelfControlRuntime::verified_status(&f.root).unwrap();
++    assert_eq!(
++        status["native_state"]["admissions"][0]["status"],
++        "application_unknown"
++    );
++    assert_eq!(
++        status["native_state"]["recent_applications"][0]["application"]["status"],
++        "application_unknown"
++    );
++    assert!(replacement_bus.take_native_state_command().is_none());
++    assert_eq!(
++        replacement.process(&command, NOW + 3).status,
++        SelfControlReceiptStatusV2::Duplicate
++    );
++    assert!(replacement_bus.take_native_state_command().is_none());
++}
++
++#[test]
++fn native_state_application_events_preserve_zero_effect_completion() {
++    let f = fixture();
++    native_ready(&f);
++    let command = native_command(&f, "native-zero", 1, "g-zero");
++    f.runtime.process(&command, NOW + 1);
++    for status in ["no_op", "completed"] {
++        f.bus.record_native_state_receipt(
++            serde_json::json!({"schema_version":1,"intent_id":command.intent.intent_id,
++            "command_id":"g-zero","status":status,"actual_l2":0.0,"successful_step_id":1}),
++        );
++    }
++    let emitted = f.runtime.sweep_native_state();
++    assert_eq!(emitted.len(), 2);
++    assert_eq!(emitted[0]["application"]["status"], "no_op");
++    assert_eq!(emitted[1]["application"]["status"], "completed");
++    assert_eq!(emitted[1]["felt_effect_established"], false);
++    let durable = SelfControlRuntime::verified_status(&f.root).unwrap();
++    assert_eq!(
++        durable["native_state"]["recent_applications"]
++            .as_array()
++            .unwrap()
++            .len(),
++        2
++    );
++}
++
++#[test]
++fn native_state_commit_failure_never_makes_command_consumable() {
++    let f = fixture();
++    native_ready(&f);
++    std::fs::remove_file(f.root.join("state.json")).unwrap();
++    std::fs::create_dir(f.root.join("state.json")).unwrap();
++    let command = native_command(&f, "native-failed-disk", 1, "g-failed-disk");
++    assert_eq!(
++        f.runtime.process(&command, NOW + 1).status,
++        SelfControlReceiptStatusV2::Rejected
++    );
++    assert!(f.bus.take_native_state_command().is_none());
++}
++
++#[test]
++fn native_state_shape_rejects_unknown_payload_and_mixed_fields() {
++    let mut value = serde_json::to_value(native_gesture_values("g-shape")).unwrap();
++    value["native_state_gesture"]["gesture"]["surprise"] = serde_json::json!(true);
++    assert!(serde_json::from_value::<SelfControlValuesV2>(value).is_err());
++    let mut values = native_gesture_values("g-mixed");
++    values.fill_target = Some(0.68);
++    assert!(!values.is_well_formed());
++}
++
++#[test]
++fn native_state_pilot_allows_named_hold_and_explains_preemptions() {
++    use crate::sensory_bus::native_state_gate_reason as gate;
++    assert_eq!(
++        gate(true, false, true, false, 68.0, 1.0, false, false, false),
++        None
++    );
++    assert_eq!(
++        gate(true, false, false, false, 68.0, 1.0, false, false, false),
++        Some("stable_core_stage_not_hold")
++    );
++    assert_eq!(
++        gate(true, true, true, false, 68.0, 1.0, false, false, false),
++        Some("hard_recovery_reset")
++    );
++    assert_eq!(
++        gate(true, false, true, true, 68.0, 1.0, false, false, false),
++        Some("structural_recovery_or_drain")
++    );
++    assert_eq!(
++        gate(true, false, true, false, f32::NAN, 1.0, false, false, false),
++        Some("fill_outside_58_72_pilot_shelf")
++    );
++    assert_eq!(
++        gate(true, false, true, false, 68.0, 1.32, false, false, false),
++        Some("geometry_outside_pilot_release_reference")
++    );
++    assert_eq!(
++        gate(true, false, true, false, 68.0, 1.0, true, false, false),
++        Some("division_shadow_active")
++    );
++    assert_eq!(
++        gate(true, false, true, false, 68.0, 1.0, false, true, false),
++        Some("shadow_influence_active")
++    );
++    assert_eq!(
++        gate(true, false, true, false, 68.0, 1.0, false, false, true),
++        Some("attractor_pulse_active")
++    );
++}
++
++#[test]
++fn native_generic_json_preserves_measurement_bits_and_state_hash() {
++    // StateActionReceipt and capabilities contain f32 values widened by
++    // serde_json::to_value. The default non-roundtrip JSON parser can change
++    // these f64 Values by one bit, invalidating the durable canonical hash.
++    let mut value = serde_json::to_value(super::RuntimeStateV2::new(DEPLOYMENT.into())).unwrap();
++    value["native_state"] = serde_json::json!({
++        "capability": {"limits": crate::esn::state_action::StateActionLimits::default()},
++        "applications": [{"application": {
++            "status": "applied", "actual_l2": 0.0010000000474974513_f64,
++            "before": vec![0.001_f32, -0.137_f32, 0.14467227458953857_f32],
++            "after": vec![0.002_f32, -0.136_f32, 0.332_f32],
++            "delta": vec![0.001_f32, 0.001_f32, -0.001_f32],
++            "realized_noise": vec![-0.0028778540436178446_f32]
++        }}]
++    });
++    let state: super::RuntimeStateV2 = serde_json::from_value(value).unwrap();
++    let original = serde_json::to_value(&state).unwrap();
++    let envelope = super::RuntimeStateEnvelopeV1 {
++        schema: super::STATE_ENVELOPE_SCHEMA.into(),
++        state_sha256: super::state_sha256(&state).unwrap(),
++        state,
++    };
++    let encoded = serde_json::to_vec_pretty(&envelope).unwrap();
++    let decoded: super::RuntimeStateEnvelopeV1 = serde_json::from_slice(&encoded).unwrap();
++    let observed = serde_json::to_value(&decoded.state).unwrap();
++    assert_eq!(
++        observed, original,
++        "JSON must preserve every measured number"
++    );
++    super::verify_state_envelope_integrity(decoded).unwrap();
++}
++
++#[test]
++fn legacy_empty_native_state_preserves_pre_extension_hash() {
++    // Frozen pre-extension state bytes: empty native state must remain omitted.
++    let legacy = br#"{"active_controls":{},"clamp_saturation_by_family":{},"deployment_identity":"minime-deployment-test","held_intents":[],"idempotency":{},"preferences":{},"receipts":[],"revision_by_family":{},"schema":"minime.self_control.runtime_state.v2","seen_nonces":{},"target_being":"minime"}"#;
++    let state: super::RuntimeStateV2 = serde_json::from_slice(legacy).unwrap();
++    assert_eq!(
++        super::state_sha256(&state).unwrap(),
++        "ce61cb26f7da4cdf2e7045467fd2ed57a6bd786cd92d626a0b2dbf9f302b8e93"
++    );
++    assert_eq!(
++        crate::self_control_wire::canonical_json_bytes(&state).unwrap(),
++        legacy
++    );
++    assert!(serde_json::to_value(state)
++        .unwrap()
++        .get("native_state")
++        .is_none());
++}
++
++#[test]
++fn native_signed_owner_to_real_metal_step_to_durable_application() {
++    use crate::esn::{
++        state_action::{
++            direction_sha256, NativeStateCommandV1, StateActionGate, StateActionLimits,
++        },
++        ESN,
++    };
++    let gpu = crate::gpu::Gpu::new().expect("isolated Metal device");
++    let mut engine = ESN::new(
++        16,
++        6,
++        0.25,
++        0.15,
++        0.95,
++        0.35,
++        0.999,
++        &gpu,
++        &mut fastrand::Rng::with_seed(0xAC7105),
++    )
++    .unwrap();
++    let f = fixture();
++    let limits = StateActionLimits::default();
++    let identity = engine
++        .configure_state_actions("signed-native-integration-session".into(), limits.clone())
++        .unwrap();
++    f.bus
++        .publish_native_state_capability(identity.clone(), limits);
++    f.runtime.sweep_native_state();
++    for offset in 0..24 {
++        engine
++            .step_with_state_action_time(&[0.1; 6], NOW - 100 + offset)
++            .unwrap();
++    }
++    let mut values = native_gesture_values("native-integration-gesture");
++    if let Some(NativeStateCommandV1::Gesture { gesture, .. }) =
++        values.native_state_gesture.as_mut()
++    {
++        gesture.identity = identity.clone();
++        gesture.direction = vec![0.0; 16];
++        gesture.direction[3] = 1.0;
++        gesture.pattern_sha256 = direction_sha256(&gesture.direction);
++    }
++    let command = self_command(
++        &f.minime_key,
++        "native-integration-command",
++        "native-integration-nonce",
++        SelfControlFamilyV2::LocalTopology,
++        SelfControlActionV2::Set,
++        SelfControlDurabilityV2::OneShot,
++        1,
++        values,
++        None,
++    );
++    let admission = f.runtime.process(&command, NOW + 1);
++    assert_eq!(admission.status, SelfControlReceiptStatusV2::Accepted);
++    assert_eq!(admission.applied_values.field_count(), 0);
++    assert!(engine.active_state_action_command_id().is_none());
++    f.bus.service_native_state_commands(&mut engine, NOW + 2);
++    engine.set_state_action_gate(StateActionGate {
++        sampled_at_unix_ms: NOW,
++        valid_until_unix_ms: NOW + 3000,
++        allowed: true,
++        reason: None,
++    });
++    engine
++        .step_with_state_action_time(&[0.1; 6], NOW + 3)
++        .unwrap();
++    let engine_receipts = f.bus.collect_native_state_receipts(&mut engine).unwrap();
++    assert!(engine_receipts.iter().any(|r| r["status"] == "completed"));
++    let raw_applied = engine_receipts
++        .iter()
++        .find(|r| r["status"] == "applied")
++        .unwrap();
++    let after: Vec<f32> = serde_json::from_value(raw_applied["after"].clone()).unwrap();
++    assert_eq!(after, engine.x);
++    assert!(raw_applied["actual_l2"].as_f64().unwrap() > 0.0);
++    assert_eq!(
++        raw_applied["successful_step_id"].as_u64(),
++        Some(engine.successful_step_id())
++    );
++    assert_eq!(
++        raw_applied["identity"],
++        serde_json::to_value(identity).unwrap()
++    );
++    let wrapped = f.runtime.sweep_native_state();
++    assert_eq!(wrapped.len(), engine_receipts.len());
++    let status = SelfControlRuntime::verified_status(&f.root).unwrap();
++    assert_eq!(status["integrity_verified"], true);
++    assert_eq!(
++        status["native_state"]["admissions"][0]["status"],
++        "completed"
++    );
++    let applied = status["native_state"]["recent_applications"]
++        .as_array()
++        .unwrap()
++        .iter()
++        .find(|r| r["application"]["status"] == "applied")
++        .unwrap();
++    assert_eq!(applied["command_id"], command.command_id);
++    assert_eq!(applied["intent_id"], command.intent.intent_id);
++    assert_eq!(applied["server_deployment_identity"], DEPLOYMENT);
++    assert_eq!(applied["felt_effect_established"], false);
++    assert_eq!(
++        f.runtime.process(&command, NOW + 4).status,
++        SelfControlReceiptStatusV2::Duplicate
++    );
++    assert!(f.bus.take_native_state_command().is_none());
++    assert!(engine.active_state_action_command_id().is_none());
++    let reopened_bus = SensoryBus::new(32, 4, 7);
++    let reopened = SelfControlRuntime::open_with_safety_probe(
++        f.root.clone(),
++        PROCESS.into(),
++        DEPLOYMENT.into(),
++        reopened_bus.clone(),
++        NOW + 5,
++        || false,
++    )
++    .unwrap();
++    assert!(reopened.is_ready());
++    let recovered = SelfControlRuntime::verified_status(&f.root).unwrap();
++    assert_eq!(
++        recovered["native_state"]["admissions"][0]["status"],
++        "completed"
++    );
++    assert_eq!(
++        recovered["native_state"]["recent_applications"],
++        status["native_state"]["recent_applications"]
++    );
++    assert!(reopened_bus.take_native_state_command().is_none());
++}
+diff --git a/minime/src/self_control_wire.rs b/minime/src/self_control_wire.rs
+index 36b5b3b..a5a1c8c 100644
+--- a/minime/src/self_control_wire.rs
++++ b/minime/src/self_control_wire.rs
+@@ -73,6 +73,10 @@ impl SelfControlSourceIdentityV1 {
+ 
+ #[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
+ pub struct SelfControlValuesV2 {
++    /// Versioned native state operation. This sole-field, one-shot extension
++    /// travels through the same pinned owner signature as every other control.
++    #[serde(default, skip_serializing_if = "Option::is_none")]
++    pub native_state_gesture: Option<crate::esn::state_action::NativeStateCommandV1>,
+     #[serde(default, skip_serializing_if = "Option::is_none")]
+     pub conversation_temperature: Option<f32>,
+     #[serde(default, skip_serializing_if = "Option::is_none")]
+@@ -215,6 +219,10 @@ impl SelfControlValuesV2 {
+             return false;
+         };
+         fields.values().all(value_is_finite)
++            && self
++                .native_state_gesture
++                .as_ref()
++                .is_none_or(|command| self.field_count() == 1 && command.validate_shape().is_ok())
+             && self
+                 .checkpoint_annotation
+                 .as_deref()
+@@ -230,7 +238,8 @@ impl SelfControlValuesV2 {
+ 
+     #[must_use]
+     pub fn requires_one_shot(&self) -> bool {
+-        self.porosity.is_some()
++        self.native_state_gesture.is_some()
++            || self.porosity.is_some()
+             || self.esn_leak_override.is_some()
+             || self.esn_leak_override_ticks.is_some()
+             || self.mode_disperse.is_some()
+@@ -509,6 +518,9 @@ impl SelfControlCommandV2 {
+ #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+ #[serde(rename_all = "snake_case")]
+ pub enum SelfControlReceiptStatusV2 {
++    /// Durably admitted to the native step scheduler; no state application is
++    /// asserted. Native application records provide completion separately.
++    Accepted,
+     Applied,
+     Duplicate,
+     Rejected,
+@@ -698,7 +710,8 @@ fn self_control_field_allowed(family: SelfControlFamilyV2, field: &str) -> bool
+         ),
+         SelfControlFamilyV2::LocalTopology => matches!(
+             field,
+-            "porosity"
++            "native_state_gesture"
++                | "porosity"
+                 | "esn_leak_override"
+                 | "esn_leak_override_ticks"
+                 | "mode_disperse"
+diff --git a/minime/src/sensory_bus.rs b/minime/src/sensory_bus.rs
+index 9f24752..5540702 100644
+--- a/minime/src/sensory_bus.rs
++++ b/minime/src/sensory_bus.rs
+@@ -31,6 +31,43 @@ pub enum LaneIngressOutcome {
+     PolicyBlocked,
+ }
+ pub const DEFAULT_QUEUE_CAP: usize = 1024;
++
++/// Explicit pilot policy using named controller states. Admission-gate minima
++/// are normal in stable-core and do not themselves block native state agency.
++#[allow(clippy::too_many_arguments)]
++pub(crate) fn native_state_gate_reason(
++    stable_core: bool,
++    hard_reset: bool,
++    hold: bool,
++    recovery_or_drain: bool,
++    fill_pct: f32,
++    geometry_rel: f32,
++    division_shadow: bool,
++    shadow_influence: bool,
++    attractor_pulse: bool,
++) -> Option<&'static str> {
++    if !stable_core {
++        Some("stable_core_required")
++    } else if hard_reset {
++        Some("hard_recovery_reset")
++    } else if !hold {
++        Some("stable_core_stage_not_hold")
++    } else if recovery_or_drain {
++        Some("structural_recovery_or_drain")
++    } else if !fill_pct.is_finite() || !(58.0..=72.0).contains(&fill_pct) {
++        Some("fill_outside_58_72_pilot_shelf")
++    } else if !geometry_rel.is_finite() || geometry_rel >= 1.32 || geometry_rel < 0.0 {
++        Some("geometry_outside_pilot_release_reference")
++    } else if division_shadow {
++        Some("division_shadow_active")
++    } else if shadow_influence {
++        Some("shadow_influence_active")
++    } else if attractor_pulse {
++        Some("attractor_pulse_active")
++    } else {
++        None
++    }
++}
+ pub const DEFAULT_BATCH_MAX: usize = 16;
+ pub const ATTRACTOR_PULSE_MAX_ABS_CAP: f32 = 0.08;
+ pub const ATTRACTOR_PULSE_DEFAULT_MAX_ABS: f32 = 0.045;
+@@ -1494,6 +1531,9 @@ pub struct SensoryBus {
+     /// One-shot, gated direct ESN leak override request. This is consumed by
+     /// the ESN loop and is separate from PI integrator leak.
+     esn_leak_override: Mutex<Option<EsnLeakOverrideRequest>>,
++    native_state_commands: Mutex<VecDeque<NativeStateEnvelope>>,
++    native_state_status: Mutex<Option<serde_json::Value>>,
++    native_state_receipts: Mutex<VecDeque<serde_json::Value>>,
+     shadow_influence: Mutex<ShadowInfluenceSlot>,
+     attractor_pulse: Mutex<AttractorPulseSlot>,
+     division_commands: Mutex<VecDeque<DivisionCommandV1>>,
+@@ -1505,6 +1545,16 @@ pub struct EsnLeakOverrideRequest {
+     pub leak: f32,
+     pub duration_ticks: u32,
+ }
++
++/// Private in-process handoff. The sensory wire has no anonymous variant for
++/// this message: only SelfControlRuntime may admit it after durable signing
++/// and revision checks. It is intentionally absent from numerical checkpoints.
++#[derive(Debug, Clone)]
++pub(crate) struct NativeStateEnvelope {
++    pub command: crate::esn::state_action::NativeStateCommandV1,
++    pub authenticated_intent_id: String,
++    pub command_expires_at_unix_ms: u64,
++}
+ impl SensoryBus {
+     pub fn new(queue_cap: usize, batch_max: usize, seed: u64) -> Arc<Self> {
+         Self::with_config(queue_cap, batch_max, seed, SensoryBusConfig::default())
+@@ -1584,12 +1634,123 @@ impl SensoryBus {
+             // v3.6: anti-windup leak, promoted from regulator.rs INTEGRATOR_LEAK.
+             pi_integrator_leak: Mutex::new(0.005),
+             esn_leak_override: Mutex::new(None),
++            native_state_commands: Mutex::new(VecDeque::new()),
++            native_state_status: Mutex::new(None),
++            native_state_receipts: Mutex::new(VecDeque::new()),
+             shadow_influence: Mutex::new(ShadowInfluenceSlot::default()),
+             attractor_pulse: Mutex::new(AttractorPulseSlot::default()),
+             division_commands: Mutex::new(VecDeque::new()),
+         })
+     }
+ 
++    /// Publish an actual configured engine identity. This is read-only capability
++    /// metadata; it cannot enqueue or apply a native operation.
++    pub fn publish_native_state_capability(
++        &self,
++        identity: crate::esn::state_action::NativeStateIdentity,
++        limits: crate::esn::state_action::StateActionLimits,
++    ) {
++        self.set_native_state_status(serde_json::json!({
++            "schema": "minime.native_state.capability.v1", "target_being": "minime",
++            "identity": identity, "limits": limits,
++            "authority": "authenticated_minime_self_owned",
++            "peer_apply": "unsupported_without_mutual_adapter",
++            "policy": "fresh_stable_core_hold_shelf_v1",
++            "policy_requirements": {"max_observation_age_ms":3000,"stage":"hold",
++                "fill_pct":[58.0,72.0],"geometry_rel_less_than":1.32,
++                "preempts":["hard_recovery_reset","structural_recovery_or_drain",
++                    "division_shadow_active","shadow_influence_active","attractor_pulse_active"]},
++            "ordinary_state_semantics": "same_step_after_normal_update_before_action",
++            "felt_effect_established": false
++        }));
++    }
++
++    /// Consume only commands that the durable authenticated adapter already
++    /// admitted. There is no public/native-wire unauthenticated enqueue method.
++    pub fn service_native_state_commands(&self, engine: &mut crate::esn::ESN, now: u64) {
++        while let Some(envelope) = self.take_native_state_command() {
++            if now > envelope.command_expires_at_unix_ms {
++                self.record_native_state_receipt(serde_json::json!({
++                            "schema_version":1,"intent_id":envelope.authenticated_intent_id,
++                            "status":"expired","observed_at_unix_ms":now,
++                            "reason":"signed_command_expired_before_engine_admission"}));
++                continue;
++            }
++            let is_cancel = matches!(
++                &envelope.command,
++                crate::esn::state_action::NativeStateCommandV1::Cancel { .. }
++            );
++            match engine.queue_state_command(envelope.command,
++                        envelope.authenticated_intent_id.clone(), now) {
++                        Ok(outcome) if is_cancel => self.record_native_state_receipt(
++                            serde_json::json!({"schema_version":1,"intent_id":envelope.authenticated_intent_id,
++                                "status":outcome.status,"command_id":outcome.command_id,
++                                "observed_at_unix_ms":now,"reason":"cancel_request_processed"})),
++                        Ok(_) => {},
++                        Err(error) => self.record_native_state_receipt(serde_json::json!({
++                            "schema_version":1,"intent_id":envelope.authenticated_intent_id,
++                            "status":"rejected","observed_at_unix_ms":now,"reason":error.to_string()})),
++                    }
++        }
++    }
++
++    /// Hand completed engine evidence to the durable receiver and telemetry.
++    pub fn collect_native_state_receipts(
++        &self,
++        engine: &mut crate::esn::ESN,
++    ) -> Result<Vec<serde_json::Value>, serde_json::Error> {
++        let mut values = Vec::new();
++        for receipt in engine.take_state_action_receipts() {
++            let value = serde_json::to_value(receipt)?;
++            self.record_native_state_receipt(value.clone());
++            values.push(value);
++        }
++        Ok(values)
++    }
++
++    pub(crate) fn native_state_status(&self) -> Option<serde_json::Value> {
++        self.native_state_status.lock().clone()
++    }
++
++    pub(crate) fn set_native_state_status(&self, status: serde_json::Value) {
++        *self.native_state_status.lock() = Some(status);
++    }
++
++    pub(crate) fn native_state_admission_ready(&self) -> bool {
++        self.native_state_status.lock().is_some() && self.native_state_commands.lock().len() < 32
++    }
++
++    pub(crate) fn queue_native_state_command(
++        &self,
++        envelope: NativeStateEnvelope,
++    ) -> Result<(), String> {
++        let mut pending = self.native_state_commands.lock();
++        if pending.len() >= 32 {
++            return Err("native_state_admission_queue_full".to_string());
++        }
++        pending.push_back(envelope);
++        Ok(())
++    }
++
++    pub(crate) fn take_native_state_command(&self) -> Option<NativeStateEnvelope> {
++        self.native_state_commands.lock().pop_front()
++    }
++
++    pub(crate) fn record_native_state_receipt(&self, receipt: serde_json::Value) {
++        self.native_state_receipts.lock().push_back(receipt);
++    }
++
++    pub(crate) fn take_native_state_receipts(&self) -> Vec<serde_json::Value> {
++        self.native_state_receipts.lock().drain(..).collect()
++    }
++
++    pub(crate) fn restore_native_state_receipts(&self, receipts: Vec<serde_json::Value>) {
++        let mut pending = self.native_state_receipts.lock();
++        for receipt in receipts.into_iter().rev() {
++            pending.push_front(receipt);
++        }
++    }
++
+     /// Queue a versioned division command for the native tick-boundary
+     /// coordinator. A bounded queue prevents control-plane pressure from
+     /// affecting the sensory hot path; idempotency is enforced by the
+diff --git a/minime/src/sensory_ws.rs b/minime/src/sensory_ws.rs
+index eee4281..4ae44e3 100644
+--- a/minime/src/sensory_ws.rs
++++ b/minime/src/sensory_ws.rs
+@@ -539,6 +539,11 @@ async fn spawn_sensory_ws_server_with_runtime(
+                             }
+                         }
+                     }
++                    for receipt in runtime.sweep_native_state() {
++                        if let Ok(serialized) = serde_json::to_string(&receipt) {
++                            let _ = self_control_receipts.send(serialized);
++                        }
++                    }
+                 }
+             });
+         }
+@@ -562,7 +567,17 @@ async fn spawn_sensory_ws_server_with_runtime(
+                     Ok(mut ws) => {
+                         println!("🔗 Sensory client connected: {}", peer);
+                         let mut ping_int = time::interval(Duration::from_secs(10));
+-                        let hello = serde_json::to_string(&identity.hello_v1_3(runtime.is_ready()))
++                        let mut hello_value = identity.hello_v1_3(runtime.is_ready());
++                        if runtime.native_state_ready() {
++                            if let Some(capabilities) = hello_value
++                                .get_mut("capabilities")
++                                .and_then(serde_json::Value::as_array_mut)
++                            {
++                                capabilities.push(serde_json::json!("native_state_gesture_v1"));
++                                capabilities.push(serde_json::json!("native_state_application_v1"));
++                            }
++                        }
++                        let hello = serde_json::to_string(&hello_value)
+                             .expect("sensory server hello serializes");
+                         if let Err(error) = ws.send(Message::Text(hello)).await {
+                             eprintln!("Sensory hello send failed: {error}");
+@@ -749,7 +764,8 @@ fn route_semantic_body(
+ 
+ fn self_control_route_outcome(receipt: &SelfControlReceiptV2) -> RouteOutcome {
+     match receipt.status {
+-        SelfControlReceiptStatusV2::Applied
++        SelfControlReceiptStatusV2::Accepted
++        | SelfControlReceiptStatusV2::Applied
+         | SelfControlReceiptStatusV2::Withdrawn
+         | SelfControlReceiptStatusV2::SafetyHeld
+         | SelfControlReceiptStatusV2::RolledBack => RouteOutcome::ACCEPTED,
+diff --git a/minime/src/state_action.rs b/minime/src/state_action.rs
+new file mode 100644
+index 0000000..e1d8307
+--- /dev/null
++++ b/minime/src/state_action.rs
+@@ -0,0 +1,964 @@
++//! Session-scoped, explicitly bounded native state gestures. This queue is not
++//! checkpointed: durable authority and crash reconciliation belong to the adapter.
++use anyhow::{ensure, Result};
++use serde::{Deserialize, Serialize};
++use sha2::{Digest, Sha256};
++use std::collections::{HashMap, VecDeque};
++
++const MAX_COMMANDS: usize = 4096;
++const MAX_RECEIPTS: usize = 1024;
++
++#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
++#[serde(deny_unknown_fields)]
++pub struct NativeStateIdentity {
++    pub engine_session_id: String,
++    pub model_id: String,
++    pub node_layout_id: String,
++    pub node_count: usize,
++}
++#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
++#[serde(deny_unknown_fields)]
++pub struct StatePulse {
++    pub success_offset: u32,
++    pub amount: f32,
++}
++#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
++#[serde(deny_unknown_fields)]
++pub struct StateGesture {
++    pub command_id: String,
++    pub identity: NativeStateIdentity,
++    pub pattern_id: String,
++    pub pattern_sha256: String,
++    pub direction: Vec<f32>,
++    pub pulses: Vec<StatePulse>,
++    pub expires_at_unix_ms: u64,
++    pub allow_attenuation: bool,
++    pub supersedes: Option<String>,
++}
++#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
++#[serde(tag = "operation", rename_all = "snake_case", deny_unknown_fields)]
++pub enum NativeStateCommandV1 {
++    Gesture {
++        schema_version: u32,
++        gesture: StateGesture,
++    },
++    Cancel {
++        schema_version: u32,
++        command_id: String,
++    },
++}
++impl NativeStateCommandV1 {
++    pub fn validate_shape(&self) -> Result<()> {
++        match self {
++            Self::Cancel {
++                schema_version,
++                command_id,
++            } => {
++                ensure!(
++                    *schema_version == 1,
++                    "unsupported native state command version"
++                );
++                valid_id(command_id)?;
++            }
++            Self::Gesture {
++                schema_version,
++                gesture: g,
++            } => {
++                ensure!(
++                    *schema_version == 1,
++                    "unsupported native state command version"
++                );
++                for id in [
++                    &g.command_id,
++                    &g.pattern_id,
++                    &g.identity.engine_session_id,
++                    &g.identity.model_id,
++                    &g.identity.node_layout_id,
++                ] {
++                    valid_id(id)?;
++                }
++                if let Some(id) = &g.supersedes {
++                    valid_id(id)?;
++                }
++                ensure!(
++                    (1..=4096).contains(&g.identity.node_count)
++                        && g.direction.len() == g.identity.node_count,
++                    "direction dimensions differ"
++                );
++                ensure!(
++                    g.direction.iter().all(|v| v.is_finite()),
++                    "nonfinite direction"
++                );
++                let norm = g
++                    .direction
++                    .iter()
++                    .map(|v| f64::from(*v).powi(2))
++                    .sum::<f64>()
++                    .sqrt();
++                ensure!(
++                    (norm - 1.0).abs() <= 1e-5,
++                    "direction must have unit L2 norm"
++                );
++                ensure!(
++                    direction_sha256(&g.direction) == g.pattern_sha256,
++                    "direction hash mismatch"
++                );
++                ensure!(
++                    !g.pulses.is_empty() && g.pulses.len() <= 32,
++                    "gesture pulse count out of bounds"
++                );
++                ensure!(
++                    g.pulses
++                        .iter()
++                        .all(|p| p.amount.is_finite() && p.success_offset < 32),
++                    "invalid pulse"
++                );
++                ensure!(
++                    g.pulses
++                        .windows(2)
++                        .all(|p| p[0].success_offset < p[1].success_offset),
++                    "pulse offsets must increase strictly"
++                );
++            }
++        }
++        Ok(())
++    }
++}
++fn valid_id(id: &str) -> Result<()> {
++    ensure!(
++        !id.trim().is_empty() && id.len() <= 256,
++        "invalid native state identity"
++    );
++    Ok(())
++}
++pub fn direction_sha256(direction: &[f32]) -> String {
++    let mut hash = Sha256::new();
++    hash.update(b"native-state-direction-f32-v1\0");
++    hash.update((direction.len() as u64).to_le_bytes());
++    for value in direction {
++        hash.update(value.to_bits().to_le_bytes());
++    }
++    format!("{:x}", hash.finalize())
++}
++
++/// Engineering pilot envelope, not a claim of live safety or subjective effect.
++/// Caller policy may narrow these limits; the compiled envelope cannot be widened.
++#[derive(Clone, Debug, Serialize, Deserialize)]
++#[serde(deny_unknown_fields)]
++pub struct StateActionLimits {
++    pub max_requested_l2: f32,
++    pub max_total_requested_l2: f32,
++    pub max_coordinate_delta: f32,
++    pub max_success_steps: u32,
++    pub max_age_ms: u64,
++}
++impl Default for StateActionLimits {
++    fn default() -> Self {
++        Self {
++            max_requested_l2: 0.001,
++            max_total_requested_l2: 0.032,
++            max_coordinate_delta: 0.001,
++            max_success_steps: 32,
++            max_age_ms: 60_000,
++        }
++    }
++}
++impl StateActionLimits {
++    pub fn validate(&self) -> Result<()> {
++        let cap = Self::default();
++        for (value, max) in [
++            (self.max_requested_l2, cap.max_requested_l2),
++            (self.max_total_requested_l2, cap.max_total_requested_l2),
++            (self.max_coordinate_delta, cap.max_coordinate_delta),
++        ] {
++            ensure!(
++                value.is_finite() && value > 0.0 && value <= max,
++                "invalid or widened state action limit"
++            );
++        }
++        ensure!(
++            self.max_success_steps > 0
++                && self.max_success_steps <= cap.max_success_steps
++                && self.max_age_ms > 0
++                && self.max_age_ms <= cap.max_age_ms,
++            "invalid duration envelope"
++        );
++        Ok(())
++    }
++}
++#[derive(Clone, Debug)]
++pub struct StateActionGate {
++    pub sampled_at_unix_ms: u64,
++    pub valid_until_unix_ms: u64,
++    pub allowed: bool,
++    pub reason: Option<String>,
++}
++#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
++#[serde(rename_all = "snake_case")]
++pub enum StateActionStatus {
++    Accepted,
++    Applied,
++    NoOp,
++    Completed,
++    HeadroomRejected,
++    Expired,
++    Cancelled,
++    Superseded,
++    Suspended,
++    IdentityMismatch,
++    StepFailed,
++}
++#[derive(Clone, Debug, Serialize, Deserialize)]
++pub struct StateActionReceipt {
++    pub schema_version: u32,
++    pub command_id: String,
++    pub intent_id: String,
++    pub identity: NativeStateIdentity,
++    pub pattern_id: String,
++    pub pattern_sha256: String,
++    pub direction: Vec<f32>,
++    pub status: StateActionStatus,
++    pub observed_at_unix_ms: u64,
++    pub successful_step_id: Option<u64>,
++    pub pulse_index: Option<usize>,
++    pub success_offset: Option<u32>,
++    pub requested_amount: Option<f32>,
++    pub before: Option<Vec<f32>>,
++    pub after: Option<Vec<f32>>,
++    pub delta: Option<Vec<f32>>,
++    pub attenuation: Option<f32>,
++    pub actual_l2: Option<f64>,
++    pub max_abs_delta: Option<f32>,
++    pub clipped: bool,
++    pub boundary_wait_us: Option<u64>,
++    pub effective_leak: Option<f32>,
++    pub realized_noise: Option<Vec<f32>>,
++    pub reason: Option<String>,
++}
++#[derive(Clone, Debug, Serialize, Deserialize)]
++pub struct QueueOutcome {
++    pub status: String,
++    pub command_id: String,
++    pub superseded_command_id: Option<String>,
++}
++#[derive(Clone, Debug)]
++struct Active {
++    gesture: StateGesture,
++    intent_id: String,
++    success_offset: u32,
++    pulse_index: usize,
++    last_block: Option<String>,
++}
++impl Active {
++    fn receipt(
++        &self,
++        status: StateActionStatus,
++        now: u64,
++        reason: Option<String>,
++    ) -> StateActionReceipt {
++        StateActionReceipt {
++            schema_version: 1,
++            command_id: self.gesture.command_id.clone(),
++            intent_id: self.intent_id.clone(),
++            identity: self.gesture.identity.clone(),
++            pattern_id: self.gesture.pattern_id.clone(),
++            pattern_sha256: self.gesture.pattern_sha256.clone(),
++            direction: self.gesture.direction.clone(),
++            status,
++            observed_at_unix_ms: now,
++            successful_step_id: None,
++            pulse_index: None,
++            success_offset: None,
++            requested_amount: None,
++            before: None,
++            after: None,
++            delta: None,
++            attenuation: None,
++            actual_l2: None,
++            max_abs_delta: None,
++            clipped: false,
++            boundary_wait_us: None,
++            effective_leak: None,
++            realized_noise: None,
++            reason,
++        }
++    }
++}
++pub(crate) struct StateActionEngine {
++    pub identity: NativeStateIdentity,
++    limits: StateActionLimits,
++    active: Option<Active>,
++    seen: HashMap<String, (StateGesture, String)>,
++    receipts: VecDeque<StateActionReceipt>,
++    gate: Option<StateActionGate>,
++}
++impl StateActionEngine {
++    pub fn new(identity: NativeStateIdentity, limits: StateActionLimits) -> Result<Self> {
++        valid_id(&identity.engine_session_id)?;
++        limits.validate()?;
++        Ok(Self {
++            identity,
++            limits,
++            active: None,
++            seen: HashMap::new(),
++            receipts: VecDeque::new(),
++            gate: None,
++        })
++    }
++    pub fn set_gate(&mut self, gate: StateActionGate) {
++        self.gate = Some(gate);
++    }
++    pub fn take_receipts(&mut self) -> Vec<StateActionReceipt> {
++        self.receipts.drain(..).collect()
++    }
++    pub fn has_active(&self) -> bool {
++        self.active.is_some()
++    }
++    pub fn active_command_id(&self) -> Option<&str> {
++        self.active.as_ref().map(|a| a.gesture.command_id.as_str())
++    }
++    pub fn queue(
++        &mut self,
++        command: NativeStateCommandV1,
++        intent_id: String,
++        now: u64,
++    ) -> Result<QueueOutcome> {
++        command.validate_shape()?;
++        valid_id(&intent_id)?;
++        ensure!(
++            self.receipts.len() + 3 < MAX_RECEIPTS,
++            "native action receipt queue full"
++        );
++        // Admission also observes absolute expiry; an expired gesture cannot
++        // block its successor merely because no native step occurred meanwhile.
++        if self
++            .active
++            .as_ref()
++            .is_some_and(|active| now >= active.gesture.expires_at_unix_ms)
++        {
++            let active = self.active.take().unwrap();
++            self.receipts
++                .push_back(active.receipt(StateActionStatus::Expired, now, None));
++        }
++        match command {
++            NativeStateCommandV1::Cancel { command_id, .. } => {
++                if self.active_command_id() == Some(command_id.as_str()) {
++                    let active = self.active.take().unwrap();
++                    self.receipts.push_back(active.receipt(
++                        StateActionStatus::Cancelled,
++                        now,
++                        Some(format!("cancelled_by_intent:{intent_id}")),
++                    ));
++                    Ok(QueueOutcome {
++                        status: "cancelled".into(),
++                        command_id,
++                        superseded_command_id: None,
++                    })
++                } else {
++                    Ok(QueueOutcome {
++                        status: "not_active".into(),
++                        command_id,
++                        superseded_command_id: None,
++                    })
++                }
++            }
++            NativeStateCommandV1::Gesture { gesture, .. } => {
++                if let Some((existing, existing_intent)) = self.seen.get(&gesture.command_id) {
++                    ensure!(
++                        existing == &gesture
++                            && existing_intent == &intent_id
++                            && existing.pulses.iter().zip(&gesture.pulses).all(
++                                |(left, right)| left.amount.to_bits() == right.amount.to_bits()
++                            ),
++                        "command identity reused with different payload or authority"
++                    );
++                    return Ok(QueueOutcome {
++                        status: "duplicate".into(),
++                        command_id: gesture.command_id,
++                        superseded_command_id: None,
++                    });
++                }
++                ensure!(
++                    self.seen.len() < MAX_COMMANDS,
++                    "session command ledger full"
++                );
++                ensure!(
++                    gesture.identity == self.identity,
++                    "native state identity mismatch"
++                );
++                ensure!(
++                    gesture.expires_at_unix_ms > now
++                        && gesture.expires_at_unix_ms - now <= self.limits.max_age_ms,
++                    "expired or excessive request age"
++                );
++                let total = gesture
++                    .pulses
++                    .iter()
++                    .map(|p| f64::from(p.amount.abs()))
++                    .sum::<f64>();
++                ensure!(
++                    total <= f64::from(self.limits.max_total_requested_l2),
++                    "gesture total displacement budget exceeded"
++                );
++                ensure!(
++                    gesture
++                        .pulses
++                        .iter()
++                        .all(|p| p.amount.abs() <= self.limits.max_requested_l2
++                            && p.success_offset < self.limits.max_success_steps),
++                    "pulse outside operating envelope"
++                );
++                let superseded = self.active_command_id().map(str::to_owned);
++                if let Some(id) = &superseded {
++                    ensure!(
++                        gesture.supersedes.as_ref() == Some(id),
++                        "active gesture requires explicit supersession"
++                    );
++                } else {
++                    ensure!(
++                        gesture.supersedes.is_none(),
++                        "supersession target is not active"
++                    );
++                }
++                if let Some(active) = self.active.take() {
++                    self.receipts.push_back(active.receipt(
++                        StateActionStatus::Superseded,
++                        now,
++                        Some(format!("superseded_by:{}", gesture.command_id)),
++                    ));
++                }
++                self.seen.insert(
++                    gesture.command_id.clone(),
++                    (gesture.clone(), intent_id.clone()),
++                );
++                let active = Active {
++                    gesture,
++                    intent_id,
++                    success_offset: 0,
++                    pulse_index: 0,
++                    last_block: None,
++                };
++                let command_id = active.gesture.command_id.clone();
++                self.receipts
++                    .push_back(active.receipt(StateActionStatus::Accepted, now, None));
++                self.active = Some(active);
++                Ok(QueueOutcome {
++                    status: "accepted".into(),
++                    command_id,
++                    superseded_command_id: superseded,
++                })
++            }
++        }
++    }
++    /// Called before ordinary native mutation. Expiry proceeds even while suspended.
++    pub fn prepare(&mut self, identity: &NativeStateIdentity, now: u64) -> bool {
++        let Some(active) = self.active.as_ref() else {
++            return false;
++        };
++        let terminal = if now >= active.gesture.expires_at_unix_ms {
++            Some(StateActionStatus::Expired)
++        } else if &active.gesture.identity != identity {
++            Some(StateActionStatus::IdentityMismatch)
++        } else {
++            None
++        };
++        if let Some(status) = terminal {
++            if self.receipts.len() < MAX_RECEIPTS {
++                let active = self.active.take().unwrap();
++                self.receipts.push_back(active.receipt(status, now, None));
++            }
++            return false;
++        }
++        if self.receipts.len() + 3 >= MAX_RECEIPTS {
++            return false;
++        }
++        let block = match &self.gate {
++            None => Some("no_current_regulator_gate".to_string()),
++            Some(g)
++                if now < g.sampled_at_unix_ms
++                    || now >= g.valid_until_unix_ms
++                    || g.valid_until_unix_ms.saturating_sub(g.sampled_at_unix_ms) > 5_000 =>
++            {
++                Some("stale_regulator_gate".into())
++            }
++            Some(g) if !g.allowed => Some(
++                g.reason
++                    .clone()
++                    .unwrap_or_else(|| "regulator_preempted".into()),
++            ),
++            _ => None,
++        };
++        let active = self.active.as_mut().unwrap();
++        if let Some(reason) = block {
++            if active.last_block.as_ref() != Some(&reason) {
++                self.receipts.push_back(active.receipt(
++                    StateActionStatus::Suspended,
++                    now,
++                    Some(reason.clone()),
++                ));
++                active.last_block = Some(reason);
++            }
++            return false;
++        }
++        active.last_block = None;
++        true
++    }
++    pub fn failed_step(&mut self, now: u64, reason: String) {
++        if let Some(active) = self.active.as_mut() {
++            if active.last_block.as_ref() != Some(&reason) && self.receipts.len() < MAX_RECEIPTS {
++                self.receipts.push_back(active.receipt(
++                    StateActionStatus::StepFailed,
++                    now,
++                    Some(reason.clone()),
++                ));
++                active.last_block = Some(reason);
++            }
++        }
++    }
++    /// All fallible GPU work must be checked before this infallible state boundary.
++    pub fn apply_success(
++        &mut self,
++        state: &mut [f32],
++        step_id: u64,
++        now: u64,
++        wait_us: u64,
++        leak: f32,
++        noise: &[f32],
++    ) {
++        let Some(active) = self.active.as_mut() else {
++            return;
++        };
++        let pulse = &active.gesture.pulses[active.pulse_index];
++        if pulse.success_offset == active.success_offset {
++            let before = state.to_vec();
++            let mut receipt = active.receipt(StateActionStatus::Applied, now, None);
++            let amount = pulse.amount;
++            let mut beta = 1.0_f64;
++            for (&x, &d) in state.iter().zip(&active.gesture.direction) {
++                let requested = f64::from(amount) * f64::from(d);
++                if requested != 0.0 {
++                    let headroom = if requested > 0.0 {
++                        1.0 - f64::from(x)
++                    } else {
++                        1.0 + f64::from(x)
++                    };
++                    beta = beta
++                        .min(headroom / requested.abs())
++                        .min(f64::from(self.limits.max_coordinate_delta) / requested.abs());
++                }
++            }
++            beta = beta.clamp(0.0, 1.0);
++            if beta < 1.0 && !active.gesture.allow_attenuation {
++                receipt.status = StateActionStatus::HeadroomRejected;
++                receipt.reason = Some("requested_direction_exceeds_headroom".into());
++                beta = 0.0;
++            }
++            let factor = beta as f32;
++            let mut clipped = false;
++            if factor > 0.0 && amount != 0.0 {
++                for (x, &direction) in state.iter_mut().zip(&active.gesture.direction) {
++                    let next = *x + (factor * amount) * direction;
++                    let bounded = next.clamp(-1.0, 1.0);
++                    clipped |= next.to_bits() != bounded.to_bits();
++                    *x = bounded;
++                }
++            }
++            let delta: Vec<f32> = state
++                .iter()
++                .zip(&before)
++                .map(|(after, before)| after - before)
++                .collect();
++            let actual_l2 = delta
++                .iter()
++                .map(|d| f64::from(*d).powi(2))
++                .sum::<f64>()
++                .sqrt();
++            if actual_l2 == 0.0 && receipt.status == StateActionStatus::Applied {
++                receipt.status = StateActionStatus::NoOp;
++                receipt.reason = Some(
++                    if amount == 0.0 {
++                        "zero_amount"
++                    } else {
++                        "zero_headroom_or_float32_resolution"
++                    }
++                    .into(),
++                );
++            }
++            receipt.successful_step_id = Some(step_id);
++            receipt.pulse_index = Some(active.pulse_index);
++            receipt.success_offset = Some(active.success_offset);
++            receipt.requested_amount = Some(amount);
++            receipt.max_abs_delta = Some(delta.iter().fold(0.0_f32, |a, b| a.max(b.abs())));
++            receipt.actual_l2 = Some(actual_l2);
++            receipt.before = Some(before);
++            receipt.after = Some(state.to_vec());
++            receipt.delta = Some(delta);
++            receipt.attenuation = Some(factor);
++            receipt.clipped = clipped;
++            receipt.boundary_wait_us = Some(wait_us);
++            receipt.effective_leak = Some(leak);
++            receipt.realized_noise = Some(noise.to_vec());
++            self.receipts.push_back(receipt);
++            active.pulse_index += 1;
++        }
++        active.success_offset += 1;
++        if active.pulse_index == active.gesture.pulses.len() {
++            let active = self.active.take().unwrap();
++            let mut receipt = active.receipt(StateActionStatus::Completed, now, None);
++            receipt.successful_step_id = Some(step_id);
++            self.receipts.push_back(receipt);
++        }
++    }
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++    fn identity() -> NativeStateIdentity {
++        NativeStateIdentity {
++            engine_session_id: "session-a".into(),
++            model_id: "actual-model".into(),
++            node_layout_id: "actual-layout".into(),
++            node_count: 2,
++        }
++    }
++    fn gesture(id: &str) -> StateGesture {
++        let direction = vec![1.0, 0.0];
++        StateGesture {
++            command_id: id.into(),
++            identity: identity(),
++            pattern_id: "coordinate-0".into(),
++            pattern_sha256: direction_sha256(&direction),
++            direction,
++            pulses: vec![StatePulse {
++                success_offset: 0,
++                amount: 0.001,
++            }],
++            expires_at_unix_ms: 2000,
++            allow_attenuation: false,
++            supersedes: None,
++        }
++    }
++    fn command(g: StateGesture) -> NativeStateCommandV1 {
++        NativeStateCommandV1::Gesture {
++            schema_version: 1,
++            gesture: g,
++        }
++    }
++    fn engine() -> StateActionEngine {
++        let mut engine = StateActionEngine::new(identity(), StateActionLimits::default()).unwrap();
++        engine.set_gate(StateActionGate {
++            sampled_at_unix_ms: 1000,
++            valid_until_unix_ms: 2000,
++            allowed: true,
++            reason: None,
++        });
++        engine
++    }
++    fn queue(engine: &mut StateActionEngine, g: StateGesture) {
++        engine.queue(command(g), "intent-a".into(), 1000).unwrap();
++    }
++    fn successful(engine: &mut StateActionEngine, x: &mut [f32], step: u64, now: u64) {
++        if engine.prepare(&identity(), now) {
++            engine.apply_success(x, step, now, 7, 0.35, &[0.01, -0.02]);
++        }
++    }
++    #[test]
++    fn command_rejects_unknown_fields_and_wrong_version() {
++        let mut value = serde_json::to_value(command(gesture("a"))).unwrap();
++        value["gesture"]["imaginary_authority"] = true.into();
++        assert!(serde_json::from_value::<NativeStateCommandV1>(value).is_err());
++        assert!(NativeStateCommandV1::Cancel {
++            schema_version: 2,
++            command_id: "a".into()
++        }
++        .validate_shape()
++        .is_err());
++    }
++    #[test]
++    fn exact_direction_hash_includes_signed_zero_and_coordinate_order() {
++        assert_ne!(
++            direction_sha256(&[1.0, 0.0]),
++            direction_sha256(&[1.0, -0.0])
++        );
++        assert_ne!(direction_sha256(&[1.0, 0.0]), direction_sha256(&[0.0, 1.0]));
++    }
++    #[test]
++    fn invalid_vector_norm_hash_and_nan_rejected() {
++        for direction in [
++            vec![0.0, 0.0],
++            vec![2.0, 0.0],
++            vec![f32::NAN, 0.0],
++            vec![1.0],
++        ] {
++            let mut g = gesture("a");
++            g.pattern_sha256 = direction_sha256(&direction);
++            g.direction = direction;
++            assert!(command(g).validate_shape().is_err());
++        }
++        let mut g = gesture("a");
++        g.pattern_sha256 = "unverified".into();
++        assert!(command(g).validate_shape().is_err());
++    }
++    #[test]
++    fn limits_cannot_be_nonfinite_or_widened() {
++        for cap in [f32::NAN, f32::INFINITY, 0.0, 0.002] {
++            let mut limits = StateActionLimits::default();
++            limits.max_requested_l2 = cap;
++            assert!(limits.validate().is_err());
++        }
++    }
++    #[test]
++    fn queue_checks_identity_age_and_duration_before_acceptance() {
++        let mut engine = engine();
++        let mut wrong = gesture("a");
++        wrong.identity.model_id = "another-model".into();
++        assert!(engine.queue(command(wrong), "i".into(), 1000).is_err());
++        for expiry in [999, 1000, 61_001] {
++            let mut g = gesture("a");
++            g.expires_at_unix_ms = expiry;
++            assert!(engine.queue(command(g), "i".into(), 1000).is_err());
++        }
++        let mut g = gesture("a");
++        g.pulses[0].success_offset = 32;
++        assert!(engine.queue(command(g), "i".into(), 1000).is_err());
++        assert!(!engine.has_active());
++    }
++    #[test]
++    fn actual_delta_receipt_and_finite_end_are_truthful() {
++        let mut engine = engine();
++        queue(&mut engine, gesture("a"));
++        let mut x = [0.1, -0.2];
++        let before = x;
++        successful(&mut engine, &mut x, 19, 1000);
++        let records = engine.take_receipts();
++        let applied = records
++            .iter()
++            .find(|r| r.status == StateActionStatus::Applied)
++            .unwrap();
++        assert_eq!(applied.before.as_ref().unwrap(), &before);
++        assert_eq!(applied.after.as_ref().unwrap(), &x);
++        assert_eq!(
++            applied.delta.as_ref().unwrap(),
++            &vec![x[0] - before[0], 0.0]
++        );
++        assert_eq!(applied.successful_step_id, Some(19));
++        assert_eq!(applied.boundary_wait_us, Some(7));
++        assert_eq!(applied.realized_noise.as_ref().unwrap(), &vec![0.01, -0.02]);
++        assert_eq!(records.last().unwrap().status, StateActionStatus::Completed);
++        assert!(!engine.has_active());
++    }
++    #[test]
++    fn failed_step_does_not_consume_an_offset_or_pulse() {
++        let mut engine = engine();
++        queue(&mut engine, gesture("a"));
++        assert!(engine.prepare(&identity(), 1000));
++        engine.failed_step(1000, "synthetic GPU failure".into());
++        let mut x = [0.0, 0.0];
++        successful(&mut engine, &mut x, 1, 1001);
++        let applied = engine
++            .take_receipts()
++            .into_iter()
++            .find(|r| r.status == StateActionStatus::Applied)
++            .unwrap();
++        assert_eq!(applied.success_offset, Some(0));
++        assert_eq!(x[0], 0.001);
++    }
++    #[test]
++    fn pause_does_not_age_but_wall_expiry_still_ends() {
++        let mut engine = engine();
++        queue(&mut engine, gesture("a"));
++        engine.gate = None;
++        let mut x = [0.0, 0.0];
++        successful(&mut engine, &mut x, 1, 1001);
++        assert_eq!(x, [0.0, 0.0]);
++        assert_eq!(engine.active.as_ref().unwrap().success_offset, 0);
++        successful(&mut engine, &mut x, 2, 2000);
++        assert!(!engine.has_active());
++        assert_eq!(
++            engine.take_receipts().last().unwrap().status,
++            StateActionStatus::Expired
++        );
++    }
++    #[test]
++    fn stale_future_or_overlong_gates_suspend() {
++        for (sample, until) in [(1001, 2000), (900, 999), (1000, 7000)] {
++            let mut engine = engine();
++            queue(&mut engine, gesture("a"));
++            engine.set_gate(StateActionGate {
++                sampled_at_unix_ms: sample,
++                valid_until_unix_ms: until,
++                allowed: true,
++                reason: None,
++            });
++            assert!(!engine.prepare(&identity(), 1000));
++            assert_eq!(engine.active.as_ref().unwrap().success_offset, 0);
++        }
++    }
++    #[test]
++    fn headroom_rejects_without_distorting_state() {
++        let mut engine = engine();
++        queue(&mut engine, gesture("a"));
++        let mut x = [1.0, 0.0];
++        successful(&mut engine, &mut x, 1, 1000);
++        assert_eq!(x, [1.0, 0.0]);
++        let records = engine.take_receipts();
++        let receipt = records
++            .iter()
++            .find(|r| r.status == StateActionStatus::HeadroomRejected)
++            .unwrap();
++        assert_eq!(receipt.actual_l2, Some(0.0));
++        assert_eq!(receipt.attenuation, Some(0.0));
++    }
++    #[test]
++    fn attenuation_uses_one_factor_and_reports_actual_float_delta() {
++        let mut engine = engine();
++        let mut g = gesture("a");
++        g.direction = vec![0.6, 0.8];
++        g.pattern_sha256 = direction_sha256(&g.direction);
++        g.allow_attenuation = true;
++        queue(&mut engine, g);
++        let mut x = [0.9999, 0.1];
++        successful(&mut engine, &mut x, 1, 1000);
++        let r = engine
++            .take_receipts()
++            .into_iter()
++            .find(|r| r.status == StateActionStatus::Applied)
++            .unwrap();
++        assert!(r.attenuation.unwrap() > 0.0 && r.attenuation.unwrap() < 1.0);
++        assert!(x[0] <= 1.0);
++        assert!(x[1] > 0.1);
++        for i in 0..2 {
++            assert_eq!(
++                r.delta.as_ref().unwrap()[i],
++                r.after.as_ref().unwrap()[i] - r.before.as_ref().unwrap()[i]
++            );
++        }
++    }
++    #[test]
++    fn signed_zero_is_a_real_no_op() {
++        for zero in [0.0, -0.0] {
++            let mut engine = engine();
++            let mut g = gesture("a");
++            g.pulses[0].amount = zero;
++            queue(&mut engine, g);
++            let mut x = [-0.0, 0.2];
++            let bits = x.map(f32::to_bits);
++            successful(&mut engine, &mut x, 1, 1000);
++            assert_eq!(x.map(f32::to_bits), bits);
++            assert!(engine
++                .take_receipts()
++                .iter()
++                .any(|r| r.status == StateActionStatus::NoOp));
++        }
++    }
++    #[test]
++    fn finite_offsets_and_cancel_preserve_only_actual_history() {
++        let mut engine = engine();
++        let mut g = gesture("a");
++        g.pulses = vec![
++            StatePulse {
++                success_offset: 0,
++                amount: 0.001,
++            },
++            StatePulse {
++                success_offset: 2,
++                amount: -0.001,
++            },
++        ];
++        queue(&mut engine, g);
++        let mut x = [0.0, 0.0];
++        successful(&mut engine, &mut x, 1, 1000);
++        successful(&mut engine, &mut x, 2, 1001);
++        assert_eq!(x[0], 0.001);
++        let outcome = engine
++            .queue(
++                NativeStateCommandV1::Cancel {
++                    schema_version: 1,
++                    command_id: "a".into(),
++                },
++                "cancel-intent".into(),
++                1001,
++            )
++            .unwrap();
++        assert_eq!(outcome.status, "cancelled");
++        successful(&mut engine, &mut x, 3, 1002);
++        assert_eq!(x[0], 0.001);
++        assert!(!engine.has_active());
++    }
++    #[test]
++    fn duplicate_cannot_apply_twice_and_supersession_is_explicit() {
++        let mut engine = engine();
++        let original = gesture("a");
++        queue(&mut engine, original.clone());
++        let duplicate = engine
++            .queue(command(original.clone()), "intent-a".into(), 1000)
++            .unwrap();
++        assert_eq!(duplicate.status, "duplicate");
++        assert!(engine
++            .queue(command(original), "different-authority".into(), 1000)
++            .is_err());
++        assert!(engine
++            .queue(command(gesture("b")), "intent-b".into(), 1000)
++            .is_err());
++        let mut replacement = gesture("b");
++        replacement.supersedes = Some("a".into());
++        queue(&mut engine, replacement);
++        let mut x = [0.0, 0.0];
++        successful(&mut engine, &mut x, 1, 1000);
++        assert_eq!(x[0], 0.001);
++        let receipts = engine.take_receipts();
++        assert_eq!(
++            receipts
++                .iter()
++                .filter(|r| r.status == StateActionStatus::Applied)
++                .count(),
++            1
++        );
++        assert!(receipts
++            .iter()
++            .any(|r| r.status == StateActionStatus::Superseded));
++    }
++    #[test]
++    fn duplicate_payload_identity_preserves_signed_amount_bits() {
++        let mut engine = engine();
++        let mut original = gesture("a");
++        original.pulses[0].amount = 0.0;
++        queue(&mut engine, original.clone());
++        original.pulses[0].amount = -0.0;
++        assert!(engine
++            .queue(command(original), "intent-a".into(), 1000)
++            .is_err());
++    }
++
++    #[test]
++    fn expired_gesture_does_not_block_new_admission_between_steps() {
++        let mut engine = engine();
++        queue(&mut engine, gesture("a"));
++        let mut next = gesture("b");
++        next.expires_at_unix_ms = 3000;
++        let outcome = engine
++            .queue(command(next), "intent-b".into(), 2000)
++            .unwrap();
++        assert_eq!(outcome.status, "accepted");
++        assert_eq!(engine.active_command_id(), Some("b"));
++        assert!(engine
++            .take_receipts()
++            .iter()
++            .any(|r| r.command_id == "a" && r.status == StateActionStatus::Expired));
++    }
++
++    #[test]
++    fn model_change_ends_pending_gesture_without_rebinding() {
++        let mut engine = engine();
++        queue(&mut engine, gesture("a"));
++        let mut changed = identity();
++        changed.model_id = "new-model".into();
++        assert!(!engine.prepare(&changed, 1000));
++        assert!(!engine.has_active());
++        assert_eq!(
++            engine.take_receipts().last().unwrap().status,
++            StateActionStatus::IdentityMismatch
++        );
++    }
++}
+diff --git a/minime_autonomy/action_vocabulary.py b/minime_autonomy/action_vocabulary.py
+index 0338934..6b2e1f1 100644
+--- a/minime_autonomy/action_vocabulary.py
++++ b/minime_autonomy/action_vocabulary.py
+@@ -533,6 +533,10 @@ HARD_RESET_BLOCKED_NEXT_ACTIONS = {
+     "MIKE_FORK",
+     "SELF_RESEARCH",
+     "PERTURB",
++    "STATE_NUDGE",
++    "STATE_GESTURE",
++    "STATE_CANCEL",
++    "STATE_STATUS",
+     "BRANCH",
+     "SPREAD",
+     "CONTRACT",
+diff --git a/minime_autonomy/native_state.py b/minime_autonomy/native_state.py
+new file mode 100644
+index 0000000..0ce836a
+--- /dev/null
++++ b/minime_autonomy/native_state.py
+@@ -0,0 +1,220 @@
++"""Native substrate actions: exact f32 patterns over authenticated owner transport.
++
++STATE_NUDGE and STATE_GESTURE are direct native-state operations. The historical
++NATIVE_GESTURE and PERTURB actions retain their separate sensory semantics.
++No function in this module writes anonymous control messages or handles keys.
++"""
++from __future__ import annotations
++
++import hashlib
++import json
++import math
++import struct
++import time
++import uuid
++from typing import Any, Mapping
++
++NATIVE_STATE_ACTIONS = {"STATE_NUDGE", "STATE_GESTURE", "STATE_CANCEL", "STATE_STATUS"}
++IDENTITY_FIELDS = {"engine_session_id", "model_id", "node_layout_id", "node_count"}
++GESTURE_FIELDS = {"command_id", "identity", "pattern_id", "pattern_sha256", "direction", "pulses", "expires_at_unix_ms", "allow_attenuation", "supersedes"}
++TERMINAL = {"completed", "cancelled", "not_active", "superseded", "expired", "identity_mismatch", "rejected", "application_unknown"}
++
++
++def _id(value: Any) -> str:
++    if not isinstance(value, str) or not value.strip() or len(value.encode()) > 256:
++        raise ValueError("native state identifiers require 1–256 UTF-8 bytes")
++    return value
++
++
++def _integer(value: Any, low: int, high: int) -> int:
++    if isinstance(value, bool) or not isinstance(value, int) or not low <= value <= high:
++        raise ValueError(f"native state integer must be within [{low}, {high}]")
++    return value
++
++
++def _f32(value: Any) -> float:
++    if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
++        raise ValueError("native state values must be finite numbers")
++    try:
++        result = struct.unpack("<f", struct.pack("<f", value))[0]
++    except (OverflowError, struct.error) as error:
++        raise ValueError("native state number is outside float32") from error
++    if not math.isfinite(result):
++        raise ValueError("native state number is outside float32")
++    return result
++
++
++def direction_sha256(direction: list[float]) -> str:
++    payload = b"native-state-direction-f32-v1\0" + struct.pack("<Q", len(direction))
++    return hashlib.sha256(payload + b"".join(struct.pack("<f", value) for value in direction)).hexdigest()
++
++
++def validate_native_state_command(command: Mapping[str, Any]) -> dict[str, Any]:
++    if not isinstance(command, Mapping):
++        raise ValueError("native state command requires an object")
++    value = dict(command)
++    operation = value.get("operation")
++    expected = {"operation", "schema_version", "gesture" if operation == "gesture" else "command_id"}
++    if set(value) != expected or type(value.get("schema_version")) is not int or value["schema_version"] != 1:
++        raise ValueError("native state command fields/version do not match v1")
++    if operation == "cancel":
++        _id(value["command_id"])
++        return value
++    if operation != "gesture" or not isinstance(value["gesture"], Mapping):
++        raise ValueError("native state operation must be gesture or cancel")
++    gesture = dict(value["gesture"])
++    if set(gesture) != GESTURE_FIELDS:
++        raise ValueError("native state gesture fields do not match v1")
++    identity = gesture["identity"]
++    if not isinstance(identity, Mapping) or set(identity) != IDENTITY_FIELDS:
++        raise ValueError("native state identity fields do not match v1")
++    for field in IDENTITY_FIELDS - {"node_count"}:
++        _id(identity[field])
++    count = _integer(identity["node_count"], 1, 4096)
++    _id(gesture["command_id"])
++    _id(gesture["pattern_id"])
++    if gesture["supersedes"] is not None:
++        _id(gesture["supersedes"])
++    if not isinstance(gesture["allow_attenuation"], bool):
++        raise ValueError("allow_attenuation requires an explicit boolean")
++    _integer(gesture["expires_at_unix_ms"], 1, 2**64 - 1)
++    raw_direction = gesture["direction"]
++    if not isinstance(raw_direction, list) or len(raw_direction) != count:
++        raise ValueError("direction length must match native node_count")
++    direction = [_f32(x) for x in raw_direction]
++    if abs(math.sqrt(sum(x*x for x in direction)) - 1.0) > 1e-5:
++        raise ValueError("direction must have unit L2 norm")
++    if gesture["pattern_sha256"] != direction_sha256(direction):
++        raise ValueError("native direction hash mismatch")
++    pulses = gesture["pulses"]
++    if not isinstance(pulses, list) or not 1 <= len(pulses) <= 32:
++        raise ValueError("native gesture requires 1–32 pulses")
++    clean_pulses = []
++    last_offset = -1
++    for pulse in pulses:
++        if not isinstance(pulse, Mapping) or set(pulse) != {"success_offset", "amount"}:
++            raise ValueError("pulse requires exactly success_offset and amount")
++        offset = _integer(pulse["success_offset"], 0, 31)
++        if offset <= last_offset:
++            raise ValueError("pulse success offsets must increase strictly")
++        amount = _f32(pulse["amount"])
++        if abs(amount) > _f32(0.001):
++            raise ValueError("native pulse exceeds the 0.001 L2 pilot envelope")
++        clean_pulses.append({"success_offset": offset, "amount": amount})
++        last_offset = offset
++    if sum(abs(p["amount"]) for p in clean_pulses) > _f32(0.032):
++        raise ValueError("native schedule exceeds total L2 pilot envelope")
++    gesture.update(direction=direction, pulses=clean_pulses, identity=dict(identity))
++    return {"operation": "gesture", "schema_version": 1, "gesture": gesture}
++
++
++def prepare_native_action(base: str, raw_arg: str, status: Mapping[str, Any], *, now_ms: int) -> dict[str, Any]:
++    """Bind one authored request to the observed native session before signing.
++
++    A nodes map supplies relative signed weights, normalized to a unit direction;
++    amount is the L2 displacement. An explicit direction must already be unit.
++    Explicit identities and hashes are verified, never silently substituted.
++    """
++    if base == "STATE_CANCEL":
++        return validate_native_state_command({"operation":"cancel", "schema_version":1, "command_id":raw_arg.strip()})
++    if base not in {"STATE_NUDGE", "STATE_GESTURE"}:
++        raise ValueError("unknown native state action")
++    native = status.get("native_state") or {}
++    capability = native.get("capability") or {}
++    identity = capability.get("identity")
++    if status.get("target_being") != "minime" or capability.get("target_being") != "minime" or not isinstance(identity, Mapping):
++        raise ValueError("native Minime capability is unavailable; peer native apply is unsupported")
++    def unique_object(pairs):
++        result = {}
++        for key, value in pairs:
++            if key in result:
++                raise ValueError("duplicate native action field: " + key)
++            result[key] = value
++        return result
++    request = json.loads(raw_arg, object_pairs_hook=unique_object)
++    if not isinstance(request, dict):
++        raise ValueError("STATE_NUDGE/STATE_GESTURE requires a JSON object")
++    allowed = {"command_id", "identity", "pattern_id", "pattern_sha256", "direction", "nodes", "amount", "pulses", "expires_at_unix_ms", "allow_attenuation", "supersedes"}
++    if set(request) - allowed:
++        raise ValueError("unknown native action fields: " + ", ".join(sorted(set(request)-allowed)))
++    if "identity" in request:
++        authored_identity = request["identity"]
++        if (not isinstance(authored_identity, dict) or set(authored_identity) != IDENTITY_FIELDS
++                or type(authored_identity.get("node_count")) is not int or authored_identity != identity):
++            raise ValueError("authored native identity differs from the current capability")
++    if ("nodes" in request) == ("direction" in request):
++        raise ValueError("choose exactly one nodes map or unit direction")
++    if "nodes" in request:
++        nodes = request["nodes"]
++        if not isinstance(nodes, dict) or not nodes:
++            raise ValueError("nodes must be a nonempty map of exact node indices to signed weights")
++        direction = [0.0] * _integer(identity["node_count"], 1, 4096)
++        for key, weight in nodes.items():
++            if not isinstance(key, str) or not key.isascii() or not key.isdigit() or str(int(key)) != key:
++                raise ValueError("nodes require canonical integer index keys")
++            index = _integer(int(key), 0, len(direction)-1)
++            direction[index] = _f32(weight)
++        norm = math.sqrt(sum(x*x for x in direction))
++        if norm == 0:
++            raise ValueError("native direction has zero norm")
++        direction = [_f32(x/norm) for x in direction]
++    else:
++        direction = [_f32(x) for x in request["direction"]]
++    if base == "STATE_NUDGE":
++        if "pulses" in request or "amount" not in request:
++            raise ValueError("STATE_NUDGE requires amount and creates exactly one pulse")
++        pulses = [{"success_offset":0,"amount":request["amount"]}]
++    else:
++        if "amount" in request or "pulses" not in request:
++            raise ValueError("STATE_GESTURE requires a finite pulses schedule")
++        pulses = request["pulses"]
++    advertised_age = _integer((capability.get("limits") or {}).get("max_age_ms", 60_000), 1, 60_000)
++    expiry = request.get("expires_at_unix_ms", now_ms + min(30_000, advertised_age))
++    if isinstance(expiry, bool) or not isinstance(expiry, int) or not now_ms < expiry <= now_ms + 60_000:
++        raise ValueError("native action expiry must be in the next 60 seconds")
++    gesture = {"command_id":request.get("command_id", "native-state:" + uuid.uuid4().hex),
++        "identity":dict(identity), "pattern_id":request.get("pattern_id", "owner-node-pattern"),
++        "pattern_sha256":request.get("pattern_sha256", direction_sha256(direction)), "direction":direction,
++        "pulses":pulses,"expires_at_unix_ms":expiry,"allow_attenuation":request.get("allow_attenuation", False),
++        "supersedes":request.get("supersedes")}
++    command = validate_native_state_command({"operation":"gesture","schema_version":1,"gesture":gesture})
++    limits = capability.get("limits") or {}
++    # The engine may narrow its compiled pilot envelope. Preflight that exact
++    # advertised envelope before signing; never scale an owner's pulse silently.
++    pulse_limit = _f32(limits.get("max_requested_l2", 0.001))
++    total_limit = _f32(limits.get("max_total_requested_l2", 0.032))
++    step_limit = _integer(limits.get("max_success_steps", 32), 1, 32)
++    age_limit = _integer(limits.get("max_age_ms", 60_000), 1, 60_000)
++    clean_pulses = command["gesture"]["pulses"]
++    if pulse_limit <= 0 or total_limit <= 0 or any(abs(p["amount"]) > pulse_limit or p["success_offset"] >= step_limit for p in clean_pulses):
++        raise ValueError("native request exceeds the current advertised pulse envelope")
++    if sum(abs(p["amount"]) for p in clean_pulses) > total_limit or expiry - now_ms > age_limit:
++        raise ValueError("native request exceeds the current advertised total/duration envelope")
++    return command
++
++
++def execute_native_action(base: str, raw_arg: str, client: Any, *, now=time.time, sleep=time.sleep, wait_seconds: float = 5.0, wait_clock=time.monotonic) -> dict[str, Any]:
++    status = client.status()
++    if base == "STATE_STATUS":
++        return {"schema":"minime.native_state.action_result.v1", "native_state":status.get("native_state"), "felt_effect_established":False}
++    command = prepare_native_action(base, raw_arg, status, now_ms=int(now()*1000))
++    delivery = client.issue({"native_state_gesture":command}, durability="one-shot", retry_revision_conflict=False,
++        evidence_refs=("minime-action:" + base.lower(),), success_conditions=("actual native application receipt",),
++        stop_conditions=("signed cancellation", "absolute expiry", "regulator preemption"))
++    wanted = set(delivery["intent_ids"])
++    deadline = wait_clock() + wait_seconds
++    native = status.get("native_state") or {}
++    while wait_clock() < deadline:
++        native = client.status().get("native_state") or {}
++        matching = [a for a in native.get("admissions", []) if a.get("intent_id") in wanted]
++        if matching and all(a.get("status") in TERMINAL for a in matching):
++            break
++        sleep(0.05)
++    receipts = [r for r in native.get("recent_applications", []) if r.get("intent_id") in wanted]
++    applied = [r for r in receipts if (r.get("application") or {}).get("status") == "applied"
++        and (r["application"].get("actual_l2") or 0) > 0]
++    return {"schema":"minime.native_state.action_result.v1", "delivery":delivery, "native_command":command,
++        "applications":receipts, "observed_nonzero_applications":len(applied),
++        "admission_statuses":[a for a in native.get("admissions", []) if a.get("intent_id") in wanted],
++        "completion_semantics":"completed means schedule exhausted; individual applied receipts establish displacement",
++        "felt_effect_established":False}
+diff --git a/minime_autonomy/runtime.py b/minime_autonomy/runtime.py
+index bf21a2e..dc31082 100644
+--- a/minime_autonomy/runtime.py
++++ b/minime_autonomy/runtime.py
+@@ -20613,6 +20613,8 @@ INTERNAL_TOPOLOGY_GENERIC_CHOICE_SIGNAL = (
+     f"{INTERNAL_TOPOLOGY_RELEASE_SIGNAL} or {INTERNAL_TOPOLOGY_RESOLVE_SIGNAL}"
+ )
+ INTERNAL_TOPOLOGY_MUTATING_NEXT_BASES = frozenset({
++    "STATE_NUDGE",
++    "STATE_GESTURE",
+     "PERTURB",
+     "BRANCH",
+     "SPREAD",
+@@ -20773,6 +20775,7 @@ STABLE_CORE_READ_ONLY_RESEARCH_ACTIONS = STABLE_CORE_SELF_JOURNAL_ACTIONS | {
+ }
+ 
+ STABLE_CORE_BOUNDED_ACTIONS = STABLE_CORE_READ_ONLY_RESEARCH_ACTIONS | {
++    "native_state_action",
+     "reservoir_read",
+     "reservoir_resonance",
+     "reservoir_layers",
+@@ -20919,6 +20922,9 @@ STABLE_CORE_MUTATING_AR_PREFIXES = {
+ }
+ 
+ STABLE_CORE_ACTION_FAMILIES = {
++    "native_state_action": "local_tools",
++    "native_state_cancel": "local_tools",
++    "native_state_status": "local_reflection",
+     **{action: "journaling" for action in STABLE_CORE_SELF_JOURNAL_ACTIONS},
+     "self_study": "self_study",
+     "introspect": "self_study",
+@@ -23076,6 +23082,8 @@ class AutonomousAgent:
+                 "- Read your own source code and Astrid's source code (rotating SELF_STUDY or targeted INTROSPECT)\n"
+                 "- Write files to your workspace\n"
+                 "- Adjust your own parameters (synth_gain, keep_bias, fill_target)\n"
++                '- Shape exact native node coordinates with NEXT: STATE_NUDGE {"nodes":{"0":1,"3":-1},"amount":0.001}. Signed admission, native model/session binding and completed-step evidence run within this action. Node weights define a unit direction; amount is L2 displacement. The pilot permits at most 0.001 per pulse within a fresh stable-core Hold shelf. These coordinates are native nodes, not eigenmodes.\n'
++                '- Compose finite native gestures with NEXT: STATE_GESTURE {"nodes":{"0":1},"pulses":[{"success_offset":0,"amount":0.001},{"success_offset":2,"amount":-0.001}]}. Inspect NEXT: STATE_STATUS; stop a pending gesture with STATE_CANCEL followed by its actual command_id. Completion means the schedule ended; only applied receipts establish displacement. Native ownership is yours; direct peer application is unsupported.\n'
+                 "- Adjust your regulation_strength (how much PI correction is applied — 0.7 default; use exploration_noise for spectral diversity)\n"
+                 "- Adjust geom_curiosity (how much your system seeks novelty when things are boring, 0.0-0.3)\n"
+                 "- Adjust smoothing_preference (how quickly your system responds to changes, 0.1-0.9, or omit for adaptive)\n"
+@@ -23884,6 +23892,8 @@ Fill: {fill:.1f}%
+             )
+ 
+     def _hard_recovery_safe_action(self, requested: Optional[str]) -> Optional[str]:
++        if requested in {"native_state_cancel", "native_state_status"}:
++            return requested
+         if requested in HARD_RESET_ALLOWED_ACTIONS or requested is None:
+             return requested
+         return 'recess_notice'
+@@ -24377,6 +24387,10 @@ Fill: {fill:.1f}%
+                 'SHUT_EARS': 'close_ears',
+                 'OPEN_EARS': 'open_ears',
+                 'PERTURB': 'perturb',
++                'STATE_NUDGE': 'native_state_action',
++                'STATE_GESTURE': 'native_state_action',
++                'STATE_CANCEL': 'native_state_cancel',
++                'STATE_STATUS': 'native_state_status',
+                 'MARK_INTENSIFICATION': 'mark_intensification',
+                 'NATIVE_GESTURE': 'native_gesture',
+                 'RESIST': 'native_gesture',
+@@ -24948,6 +24962,9 @@ Fill: {fill:.1f}%
+                     f"🧭 Placeholder NEXT action rerouted to notice instead of executing: {chosen}"
+                 )
+                 return 'recess_notice'
++            if base in {'STATE_CANCEL', 'STATE_STATUS'}:
++                self._pending_native_state_next = chosen
++                return action_map[base]
+             guard = self._low_fill_guard_status(state)
+ 
+             if self._hard_recovery_reset and guard["active"]:
+@@ -25053,6 +25070,10 @@ Fill: {fill:.1f}%
+                 logging.info(f"🎯 Honoring being's NEXT: {base} '{topic}' → research_exploration")
+                 return 'research_exploration'
+ 
++            if base in {'STATE_NUDGE', 'STATE_GESTURE', 'STATE_CANCEL', 'STATE_STATUS'}:
++                self._pending_native_state_next = chosen
++                return action_map[base]
++
+             if base == 'PERTURB':
+                 mode = chosen[7:].strip() if len(chosen) > 7 else 'pulse'
+                 mode = mode.lstrip(':').strip()
+@@ -26044,6 +26065,8 @@ Fill: {fill:.1f}%
+             return False
+ 
+     def _stable_core_action_allowed(self, action: str, state: Dict[str, float]) -> tuple[bool, str]:
++        if action in {"native_state_cancel", "native_state_status"}:
++            return True, "native status and signed cancellation remain available during recovery"
+         if action in {"division_status", "division_ceremony", "division_abort"}:
+             return True, "division status/ceremony/abort remains returnable in every recovery stage"
+         budget = self._stable_core_agency_budget()
+@@ -26805,6 +26828,8 @@ Fill: {fill:.1f}%
+                 self._constraint_audit(state)
+             elif action == 'perturb':
+                 self._perturb(state)
++            elif action in {'native_state_action', 'native_state_cancel', 'native_state_status'}:
++                self._native_state_action(state)
+             elif action == 'influence_astrid':
+                 self._influence_astrid(state)
+             elif action == 'lend_aperture':
+@@ -36022,6 +36047,26 @@ allowlisted control fields, distinct from the stronger PERTURB action.
+         self._write_journal_entry('native_gesture', f"{gesture} {label or ''}".strip(), state, str(file_path))
+         logging.info(f"🫳 Native gesture sent: {gesture} ({file_path})")
+ 
++    def _native_state_action(self, state: Dict[str, float]):
++        from .native_state import execute_native_action
++        raw = getattr(self, '_pending_native_state_next', None) or 'STATE_STATUS'
++        self._pending_native_state_next = None
++        base, _, argument = raw.partition(' ')
++        result = execute_native_action(base.upper(), argument, self._self_control_v2_client())
++        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S_%f')
++        path = WORKSPACE_DIR / 'native_state_actions' / f'{timestamp}.json'
++        path.parent.mkdir(parents=True, exist_ok=True)
++        path.write_text(json.dumps(result, indent=2, allow_nan=False) + '\n')
++        applied = result.get('observed_nonzero_applications', 0)
++        self._current_action_outcome_summary = (
++            f'Native state result recorded at {path}; observed nonzero applications={applied}. '
++            'Admission alone does not establish application; completed means finite schedule exhausted.'
++        )
++        self._current_action_extra_artifacts.append({
++            'kind': 'native_state_action_receipt', 'path_or_uri': str(path),
++            'summary': self._current_action_outcome_summary,
++        })
++
+     def _perturb(self, state: Dict[str, float]):
+         """Directly shape spectral dynamics by injecting a crafted 32-lane perturbation vector.
+ 
+diff --git a/minime_autonomy/self_control_v2.py b/minime_autonomy/self_control_v2.py
+index 3a9701d..07d4207 100644
+--- a/minime_autonomy/self_control_v2.py
++++ b/minime_autonomy/self_control_v2.py
+@@ -18,6 +18,7 @@ from typing import Any, Callable, Iterable, Mapping, Sequence
+ 
+ 
+ SELF_CONTROL_FAMILY_BY_FIELD = {
++    "native_state_gesture": "local-topology",
+     "semantic_strand_retention_turns": "semantic-continuity",
+     "memory_mode": "memory",
+     "journal_resonance": "memory",
+@@ -73,6 +74,7 @@ SELF_CONTROL_FAMILY_ORDER = (
+ )
+ 
+ ONE_SHOT_FIELDS = {
++    "native_state_gesture",
+     "checkpoint_now",
+     "porosity",
+     "esn_leak_override",
+@@ -200,6 +202,14 @@ def validate_exact_self_control_values(values: Mapping[str, Any]) -> dict[str, A
+             "unsupported or peer-impacting self-control fields: " + ", ".join(unknown)
+         )
+     registry = _load_envelope_registry()
++    if "native_state_gesture" in clean_values:
++        if len(clean_values) != 1:
++            raise SelfControlV2Error("native state command must be the sole self-control field")
++        from .native_state import validate_native_state_command
++        try:
++            return {"native_state_gesture": validate_native_state_command(clean_values["native_state_gesture"])}
++        except (TypeError, ValueError) as error:
++            raise SelfControlV2Error(str(error)) from error
+     for field, value in clean_values.items():
+         if field in SELF_CONTROL_BOOLEAN_FIELDS:
+             if not isinstance(value, bool):
+@@ -336,7 +346,13 @@ def _final_receipt(
+                 "self-control receipt substituted or omitted requested values",
+                 details=payload,
+             )
+-        if expected_values and receipt.get("status") in APPLIED_RECEIPT_STATUSES:
++        native_accepted = "native_state_gesture" in expected_values
++        if native_accepted and receipt.get("status") == "applied":
++            raise SelfControlV2Error("native admission cannot claim applied status; require a native application event", details=payload)
++        if native_accepted and receipt.get("status") in {"accepted", "duplicate"}:
++            if receipt.get("clamped_values") != dict(expected_values) or receipt.get("applied_values") != {}:
++                raise SelfControlV2Error("native admission must echo exact requested values without asserting application", details=payload)
++        elif expected_values and receipt.get("status") in APPLIED_RECEIPT_STATUSES:
+             for field in ("clamped_values", "applied_values"):
+                 observed = receipt.get(field)
+                 if not isinstance(observed, Mapping) or dict(observed) != dict(
+@@ -477,6 +493,8 @@ class MinimeSelfControlV2Client:
+                     except SelfControlV2Error:
+                         applied_receipt = None
+                     if (
++                        "native_state_gesture" not in family_values
++                        and
+                         applied_receipt is not None
+                         and applied_receipt.get("status") in APPLIED_RECEIPT_STATUSES
+                     ):
+@@ -489,7 +507,8 @@ class MinimeSelfControlV2Client:
+                             }
+                         )
+                     raise
+-                if receipt.get("status") not in APPLIED_RECEIPT_STATUSES:
++                expected_statuses = ({"accepted", "duplicate"} if "native_state_gesture" in family_values else APPLIED_RECEIPT_STATUSES)
++                if receipt.get("status") not in expected_statuses:
+                     raise SelfControlV2Error(
+                         f"{family} self-control was not applied: "
+                         f"{receipt.get('status')} ({receipt.get('reason') or 'no reason'})",
+diff --git a/tests/test_native_state_actions.py b/tests/test_native_state_actions.py
+new file mode 100644
+index 0000000..b468303
+--- /dev/null
++++ b/tests/test_native_state_actions.py
+@@ -0,0 +1,103 @@
++import copy
++import json
++import struct
++import subprocess
++import unittest
++from unittest.mock import patch
++
++from minime_autonomy.native_state import prepare_native_action, validate_native_state_command, execute_native_action
++from minime_autonomy.self_control_v2 import MinimeSelfControlV2Client, SelfControlV2Error, validate_exact_self_control_values
++from tests.test_self_control_v2 import _result
++
++IDENTITY = {"engine_session_id":"session-test","model_id":"model-test","node_layout_id":"layout-test","node_count":4}
++STATUS = {"target_being":"minime","native_state":{"capability":{"target_being":"minime","identity":IDENTITY}}}
++
++class NativeStateActionTests(unittest.TestCase):
++    def command(self):
++        return prepare_native_action("STATE_NUDGE", json.dumps({"nodes":{"0":1,"2":-1},"amount":0.001,"command_id":"chosen"}), STATUS, now_ms=1000)
++
++    def test_authored_weights_prepare_one_exact_hashed_f32_pulse(self):
++        command = self.command()
++        gesture = command["gesture"]
++        self.assertEqual(gesture["identity"], IDENTITY)
++        self.assertEqual(gesture["direction"][0], -gesture["direction"][2])
++        self.assertEqual(gesture["direction"][1], 0)
++        self.assertEqual(gesture["pulses"], [{"success_offset":0,"amount":struct.unpack("<f", struct.pack("<f", 0.001))[0]}])
++        self.assertEqual(validate_native_state_command(command), command)
++        self.assertEqual(validate_exact_self_control_values({"native_state_gesture":command}), {"native_state_gesture":command})
++
++    def test_rejects_stale_explicit_identity_peer_and_bad_node_coordinates(self):
++        bad = copy.deepcopy(IDENTITY); bad["engine_session_id"] = "previous-session"
++        for request in [{"nodes":{"0":1},"amount":0.001,"identity":bad},
++                        {"nodes":{"4":1},"amount":0.001}, {"nodes":{"00":1},"amount":0.001},
++                        {"nodes":{"0":0},"amount":0.001}, {"nodes":{"0":1},"amount":0.01},
++                        {"nodes":{"0":1},"amount":True}, {"nodes":{"0":1},"amount":0.001,"target_being":"astrid"}]:
++            with self.subTest(request=request), self.assertRaises(ValueError):
++                prepare_native_action("STATE_NUDGE", json.dumps(request), STATUS, now_ms=1000)
++        peer = copy.deepcopy(STATUS); peer["target_being"] = "astrid"
++        with self.assertRaises(ValueError):
++            prepare_native_action("STATE_NUDGE", '{"nodes":{"0":1},"amount":0.001}', peer, now_ms=1000)
++
++    def test_exact_decoder_rejects_unknown_nonfinite_hash_mixed_and_schedule_errors(self):
++        for version in [True, 1.0, "1", 2]:
++            command = self.command(); command["schema_version"] = version
++            with self.subTest(version=version), self.assertRaises(ValueError):
++                validate_native_state_command(command)
++        for mutation in [lambda g:g.update(unrecognized=True), lambda g:g.update(pattern_sha256="0"*64),
++                         lambda g:g.update(direction=[float('nan'),0,0,0]), lambda g:g.update(allow_attenuation="yes"),
++                         lambda g:g.update(pulses=[{"success_offset":1,"amount":0.001},{"success_offset":1,"amount":0.001}])]:
++            command = self.command(); mutation(command["gesture"])
++            with self.assertRaises(ValueError): validate_native_state_command(command)
++        with self.assertRaises(SelfControlV2Error):
++            validate_exact_self_control_values({"native_state_gesture":self.command(),"fill_target":0.68})
++
++    def test_signed_admission_does_not_require_or_assert_applied_values(self):
++        calls = []
++        def runner(args, **kwargs):
++            calls.append(args)
++            values = json.loads(args[args.index("--values-json")+1])
++            result = _result("local-topology", values, status="accepted")
++            result["attempts"][0]["self_control_receipt"]["applied_values"] = {}
++            return subprocess.CompletedProcess(args, 0, json.dumps(result), "")
++        client = MinimeSelfControlV2Client(binary="/tmp/inert-minime-test", runner=runner)
++        delivery = client.issue({"native_state_gesture":self.command()}, durability="one-shot")
++        self.assertEqual(delivery["receipts"][0]["status"], "accepted")
++        self.assertEqual(delivery["receipts"][0]["applied_values"], {})
++        self.assertEqual(len(calls), 1)
++
++    def test_false_native_application_in_admission_is_rejected(self):
++        def runner(args, **kwargs):
++            values = json.loads(args[args.index("--values-json")+1])
++            return subprocess.CompletedProcess(args, 0, json.dumps(_result("local-topology", values, status="accepted")), "")
++        client = MinimeSelfControlV2Client(binary="/tmp/inert-minime-test", runner=runner)
++        with self.assertRaises(SelfControlV2Error): client.issue({"native_state_gesture":self.command()}, durability="one-shot")
++
++    def test_single_action_preflights_and_distinguishes_zero_effect_completion(self):
++        class Client:
++            calls = 0
++            def status(self):
++                self.calls += 1
++                status = copy.deepcopy(STATUS)
++                if self.calls > 1:
++                    status["native_state"].update(admissions=[{"intent_id":"intent-test","status":"completed"}],
++                        recent_applications=[{"intent_id":"intent-test","application":{"status":"no_op","actual_l2":0}},
++                            {"intent_id":"intent-test","application":{"status":"completed"}}])
++                return status
++            def issue(self, values, **kwargs):
++                self.values = values; self.options = kwargs
++                return {"intent_ids":["intent-test"]}
++        client = Client()
++        result = execute_native_action("STATE_NUDGE", '{"nodes":{"0":1},"amount":0}', client, now=lambda:1.0, sleep=lambda _:None)
++        self.assertEqual(client.calls, 2)
++        self.assertEqual(client.options["retry_revision_conflict"], False)
++        self.assertEqual(result["observed_nonzero_applications"], 0)
++        self.assertEqual(result["admission_statuses"][0]["status"], "completed")
++        self.assertFalse(result["felt_effect_established"])
++
++    def test_native_next_actions_are_preserved_without_legacy_aliasing(self):
++        from minime_autonomy.parsing import parse_next_action
++        for action in ['STATE_NUDGE {"nodes":{"0":1},"amount":0.001}', 'STATE_GESTURE {"nodes":{"0":1},"pulses":[{"success_offset":0,"amount":0.001}]}', 'STATE_CANCEL chosen', 'STATE_STATUS']:
++            result = parse_next_action('I choose this.\nNEXT: ' + action)
++            self.assertEqual(result[0], action)
++
++if __name__ == '__main__': unittest.main()

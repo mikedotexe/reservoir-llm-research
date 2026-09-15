@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "purpose": "synthetic_relational_example",
+  "note": "All identities, values and times are invented. This is not a production schema or observed episode. Complete refers only to the declared synthetic window. Both batch items are fresh; held or aggregate lineage is not modeled.",
+  "scope": {
+    "boot_id": "synthetic-boot-a",
+    "session_id": "synthetic-session-1",
+    "clock": "receiver_monotonic_microseconds"
+  },
+  "coverage": {
+    "status": "complete",
+    "declared_window_seq": [1, 12],
+    "observer_dropped_count": 0,
+    "gaps": []
+  },
+  "events": [
+    {
+      "id": "synthetic-boot-a/synthetic-session-1/fill-latched",
+      "kind": "fill_estimate", "observer_seq": 1, "monotonic_us": 1000000,
+      "origin": "prior_estimate_retained_at_window_boundary",
+      "estimate_seq": 10, "fill_percent": 69.0
+    },
+    {
+      "id": "synthetic-boot-a/synthetic-session-1/fill-slope-latest",
+      "kind": "fill_estimate", "observer_seq": 2, "monotonic_us": 3000000,
+      "origin": "prior_estimate_retained_at_window_boundary",
+      "estimate_seq": 11, "fill_percent": 69.5
+    },
+    {
+      "id": "synthetic-boot-a/synthetic-session-1/ingress-A",
+      "kind": "ingress", "observer_seq": 3, "monotonic_us": 3050000,
+      "sender_claim": "synthetic-generator-A", "physical_origin": "synthetic_example",
+      "feature_vector": [0.25, -0.5, 0.75, 0.0, 1.0, -1.0, 0.125, -0.125],
+      "feature_sha256": "aae84ced0e72637909ae9cc7e53bc2572e69faa8bdd7445f42a5fa8ef4482437"
+    },
+    {
+      "id": "synthetic-boot-a/synthetic-session-1/ingress-B",
+      "kind": "ingress", "observer_seq": 4, "monotonic_us": 3100000,
+      "sender_claim": "synthetic-generator-B", "physical_origin": "synthetic_example",
+      "feature_vector": [0.5, 0.25, 0.0, -0.25, 0.75, 0.125, -0.5, 1.0],
+      "feature_sha256": "b0c83e52d5eab170f284a6b12fc4b0724109d7f3e6c35bf38a15e4ec6d72634a"
+    },
+    {
+      "id": "synthetic-boot-a/synthetic-session-1/batch",
+      "kind": "batch", "observer_seq": 5, "monotonic_us": 3200000,
+      "path": "stable_core_first_native_last_projection",
+      "items": [
+        {
+          "position": 0, "ingress_ref": "synthetic-boot-a/synthetic-session-1/ingress-A",
+          "freshness": "fresh", "transformation": "identity",
+          "effective_vector": [0.25, -0.5, 0.75, 0.0, 1.0, -1.0, 0.125, -0.125],
+          "effective_sha256": "aae84ced0e72637909ae9cc7e53bc2572e69faa8bdd7445f42a5fa8ef4482437"
+        },
+        {
+          "position": 1, "ingress_ref": "synthetic-boot-a/synthetic-session-1/ingress-B",
+          "freshness": "fresh", "transformation": "identity",
+          "effective_vector": [0.5, 0.25, 0.0, -0.25, 0.75, 0.125, -0.5, 1.0],
+          "effective_sha256": "b0c83e52d5eab170f284a6b12fc4b0724109d7f3e6c35bf38a15e4ec6d72634a"
+        }
+      ]
+    },
+    {
+      "id": "synthetic-boot-a/synthetic-session-1/mix",
+      "kind": "native_mix_trace", "observer_seq": 6, "monotonic_us": 3300000,
+      "batch_ref": "synthetic-boot-a/synthetic-session-1/batch", "batch_position": 0,
+      "input_sha256": "aae84ced0e72637909ae9cc7e53bc2572e69faa8bdd7445f42a5fa8ef4482437",
+      "mixing_coefficient": 0.62, "coefficient_basis": "synthetic_saved_mixing_trace"
+    },
+    {
+      "id": "synthetic-boot-a/synthetic-session-1/native",
+      "kind": "native_step", "observer_seq": 7, "monotonic_us": 3400000,
+      "batch_ref": "synthetic-boot-a/synthetic-session-1/batch", "batch_position": 0,
+      "input_sha256": "aae84ced0e72637909ae9cc7e53bc2572e69faa8bdd7445f42a5fa8ef4482437",
+      "mix_trace_ref": "synthetic-boot-a/synthetic-session-1/mix",
+      "result": "succeeded", "leak_nominal": 0.65, "leak_applied": 0.62
+    },
+    {
+      "id": "synthetic-boot-a/synthetic-session-1/projection",
+      "kind": "sensory_projection", "observer_seq": 8, "monotonic_us": 3500000,
+      "batch_ref": "synthetic-boot-a/synthetic-session-1/batch", "batch_position": 1,
+      "input_sha256": "b0c83e52d5eab170f284a6b12fc4b0724109d7f3e6c35bf38a15e4ec6d72634a"
+    },
+    {
+      "id": "synthetic-boot-a/synthetic-session-1/evaluation",
+      "kind": "controller_evaluation", "observer_seq": 9, "monotonic_us": 3600000,
+      "evaluation_kind": "committed",
+      "fill_input_ref": "synthetic-boot-a/synthetic-session-1/fill-latched", "fill_input_value": 69.0,
+      "slope_previous_ref": "synthetic-boot-a/synthetic-session-1/fill-latched",
+      "slope_latest_ref": "synthetic-boot-a/synthetic-session-1/fill-slope-latest", "slope_pp_per_s": 0.5,
+      "slope_method": "configured_reg_tick_seconds", "slope_denominator_s": 1.0,
+      "history_note": "The fill latch is older than the latest slope input. Slope uses configured 1-second tick, although these history samples are 2 seconds apart."
+    },
+    {
+      "id": "synthetic-boot-a/synthetic-session-1/field",
+      "kind": "field_write", "observer_seq": 10, "monotonic_us": 3700000,
+      "evaluation_ref": "synthetic-boot-a/synthetic-session-1/evaluation",
+      "projection_ref": "synthetic-boot-a/synthetic-session-1/projection",
+      "mode": "scaffold_hold", "new_sensory_vector_applied": false,
+      "write_result": "succeeded", "status": "applied"
+    },
+    {
+      "id": "synthetic-boot-a/synthetic-session-1/fill-current",
+      "kind": "fill_estimate", "observer_seq": 11, "monotonic_us": 3800000,
+      "origin": "estimate_after_applied_field_write",
+      "field_write_ref": "synthetic-boot-a/synthetic-session-1/field",
+      "estimate_seq": 12, "fill_percent": 71.0
+    },
+    {
+      "id": "synthetic-boot-a/synthetic-session-1/report",
+      "kind": "report", "observer_seq": 12, "monotonic_us": 3900000,
+      "native_step_ref": "synthetic-boot-a/synthetic-session-1/native",
+      "projection_ref": "synthetic-boot-a/synthetic-session-1/projection",
+      "current_fill_ref": "synthetic-boot-a/synthetic-session-1/fill-current"
+    }
+  ]
+}

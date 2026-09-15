@@ -1,0 +1,66 @@
+{
+  "schema": "tranche1_gate_receipt_v1",
+  "gate": "A",
+  "being": "minime",
+  "actor": "claude-tranche1",
+  "approved_by": "Mike (AskUserQuestion, 2026-09-07 ~05:25 UTC)",
+  "old_pid": 12456,
+  "old_started_at": "Sun Sep  6 21:30:44 2026",
+  "signal": "SIGTERM",
+  "signal_at": "2026-09-07T10:12:29Z",
+  "new_pid": 16848,
+  "canonical_head": "36998c6",
+  "knobs": {
+    "MINIME_FALLBACK_MODEL": "gemma4:12b",
+    "MINIME_LLM_TIMEOUT_S": "160"
+  },
+  "letter": "human_letter_mike_20260906_more_time_per_thought_222007.txt read 2026-09-07T05:22:38Z",
+  "pre_signal": {
+    "active_jobs": 0,
+    "fill_pct": 73.0,
+    "note": "fill 1 pt above the 72 shelf top with scaffold damping active toward 68; not an excursion (rails 74/78)"
+  },
+  "recorded_at": "2026-09-07T10:12:33Z",
+  "health": {
+    "old_process": "drained gracefully: 'shutdown requested; accepted work will finish' then 'drained; all accepted LLM workers returned' (2026-09-07T10:12:30Z); pid 12456 gone",
+    "new_pid": 16848,
+    "new_started_at": "2026-09-07T10:12:30Z (launchd KeepAlive, 1 s after SIGTERM)",
+    "backend_preference": "ollama (full timeout 160s, strict-review timeout 160s, compact timeout 20s, fallback timeout 60s, model gemma4:12b, fast fallback gemma4:12b)",
+    "continuity": "session 5316 continued; cycle_count 24893 restored; pending NEXT ASPIRE restored and honored at 10:12:48Z; regime and sovereignty dials restored from 10:37Z snapshot",
+    "tracebacks_since_restart": 0,
+    "errors_since_restart": 0,
+    "fill_at_first_cycle_pct": 71.0,
+    "source_status": {
+      "pid": 16848,
+      "started_at": "2026-09-07T03:12:33 local",
+      "lifecycle_contract": "agent_drain_v1"
+    },
+    "first_llm_action": "recess_aspiration started 10:13:22Z (record expected on completion)"
+  },
+  "first_record": {
+    "path": "workspace/generations/2026-09-07/gen_1788776101997_recess_aspiration_a0.json",
+    "written_at": "2026-09-07T10:15:02Z",
+    "lane": "recess_aspiration",
+    "lane_source": "execute_action",
+    "prompt_class_as_passed_by_runtime": "sovereignty_check",
+    "context_mode": "default",
+    "backend": "ollama",
+    "model": "gemma4:12b",
+    "attempts": [
+      "ollama"
+    ],
+    "status": "ok",
+    "timeout_s": 160.0,
+    "elapsed_s": 69.925,
+    "messages_source": "adapted",
+    "response_chars": 2017,
+    "next_action_parsed": "EXPERIMENT_ADVANCE",
+    "job_id": "job_minime_1788775980220_aspire",
+    "linked_journal": "aspiration_2026-09-07T03-15-02.123566.txt (match: content)",
+    "file_mode": "0600",
+    "dir_modes": "0700 (root, day, system_prompts)",
+    "system_prompt_chars": 7000,
+    "note": "prompt_class is the runtime's label for the call, not the lane; the aspiration lane passed 'sovereignty_check' here. The record keeps both."
+  },
+  "status": "activated_verified"
+}

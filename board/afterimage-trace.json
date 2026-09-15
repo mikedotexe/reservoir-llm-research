@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "publication_status": "saved_and_verified_in_ui",
+  "verified_at_utc": "2026-09-07T21:46:47.663930+00:00",
+  "board_url": "https://claude.ai/code/artifact/f4761d4a-94e8-43ca-882f-ca887956fca0",
+  "method": "Existing authenticated Hold Shelf window in Brave, through visible UI",
+  "cards": [
+    {
+      "planning_key": "t-afterimage-trace",
+      "board_document_id": null,
+      "title": "Follow an Afterimage from physical trace to later use",
+      "status": "done",
+      "being": "both",
+      "lane": "Tests",
+      "verification": "Saved done status, completion body and evidence paths visible"
+    }
+  ],
+  "session_log": {
+    "date": "2026-09-07",
+    "title": "Build and read the first Afterimage account",
+    "verification": "Reopened saved log and verified complete final body, including card completion"
+  },
+  "evidence": [
+    "analyses/2026-09-07-first-afterimage-account.md",
+    "research/studies/S-004-afterimage-to-use.md",
+    "proposals/2026-09-07-afterimage-delivery-and-evidence.md",
+    "research/outputs/2026-09-07-afterimage-account/final-report/account.json",
+    "analyses/2026-09-07-afterimage-research-readiness.md"
+  ],
+  "validation": {
+    "verified_at_utc": "2026-09-07T21:46:47.663930+00:00",
+    "suite": "python -m unittest discover -s tests",
+    "tests_passed": 167,
+    "test_log": "tests.log",
+    "capture_sha256": "f5a9205ec49b41d7c6c6621192e64b5494eb33aed75fc17547a0f9e3c23cd1a8",
+    "account_file_sha256": "eb2bd7575acbaa7fa8b38edabfb14b529401fdb95bb039ac6776ba8d32edde7d",
+    "result_sha256": "ef854dd0b933dc4434aefad36c7cac73e7ba187fde5636ee18bc2df36a491a0b",
+    "no_live_system_mutations": true,
+    "scope": "Research capture/report/study and implementation proposal; board card and session log",
+    "remaining_inquiry": "No naturally included cue candidate in the fixed window; accepted-exposure-to-use study remains open."
+  },
+  "note": "An earlier UI view showed 100 cards and did not display the saved card. A subsequent view showed 154 cards and the existing card. No duplicate was created. Runtime implementation remains proposed; accepted-exposure research remains open. No live beings were changed or messaged."
+}

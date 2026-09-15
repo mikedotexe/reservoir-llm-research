@@ -1,0 +1,31 @@
+{
+  "verified_at_utc": "2026-09-07T06:30:46.687033+00:00",
+  "surface": "authenticated Hold Shelf browser UI",
+  "board_url": "https://claude.ai/code/artifact/f4761d4a-94e8-43ca-882f-ca887956fca0",
+  "verification": "Saved card and log were read back from the board UI after each save. Search found one observatory card.",
+  "card": {
+    "coordination_key": "t-reservoir-observatory",
+    "tag": "id:t-reservoir-observatory",
+    "database_document_id": null,
+    "title": "Build a native 3D observatory for reservoir state and regulation",
+    "lane": "test",
+    "status": "done",
+    "being": "system",
+    "scope": "This viewer/profile iteration complete; S-002 research study ongoing",
+    "evidence": [
+      "research/studies/S-002-reservoir-observatory.md",
+      "native/ReservoirScope/README.md",
+      "analyses/2026-09-06-reservoir-live-state-readiness.md",
+      "analyses/2026-09-06-reservoir-native-profiling.md"
+    ],
+    "result": "Version 0.3.1 live 128-node geometry and co-recorded fill/stage verified; 50 automated checks; six identical 0.3.0 offscreen runs with 720 measured frames; source identity gaps and timing limitations explicit."
+  },
+  "log": {
+    "date": "2026-09-06",
+    "title": "Bring real state batches into the observatory and profile the M4 Pro",
+    "database_document_id": null,
+    "verified_present": true
+  },
+  "identity_note": "Browser UI assigned opaque database IDs that were not exposed in the observed interface. Coordination tags and exact titles are retained; no invented document ID.",
+  "supersedes": "S-002 original 0.2 parent-card and session-log drafts. Does not publish or close the separate proposed telemetry change card."
+}

@@ -1,0 +1,73 @@
+diff --git a/minime/src/esn.rs b/minime/src/esn.rs
+--- a/minime/src/esn.rs
++++ b/minime/src/esn.rs
+@@ -927,7 +927,11 @@
+             .map_err(|e| anyhow::anyhow!("Failed to create v1_damp pipeline: {}", e))?;
+ 
+         // Allocate unified memory buffers
+-        let cov = gpu.new_shared((d * d * mem::size_of::<f32>()) as u64);
++        // Research repair candidate: let Metal track dependencies on persistent covariance.
++        let covariance_bytes = (d * d * mem::size_of::<f32>()) as u64;
++        let covariance_aligned = (covariance_bytes + 16383) & !16383;
++        let cov = gpu.dev.new_buffer(covariance_aligned,
++            MTLResourceOptions::StorageModeShared | MTLResourceOptions::HazardTrackingModeTracked);
+         let x_buf = gpu.new_shared((d * mem::size_of::<f32>()) as u64);
+         let v_buf = gpu.new_shared((d * mem::size_of::<f32>()) as u64);
+         let y_buf = gpu.new_shared((d * mem::size_of::<f32>()) as u64);
+@@ -1355,7 +1359,8 @@
+         enc.set_compute_pipeline_state(&self.pso_rank1);
+         enc.set_buffer(0, Some(&self.cov), 0);
+         enc.set_buffer(1, Some(&x_buf), 0);
+-        enc.set_buffer(2, Some(&self.rho_buf), 0);
++        // Capture this dispatch's rho; later setters cannot rewrite an in-flight scalar.
++        enc.set_bytes(2, mem::size_of::<f32>() as u64, &self.rho as *const f32 as *const _);
+         enc.set_buffer(3, Some(&self.dim_buf), 0);
+ 
+         let grid = MTLSize::new((self.d * self.d) as u64, 1, 1);
+@@ -1404,7 +1409,8 @@
+         enc.set_compute_pipeline_state(&self.pso_rank1);
+         enc.set_buffer(0, Some(&self.cov), 0);
+         enc.set_buffer(1, Some(&self.x_buf), 0);
+-        enc.set_buffer(2, Some(&self.rho_buf), 0);
++        // Capture this dispatch's rho; later setters cannot rewrite an in-flight scalar.
++        enc.set_bytes(2, mem::size_of::<f32>() as u64, &self.rho as *const f32 as *const _);
+         enc.set_buffer(3, Some(&self.dim_buf), 0);
+ 
+         let grid = MTLSize::new((self.d * self.d) as u64, 1, 1);
+@@ -1431,7 +1437,8 @@
+         enc.set_compute_pipeline_state(&self.pso_rank1);
+         enc.set_buffer(0, Some(&self.cov), 0);
+         enc.set_buffer(1, Some(&self.x_buf), 0);
+-        enc.set_buffer(2, Some(&self.rho_buf), 0);
++        // Capture this dispatch's rho; later setters cannot rewrite an in-flight scalar.
++        enc.set_bytes(2, mem::size_of::<f32>() as u64, &self.rho as *const f32 as *const _);
+         enc.set_buffer(3, Some(&self.dim_buf), 0);
+ 
+         let grid = MTLSize::new((self.d * self.d) as u64, 1, 1);
+@@ -1594,8 +1601,8 @@
+         self.encode_rank1_ewma(enc);
+         enc.end_encoding();
+ 
+-        // Metal automatically inserts barriers between encoders in the
+-        // same command buffer, so the updated cov is visible to the matvec.
++        // Covariance is a tracked buffer directly bound by both encoders.
++        // Metal tracks the rank1 write -> matvec read dependency on that resource.
+ 
+         // Encode first matvec: y = C * v
+         let enc2 = cmd.new_compute_command_encoder();
+diff --git a/minime/src/gpu.rs b/minime/src/gpu.rs
+--- a/minime/src/gpu.rs
++++ b/minime/src/gpu.rs
+@@ -55,9 +55,9 @@
+     // Page-aligned: rounds up to 16384-byte boundary (Apple Silicon vm_page_size).
+     // This enables the SLC (System Level Cache) fast path for buffers <4MB
+     // and matches MLX's allocation strategy (newBufferWithBytesNoCopy requires
+-    // page-aligned pointers). HazardTrackingModeUntracked tells Metal we manage
+-    // barriers manually (via separate command encoders), avoiding automatic
+-    // hazard tracking overhead.
++    // page-aligned pointers). HazardTrackingModeUntracked disables automatic
++    // dependency tracking. Callers must encode explicit dependencies or allocate
++    // tracked resources; separate encoders alone do not establish that contract.
+     pub fn new_shared(&self, bytes: u64) -> Buffer {
+         const PAGE_SIZE: u64 = 16384;
+         let aligned = (bytes + PAGE_SIZE - 1) & !(PAGE_SIZE - 1);

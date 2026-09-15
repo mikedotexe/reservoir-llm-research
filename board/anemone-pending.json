@@ -1,0 +1,310 @@
+{
+  "format": "hold-shelf-pending-records-v1",
+  "publication_state": "published_verified",
+  "prepared_at": "2026-09-07T02:01:50Z",
+  "board_url": "https://claude.ai/code/artifact/f4761d4a-94e8-43ca-882f-ca887956fca0",
+  "access_observation": "Published through the authenticated Hold Shelf in Brave. The in-app browser remained signed out. Before publication, all-being/all-status search for anemone found no cards.",
+  "transfer_note": "Publication complete. Original preparation filename retained. Nine cards and one log entry were saved through the existing UI, reloaded and read back. Planning ids map to verified titles and id:<slug> tags; exact generated database ids and live timestamps were not exposed in the inspected UI. Reconcile by title/tag before future edits.",
+  "cards": [
+    {
+      "id": "d-anemone",
+      "data": {
+        "title": "Anemone: one sensor, one aperture, a small body",
+        "body": "Build a separate Raspberry Pi experiment with one ambient temperature sensor, seven damped coupled modes, OPEN/CLOSE as the only physical action, an unlabeled energy picture, at most twelve carry tokens and a pinned local model. Mike intends the hostname anemone; the Pi is currently unplugged. Children: d-anemone-protocol, t-anemone-replay, c-anemone-device, t-anemone-pilot, t-anemone-picture-regulation, t-anemone-prediction-carry, t-anemone-rhythm-order, t-anemone-longitudinal. Finish when the qualified device, auditable pilot, controlled comparisons and synthesis exist, including negative results. Reuse Avado/ICP operating lessons; do not inherit their multi-input body, speech feedback or 68% controller. Planning complete; implementation and experiments unrun.",
+        "lane": "design",
+        "status": "open",
+        "being": "system",
+        "tags": [
+          "anemone",
+          "raspberry-pi",
+          "epic",
+          "id:d-anemone"
+        ],
+        "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+        "source": "Mike's Anemone proposal, September 6, 2026; prior Avado/ICP documentation",
+        "created_at": "2026-09-07T02:01:50Z",
+        "updated_at": "2026-09-07T02:01:50Z"
+      },
+      "live_reference": {
+        "title": "Anemone: one sensor, one aperture, a small body",
+        "id_tag": "id:d-anemone",
+        "database_id": null,
+        "created_at": null,
+        "updated_at": null,
+        "verification": "Full saved fields verified after reload"
+      }
+    },
+    {
+      "id": "d-anemone-protocol",
+      "data": {
+        "title": "Anemone: freeze dynamics, prompt and forecast protocol",
+        "body": "Parent: d-anemone. Depends on: none; can start before the Pi is connected. Specify seven two-component damped modes, fixed energy scaling, wall-time/gap semantics, fixed OPEN gain, the unlabeled picture, minimal procedural contract, tokenizer-counted carry and independent field validation. One glyph predicts the next column's aggregate energy; scores stay observer-only. Finish with versioned equations/configuration, sample exact prompt/output, timing/deadline and analysis plan. Explicitly retain the deviations from the original sketch and schedule controls for rhythm claims. Freeze stages: provisional protocol/schema before replay; calibrated sensor/glyph scales and OPEN gain after the pilot, before evaluation. Bound total response to the proposed 128 tokens; commit only at whole-response completion before deadline and reject late results.",
+        "lane": "design",
+        "status": "open",
+        "being": "system",
+        "tags": [
+          "anemone",
+          "raspberry-pi",
+          "epic:d-anemone",
+          "id:d-anemone-protocol"
+        ],
+        "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+        "source": "Mike's Anemone proposal, September 6, 2026; prior Avado/ICP documentation",
+        "created_at": "2026-09-07T02:01:50Z",
+        "updated_at": "2026-09-07T02:01:50Z"
+      },
+      "live_reference": {
+        "title": "Anemone: freeze dynamics, prompt and forecast protocol",
+        "id_tag": "id:d-anemone-protocol",
+        "database_id": null,
+        "created_at": null,
+        "updated_at": null,
+        "verification": "Full saved fields verified after reload"
+      }
+    },
+    {
+      "id": "t-anemone-replay",
+      "data": {
+        "title": "Anemone: prove sensor admission, memory and replay offline",
+        "body": "Parent: d-anemone. Depends on: d-anemone-protocol. Build the isolated simulator/replay path and observer records with scripted sensor inputs and aperture policies. Prove a known perturbation enters under OPEN and is absent under CLOSE, residual state decays, the energy picture retains the tested history, and restart/gap replay agrees within declared tolerance. Finish with reproducible fixtures, a full sample record and measured pass/fail results; revise the observable before freezing if phase information disappears. No existing live systems are involved.",
+        "lane": "test",
+        "status": "open",
+        "being": "system",
+        "tags": [
+          "anemone",
+          "raspberry-pi",
+          "epic:d-anemone",
+          "id:t-anemone-replay"
+        ],
+        "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+        "source": "Mike's Anemone proposal, September 6, 2026; prior Avado/ICP documentation",
+        "created_at": "2026-09-07T02:01:50Z",
+        "updated_at": "2026-09-07T02:01:50Z"
+      },
+      "live_reference": {
+        "title": "Anemone: prove sensor admission, memory and replay offline",
+        "id_tag": "id:t-anemone-replay",
+        "database_id": null,
+        "created_at": null,
+        "updated_at": null,
+        "verification": "Full saved fields verified after reload"
+      }
+    },
+    {
+      "id": "c-anemone-device",
+      "data": {
+        "title": "Anemone: qualify the Pi, temperature sensor and local model",
+        "body": "Parent: d-anemone. Physical blocker: Pi is unplugged; unpark when Mike powers/connects it and access is available. Exact model, RAM, storage, OS and sensor are unknown. Inventory first, establish the intended anemone hostname/verified SSH endpoint, adapt prior Avado/ICP discovery and model benchmarks, and test ambient sensor isolation from inference heating. Depends on d-anemone-protocol for exact-contract model qualification. Finish with at least 100 benchmark calls, >=99% valid action/forecast, p95 <=120 seconds, no overlap/OOM/sustained swapping, recorded thermals and power state, and explicit selected model/runtime identity. A roughly 4B model is a candidate; smaller candidates are separate benchmark runs.",
+        "lane": "change",
+        "status": "parked",
+        "being": "system",
+        "tags": [
+          "anemone",
+          "raspberry-pi",
+          "epic:d-anemone",
+          "id:c-anemone-device"
+        ],
+        "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+        "source": "Mike's Anemone proposal, September 6, 2026; prior Avado/ICP documentation",
+        "created_at": "2026-09-07T02:01:50Z",
+        "updated_at": "2026-09-07T02:01:50Z"
+      },
+      "live_reference": {
+        "title": "Anemone: qualify the Pi, temperature sensor and local model",
+        "id_tag": "id:c-anemone-device",
+        "database_id": null,
+        "created_at": null,
+        "updated_at": null,
+        "verification": "Full saved fields verified after reload"
+      }
+    },
+    {
+      "id": "t-anemone-pilot",
+      "data": {
+        "title": "Anemone: run an auditable 72-hour pilot",
+        "body": "Parent: d-anemone. Depends on: t-anemone-replay and c-anemone-device. Run scripted OPEN/CLOSE, an overnight close, controlled dropout and restart checks with sensor/body/model processes separated. Finish when every scheduled opportunity is recorded, >=99% expected readings outside declared faults are valid, body time progresses during sleep/inference, state restores and replays, and no generated prose or observer scores enter the body or future prompts. Exclude pilot/calibration data from evaluation and distinguish authored actions from scheduler/failure closures. Keep a continuous 600-second bin grid, with overnight bins marked voice_not_scheduled. Freeze final calibrated scales/gain before evaluation.",
+        "lane": "test",
+        "status": "open",
+        "being": "system",
+        "tags": [
+          "anemone",
+          "raspberry-pi",
+          "epic:d-anemone",
+          "id:t-anemone-pilot"
+        ],
+        "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+        "source": "Mike's Anemone proposal, September 6, 2026; prior Avado/ICP documentation",
+        "created_at": "2026-09-07T02:01:50Z",
+        "updated_at": "2026-09-07T02:01:50Z"
+      },
+      "live_reference": {
+        "title": "Anemone: run an auditable 72-hour pilot",
+        "id_tag": "id:t-anemone-pilot",
+        "database_id": null,
+        "created_at": null,
+        "updated_at": null,
+        "verification": "Full saved fields verified after reload"
+      }
+    },
+    {
+      "id": "t-anemone-picture-regulation",
+      "data": {
+        "title": "Anemone: test picture dependence and spontaneous regulation",
+        "body": "Parent: d-anemone. Depends on: t-anemone-pilot and frozen analysis plan. Compare intact, withheld and matched shuffled pictures with carry/bar/history/backend controlled, then validate in closed-loop trials. Measure chosen closure versus fixed body saturation and trajectory effects against always-open/closed, timer, matched random and threshold policies; include opaque action symbols. Finish with effects, uncertainty, sample/failure counts and temporal-null assumptions. Forced sleep/failure closure never counts as chosen homeostasis. Test completion does not require a positive result.",
+        "lane": "test",
+        "status": "open",
+        "being": "system",
+        "tags": [
+          "anemone",
+          "raspberry-pi",
+          "epic:d-anemone",
+          "id:t-anemone-picture-regulation"
+        ],
+        "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+        "source": "Mike's Anemone proposal, September 6, 2026; prior Avado/ICP documentation",
+        "created_at": "2026-09-07T02:01:50Z",
+        "updated_at": "2026-09-07T02:01:50Z"
+      },
+      "live_reference": {
+        "title": "Anemone: test picture dependence and spontaneous regulation",
+        "id_tag": "id:t-anemone-picture-regulation",
+        "database_id": null,
+        "created_at": null,
+        "updated_at": null,
+        "verification": "Full saved fields verified after reload"
+      }
+    },
+    {
+      "id": "t-anemone-prediction-carry",
+      "data": {
+        "title": "Anemone: test forecast usefulness and twelve-token carry",
+        "body": "Parent: d-anemone. Depends on: t-anemone-pilot and frozen analysis plan. Compare intact/empty/shuffled carry and one-glyph forecasts with persistence, constant/action-conditioned decay and simple temperature-plus-dynamics predictors on matched held-out histories. Report ordinal error, exact matches, coverage and OPEN/CLOSE/latency strata. Explore carry clusters only with held-out day validation and weather/schedule controls. Finish with replicated comparisons and explicit limits; logged scoring is not model training and easier closed-state predictions are not evidence of better world forecasting.",
+        "lane": "test",
+        "status": "open",
+        "being": "system",
+        "tags": [
+          "anemone",
+          "raspberry-pi",
+          "epic:d-anemone",
+          "id:t-anemone-prediction-carry"
+        ],
+        "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+        "source": "Mike's Anemone proposal, September 6, 2026; prior Avado/ICP documentation",
+        "created_at": "2026-09-07T02:01:50Z",
+        "updated_at": "2026-09-07T02:01:50Z"
+      },
+      "live_reference": {
+        "title": "Anemone: test forecast usefulness and twelve-token carry",
+        "id_tag": "id:t-anemone-prediction-carry",
+        "database_id": null,
+        "created_at": null,
+        "updated_at": null,
+        "verification": "Full saved fields verified after reload"
+      }
+    },
+    {
+      "id": "t-anemone-rhythm-order",
+      "data": {
+        "title": "Anemone: test masked-input rhythm and order beyond timers",
+        "body": "Parent: d-anemone. Depends on: t-anemone-replay and frozen analysis; real-temperature transfer also needs t-anemone-pilot. In isolated replay remove nightly forced closure and voice silence, use uniform calls, controlled carry and no time labels, then mask sensor after shifted temperature histories. Compare reset/unentrained states, multiple initial phases, clock-only controls, and several candidate cycles. Swap warm-day order with matched present input/terminal segment; compare leaky smoothers, timer, random and memoryless controls. Finish with evidence separating retention from supplied schedule, programmed periods, passive transient and ordinary smoothing.",
+        "lane": "test",
+        "status": "open",
+        "being": "system",
+        "tags": [
+          "anemone",
+          "raspberry-pi",
+          "epic:d-anemone",
+          "id:t-anemone-rhythm-order"
+        ],
+        "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+        "source": "Mike's Anemone proposal, September 6, 2026; prior Avado/ICP documentation",
+        "created_at": "2026-09-07T02:01:50Z",
+        "updated_at": "2026-09-07T02:01:50Z"
+      },
+      "live_reference": {
+        "title": "Anemone: test masked-input rhythm and order beyond timers",
+        "id_tag": "id:t-anemone-rhythm-order",
+        "database_id": null,
+        "created_at": null,
+        "updated_at": null,
+        "verification": "Full saved fields verified after reload"
+      }
+    },
+    {
+      "id": "t-anemone-longitudinal",
+      "data": {
+        "title": "Anemone: complete the observation block and research synthesis",
+        "body": "Parent: d-anemone. Depends on: t-anemone-pilot and preregistered analysis. Run a proposed four-week block with frozen configuration/model and complete missingness/failure records; coordinate the three experiment cards' controls. Finish with archived denominators, uncertainty, held-out comparisons, replication limits and a synthesis linked to the Astrid/minime research questions. Four weeks is a planning duration, not proof of statistical power. Mark tests done for useful null results; create verified finding cards only for supported specific claims.",
+        "lane": "test",
+        "status": "open",
+        "being": "system",
+        "tags": [
+          "anemone",
+          "raspberry-pi",
+          "epic:d-anemone",
+          "id:t-anemone-longitudinal"
+        ],
+        "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+        "source": "Mike's Anemone proposal, September 6, 2026; prior Avado/ICP documentation",
+        "created_at": "2026-09-07T02:01:50Z",
+        "updated_at": "2026-09-07T02:01:50Z"
+      },
+      "live_reference": {
+        "title": "Anemone: complete the observation block and research synthesis",
+        "id_tag": "id:t-anemone-longitudinal",
+        "database_id": null,
+        "created_at": null,
+        "updated_at": null,
+        "verification": "Full saved fields verified after reload"
+      }
+    }
+  ],
+  "log": [
+    {
+      "id": "2026-09-06-anemone-epic",
+      "data": {
+        "date": "2026-09-06",
+        "title": "Scope Anemone and connect the earlier small-box work",
+        "body": "Preserved the original proposal and prepared one parent epic plus eight child cards for a minimal Raspberry Pi sensor/aperture experiment. Linked the September 5 Avado/ICP readiness audit, Linux discovery, model benchmarking and recovery lessons. Defined protocol corrections, hardware gates, pilot and controlled experiments. Pi remains unplugged; no SSH, deployment or experiment was performed. Published one parent epic and eight child cards to the Hold Shelf after authenticated access and verified their saved contents after reloading. All cards are tagged anemone; hardware setup is parked and the other cards are open. Planning references are retained as id: tags because the browser assigns database IDs. Evidence: exercises/2026-09-06-anemone-minimal-body-epic.md",
+        "created_at": "2026-09-07T02:01:50Z",
+        "updated_at": "2026-09-07T02:01:50Z"
+      },
+      "live_reference": {
+        "title": "Scope Anemone and connect the earlier small-box work",
+        "database_id": null,
+        "created_at": null,
+        "updated_at": null,
+        "verification": "Saved date/title/full body verified after reload"
+      }
+    }
+  ],
+  "publication_verified_at": "2026-09-07T02:15:24Z",
+  "data_timestamp_provenance": "created_at and updated_at inside data retain preparation timestamps, not observed live timestamps. Browser forms assigned actual live timestamps; their exact values are unknown.",
+  "verification": {
+    "method": "Authenticated Brave UI; page reload followed by reopening all nine card editors and the log editor for full saved-field comparison",
+    "board_count_before": 124,
+    "board_count_after": 133,
+    "cards_verified": 9,
+    "logs_verified": 1,
+    "card_status_counts": {
+      "open": 8,
+      "parked": 1
+    },
+    "lane_counts": {
+      "design": 2,
+      "test": 6,
+      "change": 1
+    },
+    "fields_checked": [
+      "title",
+      "body",
+      "lane",
+      "status",
+      "being",
+      "evidence",
+      "tags",
+      "source"
+    ],
+    "existing_cards_changed": 0
+  }
+}

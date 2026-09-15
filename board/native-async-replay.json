@@ -1,0 +1,58 @@
+{
+  "recorded_at_utc": "2026-09-08T02:33:33.737471+00:00",
+  "session_date_pacific": "2026-09-07",
+  "board_url": "https://claude.ai/code/artifact/f4761d4a-94e8-43ca-882f-ca887956fca0",
+  "publication_method": "Authenticated board UI; saved titles, bodies, evidence and statuses read back from the board",
+  "database_ids_observed": false,
+  "cards": [
+    {
+      "tag": "id:t-native-async-replay",
+      "title": "Diagnose and repair asynchronous native adaptive replay",
+      "lane": "test",
+      "status": "done",
+      "scope": "Research-local diagnosis, qualification and tested patch preparation completed"
+    },
+    {
+      "tag": "id:f-native-async-repair",
+      "title": "GPU dependency tracking and immutable parameters restore native async replay",
+      "lane": "finding",
+      "status": "verified",
+      "scope": "27/27 primary final-candidate cases and three measurement cases per host, M1 Max and M4 Pro; independent numerical and executed-identity verification"
+    },
+    {
+      "tag": "id:c-native-async-repair",
+      "title": "Specify the tested native async repair for substrate actions",
+      "lane": "change",
+      "status": "done",
+      "scope": "Implementation proposal and exact tested patch completed; owning-repository integration remains pending"
+    },
+    {
+      "tag": "id:f-native-shaping-rehearsal",
+      "title": "Initial native checkpoint rehearsal passed synchronously and failed asynchronously",
+      "lane": "finding",
+      "status": "verified",
+      "scope": "Historical experiment preserved; appended link to the later qualified repair"
+    }
+  ],
+  "log": {
+    "date": "2026-09-07",
+    "title": "Qualify asynchronous native replay on M1 Max and M4 Pro",
+    "saved_and_read_back": true
+  },
+  "evidence": [
+    "analyses/2026-09-07-native-async-replay.md",
+    "analyses/2026-09-07-native-async-source-audit.md",
+    "proposals/2026-09-07-native-async-replay.md",
+    "proposals/patches/2026-09-07-native-async-replay.patch",
+    "research/outputs/2026-09-07-native-async/README.md",
+    "research/outputs/2026-09-07-native-async/corrected/verification.json",
+    "research/outputs/2026-09-07-native-async/qualification/verification.json",
+    "research/outputs/2026-09-07-native-async/m4-validation/verification.json",
+    "research/outputs/2026-09-07-native-async/m4-validation/cross-host-verification.json",
+    "research/outputs/2026-09-07-native-async/patch-check-receipt.json"
+  ],
+  "retained_correction": "Initial and chain cached-build treatment labels invalidated; only corrected compiled-identity-gated comparisons establish treatment efficacy",
+  "live_system_changes": false,
+  "being_messages_sent": false,
+  "viewer_build_changed": false
+}

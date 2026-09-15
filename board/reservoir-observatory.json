@@ -1,0 +1,61 @@
+{
+  "verified_at_utc": "2026-09-08T01:25:26.028371+00:00",
+  "surface": "authenticated Hold Shelf browser UI",
+  "board_url": "https://claude.ai/code/artifact/f4761d4a-94e8-43ca-882f-ca887956fca0",
+  "verification": "Parent card, new proposal card, scoped simulation finding and session log saved and read back through the board UI.",
+  "card": {
+    "coordination_key": "t-reservoir-observatory",
+    "tag": "id:t-reservoir-observatory",
+    "database_document_id": null,
+    "title": "Build a native 3D observatory for reservoir state and regulation",
+    "lane": "test",
+    "status": "done",
+    "being": "system",
+    "scope": "0.5.0 build7 viewer and isolated simulation iteration complete; S-002 remains ongoing",
+    "evidence": [
+      "analyses/2026-09-07-reservoir-state-surface-implementation.md",
+      "native/ReservoirScope/build-receipt.json",
+      "native/ReservoirScope/docs/STATE-SURFACE.md",
+      "research/outputs/2026-09-07-state-surface/profiles/comparison.md",
+      "proposals/2026-09-07-direct-reservoir-shaping.md",
+      "research/studies/S-002-reservoir-observatory.md"
+    ]
+  },
+  "proposal": {
+    "coordination_key": "c-state-nudge-contract",
+    "tag": "id:c-state-nudge-contract",
+    "database_document_id": null,
+    "title": "Specify STATE_NUDGE as an observed direct-state action",
+    "lane": "change",
+    "status": "done",
+    "being": "both",
+    "scope": "Proposal and conditional simulation complete; native action, native checkpoint rehearsal, authority adapter and deployment not implemented",
+    "evidence": [
+      "proposals/2026-09-07-direct-reservoir-shaping.md"
+    ]
+  },
+  "finding": {
+    "coordination_key": "f-direct-state-response-fixture",
+    "tag": "id:f-direct-state-response-fixture",
+    "database_document_id": null,
+    "title": "Small state displacements decay in the retained esn-divide fixture",
+    "lane": "finding",
+    "status": "verified",
+    "being": "system",
+    "scope": "54 signed displacements at 3 predefined starts under retained conditional simulated forcing; all 9 derivative comparisons excluded for clipping. Not native Minime/live stability or behavioral evidence.",
+    "evidence": [
+      "research/outputs/2026-09-07-direct-shaping/protocol.json",
+      "research/outputs/2026-09-07-direct-shaping/results.json",
+      "research/outputs/2026-09-07-direct-shaping/retained-replay-check.json"
+    ]
+  },
+  "log": {
+    "date": "2026-09-07",
+    "title": "Render actual state surfaces and rehearse a direct state gesture",
+    "database_document_id": null,
+    "verified_present": true
+  },
+  "identity_note": "Observed UI does not expose database document IDs. Exact titles and coordination tags retained; no ID invented.",
+  "prior_receipt": "board/reservoir-observatory-state-surface-plan.json",
+  "implementation_state": "App 0.5.0, build 7 implemented and inspected. 172 native checks pass. Six final offscreen reports / 540 frames independently verified. Native checkpoint parity, observer/PERTURB producer code, STATE_NUDGE action and presented-window timing remain pending. No live intervention or being messages."
+}

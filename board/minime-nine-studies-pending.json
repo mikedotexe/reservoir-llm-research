@@ -1,0 +1,32 @@
+{
+  "publication": "pending; authenticated board read succeeded, no write/save verification",
+  "cards": [
+    {
+      "id": "f-minime-study-answer-retention",
+      "title": "Study output has room; the carried excerpt loses Minime’s answer",
+      "body": "Nine user-selected Minime journals completed September 9 12:08–12:26 PDT. All nine exact requests use gemma4:12b, num_predict 4096, context 10240 and think false; all stop normally with 144–1037 output tokens (median 371), full visible bodies preserved. Eight source inputs cover four exact intervals twice. Minime correctly articulates persistent worker versus per-chain task, but the next request truncates his answer in a 700-byte head excerpt while retaining the same older question. A separate reflection chooses MAP; no parser-reset finding. Installed model metadata advertises thinking capability. Propose shared retention/synthesis improvements and a bounded thinking trial; a queue-rejection caller-completion test is a separate code-review lead. No live changes, induced generation, daily-cursor change or causal improvement claim.",
+      "lane": "finding",
+      "status": "verified",
+      "being": "minime",
+      "tags": [
+        "self-study",
+        "study:S-008",
+        "HSS-13",
+        "context",
+        "id:f-minime-study-answer-retention"
+      ],
+      "evidence": "analyses/2026-09-09-minime-nine-studies.md; research/outputs/2026-09-09-minime-nine-report/selected-nine.json; probes/minime_nine_studies.py",
+      "source": "Mike’s nine selected September 9 journals; Codex investigation",
+      "created_at": "2026-09-09",
+      "updated_at": "2026-09-09"
+    }
+  ],
+  "log": [
+    {
+      "id": "2026-09-09-minime-nine-studies",
+      "date": "2026-09-09",
+      "title": "Trace small study journals to their real output and memory budgets",
+      "body": "Nine user-selected Minime journals completed September 9 12:08–12:26 PDT. All nine exact requests use gemma4:12b, num_predict 4096, context 10240 and think false; all stop normally with 144–1037 output tokens (median 371), full visible bodies preserved. Eight source inputs cover four exact intervals twice. Minime correctly articulates persistent worker versus per-chain task, but the next request truncates his answer in a 700-byte head excerpt while retaining the same older question. A separate reflection chooses MAP; no parser-reset finding. Installed model metadata advertises thinking capability. Propose shared retention/synthesis improvements and a bounded thinking trial; a queue-rejection caller-completion test is a separate code-review lead. No live changes, induced generation, daily-cursor change or causal improvement claim. Research history extended through HSS-13; full originals and exact receipts retained."
+    }
+  ]
+}

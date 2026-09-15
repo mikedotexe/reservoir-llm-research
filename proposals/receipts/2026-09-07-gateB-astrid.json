@@ -1,0 +1,66 @@
+{
+  "schema": "tranche1_gate_receipt_v1",
+  "gate": "B",
+  "being": "astrid",
+  "actor": "claude-tranche1",
+  "approved_by": "Mike (AskUserQuestion, 2026-09-07 ~05:25 UTC): activate now, letter pending",
+  "attempt_1": {
+    "stage": "/Users/v/other/astrid/.runtime/bridge-stages/20260907-tranche1-02 (built 05:18:49Z from canonical main bc66a62b0b)",
+    "command": "build_bridge.sh --activate-stage ... --expected-pid 22940",
+    "started_at": "2026-09-07T10:15:41Z",
+    "transaction": ".runtime/bridge-deployment/transactions/48c7e0c857a94389bc03e4ef9f843392",
+    "what_happened": "preflight OK; hold + launcher installed; drain requested and reached phase 'drained' with checkpoint 538fd3ab\u2026; SIGTERM sent; old PID 22940 exited; snapshot and signed handoff written; select_release -> verify_bundle failed: 'staged source inputs changed; rebuild before activation'. Receipt status failed_requires_review, activation_performed false, hold retained.",
+    "cause": "The stage's source-inputs snapshot (bridge_stage.input_snapshot, includes mtime_ns) covers the canonical tree, and the activation's own install_hold_and_launcher rewrote scripts/launchd_spectral_bridge.sh and scripts/bridge_release_launch.py (byte-identical content, new mtime 10:15:46Z) before select_release re-verified the bundle. Only those two entries differed. Codex's rollouts stage from a detached release worktree, so the install never touches their snapshot.",
+    "why_recovery_tool_did_not_apply": "bridge_stopped_recovery refuses a transaction that already holds snapshot/handoff files ('transition already has progress'), and binds recovery to the original stage; a fresh activation needs a running old process.",
+    "downtime": "2026-09-07T10:16:50Z (old exit) -> 10:23:17Z (restored start), ~6.5 min; launchd crash-looped 10:21:23-10:23:13 on 'deployment handoff is malformed or bound to different evidence'.",
+    "operator_actions": [
+      "10:21:23Z released the launch hold (copy kept as hold.released-by-operator.json; operator-hold-release.json written) so KeepAlive could relaunch the unchanged active.json release 20260907-addressed-replies-01",
+      "10:23:13Z moved self_control_v2/astrid/deployment_handoff.pending.json (signed for stage tranche1-02's identity) into the transaction dir; self_control state.json and workspace/state.json verified byte-identical to the pre-activation snapshots",
+      "10:23:17Z bridge PID 22709 started on the restored release; conversation state restored at 191,740 exchanges"
+    ],
+    "stage_03_note": ".runtime/bridge-stages/20260907-tranche1-03 was rebuilt from the canonical tree during triage and is unusable for the same reason; inert."
+  },
+  "attempt_2": {
+    "stage": "/Users/v/other/worktrees/astrid-tranche1-release-20260907/.runtime/bridge-stages/20260907-tranche1-04 (detached worktree at bc66a62b0b, built 10:24-10:26Z)",
+    "command": "build_bridge.sh --activate-stage ... --expected-pid 22709",
+    "started_at": "2026-09-07T10:26:49Z",
+    "transaction": ".runtime/bridge-deployment/transactions/a7b045190e57429da5514fdc7f6dc46b",
+    "what_happened": "preflight OK; hold + launcher installed; drain reached 'drained'; SIGTERM sent; while observing exit the watcher raised 'old PID was reused during transition' (drain.process_identity mismatch during shutdown); status failed_requires_review, activation_performed false, hold retained, no snapshot/handoff/selection. PID 22709 confirmed absent at 10:29:28Z. Astrid down again from ~10:28:40Z.",
+    "note": "Same exit-observation race Codex documented for PID 42916 on 2026-09-06 (their fix 528046fec7 added the stopped-transition continuation for exactly this state)."
+  },
+  "recorded_at": "2026-09-07T10:24:48Z",
+  "recovery": {
+    "started_at": "2026-09-07T10:29:45Z",
+    "command": "build_bridge.sh --activate-stage <stage 04> --expected-pid 22709 --resume-stopped-transition <transaction a7b04519>",
+    "preconditions": "old PID absent; transaction holds only receipt.json + two helper backups; receipt failed_requires_review/SIGTERM/drained; stage manifest and binary bound; hold owned by the transaction",
+    "hold_released_and_release_selected_at": "~2026-09-07T10:29:45Z",
+    "new_pid": 27337,
+    "new_started_at": "2026-09-07T10:29:48Z",
+    "startup_gate": {
+      "state_targets_this_binary": true,
+      "checkpoint_exchange": 191743
+    },
+    "lifecycle": "running",
+    "readyz": "ready, generating, reservoir connected",
+    "errors_warnings_since_start": 0,
+    "status_at_10:30Z": "verify_new in progress (needs a new saved exchange + idle model), publish_manifest pending",
+    "finished_at": "2026-09-07T10:31:12Z",
+    "status": "transition_recovered",
+    "activation_performed": true,
+    "force_used": false,
+    "signal_sent": false,
+    "new_process_verified": {
+      "pid": 27337,
+      "new_saved_exchange_observed": true,
+      "model_idle_observed": true,
+      "stopped_exchange_count": 191743,
+      "observed_exchange_count": 191744,
+      "state_integrity_verified": true,
+      "state_deployment_identity": "astrid:bc66a62b0b\u2026:bridge:56525bf1\u2026"
+    },
+    "witness": ".runtime/bridge-deployment/transactions/a7b045190e57429da5514fdc7f6dc46b/stopped-transition-recoveries/*/receipt.json"
+  },
+  "downtime_2": "2026-09-07T10:28:40Z (old exit) -> 10:29:48Z (Tranche 1 start), ~70 s",
+  "status": "activated_verified",
+  "inert_stages_note": "/Users/v/other/astrid/.runtime/bridge-stages/20260907-tranche1-01, -02, -03 were built from the canonical tree and are unusable for activation; left in place as evidence. Live stage: worktrees/astrid-tranche1-release-20260907/.runtime/bridge-stages/20260907-tranche1-04 (keep the worktree)."
+}

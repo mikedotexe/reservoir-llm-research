@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "project": "Resume this thought",
+  "publication_status": "published_and_verified",
+  "verified_at_utc": "2026-09-07 03:03:25 UTC",
+  "board_url": "https://claude.ai/code/artifact/f4761d4a-94e8-43ca-882f-ca887956fca0",
+  "proposal": "proposals/2026-09-06-resume-this-thought.md",
+  "scope": "User-authorized board planning and bounded source review. No sibling code changes, live runtime changes, messages to participants, or evaluation runs.",
+  "method": "Authenticated existing Brave board session via visible UI; no direct database API available.",
+  "deduplication": {
+    "initial_board_count": 133,
+    "resume_search_matches": 0,
+    "related_cards_read": [
+      "CARRY: one tiny slot, fed by the being, not a stale room stub",
+      "The reading episode: bookmark, letter, return",
+      "Trace what each LLM lane actually sees",
+      "Mostly empty prompt: more room than instruction",
+      "M6: A dozen verbs that touch the body or the world; scaffolding moves to the steward side"
+    ]
+  },
+  "new_cards": [
+    {
+      "key": "d-resume-thought",
+      "title": "Resume this thought: wander, return, develop",
+      "lane": "design",
+      "being": "both",
+      "status": "open",
+      "depends_on": [],
+      "board_document_id": null,
+      "verification": "Reopened saved card and matched full authored body, title, evidence, lane, being, status, and planning-key tag."
+    },
+    {
+      "key": "d-resume-contract",
+      "title": "Resume this thought: define active, yielded, resumed and released",
+      "lane": "design",
+      "being": "both",
+      "status": "open",
+      "depends_on": [],
+      "board_document_id": null,
+      "verification": "Reopened saved card and matched full authored body, title, evidence, lane, being, status, and planning-key tag."
+    },
+    {
+      "key": "t-resume-boundary",
+      "title": "Resume this thought: establish the delivery baseline offline",
+      "lane": "test",
+      "being": "astrid",
+      "status": "open",
+      "depends_on": [
+        "d-resume-contract"
+      ],
+      "board_document_id": null,
+      "verification": "Reopened saved card and matched full authored body, title, evidence, lane, being, status, and planning-key tag."
+    },
+    {
+      "key": "c-resume-selection",
+      "title": "Resume this thought: persist an exact authored selection",
+      "lane": "change",
+      "being": "astrid",
+      "status": "open",
+      "depends_on": [
+        "d-resume-contract",
+        "t-resume-boundary"
+      ],
+      "board_document_id": null,
+      "verification": "Reopened saved card and matched full authored body, title, evidence, lane, being, status, and planning-key tag."
+    },
+    {
+      "key": "c-resume-delivery",
+      "title": "Resume this thought: protect the final request and receipt",
+      "lane": "change",
+      "being": "astrid",
+      "status": "open",
+      "depends_on": [
+        "c-resume-selection"
+      ],
+      "board_document_id": null,
+      "verification": "Reopened saved card and matched full authored body, title, evidence, lane, being, status, and planning-key tag."
+    },
+    {
+      "key": "c-resume-lifecycle",
+      "title": "Resume this thought: wire deliberate return, revision and release",
+      "lane": "change",
+      "being": "astrid",
+      "status": "open",
+      "depends_on": [
+        "c-resume-selection",
+        "c-resume-delivery"
+      ],
+      "board_document_id": null,
+      "verification": "Reopened saved card and matched full authored body, title, evidence, lane, being, status, and planning-key tag."
+    },
+    {
+      "key": "t-resume-development",
+      "title": "Resume this thought: measure development beyond phrase repetition",
+      "lane": "test",
+      "being": "both",
+      "status": "open",
+      "depends_on": [
+        "c-resume-lifecycle"
+      ],
+      "board_document_id": null,
+      "verification": "Reopened saved card and matched full authored body, title, evidence, lane, being, status, and planning-key tag."
+    },
+    {
+      "key": "d-resume-participants",
+      "title": "Resume this thought: keep Mike, Astrid and Minime distinct",
+      "lane": "design",
+      "being": "both",
+      "status": "open",
+      "depends_on": [
+        "d-resume-contract"
+      ],
+      "board_document_id": null,
+      "verification": "Reopened saved card and matched full authored body, title, evidence, lane, being, status, and planning-key tag."
+    },
+    {
+      "key": "c-resume-minime",
+      "title": "Resume this thought: build Minime's compatible return path",
+      "lane": "change",
+      "being": "minime",
+      "status": "open",
+      "depends_on": [
+        "d-resume-participants",
+        "c-resume-delivery"
+      ],
+      "board_document_id": null,
+      "verification": "Reopened saved card and matched full authored body, title, evidence, lane, being, status, and planning-key tag."
+    },
+    {
+      "key": "c-resume-channel",
+      "title": "Resume this thought: make saving and returning natural in Mike-channel",
+      "lane": "change",
+      "being": "system",
+      "status": "open",
+      "depends_on": [
+        "d-resume-contract",
+        "c-resume-lifecycle",
+        "d-resume-participants"
+      ],
+      "board_document_id": null,
+      "verification": "Reopened saved card and matched full authored body, title, evidence, lane, being, status, and planning-key tag."
+    },
+    {
+      "key": "t-resume-pilot",
+      "title": "Resume this thought: pilot one return, then the three-person conversation",
+      "lane": "test",
+      "being": "both",
+      "status": "open",
+      "depends_on": [
+        "t-resume-development",
+        "c-resume-channel"
+      ],
+      "board_document_id": null,
+      "verification": "Reopened saved card and matched full authored body, title, evidence, lane, being, status, and planning-key tag."
+    },
+    {
+      "key": "d-resume-pin",
+      "title": "Resume this thought: pin availability and tune continuing influence",
+      "lane": "design",
+      "being": "both",
+      "status": "open",
+      "depends_on": [
+        "d-resume-contract"
+      ],
+      "board_document_id": null,
+      "verification": "Reopened saved card and matched full authored body, title, evidence, lane, being, status, and planning-key tag."
+    }
+  ],
+  "count_verification": {
+    "new_cards": 12,
+    "final_board_count": 145
+  },
+  "key_semantics": "Keys are stable planning references in tags/body, not the UI-generated database document IDs, which were not exposed.",
+  "phase_dependencies": {
+    "channel_mockup": [
+      "d-resume-contract"
+    ],
+    "group_channel": [
+      "c-resume-minime"
+    ],
+    "group_pilot": [
+      "c-resume-minime",
+      "c-resume-channel"
+    ]
+  },
+  "related_cards_updated": [
+    {
+      "title": "CARRY: one tiny slot, fed by the being, not a stale room stub",
+      "changes": "Appended dated planning link and evidence path, added related:d-resume-thought tag. Original body, title, source, lane, being and open status retained.",
+      "verified": true
+    },
+    {
+      "title": "The reading episode: bookmark, letter, return",
+      "changes": "Appended dated fixture-reuse/current-bookmark note and evidence path, added related:d-resume-thought tag. Original body, title, source, lane, being and open status retained.",
+      "verified": true
+    }
+  ],
+  "log": {
+    "date": "2026-09-06",
+    "title": "Shape Resume this thought: active, yielded, resumed",
+    "verified": true
+  },
+  "view_left_on_board": "id:d-resume-pin",
+  "artifact_content": "This file records publication metadata, dependency keys, and field verification. Full specifications and acceptance criteria are in the proposal; current exact card bodies remain on the live board.",
+  "updates": [
+    {
+      "verified_at_utc": "2026-09-07 03:03:25 UTC",
+      "decision": "Mike approved pinning to protect both availability and tunable continuing influence, refined through later trials.",
+      "new_card": "d-resume-pin",
+      "updated_cards": [
+        "d-resume-thought",
+        "t-resume-boundary",
+        "t-resume-development"
+      ],
+      "before_board_count": 144,
+      "after_board_count": 145,
+      "verification": "New card and all three modified cards reopened and checked; saved trace entry also reopened and matched.",
+      "log": {
+        "date": "2026-09-06",
+        "title": "Pin chosen thoughts: availability plus tunable influence",
+        "verified": true
+      },
+      "test_cases": [
+        "Pinned yielded thought survives time, unrelated exchanges and restart",
+        "Explicit return recovers the selected revision",
+        "Contradictory evidence remains visible and usable",
+        "Repeated exposure creates no synthetic freshness or supporting evidence",
+        "Unpinning and release behave as declared"
+      ],
+      "calibration": "Additional isolated unpinned, availability-only, lower-influence and higher-influence comparisons; sample counts and policy bounds to be frozen before trials. These arms are outside the original 108-generation plan.",
+      "scheduling": "No schedule or automatic tuning created."
+    }
+  ]
+}

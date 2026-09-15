@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "project": "Astrid + Minime research hub",
+  "publication_status": "published_and_verified",
+  "verified_at_utc": "2026-09-07 03:21:19 UTC",
+  "board_url": "https://claude.ai/code/artifact/f4761d4a-94e8-43ca-882f-ca887956fca0",
+  "scope": "Local research-hub documentation, a prepared discovery study, one sourced seed episode, one open board question, and a session log. No corpus sampling, experiment execution, live-system change, or message to a being.",
+  "method": "Existing authenticated Hold Shelf tab in Brave, through visible UI. No direct Artifact database API.",
+  "deduplication": {
+    "searches": [
+      "research hub",
+      "ask themselves"
+    ],
+    "result": "Neither search showed a matching card before creation; all being/status filters selected."
+  },
+  "new_cards": [
+    {
+      "key": "q-their-own-questions",
+      "board_document_id": null,
+      "title": "What questions do Astrid and Minime ask themselves?",
+      "lane": "question",
+      "status": "open",
+      "being": "both",
+      "tags": [
+        "research-hub",
+        "discovery",
+        "study:S-001",
+        "rq-02",
+        "rq-03",
+        "id:q-their-own-questions"
+      ],
+      "evidence": [
+        "research/studies/S-001-their-own-questions.md",
+        "research/episodes/2026-09-06-minime-calibration-question.md",
+        "RESEARCH.md"
+      ],
+      "verification": "Reopened saved card; verified full title, body, evidence, tags, source, lane, status, and being."
+    }
+  ],
+  "session_log": {
+    "date": "2026-09-06",
+    "timezone": "America/Los_Angeles",
+    "title": "Shape the research hub around seven open questions",
+    "verification": "Saved entry appeared in the live trace log with matching title and body excerpt. Log document ID is not exposed by the UI."
+  },
+  "coordination": "RQ identifiers are local question references. The tag id:q-their-own-questions is a planning key, not a database document ID. Search it before future updates; do not create a duplicate."
+}
