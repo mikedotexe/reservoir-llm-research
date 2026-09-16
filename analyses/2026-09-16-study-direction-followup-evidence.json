@@ -1,0 +1,249 @@
+{
+  "schema": "study-direction-followup-summary-v1",
+  "window": {
+    "start_inclusive_utc": "2026-09-16T19:33:39.605405+00:00",
+    "end_exclusive_utc": "2026-09-16T23:37:19+00:00"
+  },
+  "packet": "research/outputs/2026-09-16-study-direction-followup",
+  "packet_manifest_sha256": "7ce695f6ba6ec2de62c9ebb2b573170ebd900f9423fc0811d950b7d48df00a67",
+  "capture_manifest_sha256": "78b602aa6989ad42a82d501a49cf3e2e63ed3562863ab2578255e1df7b1bbe50",
+  "selection": {
+    "primary_astrid": 36,
+    "primary_minime": 20,
+    "exploratory_minime": 10,
+    "distinct_close_read_journals": 66
+  },
+  "census": {
+    "astrid": {
+      "files": 133,
+      "prose_files": 132,
+      "study_files": 47,
+      "prose_modes": {
+        "source_study": 47,
+        "dialogue_live": 42,
+        "dialogue_live_longform": 42,
+        "moment_capture": 1
+      },
+      "all_types": {
+        "source_study": 47,
+        "dialogue_live": 42,
+        "dialogue_live_longform": 42,
+        "introspect_notice": 1,
+        "moment_capture": 1
+      },
+      "median_study_words": 344,
+      "study_next_text": {
+        "SELF_STUDY": 47
+      },
+      "duplicates": [],
+      "selected": 36
+    },
+    "minime": {
+      "files": 77,
+      "prose_files": 74,
+      "study_files": 55,
+      "prose_modes": {
+        "moment": 13,
+        "private_write": 5,
+        "daydream": 1,
+        "source_study": 55
+      },
+      "all_types": {
+        "moment": 13,
+        "private_write": 5,
+        "unknown": 2,
+        "operational": 1,
+        "daydream": 1,
+        "source_study": 55
+      },
+      "median_study_words": 219,
+      "study_next_text": {
+        "SELF_STUDY": 55
+      },
+      "duplicates": [],
+      "selected": 20
+    }
+  },
+  "study_receipts": {
+    "astrid": {
+      "studies": 47,
+      "unique_response_receipt_matches": 47,
+      "distinct_response_bodies": 47,
+      "new_prompt": 47,
+      "complete_input_in_wire": 47,
+      "source_page_count": 32,
+      "input_kinds": {
+        "map": 11,
+        "source_page": 32,
+        "end_of_file": 1,
+        "recovery": 1,
+        "search": 2
+      },
+      "source_counts": {
+        "astrid/crates/astrid-kernel/src/kernel_router.rs": 4,
+        "astrid/crates/astrid-kernel/src/capsule_runtime_health.rs": 2,
+        "astrid/crates/astrid-kernel/src/socket.rs": 2,
+        "astrid/capsules/spectral-bridge/src/lifecycle.rs": 3,
+        "astrid/crates/astrid-kernel/src/socket_bridge.rs": 5,
+        "minime/minime/src/sensory_bus.rs": 16
+      },
+      "finishes": {
+        "stop": 47
+      },
+      "tokens": {
+        "n": 47,
+        "min": 133,
+        "max": 972,
+        "median": 635
+      },
+      "next_text_counts": {
+        "SELF_STUDY": 47
+      },
+      "generation_routes": {
+        "dialogue_live": 42
+      },
+      "unsuccessful_attempts": [],
+      "limits": "Exact response containment is content association, not independent action dispatch. This frame uses generation filename epochs, not verified request starts; journal/receipt clocks differ. Missing provider failures remain unknown."
+    },
+    "minime": {
+      "studies": 55,
+      "unique_response_receipt_matches": 55,
+      "distinct_response_bodies": 55,
+      "new_prompt": 55,
+      "complete_input_in_wire": 55,
+      "source_page_count": 39,
+      "input_kinds": {
+        "map": 6,
+        "source_page": 39,
+        "recovery": 9,
+        "search": 1
+      },
+      "source_counts": {
+        "astrid/crates/astrid-kernel/src/lib.rs": 23,
+        "astrid/crates/astrid-capsule/src/dispatcher.rs": 16
+      },
+      "finishes": {
+        "stop": 55
+      },
+      "tokens": {
+        "n": 55,
+        "min": 96,
+        "max": 820,
+        "median": 398
+      },
+      "next_text_counts": {
+        "SELF_STUDY": 55
+      },
+      "generation_routes": {
+        "moment_capture": 13,
+        "private_write": 5,
+        "strict_review": 15,
+        "autonomous_next": 3,
+        "private_journal": 1,
+        "source_study": 55
+      },
+      "unsuccessful_attempts": [],
+      "limits": "Exact response containment is content association, not independent action dispatch. This frame uses generation filename epochs, not verified request starts; journal/receipt clocks differ. Missing provider failures remain unknown."
+    }
+  },
+  "astrid_close_read_counts": {
+    "dialogue_longform": 8,
+    "distinct_question_updates": 4,
+    "exact_distinct_page_intervals": 18,
+    "exact_repeated_page_intervals": 1,
+    "finding_attempts": 1,
+    "finding_attempts_rejected_capacity": 1,
+    "longform_generation_or_provider_exact_joins": 0,
+    "new_authored_findings_saved": 0,
+    "note_directives": 4,
+    "ordinary_dialogue": 8,
+    "ordinary_dialogue_generation_exact_joins": 8,
+    "question_directives": 5,
+    "selected": 36,
+    "source_study": 20,
+    "study_exit_choices": 0,
+    "study_navigation_only": 1,
+    "study_next_continue": 16,
+    "study_next_map": 1,
+    "study_next_open": 3,
+    "study_pages_by_source": {
+      "astrid/crates/astrid-kernel/src/socket_bridge.rs": 3,
+      "minime/minime/src/sensory_bus.rs": 16
+    },
+    "study_shared_or_navigation_exact_joins": 20,
+    "study_source_pages": 19
+  },
+  "minime_close_read_counts": {
+    "entries": 20,
+    "unique_journal_generation_shared_joins": 20,
+    "source_pages": 12,
+    "source_pages_previously_complete_same_revision": 12,
+    "recovery": 5,
+    "map": 2,
+    "search": 1,
+    "all_outputs_choose_self_study": 20,
+    "continue_choices": 11,
+    "authored_directive_outputs": 0,
+    "unique_saved_notes": 1,
+    "unique_saved_questions": 1,
+    "unique_authored_finding_sets": 1,
+    "saved_findings_per_input": 6,
+    "normal_native_stops": 20,
+    "completion_tokens_min": 96,
+    "completion_tokens_median": 316.0,
+    "completion_tokens_max": 600,
+    "body_words_median": 178.0
+  },
+  "private_continuation": {
+    "private_write_start_generations": 5,
+    "bare_continue_selected": 5,
+    "matched_runtime_unknown_fallback_events": 5,
+    "receipt_in_current_input_without_continue_recovery": 5
+  },
+  "verification": {
+    "status": "passed",
+    "raw_buckets": 14,
+    "raw_records": 622,
+    "annotated_journals": 66,
+    "exact_study_receipts": 102,
+    "private_continuation_fallbacks": 5,
+    "limits": "Checks retained identities and scoped log evidence; does not establish model understanding or exhaustive failure coverage."
+  },
+  "validation": {
+    "research_tests_passed": 304,
+    "identical_frozen_replays": 2
+  },
+  "source_identity": {
+    "current_selected_stage": "/Users/v/other/worktrees/study-direction-20260916/bridge-stage-01",
+    "source_head": "0967375133c7b5c80aab707ba913fbfceb01e29b",
+    "manifest_sha256": "97fc6c4b160c8baa87b965db64bdd33f5d9159652035c2648d6f95568700d974",
+    "source_inputs_sha256": "45078ffed2f1c264fb0d41f7a4ac94becaa21ed25735a32716d68455668aefe7",
+    "bridge_pid": 75546,
+    "bridge_binary_sha256": "55edfcb645021005e8020c98bbb44a9c417a53ae57ffc77f959f59966f605e5e",
+    "helper_sha256": "f1c5f4dd6be43ca88842ed7e9a962d5e453e569bc5172f4a01bf647214e0aa20",
+    "minime_pid": 37507,
+    "minime_loaded_source_count": 82,
+    "minime_loaded_source_hash_changes": []
+  },
+  "correction": "Frozen protocol said generation filename start. Selection actually uses filename epochs, matching creation/completion in the five audited private writes; this is not a request-start cohort. No selection changed.",
+  "limits": [
+    "Correlated selected entries from two evolving systems, not independent subjects or a causal release comparison.",
+    "Normal finishes cover matched saved studies; unsaved failure completeness remains unknown.",
+    "Written NEXT is not dispatch evidence; private CONTINUE fallback has separate temporal runtime-log evidence.",
+    "Longform journal prompts and finish records absent from captured buckets."
+  ],
+  "rollout": "Observation only; no implementation or live changes.",
+  "board": "pending; not mirrored",
+  "artifacts": {
+    "protocol.json": "3dc6eeca951e5c17a122f0a899a8ab28827739b4f8e713fd150397d341b0b6eb",
+    "capture-manifest.json": "78b602aa6989ad42a82d501a49cf3e2e63ed3562863ab2578255e1df7b1bbe50",
+    "summary.json": "cd42538842163096e5c2d7b5146bf310ed2d3d002b222de614c2241c53539402",
+    "followthrough.json": "97edadbbb3652051fbe63716cc8b3a9c3ffe704aea504bfc1e8562c78a73b3ff",
+    "astrid-annotations.json": "0468a1db989df5645a35733cc9dcd07a85dae43814d44e5eb45d7bcde4413485",
+    "minime-content-annotations.json": "1977f18672bbe979831a6a0ebf359119e51072bd384420d7feb5d75b7474a382",
+    "writing-continuation-audit.json": "d2f1dbe65f7b7b7d8f617200478bbef119562bc55ce2ad20c707b093136172f3",
+    "source-era-status.json": "a415d0e9565e339fb8dce6d848eb41a0ce1fd169f7724f2fa0762ce2dc9d7315",
+    "verification.json": "2530f80112b76035cd261068bdc903662b4122eceda917242bebc50ee8f5607b",
+    "research-tests.log": "06b69d6c191b2242f9b269e88ade7e2f160a4577a1e3beb2eb10d1707e6cca2d"
+  }
+}

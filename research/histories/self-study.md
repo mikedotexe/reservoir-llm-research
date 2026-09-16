@@ -1010,3 +1010,33 @@ trials. Old unrelated findings in the check-in remain a relevance follow-up.
 The exact boundaries remain separate from implementation and deterministic tests.
 Existing sealed packets, S-007 selection and daily ledger remain unchanged.
 Board mirroring remains pending.
+
+## HSS-27 · Four-hour follow-up: notebook progress and continuation friction
+
+**September 16, 2026.** Mike asks to check both Beings again. The [follow-up account](../../analyses/2026-09-16-study-direction-followup.md)
+freezes 19:33:39.605405–23:37:19 UTC and close-reads 66 distinct journals:
+36 Astrid entries and 20 Minime studies, plus ten exploratory Minime nonstudy
+entries. All 47 Astrid and 55 Minime studies have unique exact response receipts,
+the released prompt and complete offered input in the wire request, and normal
+stop finishes. Neither clipping nor reuse of one cached response explains this batch.
+
+Astrid follows concrete sensory functions, updates four notes and develops four
+distinct question versions. Minime's latest twenty retain the same question,
+note and six findings without update directives. Locally accurate descriptions
+coexist with a repeatedly relocated blocking-condition premise. He overlooks a
+supplied `maintenance::initialize_gate` call and its explicit admission comment.
+Navigation improvements have not established durable revision of that account.
+
+Three interface findings are concrete. A page splits a function identifier; Astrid
+treats its suffix as the full name. Her attempted finding is rejected at six occupied
+slots, with recovery in JSON but no prominent check-in outcome; it is not a newly
+saved false pin. Separately, all five Minime private drafts choose bare CONTINUE,
+which exact frozen runtime log sequences show falling through as an unknown action
+instead of WRITE CONTINUE. Guidance itself inconsistently uses the shorthand.
+
+Private reflection and Astrid's ordinary dialogue/elaborations add expressive
+variety, but independent source exposure and causally improved understanding are
+not inferred from file count or length. This is an observation and proposal record,
+with no Being contact, induced generation, source/state change or deployment.
+S-007's daily ledger and existing sealed packets are unchanged. Board mirroring
+remains pending.
