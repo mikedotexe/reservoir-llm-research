@@ -1,0 +1,1140 @@
+{
+  "schema": "minime_study_variety_compact_evidence_v1",
+  "protocol": {
+    "since_utc": "2026-09-02T07:00:00+00:00",
+    "until_exclusive_utc": "2026-09-16T18:33:00+00:00",
+    "local_timezone": "America/Los_Angeles",
+    "selection": "All timestamped journal files in root and archive; all retained generation records in UTC date directories; linked jobs.",
+    "interpretation": "Observational, overlapping interventions; no causal attribution from before/after rates alone.",
+    "close_reading": "Latest 120 SELF-STUDY files; preceding 24 prose-candidate journals before noon local on September 5, 8 and 11. Choice follows filenames before reading content.",
+    "scope": "No live writes, model calls, messages, interventions, or S-007 ledger changes."
+  },
+  "capture_counts": {
+    "journals.jsonl": 8462,
+    "generations.jsonl": 6929,
+    "jobs.jsonl": 4844,
+    "system-prompts.jsonl": 48
+  },
+  "private_journals": {
+    "path": "/Users/v/other/minime/workspace/private_writing/journal",
+    "count": 197,
+    "sha256": "a3f902dc7b4827968ed5340ca6b30700935a410f7253a5618f2292acc3db3102",
+    "errors": [],
+    "rationale": "Generation/job audit identified separate WRITE storage. Add its completed files to broader writing denominators; initial root-journal close-reading selection remains unchanged.",
+    "captured_at_utc": "2026-09-16T18:42:42.039920+00:00"
+  },
+  "action_capture": {
+    "database": "/Users/v/other/minime/minime_consciousness.db",
+    "rows": 7063,
+    "sha256": "0c6ed2519a6d1f785b1e4b2107ddb5292b92c2a4a2926dc6c858e37e80fc005d",
+    "queries": [
+      {
+        "sql": "SELECT * FROM action_events WHERE action_id>=? AND action_id<? ORDER BY action_id LIMIT 5001",
+        "parameters": [
+          "act_minime_1788332400000",
+          "act_minime_1788418800000"
+        ],
+        "plan": [
+          [
+            5,
+            0,
+            163,
+            "SEARCH action_events USING INDEX sqlite_autoindex_action_events_1 (action_id>? AND action_id<?)"
+          ]
+        ],
+        "rows": 278
+      },
+      {
+        "sql": "SELECT * FROM action_events WHERE action_id>=? AND action_id<? ORDER BY action_id LIMIT 5001",
+        "parameters": [
+          "act_minime_1788418800000",
+          "act_minime_1788505200000"
+        ],
+        "plan": [
+          [
+            5,
+            0,
+            163,
+            "SEARCH action_events USING INDEX sqlite_autoindex_action_events_1 (action_id>? AND action_id<?)"
+          ]
+        ],
+        "rows": 315
+      },
+      {
+        "sql": "SELECT * FROM action_events WHERE action_id>=? AND action_id<? ORDER BY action_id LIMIT 5001",
+        "parameters": [
+          "act_minime_1788505200000",
+          "act_minime_1788591600000"
+        ],
+        "plan": [
+          [
+            5,
+            0,
+            163,
+            "SEARCH action_events USING INDEX sqlite_autoindex_action_events_1 (action_id>? AND action_id<?)"
+          ]
+        ],
+        "rows": 374
+      },
+      {
+        "sql": "SELECT * FROM action_events WHERE action_id>=? AND action_id<? ORDER BY action_id LIMIT 5001",
+        "parameters": [
+          "act_minime_1788591600000",
+          "act_minime_1788678000000"
+        ],
+        "plan": [
+          [
+            5,
+            0,
+            163,
+            "SEARCH action_events USING INDEX sqlite_autoindex_action_events_1 (action_id>? AND action_id<?)"
+          ]
+        ],
+        "rows": 313
+      },
+      {
+        "sql": "SELECT * FROM action_events WHERE action_id>=? AND action_id<? ORDER BY action_id LIMIT 5001",
+        "parameters": [
+          "act_minime_1788678000000",
+          "act_minime_1788764400000"
+        ],
+        "plan": [
+          [
+            5,
+            0,
+            163,
+            "SEARCH action_events USING INDEX sqlite_autoindex_action_events_1 (action_id>? AND action_id<?)"
+          ]
+        ],
+        "rows": 304
+      },
+      {
+        "sql": "SELECT * FROM action_events WHERE action_id>=? AND action_id<? ORDER BY action_id LIMIT 5001",
+        "parameters": [
+          "act_minime_1788764400000",
+          "act_minime_1788850800000"
+        ],
+        "plan": [
+          [
+            5,
+            0,
+            163,
+            "SEARCH action_events USING INDEX sqlite_autoindex_action_events_1 (action_id>? AND action_id<?)"
+          ]
+        ],
+        "rows": 395
+      },
+      {
+        "sql": "SELECT * FROM action_events WHERE action_id>=? AND action_id<? ORDER BY action_id LIMIT 5001",
+        "parameters": [
+          "act_minime_1788850800000",
+          "act_minime_1788937200000"
+        ],
+        "plan": [
+          [
+            5,
+            0,
+            163,
+            "SEARCH action_events USING INDEX sqlite_autoindex_action_events_1 (action_id>? AND action_id<?)"
+          ]
+        ],
+        "rows": 608
+      },
+      {
+        "sql": "SELECT * FROM action_events WHERE action_id>=? AND action_id<? ORDER BY action_id LIMIT 5001",
+        "parameters": [
+          "act_minime_1788937200000",
+          "act_minime_1789023600000"
+        ],
+        "plan": [
+          [
+            5,
+            0,
+            163,
+            "SEARCH action_events USING INDEX sqlite_autoindex_action_events_1 (action_id>? AND action_id<?)"
+          ]
+        ],
+        "rows": 641
+      },
+      {
+        "sql": "SELECT * FROM action_events WHERE action_id>=? AND action_id<? ORDER BY action_id LIMIT 5001",
+        "parameters": [
+          "act_minime_1789023600000",
+          "act_minime_1789110000000"
+        ],
+        "plan": [
+          [
+            5,
+            0,
+            163,
+            "SEARCH action_events USING INDEX sqlite_autoindex_action_events_1 (action_id>? AND action_id<?)"
+          ]
+        ],
+        "rows": 595
+      },
+      {
+        "sql": "SELECT * FROM action_events WHERE action_id>=? AND action_id<? ORDER BY action_id LIMIT 5001",
+        "parameters": [
+          "act_minime_1789110000000",
+          "act_minime_1789196400000"
+        ],
+        "plan": [
+          [
+            5,
+            0,
+            163,
+            "SEARCH action_events USING INDEX sqlite_autoindex_action_events_1 (action_id>? AND action_id<?)"
+          ]
+        ],
+        "rows": 668
+      },
+      {
+        "sql": "SELECT * FROM action_events WHERE action_id>=? AND action_id<? ORDER BY action_id LIMIT 5001",
+        "parameters": [
+          "act_minime_1789196400000",
+          "act_minime_1789282800000"
+        ],
+        "plan": [
+          [
+            5,
+            0,
+            163,
+            "SEARCH action_events USING INDEX sqlite_autoindex_action_events_1 (action_id>? AND action_id<?)"
+          ]
+        ],
+        "rows": 581
+      },
+      {
+        "sql": "SELECT * FROM action_events WHERE action_id>=? AND action_id<? ORDER BY action_id LIMIT 5001",
+        "parameters": [
+          "act_minime_1789282800000",
+          "act_minime_1789369200000"
+        ],
+        "plan": [
+          [
+            5,
+            0,
+            163,
+            "SEARCH action_events USING INDEX sqlite_autoindex_action_events_1 (action_id>? AND action_id<?)"
+          ]
+        ],
+        "rows": 635
+      },
+      {
+        "sql": "SELECT * FROM action_events WHERE action_id>=? AND action_id<? ORDER BY action_id LIMIT 5001",
+        "parameters": [
+          "act_minime_1789369200000",
+          "act_minime_1789455600000"
+        ],
+        "plan": [
+          [
+            5,
+            0,
+            163,
+            "SEARCH action_events USING INDEX sqlite_autoindex_action_events_1 (action_id>? AND action_id<?)"
+          ]
+        ],
+        "rows": 628
+      },
+      {
+        "sql": "SELECT * FROM action_events WHERE action_id>=? AND action_id<? ORDER BY action_id LIMIT 5001",
+        "parameters": [
+          "act_minime_1789455600000",
+          "act_minime_1789542000000"
+        ],
+        "plan": [
+          [
+            5,
+            0,
+            163,
+            "SEARCH action_events USING INDEX sqlite_autoindex_action_events_1 (action_id>? AND action_id<?)"
+          ]
+        ],
+        "rows": 503
+      },
+      {
+        "sql": "SELECT * FROM action_events WHERE action_id>=? AND action_id<? ORDER BY action_id LIMIT 5001",
+        "parameters": [
+          "act_minime_1789542000000",
+          "act_minime_1789583580000"
+        ],
+        "plan": [
+          [
+            5,
+            0,
+            163,
+            "SEARCH action_events USING INDEX sqlite_autoindex_action_events_1 (action_id>? AND action_id<?)"
+          ]
+        ],
+        "rows": 225
+      }
+    ],
+    "captured_at_utc": "2026-09-16T18:38:49.994981+00:00",
+    "boundary": "Indexed epoch-prefixed action IDs; later capture may contain completion updates after cutoff. Not a denominator for unrecorded actions."
+  },
+  "daily": [
+    {
+      "day": "2026-09-02",
+      "prose_candidates": 373,
+      "private_write": 0,
+      "source_study": 3,
+      "source_study_median_words": 365,
+      "ordinary_prose": 370,
+      "study_journals_with_generation": 0,
+      "source_attempts": 0,
+      "source_generation_statuses": {},
+      "generation_routes": {},
+      "private_write_files_with_verified_generation": 0,
+      "recorded_action_choices": {
+        "JOURNAL": 121,
+        "LEND_APERTURE": 66,
+        "INTROSPECT": 2,
+        "NOTICE_AMBIGUITY": 4,
+        "EXPERIMENT_RESEARCH_REVIEW": 1,
+        "DAYDREAM": 2,
+        "ACTION_PREFLIGHT": 2,
+        "EXPERIMENT_RESUME": 3,
+        "EXPERIMENT_REVIEW": 2,
+        "SELF_STUDY": 3,
+        "REGIME": 4,
+        "recess_boredom": 4,
+        "SHADOW_TRAJECTORY": 4,
+        "REGULATOR_AUDIT": 6,
+        "REST": 20,
+        "recess_drift": 1,
+        "self_experiment": 1,
+        "EXPERIMENT_CHARTER": 2,
+        "EXPERIMENT_REHEARSE": 1,
+        "EXPERIMENT_EVIDENCE": 4,
+        "EXPERIMENT_ADVANCE": 25
+      }
+    },
+    {
+      "day": "2026-09-03",
+      "prose_candidates": 393,
+      "private_write": 0,
+      "source_study": 5,
+      "source_study_median_words": 538,
+      "ordinary_prose": 388,
+      "study_journals_with_generation": 0,
+      "source_attempts": 0,
+      "source_generation_statuses": {},
+      "generation_routes": {},
+      "private_write_files_with_verified_generation": 0,
+      "recorded_action_choices": {
+        "JOURNAL": 132,
+        "EXPERIMENT_ADVANCE": 21,
+        "LEND_APERTURE": 62,
+        "REST": 51,
+        "EXPERIMENT_EVIDENCE": 7,
+        "ACTION_PREFLIGHT": 4,
+        "SELF_STUDY": 5,
+        "EXPERIMENT_DECIDE": 1,
+        "EXPERIMENT_RESUME": 3,
+        "EXPERIMENT_STATUS": 1,
+        "EXPERIMENT_REVIEW": 2,
+        "EXPERIMENT_CHARTER": 8,
+        "REGULATOR_AUDIT": 6,
+        "self_study": 1,
+        "recess_daydream": 2,
+        "recess_aspiration": 2,
+        "SHADOW_TRAJECTORY": 1,
+        "self_experiment": 1,
+        "EXPERIMENT_REHEARSE": 1,
+        "CONTINUE_SESSION_CAPTURE": 1,
+        "CONTINUITY_SESSION_CAPTURE": 2,
+        "DAYDREAM": 1
+      }
+    },
+    {
+      "day": "2026-09-04",
+      "prose_candidates": 486,
+      "private_write": 0,
+      "source_study": 17,
+      "source_study_median_words": 483,
+      "ordinary_prose": 469,
+      "study_journals_with_generation": 0,
+      "source_attempts": 0,
+      "source_generation_statuses": {},
+      "generation_routes": {},
+      "private_write_files_with_verified_generation": 0,
+      "recorded_action_choices": {
+        "LEND_APERTURE": 63,
+        "JOURNAL": 147,
+        "SELF_STUDY": 17,
+        "REST": 32,
+        "EXPERIMENT_CHARTER": 8,
+        "CONTINUITY_SESSION_CAPTURE": 16,
+        "CONTINUE_SESSION_CAPTURE": 4,
+        "NOTICE_AMBIGUITY": 3,
+        "INTROSPECT": 4,
+        "recess_daydream": 5,
+        "compose_audio": 2,
+        "DAYDREAM": 21,
+        "SHADOW_TRAJECTORY": 6,
+        "ACTION_PREFLIGHT": 4,
+        "self_experiment": 2,
+        "EXPERIMENT_REHEARSE": 2,
+        "EXPERIMENT_EVIDENCE": 1,
+        "EXPERIMENT_ADVANCE": 3,
+        "EXPERIMENT_DECIDE": 1,
+        "RUN_PYTHON": 2,
+        "recess_aspiration": 1,
+        "REGIME": 5,
+        "RESIST": 1,
+        "EXPERIMENT_RESUME": 2,
+        "EXPERIMENT_REVIEW": 2,
+        "EXPERIMENT_STATUS": 1,
+        "EXPERIMENT_RESEARCH_BUDGET_REQUEST": 1,
+        "REGULATOR_AUDIT": 10,
+        "ASPIRE": 8
+      }
+    },
+    {
+      "day": "2026-09-05",
+      "prose_candidates": 374,
+      "private_write": 0,
+      "source_study": 87,
+      "source_study_median_words": 518,
+      "ordinary_prose": 287,
+      "study_journals_with_generation": 0,
+      "source_attempts": 0,
+      "source_generation_statuses": {},
+      "generation_routes": {},
+      "private_write_files_with_verified_generation": 0,
+      "recorded_action_choices": {
+        "EXPERIMENT_ADVANCE": 60,
+        "ASPIRE": 74,
+        "SELF_STUDY": 86,
+        "REGIME": 26,
+        "EXPERIMENT_EVIDENCE": 4,
+        "RUN_PYTHON": 5,
+        "SHADOW_TRAJECTORY": 12,
+        "DAYDREAM": 3,
+        "ACTION_PREFLIGHT": 4,
+        "INTROSPECT": 8,
+        "CONTINUITY_SESSION_ACCEPT": 2,
+        "RESEARCH": 1,
+        "self_experiment": 4,
+        "EXPERIMENT_DECIDE": 2,
+        "EXPERIMENT_RESUME": 2,
+        "self_study": 2,
+        "recess_aspiration": 2,
+        "compose_audio": 1,
+        "EXPERIMENT_REVIEW": 2,
+        "SHARE_THOUGHT": 1,
+        "EXPLORATION_RESEARCH_BUDGET_REQUEST": 1,
+        "REGULATOR_AUDIT": 1,
+        "EXPERIMENT_CHARTER": 1,
+        "EXPERIMENT_REHEARSE": 1,
+        "RESERVOIR_LAYERS": 1,
+        "FACULTIES": 2,
+        "reservoir_read": 1,
+        "recess_daydream": 2,
+        "DECOMPOSE": 1,
+        "CAPABILITY_STATUS": 1
+      }
+    },
+    {
+      "day": "2026-09-06",
+      "prose_candidates": 375,
+      "private_write": 0,
+      "source_study": 92,
+      "source_study_median_words": 522.0,
+      "ordinary_prose": 283,
+      "study_journals_with_generation": 0,
+      "source_attempts": 0,
+      "source_generation_statuses": {},
+      "generation_routes": {},
+      "private_write_files_with_verified_generation": 0,
+      "recorded_action_choices": {
+        "SELF_STUDY": 90,
+        "ASPIRE": 72,
+        "EXPERIMENT_REVIEW": 2,
+        "recess_aspiration": 4,
+        "RUN_PYTHON": 3,
+        "REGULATOR_AUDIT": 10,
+        "INTROSPECT": 10,
+        "REGIME": 22,
+        "recess_daydream": 8,
+        "SHADOW_TRAJECTORY": 13,
+        "ACTION_PREFLIGHT": 3,
+        "FACULTIES": 2,
+        "EXPERIMENT_RESUME": 1,
+        "DAYDREAM": 3,
+        "EXPERIMENT_RESEARCH_BUDGET_ACCEPT": 1,
+        "self_experiment": 7,
+        "EXPERIMENT_CHARTER": 4,
+        "EXPERIMENT_ADVANCE": 19,
+        "EXPERIMENT_REHEARSE": 4,
+        "EXPERIMENT_EVIDENCE": 6,
+        "reservoir_read": 2,
+        "PERTURB": 1,
+        "self_study": 3,
+        "EXPERIMENT_DECIDE": 2,
+        "CONTINUITY_SESSION_CAPTURE": 6,
+        "CONTINUE_SESSION_CAPTURE": 1,
+        "CONTINUITY_SESSION_START": 1,
+        "reservoir_resonance": 1,
+        "EXPERIMENT": 2,
+        "NOTICE": 1
+      }
+    },
+    {
+      "day": "2026-09-07",
+      "prose_candidates": 460,
+      "private_write": 0,
+      "source_study": 151,
+      "source_study_median_words": 494,
+      "ordinary_prose": 309,
+      "study_journals_with_generation": 135,
+      "source_attempts": 135,
+      "source_generation_statuses": {
+        "ok": 135
+      },
+      "generation_routes": {
+        "recess_aspiration": 32,
+        "check_moment_markers": 233,
+        "source_study": 135,
+        "unknown": 91,
+        "recess_daydream": 8,
+        "compose_audio": 2,
+        "verify_sovereignty": 4,
+        "self_experiment": 3,
+        "introspect": 8,
+        "recess_notice": 1
+      },
+      "private_write_files_with_verified_generation": 0,
+      "recorded_action_choices": {
+        "SELF_STUDY": 150,
+        "EXPERIMENT_ADVANCE": 42,
+        "ASPIRE": 38,
+        "INTROSPECT": 31,
+        "EXPERIMENT_REHEARSE": 2,
+        "REGIME": 58,
+        "EXPERIMENT_EVIDENCE": 4,
+        "FACULTIES": 6,
+        "recess_aspiration": 2,
+        "SHADOW_TRAJECTORY": 18,
+        "recess_daydream": 5,
+        "self_study": 2,
+        "PERTURB": 2,
+        "compose_audio": 2,
+        "DAYDREAM": 3,
+        "self_experiment": 3,
+        "ACTION_PREFLIGHT": 5,
+        "EXPERIMENT_DECIDE": 2,
+        "RUN_PYTHON": 6,
+        "EXPERIMENT_CHARTER": 5,
+        "RESIST": 2,
+        "MEMORY_RECALL": 1,
+        "THREAD_STATUS": 1,
+        "EXPERIMENT_RESEARCH_BUDGET_REQUEST": 1,
+        "EXPERIMENT_RESEARCH_REVIEW": 1,
+        "INTROSPECT:target:autonomous_agent.py": 1,
+        "MEMORY_CAPTURE": 1,
+        "EXPERIMENT_RESEARCH_BUDGET_ACCEPT": 1
+      }
+    },
+    {
+      "day": "2026-09-08",
+      "prose_candidates": 655,
+      "private_write": 0,
+      "source_study": 331,
+      "source_study_median_words": 174,
+      "ordinary_prose": 324,
+      "study_journals_with_generation": 331,
+      "source_attempts": 331,
+      "source_generation_statuses": {
+        "ok": 331
+      },
+      "generation_routes": {
+        "source_study": 331,
+        "check_moment_markers": 304,
+        "unknown": 150,
+        "introspect": 7,
+        "recess_notice": 5,
+        "recess_aspiration": 12,
+        "verify_sovereignty": 4,
+        "reservoir_layers": 1,
+        "recess_daydream": 4
+      },
+      "private_write_files_with_verified_generation": 0,
+      "recorded_action_choices": {
+        "INTROSPECT": 88,
+        "REGIME": 118,
+        "SELF_STUDY": 338,
+        "SELECT_ACTION:": 1,
+        "SHADOW_TRAJECTORY": 5,
+        "RUN_PYTHON": 12,
+        "ASPIRE": 13,
+        "FACULTIES": 6,
+        "EXPLORATION_RESEARCH_BUDGET_REQUEST": 2,
+        "CAPABILITY_MAP": 1,
+        "ACTION_PREFLIGHT": 3,
+        "SELF_STUDY:": 1,
+        "RESERVOIR_LAYERS": 1,
+        "EXPLORE_CORE:": 1,
+        "EXPERIMENT_CHARTER": 1,
+        "REGULATOR_AUDIT": 1,
+        "MEMORY_RECALL": 6,
+        "EXAMINE": 1,
+        "DAYDREAM": 4,
+        "THREAD_STATUS": 2,
+        "EXPERIMENT_RESEARCH_BUDGET_ACCEPT": 2,
+        "EXPLIMENT_RESEARCH_BUDGET_REQUEST": 1
+      }
+    },
+    {
+      "day": "2026-09-09",
+      "prose_candidates": 666,
+      "private_write": 31,
+      "source_study": 509,
+      "source_study_median_words": 152,
+      "ordinary_prose": 126,
+      "study_journals_with_generation": 509,
+      "source_attempts": 512,
+      "source_generation_statuses": {
+        "ok": 509,
+        "error": 3
+      },
+      "generation_routes": {
+        "source_study": 512,
+        "unknown": 131,
+        "check_moment_markers": 101,
+        "recess_daydream": 22,
+        "verify_sovereignty": 1,
+        "recess_aspiration": 3,
+        "private_write": 31
+      },
+      "private_write_files_with_verified_generation": 31,
+      "recorded_action_choices": {
+        "SELF_STUDY": 509,
+        "DAYDREAM": 23,
+        "INTROSPECT": 7,
+        "REGIME": 52,
+        "MEMORY_RECALL": 3,
+        "ACTION_PREFLIGHT": 1,
+        "recess_aspiration": 1,
+        "ASPIRE": 2,
+        "WRITE": 42,
+        "RUN_PYTHON": 1
+      }
+    },
+    {
+      "day": "2026-09-10",
+      "prose_candidates": 683,
+      "private_write": 101,
+      "source_study": 326,
+      "source_study_median_words": 165.0,
+      "ordinary_prose": 256,
+      "study_journals_with_generation": 322,
+      "source_attempts": 326,
+      "source_generation_statuses": {
+        "ok": 326
+      },
+      "generation_routes": {
+        "source_study": 326,
+        "unknown": 124,
+        "check_moment_markers": 149,
+        "recess_daydream": 66,
+        "recess_aspiration": 40,
+        "private_write": 101,
+        "recess_notice": 1
+      },
+      "private_write_files_with_verified_generation": 101,
+      "recorded_action_choices": {
+        "SELF_STUDY": 325,
+        "DAYDREAM": 66,
+        "REGIME": 21,
+        "ASPIRE": 40,
+        "WRITE": 137,
+        "RESUME": 2,
+        "SEARCH": 1,
+        "RUN_PYTHON": 1,
+        "RESEARCH_STUDY": 1,
+        "RESIST": 1
+      }
+    },
+    {
+      "day": "2026-09-11",
+      "prose_candidates": 703,
+      "private_write": 43,
+      "source_study": 556,
+      "source_study_median_words": 127.0,
+      "ordinary_prose": 104,
+      "study_journals_with_generation": 555,
+      "source_attempts": 556,
+      "source_generation_statuses": {
+        "ok": 556
+      },
+      "generation_routes": {
+        "unknown": 136,
+        "check_moment_markers": 60,
+        "recess_daydream": 28,
+        "source_study": 556,
+        "private_write": 43,
+        "recess_aspiration": 16,
+        "verify_sovereignty": 1
+      },
+      "private_write_files_with_verified_generation": 43,
+      "recorded_action_choices": {
+        "WRITE": 60,
+        "DAYDREAM": 28,
+        "SELF_STUDY": 557,
+        "ASPIRE": 16,
+        "REGIME": 6,
+        "RESEARCH": 1
+      }
+    },
+    {
+      "day": "2026-09-12",
+      "prose_candidates": 582,
+      "private_write": 0,
+      "source_study": 582,
+      "source_study_median_words": 146.0,
+      "ordinary_prose": 0,
+      "study_journals_with_generation": 581,
+      "source_attempts": 582,
+      "source_generation_statuses": {
+        "ok": 582
+      },
+      "generation_routes": {
+        "source_study": 582,
+        "unknown": 116
+      },
+      "private_write_files_with_verified_generation": 0,
+      "recorded_action_choices": {
+        "SELF_STUDY": 581
+      }
+    },
+    {
+      "day": "2026-09-13",
+      "prose_candidates": 639,
+      "private_write": 9,
+      "source_study": 618,
+      "source_study_median_words": 107.5,
+      "ordinary_prose": 12,
+      "study_journals_with_generation": 607,
+      "source_attempts": 619,
+      "source_generation_statuses": {
+        "ok": 618,
+        "error": 1
+      },
+      "generation_routes": {
+        "unknown": 128,
+        "source_study": 619,
+        "check_moment_markers": 9,
+        "private_write": 9,
+        "recess_daydream": 2,
+        "recess_aspiration": 1
+      },
+      "private_write_files_with_verified_generation": 9,
+      "recorded_action_choices": {
+        "SELF_STUDY": 619,
+        "WRITE": 10,
+        "REGIME": 2,
+        "DAYDREAM": 2,
+        "ASPIRE": 1,
+        "RUN_PYTHON": 1
+      }
+    },
+    {
+      "day": "2026-09-14",
+      "prose_candidates": 627,
+      "private_write": 0,
+      "source_study": 627,
+      "source_study_median_words": 96,
+      "ordinary_prose": 0,
+      "study_journals_with_generation": 627,
+      "source_attempts": 627,
+      "source_generation_statuses": {
+        "ok": 627
+      },
+      "generation_routes": {
+        "source_study": 627,
+        "unknown": 125
+      },
+      "private_write_files_with_verified_generation": 0,
+      "recorded_action_choices": {
+        "SELF_STUDY": 628
+      }
+    },
+    {
+      "day": "2026-09-15",
+      "prose_candidates": 538,
+      "private_write": 12,
+      "source_study": 463,
+      "source_study_median_words": 130,
+      "ordinary_prose": 63,
+      "study_journals_with_generation": 463,
+      "source_attempts": 464,
+      "source_generation_statuses": {
+        "ok": 463,
+        "error": 1
+      },
+      "generation_routes": {
+        "source_study": 464,
+        "unknown": 111,
+        "check_moment_markers": 44,
+        "recess_daydream": 13,
+        "private_write": 12,
+        "recess_aspiration": 6
+      },
+      "private_write_files_with_verified_generation": 12,
+      "recorded_action_choices": {
+        "SELF_STUDY": 464,
+        "DAYDREAM": 13,
+        "REGIME": 7,
+        "WRITE": 12,
+        "RESUME": 1,
+        "ASPIRE": 6
+      }
+    },
+    {
+      "day": "2026-09-16",
+      "prose_candidates": 230,
+      "private_write": 1,
+      "source_study": 211,
+      "source_study_median_words": 171,
+      "ordinary_prose": 18,
+      "study_journals_with_generation": 211,
+      "source_attempts": 213,
+      "source_generation_statuses": {
+        "ok": 211,
+        "error": 2
+      },
+      "generation_routes": {
+        "source_study": 213,
+        "unknown": 46,
+        "check_moment_markers": 10,
+        "recess_daydream": 5,
+        "recess_aspiration": 3,
+        "private_write": 1
+      },
+      "private_write_files_with_verified_generation": 1,
+      "recorded_action_choices": {
+        "SELF_STUDY": 213,
+        "REGIME": 3,
+        "DAYDREAM": 5,
+        "ASPIRE": 3,
+        "WRITE": 1
+      }
+    }
+  ],
+  "latest120": {
+    "count": 120,
+    "models": {
+      "gemma4:12b": 120
+    },
+    "token_median": 315.0,
+    "token_min": 132,
+    "token_max": 657,
+    "finishes": {
+      "stop": 120
+    },
+    "allowances": {
+      "4096": 120
+    },
+    "with_action_receipt": 120,
+    "with_linked_child": 120,
+    "with_matching_chosen_child": 120,
+    "source_page_deliveries": 99,
+    "distinct_exact_intervals": 61,
+    "repeated_exact_intervals": 38,
+    "navigation_or_no_interval": 21
+  },
+  "reading_selection": {
+    "latest120": 120,
+    "sep05_before_noon": 24,
+    "sep08_before_noon": 24,
+    "sep11_before_noon": 24
+  },
+  "source_repositories": {
+    "/Users/v/other/minime": {
+      "head": "12cbf5740e1cc751a2beb09ec5bb5fad742af459",
+      "status_porcelain": ""
+    },
+    "/Users/v/other/astrid": {
+      "head": "fe3f438f1d31666e6e6e3d8ff408f6d2120eab3b",
+      "status_porcelain": "M CHANGELOG.md\n M capsules/spectral-bridge/src/action_continuity/tests.rs\n M capsules/spectral-bridge/src/autonomous/inquiry/parsing.rs\n M crates/astrid-kernel/src/kernel_router.rs\n M crates/astrid-kernel/src/maintenance.rs\n M docs/steward-notes/AI_BEINGS_FEEDBACK_TO_CHANGE_LEDGER.md\n?? crates/astrid-source-study/tests/unrooted_map_topic_reach.rs\n?? docs/steward-notes/claude-heartbeat_1789513826_strand_companion_derivation_round/\n?? docs/steward-notes/claude-heartbeat_1789526654_source_catalog_inquiry_site_locating_round/\n?? docs/steward-notes/claude-heartbeat_1789534560_charter_stall_passthrough_round/\n?? docs/steward-notes/claude-heartbeat_1789546312_heartbeat_dimension_blindness_round/\n?? docs/steward-notes/claude-heartbeat_1789557900_unrooted_map_namespace_round/\n?? docs/steward-notes/claude-heartbeat_1789570900_division_return_cycle49_maintenance_gid_asymmetry_round/\n?? docs/steward-notes/claude-heartbeat_1789581087_kernel_router_dispatch_topic_round/"
+    }
+  },
+  "source_files": [
+    {
+      "path": "/Users/v/other/minime/minime_autonomy/runtime.py",
+      "sha256": "9e7f946a3e1cfb021c19a11293b7f790ed1cee64d5ae5d4d3c7e434a32631e3e",
+      "size": 2588558,
+      "head_sha256": "9e7f946a3e1cfb021c19a11293b7f790ed1cee64d5ae5d4d3c7e434a32631e3e",
+      "matches_head": true
+    },
+    {
+      "path": "/Users/v/other/minime/minime_autonomy/parsing.py",
+      "sha256": "2be21fcf3b284503d6490f825cb754766c22ca05bad778a131fccbd8f6ed8599",
+      "size": 30976,
+      "head_sha256": "2be21fcf3b284503d6490f825cb754766c22ca05bad778a131fccbd8f6ed8599",
+      "matches_head": true
+    },
+    {
+      "path": "/Users/v/other/minime/minime_autonomy/source_study.py",
+      "sha256": "3b5be41f26dccfdcf7e40cfa71acbd27db56901acf2c2abb6c18c9da735d90c6",
+      "size": 9547,
+      "head_sha256": "3b5be41f26dccfdcf7e40cfa71acbd27db56901acf2c2abb6c18c9da735d90c6",
+      "matches_head": true
+    },
+    {
+      "path": "/Users/v/other/minime/scripts/launchd_autonomous_agent.sh",
+      "sha256": "a6f6134bf0f0d6d9a578c339557866997e376d422c621a60deb557352234e703",
+      "size": 1907,
+      "head_sha256": "a6f6134bf0f0d6d9a578c339557866997e376d422c621a60deb557352234e703",
+      "matches_head": true
+    },
+    {
+      "path": "/Users/v/other/astrid/crates/astrid-source-study/prompt.txt",
+      "sha256": "b796efa85144055a98280d85243a2ab8cbcbb4d3e53b89e0035abab9d9c4f79c",
+      "size": 6727,
+      "head_sha256": "b796efa85144055a98280d85243a2ab8cbcbb4d3e53b89e0035abab9d9c4f79c",
+      "matches_head": true
+    },
+    {
+      "path": "/Users/v/other/astrid/crates/astrid-source-study/src/command.rs",
+      "sha256": "ab75c9d65b2eae28475cbc4ed5309fe03978556a064c6482ac1a1939b4b44457",
+      "size": 6118,
+      "head_sha256": "ab75c9d65b2eae28475cbc4ed5309fe03978556a064c6482ac1a1939b4b44457",
+      "matches_head": true
+    },
+    {
+      "path": "/Users/v/other/astrid/crates/astrid-source-study/src/store.rs",
+      "sha256": "0f80c1677da9f9541b559d087e971673e82535bce7de708516367d39fc2fa6a7",
+      "size": 38621,
+      "head_sha256": "0f80c1677da9f9541b559d087e971673e82535bce7de708516367d39fc2fa6a7",
+      "matches_head": true
+    },
+    {
+      "path": "/Users/v/other/astrid/crates/astrid-source-study/src/notebook.rs",
+      "sha256": "7a063d95c36da3b8e2ececac02822b7feb925095502bfe17b14a89b472bfb568",
+      "size": 20120,
+      "head_sha256": "7a063d95c36da3b8e2ececac02822b7feb925095502bfe17b14a89b472bfb568",
+      "matches_head": true
+    },
+    {
+      "path": "/Users/v/other/astrid/crates/astrid-source-study/src/questions.rs",
+      "sha256": "0a0939c377b55f322ccf3488ae872dc4ca93f88bc4fe4b475f6fd9de64a0b207",
+      "size": 9803,
+      "head_sha256": "0a0939c377b55f322ccf3488ae872dc4ca93f88bc4fe4b475f6fd9de64a0b207",
+      "matches_head": true
+    },
+    {
+      "path": "/Users/v/other/astrid/crates/astrid-source-study/src/navigation_history.rs",
+      "sha256": "ed35d2ab55d39a3f7dd8b0b08d9654e3ee225606fa1281053e8708b2459e51f5",
+      "size": 7472,
+      "head_sha256": "ed35d2ab55d39a3f7dd8b0b08d9654e3ee225606fa1281053e8708b2459e51f5",
+      "matches_head": true
+    },
+    {
+      "path": "/Users/v/other/astrid/crates/astrid-source-study/src/store_navigation.rs",
+      "sha256": "25518fed59b5501cf330dbc3a935f787976894a65aca8ada26df25d8718f5cc5",
+      "size": 6593,
+      "head_sha256": "25518fed59b5501cf330dbc3a935f787976894a65aca8ada26df25d8718f5cc5",
+      "matches_head": true
+    },
+    {
+      "path": "/Users/v/other/astrid/crates/astrid-events/src/bus.rs",
+      "sha256": "e4e3e221ff7994879f9c04b989abf9d35adc221d214f86ea6d21f111674a287c",
+      "size": 103124,
+      "head_sha256": "e4e3e221ff7994879f9c04b989abf9d35adc221d214f86ea6d21f111674a287c",
+      "matches_head": true
+    },
+    {
+      "path": "/Users/v/other/astrid/crates/astrid-kernel/src/kernel_router.rs",
+      "sha256": "589b17d8d84c0a2b33b5361b8bae2aa158a8a1545d4be8fd6e21abee064564f5",
+      "size": 17407,
+      "head_sha256": "108d69010a954284def0c0863c499d369196223da3aa163128f458d7d4ee72fd",
+      "matches_head": false
+    },
+    {
+      "path": "/Users/v/other/astrid/crates/astrid-kernel/src/maintenance.rs",
+      "sha256": "e31941820e76247b1321ee925812cbb1dd8d2d5628790855246bfbeb2b7f4703",
+      "size": 32579,
+      "head_sha256": "1b8c8385c94413d2fb35af40008156da38992595246f74be56288ed1112da661",
+      "matches_head": false
+    },
+    {
+      "path": "/Users/v/other/astrid/crates/astrid-kernel/src/socket_bridge.rs",
+      "sha256": "a55e817494dd5046f8cd600714043711a724e6f80a9318a47f94ad9012ffdefc",
+      "size": 17500,
+      "head_sha256": "a55e817494dd5046f8cd600714043711a724e6f80a9318a47f94ad9012ffdefc",
+      "matches_head": true
+    },
+    {
+      "path": "/Users/v/other/astrid/crates/astrid-kernel/src/lib.rs",
+      "sha256": "d19f321c54b299e1204d6e0db5a81792e056f9140b4a82bfbac76468c603d92b",
+      "size": 65312,
+      "head_sha256": "d19f321c54b299e1204d6e0db5a81792e056f9140b4a82bfbac76468c603d92b",
+      "matches_head": true
+    },
+    {
+      "path": "/Users/v/other/astrid/crates/astrid-types/src/kernel.rs",
+      "sha256": "17cd4c6e6ba3274a7348288032cc900ae3aae10d3b36b25f6864b961ff1e9217",
+      "size": 5278,
+      "head_sha256": "17cd4c6e6ba3274a7348288032cc900ae3aae10d3b36b25f6864b961ff1e9217",
+      "matches_head": true
+    },
+    {
+      "path": "/Users/v/other/astrid/crates/astrid-cli/src/commands/capsule/install.rs",
+      "sha256": "1e6134dc6e9ffd0e59185a609e454ac17414122a074b0a106e63b9793f3b7bff",
+      "size": 90108,
+      "head_sha256": "1e6134dc6e9ffd0e59185a609e454ac17414122a074b0a106e63b9793f3b7bff",
+      "matches_head": true
+    }
+  ],
+  "detour_prompt_evidence": [
+    {
+      "generation_id": "1789577436288-12bd74e2",
+      "created_at": "2026-09-16T16:51:54.164497+00:00",
+      "generation_record_sha256": "64ee5bbe8efb94d2ffe0dfd37fff5e501f2b9c67793df676f0d49cf9108ea214",
+      "supplied_question_and_choices": "THIS TURN — Source page: numbered local source is supplied below. Only its stated revision and interval are shown this turn.\n\nYOUR CURRENT QUESTION — Does the `Kernel` struct in `lib.rs` implement the `if !blocked` check within its methods or a wrapper?\nIf this reading changes your answer, you can save the finding with STUDY_NOTE: and revise STUDY_QUESTION: (or use - to clear it). These are optional; your prose can develop the answer freely.\nOpen a source named in this question (exact catalog path; no source bytes are supplied until you choose it): SELF_STUDY OPEN astrid/crates/astrid-kernel/src/lib.rs 1\nOpen a source named in this question (exact catalog path; no source bytes are supplied until you choose it): SELF_STUDY OPEN prime-esn/src/lib.rs 1\nOptional lexical lookup for a name in your question (existence and meaning unverified): SELF_STUDY RELATE Kernel\n",
+      "chosen_next": "SELF_STUDY OPEN prime-esn/src/lib.rs 1"
+    },
+    {
+      "generation_id": "1789578677823-105e9b60",
+      "created_at": "2026-09-16T17:12:40.513654+00:00",
+      "generation_record_sha256": "0cd60cdc3a8e3fa5b86029a0430e85ad6a41e1b6f297ec536acac156bf9797fe",
+      "supplied_question_and_choices": "THIS TURN — Source page: numbered local source is supplied below. Only its stated revision and interval are shown this turn.\n\nYOUR CURRENT QUESTION — Does the `Kernel` struct in `lib.rs` implement the `if !blocked` check within its methods or a wrapper?\nIf this reading changes your answer, you can save the finding with STUDY_NOTE: and revise STUDY_QUESTION: (or use - to clear it). These are optional; your prose can develop the answer freely.\nOpen a source named in this question (exact catalog path; no source bytes are supplied until you choose it): SELF_STUDY OPEN prime-esn/src/lib.rs 1\nOpen a source named in this question (exact catalog path; no source bytes are supplied until you choose it): SELF_STUDY OPEN rascii/src/lib.rs 1\nOptional lexical lookup for a name in your question (existence and meaning unverified): SELF_STUDY RELATE Kernel\n",
+      "chosen_next": "SELF_STUDY OPEN rascii/src/lib.rs 1"
+    }
+  ],
+  "artifacts": {
+    "README.md": {
+      "bytes": 2280,
+      "sha256": "47a8299898a919bf36a7b4db49aa5a3c260c0fc9d4d94b20af581637d593a1c1"
+    },
+    "actions-manifest.json": {
+      "bytes": 6931,
+      "sha256": "149fa357372a3b122cbbc4ff76e3e586f5b40c28edc85517128ec16324505dc6"
+    },
+    "actions.jsonl": {
+      "bytes": 178696946,
+      "sha256": "0c6ed2519a6d1f785b1e4b2107ddb5292b92c2a4a2926dc6c858e37e80fc005d"
+    },
+    "analysis-manifest.json": {
+      "bytes": 394,
+      "sha256": "d32bc54e301328c112325648b12072dbfb844517b7815d2c3c567e17a3b2dedb"
+    },
+    "capture-manifest.json": {
+      "bytes": 7083,
+      "sha256": "f8199dcc8b937aa5f1ee45fa7c2d65d10d71cc68de01f79a7dae5c638f51ac40"
+    },
+    "capture-source-provenance.py": {
+      "bytes": 6269,
+      "sha256": "8a84bff997c390516b81d4101c38aeba5d13cbab60f1839ee4439ca368d767f1"
+    },
+    "code-content-audit.py": {
+      "bytes": 20304,
+      "sha256": "ba1f71cd8c3d166ac9c855efd94e59854067ae7d91fcdb74a802818bd479bada"
+    },
+    "content-audit.md": {
+      "bytes": 18589,
+      "sha256": "733bebb352c22d8e542c997a2ba1b423919c06c58a2ebc30fa8a2d2778e29d9c"
+    },
+    "content-coded-entries.json": {
+      "bytes": 144663,
+      "sha256": "9946a5c112f471289aa435b79d8268a69c3160ceb83bfbee5f884e5320e98377"
+    },
+    "content-coding-counts.txt": {
+      "bytes": 1172,
+      "sha256": "9e06a07601ce45196b66eb93fafcf95c37528151331edddf7df6792eed18f4cc"
+    },
+    "earlier-study-exploratory-six.json": {
+      "bytes": 24719,
+      "sha256": "108864b16dc8a8bd5913781cad15677d183bd959ab5d682f7d89831f03a78a99"
+    },
+    "followthrough-summary.txt": {
+      "bytes": 431,
+      "sha256": "609d07a81b094de85c8292687120c29386be95253d93d16c44f214333d3c7178"
+    },
+    "followthrough.json": {
+      "bytes": 151694,
+      "sha256": "0838a8de95df1bd2a96b7b3c9de1ae04fc817906c6b6d91d5358d1430e5bb272"
+    },
+    "generations.jsonl": {
+      "bytes": 101845007,
+      "sha256": "1ac797f9ae5403f4a1c182103b4a0ba467db3dcfeb5535d11089b58438eafcf2"
+    },
+    "jobs.jsonl": {
+      "bytes": 215439708,
+      "sha256": "75b273e8bcca78e47140daafca62b99e02586ca47cf2a9c16433424e3632bb78"
+    },
+    "journal-index.jsonl": {
+      "bytes": 20988377,
+      "sha256": "bd2b6f9436d703aee367be4fac1e89458ea0ffe587409135c24e07dfbadd5aad"
+    },
+    "journals.jsonl": {
+      "bytes": 25025780,
+      "sha256": "9e21b8307f8e3e9a61bdc77d93fe25ef1d20af29eae4808503d4792dc5fc8d4c"
+    },
+    "private-journals.jsonl": {
+      "bytes": 585200,
+      "sha256": "a3f902dc7b4827968ed5340ca6b30700935a410f7253a5618f2292acc3db3102"
+    },
+    "private-manifest.json": {
+      "bytes": 436,
+      "sha256": "d1c79cd95dc865bc58bc43fd85f783006b28d2c6061df9e3a5b86a45bb3a2cd6"
+    },
+    "protocol.json": {
+      "bytes": 676,
+      "sha256": "44a9e738792d911cb99b90d714e2d39e333ab60130daaafa902c14e659d7b20a"
+    },
+    "reading-pack.jsonl": {
+      "bytes": 1432036,
+      "sha256": "9a0b5d1b0f29754ae580cccb17774fc59b1102417ef6c2867c743bc5bdb6a554"
+    },
+    "source-audit-provenance.json": {
+      "bytes": 32133,
+      "sha256": "eea6934439959844595c4d1ab0e5f6363dc5d9513aa7588d717504272ff3b0cf"
+    },
+    "source-audit.md": {
+      "bytes": 21015,
+      "sha256": "7966ee9643edb9757a21da7b94f98f75ff1df90c38fe652a0dee675177742fcd"
+    },
+    "summary.json": {
+      "bytes": 94480,
+      "sha256": "134c2d704c594c947edd57c5ed78255dc83873972f265f1a45a3ba6b37cb2b7d"
+    },
+    "system-prompts.jsonl": {
+      "bytes": 303086,
+      "sha256": "6ed7be42d9ac0353cbaf3d69c3bdb627a3da6cfdd853c016c7f7657e1596f5c7"
+    },
+    "timeline-audit.md": {
+      "bytes": 23419,
+      "sha256": "b859ecc292c1493437d0b2f7807d9e99670a3bcc49a61f92367496a48bc3dc70"
+    },
+    "timeline-search-index.txt": {
+      "bytes": 14486,
+      "sha256": "9a3596f94f4707a36032da81a11eb4847db0b68711920e6180d57baa378f1c0a"
+    },
+    "timeline-source-index.json": {
+      "bytes": 9446,
+      "sha256": "f6abbce8568ed953eb49eaf96a1ee6cb16bd96327c1328b17787ce9c61bb98b2"
+    }
+  },
+  "verification": {
+    "capture_errors": 0,
+    "duplicate_root_names": 0,
+    "verified_private_drafts": 197,
+    "unique_latest_generation_responses": 120,
+    "close_reading_entries": 192,
+    "assertions": "All close-reading annotations reviewed and matched frozen SHA-256; all latest entries match generation and parent-linked chosen action; replay verified raw file and text hashes.",
+    "research_suite": "python3 -B -m unittest discover -s tests: 304 passed",
+    "derived_integrity": "analysis-manifest binds summary, journal-index and reading-pack hashes to capture-manifest; followthrough verifies before use."
+  },
+  "limits": [
+    "Day16 is partial; generation capture begins September7; source/draft split uses exact linked response plus job action text.",
+    "Each database action has an epoch-prefixed ID; journals and action rows are not independent episodes.",
+    "Job outcomes may finish after cutoff; report which journal/attempt was selected, not a completed-opportunity census."
+  ],
+  "probes": {
+    "probes/minime_study_variety.py": "de0cbb134428ce32f98a7dc9d8a4a53193df86706a4bb1cb6bfa4d19e590e636",
+    "probes/minime_study_variety_followthrough.py": "4f55eda6ef3af1b9d679aba77f3f889c106e2122a25047c28ada52ce9e98ad55"
+  }
+}
