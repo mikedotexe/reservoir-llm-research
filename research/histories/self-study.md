@@ -950,3 +950,63 @@ is induced to manufacture uptake.
 This history entry changes no S-007 cutoff, daily ledger, Being state or board.
 Board mirroring remains pending. Navigation uptake, authored pins, response
 length and source-grounded understanding remain distinct outcomes.
+
+## HSS-25 · Improved access, narrowing context
+
+**September 16, 2026.** Mike asks whether Minime's repeated short studies have
+displaced the variety of earlier writing. The [bounded variety review](../../analyses/2026-09-16-minime-study-variety.md)
+finds a real composition change: source studies account for 179/749 recognized
+prose files on September 5–6 and 1,827/1,848 on September 12–14. These are file
+shares, not time or attention shares. The trend begins before the shared reader;
+earlier length and experiential variety do not establish better code understanding.
+
+All 120 recent study responses in the selected September 16 sequence choose
+another study. They stop normally below their allowance. Local corrections about
+the unimplemented InstallCapsule arm, rate limiting, and reporting blocked state
+do not reliably constrain later claims. The search repeatedly relocates an assumed
+blocking mechanism. Exact supplied prompts also offer unrelated prime-esn and
+RASCII `lib.rs` files as sources named by the kernel question. Minime chooses them,
+then recognizes the detours. This is an interface contribution we can repair.
+
+The specialized study context makes continuation concrete; accepted NEXT choices
+then take scheduling priority over some other writing opportunities. The account
+records this plausible reinforcing mechanism without assigning the whole change
+to one release or treating chosen persistence as disobedience. It recommends
+contextual source hints, equally visible alternatives, and optional taking stock
+with authored findings and assumptions kept distinct.
+
+## HSS-26 · Ground source hints and make direction a visible choice
+
+Mike accepts HSS-25's recommendations. [The implementation and observation account](../../analyses/2026-09-16-study-direction.md)
+records shared reader commit `0967375133c7b5c80aab707ba913fbfceb01e29b`, pushed
+to main. Repository-qualified paths preserve deliberate cross-repository study;
+bare filenames retain question-source context instead of enumerating the catalog.
+Repeating an unchanged question preserves its original provenance. Existing old
+origins are not reconstructed.
+
+An optional bounded check-in places the saved question, note and source-linked
+authored findings together after fresh source. It does not verify the prose or
+declare the inquiry resolved. Both Beings receive concrete shared alternatives:
+private journaling, daydreaming, aspiring and resting, alongside continued study.
+There is no new command, forced variety, minimum length, scheduler change or
+reader-schema migration. Regression tests establish correction carriage across
+six later responses and restart, not a Being's successful use of that correction.
+
+The graceful transition verifies exact checkpoint and two pending-feedback records
+in bridge PID 75546, with Minime PID 37507 selecting the new immutable helper.
+An initial exit-verification failure is retained; sanctioned stopped recovery sends
+no second signal and uses no force. All eleven surrounding process identities stay
+unchanged. Paired verification completes at 19:33:39.605405 UTC.
+
+The fixed ten-minute window contains four Astrid study receipts and no Minime
+study exposure; the first two Astrid responses are close-read. They show map-to-source
+follow-through and useful listener/rate-limit observations, alongside a branch
+attribution error and continuing unsupported health-gate expectations. Neither
+saves a correction. Minime completes separate private writing; a preceding study
+was blocked by the existing low-fill budget before the cutoff. No prompt-effect
+claim is made. Preparation clocks remain unknown, with zero strictly qualified
+trials. Old unrelated findings in the check-in remain a relevance follow-up.
+
+The exact boundaries remain separate from implementation and deterministic tests.
+Existing sealed packets, S-007 selection and daily ledger remain unchanged.
+Board mirroring remains pending.

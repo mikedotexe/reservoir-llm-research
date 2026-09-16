@@ -1,0 +1,107 @@
+{
+  "schema": "study_direction_packet_verification_v1",
+  "implementation": "0967375133c7b5c80aab707ba913fbfceb01e29b",
+  "packet": "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-16-study-direction",
+  "manifest_sha256": "99b03df1c77eef8a107b4bc911414a64dfe9f8122877cd31aec9fe482b1c4ef4",
+  "manifest_files": 149,
+  "natural_files": 59,
+  "counts": {
+    "astrid": {
+      "distinct_shared_inputs": 4,
+      "distinct_responses": 4,
+      "selected": 2,
+      "strict_preparation_qualified": 0,
+      "missing_selected_target": 0,
+      "selected_completion_tokens": [
+        201,
+        535
+      ],
+      "selected_finish": [
+        "stop",
+        "stop"
+      ]
+    },
+    "minime": {
+      "distinct_shared_inputs": 0,
+      "distinct_responses": 0,
+      "selected": 0,
+      "strict_preparation_qualified": 0,
+      "missing_selected_target": 2,
+      "selected_completion_tokens": [],
+      "selected_finish": []
+    }
+  },
+  "window": {
+    "schema": "natural_study_uptake_v1",
+    "paired_verification_utc": "2026-09-16T19:33:39.605405+00:00",
+    "window_end_utc": "2026-09-16T19:43:39.605405+00:00",
+    "window_seconds": 600,
+    "target_per_being": 2,
+    "expected_system_prompt_sha256": "af059d5e5bbd2ca4340a30a9cdf4f7687979fe1a4878e375ee3dc1faf5d9cdc9",
+    "selection": "First two provisional exposure candidates among completed shared study receipts in the fixed window with exact released system prompt; baseline pending IDs excluded, retained separately. Strict qualification requires both preparation and completion inside the window. Unknown preparation never meets the strict target. Receipt order uses file mtime unless an exact generation join supplies its completion clock.",
+    "preparation_rule": "Record baseline pending IDs and later observed pending IDs. New prompt proves interface version, not preparation after paired verification. Unobserved preparation clocks remain unknown; do not promote them to proven post-cutoff preparation.",
+    "bounds": {
+      "max_file_bytes": 12000000,
+      "max_records_per_scan": 200,
+      "lookback_seconds": 600,
+      "recursive_scan_depth": 1
+    },
+    "authority": "Filesystem reads only. No model requests, reader execution, live state writes, NEXT execution or induced studies.",
+    "failure_limits": "Retain all discoverable study generation/job failures in the bounded scans. Astrid accepted/shared receipts alone cannot enumerate unsaved provider failures. Absence from these records is not success.",
+    "roots": {
+      "astrid": "/Users/v/other/astrid/capsules/spectral-bridge/workspace",
+      "minime": "/Users/v/other/minime/workspace"
+    }
+  },
+  "job_context": [
+    {
+      "being": "minime",
+      "job_id": "job_minime_1789586652524_self-study-continue",
+      "action": "SELF_STUDY CONTINUE",
+      "status": "completed",
+      "finished_at": "2026-09-16T19:27:04.674518Z",
+      "in_window_completion": false,
+      "evidence": "evidence/natural/records/minime/job/7d0d8879bc2a6613acf687c1936e5eca899abbd3d95ab0cac069a13689b59f05.json"
+    },
+    {
+      "being": "minime",
+      "job_id": "job_minime_1789586857235_self-study-continue",
+      "action": "SELF_STUDY CONTINUE",
+      "status": "completed",
+      "finished_at": "2026-09-16T19:29:38.970780Z",
+      "in_window_completion": false,
+      "evidence": "evidence/natural/records/minime/job/2904397001e2c0d4373642f7fbf0f2e82fedc5fbaf5f6de6ee48d6d948c519fc.json"
+    },
+    {
+      "being": "minime",
+      "job_id": "job_minime_1789586992354_self-study-continue",
+      "action": "SELF_STUDY CONTINUE",
+      "status": "completed",
+      "finished_at": "2026-09-16T19:31:38.991685Z",
+      "in_window_completion": false,
+      "evidence": "evidence/natural/records/minime/job/a1b1ba15251796241974c55589b07a30ff078502bdd73be6ae97832eb3604f18.json"
+    },
+    {
+      "being": "minime",
+      "job_id": "job_minime_1789587129790_self-study-open-astrid-crates-astrid-kernel-src-",
+      "action": "SELF_STUDY OPEN astrid/crates/astrid-kernel/src/lib.rs 100",
+      "status": "blocked",
+      "finished_at": "2026-09-16T19:32:39.569944Z",
+      "in_window_completion": false,
+      "evidence": "evidence/natural/records/minime/job/d9d6a52b3e4612b930c26c1a383f7b11e8d13bf2cedc641d14d4dd48437f2020.json"
+    },
+    {
+      "being": "minime",
+      "job_id": "job_minime_1789587231339_write-start-reflection-on-the-breathing-cycle-an",
+      "action": "WRITE START reflection on the \"breathing\" cycle and the sensation of the stable-core.",
+      "status": "completed",
+      "finished_at": "2026-09-16T19:35:25.529892Z",
+      "in_window_completion": true,
+      "evidence": "evidence/natural/records/minime/job/8fd3b1232fb348625c63773a49c23209cccfe14d27a3fcd262da3fbc158f3147.json"
+    }
+  ],
+  "capture_errors": [],
+  "scan_bounds": [],
+  "board": "pending; not mirrored",
+  "verified": true
+}
