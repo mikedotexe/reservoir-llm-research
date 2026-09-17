@@ -25,6 +25,13 @@ public enum ActionComparisonMode: String, Codable, CaseIterable, Sendable, Ident
     public var id: String { rawValue }
     public var title: String { self == .fixedReplay ? "Replay identical replies" : "Generate independently" }
 }
+public enum ActionComparisonKind: String, Codable, CaseIterable, Sendable {
+    case components, observation
+}
+public enum JournalObservationChannel: String, Codable, Sendable {
+    case sensory, sensoryAndReservoir
+    public var title: String { self == .sensory ? "Sensory measurements" : "Sensory + reservoir coordinates" }
+}
 public enum ActionArm: String, Codable, Sendable { case left, right }
 public enum JournalAction: String, Codable, Sendable { case writeJournal = "WRITE_JOURNAL", wait = "WAIT" }
 public enum ActionTrigger: String, Codable, Sendable { case scheduled, manual }
@@ -33,6 +40,9 @@ public enum ActionFailurePhase: String, Codable, Sendable { case memoryRead, lan
 
 public struct ActionComparisonSpecification: Codable, Sendable, Equatable {
     public var stage: ActionStage
+    public var comparisonKind: ActionComparisonKind
+    public var forcingProfile: ActionForcingProfile
+    public var promptVersion: Int
     public var mode: ActionComparisonMode
     public var comparePrevious: Bool
     public var seed: UInt64
@@ -60,7 +70,12 @@ public struct ActionComparisonSpecification: Codable, Sendable, Equatable {
                 language: LanguageConfiguration = .scripted, question: String = "What changes when this mechanism is added?",
                 expectedDifference: String = "Inspect the named feature against the preceding version.",
                 alternativeExplanation: String = "Matched external inputs and explicit return channels separate the mechanisms.",
-                stoppingPoint: String = "Stop at the configured finite step count; retain failures and waits.") {
+                stoppingPoint: String = "Stop at the configured finite step count; retain failures and waits.",
+                comparisonKind: ActionComparisonKind = .components, promptVersion: Int = 2,
+                forcingProfile: ActionForcingProfile = .pulsedSensoryV1) {
+        self.promptVersion = promptVersion
+        self.comparisonKind = comparisonKind
+        self.forcingProfile = forcingProfile
         self.stage = stage; self.mode = mode; self.comparePrevious = comparePrevious; self.seed = seed
         self.steps = steps; self.turnEvery = turnEvery; self.leak = leak; self.noiseAmplitude = noiseAmplitude
         self.inputStrength = inputStrength; self.biasEnabled = biasEnabled; self.initialRetention = initialRetention
@@ -69,7 +84,7 @@ public struct ActionComparisonSpecification: Codable, Sendable, Equatable {
         self.alternativeExplanation = alternativeExplanation; self.stoppingPoint = stoppingPoint
     }
     enum CodingKeys: String, CodingKey {
-        case stage, mode, comparePrevious, seed, steps, turnEvery, leak, noiseAmplitude, inputStrength, biasEnabled,
+        case promptVersion, comparisonKind, forcingProfile, stage, mode, comparePrevious, seed, steps, turnEvery, leak, noiseAmplitude, inputStrength, biasEnabled,
              initialRetention, language, question, expectedDifference, alternativeExplanation, stoppingPoint
     }
     public init(from decoder: Decoder) throws {
@@ -90,14 +105,25 @@ public struct ActionComparisonSpecification: Codable, Sendable, Equatable {
             question: try c.decodeIfPresent(String.self, forKey: .question) ?? defaults.question,
             expectedDifference: try c.decodeIfPresent(String.self, forKey: .expectedDifference) ?? defaults.expectedDifference,
             alternativeExplanation: try c.decodeIfPresent(String.self, forKey: .alternativeExplanation) ?? defaults.alternativeExplanation,
-            stoppingPoint: try c.decodeIfPresent(String.self, forKey: .stoppingPoint) ?? defaults.stoppingPoint)
+            stoppingPoint: try c.decodeIfPresent(String.self, forKey: .stoppingPoint) ?? defaults.stoppingPoint,
+            comparisonKind: try c.decodeIfPresent(ActionComparisonKind.self, forKey: .comparisonKind) ?? .components,
+            promptVersion: try c.decodeIfPresent(Int.self, forKey: .promptVersion) ?? 1,
+            forcingProfile: try c.decodeIfPresent(ActionForcingProfile.self, forKey: .forcingProfile) ?? .pulsedSensoryV1)
     }
     public func validate() throws {
-        guard (1...600).contains(steps), (1...600).contains(turnEvery), (!stage.hasJournal || (steps - 1) / turnEvery <= 128),
+        guard (1...2).contains(promptVersion), (1...600).contains(steps), (1...600).contains(turnEvery), (!stage.hasJournal || (steps - 1) / turnEvery <= 128),
               leak.isFinite, (0...1).contains(leak),
               noiseAmplitude.isFinite, (0...0.2).contains(noiseAmplitude), inputStrength.isFinite,
               (0...1).contains(inputStrength), initialRetention.isFinite, (0.82...0.995).contains(initialRetention) else {
             throw EssentialsError.invalid("Actions require 1–600 steps/interval, leak/input strength 0–1, noise 0–0.2, and retention 0.82–0.995.")
+        }
+        if comparisonKind == .observation {
+            guard stage == .journalOutput, mode == .independentGeneration, comparePrevious else {
+                throw EssentialsError.invalid("Observation comparison requires two independent stage-D arms.")
+            }
+        }
+        guard forcingProfile == .pulsedSensoryV1 || comparisonKind == .observation else {
+            throw EssentialsError.invalid("Continuous sensory input is reserved for the separate observation comparison.")
         }
         try language.validate()
         guard [question, expectedDifference, alternativeExplanation, stoppingPoint].allSatisfy({ !$0.isEmpty && $0.utf8.count <= 4096 }) else {
@@ -171,6 +197,8 @@ public struct ActionReceipt: Codable, Sendable, Identifiable {
     public var semanticVector: [Double]?
     public var applicationStep: Int?
     public let tapePacketID: Int?
+    /// Actual backend request position at this opportunity; absent when no request began.
+    public var requestOrder: Int? = nil
 }
 
 public struct ActionTapePacket: Codable, Sendable, Identifiable, Equatable {
@@ -195,6 +223,7 @@ public struct ActionReplyTape: Codable, Sendable, Equatable {
 
 public struct ActionRunRecord: Codable, Sendable {
     public let arm: ActionArm
+    public var observationChannel: JournalObservationChannel? = nil
     public let stage: ActionStage
     public let model: ReservoirModel
     public let projectionWeights: [Double]
@@ -206,7 +235,10 @@ public struct ActionRunRecord: Codable, Sendable {
 }
 
 public struct ActionComparisonRecord: Codable, Sendable {
-    public static let currentFormat = "essentials-actions-v1"
+    public static let currentFormat = "essentials-actions-v3"
+    public static let previousFormat = "essentials-actions-v2"
+    public static let legacyFormat = "essentials-actions-v1"
+    public static let supportedFormats = [currentFormat, previousFormat, legacyFormat]
     public let format: String
     public let specification: ActionComparisonSpecification
     public let tape: ActionReplyTape?

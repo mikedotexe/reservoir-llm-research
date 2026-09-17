@@ -30,6 +30,7 @@ struct EssentialsExperience: View {
         }.frame(width: geometry.size.width, height: geometry.size.height)
         }
         .onReceive(pulse) { _ in model.tick() }
+        .safeAreaInset(edge: .top) { if let issue = model.saveIssue { HStack { Text(issue); Button("Retry save") { model.retrySaves() }; Button("Export retained") { model.exportRetained() } }.font(.caption).padding(8) } }
         .onDisappear { model.stop() }
     }
 

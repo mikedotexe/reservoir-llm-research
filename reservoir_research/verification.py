@@ -19,9 +19,10 @@ GROUPS = ("python", "numerics", "native-model", "native-presentation", "research
 MODEL_SCRIPTS = ("check-actions-ui.sh", "check-essentials-ui.sh", "check-exploration-ui.sh",
                  "check-guided-lessons.sh", "check-evidence.sh", "check-native-action-response.sh",
                  "check-state-response.sh", "check-state-surface-data.sh", "check-source-staging.sh",
-                 "check-readiness-and-cases.sh")
+                 "check-readiness-and-cases.sh", "check-package-identity.sh")
 CORE_LAYOUTS = ("check-action-comparison-layout.sh", "check-action-inspector-layout.sh",
-                "check-essentials-layout.sh", "check-essentials-run-layout.sh", "check-exploration-layout.sh")
+                "check-essentials-layout.sh", "check-essentials-run-layout.sh", "check-exploration-layout.sh",
+                "check-research-case-layout.sh")
 OUT_SCRIPTS = ("check-dynamic-state-surface.sh", "check-shared-state-camera.sh",
                "check-topographic-renderer.sh", "check-watermark-view.sh")
 
@@ -43,7 +44,7 @@ def configure(subparsers):
 def source_identity(root, group, args):
     paths = set()
     if group in ("python", "research-replay"):
-        for base in ("reservoir_research", "tests"):
+        for base in ("reservoir_research", "tests", "probes"):
             paths.update(p for p in (root / base).rglob("*") if p.is_file() and p.suffix in (".py", ".json"))
         paths.add(root / "pyproject.toml")
     elif group in ("numerics", "native-model", "native-presentation"):
@@ -55,6 +56,17 @@ def source_identity(root, group, args):
         paths.add(root / "native/ReservoirScope/package-identity.py")
     if group in ("native-model", "native-presentation"):
         paths.update((root / "research/examples").glob("*.json"))
+        manifest_path = root / "native/ReservoirScope/resource-manifest.json"
+        if manifest_path.is_file():
+            manifest = json.loads(manifest_path.read_bytes())
+            for item in manifest["resources"]:
+                relative = Path(item["source"])
+                target = (root / relative).resolve()
+                if relative.is_absolute() or ".." in relative.parts or not target.is_relative_to(root):
+                    raise ValueError("Resource identity path escapes the repository")
+                if not target.is_file():
+                    raise ValueError("Canonical verification resource is missing: " + str(relative))
+                paths.add(target)
     value = {str(p.relative_to(root)): digest(p) for p in sorted(paths) if p.exists()}
     value["environment:platform"] = platform.platform()
     value["environment:architecture"] = platform.machine()
@@ -125,6 +137,7 @@ def run(args, root=None):
     env["XDG_CACHE_HOME"] = str(cache)
     core = out / "core"
     env["ESSENTIALS_BUILD_DIR"] = str(core)
+    env["RESERVOIR_SCOPE_IDENTITY_TEST_CORE"] = str(core)
     receipt = dict(schema="reservoir-research-verification-v1",
                    created_at_utc=datetime.now(timezone.utc).isoformat(),
                    platform=platform.platform(), architecture=platform.machine(),

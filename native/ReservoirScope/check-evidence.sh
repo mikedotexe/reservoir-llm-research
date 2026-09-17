@@ -10,8 +10,8 @@ trap 'rm -rf -- "$task_check_dir"' EXIT
 
 task_bundle_dir="$task_check_dir/Fixture.bundle"
 mkdir -p "$task_bundle_dir/Contents/Resources/Resources"
-cp "$task_source_dir/Resources/data.json" "$task_bundle_dir/Contents/Resources/Resources/data.json"
-cp "$task_source_dir/Resources/state-geometry.json" "$task_bundle_dir/Contents/Resources/Resources/state-geometry.json"
+python3 "$task_native_dir/stage-package.py" resources --repo "$task_native_dir/../.." \
+    --destination "$task_bundle_dir/Contents/Resources/Resources" --names data.json state-geometry.json
 cat > "$task_bundle_dir/Contents/Info.plist" <<'PLIST'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">

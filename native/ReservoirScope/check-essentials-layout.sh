@@ -11,7 +11,7 @@ import hashlib,json,subprocess,sys,time
 native,lib,out=map(Path,sys.argv[1:])
 out.mkdir(parents=True,exist_ok=True)
 source=native/'Sources/ReservoirScope'
-paths=[source/name for name in ['ResourceBundle.swift','ReplayClock.swift','StateSurface.swift',
+paths=[source/name for name in ['ResourceBundle.swift','ExperimentStore.swift','ReplayClock.swift','StateSurface.swift',
     'StateSurfaceScene.swift','EssentialsViewModel.swift','EssentialsExperience.swift']]
 paths.append(native/'Tests/EssentialsLayoutChecks.swift')
 fixture=native.parent.parent/'essentials/examples/essentials-stage-4.json'

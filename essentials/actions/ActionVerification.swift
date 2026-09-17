@@ -30,13 +30,29 @@ extension ActionComparisonRecord {
 public enum ActionComparisonVerifier {
     public static func validateStructure(_ record: ActionComparisonRecord) throws {
         try record.specification.validate()
-        try require(record.format == ActionComparisonRecord.currentFormat, "Unknown action comparison format.")
+        try require(ActionComparisonRecord.supportedFormats.contains(record.format), "Unknown action comparison format.")
         let spec = record.specification
+        let legacy = record.format == ActionComparisonRecord.legacyFormat
+        try require(record.format == ActionComparisonRecord.currentFormat || spec.forcingProfile == .pulsedSensoryV1,
+                    "Legacy action records cannot change the input profile.")
+        try require(!legacy || (spec.comparisonKind == .components && spec.promptVersion == 1), "Legacy record cannot change observation channels.")
+        for run in [record.left, record.right].compactMap({ $0 }) {
+            let expected: JournalObservationChannel = spec.comparisonKind == .observation && run.arm == .right ? .sensoryAndReservoir : .sensory
+            try require(legacy ? run.observationChannel == nil : run.observationChannel == expected, "Observation channel differs from declared comparison.")
+            for action in run.actions {
+                if legacy { try require(action.requestOrder == nil, "Legacy record contains v2 request metadata.") }
+                else if action.requestStarted {
+                    let rightFirst = spec.comparisonKind == .observation && action.id % 2 == 0
+                    let expectedOrder = record.left?.stage.hasJournal != true ? 1 : (run.arm == (rightFirst ? .right : .left) ? 1 : 2)
+                    try require(action.requestOrder == expectedOrder, "Request order differs from the declared alternating sequence.")
+                } else { try require(action.requestOrder == nil, "No backend request started for the claimed order.") }
+            }
+        }
         try require(record.right.stage == spec.stage && record.right.arm == .right, "Right arm differs from its selected version.")
         let hasLeft = spec.comparePrevious && spec.stage.previous != nil
         try require((record.left != nil) == hasLeft, "Comparison arm availability disagrees with specification.")
         if let left = record.left {
-            try require(left.stage == spec.stage.previous && left.arm == .left, "Left arm is not the preceding version.")
+            try require(left.stage == (spec.comparisonKind == .observation ? .journalOutput : spec.stage.previous) && left.arm == .left, "Left arm is not the preceding version.")
             try require(left.frames.count == record.right.frames.count, "Comparison arms have different step counts.")
             if left.stage.hasJournal && record.right.stage.hasJournal {
                 try require(left.actions.count == record.right.actions.count,
@@ -44,7 +60,7 @@ public enum ActionComparisonVerifier {
                 for (a, b) in zip(left.actions, record.right.actions) {
                     try require(a.observedStep == b.observedStep && a.trigger == b.trigger,
                                 "Comparison arms did not receive the same action opportunities.")
-                    if a.status == .failed || a.status == .cancelled || a.failurePhase == .journalSave {
+                    if spec.comparisonKind == .components && (a.status == .failed || a.status == .cancelled || a.failurePhase == .journalSave) {
                         try require(b.status == .cancelled && b.failurePhase == .cancelled && !b.requestStarted
                                     && b.memoryText == nil && b.rawReply == nil,
                                     "Right arm executed despite a failed or cancelled preceding left action.")
@@ -160,6 +176,18 @@ public enum ActionComparisonVerifier {
         if record.specification.mode == .fixedReplay, record.specification.stage == .regulation, let left = record.left {
             for (a, b) in zip(left.frames, record.right.frames) { try near(a.input, b.input, "controller comparison full input") }
         }
+        if record.specification.comparisonKind == .observation, let left = record.left {
+            try require(left.frames.count == record.right.frames.count && left.actions.count == record.right.actions.count,
+                        "Observation comparison must retain both arms at every boundary.")
+            for (a,b) in zip(left.frames, record.right.frames) {
+                try near(a.state, b.state, "matched observed reservoir state")
+                try near(a.input, b.input, "matched observation input")
+                try near(a.spectral!.eigenvalues, b.spectral!.eigenvalues, "matched sensory observation")
+            }
+            for (a,b) in zip(left.actions, record.right.actions) {
+                try require(a.observedStep == b.observedStep && a.trigger == b.trigger, "Unmatched observation opportunity.")
+            }
+        }
         return VerificationReport(checkedSteps: steps, checkedTurns: actions)
     }
 
@@ -216,7 +244,7 @@ public enum ActionComparisonVerifier {
         let beforeExposure = action.failurePhase == .memoryRead || (action.status == .cancelled && !action.requestStarted && action.memoryText == nil)
         let memory = beforeExposure ? nil : latest
         try require(action.memoryEntryID == latest?.id && action.memoryText == memory?.text, "Journal exposure does not match the last saved entry.")
-        try require(action.prompt == ActionRules.prompt(stage: run.stage, frame: frame, memory: memory, forceJournal: action.trigger == .manual),
+        try require(action.prompt == ActionRules.prompt(stage: run.stage, frame: frame, memory: memory, forceJournal: action.trigger == .manual, channel: run.observationChannel ?? .sensory, comparison: engine.spec.comparisonKind, promptVersion: engine.spec.promptVersion),
                     "Prompt differs from actual sensory observation, policy or saved memory.")
         try require(action.requestedAction == (run.stage.hasChoice && action.trigger != .manual ? nil : .writeJournal), "Requested action differs from its policy.")
         try require(action.tapePacketID == (tape == nil ? nil : frame.step), "Action does not reference its actual tape boundary.")
@@ -321,14 +349,14 @@ public enum ActionComparisonVerifier {
         switch (a, e) { case (nil, nil): break; case (let a?, let e?): try near(a, e, name)
         default: throw EssentialsError.verification("\(name) availability differs.") }
     }
-    private static func spectralStructure(_ m: SpectralMeasurement) throws {
+    static func spectralStructure(_ m: SpectralMeasurement) throws {
         try require(m.dimension == 32, "Invalid sensory dimension.")
         try vector(m.eigenvalues, count: 32, name: "spectrum"); try vector(m.eigenvectors, count: 1024, name: "basis")
         try vector(m.covariance, count: 1024, name: "covariance"); try vector(m.fieldVector, count: 32, name: "field vector")
         try require(m.eigenvalues.allSatisfy { $0 >= 0 } && (1..<32).allSatisfy { m.eigenvalues[$0] <= m.eigenvalues[$0 - 1] + 1e-8 },
                     "Invalid descending spectrum.")
     }
-    private static func spectral(_ a: SpectralMeasurement, expected e: SpectralMeasurement) throws {
+    static func spectral(_ a: SpectralMeasurement, expected e: SpectralMeasurement) throws {
         try near(a.fieldVector, e.fieldVector, "projected field"); try near(a.covariance, e.covariance, "sensory covariance")
         try near(a.eigenvalues, e.eigenvalues, "spectrum"); try near(a.entropy, e.entropy, "entropy")
         try near(a.headShare, e.headShare, "head share"); try near(a.shoulderShare, e.shoulderShare, "shoulder share")

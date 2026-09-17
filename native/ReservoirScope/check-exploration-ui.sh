@@ -12,6 +12,7 @@ else
   task_core_lib="$task_check_dir/core/lib"
 fi
 cat "$task_native_dir/Sources/ReservoirScope/ResourceBundle.swift" \
+    "$task_native_dir/Sources/ReservoirScope/ExperimentStore.swift" \
     "$task_native_dir/Sources/ReservoirScope/ExplorationViewModel.swift" \
     "$task_native_dir/Tests/ExplorationViewModelChecks.swift" > "$task_check_dir/checks.swift"
 xcrun swiftc -O -swift-version 6 -I "$task_core_lib" -L "$task_core_lib" -lEssentialsCore -framework Accelerate \

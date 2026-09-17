@@ -49,6 +49,7 @@ private final class InspectorActionJournals: ActionJournalStore, @unchecked Send
         window.isReleasedWhenClosed = false; window.contentView = host
         window.orderFrontRegardless()
         started = ProcessInfo.processInfo.systemUptime; lastCallback = started
+        model.select(.reservoirReturn)
         model.step()
         timer = Timer.scheduledTimer(withTimeInterval: 0.03, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.advance() }

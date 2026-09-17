@@ -1,0 +1,14 @@
+{
+  "stage": 4,
+  "mode": "independentGeneration",
+  "comparePrevious": true,
+  "comparisonKind": "observation",
+  "steps": 120,
+  "turnEvery": 30,
+  "seed": 20260909,
+  "forcingProfile": "continuousSensoryV1",
+  "question": "What changes when measured reservoir coordinates are supplied?",
+  "expectedDifference": "Only the designated prompt contains the current indexed reservoir state.",
+  "alternativeExplanation": "Scripted responses qualify exposure and transport only.",
+  "stoppingPoint": "120 steps, three paired opportunities; retain failures."
+}

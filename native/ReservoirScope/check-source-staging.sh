@@ -1,47 +1,70 @@
 #!/usr/bin/env bash
-# Exercise the production staging helper using temporary files only.
+# Production staging against temporary repository fixtures only; no install.
 set -euo pipefail
 task_native_dir="$(cd -- "$(dirname -- "$0")" && pwd -P)"
-python3 - "$task_native_dir/stage-sources.sh" <<'PY'
+python3 - "$task_native_dir" <<'PY'
 from pathlib import Path
-import subprocess
-import sys
-import tempfile
-
-helper = Path(sys.argv[1])
+import hashlib,json,shutil,subprocess,sys,tempfile
+native=Path(sys.argv[1])
 with tempfile.TemporaryDirectory(prefix="reservoir-source-staging-") as folder:
-    root = Path(folder)
-    source, staged = root / "source", root / "staged"
-    source_files = source / "Sources/ReservoirScope"
-    staged_files = staged / "Sources/ReservoirScope"
-    for path in [source_files / "Resources", staged_files / "Resources"]:
-        path.mkdir(parents=True)
-    (source / "Package.swift").write_text("// fixture manifest\n")
-    (source_files / "Current.swift").write_text("// current source\n")
-    (source_files / "Resources/example.json").write_text('{"fixture":1}\n')
-    (staged_files / "Removed.swift").write_text("// stale compiled source\n")
-    (staged_files / "Resources/removed.json").write_text("{}\n")
-    (staged / "unrelated-output").write_text("preserve this\n")
-
-    def snapshot(directory):
-        return {str(path.relative_to(directory)): path.read_bytes()
-                for path in directory.rglob("*") if path.is_file()}
-
-    def stage():
-        subprocess.run(["zsh", str(helper), str(source), str(staged)], check=True)
-
-    stage()
-    assert snapshot(source_files) == snapshot(staged_files), "Staged sources/resources differ"
-    assert not (staged_files / "Removed.swift").exists(), "Removed Swift source survived"
-    assert not (staged_files / "Resources/removed.json").exists(), "Removed resource survived"
-    assert (staged / "Package.swift").read_bytes() == (source / "Package.swift").read_bytes()
-    assert (staged / "unrelated-output").read_text() == "preserve this\n"
-
-    (source_files / "Current.swift").unlink()
-    (source_files / "Replacement.swift").write_text("// replacement source\n")
-    stage()
-    assert snapshot(source_files) == snapshot(staged_files), "Second stage retained old sources"
-    stage()
-    assert snapshot(source_files) == snapshot(staged_files), "Repeated stage changed contents"
-    print("7 source-staging checks passed; temporary fixtures only, no build or install.")
+    root=Path(folder); source=root/"repo"; staged=root/"staged"
+    n=source/"native/ReservoirScope"; e=source/"essentials"
+    (n/"Sources/ReservoirScope").mkdir(parents=True)
+    (n/"Tests").mkdir()
+    (e/"reservoir").mkdir(parents=True)
+    (source/"fixtures").mkdir()
+    (n/"Package.swift").write_text("// native package fixture\n")
+    (e/"Package.swift").write_text("// core package fixture\n")
+    (e/"build.sh").write_text("# core build fixture\n")
+    (e/"reservoir/Current.swift").write_text("// current core\n")
+    (n/"Sources/ReservoirScope/Current.swift").write_text("// current native\n")
+    shutil.copy2(native/"stage-package.py",n/"stage-package.py")
+    resource=source/"fixtures/example.json";resource.write_text('{"fixture":1}\n')
+    def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+    def manifest():
+        (n/"resource-manifest.json").write_text(json.dumps({"schema":"reservoir-scope.resources.v1",
+            "release":{"version":"test","build":1},"resources":[
+                {"name":"example.json","source":"fixtures/example.json","sha256":sha(resource)}]}))
+    manifest()
+    subprocess.run(["git","init","-q",str(source)],check=True)
+    subprocess.run(["git","-C",str(source),"add","."],check=True)
+    subprocess.run(["git","-C",str(source),"-c","user.name=Fixture","-c","user.email=fixture@example.invalid","commit","-qm","Frozen fixture"],check=True)
+    staged.mkdir(); (staged/"unrelated-output").write_text("preserve\n")
+    def run(operation,ok=True):
+        command=["python3",str(native/"stage-package.py"),operation,"--destination",str(staged)]
+        if operation=="stage":command+=["--repo",str(source)]
+        result=subprocess.run(command,capture_output=True,text=True)
+        assert (result.returncode==0)==ok,result.stdout+result.stderr
+    run("stage")
+    target=staged/"native/ReservoirScope"
+    assert (target/"Package.swift").read_bytes()==(n/"Package.swift").read_bytes()
+    assert (staged/"essentials/Package.swift").exists()
+    assert (target/"../../essentials/Package.swift").resolve()==(staged/"essentials/Package.swift").resolve()
+    assert (target/"Sources/ReservoirScope/Resources/example.json").read_bytes()==resource.read_bytes()
+    assert (staged/"unrelated-output").read_text()=="preserve\n"
+    run("verify-stage")
+    (target/"Sources/ReservoirScope/Current.swift").write_text("// changed\n")
+    run("verify-stage",False)
+    run("stage")
+    (target/"Sources/ReservoirScope/Extra.swift").write_text("// undeclared\n")
+    run("verify-stage",False)
+    run("stage")
+    (target/"Sources/ReservoirScope/Resources/example.json").unlink()
+    run("verify-stage",False)
+    run("stage")
+    (target/"Sources/ReservoirScope/Resources/extra.json").write_text("{}")
+    run("verify-stage",False)
+    run("stage")
+    resource.write_text('{"fixture":2}\n')
+    run("stage",False)
+    manifest();run("stage")
+    (n/"Sources/ReservoirScope/Current.swift").unlink()
+    (n/"Sources/ReservoirScope/Replacement.swift").write_text("// replacement\n")
+    run("stage")
+    assert not (target/"Sources/ReservoirScope/Current.swift").exists()
+    assert not (target/"Sources/ReservoirScope/Extra.swift").exists()
+    before=(staged/"staged-inputs.json").read_bytes()
+    run("stage")
+    assert before==(staged/"staged-inputs.json").read_bytes()
+    print("14 source-staging checks passed: coherent dependency paths, resource identity, drift rejection, pruning and repeatability.")
 PY

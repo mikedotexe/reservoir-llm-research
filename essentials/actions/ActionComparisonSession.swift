@@ -26,7 +26,7 @@ public actor ActionComparisonSession {
         else { self.backend = ScriptedActionLanguageBackend() }
         tape = specification.mode == .fixedReplay ? try ActionReplyTape.make(specification: specification) : nil
         if specification.comparePrevious, let previous = specification.stage.previous {
-            left = try ActionArmEngine(spec: specification, stage: previous, arm: .left)
+            left = try ActionArmEngine(spec: specification, stage: specification.comparisonKind == .observation ? .journalOutput : previous, arm: .left)
         }
         right = try ActionArmEngine(spec: specification, stage: specification.stage, arm: .right)
     }
@@ -112,26 +112,29 @@ public actor ActionComparisonSession {
     }
 
     private func actBoth(trigger: ActionTrigger) async {
-        if var engine = left, engine.canAct {
-            await act(&engine, trigger: trigger)
-            left = engine
-        }
-        // Retain a requested-but-cancelled opportunity if its paired request stops
-        // before this arm starts. No provider delivery or memory exposure is claimed.
-        if !stopped && !Task.isCancelled && left?.record.status != .failed && right.canAct {
-            var engine = right
-            await act(&engine, trigger: trigger)
-            right = engine
-        } else if right.canAct {
-            let latest = right.record.stage.hasMemory ? right.record.journals.last : nil
-            var receipt = right.receipt(trigger: trigger, tape: tape, memory: nil, memoryExpectedID: latest?.id)
-            receipt.status = .cancelled; receipt.failurePhase = .cancelled
-            receipt.failure = "Paired action stopped before this request started."
-            right.record.actions.append(receipt)
+        let observation = specification.comparisonKind == .observation
+        let number = right.record.actions.count + 1
+        let order: [ActionArm] = left == nil ? [.right] : observation && number % 2 == 0 ? [.right, .left] : [.left, .right]
+        var priorFailed = false
+        var eligibleOrder = 0
+        for arm in order {
+            guard var engine = arm == .left ? left : right, engine.canAct else { continue }
+            if !stopped && !Task.isCancelled && (observation || !priorFailed) {
+                eligibleOrder += 1
+                await act(&engine, trigger: trigger, requestOrder: eligibleOrder)
+            } else {
+                let latest = engine.record.stage.hasMemory ? engine.record.journals.last : nil
+                var receipt = engine.receipt(trigger: trigger, tape: tape, memory: nil, memoryExpectedID: latest?.id)
+                receipt.status = .cancelled; receipt.failurePhase = .cancelled
+                receipt.failure = "Paired action stopped before this request started."
+                engine.record.actions.append(receipt)
+            }
+            priorFailed = priorFailed || engine.record.status == .failed
+            if arm == .left { left = engine } else { right = engine }
         }
     }
 
-    private func act(_ engine: inout ActionArmEngine, trigger: ActionTrigger) async {
+    private func act(_ engine: inout ActionArmEngine, trigger: ActionTrigger, requestOrder: Int) async {
         let latest = engine.record.stage.hasMemory ? engine.record.journals.last : nil
         var memory: JournalEntry?
         if let latest {
@@ -156,7 +159,7 @@ public actor ActionComparisonSession {
                     providerModel: "essentials-action-tape-v1", stopReason: "replayed")
             } else {
                 guard !stopped && !Task.isCancelled else { throw CancellationError() }
-                receipt.requestStarted = true
+                receipt.requestStarted = true; receipt.requestOrder = requestOrder
                 let gate = ReplyGate(); activeReply = gate
                 response = try await boundedReply(backend: backend, request: LanguageRequest(turnID: receipt.id, prompt: receipt.prompt),
                                                   timeout: timeout, gate: gate)

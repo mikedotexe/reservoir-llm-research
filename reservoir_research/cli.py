@@ -404,7 +404,9 @@ def main(argv=None):
         print(f'Error: {exc}',file=sys.stderr)
         return 2
     except KeyboardInterrupt:
-        message = ('Reparse interrupted. Parser edits were rolled back; cached originals are retained.'
+        message = ('Interrupted. Existing evidence is retained; incomplete outputs are not verification.'
+                   if args.command in ('verify', 'study', 'archive') else
+                   'Reparse interrupted. Parser edits were rolled back; cached originals are retained.'
                    if args.command == 'reparse' else
                    'Interrupted. Committed index batches are retained; rerun to resume.')
         print(message,file=sys.stderr)

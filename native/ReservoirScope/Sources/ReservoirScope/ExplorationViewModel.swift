@@ -43,7 +43,7 @@ final class ExplorationViewModel: ObservableObject {
              try record.write(to: url)
          }, workspaceURL: URL? = nil) {
         self.uptime = uptime; self.recordLoader = recordLoader; self.recordWriter = recordWriter
-        self.workspaceURL = workspaceURL ?? Self.packagedWorkspace
+        self.workspaceURL = workspaceURL ?? ExperimentStore.defaultRoot
         do { engine = try ExplorationEngine(seed: 20260909) }
         catch { self.error = error.localizedDescription; status = "Could not prepare the reservoir." }
     }
@@ -180,13 +180,29 @@ final class ExplorationViewModel: ObservableObject {
     }
     func export() {
         pauseClock(); saveCurrent(); cancelLoading()
-        guard let record, !record.frames.isEmpty else { return }
+        let recovery = record.flatMap { $0.frames.isEmpty ? nil : (runID, $0) } ?? retainedSnapshots.first.map { ($0.key, $0.value) }
+        guard let (exportID, record) = recovery else { return }
         let panel = NSSavePanel(); panel.allowedContentTypes = [.json]
         panel.nameFieldStringValue = "essentials-exploration-\(record.seed).json"
         panel.directoryURL = outputDirectory
         if panel.runModal() == .OK, let url = panel.url {
-            do { try requireResearchDestination(url); enqueueSave(record, to: url, identity: runID, isExport: true) }
+            do { try requireResearchDestination(url); enqueueSave(record, to: url, identity: exportID, isExport: true) }
             catch { self.error = error.localizedDescription }
+        }
+    }
+    func exportRetained() {
+        guard let (identity, value) = retainedSnapshots.first else { return }
+        let panel = NSSavePanel(); panel.allowedContentTypes = [.json]
+        panel.nameFieldStringValue = "recovered-exploration-\(identity.uuidString).json"
+        if panel.runModal() == .OK, let url = panel.url {
+            do { try requireResearchDestination(url); enqueueSave(value, to: url, identity: identity, isExport: true) }
+            catch { self.error = error.localizedDescription }
+        }
+    }
+    func retrySaves() {
+        for (id, value) in retainedSnapshots {
+            guard let directory = outputDirectory else { continue }
+            enqueueSave(value, to: directory.appendingPathComponent("exploration-\(id.uuidString).json"), identity: id, isExport: false)
         }
     }
     private func saveCurrent() {
@@ -215,8 +231,9 @@ final class ExplorationViewModel: ObservableObject {
             switch result {
             case .success:
                 if self.retainedSnapshots[identity]?.frames.count == count { self.retainedSnapshots.removeValue(forKey: identity) }
+                if self.retainedSnapshots.isEmpty { self.saveIssue = nil }
                 if self.generation == id && self.runID == identity && self.frames.count == count && !self.loading {
-                    self.source = url.path; self.saveIssue = nil
+                    self.source = url.path; self.saveIssue = self.retainedSnapshots.isEmpty ? nil : self.saveIssue
                     if isExport && !self.running && !self.replaying { self.status = "Exported recorded exploration" }
                 }
             case .failure(let failure):
@@ -225,17 +242,17 @@ final class ExplorationViewModel: ObservableObject {
             }
         }
     }
-    private var outputDirectory: URL? { workspaceURL?.appendingPathComponent("research/outputs/essentials", isDirectory: true) }
-    private func requireResearchDestination(_ url: URL) throws {
-        guard let workspaceURL else { throw SurfaceRenderError("The research workspace location is unavailable in this package.") }
-        let root = workspaceURL.resolvingSymlinksInPath().standardizedFileURL.path
-        let target = url.resolvingSymlinksInPath().standardizedFileURL.path
-        guard target.hasPrefix(root + "/") else { throw SurfaceRenderError("Save this exploration inside the research workspace. Its live sibling projects are read-only.") }
+    func flushForTermination() async -> Bool {
+        leave(); retrySaves()
+        if let saveTail { _ = await saveTail.value }
+        for _ in 0..<100 {
+            if retainedSnapshots.isEmpty { saveIssue = nil; return true }
+            try? await Task.sleep(for: .milliseconds(20))
+        }
+        return false
     }
-    private static var packagedWorkspace: URL? {
-        guard let file = Bundle.module.url(forResource: "essentials-workspace", withExtension: "txt")
-            ?? Bundle.module.url(forResource: "essentials-workspace", withExtension: "txt", subdirectory: "Resources"),
-              let text = try? String(contentsOf: file, encoding: .utf8) else { return nil }
-        return URL(fileURLWithPath: text.trimmingCharacters(in: .whitespacesAndNewlines), isDirectory: true)
+    private var outputDirectory: URL? { workspaceURL?.appendingPathComponent("Explorations", isDirectory: true) }
+    private func requireResearchDestination(_ url: URL) throws {
+        try ExperimentStore.requireLocalDestination(url)
     }
 }

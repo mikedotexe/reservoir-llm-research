@@ -8,6 +8,9 @@ task_output_dir="${1:-${TMPDIR:-/tmp}/reservoir-topographic-renderer}"
 task_previous_dir="${2:-}"
 task_build_dir="$(mktemp -d "${TMPDIR:-/tmp}/reservoir-topographic-build.XXXXXX")"
 trap 'rm -rf -- "$task_build_dir"' EXIT
+task_resource_dir="$task_build_dir/resources"
+python3 "$task_native_dir/stage-package.py" resources --repo "$task_native_dir/../.." \
+    --destination "$task_resource_dir" --names data.json state-geometry.json state-replay.json state-replay.bin state-response.json essentials-stage-1.json
 mkdir -p "$task_output_dir"
 if [[ -n "$task_previous_dir" ]]; then
   mkdir -p "$task_output_dir/pristine"
@@ -18,7 +21,7 @@ if [[ -n "$task_previous_dir" ]]; then
       "$task_source_dir/StateSurfaceProfiling.swift" \
       "$task_native_dir/Tests/TopographicRendererChecks.swift" > "$task_build_dir/pristine.swift"
   xcrun swiftc -O -swift-version 6 -D TOPOGRAPHY_BASELINE "$task_build_dir/pristine.swift" -o "$task_build_dir/pristine"
-  "$task_build_dir/pristine" "$task_source_dir/Resources" "$task_output_dir/pristine"
+  "$task_build_dir/pristine" "$task_resource_dir" "$task_output_dir/pristine"
 fi
 cat "$task_source_dir/ResourceBundle.swift" \
     "$task_source_dir/Evidence.swift" \
@@ -28,9 +31,9 @@ cat "$task_source_dir/ResourceBundle.swift" \
     "$task_native_dir/Tests/TopographicRendererChecks.swift" > "$task_build_dir/checks.swift"
 xcrun swiftc -O -swift-version 6 "$task_build_dir/checks.swift" -o "$task_build_dir/checks"
 if [[ -n "$task_previous_dir" ]]; then
-  "$task_build_dir/checks" "$task_source_dir/Resources" "$task_output_dir" "$task_output_dir/pristine"
+  "$task_build_dir/checks" "$task_resource_dir" "$task_output_dir" "$task_output_dir/pristine"
 else
-  "$task_build_dir/checks" "$task_source_dir/Resources" "$task_output_dir"
+  "$task_build_dir/checks" "$task_resource_dir" "$task_output_dir"
 fi
 python3 - "$task_native_dir" "$task_build_dir/checks.swift" "$task_output_dir/receipt.json" "$task_previous_dir" <<'PY'
 import hashlib

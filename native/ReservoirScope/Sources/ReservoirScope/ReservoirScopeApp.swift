@@ -11,6 +11,7 @@ enum ReservoirScopeEntry {
 }
 
 struct ReservoirScopeApp: App {
+    @NSApplicationDelegateAdaptor(ScopeApplicationDelegate.self) private var appDelegate
     var body: some Scene {
         WindowGroup("Reservoir Scope") {
             ScopeWorkspace()
@@ -33,8 +34,8 @@ struct Observatory: View {
     let evidence: EvidenceStore
     private let recordedWatermarks: FillWatermarkMemoryHistory
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @AppStorage("smoothLiveFill") private var smoothLiveFill = true
-    @AppStorage("allowFillMotionWithReducedMotion") private var allowFillMotionWithReducedMotion = false
+    @AppStorage("smoothLiveFill", store: ScopePreferences.store) private var smoothLiveFill = true
+    @AppStorage("allowFillMotionWithReducedMotion", store: ScopePreferences.store) private var allowFillMotionWithReducedMotion = false
     @StateObject private var live = LiveTelemetryMonitor()
     @StateObject private var stateLive = LiveStateMonitor()
     @State private var liveStateEnabled = false

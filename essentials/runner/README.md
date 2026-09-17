@@ -1,3 +1,5 @@
+Current release adds `regulation --config SPEC.json --output RUN.json` for the field-only controller fixture (`{}` selects its fixed protocol). `verify` supports action v1/v2/v3 and `essentials-regulation-v1`; new action runs use v3 with explicit forcing metadata.
+
 # Headless runner
 
 For the action ladder and paired comparisons:
@@ -16,7 +18,7 @@ backend, loopback endpoint with a port, and model, as described in the
 Journals save beside the output in `<run name>.journals/`. The JSON export also
 contains exact journal text, save receipts and context/application references, so
 replay does not need that folder. Action runs are bounded to 600 steps and 128
-opportunities per arm. New action records use `essentials-actions-v1`;
+opportunities per arm. New action records use `essentials-actions-v2`; v1 still verifies with its original prompts;
 the older stage and exploration formats retain their meaning. The
 [action guide](../ACTIONS.md) explains the comparison controls and their limits.
 
@@ -48,4 +50,11 @@ and all numerical dimensions and finite values are checked before inspection.
 
 The core is independent of SwiftUI and Metal. `EssentialsSession` runs the same recipe
 for the viewer and this command. Writes use the explicit output path; do not choose
-any being's directories. Generated runs belong under `research/outputs/essentials/`, separately from source recipes/examples.
+any being's directories. Choose a local output folder separately from source recipes/examples; no checkout is required for the packaged runner.
+
+For the controlled stage-D observation study use
+`actions/recipes/D-observation-comparison.json`. New short-journal recipes should
+set `promptVersion: 2`; an omitted version preserves the original prompt contract.
+Optional Ollama settings are `contextTokens: 4096` and `responseFormat: "json"`,
+alongside the explicit loopback endpoint and installed model. The native action UI
+uses these bounded settings. No provider is started, downloaded or substituted.

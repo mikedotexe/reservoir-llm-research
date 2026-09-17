@@ -21,14 +21,18 @@ final class EssentialsViewModel: ObservableObject {
     @Published var noiseEnabled = false
     @Published var regulationEnabled = true
     @Published var localModel = false
-    @Published var endpoint = ""
-    @Published var modelName = ""
+    @Published var endpoint = ScopePreferences.store.string(forKey: "experiment.endpoint") ?? "" { didSet { ScopePreferences.store.set(endpoint, forKey: "experiment.endpoint") } }
+    @Published var modelName = ScopePreferences.store.string(forKey: "experiment.model") ?? "" { didSet { ScopePreferences.store.set(modelName, forKey: "experiment.model") } }
     private var session: EssentialsSession?
     private var runTask: Task<Void, Never>?
     private var loadTask: Task<Void, Never>?
     private var loadWorker: Task<RunRecord, Error>?
     private var generation = UUID()
     private var saved: [EssentialsStage: RunRecord] = [:]
+    private var unsaved: [URL: RunRecord] = [:]
+    private var saveFailures: [URL: String] = [:]
+    private var writeTail: Task<Void, Never>?
+    @Published private(set) var saveIssue: String?
     private var clock = ReplayClock()
     private var replayPosition = 0.0
     private let sessionFactory: @MainActor () -> EssentialsSession
@@ -75,7 +79,7 @@ final class EssentialsViewModel: ObservableObject {
         if localModel && stage.rawValue >= 3 {
             spec.language = LanguageConfiguration(backend: .ollama,
                 endpoint: endpoint.trimmingCharacters(in: .whitespacesAndNewlines),
-                model: modelName.trimmingCharacters(in: .whitespacesAndNewlines))
+                model: modelName.trimmingCharacters(in: .whitespacesAndNewlines), contextTokens: 4096)
         }
         do { try spec.validate() } catch { self.error = error.localizedDescription; return }
         cancelLoading()
@@ -214,7 +218,7 @@ final class EssentialsViewModel: ObservableObject {
     }
 
     func export() {
-        guard let record, !running else { return }
+        guard let record = record ?? unsaved.values.first, !running else { return }
         let panel = NSSavePanel(); panel.allowedContentTypes = [.json]
         panel.nameFieldStringValue = "essentials-stage-\(record.specification.stage.rawValue)-\(record.specification.seed).json"
         panel.directoryURL = outputDirectory
@@ -226,19 +230,18 @@ final class EssentialsViewModel: ObservableObject {
             catch { self.error = error.localizedDescription }
         }
     }
-    private var workspace: URL? {
-        guard let path = Bundle.module.url(forResource: "essentials-workspace", withExtension: "txt")
-            ?? Bundle.module.url(forResource: "essentials-workspace", withExtension: "txt", subdirectory: "Resources"),
-              let text = try? String(contentsOf: path, encoding: .utf8) else { return nil }
-        return URL(fileURLWithPath: text.trimmingCharacters(in: .whitespacesAndNewlines), isDirectory: true).resolvingSymlinksInPath()
-    }
-    private var outputDirectory: URL? { workspace?.appendingPathComponent("research/outputs/essentials", isDirectory: true) }
-    private func requireResearchDestination(_ url: URL) throws {
-        guard let workspace else { throw SurfaceRenderError("The research workspace location is unavailable in this package.") }
-        let resolved = url.resolvingSymlinksInPath().standardizedFileURL.path
-        guard resolved.hasPrefix(workspace.path + "/") else {
-            throw SurfaceRenderError("Save this experiment inside the research workspace. Its live sibling projects are read-only.")
+    func exportRetained() {
+        guard let (original, run) = unsaved.first, !running else { return }
+        let panel = NSSavePanel(); panel.allowedContentTypes = [.json]
+        panel.nameFieldStringValue = "recovered-stage-\(run.specification.stage.rawValue).json"
+        if panel.runModal() == .OK, let url = panel.url {
+            writeRecord(run, to: url, createDirectory: false, successStatus: "Exported retained run", recoveredFrom: original)
         }
+    }
+    private var outputDirectory: URL? { ExperimentStore().directory("Stages") }
+    private func requireResearchDestination(_ url: URL) throws { try ExperimentStore.requireLocalDestination(url) }
+    func retrySaves() {
+        for (url, run) in unsaved { writeRecord(run, to: url, createDirectory: true, successStatus: "Saved retained run") }
     }
     private func saveGenerated(_ run: RunRecord) {
         guard let directory = outputDirectory else { status += " · Export to save"; return }
@@ -250,17 +253,29 @@ final class EssentialsViewModel: ObservableObject {
         } catch { self.error = "Run retained in memory. Saving failed: " + error.localizedDescription }
     }
 
-    private func writeRecord(_ run: RunRecord, to url: URL, createDirectory: Bool, successStatus: String) {
-        let id = generation
+    func flushForTermination() async -> Bool {
+        stop(); await runTask?.value; retrySaves(); await writeTail?.value
+        return unsaved.isEmpty
+    }
+    private func writeRecord(_ run: RunRecord, to url: URL, createDirectory: Bool, successStatus: String, recoveredFrom: URL? = nil) {
+        let id = generation, previous = writeTail
+        unsaved[url] = run
         status = successStatus + " · Saving…"
-        Task { [weak self] in
+        writeTail = Task { [weak self] in
+            await previous?.value
             let result = await Task.detached(priority: .utility) {
-                if createDirectory {
-                    try FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
-                }
+                if createDirectory { try FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true) }
                 try run.write(to: url)
             }.result
-            guard let self, self.generation == id else { return }
+            guard let self else { return }
+            switch result {
+            case .success:
+                self.unsaved.removeValue(forKey: url); self.saveFailures.removeValue(forKey: url)
+                if let recoveredFrom { self.unsaved.removeValue(forKey: recoveredFrom); self.saveFailures.removeValue(forKey: recoveredFrom) }
+            case .failure(let failure): self.saveFailures[url] = "Run retained in memory: " + failure.localizedDescription
+            }
+            self.saveIssue = self.saveFailures.values.first
+            guard self.generation == id else { return }
             self.status = successStatus
             do { try result.get(); self.source = url.path }
             catch { self.error = "Run retained in memory. Saving failed: " + error.localizedDescription }

@@ -125,9 +125,9 @@ enum Recipe {
     ]
     /// First 18 coordinates retain video (0..<8), audio (8..<16), auxiliary (16..<18).
     /// The 12-step-on / 18-step-off envelope makes persistence after input visible.
-    static func forcing(step: Int, dt: Double) -> [Double] {
+    static func forcing(step: Int, dt: Double, continuous: Bool = false) -> [Double] {
         var input = Array(repeating: 0.0, count: 66)
-        guard (step - 1) % 30 < 12 else { return input }
+        guard continuous || (step - 1) % 30 < 12 else { return input }
         let time = Double(step - 1) * dt
         for index in 0..<8 { input[index] = 0.45 + 0.35 * sin(time * (0.19 + Double(index) * 0.07) + Double(index)) }
         for index in 8..<16 { input[index] = 0.3 + 0.25 * sin(time * (0.31 + Double(index - 8) * 0.11) + Double(index) * 0.7) }

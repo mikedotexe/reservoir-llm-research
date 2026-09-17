@@ -1,0 +1,149 @@
+{
+  "format": "reservoir-guided-lessons-v1",
+  "lessons": [
+    {
+      "stage": 1,
+      "title": "Input and state",
+      "question": "What happens when input arrives, then goes quiet?",
+      "suggestedAction": "Inspect active input, then continue into the quiet interval.",
+      "expected": "State responds to input and decays during quiet steps.",
+      "modelExpected": "State responds to input and decays during quiet steps.",
+      "limitation": "This reduced reservoir is a numerical mechanism, not a model of subjective experience.",
+      "focus": "inputState",
+      "checkpoints": [
+        1,
+        12,
+        13,
+        24,
+        30
+      ],
+      "scriptedFile": "example-component-1.json",
+      "modelFile": null
+    },
+    {
+      "stage": 2,
+      "title": "Recurrence",
+      "question": "What changes when preceding state contributes?",
+      "suggestedAction": "Compare the matched states at steps 1 and 2.",
+      "expected": "The first state difference appears at step 2.",
+      "modelExpected": "The first state difference appears at step 2.",
+      "limitation": "A state difference demonstrates this intervention, not better writing.",
+      "focus": "recurrence",
+      "checkpoints": [
+        1,
+        2,
+        12,
+        30
+      ],
+      "scriptedFile": "example-component-2.json",
+      "modelFile": null
+    },
+    {
+      "stage": 3,
+      "title": "Sensory observer",
+      "question": "What can a separate sensory field measure?",
+      "suggestedAction": "Inspect the measured spectrum and the matched reservoir states.",
+      "expected": "A sensory spectrum appears while reservoir state remains matched.",
+      "modelExpected": "A sensory spectrum appears while reservoir state remains matched.",
+      "limitation": "Input feeds the reservoir and sensory field in parallel; the field does not measure reservoir coordinates.",
+      "focus": "sensory",
+      "checkpoints": [
+        1,
+        12,
+        30
+      ],
+      "scriptedFile": "example-component-3.json",
+      "modelFile": null
+    },
+    {
+      "stage": 4,
+      "title": "Journal output",
+      "question": "What information becomes a journal?",
+      "suggestedAction": "Continue to step 30 and read the prompt, reply and saved journal.",
+      "expected": "A journal is saved at step 30; writing alone leaves reservoir state unchanged.",
+      "modelExpected": "A recorded model response becomes a saved journal at the writing opportunity.",
+      "limitation": "Scripted words qualify transport. A single model run does not measure the causal effect of writing.",
+      "focus": "journal",
+      "checkpoints": [
+        29,
+        30,
+        60,
+        90
+      ],
+      "scriptedFile": "example-component-4.json",
+      "modelFile": "example-model-4.json"
+    },
+    {
+      "stage": 5,
+      "title": "Reservoir return",
+      "question": "When does a saved journal change the next input?",
+      "suggestedAction": "Inspect the journal at 30, then Step once to 31.",
+      "expected": "The journal saved at 30 first returns to the reservoir at 31.",
+      "modelExpected": "The saved journal is encoded and first applied on the following step.",
+      "limitation": "The return vector is a numerical encoding; it does not preserve recoverable journal text.",
+      "focus": "feedback",
+      "checkpoints": [
+        30,
+        31,
+        60,
+        61
+      ],
+      "scriptedFile": "example-component-5.json",
+      "modelFile": "example-model-5.json"
+    },
+    {
+      "stage": 6,
+      "title": "Journal memory",
+      "question": "Where does an earlier journal enter the next prompt?",
+      "suggestedAction": "Read the journal at 30, then its memory inclusion at 60.",
+      "expected": "The earlier journal enters the prepared prompt at 60; fixed replies remain fixed.",
+      "modelExpected": "An earlier saved journal is included in the later submitted prompt.",
+      "limitation": "Exposure is not proof of understanding. These single-arm model recordings do not establish a memory benefit.",
+      "focus": "memory",
+      "checkpoints": [
+        30,
+        59,
+        60,
+        90
+      ],
+      "scriptedFile": "example-component-6.json",
+      "modelFile": "example-model-6.json"
+    },
+    {
+      "stage": 7,
+      "title": "Action choice",
+      "question": "Can a writing opportunity end without a journal?",
+      "suggestedAction": "Inspect the choice at 90 and its actual outcome.",
+      "expected": "The scripted choice is WAIT at 90; no new journal is saved.",
+      "modelExpected": "Inspect the actual recorded choices. Writing at every opportunity is a valid outcome.",
+      "limitation": "A scripted WAIT demonstrates mechanics, not spontaneous model preference. Keep every actual outcome.",
+      "focus": "choice",
+      "checkpoints": [
+        60,
+        89,
+        90,
+        91
+      ],
+      "scriptedFile": "example-component-7.json",
+      "modelFile": "example-model-7.json"
+    },
+    {
+      "stage": 8,
+      "title": "Regulation",
+      "question": "What can the retention controller change, and where does it reach a limit?",
+      "suggestedAction": "Compare fill and retention, then inspect the separate sustained-input example.",
+      "expected": "Retention and sensory measurements change; the controller may reach its limit.",
+      "modelExpected": "Inspect the recorded fill, retention and controller decisions.",
+      "limitation": "This short example demonstrates activity and limits, not target attainment. The separate 600-step example tests mean target error under declared sustained input.",
+      "focus": "regulation",
+      "checkpoints": [
+        30,
+        60,
+        90,
+        120
+      ],
+      "scriptedFile": "example-component-8.json",
+      "modelFile": "example-model-8.json"
+    }
+  ]
+}

@@ -6,11 +6,21 @@ public struct LanguageConfiguration: Codable, Sendable, Equatable {
     public var backend: LanguageKind
     public var endpoint: String?
     public var model: String?
+    /// Nil in older records means the provider chose its context limit.
+    public var contextTokens: Int?
+    /// Explicit structured output; absent for the original prose experiments.
+    public var responseFormat: String?
     public static let scripted = LanguageConfiguration()
-    public init(backend: LanguageKind = .scripted, endpoint: String? = nil, model: String? = nil) {
-        self.backend = backend; self.endpoint = endpoint; self.model = model
+    public init(backend: LanguageKind = .scripted, endpoint: String? = nil, model: String? = nil, contextTokens: Int? = nil, responseFormat: String? = nil) {
+        self.backend = backend; self.endpoint = endpoint; self.model = model; self.contextTokens = contextTokens; self.responseFormat = responseFormat
     }
     public func validate() throws {
+        if let responseFormat, responseFormat != "json" {
+            throw EssentialsError.invalid("Only the explicit JSON response format is supported.")
+        }
+        if let contextTokens, !(512...32768).contains(contextTokens) {
+            throw EssentialsError.invalid("Local context must be between 512 and 32768 tokens.")
+        }
         if backend == .ollama {
             guard let endpoint, let url = URL(string: endpoint), url.scheme == "http",
                   ["localhost", "127.0.0.1", "[::1]", "::1"].contains(url.host ?? ""),
@@ -87,11 +97,15 @@ public struct OllamaLanguageBackend: LanguageBackend {
         var http = URLRequest(url: endpoint)
         http.httpMethod = "POST"; http.timeoutInterval = 60
         http.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        http.httpBody = try JSONSerialization.data(withJSONObject: [
+        var options: [String: Any] = ["num_predict": 256, "temperature": 0]
+        if let context = configuration.contextTokens { options["num_ctx"] = context }
+        var body: [String: Any] = [
             "model": configuration.model!, "stream": false,
             "messages": [["role": "user", "content": request.prompt]],
-            "options": ["num_predict": 256, "temperature": 0]
-        ])
+            "options": options
+        ]
+        if let format = configuration.responseFormat { body["format"] = format }
+        http.httpBody = try JSONSerialization.data(withJSONObject: body)
         let settings = URLSessionConfiguration.ephemeral
         settings.timeoutIntervalForRequest = 60; settings.timeoutIntervalForResource = 60
         let session = URLSession(configuration: settings, delegate: NoRedirects(), delegateQueue: nil)

@@ -1,3 +1,5 @@
+September 16: **Reservoir Scope 0.13.0** adds a [guided research walkthrough](../native/ReservoirScope/docs/GUIDED-TOUR.md), cursor-only recording controls, action v3 input profiles, and an independently verifiable controller example. Existing v1/v2 records remain readable.
+
 # Essentials
 
 Fresh, small reconstructions of the reservoir, spectral bridge, language loop,
@@ -83,7 +85,7 @@ step remains. Simulation waits for a complete reply; its feedback first applies
 at the next recorded boundary and remains until the next accepted reply.
 
 The app saves generated runs under this repository's
-`research/outputs/essentials/`. Saved files preserve the recipe, seed, complete
+`~/Library/Application Support/Reservoir Scope/`. Saved files preserve the recipe, seed, complete
 weights, inputs, noise, actual states, available spectra/controller values, prompts,
 replies, and application-step links. Replays use those stored values and make no
 model calls. The headless verifier independently recomputes their numerical chain.
@@ -152,3 +154,5 @@ The library has no SwiftUI or Metal dependency; only the viewer renders it.
 Foundation handles records/networking and Accelerate supplies the symmetric
 eigensolver. SwiftPM supports development/testing; the standalone build statically
 links the same core into both the app and its packaged headless runner.
+
+The [portable 0.12.0 lab](../native/ReservoirScope/docs/PORTABLE-LAB.md) opens in the A–H action ladder, bundles real model recordings, and adds a separate controlled observation study. All native experiment workspaces share a local Application Support store.

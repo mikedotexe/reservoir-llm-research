@@ -24,7 +24,7 @@ def main():
             with transport.fixture(scenario) as server:
                 config=root/(scenario+'-spec.json'); output=root/(scenario+'.json')
                 spec={'stage':6,'mode':'independentGeneration','comparePrevious':False,'steps':61 if scenario=='success' else 31,
-                      'language':{'backend':'ollama','endpoint':f'http://127.0.0.1:{server.server_port}','model':transport.MODEL}}
+                      'promptVersion':2,'language':{'contextTokens':4096,'responseFormat':'json','backend':'ollama','endpoint':f'http://127.0.0.1:{server.server_port}','model':transport.MODEL}}
                 config.write_text(json.dumps(spec)); result=run(args.cli,'actions','--config',config,'--output',output)
                 require(output.is_file(),f'{scenario}: no retained record: {result.stderr[-1500:]}')
                 record=json.loads(output.read_text()); arm=record['right']; actions=arm['actions']
@@ -36,6 +36,7 @@ def main():
                     require(request['method']=='POST' and request['path']=='/api/chat',f'{scenario}: wrong transport')
                     require(body['model']==transport.MODEL and body['stream'] is False,'Provider settings changed')
                     require(body['options']['num_predict']==256 and body['options']['temperature']==0,'Request limits changed')
+                    require(body['options']['num_ctx']==4096 and body['format']=='json','Context or JSON contract missing')
                     require(body['messages']==[{'role':'user','content':action['prompt']}],'Recorded prompt differs from HTTP request')
                 if scenario=='success':
                     require(result.returncode==0 and record['status']=='completed','Successful action run did not complete')

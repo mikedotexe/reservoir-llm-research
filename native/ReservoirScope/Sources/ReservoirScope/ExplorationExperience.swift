@@ -35,6 +35,7 @@ struct ExplorationExperience: View {
             }.frame(width: size.size.width, height: size.size.height)
         }
         .onReceive(clock) { _ in model.tick() }
+        .safeAreaInset(edge: .top) { if let issue = model.saveIssue { HStack { Text(issue); Button("Retry save") { model.retrySaves() }; Button("Export retained") { model.exportRetained() } }.font(.caption).padding(8) } }
         .onDisappear { model.leave() }
     }
 

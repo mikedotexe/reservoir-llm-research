@@ -1,0 +1,103 @@
+{
+  "schema": "reservoir-scope.guided-observation-recording.v1",
+  "registered_at_utc": "2026-09-17T01:46:15.672424+00:00",
+  "status": "failed",
+  "model_name": "phi3:mini",
+  "expected_model_digest": "4f222292793889a9a40a020799cfd28d53f3e01af25d48e06c5e708610fc47e9",
+  "cli_sha256": "273c8d553365590637b1439b09067200d9564108cfaa712451201c7584d752de",
+  "fixture_sha256": "e6a3dc7958badd9fc2bd5078fcf831ad5cb628e257c634c75da8c3b8c33e9bad",
+  "specification": {
+    "alternativeExplanation": "Extra prompt content, model variability and order may change prose; sensory measurements already provide system information.",
+    "biasEnabled": false,
+    "comparePrevious": true,
+    "comparisonKind": "observation",
+    "expectedDifference": "The added-state arm can cite current signed coordinates. No writing improvement is predicted.",
+    "forcingProfile": "continuousSensoryV1",
+    "initialRetention": 0.955,
+    "inputStrength": 1,
+    "language": {
+      "backend": "ollama",
+      "endpoint": "http://127.0.0.1:63593",
+      "model": "phi3:mini",
+      "contextTokens": 4096,
+      "responseFormat": "json"
+    },
+    "leak": 0.65,
+    "mode": "independentGeneration",
+    "noiseAmplitude": 0,
+    "promptVersion": 2,
+    "question": "What writing occurs when current indexed reservoir coordinates are supplied during active input?",
+    "seed": 20260909,
+    "stage": 4,
+    "steps": 120,
+    "stoppingPoint": "One 120-step run, opportunities30/60/90, at most six requests. Alternate left/right order. Preserve both outcomes at a failed opportunity, then stop. No retries.",
+    "turnEvery": 30
+  },
+  "prompt_version": 2,
+  "temperature": 0,
+  "output_tokens": 256,
+  "context_tokens": 4096,
+  "response_format": "json",
+  "word_instruction": 40,
+  "qualification": {
+    "steps": [
+      30,
+      60,
+      90
+    ],
+    "minimum_maximum_absolute_state": 0.25,
+    "observed_maximum_absolute_state": [
+      0.8369444562068122,
+      0.6268849797790123,
+      0.8202865092800402
+    ]
+  },
+  "scope": "S-009 synthetic teaching fixture selected by numerical qualification, separate from live Being studies. Different prose is not improved fidelity.",
+  "request_order": [
+    "left,right",
+    "right,left",
+    "left,right"
+  ],
+  "maximum_model_requests": 6,
+  "attempts": [
+    {
+      "started_at_utc": "2026-09-17T01:46:15.701299+00:00",
+      "finished_at_utc": "2026-09-17T01:46:28.782085+00:00",
+      "exit_code": 1,
+      "record": "example-model-observation-active.json",
+      "verified": true,
+      "verification": "Verified 60 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+      "sha256": "b36b925fa8820feaf8108e54ff710eb5627e7273c5275a09a243850c4b2f0f24",
+      "status": "failed",
+      "steps": 60,
+      "journal_counts": {
+        "left": 2,
+        "right": 1
+      },
+      "request_count": 4
+    }
+  ],
+  "model": {
+    "name": "phi3:mini",
+    "model": "phi3:mini",
+    "modified_at": "2025-10-26T03:24:32.106527725-07:00",
+    "size": 2176178913,
+    "digest": "4f222292793889a9a40a020799cfd28d53f3e01af25d48e06c5e708610fc47e9",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "phi3",
+      "families": [
+        "phi3"
+      ],
+      "parameter_size": "3.8B",
+      "quantization_level": "Q4_0",
+      "context_length": 131072,
+      "embedding_length": 3072
+    },
+    "capabilities": [
+      "completion"
+    ]
+  },
+  "finished_at_utc": "2026-09-17T01:46:29.055397+00:00"
+}

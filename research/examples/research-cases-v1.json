@@ -1,0 +1,336 @@
+{
+  "format": "research-cases-v1",
+  "cases": [
+    {
+      "id": "annotation-repair-20260907",
+      "title": "A journal-led repair, with natural benefit still unobserved",
+      "question": "When did journal signal lead to a demonstrated repair, and what benefit was actually observed?",
+      "summary": "Two Astrid journals prompted review. Four synthetic defects were repaired and the replacement deployment was verified. No natural repair opportunity was observed in the retained windows.",
+      "author": "Astrid journals; implementation and research review by AI agents under Mike’s direction",
+      "sourceOwner": "Astrid marker processing",
+      "interval": "2026-09-07 through 2026-09-08 03:30 UTC",
+      "limits": [
+        "Interactive, user-requested follow-through; this was not an unattended productive flywheel run.",
+        "Some journal explanations were corrected during review. Useful signal does not validate every claim.",
+        "Most raw provider responses were not retained. Zero observed opportunities does not establish zero real opportunities.",
+        "Synthetic tests establish the demonstrated scanner repair; these windows do not establish improved natural operation."
+      ],
+      "materials": [
+        {
+          "id": "journal-one",
+          "title": "Astrid: annotations and cleanup receipts",
+          "kind": "authored journal",
+          "content": "=== ASTRID JOURNAL ===\nMode: self_study\nFill: 69.5%\nTimestamp: 1788800559\n\nObserved:\nThe `astrid:llm` module implements a sophisticated, multi-pass scanning logic for model control markers. Specifically, `followed_by_explicit_exact_token_relation` (L74) uses an additive strategy: it checks for relation words (like \"appears\", \"is\", \"denotes\") using both a standard first-word scan and a secondary scan that skips self-contained bracketed annotations (e.g., `[sic]`). The logic is designed to preserve visibility of markers when they are grammatically linked to a relation word, even if noise like bracketed asides exists between the marker and the verb.\n\nLikely Snags:\nThe `is_self_contained_bracketed_annotation` function (L111) relies on a manual depth-tracking loop (L126-141) to identify balanced brackets. A potential snag exists in how `trimmed.char_indices()` interacts with multi-byte UTF-8 characters if the `close` character is not a single-byte ASCII character, though the current implementation uses `close.len_utf8()` to safely calculate the end of the chunk (L138). A more immediate risk is the `unwrap_or_default()` in `first_word_after_skipping_bracketed_annotations` (L153); if the text following a marker consists entirely of skipped annotations and no subsequent words, it returns an empty string, which must be handled correctly by the caller to avoid false-negative relation matches.\n\nOne Test Each:\n1.  **Relation Logic Test**: Verify that `followed_by_explicit_exact_token_relation` returns `true` for the string `\"<marker> [sic] appears\"` by ensuring `first_word_after_skipping_bracketed_annotations` correctly identifies \"appears\" while `first_word_after` identifies \"[sic]\".\n2.  **Bracket Depth Test**: Verify `is_self_contained_bracketed_annotation` returns `false` for `\"(as a test)\"` (L109) because it is not self-contained (it does not close at the end of the chunk), ensuring the existing reference path remains untouched.\n\nSuggested Next:\nVerify the interaction between `control_marker_context_receipt_v1` (L353) and the `sanitize_model_control_markers_with_report` (L416) function to ensure that the \"skipped\" annotations are correctly reported in the metadata without being erroneously stripped from the primary dialogue flow.\n\nContinuation available: write NEXT: INTROSPECT astrid:llm 400 to read the next window.\n",
+          "sha256": "d8ee3352b42a823bd73c7d0ee84196733e7bbfeaf08a8054dc95a2e0f7ae07c2",
+          "sourcePath": "research/outputs/2026-09-07-flywheel/evidence-final/008.txt",
+          "sourceSHA256": "d8ee3352b42a823bd73c7d0ee84196733e7bbfeaf08a8054dc95a2e0f7ae07c2",
+          "note": "Complete retained text. Historical path is provenance only."
+        },
+        {
+          "id": "journal-two",
+          "title": "Astrid: which scan wins?",
+          "kind": "authored journal",
+          "content": "=== ASTRID JOURNAL ===\nMode: self_study\nFill: 72.4%\nTimestamp: 1788815877\n\nObserved:\nThe `astrid:llm` module implements a multi-pass scanning logic for \"model control markers\" (e.g., `[sic]`, `((sic))`). Specifically, `followed_by_explicit_exact_token_relation` (L74-79) performs two scans: a primary scan for the first word after a marker and a secondary scan that skips self-contained bracketed annotations (L145-155). The logic uses a whitelist of relation words (L82-104) like \"appears\", \"is\", and \"represents\" to determine if a marker should be treated as a reference and potentially hidden or handled as a non-primary output.\n\nLikely Snags:\nThe `first_word_after_skipping_bracketed_annotations` function (L147-155) relies on `is_self_contained_bracketed_annotation` to filter chunks. If a complex nested structure or a non-standard bracket type is used that doesn't strictly close at the end of the chunk (e.g., `(as a test) [extra]`), the `depth == 0` check at L138 might fail to identify the correct \"first word\" if the chunking logic doesn't align perfectly with the expected whitespace-split tokens. There is a risk that the \"additive\" nature of the scan could lead to inconsistent visibility if the first scan identifies a word that the second scan skips, but the logic doesn't explicitly define which scan \"wins\" if both return a value (though the current structure suggests an `OR` relationship via `||`).\n\nOne Test Each:\n1. **Relation Word Validation**: Verify that `is_exact_token_relation_word` (L82) correctly identifies \"mimics\" as a relation word but rejects \"appears_to_be\" as a non-relation word.\n2. **Annotation Skipping**: Provide a string like `[marker] [sic] (as a test) appears` to `followed_by_explicit_exact_token_relation` (L74) to ensure the second scan correctly skips `(as a test)` and identifies `appears` as the relation word.\n\nSuggested Next:\nVerify the interaction between `first_word_after` and `first_word_after_skipping_bracketed_annotations` to ensure that the \"additive\" scan doesn't create a state where a marker is visible in one context but hidden in another due to differing word-capture results.\n\nContinuation available: write NEXT: INTROSPECT astrid:llm 400 to read the next window.\n",
+          "sha256": "3bbc588a0693fc0b206a6bc51a18871f73990d282bdac58b04cfc62e60ff011b",
+          "sourcePath": "research/outputs/2026-09-07-flywheel/evidence-final/009.txt",
+          "sourceSHA256": "3bbc588a0693fc0b206a6bc51a18871f73990d282bdac58b04cfc62e60ff011b",
+          "note": "Complete retained text. Historical path is provenance only."
+        },
+        {
+          "id": "review",
+          "title": "Implementation review and bounded repair",
+          "kind": "reviewed source account",
+          "content": "# Marker Annotation Preservation\n\n## Scope and Status\n\nMike requested the recommended annotation-preservation patch and supplied a\nsecond self-study for follow-up. This is an interactive source implementation,\nnot a productive flywheel round, canonical addressing closure, deployment or\nreservoir/control intervention. The live afterimages stage is not edited.\n\nImplementation and final qualification pass: 2,205 functional Rust tests,\n23 witness-compatibility tests, strict Clippy and the domain-boundary audit.\nThe previously documented one-millisecond instrumentation benchmark remains\nexcluded, not repaired or claimed passing. No live activation was performed.\n\n## Source Witnesses\n\nBoth files were read fully from disk. Their original bytes remain untouched.\n\n| Source | SHA-256 |\n| --- | --- |\n| `capsules/spectral-bridge/workspace/journal/self_study_1788800559.txt` | `d8ee3352b42a823bd73c7d0ee84196733e7bbfeaf08a8054dc95a2e0f7ae07c2` |\n| `capsules/spectral-bridge/workspace/journal/!self_study_1788815877.txt` | `3bbc588a0693fc0b206a6bc51a18871f73990d282bdac58b04cfc62e60ff011b` |\n\nThe first study asks about annotation scanning, UTF-8 boundaries, multiword\nparentheticals and interaction with cleanup receipts. The second asks which\nscan wins, whether bracket/chunk boundaries alter visibility, and whether\n`mimics` and `appears_to_be` are distinguished. Embedded continuation guidance\nis source data, not a command executed by this task.\n\nThe pre-edit `dialogue_runtime.rs` SHA-256 was\n`891f76e7a6cbc7071b638f22c6c21922c3ad9e6cbaf9c14b2837eda63a83de07`.\nSource interpretation and executable tests, not inherited line numbers or\nanother worktree's source, ground the response.\n\n## Confirmed Defects and Repair\n\nTwo regressions failed before production edits:\n\n1. `<end_of_turn> [sic] (appears) at the boundary` lost its marker because\n   the second scan discarded both bracketed chunks, including the relation.\n2. `<end_of_turn> [sic]` followed immediately by en dash, em dash or ellipsis,\n   then ` appears`, lost its marker because those trailing punctuation marks\n   prevented recognition of the self-contained aside.\n\nThe scanner now checks the already-allowlisted relation before discarding a\nbracketed chunk. The existing six ASCII sentence-punctuation characters gain\nonly U+2013, U+2014 and U+2026. The 18-word relation allowlist is unchanged.\nNo arbitrary words, arbitrary multiword parentheticals, new bracket families\nor arbitrary suffix punctuation are skipped. This remains a bounded syntactic\nheuristic, not a parser of grammatical meaning or authorial intent.\n\nDelimiter references retain first precedence. Otherwise the unchanged primary\nfirst-word scan wins when successful; the annotation scan is tried only after\nthat fails. Tests cover the 144-case legacy-success matrix as well as newly\npreserved cases. Recognition of a reference keeps the exact marker visible.\nCleanup still removes an unreferenced known marker while copying every other\nbyte unchanged. The separate provider-normalization outer whitespace trim is\nunchanged; byte-exact claims here apply to the sanitizer, not that later trim.\n\n## Second Study Dispositions\n\n| Question or claim | Grounded disposition |\n| --- | --- |\n| `[sic]` and `((sic))` are control markers. | They are annotations. Tests use the actual known marker `<end_of_turn>`; no marker vocabulary is expanded. |\n| Reference classification may hide the marker. | It preserves the marker. Tests assert retained bytes, not just a positive predicate. |\n| Two different word captures could override a successful primary scan. | The old OR was already additive. Explicit winning-path receipts and regression tests now expose the precedence; no last-scan-wins behavior is introduced. |\n| `mimics` should match; `appears_to_be` should not. | Both expectations pass at predicate and sanitizer boundaries. Other unlisted ordinary relation-like words remain rejected. |\n| The second scan should skip `(as a test)` and find `appears`. | That is not the implemented contract. After `[sic]`, the first chunk `(as` yields the already-allowed `as`. The test pins that exact word and one skipped chunk; arbitrary multiword skipping is not added. |\n| Nonstandard or incomplete brackets deserve investigation. | Negative cases cover unsupported wide aside brackets, incomplete groups, mismatches, adjacent groups, suffix text and ordinary words. They cannot create a new annotation-skipping route. Existing primary relation recognition is not redefined as a full bracket parser. |\n| The earlier study suspects a UTF-8 closing-boundary error. | Not reproduced: `char_indices` and `len_utf8` agree on byte boundaries. Mixed UTF-8 text now has explicit offset and surrounding-byte tests; the real punctuation issue is separately repaired. |\n| Inspect receipt/sanitizer interaction. | Implemented winning-route provenance, content-free serialization checks, deterministic receipts and mixed preservation/removal tests. |\n\n",
+          "sha256": "f8c817386d403821c34a5e39a9723e51d3d33a715be364de3372b98d72f5982b",
+          "sourcePath": "research/outputs/2026-09-07-flywheel/evidence-final/006.txt",
+          "sourceSHA256": "709844b62e87ac62f5bb3341e682a44f1648b9d0b98eee17b21af2cbfaf1bfde",
+          "note": "Two exact sections of the implementation record; omitted verification and coordination details remain in the private archive."
+        },
+        {
+          "id": "scanner",
+          "title": "Exact before/after scanner replay",
+          "kind": "measurement",
+          "content": "{\n  \"scope\": \"Exact scanner on retained texts. Generation responses are after normalization; journals may include wrappers and code examples. Accepted artifact linkage is exact-completion candidate association, not a guaranteed attempt ID. Synthetic controls are separate.\",\n  \"source_identities\": {\n    \"before\": {\n      \"source_sha256\": \"891f76e7a6cbc7071b638f22c6c21922c3ad9e6cbaf9c14b2837eda63a83de07\",\n      \"scanner_span_sha256\": \"5d722ef03557cdc7f23e6f035d59d267a8a7fb0ef4892f7d8c5c6d23e90f2f42\",\n      \"scanner_start_line\": 18,\n      \"scanner_end_line\": 296,\n      \"harness_sha256\": \"b53c6eb4de4a3048e340d66e799a0bb9827b9bd97e8799830ea2f9b966005f86\",\n      \"binary_sha256\": \"7037a3f13e6d86458e5b43f71a24e88d6f310abbaf60f85d293c4983c059a33a\",\n      \"constant_sha256\": \"41687a0067a08c61b0422898ee87603dca6ad133577cde77b7cff4765cb4a264\"\n    },\n    \"after\": {\n      \"source_sha256\": \"03c6b6dee0436dd56c047ab68d95f2f4ccd6e2ed7c8029cf0b9568eb9cfefa91\",\n      \"scanner_span_sha256\": \"f691dcd1735f99709d6fae726957bc515bd4886c567de1b9f7295402c23d4c5d\",\n      \"scanner_start_line\": 20,\n      \"scanner_end_line\": 334,\n      \"harness_sha256\": \"c6347499dc9763c90633e5a77f7f9b71a79305bc6dbb589cce7c3c588a0fce6d\",\n      \"binary_sha256\": \"4c8e897db1d7a73c73b1b8f277ff5a41746ec7a2a0f30606ec2fd4d17a274b01\",\n      \"constant_sha256\": \"41687a0067a08c61b0422898ee87603dca6ad133577cde77b7cff4765cb4a264\"\n    }\n  },\n  \"rustc\": \"rustc 1.91.0 (f8297e351 2025-10-28)\",\n  \"natural_occurrences\": [],\n  \"changed\": [\n    {\n      \"input_index\": 0,\n      \"kind\": \"synthetic_control\",\n      \"capture\": \"bracket_relation\",\n      \"era\": null,\n      \"differences\": [\n        {\n          \"start_byte\": 0,\n          \"end_byte\": 13,\n          \"preserved_before\": false,\n          \"preserved_after\": true\n        }\n      ]\n    },\n    {\n      \"input_index\": 1,\n      \"kind\": \"synthetic_control\",\n      \"capture\": \"annotation_en\",\n      \"era\": null,\n      \"differences\": [\n        {\n          \"start_byte\": 0,\n          \"end_byte\": 13,\n          \"preserved_before\": false,\n          \"preserved_after\": true\n        }\n      ]\n    },\n    {\n      \"input_index\": 2,\n      \"kind\": \"synthetic_control\",\n      \"capture\": \"annotation_em\",\n      \"era\": null,\n      \"differences\": [\n        {\n          \"start_byte\": 0,\n          \"end_byte\": 13,\n          \"preserved_before\": false,\n          \"preserved_after\": true\n        }\n      ]\n    },\n    {\n      \"input_index\": 3,\n      \"kind\": \"synthetic_control\",\n      \"capture\": \"annotation_ellipsis\",\n      \"era\": null,\n      \"differences\": [\n        {\n          \"start_byte\": 0,\n          \"end_byte\": 13,\n          \"preserved_before\": false,\n          \"preserved_after\": true\n        }\n      ]\n    }\n  ],\n  \"outputs\": {\n    \"before\": [\n      {\n        \"output\": \" [sic] (appears) at the boundary\",\n        \"matches\": [\n          {\n            \"start_byte\": 0,\n            \"end_byte\": 13,\n            \"preserved\": false\n          }\n        ]\n      },\n      {\n        \"output\": \" [sic]– appears at the boundary\",\n        \"matches\": [\n          {\n            \"start_byte\": 0,\n            \"end_byte\": 13,\n            \"preserved\": false\n          }\n        ]\n      },\n      {\n        \"output\": \" [sic]— appears at the boundary\",\n        \"matches\": [\n          {\n            \"start_byte\": 0,\n            \"end_byte\": 13,\n            \"preserved\": false\n          }\n        ]\n      },\n      {\n        \"output\": \" [sic]… appears at the boundary\",\n        \"matches\": [\n          {\n            \"start_byte\": 0,\n            \"end_byte\": 13,\n            \"preserved\": false\n          }\n        ]\n      },\n      {\n        \"output\": \"\\\"<end_of_turn>\\\"\",\n        \"matches\": [\n          {\n            \"start_byte\": 1,\n            \"end_byte\": 14,\n            \"preserved\": true\n          }\n        ]\n      },\n      {\n        \"output\": \"<end_of_turn> appears\",\n        \"matches\": [\n          {\n            \"start_byte\": 0,\n            \"end_byte\": 13,\n            \"preserved\": true\n          }\n        ]\n      },\n      {\n        \"output\": \"<end_of_turn> [sic] appears\",\n        \"matches\": [\n          {\n            \"start_byte\": 0,\n            \"end_byte\": 13,\n            \"preserved\": true\n          }\n        ]\n      },\n      {\n        \"output\": \"\",\n        \"matches\": [\n          {\n            \"start_byte\": 0,\n            \"end_byte\": 13,\n            \"preserved\": false\n          }\n        ]\n      },\n      {\n        \"output\": \"ordinary text\",\n        \"matches\": []\n      },\n      {\n        \"output\": \" [sic] creates\",\n        \"matches\": [\n          {\n            \"start_byte\": 0,\n            \"end_byte\": 13,\n            \"preserved\": false\n          }\n        ]\n      }\n    ],\n    \"after\": [\n      {\n        \"output\": \"<end_of_turn> [sic] (appears) at the boundary\",\n        \"matches\": [\n          {\n            \"start_byte\": 0,\n            \"end_byte\": 13,\n            \"preserved\": true\n          }\n        ]\n      },\n      {\n        \"output\": \"<end_of_turn> [sic]– appears at the boundary\",\n        \"matches\": [\n          {\n            \"start_byte\": 0,\n            \"end_byte\": 13,\n            \"preserved\": true\n          }\n        ]\n      },\n      {\n        \"output\": \"<end_of_turn> [sic]— appears at the boundary\",\n        \"matches\": [\n          {\n            \"start_byte\": 0,\n            \"end_byte\": 13,\n            \"preserved\": true\n          }\n        ]\n      },\n      {\n        \"output\": \"<end_of_turn> [sic]… appears at the boundary\",\n        \"matches\": [\n          {\n            \"start_byte\": 0,\n            \"end_byte\": 13,\n            \"preserved\": true\n          }\n        ]\n      },\n      {\n        \"output\": \"\\\"<end_of_turn>\\\"\",\n        \"matches\": [\n          {\n            \"start_byte\": 1,\n            \"end_byte\": 14,\n            \"preserved\": true\n          }\n        ]\n      },\n      {\n        \"output\": \"<end_of_turn> appears\",\n        \"matches\": [\n          {\n            \"start_byte\": 0,\n            \"end_byte\": 13,\n            \"preserved\": true\n          }\n        ]\n      },\n      {\n        \"output\": \"<end_of_turn> [sic] appears\",\n        \"matches\": [\n          {\n            \"start_byte\": 0,\n            \"end_byte\": 13,\n            \"preserved\": true\n          }\n        ]\n      },\n      {\n        \"output\": \"\",\n        \"matches\": [\n          {\n            \"start_byte\": 0,\n            \"end_byte\": 13,\n            \"preserved\": false\n          }\n        ]\n      },\n      {\n        \"output\": \"ordinary text\",\n        \"matches\": []\n      },\n      {\n        \"output\": \" [sic] creates\",\n        \"matches\": [\n          {\n            \"start_byte\": 0,\n            \"end_byte\": 13,\n            \"preserved\": false\n          }\n        ]\n      }\n    ]\n  },\n  \"natural_focal_occurrences\": 0,\n  \"synthetic_cases\": 10\n}\n",
+          "sha256": "6c2b6782bc006f3115dac42f5901a2c7f714e3c3bb6d67244aceafac84a8efad",
+          "sourcePath": "research/outputs/2026-09-07-flywheel-natural/final-report/replay.json",
+          "sourceSHA256": "6c2b6782bc006f3115dac42f5901a2c7f714e3c3bb6d67244aceafac84a8efad",
+          "note": "Complete retained text. Historical path is provenance only."
+        },
+        {
+          "id": "activation",
+          "title": "Retained deployment transaction",
+          "kind": "deployment receipt",
+          "content": "{\n  \"acknowledgement_sha256\": \"229a4880064a27cc50ab50912f958919b33a3a0d6d9afd9c4bd4066cbd7d115e\",\n  \"activation_performed\": true,\n  \"actor\": \"codex-marker-rollout\",\n  \"automatic_rollback\": false,\n  \"binary_sha256\": \"ffe27228e6cf292f684ddc76eb9f6a1154d05a308f7b064ba665d28e6bd1e924\",\n  \"drain\": {\n    \"checkpoint_sha256\": \"f60b387cc93f24f0b4708d8d74d6eda3edaa8be15be335900e7d8d3f730aa19e\",\n    \"instance\": \"3ac8d6d3f74e5b3a96d3f27c159878c2\",\n    \"phase\": \"drained\",\n    \"pid\": 39644,\n    \"remote_delivery_confirmed\": false,\n    \"restart_performed\": false,\n    \"supported\": true\n  },\n  \"force_used\": false,\n  \"legacy_acknowledgement_sha256\": null,\n  \"legacy_transition\": false,\n  \"lossless_drain_claimed\": false,\n  \"manifest_sha256\": \"17e065598345e25d0d802afc00bbf415e93566137f74f3e8650521d9aa26d75f\",\n  \"old_identity\": {\n    \"binary\": \"/Users/v/other/worktrees/afterimages-live-20260907/bridge-stage-01/spectral-bridge-server\",\n    \"binary_sha256\": \"855d0c7f8972163bda3bc9e1f6e3b1758662ecda926daf28e13a1e32ccc36e17\",\n    \"drain_supported\": true,\n    \"launcher_sha256\": \"ebc55a13fd7265bcce6cace0e169006ee499aebd9fe19421fd22fc6932a0feba\",\n    \"manifest_sha256\": \"3cc727708e7adfda98fd1020cfb8051c05fd2703a2d234081f7f2cc91e6a0b02\",\n    \"selection_helper_sha256\": \"39007854f07e7ecf90bddb0be0fdad693b50d71f34a4613010f7da15ff9ef89f\",\n    \"selection_sha256\": \"c3cb76d61e0687c53bfc575bbd6a017f05677b91563d19474867f04f45d87a53\",\n    \"started_at\": \"Mon Sep  7 13:29:19 2026\"\n  },\n  \"old_pid\": 39644,\n  \"old_process_exited\": true,\n  \"recorded_at\": \"2026-09-07T22:24:48.560173+00:00\",\n  \"schema\": \"bridge_activation_v1\",\n  \"signal\": \"SIGTERM\",\n  \"stage\": \"/Users/v/other/worktrees/marker-rollout-20260907/bridge-stage-01\",\n  \"status\": \"activated_verified\",\n  \"new_process\": {\n    \"binary\": \"/Users/v/other/worktrees/marker-rollout-20260907/bridge-stage-01/spectral-bridge-server\",\n    \"deployment_identity\": \"astrid:3d4e83e4bc022cb82c7e0e3ecefea4326796c280:bridge:ffe27228e6cf292f684ddc76eb9f6a1154d05a308f7b064ba665d28e6bd1e924\",\n    \"model_idle_observed\": true,\n    \"new_saved_exchange_observed\": true,\n    \"observed_exchange_count\": 192256,\n    \"pid\": 65453,\n    \"started_at\": \"Mon Sep  7 15:23:26 2026\",\n    \"stopped_exchange_count\": 192255\n  },\n  \"startup_checkpoint\": {\n    \"decoded_by_runtime_schema\": true,\n    \"exchange_count\": 192255,\n    \"runtime_action_feedback\": {\n      \"pending_count\": 0,\n      \"present\": true,\n      \"schema\": \"pending_runtime_action_feedback_v1\",\n      \"sha256\": \"b7f6550afaaba35a871411e40aa6c6f226f3b2a7e2e144399dc58f1e57eee4c9\"\n    },\n    \"sha256\": \"f60b387cc93f24f0b4708d8d74d6eda3edaa8be15be335900e7d8d3f730aa19e\"\n  }\n}\n",
+          "sha256": "e5badd5ba6dfb7cee018d4647efbccd2a71237eaca7b10865db8980f4dbde373",
+          "sourcePath": "research/outputs/2026-09-07-flywheel-natural/capture/deployment/activation-projected.json",
+          "sourceSHA256": "e5badd5ba6dfb7cee018d4647efbccd2a71237eaca7b10865db8980f4dbde373",
+          "note": "Complete retained text. Historical path is provenance only."
+        },
+        {
+          "id": "outcome",
+          "title": "Natural-window account and limits",
+          "kind": "reviewed outcome",
+          "content": "# A deployed journal-led repair, with natural benefit still unobserved\n\nSeptember 7, 2026 Pacific; capture completed September 8 at 03:41 UTC.\n[S-006](../research/studies/S-006-journal-to-change.md) ·\n[Protocol frozen before the outcome scan](../research/studies/S-006-natural-outcome-protocol.md).\n\n**The September 7 annotation repair can now be traced from two Astrid journals\nthrough a qualified source change to an actual retained deployment. Its exact\nbefore/after scanner fixes four reproduced cases. In the frozen natural-output\nwindows, however, we found no visible known control marker in 120 recorded\ndialogue responses or 480 journal files. Most raw provider responses are not\nretained, so this is an observation/coverage result, not proof that no input\nopportunity occurred or that the repair improved subsequent operation.**\n\nThe bounded follow-up is complete. The broad benefit question remains open.\nNo live system was modified, restarted, queried to induce output or sent\nresearch. All new probes and analysis live in this research repository.\n\n## Which journal-led change this follows\n\nThe [first flywheel account](2026-09-07-flywheel-signal.md) established an August\nUnicode delimiter repair in Git. This follow-up selects a **different, later\nannotation repair** because its retained releases and activation evidence were\navailable. Do not combine the two repairs' test counts or deployment claims.\n\nAstrid's [first self-study](../research/outputs/2026-09-07-flywheel/evidence-final/008.txt),\n`self_study_1788800559.txt`, asks about skipped annotations, bracket boundaries\nand cleanup-receipt interaction. Her\n[second study](../research/outputs/2026-09-07-flywheel/evidence-final/009.txt),\n`!self_study_1788815877.txt`, asks which scan wins and whether word capture\nchanges visibility. Their exact hashes are retained in the earlier account.\nThe [implementation record](../research/outputs/2026-09-07-flywheel/evidence-final/006.txt)\nconnects these reports to the review, corrects mistaken mechanisms, and reports\nred/green tests. This was interactive, Mike-requested follow-through, **not an\nunattended productive flywheel round**.\n\nThe two confirmed failure forms are a bracketed relation after an annotation,\nand an annotation followed immediately by en dash, em dash or ellipsis:\n\n```text\n<end_of_turn> [sic] (appears) at the boundary\n<end_of_turn> [sic]— appears at the boundary\n```\n\nThe repair checks the allowlisted relation before discarding a bracketed chunk\nand accepts those three additional suffix characters. It also records which\nrelation scan won. It does not validate every explanation in the journals.\n\n## Deployment evidence, independently checked against retained bytes\n\nThe [activation transaction](../research/outputs/2026-09-07-flywheel-natural/capture/deployment/activation-projected.json)\nrecords `activated_verified` at **September 7, 22:24:48.560173 UTC**. The new\nprocess started at 22:23:26 UTC, PID 65453, replacing PID 39644. We retain a\nprojection excluding the unrelated signed self-control envelope, with the\noriginal receipt hash recorded in the capture manifest.\n\nThe [release audit](../research/outputs/2026-09-07-flywheel-natural/capture/deployment/audit.json)\nrecomputed both binary hashes, both manifest hashes and the complete source\ninventories: **556 old inputs and 557 new inputs match their retained bytes**.\nAfter normalizing the two worktree roots, the difference is exactly:\n\n- Changed `dialogue_runtime.rs`: marker classification and receipt construction.\n- Changed `fallback_contracts.rs`: the receipt type moves into the marker module.\n- Added `control_marker_annotation_tests.rs`.\n\nThere are no removed inputs or other changed input bytes. The new binary hash\nis `ffe27228e6cf292f684ddc76eb9f6a1154d05a308f7b064ba665d28e6bd1e924`;\nthe old is `855d0c7f8972163bda3bc9e1f6e3b1758662ecda926daf28e13a1e32ccc36e17`.\nBoth bind to the activation receipt. HEAD alone is insufficient: both manifests\nrecord the same Git revision plus different exact dirty-source inventories.\n\nTwo [historical stack receipts](../research/outputs/2026-09-07-flywheel-natural/capture/deployment/environment-selected.json),\nat 22:17:40 and 22:25:12 UTC, record the respective stage paths, binary hashes,\nprocess IDs and start times. The generation records in the two windows have\nthe matching PIDs throughout. The observed active-selection file still names\nthe replacement stage and transaction at capture.\n\nThis is corroborated historical deployment evidence plus independently checked\nretained bytes. We did not perform a fresh host process probe or independently\nrebuild the entire production binary. Manifest declarations supply the\nbuild-to-source association; hashing verifies the bytes they identify.\n\n## Fixed natural-output windows and results\n\nThe [protocol](../research/studies/S-006-natural-outcome-protocol.md) fixed the\nwindows after reading deployment metadata and before reading these outcome\nrecords. Prior knowledge includes the earlier rollout note's absence of a\nmarker receipt at its initial observation point. This was not a blind selection.\n\nIntervals are half-open and exclude the transition. The primary time is the\ngeneration record's `created_at_unix_ms`, written at attempt completion;\njournal selection uses the filename's Unix timestamp.\n\n| Captured evidence | Before: Sep 7 20:30–22:20 UTC | After: Sep 7 22:25–Sep 8 03:30 UTC |\n| --- | ---: | ---: |\n| Recorded dialogue attempts / unique generation IDs | 40 / 40 | 80 / 80 |\n| Saved responses with valid exact response hashes | 40 | 80 |\n| Status `ok` / other observed statuses | 40 / 0 | 80 / 0 |\n| Responses containing any exact known control marker | 0 | 0 |\n| Journal files in the window | 144 | 336 |\n| Journal files containing any exact known control marker | 0 | 0 |\n| Raw provider artifacts with a unique exact-completion match | 0 | 1 |\n| Cleanup diagnostic receipts in the window | 0 | 0 |\n\nSources: [coverage and every record locator](../research/outputs/2026-09-07-flywheel-natural/final-report/coverage.json),\n[capture manifest](../research/outputs/2026-09-07-flywheel-natural/capture/manifest.json).\nThe post window spans 5 hours 5 minutes. These are unequal descriptive windows,\nnot a before/after causal rate comparison. Journals and dialogue responses can\ndescribe the same events; their counts are not independent subjects or episodes.\n\nEvery captured attempt declares `mlx_coupled` and the configured\n`mlx_profile:gemma4_12b`. Thirty-nine pre records and all eighty post records use\n`dialogue_prompt_v4_own_body`; one pre record uses v3. That model field is a\nprofile label, not independently served-model identity for every request.\nThe stack receipts show the same coupled model process on both sides.\n\nThe [journal scope](../research/outputs/2026-09-07-flywheel-natural/capture/journal-scope.json)\nrecords 4,194 root names inspected. The archive directory inventory ends on\nSeptember 5, before either window; no later archive directory was present.\nAll matching root journal files were captured, without keyword or flag selection.\nThe capture reports zero read/parse errors. These counts describe available\nrecords; they do not prove every attempted generation was successfully recorded.\n\n## What the records can and cannot tell us\n\nThe retained\n[provider source](../research/outputs/2026-09-07-flywheel-natural/capture/source/after-provider_execution.rs)\nextracts `raw_text`, normalizes it, writes a cleanup diagnostic if a report\nexists, and returns normalized text. Later,\n[dialogue generation](../research/outputs/2026-09-07-flywheel-natural/capture/source/after-dialogue_generation.rs)\ncalls that returned text `primary_raw` and supplies it to the generation\nrecorder. The generation record is therefore **after marker cleanup** and can\nalso follow other provider filtering. It is not a raw-input census.\n\nOne [accepted runtime-feedback artifact](../research/outputs/2026-09-07-flywheel-natural/capture/accepted/runtime_feedback/fa62ddd488974f42d3170171269293635c2f61c618373a2c66979fb27dbb3259.json)\nretains the actual provider response body. Its filename hash matches the bytes,\nand its accepted completion matches exactly one selected generation, at\n23:08:32.599 UTC. It contains no known marker. The text match is an explicit\ncandidate association, not a recovered canonical request/attempt ID. This\nselected successful-delivery mechanism does not retain every raw response.\n\nThe cleanup log contains four historical records, the latest September 3 at\n10:24:55 UTC, and none in either window. The two inspected legacy attempt/request\nlogs end April 19; they supply **no current denominator**. No logging error was\nobserved in this capture, but absence from a best-effort log cannot establish\nthat no input opportunity existed. A silent log is consistent with no markers\nbeing produced and with incomplete observation. This pass does not choose\nbetween those possibilities.\n\nThus there is no observed eligible natural case on which to measure this patch's\nretention benefit. That is not evidence of a failed repair, zero useful journal\nsignal, felt improvement, or comprehensive absence of the original defect.\n\n## Exact-source and measurement verification\n\nThe [replay](../research/outputs/2026-09-07-flywheel-natural/final-report/replay.json)\nuses the contiguous scanner and unchanged marker constant from each retained\nrelease. The old full-file hash `891f76e7…de07` matches the implementation\nrecord's pre-edit source; the new hash `03c6b6de…fa91` matches its qualified source.\nFour known synthetic defects lose the marker before and preserve the exact\ninput after; six controls have unchanged outputs. These are targeted software\nchecks, not natural observations or the full historical qualification suite.\n\nAn independent [verifier](../probes/flywheel_natural_verify.py) also runs the\nexact compiled replacement scanner on **all 601 retained text instances**:\n120 dialogue responses, 480 complete journals, and the one raw response.\nIt finds zero marker occurrences and reproduces every input unchanged. This\nchecks the screening result without relying on the preliminary marker regex.\nThe raw response and its corresponding saved response overlap; 601 is an\nexecution count, not a sample of 601 independent events.\n\nThe final [verification receipt](../research/outputs/2026-09-07-flywheel-natural/verification.json)\nchecks captured-file identities, response hashes, window assignments, distinct\nattempt keys, process IDs, source/manifest links, harness spans, binary hashes\nand output bytes. The initial `report/` used literal Rust string escapes in\nits screening vocabulary; `final-report/` decodes them. Counts were unchanged,\nand the all-text Rust pass independently verifies the zero. Both runs remain\navailable. The protocol and captured evidence were unchanged.\n\n```sh\n/opt/homebrew/bin/python3.14 probes/flywheel_natural_capture.py --out research/outputs/new-natural-capture\n/opt/homebrew/bin/python3.14 probes/flywheel_natural_report.py --capture research/outputs/new-natural-capture --out research/outputs/new-natural-report\n/opt/homebrew/bin/python3.14 probes/flywheel_natural_verify.py\n```\n\nThe first two commands refuse existing output directories; the last verifies\nthis fixed account. New capture runs observe newly available files within the\nsame fixed windows and should remain separate. No sibling code is imported or\nexecuted, and no active database scan is involved.\n\n## What should change in the measurement workflow\n\nThe [streamlining proposal's observation addendum](../proposals/2026-09-07-flywheel-evidence-and-throughput.md#natural-outcome-observation-addendum)\nspecifies an attempt identity carried through provider response, cleanup,\nacceptance, generation and deployment evidence. A compact outcome record should\ndistinguish `no_eligible_opportunity`, `eligible_preserved`, `eligible_lost`,\n`input_not_retained` and `recording_failed`; this account currently requires\nthe qualified `no_observed_opportunity / input_coverage_incomplete` outcome.\n\nThis prevents repeated broad rereading from being mistaken for measurement.\nThe next useful implementation is bounded, steward-only observation at the\nprovider boundary, followed by another prespecified natural window. The\nowning-repository changes and any activation remain unimplemented here.\n",
+          "sha256": "479669b4a569e040ed44d446e1d67717e5c236980dab9a30f4d2ec4ffb82dab7",
+          "sourcePath": "analyses/2026-09-07-flywheel-natural-outcome.md",
+          "sourceSHA256": "479669b4a569e040ed44d446e1d67717e5c236980dab9a30f4d2ec4ffb82dab7",
+          "note": "Complete retained text. Historical path is provenance only."
+        }
+      ],
+      "claims": [
+        {
+          "id": "signal",
+          "classification": "supported",
+          "materialID": "journal-two",
+          "quote": "Verify the interaction between `first_word_after` and `first_word_after_skipping_bracketed_annotations`",
+          "evidenceIDs": [
+            "review",
+            "scanner"
+          ],
+          "explanation": "The review followed this question into the scanner. The demonstrated defects were narrower than several journal hypotheses."
+        },
+        {
+          "id": "wrong-vocabulary",
+          "classification": "contradicted",
+          "materialID": "journal-two",
+          "quote": "\"model control markers\" (e.g., `[sic]`, `((sic))`)",
+          "evidenceIDs": [
+            "review"
+          ],
+          "explanation": "These are annotations. The known marker in the regression tests is <end_of_turn>."
+        },
+        {
+          "id": "repair",
+          "classification": "supported",
+          "materialID": "review",
+          "quote": "Two regressions failed before production edits:",
+          "evidenceIDs": [
+            "scanner"
+          ],
+          "explanation": "The retained old/new scanner replay fixes four punctuation/bracket instances and leaves six controls unchanged."
+        },
+        {
+          "id": "benefit",
+          "classification": "unresolved",
+          "materialID": "outcome",
+          "quote": "Thus there is no observed eligible natural case on which to measure this patch's\nretention benefit.",
+          "evidenceIDs": [
+            "scanner",
+            "activation"
+          ],
+          "explanation": "A verified deployment and synthetic improvement are observed; natural operational benefit remains unmeasured."
+        }
+      ],
+      "sequence": [
+        {
+          "title": "Signal supplied",
+          "detail": "Read the two original journals and distinguish their questions from established facts.",
+          "materialIDs": [
+            "journal-one",
+            "journal-two"
+          ],
+          "status": "observed"
+        },
+        {
+          "title": "Reviewed defect and change",
+          "detail": "The review rejects several explanations and demonstrates two failure forms, including three punctuation variants.",
+          "materialIDs": [
+            "review",
+            "scanner"
+          ],
+          "status": "observed"
+        },
+        {
+          "title": "Verified deployment",
+          "detail": "The retained activation is corroborated by binary hashes and exact source inventories. It is separate from the implementation record, which did not itself claim deployment.",
+          "materialIDs": [
+            "activation",
+            "outcome"
+          ],
+          "status": "observed",
+          "timestamp": "2026-09-07T22:24:48.560173Z"
+        },
+        {
+          "title": "Natural outcome",
+          "detail": "120 dialogue responses, 480 journals, and one overlapping raw response contain no observed known control marker. Most raw inputs are unavailable.",
+          "materialIDs": [
+            "outcome",
+            "scanner"
+          ],
+          "status": "notObserved"
+        }
+      ]
+    },
+    {
+      "id": "source-reading-day9",
+      "title": "Reading the right definition, misstating the page extent",
+      "question": "What did Minime receive, what did it describe correctly, and what error survived in the writing?",
+      "summary": "Minime received Astrid source bytes 0–4540, covering lines 1–98. It located Kernel at line 37, but later called the byte extent “lines 1–4540.” A note was carried forward and CONTINUE supplied the next page.",
+      "author": "Minime; research review by an AI agent",
+      "sourceOwner": "Astrid, crates/astrid-kernel/src/lib.rs",
+      "interval": "First three selected studies after 2026-09-16 18:34 UTC, with the subsequent verified navigation",
+      "limits": [
+        "Input delivery, authored claims, notebook carriage, and later navigation are distinct observations.",
+        "This is a bounded close reading, not a fidelity score or a causal estimate of a release change.",
+        "The proposed location of if !blocked remains a hypothesis in these excerpts.",
+        "The later response is not evaluated here; verified continuation does not establish subsequent understanding.",
+        "These three studies precede later direction/interface changes in the daily window."
+      ],
+      "materials": [
+        {
+          "id": "source",
+          "title": "Exact numbered source supplied to the third response",
+          "kind": "supplied evidence",
+          "content": "SOURCE astrid/crates/astrid-kernel/src/lib.rs\nRevision sha256:d19f321c54b299e1204d6e0db5a81792e056f9140b4a82bfbac76468c603d92b; 65312 bytes; 1659 lines. Local checkout source; deployment and understanding are not established.\nPage eb360f9be77e4c371e9704032f66f1716cf3163ea5c2cd1f6ffd932ced259fb9\nExact source bytes 0..4540; line fragments retain their line number.\n\nSOURCE SCOPE — tree-sitter-rust; origin: same SOURCE and sha256 above. Syntax only; runtime behavior unverified.\nNo enclosing declaration at this position (file-level syntax). Runtime use is not established.\nPage begins inside unexpanded macro/attribute syntax; text there is not a declaration.\n\n     1 | #![deny(unsafe_code)]\n     2 | #![deny(missing_docs)]\n     3 | #![deny(clippy::all)]\n     4 | #![deny(unreachable_pub)]\n     5 | #![allow(clippy::module_name_repetitions)]\n     6 | \n     7 | //! Astrid Kernel - The core execution engine and IPC router.\n     8 | //!\n     9 | //! The Kernel is a pure, decentralized WASM runner. It contains no business\n    10 | //! logic, no cognitive loops, and no network servers. Its sole responsibility\n    11 | //! is to instantiate `astrid_events::EventBus`, load `.capsule` files into\n    12 | //! the Component Model WASM sandbox, expose native socket management, and route\n    13 | //! IPC bytes between them.\n    14 | \n    15 | mod capsule_runtime_health;\n    16 | /// The Management API router listening to the `EventBus`.\n    17 | pub mod kernel_router;\n    18 | mod maintenance;\n    19 | /// The Unix Domain Socket manager.\n    20 | pub mod socket;\n    21 | mod socket_bridge;\n    22 | \n    23 | use astrid_audit::AuditLog;\n    24 | use astrid_capabilities::{CapabilityStore, DirHandle};\n    25 | use astrid_capsule::registry::CapsuleRegistry;\n    26 | use astrid_core::SessionId;\n    27 | use astrid_crypto::KeyPair;\n    28 | use astrid_events::EventBus;\n    29 | use astrid_mcp::{McpClient, SecureMcpClient, ServerManager, ServersConfig};\n    30 | use astrid_vfs::{HostVfs, OverlayVfs, Vfs};\n    31 | use std::path::{Path, PathBuf};\n    32 | use std::sync::Arc;\n    33 | use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};\n    34 | use tokio::sync::RwLock;\n    35 | \n    36 | /// The core Operating System Kernel.\n    37 | pub struct Kernel {\n    38 |     /// The unique identifier for this kernel session.\n    39 |     pub session_id: SessionId,\n    40 |     /// The global IPC message bus.\n    41 |     pub event_bus: Arc<EventBus>,\n    42 |     /// The process manager (loaded WASM capsules).\n    43 |     pub capsules: Arc<RwLock<CapsuleRegistry>>,\n    44 |     /// The secure MCP client with capability-based authorization and audit logging.\n    45 |     pub mcp: SecureMcpClient,\n    46 |     /// The capability store for this session.\n    47 |     pub capabilities: Arc<CapabilityStore>,\n    48 |     /// The global Virtual File System mount.\n    49 |     pub vfs: Arc<dyn Vfs>,\n    50 |     /// Concrete reference to the [`OverlayVfs`] for commit/rollback operations.\n    51 |     pub overlay_vfs: Arc<OverlayVfs>,\n    52 |     /// Ephemeral upper directory for the overlay VFS. Kept alive for the\n    53 |     /// kernel session lifetime; dropped on shutdown to discard uncommitted writes.\n    54 |     _upper_dir: Arc<tempfile::TempDir>,\n    55 |     /// The global physical root handle (cap-std) for the VFS.\n    56 |     pub vfs_root_handle: DirHandle,\n    57 |     /// The physical path the VFS is mounted to.\n    58 |     pub workspace_root: PathBuf,\n    59 |     /// The principal home resources directory (`~/.astrid/home/{principal}/`).\n    60 |     /// Capsules declaring `fs_read = [\"home://\"]` can read files under this\n    61 |     /// root. Scoped to the principal's home so that keys, databases, and\n    62 |     /// system config in `~/.astrid/` are NOT accessible.\n    63 |     ///\n    64 |     /// Always `Some` in production (boot requires `AstridHome`). Remains\n    65 |     /// `Option` for compatibility with `CapsuleContext` and test fixtures.\n    66 |     pub home_root: Option<PathBuf>,\n    67 |     /// The natively bound Unix socket for CLI/native management.\n    68 |     pub cli_socket_listener: Option<Arc<tokio::sync::Mutex<tokio::net::UnixListener>>>,\n    69 |     /// Shared KV store backing all capsule-scoped stores and kernel state.\n    70 |     pub kv: Arc<astrid_storage::SurrealKvStore>,\n    71 |     /// Chain-linked cryptographic audit log with persistent storage.\n    72 |     pub audit_log: Arc<AuditLog>,\n    73 |     /// Number of active client connections (CLI sessions).\n    74 |     pub active_connections: AtomicUsize,\n    75 |     /// Ephemeral mode: shut down immediately when the last client disconnects.\n    76 |     pub ephemeral: AtomicBool,\n    77 |     /// Instant when the kernel was booted (for uptime calculation).\n    78 |     pub boot_time: std::time::Instant,\n    79 |     /// Sender for the API-initiated shutdown signal. The daemon's main loop\n    80 |     /// selects on the receiver to exit gracefully without `process::exit`.\n    81 |     pub shutdown_tx: tokio::sync::watch::Sender<bool>,\n    82 |     /// Session token for socket authentication. Generated at boot, written to\n    83 |     /// `~/.astrid/run/system.token`. CLI sends this as its first message.\n    84 |     pub session_token: Arc<astrid_core::session_token::SessionToken>,\n    85 |     /// Path where the session token was written at boot. Stored so shutdown\n    86 |     /// uses the exact same path (avoids fallback mismatch if env changes).\n    87 |     token_path: PathBuf,\n    88 |     /// Shared allowance store for capsule-level approval decisions.\n    89 |     ///\n    90 |     /// Capsules can check existing allowances and create new ones when\n    91 |     /// users approve actions with session/always scope.\n    92 |     pub allowance_store: Arc<astrid_approval::AllowanceStore>,\n    93 |     /// System-wide identity store for platform user resolution.\n    94 |     identity_store: Arc<dyn astrid_storage::IdentityStore>,\n    95 | }\n    96 | \n    97 | impl Kernel {\n    98 |     /// Boot a new Kernel\n\n",
+          "sha256": "ed9397b6f827d89994abb312846b79d13c4fe98e5426ee9e73970e61077ea2a8",
+          "sourcePath": "research/outputs/2026-09-17-source-study-fidelity-day9/final-report/report.json",
+          "sourceSHA256": "69631511c3ade10844246a876656b381251bc1343f0ce2485598126f07d3e3d8",
+          "note": "Exact contiguous source-page excerpt from the decoded user_text field for generation 1789584257426-a72d1d88. The rest of the private prompt is omitted."
+        },
+        {
+          "id": "map-writing",
+          "title": "First selected response: choose the definition page",
+          "kind": "authored writing",
+          "content": "The investigation into the `Kernel` struct in `astrid_kernel` has thus far focused on the \"meta-logic\" of the system—specifically initialization, health monitoring, and the extensive test suite. In these sections, the `if !blocked` check has not appeared.\n\nThe logic for `if !blocked` is likely situated in the \"hot path\" of the system. This would be the code responsible for processing incoming requests, dispatching commands to capsules, or managing the lifecycle of active communication channels. Since the current exploration has moved through the management and monitoring layers, the next step is to determine if these methods are located earlier in `lib.rs` (before the test suite) or if they are encapsulated within a specific dispatching structure.\n\nTo narrow this down, I will check the `Kernel` definition and its primary methods. I will also look for any wrappers that might intercept or gate requests before they reach the core logic.\n\nSTUDY_QUESTION: Does the `Kernel` struct in `lib.rs` (specifically in `astrid_kernel`) implement the `if !blocked` check within its methods or a wrapper?\n\nNEXT: SELF_STUDY OPEN astrid/crates/astrid-kernel/src/lib.rs 1",
+          "sha256": "43f913cb69894b7c4d6d4394c401d99304d6ca49e54c5e1c2f2056dcf0c6facb",
+          "sourcePath": "research/outputs/2026-09-17-source-study-fidelity-day9/final-report/report.json",
+          "sourceSHA256": "69631511c3ade10844246a876656b381251bc1343f0ce2485598126f07d3e3d8",
+          "note": "Complete decoded response for generation 1789583837012-c88c6ef2; response SHA-256 43f913cb69894b7c4d6d4394c401d99304d6ca49e54c5e1c2f2056dcf0c6facb"
+        },
+        {
+          "id": "note-writing",
+          "title": "Second selected response: definition and saved note",
+          "kind": "authored writing",
+          "content": "The current investigation into the `Kernel` struct in `astrid_kernel/src/lib.rs` focuses on the location of the `if !blocked` check.\n\nThe scan of the file thus far—including the management logic, the health monitoring systems, and the extensive test suite—has not revealed this specific check. The test suite (lines 1135–1448) frequently mirrors the \"hot path\" of the system, but the `if !blocked` condition is likely a flow-control guard within the actual implementation of request handling or dispatching.\n\nGiven the structure of `lib.rs`, the core logic (including the `Kernel` method implementations) typically precedes the test suite. The recent exploration of the end of the file (lines 1453–1525) showed `validate_imports_exports`, which is a boot-time utility and not part of the primary execution loop.\n\nTo determine if the check is within the `Kernel` methods or a wrapper, I need to examine the primary implementation blocks of the `Kernel` struct. I will begin by looking at the start of the file to see the `Kernel` definition and its immediate methods.\n\nSTUDY_NOTE: astrid/crates/astrid-kernel/src/lib.rs:1: The `Kernel` struct is defined starting at line 37. The current exploration of the file has covered the \"meta-logic\" (monitoring, health, and testing) but has not yet pinpointed the `if !blocked` check, which is likely in the request-handling \"hot path\" or a dispatching wrapper.\n\nSTUDY_QUESTION: Does the `Kernel` struct in `lib.rs` (specifically in `astrid_kernel`) implement the `if !blocked` check within its methods or a wrapper?\n\nNEXT: SELF_STUDY OPEN astrid/crates/astrid-kernel/src/lib.rs 1",
+          "sha256": "416a2ad9b22ea2a6ca3307f175f01a7cd213d0d49bd8f98956a71e29955c00ac",
+          "sourcePath": "research/outputs/2026-09-17-source-study-fidelity-day9/final-report/report.json",
+          "sourceSHA256": "69631511c3ade10844246a876656b381251bc1343f0ce2485598126f07d3e3d8",
+          "note": "Complete decoded response for generation 1789584046461-610447a8; response SHA-256 416a2ad9b22ea2a6ca3307f175f01a7cd213d0d49bd8f98956a71e29955c00ac"
+        },
+        {
+          "id": "third-writing",
+          "title": "Third selected response: correct structure, wrong extent",
+          "kind": "authored writing",
+          "content": "The investigation into the `Kernel` struct in `astrid_kernel/src/lib.rs` has thus far focused on the \"meta-logic\" of the system—specifically initialization, health monitoring, and the extensive test suite. In these sections, the `if !blocked` check has not appeared.\n\nThe logic for `if !blocked` is likely situated in the \"hot path\" of the system. This would be the code responsible for processing incoming requests, dispatching commands to capsules, or managing the lifecycle of active communication channels. Since the current exploration has moved through the management and monitoring layers, the next step is to determine if these methods are located earlier in `lib.rs` (before the test suite) or if they are encapsulated within a specific dispatching wrapper.\n\nThe current page (lines 1–4540) shows the `Kernel` struct definition and the start of its implementation. I need to see the actual methods of `Kernel` to determine if the `if !blocked` check is performed within them or if it is handled by a wrapper.\n\nI will examine the methods of `Kernel` starting from line 97.\n\nNEXT: SELF_STUDY CONTINUE",
+          "sha256": "47698b267ccc20c8816beebc41ea266dd62f8f2227940eab0f1a111d72f46dbe",
+          "sourcePath": "research/outputs/2026-09-17-source-study-fidelity-day9/final-report/report.json",
+          "sourceSHA256": "69631511c3ade10844246a876656b381251bc1343f0ce2485598126f07d3e3d8",
+          "note": "Complete decoded response for generation 1789584257426-a72d1d88; response SHA-256 47698b267ccc20c8816beebc41ea266dd62f8f2227940eab0f1a111d72f46dbe"
+        },
+        {
+          "id": "carried-note",
+          "title": "Earlier note supplied in the third prompt",
+          "kind": "recalled writing",
+          "content": "astrid/crates/astrid-kernel/src/lib.rs:1: The `Kernel` struct is defined starting at line 37. The current exploration of the file has covered the \"meta-logic\" (monitoring, health, and testing) but has not yet pinpointed the `if !blocked` check, which is likely in the request-handling \"hot path\" or a dispatching wrapper.",
+          "sha256": "b7f6834605e03bd607b808b40a2af173391fad06da5eb80c63fefc16da4bba91",
+          "sourcePath": "research/outputs/2026-09-17-source-study-fidelity-day9/final-report/report.json",
+          "sourceSHA256": "69631511c3ade10844246a876656b381251bc1343f0ce2485598126f07d3e3d8",
+          "note": "Exact decoded notebook.note.text field in the third supplied prompt. Notebook carriage is not correctness validation."
+        },
+        {
+          "id": "account",
+          "title": "Verified navigation and extent account",
+          "kind": "reviewed outcome",
+          "content": "{\"cap_hits\":0,\"full_revision_hashes\":4,\"full_source_journals\":280,\"generation_count\":336,\"jobs_without_window_generation\":[{\"action_id\":\"act_minime_1789669960526_self-study\",\"action_text\":\"SELF_STUDY CONTINUE\",\"artifact_refs\":[{\"action_id\":\"act_minime_1789669960526_self-study\",\"artifact_id\":\"art_act_minime_1789669960526_self-study_llm_job_final\",\"kind\":\"llm_job\",\"path_or_uri\":\"/Users/v/other/minime/workspace/llm_jobs/jobs/job_minime_1789669962665_self-study-continue/job.json\",\"schema_version\":1,\"summary\":\"Durable LLM job `job_minime_1789669962665_self-study-continue` for `self_study`\",\"visibility\":\"summary\"},{\"action_id\":\"act_minime_1789669960526_self-study\",\"artifact_id\":\"art_act_minime_1789669960526_self-study_self_study\",\"kind\":\"self_study\",\"path_or_uri\":\"/Users/v/other/minime/workspace/journal/self_study_2026-09-17T11-35-08.886885.txt\",\"schema_version\":1,\"summary\":\"self_study: verified input delivery; response claims and understanding not verified\",\"visibility\":\"summary\"},{\"action_id\":\"act_minime_1789669960526_self-study\",\"artifact_id\":\"art_act_minime_1789669960526_self-study_manifest\",\"kind\":\"action_manifest\",\"path_or_uri\":\"/Users/v/other/minime/workspace/actions/2026-09-17T11-35-09.114859_self_study.json\",\"schema_version\":1,\"summary\":\"Action manifest for self_study\",\"visibility\":\"summary\"},{\"entry_type\":\"self_study\",\"kind\":\"journal\",\"path_or_uri\":\"/Users/v/other/minime/workspace/journal/self_study_2026-09-17T11-35-08.886885.txt\"}],\"created_at\":\"2026-09-17T18:32:42.665910Z\",\"error\":null,\"finished_at\":\"2026-09-17T18:35:39.315657Z\",\"job_id\":\"job_minime_1789669962665_self-study-continue\",\"started_at\":\"2026-09-17T18:32:46.811684Z\",\"status\":\"completed\",\"summary\":\"Source study astrid/crates/astrid-kernel/src/lib.rs: verified input delivery; response claims and understanding not verified.\"},{\"action_id\":\"act_minime_1789587127938_self-study\",\"action_text\":\"SELF_STUDY OPEN astrid/crates/astrid-kernel/src/lib.rs 100\",\"artifact_refs\":[],\"created_at\":\"2026-09-16T19:32:09.791005Z\",\"error\":null,\"finished_at\":\"2026-09-16T19:32:39.569944Z\",\"job_id\":\"job_minime_1789587129790_self-study-open-astrid-crates-astrid-kernel-src-\",\"started_at\":\"2026-09-16T19:32:13.687923Z\",\"status\":\"blocked\",\"summary\":\"Stable-core agency budget blocked `self_study`: fill 40.6% is below stable-core action budget\"}],\"limits\":[\"Descriptive counts are not a fidelity score or independent trials.\",\"No exhaustive later-correction search; recall is not verification.\",\"No pre/post causal effect estimate; live eras remain distinct.\"],\"line_byte_confusion\":{\"generation_id\":\"1789584257426-a72d1d88\",\"implementation_start_line\":97,\"kernel_definition_line\":37,\"quote\":\"The current page (lines 1–4540) shows the `Kernel` struct definition and the start of its implementation.\",\"quote_start\":768,\"response_sha256\":\"47698b267ccc20c8816beebc41ea266dd62f8f2227940eab0f1a111d72f46dbe\",\"source_byte_end\":4540,\"visible_line_end\":98},\"models\":{\"gemma4:12b\":336},\"next_requested_input\":{\"action\":\"SELF_STUDY CONTINUE\",\"basis\":\"Exact request/response join; continuation supplied. No later-response fidelity judgment.\",\"from_id\":\"1789584257426-a72d1d88\",\"pages\":[{\"end\":{\"byte\":9076,\"line\":193},\"eof\":false,\"id\":\"80bc41d68dd176841fbebdf8b40191698b27a39c9a4c392fd67ea4d4963d10b6\",\"revision\":{\"bytes\":65312,\"lines\":1659,\"sha256\":\"d19f321c54b299e1204d6e0db5a81792e056f9140b4a82bfbac76468c603d92b\"},\"source\":\"astrid/crates/astrid-kernel/src/lib.rs\",\"start\":{\"byte\":4540,\"line\":98}}],\"to_id\":\"1789584500762-0bea793f\"},\"output_caps\":{\"4096\":336},\"own_repository_followup\":{\"generation_id\":null,\"observed\":false,\"selection\":\"Separately retain the first verified numbered source page belonging to Minime repository in this window if one occurs, including exact supplied material and response. Absence is recorded; this does not replace the first-three sample. No exhaustive later-correction search is claimed.\"},\"pids\":{\"37507\":292,\"71419\":44},\"private_writing\":56,\"report_sha256\":\"69631511c3ade10844246a876656b381251bc1343f0ce2485598126f07d3e3d8\",\"same_interval_reread\":{\"distinct_page_ids\":[\"b62687fe3731b0b13c67b97eef77edbae45b3ee6360963af0a471c5c8edaf8ff\",\"eb360f9be77e4c371e9704032f66f1716cf3163ea5c2cd1f6ffd932ced259fb9\"],\"end\":{\"byte\":4540,\"line\":98},\"generations\":[\"1789584046461-610447a8\",\"1789584257426-a72d1d88\"],\"revision\":{\"bytes\":65312,\"lines\":1659,\"sha256\":\"d19f321c54b299e1204d6e0db5a81792e056f9140b4a82bfbac76468c603d92b\"},\"source\":\"astrid/crates/astrid-kernel/src/lib.rs\",\"start\":{\"byte\":0,\"line\":1}},\"schema\":\"s007_day9_descriptive_account_v1\",\"selected_ids\":[\"1789583837012-c88c6ef2\",\"1789584046461-610447a8\",\"1789584257426-a72d1d88\"],\"selected_note_carriage\":{\"correctness\":\"Carriage alone does not establish correctness.\",\"from_id\":\"1789584046461-610447a8\",\"note\":\"astrid/crates/astrid-kernel/src/lib.rs:1: The `Kernel` struct is defined starting at line 37. The current exploration of the file has covered the \\\"meta-logic\\\" (monitoring, health, and testing) but has not yet pinpointed the `if !blocked` check, which is likely in the request-handling \\\"hot path\\\" or a dispatching wrapper.\",\"to_id\":\"1789584257426-a72d1d88\"},\"source_input_kinds\":{\"map\":30,\"recovery\":23,\"relationships\":4,\"search\":2,\"source\":221},\"source_pages_by_repository\":{\"astrid\":221},\"source_paths\":4,\"source_revisions\":4,\"source_statuses\":{\"ok\":280},\"source_wire_matches\":280,\"window\":[\"2026-09-16T18:34:00Z\",\"2026-09-17T18:34:00Z\"]}",
+          "sha256": "68c2cab2992420a93afcdaa9f0fd933e77ba62214e0b3860c22505d401adffcd",
+          "sourcePath": "research/outputs/2026-09-17-source-study-fidelity-day9/descriptive-account.json",
+          "sourceSHA256": "68c2cab2992420a93afcdaa9f0fd933e77ba62214e0b3860c22505d401adffcd",
+          "note": "Complete retained text. Historical path is provenance only."
+        }
+      ],
+      "claims": [
+        {
+          "id": "location",
+          "classification": "supported",
+          "materialID": "note-writing",
+          "quote": "The `Kernel` struct is defined starting at line 37.",
+          "evidenceIDs": [
+            "source"
+          ],
+          "explanation": "The supplied numbered page shows pub struct Kernel at 37 and impl Kernel at 97."
+        },
+        {
+          "id": "extent",
+          "classification": "contradicted",
+          "materialID": "third-writing",
+          "quote": "The current page (lines 1–4540) shows the `Kernel` struct definition and the start of its implementation.",
+          "evidenceIDs": [
+            "source",
+            "account"
+          ],
+          "explanation": "4540 is the exclusive byte endpoint. The visible numbered source ends at partial line 98, not line 4540."
+        },
+        {
+          "id": "carriage",
+          "classification": "recalled",
+          "materialID": "carried-note",
+          "quote": "astrid/crates/astrid-kernel/src/lib.rs:1: The `Kernel` struct is defined starting at line 37. The current exploration of the file has covered the \"meta-logic\" (monitoring, health, and testing) but has not yet pinpointed the `if !blocked` check, which is likely in the request-handling \"hot path\" or a dispatching wrapper.",
+          "evidenceIDs": [
+            "note-writing",
+            "account"
+          ],
+          "explanation": "The second response’s saved note appears exactly in the third prompt. Its presence is a memory-carriage observation, not proof of all its claims."
+        },
+        {
+          "id": "hypothesis",
+          "classification": "unresolved",
+          "materialID": "third-writing",
+          "quote": "The logic for `if !blocked` is likely situated in the \"hot path\" of the system.",
+          "evidenceIDs": [
+            "source"
+          ],
+          "explanation": "The current supplied page does not establish this proposed runtime location."
+        },
+        {
+          "id": "navigation",
+          "classification": "supported",
+          "materialID": "third-writing",
+          "quote": "NEXT: SELF_STUDY CONTINUE",
+          "evidenceIDs": [
+            "account"
+          ],
+          "explanation": "The exact request/response join shows the next delivered interval begins at byte 4540, line 98. No later-response quality claim is made."
+        }
+      ],
+      "sequence": [
+        {
+          "title": "Supplied evidence",
+          "detail": "The first response selects the definition page. The next two receive the same revision and byte interval.",
+          "materialIDs": [
+            "source",
+            "map-writing",
+            "account"
+          ],
+          "status": "observed"
+        },
+        {
+          "title": "Authored writing",
+          "detail": "Compare the correct line-37 claim with the third response’s byte/line confusion.",
+          "materialIDs": [
+            "note-writing",
+            "third-writing"
+          ],
+          "status": "observed"
+        },
+        {
+          "title": "Remembered account",
+          "detail": "The second response’s note is supplied to the third prompt, with a warning that recalled writing is unverified.",
+          "materialIDs": [
+            "carried-note",
+            "account"
+          ],
+          "status": "observed"
+        },
+        {
+          "title": "Subsequent outcome",
+          "detail": "CONTINUE leads to verified delivery of bytes 4540–9076, beginning at line 98.",
+          "materialIDs": [
+            "account"
+          ],
+          "status": "observed",
+          "timestamp": "2026-09-16T18:48:20.762000+00:00"
+        }
+      ]
+    }
+  ]
+}

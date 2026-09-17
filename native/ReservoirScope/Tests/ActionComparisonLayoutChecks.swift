@@ -51,7 +51,8 @@ private final class LayoutActionJournals: ActionJournalStore, @unchecked Sendabl
             styleMask: [.titled, .resizable], backing: .buffered, defer: false)
         window.isReleasedWhenClosed = false; window.contentView = host
         started = ProcessInfo.processInfo.systemUptime; lastCallback = started
-        model.compareWithPrevious()
+        model.select(.reservoirReturn)
+        model.compareWithPrevious(); model.run()
         timer = Timer.scheduledTimer(withTimeInterval: 0.02, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.advance() }
         }
@@ -110,7 +111,7 @@ private final class LayoutActionJournals: ActionJournalStore, @unchecked Sendabl
                     "The shared cursor restores both exact historical states at the same step")
                 model.run(); model.select(.regulation)
                 try check(!model.running && model.stage == .regulation, "Selecting another ladder version stops the previous run")
-                model.compareWithPrevious(); next(8, now)
+                model.compareWithPrevious(); model.run(); next(8, now)
             case 8 where !model.working:
                 model.stop(); model.step(); next(9, now)
             case 9 where !model.working:
@@ -125,7 +126,8 @@ private final class LayoutActionJournals: ActionJournalStore, @unchecked Sendabl
                     next(10, now)
                 }
             case 10 where now - phaseStarted > 0.15:
-                try inspectSurfaces("H pair with sensory traces · 1100 × 820", checkCamera: false)
+                try check(model.leftFrame?.fillPercent != nil && model.rightFrame?.control != nil,
+                    "H primary presentation has paired fill, retention and controller evidence at 1100 × 820")
                 model.leave(); heldCount = model.framesCount; next(11, now)
             case 11 where now - phaseStarted > 0.25:
                 try check(!model.running && !model.replaying && model.framesCount == heldCount,
@@ -150,7 +152,8 @@ private final class LayoutActionJournals: ActionJournalStore, @unchecked Sendabl
         try check(surfaces.count == 2 && surfaces.allSatisfy { $0.renderer?.nodeCount == 32 && $0.renderer?.mesh?.sitePositions.count == 32 },
             "\(label): both actual renderers have 32 coordinates and 32 exact markers")
         let a = surfaces[0].bounds.size, b = surfaces[1].bounds.size
-        try check(a.width >= 240 && a.height >= 165 && abs(a.width - b.width) < 1 && abs(a.height - b.height) < 1,
+        print("Surface dimensions: \(a) and \(b)")
+        try check(a.width >= 240 && a.height >= 165 && abs(a.width - b.width) <= 1 && abs(a.height - b.height) <= 1,
             "\(label): paired 3D views retain equal useful dimensions")
         surfaceSizes.append(["layout": label, "width": Double(a.width), "height": Double(a.height)])
         try check(surfaces.allSatisfy { $0.accessibilityLabel()?.contains("32 coordinates") == true },

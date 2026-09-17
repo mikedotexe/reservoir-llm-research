@@ -14,7 +14,7 @@ def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 core_path=lib/'libEssentialsCore.a'
 core_sha=sha(core_path)
 source=native/'Sources/ReservoirScope'
-paths=[source/name for name in ['ResourceBundle.swift','StateSurface.swift','StateSurfaceScene.swift',
+paths=[source/name for name in ['ResourceBundle.swift','ExperimentStore.swift','StateSurface.swift','StateSurfaceScene.swift',
     'ExplorationViewModel.swift','ExplorationExperience.swift']]
 paths.append(native/'Tests/ExplorationLayoutChecks.swift')
 assembled=out/'checks.swift'

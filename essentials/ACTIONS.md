@@ -1,7 +1,8 @@
 # Actions and comparisons
 
 Build up one mechanism at a time in **Reservoir Scope → Essentials → Actions & comparisons**.
-The new workspace keeps its own versioned records. Explore and the original four
+This is the default workspace in the portable 0.12.0 app. [Portable lab guide](../native/ReservoirScope/docs/PORTABLE-LAB.md).
+The workspace keeps its own versioned records. Explore and the original four
 stage recipes retain their existing behavior.
 
 ## The ladder
@@ -19,7 +20,7 @@ stage recipes retain their existing behavior.
 
 These are reduced experimental mechanisms. They do not execute actions in Minime
 or Astrid. The language observation comes from the **separate sensory field**;
-reservoir activations do not enter the current prompt. Enabling recurrence by itself
+reservoir activations do not enter the A–H ladder prompt. Enabling recurrence by itself
 therefore cannot change writing through this observation channel.
 
 The common baseline uses 32 reservoir nodes, 32 sensory coordinates, the original
@@ -30,16 +31,16 @@ Waiting for language does not advance simulated time.
 
 Start with **Step → Write journal → Step** in E · Reservoir return. The first
 step supplies an observation; writing saves the entry and prepares feedback;
-the next step applies it. **Open example** loads a completed 300-step D/E
-comparison. Scrub across steps 30 and 31 to inspect the first return.
+the next step applies it. **Open example** loads the selected component’s 120-step
+scripted example. **Runs & examples** also contains recorded model writing. Scrub across steps 30 and 31 to inspect the first return.
 The inspector includes all 66 applied input coordinates, all 32 sensory
 eigenvalues when available, the exact journal and its encoded feedback.
 
 **Stop** between steps preserves a resumable session. Cancelling an outstanding
 language action ends that session; the next Run or Step starts a fresh one.
 Saved results remain available through Open. Native runs and their journals live
-under `research/outputs/essentials/actions/<session>/`; Export writes a portable
-record to the chosen research location. The [headless recipes](actions/recipes/)
+under `~/Library/Application Support/Reservoir Scope/Actions/<session>/`; Export writes a portable
+record to the explicitly selected local location. The [headless recipes](actions/recipes/)
 also expose the numerical settings, with runs bounded to 600 steps.
 
 ## Writing and its return paths
@@ -89,3 +90,15 @@ targets that remain out of reach alongside successful output.
 
 The [accepted design](stages/ACTIONS-AND-COMPARISONS.md) records the original reasoning.
 The [research methods](../research/METHODS.md) explain the interpretation boundaries.
+
+## Controlled observation comparison
+
+**What can the journal observe?** uses two stage-D arms, matching all numerical
+observations while adding the 32 indexed reservoir coordinates to only one prompt.
+It requires independent generation, alternates request order, and preserves one-arm
+failures. Its question and stopping rule belong to [S-009](../research/studies/S-009-portable-reservoir-journals.md),
+separate from live observational studies. New records use `essentials-actions-v2`;
+legacy v1 files retain their original prompt-verification path.
+
+[Headless recipe](actions/recipes/D-observation-comparison.json) ·
+[Release checks](../analyses/2026-09-16-portable-reservoir-lab.md).

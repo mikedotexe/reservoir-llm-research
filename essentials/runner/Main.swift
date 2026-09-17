@@ -9,7 +9,7 @@ struct EssentialsRunner {
         do {
             let args = Array(CommandLine.arguments.dropFirst())
             if args == ["--help"] || args.isEmpty {
-                print("essentials-run run --config SPEC.json --output RUN.json\nessentials-run actions --config SPEC.json --output RUN.json\nessentials-run verify RUN.json")
+                print("essentials-run run --config SPEC.json --output RUN.json\nessentials-run actions --config SPEC.json --output RUN.json\nessentials-run regulation --config SPEC.json --output RUN.json\nessentials-run verify RUN.json")
                 return
             }
             if args.count == 2 && args[0] == "verify" {
@@ -20,10 +20,14 @@ struct EssentialsRunner {
                 }
                 struct FormatProbe: Decodable { let format: String? }
                 let probe = try JSONDecoder().decode(FormatProbe.self, from: Data(contentsOf: url))
-                if probe.format == ActionComparisonRecord.currentFormat {
+                if ActionComparisonRecord.supportedFormats.contains(probe.format ?? "") {
                     let run = try ActionComparisonRecord.read(from: url)
                     _ = try run.verify()
                     print("Verified \(run.stepCount) action steps per arm, journal receipts, prompts, reply tape and applied feedback.")
+                } else if probe.format == RegulationExampleRecord.currentFormat {
+                    let run = try RegulationExampleRecord.read(from: url)
+                    _ = try run.verify()
+                    print("Verified \(run.frames.count) paired controller steps, shared full-dimensional inputs, next-step retention and the declared target-error window; no journal or model calls.")
                 } else if probe.format == ExplorationRecord.currentFormat {
                     let run = try ExplorationRecord.read(from: url)
                     let report = try run.verify()
@@ -36,8 +40,8 @@ struct EssentialsRunner {
                 }
                 return
             }
-            guard args.count == 5 && ["run", "actions"].contains(args[0]) else {
-                throw EssentialsError.invalid("Use run or actions --config SPEC.json --output RUN.json, or verify RUN.json.")
+            guard args.count == 5 && ["run", "actions", "regulation"].contains(args[0]) else {
+                throw EssentialsError.invalid("Use run, actions or regulation --config SPEC.json --output RUN.json, or verify RUN.json.")
             }
             var options: [String: String] = [:]
             for index in stride(from: 1, to: args.count, by: 2) {
@@ -56,6 +60,13 @@ struct EssentialsRunner {
             let size = try configURL.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? Int.max
             guard size <= 1_048_576 else { throw EssentialsError.invalid("Recipe exceeds 1 MB.") }
             let configData = try Data(contentsOf: configURL)
+            if args[0] == "regulation" {
+                let spec = try JSONDecoder().decode(RegulationExampleSpecification.self, from: configData)
+                let run = try RegulationExampleRecord.generate(specification: spec)
+                try run.write(to: outputURL)
+                print("Completed: \(run.frames.count) paired controller steps. Mean absolute target error: baseline \(run.summary.baselineMeanAbsoluteError), regulated \(run.summary.regulatedMeanAbsoluteError). Saved \(outputURL.path)")
+                return
+            }
             if args[0] == "actions" {
                 let spec = try JSONDecoder().decode(ActionComparisonSpecification.self, from: configData)
                 try spec.validate()

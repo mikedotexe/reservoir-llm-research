@@ -1,0 +1,15 @@
+{
+  "stage": 4,
+  "comparisonKind": "observation",
+  "promptVersion": 2,
+  "mode": "independentGeneration",
+  "comparePrevious": true,
+  "seed": 20260909,
+  "steps": 120,
+  "turnEvery": 30,
+  "language": {"backend": "scripted"},
+  "question": "What changes in writing when the current indexed reservoir state is supplied?",
+  "expectedDifference": "Only the added-observation prompt contains all 32 current reservoir coordinates.",
+  "alternativeExplanation": "Scripted responses establish transport only; additional prompt text and model variability can change real writing without improving it.",
+  "stoppingPoint": "120 matched steps; opportunities 30, 60 and 90. Preserve both outcomes at a failed opportunity, then stop."
+}

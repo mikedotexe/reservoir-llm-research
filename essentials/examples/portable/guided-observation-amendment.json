@@ -1,0 +1,91 @@
+{
+  "schema": "reservoir-scope.guided-observation-protocol-amendment.v1",
+  "recorded_at_utc": "2026-09-17T01:19:25.713082+00:00",
+  "status": "corrected_protocol_frozen_not_executed",
+  "original_receipt": {
+    "file": "guided-observation-recording.json",
+    "sha256": "43af7942984d699c55a5a406bb3a49f070b520c20a9feb85f9b352b6162a3029",
+    "status": "unavailable",
+    "preserved_byte_for_byte": true
+  },
+  "original_recipe": {
+    "file": "active-observation.recipe.json",
+    "sha256": "e90c2f88494c5a283e544591b9d827c35ea196c82dacac6b3898b1b74e138774",
+    "preserved_byte_for_byte": true
+  },
+  "discrepancy": "The preparation recipe inherited promptVersion 1 from its scripted fixture, while the manifest advertised the 40-word instruction. That instruction is implemented by promptVersion 2, the qualified local-model contract.",
+  "correction": "Preparation now explicitly sets promptVersion 2 in the recipe and prompt_version 2 in the manifest. The40-word instruction and qualified output settings agree. Existing unavailable evidence is not rewritten.",
+  "corrected_specification": {
+    "alternativeExplanation": "Extra prompt content, model variability and order may change prose; sensory measurements already provide system information.",
+    "biasEnabled": false,
+    "comparePrevious": true,
+    "comparisonKind": "observation",
+    "expectedDifference": "The added-state arm can cite current signed coordinates. No writing improvement is predicted.",
+    "forcingProfile": "continuousSensoryV1",
+    "initialRetention": 0.955,
+    "inputStrength": 1,
+    "language": {
+      "backend": "ollama",
+      "endpoint": "http://127.0.0.1:63593",
+      "model": "phi3:mini",
+      "contextTokens": 4096,
+      "responseFormat": "json"
+    },
+    "leak": 0.65,
+    "mode": "independentGeneration",
+    "noiseAmplitude": 0,
+    "promptVersion": 2,
+    "question": "What writing occurs when current indexed reservoir coordinates are supplied during active input?",
+    "seed": 20260909,
+    "stage": 4,
+    "steps": 120,
+    "stoppingPoint": "One 120-step run, opportunities30/60/90, at most six requests. Alternate left/right order. Preserve both outcomes at a failed opportunity, then stop. No retries.",
+    "turnEvery": 30
+  },
+  "corrected_manifest_contract": {
+    "prompt_version": 2,
+    "word_instruction": 40,
+    "temperature": 0,
+    "output_tokens": 256,
+    "context_tokens": 4096,
+    "response_format": "json"
+  },
+  "original_outcome": {
+    "status": "unavailable",
+    "generation_attempts": 0,
+    "model_calls": 0,
+    "error": "<urlopen error [Errno 61] Connection refused>"
+  },
+  "amendment_execution": {
+    "inventory_rechecked": false,
+    "retries": 0,
+    "actual_network_requests": 0,
+    "actual_model_calls": 0,
+    "note": "No original inventory endpoint was contacted. No new recording attempt was made. Endpoint in the corrected specification retains original preparation context, not an availability claim."
+  },
+  "qualification": {
+    "schema": "reservoir-scope.guided-observation-prompt-contract-qualification.v1",
+    "status": "passed",
+    "tests": 2,
+    "cases": [
+      "inherited promptVersion 1 becomes2 before inventory",
+      "missing promptVersion becomes2 before inventory"
+    ],
+    "actual_network_requests": 0,
+    "actual_model_calls": 0,
+    "actual_cli_executions": 0,
+    "checks": [
+      "recipe and manifest exist before mocked inventory access",
+      "recipe promptVersion 2 equals manifest specification",
+      "manifest prompt_version 2 and word_instruction 40",
+      "unavailable mock inventory records no generation attempt",
+      "no generation command or model output is produced",
+      "source fixture bytes remain unchanged"
+    ],
+    "script_sha256": "ca9a54079e8ef8560ec96fe5ee83e2e211d2eeb6e252ed5a262cab9056625a47",
+    "test_sha256": "fe0af3a709a65311ac5149d2d194e8c3616eff33c68dcba83477725beaa514fc",
+    "log_sha256": "91aa2d33820beccd10a4b3b5dfbe41d3e8527b0083d50f3986ee4bf38c2dafe4",
+    "scope": "Protocol preparation only; process execution and HTTP inventory fully mocked. No numerical or model-output qualification claimed."
+  },
+  "scope": "S-009 synthetic teaching preparation. This correction does not supply a model-written active-state example or change existing journal records."
+}

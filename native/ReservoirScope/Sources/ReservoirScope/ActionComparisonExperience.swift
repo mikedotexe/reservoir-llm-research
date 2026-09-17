@@ -3,6 +3,12 @@ import EssentialsCore
 
 struct ActionComparisonExperience: View {
     @ObservedObject var model: ActionComparisonViewModel
+    var guided = false
+    var onTryExperiment: () -> Void = {}
+    @StateObject private var tour = GuidedTourModel()
+    @StateObject private var readiness = LocalModelReadiness()
+    @State private var evidenceVisible = false
+    @State private var regulationVisible = false
     @StateObject private var camera = StateSurfaceCamera()
     @State private var presentation: StateSurfacePresentation = .topography
     @State private var height = 0.16
@@ -16,7 +22,7 @@ struct ActionComparisonExperience: View {
     private var activeFrame: ActionFrame? { inspectedArm == .left ? model.leftFrame : model.rightFrame }
     private var activeAction: ActionReceipt? {
         guard let record = activeRecord else { return nil }
-        if let id = model.selectedActionID { return record.actions.first { $0.id == id } }
+        if let id = model.selectedActionID { return record.actions.first { $0.id == id && $0.observedStep <= model.row + 1 } }
         let step = activeFrame?.step ?? 0
         return record.actions.last { $0.observedStep <= step }
     }
@@ -29,30 +35,242 @@ struct ActionComparisonExperience: View {
                 VStack(alignment: .leading, spacing: 8) {
                     heading
                     controls
-                    comparisonNote
-                    displays
-                    if model.isComparison {
-                        ActionDifferenceTrace(left: model.leftRecord?.frames ?? [], right: model.rightRecord?.frames ?? [],
-                                              node: node, row: model.row).frame(height: 63)
-                        if model.record?.specification.stage == .regulation {
-                            HStack(spacing: 12) {
-                                ActionSensoryTrace(left: model.leftRecord?.frames ?? [], right: model.rightRecord?.frames ?? [],
-                                                   row: model.row, isFill: true)
-                                ActionSensoryTrace(left: model.leftRecord?.frames ?? [], right: model.rightRecord?.frames ?? [],
-                                                   row: model.row, isFill: false)
-                            }.frame(height: 43)
-                        }
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 8) {
+                    if guided && model.comparisonKind == .components { lessonCard }
+                    else { comparisonNote }
+                    informationFlow
+                    primaryEvidence
+                    journalPane
+                    if !primaryShowsState {
+                        DisclosureGroup("Reservoir state and coordinates") { displays.frame(height: 240) }
+                            .font(.caption)
                     }
                     actionTimeline
                     playback
+                        }
+                    }
                 }.padding(16).frame(maxWidth: .infinity, maxHeight: .infinity)
-                Divider()
-                ScrollView { inspector.padding(16) }.frame(width: 292)
+                if !guided || evidenceVisible {
+                    Divider()
+                    ScrollView { inspector.padding(16) }.frame(width: 292)
+                }
             }.frame(width: geometry.size.width, height: geometry.size.height)
         }
+        .onAppear { if guided { tour.start(model) } }
+        .onChange(of: guided) { _, value in readiness.invalidate(); if value { tour.resume(model) } }
+        .onChange(of: model.endpoint) { _, _ in readiness.invalidate() }
+        .onChange(of: model.modelName) { _, _ in readiness.invalidate() }
+        .onChange(of: model.localModel) { _, _ in readiness.invalidate() }
+        .onChange(of: model.mode) { _, _ in readiness.invalidate() }
+        .onChange(of: model.running) { _, value in if value { readiness.invalidate() } }
+        .onChange(of: model.row) { _, _ in if guided { tour.remember(model) } }
+        .sheet(isPresented: $regulationVisible) { RegulationExampleView(onClose: { regulationVisible = false }) }
         .onReceive(pulse) { _ in model.tick() }
-        .onDisappear { model.leave() }
+        .onDisappear { readiness.invalidate(); model.leave() }
         .onChange(of: model.isComparison) { _, paired in if !paired { inspectedArm = .right } }
+    }
+
+    private var primaryShowsState: Bool {
+        model.comparisonKind == .components && [.minimal, .recurrence, .reservoirReturn].contains(model.stage)
+    }
+    private var prefixLeft: [ActionFrame] { (model.leftRecord?.frames ?? []).filter { $0.step <= model.row + 1 } }
+    private var prefixRight: [ActionFrame] { (model.rightRecord?.frames ?? []).filter { $0.step <= model.row + 1 } }
+    private func selectStage(_ stage: ActionStage) {
+        if guided { tour.open(stage, model: model) } else { model.select(stage) }
+    }
+    private var lessonCard: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            if let error = tour.error { Text(error).foregroundStyle(.orange) }
+            if let lesson = tour.lesson(model.stage), tour.matches(model) {
+                Text(lesson.question).font(.title3.weight(.medium))
+                if model.stage.hasJournal {
+                    Picker("Example source", selection: Binding(get: { tour.source }, set: { tour.choose($0, model: model) })) {
+                        ForEach(GuidedExampleSource.allCases) { Text($0.title).tag($0) }
+                    }.pickerStyle(.segmented).disabled(model.loading || model.working)
+                    Text(tour.source == .scripted ? "Fixed words make each mechanism reproducible. No model is contacted."
+                         : "Real model writing retained from a completed preparation run. Playback makes no new request.")
+                        .font(.caption).foregroundStyle(.secondary)
+                } else { Text("Scripted example · no journal component yet").font(.caption).foregroundStyle(mint) }
+                Text(lesson.suggestedAction).font(.callout)
+                let evidence = GuidedEvidenceEvaluator.evaluate(model.record, cursorStep: model.rightFrame?.step ?? 0)
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Expected: " + (tour.source == .recordedModel && model.stage.hasJournal ? lesson.modelExpected : lesson.expected))
+                    Text(evidence.state.rawValue + ": " + evidence.observation).foregroundStyle(mint)
+                    Text("Interpretation: " + lesson.limitation).foregroundStyle(.secondary)
+                }.font(.caption).fixedSize(horizontal: false, vertical: true)
+                HStack {
+                    Button(tour.nextCheckpoint(model).map { "Continue to step \($0)" }
+                           ?? (model.stage == .regulation ? "Tour complete" : "Continue to next component")) { tour.continueLesson(model) }
+                        .disabled(model.loading || model.working || (model.stage == .regulation && tour.nextCheckpoint(model) == nil))
+                    Button(evidenceVisible ? "Hide evidence details" : "Show evidence details") { evidenceVisible.toggle() }
+                    Spacer()
+                    Text("\(letter(model.stage)) of H").foregroundStyle(.secondary)
+                }.font(.caption)
+                if model.stage == .regulation {
+                    Button("Compare target error with sustained input…") { model.leave(); regulationVisible = true }.font(.caption)
+                }
+            } else if model.loading {
+                ProgressView("Opening the verified lesson…")
+            } else {
+                Text("This record is outside the guided example catalog.").font(.headline)
+                Text(GuidedEvidenceEvaluator.evaluate(model.record, cursorStep: model.rightFrame?.step ?? 0).observation)
+                    .font(.caption)
+                Button("Open this component’s guided example") { tour.open(model.stage, model: model) }.font(.caption)
+            }
+        }.padding(14).background(mint.opacity(0.075), in: RoundedRectangle(cornerRadius: 10))
+    }
+    private var informationFlow: some View {
+        DisclosureGroup("What information reaches the journal?") {
+            VStack(alignment: .leading, spacing: 5) {
+                Text("Input  →  Reservoir state").font(.callout.monospaced())
+                if model.stage.rawValue >= ActionStage.sensoryObserver.rawValue {
+                    Text("Input  →  Separate sensory field  →  Sensory measurements").font(.callout.monospaced())
+                }
+                if model.stage.hasJournal {
+                    Text("Sensory measurements  →  Prompt  →  Reply  →  Saved journal").font(.callout.monospaced())
+                    if model.comparisonKind == .observation {
+                        Text("Added-state arm only: indexed reservoir coordinates + step  →  Prompt").foregroundStyle(mint)
+                    } else {
+                        Text("The reservoir picture and coordinates are not included in this prompt.").foregroundStyle(.secondary)
+                    }
+                    if model.stage.hasFeedback { Text("E: Saved journal  →  Encoded next input  →  Reservoir and sensory field") }
+                    if model.stage.hasMemory { Text("F: Earlier saved journal  →  Later prompt") }
+                    if model.stage.hasChoice { Text("G: WRITE saves a journal; WAIT leaves the earlier return in place") }
+                    if model.stage == .regulation { Text("H: Measured fill  →  Controller  →  Next sensory retention") }
+                } else { Text("No prompt, model response or journal exists at this stage.").foregroundStyle(.secondary) }
+                Text("Scripted examples use local prompt context and fixed replies. Only model recordings or fresh generation contain submitted model requests.")
+                    .foregroundStyle(.secondary)
+            }.font(.caption).padding(.vertical, 8).textSelection(.enabled)
+        }.font(.caption)
+    }
+    @ViewBuilder private var primaryEvidence: some View {
+        if model.comparisonKind == .observation {
+            promptPanels
+            spectralPanel
+        } else {
+            switch model.stage {
+            case .minimal:
+                GuidedLineTrace(title: "Input and resulting state · RMS magnitude", series: [
+                    .init(title: "Input", color: previousColor, values: prefixRight.map { GuidedEvidenceEvaluator.rms($0.externalInput) }),
+                    .init(title: "State", color: mint, values: prefixRight.map { GuidedEvidenceEvaluator.rms($0.state) })], lower: 0, upper: 1)
+                    .frame(height: 100)
+                displays.frame(height: 240)
+            case .recurrence:
+                displays.frame(height: 240)
+                ActionDifferenceTrace(left: prefixLeft, right: prefixRight, node: node, row: model.row).frame(height: 85)
+            case .sensoryObserver:
+                spectralPanel
+            case .journalOutput:
+                promptPanels
+            case .reservoirReturn:
+                feedbackPanel
+                displays.frame(height: 240)
+                ActionDifferenceTrace(left: prefixLeft, right: prefixRight, node: node, row: model.row).frame(height: 70)
+            case .journalMemory:
+                memoryPanel
+                promptPanels
+            case .actionChoice:
+                choicePanel
+            case .regulation:
+                regulationPanel
+            }
+        }
+    }
+    private var spectralPanel: some View {
+        VStack(alignment: .leading, spacing: 9) {
+            Text("SEPARATE SENSORY MEASUREMENT").font(.caption.weight(.semibold))
+            Text("Measured eigenvalues of the sensory field. These are numerical measurements, not reservoir node values.")
+                .font(.caption).foregroundStyle(.secondary)
+            HStack(alignment: .top, spacing: 16) {
+                if let left = model.leftFrame, let spectrum = left.spectral {
+                    GuidedSpectrum(title: "Previous / sensory arm", values: spectrum.eigenvalues,
+                        upper: spectrumUpper, color: previousColor)
+                } else if model.isComparison { Text("Previous component: no sensory observer").font(.caption).frame(maxWidth: .infinity) }
+                if let spectrum = model.rightFrame?.spectral {
+                    GuidedSpectrum(title: model.comparisonKind == .observation ? "Added-state arm" : "Current sensory field", values: spectrum.eigenvalues, upper: spectrumUpper, color: mint)
+                } else { Text("No measurement at this cursor.").font(.caption) }
+            }.frame(height: 155)
+            if let fill = model.rightFrame?.fillPercent { Text("Current reduced fill: \(number(fill, 2))% · step \(model.row + 1)").font(.caption.monospacedDigit()) }
+        }.padding(12).background(.white.opacity(0.035), in: RoundedRectangle(cornerRadius: 8))
+    }
+    private var spectrumUpper: Double { max(0.001, max(model.leftFrame?.spectral?.eigenvalues.max() ?? 0, model.rightFrame?.spectral?.eigenvalues.max() ?? 0)) }
+    private var promptPanels: some View {
+        HStack(alignment: .top, spacing: 12) {
+            if let left = model.leftRecord, left.stage.hasJournal { promptPanel(run: left, action: model.leftAction) }
+            if let right = model.rightRecord { promptPanel(run: right, action: model.rightAction) }
+        }
+    }
+    private func promptPanel(run: ActionRunRecord, action: ActionReceipt?) -> some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text((action?.requestStarted == true ? (model.record?.specification.language.backend == .ollama ? "Exact submitted model prompt" : "Scripted backend prompt") : "Prepared prompt · not sent") + " · " + (run.arm == .left ? "Previous / control" : "Current"))
+                .font(.caption.weight(.semibold))
+            Text((run.observationChannel ?? .sensory).title).font(.caption2).foregroundStyle(mint)
+            ScrollView {
+                Text(action?.prompt ?? "No writing opportunity has been reached at this cursor.")
+                    .font(.system(size: 12, design: .monospaced)).textSelection(.enabled)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }.frame(height: guided ? 160 : 120)
+        }.padding(10).frame(maxWidth: .infinity).background(.white.opacity(0.04), in: RoundedRectangle(cornerRadius: 8))
+    }
+    private var feedbackPanel: some View {
+        VStack(alignment: .leading, spacing: 7) {
+            Text("SAVE → PREPARE RETURN → NEXT INPUT").font(.caption.weight(.semibold))
+            if let action = model.rightAction {
+                Text("Observed \(action.observedStep)  →  \(action.saveReceipt?.status == .saved ? "Journal saved" : "No successful save")  →  "
+                     + (model.applicationStepAtCursor(action).map { "Applied at \($0)" } ?? "Not applied at this cursor"))
+                    .font(.callout.monospacedDigit())
+                if let encoded = action.semanticVector {
+                    Text("Prepared return: 48 coordinates · RMS \(number(GuidedEvidenceEvaluator.rms(encoded), 4))")
+                        .font(.caption).foregroundStyle(.secondary)
+                }
+            } else { Text("Continue to the first saved journal.").font(.caption) }
+        }.padding(12).background(mint.opacity(0.07), in: RoundedRectangle(cornerRadius: 8))
+    }
+    private var memoryPanel: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text("EARLIER JOURNAL IN THE CURRENT PROMPT").font(.caption.weight(.semibold))
+            if let action = model.rightAction, let memory = action.memoryText {
+                Text("Opportunity \(action.observedStep) · \(model.record?.specification.language.backend == .ollama ? (action.requestStarted ? "included in submitted model request" : "prepared context · not submitted") : "included in scripted context")")
+                    .font(.caption).foregroundStyle(mint)
+                ScrollView { Text(memory).font(.system(size: 13)).textSelection(.enabled).frame(maxWidth: .infinity, alignment: .leading) }
+                    .frame(height: 125)
+            } else { Text("No earlier journal is supplied at this cursor. Continue to step 60 in the example.").font(.caption).foregroundStyle(.secondary) }
+        }.padding(12).background(.white.opacity(0.04), in: RoundedRectangle(cornerRadius: 8))
+    }
+    private var choicePanel: some View {
+        HStack(alignment: .top, spacing: 12) {
+            if let left = model.leftRecord { choiceColumn(left, action: model.leftAction) }
+            if let right = model.rightRecord { choiceColumn(right, action: model.rightAction) }
+        }
+    }
+    private func choiceColumn(_ run: ActionRunRecord, action: ActionReceipt?) -> some View {
+        VStack(alignment: .leading, spacing: 7) {
+            Text(run.stage.title).font(.caption.weight(.medium))
+            Text(action?.chosenAction.map(actionTitle) ?? "No choice yet").font(.title2.weight(.medium)).foregroundStyle(mint)
+            if let action {
+                Text("Opportunity \(action.observedStep) · \(action.status.rawValue)").font(.caption)
+                Text(action.chosenAction == .wait ? "No journal; the earlier returned input remains." : action.saveReceipt?.status == .saved ? "Journal saved; inspect its subsequent application." : "No successful saved journal is established.")
+                    .font(.caption).foregroundStyle(.secondary)
+            }
+        }.frame(maxWidth: .infinity, minHeight: 115, alignment: .topLeading)
+            .padding(12).background(.white.opacity(0.04), in: RoundedRectangle(cornerRadius: 8))
+    }
+    private var regulationPanel: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("SENSORY REGULATION · TARGET 68%, DEADBAND ±4 POINTS").font(.caption.weight(.semibold))
+            GuidedLineTrace(title: "Reduced fill · %", series: [
+                .init(title: "Previous", color: previousColor, values: prefixLeft.compactMap(\.fillPercent)),
+                .init(title: "Current", color: mint, values: prefixRight.compactMap(\.fillPercent))], lower: 0, upper: 100, reference: 68)
+                .frame(height: 125)
+            GuidedLineTrace(title: "Retention used by each field update", series: [
+                .init(title: "Previous", color: previousColor, values: prefixLeft.compactMap(\.retentionUsed)),
+                .init(title: "Current", color: mint, values: prefixRight.compactMap(\.retentionUsed))], lower: 0.82, upper: 0.995)
+                .frame(height: 100)
+            Text("A controller update sets the next field retention. It does not directly change reservoir coordinates. This example includes limited control authority.")
+                .font(.caption).foregroundStyle(.secondary)
+            Button("Open sustained-input target-error comparison…") { model.leave(); regulationVisible = true }.font(.caption)
+        }.padding(12).background(.white.opacity(0.035), in: RoundedRectangle(cornerRadius: 8))
     }
 
     private var sidebar: some View {
@@ -62,30 +280,53 @@ struct ActionComparisonExperience: View {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 10) {
                     ForEach(ActionStage.allCases) { stage in
-                        Button { model.select(stage) } label: {
+                        Button { selectStage(stage) } label: {
                             HStack(alignment: .top, spacing: 8) {
                                 Text(letter(stage)).font(.system(.caption, design: .monospaced).weight(.semibold))
                                     .frame(width: 24, height: 24)
-                                    .background(stage == model.stage ? mint.opacity(0.25) : .white.opacity(0.06), in: Circle())
+                                    .background(stage == model.stage && model.comparisonKind == .components ? mint.opacity(0.25) : .white.opacity(0.06), in: Circle())
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text(shortTitle(stage)).font(.caption.weight(.medium))
-                                    if stage == model.stage {
+                                    if stage == model.stage && model.comparisonKind == .components {
                                         Text(stage.addedFeature).font(.caption2).foregroundStyle(.secondary)
                                             .fixedSize(horizontal: false, vertical: true)
                                     }
                                 }
                                 Spacer(minLength: 0)
                             }.padding(7).frame(maxWidth: .infinity, alignment: .leading)
-                                .background(stage == model.stage ? mint.opacity(0.08) : .clear,
+                                .background(stage == model.stage && model.comparisonKind == .components ? mint.opacity(0.08) : .clear,
                                             in: RoundedRectangle(cornerRadius: 7))
                         }.buttonStyle(.plain)
                     }
                     Divider()
-                    runSettings
+                    Button {
+                        if guided {
+                            let url = Bundle.module.url(forResource: "example-observation-active-scripted", withExtension: "json")
+                                ?? Bundle.module.url(forResource: "example-observation-active-scripted", withExtension: "json", subdirectory: "Resources")
+                            if let url { tour.remember(model); model.open(url) }
+                            else { model.error = "The packaged active-state scripted comparison is unavailable." }
+                        } else { model.selectObservationComparison() }
+                    } label: {
+                        Text(guided ? "Active-state comparison · scripted" : "What can the journal observe?").font(.caption).foregroundStyle(mint)
+                            .multilineTextAlignment(.leading).fixedSize(horizontal: false, vertical: true)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }.buttonStyle(.plain)
+                    HStack {
+                        Button("Previous") { if let p = model.stage.previous { selectStage(p) } }.disabled(model.stage.previous == nil)
+                        Button("Next") { if let n = ActionStage(rawValue: model.stage.rawValue + 1) { selectStage(n) } }.disabled(model.stage == .regulation)
+                    }.font(.caption)
                     Divider()
-                    studyNotes
-                    Button { model.loadExample() } label: { Label("Open example", systemImage: "play.rectangle") }
-                        .font(.caption).disabled(model.running || model.working)
+                    if guided {
+                        Text("Eight components · explore them in any order").font(.caption2).foregroundStyle(.secondary)
+                        Button("Try an experiment") { tour.remember(model); model.prepareExperiment(); onTryExperiment() }.font(.caption)
+                        Text("Examples play locally. New experiments have their own settings and records.")
+                            .font(.caption2).foregroundStyle(.secondary)
+                    } else {
+                        DisclosureGroup("Experiment settings") { runSettings.padding(.top, 8); studyNotes }
+                            .font(.caption)
+                        Button { model.loadExample() } label: { Label("Open example", systemImage: "play.rectangle") }
+                            .font(.caption).disabled(model.running || model.working)
+                    }
                 }.padding(.trailing, 3)
             }
         }.padding(14).background(.white.opacity(0.025))
@@ -98,7 +339,7 @@ struct ActionComparisonExperience: View {
                 Text("Fixed tape").tag(ActionComparisonMode.fixedReplay)
                 Text("Independent").tag(ActionComparisonMode.independentGeneration)
             }.pickerStyle(.segmented).labelsHidden().controlSize(.small)
-                .disabled(model.running || model.working)
+                .disabled(model.running || model.working || model.comparisonKind == .observation)
             Text(model.mode == .fixedReplay
                  ? "Replay the same retained words and codec vectors to isolate feedback mechanics."
                  : "Each arm receives its own observations, memory and action choices.")
@@ -115,6 +356,9 @@ struct ActionComparisonExperience: View {
                         .accessibilityLabel("Action model endpoint")
                     TextField("Model name", text: $model.modelName).textFieldStyle(.roundedBorder)
                         .accessibilityLabel("Action model name")
+                    Text("JSON · 4,096-token context · 256-token output · temperature 0").font(.caption2).foregroundStyle(.secondary)
+                    LocalModelReadinessView(model: readiness, endpoint: model.endpoint, modelName: model.modelName)
+                        .disabled(model.running || model.working)
                 } else {
                     Text("Scripted replies are a reproducible fixture. They do not demonstrate adaptive writing.")
                         .font(.caption2).foregroundStyle(.secondary)
@@ -151,38 +395,55 @@ struct ActionComparisonExperience: View {
     private var heading: some View {
         VStack(alignment: .leading, spacing: 5) {
             HStack {
-                Text("Actions & comparisons").font(.system(size: 21, weight: .medium))
+                Text(model.comparisonKind == .observation ? "What can the journal observe?" : guided ? "From input to journal" : "Actions & comparisons").font(.system(size: 21, weight: .medium))
                 Spacer(minLength: 6)
                 Button("Open…") { model.chooseFile() }.disabled(model.running || model.working)
                 Button("Export…") { model.export() }.disabled(model.record == nil || model.running || model.working)
             }
             HStack(spacing: 7) {
-                Circle().fill(model.running ? mint : .gray).frame(width: 5, height: 5)
+                Circle().fill(model.running || model.replaying ? mint : .gray).frame(width: 5, height: 5)
                 Text(model.status).font(.caption).foregroundStyle(.secondary).lineLimit(2)
                 Spacer(minLength: 4)
                 if let frame = model.rightFrame {
                     Text("Step \(frame.step) · \(number(frame.time, 2)) s").font(.caption.monospacedDigit())
                 }
             }
+            if !model.isRecording && model.stage.hasJournal && model.mode == .independentGeneration && model.localModel &&
+                (model.endpoint.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || model.modelName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
+                Text("Choose a local endpoint and installed model in Experiment settings before starting.")
+                    .font(.caption).foregroundStyle(.secondary)
+            }
             if let error = model.error { Text(error).font(.caption).foregroundStyle(.orange).textSelection(.enabled) }
-            if let issue = model.saveIssue { Text(issue).font(.caption).foregroundStyle(.orange).textSelection(.enabled) }
+            if let issue = model.saveIssue { HStack { Text(issue).font(.caption).foregroundStyle(.orange); Button("Retry save") { model.retrySaves() }; Button("Export retained") { model.exportRetained() } } }
         }
     }
 
     private var controls: some View {
+        VStack(alignment: .leading, spacing: 6) {
         HStack(spacing: 7) {
             Button { model.run() } label: {
-                Label("Run", systemImage: "play.fill").padding(.horizontal, 10).padding(.vertical, 5)
+                Label(model.isRecording ? "Play" : "Run", systemImage: "play.fill").padding(.horizontal, 10).padding(.vertical, 5)
                     .background(mint.opacity(model.canRun ? 1 : 0.35), in: RoundedRectangle(cornerRadius: 5))
                     .foregroundStyle(.black)
             }.buttonStyle(.plain).disabled(!model.canRun)
-            Button("Stop") { model.stop() }.disabled(!model.running && !model.working)
-            Button("Step") { model.step() }.disabled(model.running || model.working || model.loading)
-            Button("Reset") { model.reset() }.disabled(model.running || model.working)
-            Button("Write journal") { model.writeJournal() }.disabled(!model.canWrite)
-                .help("Request an explicit writing action at the current boundary. This is a human request.")
+            Button("Stop") { model.stop() }.disabled(!model.running && !model.replaying && !model.working)
+            Button("Step") { model.step() }.disabled(!model.canStep)
+            Button("Next journal") { model.nextJournal() }.disabled(!model.stage.hasJournal || model.working || model.loading)
+            Button("Replay") { model.replay() }.disabled(model.framesCount == 0 || model.working)
+        }
+        HStack(spacing: 7) {
+            if !guided {
+                Button("Write journal") { model.writeJournal() }.disabled(!model.canWrite)
+                    .help("Request an explicit writing action at the current boundary. This is a human request.")
+                if model.isRecording { Button("New experiment") { model.prepareExperiment() } }
+            }
             Spacer(minLength: 3)
-            Button("Compare with previous") { model.compareWithPrevious() }.disabled(!model.canCompare)
+            Button(model.comparisonKind == .observation ? "Compare observations" : "Compare with previous") {
+                if guided {
+                    tour.remember(model); model.compareWithPrevious(); onTryExperiment()
+                } else { model.compareWithPrevious() }
+            }.disabled(model.loading || model.working || model.stage.previous == nil)
+        }
         }.font(.caption)
     }
 
@@ -190,14 +451,23 @@ struct ActionComparisonExperience: View {
         VStack(alignment: .leading, spacing: 4) {
             if let record = model.record {
                 let spec = record.specification
-                Text(record.left == nil ? spec.stage.title : "\(letter(record.left!.stage)) → \(letter(spec.stage)) · Added: \(spec.stage.addedFeature)")
+                Text(spec.comparisonKind == .observation ? "Sensory-only ↔ sensory + reservoir · stage D in both arms" : record.left == nil ? spec.stage.title : "\(letter(record.left!.stage)) → \(letter(spec.stage)) · Added: \(spec.stage.addedFeature)")
                     .font(.caption.weight(.medium)).foregroundStyle(mint)
                 Text("Seed \(spec.seed) · leak \(number(spec.leak, 2)) · input \(number(spec.inputStrength, 2)) · noise \(number(spec.noiseAmplitude, 2)) · bias \(spec.biasEnabled ? "on" : "off")")
                     .font(.caption2).foregroundStyle(.secondary)
-                Text(spec.mode == .fixedReplay
+                Text(spec.comparisonKind == .observation ? "Identical measured trajectory. Feedback, memory, choice and regulation are off." : spec.mode == .fixedReplay
                      ? "Matched external forcing; retained words and vectors stay fixed."
                      : "Matched setup; each arm's replies can change its later trajectory.")
                     .font(.caption2).foregroundStyle(.secondary)
+                if spec.comparisonKind == .observation {
+                    Text(spec.forcingProfile == .continuousSensoryV1 ? "Active-state example · sensory input remains active at writing opportunities."
+                         : "Quiet-state example · writing opportunities follow 18 quiet steps.")
+                        .font(.caption).foregroundStyle(mint)
+                    if guided {
+                        Button(evidenceVisible ? "Hide evidence details" : "Show evidence details") { evidenceVisible.toggle() }
+                            .font(.caption)
+                    }
+                }
                 if spec.stage == .journalMemory && spec.mode == .fixedReplay {
                     Text("Memory exposure differs; fixed writing may leave states identical. Choose Independent to test coupled writing.")
                         .font(.caption2).foregroundStyle(.secondary)
@@ -231,10 +501,10 @@ struct ActionComparisonExperience: View {
             }
             HStack(spacing: 9) {
                 if let left = model.leftRecord {
-                    statePanel(title: left.stage.title, frame: model.leftFrame, color: previousColor,
+                    statePanel(title: model.comparisonKind == .observation ? "Sensory measurements only" : left.stage.title, frame: model.leftFrame, color: previousColor,
                                empty: model.framesCount == 0 ? "Initial state" : "No matching observation")
                 }
-                statePanel(title: model.rightRecord?.stage.title ?? model.stage.title, frame: model.rightFrame,
+                statePanel(title: model.comparisonKind == .observation ? "Sensory + reservoir coordinates" : model.rightRecord?.stage.title ?? model.stage.title, frame: model.rightFrame,
                            color: mint, empty: model.framesCount == 0 ? "Initial state" : "No matching observation")
             }.frame(minHeight: 190, maxHeight: .infinity)
             Text((model.isComparison ? "Shared camera, cursor and scales · −1 to +1" : "Activation −1 to +1")
@@ -267,6 +537,51 @@ struct ActionComparisonExperience: View {
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
+    private var journalPane: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            HStack {
+                Text("JOURNAL AT THE CURSOR").font(.system(size: 10, weight: .semibold)).tracking(1)
+                Spacer()
+                Text(model.provenance).font(.caption2).foregroundStyle(mint)
+            }
+            if !model.stage.hasJournal {
+                Text("No journal component yet. Stage D adds writing; the preceding stages expose numerical behavior.")
+                    .font(.caption).foregroundStyle(.secondary)
+            } else {
+                HStack(alignment: .top, spacing: 12) {
+                    if let left = model.leftRecord { journalColumn(left, action: model.leftAction) }
+                    if let right = model.rightRecord { journalColumn(right, action: model.rightAction) }
+                    else { Text("Run or open an example to inspect the first journal opportunity.").font(.caption) }
+                }
+            }
+        }.padding(10).background(.white.opacity(0.04), in: RoundedRectangle(cornerRadius: 8))
+    }
+    private func journalColumn(_ run: ActionRunRecord, action: ActionReceipt?) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(model.comparisonKind == .observation ? (run.observationChannel ?? .sensory).title : run.stage.title).font(.caption.weight(.medium)).foregroundStyle(mint)
+            if !run.stage.hasJournal {
+                Text("No journal component in this arm.").font(.caption).foregroundStyle(.secondary).frame(height: 100)
+            } else if model.journalPending {
+                Text("Journal opportunity pending at step \(model.row + 1) · simulated time is paused.").font(.caption).foregroundStyle(.secondary).frame(height: 100)
+            } else if let action {
+                Text("Observed step \(action.observedStep) · \(action.saveReceipt?.status == .failed ? "journal save failed" : action.status.rawValue)" + (action.requestOrder.map { " · request \($0)" } ?? ""))
+                    .font(.caption2).foregroundStyle(.secondary)
+                if action.status == .failed && action.rawReply != nil && !run.journals.contains(where: { $0.id == action.journalEntryID }) {
+                    Text(action.providerComplete == false ? "No saved journal · incomplete response retained below." : "No saved journal · response retained below.")
+                        .font(.caption2).foregroundStyle(.orange)
+                }
+                ScrollView {
+                    Text(run.journals.first(where: { $0.id == action.journalEntryID })?.text
+                         ?? (action.chosenAction == .wait ? "WAIT · no journal was written." : action.rawReply ?? action.failure ?? "No completed journal at this opportunity."))
+                        .font(.system(size: 13)).textSelection(.enabled).frame(maxWidth: .infinity, alignment: .leading)
+                }.frame(height: guided ? 170 : 120)
+            } else {
+                Text("No journal opportunity at or before this step.")
+                    .font(.caption).foregroundStyle(.secondary).frame(height: 100)
+            }
+        }.frame(maxWidth: .infinity, alignment: .leading)
+    }
+
     private var actionTimeline: some View {
         VStack(alignment: .leading, spacing: 3) {
             eyebrow("ACTION OPPORTUNITIES · CLICK TO INSPECT")
@@ -281,7 +596,7 @@ struct ActionComparisonExperience: View {
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
                     Rectangle().fill(.white.opacity(0.08)).frame(height: 1)
-                    ForEach(arm.actions) { action in
+                    ForEach(arm.actions.filter { $0.observedStep <= model.row + 1 }) { action in
                         Button {
                             if !model.running && !model.working { model.scrub(Double(max(0, action.observedStep - 1))) }
                             inspectedArm = arm.arm; model.selectedActionID = action.id
@@ -328,19 +643,18 @@ struct ActionComparisonExperience: View {
         // Receipt sections are bounded. Keeping their geometry materialized
         // avoids lazy disclosure re-layout when accessibility reveals text.
         VStack(alignment: .leading, spacing: 16) {
-            coordinateInspector
-            Divider()
+            if primaryShowsState { coordinateInspector; Divider() }
             if model.isComparison {
                 Picker("Inspect arm", selection: $inspectedArm) {
-                    Text("Previous").tag(ActionArm.left)
-                    Text("Current").tag(ActionArm.right)
+                    Text(model.comparisonKind == .observation ? "Sensory" : "Previous").tag(ActionArm.left)
+                    Text(model.comparisonKind == .observation ? "+ State" : "Current").tag(ActionArm.right)
                 }.pickerStyle(.segmented).labelsHidden().controlSize(.small)
             }
             Text(activeRecord?.stage.title ?? model.stage.title).font(.caption.weight(.medium))
             if let record = activeRecord, !record.actions.isEmpty {
                 Picker("Action", selection: Binding(get: { model.selectedActionID ?? 0 }, set: { model.selectedActionID = $0 == 0 ? nil : $0 })) {
                     Text("Latest at cursor").tag(0)
-                    ForEach(record.actions) { Text("\($0.id) · step \($0.observedStep)").tag($0.id) }
+                    ForEach(record.actions.filter { $0.observedStep <= model.row + 1 }) { Text("\($0.id) · step \($0.observedStep)").tag($0.id) }
                     if let id = model.selectedActionID, !record.actions.contains(where: { $0.id == id }) {
                         Text("\(id) · unavailable in this arm").tag(id)
                     }
@@ -348,8 +662,9 @@ struct ActionComparisonExperience: View {
             }
             if let action = activeAction { actionInspector(action) }
             else { Text("No action receipt at this cursor or selected opportunity.").font(.caption).foregroundStyle(.secondary) }
+            if !primaryShowsState { DisclosureGroup("Exact coordinates and measurements") { coordinateInspector } }
             Divider()
-            Text("Writing observes the separate sensory field fed by input. Reservoir activations are not part of this prompt; recurrence alone does not change that observation.")
+            Text(model.comparisonKind == .observation ? "Both arms share the same trajectory. Only the designated arm receives the 32 indexed reservoir coordinates." : "Writing observes the separate sensory field fed by input. Reservoir activations are not part of this prompt; recurrence alone does not change that observation.")
                 .font(.caption2).foregroundStyle(.secondary)
             if let tape = model.record?.tape {
                 DisclosureGroup("Fixed reply tape") {
@@ -388,9 +703,9 @@ struct ActionComparisonExperience: View {
                 Stepper("Selected node", value: $model.selectedNode, in: 0...31).labelsHidden()
             }
             if model.isComparison {
-                metric("Previous", model.leftFrame.map { number($0.state[node], 6) } ?? "Unavailable")
-                metric("Current", model.rightFrame.map { number($0.state[node], 6) } ?? "Unavailable")
-                metric("Current − previous", pairedValue { $1.state[node] - $0.state[node] })
+                metric(model.comparisonKind == .observation ? "Sensory arm" : "Previous", model.leftFrame.map { number($0.state[node], 6) } ?? "Unavailable")
+                metric(model.comparisonKind == .observation ? "Added-state arm" : "Current", model.rightFrame.map { number($0.state[node], 6) } ?? "Unavailable")
+                metric("Right − left", pairedValue { $1.state[node] - $0.state[node] })
                 metric("State difference · RMS", pairedValue { differenceRMS($0.state, $1.state) })
                 metric("External difference · RMS", pairedValue { differenceRMS($0.externalInput, $1.externalInput) })
                 metric("Semantic difference · RMS", pairedValue { differenceRMS($0.semanticInput, $1.semanticInput) })
@@ -445,8 +760,8 @@ struct ActionComparisonExperience: View {
                  : "Prepared context was not sent to a model in this replay or failed attempt.")
                 .font(.caption2).foregroundStyle(.secondary)
             Divider()
-            metric("Codec return", action.applicationStep.map { "Applied at step \($0)" }
-                ?? (action.semanticVector == nil ? "Not prepared" : "Prepared; not applied"))
+            metric("Codec return", model.applicationStepAtCursor(action).map { "Applied at step \($0)" }
+                ?? (action.semanticVector == nil ? "Not prepared" : "Prepared; not applied at this cursor"))
             if let values = action.encodedFeatures { disclosure("Encoded text features", text: vector(values)) }
             if let values = action.semanticVector { disclosure("Exact 48-coordinate return", text: vector(values)) }
             if let packetID = action.tapePacketID {
@@ -495,7 +810,7 @@ private struct ActionDifferenceTrace: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
-                Text("Node \(node) · current − previous").font(.caption2)
+                Text("Node \(node) · right − left").font(.caption2)
                 Spacer()
                 Text("Fixed scale −2 to +2").font(.caption2).foregroundStyle(.secondary)
             }
@@ -520,7 +835,7 @@ private struct ActionDifferenceTrace: View {
                     context.stroke(cursor, with: .color(.white.opacity(0.7)), lineWidth: 1)
                 }
             }
-        }.accessibilityLabel("Exact recorded difference for node \(node), current minus previous. Fixed scale minus two to plus two.")
+        }.accessibilityLabel("Exact recorded difference for node \(node), right minus left. Fixed scale minus two to plus two.")
     }
 }
 

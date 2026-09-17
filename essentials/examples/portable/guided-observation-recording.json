@@ -1,0 +1,64 @@
+{
+  "schema": "reservoir-scope.guided-observation-recording.v1",
+  "registered_at_utc": "2026-09-17T00:47:54.300308+00:00",
+  "status": "unavailable",
+  "model_name": "phi3:mini",
+  "expected_model_digest": "4f222292793889a9a40a020799cfd28d53f3e01af25d48e06c5e708610fc47e9",
+  "cli_sha256": "d0a69c67725cbf002c9b0148cf5fc4cc4ead6db076bc483d46a51925a0d2a39d",
+  "fixture_sha256": "e6a3dc7958badd9fc2bd5078fcf831ad5cb628e257c634c75da8c3b8c33e9bad",
+  "specification": {
+    "alternativeExplanation": "Extra prompt content, model variability and order may change prose; sensory measurements already provide system information.",
+    "biasEnabled": false,
+    "comparePrevious": true,
+    "comparisonKind": "observation",
+    "expectedDifference": "The added-state arm can cite current signed coordinates. No writing improvement is predicted.",
+    "forcingProfile": "continuousSensoryV1",
+    "initialRetention": 0.955,
+    "inputStrength": 1,
+    "language": {
+      "backend": "ollama",
+      "endpoint": "http://127.0.0.1:63593",
+      "model": "phi3:mini",
+      "contextTokens": 4096,
+      "responseFormat": "json"
+    },
+    "leak": 0.65,
+    "mode": "independentGeneration",
+    "noiseAmplitude": 0,
+    "promptVersion": 1,
+    "question": "What writing occurs when current indexed reservoir coordinates are supplied during active input?",
+    "seed": 20260909,
+    "stage": 4,
+    "steps": 120,
+    "stoppingPoint": "One 120-step run, opportunities30/60/90, at most six requests. Alternate left/right order. Preserve both outcomes at a failed opportunity, then stop. No retries.",
+    "turnEvery": 30
+  },
+  "temperature": 0,
+  "output_tokens": 256,
+  "context_tokens": 4096,
+  "response_format": "json",
+  "word_instruction": 40,
+  "qualification": {
+    "steps": [
+      30,
+      60,
+      90
+    ],
+    "minimum_maximum_absolute_state": 0.25,
+    "observed_maximum_absolute_state": [
+      0.8369444562068122,
+      0.6268849797790123,
+      0.8202865092800402
+    ]
+  },
+  "scope": "S-009 synthetic teaching fixture selected by numerical qualification, separate from live Being studies. Different prose is not improved fidelity.",
+  "request_order": [
+    "left,right",
+    "right,left",
+    "left,right"
+  ],
+  "maximum_model_requests": 6,
+  "attempts": [],
+  "error": "<urlopen error [Errno 61] Connection refused>",
+  "finished_at_utc": "2026-09-17T00:47:54.327876+00:00"
+}

@@ -26,12 +26,20 @@ private final class MemoryActionJournals: ActionJournalStore, @unchecked Sendabl
     }
     var readCount: Int { lock.lock(); defer { lock.unlock() }; return reads }
 }
+private final class SessionFactoryCounter: @unchecked Sendable {
+    private let lock = NSLock()
+    private var count = 0
+    func record() { lock.lock(); defer { lock.unlock() }; count += 1 }
+    var calls: Int { lock.lock(); defer { lock.unlock() }; return count }
+}
 private actor ActionWriter {
     struct Write: Sendable { let record: ActionComparisonRecord; let url: URL }
     private(set) var writes: [Write] = []
     private var gate: CheckedContinuation<Void, Never>?
     private var delayNext = false
     private var failNext = false
+    private var failedStage: ActionStage?
+    func failStage(_ stage: ActionStage) { failedStage = stage }
     func delay() { delayNext = true }
     func fail() { failNext = true }
     func waiting() -> Bool { gate != nil }
@@ -39,7 +47,7 @@ private actor ActionWriter {
     func write(_ record: ActionComparisonRecord, _ url: URL) async throws {
         writes.append(.init(record: record, url: url))
         if delayNext { delayNext = false; await withCheckedContinuation { gate = $0 } }
-        if failNext { failNext = false; throw EssentialsError.invalid("Controlled record save failure") }
+        if failNext || (record.specification.stage == failedStage && url.lastPathComponent == "run.json") { failNext = false; throw EssentialsError.invalid("Controlled record save failure") }
     }
 }
 private actor ActionLoader {
@@ -83,16 +91,17 @@ private actor DelayedActionBackend: LanguageBackend {
     }
     func make(clock: ActionClock = ActionClock(), store: MemoryActionJournals = MemoryActionJournals(),
               writer: ActionWriter = ActionWriter(), loader: ActionLoader = ActionLoader(),
-              backend: (any LanguageBackend)? = nil) -> ActionComparisonViewModel {
+              backend: (any LanguageBackend)? = nil, factoryCounter: SessionFactoryCounter = SessionFactoryCounter()) -> ActionComparisonViewModel {
         ActionComparisonViewModel(uptime: { clock.now }, sessionFactory: { spec, _ in
-            try ActionComparisonSession(specification: spec, journalStore: store, backend: backend)
+            factoryCounter.record()
+            return try ActionComparisonSession(specification: spec, journalStore: store, backend: backend)
         }, recordLoader: { try await loader.read($0) }, recordWriter: { try await writer.write($0, $1) },
-            workspaceURL: URL(fileURLWithPath: "/controlled/research"))
+            workspaceURL: URL(fileURLWithPath: "/controlled/research"), preferences: UserDefaults(suiteName: "reservoir-actions-checks-" + UUID().uuidString)!)
     }
     mutating func run() async throws {
         let clock = ActionClock(), writer = ActionWriter(), loader = ActionLoader(), store = MemoryActionJournals()
         let model = make(clock: clock, store: store, writer: writer, loader: loader)
-        try check(model.framesCount == 0 && model.rightState == Array(repeating: 0, count: 32) && model.speed == 3,
+        try check(model.stage == .minimal && model.framesCount == 0 && model.rightState == Array(repeating: 0, count: 32) && model.speed == 3,
             "Actions starts with a quiet display and three-step-per-second pace")
         model.select(.minimal); model.run(); try await idle(model)
         try check(model.running && model.framesCount == 0, "Run prepares a session without advancing a hidden step")
@@ -113,6 +122,9 @@ private actor DelayedActionBackend: LanguageBackend {
         model.replay(); clock.now += 0.051; model.tick()
         try check(model.row == 1 && model.framesCount == 3 && model.rightState == model.rightRecord?.frames[1].state,
             "Replay selects exact historical vectors without creating observations")
+        model.scrub(0); model.step()
+        try check(model.row == 1 && model.framesCount == 3 && !model.working,
+            "Step in active-session history moves only the recorded cursor")
         model.scrub(0); model.run()
         try check(model.row == 2 && model.framesCount == 3 && original == model.rightRecord?.frames[0].state,
             "Resume after scrubbing restores the latest session without changing historical values")
@@ -120,7 +132,7 @@ private actor DelayedActionBackend: LanguageBackend {
         try check(!model.running && !model.replaying && model.framesCount == 3, "Leaving stops both clocks")
         let minimal = model.record!
         let switching = make()
-        switching.run(); switching.select(.regulation); switching.compareWithPrevious(); try await idle(switching)
+        switching.run(); switching.select(.regulation); switching.compareWithPrevious(); switching.run(); try await idle(switching)
         try check(switching.running && switching.record?.specification.stage == .regulation
             && switching.leftRecord?.stage == .actionChoice && switching.framesCount == 0,
             "Rapid selection during preparation exposes only the fully prepared newest pair")
@@ -130,7 +142,7 @@ private actor DelayedActionBackend: LanguageBackend {
             "Fixed G/H starts with identical realized inputs and states after a rapid workspace change")
         model.select(.reservoirReturn); model.localModel = true
         try check(model.canCompare && model.canRun, "Fixed replay remains runnable with blank optional local-model fields")
-        model.compareWithPrevious(); try await idle(model); model.stop(); model.step(); try await idle(model)
+        model.compareWithPrevious(); model.run(); try await idle(model); model.stop(); model.step(); try await idle(model)
         try check(model.isComparison && model.leftRecord?.stage == .journalOutput && model.rightFrame?.step == 1 && model.leftFrame?.step == 1,
             "Compare with previous prepares two arms on one shared cursor")
         try check(model.record?.specification.language.backend == .scripted && model.externalDifferences.allSatisfy { $0 == 0 }
@@ -146,6 +158,9 @@ private actor DelayedActionBackend: LanguageBackend {
             "The saved E journal enters only the next step while D keeps its feedback gate closed")
         try check(model.externalDifferences.allSatisfy { $0 == 0 } && model.semanticDifferences.contains { $0 != 0 }
             && model.coordinateDifferences.contains { $0 != 0 }, "Separate differences expose semantic return and resulting state under identical external inputs")
+        model.scrub(0)
+        try check(model.applicationStepAtCursor(model.rightAction!) == nil, "An application recorded after the cursor is not displayed as already applied")
+        model.scrub(1)
         let paired = model.record!
         _ = try paired.verify()
         try check(paired.right.actions[0].rawReply != nil && paired.right.journals[0].text == paired.left?.journals[0].text,
@@ -180,7 +195,7 @@ private actor DelayedActionBackend: LanguageBackend {
 
         let delayed = DelayedActionBackend(), delayedWriter = ActionWriter(), delayedClock = ActionClock()
         let pending = make(clock: delayedClock, writer: delayedWriter, backend: delayed)
-        pending.mode = .independentGeneration; pending.compareWithPrevious(); try await idle(pending); pending.stop()
+        pending.select(.reservoirReturn); pending.mode = .independentGeneration; pending.compareWithPrevious(); pending.run(); try await idle(pending); pending.stop()
         for _ in 0..<29 { pending.step(); try await idle(pending) }
         pending.step(); try await wait("scheduled provider wait") { await delayed.waiting() }
         try check(pending.working && pending.framesCount == 30 && pending.rightFrame?.step == 30,
@@ -194,7 +209,11 @@ private actor DelayedActionBackend: LanguageBackend {
         try check(pending.rightState == awaitingState && pending.rightAction?.status == .cancelled,
             "An uncooperative late response cannot replace the cancellation or numerical state")
         pending.step(); try await idle(pending)
-        try check(pending.framesCount == 1 && pending.isComparison && pending.rightRecord?.actions.isEmpty == true, "Step after a cancelled paired action starts a fresh matched session")
+        try check(pending.framesCount == 30 && !pending.canStep && !pending.canRun,
+            "Step at a cancelled boundary preserves that session instead of starting another")
+        pending.prepareExperiment(); pending.step(); try await idle(pending)
+        try check(pending.framesCount == 1 && pending.isComparison && pending.rightRecord?.actions.isEmpty == true,
+            "Preparing a new experiment explicitly permits a fresh matched session after cancellation")
         pending.writeJournal(); try await wait("manual provider wait") { await delayed.waiting() }
         pending.reset(); await delayed.release(); try await Task.sleep(for: .milliseconds(50))
         try check(pending.record == nil && !pending.working && !pending.running,
@@ -207,7 +226,7 @@ private actor DelayedActionBackend: LanguageBackend {
             "Revisiting a version shows its final retained outcome without reviving the interrupted session")
 
         let failed = make(store: MemoryActionJournals(fail: true))
-        failed.mode = .independentGeneration; failed.step(); try await idle(failed); failed.writeJournal(); try await idle(failed)
+        failed.select(.reservoirReturn); failed.mode = .independentGeneration; failed.step(); try await idle(failed); failed.writeJournal(); try await idle(failed)
         try check(failed.record?.status == .failed && failed.rightAction?.saveReceipt?.status == .failed
             && failed.rightRecord?.journals.isEmpty == true && failed.rightAction?.applicationStep == nil,
             "A failed journal save is visible and cannot open the feedback gate")
@@ -224,8 +243,135 @@ private actor DelayedActionBackend: LanguageBackend {
         saving.reset()
         try check(saving.saveIssue != nil && saving.record == nil, "Failed record saving remains visible after reset")
         try await wait("research save paths") { !(await writer.writes).isEmpty }
-        try check((await writer.writes).allSatisfy { $0.url.path.hasPrefix("/controlled/research/research/outputs/essentials/actions/") && $0.url.lastPathComponent == "run.json" },
+        try check((await writer.writes).allSatisfy { $0.url.path.hasPrefix("/controlled/research/Actions/") && $0.url.lastPathComponent == "run.json" },
             "Autosaves use atomic-writer destinations isolated by research session")
+        let progressiveClock = ActionClock(), progressive = make(clock: progressiveClock)
+        progressive.select(.journalOutput); progressive.run(); try await idle(progressive)
+        progressive.nextJournal()
+        try check(progressive.running && progressive.framesCount == 0,
+            "Next opportunity can arm its stopping point during an already-running experiment")
+        for _ in 0..<30 { progressiveClock.now += 1; progressive.tick(); try await idle(progressive) }
+        try check(progressive.framesCount == 30 && !progressive.running && progressive.rightAction?.saveReceipt?.status == .saved,
+            "Next journal stops at the first completed scheduled opportunity")
+        progressive.scrub(0); progressive.selectedActionID = 1
+        try check(progressive.rightAction == nil, "A selected future journal never leaks into an earlier cursor position")
+        progressive.selectObservationComparison(); progressive.compareWithPrevious(); progressive.run(); try await idle(progressive)
+        progressive.stop(); progressive.step(); try await idle(progressive); progressive.writeJournal(); try await idle(progressive)
+        try check(progressive.leftRecord?.stage == .journalOutput && progressive.rightRecord?.stage == .journalOutput
+            && progressive.record?.specification.mode == .independentGeneration && progressive.rightAction?.prompt.contains("x[31]=") == true
+            && progressive.leftAction?.prompt.contains("x[31]=") == false,
+            "Observation comparison uses two independent stage-D arms with different declared observation access")
+        try check(progressive.leftState == progressive.rightState, "Observation comparison retains the identical measured trajectory")
+        _ = try progressive.record!.verify()
+        // The teaching walkthrough must be safe even when replay has no session
+        // and local model settings are deliberately absent.
+        let replaySession = try ActionComparisonSession(specification: ActionComparisonSpecification(
+            stage: .reservoirReturn, steps: 120), journalStore: MemoryActionJournals())
+        let replayFixture = try await replaySession.run()
+        _ = try replayFixture.verify()
+        let replayLoader = ActionLoader(), replayWriter = ActionWriter(), replayClock = ActionClock()
+        let factoryCounter = SessionFactoryCounter(), replayBackend = DelayedActionBackend()
+        let playback = make(clock: replayClock, writer: replayWriter, loader: replayLoader,
+            backend: replayBackend, factoryCounter: factoryCounter)
+        playback.open(URL(fileURLWithPath: "/controlled/example-E.json"), initialRow: 29)
+        try await wait("recorded E open") { await replayLoader.waiting("example-E.json") }
+        await replayLoader.release("example-E.json", replayFixture); try await idle(playback)
+        try check(playback.isRecording && playback.row == 29 && !playback.running && !playback.replaying,
+            "Opening restores the requested cursor and remains paused")
+        let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
+        let identityBefore = try encoder.encode(playback.record!)
+        let journalsBefore = playback.rightRecord!.journals.count
+        playback.step()
+        try check(playback.row == 30 && playback.rightFrame?.step == 31 && playback.rightAction?.applicationStep == 31,
+            "Recorded E advances from journal at 30 to its actual feedback application at 31")
+        try check(try encoder.encode(playback.record!) == identityBefore && playback.rightRecord!.journals.count == journalsBefore,
+            "Replay Step preserves record identity, frame history, and journal count")
+        playback.localModel = true; playback.mode = .independentGeneration
+        playback.endpoint = ""; playback.modelName = ""; playback.seedText = "not a seed"
+        playback.run(); replayClock.now += 1; playback.tick()
+        try check(playback.row == 31 && playback.replaying && !playback.running && factoryCounter.calls == 0,
+            "Recorded Play ignores generation settings and never creates a session")
+        playback.stop(); playback.scrub(119); playback.step(); playback.run(); playback.nextJournal()
+        try check(playback.row == 119 && playback.framesCount == 120 && !playback.canRun && !playback.canStep && !playback.working,
+            "End-of-record controls cannot generate new observations")
+        playback.replay()
+        try check(playback.row == 0 && playback.replaying, "Replay restarts at the first saved observation")
+        playback.stop(); playback.select(.journalOutput); playback.select(.reservoirReturn)
+        try check(playback.isRecording && playback.framesCount == 120, "Revisiting an opened example keeps playback semantics")
+        try check(await playback.flushForTermination(), "Quit needs no save for an unchanged recording")
+        let playbackWrites = await replayWriter.writes, playbackRequests = await replayBackend.requests
+        try check(playbackWrites.isEmpty && factoryCounter.calls == 0 && playbackRequests.isEmpty,
+            "Opening, playback, switching stages, stopping, and quitting create no library copy or model request")
+        playback.prepareExperiment()
+        try check(playback.record == nil && !playback.working && !playback.running && factoryCounter.calls == 0,
+            "Try an experiment prepares a stopped configuration without creating a session")
+        // Restore explicit settings, then start the prepared configuration.
+        playback.seedText = "20260909"; playback.localModel = false; playback.mode = .fixedReplay
+        playback.run(); try await idle(playback)
+        try check(factoryCounter.calls == 1 && playback.record?.specification.steps == 300 && playback.running,
+            "Explicit Start creates one new experiment using the 300-step interactive default")
+        playback.stop()
+        let compareLoader = ActionLoader(), compareCounter = SessionFactoryCounter()
+        let comparePreparation = make(loader: compareLoader, factoryCounter: compareCounter)
+        comparePreparation.open(URL(fileURLWithPath: "/controlled/compare-E.json"))
+        try await wait("compare source open") { await compareLoader.waiting("compare-E.json") }
+        await compareLoader.release("compare-E.json", replayFixture); try await idle(comparePreparation)
+        comparePreparation.compareWithPrevious()
+        try check(comparePreparation.record == nil && !comparePreparation.running && !comparePreparation.working && compareCounter.calls == 0,
+            "Compare with previous prepares the matched configuration without starting generation")
+        comparePreparation.step(); try await idle(comparePreparation)
+        try check(compareCounter.calls == 1 && comparePreparation.leftRecord?.stage == .journalOutput && comparePreparation.rightFrame?.step == 1,
+            "Step explicitly begins a prepared comparison with matched initial conditions")
+        comparePreparation.stop()
+        let actionSession = try ActionComparisonSession(specification: ActionComparisonSpecification(
+            stage: .actionChoice, steps: 120), journalStore: MemoryActionJournals())
+        let actionFixture = try await actionSession.run()
+        let opportunityLoader = ActionLoader(), opportunityCounter = SessionFactoryCounter()
+        let opportunities = make(loader: opportunityLoader, factoryCounter: opportunityCounter)
+        opportunities.open(URL(fileURLWithPath: "/controlled/choice.json"), initialRow: 59)
+        try await wait("choice open") { await opportunityLoader.waiting("choice.json") }
+        await opportunityLoader.release("choice.json", actionFixture); try await idle(opportunities)
+        opportunities.nextJournal()
+        try check(opportunities.rightFrame?.step == 90 && opportunities.rightAction?.chosenAction == .wait && opportunityCounter.calls == 0,
+            "Next journal opportunity includes WAIT without generating a journal")
+        opportunities.open(URL(fileURLWithPath: "/controlled/failure.json"))
+        try await wait("failure open") { await opportunityLoader.waiting("failure.json") }
+        // The saved failure above occurs at step one, so use a scheduled failure
+        // at 30 to verify navigation from a preceding cursor.
+        let failureSession = try ActionComparisonSession(specification: ActionComparisonSpecification(
+            stage: .reservoirReturn, steps: 120), journalStore: MemoryActionJournals(fail: true))
+        let failureFixture = try await failureSession.run()
+        await opportunityLoader.release("failure.json", failureFixture); try await idle(opportunities)
+        opportunities.nextJournal()
+        try check(opportunities.rightFrame?.step == 30 && opportunities.leftAction?.saveReceipt?.status == .failed && opportunities.rightAction?.status == .cancelled && opportunityCounter.calls == 0,
+            "Next journal opportunity preserves failed writing and its cancelled paired outcome")
+        // Component D and the observation study share a stage number, not a
+        // navigation identity. Both must survive alternating selections.
+        let componentD = progressive.record // preserve the currently displayed observation pair
+        progressive.select(.journalOutput)
+        try check(progressive.record?.specification.comparisonKind == .components && progressive.rightRecord?.actions.count == 1,
+            "Returning to D restores its component record rather than the observation comparison")
+        progressive.selectObservationComparison()
+        try check(progressive.record?.specification.comparisonKind == .observation && progressive.record?.stepCount == componentD?.stepCount,
+            "The observation comparison has its own retained navigation record")
+        let recoveryWriter = ActionWriter(), recovery = make(writer: recoveryWriter)
+        await recoveryWriter.fail(); recovery.step(); try await idle(recovery)
+        try await wait("recovery save failure") { recovery.saveIssue != nil }
+        recovery.retrySaves(); try await wait("recovery saved") { recovery.saveIssue == nil }
+        try check(await recovery.flushForTermination(), "Retry saves retained evidence and quit waits for persistence")
+        let oldWriter = ActionWriter(), oldFailure = make(writer: oldWriter)
+        await oldWriter.failStage(.minimal); oldFailure.step(); try await idle(oldFailure)
+        try await wait("old failure retained") { oldFailure.saveIssue != nil }
+        oldFailure.select(.recurrence); oldFailure.step(); try await idle(oldFailure)
+        try await wait("detached failed record archived") {
+            (await oldWriter.writes).filter { $0.record.specification.stage == .minimal }.count >= 3
+        }
+        oldFailure.exportRetained(to: URL(fileURLWithPath: "/controlled/recovered.json"))
+        try await wait("retained export completed") { oldFailure.saveIssue == nil }
+        let exportedWrites = await oldWriter.writes
+        try check(oldFailure.stage == .recurrence && exportedWrites.contains {
+            $0.url.lastPathComponent == "recovered.json" && $0.record.specification.stage == .minimal
+        }, "An offscreen failed record exports to another destination without replacing the current experiment")
         print("\(passed) action lifecycle checks passed; memory journals, controlled clocks and fake providers only.")
     }
 }

@@ -1,0 +1,224 @@
+{
+  "schema": "reservoir-scope.local-recording-batch.v1",
+  "registered_at_utc": "2026-09-16T19:03:10.813460+00:00",
+  "model": {
+    "name": "phi3:mini",
+    "model": "phi3:mini",
+    "modified_at": "2025-10-26T03:24:32.106527725-07:00",
+    "size": 2176178913,
+    "digest": "4f222292793889a9a40a020799cfd28d53f3e01af25d48e06c5e708610fc47e9",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "phi3",
+      "families": [
+        "phi3"
+      ],
+      "parameter_size": "3.8B",
+      "quantization_level": "Q4_0",
+      "context_length": 131072,
+      "embedding_length": 3072
+    },
+    "capabilities": [
+      "completion"
+    ]
+  },
+  "cli_sha256": "aa590d6076db468621f584c39703132e30182e35eda65726a4b8ccbdc8cb0a44",
+  "output_tokens": 256,
+  "temperature": 0,
+  "context_tokens": 4096,
+  "response_format": "json",
+  "prompt_version": 2,
+  "steps": 120,
+  "opportunities": [
+    30,
+    60,
+    90
+  ],
+  "seed": 20260909,
+  "scope": "S-009 isolated synthetic preparation; different prose is not an improvement score.",
+  "stopping_rule": "One run per named recipe; preserve each failed opportunity and stop that run. No automatic retry.",
+  "attempts": [
+    {
+      "recipe": "model-4.recipe.json",
+      "record": "example-model-4.json",
+      "started_at_utc": "2026-09-16T19:03:10.815298+00:00",
+      "finished_at_utc": "2026-09-16T19:03:15.424287+00:00",
+      "exit_code": 0,
+      "verified": true,
+      "verification": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+      "sha256": "d46baa55b581a8406dc6e9380b0d3ab7f537396212a8e83c1c24feb5236fea76",
+      "status": "completed",
+      "steps": 120,
+      "journal_counts": {
+        "right": 3
+      },
+      "opportunity_counts": {
+        "right": 3
+      }
+    },
+    {
+      "recipe": "model-5.recipe.json",
+      "record": "example-model-5.json",
+      "started_at_utc": "2026-09-16T19:03:15.626253+00:00",
+      "finished_at_utc": "2026-09-16T19:03:20.102711+00:00",
+      "exit_code": 0,
+      "verified": true,
+      "verification": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+      "sha256": "ddb6765654c840d53f8d6d3226c5f7103621964a24f65e5422a2fb3e9878cb3b",
+      "status": "completed",
+      "steps": 120,
+      "journal_counts": {
+        "right": 3
+      },
+      "opportunity_counts": {
+        "right": 3
+      }
+    },
+    {
+      "recipe": "model-6.recipe.json",
+      "record": "example-model-6.json",
+      "started_at_utc": "2026-09-16T19:03:20.343422+00:00",
+      "finished_at_utc": "2026-09-16T19:03:26.029548+00:00",
+      "exit_code": 0,
+      "verified": true,
+      "verification": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+      "sha256": "8fefd365e757756280af8f0b3dd617ba62515f1f7c92c1e0365fb1abd20c0152",
+      "status": "completed",
+      "steps": 120,
+      "journal_counts": {
+        "right": 3
+      },
+      "opportunity_counts": {
+        "right": 3
+      }
+    },
+    {
+      "recipe": "model-7.recipe.json",
+      "record": "example-model-7.json",
+      "started_at_utc": "2026-09-16T19:03:26.280440+00:00",
+      "finished_at_utc": "2026-09-16T19:03:31.832011+00:00",
+      "exit_code": 0,
+      "verified": true,
+      "verification": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+      "sha256": "c61f35ab5499c249b3011d07067c0d1aa958af3e50446a11fc76339df991a0f1",
+      "status": "completed",
+      "steps": 120,
+      "journal_counts": {
+        "right": 3
+      },
+      "opportunity_counts": {
+        "right": 3
+      }
+    },
+    {
+      "recipe": "model-8.recipe.json",
+      "record": "example-model-8.json",
+      "started_at_utc": "2026-09-16T19:03:32.206490+00:00",
+      "finished_at_utc": "2026-09-16T19:03:39.882070+00:00",
+      "exit_code": 0,
+      "verified": true,
+      "verification": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+      "sha256": "aa8d304a1da4d10b0fe6200615b486bfaf98ec06277a70792d122fdc4075faf6",
+      "status": "completed",
+      "steps": 120,
+      "journal_counts": {
+        "right": 3
+      },
+      "opportunity_counts": {
+        "right": 3
+      }
+    },
+    {
+      "recipe": "model-observation.recipe.json",
+      "record": "example-model-observation.json",
+      "started_at_utc": "2026-09-16T19:03:40.121727+00:00",
+      "finished_at_utc": "2026-09-16T19:03:51.523391+00:00",
+      "exit_code": 0,
+      "verified": true,
+      "verification": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+      "sha256": "890de9d2c2253838827499903802b78c68ef0ac2abff0dfa29311c2588e5195f",
+      "status": "completed",
+      "steps": 120,
+      "journal_counts": {
+        "left": 3,
+        "right": 3
+      },
+      "opportunity_counts": {
+        "left": 3,
+        "right": 3
+      }
+    }
+  ],
+  "preparation_attempts": [
+    {
+      "attempt": 1,
+      "file": "example-preparation-1.json",
+      "sha256": "371caa7d622944bd02effb4f70822d358ac68499e4d263449e8d3f389fbb6a7a",
+      "status": "failed",
+      "phase": "language",
+      "failure": "Language request timed out.",
+      "stop_reason": null,
+      "token_count": null,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:63593",
+        "model": "phi3:mini"
+      },
+      "prompt_version": 1
+    },
+    {
+      "attempt": 2,
+      "file": "example-preparation-2.json",
+      "sha256": "0881507fb413c6c05c166c83d388dc5bd14e1d18934794df60104e4f73edb12f",
+      "status": "failed",
+      "phase": "responseValidation",
+      "failure": "Reply must be JSON with action WRITE_JOURNAL or WAIT and a text string.",
+      "stop_reason": "stop",
+      "token_count": 248,
+      "language": {
+        "backend": "ollama",
+        "contextTokens": 4096,
+        "endpoint": "http://127.0.0.1:63593",
+        "model": "phi3:mini"
+      },
+      "prompt_version": 1
+    },
+    {
+      "attempt": 3,
+      "file": "example-preparation-3.json",
+      "sha256": "05368a4974a23e6235120b6941b247070b09032e4bbd7e013d8cbd47d3e67ffc",
+      "status": "failed",
+      "phase": "responseValidation",
+      "failure": "Incomplete response or exceeded the declared output limit.",
+      "stop_reason": "length",
+      "token_count": 256,
+      "language": {
+        "backend": "ollama",
+        "contextTokens": 4096,
+        "endpoint": "http://127.0.0.1:63593",
+        "model": "phi3:mini",
+        "responseFormat": "json"
+      },
+      "prompt_version": 1
+    },
+    {
+      "attempt": 4,
+      "file": "example-preparation-4.json",
+      "sha256": "c164a873399f5af538b1fad9a1432ed46d66c73ca4195f008992d133bc5e0905",
+      "status": "completed",
+      "phase": null,
+      "failure": null,
+      "stop_reason": "stop",
+      "token_count": 110,
+      "language": {
+        "backend": "ollama",
+        "contextTokens": 4096,
+        "endpoint": "http://127.0.0.1:63593",
+        "model": "phi3:mini",
+        "responseFormat": "json"
+      },
+      "prompt_version": 2
+    }
+  ]
+}
