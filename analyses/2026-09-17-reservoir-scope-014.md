@@ -6,7 +6,7 @@ This is a trusted-Mac test candidate. Core, research replay, storage and package
 
 ## Source and delivery
 
-The compiled source is `99fd6f6fd1bfad575e3b7dac2ece47cb567f11ad`. Earlier cohesive commits retained the day-eight/day-nine accounts (`3e65176`), maintained daily/archive pipeline (`d50a2f2`), and frozen bounded studies (`696f950`). All commits are local; no remote publication was performed. The local release tag is `reservoir-scope-v0.14.0`.
+The implementation was frozen in `99fd6f6fd1bfad575e3b7dac2ece47cb567f11ad`; the final release commit also includes this account and the consolidated entry-point documents. Its exact source commit is recorded in the packaged identity, external delivery receipt and local release tag. Earlier cohesive commits retained the day-eight/day-nine accounts (`3e65176`), maintained daily/archive pipeline (`d50a2f2`), and frozen bounded studies (`696f950`). All commits are local; no remote publication was performed. The local release tag is `reservoir-scope-v0.14.0`.
 
 The resource manifest supplies 42 declared resources plus its sealed manifest. Builds stage a complete package outside the checkout, preserve canonical examples, and bind exact source and resource hashes, compiler, SDK, architecture, core, runner and signing evidence. The delivery receipt outside the archive records the final archive and signature hashes, avoiding a circular archive hash. Earlier releases remain preserved.
 
