@@ -1,0 +1,26 @@
+# Bounded follow-ups: registered studies, pending outcomes
+
+September 17, 2026. This delivery account uses the frozen registrations and initial captures only; it adds no source observations. S-006 and S-008 are ready for bounded observation, with future outcomes pending. S-009's short-output qualification is complete and negative.
+
+The [initial readiness receipt](../research/outputs/2026-09-17-bounded-followups/initial-readiness.json) binds the protocol, anchors, observer preflight, amendment and captures. Twenty-six collector tests and seven provider-amendment tests passed. The original checkpoint and two amended checkpoints replay identically offline. These checks establish evidence handling, not a useful code change or a durable correction.
+
+| Registered boundary | Exact UTC time |
+|---|---|
+| S-006 consecutive runs and S-008 exposure intake begin | September 17, 2026, 20:35:39 |
+| Seven-day intake ends | September 24, 2026, 20:35:39 |
+| Final 48-hour follow-up ends | September 26, 2026, 20:35:39 |
+| Separate provider dispatch window begins | September 17, 2026, 20:43:05 |
+| Provider dispatch window ends | September 18, 2026, 20:43:05 |
+| Provider terminal-outcome allowance ends | September 18, 2026, 20:45:05 |
+
+**S-006: consecutive review and natural opportunities.** The first ten consecutive eligible unattended controller runs are retained, including failures, incomplete runs and no-input runs. Runs establish the sampling denominator; a durable queue-admission stream has not been established. Processed and unprocessed shortlist entries, repeated reports and source families remain distinct. Reviewer disposition, commit, activation and measured benefit require their own evidence. The [initial post-start status](../research/outputs/2026-09-17-bounded-followups/v2-status-20260917T204320650890Z.json), at 20:43:20 UTC, contains zero selected runs. That early pending count is not a completed negative finding. See the [S-006 protocol](../research/studies/S-006-consecutive-review-protocol.md).
+
+The existing observer's [bounded preflight](../research/outputs/2026-09-17-bounded-followups/provider-preflight.json) exceeded the frozen 20,000-entry directory limit. No newest identity was selected from the incomplete inventory, and no outcome contents were read. An exhaustive provider denominator is therefore **unverified**; the initial provider capture is coverage-blocked. Zero retained dispatches cannot establish zero natural opportunities. Because preflight completed after the original shared start, a [provider-only amendment](../research/outputs/2026-09-17-bounded-followups/provider-amendment.json) prospectively fixed the separate window above. Original S-006/S-008 clocks and records remain unchanged. No observer was enabled, restarted or redirected.
+
+**S-008: two fixed historical cases.** The worker-single-item error was authored prose, with no established false saved note; the next previous-response excerpt truncated before that assertion. The comment-as-call case did retain the incorrect interceptor premise in a saved note, even when subsequent prose recognized a comment. The [anchor evidence](../research/outputs/2026-09-17-bounded-followups/anchors.json) preserves that distinction. Each case selects its first three eligible natural exposures, with all intervening observed notebooks and up to 48 hours of follow-up. Changed source revisions require explicit review. No new qualifying exposure appears in the initial available sealed packets; later exposure and correction remain pending. The [S-008 protocol](../research/studies/S-008-durable-correction-protocol.md) does not treat changed wording as durable correction.
+
+**S-009: qualification stopped after two requests.** The [separately frozen trial](../research/outputs/2026-09-17-short-output/protocol.json) retained the existing prompt-v2 control and one candidate using the qualified `phi3:mini` identity and fixed settings. On the first cell, the candidate completed normally but produced 25 words and multiple copied measurements, failing its 24-word, single-observation bounds. The trial stopped without retries; five cells remained unattempted. [Qualification failed](../research/outputs/2026-09-17-short-output/qualification.json): prompt version 3 was not registered and no replacement recording was produced. The [full account](2026-09-17-short-output-qualification.md) separates that decision from factual observations and documents closure of the owned temporary service.
+
+At this account's preparation, the separate daily follow-up heartbeat remains pending: the existing S-007 heartbeat occupies the current task, and permission for a separate task has been requested but not received. Registration does not imply unattended collection is running. S-007's daily selection and ledger remain unchanged. Future coverage gaps, absent opportunities and incomplete follow-up must remain visible; none authorizes replacement sampling or a positive conclusion.
+
+Exact SHA-256 identities: original protocol `d868e92d5ca8e2a7f760a3a325c52b1703df2c437583e59c109861ec2ecccc6b`; provider amendment `bd3184e2afd22673b7fca736bfd02678e3b62b84dc38196f338d683ce8f08fe6`; S-009 qualification `edacdd79e406d56fd50e1975bde713f7a257affd8693071a2d64d79c389795c0`. Other initial-capture hashes are retained in the readiness receipt linked above.
