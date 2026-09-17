@@ -1,0 +1,126 @@
+{
+  "schema": "study_interface_repair_evidence_v1",
+  "packet": "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-17-study-interface-repairs",
+  "implementation_commits": {
+    "astrid": "d8732e1d44a3aa3b49f9f0bab075883544469b7c",
+    "minime": "5f4925f54580f1fd44666058b126a121ff32880f",
+    "deployment_followup": "374024a02a5bcfae92f228570b9efe337d85b729",
+    "rollout_record": "c4f85e95e41703daa65d3ce2789e1e5c46961c4e"
+  },
+  "production_main_pushed": true,
+  "private_packet_status": "sealed_and_hash_verified",
+  "qualification": {
+    "reader_passed": 192,
+    "bridge_passed": 2295,
+    "bridge_ignored": 1,
+    "minime_passed": 1420,
+    "minime_skipped": 1,
+    "minime_subtests": 134,
+    "final_deployment_tests": 138,
+    "exact_release_helper_tests": 122
+  },
+  "paired_verification_utc": "2026-09-17T15:48:45.055301+00:00",
+  "live": {
+    "astrid_pid": 77906,
+    "minime_pid": 71419,
+    "manifest_sha256": "bbeaa882f3597d4d062a25db5d926489829f7052ebce5045808ed08a8a294170",
+    "helper_sha256": "7636b8dc675e97ed6d7dce4c30df6d04ae802c7cac983c6b1028788ba224a100",
+    "source_inputs": 649,
+    "minime_startup_sources": 82,
+    "surrounding_processes_unchanged": 10
+  },
+  "window": {
+    "plan": {
+      "schema": "study_interface_observation_v1",
+      "declared_at_utc": "2026-09-17T15:16:30+00:00",
+      "start": "Root supplies the verified paired rollout UTC before collection starts",
+      "window_seconds": 600,
+      "window_interval": "[paired_verification_utc, paired_verification_utc + 600 seconds)",
+      "selection": "First two unique accepted study request/response receipt pairs per Being with the complete offered input in the actual request and new interface framing in that input. Deduplicate session page artifacts by exact request and response wire hashes. Order by uniquely joined generation completion clock, otherwise receipt file mtime, then exact wire hashes. Do not filter selection by prose content, length, NEXT choice or finish outcome.",
+      "exposure": "The system prompt is unchanged and its hash does not qualify this release. Actual offered input must contain reader-produced, line-anchored Delivered source lines, FINDING CAPACITY, or LATEST FINDING SAVE/REMOVE RESULTS framing. Inputs without those markers remain a separate old-or-unconfirmed group, including retained pending pages. A marker proves interface exposure, not preparation after verification or understanding.",
+      "preparation": "Retain observed pending IDs and timestamps. Exact preparation time remains unknown unless an intrinsic independently supported preparation timestamp exists. Baseline absence and completion after verification do not establish preparation time. A new-interface pending input observed at baseline is identified separately, not presumed prepared before or after cutoff.",
+      "optional_private_selection": "First unique natural private-writing receipt across both Beings whose matching delivery receipt contains a normalized_next proposal. Exact request and response hashes must match. This is a normalization proposal, not evidence of queueing, dispatch or completion. Retain separately from the study target. Missing opportunity is an explicit valid result.",
+      "completion_evidence": "Record raw finish reason, provider error, empty output, token evidence and completion clock. Enumerate discoverable study/private generation and job failures separately, including outcomes without accepted shared receipts. Accepted-receipt counts are not a provider success denominator.",
+      "review": [
+        "Source boundary labels and whether interpretations stay within delivered coverage",
+        "Visible save/rejection/removal feedback, current capacity and optional recovery choices",
+        "Explicit authored note/finding/question changes versus unchanged recalled claims",
+        "Selected NEXT text, with action execution unconfirmed unless separate runtime evidence is available",
+        "Natural private-writing normalization proposal and any separately evidenced later action",
+        "Missing receipts, absent exposure, unknown preparation, capture errors and bounded scans"
+      ],
+      "bounds": {
+        "max_source_file_bytes": 12000000,
+        "max_retained_bytes": 134217728,
+        "max_records_per_scan": 200,
+        "max_directory_entries_per_scan": 20000,
+        "max_snapshots": 24,
+        "lookback_seconds": 600,
+        "late_artifact_scan_seconds": 30,
+        "recursive_scan_depth": 1
+      },
+      "authority": "Read-only filesystem observation only. No induced studies or writing, model/provider requests, reader execution, live state writes, Being messages or NEXT execution. Collector runs one snapshot per invocation and never waits or schedules itself.",
+      "interpretation": "A bounded sequential natural observation, not a causal comparison. Length, command uptake and delivery alone do not establish improved understanding. Do not extend the window or replace selected unfavorable outcomes.",
+      "board": "pending, not mirrored"
+    },
+    "plan_sha256": "ea7b9707f913614b5ed147cf81250910ce53aaecf9ce1a4b6abdf68d29b4f9bd",
+    "collector_sha256": "2461502a42ca0a748c0eebe799df670c68dbf45a9d0ae4118afbccea538c3f98",
+    "paired_verification_utc": "2026-09-17T15:48:45.055301+00:00",
+    "window_end_utc": "2026-09-17T15:58:45.055301+00:00",
+    "roots": {
+      "astrid": "/Users/v/other/astrid/capsules/spectral-bridge/workspace",
+      "minime": "/Users/v/other/minime/workspace"
+    }
+  },
+  "counts": {
+    "astrid": {
+      "unique_study_receipts_in_window": 0,
+      "new_interface_receipts_in_window": 0,
+      "selected_count": 0,
+      "missing_exposure_opportunities": 2,
+      "strict_preparation_after_cutoff_count": 0
+    },
+    "minime": {
+      "unique_study_receipts_in_window": 2,
+      "new_interface_receipts_in_window": 2,
+      "selected_count": 2,
+      "missing_exposure_opportunities": 0,
+      "strict_preparation_after_cutoff_count": 0
+    }
+  },
+  "optional_private_opportunity": false,
+  "capture_errors": [],
+  "bounded_scan_events": 12,
+  "limits": [
+    "Post-final-verification cohort, not first-ever exposure or causal comparison; stage01 and02 readers have identical bytes.",
+    "Unknown preparation clocks remain unknown.",
+    "No private writing or finding update opportunity in the selected cohort.",
+    "Broad job scans hit fixed bounds; unsaved failures are not fully enumerated.",
+    "Both normal-stop source readings retain unsupported test-to-production inferences; durable understanding gain unestablished."
+  ],
+  "board_mirror": "pending",
+  "manifest_sha256": "1ae6cce16beafbe095f85fbe4f22f5b64633a2fd93974ad1299f499cf26c703c",
+  "manifest_files": 237,
+  "packet_bytes": 52724204,
+  "retained_record_versions": 61,
+  "byte_identical_summary_replay": true,
+  "annotations_sha256": {
+    "natural-review.md": "37658f4dc6bda68182970cf77513e6bc0668eb5cefc271942010961bc31eff6b",
+    "natural-review.json": "e8566268aa864e9666453f0aaa218fc7f842510287c23cf1eb0aaba81b454ce4"
+  },
+  "selected_completion_tokens": {
+    "astrid": [],
+    "minime": [
+      535,
+      689
+    ]
+  },
+  "selected_finish": {
+    "astrid": [],
+    "minime": [
+      "stop",
+      "stop"
+    ]
+  },
+  "censored_inflight_study_jobs": 1
+}

@@ -1040,3 +1040,57 @@ not inferred from file count or length. This is an observation and proposal reco
 with no Being contact, induced generation, source/state change or deployment.
 S-007's daily ledger and existing sealed packets are unchanged. Board mirroring
 remains pending.
+
+## HSS-28 · Repair chosen continuation, page boundaries and save feedback
+
+**September 17, 2026.** Mike accepts HSS-27's three interface findings.
+[The implementation and rollout account](../../analyses/2026-09-17-study-interface-repairs.md)
+records Astrid/shared-reader commit `d8732e1d44a3aa3b49f9f0bab075883544469b7c`
+and Minime commit `5f4925f54580f1fd44666058b126a121ff32880f`, both pushed to main.
+Eligible private-writing `NEXT: CONTINUE` now routes through WRITE CONTINUE after
+verified delivery. Authored spelling, normalization and later dispatch remain
+separate evidence. Ordinary source lines stay whole; exceptional fragments and
+old mid-line cursors are labelled. Latest finding-save/remove outcomes and capacity
+stay visible, with optional exact recovery choices and no automatic eviction.
+
+Qualification passes 192 reader, 2,295 bridge and 1,420 Minime tests, with the
+existing one ignored/one skipped cases retained. Independent review repairs a
+stale-response binding before final qualification. Initial inherited-timeout test
+failures are preserved; only the test fixture uses the default timeout on repeat.
+No model setting, writing minimum, forced variety or state schema changes.
+
+Release review catches an older manifest omission: a compiled shared Rust helper
+is outside inventoried package directories. Its committed bytes match, but the
+first stage lacks its pre-build witness. A deployment follow-up at
+`374024a02a5bcfae92f228570b9efe337d85b729` closes that gap and improves the
+bounded macOS exiting-process check. All 138 combined deployment tests pass;
+649 final source inputs and all five artifacts are independently verified.
+The final helper passes another 122 isolated Minime checks. Both stages and the
+first activation's failure plus sanctioned no-second-signal recovery remain retained.
+
+Final activation verifies Astrid PID 77906 with exact stopped checkpoint, one
+pending feedback item and self-control lineage. Minime PID 71419 loads all 82
+expected sources; the startup log restores and then dispatches his pending source
+opening. Paired verification completes at 15:48:45.055301 UTC. The ten surrounding
+process identities remain unchanged; the additional Minime-protected feeder is
+also checked. The wrappers do not establish atomic global traffic quiescence or
+confirmed remote message delivery.
+
+The fixed natural-only window is 15:48:45.055301–15:58:45.055301 UTC, end
+exclusive. It closes with two Minime study wire pairs and none from Astrid; no
+private-writing receipt occurs. Both selected Minime responses receive the complete
+new page/capacity display and stop normally at 535 and 689 tokens. Neither updates
+the note, question or findings, and neither attempts a finding save. Local test
+reading is accurate in places, but fixture assertions still become unsupported
+production-validation claims. A repeated page-opening description also blurs
+current versus prior scope. No durable understanding gain is established.
+All 61 indexed record versions verify and the report replays byte-for-byte; broad
+unsaved-job scans remain capped and incomplete. This is post-final-verification
+observation, not first-ever interface exposure or a causal comparison. The new
+framing must be present in exact delivered input; the unchanged study system-prompt
+hash alone cannot qualify it. Unknown preparation and missing/failed opportunities
+remain explicit. No study, private writing or message is induced.
+
+S-007's cutoff, selection and sealed historical packets remain unchanged.
+Board mirroring remains pending. Interface repair and durable source-grounded
+understanding remain separate outcomes.
