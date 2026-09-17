@@ -18,3 +18,6 @@ reservoir-research = "reservoir_research.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["reservoir_research*"]
+
+[tool.setuptools.package-data]
+"reservoir_research.daily" = ["era-definitions-v1.json"]

@@ -627,3 +627,13 @@ checks. Its `replay.py` uses frozen research code and evidence; it never collect
 advances the ledger or calls a model. The boundary probe assumes the previous
 window ends in a recovery run, so do not apply it unchanged to a non-recovery tail.
 Select any next trajectory before inspecting its new outcomes.
+
+
+## Maintained daily evidence and verification
+
+The [maintained daily pipeline guide](DAILY-PIPELINE.md) describes explicit input manifests,
+report building, offline verification, release-definition updates and migration fallback.
+The `reservoir-research study daily` commands preserve v6 report semantics while keeping
+frozen v1–v6 probes and packets unchanged. The `reservoir-research verify` command groups
+Python, numerical, native, research-replay and package checks with executed/inherited/incomplete
+coverage receipts. Neither entry point contacts a model or discovers live sources.

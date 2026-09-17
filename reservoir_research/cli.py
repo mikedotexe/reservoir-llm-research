@@ -99,6 +99,17 @@ def parser():
     p.add_argument('--version', action='version', version=__version__)
     p.add_argument('--db', type=Path, default=store.default_db(), help='Local research SQLite cache (default: %(default)s)')
     sub = p.add_subparsers(dest='command', required=True)
+    from .daily.cli import configure as configure_daily
+    from .verification import configure as configure_verification
+    configure_daily(sub)
+    configure_verification(sub)
+    archive = sub.add_parser("archive", help="Snapshot, verify or restore a private research archive")
+    archive_sub = archive.add_subparsers(dest="archive_command", required=True)
+    for name, argument in (("snapshot", "source"), ("verify", "snapshot"), ("restore", "snapshot")):
+        command = archive_sub.add_parser(name)
+        command.add_argument(argument, type=Path)
+        if name != "verify":
+            command.add_argument("--out", type=Path, required=True)
     index = sub.add_parser('index', help='Incrementally index source journals and question candidates')
     index.add_argument('--source', type=source, action='append', help='Repeat being=/journal/path; default discovers both siblings')
     index.add_argument('--live-only', action='store_true', help='Scan root files only; omit archive subdirectories')
@@ -253,6 +264,28 @@ def main(argv=None):
     args = parser().parse_args(argv)
     conn = None
     try:
+        if args.command == "study":
+            from .daily.cli import run
+            emit(run(args))
+            return 0
+        if args.command == "verify":
+            from .verification import run
+            result, code = run(args)
+            emit(result)
+            return code
+        if args.command == "archive":
+            from . import archive
+            try:
+                if args.archive_command == "snapshot":
+                    result = archive.snapshot(args.source, args.out)
+                elif args.archive_command == "restore":
+                    result = archive.restore(args.snapshot, args.out)
+                else:
+                    result = archive.verify(args.snapshot)
+            except archive.ArchiveError as exc:
+                raise ValueError(str(exc)) from exc
+            emit(result)
+            return 0
         if args.command == 'afterimage-trace':
             from .afterimages import build_afterimage_trace, export_afterimage_trace
             if args.capture.stat().st_size > 128 * 1024 * 1024:

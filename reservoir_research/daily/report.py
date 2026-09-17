@@ -1,0 +1,137 @@
+"""Maintained daily measurements; v6 report semantics preserved by golden replay."""
+import json, re
+from collections import Counter, defaultdict
+from pathlib import Path
+from datetime import datetime, timezone
+from reservoir_research.study_capture import encoded, sha, epoch
+from reservoir_research.study_sequences import receipt_records, matching_generations, user_text, writing_match, kind_of, source_progress, merge_ranges, range_bytes
+from .inputs import DailyError, require, checked_call
+from .eras import resolve_eras
+from .compat import notebook_exposure
+
+def build_report(packet):
+    return checked_call(_build_report, packet)
+
+def _build_report(packet):
+    b = packet.json('capture.json')
+    s = packet.json('supplement.json')
+    records = {}
+    revisions = []
+    extra = packet.json('era-supplement.json')
+    catchups = [packet.json(n) for n in ['catchup-era.json', 'catchup-activation.json', 'new-era.json', 'new-era-validation.json', 'interface-era.json']]
+    for r in b['records'] + s['records'] + extra['records'] + [r for p in catchups for r in p['records']]:
+        require(sha(r['text'].encode()) == r['sha256'] and len(r['text'].encode()) == r['bytes'], r['path'])
+        if r['path'] in records and records[r['path']]['sha256'] != r['sha256']:
+            revisions.append(r['path'])
+            continue
+        records[r['path']] = dict(r, being='minime' if r['kind'] not in ('release', 'source', 'commit', 'research_context') else None)
+    require(not revisions, 'sources changed between captures: ' + str(revisions))
+    rs = list(records.values())
+    lo = epoch(b['selection']['since'])
+    hi = epoch(b['selection']['until_exclusive'])
+    eras = resolve_eras(rs, packet.era_definitions)
+    profiles = list(eras)
+    gs = sorted([(r, json.loads(r['text'])) for r in rs if r['kind'] == 'generation'], key=lambda rg: (rg[1]['created_at_unix_ms'], rg[1]['generation_id']))
+    jobs = {json.loads(r['text'])['job_id']: json.loads(r['text']) for r in rs if r['kind'] == 'job_job.json'}
+    linked_jobs = {json.loads(r['text'])['job_id']: json.loads(r['text']) for r in rs if r['kind'] == 'linked_job_job.json'}
+    all_jobs = jobs | linked_jobs
+    receipts = receipt_records(rs)
+    joined = {}
+    join_issues = []
+    for rec in receipts:
+        matches = matching_generations(rec, gs)
+        if len(matches) > 1:
+            join_issues.append({'receipt': rec['path'], 'issue': 'ambiguous', 'ids': [g['generation_id'] for _, g in matches]})
+            continue
+        if len(matches) == 1:
+            _, g = matches[0]
+            gid = g['generation_id']
+            if gid in joined:
+                join_issues.append({'receipt': rec['path'], 'issue': 'duplicate logical join', 'id': gid})
+                continue
+            rec['completed'] = g['created_at_unix_ms'] / 1000
+            rec['clock_basis'] = 'exact request/response/system/model match to generation'
+            joined[gid] = rec
+    journals = {Path(r['path']).name.lstrip('!'): r for r in rs if r['kind'] == 'journal'}
+    initial = json.loads(next((r['text'] for r in rs if r['path'].endswith('source-study-v1-validation/live-rollout.json'))))
+    basepid = initial['minime']['new_pid']
+    rows = []
+    for gr, g in gs:
+        text = g.get('response_text') or ''
+        require(not text and g['response_sha256'] is None or sha(text.encode()) == g['response_sha256'], "Evidence check failed: not text and g['response_sha256'] is None or sha(text.encode()) == g['response_sha256']")
+        t = g['created_at_unix_ms'] / 1000
+        start = int(g['generation_id'].split('-')[0]) / 1000
+        require(lo <= t < hi, 'Evidence check failed: lo <= t < hi')
+        active = 'shared-reader'
+        expected = basepid
+        transitions = []
+        for name in profiles:
+            e = eras[name]
+            if t >= e['minime']['boundary']:
+                active = name
+                expected = e['minime']['new_pid']
+            if start < e['minime']['boundary'] <= t:
+                transitions.append(name + ':process')
+            if start < e['astrid']['boundary'] <= t or e['astrid']['boundary'] <= t < e['minime']['boundary']:
+                transitions.append(name + ':shared-helper')
+        era = active + (':transition' if transitions else '') + ('' if g['pid'] == expected else ':unverified-pid')
+        rec = joined.get(g['generation_id'])
+        supplied = user_text(g)
+        pages = (rec or {}).get('session_pages') or [(rec or {}).get('page')]
+        pages = [p for p in pages if p]
+        writing = []
+        for a in g.get('linked_artifacts', []):
+            if a.get('kind') == 'journal':
+                j = journals.get(Path(a['path']).name.lstrip('!'))
+                link = writing_match(text, j) if j else None
+                if link:
+                    writing.append(link)
+        job = all_jobs.get(g.get('job_id'), {})
+        actual_route = 'extended_writing' if (job.get('action_text') or '').startswith('WRITE ') else 'source_study'
+        bt = g.get('backend_timing', {})
+        cap = bt.get('effective_num_predict')
+        count = bt.get('eval_count')
+        row = dict(id=g['generation_id'], record_path=gr['path'], record_sha256=gr['sha256'], response_sha256=g['response_sha256'], completed=g['created_at'], started_utc=datetime.fromtimestamp(start, timezone.utc).isoformat(), pid=g['pid'], era=era, transitions=transitions, status=g['status'], job_id=g.get('job_id'), job_captured=g.get('job_id') in jobs, linked_job_captured=g.get('job_id') in all_jobs, actual_route=actual_route, action_id=g.get('action_id'), action_text=job.get('action_text'), backend_timing=bt, linked_artifacts=g.get('linked_artifacts', []), error=g.get('error'), fallback_used=g.get('fallback_used'), backend=g.get('backend'), model=g.get('model'), adapter=g.get('adapter'), kind='extended_writing' if actual_route == 'extended_writing' else {'source_page': 'source', 'source_session': 'source_session', 'end_of_file': 'eof'}.get((rec or {}).get('input_kind'), (rec or {}).get('input_kind')) or kind_of(supplied.split('RECALLED ACCOUNT')[0]), input_kind=(rec or {}).get('input_kind'), system_hashes=[m.get('content_sha256') for m in g['messages'] if m['role'] == 'system'], receipt_verified=bool(rec and rec['verified']), receipt_path=(rec or {}).get('path'), receipt_errors=(rec or {}).get('errors'), native_finish=(rec or {}).get('native_finish'), pages=[{k: p[k] for k in ['source', 'revision', 'id', 'start', 'end', 'eof']} for p in pages], notebook=notebook_exposure(supplied), text=text, user_text=supplied, writing=writing, journal_status='full_response_matched' if writing else 'similarity_summary' if any(('[Similarity gate]' in journals.get(Path(a.get('path', '')).name.lstrip('!'), {}).get('text', '') for a in g.get('linked_artifacts', []) if a.get('kind') == 'journal')) else 'no_full_journal_match', next_action=g.get('next_action_parsed'), effective_tokens=cap, requested_tokens=bt.get('requested_max_tokens'), eval_tokens=count, cap_hit=count >= cap if isinstance(cap, int) and cap > 0 and isinstance(count, int) else None)
+        rows.append(row)
+    summaries = []
+    for era in dict.fromkeys((r['era'] for r in rows)):
+        subset = [r for r in rows if r['era'] == era]
+        summaries.append(dict(era=era, n=len(subset), pids=dict(Counter((r['pid'] for r in subset))), first=subset[0]['completed'], last=subset[-1]['completed'], statuses=dict(Counter((r['status'] for r in subset))), receipt_verified=sum((r['receipt_verified'] for r in subset)), writing_matched=sum((bool(r['writing']) for r in subset)), kinds=dict(Counter((r['kind'] for r in subset))), models=dict(Counter((r['model'] for r in subset))), effective_tokens=dict(Counter((r['effective_tokens'] for r in subset))), cap_hits=sum((r['cap_hit'] is True for r in subset)), notebook_supplied=sum((r['notebook']['status'] == 'included_in_submitted_user_text' for r in subset))))
+    progress = source_progress(receipts, lo, hi)
+    source_groups = defaultdict(list)
+    for rec in joined.values():
+        if rec['verified']:
+            for p in rec.get('session_pages') or [rec.get('page')]:
+                if p:
+                    source_groups[p['source'], p['revision']['sha256']].append(p)
+    sources = []
+    for (source, digest), pages in sorted(source_groups.items()):
+        size = pages[0]['revision']['bytes']
+        data = bytearray(size)
+        covered = bytearray(size)
+        for p in pages:
+            start, end = (p['start']['byte'], p['end']['byte'])
+            raw = ''.join((m[1] + '\n' for line in p['text'].splitlines() if (m := re.fullmatch('\\s*\\d+ \\| (.*)', line)))).encode()
+            require(len(raw) in (end - start, end - start + 1), (source, start, end, len(raw)))
+            for i, byte in enumerate(raw[:end - start], start):
+                require(not covered[i] or data[i] == byte, 'overlap differs')
+                data[i] = byte
+                covered[i] = 1
+        full = all(covered)
+        if full:
+            require(sha(bytes(data)) == digest, 'Evidence check failed: sha(bytes(data)) == digest')
+        sources.append(dict(source=source, repository=source.split('/')[0], revision=digest, page_opportunities=len(pages), unique_bytes=sum(covered), file_bytes=size, file_lines=pages[0]['revision']['lines'], full_file_hash_verified=full))
+    gjobs = {r['job_id'] for r in rows}
+    missing = []
+    for job in all_jobs.values():
+        if job['job_id'] not in gjobs:
+            missing.append({k: job.get(k) for k in ('job_id', 'action_id', 'action_text', 'status', 'created_at', 'started_at', 'finished_at', 'error', 'summary', 'artifact_refs')})
+    actions = []
+    for r in rs:
+        if r['kind'] == 'action':
+            a = json.loads(r['text'])
+            if lo <= a['timestamp'] < hi and a.get('route') in ['self_study', 'research_budget_guard', 'source_study']:
+                actions.append(a)
+    seen = packet.json('tracking-before.json')['seen_generations']
+    selected = [r['id'] for r in rows if r['status'] == 'ok' and r['text'].strip() and (r['id'] not in seen)][:3]
+    return dict(schema='source_study_fidelity_daily_v6', capture_sha256=sha(packet.raw('capture.json')), supplement_sha256=sha(packet.raw('supplement.json')), selection=packet.json('protocol.json'), capture_errors=b['errors'] + s['errors'] + extra['errors'] + [e for p in catchups for e in p['errors']], captured_records=len(rs), release_eras=eras, eras=summaries, generation_count=len(rows), jobs_queued=len(jobs), expanded_linked_jobs=len(all_jobs), expanded_job_statuses=dict(Counter((j['status'] for j in all_jobs.values()))), job_statuses=dict(Counter((j['status'] for j in jobs.values()))), jobs_without_window_generation=missing, duplicate_baseline_ids=[r['id'] for r in rows if r['id'] in seen], close_reading_ids=selected, complete_writing_matches=sum((bool(r['writing']) for r in rows)), unique_receipt_matches=len(joined), verified_receipt_matches=sum((r['receipt_verified'] for r in rows)), join_issues=join_issues, unverified_receipts_in_window=[{'path': rec['path'], 'errors': rec['errors']} for rec in receipts if not rec['verified'] and lo <= rec['completed'] < hi], sources=sources, source_progress=progress, selected_actions=actions, studies=rows, limits=['Root journals and filename self_study generation/job frames; no unrecorded-opportunity denominator. WRITE drafts share the generation lane; route is separated using explicit job action text.', 'Frozen daily selection persists despite related S-008 ad hoc observations; overlapping records are not independent evidence.', 'Multiple prompt, navigation, notebook and output-budget releases coexist; no pooled causal fidelity score.', 'Native response clocks only order unjoined receipt history; joined receipt clocks are local generation record times.', 'Blocked/completed jobs need action and generation evidence separately; later completions are right-censored at cutoff.'])

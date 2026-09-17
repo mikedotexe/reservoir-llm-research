@@ -307,3 +307,21 @@ The first-three sample occurs before the separately owned September 16 direction
 The v6 report/verifier adds only the independently reviewed process era and retained metadata. Original v5 reports, non-era generation fields, counts, numerical evidence and selected IDs remain unchanged. The v2 context verifier recognizes existing notebook schemas and rejects unknown prompts/fields. Rehashed false host/source identities also fail independent cross-evidence checks. The sealed 73-file packet includes 20 frozen code files and passes offline replay, preserving all 345 baseline/day1–8 files and ten first-week files.
 
 The ledger advances only after sealed replay, to 4,763 IDs through September 17 18:34 UTC. The next window ends September 18 18:34 UTC. Preserve first-three selection, independent source ownership, the original baseline and completed first-week synthesis. Subsequent daily analysis should retain the eight inherited era/binding files plus interface-era.json for v6, and separately review helper/prompt exposure. source_study_daily_context_v2.py and source_study_daily_account_day9.py include day-9-specific parity/count/sample assertions; do not reuse them unchanged for another window. Any new PID, prompt or schema requires review. Board finding/test/log mirroring remains pending tool access.
+
+
+## Maintained report implementation — September 17 migration
+
+The shared `reservoir-research study daily` pipeline is now selected for future
+report building and verification. [The maintained guide](../DAILY-PIPELINE.md)
+records explicit inputs and commands. The migration gate passed byte-identical
+day-9 report, verification and claim outputs, all 355 historical files, rehashed
+contradictory-binding rejection and a separately labeled later empty-window check.
+The full Python group passed 373 tests at that gate.
+
+The existing daily heartbeat retains its 11:34 Pacific schedule, first-three
+selection and ledger. Capture and ledger advancement remain separate explicit
+operations. No observational day was added by migration. Unknown new releases
+require reviewed registry/validator support. If maintained verification fails,
+preserve its failure and use the prior qualified workflow; frozen packets and
+versioned probes remain unchanged. Sample-specific context, supplied-source
+ownership and interpretation remain separate retained analyses.

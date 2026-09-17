@@ -1,0 +1,309 @@
+[
+  {
+    "id": "continuity",
+    "validator": "paired-rollout-v1",
+    "records": {
+      "rollout": {
+        "path": "/Users/v/other/astrid/docs/steward-notes/source-study-continuity-validation/live-rollout.json"
+      },
+      "manifest": {
+        "path": "/Users/v/other/worktrees/self-study-continuity-live-20260908/bridge-stage-01/manifest.json"
+      },
+      "activation": {
+        "path": "/Users/v/other/astrid/.runtime/bridge-deployment/transactions/5296e20ca9e3480b9742a2f905580363/receipt.json"
+      },
+      "reload": {
+        "path": "/Users/v/other/worktrees/self-study-continuity-live-20260908/evidence/minime-reload.jsonl"
+      },
+      "previous_manifest": {
+        "path": "/Users/v/other/worktrees/provider-observation-live-20260908/bridge-stage-01/manifest.json"
+      }
+    }
+  },
+  {
+    "id": "follow-through",
+    "validator": "paired-rollout-v1",
+    "records": {
+      "rollout": {
+        "path": "/Users/v/other/astrid/docs/steward-notes/self-study-follow-through-validation/live-rollout.json"
+      },
+      "manifest": {
+        "path": "/Users/v/other/worktrees/self-study-follow-through-20260908/bridge-stage-01/manifest.json"
+      },
+      "activation": {
+        "path": "/Users/v/other/astrid/.runtime/bridge-deployment/transactions/0061e464c05b4750b5b3ce1abf1ab0bd/receipt.json"
+      },
+      "reload": {
+        "path": "/Users/v/other/worktrees/self-study-follow-through-20260908/evidence/minime-reload.jsonl"
+      },
+      "previous_manifest": {
+        "path": "/Users/v/other/worktrees/self-study-continuity-live-20260908/bridge-stage-01/manifest.json"
+      }
+    }
+  },
+  {
+    "id": "evidence-views",
+    "validator": "paired-rollout-v1",
+    "records": {
+      "rollout": {
+        "path": "/Users/v/other/astrid/docs/steward-notes/study-evidence-validation/live-rollout.json"
+      },
+      "manifest": {
+        "path": "/Users/v/other/worktrees/study-evidence-20260908/bridge-stage-01/manifest.json"
+      },
+      "activation": {
+        "path": "/Users/v/other/astrid/.runtime/bridge-deployment/transactions/aea15d045e544ebea4e732a77d560ea3/receipt.json"
+      },
+      "reload": {
+        "path": "/Users/v/other/worktrees/study-evidence-20260908/evidence/minime-reload.jsonl"
+      },
+      "previous_manifest": {
+        "path": "/Users/v/other/worktrees/self-study-follow-through-20260908/bridge-stage-01/manifest.json"
+      }
+    }
+  },
+  {
+    "id": "journal-room",
+    "validator": "paired-rollout-v1",
+    "records": {
+      "rollout": {
+        "path": "/Users/v/other/astrid/docs/steward-notes/journal-room-validation/live-rollout.json"
+      },
+      "manifest": {
+        "path": "/Users/v/other/worktrees/journal-room-20260909/bridge-stage-01/manifest.json"
+      },
+      "activation": {
+        "path": "/Users/v/other/astrid/.runtime/bridge-deployment/transactions/2c3d20e64bfc4afcb9526f072c355157/receipt.json"
+      },
+      "reload": {
+        "path": "/Users/v/other/worktrees/journal-room-20260909/evidence/minime-reload.jsonl"
+      },
+      "previous_manifest": {
+        "path": "/Users/v/other/worktrees/study-evidence-20260908/bridge-stage-01/manifest.json"
+      }
+    }
+  },
+  {
+    "id": "study-inquiries",
+    "validator": "paired-rollout-v1",
+    "records": {
+      "rollout": {
+        "path": "/Users/v/other/astrid/docs/steward-notes/study-inquiries-validation/live-rollout.json"
+      },
+      "manifest": {
+        "path": "/Users/v/other/worktrees/study-inquiries-20260909/bridge-stage-01/manifest.json"
+      },
+      "activation": {
+        "path": "/Users/v/other/astrid/.runtime/bridge-deployment/transactions/95b171abebb34bf9a15ba8ffd5178df0/receipt.json"
+      },
+      "reload": {
+        "path": "/Users/v/other/worktrees/study-inquiries-20260909/evidence/minime-reload.jsonl"
+      },
+      "previous_manifest": {
+        "path": "/Users/v/other/worktrees/journal-room-20260909/bridge-stage-01/manifest.json"
+      }
+    }
+  },
+  {
+    "id": "study-context",
+    "validator": "paired-rollout-v1",
+    "records": {
+      "rollout": {
+        "path": "/Users/v/other/astrid/docs/steward-notes/study-context-validation/live-rollout.json"
+      },
+      "manifest": {
+        "path": "/Users/v/other/worktrees/study-context-20260909/bridge-stage-01/manifest.json"
+      },
+      "activation": {
+        "path": "/Users/v/other/astrid/.runtime/bridge-deployment/transactions/701330c8ac784156b078da2d88d3890e/receipt.json"
+      },
+      "reload": {
+        "path": "/Users/v/other/worktrees/study-context-20260909/evidence/minime-reload.jsonl"
+      },
+      "previous_manifest": {
+        "path": "/Users/v/other/worktrees/study-inquiries-20260909/bridge-stage-01/manifest.json"
+      }
+    }
+  },
+  {
+    "id": "study-choice",
+    "validator": "paired-rollout-v1",
+    "records": {
+      "rollout": {
+        "path": "/Users/v/other/astrid/docs/steward-notes/study-choice-validation/live-rollout.json"
+      },
+      "manifest": {
+        "path": "/Users/v/other/worktrees/study-choice-20260909/bridge-stage-01/manifest.json"
+      },
+      "activation": {
+        "path": "/Users/v/other/astrid/.runtime/bridge-deployment/transactions/318a6fa6fc5249b2b36eb6454701389c/receipt.json"
+      },
+      "reload": {
+        "path": "/Users/v/other/worktrees/study-choice-20260909/minime-reload.jsonl"
+      },
+      "previous_manifest": {
+        "path": "/Users/v/other/worktrees/study-context-20260909/bridge-stage-01/manifest.json"
+      }
+    }
+  },
+  {
+    "id": "extended-writing",
+    "validator": "extended-writing-v1",
+    "minime_commit": "33c324d229893a061ea958891f19fa450f232bd6",
+    "records": {
+      "activation": {
+        "suffix": "/stopped-transition-recoveries/98ce3bc70c2e4623918c164430faa256/receipt.json"
+      },
+      "reload": {
+        "suffix": "/longform-20260909/minime-reload.jsonl"
+      },
+      "manifest": {
+        "suffix": "/longform-20260909/bridge-stage-01/manifest.json"
+      },
+      "rollout": {
+        "suffix": "/2026-09-09-extended-writing-qualification/rollout/live-rollout.json"
+      },
+      "failure": {
+        "suffix": "/transactions/1ec9dc0fb1c94c76ba6170542570d701/receipt.json"
+      }
+    }
+  },
+  {
+    "id": "activation-controls",
+    "validator": "activation-controls-v1",
+    "minime_commit": "997de4f04244f334313eb900f20ea3a4f7071d50",
+    "records": {
+      "activation": {
+        "suffix": "/transactions/27a2ff67cdcf4785802e5b10128b12cc/receipt.json"
+      },
+      "reload": {
+        "suffix": "/activation-controls-20260909/minime-reload-v2.jsonl"
+      },
+      "manifest": {
+        "suffix": "/activation-controls-20260909/bridge-stage-01/manifest.json"
+      },
+      "state": {
+        "suffix": "/activation-controls-20260909/final-provider-rollout.json"
+      }
+    }
+  },
+  {
+    "id": "study-navigation",
+    "validator": "study-navigation-v1",
+    "minime_commit": "15df37ea4524375c1d9e816e5c8a447d02cc4cb5",
+    "records": {
+      "activation": {
+        "suffix": "/study-navigation-20260910/bridge-activated-receipt.json"
+      },
+      "reload": {
+        "suffix": "/study-navigation-20260910/minime-reload.json"
+      },
+      "manifest": {
+        "suffix": "/study-navigation-20260910/bridge-stage-01/manifest.json"
+      },
+      "state": {
+        "suffix": "/study-navigation-20260910/live-verified.json"
+      }
+    }
+  },
+  {
+    "id": "journal-coherence",
+    "validator": "journal-coherence-v1",
+    "minime_commit": "96b0b615d917c8edc164ab8a457c1dd1ddb5b0df",
+    "records": {
+      "activation": {
+        "suffix": "/transactions/c6d672c9e4eb4255a0dd025040023608/receipt.json"
+      },
+      "reload": {
+        "suffix": "/journal-coherence-20260911/minime-reload.jsonl"
+      },
+      "manifest": {
+        "suffix": "/journal-coherence-20260911/bridge-stage-01/manifest.json"
+      },
+      "release": {
+        "suffix": "/journal-coherence-20260911/rollout-verification.json"
+      },
+      "state": {
+        "suffix": "/journal-coherence-20260911/live-after.json"
+      }
+    }
+  },
+  {
+    "id": "catalog-navigation-sep15",
+    "validator": "catalog-navigation-v1",
+    "records": {
+      "activation": {
+        "suffix": "/transactions/417c7c5b1bb14cf6bc433b4eaec03aca/receipt.json"
+      },
+      "reload": {
+        "suffix": "/study-navigation-20260915/minime-restart.jsonl"
+      },
+      "manifest": {
+        "suffix": "/study-navigation-20260915/bridge-stage-01/manifest.json"
+      },
+      "verification": {
+        "suffix": "/study-navigation-20260915/evidence/paired-verification.json"
+      },
+      "commits": {
+        "suffix": "/study-navigation-20260915/evidence/implementation-commits.json"
+      }
+    }
+  },
+  {
+    "id": "study-interface-sep17",
+    "validator": "study-interface-v1",
+    "minime_commit": "5f4925f54580f1fd44666058b126a121ff32880f",
+    "final_commit": "374024a02a5bcfae92f228570b9efe337d85b729",
+    "helper_sha256": "7636b8dc675e97ed6d7dce4c30df6d04ae802c7cac983c6b1028788ba224a100",
+    "old_minime_pid": 37507,
+    "minime_pid": 71419,
+    "old_astrid_pid": 75546,
+    "first_astrid_pid": 67595,
+    "final_astrid_pid": 77906,
+    "source_count": 82,
+    "records": {
+      "evidence/stage01-transaction/receipt.json": {
+        "path": "research/outputs/2026-09-17-study-interface-repairs/evidence/stage01-transaction/receipt.json"
+      },
+      "evidence/stage01-transaction/stopped-transition-recoveries/eebb4acb2e7d434dbcbc57a8681c5a78/receipt.json": {
+        "path": "research/outputs/2026-09-17-study-interface-repairs/evidence/stage01-transaction/stopped-transition-recoveries/eebb4acb2e7d434dbcbc57a8681c5a78/receipt.json"
+      },
+      "evidence/stage02-transaction/receipt.json": {
+        "path": "research/outputs/2026-09-17-study-interface-repairs/evidence/stage02-transaction/receipt.json"
+      },
+      "evidence/minime-reload.jsonl": {
+        "path": "research/outputs/2026-09-17-study-interface-repairs/evidence/minime-reload.jsonl"
+      },
+      "bridge-stage-01/manifest.json": {
+        "path": "research/outputs/2026-09-17-study-interface-repairs/bridge-stage-01/manifest.json"
+      },
+      "bridge-stage-02/manifest.json": {
+        "path": "research/outputs/2026-09-17-study-interface-repairs/bridge-stage-02/manifest.json"
+      },
+      "evidence/paired-after/minime/runtime/autonomous_agent_source_status.json": {
+        "path": "research/outputs/2026-09-17-study-interface-repairs/evidence/paired-after/minime/runtime/autonomous_agent_source_status.json"
+      },
+      "evidence/minime-host-after.json": {
+        "path": "research/outputs/2026-09-17-study-interface-repairs/evidence/minime-host-after.json"
+      },
+      "evidence/paired-verification.json": {
+        "path": "research/outputs/2026-09-17-study-interface-repairs/evidence/paired-verification.json"
+      },
+      "evidence/integration.json": {
+        "path": "research/outputs/2026-09-17-study-interface-repairs/evidence/integration.json"
+      },
+      "evidence/manifest-integration/receipt.json": {
+        "path": "research/outputs/2026-09-17-study-interface-repairs/evidence/manifest-integration/receipt.json"
+      },
+      "evidence/stage02-independent-review.json": {
+        "path": "research/outputs/2026-09-17-study-interface-repairs/evidence/stage02-independent-review.json"
+      },
+      "bridge-stage-01/source-inputs.json": {
+        "path": "research/outputs/2026-09-17-study-interface-repairs/bridge-stage-01/source-inputs.json"
+      },
+      "bridge-stage-02/source-inputs.json": {
+        "path": "research/outputs/2026-09-17-study-interface-repairs/bridge-stage-02/source-inputs.json"
+      }
+    }
+  }
+]
