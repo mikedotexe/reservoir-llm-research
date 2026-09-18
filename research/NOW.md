@@ -3,17 +3,18 @@
 [Current app candidate, installation and verification](CURRENT-RELEASE.md) ·
 [Unmodified dated history through September 17](NOW-history-through-20260917.md)
 
-The latest completed fidelity window is [S-007 day 9](../analyses/2026-09-17-source-study-fidelity-day9.md):
-280 source studies have exact input and journal links; 56 private WRITE responses
-remain separate. The fixed sample locates Kernel at line 37 but mistakes byte
-endpoint 4540 for a line endpoint. The source ends at visible line 98. No general
-fidelity gain is established. The ledger remains 4,763 IDs through September 17
-18:34 UTC; the daily cutoff, selection rule and schedule are unchanged.
+The latest completed fidelity window is [S-007 day 10](../analyses/2026-09-18-source-study-fidelity-day10.md):
+312 source studies have exact input and journal links; 13 private WRITE responses
+remain separate. The fixed sample corrects an unavailable source path. A separately
+declared adjacent follow-up verifies delivery of the corrected source; broader
+architectural claims and durable saved correction remain unestablished. No general
+fidelity gain is inferred. The ledger reaches 5,088 IDs through September 18
+18:34 UTC after sealed replay; the daily cutoff, selection and schedule are unchanged.
 
-The maintained pipeline reproduces the day-9 report, verification and claim checks
-byte for byte, with 355 historical files verified. The private pre-cleanup snapshot
-on this Mac has been restored and its frozen replay passed with networking and
-original paths denied.
+The maintained pipeline retains byte-identical day-9 parity and now verifies the
+new window with all 428 historical files. Private prompt changes are independently
+bound to reviewed release evidence. The private pre-cleanup snapshot on this Mac
+has been restored and its frozen replay passed with networking and original paths denied.
 
 [S-009 short-output qualification](../analyses/2026-09-17-short-output-qualification.md)
 failed its first candidate: 25 words and multiple copied measurements. The paired

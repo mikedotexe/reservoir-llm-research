@@ -325,3 +325,36 @@ require reviewed registry/validator support. If maintained verification fails,
 preserve its failure and use the prior qualified workflow; frozen packets and
 versioned probes remain unchanged. Sample-specific context, supplied-source
 ownership and interpretation remain separate retained analyses.
+
+
+## Day 10 — September 18 maintained-pipeline observation
+
+[The day10 account](../../analyses/2026-09-18-source-study-fidelity-day10.md)
+retains the unchanged September17 18:34 to September18 18:34UTC completion window:
+312 completed source studies with exact wire/journal links, 13 separate private
+WRITE responses, and one running cutoff job without a completed window response.
+All 255 numbered-page opportunities concern Astrid; no Minime-owned page occurs.
+The first response began before the window and is included by completion time.
+
+The fixed first-three sample supports local identity-link observations and an
+explicit correction from an unavailable underscore path to the supplied hyphenated
+candidate. A separately declared exploratory adjacent follow-up establishes that
+the immediately next source study receives that source. It does not establish
+architectural understanding or a durable persisted correction. Eleven exact spans
+preserve these interpretation boundaries; no quality-rate or causal gain is inferred.
+
+The maintained report passes with all 428 historical files and byte-identical
+preliminary/final output. Context-v3 is a separately frozen definition-driven
+extension: registered PID 71419, unchanged source-study prompt, and a newly encountered
+private WRITE prompt exactly bound to retained reviewed interface-patch bytes.
+Host, selected helper, exact prompt, transition timing and per-invocation unknowns
+remain separate. Unknown identities, notebook schemas or contradictory evidence
+block verification. The first descriptive draft's incorrect private-route count is
+retained as preparation history and corrected to 13 in the accepted account.
+
+After sealed replay the ledger reaches 5,088 IDs through September18 18:34UTC;
+the next window ends September19 18:34UTC. Keep the existing schedule, baseline,
+first-three completion selector and completed first-week synthesis. Do not reuse
+the day10 descriptive follow-up as another day's selection. Future context use
+requires a newly frozen definition and explicit review of new identities; historical
+probes and packets remain unchanged. Board finding/test/log mirroring is pending.
