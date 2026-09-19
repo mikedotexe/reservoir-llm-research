@@ -3,6 +3,8 @@
 [Current app candidate, installation and verification](CURRENT-RELEASE.md) ·
 [Unmodified dated history through September 17](NOW-history-through-20260917.md)
 
+The September 18–19 [day11 window](../analyses/2026-09-19-source-study-fidelity-day11.md) is retained but **verification-blocked**: 263 responses use a new Minime process whose historical restart/deployment receipt has not been located. The new prompt and bridge activation have partial bindings; current startup status alone does not close the host-release gap. The ledger remains 5,088 IDs. Resume this same frozen window from its pending-window record; do not widen or recollect it.
+
 The latest completed fidelity window is [S-007 day 10](../analyses/2026-09-18-source-study-fidelity-day10.md):
 312 source studies have exact input and journal links; 13 private WRITE responses
 remain separate. The fixed sample corrects an unavailable source path. A separately

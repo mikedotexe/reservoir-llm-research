@@ -358,3 +358,34 @@ first-three completion selector and completed first-week synthesis. Do not reuse
 the day10 descriptive follow-up as another day's selection. Future context use
 requires a newly frozen definition and explicit review of new identities; historical
 probes and packets remain unchanged. Board finding/test/log mirroring is pending.
+
+
+## Day 11 — September 19 retained window; verification blocked
+
+[The day11 account](../../analyses/2026-09-19-source-study-fidelity-day11.md)
+retains the frozen September 18 18:34 to September 19 18:34 UTC window and unchanged
+first-three selection. Its 314 records comprise 302 source studies and 12 private
+WRITE responses; 301 source responses have full-journal matches and one has a
+captured similarity-summary journal. All 236 source pages concern Astrid. The
+fixed sample supports local lifecycle operations and correct page extents; broader
+readiness, policy and purge claims remain unestablished. No later-prose follow-up
+or general improvement score is added.
+
+The maintained verifier correctly refuses 263 rows under new PID 81688. The new
+prompt, staged source inventory and bridge activation are independently bound,
+but no historical Minime restart/deployment receipt was found in the declared
+bounded review. Current startup status matching 82 staged files is retained as a
+different evidence class and does not replace it. Initial definitions, failures,
+source/model limitations and all partial checks remain explicit.
+
+The ledger stays byte-identical at 5,088 IDs through September 18 18:34 UTC. Do not
+advance or mark this window completed on the strength of file-integrity replay:
+its expected result is research verification blocked. The original first-week
+synthesis and schedule are unchanged.
+
+On the next run, inspect the pending-window record and seek only the missing
+owning release evidence. Reuse this frozen day11 capture and fixed sample through
+a separate immutable verification attempt; never overwrite the packet or merge
+September 19–20 into this failed window. Once complete verification succeeds,
+advance day11 and observe later daily windows separately. Unknown bindings remain
+blocking. Board finding/test/log mirroring remains pending.
