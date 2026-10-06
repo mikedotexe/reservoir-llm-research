@@ -3,6 +3,8 @@
 [Current app candidate, installation and verification](CURRENT-RELEASE.md) ·
 [Unmodified dated history through September 17](NOW-history-through-20260917.md)
 
+October 6: [repository tidy-up and record status](../analyses/2026-10-06-git-tidy-and-record-status.md). Four rechecks of the blocked day11 window, September 20–23, each left the blocker, the 5,088-ID ledger and the pending-window record unchanged. No recheck output is retained after September 23, and no daily window after September 19 18:34 UTC has been captured. Whether the daily heartbeat is still scheduled was not determined from this checkout.
+
 The September 18–19 [day11 window](../analyses/2026-09-19-source-study-fidelity-day11.md) is retained but **verification-blocked**: 263 responses use a new Minime process whose historical restart/deployment receipt has not been located. The new prompt and bridge activation have partial bindings; current startup status alone does not close the host-release gap. The ledger remains 5,088 IDs. Resume this same frozen window from its pending-window record; do not widen or recollect it.
 
 The latest completed fidelity window is [S-007 day 10](../analyses/2026-09-18-source-study-fidelity-day10.md):
@@ -27,12 +29,13 @@ was stopped. No prompt v3 or additional recording follows this failed qualificat
 
 1. Complete the presented-app accessibility walkthrough for [Reservoir Scope 0.14](CURRENT-RELEASE.md)
    and arrange an actual newcomer session before changing acceptance status.
-2. Follow the separately frozen S-006 consecutive-run and S-008 durable-correction
-   windows through their declared closing dates, retaining negative, missing and
-   unavailable outcomes. See the [bounded status account](../analyses/2026-09-17-bounded-followups-status.md):
-   intake closes September 24; follow-up closes September 26. A separate follow-up
-   task needs approval before its heartbeat can be scheduled; S-007 stays independent.
+2. Decide how to finish the separately frozen S-006 consecutive-run and S-008
+   durable-correction windows, retaining negative, missing and unavailable outcomes.
+   See the [bounded status account](../analyses/2026-09-17-bounded-followups-status.md):
+   intake closed September 24 and follow-up September 26. Only the September 17
+   initial captures are retained, and the separate follow-up heartbeat has no recorded
+   approval. Neither study is closed or judged; S-007 stays independent.
 3. Keep research recoverable and reproducible: explicit input manifests, bounded
-   verification, reviewed local commits and a second verified private backup after
-   the follow-ups close. Board mirroring remains pending while its authenticated
-   channel is unavailable.
+   verification, reviewed commits and a second verified private backup after the
+   follow-ups close; that backup's state cannot be checked from this checkout.
+   Hold Shelf was reachable on October 6; its mirror backlog still needs reconciliation.

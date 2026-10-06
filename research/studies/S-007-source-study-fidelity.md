@@ -1,6 +1,6 @@
 # S-007 · Minime's source-study fidelity after restored code access
 
-Selected by Mike, September 8, 2026. Status: initial observation complete; daily longitudinal inquiry active.
+Selected by Mike, September 8, 2026. Status: initial observation complete; daily longitudinal inquiry open, with day 11 verification-blocked and no daily window captured after September 19 18:34 UTC (as of October 6; see the last section).
 
 The [living SELF_STUDY history](../histories/self-study.md) connects this frozen
 baseline to the later interactive comparison, progress/notebook release, S-008
@@ -389,3 +389,15 @@ a separate immutable verification attempt; never overwrite the packet or merge
 September 19–20 into this failed window. Once complete verification succeeds,
 advance day11 and observe later daily windows separately. Unknown bindings remain
 blocking. Board finding/test/log mirroring remains pending.
+
+## Record status — October 6: rechecks September 20–23, no later window
+
+Four rechecks of the blocked day11 window ran on September 20, 21, 22 and 23. Each
+left research verification blocked, the ledger byte-identical at 5,088 IDs and the
+pending-window record unchanged. The September 21 recheck retained a later receipt
+for a transition from PID 81688 to PID 18648; it does not document the original
+transition into PID 81688. No recheck output is retained after September 23, and no
+daily window after September 19 18:34 UTC has been captured. Windows ending September
+20 onward are coverage gaps under the missed-run rule above, to be processed
+separately. The resume rule in the previous section is unchanged. See the
+[record status account](../../analyses/2026-10-06-git-tidy-and-record-status.md).
