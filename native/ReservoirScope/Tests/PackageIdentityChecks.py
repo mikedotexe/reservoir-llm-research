@@ -22,10 +22,11 @@ with tempfile.TemporaryDirectory(prefix="reservoir-package-identity-") as folder
     (app/"Contents/MacOS/ReservoirScope").chmod(0o755)
     shutil.copyfile("/usr/bin/true",app/"Contents/MacOS/essentials-run")
     (app/"Contents/MacOS/essentials-run").chmod(0o755)
+    release=json.loads((stage/"native/ReservoirScope/resource-manifest.json").read_text())["release"]
     (app/"Contents/Info.plist").write_bytes(plistlib.dumps({
         "CFBundleName":"Synthetic identity fixture","CFBundleIdentifier":"research.reservoir.identity.fixture",
         "CFBundleExecutable":"ReservoirScope","CFBundlePackageType":"APPL",
-        "CFBundleShortVersionString":"0.14.0","CFBundleVersion":"19"}))
+        "CFBundleShortVersionString":str(release["version"]),"CFBundleVersion":str(release["build"])}))
     command(["codesign","--force","--sign","-",app/"Contents/MacOS/essentials-run"])
     create=["python3",native/"package-identity.py","create","--app",app,"--repo",repo,"--stage",stage,"--core-cache",cache]
     create += ["--expected-staged-sha256", hashlib.sha256((stage/"staged-inputs.json").read_bytes()).hexdigest(),

@@ -12,7 +12,7 @@ import SwiftUI
                 window = NSWindow(contentRect: NSRect(x: 20, y: 20, width: 1100, height: 820), styleMask: [.titled], backing: .buffered, defer: false)
                 window.isReleasedWhenClosed = false
                 for width in [1100.0, 1380.0] {
-                    for selection in [0, 2, 3, 4] {
+                    for selection in [0, 1, 2, 3, 4] {
                         let view = NSHostingView(rootView: GeometryBookmarkExperience(packet: packet, selected: selection)
                             .frame(width: width, height: 820).background(Color(red: 0.035, green: 0.045, blue: 0.065)).preferredColorScheme(.dark))
                         window.contentView = view; window.setContentSize(NSSize(width: width, height: 820)); window.orderFrontRegardless()
@@ -24,7 +24,7 @@ import SwiftUI
                         try png.write(to: output.appendingPathComponent("geometry-\(Int(width))-\(selection).png"))
                     }
                 }
-                print("Rendered eight geometry views at two supported desktop widths; visual inspection remains separate.")
+                print("Rendered ten geometry views at two supported desktop widths; visual inspection and interaction testing remain separate.")
                 NSApp.terminate(nil)
             } catch { fputs("FAIL: \(error)\n", stderr); exit(1) }
         }

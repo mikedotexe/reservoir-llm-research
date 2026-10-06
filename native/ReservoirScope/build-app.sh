@@ -6,7 +6,7 @@ repo_dir="${task_dir:h:h}"
 native_cache="${RESERVOIR_SCOPE_BUILD_DIR:-${XDG_CACHE_HOME:-$HOME/.cache}/reservoir-research/ReservoirScope-build}"
 mkdir -p "$native_cache"
 # Every invocation owns its immutable source snapshot and compiler outputs.
-build_root="$(mktemp -d "$native_cache/build-0.14.XXXXXX")"
+build_root="$(mktemp -d "$native_cache/build-0.15.XXXXXX")"
 staged_root="$build_root/staged-repo"
 staged_native="$staged_root/native/ReservoirScope"
 core_cache="$build_root/essentials"

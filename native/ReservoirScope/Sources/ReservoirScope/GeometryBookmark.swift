@@ -39,7 +39,7 @@ struct GeometryBookmarkPacket {
             try require(record.previous == previous && record.id == identity && isGeometryHash(record.requestSha256)
                 && !record.requestId.isEmpty && record.requestId.utf8.count <= 128 && seen.insert(record.requestId).inserted,
                 "Broken geometry chain or conflicting operation identity")
-            let entry = try decoder.decode(GeometryBookmarkEntry.self, from: Data(record.bodyJson.utf8))
+            let entry = try GeometryBookmarkEntry.decode(Data(record.bodyJson.utf8), decoder: decoder)
             switch entry.kind {
             case "capture":
                 guard let snapshot = entry.snapshot, let note = entry.note else { throw GeometryBookmarkError.invalid("Incomplete capture") }
@@ -110,7 +110,32 @@ struct GeometryBookmarkEntry: Decodable {
     let target: String?
     let text: String?
 
-    var authoredText: String? { note ?? expectation ?? text }
+    static func decode(_ data: Data, decoder: JSONDecoder) throws -> Self {
+        let entry = try decoder.decode(Self.self, from: data)
+        let allowed: Set<String>
+        switch entry.kind {
+        case "capture": allowed = ["kind", "snapshot", "note"]
+        case "prediction": allowed = ["kind", "baseline", "maximum_rms_distance", "expectation"]
+        case "comparison": allowed = ["kind", "prediction", "observation", "recipe", "rms_distance", "threshold_met"]
+        case "revision": allowed = ["kind", "target", "text"]
+        default: throw GeometryBookmarkError.invalid("Unsupported geometry record kind")
+        }
+        guard let object = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+            throw GeometryBookmarkError.invalid("Geometry record must be an object")
+        }
+        let unexpected = Set(object.keys).subtracting(allowed)
+        try require(unexpected.isEmpty, "Unexpected fields for \(entry.kind): \(unexpected.sorted().joined(separator: ", "))")
+        return entry
+    }
+
+    var authoredText: String? {
+        switch kind {
+        case "capture": return note
+        case "prediction": return expectation
+        case "revision": return text
+        default: return nil
+        }
+    }
 }
 struct GeometryBookmarkFrame: Decodable {
     let tMs: UInt64
@@ -127,8 +152,11 @@ struct GeometryBookmarkSnapshot: Decodable {
     let identity: String
     let frames: [GeometryBookmarkFrame]
 
-    var gaps: [(UInt64, UInt64)] { zip(frames, frames.dropFirst()).filter { $1.tMs - $0.tMs > 1000 }.map { ($0.tMs, $1.tMs) } }
-    var durationMs: UInt64 { frames.last!.tMs - frames[0].tMs }
+    var gaps: [(UInt64, UInt64)] { zip(frames, frames.dropFirst()).filter { $1.tMs > $0.tMs && $1.tMs - $0.tMs > 1000 }.map { ($0.tMs, $1.tMs) } }
+    var durationMs: UInt64 {
+        guard let first = frames.first, let last = frames.last, last.tMs >= first.tMs else { return 0 }
+        return last.tMs - first.tMs
+    }
     var mean: [Double] { (0..<128).map { node in frames.reduce(0) { $0 + $1.activations[node] } / Double(frames.count) } }
 
     func validate() throws {

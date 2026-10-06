@@ -133,3 +133,42 @@ No Artifact connector is available in this task. Pending Hold Shelf entry:
 offline candidate / qualification; link this note and the owning implementation
 packet; retain the explicit no-live-deployment and no-causal-inference boundaries.
 No existing study card or scheduled follow-up was changed.
+
+## October 6 integration review and repair
+
+The eight-file offline candidate was preserved unchanged in commit `ba7a6e2`
+before integration work. The viewer is being prepared as **0.15.0 build 20**, an
+unreleased local candidate. The 0.14.0 tag, artifacts and human acceptance status
+remain separate.
+
+The review found that fields outside a record's kind could bypass validation:
+a revision could carry an invalid snapshot into rendering, or an extra account
+could replace the selected authored text. The importer now rejects those fields,
+the view selects content by kind, and the empty-frame path is guarded. Resealed
+mutation checks now update all dependent references and assert specific failure
+reasons, with a valid changed-capture control.
+
+The named September `/tmp` fixture and screenshot directories were absent at this
+review. Their earlier account is preserved above; it is not a new test result.
+Deterministic [synthetic viewer fixtures](../../native/ReservoirScope/Tests/Fixtures/geometry-bookmarks/README.md)
+now retain both owners' packets, their generator and provenance. They establish
+local importer and presentation behavior only. No Rust helper, Minime adapter,
+live source or model was executed during this integration qualification.
+
+Targeted checks passed: 96 importer assertions across the two synthetic packets,
+seven verification-dispatch tests and 16 source-staging checks. The presentation
+wrapper rendered all five selections at both 1100×820 and 1380×820. The narrow
+capture and comparison images were visually inspected without overlap or clipped
+accounts. Rendering is not interaction testing or newcomer acceptance. The new
+wrappers are included in the existing native-model and native-presentation groups;
+staged source identity includes their fixture files.
+
+Commands are in the [candidate guide](../../native/ReservoirScope/docs/GEOMETRY-BOOKMARKS.md).
+Logs and renderings are retained locally under ignored
+`research/outputs/2026-10-06-geometry-integration/`. The default SDK lookup failed
+in the first staging attempt; the successful attempt explicitly selected the
+installed Xcode macOS 26.2 SDK without changing the host configuration. Build,
+packaged identity and actual presented-app interactions have separate receipts.
+
+This repair does not close the original rollout debt, establish current producer
+interoperability, or alter S-006, S-007, S-008 or their evidence.

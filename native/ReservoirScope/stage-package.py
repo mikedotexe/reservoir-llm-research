@@ -56,6 +56,8 @@ def source_paths(repo):
     native = repo / NATIVE
     result = list((native / "Sources/ReservoirScope").glob("*.swift"))
     result += [path for path in (native / "Tests").glob("*") if path.suffix in (".swift", ".py")]
+    result += [path for path in (native / "Tests/Fixtures/geometry-bookmarks").glob("*")
+               if path.is_file() and path.suffix in (".py", ".json", ".md")]
     result += list(native.glob("*.sh")) + list(native.glob("*.py"))
     result += [native / "Package.swift", native / "resource-manifest.json"]
     essentials = repo / "essentials"

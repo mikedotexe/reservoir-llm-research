@@ -11,6 +11,10 @@ with tempfile.TemporaryDirectory(prefix="reservoir-source-staging-") as folder:
     n=source/"native/ReservoirScope"; e=source/"essentials"
     (n/"Sources/ReservoirScope").mkdir(parents=True)
     (n/"Tests").mkdir()
+    geometry=n/"Tests/Fixtures/geometry-bookmarks"
+    geometry.mkdir(parents=True)
+    for name, content in (("sample.json", "{}\n"), ("generate.py", "# fixture generator\n"), ("README.md", "Fixture description\n")):
+        (geometry/name).write_text(content)
     (e/"reservoir").mkdir(parents=True)
     (source/"fixtures").mkdir()
     (n/"Package.swift").write_text("// native package fixture\n")
@@ -43,6 +47,11 @@ with tempfile.TemporaryDirectory(prefix="reservoir-source-staging-") as folder:
     assert (target/"Sources/ReservoirScope/Resources/example.json").read_bytes()==resource.read_bytes()
     assert (staged/"unrelated-output").read_text()=="preserve\n"
     run("verify-stage")
+    for path in geometry.iterdir():
+        assert (target/"Tests/Fixtures/geometry-bookmarks"/path.name).read_bytes()==path.read_bytes()
+    (target/"Tests/Fixtures/geometry-bookmarks/sample.json").write_text('{"changed":true}\n')
+    run("verify-stage",False)
+    run("stage")
     (target/"Sources/ReservoirScope/Current.swift").write_text("// changed\n")
     run("verify-stage",False)
     run("stage")
@@ -66,5 +75,5 @@ with tempfile.TemporaryDirectory(prefix="reservoir-source-staging-") as folder:
     before=(staged/"staged-inputs.json").read_bytes()
     run("stage")
     assert before==(staged/"staged-inputs.json").read_bytes()
-    print("14 source-staging checks passed: coherent dependency paths, resource identity, drift rejection, pruning and repeatability.")
+    print("16 source-staging checks passed: coherent dependency paths, resource identity, drift rejection, pruning, repeatability and retained geometry fixture identity.")
 PY

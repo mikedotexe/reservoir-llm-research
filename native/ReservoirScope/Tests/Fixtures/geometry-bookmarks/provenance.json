@@ -1,0 +1,56 @@
+{
+  "design_references": [
+    "native/ReservoirScope/Sources/ReservoirScope/GeometryBookmark.swift",
+    "native/ReservoirScope/Tests/geometry_bookmark_workflow.py"
+  ],
+  "evidence_kind": "generated synthetic viewer fixtures; not producer interoperability",
+  "fixtures": {
+    "astrid-synthetic-geometry.json": {
+      "bytes": 8222,
+      "owner": "astrid",
+      "sha256": "f88f87ad27afa2cc78bb742a59d81d46680a2fee6b74cf3ee756a5e35dce7c53"
+    },
+    "minime-synthetic-geometry.json": {
+      "bytes": 8222,
+      "owner": "minime",
+      "sha256": "25ecc19605ee1bed307735f52668b817a854af98239018e74072c17ffbe92abc"
+    }
+  },
+  "format": "reservoir-scope.synthetic-geometry-fixtures.v1",
+  "generator": {
+    "dependencies": "Python 3 standard library only; no external inputs",
+    "file": "generate.py",
+    "sha256": "75e762e051cf0fc187d6735040d80221cf6a6f3d2f62d3e7bdd256c7925c3d0e"
+  },
+  "hash_scope": {
+    "canonical_json": "UTF-8, sorted keys, compact separators, no NaN",
+    "file": "SHA-256 of exact UTF-8 file bytes, including final newline",
+    "record": "SHA-256 of previous, request-ID hash, request hash and body hash joined by LF",
+    "request": "SHA-256 of the synthetic request built by append(); no operation is executed",
+    "source": "SHA-256 of the synthetic trace built by capture(); source label is never opened"
+  },
+  "recipe": {
+    "baseline_coordinate": "((node_index % 17) - 8) / 20",
+    "captures_per_owner": 2,
+    "coordinates_per_frame": 128,
+    "expected_rms_distance": 0.1,
+    "expected_threshold_met": false,
+    "frame_offsets_ms": [
+      0,
+      1000,
+      3000
+    ],
+    "frames_per_capture": 3,
+    "gaps_per_capture": 1,
+    "maximum_rms_distance": 0.05,
+    "observation_coordinate": "((node_index % 17) - 6) / 20",
+    "recorder_start_ms": [
+      10000,
+      20000
+    ],
+    "records_per_owner": 5,
+    "requested_seconds": 10,
+    "wall_clock_epoch_ms": 1790000000000
+  },
+  "wire_format": "question-geometry-v1"
+}

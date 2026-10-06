@@ -7,6 +7,10 @@ A native macOS research lab with an offline guided component journey, recorded a
 optional local model writing, reviewed research cases, and a separate Minime & Astrid
 observatory. The shared numerical core and matching runner live in `essentials/`.
 
+The working source is an **unreleased 0.15.0 build 20 local candidate**, adding
+[Geometry bookmarks](docs/GEOMETRY-BOOKMARKS.md). The linked 0.14.0 release and its
+acceptance status remain separate from new local builds.
+
 ## Build
 
 On an Apple silicon Mac with Swift and the macOS SDK, from the repository root:

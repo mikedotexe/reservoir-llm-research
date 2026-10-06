@@ -70,14 +70,14 @@ struct GeometryBookmarkExperience: View {
                 Text("Authored account").font(.caption).foregroundStyle(.secondary)
                 Text(text).textSelection(.enabled).fixedSize(horizontal: false, vertical: true)
             }
-            if let snapshot = entry.snapshot {
+            if entry.kind == "capture", let snapshot = entry.snapshot {
                 snapshotView(snapshot)
             }
-            if let expectation = entry.maximumRmsDistance {
+            if entry.kind == "prediction", let expectation = entry.maximumRmsDistance {
                 Text("Predicted maximum mean-state RMS distance: \(expectation, specifier: "%.6g")")
                 reference("Baseline", entry.baseline)
             }
-            if let distance = entry.rmsDistance {
+            if entry.kind == "comparison", let distance = entry.rmsDistance {
                 Text(distance, format: .number.precision(.fractionLength(6))).font(.system(size: 28, weight: .medium, design: .monospaced))
                 Text(comparisonLabel(entry)).foregroundStyle(entry.thresholdMet == true ? .cyan : .orange)
                 Text("RMS difference between the two unweighted mean 128-node vectors. Sampling and gaps can affect the result; opposite movements can cancel in a mean.")
@@ -86,41 +86,45 @@ struct GeometryBookmarkExperience: View {
                 Text("Prediction was stored before the second capture. Its source interval can predate that prediction; this is not a prospective trial or proof that the result was previously unseen.")
                     .font(.caption).foregroundStyle(.secondary)
             }
-            reference("Revises", entry.target)
+            if entry.kind == "revision" { reference("Revises", entry.target) }
         }.padding(24).frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private func snapshotView(_ snapshot: GeometryBookmarkSnapshot) -> some View {
-        let index = min(snapshot.frames.count - 1, max(0, Int(frame)))
-        let current = snapshot.frames[index]
-        return VStack(alignment: .leading, spacing: 14) {
-            Text("\(snapshot.frames.count) states · \(snapshot.durationMs) ms observed · \(snapshot.requestedSeconds) s requested · \(snapshot.gaps.count) recorder gaps > 1000 ms")
-                .font(.callout).textSelection(.enabled)
-            Text("128 node coordinates × retained frames (ordinal rows)").font(.caption).foregroundStyle(.secondary)
-            GeometryCoordinateMap(snapshot: snapshot, selected: index).frame(height: 240)
-                .accessibilityLabel("Activation matrix, \(snapshot.frames.count) recorded frames and 128 nodes; fixed minus one to plus one scale")
-            HStack {
-                Label("−1", systemImage: "square.fill").foregroundStyle(.cyan)
-                Text("0").foregroundStyle(.secondary)
-                Label("+1", systemImage: "square.fill").foregroundStyle(.orange)
-                Spacer(); Text("No PCA, interpolation or inferred eigenvectors")
-            }.font(.caption)
-            HStack {
-                Text("Frame \(index + 1) / \(snapshot.frames.count)").monospacedDigit().frame(width: 120, alignment: .leading)
-                Slider(value: $frame, in: 0...Double(max(1, snapshot.frames.count - 1)), step: 1)
-                    .disabled(snapshot.frames.count == 1).accessibilityLabel("Recorded frame")
-            }
-            Text("Engine \(current.tMs) ms · \(Date(timeIntervalSince1970: Double(current.wallClockUnixMs) / 1000).formatted(.iso8601)) · state RMS \(current.rms, specifier: "%.6f")")
-                .font(.system(.caption, design: .monospaced)).textSelection(.enabled)
-            if !snapshot.gaps.isEmpty {
-                Text("Recorder gaps (engine ms): " + snapshot.gaps.map { "\($0.0)..\($0.1)" }.joined(separator: ", "))
-                    .font(.caption).foregroundStyle(.orange).textSelection(.enabled)
-            }
-            DisclosureGroup("Exact selected coordinates") {
-                Text(current.activations.enumerated().map { "\($0.offset): \($0.element)" }.joined(separator: "  "))
+    @ViewBuilder private func snapshotView(_ snapshot: GeometryBookmarkSnapshot) -> some View {
+        if snapshot.frames.isEmpty {
+            ContentUnavailableView("No recorded frames", systemImage: "square.stack")
+        } else {
+            let index = min(snapshot.frames.count - 1, max(0, Int(frame)))
+            let current = snapshot.frames[index]
+            VStack(alignment: .leading, spacing: 14) {
+                Text("\(snapshot.frames.count) states · \(snapshot.durationMs) ms observed · \(snapshot.requestedSeconds) s requested · \(snapshot.gaps.count) recorder gaps > 1000 ms")
+                    .font(.callout).textSelection(.enabled)
+                Text("128 node coordinates × retained frames (ordinal rows)").font(.caption).foregroundStyle(.secondary)
+                GeometryCoordinateMap(snapshot: snapshot, selected: index).frame(height: 240)
+                    .accessibilityLabel("Activation matrix, \(snapshot.frames.count) recorded frames and 128 nodes; fixed minus one to plus one scale")
+                HStack {
+                    Label("−1", systemImage: "square.fill").foregroundStyle(.cyan)
+                    Text("0").foregroundStyle(.secondary)
+                    Label("+1", systemImage: "square.fill").foregroundStyle(.orange)
+                    Spacer(); Text("No PCA, interpolation or inferred eigenvectors")
+                }.font(.caption)
+                HStack {
+                    Text("Frame \(index + 1) / \(snapshot.frames.count)").monospacedDigit().frame(width: 120, alignment: .leading)
+                    Slider(value: $frame, in: 0...Double(max(1, snapshot.frames.count - 1)), step: 1)
+                        .disabled(snapshot.frames.count == 1).accessibilityLabel("Recorded frame")
+                }
+                Text("Engine \(current.tMs) ms · \(Date(timeIntervalSince1970: Double(current.wallClockUnixMs) / 1000).formatted(.iso8601)) · state RMS \(current.rms, specifier: "%.6f")")
                     .font(.system(.caption, design: .monospaced)).textSelection(.enabled)
+                if !snapshot.gaps.isEmpty {
+                    Text("Recorder gaps (engine ms): " + snapshot.gaps.map { "\($0.0)..\($0.1)" }.joined(separator: ", "))
+                        .font(.caption).foregroundStyle(.orange).textSelection(.enabled)
+                }
+                DisclosureGroup("Exact selected coordinates") {
+                    Text(current.activations.enumerated().map { "\($0.offset): \($0.element)" }.joined(separator: "  "))
+                        .font(.system(.caption, design: .monospaced)).textSelection(.enabled)
+                }
+                reference("Recorder SHA256", snapshot.sourceSha256)
             }
-            reference("Recorder SHA256", snapshot.sourceSha256)
         }
     }
 

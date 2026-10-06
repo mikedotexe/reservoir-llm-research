@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from types import SimpleNamespace
 from unittest.mock import patch
 from reservoir_research import cli, verification
 
@@ -63,6 +64,33 @@ class VerificationEntryChecks(unittest.TestCase):
             code = cli.main(["archive", "verify", str(self.root)])
         self.assertEqual(code, 0)
         call.assert_called_once_with(self.root)
+
+    def test_geometry_checks_use_correct_groups_and_output_paths(self):
+        native = self.root / "native/ReservoirScope"
+        native.mkdir(parents=True)
+        for name in ("check-geometry-bookmarks.sh", "check-geometry-bookmark-presentation.sh"):
+            (native / name).touch()
+        args = SimpleNamespace(app=None, daily_manifest=None, daily_report=None, data_root=None,
+                               inherit=[], timeout=30, group=["native-model", "native-presentation"],
+                               out=self.root / "geometry-verification")
+        def execute(command, root, env, log, timeout):
+            return dict(command=command, exit_code=0, outcome="passed")
+        with patch.object(verification.platform, "system", return_value="Darwin"), \
+             patch.object(verification.shutil, "which", return_value="/tool"), \
+             patch.object(verification, "source_identity", return_value={"fixture": "stable"}), \
+             patch.object(verification, "_execute", side_effect=execute):
+            receipt, code = verification.run(args, root=self.root)
+        self.assertEqual(code, 0)
+        model, presentation = receipt["groups"]
+        model_commands = [item["command"] for item in model["commands"]]
+        presentation_commands = [item["command"] for item in presentation["commands"]]
+        expected_model = ["bash", str((native / "check-geometry-bookmarks.sh").resolve()),
+                          str((args.out / "check-geometry-bookmarks").resolve())]
+        expected_presentation = ["bash", str((native / "check-geometry-bookmark-presentation.sh").resolve()),
+                                 str((args.out / "check-geometry-bookmark-presentation").resolve())]
+        self.assertIn(expected_model, model_commands)
+        self.assertNotIn(expected_model, presentation_commands)
+        self.assertEqual(presentation_commands, [expected_presentation])
 
 if __name__ == "__main__":
     unittest.main()
