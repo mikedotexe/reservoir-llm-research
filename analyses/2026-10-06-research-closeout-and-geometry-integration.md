@@ -6,14 +6,14 @@ candidate**. Import validation and workspace navigation defects are repaired.
 The bounded research extensions have their own completed, coverage-qualified
 closeout, and the historical board backlog has been reconciled. The corrected app
 passed the presented geometry walkthrough at both desktop widths; the final Python
-suite and package verification passed. The new recovery snapshot and overall board
-completion remain pending their final attestation.
+suite and package verification passed. The new same-volume recovery snapshot and
+isolated restore replay passed; the later board attestation is recorded separately.
 
 The scope is research maintenance and an offline app viewer. There was no Being
 implementation or rollout, new model request, live-system change or extension of a
 frozen study window. The separately authorized historical recovery is described in
 the [bounded follow-up account](2026-10-06-bounded-followups-closeout.md).
-The existing 0.14.0 tag and delivery artifacts remain preserved. Human newcomer
+The existing 0.14.0 tag and retained delivery records remain preserved. Human newcomer
 acceptance remains pending.
 
 ## Surgical Git integration
@@ -34,9 +34,11 @@ retained with dated follow-ups. No broad tree reorganization was performed.
 | `f161846` | Replay closeout from stable private copies of hashed inputs | Separate research work |
 | `5cd7d85` | Close bounded research accounts and reconcile living navigation | Separate research documentation |
 
-This table records committed work at the time of writing. Final documentation,
-board and recovery-attestation commits will be recorded after
-their checks. No new remote publication is claimed by this account.
+The subsequent commits `a4c636a` record corrected-candidate qualification and
+`d47a866` record the full pre-snapshot board reconciliation. The recovery snapshot
+binds that latter commit. Final board and recovery documentation are later
+attestation commits; inspect `git log ef45495..codex/research-closeout` for their
+identities. No push, merge or new remote publication occurred in this pass.
 
 ## Geometry behavior and repairs
 
@@ -181,18 +183,27 @@ now retain 113 records including geometry. These editor receipts cover fields su
 as source that the visible DOM cannot establish. One historical update lacks a
 separate pre-update source witness; its first saved value and publisher preservation
 note remain an explicit limit. The original records are preserved; historical
-notices are reconciled rather than repeatedly reopened. Overall completion remains
-held for the recovery snapshot and final attestation.
+notices are reconciled rather than repeatedly reopened. The final board account
+retains the later completion readback and zero-write repeat checks, separately
+from this pre-snapshot boundary.
 
 ## Recovery snapshot and remaining handoff
 
-The new closeout recovery snapshot is **pending**. It must be created after the
-final commits into a fresh destination, verified and restored away from original
-source paths before a final attestation is appended here. Preserve the snapshot
-manifest, verification, restore receipt, source commit and captured private-output
-identities. A snapshot on this host's same volume is a local recovery copy; it does
-not establish an independently located backup or current availability of Mike's
-older backup.
+The [recovery account](2026-10-06-recovery-snapshot.md) records the verified snapshot
+of clean commit `d47a866`: **23,492 files, 8,757,769,076 bytes**, restored elsewhere
+locally. All eleven historical daily/week1 packets, three original bounded
+checkpoints and the new closeout replay passed with networking and original paths
+denied. Day11 faithfully remained blocked. Complete archive and restored-tree
+inventories, the 5,088-ID ledger and pending record matched after replay.
 
-Final handoff still needs the new snapshot attestation and overall board outcome.
-Human newcomer acceptance and any paired Being rollout remain separate work.
+The first replay failed on legacy packet-local scratch. It remains preserved;
+the successful external adapter redirects only declared scratch and uses day11's
+existing copy fallback. The old bounded checkpoints also use an explicit day9
+provenance mapping. No frozen code or evidence was modified. The recovery account
+records these accommodations rather than claiming unchanged CLI relocation.
+
+This is a **same-volume recovery snapshot**. Independently located backup
+availability remains unverified. Its content boundary precedes the later replay
+adapter, verification receipts and final board attestation. Existing recovery refs,
+release checkouts and the published 0.14 tag remain intact; no new public release
+is claimed. Human newcomer acceptance and any paired Being rollout remain separate.

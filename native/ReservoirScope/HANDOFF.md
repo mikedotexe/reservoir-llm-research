@@ -43,28 +43,28 @@ ledgers. Frozen historical packet code remains authoritative for its original
 accounts. Day-9 parity is the migration gate. Keep unknown release identities and
 contradictory evidence unresolved until reviewed.
 
-Private snapshots live on Mike’s Mac under
-`~/Library/Application Support/Reservoir Research/Backups/`. The initial snapshot
-includes Git history, the pre-cleanup dirty tree and private evidence. Restore checks
-must run without original source paths or network access. A final follow-up snapshot
-is due when both bounded natural studies close; do not overwrite or delete earlier
-snapshots.
+The historical initial snapshot included Git history, the pre-cleanup dirty tree
+and private evidence. The new October 6 snapshot is recorded separately below;
+it does not establish availability of that older Mac or backup. Keep earlier
+snapshots and recovery refs. Restore checks must run without original source paths
+or network access.
 
 The two bounded extensions now have a
 [coverage-qualified closeout](../../analyses/2026-10-06-bounded-followups-closeout.md).
 S-007 remains blocked by its original missing historical host-release witness;
-do not widen or recollect its frozen day11 window. The new October 6 recovery
-snapshot is still pending its own final-commit, verification and restore receipt.
-It will be a same-volume local recovery copy, not verification of an external
-backup or of the older Mac's availability. The integration account owns its final
-attestation when completed.
+do not widen or recollect its frozen day11 window. The new October 6
+[recovery snapshot](../../analyses/2026-10-06-recovery-snapshot.md) binds clean commit
+`d47a866`; verification, separate restore and isolated historical/new closeout
+replays passed. This is a same-volume local recovery copy. Independently located
+backup availability remains unverified. Later replay-adapter and board-attestation
+records are outside that snapshot; its account retains the first failed attempt.
 
 Human newcomer acceptance remains pending. Deliver the participant worksheet and
 record actual answers, shown evidence, help and elapsed time when a person completes
 it. The [board reconciliation](../../analyses/2026-10-06-board-reconciliation.md)
 records historical and bounded-closeout publication, preserving original records
-and distinguishing current outcomes from historical notices. The pre-snapshot
-inventory contains 286 cards and 107 logs, with 113 changed-card editor readbacks
-including geometry. The local geometry integration is complete; overall closeout
-remains pending the new snapshot attestation and its final board outcome.
+and distinguishing current outcomes from historical notices. The final inventory
+contains 286 cards and 108 logs, with 114 changed-card editor readbacks. The local
+geometry integration and overall closeout are complete. Repeat reconciliation
+verifies all 190 covered operations and proposes zero writes.
 Do not replay older pending payloads independently of the reconciliation manifest.

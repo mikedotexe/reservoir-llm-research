@@ -50,9 +50,9 @@ recording or new retry followed. A broader writing-quality effect remains unesta
 2. Keep S-007 parked at its specific historical-release dependency. If that evidence
    becomes available, verify the existing day11 packet before considering later
    daily windows. Choose any new broad research focus explicitly with Mike.
-3. Retain explicit manifests and obtain the final closeout backup's own verification
-   and restore receipt. A prior snapshot's success does not verify this new evidence.
-   Record that result in the integration account when it exists.
+3. Retain the [verified recovery snapshot and restore receipts](../analyses/2026-10-06-recovery-snapshot.md).
+   This closeout's same-volume copy and isolated replay passed. Independently located
+   backup availability remains unverified and is a separate recovery priority.
 
 Use the [board reconciliation](../analyses/2026-10-06-board-reconciliation.md) for
 current coordination. Older `Board updates pending` notices are dated history;
