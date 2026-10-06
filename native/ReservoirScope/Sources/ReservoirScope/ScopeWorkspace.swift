@@ -24,6 +24,7 @@ struct ScopeWorkspace: View {
     @State private var essentialsArea: EssentialsArea = .guided
     @State private var regulationURL: URL?
     @State private var libraryVisible = false
+    @State private var geometryBookmarks = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -44,6 +45,11 @@ struct ScopeWorkspace: View {
                             ForEach(EssentialsWorkspaceMode.allCases) { Text($0.rawValue).tag($0) }
                         }.labelsHidden().frame(width: 180)
                     }
+                } else {
+                    Picker("Observation view", selection: $geometryBookmarks) {
+                        Text("Observatory").tag(false)
+                        Text("Geometry bookmarks").tag(true)
+                    }.pickerStyle(.segmented).frame(width: 300)
                 }
                 Spacer()
                 Button("Runs & examples") { experiments.stop(); exploration.leave(); actions.leave(); libraryVisible = true }
@@ -65,6 +71,8 @@ struct ScopeWorkspace: View {
                 } else if essentialsMode == .stages {
                     EssentialsExperience(model: experiments)
                 }
+            } else if geometryBookmarks {
+                GeometryBookmarkExperience()
             } else {
                 switch baseline {
                 case .success(let evidence): Observatory(evidence: evidence)
