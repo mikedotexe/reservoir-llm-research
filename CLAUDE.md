@@ -170,14 +170,19 @@ RESEARCH.md        research home and connections to existing work
 research/         questions, current focus, methods, literature, episodes, studies, templates
 reservoir_research/ local index, provenance readers, search, sampling, and reading packs
 tests/            standard-library unit and integration tests for the research toolkit
+pyproject.toml     packaging for the `reservoir-research` command; optional NumPy and Matplotlib extras
 MOVES.md           preserved September 6 agenda, with later qualifications
 TRACE.md           data trace: inventory, formats, join keys, traps, eras, probe results
 exercises/         one file per close reading (A material, B claims checked, C what fell out)
 probes/            read-only scripts; each prints the numbers it produces and states its inputs
 proposals/         change proposals for the sibling repos (created as change cards close)
 letters/           copies of every inbox letter delivered to a being (signed Mike & Claude), by date
-analyses/          longer analyses and notebooks (create when needed)
+analyses/          dated accounts and longer analyses, with retained evidence JSON
+essentials/        Swift numerical core, stage experiments and the headless `essentials-run` runner, with recorded examples
+native/            ReservoirScope/: the native macOS research app, its build, check and staging scripts, docs and validation receipts
+visualizations/    reservoir-3d/: captured state and geometry data; two files are bundled app resources
 board/hold-shelf.html   source of the board page; republish the same path to update it
+board/*.json            card and log payloads with publication receipts; `*-pending.json` are queued and need reconciliation before publishing
 ```
 
 Conventions: Python 3.12+, standard library plus `sqlite3`; add dependencies only with a
