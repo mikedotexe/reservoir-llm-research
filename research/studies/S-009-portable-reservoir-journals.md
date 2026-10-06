@@ -21,3 +21,17 @@ The separate field-only controller example reproduces an established synthetic 6
 September 16: Mike authorized a separate retry after the unavailable preparation. The owned local service was restarted only for this finite attempt, with the same Ollama 0.32.15 and verified phi3 digest, amended prompt version 2 and frozen output settings. Four requests reached 60 paired steps; three journals saved. The added-state request at 60 copied coordinate values until the 256-token limit, leaving incomplete JSON and no journal. Its partner outcome was preserved, then the run stopped before 90. No automatic retry or parameter substitution followed.
 
 The [retry account](../../analyses/2026-09-16-active-observation-retry.md), separate authorization, exact record, model inventory, service cleanup and independent audit are retained under `research/outputs/2026-09-16-active-observation-retry/`. Version 0.13.1 exposes the partial comparison and original/correction/retry preparation history. The original unavailable evidence is unchanged. A future short-output qualification needs its own declared protocol; this record does not establish a writing-quality effect.
+
+## Record closeout — October 6
+
+The proposed short-output qualification subsequently ran on September 17 and is
+**complete with a negative qualification result**. Its [dated account](../../analyses/2026-09-17-short-output-qualification.md)
+retains the paired control and candidate: two requests, then the declared stop
+after the candidate exceeded the 24-word bound and copied multiple measurements.
+Five remaining cells were unattempted. Prompt v3 was not registered and no replacement
+recording was produced; the owned temporary service was closed.
+
+No model request or retry accompanies this record update. The portable examples and
+partial active-state recording retain their original limits. A writing-quality effect
+remains unestablished; any further candidate or replicated comparison needs a separate
+protocol. The bounded qualification is no longer an outstanding task.

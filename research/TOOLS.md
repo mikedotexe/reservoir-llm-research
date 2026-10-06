@@ -5,6 +5,43 @@ repeatable research material. It uses Python 3.12+ and SQLite FTS5, with no mode
 calls or third-party runtime packages. The first real-data run and reading packs
 are recorded in the [machinery report](../analyses/2026-09-06-research-machinery.md).
 
+## Close bounded follow-ups from retained evidence
+
+`probes/research_followups_closeout_replay.py` is the supported offline S-006/S-008
+build and verification entrypoint. It takes one stable, hash-checked read of every
+explicit input, copies those bytes into a private temporary directory, and runs
+the frozen v1 analysis only against that snapshot. Later changes to the original
+input tree cannot affect the calculation. Each file is capped at 256 MiB and the
+snapshot at 512 MiB and 256 files; symlinks and reads that change during capture
+are rejected. This tool has no recovery command.
+
+```sh
+python3 -B probes/research_followups_closeout_replay.py build INPUTS.json \
+  --data-root RETAINED_ROOT --out research/outputs/NEW_CLOSEOUT
+python3 -B probes/research_followups_closeout_replay.py verify INPUTS.json \
+  --data-root RETAINED_ROOT --report research/outputs/NEW_CLOSEOUT/report.json
+```
+
+Build and verify read only explicit hash-bound retained inputs, never embedded
+source paths. A daily packet needs both its sealed report/verification and its
+accepted finalization/offline-replay receipts. The separate source-equivalence
+review reconstructs exact revisions without changing frozen exposure criteria.
+New eligible exposures require separate evidence-coded review. Nonzero recovered
+S-006 records likewise require review; the tool cannot convert missing coverage,
+a past deadline or a successful controller exit into a research result. Build
+records construction only; `verify` must independently reproduce the report.
+Original protocols, captures and S-007 ledger/pending records remain unchanged.
+
+`probes/research_followups_closeout.py` is the frozen historical v1 interface. Its
+one authorized S-006 recovery has already run under the [recovery addendum](studies/S-006-historical-recovery-addendum.md);
+do not repeat it, use the original `refresh` commands, or modify frozen collectors.
+Its original build/verify functions reopen daily packet files after checking
+their hashes and therefore require an externally immutable snapshot. Use the
+supported snapshot entrypoint above for further replay. The original sealed
+closeout report and its copied-input verification remain unchanged; the
+[closeout account](../analyses/2026-10-06-bounded-followups-closeout.md) records the
+replay-boundary correction separately.
+
 ## What it lets us ask
 
 For journal → steward → commit → outcome links, see

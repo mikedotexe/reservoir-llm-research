@@ -3,39 +3,57 @@
 [Current app candidate, installation and verification](CURRENT-RELEASE.md) ·
 [Unmodified dated history through September 17](NOW-history-through-20260917.md)
 
-October 6: [repository tidy-up and record status](../analyses/2026-10-06-git-tidy-and-record-status.md). Four rechecks of the blocked day11 window, September 20–23, each left the blocker, the 5,088-ID ledger and the pending-window record unchanged. No recheck output is retained after September 23, and no daily window after September 19 18:34 UTC has been captured. Whether the daily heartbeat is still scheduled was not determined from this checkout.
+**October 6: research closeout and geometry integration.** Follow the
+[integration account](../analyses/2026-10-06-research-closeout-and-geometry-integration.md)
+for the current candidate, checks and remaining acceptance work. The earlier
+[Git tidy-up account](../analyses/2026-10-06-git-tidy-and-record-status.md) preserves
+the inventory before this closeout. No new discovery study is selected here.
 
-The September 18–19 [day11 window](../analyses/2026-09-19-source-study-fidelity-day11.md) is retained but **verification-blocked**: 263 responses use a new Minime process whose historical restart/deployment receipt has not been located. The new prompt and bridge activation have partial bindings; current startup status alone does not close the host-release gap. The ledger remains 5,088 IDs. Resume this same frozen window from its pending-window record; do not widen or recollect it.
+The [bounded follow-ups are closed](../analyses/2026-10-06-bounded-followups-closeout.md)
+with their missing evidence explicit. S-006's one historical recovery found no
+eligible receipt in the available local controller directory and hit the original
+provider directory cap. It cannot establish that no runs or opportunities occurred.
+S-008 finishes the available day10 assessment: 14 changed-source candidates are
+resolved under the unchanged selection rule, with no eligible exposure in the
+verified slice. The remaining planned window is blocked or uncaptured. These
+bounded extensions are no longer awaiting collection; the broad journal-to-change
+and study-to-follow-through questions remain open.
 
-The latest completed fidelity window is [S-007 day 10](../analyses/2026-09-18-source-study-fidelity-day10.md):
-312 source studies have exact input and journal links; 13 private WRITE responses
-remain separate. The fixed sample corrects an unavailable source path. A separately
-declared adjacent follow-up verifies delivery of the corrected source; broader
-architectural claims and durable saved correction remain unestablished. No general
-fidelity gain is inferred. The ledger reaches 5,088 IDs through September 18
-18:34 UTC after sealed replay; the daily cutoff, selection and schedule are unchanged.
+## Evidence still blocked
 
-The maintained pipeline retains byte-identical day-9 parity and now verifies the
-new window with all 428 historical files. Private prompt changes are independently
-bound to reviewed release evidence. The private pre-cleanup snapshot on this Mac
-has been restored and its frozen replay passed with networking and original paths denied.
+The September 18–19 [S-007 day11 window](../analyses/2026-09-19-source-study-fidelity-day11.md)
+is retained but **verification-blocked**: 263 responses use Minime PID 81688,
+whose original historical restart/deployment receipt has not been located. The
+partial prompt and bridge bindings, current startup witness and later transition
+out of that PID do not close the gap. The 5,088-ID ledger and pending-window record
+are unchanged. Resume only when suitable historical evidence arrives, using a new
+verification attempt on the same frozen capture and fixed sample; do not widen or
+recollect day11.
 
-[S-009 short-output qualification](../analyses/2026-09-17-short-output-qualification.md)
-failed its first candidate: 25 words and multiple copied measurements. The paired
-control and candidate are retained. Two requests were made; the owned local service
-was stopped. No prompt v3 or additional recording follows this failed qualification.
+[Day10](../analyses/2026-09-18-source-study-fidelity-day10.md) remains the last completed
+window, through September 18 at 18:34 UTC. Four rechecks on September 20–23 left the
+blocker unchanged. No later daily window has been captured. This closeout added no
+receipt hunt or polling. No study automation definitions were found in the local
+inventory; no schedule was changed, and this does not establish the state of other hosts.
 
-## Three priorities
+[S-009's short-output qualification](../analyses/2026-09-17-short-output-qualification.md)
+is **complete and negative**. Two requests were made; the first candidate failed
+the declared bounds, leaving five cells unattempted. No prompt v3, replacement
+recording or new retry followed. A broader writing-quality effect remains unestablished.
 
-1. Complete the presented-app accessibility walkthrough for [Reservoir Scope 0.14](CURRENT-RELEASE.md)
-   and arrange an actual newcomer session before changing acceptance status.
-2. Decide how to finish the separately frozen S-006 consecutive-run and S-008
-   durable-correction windows, retaining negative, missing and unavailable outcomes.
-   See the [bounded status account](../analyses/2026-09-17-bounded-followups-status.md):
-   intake closed September 24 and follow-up September 26. Only the September 17
-   initial captures are retained, and the separate follow-up heartbeat has no recorded
-   approval. Neither study is closed or judged; S-007 stays independent.
-3. Keep research recoverable and reproducible: explicit input manifests, bounded
-   verification, reviewed commits and a second verified private backup after the
-   follow-ups close; that backup's state cannot be checked from this checkout.
-   Hold Shelf was reachable on October 6; its mirror backlog still needs reconciliation.
+## Next priorities
+
+1. Arrange an actual human newcomer session for the unreleased **Reservoir Scope
+   0.15.0 build 20** candidate before changing acceptance status. Presented-app
+   checks at both recorded widths pass after repairing reading-state retention.
+   Offline qualification is recorded separately; no paired Being rollout is claimed.
+2. Keep S-007 parked at its specific historical-release dependency. If that evidence
+   becomes available, verify the existing day11 packet before considering later
+   daily windows. Choose any new broad research focus explicitly with Mike.
+3. Retain explicit manifests and obtain the final closeout backup's own verification
+   and restore receipt. A prior snapshot's success does not verify this new evidence.
+   Record that result in the integration account when it exists.
+
+Use the [board reconciliation](../analyses/2026-10-06-board-reconciliation.md) for
+current coordination. Older `Board updates pending` notices are dated history;
+they do not independently reopen the completed closeout or authorize new live work.

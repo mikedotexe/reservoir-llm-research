@@ -1,4 +1,26 @@
-October 6: [repository tidy-up and record status](analyses/2026-10-06-git-tidy-and-record-status.md). Maintenance only: two ignore decisions leave the working tree clean without deleting retained evidence. S-007 day11 remains verification-blocked after four unchanged rechecks, September 20–23; no later daily window is captured. The S-006 and S-008 boundary dates passed with initial captures only, and neither is closed. Hold Shelf was reachable; its mirror backlog is counted in the account.
+# Research hub
+
+**Current focus — October 6:** finish the [research closeout and geometry integration](analyses/2026-10-06-research-closeout-and-geometry-integration.md).
+The [bounded follow-up account](analyses/2026-10-06-bounded-followups-closeout.md)
+closes the S-006 consecutive-review/provider extension with incomplete historical
+evidence, and S-008's two-case extension with a completed retained-slice assessment
+and incomplete planned-window coverage. Their broad research questions remain open.
+S-007 day11 remains verification-blocked; S-009's short-output qualification is
+complete and negative. No ledger, schedule or live Being was changed.
+
+Reservoir Scope **0.15.0 build 20** is an unreleased integration candidate. Offline
+qualification and presented-app checks pass, including the repaired loss of reading
+state across view switches. Actual human acceptance remains outstanding.
+Use [Current release](research/CURRENT-RELEASE.md) for delivery status and
+[Now](research/NOW.md) for the remaining work; no paired Being rollout is claimed.
+
+Historical board-pending notices below describe their original sessions. Consult
+the [October 6 board reconciliation](analyses/2026-10-06-board-reconciliation.md)
+for their current dispositions rather than treating each notice as a new task.
+
+## Dated research record
+
+Earlier October 6: [repository tidy-up and record status](analyses/2026-10-06-git-tidy-and-record-status.md). Maintenance only: two ignore decisions left the working tree clean without deleting retained evidence. At that point S-007 day11 remained verification-blocked after four unchanged rechecks, September 20–23; no later daily window had been captured. The S-006 and S-008 boundary dates had passed with initial captures only. Their subsequent closeout is linked above. Hold Shelf was reachable; its mirror backlog is counted in the earlier account.
 
 September 19: [S-007 day11](analyses/2026-09-19-source-study-fidelity-day11.md) retains 302 source studies and 12 private responses, but final verification is blocked by missing historical release evidence for a new Minime PID. Partial prompt/bridge bindings and the original rejection are preserved. The ledger stays 5,088; the frozen window and first-three sample will be reused for a separate verification attempt. Board mirroring is pending.
 
@@ -18,7 +40,11 @@ September 9, 17:20 PDT: [longform-room audit](analyses/2026-09-09-longform-room.
 
 September 9, HSS-16: [choice-preserving recovery and claim-check qualification](analyses/2026-09-09-study-choice-and-claim-check.md) implements exact catalog candidates for both Beings and Minime failed-attempt diagnostics. In six paired uncoupled calls, the optional invitation does not correct either mistaken account; the correct host-filter core survives with unsupported elaboration. Production study prompt remains unchanged. Source is pushed to both main branches; verified rollout facts are in the owning account. No first-try requirement, forced revision or S-007 cursor change. Board mirroring pending.
 
-# Research hub
+## Program and earlier work
+
+The examples below retain their recorded eras. Present research and release status
+belongs to the current-focus links above, not to an earlier deployment or daily-run
+description.
 
 September 9, 15:17 PDT: [sustained SELF_STUDY follow-up](analyses/2026-09-09-study-context-followup.md)
 finds a source-grounded correction by Astrid, persistent incorrect notes in
@@ -103,7 +129,7 @@ nine requests have real 4,096-token allowances and normal stops. Thinking mode
 is explicitly disabled. Shared answer retention, easier synthesis and a bounded
 thinking trial are proposed; no further live change is claimed.
 
-**Selected inquiry:** [From self-study to the next useful step](research/studies/S-008-study-to-follow-through.md)
+**Open inquiry:** [From self-study to the next useful step](research/studies/S-008-study-to-follow-through.md)
 tracks both Beings from delivered source and notebook context into authored
 journals, NEXT choices, actual action outcomes and later reading. The shared
 [sequence tools](research/TOOLS.md#follow-self-study-into-writing-and-next-actions)
@@ -114,8 +140,10 @@ barriers that prevent a fair test of the newly deployed notebook.
 The [subsequent owning repair and first outcome](research/histories/self-study.md#hss-06--repair-the-whole-route-with-parity)
 are now recorded separately: both Beings were deployed, and Minime's retained
 MAP → MAP kernel sequence carries previous words. Broader benefit remains open.
+The later two-case durable-correction extension is [closed with incomplete coverage](analyses/2026-10-06-bounded-followups-closeout.md);
+that disposition does not close the broader inquiry.
 
-**Continuing inquiry:** [Does restored source access improve Minime’s self-study fidelity?](research/studies/S-007-source-study-fidelity.md)
+**Verification-blocked inquiry:** [Does restored source access improve Minime’s self-study fidelity?](research/studies/S-007-source-study-fidelity.md)
 tracks the September 8 reading repair across its verified 08:46 Pacific activation.
 The [first account](analyses/2026-09-08-source-study-fidelity.md) verifies natural
 delivery of an entire Astrid kernel file and compares six predeclared responses.
@@ -125,7 +153,9 @@ later correction. The [verified first week](analyses/2026-09-15-source-study-fid
 now retains 3,704 completed source studies and 942 verified page opportunities,
 all concerning Astrid’s repository. Local corrections and continuing attribution
 errors remain distinct; no generalized fidelity gain is established. Daily
-tracking continues after the September 15 synthesis.
+tracking continued through verified day10 after the September 15 synthesis. Day11
+is retained but blocked; later daily windows remain uncaptured. [Now](research/NOW.md)
+records the missing historical release evidence and the unchanged resume boundary.
 
 **Preserved inquiry:** [When does journal signal become a useful change?](research/studies/S-006-journal-to-change.md)
 follows the beings' writing through flywheel review, commits and outcome evidence.
@@ -147,6 +177,9 @@ enabled, with verified process/release identity and six complete natural attempt
 in its first five-minute window. No marker opportunity occurred there, so repair
 frequency and benefit remain open. A concrete maintenance-pause follow-up is
 recorded alongside the deployment.
+The separately frozen September 17 extension is now [closed with incomplete
+historical evidence](analyses/2026-10-06-bounded-followups-closeout.md), following one
+bounded recovery. The earlier completed passes and broader open question remain distinct.
 
 **Preserved reading:** [What does reading the regulator let Minime know about itself?](research/studies/S-005-regulator-self-study.md)
 follows Mike's September 7 passage from code exposure into an account of

@@ -200,3 +200,24 @@ reader. Main tips `d7a8bbcff9` / `c9c2a70`; exact checkpoint/NEXT continuity and
 ten protected services verified. First Minime completion records native stop and
 826 tokens. Selected-helper replay verifies recovery behavior, without claiming
 natural uptake. All 57 foreign files/edits preserved; owning account links receipts.
+
+## Durable-correction extension closeout — October 6
+
+The September 17 [two-case durable-correction protocol](S-008-durable-correction-protocol.md)
+kept the worker claim's prose-only storage distinct from the comment claim's saved
+note. Its intake ended September 24 and follow-up ended September 26. The
+[closeout account](../../analyses/2026-10-06-bounded-followups-closeout.md) now completes
+the assessment possible from the single accepted day10 packet inside that intake.
+
+The retained slice contains 294 post-T0 generations and 281 notebook versions.
+Neither case has a qualifying exposure under the frozen rule. Fourteen worker-case
+revision candidates are resolved by an exact source mapping: the unchanged complete
+anchor spans two successive delivered pages, and neither page alone contains it.
+No exposure was pooled or substituted, and no authored response needed adjudication.
+
+**The bounded extension is closed with a completed retained-slice assessment and
+incomplete planned-window coverage.** Correction remains unresolved beyond that
+slice. Day11 stays verification-blocked and later packets are absent; zero eligible
+exposure here does not establish no natural correction. Original protocols, cases,
+daily samples and S-007 ledger remain unchanged. The broad follow-through question
+remains open.

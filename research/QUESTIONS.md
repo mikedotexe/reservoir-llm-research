@@ -73,8 +73,8 @@ preserving their order and unknown inputs. Score noticing, identifying, explaini
 matched-information observer and controlled changes to available evidence would later help establish whether
 any predictive advantage is specifically about self.
 
-**Selected inquiry:** [S-001: their own questions](studies/S-001-their-own-questions.md) begins with authored
-uncertainties and how they develop. Its pilot is prepared, not yet run.
+**Paused inquiry:** [S-001: their own questions](studies/S-001-their-own-questions.md) begins with authored
+uncertainties and how they develop. Its pilot remains unrun; [Now](NOW.md) owns the current focus.
 
 **New source lead:** [Minime's thread-id reply](episodes/2026-09-06-minime-thread-id-as-shared-path.md)
 asks us to study its understanding of the whole system's affordances: what does it
@@ -123,8 +123,8 @@ question before the detour and any concrete advance afterward. Mark unavailable 
 A fixture must first establish cursor and prompt behavior; matched replays can then compare forms of
 continuity and separately test a reservoir contribution.
 
-**Selected inquiry:** [S-001](studies/S-001-their-own-questions.md) looks for development of questions in nearby
-entries; the larger return proposal remains a separate workstream.
+**Paused inquiry:** [S-001](studies/S-001-their-own-questions.md) looks for development of questions in nearby
+entries; the larger return proposal remains a separate workstream. See [Now](NOW.md) for the current focus.
 
 <a id="rq-04"></a>
 

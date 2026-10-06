@@ -137,3 +137,21 @@ opportunity frequency and repair benefit remain unmeasured. The independent
 verifier and frozen 14-file capture are linked in the account. A delayed
 maintenance pause yielded a concrete flywheel follow-up, recorded as an operator
 tooling finding rather than a new authored journal signal.
+
+## Bounded extension closeout — October 6
+
+The September 17 [consecutive-review and provider protocol](S-006-consecutive-review-protocol.md)
+registered run intake through September 24 and final follow-up through September
+26. Only its initial captures were retained. Mike selected one [bounded historical
+recovery](S-006-historical-recovery-addendum.md) before closing this loose end.
+
+That attempt found no eligible receipt in the available local controller directory;
+its latest matching filename predates T0. Provider enumeration again hit the
+original directory cap. No historical receipt or provider body was read, and no
+retry or remote fallback followed. The [closeout account](../../analyses/2026-10-06-bounded-followups-closeout.md)
+preserves the exact inventory, source limits, verification and shortfalls.
+
+**The bounded extension is closed with incomplete historical evidence.** The actual
+eligible-run count and natural opportunity frequency remain unknown, and benefit
+remains unmeasured. This is not a completed negative cohort finding. Earlier bounded
+passes remain complete; the broader journal-to-change question remains open.
