@@ -195,3 +195,22 @@ source/package identity in a separate cache directory. The earlier build 20 app
 and its receipts remain preserved; use the hashes and source commit to distinguish
 these candidates. New local outputs live under ignored
 `research/outputs/2026-10-06-geometry-lifecycle/`.
+
+### October 6 completed presented-app retest
+
+The corrected build 20 passed the actual geometry workflow at **1100×820 and
+1380×820 content sizes**: import, cancel, invalid-schema rejection preserving the
+packet, all five record selections, frame scrubbing, and navigation through
+Observatory and Essentials with packet and selection retained. Both synthetic
+owner variants were used. The [final UI receipt](../outputs/2026-10-06-geometry-ui/final-ui-receipt.json)
+binds the same corrected app identified in the
+[integration account](../../analyses/2026-10-06-research-closeout-and-geometry-integration.md).
+
+The earlier unsuccessful resize remains historical. An initial file named
+`geometry-workspace-1100` was mislabeled and actually showed a wide window, so it
+was not proof of a compact-size pass. System window sizing
+and a subsequent right-edge drag resolved that limitation; the final compact
+retest has its own measured proof and checks. Final screenshot pixels are
+**1101×853 and 1381×853**, including window chrome and border. Earlier attempts are
+preserved. No live feeds or models were used, and human newcomer acceptance and
+paired Being rollout remain separate.
