@@ -24,3 +24,6 @@ prompts, journals and subsequent outcomes. It works without the Mac Mini.
 Research questions live here; [Hold Shelf](https://claude.ai/code/artifact/f4761d4a-94e8-43ca-882f-ca887956fca0)
 coordinates bounded work. Historical observations carry their source dates.
 Changes to the Beings’ running systems belong in their own projects.
+
+Links into `research/outputs/` and the 0.12.0–0.13.1 validation directories point to
+retained private material that is not part of this repository.

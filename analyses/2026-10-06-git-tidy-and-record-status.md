@@ -193,6 +193,35 @@ newcomer-test cards are proposed: `t-reservoir-scope-newcomer-route`,
 `t-reservoir-scope-newcomer`, and a third in an ignored payload. That reconciliation
 was not attempted in this pass.
 
+A session log entry was added to the board on October 6:
+`2026-10-06-git-tidy-and-record-status`. It reads back as written. No cards were
+changed.
+
+## Publication
+
+Mike created `github.com/mikedotexe/reservoir-llm-research` as a public repository on
+October 5 and chose to publish the existing history unchanged. Before the push, every
+blob reachable from any ref (n = 1,046) was scanned for thirteen credential patterns
+and for private-network addresses beyond the one noted below. Three positive controls
+confirmed the scan matched known strings. No credential or further address pattern
+matched.
+
+On October 6, `main` at `7b58f6e` and the annotated tag `reservoir-scope-v0.14.0` went
+up in one atomic push. The remote then listed exactly those two refs, the tag peeling
+to `2b4babc`. The `codex/geometry-bookmarks-20260921` branch and the local `refs/codex/`
+checkpoint refs were not pushed. GitHub warned that
+`essentials/examples/portable/example-regulation-controller.json` (50.33 MB) exceeds
+its recommended 50 MB. The file is pinned by the resource manifest and was left as is.
+
+Now public, by Mike's decision: quoted journal passages from both Beings and the
+letters under `letters/`; a captured window of ESN reservoir states (1,024 × 128)
+bundled as an app resource; local paths, host names and one private-network address
+in documentation; and the Hold Shelf link, which grants nothing unless that artifact
+is shared publicly. Not published: packets under ignored `research/outputs/`, the three
+ignored validation directories, and the app archive. In tracked Markdown, 432 links in
+96 files point into `research/outputs/` and do not resolve on GitHub. The repository
+has no license file.
+
 ## Queries and counts
 
 Run from the repository root.
@@ -242,6 +271,64 @@ git grep -n -E 'validation/0\.1(2\.0|3\.0|3\.1)' -- . ':!.gitignore' \
 
 # Python suite, writes nothing with -B: Ran 380 tests, OK
 /opt/homebrew/bin/python3.14 -B -m unittest discover -s tests
+
+# remote after the push: main, the tag object and its peeled commit
+git ls-remote origin
+
+# links into ignored research/outputs in tracked Markdown: 432 links, 96 files
+git grep -o -h -E '\]\([^)]*research/outputs/[^)]*\)|\]\(\.\./outputs/[^)]*\)|\]\(outputs/[^)]*\)' \
+  -- '*.md' | wc -l
+
+# credential scan over every blob reachable from any ref, n = 1,046, run before the push
+python3 -I - <<'PY'
+import collections, re, subprocess
+objs = subprocess.run(["git", "rev-list", "--objects", "--all"], capture_output=True,
+                      text=True, check=True).stdout.splitlines()
+paths = collections.defaultdict(set)
+for line in objs:
+    sha, _, path = line.partition(" ")
+    if path:
+        paths[sha].add(path)
+kinds = subprocess.run(["git", "cat-file", "--batch-check=%(objectname) %(objecttype)"],
+                       input="\n".join(paths) + "\n", capture_output=True, text=True,
+                       check=True).stdout.splitlines()
+blobs = [k.split()[0] for k in kinds if k.split()[1] == "blob"]
+patterns = {
+    "control: Reservoir Scope": rb"Reservoir Scope",
+    "control: 40-hex id": rb"[0-9a-f]{40}",
+    "control: private-network address": rb"(?<![0-9.])192\.168\.[0-9]{1,3}\.[0-9]{1,3}(?![0-9])",
+    "sk-ant key": rb"sk-ant-[A-Za-z0-9_-]{20,}",
+    "sk key": rb"(?<![A-Za-z0-9])sk-(proj-)?[A-Za-z0-9_-]{32,}",
+    "GitHub token": rb"gh[pousr]_[A-Za-z0-9]{30,}",
+    "GitHub fine-grained token": rb"github_pat_[A-Za-z0-9_]{30,}",
+    "AWS access key id": rb"(?<![A-Z0-9])AKIA[0-9A-Z]{16}(?![A-Z0-9])",
+    "Slack token": rb"xox[baprs]-[A-Za-z0-9-]{10,}",
+    "Google API key": rb"AIza[0-9A-Za-z_-]{35}",
+    "PEM private key": rb"-----BEGIN [A-Z ]*PRIVATE KEY-----",
+    "Hugging Face token": rb"(?<![A-Za-z0-9])hf_[A-Za-z0-9]{30,}",
+    "bearer token": rb"Bearer [A-Za-z0-9._-]{30,}",
+    "ed25519 key": rb"ed25519:[1-9A-HJ-NP-Za-km-z]{40,}",
+    "secret assignment": rb"(?i)(api[_-]?key|apikey|auth[_-]?token|access[_-]?token|client[_-]?secret|password|passwd)[\"' ]*[:=][\"' ]*[A-Za-z0-9/+_.-]{16,}",
+    "URL with credentials": rb"[a-z][a-z0-9+.-]*://[^/\s:@\"']{1,64}:[^/\s:@\"']{1,64}@[A-Za-z0-9.-]+",
+    "other private IPv4": rb"(?<![0-9.])(10\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}|172\.(1[6-9]|2[0-9]|3[01])\.[0-9]{1,3}\.[0-9]{1,3})(?![0-9.])",
+}
+compiled = {name: re.compile(rx) for name, rx in patterns.items()}
+hits = {name: set() for name in patterns}
+proc = subprocess.Popen(["git", "cat-file", "--batch"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+proc.stdin.write(("\n".join(blobs) + "\n").encode()); proc.stdin.close()
+for sha in blobs:
+    size = int(proc.stdout.readline().split()[2])
+    data = proc.stdout.read(size); proc.stdout.read(1)
+    for name, rx in compiled.items():
+        if rx.search(data):
+            hits[name] |= paths[sha]
+print(len(blobs), "blobs")
+for name in patterns:
+    print(f"{len(hits[name]):5d} paths  {name}")
+PY
+# Before the push: 1,046 blobs; controls 101, 257 and 5 paths; all fourteen other
+# patterns 0 paths. Rerun after this pass's first three commits: 1,052 blobs; controls
+# 103, 258 and 5; all fourteen other patterns still 0.
 
 # unreachable objects a default gc would prune
 git fsck --unreachable --no-reflogs | awk '{print $2}' | sort | uniq -c    # 73 blob, 96 tree

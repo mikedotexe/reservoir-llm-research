@@ -42,8 +42,11 @@ request. Availability is advisory and does not promise a successful generation.
 The [0.14 verification account](../analyses/2026-09-17-reservoir-scope-014.md)
 records checks actually run and any incomplete coverage. The packaged identity
 binds exact compiled inputs, resources, toolchain and source commit; the external
-receipt records final executable, archive and signature hashes. The local release
-tag is `reservoir-scope-v0.14.0`. No remote publication is included.
+receipt records final executable, archive and signature hashes. The release tag is
+`reservoir-scope-v0.14.0`. The delivery included no remote publication; `main` and the
+tag were first pushed to `github.com/mikedotexe/reservoir-llm-research` on October 6
+([account](../analyses/2026-10-06-git-tidy-and-record-status.md)). The app archive is
+not published there.
 
 The [short-output qualification](../analyses/2026-09-17-short-output-qualification.md)
 stopped after its first paired input: the candidate completed but exceeded the
