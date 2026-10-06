@@ -36,6 +36,11 @@ Use **Runs & examples → Reviewed research cases** for the two real evidence
 walkthroughs. [The participant worksheet](../native/ReservoirScope/docs/NEWCOMER-WORKSHEET.md)
 keeps human acceptance separate from software checks.
 
+The [October 6 participant handoff](../analyses/2026-10-06-followup-handoff.md) points
+to the prepared, unstarted isolated copy of this exact candidate and its separate
+geometry worksheet. It records the newer external preparer's sandbox checks; the
+qualified app bytes and embedded source identity remain unchanged.
+
 Experiments and journals save under `~/Library/Application Support/Reservoir Scope/`.
 Replay and case viewing work offline. Live Beings feeds and fresh local generation
 are explicit choices; opening the app does not contact the Mac Mini or a model.

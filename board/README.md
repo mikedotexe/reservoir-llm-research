@@ -1,5 +1,11 @@
 # Hold Shelf records
 
+For the later participant/backup/day11 handoff, use
+[2026-10-06-followup-handoff.json](2026-10-06-followup-handoff.json) and its
+[account](../analyses/2026-10-06-followup-handoff.md). The reconciliation below is
+the completed closeout at `00c1199`, before those later dependency updates; preserve
+its original source hashes and observations as that historical boundary.
+
 The October 6 full-backlog reconciliation is recorded in
 [2026-10-06-reconciliation.json](2026-10-06-reconciliation.json), with source hashes,
 canonical identities, aliases, publication decisions and explicit metadata limits.
@@ -7,7 +13,7 @@ canonical identities, aliases, publication decisions and explicit metadata limit
 local mirror of all 190 covered records' actual observed states. The complete live
 inventory and editor receipts remain in the private outputs linked by that mirror.
 
-The final board contains 286 cards and 108 logs. All 190 operations match a reloaded
+At closeout the board contained 286 cards and 108 logs. All 190 operations match its reloaded
 readback, and all 114 changed cards match their retained exact editor fields.
 Both repeat checks require zero writes. The overall closeout card is done after
 the recovery snapshot, separate restore and isolated replay passed. This later

@@ -9,6 +9,11 @@ for the current candidate, checks and remaining acceptance work. The earlier
 [Git tidy-up account](../analyses/2026-10-06-git-tidy-and-record-status.md) preserves
 the inventory before this closeout. No new discovery study is selected here.
 
+The [subsequent handoff](../analyses/2026-10-06-followup-handoff.md) prepares the exact
+0.15 candidate for a real human session, identifies the missing day11 restart-command
+pointer, and confirms that an independent backup destination still must be supplied.
+Being-side activation is not required for this offline viewer.
+
 The [bounded follow-ups are closed](../analyses/2026-10-06-bounded-followups-closeout.md)
 with their missing evidence explicit. S-006's one historical recovery found no
 eligible receipt in the available local controller directory and hit the original
