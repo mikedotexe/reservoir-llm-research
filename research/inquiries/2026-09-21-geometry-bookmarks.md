@@ -172,3 +172,26 @@ packaged identity and actual presented-app interactions have separate receipts.
 
 This repair does not close the original rollout debt, establish current producer
 interoperability, or alter S-006, S-007, S-008 or their evidence.
+
+### October 6 presented-app navigation correction
+
+The subsequent actual-app walkthrough imported a packet, cancelled replacement,
+rejected an invalid import, selected all five records and scrubbed exact coordinates.
+It then exposed a view-lifetime defect: switching away removed the view's local
+state, so returning lost the imported packet. The window now owns the geometry
+view model. Its packet, selected record, frame, disclosure, filename and error
+survive view removal and reconstruction in memory. No persistence, automatic
+source reopening, model request or live access was added.
+
+The production experience passed 13 synthetic mounted-host lifecycle checks,
+including removal of the original imported file before return, cancelled selection,
+failed replacement and successful replacement. Ten presentation views were rendered
+again. Full-app navigation after this correction is verified separately from this
+host test. The attempted actual-app drag did not change its dimensions; exact-size
+renderings do not replace that missing resize result.
+
+The corrected candidate keeps the requested 0.15.0 build 20 label, with a new
+source/package identity in a separate cache directory. The earlier build 20 app
+and its receipts remain preserved; use the hashes and source commit to distinguish
+these candidates. New local outputs live under ignored
+`research/outputs/2026-10-06-geometry-lifecycle/`.

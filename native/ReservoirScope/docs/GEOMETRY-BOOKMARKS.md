@@ -12,6 +12,12 @@ recorded frames and expand **Exact selected coordinates** to inspect values.
 Recorder gaps and both engine and wall clocks remain visible. Authored accounts
 are displayed in full; sidebar excerpts are navigation only.
 
+Switching to Observatory or Essentials and returning preserves the opened packet,
+selected record, frame and coordinate disclosure in this window. The view keeps
+the imported bytes in memory, even if the original file subsequently disappears.
+It does not restore packets automatically after the window closes. Cancelling or
+rejecting a replacement preserves the current reading position.
+
 Opening a packet checks exact body and history hashes, record-specific fields,
 source labels, dimensions, bounds, clocks and references. Numerical comparisons
 are recomputed from the two retained mean vectors. Extra fields are rejected,
@@ -36,7 +42,8 @@ bash native/ReservoirScope/check-geometry-bookmark-presentation.sh research/outp
 
 The model wrapper verifies the deterministic fixture provenance before checking
 valid and malformed imports. The presentation wrapper renders synthetic views at
-two desktop widths. These also run through the `native-model` and
+two desktop widths and checks removal/return with the source file absent, cancelled
+selection, failed replacement and successful replacement. These also run through the `native-model` and
 `native-presentation` verification groups. The fixtures and their generator are
 included in staged source identity, but are not installed as app resources.
 
@@ -48,3 +55,8 @@ for these offline viewer checks and is not run automatically.
 Presented app interactions and a newcomer session remain separate from importer
 checks and rendered screenshots. See the [original inquiry](../../../research/inquiries/2026-09-21-geometry-bookmarks.md)
 for the research boundary and the independently owned runtime rollout requirements.
+
+The app uses standard system window resizing, with no exact-size menu preset.
+Automated geometry images use 1100×820 and 1380×820 view sizes. They do not establish
+that a drag successfully resized a presented full app; report its actual observed
+bounds separately when performing the interactive walkthrough.

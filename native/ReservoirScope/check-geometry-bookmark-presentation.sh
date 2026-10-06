@@ -9,6 +9,7 @@ python3 -B "$task_fixtures/generate.py" --check
 xcrun swiftc -parse-as-library -swift-version 5 -target "$(uname -m)-apple-macosx14.0" \
   -framework AppKit -framework SwiftUI \
   "$task_dir/Sources/ReservoirScope/GeometryBookmark.swift" \
+  "$task_dir/Sources/ReservoirScope/GeometryBookmarkViewModel.swift" \
   "$task_dir/Sources/ReservoirScope/GeometryBookmarkView.swift" \
   "$task_dir/Tests/GeometryBookmarkPresentationChecks.swift" -o "$task_output/checks"
 "$task_output/checks" "$task_fixtures/minime-synthetic-geometry.json" "$task_output"

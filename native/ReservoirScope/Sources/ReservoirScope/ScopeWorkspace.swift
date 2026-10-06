@@ -20,6 +20,7 @@ struct ScopeWorkspace: View {
     @StateObject private var experiments = EssentialsViewModel()
     @StateObject private var exploration = ExplorationViewModel()
     @StateObject private var actions = ActionComparisonViewModel()
+    @StateObject private var geometry = GeometryBookmarkViewModel()
     @State private var essentialsMode: EssentialsWorkspaceMode = .actions
     @State private var essentialsArea: EssentialsArea = .guided
     @State private var regulationURL: URL?
@@ -72,7 +73,7 @@ struct ScopeWorkspace: View {
                     EssentialsExperience(model: experiments)
                 }
             } else if geometryBookmarks {
-                GeometryBookmarkExperience()
+                GeometryBookmarkExperience(model: geometry)
             } else {
                 switch baseline {
                 case .success(let evidence): Observatory(evidence: evidence)

@@ -3,15 +3,14 @@ import UniformTypeIdentifiers
 
 /// No polling, automatic imports, model calls or writes back to the beings.
 struct GeometryBookmarkExperience: View {
-    @State private var packet: GeometryBookmarkPacket?
-    @State private var selected = 0
-    @State private var frame = 0.0
-    @State private var error: String?
-    @State private var filename = ""
+    @ObservedObject var model: GeometryBookmarkViewModel
+
+    init(model: GeometryBookmarkViewModel) {
+        self.model = model
+    }
 
     init(packet: GeometryBookmarkPacket? = nil, selected: Int = 0) {
-        _packet = State(initialValue: packet)
-        _selected = State(initialValue: selected)
+        self.init(model: GeometryBookmarkViewModel(packet: packet, selected: selected))
     }
 
     var body: some View {
@@ -19,20 +18,20 @@ struct GeometryBookmarkExperience: View {
             HStack {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Geometry bookmarks").font(.title2)
-                    Text(packet.map { "\($0.body.owner.capitalized) · \($0.body.questionId) · \(filename)" } ?? "No question packet selected")
+                    Text(model.packet.map { "\($0.body.owner.capitalized) · \($0.body.questionId) · \(model.filename)" } ?? "No question packet selected")
                         .font(.caption).foregroundStyle(.secondary)
                 }
                 Spacer()
                 Button { open() } label: { Label("Open packet", systemImage: "folder") }
                     .help("Open an explicitly exported question-geometry-v1 packet")
             }.padding(20)
-            if let error { Text(error).foregroundStyle(.red).textSelection(.enabled).padding(.horizontal, 20).padding(.bottom, 12) }
+            if let error = model.error { Text(error).foregroundStyle(.red).textSelection(.enabled).padding(.horizontal, 20).padding(.bottom, 12) }
             Divider()
-            if let packet {
+            if let packet = model.packet {
                 HSplitView {
                     VStack(alignment: .leading, spacing: 12) {
                         Text(packet.body.question).font(.headline).textSelection(.enabled).padding(.horizontal)
-                        List(packet.records.indices, id: \.self, selection: Binding<Int?>(get: { selected }, set: { if let value = $0 { selected = value; frame = 0 } })) { index in
+                        List(packet.records.indices, id: \.self, selection: Binding<Int?>(get: { model.selected }, set: { if let value = $0 { model.select(value) } })) { index in
                             VStack(alignment: .leading, spacing: 5) {
                                 Text("\(index + 1). \(packet.records[index].kind.capitalized)")
                                 Text(packet.records[index].authoredText ?? comparisonLabel(packet.records[index]))
@@ -41,8 +40,8 @@ struct GeometryBookmarkExperience: View {
                         }
                     }.padding(.top, 18).frame(minWidth: 240, idealWidth: 290, maxWidth: 360)
                     ScrollView {
-                        if packet.records.indices.contains(selected) {
-                            detail(packet.records[selected], record: packet.body.history.records[selected])
+                        if packet.records.indices.contains(model.selected) {
+                            detail(packet.records[model.selected], record: packet.body.history.records[model.selected])
                         } else {
                             ContentUnavailableView("No geometry records", systemImage: "square.stack")
                         }
@@ -94,7 +93,7 @@ struct GeometryBookmarkExperience: View {
         if snapshot.frames.isEmpty {
             ContentUnavailableView("No recorded frames", systemImage: "square.stack")
         } else {
-            let index = min(snapshot.frames.count - 1, max(0, Int(frame)))
+            let index = min(snapshot.frames.count - 1, max(0, Int(model.frame)))
             let current = snapshot.frames[index]
             VStack(alignment: .leading, spacing: 14) {
                 Text("\(snapshot.frames.count) states · \(snapshot.durationMs) ms observed · \(snapshot.requestedSeconds) s requested · \(snapshot.gaps.count) recorder gaps > 1000 ms")
@@ -110,7 +109,7 @@ struct GeometryBookmarkExperience: View {
                 }.font(.caption)
                 HStack {
                     Text("Frame \(index + 1) / \(snapshot.frames.count)").monospacedDigit().frame(width: 120, alignment: .leading)
-                    Slider(value: $frame, in: 0...Double(max(1, snapshot.frames.count - 1)), step: 1)
+                    Slider(value: $model.frame, in: 0...Double(max(1, snapshot.frames.count - 1)), step: 1)
                         .disabled(snapshot.frames.count == 1).accessibilityLabel("Recorded frame")
                 }
                 Text("Engine \(current.tMs) ms · \(Date(timeIntervalSince1970: Double(current.wallClockUnixMs) / 1000).formatted(.iso8601)) · state RMS \(current.rms, specifier: "%.6f")")
@@ -119,7 +118,7 @@ struct GeometryBookmarkExperience: View {
                     Text("Recorder gaps (engine ms): " + snapshot.gaps.map { "\($0.0)..\($0.1)" }.joined(separator: ", "))
                         .font(.caption).foregroundStyle(.orange).textSelection(.enabled)
                 }
-                DisclosureGroup("Exact selected coordinates") {
+                DisclosureGroup("Exact selected coordinates", isExpanded: $model.coordinatesExpanded) {
                     Text(current.activations.enumerated().map { "\($0.offset): \($0.element)" }.joined(separator: "  "))
                         .font(.system(.caption, design: .monospaced)).textSelection(.enabled)
                 }
@@ -141,8 +140,7 @@ struct GeometryBookmarkExperience: View {
         let panel = NSOpenPanel()
         panel.allowedContentTypes = [.json]; panel.allowsMultipleSelection = false
         guard panel.runModal() == .OK, let url = panel.url else { return }
-        do { packet = try GeometryBookmarkPacket.load(url); selected = 0; frame = 0; filename = url.lastPathComponent; error = nil }
-        catch { self.error = error.localizedDescription }
+        model.open(url)
     }
 }
 

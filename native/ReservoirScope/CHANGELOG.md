@@ -9,3 +9,4 @@
 - Reject fields outside each record kind and render only its validated content; malformed imported snapshots cannot reach frame indexing.
 - Keep semantic mutation checks reference-consistent and assert their actual rejection reasons. Retain deterministic synthetic viewer fixtures with generator provenance, independently of the earlier producer interoperability workflow.
 - Include geometry importer/presentation wrappers in grouped verification and bind their fixtures into staged source identity. Keep the 0.14.0 release tag, artifacts and acceptance status unchanged.
+- Retain the explicitly opened packet, record, frame and coordinate disclosure while switching workspaces in the same window. State stays in memory; returning neither reopens its file nor writes a cached copy.
