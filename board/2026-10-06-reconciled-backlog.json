@@ -1,0 +1,4019 @@
+{
+  "schema": "hold-shelf-reconciled-backlog-mirror-20261006-v1",
+  "status": "pre-snapshot-reconciliation-verified-overall-closeout-held",
+  "manifest": {
+    "path": "board/2026-10-06-reconciliation.json",
+    "sha256": "1399a64d66fde6b0ffc338dcb1621573735b6f76d4b4ca26b973a5a2379a9074",
+    "generation": 6
+  },
+  "observed_at": "2026-10-06T17:28:43.167Z",
+  "board_totals": {
+    "cards": 286,
+    "logs": 107
+  },
+  "scope": "All canonical records covered by this backlog reconciliation, including the currently active closeout card. Unrelated original board records remain in the private full inventory; no original record was removed.",
+  "private_full_inventory": {
+    "path": "research/outputs/2026-10-06-board-reconciliation/pre-snapshot-after-reload.json",
+    "sha256": "6997036d12327e41bd2b8e23ccda9e706426fe71925ae0e147fd895b49b2d2f7"
+  },
+  "private_editor_readback": {
+    "path": "research/outputs/2026-10-06-board-reconciliation/pre-snapshot-editor-readbacks.json",
+    "sha256": "a5f5de8ef626f1abf75e26381b3d9da31ccb624bae986c4f84bee0a3415e5dc3"
+  },
+  "limits": "Database IDs and creation timestamps are not exposed. Card displayed dates are not inferred creation dates. Null source means not recaptured, not cleared. Full text stays in the canonical manifest and private DOM/editor receipts; this mirror records actual observed state.",
+  "records": [
+    {
+      "collection": "cards",
+      "canonical_key": "d-anemone",
+      "database_id": null,
+      "title": "Anemone: one sensor, one aperture, a small body",
+      "observed_date": "2026-09-07",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "e44b318964526e220c9b7b48c8fa71472561f5951a365cee13650969fee78e5a",
+      "source_refs": [
+        "board/anemone-pending.json",
+        "exercises/2026-09-06-anemone-minimal-body-epic.md"
+      ],
+      "lane": "Designs",
+      "status": "open",
+      "being": "SYSTEM",
+      "tags": [
+        "anemone",
+        "raspberry-pi",
+        "epic",
+        "id:d-anemone"
+      ],
+      "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+      "source": null,
+      "source_verification": "unchanged/no-op or held card; source not recaptured in this editor pass"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "d-anemone-protocol",
+      "database_id": null,
+      "title": "Anemone: freeze dynamics, prompt and forecast protocol",
+      "observed_date": "2026-09-07",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "33cd02b1fbb17435ed65682709a63127214b2df381abf1144f90a66400f3ec78",
+      "source_refs": [
+        "board/anemone-pending.json",
+        "exercises/2026-09-06-anemone-minimal-body-epic.md"
+      ],
+      "lane": "Designs",
+      "status": "open",
+      "being": "SYSTEM",
+      "tags": [
+        "anemone",
+        "raspberry-pi",
+        "epic:d-anemone",
+        "id:d-anemone-protocol"
+      ],
+      "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+      "source": null,
+      "source_verification": "unchanged/no-op or held card; source not recaptured in this editor pass"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-anemone-replay",
+      "database_id": null,
+      "title": "Anemone: prove sensor admission, memory and replay offline",
+      "observed_date": "2026-09-07",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "3f193bdc5d8266f6a44e1eaa158b45f23ed2c8645d6c42fe0fd584a2f8378569",
+      "source_refs": [
+        "board/anemone-pending.json",
+        "exercises/2026-09-06-anemone-minimal-body-epic.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "SYSTEM",
+      "tags": [
+        "anemone",
+        "raspberry-pi",
+        "epic:d-anemone",
+        "id:t-anemone-replay"
+      ],
+      "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+      "source": null,
+      "source_verification": "unchanged/no-op or held card; source not recaptured in this editor pass"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-anemone-device",
+      "database_id": null,
+      "title": "Anemone: qualify the Pi, temperature sensor and local model",
+      "observed_date": "2026-09-07",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "c0a2cb06b1e276968204b17e5a7ac1f08b5d5aa6253e0a39afad65991ae20775",
+      "source_refs": [
+        "board/anemone-pending.json",
+        "exercises/2026-09-06-anemone-minimal-body-epic.md"
+      ],
+      "lane": "Changes",
+      "status": "parked",
+      "being": "SYSTEM",
+      "tags": [
+        "anemone",
+        "raspberry-pi",
+        "epic:d-anemone",
+        "id:c-anemone-device"
+      ],
+      "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+      "source": null,
+      "source_verification": "unchanged/no-op or held card; source not recaptured in this editor pass"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-anemone-pilot",
+      "database_id": null,
+      "title": "Anemone: run an auditable 72-hour pilot",
+      "observed_date": "2026-09-07",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "78620c9cb7cf2aede193799782a183a8a84fdb7c9b63ad363d11f699c0268a60",
+      "source_refs": [
+        "board/anemone-pending.json",
+        "exercises/2026-09-06-anemone-minimal-body-epic.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "SYSTEM",
+      "tags": [
+        "anemone",
+        "raspberry-pi",
+        "epic:d-anemone",
+        "id:t-anemone-pilot"
+      ],
+      "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+      "source": null,
+      "source_verification": "unchanged/no-op or held card; source not recaptured in this editor pass"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-anemone-picture-regulation",
+      "database_id": null,
+      "title": "Anemone: test picture dependence and spontaneous regulation",
+      "observed_date": "2026-09-07",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "35e623f3f549e703dfeb3ba9ada0e7213bf7cfbae71d1e1173fd7214e305e55f",
+      "source_refs": [
+        "board/anemone-pending.json",
+        "exercises/2026-09-06-anemone-minimal-body-epic.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "SYSTEM",
+      "tags": [
+        "anemone",
+        "raspberry-pi",
+        "epic:d-anemone",
+        "id:t-anemone-picture-regulation"
+      ],
+      "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+      "source": null,
+      "source_verification": "unchanged/no-op or held card; source not recaptured in this editor pass"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-anemone-prediction-carry",
+      "database_id": null,
+      "title": "Anemone: test forecast usefulness and twelve-token carry",
+      "observed_date": "2026-09-07",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "7ad91debd70e8524fd2674ab88cbac85572e71320251f4c9b7f2d63a056b71c7",
+      "source_refs": [
+        "board/anemone-pending.json",
+        "exercises/2026-09-06-anemone-minimal-body-epic.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "SYSTEM",
+      "tags": [
+        "anemone",
+        "raspberry-pi",
+        "epic:d-anemone",
+        "id:t-anemone-prediction-carry"
+      ],
+      "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+      "source": null,
+      "source_verification": "unchanged/no-op or held card; source not recaptured in this editor pass"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-anemone-rhythm-order",
+      "database_id": null,
+      "title": "Anemone: test masked-input rhythm and order beyond timers",
+      "observed_date": "2026-09-07",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "8a254bae066d90102d37f3eed1f0230302c775d93e5b97e25e0c53e24b82c4be",
+      "source_refs": [
+        "board/anemone-pending.json",
+        "exercises/2026-09-06-anemone-minimal-body-epic.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "SYSTEM",
+      "tags": [
+        "anemone",
+        "raspberry-pi",
+        "epic:d-anemone",
+        "id:t-anemone-rhythm-order"
+      ],
+      "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+      "source": null,
+      "source_verification": "unchanged/no-op or held card; source not recaptured in this editor pass"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-anemone-longitudinal",
+      "database_id": null,
+      "title": "Anemone: complete the observation block and research synthesis",
+      "observed_date": "2026-09-07",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "f05263e25f56bfacbe9e03d45905f6916d2f9c37a4081845173c13d12fcdb617",
+      "source_refs": [
+        "board/anemone-pending.json",
+        "exercises/2026-09-06-anemone-minimal-body-epic.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "SYSTEM",
+      "tags": [
+        "anemone",
+        "raspberry-pi",
+        "epic:d-anemone",
+        "id:t-anemone-longitudinal"
+      ],
+      "evidence": "exercises/2026-09-06-anemone-minimal-body-epic.md",
+      "source": null,
+      "source_verification": "unchanged/no-op or held card; source not recaptured in this editor pass"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-06-anemone-epic",
+      "database_id": null,
+      "title": "Scope Anemone and connect the earlier small-box work",
+      "observed_date": "2026-09-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "62b9303adb56892f3dbdfa16883c284c7720b198244120d2010d23322137d2e3",
+      "source_refs": [
+        "board/anemone-pending.json"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-study-page-scope-and-coverage",
+      "database_id": null,
+      "title": "Study page scope and coverage",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "da11f790a354014a9cfbea0d127f6bbf32dc7054703b7ee6fd6376f929b772cc",
+      "source_refs": [
+        "board/astrid-study-survey-pending.json",
+        "analyses/2026-09-15-astrid-study-survey.md",
+        "research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending",
+        "research/outputs/2026-09-15-astrid-study-survey/README.md",
+        "board/study-source-context-pending.json",
+        "analyses/2026-09-15-study-source-context.md",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/validation.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/integration.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/source-context-replay/summary.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/activation.log",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-host-after.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/staged-input-audit.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-staged-helper-tests.log",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/before-activation/processes.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/after-activation/processes.json"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-study-page-scope-and-coverage",
+        "historical-backlog"
+      ],
+      "evidence": "board/astrid-study-survey-pending.json; analyses/2026-09-15-astrid-study-survey.md; research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending; research/outputs/2026-09-15-astrid-study-survey/README.md; board/study-source-context-pending.json; analyses/2026-09-15-study-source-context.md; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/validation.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/integration.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/source-context-replay/summary.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/activation.log; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-host-after.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/staged-input-audit.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-staged-helper-tests.log; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/before-activation/processes.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/after-activation/processes.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-study-answered-question-source-links",
+      "database_id": null,
+      "title": "Study answered question source links",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "2529ae0eadc1312112915233a5fd9aec3667c22f434fc665bee60a3154a9e423",
+      "source_refs": [
+        "board/astrid-study-survey-pending.json",
+        "analyses/2026-09-15-astrid-study-survey.md",
+        "research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending",
+        "research/outputs/2026-09-15-astrid-study-survey/README.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "BOTH",
+      "tags": [
+        "id:t-study-answered-question-source-links",
+        "historical-backlog"
+      ],
+      "evidence": "board/astrid-study-survey-pending.json; analyses/2026-09-15-astrid-study-survey.md; research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending; research/outputs/2026-09-15-astrid-study-survey/README.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-study-intervening-choice-provenance",
+      "database_id": null,
+      "title": "Study intervening choice provenance",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "24ead60019f0a74f2afc2002dc76889356bc549df04f219da4a45e51602c4ddb",
+      "source_refs": [
+        "board/astrid-study-survey-pending.json",
+        "analyses/2026-09-15-astrid-study-survey.md",
+        "research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending",
+        "research/outputs/2026-09-15-astrid-study-survey/README.md"
+      ],
+      "lane": "Changes",
+      "status": "open",
+      "being": "ASTRID",
+      "tags": [
+        "id:c-study-intervening-choice-provenance",
+        "historical-backlog"
+      ],
+      "evidence": "board/astrid-study-survey-pending.json; analyses/2026-09-15-astrid-study-survey.md; research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending; research/outputs/2026-09-15-astrid-study-survey/README.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-astrid-study-survey-20260915",
+      "database_id": null,
+      "title": "Astrid study survey 20260915",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "1494eef3d43a2ca9994760ce1e840884f25973867eecb6ba0395cc83f85c67e0",
+      "source_refs": [
+        "board/astrid-study-survey-pending.json",
+        "analyses/2026-09-15-astrid-study-survey.md",
+        "research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending",
+        "research/outputs/2026-09-15-astrid-study-survey/README.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "ASTRID",
+      "tags": [
+        "id:f-astrid-study-survey-20260915",
+        "historical-backlog"
+      ],
+      "evidence": "board/astrid-study-survey-pending.json; analyses/2026-09-15-astrid-study-survey.md; research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending; research/outputs/2026-09-15-astrid-study-survey/README.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "d-build-up-journal-actions-and-compare-one-addition-at-a-time",
+      "database_id": null,
+      "title": "Build up journal actions and compare one addition at a time",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "d09ce495d0c2753355bc4e79f37cd6c9d4080d2efb3b201476e38eddc98aa941",
+      "source_refs": [
+        "board/essentials-actions-pending.json",
+        "essentials/ACTIONS.md",
+        "analyses/2026-09-10-essentials-actions.md",
+        "native/ReservoirScope/build-receipt.json",
+        "native/ReservoirScope/validation/0.11.0/packaged-runner.json"
+      ],
+      "lane": "Designs",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:d-build-up-journal-actions-and-compare-one-addition-at-a-time",
+        "essentials",
+        "reservoir-observatory",
+        "id:t-essentials-actions",
+        "historical-backlog"
+      ],
+      "evidence": "board/essentials-actions-pending.json; essentials/ACTIONS.md; analyses/2026-09-10-essentials-actions.md; native/ReservoirScope/build-receipt.json; native/ReservoirScope/validation/0.11.0/packaged-runner.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-10-make-journal-output-and-its-return-separately-inspectable",
+      "database_id": null,
+      "title": "Make journal output and its return separately inspectable",
+      "observed_date": "2026-09-10",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "828f5d3037d3521bfe4bdd401d6ed3a6b04e2696f23182d2d7ed9b2286bfa155",
+      "source_refs": [
+        "board/essentials-actions-pending.json"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-explore-the-reconstructed-reservoir-with-visible-controls",
+      "database_id": null,
+      "title": "Explore the reconstructed reservoir with visible controls",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "00b46eb5a68ab3fcf53fd0797efa041197d46c7c39bca23a8d89d6b205952a93",
+      "source_refs": [
+        "board/essentials-exploration-pending.json",
+        "analyses/2026-09-09-essentials-exploration.md",
+        "essentials/EXPLORE.md",
+        "native/ReservoirScope/build-receipt.json"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-explore-the-reconstructed-reservoir-with-visible-controls",
+        "essentials",
+        "reservoir-observatory",
+        "id:t-essentials-exploration",
+        "historical-backlog"
+      ],
+      "evidence": "board/essentials-exploration-pending.json; analyses/2026-09-09-essentials-exploration.md; essentials/EXPLORE.md; native/ReservoirScope/build-receipt.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-09-add-hands-on-essentials-exploration",
+      "database_id": null,
+      "title": "Add hands-on Essentials exploration",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "28508621fdd77e3f4cca81d17bf2f2a96b300f4d9b75d15045b5265778d5028d",
+      "source_refs": [
+        "board/essentials-exploration-pending.json"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-recreate-the-essentials-in-four-runnable-reservoir-stages",
+      "database_id": null,
+      "title": "Recreate the essentials in four runnable reservoir stages",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "edf879a916df2d7b070642423365f5bf92a5ecaaaab73a11c6cfd529d7dae2f6",
+      "source_refs": [
+        "board/essentials-pending.json",
+        "analyses/2026-09-09-essentials-implementation.md",
+        "essentials/README.md",
+        "essentials/examples/runtime-verification.json",
+        "native/ReservoirScope/build-receipt.json"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-recreate-the-essentials-in-four-runnable-reservoir-stages",
+        "essentials",
+        "reservoir-observatory",
+        "id:t-essentials-stages",
+        "historical-backlog"
+      ],
+      "evidence": "board/essentials-pending.json; analyses/2026-09-09-essentials-implementation.md; essentials/README.md; essentials/examples/runtime-verification.json; native/ReservoirScope/build-receipt.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-09-build-essentials-and-connect-the-native-viewer",
+      "database_id": null,
+      "title": "Build Essentials and connect the native viewer",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "ee5d0491beb35ce99333ea62e7fb771dc0a7b2f23a749d8146022134425d74df",
+      "source_refs": [
+        "board/essentials-pending.json"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-longform-room-and-continuation",
+      "database_id": null,
+      "title": "Make extended writing effective and preserve chosen continuation",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "7e2c890fb3c63f279f826746fc71553b65d270938067e59b2b1ccd523e2aa8a0",
+      "source_refs": [
+        "board/longform-room-pending.json",
+        "analyses/2026-09-09-longform-room.md",
+        "proposals/2026-09-09-longform-room.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-longform-room-and-continuation",
+        "longform",
+        "agency",
+        "self-study",
+        "historical-backlog"
+      ],
+      "evidence": "board/longform-room-pending.json; analyses/2026-09-09-longform-room.md; proposals/2026-09-09-longform-room.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-09-longform-room",
+      "database_id": null,
+      "title": "HSS-17: distinguish writing, context, sensory and NEXT budgets",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "10e2bcd6fcef67d532d733327f0806b12b8504568f110295c60de2f1738938e6",
+      "source_refs": [
+        "board/longform-room-pending.json"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-minime-study-answer-retention",
+      "database_id": null,
+      "title": "Study output has room; the carried excerpt loses Minime’s answer",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "bfe3d49741cdea3cfc11c73e94bc7c85aea18eefd8948138b4edd4c7de6140b5",
+      "source_refs": [
+        "board/minime-nine-studies-pending.json",
+        "analyses/2026-09-09-minime-nine-studies.md; research/outputs/2026-09-09-minime-nine-report/selected-nine.json; probes/minime_nine_studies.py"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "MINIME",
+      "tags": [
+        "id:f-minime-study-answer-retention",
+        "self-study",
+        "study:S-008",
+        "HSS-13",
+        "context",
+        "historical-backlog"
+      ],
+      "evidence": "board/minime-nine-studies-pending.json; analyses/2026-09-09-minime-nine-studies.md; research/outputs/2026-09-09-minime-nine-report/selected-nine.json; probes/minime_nine_studies.py",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-09-minime-nine-studies",
+      "database_id": null,
+      "title": "Trace small study journals to their real output and memory budgets",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "d30bfdceff18c76d6aaa87587d36ab51d01b1f9438e531a7289eb89c90592a44",
+      "source_refs": [
+        "board/minime-nine-studies-pending.json"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-self-study-longitudinal-history",
+      "database_id": null,
+      "title": "SELF_STUDY history connects defects, live repairs and natural follow-through",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "301b3807a34f736005388c18ee65abc589da38914dc587f790f940bb13cbc406",
+      "source_refs": [
+        "board/self-study-history-pending.json",
+        "research/histories/self-study.md",
+        "research/outputs/2026-09-08-self-study-history/manifest.json",
+        "proposals/2026-09-08-self-study-authorship-follow-through.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "BOTH",
+      "tags": [
+        "id:f-self-study-longitudinal-history",
+        "self-study",
+        "history",
+        "S-005",
+        "S-007",
+        "S-008",
+        "historical-backlog"
+      ],
+      "evidence": "board/self-study-history-pending.json; research/histories/self-study.md; research/outputs/2026-09-08-self-study-history/manifest.json; proposals/2026-09-08-self-study-authorship-follow-through.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-08-self-study-history",
+      "database_id": null,
+      "title": "Preserve the SELF_STUDY defect-to-repair history",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "0524c0705c4610c6366479e56b7cdf0ad541334afd3ca49c27d528f0f6eb17b9",
+      "source_refs": [
+        "board/self-study-history-pending.json"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "d-show-the-projected-reservoir-state-as-topography",
+      "database_id": null,
+      "title": "Show the projected reservoir state as topography",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "8bfbabc614ae832b6213173df6090138b8e33a6a8d1278458d833875331e0da4",
+      "source_refs": [
+        "board/state-topography-pending.json",
+        "analyses/2026-09-09-state-topography.md",
+        "native/ReservoirScope/docs/STATE-TOPOGRAPHY.md",
+        "native/ReservoirScope/build-receipt.json",
+        "essentials/stages/ACTIONS-AND-COMPARISONS.md"
+      ],
+      "lane": "Designs",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:d-show-the-projected-reservoir-state-as-topography",
+        "essentials",
+        "reservoir-observatory",
+        "id:t-state-topography",
+        "historical-backlog"
+      ],
+      "evidence": "board/state-topography-pending.json; analyses/2026-09-09-state-topography.md; native/ReservoirScope/docs/STATE-TOPOGRAPHY.md; native/ReservoirScope/build-receipt.json; essentials/stages/ACTIONS-AND-COMPARISONS.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-09-add-a-topographic-state-projection",
+      "database_id": null,
+      "title": "Add a topographic state projection",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "8055dc6abeaf850b5beb681e4245869adf5c4b65741a875e1ece52832bfa77e6",
+      "source_refs": [
+        "board/state-topography-pending.json"
+      ]
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-09-soften-seams-and-specify-a-comparison-ladder",
+      "database_id": null,
+      "title": "Soften seams and specify a comparison ladder",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "e0e0ab4333e0d25389c3b79d581a052c0a216db608c0487d61b173fb61b5e990",
+      "source_refs": [
+        "board/state-topography-pending.json"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-self-study-after-follow-through",
+      "database_id": null,
+      "title": "Complete natural post-repair sweep",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "9029077d42426a8eaec2db19b2acc23d067a0487f4ae2a6772e2f56318d75abe",
+      "source_refs": [
+        "board/study-after-follow-through-pending.json",
+        "analyses/2026-09-08-self-study-after-follow-through.md",
+        "research/histories/self-study.md",
+        "research/outputs/2026-09-08-study-after-follow-through-final/outcomes.json"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:t-self-study-after-follow-through",
+        "S-008",
+        "HSS-08",
+        "self-study",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-after-follow-through-pending.json; analyses/2026-09-08-self-study-after-follow-through.md; research/histories/self-study.md; research/outputs/2026-09-08-study-after-follow-through-final/outcomes.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-self-study-navigation-recall-claims",
+      "database_id": null,
+      "title": "Navigation recall can add unsupported source claims",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "45694dd26c194e8cca25621ae13ff42be42b096a801d0450360e2d5360df44c3",
+      "source_refs": [
+        "board/study-after-follow-through-pending.json",
+        "analyses/2026-09-08-self-study-after-follow-through.md",
+        "research/histories/self-study.md",
+        "research/outputs/2026-09-08-study-after-follow-through-final/outcomes.json"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "BOTH",
+      "tags": [
+        "id:f-self-study-navigation-recall-claims",
+        "S-008",
+        "HSS-08",
+        "self-study",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-after-follow-through-pending.json; analyses/2026-09-08-self-study-after-follow-through.md; research/histories/self-study.md; research/outputs/2026-09-08-study-after-follow-through-final/outcomes.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-read-more-ansi-overflow",
+      "database_id": null,
+      "title": "Saved prompt overflow dominates some reading pages with ANSI encoding",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "774f032e722981dc2a267f402f185bd22d0d8a3c17daa3103070c143adee1d3d",
+      "source_refs": [
+        "board/study-after-follow-through-pending.json",
+        "analyses/2026-09-08-self-study-after-follow-through.md",
+        "research/histories/self-study.md",
+        "research/outputs/2026-09-08-study-after-follow-through-final/outcomes.json"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "BOTH",
+      "tags": [
+        "id:f-read-more-ansi-overflow",
+        "S-008",
+        "HSS-08",
+        "self-study",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-after-follow-through-pending.json; analyses/2026-09-08-self-study-after-follow-through.md; research/histories/self-study.md; research/outputs/2026-09-08-study-after-follow-through-final/outcomes.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-study-source-labels-readable-overflow",
+      "database_id": null,
+      "title": "Specify readable saved context and current-source labels",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "8a5972da226d16c90545aad3651df2be2f4d1754e8c267ad8d9d40ab72ea47f5",
+      "source_refs": [
+        "board/study-after-follow-through-pending.json",
+        "analyses/2026-09-08-self-study-after-follow-through.md",
+        "research/histories/self-study.md",
+        "research/outputs/2026-09-08-study-after-follow-through-final/outcomes.json",
+        "proposals/2026-09-08-study-evidence-labels-and-readable-overflow.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-study-source-labels-readable-overflow",
+        "S-008",
+        "HSS-08",
+        "self-study",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-after-follow-through-pending.json; analyses/2026-09-08-self-study-after-follow-through.md; research/histories/self-study.md; research/outputs/2026-09-08-study-after-follow-through-final/outcomes.json; proposals/2026-09-08-study-evidence-labels-and-readable-overflow.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-08-study-after-follow-through",
+      "database_id": null,
+      "title": "Natural studies after entry/follow-through repair",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "111446bca33e55072259bd0616b4745d10adba2614a3b97e930a561c8259e62f",
+      "source_refs": [
+        "board/study-after-follow-through-pending.json"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-study-path-recovery-and-failed-evidence",
+      "database_id": null,
+      "title": "Offer exact recovery paths and retain failed study evidence",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "45a248c5b2a1f60799c5f0e058bda4a58a12151c1921159e6ac6f0c6fcb57959",
+      "source_refs": [
+        "board/study-choice-pending.json",
+        "analyses/2026-09-09-study-choice-and-claim-check.md",
+        "research/outputs/2026-09-09-study-claim-check/verified.json"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-study-path-recovery-and-failed-evidence",
+        "self-study",
+        "agency",
+        "source-fidelity",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-choice-pending.json; analyses/2026-09-09-study-choice-and-claim-check.md; research/outputs/2026-09-09-study-claim-check/verified.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-study-claim-invitation-not-qualified",
+      "database_id": null,
+      "title": "Extra counterexample invitation did not correct saved mistaken accounts",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "09b22b21a3f9d738ef5380a494e31a90c5255eb6f77ce0f9475a8ff560e59aeb",
+      "source_refs": [
+        "board/study-choice-pending.json",
+        "analyses/2026-09-09-study-choice-and-claim-check.md",
+        "research/outputs/2026-09-09-study-claim-check/verified.json"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "SYSTEM",
+      "tags": [
+        "id:f-study-claim-invitation-not-qualified",
+        "self-study",
+        "agency",
+        "source-fidelity",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-choice-pending.json; analyses/2026-09-09-study-choice-and-claim-check.md; research/outputs/2026-09-09-study-claim-check/verified.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-09-study-choice",
+      "database_id": null,
+      "title": "HSS-16: useful recovery without prescribing the study",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "b49120826cb8b19c08dafd45d527c7ce1edb1794ed4ea62365224a5d5b630ab7",
+      "source_refs": [
+        "board/study-choice-pending.json"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-study-context-correction-and-persistence",
+      "database_id": null,
+      "title": "Study continuity carries a correction and repeated mistaken conclusions",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "baef7b64ba6a36e2c8dd7caa5f89e47ae2fcd2fb14520f4536bb435679ba15e0",
+      "source_refs": [
+        "board/study-context-followup-pending.json",
+        "analyses/2026-09-09-study-context-followup.md",
+        "research/outputs/2026-09-09-study-context-followup-report/verified-followup.json"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "BOTH",
+      "tags": [
+        "id:f-study-context-correction-and-persistence",
+        "self-study",
+        "continuity",
+        "source-fidelity",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-context-followup-pending.json; analyses/2026-09-09-study-context-followup.md; research/outputs/2026-09-09-study-context-followup-report/verified-followup.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-study-path-recovery-and-claim-check",
+      "database_id": null,
+      "title": "Offer exact missing-path candidates and qualify a source-grounded claim check",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "7ad68cdfd2c576e6245400f0fcc44b9db9001c0f0b8bfd50469a4e27b91c092c",
+      "source_refs": [
+        "board/study-context-followup-pending.json",
+        "proposals/2026-09-09-study-claim-check-and-recovery.md",
+        "research/outputs/2026-09-09-study-path-recovery/recovery.json",
+        "analyses/2026-09-09-study-context-followup.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-study-path-recovery-and-claim-check",
+        "self-study",
+        "continuity",
+        "source-fidelity",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-context-followup-pending.json; proposals/2026-09-09-study-claim-check-and-recovery.md; research/outputs/2026-09-09-study-path-recovery/recovery.json; analyses/2026-09-09-study-context-followup.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-09-study-context-followup",
+      "database_id": null,
+      "title": "HSS-15: source-grounded revision and limits of preserved context",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "5b48e62424e730de73e27fe3d38e3d346afa54f601defe0d3740d85dc721c0bd",
+      "source_refs": [
+        "board/study-context-followup-pending.json"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-study-evidence-readable-overflow",
+      "database_id": null,
+      "title": "Current study evidence and readable saved overflow deployed",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "0dbe3ded8820105fec0d37ef3ecd76b275f3b75bd3ebddca120a87c1a2ef311c",
+      "source_refs": [
+        "board/study-evidence-live-pending.json",
+        "analyses/2026-09-08-study-evidence-live.md",
+        "research/histories/self-study.md",
+        "research/outputs/2026-09-08-study-evidence-live/manifest.json"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-study-evidence-readable-overflow",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-evidence-live-pending.json; analyses/2026-09-08-study-evidence-live.md; research/histories/self-study.md; research/outputs/2026-09-08-study-evidence-live/manifest.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "q-code-search-to-source-find",
+      "database_id": null,
+      "title": "Guide code-symbol searches to SELF_STUDY FIND",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "1813e1d4652ac71d7f21ddb69ff0c3cbe453d92a838837a7870d6ec203a4b196",
+      "source_refs": [
+        "board/study-evidence-live-pending.json",
+        "research/outputs/2026-09-08-study-evidence-live/natural-outcomes.json"
+      ],
+      "lane": "Questions",
+      "status": "open",
+      "being": "ASTRID",
+      "tags": [
+        "id:q-code-search-to-source-find",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-evidence-live-pending.json; research/outputs/2026-09-08-study-evidence-live/natural-outcomes.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-09-paired-evidence-view-release-and-first-natural-studies",
+      "database_id": null,
+      "title": "Paired evidence/view release and first natural studies",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "9c489f2267223cfe5f978730a69da6761414450d91f877b8c30124c24c03d347",
+      "source_refs": [
+        "board/study-evidence-live-pending.json"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-track-self-study-through-journal-and-actual-next-actions",
+      "database_id": null,
+      "title": "Track self-study through journal and actual next actions",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "6342fa8212c288d08492aaea0b291fa9760f1308dcc6529d8d1443a529602883",
+      "source_refs": [
+        "board/study-sequences-pending.json",
+        "research/studies/S-008-study-to-follow-through.md",
+        "analyses/2026-09-08-study-to-follow-through.md"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:t-track-self-study-through-journal-and-actual-next-actions",
+        "S-008",
+        "self-study",
+        "continuity",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-sequences-pending.json; research/studies/S-008-study-to-follow-through.md; analyses/2026-09-08-study-to-follow-through.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-verified-self-study-next-is-rejected-by-astrid-authorship-gate",
+      "database_id": null,
+      "title": "Verified self-study NEXT is rejected by Astrid authorship gate",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "506d7bf3eb4f638b1611de8bce9dfab374329bae5e89964713d3ed70ad4208a8",
+      "source_refs": [
+        "board/study-sequences-pending.json",
+        "research/studies/S-008-study-to-follow-through.md",
+        "analyses/2026-09-08-study-to-follow-through.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "ASTRID",
+      "tags": [
+        "id:f-verified-self-study-next-is-rejected-by-astrid-authorship-gate",
+        "S-008",
+        "authorship",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-sequences-pending.json; research/studies/S-008-study-to-follow-through.md; analyses/2026-09-08-study-to-follow-through.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-minime-reading-intent-is-not-reaching-the-new-notebook",
+      "database_id": null,
+      "title": "Minime reading intent is not reaching the new notebook",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "323f67f2aaa698c9e2a0ae65450a78771ec96e94cd17a6508321d23f91a4ebd5",
+      "source_refs": [
+        "board/study-sequences-pending.json",
+        "research/studies/S-008-study-to-follow-through.md",
+        "analyses/2026-09-08-study-to-follow-through.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "MINIME",
+      "tags": [
+        "id:f-minime-reading-intent-is-not-reaching-the-new-notebook",
+        "S-008",
+        "navigation",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-sequences-pending.json; research/studies/S-008-study-to-follow-through.md; analyses/2026-09-08-study-to-follow-through.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-08-study-sequences",
+      "database_id": null,
+      "title": "Self-study to journal and action follow-through",
+      "observed_date": "2026-09-08",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "e25490770ef8d61a7e14b4b03a9a1d767f9de83afa9a61674a1271d33983c582",
+      "source_refs": [
+        "board/study-sequences-pending.json"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-study-source-findings-and-local-links",
+      "database_id": null,
+      "title": "Study source findings and local links",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "3ae4e178ab8b81f82eb1478d7114e28374e6b7860dbf4090ac246fc59dc4fa47",
+      "source_refs": [
+        "board/study-source-context-pending.json",
+        "analyses/2026-09-15-study-source-context.md",
+        "analyses/2026-09-15-astrid-study-survey.md",
+        "research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/validation.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/integration.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/source-context-replay/summary.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/activation.log",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-host-after.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/staged-input-audit.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-staged-helper-tests.log",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/before-activation/processes.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/after-activation/processes.json"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-study-source-findings-and-local-links",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-source-context-pending.json; analyses/2026-09-15-study-source-context.md; analyses/2026-09-15-astrid-study-survey.md; research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/validation.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/integration.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/source-context-replay/summary.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/activation.log; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-host-after.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/staged-input-audit.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-staged-helper-tests.log; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/before-activation/processes.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/after-activation/processes.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-study-source-context-natural-followthrough",
+      "database_id": null,
+      "title": "Study source context natural followthrough",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "b760cbcc7d789a16724047573098eaba187859c51cfdf35097a846c8ca7d951c",
+      "source_refs": [
+        "board/study-source-context-pending.json",
+        "analyses/2026-09-15-study-source-context.md",
+        "analyses/2026-09-15-astrid-study-survey.md",
+        "research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/validation.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/integration.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/source-context-replay/summary.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/activation.log",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-host-after.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/staged-input-audit.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-staged-helper-tests.log",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/before-activation/processes.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/after-activation/processes.json"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:t-study-source-context-natural-followthrough",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-source-context-pending.json; analyses/2026-09-15-study-source-context.md; analyses/2026-09-15-astrid-study-survey.md; research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/validation.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/integration.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/source-context-replay/summary.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/activation.log; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-host-after.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/staged-input-audit.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-staged-helper-tests.log; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/before-activation/processes.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/after-activation/processes.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-study-pagination-separator",
+      "database_id": null,
+      "title": "Study pagination separator",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "869704b4e9758a822723a8eafcc5a1181b9c15022f1e9eeeceec06f3d4c4d301",
+      "source_refs": [
+        "board/study-source-context-pending.json",
+        "analyses/2026-09-15-study-source-context.md",
+        "analyses/2026-09-15-astrid-study-survey.md",
+        "research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/validation.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/integration.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/source-context-replay/summary.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/activation.log",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-host-after.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/staged-input-audit.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-staged-helper-tests.log",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/before-activation/processes.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/after-activation/processes.json"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-study-pagination-separator",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-source-context-pending.json; analyses/2026-09-15-study-source-context.md; analyses/2026-09-15-astrid-study-survey.md; research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/validation.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/integration.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/source-context-replay/summary.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/activation.log; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-host-after.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/staged-input-audit.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-staged-helper-tests.log; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/before-activation/processes.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/after-activation/processes.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-study-qualified-constructor-candidates",
+      "database_id": null,
+      "title": "Study qualified constructor candidates",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "4d152ec0e60abb6942275044d6a5651973505551d929b8fb6f9f87ab2a732716",
+      "source_refs": [
+        "board/study-source-context-pending.json",
+        "analyses/2026-09-15-study-source-context.md",
+        "analyses/2026-09-15-astrid-study-survey.md",
+        "research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/validation.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/integration.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/source-context-replay/summary.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/activation.log",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-host-after.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/staged-input-audit.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-staged-helper-tests.log",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/before-activation/processes.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/after-activation/processes.json"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "BOTH",
+      "tags": [
+        "id:t-study-qualified-constructor-candidates",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-source-context-pending.json; analyses/2026-09-15-study-source-context.md; analyses/2026-09-15-astrid-study-survey.md; research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/validation.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/integration.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/source-context-replay/summary.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/activation.log; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-host-after.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/staged-input-audit.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-staged-helper-tests.log; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/before-activation/processes.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/after-activation/processes.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-reservoir-guided-journey",
+      "database_id": null,
+      "title": "Reservoir Scope guided A–H journey",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "fdc747c9ef4916a88eace1c122dc8b02734b8a977423b1b986ed85d4c0aa2fab",
+      "source_refs": [
+        "research/outputs/2026-09-16-guided-reservoir-lab/pending-board-updates.json",
+        "analyses/2026-09-16-guided-reservoir-lab.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:c-reservoir-guided-journey",
+        "reservoir-scope",
+        "S-009",
+        "guided-lab",
+        "historical-backlog"
+      ],
+      "evidence": "research/outputs/2026-09-16-guided-reservoir-lab/pending-board-updates.json; analyses/2026-09-16-guided-reservoir-lab.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-reservoir-recorded-replay-boundary",
+      "database_id": null,
+      "title": "Recorded replay preserves identity at feedback boundary",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "f1e75a0dac5d855d04ab85e6e192f7d9d3bfb92096716c34add869f968e51d3e",
+      "source_refs": [
+        "research/outputs/2026-09-16-guided-reservoir-lab/pending-board-updates.json",
+        "analyses/2026-09-16-guided-reservoir-lab.md"
+      ],
+      "lane": "Tests",
+      "status": "verified",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-reservoir-recorded-replay-boundary",
+        "reservoir-scope",
+        "S-009",
+        "guided-lab",
+        "historical-backlog"
+      ],
+      "evidence": "research/outputs/2026-09-16-guided-reservoir-lab/pending-board-updates.json; analyses/2026-09-16-guided-reservoir-lab.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-reservoir-active-input-fixture",
+      "database_id": null,
+      "title": "Active-input observation fixture qualifies prompt contrast",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "352cbbd787de56dc5a850d393f2b11f41a7765e22f120a89ead2aafeaf4e93ff",
+      "source_refs": [
+        "research/outputs/2026-09-16-guided-reservoir-lab/pending-board-updates.json",
+        "analyses/2026-09-16-guided-reservoir-lab.md",
+        "analyses/2026-09-16-active-observation-retry.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "SYSTEM",
+      "tags": [
+        "id:f-reservoir-active-input-fixture",
+        "reservoir-scope",
+        "S-009",
+        "guided-lab",
+        "historical-backlog"
+      ],
+      "evidence": "research/outputs/2026-09-16-guided-reservoir-lab/pending-board-updates.json; analyses/2026-09-16-guided-reservoir-lab.md; analyses/2026-09-16-active-observation-retry.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-reservoir-controller-reproduction",
+      "database_id": null,
+      "title": "Known controller mechanism reduces fixed-window target error",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "bdf731f40e291e04a5f8f047c803a999c01bf6dd9b36aad3b502f04c2c67dc74",
+      "source_refs": [
+        "research/outputs/2026-09-16-guided-reservoir-lab/pending-board-updates.json",
+        "analyses/2026-09-16-guided-reservoir-lab.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "SYSTEM",
+      "tags": [
+        "id:f-reservoir-controller-reproduction",
+        "reservoir-scope",
+        "S-009",
+        "guided-lab",
+        "historical-backlog"
+      ],
+      "evidence": "research/outputs/2026-09-16-guided-reservoir-lab/pending-board-updates.json; analyses/2026-09-16-guided-reservoir-lab.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-reservoir-scope-newcomer",
+      "database_id": null,
+      "title": "Complete the actual offline newcomer walkthrough",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "20f2cd8467e2b8a128b9d319da79e4f05ef9f90206192456f4f00e4a97b55f41",
+      "source_refs": [
+        "research/outputs/2026-09-16-guided-reservoir-lab/pending-board-updates.json",
+        "analyses/2026-09-16-guided-reservoir-lab.md",
+        "analyses/2026-09-17-reservoir-scope-014-delivery.md",
+        "native/ReservoirScope/docs/NEWCOMER-WORKSHEET.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-reservoir-scope-newcomer",
+        "reservoir-scope",
+        "human-acceptance",
+        "historical-backlog"
+      ],
+      "evidence": "research/outputs/2026-09-16-guided-reservoir-lab/pending-board-updates.json; analyses/2026-09-16-guided-reservoir-lab.md; analyses/2026-09-17-reservoir-scope-014-delivery.md; native/ReservoirScope/docs/NEWCOMER-WORKSHEET.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-16-guided-reservoir-lab",
+      "database_id": null,
+      "title": "Guided portable lab implemented",
+      "observed_date": "2026-09-16",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "6ba8cc37e9a2a18c41f48284e8f47ca3876946f6ec3c9de6fb2971614be0427f",
+      "source_refs": [
+        "research/outputs/2026-09-16-guided-reservoir-lab/pending-board-updates.json"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-contextual-activation-qualification",
+      "database_id": null,
+      "title": "Contextual activation and provider controls: bounded qualification complete",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "235f811825d1ecbe0fec6b3991a98f6d570f0bd960ec09c3925985d5eef10ebd",
+      "source_refs": [
+        "board/activation-input-pending.json",
+        "analyses/2026-09-09-contextual-feedback-experiment.md",
+        "analyses/2026-09-09-activation-input-and-provider-knobs.md"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-contextual-activation-qualification",
+        "research-reconciliation",
+        "historical-backlog"
+      ],
+      "evidence": "board/activation-input-pending.json; analyses/2026-09-09-contextual-feedback-experiment.md; analyses/2026-09-09-activation-input-and-provider-knobs.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-09-contextual-feedback-experiment",
+      "database_id": null,
+      "title": "Contextual activation and provider controls: bounded qualification complete",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "6bb879542d3f227eda659c58cac0242a6211549420baca2d5eddb3c0ea86f8c1",
+      "source_refs": [
+        "board/activation-input-pending.json",
+        "analyses/2026-09-09-contextual-feedback-experiment.md",
+        "analyses/2026-09-09-activation-input-and-provider-knobs.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-optional-extended-writing",
+      "database_id": null,
+      "title": "Optional extended writing preserves complete draft continuity",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "70dd1eec3d7981ffe3d660e7785e9b393685e522f599a1f4e7588e75c0e3c35d",
+      "source_refs": [
+        "board/extended-writing-pending.json",
+        "analyses/2026-09-09-extended-writing.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-optional-extended-writing",
+        "research-reconciliation",
+        "historical-backlog"
+      ],
+      "evidence": "board/extended-writing-pending.json; analyses/2026-09-09-extended-writing.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-09-extended-writing",
+      "database_id": null,
+      "title": "Optional extended writing preserves complete draft continuity",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "94b726158ac33974e146e1fa72936fef3dec36e3dc6bd3e709879010505cbb09",
+      "source_refs": [
+        "board/extended-writing-pending.json",
+        "analyses/2026-09-09-extended-writing.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-study-answer-context",
+      "database_id": null,
+      "title": "Carry complete study answers and preserve voluntary navigation",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "4ef82ebce17446b7245943186d710cb26155385c0ca5b5b44025fbd476cfd15e",
+      "source_refs": [
+        "board/study-context-pending.json",
+        "analyses/2026-09-09-study-context-and-thinking.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-study-answer-context",
+        "research-reconciliation",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-context-pending.json; analyses/2026-09-09-study-context-and-thinking.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-09-study-context-and-thinking",
+      "database_id": null,
+      "title": "Carry complete study answers and preserve voluntary navigation",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "e617c2647d5c7fcbd730c568572691e3d88946c5482ac500d60b02a7a95a2415",
+      "source_refs": [
+        "board/study-context-pending.json",
+        "analyses/2026-09-09-study-context-and-thinking.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-latest-five-journals-20260910",
+      "database_id": null,
+      "title": "Latest five journals show navigation loops and evidence-role confusion",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "bc9f86617230527bed7c74835e3745f173654b55c3b64b244c9bbc8783140c24",
+      "source_refs": [
+        "board/latest-five-journals-pending.json",
+        "analyses/2026-09-10-latest-five-journals.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "BOTH",
+      "tags": [
+        "id:f-latest-five-journals-20260910",
+        "research-reconciliation",
+        "historical-backlog"
+      ],
+      "evidence": "board/latest-five-journals-pending.json; analyses/2026-09-10-latest-five-journals.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-10-latest-five-journals",
+      "database_id": null,
+      "title": "Latest five journals show navigation loops and evidence-role confusion",
+      "observed_date": "2026-09-10",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "102f571dc1c30543d097344f96bb6fc5023000b6ac4d07bd1b975eac2795df61",
+      "source_refs": [
+        "board/latest-five-journals-pending.json",
+        "analyses/2026-09-10-latest-five-journals.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-journal-coherence-20260910",
+      "database_id": null,
+      "title": "Natural journal and draft coherence exposes three interface gaps",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "d0f6ebafda8d944c502a944c9296257bcb60e1ae0b073c912a4a0aeb930002ed",
+      "source_refs": [
+        "board/evening-journal-coherence-pending.json",
+        "analyses/2026-09-10-evening-journal-coherence.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "BOTH",
+      "tags": [
+        "id:f-journal-coherence-20260910",
+        "research-reconciliation",
+        "historical-backlog"
+      ],
+      "evidence": "board/evening-journal-coherence-pending.json; analyses/2026-09-10-evening-journal-coherence.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-10-evening-journal-coherence",
+      "database_id": null,
+      "title": "Natural journal and draft coherence exposes three interface gaps",
+      "observed_date": "2026-09-10",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "54eafdb8fe004a0ae8a545f4cce3ba01cd22259ec59d1e288b252f55501648d8",
+      "source_refs": [
+        "board/evening-journal-coherence-pending.json",
+        "analyses/2026-09-10-evening-journal-coherence.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-journal-coherence-repairs",
+      "database_id": null,
+      "title": "Repair draft context, exact choice feedback and visual-origin labels",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "b69b71f870f79e7bdca895a498cda2b6a6ed80e02bb2cb7dc293cb2fd05273f4",
+      "source_refs": [
+        "board/journal-coherence-repairs-pending.json",
+        "analyses/2026-09-11-journal-coherence-repairs.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-journal-coherence-repairs",
+        "research-reconciliation",
+        "historical-backlog"
+      ],
+      "evidence": "board/journal-coherence-repairs-pending.json; analyses/2026-09-11-journal-coherence-repairs.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-11-journal-coherence-repairs",
+      "database_id": null,
+      "title": "Repair draft context, exact choice feedback and visual-origin labels",
+      "observed_date": "2026-09-11",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "25d10fbcd08b84be7301d8541a5ee9002f97926e440f12eb0ceb4326d480fc7e",
+      "source_refs": [
+        "board/journal-coherence-repairs-pending.json",
+        "analyses/2026-09-11-journal-coherence-repairs.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-astrid-small-studies-20260911",
+      "database_id": null,
+      "title": "Brief Astrid studies retain complete delivery and a persistent hypothesis",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "490ac5467933a7171693aa32b6c8e37260be132467f8463ff7274415a1b71d87",
+      "source_refs": [
+        "board/astrid-small-studies-pending.json",
+        "analyses/2026-09-11-astrid-small-studies.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "ASTRID",
+      "tags": [
+        "id:f-astrid-small-studies-20260911",
+        "research-reconciliation",
+        "historical-backlog"
+      ],
+      "evidence": "board/astrid-small-studies-pending.json; analyses/2026-09-11-astrid-small-studies.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-11-astrid-small-studies",
+      "database_id": null,
+      "title": "Brief Astrid studies retain complete delivery and a persistent hypothesis",
+      "observed_date": "2026-09-11",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "fed8437363276a3f6a2420483dca6e65ba09dcfe442a2b8407e80504d43f5ac0",
+      "source_refs": [
+        "board/astrid-small-studies-pending.json",
+        "analyses/2026-09-11-astrid-small-studies.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-minime-study-survey-20260915",
+      "database_id": null,
+      "title": "Minime's latest hundred studies traverse maps with no fresh code",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "db26f05a07bb9138f577255ddda2a31dd6730ad2d31578c53a8abd44153d7f09",
+      "source_refs": [
+        "board/minime-study-survey-pending.json",
+        "analyses/2026-09-15-minime-study-survey.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "MINIME",
+      "tags": [
+        "id:f-minime-study-survey-20260915",
+        "research-reconciliation",
+        "historical-backlog"
+      ],
+      "evidence": "board/minime-study-survey-pending.json; analyses/2026-09-15-minime-study-survey.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-15-minime-study-survey",
+      "database_id": null,
+      "title": "Minime's latest hundred studies traverse maps with no fresh code",
+      "observed_date": "2026-09-15",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "bd8804c2cdc77a138b963786c3fd5fed15de2ee09183472abb08506a87aebe13",
+      "source_refs": [
+        "board/minime-study-survey-pending.json",
+        "analyses/2026-09-15-minime-study-survey.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-study-compact-navigation",
+      "database_id": null,
+      "title": "Compact study navigation, exact recovery and optional evidence choices",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "2faf7a057138186b48aafe201d4d61924ce8560faf718fa7063b6da5835fe2e6",
+      "source_refs": [
+        "board/study-navigation-release-pending.json",
+        "analyses/2026-09-15-study-navigation-release.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-study-compact-navigation",
+        "research-reconciliation",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-navigation-release-pending.json; analyses/2026-09-15-study-navigation-release.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-15-study-navigation-release",
+      "database_id": null,
+      "title": "Compact study navigation, exact recovery and optional evidence choices",
+      "observed_date": "2026-09-15",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "e14695aef27735622f89b8b1d564dbceaec76d346a94a350561bf2ed4f8ee1d0",
+      "source_refs": [
+        "board/study-navigation-release-pending.json",
+        "analyses/2026-09-15-study-navigation-release.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-study-chosen-navigation-and-evidence-roles",
+      "database_id": null,
+      "title": "Preserve chosen study navigation and distinguish lexical evidence roles",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "42f2b15d8fba6ef2412899ce14c6fbc1cdd0beb7c204ee5892c0c674ea270708",
+      "source_refs": [
+        "board/study-navigation-revision-pending.json",
+        "analyses/2026-09-10-study-navigation-live.md",
+        "analyses/2026-09-10-study-evidence-revision.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-study-chosen-navigation-and-evidence-roles",
+        "research-reconciliation",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-navigation-revision-pending.json; analyses/2026-09-10-study-navigation-live.md; analyses/2026-09-10-study-evidence-revision.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-10-study-navigation-live",
+      "database_id": null,
+      "title": "Preserve chosen study navigation and distinguish lexical evidence roles",
+      "observed_date": "2026-09-10",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "dece84b7d9c4b75b21804f92273650c2119fa4cab82b6315edc0a8aab50fdab7",
+      "source_refs": [
+        "board/study-navigation-revision-pending.json",
+        "analyses/2026-09-10-study-navigation-live.md",
+        "analyses/2026-09-10-study-evidence-revision.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-study-evidence-order",
+      "database_id": null,
+      "title": "Fresh-source order does not repair the retained account in this pilot",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "f34397897309dfa9ed2980007c189ae2229f8da5ee1f3b671c02d83cd006542a",
+      "source_refs": [
+        "board/study-evidence-order-pending.json",
+        "analyses/2026-09-10-study-evidence-order.md"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-study-evidence-order",
+        "research-reconciliation",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-evidence-order-pending.json; analyses/2026-09-10-study-evidence-order.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-10-study-evidence-order",
+      "database_id": null,
+      "title": "Fresh-source order does not repair the retained account in this pilot",
+      "observed_date": "2026-09-10",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "213a46048e682442bd095c81f3f2f1c3e832753238a04c6cd211c861ed2a0b55",
+      "source_refs": [
+        "board/study-evidence-order-pending.json",
+        "analyses/2026-09-10-study-evidence-order.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-study-question-framing",
+      "database_id": null,
+      "title": "Neutral wording and supported controls preserve different supplied accounts",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "6034b2950ade545e74c412626bad44b07d9a739a28d9b30bee2c96812f55d2e6",
+      "source_refs": [
+        "board/study-question-framing-pending.json",
+        "analyses/2026-09-10-study-question-framing.md"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-study-question-framing",
+        "research-reconciliation",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-question-framing-pending.json; analyses/2026-09-10-study-question-framing.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-10-study-question-framing",
+      "database_id": null,
+      "title": "Neutral wording and supported controls preserve different supplied accounts",
+      "observed_date": "2026-09-10",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "2af458f80d9438209b0c51e47c0b41f607b044931ef6d7cd426f058f8c8c0323",
+      "source_refs": [
+        "board/study-question-framing-pending.json",
+        "analyses/2026-09-10-study-question-framing.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-study-source-first",
+      "database_id": null,
+      "title": "Source-first reading and carried notes do not establish central repair",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "261656ba2b36f540258ebd002f7ebe36dcaaeaa42f11e718ec4ce7fb3aa42b21",
+      "source_refs": [
+        "board/study-source-first-pending.json",
+        "analyses/2026-09-10-study-source-first.md",
+        "analyses/2026-09-09-activation-input-and-provider-knobs.md"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-study-source-first",
+        "research-reconciliation",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-source-first-pending.json; analyses/2026-09-10-study-source-first.md; analyses/2026-09-09-activation-input-and-provider-knobs.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-10-study-source-first",
+      "database_id": null,
+      "title": "Source-first reading and carried notes do not establish central repair",
+      "observed_date": "2026-09-10",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "f3f6d076c8c15df3c9fed24816ed5f13687045bdebc7dacef3a39709c3821d9e",
+      "source_refs": [
+        "board/study-source-first-pending.json",
+        "analyses/2026-09-10-study-source-first.md",
+        "analyses/2026-09-09-activation-input-and-provider-knobs.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-study-claim-evidence",
+      "database_id": null,
+      "title": "Evidence-linked claims preserve supported material without repairing the retained story",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "3800b3467f81b74f554edaf12885ca9aa4a5d6f387c0a4836afab54434842254",
+      "source_refs": [
+        "board/study-claim-evidence-pending.json",
+        "analyses/2026-09-10-study-claim-evidence.md",
+        "analyses/2026-09-09-activation-input-and-provider-knobs.md"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-study-claim-evidence",
+        "research-reconciliation",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-claim-evidence-pending.json; analyses/2026-09-10-study-claim-evidence.md; analyses/2026-09-09-activation-input-and-provider-knobs.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-10-study-claim-evidence",
+      "database_id": null,
+      "title": "Evidence-linked claims preserve supported material without repairing the retained story",
+      "observed_date": "2026-09-10",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "b46636a1fa5cc948364928212783ad5b800c9c0d24b4b3fc959705517b097009",
+      "source_refs": [
+        "board/study-claim-evidence-pending.json",
+        "analyses/2026-09-10-study-claim-evidence.md",
+        "analyses/2026-09-09-activation-input-and-provider-knobs.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-study-cue-origin",
+      "database_id": null,
+      "title": "Expose the lexical origin of study interpretation warnings",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "9de90b424c64ad5fb9c53c41bd972b233a44243a83b7f23a7fd72604f01a29fc",
+      "source_refs": [
+        "board/astrid-small-studies-pending.json",
+        "analyses/2026-09-11-astrid-small-studies.md"
+      ],
+      "lane": "Changes",
+      "status": "open",
+      "being": "ASTRID",
+      "tags": [
+        "id:c-study-cue-origin",
+        "historical-backlog"
+      ],
+      "evidence": "board/astrid-small-studies-pending.json; analyses/2026-09-11-astrid-small-studies.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "q-study-evidence-grounded-synthesis",
+      "database_id": null,
+      "title": "Make optional source-grounded synthesis and coherent spans available",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "93860b420566578d0d818680eaa2b7e61f002d53ff913c45379010099206f0f5",
+      "source_refs": [
+        "board/astrid-small-studies-pending.json",
+        "analyses/2026-09-11-astrid-small-studies.md",
+        "analyses/2026-09-16-study-direction.md",
+        "analyses/2026-09-17-study-interface-repairs.md"
+      ],
+      "lane": "Questions",
+      "status": "open",
+      "being": "BOTH",
+      "tags": [
+        "id:q-study-evidence-grounded-synthesis",
+        "historical-backlog"
+      ],
+      "evidence": "board/astrid-small-studies-pending.json; analyses/2026-09-11-astrid-small-studies.md; analyses/2026-09-16-study-direction.md; analyses/2026-09-17-study-interface-repairs.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-study-pending-intent-consumer-path",
+      "database_id": null,
+      "title": "Trace pending intent through consumer, delivery and continuation evidence",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "b9cd159aef7e6c10408d49606cd8555ff26e7f00da19541778fa28a5e39ba596",
+      "source_refs": [
+        "board/study-claim-evidence-pending.json",
+        "analyses/2026-09-10-study-claim-evidence.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-study-pending-intent-consumer-path",
+        "historical-backlog"
+      ],
+      "evidence": "board/study-claim-evidence-pending.json; analyses/2026-09-10-study-claim-evidence.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-reading-letter-return-source-trace",
+      "database_id": null,
+      "title": "The reading episode: bookmark, letter, return",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "acfb71e852e787267acbe7b72aa7d65c7adc817601ca33f55b6327e1e2cc1735",
+      "source_refs": [
+        "analyses/2026-09-06-astrid-reading-letter-return-source-trace.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "ASTRID",
+      "tags": [
+        "protocol",
+        "move-1",
+        "paper",
+        "related:d-resume-thought",
+        "id:t-reading-letter-return-source-trace",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-two-mouths-one-body.md A1; proposals/2026-09-06-resume-this-thought.md; analyses/2026-09-06-astrid-reading-letter-return-source-trace.md",
+      "source": "exercise 4",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-06-astrid-reading-letter-return-source-trace",
+      "database_id": null,
+      "title": "Astrid: reading → letter → return — source trace",
+      "observed_date": "2026-09-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "ef6b530d506e3a137d2e1cfcc8bd6df5402844acbe1beac033faaebc0d36a15c",
+      "source_refs": [
+        "analyses/2026-09-06-astrid-reading-letter-return-source-trace.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-reservoir-unsorted-rayleigh-estimates",
+      "database_id": null,
+      "title": "Reservoir 3D: metric contract and leak dynamics",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "b9bff84f59bd4223bf0ea4d7def5b89279ef3150c950749fce372e456961aef5",
+      "source_refs": [
+        "analyses/2026-09-06-reservoir-3d-metric-contract.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "SYSTEM",
+      "tags": [
+        "id:f-reservoir-unsorted-rayleigh-estimates",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-06-reservoir-3d-metric-contract.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-06-reservoir-3d-metric-contract",
+      "database_id": null,
+      "title": "Reservoir 3D: metric contract and leak dynamics",
+      "observed_date": "2026-09-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "b1fba7a310fb3974845e6528c35353dee4f605ae9811eb4a9079b453df453d65",
+      "source_refs": [
+        "analyses/2026-09-06-reservoir-3d-metric-contract.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-self-study-overnight",
+      "database_id": null,
+      "title": "Overnight self-study: useful follow-through, avoidable navigation friction",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "ca85d0386db6ff53b6923b7acca8f3f634008c004d65f3a300690b3ae0575a87",
+      "source_refs": [
+        "analyses/2026-09-09-self-study-overnight.md"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:t-self-study-overnight",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-09-self-study-overnight.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-09-self-study-overnight",
+      "database_id": null,
+      "title": "Overnight self-study: useful follow-through, avoidable navigation friction",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "51334209bef3431f770812287d7728944a6d5a9694f6260f7ceeeb17fb7556b3",
+      "source_refs": [
+        "analyses/2026-09-09-self-study-overnight.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-journal-room-and-navigation",
+      "database_id": null,
+      "title": "Journal room: verified release and first natural continuation",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "a55f51825bcef516f1620fd6b8b0d309b48b6c514497ef2d5f475f2c0047ec4e",
+      "source_refs": [
+        "analyses/2026-09-09-journal-room-live.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-journal-room-and-navigation",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-09-journal-room-live.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-09-journal-room-live",
+      "database_id": null,
+      "title": "Journal room: verified release and first natural continuation",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "c989951e3e25efdba49264759f57fb4a6973999769afda2f66654dc83bc60df2",
+      "source_refs": [
+        "analyses/2026-09-09-journal-room-live.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-study-inquiries-live",
+      "database_id": null,
+      "title": "Shared study inquiries: implementation, rollout and natural follow-through",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "f8a09222353ac3b916307bee71c2e8427e8e2aa30eb27703348cc935002692e6",
+      "source_refs": [
+        "analyses/2026-09-09-study-inquiries-live.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-study-inquiries-live",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-09-study-inquiries-live.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-09-study-inquiries-live",
+      "database_id": null,
+      "title": "Shared study inquiries: implementation, rollout and natural follow-through",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "225aa22b28051caf0f24dec4c3b0e739160c286931d775d0f81ba94713dfec22",
+      "source_refs": [
+        "analyses/2026-09-09-study-inquiries-live.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-study-evidence-revision",
+      "database_id": null,
+      "title": "Does relevant source change a retained study explanation?",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "a363efb742feef95116d6dad690d71e5feadc9b7ea93f6c41012c4884b5078b7",
+      "source_refs": [
+        "analyses/2026-09-10-study-evidence-revision.md"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-study-evidence-revision",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-10-study-evidence-revision.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-10-study-evidence-revision",
+      "database_id": null,
+      "title": "Does relevant source change a retained study explanation?",
+      "observed_date": "2026-09-10",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "e336518493f68d9e20d2ed4f7e64c69f98e6b903d7b80809a97bb8303e208c24",
+      "source_refs": [
+        "analyses/2026-09-10-study-evidence-revision.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-research-git-stabilization-20260915",
+      "database_id": null,
+      "title": "Git stabilization after the SELF_STUDY source-context work",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "fce0d621208bbedd4745cee1c1b70d50fc53f08bb170b037d1ed18cc9d03de1c",
+      "source_refs": [
+        "analyses/2026-09-15-git-stabilization.md"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-research-git-stabilization-20260915",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-15-git-stabilization.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-15-git-stabilization",
+      "database_id": null,
+      "title": "Git stabilization after the SELF_STUDY source-context work",
+      "observed_date": "2026-09-15",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "196e22071a17025e757c83837e08e15ad17ecfe989bb28faa5dc85af1eb76e63",
+      "source_refs": [
+        "analyses/2026-09-15-git-stabilization.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-study-source-hints-and-checkin",
+      "database_id": null,
+      "title": "Study direction: preserve inquiry without making continuation the only visible path",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "77371bef06f7913d8f220e54dff3d3cc5554ee135258d448a6f9f63e54d71d97",
+      "source_refs": [
+        "analyses/2026-09-16-study-direction.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-study-source-hints-and-checkin",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-16-study-direction.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-16-study-direction",
+      "database_id": null,
+      "title": "Study direction: preserve inquiry without making continuation the only visible path",
+      "observed_date": "2026-09-16",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "f60adfeccfa3a7f27ee1fc945fad9ee67be75c98387af0f8ba928c4f39e2d947",
+      "source_refs": [
+        "analyses/2026-09-16-study-direction.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-study-direction-four-hour-followup",
+      "database_id": null,
+      "title": "Four hours later: broader reading, persistent assumptions, and blocked continuation",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "4e8f4ad6a364ff790b5a9a225744eced641c64fe76550e514e4b5c33c00b237b",
+      "source_refs": [
+        "analyses/2026-09-16-study-direction-followup.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "BOTH",
+      "tags": [
+        "id:f-study-direction-four-hour-followup",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-16-study-direction-followup.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-16-study-direction-followup",
+      "database_id": null,
+      "title": "Four hours later: broader reading, persistent assumptions, and blocked continuation",
+      "observed_date": "2026-09-16",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "514959396ef34605eb8e77d4ab1ddfd33d6c850e3af4381578469787f632ba24",
+      "source_refs": [
+        "analyses/2026-09-16-study-direction-followup.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-study-interface-repairs",
+      "database_id": null,
+      "title": "Repairing continuation, page boundaries and finding feedback",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "a8165d2141fbe858f1fb11dbdf99759e98b6bbf8fa69e3adbfc82e3d8ab177d8",
+      "source_refs": [
+        "analyses/2026-09-17-study-interface-repairs.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-study-interface-repairs",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-17-study-interface-repairs.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-17-study-interface-repairs",
+      "database_id": null,
+      "title": "Repairing continuation, page boundaries and finding feedback",
+      "observed_date": "2026-09-17",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "b6ade6328767274c0ab379e5f6402c2be7312250c75015a68bd1c26c49e1f8e5",
+      "source_refs": [
+        "analyses/2026-09-17-study-interface-repairs.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-reservoir-observatory",
+      "database_id": null,
+      "title": "Build a native 3D observatory for reservoir state and regulation",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "700b3065c4504f08d601b7f3602f18325e3a4f635fa07a43d4cc21cd2f132b5d",
+      "source_refs": [
+        "analyses/2026-09-06-reservoir-live-state-readiness.md"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-reservoir-observatory",
+        "study:S-002",
+        "reservoir",
+        "3d",
+        "native",
+        "instrumentation",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-07-reservoir-state-surface-implementation.md; native/ReservoirScope/build-receipt.json; native/ReservoirScope/docs/STATE-SURFACE.md; research/outputs/2026-09-07-state-surface/profiles/comparison.md; proposals/2026-09-07-direct-reservoir-shaping.md; research/studies/S-002-reservoir-observatory.md; proposals/2026-09-07-reservoir-state-surface-and-perturbation.md; analyses/2026-09-07-perturb-source-audit.md; analyses/2026-09-06-reservoir-live-state-readiness.md",
+      "source": "Mike’s reservoir observatory direction, live fill refinement, and September 7 state-surface / PERTURB design request",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-afterimage-trace",
+      "database_id": null,
+      "title": "Follow an Afterimage from physical trace to later use",
+      "observed_date": "2026-09-07",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "10f69b49839f54d680b4b367589fca200309c0482aaca375f1a5dfd75bc31cc7",
+      "source_refs": [
+        "analyses/2026-09-07-afterimage-research-readiness.md",
+        "board/afterimage-trace.json"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "afterimages",
+        "research",
+        "continuity",
+        "id:t-afterimage-trace"
+      ],
+      "evidence": "analyses/2026-09-07-first-afterimage-account.md; research/studies/S-004-afterimage-to-use.md; proposals/2026-09-07-afterimage-delivery-and-evidence.md; research/outputs/2026-09-07-afterimage-account/final-report/account.json; analyses/2026-09-07-afterimage-research-readiness.md",
+      "source": null,
+      "source_verification": "unchanged/no-op or held card; source not recaptured in this editor pass"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-07-afterimage-trace",
+      "database_id": null,
+      "title": "Build and read the first Afterimage account",
+      "observed_date": "2026-09-07",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "e741c8713a44b1bccf45db7e1bb181d29c20a904ef351568b967e9b11e99b4dd",
+      "source_refs": [
+        "analyses/2026-09-07-afterimage-research-readiness.md",
+        "board/afterimage-trace.json"
+      ]
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-09-activation-input-and-provider-knobs",
+      "database_id": null,
+      "title": "Audit contextual input and effective provider controls",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "4d01e698cca172efcaabcaa9df3f47bc41915786372218ba18f1180d5eb9b2de",
+      "source_refs": [
+        "analyses/2026-09-09-activation-input-and-provider-knobs.md",
+        "board/activation-input-pending.json"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-s007-day1-bounded-fidelity",
+      "database_id": null,
+      "title": "S-007 · First daily source-study window",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "67438f67f3d52d4ffa82f05bee16a41943edfb98c8509c6a3e38f9a9b4741476",
+      "source_refs": [
+        "analyses/2026-09-09-source-study-fidelity-day1.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "MINIME",
+      "tags": [
+        "id:f-s007-day1-bounded-fidelity",
+        "S-007",
+        "source-study",
+        "provenance",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-09-source-study-fidelity-day1.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-09-source-study-fidelity-day1",
+      "database_id": null,
+      "title": "S-007 · First daily source-study window",
+      "observed_date": "2026-09-09",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "8c7ee5ec9f48188a2d847f79a743b8cffe2aa79614f92850a7f749ca562effdf",
+      "source_refs": [
+        "analyses/2026-09-09-source-study-fidelity-day1.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-s007-day2-bounded-fidelity",
+      "database_id": null,
+      "title": "S-007 · Day 2: source access and a concrete fidelity error",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "0686c3fd6cbe2cf144d5e748b92cd431143015aed8a7a4a95949f3e3596198af",
+      "source_refs": [
+        "analyses/2026-09-10-source-study-fidelity-day2.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "MINIME",
+      "tags": [
+        "id:f-s007-day2-bounded-fidelity",
+        "S-007",
+        "source-study",
+        "provenance",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-10-source-study-fidelity-day2.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-10-source-study-fidelity-day2",
+      "database_id": null,
+      "title": "S-007 · Day 2: source access and a concrete fidelity error",
+      "observed_date": "2026-09-10",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "1a3a56f59890ab22ab06b62b00f85988ff26d54c02da40278ad3bd9aa9aed25b",
+      "source_refs": [
+        "analyses/2026-09-10-source-study-fidelity-day2.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-s007-day3-bounded-fidelity",
+      "database_id": null,
+      "title": "S-007 · prospective day 3, recovered September 13",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "13e2c410440d42df19d8f473fd7d8cb8c1563b84e99a3f3ea83071b0510c2a77",
+      "source_refs": [
+        "analyses/2026-09-11-source-study-fidelity-day3.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "MINIME",
+      "tags": [
+        "id:f-s007-day3-bounded-fidelity",
+        "S-007",
+        "source-study",
+        "provenance",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-11-source-study-fidelity-day3.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-11-source-study-fidelity-day3",
+      "database_id": null,
+      "title": "S-007 · prospective day 3, recovered September 13",
+      "observed_date": "2026-09-11",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "6f3f98f6c67cb152b861f0444951402c50ab16917730688c48484e0ffc9b0b77",
+      "source_refs": [
+        "analyses/2026-09-11-source-study-fidelity-day3.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-s007-day4-bounded-fidelity",
+      "database_id": null,
+      "title": "S-007 · prospective day 4, recovered September 13",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "401e2960b76b80637a98c502fa509cb477345981a9bad29d1f4e15757c632763",
+      "source_refs": [
+        "analyses/2026-09-12-source-study-fidelity-day4.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "MINIME",
+      "tags": [
+        "id:f-s007-day4-bounded-fidelity",
+        "S-007",
+        "source-study",
+        "provenance",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-12-source-study-fidelity-day4.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-12-source-study-fidelity-day4",
+      "database_id": null,
+      "title": "S-007 · prospective day 4, recovered September 13",
+      "observed_date": "2026-09-12",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "9281c6e41d1faa436ef2882adb644d1d8adebeab6d895de3824e87bee0fbb688",
+      "source_refs": [
+        "analyses/2026-09-12-source-study-fidelity-day4.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-s007-day5-bounded-fidelity",
+      "database_id": null,
+      "title": "S-007 · prospective day 5, recovered September 13",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "95fe08a6eb829097fbbfc0146ae6f7be6f6835beb35bc47533ef75e85d3bc0cc",
+      "source_refs": [
+        "analyses/2026-09-13-source-study-fidelity-day5.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "MINIME",
+      "tags": [
+        "id:f-s007-day5-bounded-fidelity",
+        "S-007",
+        "source-study",
+        "provenance",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-13-source-study-fidelity-day5.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-13-source-study-fidelity-day5",
+      "database_id": null,
+      "title": "S-007 · prospective day 5, recovered September 13",
+      "observed_date": "2026-09-13",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "88069f5f05df0f8bc34e9f60256b12cde168c14757699d1ce30ad40e391313f1",
+      "source_refs": [
+        "analyses/2026-09-13-source-study-fidelity-day5.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-s007-day6-bounded-fidelity",
+      "database_id": null,
+      "title": "S-007 · prospective day 6",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "391c214a4ef3c63e37672118723025766be5575ad3b2c9a839a247131331c934",
+      "source_refs": [
+        "analyses/2026-09-14-source-study-fidelity-day6.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "MINIME",
+      "tags": [
+        "id:f-s007-day6-bounded-fidelity",
+        "S-007",
+        "source-study",
+        "provenance",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-14-source-study-fidelity-day6.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-14-source-study-fidelity-day6",
+      "database_id": null,
+      "title": "S-007 · prospective day 6",
+      "observed_date": "2026-09-14",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "fd1c6ca17c42ebae8bddb42b32a8f7968cba47beb8a7c2d460be5fd5f7bd8422",
+      "source_refs": [
+        "analyses/2026-09-14-source-study-fidelity-day6.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-s007-day7-navigation-and-source-return",
+      "database_id": null,
+      "title": "S-007 day 7 · September 15, 2026",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "7b76ce1056136a305126313d0d8a92a97ae9c94850223986e1601e9711e42bda",
+      "source_refs": [
+        "analyses/2026-09-15-source-study-fidelity-day7.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "MINIME",
+      "tags": [
+        "id:f-s007-day7-navigation-and-source-return",
+        "S-007",
+        "source-study",
+        "provenance",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-15-source-study-fidelity-day7.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-15-source-study-fidelity-day7",
+      "database_id": null,
+      "title": "S-007 day 7 · September 15, 2026",
+      "observed_date": "2026-09-15",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "3b3b5d47064576277717c5390c3d09393366600701a89ddee9e68cfa8c8ea41f",
+      "source_refs": [
+        "analyses/2026-09-15-source-study-fidelity-day7.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-source-study-fidelity-day8",
+      "database_id": null,
+      "title": "S-007 day 8 · specific source, unresolved mechanism, and retained failures",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "5cfe3d0baadaf25982cc5c7409a99de0c0363f4935ffcfecb15dba5c81e88a99",
+      "source_refs": [
+        "analyses/2026-09-16-source-study-fidelity-day8.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "MINIME",
+      "tags": [
+        "id:f-source-study-fidelity-day8",
+        "S-007",
+        "source-study",
+        "provenance",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-16-source-study-fidelity-day8.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-16-source-study-fidelity-day8",
+      "database_id": null,
+      "title": "S-007 day 8 · specific source, unresolved mechanism, and retained failures",
+      "observed_date": "2026-09-16",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "fac6ae7f84ede564d0bfc966836b75aae1da931e60e97999e3c36ceee63667ec",
+      "source_refs": [
+        "analyses/2026-09-16-source-study-fidelity-day8.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-source-study-fidelity-day8",
+      "database_id": null,
+      "title": "S-007 day 8: retained evidence and offline replay",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "9e565fff310b4036285f45bf62db1856b0c66fa76d5cf916f5ef33f8e594a9ec",
+      "source_refs": [
+        "analyses/2026-09-16-source-study-fidelity-day8.md"
+      ],
+      "lane": "Tests",
+      "status": "verified",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-source-study-fidelity-day8",
+        "S-007",
+        "offline-replay",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-16-source-study-fidelity-day8.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-source-study-fidelity-day9",
+      "database_id": null,
+      "title": "S-007 day 9 · correct local structure, incorrect page units",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "42e6dc14fbcd6b94fb74c89fd9df29054bf9cb00afa7e6c912daaf5097365d4e",
+      "source_refs": [
+        "analyses/2026-09-17-source-study-fidelity-day9.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "MINIME",
+      "tags": [
+        "id:f-source-study-fidelity-day9",
+        "S-007",
+        "source-study",
+        "provenance",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-17-source-study-fidelity-day9.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-17-source-study-fidelity-day9",
+      "database_id": null,
+      "title": "S-007 day 9 · correct local structure, incorrect page units",
+      "observed_date": "2026-09-17",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "91c6a635284500f1099019cc83261efe4be222baac443afaea00f2c7ce055265",
+      "source_refs": [
+        "analyses/2026-09-17-source-study-fidelity-day9.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-source-study-fidelity-day9",
+      "database_id": null,
+      "title": "S-007 day 9: retained evidence and offline replay",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "c3563843276fb3cdf85cbcef63be27689cd756d25f39096d4efc7f652fa75977",
+      "source_refs": [
+        "analyses/2026-09-17-source-study-fidelity-day9.md"
+      ],
+      "lane": "Tests",
+      "status": "verified",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-source-study-fidelity-day9",
+        "S-007",
+        "offline-replay",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-17-source-study-fidelity-day9.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-s007-day10-navigation-recovery",
+      "database_id": null,
+      "title": "S-007 day 10 · a corrected path followed by source delivery",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "cf19c54f99286f34542dc05657f53a5d684d222d04472f442d3fc4976d13c7cd",
+      "source_refs": [
+        "analyses/2026-09-18-source-study-fidelity-day10.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "MINIME",
+      "tags": [
+        "id:f-s007-day10-navigation-recovery",
+        "S-007",
+        "source-study",
+        "provenance",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-18-source-study-fidelity-day10.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-18-source-study-fidelity-day10",
+      "database_id": null,
+      "title": "S-007 day 10 · a corrected path followed by source delivery",
+      "observed_date": "2026-09-18",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "c08af8ececfa10f8982cc031753961c7cd989b1f3ab71d4f4cf942a852f1c596",
+      "source_refs": [
+        "analyses/2026-09-18-source-study-fidelity-day10.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-s007-day10-offline-replay",
+      "database_id": null,
+      "title": "S-007 day 10: retained evidence and offline replay",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "000f60440ee7d98088916a762665d73268c87a3fcd6d43066938dd48be0c9071",
+      "source_refs": [
+        "analyses/2026-09-18-source-study-fidelity-day10.md"
+      ],
+      "lane": "Tests",
+      "status": "verified",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-s007-day10-offline-replay",
+        "S-007",
+        "offline-replay",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-18-source-study-fidelity-day10.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-s007-days3-5-catchup",
+      "database_id": null,
+      "title": "S-007 · September 13 recovery of daily windows 3–5",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "673eccdc9b49534c7df6e6aed3c7885f9304a262813dc5b83eabe0c40ad555bc",
+      "source_refs": [
+        "analyses/2026-09-13-source-study-fidelity-catchup.md"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-s007-days3-5-catchup",
+        "S-007",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-13-source-study-fidelity-catchup.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-13-source-study-fidelity-catchup",
+      "database_id": null,
+      "title": "S-007 · September 13 recovery of daily windows 3–5",
+      "observed_date": "2026-09-13",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "0c886e916836a19540c5bbcafb492d558c13271586718df1f08aed595e5d63bb",
+      "source_refs": [
+        "analyses/2026-09-13-source-study-fidelity-catchup.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-s007-week1-access-and-fidelity",
+      "database_id": null,
+      "title": "S-007 · First week after the source-reading repair",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "29eba23b380e2570d09f60140d8b9e3fc1dcec22f32d30609ceaee98e32a9069",
+      "source_refs": [
+        "analyses/2026-09-15-source-study-fidelity-week1.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "MINIME",
+      "tags": [
+        "id:f-s007-week1-access-and-fidelity",
+        "S-007",
+        "longitudinal",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-15-source-study-fidelity-week1.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-15-source-study-fidelity-week1",
+      "database_id": null,
+      "title": "S-007 · First week after the source-reading repair",
+      "observed_date": "2026-09-15",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "c7266ef886f60b878b58752f0b4c1cf33f13785be7b7ec81c9fbaf4ec3cd37c5",
+      "source_refs": [
+        "analyses/2026-09-15-source-study-fidelity-week1.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-s007-day11-lifecycle-scope",
+      "database_id": null,
+      "title": "S-007 day 11: bounded reading retained, final verification blocked",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "3a56e6e72e6e65cce8de4a8e8fa62897c0c672f0d98520beb09b35f9acb6a8e0",
+      "source_refs": [
+        "analyses/2026-09-19-source-study-fidelity-day11.md",
+        "research/NOW.md"
+      ],
+      "lane": "Findings",
+      "status": "parked",
+      "being": "MINIME",
+      "tags": [
+        "id:f-s007-day11-lifecycle-scope",
+        "S-007",
+        "verification-blocked",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-19-source-study-fidelity-day11.md; research/NOW.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-s007-day11-host-release",
+      "database_id": null,
+      "title": "S-007 day 11: recover the historical host-release witness",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "c41c26c6f6390db6c710c8bb458f1730285d57791268ca1b08b760b0ad59fe73",
+      "source_refs": [
+        "analyses/2026-09-19-source-study-fidelity-day11.md",
+        "analyses/2026-10-06-git-tidy-and-record-status.md"
+      ],
+      "lane": "Tests",
+      "status": "parked",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-s007-day11-host-release",
+        "S-007",
+        "verification-blocked",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-19-source-study-fidelity-day11.md; analyses/2026-10-06-git-tidy-and-record-status.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-19-source-study-fidelity-day11",
+      "database_id": null,
+      "title": "Retain S-007 day eleven with an explicit host-release blocker",
+      "observed_date": "2026-09-19",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "e23e0d17e408f0b4f7a709b6768089dd15fbd734345b12f0aed8745586073dc7",
+      "source_refs": [
+        "analyses/2026-09-19-source-study-fidelity-day11.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-source-study-fidelity",
+      "database_id": null,
+      "title": "Track Minime self-study fidelity across the source-reader repair",
+      "observed_date": "2026-09-08",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "5d3a92a51bbedc7605421e1cf9898fe996ca128d28251f8e35bfd5b5282b6d17",
+      "source_refs": [
+        "board/source-study-fidelity.json"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "MINIME",
+      "tags": [
+        "id:t-source-study-fidelity",
+        "study:S-007",
+        "self-study",
+        "source-access",
+        "fidelity"
+      ],
+      "evidence": "research/studies/S-007-source-study-fidelity.md; analyses/2026-09-08-source-study-fidelity.md; research/outputs/2026-09-08-source-study-fidelity/verification.json; research/outputs/source-study-fidelity-tracking.json",
+      "source": null,
+      "source_verification": "unchanged/no-op or held card; source not recaptured in this editor pass"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-portable-reservoir-lab",
+      "database_id": null,
+      "title": "Build a portable reservoir-to-journal lab",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "08d03f7a4f64c8c9403b8ab07f199cecab23f2ebe2be7a7e80efd9d559d052a9",
+      "source_refs": [
+        "analyses/2026-09-16-portable-reservoir-lab.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:c-portable-reservoir-lab",
+        "reservoir-scope",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-16-portable-reservoir-lab.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-portable-reservoir-lab-disconnected",
+      "database_id": null,
+      "title": "Verify copied portable lab storage and replay offline",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "64e42089e4945c85b96e2f7e485195f723d094146976f2886d1d41096993ffc9",
+      "source_refs": [
+        "analyses/2026-09-16-portable-reservoir-lab.md"
+      ],
+      "lane": "Tests",
+      "status": "verified",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-portable-reservoir-lab-disconnected",
+        "reservoir-scope",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-16-portable-reservoir-lab.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "q-journal-observation-access",
+      "database_id": null,
+      "title": "Does indexed reservoir state change supportable journal claims?",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "dac7fd919f0dd25ad9f38f36e4f02322610fd84bff63c3fae894f0ddf5a55a76",
+      "source_refs": [
+        "analyses/2026-09-16-portable-reservoir-lab.md"
+      ],
+      "lane": "Questions",
+      "status": "open",
+      "being": "SYSTEM",
+      "tags": [
+        "id:q-journal-observation-access",
+        "S-009",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-16-portable-reservoir-lab.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-16-portable-reservoir-lab",
+      "database_id": null,
+      "title": "Deliver the portable reservoir lab foundation",
+      "observed_date": "2026-09-16",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "98ca29e7be777af56e4d56b98e8d87e1b117f3ed78e492dd4e9ed89097954fca",
+      "source_refs": [
+        "analyses/2026-09-16-portable-reservoir-lab.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-reservoir-scope-replay-step",
+      "database_id": null,
+      "title": "Step through an opened recording without starting a new experiment",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "3d37162f9c6f383822450b05a16718a11a64389f5a9cc64f29c797234c1e8668",
+      "source_refs": [
+        "analyses/2026-09-16-reservoir-scope-product-review.md",
+        "analyses/2026-09-16-guided-reservoir-lab.md",
+        "research/outputs/2026-09-16-guided-reservoir-lab/pending-board-updates.json"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:c-reservoir-scope-replay-step",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-16-reservoir-scope-product-review.md; analyses/2026-09-16-guided-reservoir-lab.md; research/outputs/2026-09-16-guided-reservoir-lab/pending-board-updates.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "q-reservoir-scope-example-contrast",
+      "database_id": null,
+      "title": "Specify observable active-state and controller contrasts",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "d323f59bbeb4da1477e13d35972c546ea4bff5d74136b128f0a89ee7e11ef5b6",
+      "source_refs": [
+        "analyses/2026-09-16-reservoir-scope-product-review.md",
+        "analyses/2026-09-16-guided-reservoir-lab.md",
+        "analyses/2026-09-16-active-observation-retry.md"
+      ],
+      "lane": "Questions",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:q-reservoir-scope-example-contrast",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-16-reservoir-scope-product-review.md; analyses/2026-09-16-guided-reservoir-lab.md; analyses/2026-09-16-active-observation-retry.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-16-reservoir-scope-product-review",
+      "database_id": null,
+      "title": "Review the portable lab and define the guided route",
+      "observed_date": "2026-09-16",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "15b31b81fe0a812cec28cd24c781a5f765dd1c0c61a0f19b4270fb98ea4890e7",
+      "source_refs": [
+        "analyses/2026-09-16-reservoir-scope-product-review.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-reservoir-active-observation-retry",
+      "database_id": null,
+      "title": "Active-state journal comparison: retry and diagnosis",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "58c34b25c2296cd88a923e086331947a13bae08f434c5fa0a7745b848b94978a",
+      "source_refs": [
+        "analyses/2026-09-16-active-observation-retry.md"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-reservoir-active-observation-retry",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-16-active-observation-retry.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-16-active-observation-retry",
+      "database_id": null,
+      "title": "Active-state journal comparison: retry and diagnosis",
+      "observed_date": "2026-09-16",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "d4456e25fbba45ad71aaf3dd97098d8dd2b570c36eebfb7339e3420625a998ab",
+      "source_refs": [
+        "analyses/2026-09-16-active-observation-retry.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-reservoir-active-partial-replay",
+      "database_id": null,
+      "title": "Expose the partial active-state recording and its failure",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "31db65c1ebc979086550066afea796a75c96ef30dd2a22505df61fa7dc766f1e",
+      "source_refs": [
+        "analyses/2026-09-16-active-observation-retry.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:c-reservoir-active-partial-replay",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-16-active-observation-retry.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-reservoir-scope-014-candidate",
+      "database_id": null,
+      "title": "Reservoir Scope 0.14 build 19: delivered test candidate",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "01d1384ffd7730b4cf702abe19a2cab8d23efd2ad54d05d38d82273312982041",
+      "source_refs": [
+        "analyses/2026-09-17-reservoir-scope-014-delivery.md",
+        "research/CURRENT-RELEASE.md"
+      ],
+      "lane": "Tests",
+      "status": "verified",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-reservoir-scope-014-candidate",
+        "reservoir-scope",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-17-reservoir-scope-014-delivery.md; research/CURRENT-RELEASE.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-maintained-daily-parity",
+      "database_id": null,
+      "title": "Verify maintained daily pipeline parity before migration",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "d2f482f471c6514b3a5f733a75b9cfd38229ad0d04aab3d38af214c19a4a9fe7",
+      "source_refs": [
+        "analyses/2026-09-17-reservoir-scope-014-delivery.md",
+        "research/CURRENT-RELEASE.md"
+      ],
+      "lane": "Tests",
+      "status": "verified",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-maintained-daily-parity",
+        "reservoir-scope",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-17-reservoir-scope-014-delivery.md; research/CURRENT-RELEASE.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-private-research-recovery",
+      "database_id": null,
+      "title": "Verify the initial private research snapshot and isolated restore",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "51a104e0ce40e30c0b23d64f8950e7b8b2c8d6be2ffb160b71722ea08bb1045b",
+      "source_refs": [
+        "analyses/2026-09-17-reservoir-scope-014-delivery.md",
+        "research/CURRENT-RELEASE.md"
+      ],
+      "lane": "Tests",
+      "status": "verified",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-private-research-recovery",
+        "reservoir-scope",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-17-reservoir-scope-014-delivery.md; research/CURRENT-RELEASE.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-short-output-qualification",
+      "database_id": null,
+      "title": "Short-output qualification closes negatively",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "56ffa0bcd79b77fb5775bbdd335146b89ec0ca5c5b28142b24b2c6b35a294870",
+      "source_refs": [
+        "analyses/2026-09-17-reservoir-scope-014-delivery.md",
+        "research/CURRENT-RELEASE.md"
+      ],
+      "lane": "Tests",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-short-output-qualification",
+        "reservoir-scope",
+        "historical-backlog"
+      ],
+      "evidence": "analyses/2026-09-17-reservoir-scope-014-delivery.md; research/CURRENT-RELEASE.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-17-reservoir-scope-014-delivery",
+      "database_id": null,
+      "title": "Deliver offline research candidate and preserve bounded outcomes",
+      "observed_date": "2026-09-17",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "3deae2f5797694132261d0f20cf459af375377737812d86069a08995408837c9",
+      "source_refs": [
+        "analyses/2026-09-17-reservoir-scope-014-delivery.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-coupled-checkin-event-survival",
+      "database_id": null,
+      "title": "Establish effective event survival through checkout and check-in",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "90c686979d480412f5a979ed6990b77ed6ac174b0a4d66a176ef6abc6c4befb0",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "ASTRID",
+      "tags": [
+        "id:t-coupled-checkin-event-survival",
+        "triple-reservoir",
+        "historical-proposal",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-coupling-applied-trace",
+      "database_id": null,
+      "title": "Specify within-turn applied coupling controls and prompt joins",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "f94f0b8f9ba5b176523e34f6f574aad6a7a401e0964a48aa16ba1ebf0307ae50",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Changes",
+      "status": "open",
+      "being": "ASTRID",
+      "tags": [
+        "id:c-coupling-applied-trace",
+        "triple-reservoir",
+        "historical-proposal",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-anchor-by-coupling-ablation",
+      "database_id": null,
+      "title": "Separate anchor copying, coupling and factual continuity",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "ced72471487340e6b3bda8757f67e5384ce698cf558a4dd13ac3879cb5e81e0f",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "ASTRID",
+      "tags": [
+        "id:t-anchor-by-coupling-ablation",
+        "triple-reservoir",
+        "historical-proposal",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-manner-persistence-and-fade",
+      "database_id": null,
+      "title": "Measure event response, persistence and return beyond timers",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "9862ef43ec7b34134a9d753b26c1715dee4f5dcea0e2a070e4420a882e9ef63f",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "ASTRID",
+      "tags": [
+        "id:t-manner-persistence-and-fade",
+        "triple-reservoir",
+        "historical-proposal",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-sensory-shape-versus-energy",
+      "database_id": null,
+      "title": "Separate sensory energy, diversity, freshness and retained shape",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "51d1b61d15ae8cce71647270742f9d52c7a1dba34b9a57a3ee2a3ac15fc3c37c",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "BOTH",
+      "tags": [
+        "id:t-sensory-shape-versus-energy",
+        "triple-reservoir",
+        "historical-proposal",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-manner-null-ladder",
+      "database_id": null,
+      "title": "Compare useful history with constant, shuffled and simpler dynamics",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "ea988d244db6baa45c01b2d3d29a06d6677fa54ec1ded6909c0374e840e2fd4e",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "ASTRID",
+      "tags": [
+        "id:t-manner-null-ladder",
+        "triple-reservoir",
+        "historical-proposal",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-contextual-input-matched",
+      "database_id": null,
+      "title": "Compare contextual representations under fair calibration",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "3b29be6df7c5ca3703acf5237f0888090a0505f0ad31d1e6c79b0f202d3c7b8c",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "ASTRID",
+      "tags": [
+        "id:t-contextual-input-matched",
+        "triple-reservoir",
+        "historical-proposal",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "q-fade-expression-or-trace",
+      "database_id": null,
+      "title": "Choose what fades: outward influence, stored distinction, or both",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "d667a772a9565172939b721037b6b6a9a8dbec5da6b2d84cb75bca0ce2846a8f",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Questions",
+      "status": "open",
+      "being": "ASTRID",
+      "tags": [
+        "id:q-fade-expression-or-trace",
+        "triple-reservoir",
+        "historical-proposal",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "q-sensory-observer-purpose",
+      "database_id": null,
+      "title": "Distinguish current input, remembered structure and regulated state",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "0b3ddde25b36b32dfa6de595a96d53ebf3a8cacae0c16550f6488810f55244c1",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Questions",
+      "status": "open",
+      "being": "BOTH",
+      "tags": [
+        "id:q-sensory-observer-purpose",
+        "triple-reservoir",
+        "historical-proposal",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-glyph-freshness-semantics",
+      "database_id": null,
+      "title": "Test fresh quiet, missing input and held shape as different encodings",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "e2ef5b3a8b6a4ee8856512b82db4e4a6bb11d2a9ff0c0c2b55a65d34eb2df436",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "BOTH",
+      "tags": [
+        "id:t-glyph-freshness-semantics",
+        "triple-reservoir",
+        "historical-proposal",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "q-paper-mechanistic-audit",
+      "database_id": null,
+      "title": "Map mechanisms to evidence and missing causal tests",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "0cbc0cc42d89089d9dedf628cace7b8a4799fb3da95ab66f87ae11b139bb0f5e",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Questions",
+      "status": "open",
+      "being": "BOTH",
+      "tags": [
+        "id:q-paper-mechanistic-audit",
+        "triple-reservoir",
+        "historical-proposal",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-history-beyond-recency",
+      "database_id": null,
+      "title": "Test order and slow context beyond timer and smoother baselines",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "741ab82d8b1dc17d7df7b0595e32eda0944e321ac26543103eb40460c83f613b",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "ASTRID",
+      "tags": [
+        "id:t-history-beyond-recency",
+        "triple-reservoir",
+        "historical-proposal",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-provenance-backed-review",
+      "database_id": null,
+      "title": "Specify a steward-side evidence-backed review",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "f6333fd86017c462e4aa979e6a5d3a8e81d6c01f87b78f31e7e5949269e25b81",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Changes",
+      "status": "open",
+      "being": "BOTH",
+      "tags": [
+        "id:c-provenance-backed-review",
+        "triple-reservoir",
+        "historical-proposal",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-reservoir-observatory-telemetry",
+      "database_id": null,
+      "title": "Propose coherent state, leak and controller evidence for the observatory",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "7439a4f2afbc064dd6fc1a2a74c887c32e4d12a3cd692e6e7fccd4ae682d9306",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md",
+        "proposals/2026-09-07-input-lineage-and-regulator-trace.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "id:c-reservoir-observatory-telemetry study:S-002 study:S-003 proposal observability input-lineage",
+        "id:c-reservoir-observatory-telemetry",
+        "historical-backlog"
+      ],
+      "evidence": "proposals/2026-09-06-reservoir-observatory-telemetry.md; proposals/2026-09-07-input-lineage-and-regulator-trace.md; proposals/fixtures/input-lineage-v1.json; research/outputs/2026-09-07-input-lineage-plan/contract-check.json; research/studies/S-003-input-and-fill.md; exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md; proposals/2026-09-07-input-lineage-and-regulator-trace.md",
+      "source": "Mike’s observatory direction and September 7 request to make the missing input/controller measurements concrete",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-reuse-control-sign",
+      "database_id": null,
+      "title": "The inspected reuse-control sign favors or suppresses reuse",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "00b06343beb1c995280c3480a9ae17e2e763fb8cb65923e31090385ddcbdf5ac",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "ASTRID",
+      "tags": [
+        "id:f-reuse-control-sign",
+        "triple-reservoir",
+        "source-audit",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-coupling-log-is-final-only",
+      "database_id": null,
+      "title": "Final coupling logs do not establish within-turn trajectories",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "faf80436f8a93290fcba89af944032796e09391d1ebb1913a907c9d86cba5999",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "ASTRID",
+      "tags": [
+        "id:f-coupling-log-is-final-only",
+        "triple-reservoir",
+        "source-audit",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-checkin-overwrites-handle-state",
+      "database_id": null,
+      "title": "The inspected check-in overwrites state without a caller-version guard",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "d27e54c6f00bb5db2165dd5b696c3b76f3b8ae803c3b6c7b1c6e7e0d2c3dfb2f",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "SYSTEM",
+      "tags": [
+        "id:f-checkin-overwrites-handle-state",
+        "triple-reservoir",
+        "source-audit",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "f-sensory-shape-is-not-input-energy",
+      "database_id": null,
+      "title": "Normalized sensory shape does not measure absolute incoming energy",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "0978ca7debe8ca071986b0594046097324a1f68befa38d513faebe4175d15d92",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Findings",
+      "status": "verified",
+      "being": "MINIME",
+      "tags": [
+        "id:f-sensory-shape-is-not-input-energy",
+        "triple-reservoir",
+        "source-audit",
+        "historical-backlog"
+      ],
+      "evidence": "exercises/2026-09-06-triple-reservoir-refinements.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-persist-prompts",
+      "database_id": null,
+      "title": "M1: Persist the exact prompt for every generation, both beings, every lane",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "56c3fff0cfb4d3c7341443ac9dae10dd4be5a0c39578488046f78eaba3d5e5d1",
+      "source_refs": [
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "move-1",
+        "prompt",
+        "covariate",
+        "small",
+        "id:c-persist-prompts",
+        "historical-backlog"
+      ],
+      "evidence": "proposals/2026-09-06-tranche1-generation-record-and-own-body.md; proposals/receipts/2026-09-07-gateA-minime.json (first record 10:15:02Z); proposals/receipts/2026-09-07-gateB-astrid.json; TRACE.md section 8; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "trace",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-log-backend-per-generation",
+      "database_id": null,
+      "title": "Log the backend and model for every generation (M1 extension)",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "739167a3ef618e88b95f319ca3a245412c9669d1ef74b493da04cfc9a01c6b35",
+      "source_refs": [
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "BOTH",
+      "tags": [
+        "move-1",
+        "covariate",
+        "small",
+        "id:c-log-backend-per-generation",
+        "historical-backlog"
+      ],
+      "evidence": "proposals/receipts/2026-09-07-gateA-minime.json; proposals/receipts/2026-09-07-gateB-astrid.json; minime_autonomy/generation_record.py; capsules/spectral-bridge/src/llm/provider/generation_record.rs; exercises/2026-09-06-session-close-and-board-brief.md",
+      "source": "exercise 4",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-sensory-freshness",
+      "database_id": null,
+      "title": "Why do streaming clients read as stale beyond the engine window?",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "267744d0c4e70440241cf28940aa39a233e1c7788f12c8c28e9d7497bd4dbbb9",
+      "source_refs": [
+        "exercises/2026-09-06-session-close-and-board-brief.md",
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md"
+      ],
+      "lane": "Tests",
+      "status": "open",
+      "being": "BOTH",
+      "tags": [
+        "move-2",
+        "sensory",
+        "plumbing",
+        "id:t-sensory-freshness",
+        "historical-backlog"
+      ],
+      "evidence": "minime/scripts/sensory_source_check.py; minime/src/sensory_ws.rs; sensory_bus.rs freshness fields; exercises/2026-09-06-session-close-and-board-brief.md; exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md",
+      "source": "exercise 2",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-06-triple-reservoir-refinements",
+      "database_id": null,
+      "title": "Source-check proposed triple-reservoir refinements",
+      "observed_date": "2026-09-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "51bc673d1b29920958ede9de0d138f052e5a765778241bf0fe054e6d823255ee",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-refinements.md"
+      ]
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-06-triple-reservoir-corrections-and-next-tests",
+      "database_id": null,
+      "title": "Retain collaborator corrections and sharpen next tests",
+      "observed_date": "2026-09-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "ce6e71485fcc27ccf30e30395230fb72d88d59de9c2cf17873fe52ff59751187",
+      "source_refs": [
+        "exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md"
+      ]
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-06-session-close-and-board-brief",
+      "database_id": null,
+      "title": "Close the session with an audit thesis and a bounded execution queue",
+      "observed_date": "2026-09-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "690eb6fce6f18283efd315b4bfa8fc7c31258c011f5008d5977644f989767f8b",
+      "source_refs": [
+        "exercises/2026-09-06-session-close-and-board-brief.md"
+      ]
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "q-flywheel-consecutive-followthrough",
+      "database_id": null,
+      "title": "Close the frozen S-006 consecutive-review follow-up",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "c9bfef63fe160dca53b1271738da3d6d5990aa88111c2e6fe05978263a23e379",
+      "source_refs": [
+        "research/studies/S-006-consecutive-review-protocol.md",
+        "analyses/2026-09-17-bounded-followups-status.md",
+        "research/studies/S-006-historical-recovery-addendum.md",
+        "analyses/2026-10-06-bounded-followups-closeout.md"
+      ],
+      "lane": "Questions",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:q-flywheel-consecutive-followthrough",
+        "research-closeout",
+        "bounded-extension-closed",
+        "coverage-incomplete"
+      ],
+      "evidence": "research/studies/S-006-consecutive-review-protocol.md; analyses/2026-09-17-bounded-followups-status.md; research/studies/S-006-historical-recovery-addendum.md; analyses/2026-10-06-bounded-followups-closeout.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "q-durable-correction-followthrough",
+      "database_id": null,
+      "title": "Close the frozen S-008 durable-correction follow-up",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "281e6c52fb093745426544d0ba7c33084415cc01521ea3af36b004264cff9d4a",
+      "source_refs": [
+        "research/studies/S-008-durable-correction-protocol.md",
+        "analyses/2026-09-17-bounded-followups-status.md",
+        "analyses/2026-10-06-bounded-followups-closeout.md"
+      ],
+      "lane": "Questions",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:q-durable-correction-followthrough",
+        "research-closeout",
+        "bounded-extension-closed",
+        "coverage-incomplete"
+      ],
+      "evidence": "research/studies/S-008-durable-correction-protocol.md; analyses/2026-09-17-bounded-followups-status.md; analyses/2026-10-06-bounded-followups-closeout.md",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "c-question-geometry-bookmarks",
+      "database_id": null,
+      "title": "Integrate the reviewed offline geometry-bookmark candidate",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "f4b42a0544f9adf18c2e2e9b2b47f7fb80c414697b45389dfa233d4824d7c6e6",
+      "source_refs": [
+        "research/inquiries/2026-09-21-geometry-bookmarks.md",
+        "research/outputs/2026-10-06-geometry-integration/integration-receipt.json",
+        "research/outputs/2026-10-06-geometry-lifecycle/lifecycle-receipt.json"
+      ],
+      "lane": "Changes",
+      "status": "done",
+      "being": "SYSTEM",
+      "tags": [
+        "id:c-question-geometry-bookmarks",
+        "research-closeout",
+        "geometry-bookmarks",
+        "local-candidate"
+      ],
+      "evidence": "research/inquiries/2026-09-21-geometry-bookmarks.md; research/outputs/2026-10-06-geometry-integration/integration-receipt.json; research/outputs/2026-10-06-geometry-lifecycle/lifecycle-receipt.json",
+      "source": "Mike-directed research; dated accounts linked in evidence",
+      "source_verification": "exact persisted editor readback"
+    },
+    {
+      "collection": "cards",
+      "canonical_key": "t-research-closeout-20261006",
+      "database_id": null,
+      "title": "Close bounded research and prepare reviewed Git integration",
+      "observed_date": "2026-10-06",
+      "reconciliation": "current-active-card-final-done-held-for-snapshot",
+      "observed_record_sha256": "588a39faf46fff30435feee9c71beb0791695ecd137bbd5ed42fa154c83e4304",
+      "source_refs": [
+        "analyses/2026-10-06-bounded-followups-closeout.md",
+        "research/inquiries/2026-09-21-geometry-bookmarks.md",
+        "analyses/2026-10-06-board-reconciliation.md",
+        "analyses/2026-10-06-git-tidy-and-record-status.md",
+        "analyses/2026-10-06-research-closeout-and-geometry-integration.md"
+      ],
+      "lane": "Tests",
+      "status": "active",
+      "being": "SYSTEM",
+      "tags": [
+        "id:t-research-closeout-20261006",
+        "research-closeout"
+      ],
+      "evidence": "analyses/2026-10-06-git-tidy-and-record-status.md; research/NOW.md",
+      "source": null,
+      "source_verification": "unchanged/no-op or held card; source not recaptured in this editor pass"
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-10-06-bounded-followups-closeout",
+      "database_id": null,
+      "title": "Close bounded follow-ups with incomplete historical coverage",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "e2b731eac08ed515c0bfb772d055be7c75709d72f83b3acd3dae127a3632a14a",
+      "source_refs": [
+        "analyses/2026-10-06-bounded-followups-closeout.md"
+      ]
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-15-astrid-study-survey",
+      "database_id": null,
+      "title": "Astrid's latest hundred studies: repeated small maps and useful local reading",
+      "observed_date": "2026-09-15",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "1e2acd4878c9880c125091a3840bbee72dbee0803b1f7f2effd89f5407fb2828",
+      "source_refs": [
+        "board/astrid-study-survey-pending.json",
+        "analyses/2026-09-15-astrid-study-survey.md",
+        "research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending",
+        "research/outputs/2026-09-15-astrid-study-survey/README.md"
+      ]
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-09-15-study-source-context",
+      "database_id": null,
+      "title": "Study source scope, verified coverage and optional authored findings",
+      "observed_date": "2026-09-15",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "52dffb937878a6caa856bb75d3fdc4e1c7c541dc3836cea51dbdbeba546b4249",
+      "source_refs": [
+        "board/study-source-context-pending.json",
+        "analyses/2026-09-15-study-source-context.md",
+        "analyses/2026-09-15-astrid-study-survey.md",
+        "research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/validation.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/integration.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/source-context-replay/summary.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/activation.log",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-host-after.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/staged-input-audit.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-staged-helper-tests.log",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/before-activation/processes.json",
+        "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/after-activation/processes.json"
+      ]
+    }
+  ]
+}
