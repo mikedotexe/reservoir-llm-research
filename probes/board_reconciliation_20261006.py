@@ -556,6 +556,11 @@ def verify_readback(path):
             if left!=right:diffs.append(field)
         if diffs:problems.append({"key":item["canonical_key"],"error":"Saved fields differ","fields":diffs})
         else:verified.append(item["collection"]+":"+item["canonical_key"])
+        if item["collection"]=="cards" and item["action"]=="update":
+            previous=item.get("existing_live_match",{}).get("evidence","") or ""
+            retained={part.strip() for part in (actual.get("evidence","") or "").split(";") if part.strip()}
+            missing=[part.strip() for part in previous.split(";") if part.strip() and part.strip() not in retained]
+            if missing:problems.append({"key":item["canonical_key"],"error":"Original evidence pointer missing","missing":missing})
     # Original history cannot disappear during an append/update reconciliation.
     for collection in ("cards","logs"):
         for old in before[collection]:
@@ -583,6 +588,10 @@ def verify_editors(path):
     attempts=json.loads(attempts_path.read_text())["cards"]
     correction_path=BEFORE.parent/"historical-publication-correction.json"
     attempts.append(json.loads(correction_path.read_text()))
+    final_path=BEFORE.parent/"final-closeout-publication.json"
+    if final_path.exists():
+        final=json.loads(final_path.read_text())
+        attempts.extend(final["cards"] if "cards" in final else [final])
     problems=[];verified=[];source_limits=[]
     for item in manifest["operations"]:
         if item["collection"]!="cards" or not item["publication_ready"] or item["action"]=="no-op":continue
@@ -622,10 +631,10 @@ def verify_editors(path):
 
 
 def write_mirror():
-    """Publish a compact local mirror from the saved pre-snapshot UI receipts."""
+    """Publish a compact local mirror from the manifest's saved UI receipts."""
     manifest=json.loads(OUT.read_text())
-    observed_path=BEFORE.parent/"pre-snapshot-after-reload.json"
-    editor_path=BEFORE.parent/"pre-snapshot-editor-readbacks.json"
+    observed_path=ROOT/manifest["publication_readback"]["dom_path"]
+    editor_path=ROOT/manifest["publication_readback"]["editor_path"]
     observed=json.loads(observed_path.read_text())
     editors={r["key"]:r["editor"] for r in json.loads(editor_path.read_text())["records"]}
     records=[]
@@ -650,10 +659,10 @@ def write_mirror():
             row["source_verification"]="exact persisted editor readback" if key in editors else "unchanged/no-op or held card; source not recaptured in this editor pass"
         records.append(row)
     result={"schema":"hold-shelf-reconciled-backlog-mirror-20261006-v1",
-        "status":"pre-snapshot-reconciliation-verified-overall-closeout-held",
+        "status":"pre-snapshot-reconciliation-verified-overall-closeout-held" if any(not o["publication_ready"] for o in manifest["operations"]) else "reconciliation-verified-final-attestation-saved",
         "manifest":{"path":str(OUT.relative_to(ROOT)),"sha256":digest(OUT.read_bytes()),"generation":manifest["generation"]},
         "observed_at":observed.get("observed_at"),"board_totals":{"cards":len(observed["cards"]),"logs":len(observed["logs"])},
-        "scope":"All canonical records covered by this backlog reconciliation, including the currently active closeout card. Unrelated original board records remain in the private full inventory; no original record was removed.",
+        "scope":"All canonical records covered by this backlog reconciliation, including the actual observed closeout card. Unrelated original board records remain in the private full inventory; no original record was removed.",
         "private_full_inventory":{"path":str(observed_path.relative_to(ROOT)),"sha256":digest(observed_path.read_bytes())},
         "private_editor_readback":{"path":str(editor_path.relative_to(ROOT)),"sha256":digest(editor_path.read_bytes())},
         "limits":"Database IDs and creation timestamps are not exposed. Card displayed dates are not inferred creation dates. Null source means not recaptured, not cleared. Full text stays in the canonical manifest and private DOM/editor receipts; this mirror records actual observed state.",
@@ -675,6 +684,8 @@ def main():
         raise SystemExit(verify_editors(args.check_editors))
     if args.write_mirror:
         write_mirror();return
+    if OUT.exists() and json.loads(OUT.read_text()).get("generation",0)>6:
+        raise SystemExit("Final snapshot/board attestation already appended. Preparation is frozen; use the readback/editor checks or mirror command without overwriting that later record.")
     before=json.loads(BEFORE.read_text())
     assert len(before["cards"])==178 and len(before["logs"])==45
     load_payloads();add_narrative_payloads();add_accounts();add_daily();add_release();add_triple();add_current_holds();complete_bounded_followups();complete_geometry_and_prepare_closeout()

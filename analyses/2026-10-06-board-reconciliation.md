@@ -1,28 +1,28 @@
 # Hold Shelf reconciliation — October 6
 
-Status: **pre-snapshot reconciliation verified; overall completion held for the
-recovery snapshot and isolated restore**.
+Status: **published and verified: 286 cards, 108 logs, overall closeout done;
+repeat reconciliation requires zero writes**.
 Mike selected the full local mirror backlog for reconciliation. The root session
 owns the authenticated board and publication receipts. This account distinguishes
 historical work, present card status, and the later act of mirroring it.
 
 The reviewed [manifest](../board/2026-10-06-reconciliation.json) records every source
 hash, pending section, canonical operation, alias and existing live match. Its
-generation 6 contains 105 source rows: 29 pending JSON payloads, the ignored guided
-release payload, 60 pending sections, ten inline notices and the October 6 bounded
-closeout account, plus three current geometry qualification receipts and the
-integration account at this pre-snapshot boundary. The section total is
+generation 8 contains 114 source rows: 29 pending JSON payloads, the ignored guided
+release payload, 60 pending sections and ten inline notices, plus 14 dated
+completion, qualification, recovery and coordination sources. The section total is
 the original 59 plus the integrated geometry inquiry. Repeated notices map to the
 same canonical records rather than creating another task.
 
 The historical plan comprised 104 new cards, 61 new historical log entries,
 six existing-card updates and 13 no-ops. Generation 3
-changes one already-created card to an explicit correction update, with its former
-desired fields retained in the revision event. Generation 4 prepares the two
-completed bounded follow-up extensions and their October 6 log. Generation 5 makes
-reviewed local geometry integration publishable; overall closeout remains held for
-the actual snapshot/restore result. Generation 6 records completed publication and
-its final pre-snapshot checks. Manifest action
+changed one already-created card to an explicit correction update, with its former
+desired fields retained in the revision event. Generation 4 prepared the two
+completed bounded follow-up extensions and their October 6 log. Generation 5 made
+reviewed local geometry integration publishable while holding overall closeout for
+the actual snapshot/restore result. Generation 6 records that pre-snapshot boundary.
+Generation 7 prepared the later final update and dated log only after isolated
+replay passed. Generation 8 binds their actual publication and readback. Manifest action
 counts describe intended operations, not a running count of outstanding writes.
 The initial DOM inventory retains 178 cards and 45 logs; the root session separately
 saved and read back its active closeout card.
@@ -61,15 +61,44 @@ Both checks require **zero writes**. The geometry card's
 [publication receipt](../research/outputs/2026-10-06-board-reconciliation/geometry-publication.json)
 is retained, and its separate [actual-app UI receipt](../research/outputs/2026-10-06-geometry-ui/ui-receipt.json)
 records passed import, cancellation, rejection, selection, scrubbing and view-return
-checks at the two measured content sizes. Human acceptance remains separate.
+checks at the two measured content sizes. The [final companion receipt](../research/outputs/2026-10-06-geometry-ui/final-ui-receipt.json)
+identifies the corrected compact and wide proof images. Human acceptance remains separate.
 
 The [compact backlog mirror](../board/2026-10-06-reconciled-backlog.json) records all
-189 canonical records' actual observed states and binds the complete private
-inventory and editor readback. It shows the overall closeout card as **active**;
-its held manifest's future **done** wording is not mistaken for a saved result.
+190 canonical records' actual observed states and binds the complete private
+inventory and editor readback. It shows the overall closeout card as **done**.
+The pre-snapshot mirror and prepared generation 7 remain retained privately;
+the snapshot itself contains generation 6 and the then-active card's mirror.
 Unrelated original board records remain in the private complete inventory. The
 [board overview](../board/README.md) points future work to the reconciled state so
 historical pending filenames do not trigger duplicate publication.
+
+## Final recovery attestation and repeat reconciliation
+
+The [final publication receipt](../research/outputs/2026-10-06-board-reconciliation/final-closeout-publication.json)
+records the existing closeout-card update and one new dated recovery/integration
+log, completed at **17:52:52 UTC**. Its original evidence pointers, including
+`research/NOW.md`, and actual editor source were preserved. No second closeout card
+was created. The [reloaded full inventory](../research/outputs/2026-10-06-board-reconciliation/final-after-reload.json)
+contains **286 cards and 108 logs**. The independent [DOM check](../research/outputs/2026-10-06-board-reconciliation/final-dom-check.json)
+passes all **190 operations** and preserves every original card and log. The
+[editor check](../research/outputs/2026-10-06-board-reconciliation/final-editor-check.json)
+passes **114 changed cards** with exact editable fields and sources. Its
+[readback file](../research/outputs/2026-10-06-board-reconciliation/final-editor-readbacks.json)
+combines the prior 113 editor observations with the new final card observation;
+it does not imply that all editors were reopened after the last save. Both repeat
+checks require **zero writes**. The [final board screenshot](../research/outputs/2026-10-06-board-reconciliation/final-board-proof.jpg)
+is a supplementary visual record of the saved done card.
+
+The [recovery account](2026-10-06-recovery-snapshot.md) owns the exact snapshot,
+restore and replay results: clean commit `d47a866192eafe0da803f62acd6e20f1a16dfffc`,
+23,492 files and 8,757,769,076 bytes, eleven historical daily/weekly replays, three
+bounded checkpoints and the safe closeout. Day11's expected refusal and unchanged
+5,088-ID ledger remain explicit. The first denied scratch-write attempt and the
+qualified external relocation adapter are retained; the frozen code and archive
+and restore inventories were not changed. The final card and log also retain the
+native aggregate's one watermark failure and the unchanged strict rerun's pass.
+Neither outcome is rewritten as an all-checks-passed aggregate.
 
 ## Decisions that prevent false closure or duplicated work
 
@@ -119,7 +148,7 @@ publisher must inspect the editor, preserve its actual source and unrelated fiel
 and stop to reconcile any drift from the retained initial observation. A null
 `desired.source` on an update means preserve the editor value, not clear it.
 
-No records are deleted. The six existing-card updates retain the original body and
+No records are deleted. The six historical existing-card updates retain the original body and
 append the relevant historical qualification, union evidence/tags, and preserve
 completion status. Logs are append-only; existing logs are not replaced. Each save
 must be reloaded and read back, including editor-only fields, with operation identity,
@@ -130,24 +159,24 @@ The [one-off preparation/check script](../probes/board_reconciliation_20261006.p
 reads only retained metadata and repository accounts and never contacts the board,
 models or live sources. It validates unique desired identities, complete source
 dispositions, explicit source handling, and absence of ambiguous initial matches.
-An earlier prepared manifest is retained privately before replacement. Do not rerun
-preparation over final outcome amendments or published desired fields without review.
+Earlier prepared manifests are retained privately before replacement. Preparation
+refuses to overwrite the post-snapshot generation; the readback/editor checks and
+mirror command remain available.
 
-The final snapshot uses two phases. The source/research/reconciliation commit will
-retain the overall completion card as held. The local archive and isolated restore
-then bind that exact commit. Only after their checks pass may the held card become
-done, with the board/snapshot attestation committed as a later record. The archive
-cannot include its own subsequent verification or board attestation; the records
-state that boundary explicitly.
+The snapshot used two phases. The source/research/reconciliation commit retained
+overall completion as held. The local archive and isolated restore bind that exact
+commit. The later verified outcome released the final done update and log. This
+recovery/board attestation is a later Git record, outside the snapshot; the archive
+is not claimed to include its own subsequent verification or board attestation.
 
 After root publication, the read-only check is:
 
 ```sh
 python3 -B probes/board_reconciliation_20261006.py --check-readback \
-  research/outputs/2026-10-06-board-reconciliation/pre-snapshot-after-reload.json
+  research/outputs/2026-10-06-board-reconciliation/final-after-reload.json
 
 python3 -B probes/board_reconciliation_20261006.py --check-editors \
-  research/outputs/2026-10-06-board-reconciliation/pre-snapshot-editor-readbacks.json
+  research/outputs/2026-10-06-board-reconciliation/final-editor-readbacks.json
 ```
 
 It requires one visible-field match per ready operation and preservation of
@@ -163,6 +192,6 @@ back before retrying a create.
 Preparation changes no live Being, research ledger, schedule, frozen packet or
 release tag. The 0.14 candidate and its pending acceptance remain unchanged. The
 bounded research closure and geometry integration use their retained October 6
-accounts; snapshot completion remains held until its evidence is supplied. The local
-snapshot will be a same-volume recovery copy,
-not proof of an independently located backup or of Mike's old backup availability.
+accounts. The snapshot, separate restore and isolated replay passed within their
+documented scope. The local snapshot is a same-volume recovery copy; independently
+located backup and Mike's old backup availability remain unverified.

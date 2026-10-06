@@ -1,24 +1,24 @@
 {
   "schema": "hold-shelf-reconciled-backlog-mirror-20261006-v1",
-  "status": "pre-snapshot-reconciliation-verified-overall-closeout-held",
+  "status": "reconciliation-verified-final-attestation-saved",
   "manifest": {
     "path": "board/2026-10-06-reconciliation.json",
-    "sha256": "1399a64d66fde6b0ffc338dcb1621573735b6f76d4b4ca26b973a5a2379a9074",
-    "generation": 6
+    "sha256": "1645001ed28c26c3007740344b59e313a57efedfa98363e885f90ad21eece24f",
+    "generation": 8
   },
-  "observed_at": "2026-10-06T17:28:43.167Z",
+  "observed_at": "2026-10-06T17:53:05.573Z",
   "board_totals": {
     "cards": 286,
-    "logs": 107
+    "logs": 108
   },
-  "scope": "All canonical records covered by this backlog reconciliation, including the currently active closeout card. Unrelated original board records remain in the private full inventory; no original record was removed.",
+  "scope": "All canonical records covered by this backlog reconciliation, including the actual observed closeout card. Unrelated original board records remain in the private full inventory; no original record was removed.",
   "private_full_inventory": {
-    "path": "research/outputs/2026-10-06-board-reconciliation/pre-snapshot-after-reload.json",
-    "sha256": "6997036d12327e41bd2b8e23ccda9e706426fe71925ae0e147fd895b49b2d2f7"
+    "path": "research/outputs/2026-10-06-board-reconciliation/final-after-reload.json",
+    "sha256": "d7c7a2d0aca43128e0e92999fe4506e1786993489954549afbb9ac7a076ef495"
   },
   "private_editor_readback": {
-    "path": "research/outputs/2026-10-06-board-reconciliation/pre-snapshot-editor-readbacks.json",
-    "sha256": "a5f5de8ef626f1abf75e26381b3d9da31ccb624bae986c4f84bee0a3415e5dc3"
+    "path": "research/outputs/2026-10-06-board-reconciliation/final-editor-readbacks.json",
+    "sha256": "810a7bea98be7f9758a12b1f292621a1447e4cb50a93effe4010b0ef5ed7e861"
   },
   "limits": "Database IDs and creation timestamps are not exposed. Card displayed dates are not inferred creation dates. Null source means not recaptured, not cleared. Full text stays in the canonical manifest and private DOM/editor receipts; this mirror records actual observed state.",
   "records": [
@@ -3944,25 +3944,31 @@
       "database_id": null,
       "title": "Close bounded research and prepare reviewed Git integration",
       "observed_date": "2026-10-06",
-      "reconciliation": "current-active-card-final-done-held-for-snapshot",
-      "observed_record_sha256": "588a39faf46fff30435feee9c71beb0791695ecd137bbd5ed42fa154c83e4304",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "d0a50a277659fe4f5439743d112318e3821b89036a0b16bf240046b0a34f4d82",
       "source_refs": [
+        "analyses/2026-10-06-git-tidy-and-record-status.md",
+        "research/NOW.md",
         "analyses/2026-10-06-bounded-followups-closeout.md",
         "research/inquiries/2026-09-21-geometry-bookmarks.md",
         "analyses/2026-10-06-board-reconciliation.md",
-        "analyses/2026-10-06-git-tidy-and-record-status.md",
-        "analyses/2026-10-06-research-closeout-and-geometry-integration.md"
+        "analyses/2026-10-06-research-closeout-and-geometry-integration.md",
+        "analyses/2026-10-06-recovery-snapshot.md",
+        "research/outputs/2026-10-06-closeout-recovery/archive-operations/operations-receipt.json",
+        "research/outputs/2026-10-06-closeout-recovery/replay-v2/replay-receipt.json",
+        "research/outputs/2026-10-06-closeout-recovery/packet-manifest.json",
+        "research/outputs/2026-10-06-closeout-final-preservation/preservation.json"
       ],
       "lane": "Tests",
-      "status": "active",
+      "status": "done",
       "being": "SYSTEM",
       "tags": [
         "id:t-research-closeout-20261006",
         "research-closeout"
       ],
-      "evidence": "analyses/2026-10-06-git-tidy-and-record-status.md; research/NOW.md",
-      "source": null,
-      "source_verification": "unchanged/no-op or held card; source not recaptured in this editor pass"
+      "evidence": "analyses/2026-10-06-git-tidy-and-record-status.md; research/NOW.md; analyses/2026-10-06-bounded-followups-closeout.md; research/inquiries/2026-09-21-geometry-bookmarks.md; analyses/2026-10-06-board-reconciliation.md; analyses/2026-10-06-research-closeout-and-geometry-integration.md; analyses/2026-10-06-recovery-snapshot.md; research/outputs/2026-10-06-closeout-recovery/archive-operations/operations-receipt.json; research/outputs/2026-10-06-closeout-recovery/replay-v2/replay-receipt.json; research/outputs/2026-10-06-closeout-recovery/packet-manifest.json; research/outputs/2026-10-06-closeout-final-preservation/preservation.json",
+      "source": "Mike-approved October 6 research closeout",
+      "source_verification": "exact persisted editor readback"
     },
     {
       "collection": "log",
@@ -4013,6 +4019,21 @@
         "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-staged-helper-tests.log",
         "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/before-activation/processes.json",
         "/Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/after-activation/processes.json"
+      ]
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-10-06-research-closeout-and-recovery",
+      "database_id": null,
+      "title": "Complete research closeout and verify local recovery snapshot",
+      "observed_date": "2026-10-06",
+      "reconciliation": "verified-no-write-needed",
+      "observed_record_sha256": "fe6eecb4f3381b522cc6cd6a0f85e9ab074ebcbe64289e4a4294b3b8f6e7d16f",
+      "source_refs": [
+        "analyses/2026-10-06-research-closeout-and-geometry-integration.md",
+        "analyses/2026-10-06-recovery-snapshot.md",
+        "research/outputs/2026-10-06-closeout-recovery/replay-v2/replay-receipt.json",
+        "analyses/2026-10-06-board-reconciliation.md"
       ]
     }
   ]

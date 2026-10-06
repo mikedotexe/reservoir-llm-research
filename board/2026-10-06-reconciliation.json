@@ -1,8 +1,8 @@
 {
   "schema": "hold-shelf-reconciliation-20261006-v1",
-  "status": "pre_snapshot_reconciliation_verified_overall_closeout_held",
+  "status": "published_verified_zero_write_reconciliation",
   "date": "2026-10-06",
-  "generation": 6,
+  "generation": 8,
   "board_url": "https://claude.ai/code/artifact/f4761d4a-94e8-43ca-882f-ca887956fca0",
   "before": {
     "path": "research/outputs/2026-10-06-board-reconciliation/before-dom.json",
@@ -12,26 +12,13 @@
     "logs": 45
   },
   "identity_limit": "DOM overview exposes unique titles/tags/evidence, not database IDs, creation timestamps or source field. All database_id values are null; source=null on existing-card operations means preserve the actual editor source value.",
-  "semantic_review": "Historical ready operations individually reconciled against the dated payloads/accounts and existing titles/tags. Proposal completion, implementation, historical deployment, bounded findings, model qualification and human acceptance remain distinct. The bounded S-006/S-008 extensions close with incomplete coverage, while their broader questions remain open. Reviewed local geometry integration is complete; overall closeout remains held for the verified recovery snapshot.",
-  "snapshot_boundary": "Two phases: commit the completed source/research/reconciliation record with overall closeout held; then archive and verify that exact commit. Publish the held completion and commit the later board/snapshot attestation separately. No archive is claimed to contain its own later verification or board attestation.",
-  "publication_readback": {
-    "dom_path": "research/outputs/2026-10-06-board-reconciliation/pre-snapshot-after-reload.json",
-    "editor_path": "research/outputs/2026-10-06-board-reconciliation/pre-snapshot-editor-readbacks.json",
-    "dom_check_path": "research/outputs/2026-10-06-board-reconciliation/pre-snapshot-dom-check.json",
-    "editor_check_path": "research/outputs/2026-10-06-board-reconciliation/pre-snapshot-editor-check.json",
-    "visible_ready_operations": 188,
-    "changed_cards_with_exact_editor_fields": 113,
-    "cards": 286,
-    "logs": 107,
-    "required_dom_writes": 0,
-    "required_editor_writes": 0,
-    "scope": "All ready operations. Overall final done remains held, with its current active card preserved."
-  },
+  "semantic_review": "All historical and current operations were individually reconciled against dated payloads/accounts and actual board observations. Proposal completion, implementation, historical deployment, bounded findings, model qualification and human acceptance remain distinct. S-006/S-008 extensions close with incomplete coverage and broader questions open; local geometry integration is complete, with human acceptance and rollout separate. The same-volume recovery snapshot and isolated replay passed within documented adapter and coverage limits. Final publication and readback verify all 190 canonical operations and 114 changed-card editors with zero required writes; overall closeout is saved done.",
+  "snapshot_boundary": "Two phases were completed: commit d47a866192eafe0da803f62acd6e20f1a16dfffc captured the source/research/reconciliation record with overall closeout held; its archive and restore were verified. The later completed board/snapshot attestation is a separate Git record outside that snapshot. No archive is claimed to contain its own later verification or board attestation.",
   "publication_rules": [
     "Root alone publishes through the authenticated existing UI; this script only prepares local records.",
     "Read live fields before each update; if they changed since the before snapshot, re-reconcile instead of overwriting.",
     "Preserve existing source/creation metadata and unrelated evidence; no card or log deletion.",
-    "Only publication_ready=true operations may publish. Held current study/geometry/closeout entries await final outcomes.",
+    "All final operations are now published and verified; a replay first compares actual state and requires no writes for this captured board.",
     "Existing done studies remain done. Day11 verification block and human newcomer acceptance are separate records.",
     "Historical event dates remain source dates. Publication/readback timestamps are actual current times, never backdated.",
     "After each save, reload and compare all editable fields; record actual identity, desired/readback hashes and outcome externally.",
@@ -590,15 +577,17 @@
       "source_id": "analyses/2026-10-06-research-closeout-and-geometry-integration.md#pre-snapshot-integration-account",
       "path": "analyses/2026-10-06-research-closeout-and-geometry-integration.md",
       "kind": "current-integration-account",
-      "section": "pre-snapshot integration account",
+      "section": "post-snapshot integration account",
       "line": null,
-      "file_sha256": "65a697a370ecf28c8bb9225036d9dcb53e6a7173cfe2f8551e8150f8775c44c4",
-      "section_sha256": "65a697a370ecf28c8bb9225036d9dcb53e6a7173cfe2f8551e8150f8775c44c4",
+      "file_sha256": "3757d5a11d2651b7b5163615733dc5abe011d87ab6952ec1bca23d0f33a10aa0",
+      "section_sha256": "3757d5a11d2651b7b5163615733dc5abe011d87ab6952ec1bca23d0f33a10aa0",
       "operation_keys": [
         "cards:t-research-closeout-20261006"
       ],
       "disposition": "mapped-to-reviewed-operations",
-      "reason": "The operations own publication; original historical source is preserved."
+      "reason": "The operations own publication; original historical source is preserved.",
+      "previous_generation_file_sha256": "65a697a370ecf28c8bb9225036d9dcb53e6a7173cfe2f8551e8150f8775c44c4",
+      "revision_reason": "Dated recovery/attestation update after the immutable snapshot boundary."
     },
     {
       "source_id": "analyses/2026-09-06-astrid-reading-letter-return-source-trace.md#L102",
@@ -1760,6 +1749,139 @@
       ],
       "disposition": "mapped-to-reviewed-operations",
       "reason": "The operations own publication; original historical source is preserved."
+    },
+    {
+      "source_id": "analyses/2026-10-06-recovery-snapshot.md#final-attestation",
+      "path": "analyses/2026-10-06-recovery-snapshot.md",
+      "kind": "post-snapshot-completion-account",
+      "section": "whole final attestation source",
+      "line": null,
+      "file_sha256": "55fe3e400f174fd00c1b22574aaf95c333742fe1d5786b5d4fd9ce2ad3a924c2",
+      "section_sha256": "55fe3e400f174fd00c1b22574aaf95c333742fe1d5786b5d4fd9ce2ad3a924c2",
+      "operation_keys": [
+        "cards:t-research-closeout-20261006",
+        "log:2026-10-06-research-closeout-and-recovery"
+      ],
+      "disposition": "mapped-to-reviewed-operations",
+      "reason": "Retained post-snapshot evidence; not claimed to be inside the original archive."
+    },
+    {
+      "source_id": "research/outputs/2026-10-06-closeout-recovery/archive-operations/operations-receipt.json#final-attestation",
+      "path": "research/outputs/2026-10-06-closeout-recovery/archive-operations/operations-receipt.json",
+      "kind": "post-snapshot-recovery-receipt",
+      "section": "whole final attestation source",
+      "line": null,
+      "file_sha256": "37755e423cf2b426a490830d109c4627554000b4b14c0124ff6f3ec41dfd97fb",
+      "section_sha256": "37755e423cf2b426a490830d109c4627554000b4b14c0124ff6f3ec41dfd97fb",
+      "operation_keys": [
+        "cards:t-research-closeout-20261006",
+        "log:2026-10-06-research-closeout-and-recovery"
+      ],
+      "disposition": "mapped-to-reviewed-operations",
+      "reason": "Retained post-snapshot evidence; not claimed to be inside the original archive."
+    },
+    {
+      "source_id": "research/outputs/2026-10-06-closeout-recovery/archive-manifest.json#final-attestation",
+      "path": "research/outputs/2026-10-06-closeout-recovery/archive-manifest.json",
+      "kind": "post-snapshot-recovery-receipt",
+      "section": "whole final attestation source",
+      "line": null,
+      "file_sha256": "2c6579284f93b22ea093dc273e62b52fb3021ba43a1a574eda95e1a63accdd9b",
+      "section_sha256": "2c6579284f93b22ea093dc273e62b52fb3021ba43a1a574eda95e1a63accdd9b",
+      "operation_keys": [
+        "cards:t-research-closeout-20261006",
+        "log:2026-10-06-research-closeout-and-recovery"
+      ],
+      "disposition": "mapped-to-reviewed-operations",
+      "reason": "Retained post-snapshot evidence; not claimed to be inside the original archive."
+    },
+    {
+      "source_id": "research/outputs/2026-10-06-closeout-recovery/replay-attempt-1/replay-receipt.json#final-attestation",
+      "path": "research/outputs/2026-10-06-closeout-recovery/replay-attempt-1/replay-receipt.json",
+      "kind": "post-snapshot-retained-failure",
+      "section": "whole final attestation source",
+      "line": null,
+      "file_sha256": "2d7be03339fe830ae2397d5b97b7a0074b04481277120061619583e80de2f85d",
+      "section_sha256": "2d7be03339fe830ae2397d5b97b7a0074b04481277120061619583e80de2f85d",
+      "operation_keys": [
+        "cards:t-research-closeout-20261006",
+        "log:2026-10-06-research-closeout-and-recovery"
+      ],
+      "disposition": "mapped-to-reviewed-operations",
+      "reason": "Retained post-snapshot evidence; not claimed to be inside the original archive."
+    },
+    {
+      "source_id": "research/outputs/2026-10-06-closeout-recovery/replay-v2/replay-receipt.json#final-attestation",
+      "path": "research/outputs/2026-10-06-closeout-recovery/replay-v2/replay-receipt.json",
+      "kind": "post-snapshot-recovery-receipt",
+      "section": "whole final attestation source",
+      "line": null,
+      "file_sha256": "3b6d84ff04dfcb47a7487c741c6016cad9aa60e7105c6ec2904ad178011e02bc",
+      "section_sha256": "3b6d84ff04dfcb47a7487c741c6016cad9aa60e7105c6ec2904ad178011e02bc",
+      "operation_keys": [
+        "cards:t-research-closeout-20261006",
+        "log:2026-10-06-research-closeout-and-recovery"
+      ],
+      "disposition": "mapped-to-reviewed-operations",
+      "reason": "Retained post-snapshot evidence; not claimed to be inside the original archive."
+    },
+    {
+      "source_id": "research/outputs/2026-10-06-closeout-recovery/packet-manifest.json#final-attestation",
+      "path": "research/outputs/2026-10-06-closeout-recovery/packet-manifest.json",
+      "kind": "post-snapshot-recovery-receipt",
+      "section": "whole final attestation source",
+      "line": null,
+      "file_sha256": "361097768f151dd46ebd3db08b2a668984b67220ec79ec0261a9041679bcbe64",
+      "section_sha256": "361097768f151dd46ebd3db08b2a668984b67220ec79ec0261a9041679bcbe64",
+      "operation_keys": [
+        "cards:t-research-closeout-20261006",
+        "log:2026-10-06-research-closeout-and-recovery"
+      ],
+      "disposition": "mapped-to-reviewed-operations",
+      "reason": "Retained post-snapshot evidence; not claimed to be inside the original archive."
+    },
+    {
+      "source_id": "research/outputs/2026-10-06-closeout-final-preservation/preservation.json#final-attestation",
+      "path": "research/outputs/2026-10-06-closeout-final-preservation/preservation.json",
+      "kind": "post-snapshot-preservation-receipt",
+      "section": "whole final attestation source",
+      "line": null,
+      "file_sha256": "867e2162f24e873425891573afffd77675841550b8f4f4aa25dd2aac504bfb6b",
+      "section_sha256": "867e2162f24e873425891573afffd77675841550b8f4f4aa25dd2aac504bfb6b",
+      "operation_keys": [
+        "cards:t-research-closeout-20261006",
+        "log:2026-10-06-research-closeout-and-recovery"
+      ],
+      "disposition": "mapped-to-reviewed-operations",
+      "reason": "Retained post-snapshot evidence; not claimed to be inside the original archive."
+    },
+    {
+      "source_id": "research/outputs/2026-10-06-geometry-ui/final-ui-receipt.json#final-attestation",
+      "path": "research/outputs/2026-10-06-geometry-ui/final-ui-receipt.json",
+      "kind": "current-qualification-receipt",
+      "section": "whole final attestation source",
+      "line": null,
+      "file_sha256": "a02fec9273a940017eed1853c4fe7f844a5fd3831808b767828e55db3af5ee51",
+      "section_sha256": "a02fec9273a940017eed1853c4fe7f844a5fd3831808b767828e55db3af5ee51",
+      "operation_keys": [
+        "cards:c-question-geometry-bookmarks"
+      ],
+      "disposition": "mapped-to-reviewed-operations",
+      "reason": "Companion measured-size receipt; original corrected UI receipt remains retained."
+    },
+    {
+      "source_id": "research/NOW.md#post-snapshot-coordination",
+      "path": "research/NOW.md",
+      "kind": "current-coordination-account",
+      "section": "whole current coordination account",
+      "line": null,
+      "file_sha256": "4d15988faef74ac85fade2d9ff25fe4d14bf23149d0009cd9077aa2ee265dfd5",
+      "section_sha256": "4d15988faef74ac85fade2d9ff25fe4d14bf23149d0009cd9077aa2ee265dfd5",
+      "operation_keys": [
+        "cards:t-research-closeout-20261006"
+      ],
+      "disposition": "mapped-to-reviewed-operations",
+      "reason": "Preserved original active-card evidence pointer with current finalized account hash."
     }
   ],
   "operations": [
@@ -1809,7 +1931,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "no-op"
+      "action": "no-op",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Anemone: one sensor, one aperture, a small body",
+        "dom_record_sha256": "e44b318964526e220c9b7b48c8fa71472561f5951a365cee13650969fee78e5a",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -1857,7 +1988,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "no-op"
+      "action": "no-op",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Anemone: freeze dynamics, prompt and forecast protocol",
+        "dom_record_sha256": "33cd02b1fbb17435ed65682709a63127214b2df381abf1144f90a66400f3ec78",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -1905,7 +2045,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "no-op"
+      "action": "no-op",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Anemone: prove sensor admission, memory and replay offline",
+        "dom_record_sha256": "3f193bdc5d8266f6a44e1eaa158b45f23ed2c8645d6c42fe0fd584a2f8378569",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -1953,7 +2102,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "no-op"
+      "action": "no-op",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Anemone: qualify the Pi, temperature sensor and local model",
+        "dom_record_sha256": "c0a2cb06b1e276968204b17e5a7ac1f08b5d5aa6253e0a39afad65991ae20775",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2001,7 +2159,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "no-op"
+      "action": "no-op",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Anemone: run an auditable 72-hour pilot",
+        "dom_record_sha256": "78620c9cb7cf2aede193799782a183a8a84fdb7c9b63ad363d11f699c0268a60",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2049,7 +2216,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "no-op"
+      "action": "no-op",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Anemone: test picture dependence and spontaneous regulation",
+        "dom_record_sha256": "35e623f3f549e703dfeb3ba9ada0e7213bf7cfbae71d1e1173fd7214e305e55f",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2097,7 +2273,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "no-op"
+      "action": "no-op",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Anemone: test forecast usefulness and twelve-token carry",
+        "dom_record_sha256": "7ad91debd70e8524fd2674ab88cbac85572e71320251f4c9b7f2d63a056b71c7",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2145,7 +2330,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "no-op"
+      "action": "no-op",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Anemone: test masked-input rhythm and order beyond timers",
+        "dom_record_sha256": "8a254bae066d90102d37f3eed1f0230302c775d93e5b97e25e0c53e24b82c4be",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2193,7 +2387,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "no-op"
+      "action": "no-op",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Anemone: complete the observation block and research synthesis",
+        "dom_record_sha256": "f05263e25f56bfacbe9e03d45905f6916d2f9c37a4081845173c13d12fcdb617",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -2221,7 +2424,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "no-op"
+      "action": "no-op",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Scope Anemone and connect the earlier small-box work",
+        "dom_record_sha256": "62b9303adb56892f3dbdfa16883c284c7720b198244120d2010d23322137d2e3",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2264,7 +2476,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Study page scope and coverage",
+        "dom_record_sha256": "da11f790a354014a9cfbea0d127f6bbf32dc7054703b7ee6fd6376f929b772cc",
+        "editor_record_sha256": "9f6c5964b718743d9d6c00f92223a0e12d80cb61db846aa4ee82071b7414e21a",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2296,7 +2517,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Study answered question source links",
+        "dom_record_sha256": "2529ae0eadc1312112915233a5fd9aec3667c22f434fc665bee60a3154a9e423",
+        "editor_record_sha256": "fecf2cb55e362a9294135da97198951d1d970785b9cd49a23ce87eb5075e451e",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2328,7 +2558,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Study intervening choice provenance",
+        "dom_record_sha256": "24ead60019f0a74f2afc2002dc76889356bc549df04f219da4a45e51602c4ddb",
+        "editor_record_sha256": "5de1ce0aeb24e47bcdb8b312932a8c32af4735e10e73ec1557fed759b2df366e",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2360,7 +2599,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Astrid study survey 20260915",
+        "dom_record_sha256": "1494eef3d43a2ca9994760ce1e840884f25973867eecb6ba0395cc83f85c67e0",
+        "editor_record_sha256": "2183ac463c44dc923975a2928417333fc3a2372c7ee7d3fd7b274f0fc86942d5",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2396,7 +2644,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Build up journal actions and compare one addition at a time",
+        "dom_record_sha256": "d09ce495d0c2753355bc4e79f37cd6c9d4080d2efb3b201476e38eddc98aa941",
+        "editor_record_sha256": "42b5b1bd2c8b5edf7eb38ee00a83a3933aeb0709f28284116418db9df266e9f6",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -2414,7 +2671,16 @@
         "body": "Implemented research-local journal actions, matched comparisons, synchronized state views and portable replay. Fixed synthetic checks show that output-only leaves reservoir state unchanged, while semantic return first changes state on step31 after writing at30. Fixed memory exposure alone leaves writing and state unchanged by construction; it is not a writing-quality experiment. Final validation and presentation limits are in the build receipt. Artifact connector unavailable; authenticated board editing unavailable; publication pending. Evidence: board/essentials-actions-pending.json"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Make journal output and its return separately inspectable",
+        "dom_record_sha256": "828f5d3037d3521bfe4bdd401d6ed3a6b04e2696f23182d2d7ed9b2286bfa155",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2449,7 +2715,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Explore the reconstructed reservoir with visible controls",
+        "dom_record_sha256": "00b46eb5a68ab3fcf53fd0797efa041197d46c7c39bca23a8d89d6b205952a93",
+        "editor_record_sha256": "7d6e092aca16ec296cdca7e1f56ea2a4f31d94b9cf30d07ace7d482f0a1b1657",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -2467,7 +2742,16 @@
         "body": "Implemented the paced reservoir workspace and meaningful inspection of forcing, recurrent drive, leak and resulting state. Repeated external input and recurrent connections have separate controls and recorded semantics. Board mirroring remains pending. Evidence: board/essentials-exploration-pending.json"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Add hands-on Essentials exploration",
+        "dom_record_sha256": "28508621fdd77e3f4cca81d17bf2f2a96b300f4d9b75d15045b5265778d5028d",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2503,7 +2787,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Recreate the essentials in four runnable reservoir stages",
+        "dom_record_sha256": "edf879a916df2d7b070642423365f5bf92a5ecaaaab73a11c6cfd529d7dae2f6",
+        "editor_record_sha256": "04e67218ec408a1750efdf43f65c7a02777acb1260560e2d3eda138177475e2d",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -2521,7 +2814,16 @@
         "body": "Implemented and verified the authorized staged reconstruction. Keep the reduced mechanism results separate from production behavior and the ongoing self-study ledgers. Evidence: board/essentials-pending.json"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Build Essentials and connect the native viewer",
+        "dom_record_sha256": "ee5d0491beb35ce99333ea62e7fb771dc0a7b2f23a749d8146022134425d74df",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2555,7 +2857,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Make extended writing effective and preserve chosen continuation",
+        "dom_record_sha256": "7e2c890fb3c63f279f826746fc71553b65d270938067e59b2b1ccd523e2aa8a0",
+        "editor_record_sha256": "1b967a7249d3435d9722a0cbd9c8988c6c4528cfc3b4be5077d9c739517881f5",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -2573,7 +2884,16 @@
         "body": "Read-only audit and proposal; 19 linked study journals with unused 4096 allowance. No model calls or deployment. Evidence: board/longform-room-pending.json"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "HSS-17: distinguish writing, context, sensory and NEXT budgets",
+        "dom_record_sha256": "10e2bcd6fcef67d532d733327f0806b12b8504568f110295c60de2f1738938e6",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2607,7 +2927,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Study output has room; the carried excerpt loses Minime’s answer",
+        "dom_record_sha256": "bfe3d49741cdea3cfc11c73e94bc7c85aea18eefd8948138b4edd4c7de6140b5",
+        "editor_record_sha256": "c417387563e586e9946b96815e4773be9b797c425a446ceb4025eab2ed2a9527",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -2625,7 +2954,16 @@
         "body": "Nine user-selected Minime journals completed September 9 12:08–12:26 PDT. All nine exact requests use gemma4:12b, num_predict 4096, context 10240 and think false; all stop normally with 144–1037 output tokens (median 371), full visible bodies preserved. Eight source inputs cover four exact intervals twice. Minime correctly articulates persistent worker versus per-chain task, but the next request truncates his answer in a 700-byte head excerpt while retaining the same older question. A separate reflection chooses MAP; no parser-reset finding. Installed model metadata advertises thinking capability. Propose shared retention/synthesis improvements and a bounded thinking trial; a queue-rejection caller-completion test is a separate code-review lead. No live changes, induced generation, daily-cursor change or causal improvement claim. Research history extended through HSS-13; full originals and exact receipts retained. Evidence: board/minime-nine-studies-pending.json"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Trace small study journals to their real output and memory budgets",
+        "dom_record_sha256": "d30bfdceff18c76d6aaa87587d36ab51d01b1f9438e531a7289eb89c90592a44",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2662,7 +3000,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "SELF_STUDY history connects defects, live repairs and natural follow-through",
+        "dom_record_sha256": "301b3807a34f736005388c18ee65abc589da38914dc587f790f940bb13cbc406",
+        "editor_record_sha256": "2da9ac026174f37b081a61436ea26b94bf49181574b158d0d948fb31afa8379f",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -2680,7 +3027,16 @@
         "body": "Retained historical source, rollout receipts, original intermediate comparison inputs and first two post-repair Minime navigation jobs inside research. Old study captures, daily cursor and schedule unchanged. Updated current status and proposal disposition. Offline verification linked from the history. Evidence: board/self-study-history-pending.json"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Preserve the SELF_STUDY defect-to-repair history",
+        "dom_record_sha256": "0524c0705c4610c6366479e56b7cdf0ad541334afd3ca49c27d528f0f6eb17b9",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2716,7 +3072,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Show the projected reservoir state as topography",
+        "dom_record_sha256": "8bfbabc614ae832b6213173df6090138b8e33a6a8d1278458d833875331e0da4",
+        "editor_record_sha256": "9d3d8c1a499c90c4d810a16af3a14bcb8966e4896f82871e5f08ae8bd20b5fe2",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -2734,7 +3099,16 @@
         "body": "Implemented a reversible presentation choice and verified the focal recorded state against the original screenshot. Numerical input/state records and baseline views retain their earlier behavior. Board publication remains pending. Evidence: board/state-topography-pending.json"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Add a topographic state projection",
+        "dom_record_sha256": "8055dc6abeaf850b5beb681e4245869adf5c4b65741a875e1ece52832bfa77e6",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -2752,7 +3126,16 @@
         "body": "Built and opened Reservoir Scope 0.10.1 build 14 with softer zero contours. Preserved and reopened the completed Stage 1 run. Proposed separate additions for journal output, semantic return, journal memory, action choice and regulation, with matched comparisons. No journal action or comparison implementation is claimed; board publication remains pending. Evidence: board/state-topography-pending.json"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Soften seams and specify a comparison ladder",
+        "dom_record_sha256": "e0e0ab4333e0d25389c3b79d581a052c0a216db608c0487d61b173fb61b5e990",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2787,7 +3170,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Complete natural post-repair sweep",
+        "dom_record_sha256": "9029077d42426a8eaec2db19b2acc23d067a0487f4ae2a6772e2f56318d75abe",
+        "editor_record_sha256": "fe12f9dfd062e1d575f930a36b3a0c3650d4816ce7a01ba04f4c503c70d0ee07",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2822,7 +3214,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Navigation recall can add unsupported source claims",
+        "dom_record_sha256": "45694dd26c194e8cca25621ae13ff42be42b096a801d0450360e2d5360df44c3",
+        "editor_record_sha256": "d9cf72b1101b00b97d8fd32fe4867b54365ba53c4dc377e22ab0dd6ffbe6e112",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2857,7 +3258,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Saved prompt overflow dominates some reading pages with ANSI encoding",
+        "dom_record_sha256": "774f032e722981dc2a267f402f185bd22d0d8a3c17daa3103070c143adee1d3d",
+        "editor_record_sha256": "33c6a35c858cf731c6718e9289d9035f8490570461a80a496fc8bf76be61d07d",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2893,7 +3303,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Specify readable saved context and current-source labels",
+        "dom_record_sha256": "8a5972da226d16c90545aad3651df2be2f4d1754e8c267ad8d9d40ab72ea47f5",
+        "editor_record_sha256": "ba3f4778ce6a060bdc57193ccc5c963a77a31d63af267c08c42f7353b1004161",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -2911,7 +3330,16 @@
         "body": "Completed frozen sweep and retained all selected journals, exact source/navigation inputs, READ_MORE source joins, counterexamples and bounded proposals. HSS-08 and current focus updated. S-007 cursor/schedule and live systems unchanged. Evidence: board/study-after-follow-through-pending.json"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Natural studies after entry/follow-through repair",
+        "dom_record_sha256": "111446bca33e55072259bd0616b4745d10adba2614a3b97e930a561c8259e62f",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2945,7 +3373,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Offer exact recovery paths and retain failed study evidence",
+        "dom_record_sha256": "45a248c5b2a1f60799c5f0e058bda4a58a12151c1921159e6ac6f0c6fcb57959",
+        "editor_record_sha256": "ef8ecf0093139d431940f7f51f242c899ef1233df94a385128872c61a2c8e204",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -2979,7 +3416,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Extra counterexample invitation did not correct saved mistaken accounts",
+        "dom_record_sha256": "09b22b21a3f9d738ef5380a494e31a90c5255eb6f77ce0f9475a8ff560e59aeb",
+        "editor_record_sha256": "f4ed167acbe12867ce471ea93596b5a83701f8589e9697cd63d5bcee3fe11d53",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -2997,7 +3443,16 @@
         "body": "Implemented authorized path assistance and diagnostics; preserved a negative prompt qualification and individual choice. See owning account for source, checks and live evidence. Evidence: board/study-choice-pending.json"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "HSS-16: useful recovery without prescribing the study",
+        "dom_record_sha256": "b49120826cb8b19c08dafd45d527c7ce1edb1794ed4ea62365224a5d5b630ab7",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3031,7 +3486,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Study continuity carries a correction and repeated mistaken conclusions",
+        "dom_record_sha256": "baef7b64ba6a36e2c8dd7caa5f89e47ae2fcd2fb14520f4536bb435679ba15e0",
+        "editor_record_sha256": "56d4aaa00318bf5a38f0dcae94eb730d59f88c347cda454196555519ed4b5b44",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3066,7 +3530,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Offer exact missing-path candidates and qualify a source-grounded claim check",
+        "dom_record_sha256": "7ad68cdfd2c576e6245400f0fcc44b9db9001c0f0b8bfd50469a4e27b91c092c",
+        "editor_record_sha256": "52f4f92b42416f9e9e65fd69d3d57e7f8d86d762345519b2536e6ef20ad404a1",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -3084,7 +3557,16 @@
         "body": "Frozen natural follow-up, incoming-attempt accounting, exact retained source/journals, reproducible counts and isolated path replay complete. No model calls, Being messages, live source/state changes or daily-cursor updates. Board write surface unavailable; payload remains unpublished. Evidence: board/study-context-followup-pending.json"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "HSS-15: source-grounded revision and limits of preserved context",
+        "dom_record_sha256": "5b48e62424e730de73e27fe3d38e3d346afa54f601defe0d3740d85dc721c0bd",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3116,7 +3598,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Current study evidence and readable saved overflow deployed",
+        "dom_record_sha256": "0dbe3ded8820105fec0d37ef3ecd76b275f3b75bd3ebddca120a87c1a2ef311c",
+        "editor_record_sha256": "98a22067fab124148014af01a22cbd7cdde29be93d0dbd6ad0337a956f5056ff",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3146,7 +3637,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Guide code-symbol searches to SELF_STUDY FIND",
+        "dom_record_sha256": "1813e1d4652ac71d7f21ddb69ff0c3cbe453d92a838837a7870d6ec203a4b196",
+        "editor_record_sha256": "7a41eb27bc30ea650bc36defe962897ec2e10388541c18310b181a7c6308bad3",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -3164,7 +3664,16 @@
         "body": "Retained owning implementation/activation facts, restored Minime NEXT, early study labels and exact note lineage. All earlier windows/daily cursor preserved; natural readable-view and map-claim outcomes remain open. Evidence: board/study-evidence-live-pending.json"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Paired evidence/view release and first natural studies",
+        "dom_record_sha256": "9c489f2267223cfe5f978730a69da6761414450d91f877b8c30124c24c03d347",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3198,7 +3707,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Track self-study through journal and actual next actions",
+        "dom_record_sha256": "6342fa8212c288d08492aaea0b291fa9760f1308dcc6529d8d1443a529602883",
+        "editor_record_sha256": "9f9266242b72f01e2f9ee4a0fc42c3647bebb3f3dc6fb84d3da6bbbf29cc4b2e",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3231,7 +3749,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Verified self-study NEXT is rejected by Astrid authorship gate",
+        "dom_record_sha256": "506d7bf3eb4f638b1611de8bce9dfab374329bae5e89964713d3ed70ad4208a8",
+        "editor_record_sha256": "13b1c986141f8d1d0b98b8bbc6b46606dfe033ee00ab7737eba8348576295faf",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3264,7 +3791,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Minime reading intent is not reaching the new notebook",
+        "dom_record_sha256": "323f67f2aaa698c9e2a0ae65450a78771ec96e94cd17a6508321d23f91a4ebd5",
+        "editor_record_sha256": "ab5bf7a3a1cf6199fc12d3ca5e1322129980f68565a06743931ed3a00e3a0c8d",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -3282,7 +3818,16 @@
         "body": "Built research-only capture/report and completed the predeclared sweep through 23:00 UTC. Retained exact source, writing, action and release evidence. No live intervention; S-007 daily cursor/schedule unchanged. See analysis for findings and limits. Evidence: board/study-sequences-pending.json"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Self-study to journal and action follow-through",
+        "dom_record_sha256": "e25490770ef8d61a7e14b4b03a9a1d767f9de83afa9a61674a1271d33983c582",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3323,7 +3868,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Study source findings and local links",
+        "dom_record_sha256": "3ae4e178ab8b81f82eb1478d7114e28374e6b7860dbf4090ac246fc59dc4fa47",
+        "editor_record_sha256": "3f39583d257c021a304df2c040030da9b39ac8aa7b149d98f74797890f027c84",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3364,7 +3918,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Study source context natural followthrough",
+        "dom_record_sha256": "b760cbcc7d789a16724047573098eaba187859c51cfdf35097a846c8ca7d951c",
+        "editor_record_sha256": "6b5fe180aab728fd382d0b11611a0999e57250535f3c808f5a7956e397fb940c",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3405,7 +3968,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Study pagination separator",
+        "dom_record_sha256": "869704b4e9758a822723a8eafcc5a1181b9c15022f1e9eeeceec06f3d4c4d301",
+        "editor_record_sha256": "630fe454a37fef35488ff415788d66e9640a77c6eaa81ea975d8131462570ea8",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3446,7 +4018,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Study qualified constructor candidates",
+        "dom_record_sha256": "4d152ec0e60abb6942275044d6a5651973505551d929b8fb6f9f87ab2a732716",
+        "editor_record_sha256": "167ec82c27074d7376a728f31b3599fc1c575649679e93da3963ebfc60c8899c",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3481,7 +4062,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Reservoir Scope guided A–H journey",
+        "dom_record_sha256": "fdc747c9ef4916a88eace1c122dc8b02734b8a977423b1b986ed85d4c0aa2fab",
+        "editor_record_sha256": "6692b54c2963625d888fb5510d766178e889cadcea813976f51e46a4a7f527f1",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3514,7 +4104,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Recorded replay preserves identity at feedback boundary",
+        "dom_record_sha256": "f1e75a0dac5d855d04ab85e6e192f7d9d3bfb92096716c34add869f968e51d3e",
+        "editor_record_sha256": "3806d5c39b9767f412d4b6670d7ce883cbe6c0f3cf4e9f4ca3a9dbca8dbf0a56",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3585,7 +4184,16 @@
           "correction_reason": "The initial guided-release preparation was unavailable, but the later September 16 retry retained a partial model record. Qualify the initial claim and link the later outcome without implying a completed comparison.",
           "publication_evidence": "Root confirmed the original desired card was created and retained in its boardWrites receipt; apply one update to that exact card."
         }
-      ]
+      ],
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Active-input observation fixture qualifies prompt contrast",
+        "dom_record_sha256": "352cbbd787de56dc5a850d393f2b11f41a7765e22f120a89ead2aafeaf4e93ff",
+        "editor_record_sha256": "7e803165299d394689eba51968d3b778c22cff74d4cceed24e36d38acc51b82f",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3618,7 +4226,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Known controller mechanism reduces fixed-window target error",
+        "dom_record_sha256": "bdf731f40e291e04a5f8f047c803a999c01bf6dd9b36aad3b502f04c2c67dc74",
+        "editor_record_sha256": "3aa0248c9b109b747cd587a6b507493b2cbb23f3677b9d55740054257758f55f",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3655,7 +4272,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Complete the actual offline newcomer walkthrough",
+        "dom_record_sha256": "20f2cd8467e2b8a128b9d319da79e4f05ef9f90206192456f4f00e4a97b55f41",
+        "editor_record_sha256": "d5cb6c5a3d37a501a51f1162ba4317fb24e905ab7966dd9efea93e23bd881313",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -3673,7 +4299,16 @@
         "body": "Version 0.13.0 build 17 delivered with immutable preparation evidence, offline checks and pending human acceptance. Evidence: research/outputs/2026-09-16-guided-reservoir-lab/pending-board-updates.json"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Guided portable lab implemented",
+        "dom_record_sha256": "6ba8cc37e9a2a18c41f48284e8f47ca3876946f6ec3c9de6fb2971614be0427f",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3705,7 +4340,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Contextual activation and provider controls: bounded qualification complete",
+        "dom_record_sha256": "235f811825d1ecbe0fec6b3991a98f6d570f0bd960ec09c3925985d5eef10ebd",
+        "editor_record_sha256": "f5c109959c85b966f7f06ec7149d4842c93ec0e332f767886fd3b8e1d0b51f68",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -3725,7 +4369,16 @@
         "body": "Provider controls and termination evidence were implemented and verified live in the September 9 owning account. Offline capture parity passed; all 32 fixed and 24 free cells are accounted for and all free cells annotated. No contextual understanding advantage was established. Contextual feedback remains offline; publication does not authorize activation. Evidence: board/activation-input-pending.json; analyses/2026-09-09-contextual-feedback-experiment.md; analyses/2026-09-09-activation-input-and-provider-knobs.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Contextual activation and provider controls: bounded qualification complete",
+        "dom_record_sha256": "6bb879542d3f227eda659c58cac0242a6211549420baca2d5eddb3c0ea86f8c1",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3756,7 +4409,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Optional extended writing preserves complete draft continuity",
+        "dom_record_sha256": "70dd1eec3d7981ffe3d660e7785e9b393685e522f599a1f4e7588e75c0e3c35d",
+        "editor_record_sha256": "cce91fecabe489d7cb6cc6e9e989240166ae3025c1202e6ab50a6ebc5f76b103",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -3775,7 +4437,16 @@
         "body": "September 9 implementation and isolated qualification were followed by the retained verified paired rollout on September 10. The earlier awaiting-receipt text is superseded by that rollout record. Capacity and carriage are qualified; improved understanding and natural benefit are unestablished. No new rollout is performed by reconciliation. Evidence: board/extended-writing-pending.json; analyses/2026-09-09-extended-writing.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Optional extended writing preserves complete draft continuity",
+        "dom_record_sha256": "94b726158ac33974e146e1fa72936fef3dec36e3dc6bd3e709879010505cbb09",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3806,7 +4477,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Carry complete study answers and preserve voluntary navigation",
+        "dom_record_sha256": "4ef82ebce17446b7245943186d710cb26155385c0ca5b5b44025fbd476cfd15e",
+        "editor_record_sha256": "e2f11822d36b0df3d3ee34f1a02c4c055de440b26b7a373f19a3541bc424c672",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -3825,7 +4505,16 @@
         "body": "Both owning main branches and live source/process identities were verified in the September 9 account. First five-minute window: two completed studies per Being, previous answers delivered and FIND to OPEN/RELATE navigation observed. No note/question update or understanding improvement established. The separate thinking trial was not promoted. Evidence: board/study-context-pending.json; analyses/2026-09-09-study-context-and-thinking.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Carry complete study answers and preserve voluntary navigation",
+        "dom_record_sha256": "e617c2647d5c7fcbd730c568572691e3d88946c5482ac500d60b02a7a95a2415",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3856,7 +4545,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Latest five journals show navigation loops and evidence-role confusion",
+        "dom_record_sha256": "bc9f86617230527bed7c74835e3745f173654b55c3b64b244c9bbc8783140c24",
+        "editor_record_sha256": "6115b2ce7214b9c427685c903fd2e9f3fe27a363b4e3e5244bdd71ec317e926d",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -3875,7 +4573,16 @@
         "body": "The bounded ten-file September 10 survey preserves repeated page-one fixture/history exposure, Astrid's local recognition of repetition, observed peer exposure and two failed local-study-looking choices. Source delivery, quoted recalled accounts, authoring and actual dispatch remain separate. Proposals are navigation/evidence clarification and a separate revision experiment, not verified comprehension improvements. Evidence: board/latest-five-journals-pending.json; analyses/2026-09-10-latest-five-journals.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Latest five journals show navigation loops and evidence-role confusion",
+        "dom_record_sha256": "102f571dc1c30543d097344f96bb6fc5023000b6ac4d07bd1b975eac2795df61",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3906,7 +4613,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Natural journal and draft coherence exposes three interface gaps",
+        "dom_record_sha256": "d0f6ebafda8d944c502a944c9296257bcb60e1ae0b073c912a4a0aeb930002ed",
+        "editor_record_sha256": "3c1e803c5d4522866e92aac51e3813e1accc076cffd78d55e006fbcb446467a3",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -3925,7 +4641,16 @@
         "body": "The September 10 bounded observation distinguishes unrelated study evidence entering fresh drafts, authored versus executed choices, and quoted visual-description origins. Public-journal-only sampling misses private drafts. These scoped observations do not infer private experience. The later September 11 repair is a separate implementation result. Evidence: board/evening-journal-coherence-pending.json; analyses/2026-09-10-evening-journal-coherence.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Natural journal and draft coherence exposes three interface gaps",
+        "dom_record_sha256": "54eafdb8fe004a0ae8a545f4cce3ba01cd22259ec59d1e288b252f55501648d8",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -3956,7 +4681,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Repair draft context, exact choice feedback and visual-origin labels",
+        "dom_record_sha256": "b69b71f870f79e7bdca895a498cda2b6a6ed80e02bb2cb7dc293cb2fd05273f4",
+        "editor_record_sha256": "5d7392d53b5de3a527822457a67b3d833b6639e469bc4e92a0da860d434f80cb",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -3975,7 +4709,16 @@
         "body": "September 11 qualification and paired rollout are retained: fresh drafts avoid unrelated study evidence, shared choice feedback preserves the explicit final choice, and visual descriptions retain source/age/availability. The selected natural studies exercise some choice feedback, not fresh-draft/FINISH/visual uptake. No general behavioral benefit inferred. Evidence: board/journal-coherence-repairs-pending.json; analyses/2026-09-11-journal-coherence-repairs.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Repair draft context, exact choice feedback and visual-origin labels",
+        "dom_record_sha256": "25d10fbcd08b84be7301d8541a5ee9002f97926e440f12eb0ceb4326d480fc7e",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4006,7 +4749,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Brief Astrid studies retain complete delivery and a persistent hypothesis",
+        "dom_record_sha256": "490ac5467933a7171693aa32b6c8e37260be132467f8463ff7274415a1b71d87",
+        "editor_record_sha256": "715f5bba7000e51d544c148bd85ec1bd33ef819c40c463f2a5b1a7d079f5fd99",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4025,7 +4777,16 @@
         "body": "Twenty exact-linked requests allow 4,096 tokens and stop normally at 220–535 tokens without observed omission or clipping. Saved note/question remain unchanged while earlier responses are carried. The sought warning is produced from lexical event/journal matches, not the hypothesized numerical aggregator. The source of the saved question remains unknown. Evidence: board/astrid-small-studies-pending.json; analyses/2026-09-11-astrid-small-studies.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Brief Astrid studies retain complete delivery and a persistent hypothesis",
+        "dom_record_sha256": "fed8437363276a3f6a2420483dca6e65ba09dcfe442a2b8407e80504d43f5ac0",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4056,7 +4817,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Minime's latest hundred studies traverse maps with no fresh code",
+        "dom_record_sha256": "db26f05a07bb9138f577255ddda2a31dd6730ad2d31578c53a8abd44153d7f09",
+        "editor_record_sha256": "fc711b34956373a03109a1696cd292db2ec91a8445653b9da9b8fdcc76fc139e",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4075,7 +4845,16 @@
         "body": "The bounded September 15 cohort contains 99 maps and one EOF notice, exact generation/input/journal links, normal stops at 121–312 tokens under 4,096, and matching completed jobs for all 99 next-choice pairs. Note/question persist and supplied OPEN choices remain unchosen. The independent source audit is our evidence, not fresh code delivered in this cohort. No causal or general comprehension score. Evidence: board/minime-study-survey-pending.json; analyses/2026-09-15-minime-study-survey.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Minime's latest hundred studies traverse maps with no fresh code",
+        "dom_record_sha256": "bd8804c2cdc77a138b963786c3fd5fed15de2ee09183472abb08506a87aebe13",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4106,7 +4885,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Compact study navigation, exact recovery and optional evidence choices",
+        "dom_record_sha256": "2faf7a057138186b48aafe201d4d61924ce8560faf718fa7063b6da5835fe2e6",
+        "editor_record_sha256": "cd404c6315b185c473f7fed3f61733e3223eabc39688ae21b4083f738d33e101",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4125,7 +4913,16 @@
         "body": "September 15 owning implementation commits and paired graceful deployments were verified. The closed natural window retains two Astrid and four Minime receipts and two selected deliveries per Being, but zero strictly preparation-timing-qualified trials. New interface delivery is established; general or causal understanding improvement is not. Evidence: board/study-navigation-release-pending.json; analyses/2026-09-15-study-navigation-release.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Compact study navigation, exact recovery and optional evidence choices",
+        "dom_record_sha256": "e14695aef27735622f89b8b1d564dbceaec76d346a94a350561bf2ed4f8ee1d0",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4157,7 +4954,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Preserve chosen study navigation and distinguish lexical evidence roles",
+        "dom_record_sha256": "42f2b15d8fba6ef2412899ce14c6fbc1cdd0beb7c204ee5892c0c674ea270708",
+        "editor_record_sha256": "7e5a15da46fc9b162a6f2cc49e0f66e0a39e550ad52d135684839f242d6bcc7e",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4177,7 +4983,16 @@
         "body": "The September 10 paired graceful rollout is verified in its owning account. One first new-process study per Being establishes selected request/evidence carriage, not improved understanding. The isolated six-cell revision pilot retains five nonempty EOS responses, one admission refusal, one complete matched seed and no demonstrated central correction. Generated choices were not executed. Evidence: board/study-navigation-revision-pending.json; analyses/2026-09-10-study-navigation-live.md; analyses/2026-09-10-study-evidence-revision.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Preserve chosen study navigation and distinguish lexical evidence roles",
+        "dom_record_sha256": "dece84b7d9c4b75b21804f92273650c2119fa4cab82b6315edc0a8aab50fdab7",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4208,7 +5023,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Fresh-source order does not repair the retained account in this pilot",
+        "dom_record_sha256": "f34397897309dfa9ed2980007c189ae2229f8da5ee1f3b671c02d83cd006542a",
+        "editor_record_sha256": "44f7ca77e98a5c83854dff7df647c45ec84fa0956c6c80100dc1cb126c0ef722",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4227,7 +5051,16 @@
         "body": "Eight planned outcomes: seven returned EOS answers, one admission refusal and three complete pairs. All seven retain the unsupported proxy interpretation; two proposed notes and one proposed resolution also preserve it. The unpaired real-identifier choice is not an ordering comparison. Isolated historical-input replay, not live Being outcomes; no central correction demonstrated. Evidence: board/study-evidence-order-pending.json; analyses/2026-09-10-study-evidence-order.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Fresh-source order does not repair the retained account in this pilot",
+        "dom_record_sha256": "213a46048e682442bd095c81f3f2f1c3e832753238a04c6cd211c861ed2a0b55",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4258,7 +5091,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Neutral wording and supported controls preserve different supplied accounts",
+        "dom_record_sha256": "6034b2950ade545e74c412626bad44b07d9a739a28d9b30bee2c96812f55d2e6",
+        "editor_record_sha256": "aaae37e47bcf747de52c1142daaa2e0798d81c75944177ad1dcb0b629630914b",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4277,7 +5119,16 @@
         "body": "Eight isolated responses preserve the mistaken retained account in all four retained cells and the central supported distinction in all four supported cells. Smaller errors and interpretive sensitivity remain: original and context-sensitive codes are both retained. This is not a whole-answer score or new learning. Proposed notes/choices were never executed. Evidence: board/study-question-framing-pending.json; analyses/2026-09-10-study-question-framing.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Neutral wording and supported controls preserve different supplied accounts",
+        "dom_record_sha256": "2af458f80d9438209b0c51e47c0b41f607b044931ef6d7cd426f058f8c8c0323",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4309,7 +5160,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Source-first reading and carried notes do not establish central repair",
+        "dom_record_sha256": "261656ba2b36f540258ebd002f7ebe36dcaaeaa42f11e718ec4ce7fb3aa42b21",
+        "editor_record_sha256": "75af429917875dd2198fc700144ad6839fdaf45416f9d3b0abd8de477caf3ade",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4329,7 +5189,16 @@
         "body": "Both initial readings reject a production relationship but contain ambiguity or specific error. All four retained-account final responses preserve the unsupported production story; all four supported-account finals retain the central distinction with smaller errors. Carriage has no consistent advantage. Proposed notes/choices remain data; one historical Minime episode with isolated backend substitution, not live journal outcomes. Evidence: board/study-source-first-pending.json; analyses/2026-09-10-study-source-first.md; analyses/2026-09-09-activation-input-and-provider-knobs.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Source-first reading and carried notes do not establish central repair",
+        "dom_record_sha256": "f3f6d076c8c15df3c9fed24816ed5f13687045bdebc7dacef3a39709c3821d9e",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4361,7 +5230,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Evidence-linked claims preserve supported material without repairing the retained story",
+        "dom_record_sha256": "3800b3467f81b74f554edaf12885ca9aa4a5d6f387c0a4836afab54434842254",
+        "editor_record_sha256": "02154990be656dc89bf88ea322836baa606f17f4124db9b1ac83eedd3d87d228",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4381,7 +5259,16 @@
         "body": "Neither retained-account pair repairs the unsupported fixture/production pulse story; all four supported-account responses preserve central distinctions with smaller ambiguities. The pending-fields question already appeared in the research-authored control, so it is not evidence of independent discovery. Exact sources, proposed notes and choices remain separate; no live writes or comprehension gain claimed. Evidence: board/study-claim-evidence-pending.json; analyses/2026-09-10-study-claim-evidence.md; analyses/2026-09-09-activation-input-and-provider-knobs.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Evidence-linked claims preserve supported material without repairing the retained story",
+        "dom_record_sha256": "b46636a1fa5cc948364928212783ad5b800c9c0d24b4b3fc959705517b097009",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4411,7 +5298,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Expose the lexical origin of study interpretation warnings",
+        "dom_record_sha256": "9de90b424c64ad5fb9c53c41bd972b233a44243a83b7f23a7fd72604f01a29fc",
+        "editor_record_sha256": "cc945e9e19740644fbfb0b51b193d72e580dacd73ac350ffecbf48b894c3fcbe",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4443,7 +5339,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Make optional source-grounded synthesis and coherent spans available",
+        "dom_record_sha256": "93860b420566578d0d818680eaa2b7e61f002d53ff913c45379010099206f0f5",
+        "editor_record_sha256": "ed4c884f2c1bdfc38d88ffd30291f12b029d5b74cee65c2b40b425b876f7547a",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4473,7 +5378,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Trace pending intent through consumer, delivery and continuation evidence",
+        "dom_record_sha256": "b9cd159aef7e6c10408d49606cd8555ff26e7f00da19541778fa28a5e39ba596",
+        "editor_record_sha256": "375302434ed20cfac4baf6c6241714f7d44d4380e4b0c6ab5a7e26559db75ce4",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4521,7 +5435,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "update"
+      "action": "update",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "The reading episode: bookmark, letter, return",
+        "dom_record_sha256": "acfb71e852e787267acbe7b72aa7d65c7adc817601ca33f55b6327e1e2cc1735",
+        "editor_record_sha256": "34de148da59dca4f91bff98b4c586c41ab3fc8c3e8d03fa631798e7c6cafd326",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4539,7 +5462,16 @@
         "body": "Source trace completed; isolated bookmark, letter-delivery and voluntary-return episode remains unrun. The audit distinguishes cursor persistence, receipt versus delivery, final-request composition and reservoir attribution. Preserve later reading-feedback completions. Evidence: analyses/2026-09-06-astrid-reading-letter-return-source-trace.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Astrid: reading → letter → return — source trace",
+        "dom_record_sha256": "ef6b530d506e3a137d2e1cfcc8bd6df5402844acbe1beac033faaebc0d36a15c",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4568,7 +5500,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Reservoir 3D: metric contract and leak dynamics",
+        "dom_record_sha256": "b9bff84f59bd4223bf0ea4d7def5b89279ef3150c950749fce372e456961aef5",
+        "editor_record_sha256": "3b1680b5e91497206dd9e4a0c4e00d17cfccd1df150f938abaf1e2c3a539b00a",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4586,7 +5527,16 @@
         "body": "The September 6 source audit identifies sensory spectral columns as unsorted Rayleigh estimates. A principal-axis covariance ellipsoid would overstate that capture. This is a dated metric-contract finding, not an assertion about a later implementation. Evidence: analyses/2026-09-06-reservoir-3d-metric-contract.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Reservoir 3D: metric contract and leak dynamics",
+        "dom_record_sha256": "b1fba7a310fb3974845e6528c35353dee4f605ae9811eb4a9079b453df453d65",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4615,7 +5565,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Overnight self-study: useful follow-through, avoidable navigation friction",
+        "dom_record_sha256": "ca85d0386db6ff53b6923b7acca8f3f634008c004d65f3a300690b3ae0575a87",
+        "editor_record_sha256": "b4adf29474c9302bfb4d7d13dafd7c1a6dd89e5eb028b5a9df646cb9d8244f46",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4633,7 +5592,16 @@
         "body": "Completed the frozen overnight self-study observation and retained its corrections, exact source/input/journal links and proposal boundaries. Journal room and navigation repairs were assessed separately in the later release/startup account; no general understanding gain follows from delivery. Evidence: analyses/2026-09-09-self-study-overnight.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Overnight self-study: useful follow-through, avoidable navigation friction",
+        "dom_record_sha256": "51334209bef3431f770812287d7728944a6d5a9694f6260f7ceeeb17fb7556b3",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4662,7 +5630,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Journal room: verified release and first natural continuation",
+        "dom_record_sha256": "a55f51825bcef516f1620fd6b8b0d309b48b6c514497ef2d5f475f2c0047ec4e",
+        "editor_record_sha256": "e28225eeaf8f6bcb788522546e47bb90e67cd52caa774de7ffe3c20ca4860c3e",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4680,7 +5657,16 @@
         "body": "September 9 paired release raised source-study ceilings to 4,096 and repaired navigation/recovery while preserving authored limits. First natural window contains two verified new-process Minime studies with 8,619 new bytes and zero repeated bytes; no Astrid study exposure. Both outputs remained below 768 tokens, so allowance delivery is established, not an effect of extra room. Evidence: analyses/2026-09-09-journal-room-live.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Journal room: verified release and first natural continuation",
+        "dom_record_sha256": "c989951e3e25efdba49264759f57fb4a6973999769afda2f66654dc83bc60df2",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4709,7 +5695,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Shared study inquiries: implementation, rollout and natural follow-through",
+        "dom_record_sha256": "f8a09222353ac3b916307bee71c2e8427e8e2aa30eb27703348cc935002692e6",
+        "editor_record_sha256": "a642b2ced4f848909f0dc38adca350a5156e895f56a63804544165889604f380",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4727,7 +5722,16 @@
         "body": "The dated account preserves the optional study-inquiry implementation, qualification, paired activation and natural-window limits. Authored notes/questions and independent source evidence remain distinct. This is a historical rollout record, not a fresh deployment or causal benefit claim. Evidence: analyses/2026-09-09-study-inquiries-live.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Shared study inquiries: implementation, rollout and natural follow-through",
+        "dom_record_sha256": "225aa22b28051caf0f24dec4c3b0e739160c286931d775d0f81ba94713dfec22",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4756,7 +5760,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Does relevant source change a retained study explanation?",
+        "dom_record_sha256": "a363efb742feef95116d6dad690d71e5feadc9b7ea93f6c41012c4884b5078b7",
+        "editor_record_sha256": "cfc2b1261d63099371c6daa4cac37af75694fe8befe9e2bfa270a3d643af7015",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4774,7 +5787,16 @@
         "body": "Six frozen cells retain five nonempty model-EOS responses, one admission refusal and one complete matched seed. Partial fixture-role uptake occurs at one seed; central correction is not demonstrated. Source-specific detail, optional note omission and proposed navigation are separate from understanding and live delivery. Evidence: analyses/2026-09-10-study-evidence-revision.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Does relevant source change a retained study explanation?",
+        "dom_record_sha256": "e336518493f68d9e20d2ed4f7e64c69f98e6b903d7b80809a97bb8303e208c24",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4803,7 +5825,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Git stabilization after the SELF_STUDY source-context work",
+        "dom_record_sha256": "fce0d621208bbedd4745cee1c1b70d50fc53f08bb170b037d1ed18cc9d03de1c",
+        "editor_record_sha256": "f7411c2410e20736596fc4c475bab5d927835fed8ed5629e4b7eea7f81842d56",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4821,7 +5852,16 @@
         "body": "Completed repository integration, preserved historical probes and recorded source-only qualification on September 15. Maintenance evidence only; this does not establish a new Being outcome, remote publication at that time, or later release acceptance. Evidence: analyses/2026-09-15-git-stabilization.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Git stabilization after the SELF_STUDY source-context work",
+        "dom_record_sha256": "196e22071a17025e757c83837e08e15ad17ecfe989bb28faa5dc85af1eb76e63",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4850,7 +5890,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Study direction: preserve inquiry without making continuation the only visible path",
+        "dom_record_sha256": "77371bef06f7913d8f220e54dff3d3cc5554ee135258d448a6f9f63e54d71d97",
+        "editor_record_sha256": "e23b9cc1c07e5fb65dcfb1284dd00fbc87a5cc51c2fdd8f3df830f805be304cc",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4868,7 +5917,16 @@
         "body": "September 16 source-hint/provenance repair and optional source-first check-in were implemented, qualified and verified live. Four Astrid inputs and no Minime study exposures occur in the fixed window; two Astrid responses selected, zero strict preparation-timing-qualified trials. Delivery works but no authored correction or causal understanding gain is established. Evidence: analyses/2026-09-16-study-direction.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Study direction: preserve inquiry without making continuation the only visible path",
+        "dom_record_sha256": "f60adfeccfa3a7f27ee1fc945fad9ee67be75c98387af0f8ba928c4f39e2d947",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4897,7 +5955,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Four hours later: broader reading, persistent assumptions, and blocked continuation",
+        "dom_record_sha256": "4e8f4ad6a364ff790b5a9a225744eced641c64fe76550e514e4b5c33c00b237b",
+        "editor_record_sha256": "850750f5a1a547b2e30884f5630be8068c8a315e3bc8489a58f64d31dff39362",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4915,7 +5982,16 @@
         "body": "The bounded four-hour follow-up records grounded local reading alongside persistent premises, page-split identifiers, full finding-store feedback gaps and private CONTINUE mismatch. Sixty-six distinct journals were close-read, including an explicitly exploratory private/nonstudy supplement. The September 17 repairs are a separate implementation; durable correction remains unestablished. Evidence: analyses/2026-09-16-study-direction-followup.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Four hours later: broader reading, persistent assumptions, and blocked continuation",
+        "dom_record_sha256": "514959396ef34605eb8e77d4ab1ddfd33d6c850e3af4381578469787f632ba24",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -4944,7 +6020,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Repairing continuation, page boundaries and finding feedback",
+        "dom_record_sha256": "a8165d2141fbe858f1fb11dbdf99759e98b6bbf8fa69e3adbfc82e3d8ab177d8",
+        "editor_record_sha256": "733a1dba578172adecf1cc07c792cff2da95c027b9baae9c25f71c118fe6524d",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -4962,7 +6047,16 @@
         "body": "September 17 repaired eligible private CONTINUE normalization, source-page line boundaries and persistent finding-save/capacity feedback. Qualification and final staged rollout are retained, including failed first-stage receipts and recovery. Two Minime study inputs, no Astrid or private-writing exposure in the frozen natural window. Working delivery does not establish comprehension, durable correction or natural private-continuation uptake. Evidence: analyses/2026-09-17-study-interface-repairs.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Repairing continuation, page boundaries and finding feedback",
+        "dom_record_sha256": "b6ade6328767274c0ab379e5f6402c2be7312250c75015a68bd1c26c49e1f8e5",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5013,7 +6107,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "update"
+      "action": "update",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Build a native 3D observatory for reservoir state and regulation",
+        "dom_record_sha256": "700b3065c4504f08d601b7f3602f18325e3a4f635fa07a43d4cc21cd2f132b5d",
+        "editor_record_sha256": "d2e47a809489b0c940afadb3d7941bc3890421f5d40f907575f299b3396244e0",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5061,7 +6164,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "no-op"
+      "action": "no-op",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Follow an Afterimage from physical trace to later use",
+        "dom_record_sha256": "10f69b49839f54d680b4b367589fca200309c0482aaca375f1a5dfd75bc31cc7",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -5090,7 +6202,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "no-op"
+      "action": "no-op",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Build and read the first Afterimage account",
+        "dom_record_sha256": "e741c8713a44b1bccf45db7e1bb181d29c20a904ef351568b967e9b11e99b4dd",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -5109,7 +6230,16 @@
         "body": "Preserved the initial source audit and proposal. Later completed provider qualification and bounded contextual experiment supersede the early unrun state without changing its historical date. Evidence: analyses/2026-09-09-activation-input-and-provider-knobs.md; board/activation-input-pending.json"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Audit contextual input and effective provider controls",
+        "dom_record_sha256": "4d01e698cca172efcaabcaa9df3f47bc41915786372218ba18f1180d5eb9b2de",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5141,7 +6271,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 · First daily source-study window",
+        "dom_record_sha256": "67438f67f3d52d4ffa82f05bee16a41943edfb98c8509c6a3e38f9a9b4741476",
+        "editor_record_sha256": "15bb140d078accf0d21952ab2f743faec59e2fc366a397580ced88be557ef9c7",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -5159,7 +6298,16 @@
         "body": "Broader Astrid-code exposure is verified in the original daily window; Minime implementation exposure remains unobserved within that verified frame. Exact source and writing links support the selected reading, not a general fidelity gain. Evidence: analyses/2026-09-09-source-study-fidelity-day1.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 · First daily source-study window",
+        "dom_record_sha256": "8c7ee5ec9f48188a2d847f79a743b8cffe2aa79614f92850a7f749ca562effdf",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5191,7 +6339,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 · Day 2: source access and a concrete fidelity error",
+        "dom_record_sha256": "0686c3fd6cbe2cf144d5e748b92cd431143015aed8a7a4a95949f3e3596198af",
+        "editor_record_sha256": "3609108f088ec2e771b1e5fb9d8bde8abbb3c8711390421b9fae35509cde3f72",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -5209,7 +6366,16 @@
         "body": "The selected supplied queue loop contradicts a single-item claim. Source and authored writing evidence remain distinct; verification applies to the frozen window and selected sample, not general comprehension. Evidence: analyses/2026-09-10-source-study-fidelity-day2.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 · Day 2: source access and a concrete fidelity error",
+        "dom_record_sha256": "1a3a56f59890ab22ab06b62b00f85988ff26d54c02da40278ad3bd9aa9aed25b",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5241,7 +6407,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 · prospective day 3, recovered September 13",
+        "dom_record_sha256": "13e2c410440d42df19d8f473fd7d8cb8c1563b84e99a3f3ea83071b0510c2a77",
+        "editor_record_sha256": "0b57dbfb24e8bbb01eab7a55dc3ecbb790fb8593dbb488746e3fe4e6bae77040",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -5259,7 +6434,16 @@
         "body": "The original day-3 window is verified with its preserved sample, source-ownership distinctions and coverage limits. Later catch-up replays do not create a new observation window or a causal fidelity estimate. Evidence: analyses/2026-09-11-source-study-fidelity-day3.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 · prospective day 3, recovered September 13",
+        "dom_record_sha256": "6f3f98f6c67cb152b861f0444951402c50ab16917730688c48484e0ffc9b0b77",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5291,7 +6475,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 · prospective day 4, recovered September 13",
+        "dom_record_sha256": "401e2960b76b80637a98c502fa509cb477345981a9bad29d1f4e15757c632763",
+        "editor_record_sha256": "e04fdf0cc461572bf6e258badcc7b48ff3dca1ce61a67e78c92f3318b630435d",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -5309,7 +6502,16 @@
         "body": "The original day-4 window is verified; preserve its sampled interpretation, unresolved inference and exact coverage limits. Daily verification is distinct from correctness of every authored claim. Evidence: analyses/2026-09-12-source-study-fidelity-day4.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 · prospective day 4, recovered September 13",
+        "dom_record_sha256": "9281c6e41d1faa436ef2882adb644d1d8adebeab6d895de3824e87bee0fbb688",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5341,7 +6543,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 · prospective day 5, recovered September 13",
+        "dom_record_sha256": "95fe08a6eb829097fbbfc0146ae6f7be6f6835beb35bc47533ef75e85d3bc0cc",
+        "editor_record_sha256": "837291b726a88fb3708729961ebedf17c59f96d4960355c86dc583d5837a60c5",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -5359,7 +6570,16 @@
         "body": "The original day-5 window is verified. Preserve the selected partial comment/call revision alongside persistent recovery inference and the source/coverage boundaries; no generalized fidelity improvement is established. Evidence: analyses/2026-09-13-source-study-fidelity-day5.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 · prospective day 5, recovered September 13",
+        "dom_record_sha256": "88069f5f05df0f8bc34e9f60256b12cde168c14757699d1ce30ad40e391313f1",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5391,7 +6611,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 · prospective day 6",
+        "dom_record_sha256": "391c214a4ef3c63e37672118723025766be5575ad3b2c9a839a247131331c934",
+        "editor_record_sha256": "0507be487321088c68ea127205f527ab675c904bc96606ec946835fc53671f1c",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -5409,7 +6638,16 @@
         "body": "A supplied path correction is repeatedly misquoted, then chosen successfully. The separately reported 175-request recovery sequence remains distinct from the prespecified daily close reading. Preserve the fixed window, scope and causality limits. Evidence: analyses/2026-09-14-source-study-fidelity-day6.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 · prospective day 6",
+        "dom_record_sha256": "fd1c6ca17c42ebae8bddb42b32a8f7968cba47beb8a7c2d460be5fd5f7bd8422",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5441,7 +6679,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 day 7 · September 15, 2026",
+        "dom_record_sha256": "7b76ce1056136a305126313d0d8a92a97ae9c94850223986e1601e9711e42bda",
+        "editor_record_sha256": "f1478a0aa0de138d8763ecd22651ccc0f0603afff3ebb7b561b66430b451b610",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -5459,7 +6706,16 @@
         "body": "Verified bounded delivery coexists with carried-map misattribution and a distinct September 15 release era. Exact source-return evidence supports the local account, not a general fidelity or comprehension score. Evidence: analyses/2026-09-15-source-study-fidelity-day7.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 day 7 · September 15, 2026",
+        "dom_record_sha256": "3b3b5d47064576277717c5390c3d09393366600701a89ddee9e68cfa8c8ea41f",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5491,7 +6747,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 day 8 · specific source, unresolved mechanism, and retained failures",
+        "dom_record_sha256": "5cfe3d0baadaf25982cc5c7409a99de0c0363f4935ffcfecb15dba5c81e88a99",
+        "editor_record_sha256": "36ec4cd07ba8718458b734db1435225dcaedf34d19a70bb436e4c9277faa535f",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -5509,7 +6774,16 @@
         "body": "All 407 completed studies have verified inputs/full journals; source supports a generic handler/filter explanation while the specific event/state-updater premise remains unestablished. Ten selected spans, three failed attempts and no Minime-repository page remain explicit. Evidence: analyses/2026-09-16-source-study-fidelity-day8.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 day 8 · specific source, unresolved mechanism, and retained failures",
+        "dom_record_sha256": "fac6ae7f84ede564d0bfc966836b75aae1da931e60e97999e3c36ceee63667ec",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5540,7 +6814,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 day 8: retained evidence and offline replay",
+        "dom_record_sha256": "9e565fff310b4036285f45bf62db1856b0c66fa76d5cf916f5ef33f8e594a9ec",
+        "editor_record_sha256": "dc58374f0de3205e8db85671e81ddf79ecdc2d9df17b29f9c01157a5255b2127",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5572,7 +6855,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 day 9 · correct local structure, incorrect page units",
+        "dom_record_sha256": "42e6dc14fbcd6b94fb74c89fd9df29054bf9cb00afa7e6c912daaf5097365d4e",
+        "editor_record_sha256": "6ef5e826e1c586165c8ff13c98927a4f9accd0e83b7a0e9d4269e9c992cd0ab1",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -5590,7 +6882,16 @@
         "body": "All 280 completed studies have exact input/full-journal links. The fixed sample preserves a correct Kernel definition location, a byte/line extent error and an unlocated guard hypothesis. All 221 page opportunities concern Astrid; no Minime-repository page. Evidence: analyses/2026-09-17-source-study-fidelity-day9.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 day 9 · correct local structure, incorrect page units",
+        "dom_record_sha256": "91c6a635284500f1099019cc83261efe4be222baac443afaea00f2c7ce055265",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5621,7 +6922,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 day 9: retained evidence and offline replay",
+        "dom_record_sha256": "c3563843276fb3cdf85cbcef63be27689cd756d25f39096d4efc7f652fa75977",
+        "editor_record_sha256": "d795863070aa4d1f7606989cb214d5d9153822eb02fff7241b5482f87a48052a",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5653,7 +6963,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 day 10 · a corrected path followed by source delivery",
+        "dom_record_sha256": "cf19c54f99286f34542dc05657f53a5d684d222d04472f442d3fc4976d13c7cd",
+        "editor_record_sha256": "cd39ec000faae280d9f924edd4c452da9864027a6e942ff2759dfb6178962740",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -5671,7 +6990,16 @@
         "body": "The fixed sample corrects an unavailable underscore path; a separately declared adjacent follow-up verifies delivery of the corrected source. Architectural truth, saved durable correction and general fidelity gain remain unestablished. The verified ledger reaches 5,088 IDs through September 18 18:34 UTC. Evidence: analyses/2026-09-18-source-study-fidelity-day10.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 day 10 · a corrected path followed by source delivery",
+        "dom_record_sha256": "c08af8ececfa10f8982cc031753961c7cd989b1f3ab71d4f4cf942a852f1c596",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5702,7 +7030,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 day 10: retained evidence and offline replay",
+        "dom_record_sha256": "000f60440ee7d98088916a762665d73268c87a3fcd6d43066938dd48be0c9071",
+        "editor_record_sha256": "7d61685a017a5b31db24026b065875f77f562a496fa3d22f42da9e5568577c7b",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5732,7 +7069,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 · September 13 recovery of daily windows 3–5",
+        "dom_record_sha256": "673eccdc9b49534c7df6e6aed3c7885f9304a262813dc5b83eabe0c40ad555bc",
+        "editor_record_sha256": "fb1a84c1fafd03ae6aa2e9d3aeb516522a7cf4be5fdf027645d206bd73ba9889",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -5750,7 +7096,16 @@
         "body": "Recovered and replayed the original windows 3–5. Preserve verified exposure, persistent recovery inference and partial comment/call revision. This catch-up adds no new daily window and does not duplicate the dated daily findings. Evidence: analyses/2026-09-13-source-study-fidelity-catchup.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 · September 13 recovery of daily windows 3–5",
+        "dom_record_sha256": "0c886e916836a19540c5bbcafb492d558c13271586718df1f08aed595e5d63bb",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5781,7 +7136,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 · First week after the source-reading repair",
+        "dom_record_sha256": "29eba23b380e2570d09f60140d8b9e3fc1dcec22f32d30609ceaee98e32a9069",
+        "editor_record_sha256": "52a4cd14615459923664b7376f04998ea7a79bcaffced5d611f0f48e8a6517e6",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -5799,7 +7163,16 @@
         "body": "Seven preserved windows show verified source exposure and selected local revisions alongside continuing attribution/navigation errors and no observed Minime-repository page. No generalized or causal fidelity gain is established. Evidence: analyses/2026-09-15-source-study-fidelity-week1.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 · First week after the source-reading repair",
+        "dom_record_sha256": "c7266ef886f60b878b58752f0b4c1cf33f13785be7b7ec81c9fbaf4ec3cd37c5",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5831,7 +7204,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 day 11: bounded reading retained, final verification blocked",
+        "dom_record_sha256": "3a56e6e72e6e65cce8de4a8e8fa62897c0c672f0d98520beb09b35f9acb6a8e0",
+        "editor_record_sha256": "c6b10bb7fede2e940a72c89dc79588b8b42608c9e757139ba3bd391816fe1e59",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5863,7 +7245,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "S-007 day 11: recover the historical host-release witness",
+        "dom_record_sha256": "c41c26c6f6390db6c710c8bb458f1730285d57791268ca1b08b760b0ad59fe73",
+        "editor_record_sha256": "d29346c11f1fe25758f2006f23d5d1a6158469a53a0e8ddd9a1bdf020990feab",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -5881,7 +7272,16 @@
         "body": "Retained the frozen window and selected reading without claiming final verification or advancing the 5,088-ID ledger. Historical host-release evidence remains required; partial prompt/bridge bindings and the original rejection are preserved. Evidence: analyses/2026-09-19-source-study-fidelity-day11.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Retain S-007 day eleven with an explicit host-release blocker",
+        "dom_record_sha256": "e23e0d17e408f0b4f7a709b6768089dd15fbd734345b12f0aed8745586073dc7",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5930,7 +7330,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "no-op"
+      "action": "no-op",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Track Minime self-study fidelity across the source-reader repair",
+        "dom_record_sha256": "5d3a92a51bbedc7605421e1cf9898fe996ca128d28251f8e35bfd5b5282b6d17",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5960,7 +7369,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Build a portable reservoir-to-journal lab",
+        "dom_record_sha256": "08d03f7a4f64c8c9403b8ab07f199cecab23f2ebe2be7a7e80efd9d559d052a9",
+        "editor_record_sha256": "d561027a06f7a28a052e2b85d4873e577173e316bb388b7fa0c11914c559b29e",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -5990,7 +7408,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Verify copied portable lab storage and replay offline",
+        "dom_record_sha256": "64e42089e4945c85b96e2f7e485195f723d094146976f2886d1d41096993ffc9",
+        "editor_record_sha256": "a8e7c65496d615fddaf2889e223a2ec2236261bc4fff92b3c5ccc382157d9268",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6020,7 +7447,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Does indexed reservoir state change supportable journal claims?",
+        "dom_record_sha256": "dac7fd919f0dd25ad9f38f36e4f02322610fd84bff63c3fae894f0ddf5a55a76",
+        "editor_record_sha256": "35f9ec1013938c31e8b13396c52d0a5a26f8d7818d3adec42fb228afe08cf190",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -6038,7 +7474,16 @@
         "body": "Delivered the separate synthetic research app, preserved model-preparation attempts and kept S-007/live systems independent. Human acceptance was not established. Evidence: analyses/2026-09-16-portable-reservoir-lab.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Deliver the portable reservoir lab foundation",
+        "dom_record_sha256": "98ca29e7be777af56e4d56b98e8d87e1b117f3ed78e492dd4e9ed89097954fca",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6069,7 +7514,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Step through an opened recording without starting a new experiment",
+        "dom_record_sha256": "3d37162f9c6f383822450b05a16718a11a64389f5a9cc64f29c797234c1e8668",
+        "editor_record_sha256": "eba66ac55adb5942c5fc71c89587fbffa86aca3d86be2056d7761865ce4d6b55",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6100,7 +7554,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Specify observable active-state and controller contrasts",
+        "dom_record_sha256": "d323f59bbeb4da1477e13d35972c546ea4bff5d74136b128f0a89ee7e11ef5b6",
+        "editor_record_sha256": "ecb6b9fb513c0746a1e32122dc206b2a71eb82b7acebf856aeba9e9570f679dd",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -6118,7 +7581,16 @@
         "body": "The source and recorded-evidence review proposed cursor-safe replay, a guided route, contrasting examples and actual newcomer acceptance. Later implementation is linked separately; this review alone did not implement them. Evidence: analyses/2026-09-16-reservoir-scope-product-review.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Review the portable lab and define the guided route",
+        "dom_record_sha256": "15b31b81fe0a812cec28cd24c781a5f765dd1c0c61a0f19b4270fb98ea4890e7",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6147,7 +7619,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Active-state journal comparison: retry and diagnosis",
+        "dom_record_sha256": "58c34b25c2296cd88a923e086331947a13bae08f434c5fa0a7745b848b94978a",
+        "editor_record_sha256": "958da962f500fbca6d04bf62b8182f0c3a6897edfab02f074852f3b1396cd8d9",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -6165,7 +7646,16 @@
         "body": "One separately authorized retry verified the owned model identity and produced four requests, three saved journals and an incomplete response at 256 tokens, stopping at step 60. The failed-but-verifiable partial comparison is preserved and exposed by 0.13.1. The owned temporary service was stopped; no fresh retry follows from publication. Evidence: analyses/2026-09-16-active-observation-retry.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Active-state journal comparison: retry and diagnosis",
+        "dom_record_sha256": "d4456e25fbba45ad71aaf3dd97098d8dd2b570c36eebfb7339e3420625a998ab",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6194,7 +7684,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Expose the partial active-state recording and its failure",
+        "dom_record_sha256": "31db65c1ebc979086550066afea796a75c96ef30dd2a22505df61fa7dc766f1e",
+        "editor_record_sha256": "361d4fdbded932c76272ed19b5c54d4b30a4a89e8f22c65aaaa9be737cc0c682",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6225,7 +7724,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Reservoir Scope 0.14 build 19: delivered test candidate",
+        "dom_record_sha256": "01d1384ffd7730b4cf702abe19a2cab8d23efd2ad54d05d38d82273312982041",
+        "editor_record_sha256": "de172516eeff4aa5c4c503b7adb0a38a31214d74a9712d44f38f2bd5785a5d6e",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6256,7 +7764,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Verify maintained daily pipeline parity before migration",
+        "dom_record_sha256": "d2f482f471c6514b3a5f733a75b9cfd38229ad0d04aab3d38af214c19a4a9fe7",
+        "editor_record_sha256": "4acfb4f35b12c59c94a6717ef1061ffe228fb4dd5666c4f501a3b4e335e4a313",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6287,7 +7804,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Verify the initial private research snapshot and isolated restore",
+        "dom_record_sha256": "51a104e0ce40e30c0b23d64f8950e7b8b2c8d6be2ffb160b71722ea08bb1045b",
+        "editor_record_sha256": "66ee72c6ac7adac00b8f277f81b2675275f4892480a47d718913594c9e10e688",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6318,7 +7844,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Short-output qualification closes negatively",
+        "dom_record_sha256": "56ffa0bcd79b77fb5775bbdd335146b89ec0ca5c5b28142b24b2c6b35a294870",
+        "editor_record_sha256": "61b27199c0291b8061608ce224d42b09690e7cc956532dd9d20bdd9696a1d0dc",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -6336,7 +7871,16 @@
         "body": "Delivered 0.14 build 19, preserved source/private evidence, qualified daily parity, registered bounded studies and retained S-009's negative result. AX traversal and human acceptance remained pending. This is the September 17 event; Git publication happened later on October 6. Evidence: analyses/2026-09-17-reservoir-scope-014-delivery.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Deliver offline research candidate and preserve bounded outcomes",
+        "dom_record_sha256": "3deae2f5797694132261d0f20cf459af375377737812d86069a08995408837c9",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6369,7 +7913,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Establish effective event survival through checkout and check-in",
+        "dom_record_sha256": "90c686979d480412f5a979ed6990b77ed6ac174b0a4d66a176ef6abc6c4befb0",
+        "editor_record_sha256": "16e2eeea47c166bb0770755d3c599edf3c711bebbff0d7262822bca0909c36ee",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6402,7 +7955,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Specify within-turn applied coupling controls and prompt joins",
+        "dom_record_sha256": "f94f0b8f9ba5b176523e34f6f574aad6a7a401e0964a48aa16ba1ebf0307ae50",
+        "editor_record_sha256": "159c1c701413b543de9dbe47043a906f39b451310d210e282e63f5a34753af6a",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6435,7 +7997,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Separate anchor copying, coupling and factual continuity",
+        "dom_record_sha256": "ced72471487340e6b3bda8757f67e5384ce698cf558a4dd13ac3879cb5e81e0f",
+        "editor_record_sha256": "0eeb4457159ae083cbbfd87c61e2ccfb1d39ccc58c7dd036e4f334c4fdf7f69c",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6468,7 +8039,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Measure event response, persistence and return beyond timers",
+        "dom_record_sha256": "9862ef43ec7b34134a9d753b26c1715dee4f5dcea0e2a070e4420a882e9ef63f",
+        "editor_record_sha256": "3d93645f53802a4c1b89ed97d161ecfa8989191d8b6b475d0d4dc135b68569d6",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6501,7 +8081,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Separate sensory energy, diversity, freshness and retained shape",
+        "dom_record_sha256": "51d1b61d15ae8cce71647270742f9d52c7a1dba34b9a57a3ee2a3ac15fc3c37c",
+        "editor_record_sha256": "5d547cd048a006a453c7185d8cbcbb656074c842f2d42e6611dbaa33e2d3bbb4",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6534,7 +8123,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Compare useful history with constant, shuffled and simpler dynamics",
+        "dom_record_sha256": "ea988d244db6baa45c01b2d3d29a06d6677fa54ec1ded6909c0374e840e2fd4e",
+        "editor_record_sha256": "865125202337a9a328629dbbbbc91d63a8433176db64713e7da5fe9f405ca862",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6567,7 +8165,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Compare contextual representations under fair calibration",
+        "dom_record_sha256": "3b29be6df7c5ca3703acf5237f0888090a0505f0ad31d1e6c79b0f202d3c7b8c",
+        "editor_record_sha256": "f1916f7a5d27802bea8ea4df729feb687ed247a743617adb3b26cce51075d813",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6600,7 +8207,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Choose what fades: outward influence, stored distinction, or both",
+        "dom_record_sha256": "d667a772a9565172939b721037b6b6a9a8dbec5da6b2d84cb75bca0ce2846a8f",
+        "editor_record_sha256": "b2a160293d150fae38ad3dd36c6c40b6b5410c38a21772711a76880417cf1502",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6633,7 +8249,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Distinguish current input, remembered structure and regulated state",
+        "dom_record_sha256": "0b3ddde25b36b32dfa6de595a96d53ebf3a8cacae0c16550f6488810f55244c1",
+        "editor_record_sha256": "961584aec1c229569cb6a9e622f06c077742f17102972e6db9a5a122ff1592a3",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6666,7 +8291,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Test fresh quiet, missing input and held shape as different encodings",
+        "dom_record_sha256": "e2ef5b3a8b6a4ee8856512b82db4e4a6bb11d2a9ff0c0c2b55a65d34eb2df436",
+        "editor_record_sha256": "b8a0e2736142f933efd4fea5c877fd2390e8bafd503f5d6af0c7c980f26a923b",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6699,7 +8333,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Map mechanisms to evidence and missing causal tests",
+        "dom_record_sha256": "0cbc0cc42d89089d9dedf628cace7b8a4799fb3da95ab66f87ae11b139bb0f5e",
+        "editor_record_sha256": "b99d7c6e43f4f9b76a23f43f5570c71d3e0e03721ce6170729e1bf922d1679c9",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6732,7 +8375,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Test order and slow context beyond timer and smoother baselines",
+        "dom_record_sha256": "741ab82d8b1dc17d7df7b0595e32eda0944e321ac26543103eb40460c83f613b",
+        "editor_record_sha256": "bff75aca86be1924de2da01c95516c26fcb7eb89203b5a974e792e8d09fa4ae0",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6765,7 +8417,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Specify a steward-side evidence-backed review",
+        "dom_record_sha256": "f6333fd86017c462e4aa979e6a5d3a8e81d6c01f87b78f31e7e5949269e25b81",
+        "editor_record_sha256": "b41c007a03dfcc63788097f1a83d68a7bb329098d341500219c6ff2dfeacb6c8",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6812,7 +8473,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "update"
+      "action": "update",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Propose coherent state, leak and controller evidence for the observatory",
+        "dom_record_sha256": "7439a4f2afbc064dd6fc1a2a74c887c32e4d12a3cd692e6e7fccd4ae682d9306",
+        "editor_record_sha256": "94a171772a94f09e58268d3c599a56081189bad277b4c447d555674086389c3b",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6845,7 +8515,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "The inspected reuse-control sign favors or suppresses reuse",
+        "dom_record_sha256": "00b06343beb1c995280c3480a9ae17e2e763fb8cb65923e31090385ddcbdf5ac",
+        "editor_record_sha256": "5de4983bc5c0ec27171f7fca640fd3290f95ba1eeeae67b4a01bc4dc4e28532c",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6878,7 +8557,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Final coupling logs do not establish within-turn trajectories",
+        "dom_record_sha256": "faf80436f8a93290fcba89af944032796e09391d1ebb1913a907c9d86cba5999",
+        "editor_record_sha256": "8334457935b61a52cd93b0e3743ef095a1f24028440c43932ef8cfd1d6daef7b",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6911,7 +8599,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "The inspected check-in overwrites state without a caller-version guard",
+        "dom_record_sha256": "d27e54c6f00bb5db2165dd5b696c3b76f3b8ae803c3b6c7b1c6e7e0d2c3dfb2f",
+        "editor_record_sha256": "610b5a09510de5d3f8f8ef39e09cacaab76202ab2862e5d73161c1319f5ad97e",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6944,7 +8641,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Normalized sensory shape does not measure absolute incoming energy",
+        "dom_record_sha256": "0978ca7debe8ca071986b0594046097324a1f68befa38d513faebe4175d15d92",
+        "editor_record_sha256": "da49c9dcbd31ed264ff080a382cac58c01c8e1fb6714a5066c0698d493e5da5e",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -6992,7 +8698,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "update"
+      "action": "update",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "M1: Persist the exact prompt for every generation, both beings, every lane",
+        "dom_record_sha256": "56c3fff0cfb4d3c7341443ac9dae10dd4be5a0c39578488046f78eaba3d5e5d1",
+        "editor_record_sha256": "c2df11c3d945beb12f4d986606e03711232ce853c96f3ad2233c424f175a2f5a",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -7038,7 +8753,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "update"
+      "action": "update",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Log the backend and model for every generation (M1 extension)",
+        "dom_record_sha256": "739167a3ef618e88b95f319ca3a245412c9669d1ef74b493da04cfc9a01c6b35",
+        "editor_record_sha256": "a9502c2e17967d8c6ee1a52f6fb9317e6df080cd2a45bad8a35ca2261ef67019",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -7085,7 +8809,16 @@
         "matching_method": "unique id: tag or exact title; dated title for log",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "update"
+      "action": "update",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Why do streaming clients read as stale beyond the engine window?",
+        "dom_record_sha256": "267744d0c4e70440241cf28940aa39a233e1c7788f12c8c28e9d7497bd4dbbb9",
+        "editor_record_sha256": "a49e20b9d94fa8b752f26fc83ba27693af12ca84f9a92e8b13c3b1af3610543a",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -7103,7 +8836,16 @@
         "body": "Preserved the dated source review and corrections; refined proposed tests and finish lines without performing the experiments or changing live systems. Existing completed work is preserved and no proposed benefit is treated as verified. Evidence: exercises/2026-09-06-triple-reservoir-refinements.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Source-check proposed triple-reservoir refinements",
+        "dom_record_sha256": "51bc673d1b29920958ede9de0d138f052e5a765778241bf0fe054e6d823255ee",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -7121,7 +8863,16 @@
         "body": "Preserved the dated source review and corrections; refined proposed tests and finish lines without performing the experiments or changing live systems. Existing completed work is preserved and no proposed benefit is treated as verified. Evidence: exercises/2026-09-06-triple-reservoir-corrections-and-next-tests.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Retain collaborator corrections and sharpen next tests",
+        "dom_record_sha256": "ce6e71485fcc27ccf30e30395230fb72d88d59de9c2cf17873fe52ff59751187",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -7139,7 +8890,16 @@
         "body": "Preserved the dated source review and corrections; refined proposed tests and finish lines without performing the experiments or changing live systems. Existing completed work is preserved and no proposed benefit is treated as verified. Evidence: exercises/2026-09-06-session-close-and-board-brief.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Close the session with an audit thesis and a bounded execution queue",
+        "dom_record_sha256": "690eb6fce6f18283efd315b4bfa8fc7c31258c011f5008d5977644f989767f8b",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -7173,7 +8933,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Close the frozen S-006 consecutive-review follow-up",
+        "dom_record_sha256": "c9bfef63fe160dca53b1271738da3d6d5990aa88111c2e6fe05978263a23e379",
+        "editor_record_sha256": "5d8720e89f56d6e1bac5823e14357b976fa36185ed1829828832fe5aaef57b86",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -7206,7 +8975,16 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Close the frozen S-008 durable-correction follow-up",
+        "dom_record_sha256": "281e6c52fb093745426544d0ba7c33084415cc01521ea3af36b004264cff9d4a",
+        "editor_record_sha256": "acf05d36c2a17ec59d3648b9bf79fdd2943a7b35986df796e1fb6c36691383b3",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
@@ -7239,28 +9017,43 @@
         "source": "Mike-directed research; dated accounts linked in evidence"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Integrate the reviewed offline geometry-bookmark candidate",
+        "dom_record_sha256": "f4b42a0544f9adf18c2e2e9b2b47f7fb80c414697b45389dfa233d4824d7c6e6",
+        "editor_record_sha256": "365383ea09d82e84a545be37c81191fe79e245652cb643ab807f9f37b241b199",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "cards",
       "canonical_key": "t-research-closeout-20261006",
       "aliases": [],
-      "publication_ready": false,
+      "publication_ready": true,
       "database_id": null,
       "existing_title_hint": null,
       "preserve_existing_status": false,
       "preserve_existing_source": true,
-      "resolution": "Prepared final wording only; publish after root supplies the actual snapshot and isolated-restore pass, records its exact commit boundary, and verifies the final board readback.",
+      "resolution": "Verified recovery receipts release the previously held final completion. Update the existing active card, preserving its actual editor source; no duplicate card.",
       "source_refs": [
+        "analyses/2026-10-06-git-tidy-and-record-status.md",
+        "research/NOW.md",
         "analyses/2026-10-06-bounded-followups-closeout.md",
         "research/inquiries/2026-09-21-geometry-bookmarks.md",
         "analyses/2026-10-06-board-reconciliation.md",
-        "analyses/2026-10-06-git-tidy-and-record-status.md",
-        "analyses/2026-10-06-research-closeout-and-geometry-integration.md"
+        "analyses/2026-10-06-research-closeout-and-geometry-integration.md",
+        "analyses/2026-10-06-recovery-snapshot.md",
+        "research/outputs/2026-10-06-closeout-recovery/archive-operations/operations-receipt.json",
+        "research/outputs/2026-10-06-closeout-recovery/replay-v2/replay-receipt.json",
+        "research/outputs/2026-10-06-closeout-recovery/packet-manifest.json",
+        "research/outputs/2026-10-06-closeout-final-preservation/preservation.json"
       ],
       "desired": {
         "title": "Close bounded research and prepare reviewed Git integration",
-        "body": "Completed the October 6 bounded research accounts, reviewed local geometry integration and full Hold Shelf reconciliation with retained publication/readback evidence. S-006/S-008 close with incomplete historical coverage and broader questions open; S-007's frozen blocked window and ledger remain unchanged. The local recovery snapshot and isolated restore have passed their recorded checks. The archive binds the completed source/record commit; the later board completion attestation is a separate Git record rather than a self-containing archive claim. The snapshot is a same-volume recovery copy, not an independently located backup. Reservoir Scope 0.14 acceptance and any being-side rollout remain separate.",
+        "body": "Completed the bounded research accounts, reviewed local 0.15.0 build 20 geometry integration and full Hold Shelf reconciliation. S-006/S-008 close with incomplete coverage and broader questions open; S-007's blocked day11 and 5,088-ID ledger remain unchanged. The native aggregate retains one watermark image-comparison failure; an unchanged strict rerun passed. The same-volume snapshot binds clean commit d47a866192eafe0da803f62acd6e20f1a16dfffc: 23,492 files and 8,757,769,076 bytes. Snapshot verification, independent restore and isolated replay passed: eleven historical daily/weekly accounts, three original bounded checkpoints and the safe closeout. The first denied scratch-write attempt remains preserved; the documented external relocation adapter leaves frozen source, archive and restored evidence unchanged. All 45 protected originals and seven sealed packets remain unchanged. Later recovery/board attestation is outside the snapshot. Independently located backup and older backup availability remain unverified. Human newcomer acceptance and being-side rollout remain separate.",
         "lane": "test",
         "status": "done",
         "being": "system",
@@ -7268,10 +9061,9 @@
           "id:t-research-closeout-20261006",
           "research-closeout"
         ],
-        "evidence": "analyses/2026-10-06-git-tidy-and-record-status.md; research/NOW.md; analyses/2026-10-06-bounded-followups-closeout.md; research/inquiries/2026-09-21-geometry-bookmarks.md; analyses/2026-10-06-board-reconciliation.md; analyses/2026-10-06-git-tidy-and-record-status.md; analyses/2026-10-06-research-closeout-and-geometry-integration.md",
+        "evidence": "analyses/2026-10-06-git-tidy-and-record-status.md; research/NOW.md; analyses/2026-10-06-bounded-followups-closeout.md; research/inquiries/2026-09-21-geometry-bookmarks.md; analyses/2026-10-06-board-reconciliation.md; analyses/2026-10-06-research-closeout-and-geometry-integration.md; analyses/2026-10-06-recovery-snapshot.md; research/outputs/2026-10-06-closeout-recovery/archive-operations/operations-receipt.json; research/outputs/2026-10-06-closeout-recovery/replay-v2/replay-receipt.json; research/outputs/2026-10-06-closeout-recovery/packet-manifest.json; research/outputs/2026-10-06-closeout-final-preservation/preservation.json",
         "source": null
       },
-      "publication_gate": "Requires actual verified snapshot/restore receipt and root release of this held operation. Desired done wording is not a present completion claim.",
       "existing_live_match": {
         "database_id": null,
         "title": "Close bounded research and prepare reviewed Git integration",
@@ -7282,10 +9074,53 @@
         "date": "2026-10-06",
         "evidence": "analyses/2026-10-06-git-tidy-and-record-status.md; research/NOW.md",
         "snapshot_record_sha256": "588a39faf46fff30435feee9c71beb0791695ecd137bbd5ed42fa154c83e4304",
-        "matching_method": "unique id: tag or exact title; dated title for log",
+        "matching_method": "Unique id tag and exact title in pre-snapshot reloaded inventory; active status retained until this final update",
         "source_field": "not exposed by DOM overview; read editor before update"
       },
-      "action": "pending-outcome"
+      "action": "update",
+      "revision_events": [
+        {
+          "from_generation": 6,
+          "to_generation": 7,
+          "before_desired": {
+            "title": "Close bounded research and prepare reviewed Git integration",
+            "body": "Completed the October 6 bounded research accounts, reviewed local geometry integration and full Hold Shelf reconciliation with retained publication/readback evidence. S-006/S-008 close with incomplete historical coverage and broader questions open; S-007's frozen blocked window and ledger remain unchanged. The local recovery snapshot and isolated restore have passed their recorded checks. The archive binds the completed source/record commit; the later board completion attestation is a separate Git record rather than a self-containing archive claim. The snapshot is a same-volume recovery copy, not an independently located backup. Reservoir Scope 0.14 acceptance and any being-side rollout remain separate.",
+            "lane": "test",
+            "status": "done",
+            "being": "system",
+            "tags": [
+              "id:t-research-closeout-20261006",
+              "research-closeout"
+            ],
+            "evidence": "analyses/2026-10-06-git-tidy-and-record-status.md; research/NOW.md; analyses/2026-10-06-bounded-followups-closeout.md; research/inquiries/2026-09-21-geometry-bookmarks.md; analyses/2026-10-06-board-reconciliation.md; analyses/2026-10-06-git-tidy-and-record-status.md; analyses/2026-10-06-research-closeout-and-geometry-integration.md",
+            "source": null
+          },
+          "previous_desired_was_published": false,
+          "before_observed": {
+            "being": "SYSTEM",
+            "body": "Mike approved the October 6 closeout: one bounded historical S-006 recovery, an explicit-input offline S-006/S-008 account, geometry importer repairs and local integration, complete board reconciliation, and a verified same-volume recovery snapshot. Work is underway on codex/research-closeout. The 0.14 release and S-007 blocked window remain preserved; human acceptance and being-side rollout remain separate.",
+            "date": "2026-10-06",
+            "evidence": "analyses/2026-10-06-git-tidy-and-record-status.md; research/NOW.md",
+            "lane": "Tests",
+            "status": "active",
+            "tags": [
+              "id:t-research-closeout-20261006",
+              "research-closeout"
+            ],
+            "title": "Close bounded research and prepare reviewed Git integration"
+          },
+          "correction_reason": "Replace held draft with verified post-snapshot outcome and preserve native/replay failures and recovery scope."
+        }
+      ],
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Close bounded research and prepare reviewed Git integration",
+        "dom_record_sha256": "d0a50a277659fe4f5439743d112318e3821b89036a0b16bf240046b0a34f4d82",
+        "editor_record_sha256": "0dfd8103e182c286e6abc5cca1a5135aceda550473d6d102755ad35b54be0973",
+        "editor_scope": "exact persisted fields checked",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -7303,7 +9138,16 @@
         "body": "Completed one preregistered S-006 recovery and the explicit-input S-006/S-008 closeout. S-006 recovered no eligible content from the retained inventory and leaves historical opportunity unknown. S-008 adjudicated all 14 changed-revision candidates as ineligible under the unchanged full-anchor rule; the accepted slice has no eligible exposure, with full-period coverage incomplete. The broader questions remain open. Forty-nine fixture tests passed, explicit-input isolated replay reproduced the report byte-identically, and 45 frozen originals remained unchanged. S-007's blocked day11 and 5,088-ID ledger are preserved; S-009 remains a completed negative qualification. No new model call, service change or induced study. Evidence: analyses/2026-10-06-bounded-followups-closeout.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Close bounded follow-ups with incomplete historical coverage",
+        "dom_record_sha256": "e2b731eac08ed515c0bfb772d055be7c75709d72f83b3acd3dae127a3632a14a",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -7324,7 +9168,16 @@
         "body": "Research-only capture, full-cohort reading, independent source audit and bounded provider/action reconstruction completed. No Being messages, model calls, live edits, restarts, or daily S-007 cursor changes. No callable Artifact board connector found; nothing in this payload is represented as mirrored. Evidence: board/astrid-study-survey-pending.json; analyses/2026-09-15-astrid-study-survey.md; research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending; research/outputs/2026-09-15-astrid-study-survey/README.md"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Astrid's latest hundred studies: repeated small maps and useful local reading",
+        "dom_record_sha256": "1e2acd4878c9880c125091a3840bbee72dbee0803b1f7f2effd89f5407fb2828",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     },
     {
       "collection": "log",
@@ -7354,31 +9207,123 @@
         "body": "Initial source-context release 76c2aa and the separately observed newline follow-up dd35cdd83a are qualified, committed/pushed and live. Latest suites: reader 139, bridge 2,287 / 1 ignored, Minime 1,396 / 1 skipped plus 134 passing subtests; strict lint/fmt/boundary and 112 staged-helper checks pass. Both graceful transitions preserve exact stopped checkpoint, pending feedback and self-control lineage; 11 surrounding service identities remain unchanged. Fixed initial natural window retains 1 Astrid / 4 Minime receipts and reviews 1 Astrid / 2 Minime, with unverified preparation clocks and no causal learning claim. Earlier 1,193-file survey packet unchanged; S-007 cursor/ledger unchanged; local NOW history prefix preserves pre-existing material. Board mirroring remains pending; no board write attempted. Evidence: board/study-source-context-pending.json; analyses/2026-09-15-study-source-context.md; analyses/2026-09-15-astrid-study-survey.md; research/histories/self-study.md#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/validation.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/integration.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/source-context-replay/summary.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/activation.log; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-host-after.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/staged-input-audit.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/minime-staged-helper-tests.log; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/before-activation/processes.json; /Users/v/other/reservoir-llm-research/research/outputs/2026-09-15-study-source-context/after-activation/processes.json"
       },
       "existing_live_match": null,
-      "action": "create"
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Study source scope, verified coverage and optional authored findings",
+        "dom_record_sha256": "52dffb937878a6caa856bb75d3fdc4e1c7c541dc3836cea51dbdbeba546b4249",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
+    },
+    {
+      "collection": "log",
+      "canonical_key": "2026-10-06-research-closeout-and-recovery",
+      "database_id": null,
+      "publication_ready": true,
+      "aliases": [],
+      "source_refs": [
+        "analyses/2026-10-06-research-closeout-and-geometry-integration.md",
+        "analyses/2026-10-06-recovery-snapshot.md",
+        "research/outputs/2026-10-06-closeout-recovery/replay-v2/replay-receipt.json",
+        "analyses/2026-10-06-board-reconciliation.md"
+      ],
+      "resolution": "Append this dated final attestation after the verified recovery outcome; retain all earlier logs.",
+      "desired": {
+        "title": "Complete research closeout and verify local recovery snapshot",
+        "date": "2026-10-06",
+        "body": "Completed local research/geometry integration and the later recovery attestation. The same-volume snapshot captures clean commit d47a866192eafe0da803f62acd6e20f1a16dfffc, 23,492 files and 8,757,769,076 bytes; archive manifest SHA-256 2c6579284f93b22ea093dc273e62b52fb3021ba43a1a574eda95e1a63accdd9b. Separate verification, restore and isolated replay passed. Eleven historical daily/weekly replays, three original bounded checkpoints and safe closeout verification passed; day11's expected block and unchanged 5,088-ID ledger were reproduced. The first denied scratch-write attempt is retained, and a qualified external relocation adapter preserves the frozen code and archive/restore inventories. The native aggregate retains one watermark image-comparison failure; the unchanged strict rerun passed. S-006/S-008 coverage limits, S-009's negative qualification, human acceptance and being-side rollout remain separate. These recovery/board records postdate the snapshot. Independently located backup and older backup availability remain unverified. Evidence: analyses/2026-10-06-research-closeout-and-geometry-integration.md; analyses/2026-10-06-recovery-snapshot.md; research/outputs/2026-10-06-closeout-recovery/replay-v2/replay-receipt.json; analyses/2026-10-06-board-reconciliation.md"
+      },
+      "existing_live_match": null,
+      "action": "create",
+      "publication_verification": {
+        "status": "verified",
+        "database_id": null,
+        "actual_title": "Complete research closeout and verify local recovery snapshot",
+        "dom_record_sha256": "fe6eecb4f3381b522cc6cd6a0f85e9ab074ebcbe64289e4a4294b3b8f6e7d16f",
+        "editor_record_sha256": null,
+        "editor_scope": "previously published no-op; no edit made",
+        "repeat_reconciliation_action": "no-op"
+      }
     }
   ],
   "summary": {
-    "sources": 105,
+    "sources": 114,
     "source_kinds": {
       "pending-payload": 29,
       "ignored-pending-payload": 1,
       "current-completion-account": 1,
-      "current-qualification-receipt": 3,
+      "current-qualification-receipt": 4,
       "current-integration-account": 1,
       "pending-section": 60,
-      "inline-pending-notice": 10
+      "inline-pending-notice": 10,
+      "post-snapshot-completion-account": 1,
+      "post-snapshot-recovery-receipt": 4,
+      "post-snapshot-retained-failure": 1,
+      "post-snapshot-preservation-receipt": 1,
+      "current-coordination-account": 1
     },
-    "operations": 189,
+    "operations": 190,
     "actions": {
       "no-op": 13,
-      "create": 168,
-      "update": 7,
-      "pending-outcome": 1
+      "create": 169,
+      "update": 8
     },
     "cards": 125,
-    "logs": 64,
-    "held_current_outcomes": [
-      "t-research-closeout-20261006"
-    ]
+    "logs": 65,
+    "held_current_outcomes": [],
+    "next_reconciliation_required_writes": 0
+  },
+  "pre_snapshot_publication_readback": {
+    "dom_path": "research/outputs/2026-10-06-board-reconciliation/pre-snapshot-after-reload.json",
+    "editor_path": "research/outputs/2026-10-06-board-reconciliation/pre-snapshot-editor-readbacks.json",
+    "dom_check_path": "research/outputs/2026-10-06-board-reconciliation/pre-snapshot-dom-check.json",
+    "editor_check_path": "research/outputs/2026-10-06-board-reconciliation/pre-snapshot-editor-check.json",
+    "visible_ready_operations": 188,
+    "changed_cards_with_exact_editor_fields": 113,
+    "cards": 286,
+    "logs": 107,
+    "required_dom_writes": 0,
+    "required_editor_writes": 0,
+    "scope": "All ready operations. Overall final done remains held, with its current active card preserved."
+  },
+  "publication_readback": {
+    "status": "verified",
+    "dom_path": "research/outputs/2026-10-06-board-reconciliation/final-after-reload.json",
+    "editor_path": "research/outputs/2026-10-06-board-reconciliation/final-editor-readbacks.json",
+    "dom_check_path": "research/outputs/2026-10-06-board-reconciliation/final-dom-check.json",
+    "editor_check_path": "research/outputs/2026-10-06-board-reconciliation/final-editor-check.json",
+    "expected_cards": 286,
+    "expected_logs": 108,
+    "expected_ready_operations": 190,
+    "expected_changed_cards_with_exact_editor_fields": 114,
+    "dom_sha256": "d7c7a2d0aca43128e0e92999fe4506e1786993489954549afbb9ac7a076ef495",
+    "editor_sha256": "810a7bea98be7f9758a12b1f292621a1447e4cb50a93effe4010b0ef5ed7e861",
+    "publication_receipt_path": "research/outputs/2026-10-06-board-reconciliation/final-closeout-publication.json",
+    "publication_receipt_sha256": "4d390a31dd520f842b94656b4395ed00da54927c6e33dcb5969f65e1178fedf8",
+    "final_publication_finished_at": "2026-10-06T17:52:52.552Z",
+    "proof_path": "research/outputs/2026-10-06-board-reconciliation/final-board-proof.jpg",
+    "proof_sha256": "40ad535a7f2b44acf9ba85e3ee8f255b573ac498ee0c0f2dc40c713cbcdc1d60",
+    "visible_ready_operations": 190,
+    "changed_cards_with_exact_editor_fields": 114,
+    "cards": 286,
+    "logs": 108,
+    "required_dom_writes": 0,
+    "required_editor_writes": 0,
+    "source_witness_limit": "reading-letter card has its first saved editor source and publisher preservation note, but no separate retained pre-update source witness."
+  },
+  "snapshot_attestation": {
+    "source_commit": "d47a866192eafe0da803f62acd6e20f1a16dfffc",
+    "pre_snapshot_manifest_sha256": "1399a64d66fde6b0ffc338dcb1621573735b6f76d4b4ca26b973a5a2379a9074",
+    "pre_snapshot_manifest_copy": "research/outputs/2026-10-06-board-reconciliation/prepared-manifest-1399a64d66fde6b0ffc338dcb1621573735b6f76d4b4ca26b973a5a2379a9074.json",
+    "archive_manifest_sha256": "2c6579284f93b22ea093dc273e62b52fb3021ba43a1a574eda95e1a63accdd9b",
+    "replay_receipt_sha256": "3b6d84ff04dfcb47a7487c741c6016cad9aa60e7105c6ec2904ad178011e02bc",
+    "packet_manifest_sha256": "361097768f151dd46ebd3db08b2a668984b67220ec79ec0261a9041679bcbe64",
+    "replay_finished_at": "2026-10-06T17:47:30.150630+00:00",
+    "same_volume": true,
+    "independent_backup": "unverified",
+    "boundary": "Generation 6 and source commit are captured; this generation 7 final attestation is later evidence outside that snapshot."
   }
 }
