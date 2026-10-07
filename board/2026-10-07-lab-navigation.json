@@ -1,0 +1,317 @@
+{
+  "schema": "research-product-tranches-reconciliation-v1",
+  "date": "2026-10-07",
+  "base_commit": "6bbe5728186aa2a8ed25951bb7244e534587b566",
+  "board_url": "https://claude.ai/code/artifact/f4761d4a-94e8-43ca-882f-ca887956fca0",
+  "scope": "One new work card and one dated log; every prior card and log remains unchanged.",
+  "identity_limit": "Authenticated UI exposes title and local id: tag, not database document IDs. No database ID is inferred.",
+  "sources": [
+    {
+      "path": "analyses/2026-10-07-lab-navigation-and-evidence.md",
+      "sha256": "25edc96203d2e98e15813469bfed15be14ccc4c3eef5df5f45fb70d0709b1506"
+    },
+    {
+      "path": "board/README.md",
+      "sha256": "38cc1f7ba6c47d964b5b3e5e777f1b0de0fce861954bc14cfdead32934034e0d"
+    },
+    {
+      "path": "essentials/ACTIONS.md",
+      "sha256": "46129932fd3dccad05cc1e12dab3b5733cd477d480f9c6d447f373657708c32a"
+    },
+    {
+      "path": "essentials/EXPLORE.md",
+      "sha256": "424a9cffba290f2a3f817b2ace18dd588e135bf8b0843b8ad70027cd830f77da"
+    },
+    {
+      "path": "essentials/README.md",
+      "sha256": "567efec960e5ed7cc7d05485b122677b4302a7c5e5082ae11775c95ff4f5c37d"
+    },
+    {
+      "path": "native/ReservoirScope/CHANGELOG.md",
+      "sha256": "65e61793d6a662c2bdbbdf4989c06ca9340ff1f4f6dd3ccd305b4ca2810c7a33"
+    },
+    {
+      "path": "native/ReservoirScope/HANDOFF.md",
+      "sha256": "5595c53eecfdf32bff8a4a803561d739bb2d9703c5ba70853e762523a563ae77"
+    },
+    {
+      "path": "native/ReservoirScope/README.md",
+      "sha256": "1199d064f86038a6a656fbc666d0f4212d46c30c123bf5a7216539ea6daa4841"
+    },
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ActionComparisonExperience.swift",
+      "sha256": "0fed4d184b0e289e5fb18aeeff28664f21806ced4cf1fe88146e53f1030bcbad"
+    },
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ExperimentLibraryView.swift",
+      "sha256": "73970f2fc9e2254ea465dd9ea201d3999f5634c3ad26687ba54f5161c7548de4"
+    },
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/GeometryBookmarkView.swift",
+      "sha256": "3e3fba1a74e8f07a42c71f1b121289aa71e05c1bb6d08908f8e4857b5a7e7ab8"
+    },
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/GeometryBookmarkViewModel.swift",
+      "sha256": "2357f111138ecdb92ea6ccc9d0e789e8d94ea50b75af1928a0590b911304d8c8"
+    },
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ResearchCaseView.swift",
+      "sha256": "3ad690f26a03023d2844eb134da56936617ab466deee7d48247ffbc5529f66c8"
+    },
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ResearchCasesViewModel.swift",
+      "sha256": "b200d4d36032ed75cc1716530fcb821bcc9f98ca1ac7368d79b7cfb9f5b03a34"
+    },
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ResearchCasesWorkspace.swift",
+      "sha256": "4ecff815e90f363791b5c46b638ff5ca871d2044515f9516c7996728bb99a329"
+    },
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ScopeWorkspace.swift",
+      "sha256": "72742616a78dd7d1298e963d6aa74713e0a033f9bad0583c13c76930a8c977e3"
+    },
+    {
+      "path": "native/ReservoirScope/Tests/GeometryBookmarkPresentationChecks.swift",
+      "sha256": "daad17522a347c1c9873263b0ce37370d625e306703b9e024fc916724bde2169"
+    },
+    {
+      "path": "native/ReservoirScope/Tests/GuidedPlaybackPresentationChecks.swift",
+      "sha256": "78571a5af4c6112cd9ea3dcddf1a0869a04df9176924daa3df0f3505928fd2ee"
+    },
+    {
+      "path": "native/ReservoirScope/Tests/ResearchCasesWorkspaceChecks.swift",
+      "sha256": "c0f1ccd489e0122caad1941b583b0f9cfa799aef9251b92a92fe6a111802c61f"
+    },
+    {
+      "path": "native/ReservoirScope/check-geometry-bookmark-presentation.sh",
+      "sha256": "d76fe94a1a93e42608a0cf58d2e45ea9d0768718a59e68860a56295267d49459"
+    },
+    {
+      "path": "native/ReservoirScope/check-guided-playback-presentation.sh",
+      "sha256": "8b3e67246f7e4ed307c5613e5e5560275d61aae052ad76c7e95f1c3bf3d373bc"
+    },
+    {
+      "path": "native/ReservoirScope/check-research-cases-workspace.sh",
+      "sha256": "c60d5fe29394a724b75cb7aa894e2c88a64945f25934de89b03f783d2e80ec6a"
+    },
+    {
+      "path": "native/ReservoirScope/docs/GEOMETRY-BOOKMARKS.md",
+      "sha256": "36d3af6faa45a6dbfefd6bf3d98c3f041158416d10b5871c20b045966bef0717"
+    },
+    {
+      "path": "native/ReservoirScope/docs/GUIDED-TOUR.md",
+      "sha256": "b870dd77b55ddba481e53f18c744514a2ed86ac36297d22e498bb80388f2cea7"
+    },
+    {
+      "path": "native/ReservoirScope/docs/PORTABLE-LAB.md",
+      "sha256": "04b669c2a201968b842f74f96369ac25405e34a8df00ccf284404637aa19ddaf"
+    },
+    {
+      "path": "native/ReservoirScope/resource-manifest.json",
+      "sha256": "933f2e55b214c3fa72ae81c10da6b1781f8f36de296489dff0bc0022ec503a88"
+    },
+    {
+      "path": "research/CURRENT-RELEASE.md",
+      "sha256": "fd61d76e55025233c1591e5cab585e7963949cbf7a8b004c7c0b2ee2e6b24f12"
+    },
+    {
+      "path": "research/NOW.md",
+      "sha256": "5ccf41c8ae5c6e7367baec0852b786de134a40af8becb5457578f2bdd242a005"
+    },
+    {
+      "path": "reservoir_research/verification.py",
+      "sha256": "7b215adc6f2c9b1d324e31c2123437ba0a6704b9f066928bd1175325f03efa96"
+    },
+    {
+      "path": "tests/test_verification_entry.py",
+      "sha256": "5dd195a4c85bf2c4271178711e132510627d9ce6db80567facbdc40cd319e953"
+    }
+  ],
+  "receipts": [
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/python-suite.log",
+      "sha256": "eca9d8130b7f939f377ecb5522b8a1b7d24f99ec33c6f73e7d27a5a404837b22"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/cases-final.log",
+      "sha256": "7c9fd4ec0b72a90206c15575f2d77c4cf9b3a0157645b8cc36c382cfbcbcc6dc"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/source-staging.log",
+      "sha256": "07ef8cb1b471d30122f12faf4fb27b7d1ab2e6cb253f03efa2f6b0d038a9cb7a"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/source-staging-retry.log",
+      "sha256": "17166bc65a33018a3cf5d5948abaf80927c124e0f6235516855fea19ac8180fd"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/toolchain-note.txt",
+      "sha256": "3d5090fc1eb5fd098c197d24f765309866d9e97c925a6c05e3ba74caf46e6d81"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/build21.log",
+      "sha256": "d38852ac2a385727765cb554920cbded10669676f5545c48683843cadf0a8e71"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/actions-model.log",
+      "sha256": "edfbd806424d98ab1c1076aa59dd39d66f3a2d046f797bb3d8dd828a96002ea9"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/package-identity-checks.log",
+      "sha256": "1267dcf2d4745b42df5308064ad093c09fef3ed312587c7aee24f850f61c7917"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/guided-readiness-checks.json",
+      "sha256": "7ddb56a5ac88648596c4d84ef9e3b3be46612eee7ae33e2f8bfcb69301162415"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/candidate-identity.json",
+      "sha256": "80b9d9de6f7af811b53b9c1c4ef90c3bea244bddf1b3ca35fd21a8971557eb38"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/qa-boundary-receipt.json",
+      "sha256": "e59953352124882e7b8314e299f318ede614318a4dbbdeeb45654b17b0a267e3"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/verify_qa_boundary.py",
+      "sha256": "26aad02fe3ec7df356539c9be37ee8a759ea379a10d9d65c22f90fa3da5274d6"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/ui-verification.json",
+      "sha256": "cb57a33e0b7614633e477f2d5d8a1c0386a7e973c809f5304a80860d1f640f9d"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/verify_ui_receipts.py",
+      "sha256": "8788414eec461f199ea807d1df12d2a847d2357bc134f06229dd557039b3a3bf"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/ui-observations-final.json",
+      "sha256": "3dcf92406cdae2f1458a09f3b63d39465e865c18479c6658e1a01293642f2529"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/screenshots.json",
+      "sha256": "7c9bee2dab46eec44ce7abcbc7ed8ff1d3eb2d49e79ee1e1ac7a55b14be521a0"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/package-verification/verification.json",
+      "sha256": "3fe08c88dfecd89b269861fc9c8cddc3def7c4992e0f5b84b95ce114275d89bc"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/board-before.json",
+      "sha256": "e095e9dea36f05a99d4b6e693213b90e31a6dc71bd7b330846e668a12c88dc6d"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/board-active-card.json",
+      "sha256": "336943e64eb5886c4f87f4efe852b428a7232368163d86340f73e7679cf2ab5e"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/board-final-card.json",
+      "sha256": "d8838be0d1db8b9b07bdeece5c14cf3f28c74fd8caf6c1493a4cbc0cab9c8d4d"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/board-final-log.json",
+      "sha256": "d0596d070cbf67756d99ca01c3763b2979f663740b572122c7a5482f4bf152de"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/board-after-complete.json",
+      "sha256": "d6fecd567f65ebe45d74d863a3d302a1aaca45bcdc1159261b58906f5904abed"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/board-proof.jpg",
+      "sha256": "15e398a7f2b8d48a17437e85d7ff63feecb2630ca4081182c256e6930139505b"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/verify_board.py",
+      "sha256": "548a36ef56d33e75668092867014c3b740f1e9bddde1cf29bf7a8d899fb1a7d3"
+    },
+    {
+      "path": "research/outputs/2026-10-07-geometry-first-use/receipt.json",
+      "sha256": "1ceef4cfe9f2e786968a13bf37324ff921d1fbaf692f0166ed33a841460d9bf6"
+    },
+    {
+      "path": "research/outputs/2026-10-07-guided-playback/preferences-confirmation/receipt.json",
+      "sha256": "60a44364709529cbb9bdfc0ceeb6b7dd19c822a1f10570ba6d251db7cbc56ab1"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/docs-verification.json",
+      "sha256": "d17362d4a71f49d55dae638980101a39a6f27ea70357bbab8a9c3e7014218ff1"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/verify_documentation.py",
+      "sha256": "88e00f1833235b612aee8a3927274505877f8dbf8fe31759e9ea485242295082"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/docs-verification-initial.json",
+      "sha256": "4bbd3d22c644f78793e120e85bb505653633c29acfe97851c6c4809cf3711f42"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/final-source-identity.json",
+      "sha256": "e32d53f994d5c27f471c94c28eb6ad712422dbecc7f5c2101924b75e80c49ae3"
+    },
+    {
+      "path": "research/outputs/2026-10-07-lab-navigation/verify_git_finish.py",
+      "sha256": "a7e820fd13b90869bc068be754966a5a6f7aed31c1a7247d479ee468c92ea57d"
+    }
+  ],
+  "before_inventory": "research/outputs/2026-10-07-lab-navigation/board-before.json",
+  "operations": [
+    {
+      "collection": "cards",
+      "local_key": "c-lab-navigation-evidence",
+      "observed_identity": {
+        "title": "Simplify lab navigation and connect questions to offline evidence",
+        "tag": "id:c-lab-navigation-evidence"
+      },
+      "active_readback": {
+        "being": "system",
+        "body": "Product tranches 3\u20134: make Guided tour, Experiments, Research cases, Geometry bookmarks and Observatory direct destinations; make Continue the primary guided action; separate saved experiment imports from window-only case and geometry opening; include a clearly synthetic geometry example using retained fixture bytes. Qualify a separate 0.15.0 build 21 local candidate, preserving build 20 and Mike\u2019s unfinished review. No new study, model generation, producer activation or human acceptance is implied.",
+        "evidence": "analyses/2026-10-07-lab-navigation-and-evidence.md; research/NOW.md",
+        "lane": "change",
+        "source": "Mike\u2019s October 7 request to proceed with the remaining product tranches",
+        "status": "active",
+        "tags": "id:c-lab-navigation-evidence, reservoir-scope, product-tranches",
+        "title": "Simplify lab navigation and connect questions to offline evidence"
+      },
+      "desired": {
+        "being": "system",
+        "body": "Tranches 3\u20134 complete: five direct lab destinations; prominent guided Continue and optional playback that pauses on collapse; question-led reviewed cases with cancellable background verification and window retention; a labeled synthetic geometry example; and clear Open versus saved experiment Import behavior. Qualified a separate 0.15.0 build 21 from source 8e84742, with 405 Python tests, focused native checks, package verification and actual app checks at two recorded sizes. Build 20 and Mike\u2019s unfinished review are preserved. Existing research cases and bounded outcomes are unchanged. Human acceptance and Being-side rollout remain separate.",
+        "evidence": "analyses/2026-10-07-lab-navigation-and-evidence.md; research/NOW.md",
+        "lane": "change",
+        "source": "Mike\u2019s October 7 request to proceed with the remaining product tranches",
+        "status": "done",
+        "tags": "id:c-lab-navigation-evidence, reservoir-scope, product-tranches",
+        "title": "Simplify lab navigation and connect questions to offline evidence"
+      },
+      "reason": "Two bounded implementation tranches qualified; human acceptance remains separate.",
+      "readback": {
+        "being": "system",
+        "body": "Tranches 3\u20134 complete: five direct lab destinations; prominent guided Continue and optional playback that pauses on collapse; question-led reviewed cases with cancellable background verification and window retention; a labeled synthetic geometry example; and clear Open versus saved experiment Import behavior. Qualified a separate 0.15.0 build 21 from source 8e84742, with 405 Python tests, focused native checks, package verification and actual app checks at two recorded sizes. Build 20 and Mike\u2019s unfinished review are preserved. Existing research cases and bounded outcomes are unchanged. Human acceptance and Being-side rollout remain separate.",
+        "evidence": "analyses/2026-10-07-lab-navigation-and-evidence.md; research/NOW.md",
+        "lane": "change",
+        "source": "Mike\u2019s October 7 request to proceed with the remaining product tranches",
+        "status": "done",
+        "tags": "id:c-lab-navigation-evidence, reservoir-scope, product-tranches",
+        "title": "Simplify lab navigation and connect questions to offline evidence"
+      }
+    },
+    {
+      "collection": "log",
+      "observed_identity": {
+        "date": "2026-10-07",
+        "title": "Simplify the offline lab and qualify direct evidence navigation"
+      },
+      "desired": {
+        "date": "2026-10-07",
+        "title": "Simplify the offline lab and qualify direct evidence navigation",
+        "body": "Completed product tranches 3\u20134 in separate local commits faebed3 and 8e84742, followed by qualification and documentation. Build 21 binds 180 source inputs, 44 resource entries, 22 examples and two unchanged reviewed cases. Python405; focused case, geometry, guided, action and package checks passed. Actual isolated app checks cover Continue and playback, question/evidence navigation, cancel/rejection retention, synthetic geometry, saved experiment import and direct recording viewing at recorded 1100\u00d7820 and 1380\u00d7820 content sizes; the dated account retains exact per-width scope. Networking and original paths were denied; one explicit experiment import was the only saved Library file. The SDK lookup failure, initial harness attempts and clipboard delay remain recorded. Build20 and Mike\u2019s incomplete review copy are unchanged. Day11 remains parked, research closeouts retain their limits, and the earlier local recovery snapshot does not cover this later work. No push, merge, new study, fresh model request or Being-side change. Evidence: analyses/2026-10-07-lab-navigation-and-evidence.md; board/2026-10-07-lab-navigation.json"
+      },
+      "reason": "Append the dated software qualification without rewriting prior logs.",
+      "readback": {
+        "body": "Completed product tranches 3\u20134 in separate local commits faebed3 and 8e84742, followed by qualification and documentation. Build 21 binds 180 source inputs, 44 resource entries, 22 examples and two unchanged reviewed cases. Python405; focused case, geometry, guided, action and package checks passed. Actual isolated app checks cover Continue and playback, question/evidence navigation, cancel/rejection retention, synthetic geometry, saved experiment import and direct recording viewing at recorded 1100\u00d7820 and 1380\u00d7820 content sizes; the dated account retains exact per-width scope. Networking and original paths were denied; one explicit experiment import was the only saved Library file. The SDK lookup failure, initial harness attempts and clipboard delay remain recorded. Build20 and Mike\u2019s incomplete review copy are unchanged. Day11 remains parked, research closeouts retain their limits, and the earlier local recovery snapshot does not cover this later work. No push, merge, new study, fresh model request or Being-side change. Evidence: analyses/2026-10-07-lab-navigation-and-evidence.md; board/2026-10-07-lab-navigation.json",
+        "date": "2026-10-07",
+        "title": "Simplify the offline lab and qualify direct evidence navigation"
+      }
+    }
+  ],
+  "after_inventory": "research/outputs/2026-10-07-lab-navigation/board-after-complete.json"
+}

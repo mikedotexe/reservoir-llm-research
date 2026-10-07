@@ -1,4 +1,4 @@
-Current release: **0.13.0** adds the [guided walkthrough](GUIDED-TOUR.md), playback fixes and separate active-state/controller examples. The account below documents the 0.12.0 portable foundation; its original interface and record-version descriptions are historical.
+See [Current release](../../../research/CURRENT-RELEASE.md) for the current candidate and [guided walkthrough](GUIDED-TOUR.md). Version **0.13.0** later added that guided route, playback fixes and separate active-state/controller examples. The account below documents the 0.12.0 portable foundation; its original interface and record-version descriptions are historical.
 
 # Reservoir Scope 0.12.0 · portable research lab
 

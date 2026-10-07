@@ -13,6 +13,7 @@ copying their version numbers or board totals here.
 | Learn or reproduce the reading tools | [Synthetic CLI quickstart](../../research/QUICKSTART.md), then [Tools](../../research/TOOLS.md) |
 | Build the app or run numerical experiments | [Native build guide](README.md), [headless runner](../../essentials/runner/README.md) |
 | Review the product | [Guided tour](docs/GUIDED-TOUR.md), [participant worksheet](docs/NEWCOMER-WORKSHEET.md), [geometry supplement](docs/GEOMETRY-ACCEPTANCE-WORKSHEET.md) |
+| Inspect reviewed evidence | The direct Research cases workspace: choose a question, then use the [case’s embedded evidence links](docs/GUIDED-TOUR.md#reviewed-research-cases) |
 | Continue a research question | [Question library](../../research/QUESTIONS.md), owning study and [Methods](../../research/METHODS.md) |
 | Reconcile coordination | [Board records](../../board/README.md); older pending payloads are historical inputs, not independent publication requests |
 | Understand earlier work | [Preserved handoff](HANDOFF-history-through-0.13.1.md), [research chronology](../../RESEARCH-history-through-20261007.md) |
@@ -33,18 +34,32 @@ or recollect the frozen window to get around verification.
 
 The lab’s scripted examples, model recordings and reviewed research cases have
 different evidence roles. Playback inspects saved evidence; new experiments and
-model requests start explicitly. Geometry imports retain validated bytes and reading
-state in the window without following embedded source paths. Software checks and
-board completion do not establish human acceptance or producer interoperability.
+model requests start explicitly. The qualified tranches 3–4 candidate adds direct
+Guided tour, Experiments, Research cases, Geometry bookmarks and Observatory routes;
+separate Continue and playback controls; question-led case browsing; and an explicitly
+synthetic geometry example. Cases open read-only into the current window, retaining
+the selected case and verified embedded evidence across navigation. Geometry retains
+its packet and reading state there too. Neither route follows historical source paths
+or creates a library copy; Import experiment does keep a verified local copy.
+Software checks and board completion do not establish human acceptance or producer
+interoperability.
 
-Mike’s isolated steward-review copy is already open. Keep that copy and its identity
-stable while he records his answers; [Now](../../research/NOW.md) tracks the handoff.
-Do not operate the acceptance tasks on his behalf. App navigation changes follow
-in a separate tranche, using his difficulties as evidence.
+The separate **0.15.0 build 21** candidate passed the Python suite, focused native
+checks, package verification and actual-app navigation/evidence walkthrough.
+Use [Current release](../../research/CURRENT-RELEASE.md) for the exact identity and
+check scope, and the [dated account](../../analyses/2026-10-07-lab-navigation-and-evidence.md)
+for receipts and per-width UI coverage. These are scoped results, not a new
+all-native or all-offline aggregate.
+
+Mike’s isolated **build 20** steward-review copy was opened at task A. Answers and
+acceptance remain pending. Keep that copy and its identity stable while he records
+his answers; [Now](../../research/NOW.md) tracks the handoff. The build 21 work does
+not replace that session. Do not operate the acceptance tasks on his behalf.
 
 The [October 7 local recovery account](../../analyses/2026-10-07-local-backup-and-steward-review.md)
 records a same-volume snapshot, separate restore and isolated replay for its exact
-captured commit. Later documentation and attestations are outside that snapshot.
+captured commit. Later documentation, attestations and the new build 21 source/candidate
+work are outside that snapshot; its recovery result does not cover these changes.
 Preserve it and the [October 6 snapshot](../../analyses/2026-10-06-recovery-snapshot.md).
 Independent-device availability remains unverified; Mike selected local recovery.
 Restore checks deny original source paths and networking.

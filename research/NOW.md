@@ -15,19 +15,31 @@ product-review priorities in tranches. No new discovery study is selected.
    Both work without private study captures or a model. The
    [tranche account](../analyses/2026-10-07-product-navigation-tranches.md) records
    validation and the distinction between public examples and private replay.
-3. **App navigation and controls — next tranche.** Use Mike’s steward review to
-   prioritize Continue/playback controls, direct routes to cases and geometry,
-   and clearer Open/Import and persistence behavior. Preserve the review copy
-   and its recorded identity while the session is underway. These app changes
-   are not implemented by the documentation pass.
+3. **App navigation and controls — tranches 3–4 implemented and qualified.** The five
+   direct destinations are Guided tour, Experiments, Research cases, Geometry
+   bookmarks and Observatory. Guided Continue is separate from expandable playback
+   controls, and collapsing playback pauses it. Research cases lead from a question
+   to the existing reviewed account and embedded evidence; geometry offers an
+   explicitly synthetic example. Opening cases or geometry retains them in the
+   current window, while importing an experiment keeps a verified library copy.
+   The two reviewed cases and their interpretations are unchanged. The
+   [navigation account](../analyses/2026-10-07-lab-navigation-and-evidence.md) records
+   the focused checks, package verification and actual-app walkthrough.
 
 ## What the next session needs
+
+**Candidate qualification:** the separate **0.15.0 build 21** candidate passed
+its 405-test Python suite, focused native checks, package verification and actual-app
+navigation/evidence walkthrough. [Current release](CURRENT-RELEASE.md) owns the
+exact identity, check scope and limits. This is software qualification; human
+acceptance and Being-side rollout remain separate.
 
 **Human review:** Mike volunteered and the isolated corrected 0.15.0 build 20 copy
 was opened at task A. His answers and difficulties are still awaited; no acceptance
 result is claimed. A first-time newcomer session is a separate scope.
 The [review handoff](../analyses/2026-10-07-local-backup-and-steward-review.md)
-records the exact copy and the first task.
+records the exact copy and the first task. Preserve that copy and its identity;
+the new build 21 work does not replace or complete the existing review.
 
 **S-007 day11:** parked at the missing historical release witness for Minime
 PID 81688. The retained September 18–19 window, fixed sample and 5,088-ID ledger
@@ -41,8 +53,9 @@ explain the dependency. Later daily windows remain uncaptured.
 **Recovery:** Mike chose backup on this computer. The
 [October 7 local snapshot, restore and isolated replay](../analyses/2026-10-07-local-backup-and-steward-review.md)
 are complete for their recorded source commit. This is same-volume recovery;
-independent-device backup remains an unverified future option. Today’s navigation
-work postdates that snapshot. Preserve it and the
+independent-device backup remains an unverified future option. The navigation
+documentation and the new build 21 source/candidate work postdate that snapshot;
+they are not covered by its recovery result. Preserve it and the
 [earlier recovery copy](../analyses/2026-10-06-recovery-snapshot.md).
 
 ## Closed accounts and open research

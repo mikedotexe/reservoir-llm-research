@@ -1,5 +1,11 @@
 # Hold Shelf records
 
+The [October 7 app navigation and evidence tranches](../analyses/2026-10-07-lab-navigation-and-evidence.md)
+complete direct lab navigation, guided controls and offline evidence first use.
+Their [manifest](2026-10-07-lab-navigation.json) covers one work card and one dated
+log, with retained before/readback receipts and a zero-write repeat check.
+Build 21 software qualification leaves the existing human-review card unchanged.
+
 The [October 7 navigation and offline-first-use tranches](../analyses/2026-10-07-product-navigation-tranches.md)
 add one bounded work card and a dated log. Their
 [manifest](2026-10-07-product-navigation.json) preserves before/readback receipts;
