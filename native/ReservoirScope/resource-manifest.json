@@ -2,7 +2,7 @@
   "schema": "reservoir-scope.resources.v1",
   "release": {
     "version": "0.15.0",
-    "build": 20
+    "build": 21
   },
   "resources": [
     {
@@ -210,6 +210,11 @@
       "name": "state-response.json",
       "source": "native/ReservoirScope/Sources/ReservoirScope/Resources/state-response.json",
       "sha256": "fe97623dcccb4b089ce4e0a1b5cc99ec902793efed8fbfcf1041ce8c865e9100"
+    },
+    {
+      "name": "synthetic-geometry-example.json",
+      "source": "native/ReservoirScope/Tests/Fixtures/geometry-bookmarks/minime-synthetic-geometry.json",
+      "sha256": "25ecc19605ee1bed307735f52668b817a854af98239018e74072c17ffbe92abc"
     },
     {
       "name": "verify-package.py",

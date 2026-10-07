@@ -1,22 +1,36 @@
-# Geometry bookmarks · 0.15.0 local candidate
+# Geometry bookmarks
 
-The unreleased 0.15.0 build 20 adds an offline viewer for explicitly exported
-`question-geometry-v1` packets. The published 0.14.0 tag and its human acceptance
-status remain unchanged. A locally built candidate is not a being deployment or
-an accepted release.
+This offline viewer reads explicitly exported `question-geometry-v1` packets.
+See [current candidate status](../../../research/CURRENT-RELEASE.md) for the
+qualified app identity. The October 7 source changes add the synthetic example
+described below; earlier app copies do not gain it automatically. A fresh build
+has its own package identity and does not establish human acceptance or a Being
+deployment. The published 0.14.0 tag remains separate.
 
-Choose **Minime & Astrid → Geometry bookmarks → Open packet**. Select a JSON
-packet, then choose a capture, prediction, comparison or revision in the left
+Choose **Geometry bookmarks**. Select **Load synthetic example**
+for a self-contained first look, or **Open packet** to choose an exported JSON
+file. Then choose a capture, prediction, comparison or revision in the left
 column. A capture shows all 128 coordinates on a fixed −1…1 scale. Scrub the
 recorded frames and expand **Exact selected coordinates** to inspect values.
 Recorder gaps and both engine and wall clocks remain visible. Authored accounts
 are displayed in full; sidebar excerpts are navigation only.
 
-Switching to Observatory or Essentials and returning preserves the opened packet,
+The bundled example uses invented text, clocks and coordinates. Its visible
+synthetic label distinguishes it from an opened packet; the Minime owner field
+is a schema label, not attribution to a Being. Two three-frame captures contain
+128 coordinates and an explicit recorder gap. The comparison's RMS distance is
+0.1, exceeding the invented prediction bound of 0.05; the revision records that
+outcome without claiming a mechanism or experience. Loading the example runs the
+same validation as opening a file and makes no model or live-source request.
+
+Switching to another workspace and returning preserves the opened packet,
 selected record, frame and coordinate disclosure in this window. The view keeps
 the imported bytes in memory, even if the original file subsequently disappears.
 It does not restore packets automatically after the window closes. Cancelling or
-rejecting a replacement preserves the current reading position.
+rejecting a replacement preserves the current reading position and origin label.
+Missing or invalid bundled example data likewise leaves the prior packet intact.
+The visible persistence note applies to both examples and opened packets: neither
+adds a saved copy to the Library. A later window starts empty.
 
 Opening a packet checks exact body and history hashes, record-specific fields,
 source labels, dimensions, bounds, clocks and references. Numerical comparisons
@@ -43,9 +57,12 @@ bash native/ReservoirScope/check-geometry-bookmark-presentation.sh research/outp
 The model wrapper verifies the deterministic fixture provenance before checking
 valid and malformed imports. The presentation wrapper renders synthetic views at
 two desktop widths and checks removal/return with the source file absent, cancelled
-selection, failed replacement and successful replacement. These also run through the `native-model` and
-`native-presentation` verification groups. The fixtures and their generator are
-included in staged source identity, but are not installed as app resources.
+selection, failed replacement and successful replacement. It also checks synthetic
+origin changes, missing/damaged example resources and a new window's empty state.
+These run through the `native-model` and `native-presentation` verification groups.
+The fixtures and generator remain part of staged source identity. The resource
+manifest additionally installs the exact Minime fixture as
+`synthetic-geometry-example.json`; it does not regenerate or modify the fixture.
 
 The [fixture description](../Tests/Fixtures/geometry-bookmarks/README.md) explains
 what the synthetic packets establish. The earlier external reader/adapter workflow

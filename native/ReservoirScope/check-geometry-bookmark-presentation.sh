@@ -8,6 +8,7 @@ mkdir -p "$task_output"
 python3 -B "$task_fixtures/generate.py" --check
 xcrun swiftc -parse-as-library -swift-version 5 -target "$(uname -m)-apple-macosx14.0" \
   -framework AppKit -framework SwiftUI \
+  "$task_dir/Sources/ReservoirScope/ResourceBundle.swift" \
   "$task_dir/Sources/ReservoirScope/GeometryBookmark.swift" \
   "$task_dir/Sources/ReservoirScope/GeometryBookmarkViewModel.swift" \
   "$task_dir/Sources/ReservoirScope/GeometryBookmarkView.swift" \

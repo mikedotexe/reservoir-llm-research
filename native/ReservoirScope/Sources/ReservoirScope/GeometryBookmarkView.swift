@@ -22,9 +22,21 @@ struct GeometryBookmarkExperience: View {
                         .font(.caption).foregroundStyle(.secondary)
                 }
                 Spacer()
+                Button("Load synthetic example") { model.loadSyntheticExample() }
+                    .help("Explore invented coordinates and text; no file or model is needed")
                 Button { open() } label: { Label("Open packet", systemImage: "folder") }
                     .help("Open an explicitly exported question-geometry-v1 packet")
             }.padding(20)
+            VStack(alignment: .leading, spacing: 5) {
+                if model.origin == .syntheticExample {
+                    Label("Synthetic example · invented coordinates and text", systemImage: "square.stack.3d.up")
+                        .foregroundStyle(.cyan)
+                    Text("The Minime owner label demonstrates the file format; this is not a Being's observation.")
+                        .foregroundStyle(.secondary)
+                }
+                Text("Kept in this window; reopen the file or load the example next time. No copy is added to your Library.")
+                    .foregroundStyle(.secondary)
+            }.font(.caption).padding(.horizontal, 20).padding(.bottom, 12)
             if let error = model.error { Text(error).foregroundStyle(.red).textSelection(.enabled).padding(.horizontal, 20).padding(.bottom, 12) }
             Divider()
             if let packet = model.packet {
@@ -55,7 +67,7 @@ struct GeometryBookmarkExperience: View {
                 }.font(.caption).foregroundStyle(.secondary).padding(16)
             } else {
                 ContentUnavailableView("No geometry bookmark", systemImage: "bookmark",
-                    description: Text("Explicit question exports only. Nothing is read from live workspaces automatically."))
+                    description: Text("Load the synthetic example or open an exported question packet. Nothing is read from live workspaces automatically."))
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -139,6 +151,8 @@ struct GeometryBookmarkExperience: View {
     private func open() {
         let panel = NSOpenPanel()
         panel.allowedContentTypes = [.json]; panel.allowsMultipleSelection = false
+        panel.canChooseDirectories = false
+        panel.message = "Open an exported geometry packet for this window. No copy is added to your Library."
         guard panel.runModal() == .OK, let url = panel.url else { return }
         model.open(url)
     }
