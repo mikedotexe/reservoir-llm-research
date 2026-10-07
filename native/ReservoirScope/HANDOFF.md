@@ -21,11 +21,10 @@ copying their version numbers or board totals here.
 ## Preserve the boundaries
 
 Inventory the working tree before changes, preserve other work, review diffs and
-stage explicit paths. Publication is authorized for the named integration branch
-`codex/research-closeout`; the [final readiness account](../../analyses/2026-10-07-final-readiness-and-recovery.md)
-owns its publication status and receipt. Merging and release publication remain
-separate. Preserve the published 0.14 tag, release checkouts, candidate apps and
-recovery refs.
+stage explicit paths. The integration was merged into `main` and published on
+October 7 at `41438da`; [Now](../../research/NOW.md) owns the current integration
+status. App release publication remains separate. Preserve the published 0.14 tag,
+release checkouts, candidate apps and recovery refs.
 
 Keep private captures under ignored `research/outputs/`. A clean checkout can run
 the synthetic examples; it does not contain every historical replay input.

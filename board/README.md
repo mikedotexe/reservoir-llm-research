@@ -3,7 +3,8 @@
 The [final readiness and recovery account](../analyses/2026-10-07-final-readiness-and-recovery.md)
 records the final product review, restored-source test repair and refreshed local
 recovery. Its [manifest](2026-10-07-final-readiness.json) covers one dated log,
-preserving existing cards and logs; publication is limited to the named integration branch.
+preserving existing cards and logs. The integration reached published `main` on
+October 7 at `41438da`; [Now](../research/NOW.md) owns the current integration status.
 
 The [October 7 app navigation and evidence tranches](../analyses/2026-10-07-lab-navigation-and-evidence.md)
 complete direct lab navigation, guided controls and offline evidence first use.

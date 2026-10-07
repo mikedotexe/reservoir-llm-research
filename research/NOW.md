@@ -59,10 +59,22 @@ without advancing the ledger. A restored Python run exposed a host-dependent tes
 the narrow test repair passed all 406 tests in a new restored checkout, along with
 the synthetic CLI, packaged app and scripted runner checks. The test repair is
 recovered from a named-ref Git bundle; the dated account points to the separate
-final-documentation recovery and publication receipts. Publication is limited to
-`codex/research-closeout`; merge and release
-acceptance remain separate. Independent-device backup remains unverified. Preserve the [earlier October 7 copy](../analyses/2026-10-07-local-backup-and-steward-review.md)
+final-documentation recovery and publication receipts. The integration was merged
+into `main` and published on October 7 at
+[`41438da`](https://github.com/mikedotexe/reservoir-llm-research/commit/41438da744489852e0d329579a6d3bdba96a4c72).
+App release and human acceptance remain separate. Independent-device backup remains
+unverified. Preserve the [earlier October 7 copy](../analyses/2026-10-07-local-backup-and-steward-review.md)
 and [October 6 copy](../analyses/2026-10-06-recovery-snapshot.md).
+
+## Proposed next steps
+
+1. Obtain Mike’s answers in the existing build 20 review. Assess the new navigation
+   in a separate build 21 review, keeping the two sessions distinct.
+2. Select with Mike a bounded inquiry into contrary evidence, revision and later
+   use, beginning with retained cases. No new study is selected or closed extension
+   reopened by this proposal.
+3. Consider a 0.15 app delivery after review if useful. Verified local recovery
+   satisfies Mike’s chosen backup scope; independent-device backup remains optional.
 
 ## Closed accounts and open research
 
