@@ -21,9 +21,11 @@ copying their version numbers or board totals here.
 ## Preserve the boundaries
 
 Inventory the working tree before changes, preserve other work, review diffs and
-stage explicit paths. The current integration work is local on
-`codex/research-closeout`; pushing and merging are outside this pass. Preserve the
-published 0.14 tag, release checkouts, candidate apps and recovery refs.
+stage explicit paths. Publication is authorized for the named integration branch
+`codex/research-closeout`; the [final readiness account](../../analyses/2026-10-07-final-readiness-and-recovery.md)
+owns its publication status and receipt. Merging and release publication remain
+separate. Preserve the published 0.14 tag, release checkouts, candidate apps and
+recovery refs.
 
 Keep private captures under ignored `research/outputs/`. A clean checkout can run
 the synthetic examples; it does not contain every historical replay input.
@@ -56,13 +58,21 @@ acceptance remain pending. Keep that copy and its identity stable while he recor
 his answers; [Now](../../research/NOW.md) tracks the handoff. The build 21 work does
 not replace that session. Do not operate the acceptance tasks on his behalf.
 
-The [October 7 local recovery account](../../analyses/2026-10-07-local-backup-and-steward-review.md)
-records a same-volume snapshot, separate restore and isolated replay for its exact
-captured commit. Later documentation, attestations and the new build 21 source/candidate
-work are outside that snapshot; its recovery result does not cover these changes.
-Preserve it and the [October 6 snapshot](../../analyses/2026-10-06-recovery-snapshot.md).
+The later [readiness and recovery account](../../analyses/2026-10-07-final-readiness-and-recovery.md)
+records verified same-volume repository and build 21 archives/restores at source
+commit `a73b6dc`. Ten absolute aliases from failed check harnesses were normalized
+only in the archival view, with their original targets retained. Historical replay
+passed eleven daily/weekly windows, three bounded checkpoints and closeout; day11
+kept its expected refusal and unchanged ledger. A restored Python run exposed a
+host-dependent test. Its narrow repair passes all 406 tests in a new restored
+checkout, together with the synthetic CLI, packaged app and scripted runner checks.
+The test repair is recovered from a named-ref Git bundle. Use the standalone
+receipts in the dated account for later documentation recovery and publication.
+Networking and original paths are denied during restore checks.
+Preserve the [earlier October 7 snapshot](../../analyses/2026-10-07-local-backup-and-steward-review.md)
+and [October 6 snapshot](../../analyses/2026-10-06-recovery-snapshot.md).
 Independent-device availability remains unverified; Mike selected local recovery.
-Restore checks deny original source paths and networking.
+Historical replay checks deny original source paths and networking.
 
 Do not change the Beings, their services or their self-study schedule from this
 research project. Implementation, deployment and demonstrated benefit stay distinct.

@@ -51,12 +51,18 @@ and the [specific recovery pointer](../analyses/2026-10-06-followup-handoff.md)
 explain the dependency. Later daily windows remain uncaptured.
 
 **Recovery:** Mike chose backup on this computer. The
-[October 7 local snapshot, restore and isolated replay](../analyses/2026-10-07-local-backup-and-steward-review.md)
-are complete for their recorded source commit. This is same-volume recovery;
-independent-device backup remains an unverified future option. The navigation
-documentation and the new build 21 source/candidate work postdate that snapshot;
-they are not covered by its recovery result. Preserve it and the
-[earlier recovery copy](../analyses/2026-10-06-recovery-snapshot.md).
+[final readiness and recovery account](../analyses/2026-10-07-final-readiness-and-recovery.md)
+records the later same-volume repository and build 21 archives and verified restores
+at source commit `a73b6dc`. Historical replay passed eleven daily/weekly windows,
+three bounded checkpoints and closeout; day11 reproduced its expected refusal
+without advancing the ledger. A restored Python run exposed a host-dependent test;
+the narrow test repair passed all 406 tests in a new restored checkout, along with
+the synthetic CLI, packaged app and scripted runner checks. The test repair is
+recovered from a named-ref Git bundle; the dated account points to the separate
+final-documentation recovery and publication receipts. Publication is limited to
+`codex/research-closeout`; merge and release
+acceptance remain separate. Independent-device backup remains unverified. Preserve the [earlier October 7 copy](../analyses/2026-10-07-local-backup-and-steward-review.md)
+and [October 6 copy](../analyses/2026-10-06-recovery-snapshot.md).
 
 ## Closed accounts and open research
 

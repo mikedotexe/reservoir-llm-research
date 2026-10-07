@@ -103,8 +103,17 @@ owns the per-width coverage. These are the listed checks, not a new all-native o
 The [October 6 integration account](../analyses/2026-10-06-research-closeout-and-geometry-integration.md)
 preserves build 20’s separate results, including its original native aggregate
 watermark failure and bounded successful rerun. Those historical outcomes are unchanged.
-The [October 7 recovery snapshot](../analyses/2026-10-07-local-backup-and-steward-review.md)
-covers its earlier recorded commit; build 21 and this later work are outside it.
+The later [readiness and recovery account](../analyses/2026-10-07-final-readiness-and-recovery.md)
+records verified same-volume repository and build 21 archives/restores at source
+commit `a73b6dc`, plus successful historical replay with day11 still blocked.
+A restored Python run exposed a host-dependent test. Its narrow repair passes all
+406 tests in the new restored checkout; the synthetic CLI, exact packaged app and
+scripted runner examples also pass with networking and original paths denied.
+Named-ref Git bundles and standalone receipts cover later committed changes. The
+candidate’s original 405-test qualification above retains its own scope.
+The [earlier October 7 snapshot](../analyses/2026-10-07-local-backup-and-steward-review.md)
+and [October 6 snapshot](../analyses/2026-10-06-recovery-snapshot.md) remain preserved.
+These are local recovery copies; independent-device backup remains unverified.
 
 The [0.14 verification account](../analyses/2026-09-17-reservoir-scope-014.md) retains
 that delivery's original evidence and limits. The packaged identity
