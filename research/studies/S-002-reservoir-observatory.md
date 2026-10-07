@@ -1,6 +1,15 @@
 # S-002 · A measured reservoir observatory
 
-Started: September 6, 2026 (Pacific). Lead: Mike with Codex. Question family: RQ-02 (system self-observation) and research instrumentation. Hold Shelf key: `t-reservoir-observatory`; implementation card and session log published ([receipt](../../board/reservoir-observatory.json)). **Study status: ongoing; native 0.5.0 State surface and Response lab built and checked, final-build M1 Max / M4 Pro offscreen comparison complete, and direct-state action proposal prepared. The later September 7 native checkpoint-boundary rehearsal is complete: synchronous parity passes, asynchronous full parity remains unresolved. Native action/observer implementation and presented-window profiling remain pending.**
+Started: September 6, 2026 (Pacific). Lead: Mike with Codex. Question family: RQ-02 (system self-observation) and research instrumentation. Hold Shelf key: `t-reservoir-observatory`; implementation card and session log published ([receipt](../../board/reservoir-observatory.json)).
+
+**Current study summary — October 7:** ongoing research instrumentation. Native
+asynchronous replay is [qualified on M1 Max and M4 Pro](#2026-09-07-follow-up-asynchronous-native-replay-qualified),
+and native state actions are [implemented and checked in isolation](#2026-09-07-follow-up-native-state-actions-implemented-in-isolation).
+Owning-repository deployment, complete observer/controller coverage and presented-window
+performance profiling remain separate workstreams; the dated qualifications below
+do not establish their completion. Earlier failures and later viewer refinements
+remain part of this record. [Current release](../CURRENT-RELEASE.md) owns the app's
+delivery and acceptance status.
 
 ## Question and scope
 

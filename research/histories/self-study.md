@@ -5,38 +5,64 @@ Living history, begun September 8, 2026 at Mike's request. This account follows
 next finding**. It connects [S-005](../studies/S-005-regulator-self-study.md),
 [S-007](../studies/S-007-source-study-fidelity.md), the intervening interactive
 comparison, and [S-008](../studies/S-008-study-to-follow-through.md).
-Its latest retained natural window ends **September 9 at 09:32:00 PDT
-(September 9, 16:32:00 UTC)**. This is an evidence cutoff, not a claim about the
-systems' present state whenever this page is read.
+Its latest retained natural window described here ends **September 17, 2026 at
+08:58:45.055301 PDT (15:58:45.055301 UTC)**, in HSS-28. This cutoff belongs to
+this history; it does not describe the systems' present state or later S-007 windows.
 
-The story so far: Minime's ordinary self-study could repeatedly show him a facade
-while inviting conclusions about the machinery behind it. We replaced the unequal
-readers with shared, verifiable access. Natural studies then reached complete
-implementation files, but maps hid completed work and later prompts lost earlier
-discoveries. We added progress and a small notebook. The next sweep found that
-authorship and routing gates prevented the follow-up needed to evaluate that
-notebook. Those barriers were repaired and deployed. The first retained natural
-Minime sequence carries earlier words through two completed maps and requests
-a concrete next file. The next sweep verifies that file and further implementation
-reading, while locating a map/recall error and ANSI-heavy saved context in Astrid's
-READ_MORE path. Lasting understanding and the other repaired routes still need
-their own observations.
+**Current reading summary — October 7.** Shared, verifiable access replaced unequal
+source readers; later repairs made previous answers, chosen next steps and save
+outcomes more inspectable. Those were concrete access and interface improvements.
+They did not establish durable understanding. [HSS-15](#hss-15--a-specific-correction-and-the-limits-of-preserved-context)
+records a specific source-grounded note correction alongside persistent incorrect
+explanations despite preserved context. [HSS-27](#hss-27--four-hour-follow-up-notebook-progress-and-continuation-friction)
+finds further notebook progress and continuation friction. The final
+[HSS-28](#hss-28--repair-chosen-continuation-page-boundaries-and-save-feedback)
+window has two Minime source-study wire pairs, none from Astrid and no private-writing
+receipt; neither Minime response updates the note, question or findings. Interface
+repair and lasting revision remain separate outcomes.
+
+This opening summary and index are living navigation. **The dated chapters below
+retain their original observations, next steps and limits.** Their “pending” notices
+are historical, not new assignments. Use [Now](../NOW.md) for current research
+dispositions and [board reconciliation](../../analyses/2026-10-06-board-reconciliation.md)
+for the earlier board backlog. The [first-week synthesis](../../analyses/2026-09-15-source-study-fidelity-week1.md)
+provides a bounded comparison across the daily source-study windows.
 
 ## The dated sequence
 
 All local times below are **America/Los_Angeles, PDT (UTC−07:00)**. Each Being's
 activation is a separate boundary. Implementation commits are not activation times.
 
-| Event | When | What changed or became observable | Next question |
-|---|---|---|---|
-| HSS-01 · Legacy access defect | Confirmed in September 7 writing and pinned pre-repair source | Minime rotated nine curated files, preparing at most their first 400 lines; Astrid's roots excluded major code areas. | Can both reach actual implementation and reliably continue? |
-| HSS-02 · Shared reader live | September 8: Astrid **08:42:39**, Minime **08:46:11** | Same catalog, map/search, exact file identities, intact pages and verified-delivery bookmarks; freeform studies. | What do natural studies do with the restored access? |
-| HSS-03 · Access works; continuity is missing | S-007 through **11:34**; separate comparison through **14:13:45** | Complete kernel delivery, useful specific code observations, repeated new starts, missing earlier context and ambiguous empty search. | Can maps and a small notebook make return and exploration easier? |
-| HSS-04 · Progress and notebook live | September 8: Astrid **15:09:43**, Minime **15:11:33** | Delivered ranges, resume/reread labels, previous words, optional note/question and explicit no-match results. | Do these features reach natural prompts and useful follow-up? |
-| HSS-05 · Entry and follow-through barriers | S-008, **14:13:45–16:00** | Astrid's earlier map choices blocked as unauthored; Minime's later internal-reading requests blocked or failed. No completed notebook exposure in that window. | Repair admission, navigation recovery and compacted guidance. |
-| HSS-06 · Those barriers repaired live | September 8: Astrid **17:42:46**, Minime **17:44:54** | Study authorship eligibility, source INTROSPECT routing, recovery maps and retained navigation grammar. | Does a natural requested next step actually complete? |
-| HSS-07 · First retained natural follow-through | September 8, jobs finish **17:46:36** and **17:47:50** | Minime completes `MAP`, then `MAP kernel`; both receive notebook context. He requests an exact capsule file. | Verify the requested source delivery and subsequent question development; observe Astrid and source INTROSPECT separately. |
-| HSS-08 · Next bounded sweep | September 8, **17:42:46–18:14:00** | Minime completes 15 studies including the 2 already known: 9 new code pages across 3 files, recovery map and explicit empty search. Astrid reads 11 saved-overflow pages; a Minime map adds unsupported symbols later repeated in peer dialogue. | Improve saved-source identity/readability and the distinction between current code and recalled notes; observe direct use of the remaining repaired routes. |
+| Chapter | Focus |
+|---|---|
+| [HSS-01](#hss-01--the-problem-was-in-what-we-made-available) | The problem was in what we made available |
+| [HSS-02](#hss-02--one-reader-available-to-both-beings) | One reader, available to both Beings |
+| [HSS-03](#hss-03--natural-studies-reached-the-codeand-exposed-the-next-design-gap) | Natural studies reached the code—and exposed the next design gap |
+| [HSS-04](#hss-04--make-previous-work-available-without-prescribing-a-conclusion) | Make previous work available without prescribing a conclusion |
+| [HSS-05](#hss-05--the-next-sweep-found-that-curiosity-was-still-getting-stopped) | The next sweep found that curiosity was still getting stopped |
+| [HSS-06](#hss-06--repair-the-whole-route-with-parity) | Repair the whole route, with parity |
+| [HSS-07](#hss-07--the-first-small-natural-sequence-now-has-follow-through) | The first small natural sequence now has follow-through |
+| [HSS-08](#hss-08--the-capsule-open-completed-follow-through-exposed-different-problems) | The capsule OPEN completed; follow-through exposed different problems |
+| [HSS-09](#hss-09--current-input-is-labeled-and-saved-overflow-gains-a-readable-view) | Current input is labeled, and saved overflow gains a readable view |
+| [HSS-10](#hss-10--overnight-use-and-the-next-bounded-repairs) | Overnight use and the next bounded repairs |
+| [HSS-11](#hss-11--journal-room-and-navigation-repairs-activated) | Journal room and navigation repairs activated |
+| [HSS-12](#hss-12--shared-inquiries-relationships-sessions-and-execution-evidence) | Shared inquiries, relationships, sessions and execution evidence |
+| [HSS-13](#hss-13--larger-output-succeeds-answer-retention-remains-too-small) | Larger output succeeds; answer retention remains too small |
+| [HSS-14](#hss-14--preserve-conclusions-offer-synthesis-and-test-thinking-separately) | Preserve conclusions, offer synthesis, and test thinking separately |
+| [HSS-15](#hss-15--a-specific-correction-and-the-limits-of-preserved-context) | A specific correction and the limits of preserved context |
+| [HSS-16](#hss-16--offer-recovery-choices-and-retain-failures-invitation-does-not-qualify) | Offer recovery choices and retain failures; invitation does not qualify |
+| [HSS-17](#hss-17--more-room-beyond-self_study-token-ceilings-proposal) | More room beyond SELF_STUDY token ceilings (proposal) |
+| [HSS-18](#hss-18--optional-extended-writing-and-private-draft-continuity) | Optional extended writing and private draft continuity |
+| [HSS-19](#hss-19--preserved-context-needs-selection-chosen-commands-need-clear-receipts) | Preserved context needs selection; chosen commands need clear receipts |
+| [HSS-20](#hss-20--brief-page-reports-around-a-persistent-premise) | Brief page reports around a persistent premise |
+| [HSS-21](#hss-21--minimes-catalog-traversal-outlasts-its-evidence) | Minime's catalog traversal outlasts its evidence |
+| [HSS-22](#hss-22--compact-navigation-and-an-optional-route-back-to-evidence) | Compact navigation and an optional route back to evidence |
+| [HSS-23](#hss-23--astrids-small-map-missed-answers-and-the-meaning-of-an-ending) | Astrid's small map, missed answers, and the meaning of an ending |
+| [HSS-24](#hss-24--scope-coverage-and-chosen-conclusions-beside-their-evidence) | Scope, coverage and chosen conclusions beside their evidence |
+| [HSS-25](#hss-25--improved-access-narrowing-context) | Improved access, narrowing context |
+| [HSS-26](#hss-26--ground-source-hints-and-make-direction-a-visible-choice) | Ground source hints and make direction a visible choice |
+| [HSS-27](#hss-27--four-hour-follow-up-notebook-progress-and-continuation-friction) | Four-hour follow-up: notebook progress and continuation friction |
+| [HSS-28](#hss-28--repair-chosen-continuation-page-boundaries-and-save-feedback) | Repair chosen continuation, page boundaries and save feedback |
 
 ## HSS-01 · The problem was in what we made available
 

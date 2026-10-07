@@ -1,70 +1,66 @@
-# Reservoir Scope handoff
+# Continuing the research work
 
-Use [the current-release page](../../research/CURRENT-RELEASE.md) as the single source
-for version, installation, verification, limitations and human acceptance status.
-The [guided tour](docs/GUIDED-TOUR.md) describes the current workflow.
-[Earlier handoff text](HANDOFF-history-through-0.13.1.md) is preserved unchanged.
+Start with root [AGENTS.md](../../AGENTS.md) and [CLAUDE.md](../../CLAUDE.md), then
+[the findings hub](../../RESEARCH.md) and [Now](../../research/NOW.md).
+The [current-release page](../../research/CURRENT-RELEASE.md) owns app identity,
+qualification and acceptance status. Use links to those living pages instead of
+copying their version numbers or board totals here.
 
-The canonical checkout is `/Users/v/other/reservoir-llm-research` on `volya`.
-The SMB alias may be unavailable. The established trusted-key route is:
+## Choose the route
+
+| Task | Start here |
+|---|---|
+| Learn or reproduce the reading tools | [Synthetic CLI quickstart](../../research/QUICKSTART.md), then [Tools](../../research/TOOLS.md) |
+| Build the app or run numerical experiments | [Native build guide](README.md), [headless runner](../../essentials/runner/README.md) |
+| Review the product | [Guided tour](docs/GUIDED-TOUR.md), [participant worksheet](docs/NEWCOMER-WORKSHEET.md), [geometry supplement](docs/GEOMETRY-ACCEPTANCE-WORKSHEET.md) |
+| Continue a research question | [Question library](../../research/QUESTIONS.md), owning study and [Methods](../../research/METHODS.md) |
+| Reconcile coordination | [Board records](../../board/README.md); older pending payloads are historical inputs, not independent publication requests |
+| Understand earlier work | [Preserved handoff](HANDOFF-history-through-0.13.1.md), [research chronology](../../RESEARCH-history-through-20261007.md) |
+
+## Preserve the boundaries
+
+Inventory the working tree before changes, preserve other work, review diffs and
+stage explicit paths. The current integration work is local on
+`codex/research-closeout`; pushing and merging are outside this pass. Preserve the
+published 0.14 tag, release checkouts, candidate apps and recovery refs.
+
+Keep private captures under ignored `research/outputs/`. A clean checkout can run
+the synthetic examples; it does not contain every historical replay input.
+The maintained daily package verifies explicit retained evidence without capturing
+or advancing ledgers. Frozen packet code remains authoritative for its original
+accounts. S-007 day11 stays parked at its original historical witness; never widen
+or recollect the frozen window to get around verification.
+
+The lab’s scripted examples, model recordings and reviewed research cases have
+different evidence roles. Playback inspects saved evidence; new experiments and
+model requests start explicitly. Geometry imports retain validated bytes and reading
+state in the window without following embedded source paths. Software checks and
+board completion do not establish human acceptance or producer interoperability.
+
+Mike’s isolated steward-review copy is already open. Keep that copy and its identity
+stable while he records his answers; [Now](../../research/NOW.md) tracks the handoff.
+Do not operate the acceptance tasks on his behalf. App navigation changes follow
+in a separate tranche, using his difficulties as evidence.
+
+The [October 7 local recovery account](../../analyses/2026-10-07-local-backup-and-steward-review.md)
+records a same-volume snapshot, separate restore and isolated replay for its exact
+captured commit. Later documentation and attestations are outside that snapshot.
+Preserve it and the [October 6 snapshot](../../analyses/2026-10-06-recovery-snapshot.md).
+Independent-device availability remains unverified; Mike selected local recovery.
+Restore checks deny original source paths and networking.
+
+Do not change the Beings, their services or their self-study schedule from this
+research project. Implementation, deployment and demonstrated benefit stay distinct.
+
+## Existing host access
+
+The established canonical checkout is `/Users/v/other/reservoir-llm-research` on
+`volya`; an SMB alias may be unavailable. When access to that host is needed, the
+existing trusted-key route is:
 
 ```sh
 ssh -o HostName=m3-volya.local -o HostKeyAlias=192.168.2.232 -o BatchMode=yes -o ConnectTimeout=10 volya
 ```
 
-Read root AGENTS.md and CLAUDE.md. Inventory the dirty tree before changes, preserve
-other work, and commit reviewed explicit paths. Private research packets stay under
-ignored `research/outputs/`. Do not change live Beings, their services or their
-self-study schedule from this research project.
-
-The October 6 integration is on local `codex/research-closeout`. The
-[closeout account](../../analyses/2026-10-06-research-closeout-and-geometry-integration.md)
-records the explicit checkpoint/repair commits and corrected **0.15.0 build 20**
-candidate. Use the `geometry-bookmarks-20261006-retained-view` app path and exact
-identity on the current-release page: the earlier build 20 is retained separately.
-The 0.14.0 tag and delivered artifacts remain unchanged. No 0.15 publication or
-paired Being rollout is implied.
-The corrected geometry UI passed at both recorded desktop widths, the final Python
-suite passed 404 tests, and the final package verification passed. Keep the original
-native aggregate's watermark failure and its untouched successful rerun as separate
-receipts; neither these checks nor board completion establish human acceptance.
-
-The numerical core verifies action formats v1–v3 and regulation-v1. Research cases
-are a separate read-only `research-cases-v1` format. Recording controls only traverse
-saved evidence; new experiments start explicitly. Local model readiness is advisory
-and only checks after a button press. Bundled examples create no saved-run copies.
-Geometry packets are explicit file imports. The window retains their validated
-bytes and reading state across mode switches; it neither follows embedded source
-paths nor reloads them after the window closes. Synthetic fixture checks establish
-viewer behavior, not new producer interoperability or research outcomes.
-
-The shared daily package verifies retained evidence and does not capture or advance
-ledgers. Frozen historical packet code remains authoritative for its original
-accounts. Day-9 parity is the migration gate. Keep unknown release identities and
-contradictory evidence unresolved until reviewed.
-
-The historical initial snapshot included Git history, the pre-cleanup dirty tree
-and private evidence. The new October 6 snapshot is recorded separately below;
-it does not establish availability of that older Mac or backup. Keep earlier
-snapshots and recovery refs. Restore checks must run without original source paths
-or network access.
-
-The two bounded extensions now have a
-[coverage-qualified closeout](../../analyses/2026-10-06-bounded-followups-closeout.md).
-S-007 remains blocked by its original missing historical host-release witness;
-do not widen or recollect its frozen day11 window. The new October 6
-[recovery snapshot](../../analyses/2026-10-06-recovery-snapshot.md) binds clean commit
-`d47a866`; verification, separate restore and isolated historical/new closeout
-replays passed. This is a same-volume local recovery copy. Independently located
-backup availability remains unverified. Later replay-adapter and board-attestation
-records are outside that snapshot; its account retains the first failed attempt.
-
-Human newcomer acceptance remains pending. Deliver the participant worksheet and
-record actual answers, shown evidence, help and elapsed time when a person completes
-it. The [board reconciliation](../../analyses/2026-10-06-board-reconciliation.md)
-records historical and bounded-closeout publication, preserving original records
-and distinguishing current outcomes from historical notices. The final inventory
-contains 286 cards and 108 logs, with 114 changed-card editor readbacks. The local
-geometry integration and overall closeout are complete. Repeat reconciliation
-verifies all 190 covered operations and proposes zero writes.
-Do not replay older pending payloads independently of the reconciliation manifest.
+This is an access reference, not a prerequisite for the offline examples or
+permission to change a live system. No host connection is needed for this tranche.

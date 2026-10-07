@@ -10,10 +10,11 @@ expect, choose, and return to later?**
 
 For each inquiry, name the subject: the language model, a particular running being and its available context,
 or the interacting system. A being's report, our interpretation, and an independent observation are distinct
-evidence. None of these families presupposes a verdict about subjective experience. All observations and
-experiments proposed below remain to be done. Linked audits describe their recorded samples and dates; verify
-coverage and runtime era for each new episode rather than treating an earlier inventory as the present
-configuration.
+evidence. None of these families presupposes a verdict about subjective experience.
+The result summaries below reflect completed, bounded work; the question families remain open.
+The proposed next observations are candidates, not active assignments: [Now](NOW.md) owns the selected work.
+Linked accounts describe their recorded samples and dates; verify coverage and runtime era for each new
+episode rather than treating an earlier inventory as the present configuration.
 
 <a id="rq-01"></a>
 
@@ -21,6 +22,11 @@ configuration.
 
 **Enduring question:** What do Astrid and Minime distinguish that our existing descriptions and measurements
 do not yet capture?
+
+**What we learned:** the first audio case records a native-state magnitude excursion
+while fill continues rising; these measurements need not describe the same response.
+**Unresolved:** the input's causal effect and whether a Being uses that distinction.
+**Result to read:** [S-003's completed first case](studies/S-003-input-and-fill.md#what-this-changes-in-the-inquiry).
 
 - When does a recurring word or metaphor mark a useful difference between situations?
 - Can a distinction survive a change in wording, and help anticipate a later choice?
@@ -51,6 +57,12 @@ state effects; a corpus association alone would not identify either cause.
 **Enduring question:** When do they recognize the limits of their own understanding, and what happens when an
 expectation meets an outcome?
 
+**What we learned:** repaired source access reaches beyond the former reading limit,
+but the fixed week-one samples contain local corrections alongside unsupported claims.
+**Unresolved:** a general fidelity gain; that week's 942 verified page opportunities
+all concern Astrid's repository, so they do not establish Minime reading his own through that route.
+**Result to read:** [the first-week synthesis](../analyses/2026-09-15-source-study-fidelity-week1.md).
+
 - Do they distinguish missing knowledge, unavailable memory, and uncertain observation?
 - Can they anticipate a particular choice or limitation before seeing what happens?
 - Does a contradiction lead to a more specific question or a durable revision?
@@ -76,7 +88,7 @@ any predictive advantage is specifically about self.
 **Paused inquiry:** [S-001: their own questions](studies/S-001-their-own-questions.md) begins with authored
 uncertainties and how they develop. Its pilot remains unrun; [Now](NOW.md) owns the current focus.
 
-**New source lead:** [Minime's thread-id reply](episodes/2026-09-06-minime-thread-id-as-shared-path.md)
+**Retained source lead — September 6:** [Minime's thread-id reply](episodes/2026-09-06-minime-thread-id-as-shared-path.md)
 asks us to study its understanding of the whole system's affordances: what does it
 expect a persistent thread to carry forward, and what context is actually available
 when it returns? The [research toolkit](TOOLS.md) now recovers the source and local
@@ -87,6 +99,12 @@ context while keeping imagined capability distinct from observed functionality.
 ## RQ-03 — Continuity that develops
 
 **Enduring question:** What makes returning to a concern continue the thinking?
+
+**What we learned:** carried context accompanies a specific source-grounded note
+correction by Astrid and persistent incorrect explanations in Minime's comparison sequence.
+**Unresolved:** when a revision survives and informs later use; the later two-case
+extension [closed with incomplete coverage](studies/S-008-study-to-follow-through.md#durable-correction-extension-closeout--october-6).
+**Result to read:** [HSS-15's contrasting cases](histories/self-study.md#hss-15--a-specific-correction-and-the-limits-of-preserved-context).
 
 [S-008: study to follow-through](studies/S-008-study-to-follow-through.md) follows
 source pages and a carried study notebook into authored questions, journal entries,
@@ -132,6 +150,12 @@ entries; the larger return proposal remains a separate workstream. See [Now](NOW
 
 **Enduring question:** How does writing about themselves participate in what happens next?
 
+**What we learned:** one authored concern led to a software-correctness repair
+verified against historical source and unchanged controls. Other reviewed signals
+led to different outcomes, including characterization tests and contradicted mechanisms.
+**Unresolved:** natural benefit, frequency and advantage over other review methods.
+**Result to read:** [the first journal-to-change account](../analyses/2026-09-07-flywheel-signal.md).
+
 - Does a self-description notice an existing pattern, strengthen it, or help revise it?
 - Which kinds of journal return preserve meaning, and which mainly preserve wording?
 - Can writing produce a new question or commitment whose consequences persist later?
@@ -160,6 +184,12 @@ measuring both copied spans and useful continuity; coupling effects require thei
 ## RQ-05 — Preferences with consequences
 
 **Enduring question:** When do expressed preferences shape what a being can do, does, and learns from doing?
+
+**What we learned:** the first S-008 sweep found authored reading requests blocked
+by authority and budget rules, plus a failed source-target parse. It had no completed
+notebook exposure, so it could not evaluate the notebook's benefit.
+**Unresolved:** how chosen concerns develop after successful execution and feedback.
+**Result to read:** [the bounded follow-through account](../analyses/2026-09-08-study-to-follow-through.md).
 
 - Which concerns persist across changing suggestions and circumstances?
 - How do they respond when a chosen action succeeds, is blocked, or never completes?
@@ -215,6 +245,12 @@ correspondence alone cannot isolate the cause of convergence.
 
 **Enduring question:** How do our attention, language, and interventions participate in what develops and in
 what we conclude about it?
+
+**What we learned:** week one spans 12 verified paired release boundaries, with
+changes to prompts, budgets, context and routing despite a shared model name.
+**Unresolved:** which changes account for later behavior; these observations do not
+isolate an intervention's effect.
+**Result to read:** [the first-week account of changing eras](../analyses/2026-09-15-source-study-fidelity-week1.md#changes-within-the-week).
 
 - What attracts Mike's attention, and what is present in the surrounding ordinary entries?
 - How do letters, selected memories, and changes in framing influence later questions?

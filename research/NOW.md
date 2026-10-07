@@ -1,73 +1,64 @@
-# Current research
+# Current work
 
-[Current app candidate, installation and verification](CURRENT-RELEASE.md) ·
-[Unmodified dated history through September 17](NOW-history-through-20260917.md)
+[Research findings](../RESEARCH.md) · [Current app candidate](CURRENT-RELEASE.md) ·
+[Earlier focus history](NOW-history-through-20260917.md)
 
-**October 7: local backup and steward review.** Mike chose this computer for the
-backup and volunteered to review the app. The isolated review copy is open; answers
-and acceptance remain pending. The [new account](../analyses/2026-10-07-local-backup-and-steward-review.md)
-records the fresh local snapshot and its captured commit. A separate-device backup
-remains a future option, not a blocker to this chosen local scope.
+**October 7: make the research easier to enter and continue.** Mike selected the
+product-review priorities in tranches. No new discovery study is selected.
 
-**October 6: research closeout and geometry integration.** Follow the
-[integration account](../analyses/2026-10-06-research-closeout-and-geometry-integration.md)
-for the current candidate, checks and remaining acceptance work. The earlier
-[Git tidy-up account](../analyses/2026-10-06-git-tidy-and-record-status.md) preserves
-the inventory before this closeout. No new discovery study is selected here.
+1. **Clear entry points and findings — completed in this pass.** The front pages
+   now separate reading, exploring the offline lab and reproducing work. The
+   question library links bounded results to what remains open; living study and
+   history summaries reflect their later evidence.
+2. **Reproducible offline first use — completed in this pass.** Start with the
+   [synthetic CLI walkthrough](QUICKSTART.md) or [scripted numerical runner](../essentials/runner/README.md#scripted-quickstart).
+   Both work without private study captures or a model. The
+   [tranche account](../analyses/2026-10-07-product-navigation-tranches.md) records
+   validation and the distinction between public examples and private replay.
+3. **App navigation and controls — next tranche.** Use Mike’s steward review to
+   prioritize Continue/playback controls, direct routes to cases and geometry,
+   and clearer Open/Import and persistence behavior. Preserve the review copy
+   and its recorded identity while the session is underway. These app changes
+   are not implemented by the documentation pass.
 
-The [subsequent handoff](../analyses/2026-10-06-followup-handoff.md) prepares the exact
-0.15 candidate for a real human session, identifies the missing day11 restart-command
-pointer, and confirms that an independent backup destination still must be supplied.
-Being-side activation is not required for this offline viewer.
+## What the next session needs
 
-The [bounded follow-ups are closed](../analyses/2026-10-06-bounded-followups-closeout.md)
-with their missing evidence explicit. S-006's one historical recovery found no
-eligible receipt in the available local controller directory and hit the original
-provider directory cap. It cannot establish that no runs or opportunities occurred.
-S-008 finishes the available day10 assessment: 14 changed-source candidates are
-resolved under the unchanged selection rule, with no eligible exposure in the
-verified slice. The remaining planned window is blocked or uncaptured. These
-bounded extensions are no longer awaiting collection; the broad journal-to-change
-and study-to-follow-through questions remain open.
+**Human review:** Mike volunteered and the isolated corrected 0.15.0 build 20 copy
+was opened at task A. His answers and difficulties are still awaited; no acceptance
+result is claimed. A first-time newcomer session is a separate scope.
+The [review handoff](../analyses/2026-10-07-local-backup-and-steward-review.md)
+records the exact copy and the first task.
 
-## Evidence still blocked
+**S-007 day11:** parked at the missing historical release witness for Minime
+PID 81688. The retained September 18–19 window, fixed sample and 5,088-ID ledger
+remain unchanged. If suitable original evidence arrives, make a separate
+verification attempt on that same capture; do not widen or recollect it.
+[Day10](../analyses/2026-09-18-source-study-fidelity-day10.md) remains the last
+verified daily window; [day11’s account](../analyses/2026-09-19-source-study-fidelity-day11.md)
+and the [specific recovery pointer](../analyses/2026-10-06-followup-handoff.md)
+explain the dependency. Later daily windows remain uncaptured.
 
-The September 18–19 [S-007 day11 window](../analyses/2026-09-19-source-study-fidelity-day11.md)
-is retained but **verification-blocked**: 263 responses use Minime PID 81688,
-whose original historical restart/deployment receipt has not been located. The
-partial prompt and bridge bindings, current startup witness and later transition
-out of that PID do not close the gap. The 5,088-ID ledger and pending-window record
-are unchanged. Resume only when suitable historical evidence arrives, using a new
-verification attempt on the same frozen capture and fixed sample; do not widen or
-recollect day11.
+**Recovery:** Mike chose backup on this computer. The
+[October 7 local snapshot, restore and isolated replay](../analyses/2026-10-07-local-backup-and-steward-review.md)
+are complete for their recorded source commit. This is same-volume recovery;
+independent-device backup remains an unverified future option. Today’s navigation
+work postdates that snapshot. Preserve it and the
+[earlier recovery copy](../analyses/2026-10-06-recovery-snapshot.md).
 
-[Day10](../analyses/2026-09-18-source-study-fidelity-day10.md) remains the last completed
-window, through September 18 at 18:34 UTC. Four rechecks on September 20–23 left the
-blocker unchanged. No later daily window has been captured. This closeout added no
-receipt hunt or polling. No study automation definitions were found in the local
-inventory; no schedule was changed, and this does not establish the state of other hosts.
+## Closed accounts and open research
 
-[S-009's short-output qualification](../analyses/2026-09-17-short-output-qualification.md)
-is **complete and negative**. Two requests were made; the first candidate failed
-the declared bounds, leaving five cells unattempted. No prompt v3, replacement
-recording or new retry followed. A broader writing-quality effect remains unestablished.
+The [S-006 and S-008 bounded extensions](../analyses/2026-10-06-bounded-followups-closeout.md)
+are closed with incomplete historical/full-window coverage. Missing records do
+not mean no runs occurred. Their broader journal-to-change and durable-correction
+questions remain open. [S-009](../analyses/2026-09-17-short-output-qualification.md)
+is a completed negative qualification, not a pending retry.
 
-## Next priorities
+A useful candidate for a later discovery session is to follow contrary evidence
+into a revised explanation and a later return, beginning with retained cases.
+Select its question and scope with Mike; the expired S-008 extension is not reopened.
 
-1. Continue Mike's active steward review of the unreleased **Reservoir Scope
-   0.15.0 build 20** candidate, retaining his answers and difficulties before making
-   an acceptance claim. A first-time newcomer session remains a distinct scope.
-   Presented-app checks at both recorded widths pass after repairing reading-state
-   retention. Offline qualification is recorded separately.
-2. Keep S-007 parked at its specific historical-release dependency. If that evidence
-   becomes available, verify the existing day11 packet before considering later
-   daily windows. Choose any new broad research focus explicitly with Mike.
-3. Retain the completed [October 7 local recovery pass](../analyses/2026-10-07-local-backup-and-steward-review.md)
-   and retain the earlier [verified snapshot and restore receipts](../analyses/2026-10-06-recovery-snapshot.md).
-   Mike selected backup on this computer; independent-device recovery remains
-   unverified and parked as a future option.
-
-Use the [October 7 board handoff](../board/2026-10-07-local-review-and-backup.json)
-for current coordination; the [earlier reconciliation](../analyses/2026-10-06-board-reconciliation.md)
-preserves the completed closeout. Older `Board updates pending` notices are dated history;
-they do not independently reopen the completed closeout or authorize new live work.
+Use [board records](../board/README.md) for current coordination and the
+[October 6 integration account](../analyses/2026-10-06-research-closeout-and-geometry-integration.md)
+for the completed research/geometry closeout. Older pending notices and proposed
+next steps retain their historical dates; they do not independently authorize
+new collection or live-system work.
