@@ -1,5 +1,10 @@
 # Hold Shelf records
 
+The [October 7 navigation and offline-first-use tranches](../analyses/2026-10-07-product-navigation-tranches.md)
+add one bounded work card and a dated log. Their
+[manifest](2026-10-07-product-navigation.json) preserves before/readback receipts;
+the earlier human-review, day11 and backup dispositions remain unchanged.
+
 The [October 7 local backup and steward review](../analyses/2026-10-07-local-backup-and-steward-review.md)
 records Mike's later choice of local recovery and the start of his review. Earlier
 reconciliation receipts retain their own dated states.
