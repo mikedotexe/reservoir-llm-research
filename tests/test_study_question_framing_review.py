@@ -2,9 +2,12 @@
 import hashlib
 import importlib.util
 import json
+from contextlib import contextmanager
 from pathlib import Path
+import shutil
 import tempfile
 import unittest
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -61,6 +64,42 @@ def result(root, trial, *, finish="stop", text="The shown source supports pendin
     row = {"spec": trial, "outcome": "returned", "result": value, "error": None}
     write(root / f"{trial['id']}.json", row)
     return row
+
+
+@contextmanager
+def retained_input_paths(root, protocol, paths):
+    """Adapt only declared, hash-checked paths; never rewrite frozen evidence."""
+    expected = dict(protocol["inputs"])
+    previous = protocol["previous"]
+    if expected.get(previous["path"]) != previous["sha256"]:
+        raise ValueError("predecessor is not an identically hashed declared input")
+    manifest_path = root / "manifest.json"
+    if manifest_path.exists():
+        manifest = json.loads(manifest_path.read_text())
+        for section in ("frozen_files", "source_snapshots"):
+            for path, identity in manifest[section].items():
+                if path in expected and expected[path] != identity:
+                    raise ValueError("conflicting retained input identity")
+                expected[path] = identity
+    paths = {Path(old): Path(new) for old, new in paths.items()}
+    if set(paths) != {Path(path) for path in expected}:
+        raise ValueError("relocation must name exactly the declared retained inputs")
+    for old, identity in expected.items():
+        if hashlib.sha256(paths[Path(old)].read_bytes()).hexdigest() != identity:
+            raise ValueError("relocated retained input identity differs: " + old)
+    freezer = Path(probe.framing.__file__)
+
+    def retained_path(value):
+        path = Path(value)
+        if path in paths:
+            return paths[path]
+        # The unchanged verifier also checks its imported freezer's actual source.
+        if path == freezer and freezer in paths.values():
+            return freezer
+        raise ValueError("undeclared retained input path: " + str(path))
+
+    with mock.patch.object(probe, "Path", side_effect=retained_path):
+        yield
 
 
 class FramingReviewTests(unittest.TestCase):
@@ -173,12 +212,78 @@ class FramingReviewTests(unittest.TestCase):
         if not root.exists():
             self.skipTest("retained framing protocol unavailable")
         protocol = json.loads((root / "protocol.json").read_text())
-        integrity = probe.validate_inputs(root, protocol)
+        # These exact retained files, not a prefix rewrite or host-path fallback,
+        # are the relocation contract for this historical packet. Their original
+        # paths and hashes remain unchanged in the protocol and manifest.
+        historical_repository = Path(protocol["previous"]["path"]).parents[3]
+        relative_inputs = [
+            "research/outputs/2026-09-10-evidence-order-v1/protocol.json",
+            "probes/fixtures/study_question_framing_supported.json",
+            "probes/study_question_framing.py",
+        ]
+        packet_files = ["protocol.json", "criteria.json", "baseline-user.txt", "system.txt",
+                        *(f"input-{arm}.json" for arm in probe.framing.ARMS),
+                        *(f"block-{name}.txt" for name in ("original-prefix", "evidence", "original-recall",
+                                                          "supported-account", "freezer-source")),
+                        *(f"source-snapshot/{name}.rs" for name in ("context", "dispatch", "mod", "modes"))]
+        if (root / "manifest.json").exists():
+            relative_inputs.extend(str(root.relative_to(ROOT) / name) for name in packet_files)
+        paths = {historical_repository / name: ROOT / name for name in relative_inputs}
+        with retained_input_paths(root, protocol, paths):
+            integrity = probe.validate_inputs(root, protocol)
         self.assertTrue(integrity["exact_factor_reconstruction"])
         self.assertEqual(integrity["source_snapshots"], 4)
         # Input receipts only: never open a trial result in this qualification.
         for arm in probe.framing.ARMS:
             probe.order_review.validate_render(root, protocol, arm)
+
+    def test_relocated_inputs_validate_with_historical_file_reads_denied(self):
+        with tempfile.TemporaryDirectory() as temp:
+            historical = Path(temp) / "historical"
+            historical.mkdir()
+            root, protocol = fixture(historical)
+            manifest = {"protocol_sha256": hashlib.sha256((root / "protocol.json").read_bytes()).hexdigest(),
+                        "frozen_files": {str(root / "protocol.json"): hashlib.sha256((root / "protocol.json").read_bytes()).hexdigest()},
+                        "source_snapshots": {str(root / "source-snapshot/context.rs"): hashlib.sha256((root / "source-snapshot/context.rs").read_bytes()).hexdigest()}}
+            write(root / "manifest.json", manifest)
+            restored = Path(temp) / "restored"
+            shutil.copytree(historical, restored)
+            relocated = restored / root.relative_to(historical)
+            declared = {**protocol["inputs"], **manifest["frozen_files"], **manifest["source_snapshots"]}
+            paths = {Path(path): restored / Path(path).relative_to(historical)
+                     if Path(path).is_relative_to(historical) else Path(path) for path in declared}
+            originals = {name: (relocated / name).read_bytes() for name in ("protocol.json", "manifest.json")}
+            original_open = Path.open
+
+            def deny_historical(path, *args, **kwargs):
+                if path.is_relative_to(historical):
+                    raise PermissionError("historical fixture reads denied")
+                return original_open(path, *args, **kwargs)
+
+            with mock.patch.object(Path, "open", deny_historical):
+                with self.assertRaises(PermissionError):
+                    (root / "protocol.json").read_bytes()
+                with retained_input_paths(relocated, protocol, paths):
+                    self.assertTrue(probe.validate_inputs(relocated, protocol)["exact_factor_reconstruction"])
+                    with self.assertRaisesRegex(ValueError, "undeclared retained input"):
+                        probe.Path(historical / "unlisted.json")
+                for arm in probe.framing.ARMS:
+                    probe.order_review.validate_render(relocated, protocol, arm)
+            self.assertEqual(originals, {name: (relocated / name).read_bytes() for name in originals})
+
+            # A good historical copy must not rescue a missing or altered restore.
+            previous = Path(protocol["previous"]["path"])
+            with self.assertRaisesRegex(ValueError, "exactly the declared"):
+                with retained_input_paths(relocated, protocol, {k: v for k, v in paths.items() if k != previous}):
+                    self.fail("an undeclared mapping was accepted")
+            paths[previous].unlink()
+            with self.assertRaises(FileNotFoundError):
+                with retained_input_paths(relocated, protocol, paths):
+                    self.fail("a missing retained input was accepted")
+            paths[previous].write_text("changed predecessor")
+            with self.assertRaisesRegex(ValueError, "identity differs"):
+                with retained_input_paths(relocated, protocol, paths):
+                    self.fail("a changed retained input was accepted")
 
 
 if __name__ == "__main__":
