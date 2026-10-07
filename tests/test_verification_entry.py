@@ -92,5 +92,32 @@ class VerificationEntryChecks(unittest.TestCase):
         self.assertNotIn(expected_model, presentation_commands)
         self.assertEqual(presentation_commands, [expected_presentation])
 
+    def test_first_use_checks_receive_their_required_inputs(self):
+        native = self.root / "native/ReservoirScope"
+        native.mkdir(parents=True)
+        for name in ("check-research-cases-workspace.sh", "check-guided-playback-presentation.sh"):
+            (native / name).touch()
+        args = SimpleNamespace(app=None, daily_manifest=None, daily_report=None, data_root=None,
+                               inherit=[], timeout=30, group=["native-model", "native-presentation"],
+                               out=self.root / "first-use-verification")
+        def execute(command, root, env, log, timeout):
+            return dict(command=command, exit_code=0, outcome="passed")
+        with patch.object(verification.platform, "system", return_value="Darwin"), \
+             patch.object(verification.shutil, "which", return_value="/tool"), \
+             patch.object(verification, "source_identity", return_value={"fixture": "stable"}), \
+             patch.object(verification, "_execute", side_effect=execute):
+            receipt, code = verification.run(args, root=self.root)
+        self.assertEqual(code, 0)
+        model, presentation = receipt["groups"]
+        model_commands = [x["command"] for x in model["commands"]]
+        presentation_commands = [x["command"] for x in presentation["commands"]]
+        cases = ["bash", str((native / "check-research-cases-workspace.sh").resolve()),
+                 str((args.out / "check-research-cases-workspace").resolve())]
+        playback = ["bash", str((native / "check-guided-playback-presentation.sh").resolve()),
+                    str((args.out / "core/lib").resolve()), str((args.out / "check-guided-playback-presentation").resolve())]
+        self.assertIn(cases, model_commands)
+        self.assertNotIn(cases, presentation_commands)
+        self.assertEqual(presentation_commands, [playback])
+
 if __name__ == "__main__":
     unittest.main()

@@ -8,6 +8,7 @@ struct ActionComparisonExperience: View {
     @StateObject private var tour = GuidedTourModel()
     @StateObject private var readiness = LocalModelReadiness()
     @State private var evidenceVisible = false
+    @State private var playbackVisible = false
     @State private var regulationVisible = false
     @StateObject private var camera = StateSurfaceCamera()
     @State private var presentation: StateSurfacePresentation = .topography
@@ -34,11 +35,12 @@ struct ActionComparisonExperience: View {
                 Divider()
                 VStack(alignment: .leading, spacing: 8) {
                     heading
-                    controls
+                    if !guided { controls }
                     ScrollView {
                         VStack(alignment: .leading, spacing: 8) {
                     if guided && model.comparisonKind == .components { lessonCard }
                     else { comparisonNote }
+                    if guided { guidedPlayback }
                     informationFlow
                     primaryEvidence
                     journalPane
@@ -47,7 +49,7 @@ struct ActionComparisonExperience: View {
                             .font(.caption)
                     }
                     actionTimeline
-                    playback
+                    if !guided { playback }
                         }
                     }
                 }.padding(16).frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -103,6 +105,9 @@ struct ActionComparisonExperience: View {
                     Button(tour.nextCheckpoint(model).map { "Continue to step \($0)" }
                            ?? (model.stage == .regulation ? "Tour complete" : "Continue to next component")) { tour.continueLesson(model) }
                         .disabled(model.loading || model.working || (model.stage == .regulation && tour.nextCheckpoint(model) == nil))
+                        .buttonStyle(.borderedProminent).tint(mint).foregroundStyle(.black)
+                        .font(.callout.weight(.semibold)).controlSize(.regular)
+                        .accessibilityIdentifier("guided-continue")
                     Button(evidenceVisible ? "Hide evidence details" : "Show evidence details") { evidenceVisible.toggle() }
                     Spacer()
                     Text("\(letter(model.stage)) of H").foregroundStyle(.secondary)
@@ -319,6 +324,9 @@ struct ActionComparisonExperience: View {
                     if guided {
                         Text("Eight components · explore them in any order").font(.caption2).foregroundStyle(.secondary)
                         Button("Try an experiment") { tour.remember(model); model.prepareExperiment(); onTryExperiment() }.font(.caption)
+                        Button(model.comparisonKind == .observation ? "Compare observations" : "Compare with previous") {
+                            tour.remember(model); model.compareWithPrevious(); onTryExperiment()
+                        }.font(.caption).disabled(model.loading || model.working || model.stage.previous == nil)
                         Text("Examples play locally. New experiments have their own settings and records.")
                             .font(.caption2).foregroundStyle(.secondary)
                     } else {
@@ -397,7 +405,8 @@ struct ActionComparisonExperience: View {
             HStack {
                 Text(model.comparisonKind == .observation ? "What can the journal observe?" : guided ? "From input to journal" : "Actions & comparisons").font(.system(size: 21, weight: .medium))
                 Spacer(minLength: 6)
-                Button("Open…") { model.chooseFile() }.disabled(model.running || model.working)
+                Button("Open recording…") { model.chooseFile() }.disabled(model.running || model.working)
+                    .help("View a recording from its file. Runs & examples → Import experiment keeps a copy in your library.")
                 Button("Export…") { model.export() }.disabled(model.record == nil || model.running || model.working)
             }
             HStack(spacing: 7) {
@@ -612,6 +621,33 @@ struct ActionComparisonExperience: View {
                 }
             }.frame(height: 21)
         }
+    }
+
+    private var guidedPlayback: some View {
+        DisclosureGroup(isExpanded: Binding(get: { playbackVisible }, set: { visible in
+            if !visible && model.replaying { model.stop() }
+            playbackVisible = visible
+        })) {
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(spacing: 8) {
+                    Button(model.replaying ? "Pause" : "Play") {
+                        if model.replaying { model.stop() } else { model.run() }
+                    }.disabled(!model.isRecording || (!model.replaying && !model.canRun))
+                        .accessibilityIdentifier("guided-play-pause")
+                    Button("Step") { model.step() }.disabled(!model.isRecording || !model.canStep)
+                        .accessibilityIdentifier("guided-step")
+                    Button("Next journal") { model.nextJournal() }
+                        .disabled(!model.isRecording || !model.stage.hasJournal || model.working || model.loading)
+                        .accessibilityIdentifier("guided-next-journal")
+                }
+                playback.disabled(!model.isRecording)
+            }.padding(.top, 8)
+        } label: {
+            VStack(alignment: .leading, spacing: 3) {
+                Text("Playback controls")
+                Text("Inspect saved steps · collapsing pauses playback").font(.caption2).foregroundStyle(.secondary)
+            }
+        }.font(.caption).accessibilityIdentifier("guided-playback")
     }
 
     private var playback: some View {

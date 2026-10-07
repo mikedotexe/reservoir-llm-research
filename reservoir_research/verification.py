@@ -19,13 +19,15 @@ GROUPS = ("python", "numerics", "native-model", "native-presentation", "research
 MODEL_SCRIPTS = ("check-actions-ui.sh", "check-essentials-ui.sh", "check-exploration-ui.sh",
                  "check-guided-lessons.sh", "check-evidence.sh", "check-native-action-response.sh",
                  "check-state-response.sh", "check-state-surface-data.sh", "check-source-staging.sh",
-                 "check-readiness-and-cases.sh", "check-package-identity.sh", "check-geometry-bookmarks.sh")
+                 "check-readiness-and-cases.sh", "check-package-identity.sh", "check-geometry-bookmarks.sh",
+                 "check-research-cases-workspace.sh")
 CORE_LAYOUTS = ("check-action-comparison-layout.sh", "check-action-inspector-layout.sh",
                 "check-essentials-layout.sh", "check-essentials-run-layout.sh", "check-exploration-layout.sh",
-                "check-research-case-layout.sh")
+                "check-research-case-layout.sh", "check-guided-playback-presentation.sh")
 OUT_SCRIPTS = ("check-dynamic-state-surface.sh", "check-shared-state-camera.sh",
                "check-topographic-renderer.sh", "check-watermark-view.sh",
-               "check-geometry-bookmarks.sh", "check-geometry-bookmark-presentation.sh")
+               "check-geometry-bookmarks.sh", "check-geometry-bookmark-presentation.sh",
+               "check-research-cases-workspace.sh")
 
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()

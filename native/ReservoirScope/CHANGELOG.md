@@ -1,6 +1,14 @@
 # Reservoir Scope Candidate Changes
 
-## Unreleased · 0.15.0 build 20 local candidate
+## Unreleased · 0.15.0 build 21 local candidate
+
+- Make Guided tour, Experiments, Research cases, Geometry bookmarks and Observatory direct destinations.
+- Make Continue the primary guided action and group optional recorded playback controls; collapsing them pauses playback.
+- Lead reviewed cases with their questions and keep explicitly opened case evidence in the window across navigation. Experiment imports remain verified copies in the local Library.
+- Include a labeled synthetic geometry example using retained fixture bytes; explain window-only geometry storage and preserve state after cancellation or rejection.
+- Keep build 20 and its unfinished steward-review copy unchanged. New software checks do not establish human acceptance or Being-side rollout.
+
+### Geometry foundation · build 20
 
 - Add explicit local question-geometry packet viewing beside the baseline Observatory.
 - Verify exact packet/history hashes, bounds, scope, references and temporal ordering; independently recompute numerical comparison receipts.

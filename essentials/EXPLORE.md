@@ -1,8 +1,8 @@
 # Build and explore the reservoir
 
-Reservoir Scope → **Essentials → Experiments → Explore** opens a quiet, 32-coordinate reservoir
+Reservoir Scope → **Experiments → Explore** opens a quiet, 32-coordinate reservoir
 that you can operate a step at a time or let run at a chosen pace. The existing
-four assemblies remain under **Essentials → Experiments → Stage experiments**.
+four assemblies remain under **Experiments → Stage experiments**.
 
 ## First experiment
 

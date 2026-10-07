@@ -3,13 +3,10 @@ import UniformTypeIdentifiers
 
 struct ExperimentLibraryView: View {
     let open: (URL, String) -> Void
+    let openResearchCases: () -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var examples: [ExperimentStore.Entry] = []
     @State private var runs: [ExperimentStore.Entry] = []
-    @State private var researchCases: [ReviewedResearchCase] = []
-    @State private var importedCases: [ReviewedResearchCase] = []
-    @State private var selectedCase: ReviewedResearchCase?
-    @State private var caseVisible = false
     @State private var error: String?
     @State private var loading = false
     @State private var preparationVisible = false
@@ -24,15 +21,15 @@ struct ExperimentLibraryView: View {
         let group: String?; let order: Int?; let lessonID: String?
     }
     var body: some View {
-        NavigationStack {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
                 VStack(alignment: .leading) {
                     Text("Runs & examples").font(.title2.weight(.semibold))
-                    Text("Local experiments and reviewed cases · opening evidence never calls a model").font(.caption).foregroundStyle(.secondary)
+                    Text("Recorded examples and saved experiments · viewing them never calls a model").font(.caption).foregroundStyle(.secondary)
                 }
                 Spacer()
-                Button("Import…") { chooseImport() }.disabled(loading)
+                Button("Import experiment…") { chooseImport() }.disabled(loading)
+                    .help("Verify the selected experiment and keep a copy in your local Library")
                 Button("Refresh") { Task { await refresh() } }.disabled(loading)
                 Button("Done") { dismiss() }
             }
@@ -42,13 +39,6 @@ struct ExperimentLibraryView: View {
                 Section("Guided examples") { ForEach(group("guided")) { entry in row(entry) } }
                 Section("Recorded model writing") { ForEach(group("model")) { entry in row(entry) } }
                 Section("Separate comparisons & mechanisms") { ForEach(group("comparison")) { entry in row(entry) } }
-                Section("Reviewed research cases") {
-                    ForEach(researchCases) { item in caseRow(item, imported: false) }
-                    if !importedCases.isEmpty {
-                        Text("Opened from a file · read-only for this browser session").font(.caption).foregroundStyle(.secondary)
-                        ForEach(importedCases) { item in caseRow(item, imported: true) }
-                    }
-                }
                 Section("Saved on this Mac") {
                     if runs.isEmpty { Text("Your saved experiments will appear here.").foregroundStyle(.secondary) }
                     ForEach(runs) { entry in row(entry) }
@@ -78,26 +68,15 @@ struct ExperimentLibraryView: View {
                     }
                 }
             }
+            HStack {
+                Text("Import keeps a verified copy on this Mac. Viewing a bundled example creates no saved copy.")
+                    .font(.caption).foregroundStyle(.secondary)
+                Spacer()
+                Button("Research cases") { openResearchCases() }
+            }
             Text(ExperimentStore.defaultRoot.path).font(.caption2).foregroundStyle(.secondary).textSelection(.enabled)
         }.padding(22).task { await refresh() }
-        .navigationDestination(isPresented: $caseVisible) {
-            if let selectedCase { ResearchCaseView(researchCase: selectedCase) }
-        }
-        }.frame(minWidth: 760, minHeight: 580)
-    }
-    private func caseRow(_ item: ReviewedResearchCase, imported: Bool) -> some View {
-        Button { selectedCase = item; caseVisible = true } label: {
-            HStack {
-                Image(systemName: "text.book.closed")
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(item.title).font(.body)
-                    Text((imported ? "Imported reviewed case" : "Reviewed research case") + " · " + item.interval)
-                        .font(.caption).foregroundStyle(.secondary)
-                }
-                Spacer()
-                Image(systemName: "chevron.right")
-            }.padding(.vertical, 5).contentShape(Rectangle())
-        }.buttonStyle(.plain)
+        .frame(minWidth: 760, minHeight: 580)
     }
     private func group(_ name: String) -> [ExperimentStore.Entry] {
         examples.filter { $0.group == name }.sorted { $0.order == $1.order ? $0.id < $1.id : $0.order < $1.order }
@@ -163,14 +142,6 @@ struct ExperimentLibraryView: View {
                             ? "Partial recording retained." : "One bounded retry; all recorded outcomes retained."))
                 }
             } else { examples = []; error = "The example catalog is missing from this package." }
-            if let casesURL = Bundle.module.url(forResource: "research-cases-v1", withExtension: "json")
-                ?? Bundle.module.url(forResource: "research-cases-v1", withExtension: "json", subdirectory: "Resources") {
-                do {
-                    researchCases = try await Task.detached(priority: .utility) { try ResearchCaseCatalog.read(from: casesURL).cases }.value
-                } catch { researchCases = []; self.error = "Reviewed cases could not be verified: " + error.localizedDescription }
-            } else {
-                researchCases = []; error = "The reviewed research case catalog is missing from this package."
-            }
             runs = try await Task.detached(priority: .utility) { try ExperimentStore().entries() }.value
         } catch { self.error = error.localizedDescription }
         loading = false
@@ -192,20 +163,18 @@ struct ExperimentLibraryView: View {
     }
     @MainActor private func chooseImport() {
         let panel = NSOpenPanel(); panel.allowedContentTypes = [.json]; panel.allowsMultipleSelection = false
-        panel.message = "Import a portable experiment or open an exported research case. Original paths are not followed."
+        panel.message = "Verify a portable experiment and keep a copy in your local Library. For a reviewed case, use Research cases → Open case."
         guard panel.runModal() == .OK, let url = panel.url else { return }
         loading = true
         Task {
             do {
-                let cases = try await Task.detached(priority: .utility) { () throws -> ResearchCaseCatalog? in
-                    if let cases = try ResearchCaseCatalog.readIfSupported(from: url) { return cases }
+                try await Task.detached(priority: .utility) {
+                    if try ResearchCaseCatalog.readIfSupported(from: url) != nil {
+                        throw ResearchCaseError("This is a reviewed case. Open it from Research cases → Open case; it is not saved as an experiment.")
+                    }
                     _ = try ExperimentStore().importVerified(url)
-                    return nil
                 }.value
-                if let cases {
-                    importedCases = cases.cases
-                    selectedCase = cases.cases.first; caseVisible = true; loading = false; error = nil
-                } else { await refresh() }
+                await refresh()
             } catch { self.error = error.localizedDescription; loading = false }
         }
     }

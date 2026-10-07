@@ -2,13 +2,13 @@
 
 Fresh, small reconstructions of the reservoir, spectral bridge, language loop,
 and regulation. This is a first-class experimental area of the research project.
-Start with **Reservoir Scope → Essentials → Guided tour** to follow the eight
+Start with **Reservoir Scope → Guided tour** to follow the eight
 components A–H from input to journal, return, memory, action choice and regulation.
 The [guided walkthrough](../native/ReservoirScope/docs/GUIDED-TOUR.md) uses recorded
 examples and requires no model service. See [Current release](../research/CURRENT-RELEASE.md)
 for the candidate, delivery and human acceptance status.
 
-Choose an experiment under **Essentials → Experiments**:
+Choose an experiment under **Experiments**:
 
 | Workspace | Use it to |
 |---|---|
@@ -18,7 +18,7 @@ Choose an experiment under **Essentials → Experiments**:
 
 The four stage recipes and the A–H action ladder are separate experiment families,
 with separate record formats. New action records use `essentials-actions-v3`;
-existing v1/v2 records remain readable. **Minime & Astrid** contains the separate
+existing v1/v2 records remain readable. **Observatory** contains the separate
 recorded observatory and explicitly selected read-only observations.
 
 ## The pieces

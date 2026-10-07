@@ -119,7 +119,7 @@ struct ResearchCaseView: View {
         let panel = NSSavePanel(); panel.allowedContentTypes = [.json]
         let filename = researchCase.id.filter { $0.isASCII && ($0.isLetter || $0.isNumber || $0 == "-" || $0 == "_") }
         panel.nameFieldStringValue = (filename.isEmpty ? "reviewed-research-case" : filename) + ".json"
-        panel.message = "Export this case with its embedded evidence. Reopen it through Runs & examples → Import."
+        panel.message = "Export this case with its embedded evidence. Reopen it through Research cases → Open case."
         guard panel.runModal() == .OK, let url = panel.url else { return }
         let item = researchCase
         exporting = true; exportError = nil

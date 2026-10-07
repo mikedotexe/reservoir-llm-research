@@ -7,8 +7,8 @@ A native macOS research lab with an offline guided component journey, recorded a
 optional local model writing, reviewed research cases, and a separate Minime & Astrid
 observatory. The shared numerical core and matching runner live in `essentials/`.
 
-The working source is an **unreleased 0.15.0 build 20 local candidate**, adding
-[Geometry bookmarks](docs/GEOMETRY-BOOKMARKS.md). The linked 0.14.0 release and its
+The working source is an **unreleased 0.15.0 build 21 local candidate**, simplifying
+navigation, guided playback and [geometry first use](docs/GEOMETRY-BOOKMARKS.md). The linked 0.14.0 release and its
 acceptance status remain separate from new local builds.
 
 ## Build from source
@@ -21,10 +21,10 @@ zsh native/ReservoirScope/build-app.sh
 ```
 
 The final output line is the new app's absolute path on your Mac. Open that app
-to begin **Essentials → Guided tour**; no model service is needed. Use
-**Essentials → Experiments → Explore**, **Stage experiments**, or
-**Actions & comparisons** for new experiments. **Runs & examples → Reviewed research
-cases** opens the two evidence walkthroughs. Building from source creates a new
+to begin **Guided tour**; no model service is needed. Use
+**Experiments → Explore**, **Stage experiments**, or
+**Actions & comparisons** for new experiments. **Research cases** opens the question-led evidence browser; **Geometry bookmarks**
+includes a clearly labeled synthetic example and explicit packet opening. Building from source creates a new
 local package; it does not establish the existing candidate's acceptance result.
 
 The resource manifest declares canonical inputs. The build stages a coherent package

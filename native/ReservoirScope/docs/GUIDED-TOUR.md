@@ -2,8 +2,8 @@
 
 [Current release and verification status](../../../research/CURRENT-RELEASE.md).
 
-Open **Essentials → Guided tour**. The first visit begins at A with a verified
-scripted example. Continue jumps to a useful recorded moment and pauses; you can
+Open **Guided tour**. The first visit begins at A with a verified
+scripted example. Continue is the main action: it jumps to a useful recorded moment and pauses. You can
 visit any component directly. Your lesson, writing source and cursor are remembered
 locally. Nothing plays or generates automatically on reopening.
 
@@ -41,7 +41,8 @@ observation study adds reservoir coordinates to its prompt.
 
 ## Replay and experiments
 
-Playback, Step, Replay and Next journal opportunity inspect recorded evidence.
+**Playback controls** expands the optional Play/Pause, Step, Next journal, Replay,
+scrubber and pace controls. Collapsing it pauses playback. These controls inspect recorded evidence.
 WAIT and failed writing attempts are opportunities too. Reaching the end of a
 recording does not start another run. Viewing bundled examples does not create
 copies in your saved library.
@@ -55,8 +56,7 @@ and model. Start your installed local model service before fresh generation;
 the app does not start it automatically. Use **Check local model** beside the settings to make one cancellable inventory request. Found shows the exact checked identity and time; changing settings clears the result. This is availability only, not a promise that generation will finish. Launch, replay and settings edits make no request. A connection-refused error means no
 service accepted the request at that address. Replay never calls a model.
 
-**Experiments** also contains Explore and the original stage recipes. **Minime &
-Astrid** retains the separate recorded observatory. These reduced synthetic
+**Experiments** also contains Explore and the original stage recipes. **Observatory** is a direct destination for the separate recorded observations. These reduced synthetic
 examples are not recordings of the Beings or the language model's private neural
 activations.
 
@@ -95,7 +95,9 @@ that every input can reach the target.
 
 Runs & examples groups guided examples, recorded model writing, separate
 comparisons, saved runs and expandable preparation history. Existing examples
-and failures are retained. Import and Export use normal file dialogs. The shared
+and failures are retained. **Import experiment…** verifies and keeps a copy in the
+local Library. **Open recording…** in the action viewer inspects a file without
+adding a Library copy. Export uses a normal file dialog. The shared
 store remains `~/Library/Application Support/Reservoir Scope/`.
 
 Exported records contain the observations, prompts, outcomes and boundaries needed
@@ -129,11 +131,12 @@ presentation checks; do not describe it as passed until someone has completed it
 
 ## Reviewed research cases
 
-Open **Runs & examples → Reviewed research cases**. Follow question, supplied
+Open **Research cases** directly. Choose a question to follow supplied
 evidence, authored writing, supported or unresolved interpretation, and subsequent
 outcome. Exact excerpts, identities, dates and hashes remain inspectable. Export
-a case and reopen it with Import; this does not create an experiment run. Historical
-source paths are labels, never replay dependencies.
+a case and reopen it with **Open case…**. Opened cases and the selected case stay
+available across navigation in this window, without creating a saved experiment.
+Reopen the file in a later window. Historical source paths are labels, never replay dependencies.
 
 The annotation repair distinguishes journal signal, reviewed defect, synthetic
 repair and verified deployment from an unobserved natural benefit. The day-9 reading
@@ -141,3 +144,13 @@ case separates correct definition location, a byte/line extent error, notebook
 carriage and verified subsequent navigation. Neither is a general writing score.
 
 The [participant worksheet](NEWCOMER-WORKSHEET.md) records actual newcomer acceptance.
+
+
+## Geometry first use
+
+Open **Geometry bookmarks → Load synthetic example** to inspect invented captures,
+a prediction, a comparison and a revision without another file. The visible synthetic
+label distinguishes this fixture from Being evidence. **Open packet** verifies an
+explicit export; cancelling or rejecting a replacement keeps the previous packet,
+selection and frame. Both routes retain data only in this window. See the
+[geometry guide](GEOMETRY-BOOKMARKS.md) for the measurement and provenance limits.

@@ -1,7 +1,7 @@
 # Actions and comparisons
 
-Build up one mechanism at a time in **Reservoir Scope → Essentials → Experiments → Actions & comparisons**.
-For a recorded introduction, begin with **Essentials → Guided tour** and the
+Build up one mechanism at a time in **Reservoir Scope → Experiments → Actions & comparisons**.
+For a recorded introduction, begin with **Guided tour** and the
 [current walkthrough](../native/ReservoirScope/docs/GUIDED-TOUR.md). The
 [portable 0.12.0 account](../native/ReservoirScope/docs/PORTABLE-LAB.md) preserves
 the original default workspace and delivery.
