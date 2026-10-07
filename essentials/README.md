@@ -1,23 +1,25 @@
-September 16: **Reservoir Scope 0.13.0** adds a [guided research walkthrough](../native/ReservoirScope/docs/GUIDED-TOUR.md), cursor-only recording controls, action v3 input profiles, and an independently verifiable controller example. Existing v1/v2 records remain readable.
-
 # Essentials
 
 Fresh, small reconstructions of the reservoir, spectral bridge, language loop,
 and regulation. This is a first-class experimental area of the research project.
-Each piece can be understood separately, then assembled into four runnable stages.
+Start with **Reservoir Scope → Essentials → Guided tour** to follow the eight
+components A–H from input to journal, return, memory, action choice and regulation.
+The [guided walkthrough](../native/ReservoirScope/docs/GUIDED-TOUR.md) uses recorded
+examples and requires no model service. See [Current release](../research/CURRENT-RELEASE.md)
+for the candidate, delivery and human acceptance status.
 
-Open **Reservoir Scope → Essentials → Explore** for Start/Pause, single steps,
-pulses, repeated input and live parameter controls. The [exploration guide](EXPLORE.md)
-explains each control and its recorded effects. Choose **Stage experiments** to
-run the four assemblies, inspect exact coordinates, and replay their history.
-The **Minime & Astrid** side retains the existing
-recorded and optional read-only observations.
+Choose an experiment under **Essentials → Experiments**:
 
-The [Actions & comparisons workspace](ACTIONS.md) adds an eight-version ladder,
-explicit journal writing, semantic return, journal memory and bounded action choice.
-Compare adjacent versions with fixed reply/vector replay or independent generation.
-The [original design](stages/ACTIONS-AND-COMPARISONS.md) preserves the reasoning;
-action records use a separate format from the original four stage recipes.
+| Workspace | Use it to |
+|---|---|
+| **Explore** | Pulse a quiet reservoir, change one control and inspect its recorded effect. See the [exploration guide](EXPLORE.md). |
+| **Actions & comparisons** | Use the A–H ladder to compare adjacent mechanisms, including journal writing and its two return paths. See the [action guide](ACTIONS.md). |
+| **Stage experiments** | Run the original four assemblies: reservoir, spectral bridge, language loop and regulation. See the [stage recipes](stages/README.md). |
+
+The four stage recipes and the A–H action ladder are separate experiment families,
+with separate record formats. New action records use `essentials-actions-v3`;
+existing v1/v2 records remain readable. **Minime & Astrid** contains the separate
+recorded observatory and explicitly selected read-only observations.
 
 ## The pieces
 
@@ -60,22 +62,13 @@ without adding external input. Every recorded step retains its actual settings.
 Its visual explanations expose the input, recurrent drive, tanh response and leaky
 mix. The optional sensory field remains a separate input-driven path.
 
-On macOS 14 or later with Swift tools:
-
-```sh
-essentials/build.sh
-essentials/check.sh
-native/ReservoirScope/build-app.sh
-```
-
-The Essentials build prints the headless runner's full path. Use it with a numbered
-JSON specification from the stage directory. Create `research/outputs/essentials/`
-first when using the runner; the app creates it automatically:
-
-```text
-essentials-run run --config SPEC.json --output research/outputs/essentials/RUN.json
-essentials-run verify research/outputs/essentials/RUN.json
-```
+For a complete scripted run from the repository root, follow the
+[headless quickstart](runner/README.md#scripted-quickstart). It builds `essentials-run`,
+runs the E feedback comparison in a fresh directory, then independently verifies
+the saved record. No app, local model or live Being source is needed.
+The [native build instructions](../native/ReservoirScope/README.md#build-from-source)
+create the graphical app from this checkout. `zsh essentials/check.sh` runs the
+broader numerical checks when needed.
 
 The native viewer uses the same library directly. It offers **Run**, **Stop**,
 **Reset**, **Replay**, step scrubbing, and **Open / Export**. Its default is 300 steps
@@ -84,8 +77,9 @@ not the numerical update. Language boundaries occur every 30 steps when another
 step remains. Simulation waits for a complete reply; its feedback first applies
 at the next recorded boundary and remains until the next accepted reply.
 
-The app saves generated runs under this repository's
-`~/Library/Application Support/Reservoir Scope/`. Saved files preserve the recipe, seed, complete
+Normal app sessions save generated runs under
+`~/Library/Application Support/Reservoir Scope/`. An isolated review kit can select
+its own Library directory. Saved files preserve the recipe, seed, complete
 weights, inputs, noise, actual states, available spectra/controller values, prompts,
 replies, and application-step links. Replays use those stored values and make no
 model calls. The headless verifier independently recomputes their numerical chain.
@@ -155,4 +149,6 @@ Foundation handles records/networking and Accelerate supplies the symmetric
 eigensolver. SwiftPM supports development/testing; the standalone build statically
 links the same core into both the app and its packaged headless runner.
 
-The [portable 0.12.0 lab](../native/ReservoirScope/docs/PORTABLE-LAB.md) opens in the A–H action ladder, bundles real model recordings, and adds a separate controlled observation study. All native experiment workspaces share a local Application Support store.
+The [portable 0.12.0 account](../native/ReservoirScope/docs/PORTABLE-LAB.md) documents
+the original portable foundation. Use the current guided walkthrough above for
+today's navigation and the current-release page for delivery status.

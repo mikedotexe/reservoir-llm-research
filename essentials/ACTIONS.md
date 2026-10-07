@@ -1,7 +1,10 @@
 # Actions and comparisons
 
-Build up one mechanism at a time in **Reservoir Scope → Essentials → Actions & comparisons**.
-This is the default workspace in the portable 0.12.0 app. [Portable lab guide](../native/ReservoirScope/docs/PORTABLE-LAB.md).
+Build up one mechanism at a time in **Reservoir Scope → Essentials → Experiments → Actions & comparisons**.
+For a recorded introduction, begin with **Essentials → Guided tour** and the
+[current walkthrough](../native/ReservoirScope/docs/GUIDED-TOUR.md). The
+[portable 0.12.0 account](../native/ReservoirScope/docs/PORTABLE-LAB.md) preserves
+the original default workspace and delivery.
 The workspace keeps its own versioned records. Explore and the original four
 stage recipes retain their existing behavior.
 
@@ -97,8 +100,9 @@ The [research methods](../research/METHODS.md) explain the interpretation bounda
 observations while adding the 32 indexed reservoir coordinates to only one prompt.
 It requires independent generation, alternates request order, and preserves one-arm
 failures. Its question and stopping rule belong to [S-009](../research/studies/S-009-portable-reservoir-journals.md),
-separate from live observational studies. New records use `essentials-actions-v2`;
-legacy v1 files retain their original prompt-verification path.
+separate from live observational studies. New records use `essentials-actions-v3`
+with an explicit input profile; legacy v1/v2 files retain their original prompt
+and forcing interpretation.
 
 [Headless recipe](actions/recipes/D-observation-comparison.json) ·
 [Release checks](../analyses/2026-09-16-portable-reservoir-lab.md).

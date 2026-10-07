@@ -1,13 +1,40 @@
-Current release adds `regulation --config SPEC.json --output RUN.json` for the field-only controller fixture (`{}` selects its fixed protocol). `verify` supports action v1/v2/v3 and `essentials-regulation-v1`; new action runs use v3 with explicit forcing metadata.
-
 # Headless runner
 
-For the action ladder and paired comparisons:
+`essentials-run` runs synthetic numerical experiments and verifies saved records
+using the same core as Reservoir Scope. The separate `reservoir-research` command
+organizes retained research evidence and archives; see [research tools](../../research/TOOLS.md).
+
+## Scripted quickstart
+
+On an Apple silicon Mac running macOS 14 or later, install the Xcode command-line
+tools or Xcode so `swiftc` and the macOS SDK are available. Run this block in a
+terminal from the repository root. No Python installation or model service is
+needed for these commands.
 
 ```sh
-essentials-run actions --config essentials/actions/recipes/E-feedback.json --output research/outputs/essentials/feedback.json
-essentials-run verify research/outputs/essentials/feedback.json
+task_runner="$(zsh essentials/build.sh)"
+mkdir -p research/outputs/essentials
+task_run_dir="$(mktemp -d "$PWD/research/outputs/essentials/quickstart.XXXXXX")"
+"$task_runner" actions --config essentials/actions/recipes/E-feedback.json --output "$task_run_dir/feedback.json"
+"$task_runner" verify "$task_run_dir/feedback.json"
 ```
+
+The build prints the runner's absolute path and keeps compiler outputs in the local
+cache. The recipe explicitly selects scripted replies and a matched D/E comparison:
+300 steps per arm, with the journal-to-reservoir return added in E. Expect
+`Completed: 300 action steps per arm` followed by
+`Verified 300 action steps per arm`. Verification runs in a separate process and
+recomputes the retained numerical chain. These commands neither read Being sources
+nor contact a model. A successful verification establishes record consistency,
+not a writing-quality improvement.
+
+If you already have a copied Reservoir Scope app, its
+`Contents/MacOS/essentials-run` is a standalone runner. Set `task_runner` to that
+executable's full path instead of the build line; use the same recipe and fresh
+output commands. The source quickstart above does not require an existing app or
+another machine's cache.
+
+## Recipes and records
 
 `actions` uses the same shared action engine as the viewer. Its recipes cover A–H;
 `F-memory-independent.json` selects independent generation. Scripted replies are
@@ -18,22 +45,28 @@ backend, loopback endpoint with a port, and model, as described in the
 Journals save beside the output in `<run name>.journals/`. The JSON export also
 contains exact journal text, save receipts and context/application references, so
 replay does not need that folder. Action runs are bounded to 600 steps and 128
-opportunities per arm. New action records use `essentials-actions-v2`; v1 still verifies with its original prompts;
-the older stage and exploration formats retain their meaning. The
+opportunities per arm. New action records use `essentials-actions-v3`, including
+explicit forcing metadata; v1/v2 still verify with their original prompt and
+forcing interpretation. The older stage and exploration formats retain their meaning. The
 [action guide](../ACTIONS.md) explains the comparison controls and their limits.
 
-Build with `essentials/build.sh` from the research root, or use Swift Package Manager:
+The `run` subcommand uses the original four stage recipes. After the quickstart,
+you can use the same runner in another fresh directory:
 
 ```sh
-mkdir -p research/outputs/essentials
-swift run --package-path essentials essentials-run run --config essentials/stages/03-llm-loop.json --output research/outputs/essentials/essentials-run.json
-swift run --package-path essentials essentials-run verify research/outputs/essentials/essentials-run.json
+task_stage_dir="$(mktemp -d "$PWD/research/outputs/essentials/stage.XXXXXX")"
+"$task_runner" run --config essentials/stages/03-llm-loop.json --output "$task_stage_dir/run.json"
+"$task_runner" verify "$task_stage_dir/run.json"
 ```
 
 `run` accepts exactly one recipe and a separate output path. Missing optional recipe
 fields use the documented defaults. It writes a completed, stopped or failed run;
 Ctrl-C stops at the next safe boundary and preserves the completed frames. Failed
 language runs are written and return exit code 1; stopped runs return 130.
+
+`regulation --config SPEC.json --output RUN.json` runs the separate field-only
+controller fixture (`{}` selects its frozen protocol). Its record format is
+`essentials-regulation-v1`, also supported by `verify`.
 
 `verify` validates bounded structure, availability, seed-generated weights, synthetic
 forcing, saved noise, every state update, sensory covariance and spectra, eigenvector

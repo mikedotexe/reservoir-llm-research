@@ -5,6 +5,28 @@ repeatable research material. It uses Python 3.12+ and SQLite FTS5, with no mode
 calls or third-party runtime packages. The first real-data run and reading packs
 are recorded in the [machinery report](../analyses/2026-09-06-research-machinery.md).
 
+## First use from a checkout
+
+Start with the **[offline CLI quickstart](QUICKSTART.md)**. It uses two tracked,
+clearly synthetic journal files and a fresh temporary database, then demonstrates
+search, raw-text inspection, coverage and a reading pack. Only Python 3.12+ with
+SQLite FTS5 and system timezone data is needed; no installation, private index,
+live source, app, model or network is required.
+
+This page is the broader reference. The tracked source and selected examples are
+available from a checkout. Original journals, existing local indexes, and retained
+packets under `research/outputs/` are private inputs, not automatically available
+to another reader. Their commands below require the named evidence and its access
+context. Optional model generation is separate from indexing or offline replay.
+
+Maintained daily replay requires an explicit sealed manifest, matching report and
+the retained files they bind. The verification group's `--daily-manifest`,
+`--daily-report` and, for relocated captures, `--data-root` identify those inputs.
+`verify --group all-offline` includes this private research replay as well as native
+checks; missing prerequisites produce an incomplete result. Use the quickstart for
+the self-contained first run and the [daily pipeline](#maintained-daily-evidence-and-verification)
+reference when the required retained inputs are available.
+
 ## Close bounded follow-ups from retained evidence
 
 `probes/research_followups_closeout_replay.py` is the supported offline S-006/S-008
@@ -67,7 +89,12 @@ These tools retrieve and organize evidence. A candidate question is not a findin
 of self-knowledge; recurrence is not by itself development or memory. Reading and
 source reconstruction remain separate steps in [S-001](studies/S-001-their-own-questions.md).
 
-## Start using it
+## Use a retained research index
+
+The commands in this section describe the existing local research corpus. For a
+fresh checkout without that private index, use the [synthetic quickstart](QUICKSTART.md)
+first. The default-source import below is a maintainer operation requiring an
+explicitly selected source and time scope; it is not part of the quickstart.
 
 Run commands from the repository root. On Mike's current machine the compatible
 interpreter is `/opt/homebrew/bin/python3.14`; the default `python3` is older.
