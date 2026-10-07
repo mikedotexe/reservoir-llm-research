@@ -37,11 +37,17 @@ walkthroughs. [The participant worksheet](../native/ReservoirScope/docs/NEWCOMER
 keeps human acceptance separate from software checks.
 
 The [October 6 participant handoff](../analyses/2026-10-06-followup-handoff.md) points
-to the prepared, unstarted isolated copy of this exact candidate and its separate
+to the then-unstarted isolated copy of this exact candidate and its separate
 geometry worksheet. It records the newer external preparer's sandbox checks; the
 qualified app bytes and embedded source identity remain unchanged.
 
-Experiments and journals save under `~/Library/Application Support/Reservoir Scope/`.
+On [October 7](../analyses/2026-10-07-local-backup-and-steward-review.md), Mike
+volunteered for a steward review and the isolated copy was opened at task A.
+Participant answers and acceptance remain pending; app launch is not a result.
+
+Normal app sessions save experiments and journals under
+`~/Library/Application Support/Reservoir Scope/`; this isolated review copy uses
+the private `Library/` directory inside its acceptance kit.
 Replay and case viewing work offline. Live Beings feeds and fresh local generation
 are explicit choices; opening the app does not contact the Mac Mini or a model.
 The endpoint/model **Check local model** button makes one bounded loopback inventory

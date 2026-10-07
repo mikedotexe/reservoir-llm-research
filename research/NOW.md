@@ -3,6 +3,12 @@
 [Current app candidate, installation and verification](CURRENT-RELEASE.md) ·
 [Unmodified dated history through September 17](NOW-history-through-20260917.md)
 
+**October 7: local backup and steward review.** Mike chose this computer for the
+backup and volunteered to review the app. The isolated review copy is open; answers
+and acceptance remain pending. The [new account](../analyses/2026-10-07-local-backup-and-steward-review.md)
+records the fresh local snapshot and its captured commit. A separate-device backup
+remains a future option, not a blocker to this chosen local scope.
+
 **October 6: research closeout and geometry integration.** Follow the
 [integration account](../analyses/2026-10-06-research-closeout-and-geometry-integration.md)
 for the current candidate, checks and remaining acceptance work. The earlier
@@ -48,17 +54,20 @@ recording or new retry followed. A broader writing-quality effect remains unesta
 
 ## Next priorities
 
-1. Arrange an actual human newcomer session for the unreleased **Reservoir Scope
-   0.15.0 build 20** candidate before changing acceptance status. Presented-app
-   checks at both recorded widths pass after repairing reading-state retention.
-   Offline qualification is recorded separately; no paired Being rollout is claimed.
+1. Continue Mike's active steward review of the unreleased **Reservoir Scope
+   0.15.0 build 20** candidate, retaining his answers and difficulties before making
+   an acceptance claim. A first-time newcomer session remains a distinct scope.
+   Presented-app checks at both recorded widths pass after repairing reading-state
+   retention. Offline qualification is recorded separately.
 2. Keep S-007 parked at its specific historical-release dependency. If that evidence
    becomes available, verify the existing day11 packet before considering later
    daily windows. Choose any new broad research focus explicitly with Mike.
-3. Retain the [verified recovery snapshot and restore receipts](../analyses/2026-10-06-recovery-snapshot.md).
-   This closeout's same-volume copy and isolated replay passed. Independently located
-   backup availability remains unverified and is a separate recovery priority.
+3. Retain the completed [October 7 local recovery pass](../analyses/2026-10-07-local-backup-and-steward-review.md)
+   and retain the earlier [verified snapshot and restore receipts](../analyses/2026-10-06-recovery-snapshot.md).
+   Mike selected backup on this computer; independent-device recovery remains
+   unverified and parked as a future option.
 
-Use the [board reconciliation](../analyses/2026-10-06-board-reconciliation.md) for
-current coordination. Older `Board updates pending` notices are dated history;
+Use the [October 7 board handoff](../board/2026-10-07-local-review-and-backup.json)
+for current coordination; the [earlier reconciliation](../analyses/2026-10-06-board-reconciliation.md)
+preserves the completed closeout. Older `Board updates pending` notices are dated history;
 they do not independently reopen the completed closeout or authorize new live work.

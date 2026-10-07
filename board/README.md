@@ -1,5 +1,9 @@
 # Hold Shelf records
 
+The [October 7 local backup and steward review](../analyses/2026-10-07-local-backup-and-steward-review.md)
+records Mike's later choice of local recovery and the start of his review. Earlier
+reconciliation receipts retain their own dated states.
+
 For the later participant/backup/day11 handoff, use
 [2026-10-06-followup-handoff.json](2026-10-06-followup-handoff.json) and its
 [account](../analyses/2026-10-06-followup-handoff.md). The reconciliation below is
