@@ -1,0 +1,56 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": "python3 scripts/check_reference.py",
+    "evidence": "180 selected sources, 43 canonical resources and 1 fixture verified against unchanged native 0.15.0 build 21; commit 96b60ed1d1fe9bdd3a5f50dec3a66a4754ad7f95."
+  },
+  {
+    "id": "resource-staging-tests",
+    "status": "passed",
+    "command": "python3 -m unittest discover -s desktop/ReservoirScope/scripts -p 'test_*.py'",
+    "evidence": "9 tests passed; final staging: 36 generated files includes all 22 authored Library recordings."
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": "npm test",
+    "evidence": "71 tests across 13 files passed after final UI changes, 20:25:27 America/Los_Angeles. Includes backend-evidence presentation, no pre-window result, partial/full evaluation and rewind."
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": "npm run build",
+    "evidence": "TypeScript and Vite passed. 60 modules; JS index-BhOQzwNw.js 837.58 kB; CSS index-Dq3kG7lx.css 33.75 kB. Existing large-chunk advisory remains."
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-scope-desktop; cargo test --locked -p reservoir-scope-desktop controller_import_filters_and_reopens_original_bytes",
+    "evidence": "Full 37 tests passed 68.89 s. Review then corrected explicit null fieldSeed metadata and absent-noise wording; changed controller import/open/filter/exact-byte regression passed 56.22 s. Formatting only followed full run; targeted regression is a subset, not an added test. Numerical evidence remains in generation-bound FrameView."
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-core",
+    "evidence": "72 tests passed: 7 unit, 8 actions, 12 stage, 14 exploration, 5 geometry, 14 guided, 9 regulation, 3 Unicode. Initial run exposed obsolete unsupported assertions for now-qualified controller/Unicode; corrected assertions preserve explicit unqualified cases. Final full run passed. Independent guide: 58 cases / 2, 507 cursors; controller 18 cases; Unicode 21 record comparisons (16 both pass, 2 Rust incomplete / Swift pass, 3 both fail)."
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": "cargo clippy --locked --workspace --all-targets -- -D warnings",
+    "evidence": "Core and desktop all-target strict Clippy passed with no warnings."
+  },
+  {
+    "id": "swift-export-verification",
+    "status": "passed",
+    "command": "python3 crates/reservoir-core/tests/support/check_regulation_oracles.py --swift-runner target/regulation-swift-oracle/bin/essentials-run --swift-window-oracle target/regulation-swift-oracle/bin/regulation-window-oracle --rust-runner target/release/reservoir-core --rust-helper target/release/examples/emit_regulation_record --receipt validation/2026-10-12-regulation-oracles-final.json",
+    "evidence": "Fresh Rust-generated controller record passed unchanged Swift. 18 oracle cases; exact source/executable/record identities in regulation-conformance.json. This is headless numerical evidence; packaged native-dialog export remains unexecuted after screen lock."
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": "env DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk npm run tauri -- build --bundles app",
+    "evidence": "0.4.0 app built successfully; release compile 1m 17s, bundled 230.71 MiB, ad-hoc signed, notarization skipped. 36 staged resource files, all 22 authored Library examples. Actual packaged UI checks retained separately; Windows/Linux unexecuted."
+  }
+]

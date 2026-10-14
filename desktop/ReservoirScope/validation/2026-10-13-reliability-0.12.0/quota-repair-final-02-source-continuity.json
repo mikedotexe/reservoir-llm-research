@@ -1,0 +1,38 @@
+{
+  "capturedAtUtc": "2026-10-13T17:36:39.634724+00:00",
+  "coreChange": "Only #[derive(Clone)] on SustainedSession; reconstructed predecessor matches frozen 0.12 inventory exactly. No numerical, format, prompt or verifier changes.",
+  "baselineCore": {
+    "path": "desktop/ReservoirScope/crates/reservoir-core/src/sustained.rs",
+    "kind": "file",
+    "bytes": 55043,
+    "sha256": "aab22751b10f3ddc9b961f2e3a3b80b2f534fbfa40978a9df62a00805b9efeb7"
+  },
+  "currentCoreSha256": "9c5377a4a1357f520ae11d6b327010cad5739290fc9af70aa2d97a1eac55de70",
+  "patches": [
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/quota-repair-final-02-core-clone.patch",
+      "sha256": "19964dfcbc984455d858059cf963793bce94a53c4ae03074703a6ee56477f947",
+      "sizeBytes": 260
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/quota-repair-final-02-sustained.rs.patch",
+      "sha256": "9a9fb16abbcfbaa0aeb61cef0afcdea17c05b0b45f109d9dbfcb5a1e18330d4b",
+      "sizeBytes": 13024
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/quota-repair-final-02-sustained_quota_tests.rs.patch",
+      "sha256": "452d392af7957b202d9361f05a4b9bf0d5da1faac822bd192cb52e2de3ead0b5",
+      "sizeBytes": 17125
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/quota-repair-final-02-sustained_store.rs.patch",
+      "sha256": "0895793156d8d368c8d2b7a9352a536974d9cbc12337aa8ebf5d293fb07c91f6",
+      "sizeBytes": 16272
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/quota-repair-final-02-sustained_tests.rs.patch",
+      "sha256": "ff4b3709d6c46ffc4b14a0511486d9fdbb2cb0963fe9793c99a2b78feeda50bf",
+      "sizeBytes": 977
+    }
+  ]
+}

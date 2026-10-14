@@ -1,0 +1,91 @@
+
+> reservoir-scope-desktop@0.15.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /Users/v/other/reservoir-llm-research/desktop/ReservoirScope
+
+ ❯ src/myReservoirQuota.test.tsx (8 tests | 1 failed) 39ms
+     × keeps inspected-prefix export available during a pending save and labels its narrower coverage 17ms
+ ❯ src/MyReservoir.test.tsx (12 tests | 3 failed) 66ms
+     × shows saved-but-unapplied and skipped entries without granting memory/application 3ms
+     × renders exact journal/prompt/memory and source safely, with host timing separate 1ms
+     × keeps independent reading and labels new journals without moving current selection 2ms
+ ❯ src/JournalMeasurements.test.tsx (7 tests | 6 failed) 12ms
+     × keeps eight backend rows collapsed after original prose and before separate Evidence 6ms
+     × uses observation steps independently of remembered journal identity and live state 1ms
+     × distinguishes a first observation from a historical prior whose scalar snapshot was not retained 1ms
+     × renders an unavailable explanation for omitted references without extracting numbers from the retained observation or prose 1ms
+     × fails only the structured table for malformed or mismatched references, leaving exact writing and evidence available 1ms
+     × formats only display precision, signs and percentage-point labels without turning tiny changes into zero 0ms
+ ❯ src/MyReservoirReading.test.tsx (4 tests | 4 failed) 15ms
+     × renders the complete journal as whitespace-preserved inert prose outside evidence 7ms
+     × keeps identity, source and full evidence in one closed disclosure 1ms
+     × keeps saved, applied and skipped boundaries visible without opening evidence 2ms
+     × removes list identities while preserving reading controls and selected older entry 3ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 14 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/JournalMeasurements.test.tsx > optional recorded measurements > keeps eight backend rows collapsed after original prose and before separate Evidence
+ FAIL  src/JournalMeasurements.test.tsx > optional recorded measurements > uses observation steps independently of remembered journal identity and live state
+ FAIL  src/JournalMeasurements.test.tsx > optional recorded measurements > renders an unavailable explanation for omitted references without extracting numbers from the retained observation or prose
+ FAIL  src/JournalMeasurements.test.tsx > optional recorded measurements > fails only the structured table for malformed or mismatched references, leaving exact writing and evidence available
+ FAIL  src/MyReservoir.test.tsx > My reservoir explicit operation and evidence > shows saved-but-unapplied and skipped entries without granting memory/application
+ FAIL  src/MyReservoir.test.tsx > My reservoir explicit operation and evidence > renders exact journal/prompt/memory and source safely, with host timing separate
+ FAIL  src/MyReservoir.test.tsx > My reservoir explicit operation and evidence > keeps independent reading and labels new journals without moving current selection
+ FAIL  src/MyReservoirReading.test.tsx > journal prose and optional evidence > renders the complete journal as whitespace-preserved inert prose outside evidence
+ FAIL  src/MyReservoirReading.test.tsx > journal prose and optional evidence > keeps identity, source and full evidence in one closed disclosure
+ FAIL  src/MyReservoirReading.test.tsx > journal prose and optional evidence > keeps saved, applied and skipped boundaries visible without opening evidence
+ FAIL  src/MyReservoirReading.test.tsx > journal prose and optional evidence > removes list identities while preserving reading controls and selected older entry
+ FAIL  src/myReservoirQuota.test.tsx > sustained quota: volatile work and committed-prefix export > keeps inspected-prefix export available during a pending save and labels its narrower coverage
+Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+ ❯ renderElement node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:6446:15
+ ❯ retryNode node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:6783:21
+ ❯ renderNodeDestructive node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:6717:11
+ ❯ renderNode node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:7268:18
+ ❯ renderChildrenArray node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:7029:11
+ ❯ retryNode node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:6796:13
+ ❯ renderNodeDestructive node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:6717:11
+ ❯ renderNode node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:7268:18
+ ❯ renderElement node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5917:18
+ ❯ retryNode node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:6783:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/14]⎯
+
+ FAIL  src/JournalMeasurements.test.tsx > optional recorded measurements > distinguishes a first observation from a historical prior whose scalar snapshot was not retained
+Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+ ❯ renderElement node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:6446:15
+ ❯ retryNode node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:6783:21
+ ❯ performWork node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:7919:19
+ ❯ startWork node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:8807:7
+ ❯ renderToStringImpl node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:8933:7
+ ❯ process.env.NODE_ENV.exports.renderToStaticMarkup node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10426:14
+ ❯ src/JournalMeasurements.test.tsx:48:19
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/14]⎯
+
+ FAIL  src/JournalMeasurements.test.tsx > optional recorded measurements > formats only display precision, signs and percentage-point labels without turning tiny changes into zero
+Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+ ❯ renderElement node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:6446:15
+ ❯ retryNode node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:6783:21
+ ❯ performWork node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:7919:19
+ ❯ startWork node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:8807:7
+ ❯ renderToStringImpl node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:8933:7
+ ❯ process.env.NODE_ENV.exports.renderToStaticMarkup node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10426:14
+ ❯ src/JournalMeasurements.test.tsx:84:18
+     82|     expect(formatRecordedMeasurement(-4.8697, true)).toBe('-4.8697');
+     83|     expect(formatRecordedMeasurement(0, true)).toBe('0');
+     84|     const html = renderToStaticMarkup(<JournalMeasurements value={refe…
+       |                  ^
+     85|     expect(html).toContain('title="27.48050683"'); expect(html).toCont…
+     86|     expect(html).toContain('scope="col"'); expect(html).toContain('tab…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/14]⎯
+
+
+ Test Files  4 failed | 33 passed (37)
+      Tests  14 failed | 327 passed (341)
+   Start at  15:24:13
+   Duration  1.20s (transform 4.21s, setup 0ms, import 7.47s, tests 2.38s, environment 2ms)
+

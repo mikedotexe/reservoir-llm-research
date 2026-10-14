@@ -1,0 +1,69 @@
+Window: "Reservoir Scope Tauri Preview", App: Reservoir Scope Tauri Preview.
+0 standard window Reservoir Scope Tauri Preview, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Reservoir Scope · Research lab, URL: tauri://localhost
+			3 link Skip to workspace, Value: tauri://localhost#workspace-main
+			4 container
+				5 text Reservoir Scope THE CROSS-PLATFORM LAB 0.16.0  · My reservoir
+			6 container Workspaces
+				7 button Guided tour
+				8 button Experiments
+				9 button Research cases
+				10 button Geometry bookmarks
+				11 button Observatory
+			12 container
+				13 container Experiment views
+					14 button Library
+					15 button Recording reader
+					16 button My reservoir
+					17 button Fresh experiments
+				18 text YOUR OWN RESERVOIR
+				19 heading My reservoir, Value: 1
+					20 text My reservoir
+				21 text Watch a seeded reservoir, read its writing, and inspect how saved text returns as input. The session can continue while this app is open or minimized, within your chosen run and storage bounds.
+				22 container
+					23 checkbox Replace 3D with exact values, Value: 0
+					24 text Replace 3D with exact values
+				25 container Prepare your reservoir
+					26 text Prepare your reservoir
+					27 container
+						28 text Reply source
+						29 pop up button (collapsed) Reply source, Value: Deterministic script · synthetic writing, Secondary Actions: Expand
+					30 text Synthetic writing from a deterministic script. It runs offline and makes no model request.
+					31 description list Selected session limits
+						32 text Writing cadence
+						33 text Every 30 steps
+						34 text Requested pace
+						35 text 1 second per step
+						36 text Duration limit
+						37 text 6 hours
+						38 text Storage budget
+						39 text 256 MiB
+					40 text Up to 10800 numerical steps or 360 writing attempts, including retries. The first run or storage limit reached holds execution. Writing and saving hold the numerical clock, so pace is not a promise of wall-clock throughput.
+					41 summary Advanced settings, Value: off
+						42 text Advanced settings
+					43 text The journal invitation leaves the topic and form open. Saved writing returns as reservoir input and as context for the next entry; you can read along without directing each turn.
+					44 text This app runs while open or minimized, with no background service. Create prepares local state; Start is a separate action.
+				45 button Create my reservoir
+				46 text Create prepares local state only. Start is a separate, explicit action.
+				47 heading Start with your own seed and bounds, Value: 2
+					48 text Start with your own seed and bounds
+				49 text No experiment starts from navigation. This mode keeps its own state, journals and versioned storage; it does not open or modify a Being’s workspace.
+				50 summary Inspect and recover an owned session, Value: off
+					51 text Inspect and recover an owned session
+			52 container
+				53 text Offline evidence · explicit local-model connections macOS · Windows · Linux / target platforms; qualification tracked separately
+		54 scroll bar (settable, float) 0
+	55 close button
+	56 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	57 minimize button
+	58 text Reservoir Scope Tauri Preview
+59 menu bar
+	60 Reservoir Scope Tauri Preview
+	61 File
+	62 Edit
+	63 View
+	64 Window
+	65 Help
+
+The focused UI element is 2 HTML content Description: Reservoir Scope · Research lab, URL: tauri://localhost

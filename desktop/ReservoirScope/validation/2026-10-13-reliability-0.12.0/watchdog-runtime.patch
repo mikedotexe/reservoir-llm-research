@@ -1,0 +1,82 @@
+--- packaged-0.12/src-tauri/src/sustained.rs
++++ source-patch/src-tauri/src/sustained.rs
+@@ -19,6 +19,7 @@
+     path::{Path, PathBuf},
+     sync::{
+         atomic::{AtomicBool, AtomicU64, Ordering},
++        mpsc::{sync_channel, SyncSender},
+         Arc, Mutex, MutexGuard,
+     },
+     time::{Duration, Instant, SystemTime},
+@@ -218,6 +219,7 @@
+     interrupted: AtomicBool,
+     epoch: AtomicU64,
+     exports: AtomicU64,
++    updates: SyncSender<()>,
+ }
+ #[derive(Clone)]
+ pub struct SustainedState {
+@@ -233,7 +235,11 @@
+         )
+     }
+     fn with_provider(root: PathBuf, provider: Provider) -> Self {
+-        Self {
++        // A single coalescing publisher serves this state, including across
++        // successive runs. Slow state reads or WebView callbacks cannot block
++        // the clock/watchdog or allocate an unbounded queue of old snapshots.
++        let (updates, receiver) = sync_channel(1);
++        let state = Self {
+             shared: Arc::new(Shared {
+                 inner: Mutex::new(Inner {
+                     active: None,
+@@ -250,8 +256,17 @@
+                 interrupted: AtomicBool::new(false),
+                 epoch: AtomicU64::new(0),
+                 exports: AtomicU64::new(0),
++                updates,
+             }),
+-        }
++        };
++        let weak = Arc::downgrade(&state.shared);
++        std::thread::spawn(move || {
++            while receiver.recv().is_ok() {
++                let Some(shared) = weak.upgrade() else { break };
++                Self { shared }.deliver_update();
++            }
++        });
++        state
+     }
+     fn lock(&self) -> Result<MutexGuard<'_, Inner>, AppError> {
+         let g = self
+@@ -1019,6 +1034,11 @@
+         }
+     }
+     fn emit(&self) {
++        // Full means one newer snapshot is already requested. Never wait for
++        // delivery from the watchdog or numerical/provider worker.
++        let _ = self.shared.updates.try_send(());
++    }
++    fn deliver_update(&self) {
+         let pair = if let Ok(g) = self.shared.inner.lock() {
+             g.listener
+                 .as_ref()
+@@ -1027,7 +1047,18 @@
+             None
+         };
+         if let Some((l, u)) = pair {
+-            l(u);
++            if !l(u) {
++                // A disconnected WebView should not retain its channel forever.
++                // Do not remove a newer subscription installed during delivery.
++                if let Ok(mut g) = self.shared.inner.lock() {
++                    if g.listener
++                        .as_ref()
++                        .is_some_and(|current| Arc::ptr_eq(current, &l))
++                    {
++                        g.listener = None;
++                    }
++                }
++            }
+         }
+     }
+     pub fn journal_page(

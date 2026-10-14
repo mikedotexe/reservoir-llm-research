@@ -1,0 +1,547 @@
+{
+  "schema": "reservoir-owned-run-retention-v1",
+  "capturedAtUtc": "2026-10-13T23:00:43.062121+00:00",
+  "status": "retained-and-scope-audited",
+  "sourceDirectory": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02-gemma3-4b-run01",
+  "copies": [
+    {
+      "source": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02-gemma3-4b-run01/endpoint.json",
+        "bytes": 277,
+        "sha256": "b698c39c165c3f9d01669f8c8d8dec008723aeab87467de5c0da543b5d7ab0af"
+      },
+      "retained": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/owned-run-01/endpoint.json",
+        "bytes": 277,
+        "sha256": "b698c39c165c3f9d01669f8c8d8dec008723aeab87467de5c0da543b5d7ab0af"
+      },
+      "byteEqual": true
+    },
+    {
+      "source": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02-gemma3-4b-run01/launch-intent.json",
+        "bytes": 3370,
+        "sha256": "052d996a64378da4e7f7c2d5660fd9d37aabf06e44efc16f065c0c0d2551442c"
+      },
+      "retained": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/owned-run-01/launch-intent.json",
+        "bytes": 3370,
+        "sha256": "052d996a64378da4e7f7c2d5660fd9d37aabf06e44efc16f065c0c0d2551442c"
+      },
+      "byteEqual": true
+    },
+    {
+      "source": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02-gemma3-4b-run01/owned-process.json",
+        "bytes": 1201,
+        "sha256": "f8d62f87960a3a9d6cfecc98305407894c37691466617d461e2131b05ffceb1f"
+      },
+      "retained": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/owned-run-01/owned-process.json",
+        "bytes": 1201,
+        "sha256": "f8d62f87960a3a9d6cfecc98305407894c37691466617d461e2131b05ffceb1f"
+      },
+      "byteEqual": true
+    },
+    {
+      "source": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02-gemma3-4b-run01/service.log",
+        "bytes": 39934,
+        "sha256": "62a2f743218afd7171c601a1eb47c49fe5bd5f00262b0e08aba85e54a869bd13"
+      },
+      "retained": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/owned-run-01/service.log",
+        "bytes": 39934,
+        "sha256": "62a2f743218afd7171c601a1eb47c49fe5bd5f00262b0e08aba85e54a869bd13"
+      },
+      "byteEqual": true
+    },
+    {
+      "source": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02-gemma3-4b-run01/stop-request",
+        "bytes": 144,
+        "sha256": "c90c520d5560041f2d4c3199b8694c6b927f348bb05f23445eb4e8396d8c1d01"
+      },
+      "retained": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/owned-run-01/stop-request",
+        "bytes": 144,
+        "sha256": "c90c520d5560041f2d4c3199b8694c6b927f348bb05f23445eb4e8396d8c1d01"
+      },
+      "byteEqual": true
+    },
+    {
+      "source": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02-gemma3-4b-run01/supervision-result.json",
+        "bytes": 10246,
+        "sha256": "643898ffd5f5540e371011b34cad74df1b7aad4cce0a0178d58de771bdccb265"
+      },
+      "retained": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/owned-run-01/supervision-result.json",
+        "bytes": 10246,
+        "sha256": "643898ffd5f5540e371011b34cad74df1b7aad4cce0a0178d58de771bdccb265"
+      },
+      "byteEqual": true
+    }
+  ],
+  "originalFilesUnchangedAfterRetention": true,
+  "serviceIdentity": {
+    "pid": 56024,
+    "pgid": 56024,
+    "sid": 56024,
+    "supervisorPid": 55992,
+    "spawnedAtUtc": "2026-10-13T22:53:21.150089+00:00",
+    "endedAtUtc": "2026-10-13T22:58:47.063051+00:00",
+    "elapsedMonotonicSeconds": 325.91691304091364,
+    "maximumLifetimeSeconds": 1200,
+    "endpoint": "http://127.0.0.1:54465",
+    "executableSha256": "76535100c7aaf5aa94fe749b1bf0cfe3a702fa0743c7421fed059b783f4969de",
+    "versionFromPlist": "0.40.3",
+    "selectionSha256": "7de0ae35b3d231201679b2242484cb24a9122a8f9ce866b8554dfe6384a2d86a"
+  },
+  "timeScope": "Supervisor/service lifetime includes readiness and idle time; it is not app runningElapsedMilliseconds, a request duration, or the session numerical clock. App elapsed time is not read or derived in this audit.",
+  "accessLog": {
+    "entries": [
+      {
+        "status": 200,
+        "duration": "2.134666ms",
+        "client": "127.0.0.1",
+        "method": "GET",
+        "path": "/api/tags",
+        "completedAtUtcSecondResolution": "2026-10-13T22:53:32+00:00",
+        "line": 8,
+        "sourceText": "[GIN] 2026/10/13 - 15:53:32 | 200 |    2.134666ms |       127.0.0.1 | GET      \"/api/tags\""
+      },
+      {
+        "status": 200,
+        "duration": "12.22889775s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat",
+        "completedAtUtcSecondResolution": "2026-10-13T22:54:44+00:00",
+        "line": 341,
+        "sourceText": "[GIN] 2026/10/13 - 15:54:44 | 200 |  12.22889775s |       127.0.0.1 | POST     \"/api/chat\""
+      },
+      {
+        "status": 200,
+        "duration": "1m33s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat",
+        "completedAtUtcSecondResolution": "2026-10-13T22:56:47+00:00",
+        "line": 395,
+        "sourceText": "[GIN] 2026/10/13 - 15:56:47 | 200 |         1m33s |       127.0.0.1 | POST     \"/api/chat\""
+      },
+      {
+        "status": 200,
+        "duration": "23.054066333s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat",
+        "completedAtUtcSecondResolution": "2026-10-13T22:57:41+00:00",
+        "line": 439,
+        "sourceText": "[GIN] 2026/10/13 - 15:57:41 | 200 | 23.054066333s |       127.0.0.1 | POST     \"/api/chat\""
+      },
+      {
+        "status": 200,
+        "duration": "16.132702667s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat",
+        "completedAtUtcSecondResolution": "2026-10-13T22:58:28+00:00",
+        "line": 484,
+        "sourceText": "[GIN] 2026/10/13 - 15:58:28 | 200 | 16.132702667s |       127.0.0.1 | POST     \"/api/chat\""
+      }
+    ],
+    "unparsedAccessLines": [],
+    "retainedBytes": 39934,
+    "discardedBytes": 0,
+    "getTagsCount": 1,
+    "postChatCount": 4,
+    "otherAccessEntriesCount": 0,
+    "limit": "Counts describe only the retained owned service access log. They are not a network capture, global process/service inventory, cryptographic request-to-journal join or independent provider authentication."
+  },
+  "runnerReportedMetrics": {
+    "tasks": [
+      {
+        "taskId": 0,
+        "logEvidence": [
+          {
+            "kind": "preparedPrompt",
+            "line": 326,
+            "sourceText": "slot   operator(): id  0 | task 0 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 1637"
+          },
+          {
+            "kind": "promptTiming",
+            "line": 335,
+            "sourceText": "slot print_timing: id  0 | task 0 | prompt eval time =    2445.55 ms /  1637 tokens (    1.49 ms per token,   669.38 tokens per second)"
+          },
+          {
+            "kind": "outputTiming",
+            "line": 336,
+            "sourceText": "slot print_timing: id  0 | task 0 |        eval time =    6951.95 ms /   210 tokens (   33.26 ms per token,    30.06 tokens per second)"
+          },
+          {
+            "kind": "release",
+            "line": 339,
+            "sourceText": "slot      release: id  0 | task 0 | stop processing: n_tokens = 1846, truncated = 0"
+          }
+        ],
+        "contextSlot": 8192,
+        "keep": 4,
+        "preparedPromptTokens": 1637,
+        "promptEvalMilliseconds": 2445.55,
+        "promptEvalTokens": 1637,
+        "outputEvalMilliseconds": 6951.95,
+        "outputEvalTokens": 210,
+        "releaseTotalTokens": 1846,
+        "truncatedFlag": 0
+      },
+      {
+        "taskId": 213,
+        "logEvidence": [
+          {
+            "kind": "preparedPrompt",
+            "line": 359,
+            "sourceText": "slot   operator(): id  0 | task 213 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 2199"
+          },
+          {
+            "kind": "promptTiming",
+            "line": 389,
+            "sourceText": "slot print_timing: id  0 | task 213 | prompt eval time =    8107.40 ms /  2199 tokens (    3.69 ms per token,   271.23 tokens per second)"
+          },
+          {
+            "kind": "outputTiming",
+            "line": 390,
+            "sourceText": "slot print_timing: id  0 | task 213 |        eval time =   84966.68 ms /   382 tokens (  223.01 ms per token,     4.48 tokens per second)"
+          },
+          {
+            "kind": "release",
+            "line": 393,
+            "sourceText": "slot      release: id  0 | task 213 | stop processing: n_tokens = 2580, truncated = 0"
+          }
+        ],
+        "contextSlot": 8192,
+        "keep": 4,
+        "preparedPromptTokens": 2199,
+        "promptEvalMilliseconds": 8107.4,
+        "promptEvalTokens": 2199,
+        "outputEvalMilliseconds": 84966.68,
+        "outputEvalTokens": 382,
+        "releaseTotalTokens": 2580,
+        "truncatedFlag": 0
+      },
+      {
+        "taskId": 599,
+        "logEvidence": [
+          {
+            "kind": "preparedPrompt",
+            "line": 415,
+            "sourceText": "slot   operator(): id  0 | task 599 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 2370"
+          },
+          {
+            "kind": "promptTiming",
+            "line": 433,
+            "sourceText": "slot print_timing: id  0 | task 599 | prompt eval time =    3499.16 ms /  2370 tokens (    1.48 ms per token,   677.30 tokens per second)"
+          },
+          {
+            "kind": "outputTiming",
+            "line": 434,
+            "sourceText": "slot print_timing: id  0 | task 599 |        eval time =   19481.08 ms /   393 tokens (   49.70 ms per token,    20.12 tokens per second)"
+          },
+          {
+            "kind": "release",
+            "line": 437,
+            "sourceText": "slot      release: id  0 | task 599 | stop processing: n_tokens = 2762, truncated = 0"
+          }
+        ],
+        "contextSlot": 8192,
+        "keep": 4,
+        "preparedPromptTokens": 2370,
+        "promptEvalMilliseconds": 3499.16,
+        "promptEvalTokens": 2370,
+        "outputEvalMilliseconds": 19481.08,
+        "outputEvalTokens": 393,
+        "releaseTotalTokens": 2762,
+        "truncatedFlag": 0
+      },
+      {
+        "taskId": 996,
+        "logEvidence": [
+          {
+            "kind": "preparedPrompt",
+            "line": 461,
+            "sourceText": "slot   operator(): id  0 | task 996 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 2374"
+          },
+          {
+            "kind": "promptTiming",
+            "line": 478,
+            "sourceText": "slot print_timing: id  0 | task 996 | prompt eval time =    3111.34 ms /  2374 tokens (    1.31 ms per token,   763.02 tokens per second)"
+          },
+          {
+            "kind": "outputTiming",
+            "line": 479,
+            "sourceText": "slot print_timing: id  0 | task 996 |        eval time =   12966.85 ms /   441 tokens (   29.47 ms per token,    33.93 tokens per second)"
+          },
+          {
+            "kind": "release",
+            "line": 482,
+            "sourceText": "slot      release: id  0 | task 996 | stop processing: n_tokens = 2814, truncated = 0"
+          }
+        ],
+        "contextSlot": 8192,
+        "keep": 4,
+        "preparedPromptTokens": 2374,
+        "promptEvalMilliseconds": 3111.34,
+        "promptEvalTokens": 2374,
+        "outputEvalMilliseconds": 12966.85,
+        "outputEvalTokens": 441,
+        "releaseTotalTokens": 2814,
+        "truncatedFlag": 0
+      }
+    ],
+    "limit": "Runner self-reports extracted from log lines, not typed app response metadata. Task IDs are runner identities and have not been equated to app attempt IDs. Reported nontruncation and token counts do not independently prove exact full prompt processing, attention, comprehension or effective memory."
+  },
+  "cleanup": {
+    "reason": "explicit stop",
+    "events": [
+      {
+        "atUtc": "2026-10-13T22:58:46.958699+00:00",
+        "operation": "killpg",
+        "pgid": 56024,
+        "signal": 15,
+        "before": {
+          "leaderExitedUnreaped": false,
+          "members": [
+            {
+              "pid": 56024,
+              "ppid": 55992,
+              "pgid": 56024,
+              "sid": 56024,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791932001",
+              "startMicroseconds": "148450"
+            },
+            {
+              "pid": 56428,
+              "ppid": 56024,
+              "pgid": 56024,
+              "sid": 56024,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791932071",
+              "startMicroseconds": "835532"
+            }
+          ],
+          "quiescent": false,
+          "unreadableLeaderExitProven": false
+        },
+        "sent": true,
+        "outcome": "syscall accepted; quiescence still requires verification"
+      }
+    ],
+    "groupObservations": [
+      {
+        "atUtc": "2026-10-13T22:58:46.958600+00:00",
+        "attempt": 1,
+        "operation": "observe-owned-group",
+        "pgid": 56024,
+        "before": [
+          {
+            "pid": 56024,
+            "ppid": 55992,
+            "pgid": 56024,
+            "sid": 56024,
+            "uid": 501,
+            "realUid": 501,
+            "savedUid": 501,
+            "status": 2,
+            "startSeconds": "1791932001",
+            "startMicroseconds": "148450"
+          },
+          {
+            "pid": 56428,
+            "ppid": 56024,
+            "pgid": 56024,
+            "sid": 56024,
+            "uid": 501,
+            "realUid": 501,
+            "savedUid": 501,
+            "status": 2,
+            "startSeconds": "1791932071",
+            "startMicroseconds": "835532"
+          }
+        ],
+        "leaderExitedBefore": false,
+        "after": [
+          {
+            "pid": 56024,
+            "ppid": 55992,
+            "pgid": 56024,
+            "sid": 56024,
+            "uid": 501,
+            "realUid": 501,
+            "savedUid": 501,
+            "status": 2,
+            "startSeconds": "1791932001",
+            "startMicroseconds": "148450"
+          },
+          {
+            "pid": 56428,
+            "ppid": 56024,
+            "pgid": 56024,
+            "sid": 56024,
+            "uid": 501,
+            "realUid": 501,
+            "savedUid": 501,
+            "status": 2,
+            "startSeconds": "1791932071",
+            "startMicroseconds": "835532"
+          }
+        ],
+        "leaderExitedAfter": false,
+        "outcome": "stable start identities; scheduler status may differ"
+      },
+      {
+        "atUtc": "2026-10-13T22:58:46.958836+00:00",
+        "attempt": 1,
+        "operation": "observe-owned-group",
+        "pgid": 56024,
+        "before": [
+          {
+            "pid": 56024,
+            "ppid": 55992,
+            "pgid": 56024,
+            "sid": 56024,
+            "uid": 501,
+            "realUid": 501,
+            "savedUid": 501,
+            "status": 2,
+            "startSeconds": "1791932001",
+            "startMicroseconds": "148450"
+          },
+          {
+            "pid": 56428,
+            "ppid": 56024,
+            "pgid": 56024,
+            "sid": 56024,
+            "uid": 501,
+            "realUid": 501,
+            "savedUid": 501,
+            "status": 2,
+            "startSeconds": "1791932071",
+            "startMicroseconds": "835532"
+          }
+        ],
+        "leaderExitedBefore": false,
+        "after": [
+          {
+            "pid": 56024,
+            "ppid": 55992,
+            "pgid": 56024,
+            "sid": 56024,
+            "uid": 501,
+            "realUid": 501,
+            "savedUid": 501,
+            "status": 2,
+            "startSeconds": "1791932001",
+            "startMicroseconds": "148450"
+          },
+          {
+            "pid": 56428,
+            "ppid": 56024,
+            "pgid": 56024,
+            "sid": 56024,
+            "uid": 501,
+            "realUid": 501,
+            "savedUid": 501,
+            "status": 2,
+            "startSeconds": "1791932071",
+            "startMicroseconds": "835532"
+          }
+        ],
+        "leaderExitedAfter": false,
+        "outcome": "stable start identities; scheduler status may differ"
+      },
+      {
+        "atUtc": "2026-10-13T22:58:47.062765+00:00",
+        "attempt": 1,
+        "operation": "observe-owned-group",
+        "pgid": 56024,
+        "before": [
+          {
+            "pid": 56024,
+            "identityUnavailable": true,
+            "errno": 3,
+            "operation": "proc_pidinfo"
+          }
+        ],
+        "leaderExitedBefore": true,
+        "after": [
+          {
+            "pid": 56024,
+            "identityUnavailable": true,
+            "errno": 3,
+            "operation": "proc_pidinfo"
+          }
+        ],
+        "leaderExitedAfter": true,
+        "outcome": "stable start identities; scheduler status may differ"
+      },
+      {
+        "atUtc": "2026-10-13T22:58:47.062865+00:00",
+        "attempt": 1,
+        "operation": "observe-owned-group",
+        "pgid": 56024,
+        "before": [
+          {
+            "pid": 56024,
+            "identityUnavailable": true,
+            "errno": 3,
+            "operation": "proc_pidinfo"
+          }
+        ],
+        "leaderExitedBefore": true,
+        "after": [
+          {
+            "pid": 56024,
+            "identityUnavailable": true,
+            "errno": 3,
+            "operation": "proc_pidinfo"
+          }
+        ],
+        "leaderExitedAfter": true,
+        "outcome": "stable start identities; scheduler status may differ"
+      }
+    ],
+    "finalGroupBeforeReap": {
+      "leaderExitedUnreaped": true,
+      "members": [
+        {
+          "pid": 56024,
+          "identityUnavailable": true,
+          "errno": 3,
+          "operation": "proc_pidinfo"
+        }
+      ],
+      "quiescent": true,
+      "unreadableLeaderExitProven": true
+    },
+    "childExitCode": 0,
+    "supervisorErrors": [],
+    "sigtermSentToOwnedGroup": true,
+    "sigkillSentToOwnedGroup": false,
+    "scope": "Original owned process group verified quiescent before leader reap. Escaped descendants were not inventoried.",
+    "independentAuditLimit": "Read-only audit of completed retained supervision evidence, not a fresh post-reap PID probe. No signals or process queries performed. The final reported unreadable member is only the exact unreaped direct child with waitid exit proof; this is not an empty group claim."
+  },
+  "conventionalMetadataUnchanged": true,
+  "credentialCheckLimit": "lstat continuity only; no key/config content read or hash",
+  "modelsContactedByAudit": false,
+  "processActionsByAudit": false,
+  "appUiByAudit": false,
+  "runtimeSourceEdited": false
+}

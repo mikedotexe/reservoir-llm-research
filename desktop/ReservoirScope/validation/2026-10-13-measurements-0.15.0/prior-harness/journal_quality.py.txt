@@ -1,0 +1,273 @@
+#!/usr/bin/env python3
+"""Offline, deliberately partial journal transcription checks and review aids.
+
+An exit status of zero means the report was produced, never that the prose is
+scientifically correct. No network, provider, runtime or UI calls are made.
+"""
+from __future__ import annotations
+
+import argparse
+import collections
+import datetime as dt
+from decimal import Decimal, InvalidOperation
+import hashlib
+import itertools
+import json
+import math
+from pathlib import Path
+import re
+import stat
+
+SCHEMA = 'reservoir-journal-quality-review-v1'
+RULESET = 'open-writing-review-2'
+MAX_BYTES = 16 * 1024 * 1024
+MAX_TEXT = 65536
+MAX_CLAIMS_PER_KIND = 32
+MAX_CLAUSE = 512
+NUMBER = r'[-+−]?(?:\d+(?:\.\d+)?|\.\d+)(?:[eE][-+]?\d{1,3})?'
+SUFFIX = (r'\s*(?:(?:is|of|at|remains|was|around|approximately|about|roughly|relatively|low|high)\s+){0,5}'
+          r'(?:[=:]\s*)?(?:\(\s*)?(?P<number>' + NUMBER + r')(?!\w|\.\d)(?P<percent>\s*%)?')
+LABELS = {
+    'rms': r'\b(?:recurrent (?:reservoir )?)?RMS',
+    'fillPercent': r'\b(?:(?:separate )?(?:reduced )?(?:sensory |active-mode ))?fill(?: percent(?:age)?)?',
+    'leadingEigenvalue': r'\b(?:sensory (?:leading|top) eigenvalue|(?:leading|top) (?:sensory )?eigenvalue|dominant (?:sensory )?mode(?:\s*\(\s*eigenvalue)?|eigenvalue)',
+    'headSharePercent': r'\b(?:sensory )?head share',
+    'entropy': r'\b(?:top-eight (?:sensory )?)?(?:normalized )?entropy',
+    'l2': r'\bL2(?!\s+change)',
+    'changeL2': r'\b(?:L2 change(?: since previous observation)?|changeL2)',
+}
+PATTERNS = {key: re.compile(label + SUFFIX, re.I) for key, label in LABELS.items()}
+STEP = re.compile(r'\b(?P<label>current step|global step|observation|step)\s*(?:is\s+|of\s+|[=:]\s*)?(?P<number>\d+)\b', re.I)
+EXACT_OPENING = re.compile(r'^Step (?P<number>\d+)\.')
+HISTORY = re.compile(r'\b(?:previous|prior|earlier|memory|historical|formerly|was|reported|quoted)\b', re.I)
+QUALIFIED = re.compile(r"\b(?:not|no|never|cannot|can't|isn't|incorrect|wrong|rather than|next|future|will|would|could|if|hypothesis|hypothetical)\b", re.I)
+INFERENCE_CUES = {
+    'stability_or_convergence': r'\b(?:stable|stability|converg\w*)\b',
+    'uniform_spectrum': r'\b(?:uniform\w*|all 32 modes|consistent eigenvalue\w*)\b',
+    'eigenvectors_or_spatial_semantics': r'\b(?:eigenvector\w*|spatial|sensory exploration)\b',
+    'learning_or_intent': r'\b(?:learn\w*|train\w*|deliberat\w*|intend\w*|conscious\w*)\b',
+    'causality': r'\b(?:caus\w*|because|due to|led to|resulted in)\b',
+}
+
+
+def sha(raw: bytes) -> str:
+    return hashlib.sha256(raw).hexdigest()
+
+
+def bounded_json(path: Path):
+    if not stat.S_ISREG(path.lstat().st_mode) or path.stat().st_size > MAX_BYTES:
+        raise ValueError(f'Expected ordinary bounded JSON file: {path}')
+    raw = path.read_bytes()
+    if len(raw) > MAX_BYTES:
+        raise ValueError('JSON input exceeded bound')
+    value = json.loads(raw, parse_constant=lambda token: (_ for _ in ()).throw(ValueError(f'Nonfinite JSON: {token}')))
+    return value, {'path': str(path.resolve()), 'bytes': len(raw), 'sha256': sha(raw)}
+
+
+def context(text: str, start: int, end: int):
+    """A local clause, not a claim to understand arbitrary discourse or quotes."""
+    boundaries = list(re.finditer(r'(?<=[.!?;])\s+|\n', text))
+    left = max((m.end() for m in boundaries if m.end() <= start), default=0)
+    right = min((m.start() for m in boundaries if m.start() >= end), default=len(text))
+    return text[left:right], left, right
+
+
+def claim_scope(text: str, start: int, end: int):
+    clause, _, _ = context(text, start, end)
+    if QUALIFIED.search(clause):
+        return 'qualified_or_hypothetical_review', clause
+    if HISTORY.search(clause):
+        return 'historical_scope_review', clause
+    return 'current_candidate', clause
+
+
+def rounding_agrees(token: str, expected: float):
+    """Precision of the written token plus eight-decimal prompt tolerance."""
+    try:
+        written = Decimal(token.replace('−', '-'))
+    except InvalidOperation as error:
+        raise ValueError('Invalid numeric token') from error
+    if not written.is_finite() or not math.isfinite(expected):
+        raise ValueError('Nonfinite measurement')
+    exponent = written.as_tuple().exponent
+    if not -16 <= exponent <= 16:
+        return None, None
+    tolerance = Decimal(5).scaleb(exponent - 1) + Decimal('0.00000001')
+    return abs(written - Decimal(str(expected))) <= tolerance, str(tolerance)
+
+
+def expected_values(observation):
+    sensory = observation['sensory']
+    values = {'rms': observation['rms'], 'fillPercent': sensory['fillPercent'],
+              'leadingEigenvalue': sensory['eigenvalues'][0], 'headSharePercent': sensory['headShare'] * 100,
+              'entropy': sensory['entropy'], 'l2': observation['l2'], 'changeL2': observation['changeL2']}
+    if any(value is not None and (type(value) not in (float, int) or not math.isfinite(value)) for value in values.values()):
+        raise ValueError('Nonfinite or nonnumeric source measurement')
+    return values
+
+
+def metric_claims(text: str, observation):
+    expected = expected_values(observation)
+    claims = []
+    for metric, pattern in PATTERNS.items():
+        for match in itertools.islice(pattern.finditer(text), MAX_CLAIMS_PER_KIND):
+            scope, clause = claim_scope(text, match.start(), match.end())
+            token = match.group('number')
+            value = expected[metric]
+            status = 'scope_requires_review'
+            agreement, tolerance = (None, None) if value is None else rounding_agrees(token, value)
+            unit_known = bool(match.group('percent')) == (metric in ('fillPercent', 'headSharePercent'))
+            bare_eigenvalue = metric == 'leadingEigenvalue' and match.group().lower().startswith('eigenvalue')
+            if not unit_known:
+                status = 'unit_requires_review'
+            elif bare_eigenvalue:
+                status = 'measurement_identity_requires_review'
+            elif scope == 'current_candidate':
+                status = 'source_unavailable' if value is None else 'precision_requires_review' if agreement is None else 'consistent_at_written_precision' if agreement else 'numeric_mismatch'
+            claims.append({'metric': metric, 'span': [match.start(), match.end()], 'text': match.group(),
+                           'token': token, 'unit': 'percent' if match.group('percent') else 'scalar_or_unspecified',
+                           'scope': scope, 'clause': clause[:MAX_CLAUSE], 'clauseTruncated': len(clause) > MAX_CLAUSE,
+                           'expectedCurrent': value, 'roundingTolerance': tolerance,
+                           'agreesWithCurrentAtWrittenPrecision': agreement, 'status': status})
+    return sorted(claims, key=lambda claim: claim['span'])
+
+
+def step_claims(text: str, current: int):
+    rows = []
+    for match in itertools.islice(STEP.finditer(text), MAX_CLAIMS_PER_KIND):
+        scope, clause = claim_scope(text, match.start(), match.end())
+        number = int(match.group('number'))
+        rows.append({'span': [match.start(), match.end()], 'text': match.group(), 'value': number,
+                     'expectedCurrent': current, 'scope': scope, 'clause': clause[:MAX_CLAUSE], 'clauseTruncated': len(clause) > MAX_CLAUSE,
+                     'status': ('consistent_current_label' if number == current else 'current_step_mismatch')
+                     if scope == 'current_candidate' else 'scope_requires_review'})
+    return rows
+
+
+def evaluate_journal(journal, *, prompt_version):
+    text = journal['journalText']
+    if not isinstance(text, str) or len(text.encode()) > MAX_TEXT:
+        raise ValueError('Journal text exceeded bound')
+    observation = journal['observation']
+    if type(observation['step']) is not int or not 0 <= observation['step'] <= 1000000:
+        raise ValueError('Invalid observation step')
+    claims = metric_claims(text, observation)
+    steps = step_claims(text, observation['step'])
+    memory = journal.get('memory')
+    memory_text = memory['entry']['text'] if memory is not None else ''
+    if not isinstance(memory_text, str) or len(memory_text.encode()) > MAX_TEXT:
+        raise ValueError('Memory text exceeded bound')
+    # This checks lexical coincidence only. It does not infer a causal channel.
+    prior_claims = metric_claims(memory_text, observation) if memory_text else []
+    for claim in claims:
+        if claim['status'] == 'numeric_mismatch':
+            prior = [p for p in prior_claims if p['metric'] == claim['metric'] and Decimal(p['token'].replace('−', '-')) == Decimal(claim['token'].replace('−', '-'))]
+            claim['matchingPriorTextSpans'] = prior[:8]
+            claim['matchingPriorSpansTruncated'] = len(prior) > 8
+            claim['carryoverCandidate'] = bool(claim['matchingPriorTextSpans'])
+    prior_steps = step_claims(memory_text, observation['step'])
+    for claim in steps:
+        if claim['status'] == 'current_step_mismatch':
+            prior = [p for p in prior_steps if p['value'] == claim['value']]
+            claim['matchingPriorTextLabels'] = prior[:8]
+            claim['matchingPriorLabelsTruncated'] = len(prior) > 8
+            claim['carryoverCandidate'] = bool(claim['matchingPriorTextLabels'])
+    cues = []
+    for category, pattern in INFERENCE_CUES.items():
+        for match in itertools.islice(re.finditer(pattern, text, re.I), MAX_CLAIMS_PER_KIND):
+            clause, start, end = context(text, match.start(), match.end())
+            cues.append({'category': category, 'span': [match.start(), match.end()], 'cue': match.group(),
+                         'clauseSpan': [start, end], 'clause': clause[:MAX_CLAUSE], 'clauseTruncated': len(clause) > MAX_CLAUSE, 'decision': 'manual_review_only'})
+    opening = EXACT_OPENING.match(text)
+    recognized = {claim['metric'] for claim in claims if claim['scope'] == 'current_candidate'}
+    required = ['rms', 'fillPercent'] if prompt_version == 'reservoir-journal-v2' else []
+    words = re.findall(r"\b[\w]+(?:['’][\w]+)*\b", text)
+    preface = bool(re.match(r"\s*(?:Okay\b|Sure\b|Here(?:'|’)s\b|Here is\b)", text, re.I))
+    headings = bool(re.search(r'^\s*(?:#{1,6}\s|\*\*.+\*\*\s*$)', text, re.M))
+    return {'identity': journal.get('identity'), 'promptVersion': prompt_version,
+            'observationStep': observation['step'], 'journalTextSha256': sha(text.encode()),
+            'stepClaims': steps, 'metricClaims': claims,
+            'coverage': {'requiredCurrentMetrics': required, 'recognizedCurrentMetrics': sorted(recognized),
+                         'missingRequiredMetrics': [metric for metric in required if metric not in recognized],
+                         'correctExactOpening': bool(opening and int(opening.group('number')) == observation['step']),
+                         'exactOpeningRequired': prompt_version == 'reservoir-journal-v2',
+                         'limit': 'Recognition is partial; coverage does not establish all assertions were extracted or correct.'},
+            'style': {'wordCount': len(words), 'target60To100Words': None if prompt_version == 'reservoir-journal-v3' else 60 <= len(words) <= 100,
+                      'assistantPrefaceCandidate': preface, 'markdownHeadingCandidate': headings,
+                      'decision': 'Descriptive form observations only; v3 has no required length, heading, metrics, form or topic. No scientific verdict.'},
+            'inferenceReviewCues': cues, 'manualWholeTextReviewRequired': True,
+            'extractionBound': {'maximumClaimsPerKind': MAX_CLAIMS_PER_KIND,
+                                'metricsTruncated': [key for key, pattern in PATTERNS.items() if sum(1 for _ in pattern.finditer(text)) > MAX_CLAIMS_PER_KIND],
+                                'stepsTruncated': sum(1 for _ in STEP.finditer(text)) > MAX_CLAIMS_PER_KIND,
+                                'inferenceCuesTruncated': [key for key, pattern in INFERENCE_CUES.items() if sum(1 for _ in re.finditer(pattern, text, re.I)) > MAX_CLAIMS_PER_KIND],
+                                'maximumClauseCharacters': MAX_CLAUSE},
+            'qualityVerdict': 'not_assigned',
+            'literalClaimReviewRequired': 'A detected span may be a metaphor, hypothetical, quotation or creative form. The reviewer establishes whether it asserts a present fact before treating any mismatch as an error.',
+            'manualRubric': {'currentIdentity': None, 'numericTranscription': None, 'memoryAttribution': None,
+                             'inferenceAndUncertainty': None, 'readability': None,
+                             'unrecognizedAssertions': None, 'evidenceAnnotations': []}}
+
+
+def evaluate_material(material, *, prompt_version):
+    if prompt_version not in ('reservoir-journal-v1', 'reservoir-journal-v2', 'reservoir-journal-v3'):
+        raise ValueError('Unknown prompt version')
+    journals = material['journals']
+    if not isinstance(journals, list) or len(journals) > 16:
+        raise ValueError('Expected at most16 short-run journal entries')
+    rows = [evaluate_journal(j, prompt_version=prompt_version) for j in journals]
+    return {'schema': SCHEMA, 'ruleset': RULESET, 'status': 'analysis_complete_manual_review_required',
+            'qualityVerdict': 'not_assigned', 'promptVersion': prompt_version,
+            'journalCount': len(rows), 'journals': rows,
+            'summary': {'recognizedMetricClaims': sum(len(row['metricClaims']) for row in rows),
+                        'metricClaimStatuses': dict(collections.Counter(c['status'] for row in rows for c in row['metricClaims'])),
+                        'stepClaimStatuses': dict(collections.Counter(c['status'] for row in rows for c in row['stepClaims'])),
+                        'entriesMissingRequiredMetrics': sum(bool(row['coverage']['missingRequiredMetrics']) for row in rows),
+                        'entriesMissingCorrectRequiredOpening': sum(row['coverage']['exactOpeningRequired'] and not row['coverage']['correctExactOpening'] for row in rows)},
+            'limits': ['No global scientific pass or natural-language completeness claim.',
+                       'Inferences and ambiguous/current-versus-historical scopes need whole-text review.',
+                       'Repeated prior text is a carryover candidate, not a causal attribution.',
+                       'No-claim expressive prose need not report metrics. Empty/failed output and absence of numerical claims are distinct outcomes.',
+                       'V3 has no mandatory metric, step-heading, length, topic or creative-expression condition.']}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--material', required=True, type=Path)
+    parser.add_argument('--integrity-receipt', required=True, type=Path)
+    parser.add_argument('--prompt-version', required=True, choices=['reservoir-journal-v1', 'reservoir-journal-v2', 'reservoir-journal-v3'])
+    parser.add_argument('--protocol', required=True, type=Path)
+    parser.add_argument('--output', required=True, type=Path)
+    args = parser.parse_args()
+    started = dt.datetime.now(dt.timezone.utc).isoformat()
+    material, material_id = bounded_json(args.material)
+    receipt, receipt_id = bounded_json(args.integrity_receipt)
+    protocol, protocol_id = bounded_json(args.protocol)
+    if receipt.get('status') != 'passed' or receipt.get('originalUnchanged') is not True or receipt.get('reviewMaterial', {}).get('sha256') != material_id['sha256']:
+        raise ValueError('Review material must be hash-bound to a passing immutable-export receipt')
+    config = receipt['evidence']['manifest']['config']
+    actual_version = config.get('promptVersion', 'reservoir-journal-v1')
+    if args.prompt_version != actual_version:
+        raise ValueError('Requested version differs from retained config (missing means legacyv1)')
+    if protocol.get('schema') != 'reservoir-journal-grounding-protocol-v1':
+        raise ValueError('Unexpected frozen protocol')
+    if protocol.get('promptVersion', args.prompt_version) != args.prompt_version:
+        raise ValueError('Frozen protocol differs from selected and retained prompt version')
+    report = evaluate_material(material, prompt_version=args.prompt_version)
+    report.update({'startedAtUtc': started, 'endedAtUtc': dt.datetime.now(dt.timezone.utc).isoformat(),
+                   'modelsContacted': False, 'material': material_id, 'integrityReceipt': receipt_id,
+                   'protocol': protocol_id, 'checker': {'path': str(Path(__file__).resolve()), 'sha256': sha(Path(__file__).read_bytes())},
+                   'mechanicalOutcome': {'attemptCount': receipt['evidence']['attemptCount'],
+                                         'turnCount': receipt['evidence']['turnCount'],
+                                         'nonSuccessEvents': receipt['evidence']['nonSuccessEvents'],
+                                         'eventCounts': receipt['evidence']['eventCounts'],
+                                         'finalCorePhase': receipt['evidence'].get('finalCorePhase'),
+                                         'receivedResponses': receipt['evidence'].get('receivedResponses'),
+                                         'startedAttemptEvents': receipt['evidence'].get('startedAttemptEvents'),
+                                         'responseEvidenceScope': 'Retained attempt outcomes, including unsaved/incomplete replies; null fields mean absent in the historical checker, not zero events. Only saved journals enter the prose rubric.'}})
+    with args.output.open('x', encoding='utf-8') as output:
+        json.dump(report, output, ensure_ascii=False, indent=2, allow_nan=False); output.write('\n')
+    print(json.dumps({'status': report['status'], 'qualityVerdict': report['qualityVerdict'], 'journalCount': report['journalCount'], 'output': str(args.output)}))
+
+
+if __name__ == '__main__':
+    main()

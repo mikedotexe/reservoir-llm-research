@@ -1,0 +1,143 @@
+{
+  "capturedAtUtc": "2026-10-12T23:56:33.357735+00:00",
+  "passed": true,
+  "script": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-12-comparisons-0.9.0/check_ui_exports.py",
+    "bytes": 4710,
+    "sha256": "630d084cd715d8f7aec4379a0459b0d438611b0d8a1652b806a271c8497d167c"
+  },
+  "inputs": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.9-ui/half-boundary.json",
+      "bytes": 7540,
+      "sha256": "1ec58a8ea1e58303bcb31c2577884271f909dcc9c17655bb18ab53b898e52f7e"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.9-ui/observation-active-8-recovered.json",
+      "bytes": 927989,
+      "sha256": "082b8aadd6a97cba94685762d514fa030695965c71d09a9f6ddc90dc30682290"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.9-ui/observation-active-8.json",
+      "bytes": 927989,
+      "sha256": "082b8aadd6a97cba94685762d514fa030695965c71d09a9f6ddc90dc30682290"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.9-ui/paired-h-fixed-11-recovered.json",
+      "bytes": 1231143,
+      "sha256": "099f7cf58bed3e502f81eb5c9344c8c47fa712f5eab81e47b354ddf8ff6c69ae"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.9-ui/paired-h-fixed-11.json",
+      "bytes": 1231143,
+      "sha256": "099f7cf58bed3e502f81eb5c9344c8c47fa712f5eab81e47b354ddf8ff6c69ae"
+    }
+  ],
+  "checks": [
+    {
+      "name": "paired-h-fixed-11 recovered exact bytes",
+      "passed": true
+    },
+    {
+      "name": "observation-active-8 recovered exact bytes",
+      "passed": true
+    },
+    {
+      "name": "wide seed preserved",
+      "passed": true
+    },
+    {
+      "name": "H fixed pair complete",
+      "passed": true
+    },
+    {
+      "name": "H both three turns two journals",
+      "passed": true
+    },
+    {
+      "name": "H fixed shared forcing keeps state equal",
+      "passed": true
+    },
+    {
+      "name": "H retention differs from G",
+      "passed": true
+    },
+    {
+      "name": "left 6 to 7 application",
+      "passed": true
+    },
+    {
+      "name": "left memory from saved journal",
+      "passed": true
+    },
+    {
+      "name": "left WAIT lacks new save and application",
+      "passed": true
+    },
+    {
+      "name": "left owned journal namespace",
+      "passed": true
+    },
+    {
+      "name": "right 6 to 7 application",
+      "passed": true
+    },
+    {
+      "name": "right memory from saved journal",
+      "passed": true
+    },
+    {
+      "name": "right WAIT lacks new save and application",
+      "passed": true
+    },
+    {
+      "name": "right owned journal namespace",
+      "passed": true
+    },
+    {
+      "name": "observation active D/D complete",
+      "passed": true
+    },
+    {
+      "name": "observation exact equal frames",
+      "passed": true
+    },
+    {
+      "name": "observation alternating actual orders",
+      "passed": true
+    },
+    {
+      "name": "observation coordinates only on right",
+      "passed": true
+    },
+    {
+      "name": "observation no application receipts",
+      "passed": true
+    },
+    {
+      "name": "observation semantic input stays zero",
+      "passed": true
+    },
+    {
+      "name": "checkpoint distinct current and durable steps",
+      "passed": true
+    },
+    {
+      "name": "checkpoint retains saved left only",
+      "passed": true
+    },
+    {
+      "name": "same ID still distinct arms",
+      "passed": true
+    },
+    {
+      "name": "checkpoint saved text hash",
+      "passed": true
+    },
+    {
+      "name": "checkpoint attempt belongs to left",
+      "passed": true
+    }
+  ],
+  "limits": "Exact-byte recovery and exported field assertions. Portable exports separately pass independent replay. Partial checkpoint consistency is not numerical replay or physical crash/power-loss qualification."
+}

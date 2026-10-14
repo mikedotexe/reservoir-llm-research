@@ -1,0 +1,54 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": "python3 scripts/check_reference.py",
+    "evidence": "180 native sources, 43 canonical resources and 1 fixture verified against unchanged native 0.15.0 build21."
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": "npm test",
+    "evidence": "127 tests across18 files passed after 0.5.1 version/CSS changes; frontend-tests.log."
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": "npm run tauri -- build --bundles app (beforeBuildCommand: npm run build)",
+    "evidence": "TypeScript and Vite production build passed. CSS index-V8ZdhQD7.css41.54kB; JS index-M52VEYSI.js872.21kB. Existing large-chunk advisory remains."
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-scope-desktop build_change_refreshes_catalog_without_touching_managed_bytes_or_recents",
+    "evidence": "One targeted catalog-upgrade regression passed on0.5.1 in36.08s. Full prior46 desktop tests are not represented as rerun; source-continuity.json binds unchanged Rust sources."
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": "cargo clippy --locked --workspace --all-targets -- -D warnings",
+    "evidence": "Strict workspace/all-target Clippy passed; clippy.log."
+  },
+  {
+    "id": "swift-export-verification",
+    "status": "passed",
+    "command": "python3 target/qa/check_ui_selected_case_0_5_1.py",
+    "evidence": "Actual native-dialog-created one-case export passed unchanged Swift and Rust, equaled native selected construction, retained all6 materials,4 claims and4 sequence entries. Exact proof in selected-case-dialog-proof.json."
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": "env DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk npm run tauri -- build --bundles app",
+    "evidence": "Preview0.5.1 app built, ad-hoc signed, notarization skipped. All41 regular archived files match app bytes/modes. Actual UI observations in macos-ui.md; limits remain explicit."
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "unexecuted",
+    "evidence": "Full core suite not rerun for CSS/version-only patch. All38 Rust sources are byte-identical to prior0.5 receipt (83 core tests). New actual case export independently verified above."
+  },
+  {
+    "id": "resource-staging-tests",
+    "status": "unexecuted",
+    "evidence": "Python unit suite not rerun; prior9 tests remain historical. Shipping resource staging succeeded and all37 staged files were compared exactly with the new package."
+  }
+]

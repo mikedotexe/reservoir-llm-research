@@ -1,0 +1,52 @@
+{
+  "observedAt": "2026-10-13T20:53:09.324493+00:00",
+  "nativeUiStatus": "Committed session exported into a new immutable bundle directory.",
+  "export": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.13-open-writing/exports/sustained-1791923112800-6-6-36",
+  "manifestSha256": "ac1b87e3e8bc50689d28f36a73a8a2e5ee1de2091d30117dbbbb44c294d46ef4",
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791923112800-6",
+    "generation": "6",
+    "revision": "36",
+    "config": {
+      "seed": "20261013",
+      "turnEvery": 30,
+      "maximumSteps": 121,
+      "maximumTurns": 4,
+      "maximumDurationSeconds": 600,
+      "storageBudgetBytes": 67108864,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:49606",
+        "model": "gemma3:4b",
+        "contextTokens": 4096
+      },
+      "promptVersion": "reservoir-journal-v3"
+    },
+    "phase": "attemptBlocked",
+    "step": 30,
+    "durableStep": 30,
+    "elapsedMillis": 51595,
+    "journalCount": 0,
+    "segmentCount": 2,
+    "lastSegmentSha256": "1522ea129354c4416d80faf760abde702a60e42febdf3374829e398834bc1258",
+    "checkpointSha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff",
+    "previousCheckpointSha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff",
+    "diagnostics": [
+      "Incomplete or token-limited response cannot become journal feedback"
+    ],
+    "attemptTiming": {
+      "attemptId": 1,
+      "dispatchedAtMs": "1791923176544",
+      "receivedAtMs": "1791923197681",
+      "transportDurationMs": 21137,
+      "publishedAtMs": null
+    }
+  },
+  "interaction": "After user dismissed original sheet, Go to Folder was explicitly Raised, path set, Return then Open succeeded."
+}

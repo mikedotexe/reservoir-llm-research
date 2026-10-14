@@ -1,0 +1,56 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": "python3 scripts/check_reference.py",
+    "evidence": "reference-check.log; 180 frozen native sources, 43 resources, 1 fixture unchanged."
+  },
+  {
+    "id": "resource-staging-tests",
+    "status": "passed",
+    "command": "python3 -m unittest discover -s scripts -p 'test_*.py'",
+    "evidence": "python-tests.log; 9 tests passed."
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": "npm test",
+    "evidence": "frontend-tests.log and frontend-source-and-checks.json; 232 tests in 26 files passed; source hashes verified before packaging."
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": "npm run build",
+    "evidence": "frontend-build.log and package-build.log; 87 modules; existing Vite >500kB chunk advisory remains, not a performance measurement."
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-core",
+    "evidence": "core-tests-final.log; 128 tests pass, including retained 1,173-vector native formatting oracle. Initial 126-test run and failed independent quiet-prompt receipt remain historical."
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-scope-desktop",
+    "evidence": "desktop-tests-final.log; 92 tests passed against corrected core, including per-arm saves/memory, half-boundary reopening/corruption, checkpoint failure, stale candidates and legacy defaults."
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": "cargo clippy --locked -p reservoir-core --all-targets -- -D warnings; cargo clippy --locked -p reservoir-scope-desktop --all-targets -- -D warnings",
+    "evidence": "core-clippy-final.log and desktop-clippy-final.log; both clean."
+  },
+  {
+    "id": "swift-export-verification",
+    "status": "passed",
+    "command": "python3 scripts/check_pair_session_conformance.py with explicit final 58-record manifest, executables and required mutation coverage",
+    "evidence": "fixture-conformance-fixed.json; 58 originals pass unchanged Swift/current Rust, 608 alterations rejected by both. swift-oracle-identity.json binds reused executable and unchanged sources. Actual native-dialog H/G and observation exports independently pass both with 14 + 12 alterations; recovered exports byte-identical in recovery-export-equality.json."
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk npm run tauri -- build --bundles app -- --locked",
+    "evidence": "package-build.log; 0.9.0 arm64 shipping app. All 46 archive files match; 39 canonical inputs and frozen manifest/scenes/index match source and staged package. macos-ui.md separately records H/G and active D/D walkthrough. source-continuity.json lists documentation-only changes after build."
+  }
+]

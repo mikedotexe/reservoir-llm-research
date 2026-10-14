@@ -1,0 +1,503 @@
+{
+  "format": "reservoir-owned-model-supervision-v1",
+  "endedAtUtc": "2026-10-14T01:00:14.177242+00:00",
+  "elapsedMonotonicSeconds": 703.8431128330994,
+  "reason": "explicit stop",
+  "selectionSha256": "7de0ae35b3d231201679b2242484cb24a9122a8f9ce866b8554dfe6384a2d86a",
+  "process": {
+    "pid": 87265,
+    "pgid": 87265,
+    "sid": 87265,
+    "directChildOfSupervisorPid": 87263,
+    "spawnedAtUtc": "2026-10-14T00:48:30.346515+00:00",
+    "spawnedAtMonotonicSeconds": 1135286.884297333,
+    "software": {
+      "executable": {
+        "path": "/Applications/Ollama.app/Contents/Resources/ollama",
+        "exists": true,
+        "ordinaryFile": true,
+        "symlink": false,
+        "device": "16777234",
+        "inode": "379069922",
+        "sizeBytes": 52076880,
+        "mtimeNs": "1791748632957886657",
+        "ctimeNs": "1791748632957886657",
+        "mode": "0755",
+        "uid": 501,
+        "sha256": "76535100c7aaf5aa94fe749b1bf0cfe3a702fa0743c7421fed059b783f4969de",
+        "readBytes": 52076880
+      },
+      "plist": {
+        "path": "/Applications/Ollama.app/Contents/Info.plist",
+        "exists": true,
+        "ordinaryFile": true,
+        "symlink": false,
+        "device": "16777234",
+        "inode": "379070259",
+        "sizeBytes": 1377,
+        "mtimeNs": "1791748633282462956",
+        "ctimeNs": "1791748633282462956",
+        "mode": "0755",
+        "uid": 501,
+        "sha256": "20b38700aaa5fff48b94832e05d812b658fd93fcdd1bf6b0be61dec57820d15a",
+        "readBytes": 1377
+      },
+      "versionFromPlist": "0.40.3"
+    },
+    "cleanup": {
+      "events": [
+        {
+          "atUtc": "2026-10-14T01:00:13.801264+00:00",
+          "operation": "killpg",
+          "pgid": 87265,
+          "signal": 15,
+          "before": {
+            "leaderExitedUnreaped": false,
+            "members": [
+              {
+                "pid": 87265,
+                "ppid": 87263,
+                "pgid": 87265,
+                "sid": 87265,
+                "uid": 501,
+                "realUid": 501,
+                "savedUid": 501,
+                "status": 2,
+                "startSeconds": "1791938910",
+                "startMicroseconds": "343977"
+              },
+              {
+                "pid": 88157,
+                "ppid": 87265,
+                "pgid": 87265,
+                "sid": 87265,
+                "uid": 501,
+                "realUid": 501,
+                "savedUid": 501,
+                "status": 2,
+                "startSeconds": "1791939000",
+                "startMicroseconds": "250241"
+              }
+            ],
+            "quiescent": false,
+            "unreadableLeaderExitProven": false
+          },
+          "sent": true,
+          "outcome": "syscall accepted; quiescence still requires verification"
+        }
+      ],
+      "groupObservations": [
+        {
+          "atUtc": "2026-10-14T01:00:13.801098+00:00",
+          "attempt": 1,
+          "operation": "observe-owned-group",
+          "pgid": 87265,
+          "before": [
+            {
+              "pid": 87265,
+              "ppid": 87263,
+              "pgid": 87265,
+              "sid": 87265,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791938910",
+              "startMicroseconds": "343977"
+            },
+            {
+              "pid": 88157,
+              "ppid": 87265,
+              "pgid": 87265,
+              "sid": 87265,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791939000",
+              "startMicroseconds": "250241"
+            }
+          ],
+          "leaderExitedBefore": false,
+          "after": [
+            {
+              "pid": 87265,
+              "ppid": 87263,
+              "pgid": 87265,
+              "sid": 87265,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791938910",
+              "startMicroseconds": "343977"
+            },
+            {
+              "pid": 88157,
+              "ppid": 87265,
+              "pgid": 87265,
+              "sid": 87265,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791939000",
+              "startMicroseconds": "250241"
+            }
+          ],
+          "leaderExitedAfter": false,
+          "outcome": "stable start identities; scheduler status may differ"
+        },
+        {
+          "atUtc": "2026-10-14T01:00:13.801425+00:00",
+          "attempt": 1,
+          "operation": "observe-owned-group",
+          "pgid": 87265,
+          "before": [
+            {
+              "pid": 87265,
+              "ppid": 87263,
+              "pgid": 87265,
+              "sid": 87265,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791938910",
+              "startMicroseconds": "343977"
+            },
+            {
+              "pid": 88157,
+              "ppid": 87265,
+              "pgid": 87265,
+              "sid": 87265,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791939000",
+              "startMicroseconds": "250241"
+            }
+          ],
+          "leaderExitedBefore": false,
+          "after": [
+            {
+              "pid": 87265,
+              "ppid": 87263,
+              "pgid": 87265,
+              "sid": 87265,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791938910",
+              "startMicroseconds": "343977"
+            },
+            {
+              "pid": 88157,
+              "ppid": 87265,
+              "pgid": 87265,
+              "sid": 87265,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791939000",
+              "startMicroseconds": "250241"
+            }
+          ],
+          "leaderExitedAfter": false,
+          "outcome": "stable start identities; scheduler status may differ"
+        },
+        {
+          "atUtc": "2026-10-14T01:00:13.904110+00:00",
+          "attempt": 1,
+          "operation": "observe-owned-group",
+          "pgid": 87265,
+          "before": [
+            {
+              "pid": 87265,
+              "ppid": 87263,
+              "pgid": 87265,
+              "sid": 87265,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791938910",
+              "startMicroseconds": "343977"
+            },
+            {
+              "pid": 88157,
+              "identityUnavailable": true,
+              "errno": 3,
+              "operation": "proc_pidinfo"
+            }
+          ],
+          "leaderExitedBefore": false,
+          "error": "Selected member exited during identity read",
+          "errno": null,
+          "outcome": "transient read"
+        },
+        {
+          "atUtc": "2026-10-14T01:00:13.959573+00:00",
+          "attempt": 2,
+          "operation": "observe-owned-group",
+          "pgid": 87265,
+          "before": [
+            {
+              "pid": 87265,
+              "ppid": 87263,
+              "pgid": 87265,
+              "sid": 87265,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791938910",
+              "startMicroseconds": "343977"
+            },
+            {
+              "pid": 88157,
+              "identityUnavailable": true,
+              "errno": 3,
+              "operation": "proc_pidinfo"
+            }
+          ],
+          "leaderExitedBefore": false,
+          "error": "Selected member exited during identity read",
+          "errno": null,
+          "outcome": "transient read"
+        },
+        {
+          "atUtc": "2026-10-14T01:00:14.014887+00:00",
+          "attempt": 3,
+          "operation": "observe-owned-group",
+          "pgid": 87265,
+          "before": [
+            {
+              "pid": 87265,
+              "ppid": 87263,
+              "pgid": 87265,
+              "sid": 87265,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791938910",
+              "startMicroseconds": "343977"
+            },
+            {
+              "pid": 88157,
+              "identityUnavailable": true,
+              "errno": 3,
+              "operation": "proc_pidinfo"
+            }
+          ],
+          "leaderExitedBefore": false,
+          "error": "Selected member exited during identity read",
+          "errno": null,
+          "outcome": "transient read"
+        },
+        {
+          "atUtc": "2026-10-14T01:00:14.066221+00:00",
+          "attempt": 4,
+          "operation": "observe-owned-group",
+          "pgid": 87265,
+          "before": [
+            {
+              "pid": 87265,
+              "ppid": 87263,
+              "pgid": 87265,
+              "sid": 87265,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791938910",
+              "startMicroseconds": "343977"
+            },
+            {
+              "pid": 88157,
+              "identityUnavailable": true,
+              "errno": 3,
+              "operation": "proc_pidinfo"
+            }
+          ],
+          "leaderExitedBefore": false,
+          "error": "Selected member exited during identity read",
+          "errno": null,
+          "outcome": "transient read"
+        },
+        {
+          "atUtc": "2026-10-14T01:00:14.121496+00:00",
+          "attempt": 5,
+          "operation": "observe-owned-group",
+          "pgid": 87265,
+          "before": [
+            {
+              "pid": 87265,
+              "ppid": 87263,
+              "pgid": 87265,
+              "sid": 87265,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791938910",
+              "startMicroseconds": "343977"
+            },
+            {
+              "pid": 88157,
+              "identityUnavailable": true,
+              "errno": 3,
+              "operation": "proc_pidinfo"
+            }
+          ],
+          "leaderExitedBefore": false,
+          "error": "Selected member exited during identity read",
+          "errno": null,
+          "outcome": "transient read"
+        },
+        {
+          "atUtc": "2026-10-14T01:00:14.176872+00:00",
+          "attempt": 6,
+          "operation": "observe-owned-group",
+          "pgid": 87265,
+          "before": [
+            {
+              "pid": 87265,
+              "identityUnavailable": true,
+              "errno": 3,
+              "operation": "proc_pidinfo"
+            }
+          ],
+          "leaderExitedBefore": true,
+          "after": [
+            {
+              "pid": 87265,
+              "identityUnavailable": true,
+              "errno": 3,
+              "operation": "proc_pidinfo"
+            }
+          ],
+          "leaderExitedAfter": true,
+          "outcome": "stable start identities; scheduler status may differ"
+        },
+        {
+          "atUtc": "2026-10-14T01:00:14.176985+00:00",
+          "attempt": 1,
+          "operation": "observe-owned-group",
+          "pgid": 87265,
+          "before": [
+            {
+              "pid": 87265,
+              "identityUnavailable": true,
+              "errno": 3,
+              "operation": "proc_pidinfo"
+            }
+          ],
+          "leaderExitedBefore": true,
+          "after": [
+            {
+              "pid": 87265,
+              "identityUnavailable": true,
+              "errno": 3,
+              "operation": "proc_pidinfo"
+            }
+          ],
+          "leaderExitedAfter": true,
+          "outcome": "stable start identities; scheduler status may differ"
+        }
+      ],
+      "sigtermSentToOwnedGroup": true,
+      "sigkillSentToOwnedGroup": false,
+      "finalGroupBeforeReap": {
+        "leaderExitedUnreaped": true,
+        "members": [
+          {
+            "pid": 87265,
+            "identityUnavailable": true,
+            "errno": 3,
+            "operation": "proc_pidinfo"
+          }
+        ],
+        "quiescent": true,
+        "unreadableLeaderExitProven": true
+      },
+      "exitCode": 0,
+      "cleanupLimit": "Original owned process group verified quiescent before leader reap. Escaped descendants were not inventoried."
+    }
+  },
+  "endpointPort": 58180,
+  "conventionalMetadataBefore": [
+    {
+      "path": "/Users/v/.ollama/id_ed25519",
+      "exists": true,
+      "ordinaryFile": true,
+      "symlink": false,
+      "device": "16777234",
+      "inode": "3076462",
+      "sizeBytes": 387,
+      "mtimeNs": "1772811118116572068",
+      "ctimeNs": "1772811118116572068",
+      "mode": "0600",
+      "uid": 501
+    },
+    {
+      "path": "/Users/v/.ollama/id_ed25519.pub",
+      "exists": true,
+      "ordinaryFile": true,
+      "symlink": false,
+      "device": "16777234",
+      "inode": "3076463",
+      "sizeBytes": 81,
+      "mtimeNs": "1772811118116677943",
+      "ctimeNs": "1772811118116677943",
+      "mode": "0644",
+      "uid": 501
+    },
+    {
+      "path": "/Users/v/.ollama/server.json",
+      "exists": false
+    }
+  ],
+  "conventionalMetadataAfter": [
+    {
+      "path": "/Users/v/.ollama/id_ed25519",
+      "exists": true,
+      "ordinaryFile": true,
+      "symlink": false,
+      "device": "16777234",
+      "inode": "3076462",
+      "sizeBytes": 387,
+      "mtimeNs": "1772811118116572068",
+      "ctimeNs": "1772811118116572068",
+      "mode": "0600",
+      "uid": 501
+    },
+    {
+      "path": "/Users/v/.ollama/id_ed25519.pub",
+      "exists": true,
+      "ordinaryFile": true,
+      "symlink": false,
+      "device": "16777234",
+      "inode": "3076463",
+      "sizeBytes": 81,
+      "mtimeNs": "1772811118116677943",
+      "ctimeNs": "1772811118116677943",
+      "mode": "0644",
+      "uid": 501
+    },
+    {
+      "path": "/Users/v/.ollama/server.json",
+      "exists": false
+    }
+  ],
+  "conventionalMetadataUnchanged": true,
+  "credentialCheckLimit": "lstat continuity only; no key/config content read or hash",
+  "retainedLogBytes": 82184,
+  "discardedLogBytes": 0,
+  "errors": [],
+  "runtimeQualityOrMemoryQualification": false
+}

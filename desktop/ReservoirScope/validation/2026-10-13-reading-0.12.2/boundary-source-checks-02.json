@@ -1,0 +1,54 @@
+{
+  "startedAtUtc": "2026-10-13T19:12:27.356701+00:00",
+  "scope": "Source-only active-error presentation correction. First failed synthetic fixture used journalCount>turnCount and was correctly rejected; fixture corrected to actual attempt counts. No build/version/app action.",
+  "commands": [
+    {
+      "name": "boundary-focused-02",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "src/MyReservoirPresentation.test.tsx",
+        "src/MyReservoir.test.tsx",
+        "src/myReservoirQuota.test.tsx"
+      ],
+      "startedAtUtc": "2026-10-13T19:12:27.356865+00:00",
+      "endedAtUtc": "2026-10-13T19:12:28.085351+00:00",
+      "exitCode": 0,
+      "log": "validation/2026-10-13-reading-0.12.2/boundary-focused-02.log",
+      "logSha256": "27b8e066794ca090595b37fb58382558ad4e91614a0589d495a1cf4096e608c5"
+    },
+    {
+      "name": "boundary-types-02",
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit"
+      ],
+      "startedAtUtc": "2026-10-13T19:12:28.085625+00:00",
+      "endedAtUtc": "2026-10-13T19:12:31.080110+00:00",
+      "exitCode": 0,
+      "log": "validation/2026-10-13-reading-0.12.2/boundary-types-02.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "endedAtUtc": "2026-10-13T19:12:31.080349+00:00",
+  "sourceAfter": [
+    {
+      "path": "src/MyReservoir.tsx",
+      "bytes": 14749,
+      "sha256": "4fa30ecf4076f56bfdc742704c86c7567d16e189548419f37de6dc50933242d9"
+    },
+    {
+      "path": "src/MyReservoirPresentation.test.tsx",
+      "bytes": 7298,
+      "sha256": "f78827c63128046beb55ca5ae7885b9b6cbcb73ea227ff45f55648f16937b5dd"
+    }
+  ],
+  "packageBinaryAfter": {
+    "path": "target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+    "bytes": 16783472,
+    "sha256": "e66533cfd3371d8cdf80ce9969fae702b957987fad2a1a12974945c33842f43c"
+  },
+  "packageBinaryUnchanged": true
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "reservoir-0.12.1-native-export-verification-v1",
+  "scope": "Offline original0.12.1 native-export verification. Does not cover later0.12.2source changes.",
+  "startedAtUtc": "2026-10-13T19:12:06.365306+00:00",
+  "endedAtUtc": "2026-10-13T19:12:06.937034+00:00",
+  "wallNanoseconds": 571746750,
+  "wallSeconds": 0.57174675,
+  "command": [
+    "/usr/bin/time",
+    "-l",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-reading/export-verification-01/reservoir-scope-desktop-0.12.1-pinned",
+    "--verify-sustained",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-reading/exports/sustained-1791918426303-1-2-56"
+  ],
+  "exitCode": 0,
+  "peakRssBytes": 13090816,
+  "peakRssSource": "macOS /usr/bin/time -l for verifier only, not GUI",
+  "pin": {
+    "atUtc": "2026-10-13T19:12:06.364375+00:00",
+    "source": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+    "pinned": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-reading/export-verification-01/reservoir-scope-desktop-0.12.1-pinned",
+    "bytes": 16783472,
+    "sha256": "e66533cfd3371d8cdf80ce9969fae702b957987fad2a1a12974945c33842f43c",
+    "export": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-reading/exports/sustained-1791918426303-1-2-56",
+    "manifestSha256": "1b6fe0ee3307f967b5e81b39dab3c5981922fa398869e02358506fef93d99f87",
+    "scope": "Frozen0.12.1 bytes before0.12.2 replacement; no app/store/service interaction."
+  },
+  "verifierSha256After": "e66533cfd3371d8cdf80ce9969fae702b957987fad2a1a12974945c33842f43c",
+  "stdoutSha256": "cb0eb6f989a8b077254c091203f063840a52cd06afb103a3124696578f030434",
+  "stderrAndTimeSha256": "7a1228bcbc3f70f6ff796a2f09cabd78c7af49f9f12f029cc57711069c4245cb",
+  "modelsContacted": false,
+  "result": {
+    "modelsContacted": false,
+    "report": {
+      "checkpointSha256": "43c9761b890375aeb38cd5aaf05a6542df628685c7f043fc7dfeb55582168b76",
+      "diagnostics": [
+        "The configured service returned HTTP 503. Redirects are not followed."
+      ],
+      "format": "reservoir-sustained-bundle-v1",
+      "journalCount": 3,
+      "manifestSha256": "1b6fe0ee3307f967b5e81b39dab3c5981922fa398869e02358506fef93d99f87",
+      "segmentCount": 16,
+      "sessionId": "sustained-1791918426303-1",
+      "sizeBytes": 1192002,
+      "step": 31,
+      "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+    },
+    "status": "passed"
+  }
+}

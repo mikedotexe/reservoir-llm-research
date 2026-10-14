@@ -1,0 +1,205 @@
+//! Explicit opt-in investigation: real generated records, no filler or provider.
+use super::*;
+use serde_json::{json, Value};
+
+fn save(path: &Path, value: &impl serde::Serialize) {
+    use std::io::Write;
+    let mut file = fs::OpenOptions::new()
+        .write(true)
+        .create_new(true)
+        .open(path)
+        .unwrap();
+    file.write_all(&serde_json::to_vec_pretty(value).unwrap())
+        .unwrap();
+}
+fn copy_tree(source: &Path, destination: &Path) {
+    fs::create_dir(destination).unwrap();
+    for entry in fs::read_dir(source).unwrap() {
+        let entry = entry.unwrap();
+        if entry.file_type().unwrap().is_dir() {
+            copy_tree(&entry.path(), &destination.join(entry.file_name()));
+        } else {
+            assert!(entry.file_type().unwrap().is_file());
+            fs::copy(entry.path(), destination.join(entry.file_name())).unwrap();
+        }
+    }
+}
+fn outcome<T>(result: Result<T, AppError>) -> Value {
+    match result {
+        Ok(_) => json!({"ok":true}),
+        Err(error) => json!({"ok":false,"error":error}),
+    }
+}
+fn snapshot(s: &SustainedState, id: &str) -> Value {
+    let g = s.lock().unwrap();
+    let a = g.active.as_ref().unwrap();
+    let bytes = fs::read(s.shared.store.path(id).unwrap().join("manifest.json")).unwrap();
+    let disk: Value = serde_json::from_slice(&bytes).unwrap();
+    json!({
+        "summary":s.summary(a),"uncommittedEvents":a.engine.events().len(),
+        "enginePhase":a.engine.phase(),"diskManifest":disk,
+        "manifestSha256":crate::files::digest(&bytes),
+        "actualOwnedBytes":s.shared.store.used_bytes(id).unwrap(),
+        "busy":s.is_busy(),
+    })
+}
+
+fn investigate(label: &str, cadence: u64) {
+    let parent = PathBuf::from(
+        std::env::var_os("RESERVOIR_QUOTA_EVIDENCE")
+            .expect("Set a new isolated evidence directory"),
+    );
+    let evidence = parent.join(label);
+    fs::create_dir(&evidence).unwrap();
+    let store = tempfile::Builder::new()
+        .prefix("owned-temp-store-")
+        .tempdir_in(&evidence)
+        .unwrap()
+        .keep();
+    let s = SustainedState::new(store.clone());
+    let c = SustainedConfig {
+        turn_every: cadence,
+        maximum_steps: 100_000,
+        maximum_turns: 10_000,
+        maximum_duration_seconds: 86_400,
+        storage_budget_bytes: 16 * 1024 * 1024,
+        pace_ms: 100,
+        ..Default::default()
+    };
+    assert_eq!(c.language.backend, LanguageKind::Scripted);
+    let created = s
+        .create("create".into(), c.clone())
+        .unwrap()
+        .summary
+        .unwrap();
+    let (id, generation) = (created.session_id, created.generation);
+    let epoch = arm(&s);
+    let started = Instant::now();
+    let mut responses = 0u64;
+    let failure = loop {
+        match s.worker_boundary(epoch) {
+            Ok(Work::Provider(p)) => {
+                responses += 1;
+                if let Err(error) = s.settle(epoch, p.attempt_id, Ok(answer()), 0) {
+                    break error;
+                }
+            }
+            Ok(Work::Continue(_)) => {}
+            Ok(Work::Done) => panic!("Run ended before natural quota exhaustion"),
+            Err(error) => break error,
+        }
+        assert!(s.lock().unwrap().active.as_ref().unwrap().engine.step() < 100_000);
+    };
+    assert_eq!(failure.category, "budget");
+    s.worker_failure(epoch, &failure.message);
+    let before = snapshot(&s, &id);
+    assert!(before["actualOwnedBytes"].as_u64().unwrap() <= 16 * 1024 * 1024);
+    copy_tree(
+        &s.shared.store.path(&id).unwrap(),
+        &evidence.join("first-budget-failure-bundle"),
+    );
+    {
+        let g = s.lock().unwrap();
+        let a = g.active.as_ref().unwrap();
+        save(
+            &evidence.join("first-budget-failure-checkpoint.json"),
+            &a.engine.checkpoint(),
+        );
+        save(
+            &evidence.join("first-budget-failure-events.json"),
+            a.engine.events(),
+        );
+    }
+    let mut operations = Vec::new();
+    let retry = outcome(s.retry_save("checkpoint-retry".into(), &id, &generation));
+    operations
+        .push(json!({"operation":"retry_save_checkpoint","result":retry,"after":snapshot(&s,&id)}));
+    let stop = outcome(s.stop("stop".into(), &id, &generation));
+    operations.push(json!({"operation":"stop","result":stop,"after":snapshot(&s,&id)}));
+    let (entry, attempt) = {
+        let g = s.lock().unwrap();
+        let a = g.active.as_ref().unwrap();
+        (
+            a.engine
+                .pending_journal()
+                .map(|p| p.entry.id.clone())
+                .or_else(|| a.engine.prepared_application().map(|p| p.entry.id.clone())),
+            a.engine
+                .pending_journal()
+                .map(|p| p.entry.attempt_id)
+                .or_else(|| a.engine.prepared_application().map(|p| p.entry.attempt_id))
+                .or_else(|| a.engine.blocked().map(|p| p.pending.attempt_id)),
+        )
+    };
+    if entry.is_some() || attempt.is_some() {
+        let skipped = outcome(s.skip("skip".into(), &id, &generation, entry, attempt));
+        operations
+            .push(json!({"operation":"explicit_skip","result":skipped,"after":snapshot(&s,&id)}));
+    } else {
+        operations.push(json!({"operation":"explicit_skip","notApplicable":"No pending opportunity exists; numeric events are not a language opportunity."}));
+    }
+    let close = match s.finish_close(true) {
+        Ok(accepted) => json!({"ok":true,"accepted":accepted}),
+        Err(e) => json!({"ok":false,"error":e}),
+    };
+    // Successful close closes the command gate; reopen only that gate for this
+    // inspection harness, without altering run/engine/manifest state or bytes.
+    s.reopen_after_stale_close();
+    operations.push(
+        json!({"operation":"explicit_discard_close","result":close,"after":snapshot(&s,&id)}),
+    );
+    let revision = s
+        .get("current".into(), None)
+        .unwrap()
+        .summary
+        .unwrap()
+        .revision;
+    let export_to = evidence.join("current-export");
+    fs::create_dir(&export_to).unwrap();
+    let current_export = outcome(s.export(&id, &generation, Some(&revision), &export_to, &[]));
+    operations.push(json!({"operation":"current_revision_export","result":current_export}));
+    let clean_close = s.authorize_clean_close();
+    s.reopen_after_stale_close();
+    let final_snapshot = snapshot(&s, &id);
+    drop(s);
+    let recovered = SustainedState::new(store.clone());
+    let inspected = recovered
+        .inspect("inspect-committed-prefix".into(), &id)
+        .unwrap();
+    let recovery_export_to = evidence.join("recovery-export");
+    fs::create_dir(&recovery_export_to).unwrap();
+    let recovery_export = outcome(recovered.export(
+        &id,
+        &inspected.manifest.generation,
+        Some(&inspected.manifest.revision),
+        &recovery_export_to,
+        &[],
+    ));
+    assert_eq!(recovery_export["ok"], true);
+    let restored = outcome(recovered.resume(
+        "restore".into(),
+        &id,
+        &inspected.manifest.generation,
+        &inspected.manifest.revision,
+    ));
+    let result = json!({"profile":label,"config":c,"providersContacted":false,"actualPacedDurationClaimed":false,
+        "generationResponsesSimulated":responses,"elapsedSeconds":started.elapsed().as_secs_f64(),"initialBudgetError":failure,
+        "firstFailure":before,"operationsInOrder":operations,"authorizeCleanCloseAfterOperations":clean_close,
+        "finalInMemory":final_snapshot,"committedPrefixAfterDroppingProcessState":inspected,
+        "recoveryExport":recovery_export,"explicitRestore":restored,"retainedTempStore":store,
+        "scope":"Genuine generated records; no filler files or quota edits. Sequential operations are stated in order; this does not simulate physical power loss."});
+    save(&evidence.join("result.json"), &result);
+    println!("NATURAL_QUOTA_RESULT {}",serde_json::to_string(&json!({"path":evidence.join("result.json"),"profile":label,"failedStep":before["summary"]["step"],"durableStep":before["summary"]["durableStep"],"ownedBytes":before["actualOwnedBytes"],"journalCount":before["summary"]["journalCount"],"stop":stop,"close":close,"currentExport":current_export,"recoveryExport":recovery_export,"restore":restored})).unwrap());
+}
+
+#[test]
+#[ignore = "Opt-in isolated16MiB natural quota investigation; retains own temporary evidence"]
+fn natural_quota_frequent_journals() {
+    investigate("frequent-journals-cadence3", 3);
+}
+
+#[test]
+#[ignore = "Opt-in isolated16MiB natural quota investigation; retains own temporary evidence"]
+fn natural_quota_sparse_observations() {
+    investigate("sparse-observations-cadence1800", 1800);
+}

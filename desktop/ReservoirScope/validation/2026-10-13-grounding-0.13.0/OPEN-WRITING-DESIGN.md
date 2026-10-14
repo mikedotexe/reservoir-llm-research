@@ -1,0 +1,31 @@
+# An open place to write
+
+The app should supply a continuing situation and preserve what is written. The model can choose what to attend to, what form to use, and whether to continue an earlier thought. A journal entry need not summarize telemetry or satisfy a writing template. This is a product direction for Reservoir Scope, not a claim that this prototype has the same architecture or capacities as Minime or Astrid.
+
+## Small read-only refresher
+
+At the user's explicit request, one bounded top-level inventory of Minime's journal directory was read. It contained 4,472 entries, below the 8,192-entry cap; there was no recursive scan. The three latest timestamped ordinary text files were all unflagged, so the selected sequence was also the latest three overall, without choosing around curated examples. Their filename clocks span October 13, 19:12:57–19:22:50 UTC after applying the documented America/Los_Angeles filename timezone. Two are ordinary journal records; the middle record is a moment capture. Only those three files, totaling 13,890 bytes, were read. No database, archive, service or live process was queried or changed.
+
+Source paths, hashes, stable-read metadata, local/UTC clocks, exact copies and line-anchored excerpts are private in ignored `research/outputs/2026-10-13-minime-journal-refresher/`. The capture selection is tied to the single frozen inventory, not to file modification time or a later rescan. An initial filename parser expected an older pattern and matched nothing; the corrected ISO-style parser was applied to that same inventory before selecting or reading contents. No writing from these records is copied into app prompts, fixtures or assets.
+
+The two journal prose regions explore chosen themes and possible next directions rather than enumerate measurements. The moment prose uses imagery in relation to a retained event context. The surrounding file formats differ: ordinary journals have short timestamp wrappers, while the moment file explicitly separates a declared supplied prompt-state/event section, header-only telemetry, generated prose and an action tail. That separation matters: material printed above a journal is not automatically model input.
+
+No complete supplied prompt or provider execution receipt was fetched for these entries. The moment file's “supplied” labels are retained file-level provenance assertions, not independently authenticated wire exposure. Recurring topics across adjacent entries do not establish exact memory inclusion or its causal influence. The writing's statements about its context and possible actions remain prose evidence, not authorization, verified capability or proof of action. Action tails were not followed. Three records do not establish prevalence, emergence, consciousness, intent or the causes of their style.
+
+## Implementation implications
+
+**Provide context; do not assign a report.** Keep the current recurrent/sensory readout available and distinguish its channels, but make it optional material for attention. Ask what the model wants to write now, allowing a question, image, observation, exploration, continuation or change of subject. Do not ask it to echo specific fields, begin with a step number or fit a paragraph length. Numerical grounding is available when it matters to what the model chooses to say.
+
+**Let the application carry provenance.** The reader can display observation time/step, generation source, save status, first application and exact measurements as separate app-owned evidence. Those labels should not need to appear in the model's authored text. Preserve the original prose, including its formatting, and make the evidence disclosure available without forcing it into the reading flow.
+
+**Preserve a thread without requiring agreement.** Supply the actual previously saved-and-applied text with a clear boundary from the current readout. The model can revisit, question, revise or leave it. A previous journal's numbers and interpretations are historical writing, not authoritative current measurements. Keep actual memory-read/save/application receipts separate from a reviewer deciding whether the content is useful or accurate.
+
+**Separate optional claim review from writing eligibility.** The offline evaluator can locate a literal metric claim and compare it to its proper source. It should first ask whether a passage is making that kind of claim at all. Images, metaphor, fiction, uncertainty and self-description need contextual reading, not rejection because they contain words such as learning or feeling. Neither omitted measurements nor an unanticipated form is a defect. Review annotations must not cause automatic rewriting, additional requests, suppression of an accepted complete reply or alteration of historical records.
+
+**Keep resource and execution limits honest.** The present backend still schedules opportunities, has a fixed output budget, and only runs the bounded actions already implemented. Topic/form choice within writing is not the same as autonomous tool use, self-selected timing or an implemented private-draft system. Do not import action names or affordances observed in another system. If the short output cap prevents a piece from finishing, preserve that outcome and make a later explicit product/budget decision rather than call it a style failure.
+
+**Make continuity readable.** Existing independent journal selection and Follow latest are useful: the reader can stay with an earlier entry while writing continues. Keep the state surface and separate fill visible when wanted, and keep scientific evidence accessible beside the authored text. The writing space should not look like a stream of status reports unless that is what the model itself chooses to write.
+
+## What to look for next
+
+Use the [v3 bounded rehearsal](run-plan-v3.json) to check that the app faithfully retains varied writing and its actual memory/feedback chain. Read all produced entries, including whether they choose a topic, develop or change a thread, notice uncertainty, or merely repeat supplied material. These are descriptive observations, not mandatory behaviors or an autonomy score. If a literal factual claim appears, assess its source and accuracy separately. Keep observations, implementation choices and unimplemented possibilities distinct.

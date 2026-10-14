@@ -1,0 +1,101 @@
+{
+  "schema": "reservoir-scope.qualification-supplement-continuity.v1",
+  "capturedAtUtc": "2026-10-12T21:03:47.152288+00:00",
+  "meaning": "Current source inventory compared to immutable0.6.0 receipt. Only living documentation changed; executable sources and package unchanged. Historical test claims are not rerun or extended.",
+  "changedFiles": [
+    {
+      "path": "desktop/ReservoirScope/README.md",
+      "before": {
+        "bytes": 21030,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/README.md",
+        "sha256": "3896d99f08e1510fe8df72fc2f1a29484acd06d3ec1d986971a9e54eb4458477"
+      },
+      "after": {
+        "path": "desktop/ReservoirScope/README.md",
+        "kind": "file",
+        "bytes": 21473,
+        "sha256": "cfcfa85ff89196567b332c5bddf834672ee0de2123fda713225c1510dae29c49"
+      }
+    },
+    {
+      "path": "shared/reservoir-scope/PARITY.md",
+      "before": {
+        "bytes": 9459,
+        "kind": "file",
+        "path": "shared/reservoir-scope/PARITY.md",
+        "sha256": "4ddc2e5691dc01db89dae0efd6135f7eb8a36a0a36e36e9a54ded15b5017aa19"
+      },
+      "after": {
+        "path": "shared/reservoir-scope/PARITY.md",
+        "kind": "file",
+        "bytes": 9951,
+        "sha256": "2f7782dfd0b35ab2bbe16b6e14877c5fc4758d8ea362b672d9e268aee1fd543d"
+      }
+    }
+  ],
+  "currentSourceInventorySha256": "127f979782e2e22dc8892cabf54ab61a72f5ab830f5095a8fc4be9c828a38226",
+  "unchangedSourceCount": 192,
+  "currentSourceCount": 194,
+  "originalPackageFilesEqual": true,
+  "packageInventorySha256": "bb713856da820800f0470e8ec3a7e78040d899f0809d937e1e71214187e53757",
+  "binary": {
+    "path": "Contents/MacOS/reservoir-scope-desktop",
+    "kind": "file",
+    "bytes": 12885232,
+    "sha256": "334dae56872ab9b4f69c4f694c956db184d45e3d6e098c84bd647cdbf4eb89b3",
+    "mode": "0o755"
+  },
+  "roadmap": {
+    "path": "TAURI-ROADMAP.md",
+    "kind": "file",
+    "bytes": 91714,
+    "sha256": "2fdb523ae9df86ead071d45c4a9d4539a9c301ecdeab996c8bc052cd64d76de1"
+  },
+  "supplementAndHistoricalEvidence": [
+    {
+      "path": "qualification.json",
+      "kind": "file",
+      "bytes": 68903,
+      "sha256": "3e4fc3d594510fc48c18e2f653f5806f54b7487631f481e2daba5e3cf14cdc84"
+    },
+    {
+      "path": "macos-ui.md",
+      "kind": "file",
+      "bytes": 2948,
+      "sha256": "05da27c294e49d45f12abd8560373e07a01224acc882e05818c364c133b6d0a3"
+    },
+    {
+      "path": "checks.json",
+      "kind": "file",
+      "bytes": 3286,
+      "sha256": "8143c08932124dc63244679738350110c4e9b48019e865dd9245ff631fd1d763"
+    },
+    {
+      "path": "unlocked-ui-supplement.md",
+      "kind": "file",
+      "bytes": 8010,
+      "sha256": "16bfbf3ffcea3ce0de8b52c187682548c59f6131ebb3c0040cdc712d466e0c2b"
+    },
+    {
+      "path": "supplemental-export-proofs-20261012T2100Z.json",
+      "kind": "file",
+      "bytes": 106693,
+      "sha256": "1c3ad3ad9aa7c1414600a55b5038bc226000953a4914e0bc310cdba28ca7fcc5"
+    },
+    {
+      "path": "unlocked-quit-process-check.json",
+      "kind": "file",
+      "bytes": 423,
+      "sha256": "2dd13aeb9a0aad9254d3fc53928a5bfa06fafa799e80551f29793743896d144d"
+    }
+  ],
+  "relaunchProcessObservation": [
+    "45540 Mon Oct 12 14:01:26 2026     /Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop"
+  ],
+  "limitations": [
+    "No fresh generated experiment export verification",
+    "No all-platform acceptance",
+    "No measured GPU efficiency or human acceptance"
+  ]
+}

@@ -1,0 +1,15 @@
+   Compiling reservoir-scope-desktop v0.16.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+   Compiling reservoir-core v0.1.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 12.65s
+     Running unittests src/main.rs (target/debug/deps/reservoir_scope_desktop-6c2814bd339f7bda)
+
+running 6 tests
+test model_transport::tests::optional_prompt_evaluation_preserves_integer_tokens_without_float_rounding ... ok
+test model_transport::tests::owned_http_prompt_evaluation_cases_preserve_evidence_and_completion_independently ... ok
+test sustained::tests::prompt_evidence::prompt_evaluation_incomplete_attempt_is_inspectable_but_never_a_saved_journal ... ok
+test sustained::tests::prompt_evidence::prompt_evaluation_journal_and_event_mutations_fail_even_with_outer_hashes_reanchored ... ok
+test sustained::tests::prompt_evidence::prompt_evaluation_metadata_survives_save_export_restore_without_changing_eligibility ... ok
+test sustained::tests::prompt_evidence::prompt_evaluation_received_response_view_is_newest_fifty_and_reports_truncation ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 186 filtered out; finished in 29.68s
+

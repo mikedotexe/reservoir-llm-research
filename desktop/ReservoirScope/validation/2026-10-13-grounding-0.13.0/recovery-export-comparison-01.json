@@ -1,0 +1,129 @@
+{
+  "schema": "reservoir-recovery-export-comparison-v1",
+  "startedAtUtc": "2026-10-13T20:55:34.841988+00:00",
+  "endedAtUtc": "2026-10-13T20:55:35.189741+00:00",
+  "wallNanoseconds": 347653750,
+  "command": [
+    "python3",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/check_real_model_export.py",
+    "--bundle",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.13-open-writing/exports/sustained-1791923112800-6-7-37",
+    "--executable",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/native-export-review-01/reservoir-scope-desktop-pinned",
+    "--expected-executable-sha256",
+    "689ed9e13e6cdbea8774c232b88018eaebd0c8fcbd2aaedc2d0fb0c6e1bb3b5b",
+    "--expected-model",
+    "gemma3:4b",
+    "--expected-endpoint",
+    "http://127.0.0.1:49606",
+    "--expected-prompt-version",
+    "reservoir-journal-v3",
+    "--output-directory",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/recovery-export-review-01"
+  ],
+  "exitCode": 0,
+  "scope": "Offline exact retained-core comparison and pinned replay of actual restored native export; no UI, model, HTTP or live-store actions.",
+  "originalNativeExport": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.13-open-writing/exports/sustained-1791923112800-6-6-36",
+  "restoredNativeExport": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.13-open-writing/exports/sustained-1791923112800-6-7-37",
+  "sameFileSet": true,
+  "exactCoreFileComparisons": [
+    {
+      "path": "segments/segment-00000001.json",
+      "bytes": 131112,
+      "sha256": "07356d64db1ecad7173a26a3c164ae13868edf7cc5683cc21fd622351fbfa350",
+      "exactByteComparisonEqual": true
+    },
+    {
+      "path": "segments/segment-00000002.json",
+      "bytes": 69643,
+      "sha256": "1522ea129354c4416d80faf760abde702a60e42febdf3374829e398834bc1258",
+      "exactByteComparisonEqual": true
+    },
+    {
+      "path": "checkpoints/a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff.json",
+      "bytes": 34033,
+      "sha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff",
+      "exactByteComparisonEqual": true
+    }
+  ],
+  "manifestDifferences": {
+    "generation": {
+      "before": "6",
+      "after": "7"
+    },
+    "revision": {
+      "before": "36",
+      "after": "37"
+    },
+    "phase": {
+      "before": "attemptBlocked",
+      "after": "paused"
+    }
+  },
+  "configAndBudgetsUnchanged": true,
+  "sameCoreEvidenceView": true,
+  "sameReviewMaterialBytes": true,
+  "originalNativeExportUnchanged": true,
+  "restoredNativeExportUnchanged": true,
+  "restoredInventory": {
+    "manifest.json": {
+      "bytes": 1098,
+      "sha256": "e9e31a6118ce87f8ecac585a4cd69841ff99ff7744383899a29d561dfda3ac4a"
+    },
+    "segments/segment-00000001.json": {
+      "bytes": 131112,
+      "sha256": "07356d64db1ecad7173a26a3c164ae13868edf7cc5683cc21fd622351fbfa350"
+    },
+    "segments/segment-00000002.json": {
+      "bytes": 69643,
+      "sha256": "1522ea129354c4416d80faf760abde702a60e42febdf3374829e398834bc1258"
+    },
+    "checkpoints/a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff.json": {
+      "bytes": 34033,
+      "sha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff"
+    }
+  },
+  "checkerReceipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/recovery-export-review-01/receipt.json",
+    "bytes": 15567,
+    "sha256": "9aef70f5fdad9c926c0aefc759fdce045779735a0a6078c32036285da5b55f3a"
+  },
+  "verification": {
+    "command": [
+      "/usr/bin/time",
+      "-l",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/recovery-export-review-01/reservoir-scope-desktop-pinned",
+      "--verify-sustained",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.13-open-writing/exports/sustained-1791923112800-6-7-37"
+    ],
+    "startedAtUtc": "2026-10-13T20:55:34.936070+00:00",
+    "endedAtUtc": "2026-10-13T20:55:35.122392+00:00",
+    "wallNanoseconds": 185653541,
+    "peakRssBytes": 12419072,
+    "exitCode": 0,
+    "result": {
+      "modelsContacted": false,
+      "report": {
+        "checkpointSha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff",
+        "diagnostics": [
+          "Incomplete or token-limited response cannot become journal feedback"
+        ],
+        "format": "reservoir-sustained-bundle-v1",
+        "journalCount": 0,
+        "manifestSha256": "e9e31a6118ce87f8ecac585a4cd69841ff99ff7744383899a29d561dfda3ac4a",
+        "segmentCount": 2,
+        "sessionId": "sustained-1791923112800-6",
+        "sizeBytes": 235886,
+        "step": 30,
+        "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+      },
+      "status": "passed"
+    },
+    "scope": "Offline verifier process; not model-service or GUI resource use."
+  },
+  "log": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/recovery-export-checker-01.log",
+    "bytes": 281,
+    "sha256": "5e39556089d764aa6aa5949a2fec55eca92cbf92cc909ce1d1f721c0a781b511"
+  }
+}

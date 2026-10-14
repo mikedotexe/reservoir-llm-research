@@ -1,0 +1,47 @@
+{
+  "capturedAtUtc": "2026-10-12T21:59:27.270462+00:00",
+  "comparisons": [
+    {
+      "from": "source-at-build-start.json",
+      "to": "source-during-build-attempt2.json",
+      "changedPaths": [
+        "desktop/ReservoirScope/Cargo.lock",
+        "desktop/ReservoirScope/src-tauri/Cargo.toml",
+        "desktop/ReservoirScope/src-tauri/src/desktop_menu.rs",
+        "desktop/ReservoirScope/src-tauri/src/macos_termination.rs",
+        "desktop/ReservoirScope/src-tauri/src/main.rs"
+      ],
+      "unchangedFiles": 208
+    },
+    {
+      "from": "source-during-build-attempt2.json",
+      "to": "source-at-build-attempt3.json",
+      "changedPaths": [
+        "desktop/ReservoirScope/FRESH-EXPERIMENTS.md",
+        "desktop/ReservoirScope/src-tauri/src/main.rs",
+        "desktop/ReservoirScope/src-tauri/src/sessions.rs",
+        "desktop/ReservoirScope/src-tauri/src/sessions_tests.rs"
+      ],
+      "unchangedFiles": 209
+    },
+    {
+      "from": "source-at-build-attempt3.json",
+      "to": "source-at-build-attempt4.json",
+      "changedPaths": [
+        "desktop/ReservoirScope/src-tauri/src/sessions.rs",
+        "desktop/ReservoirScope/src-tauri/src/sessions_tests.rs"
+      ],
+      "unchangedFiles": 211
+    },
+    {
+      "from": "source-at-build-attempt4.json",
+      "to": "final-captured-sources",
+      "changedPaths": [
+        "shared/reservoir-scope/PARITY.md"
+      ],
+      "unchangedFiles": 212
+    }
+  ],
+  "finalInventorySha256": "0e6996244fb36c39511c966e7c77a0c109a9d3b6b1a8091e9f6597ad376a47b7",
+  "interpretation": "Each attempt retains its own UI observations. Numerical core/frontend sources are unchanged across package attempts; repairs affect native quit integration/session lifecycle, then only the committed journal reader and its regression. Changes after final build are documentation only. source-at-build-attempt2.json is an empty invalid-root inventory, superseded by source-during-build-attempt2.json."
+}

@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-14T01:39:06.489222+00:00",
+  "packageReceiptSha256": "d5ad1ce4eda1b432ff2161a596ac9ea5af075b3cff880f74ca10df7f52225f5f",
+  "executableSha256": "7d46719838495b7a9ba57eea69ac9c940bb81f2fdc47cd12b761d97bb472d081",
+  "endpoint": {
+    "endpoint": "http://127.0.0.1:60168",
+    "model": "reservoir-fixture:input-evidence-0.16",
+    "pid": 6744,
+    "synthetic": true,
+    "startedAtUtc": "2026-10-14T01:38:01.249199+00:00",
+    "lifetimeSeconds": 900,
+    "maximumChatRequests": 5,
+    "maximumHttpRequests": 32,
+    "scriptSha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb",
+    "scenario": [
+      "wide-reported",
+      "absent",
+      "malformed-string",
+      "maximum-u64",
+      "incomplete-reported"
+    ]
+  },
+  "requestLogAtCapture": "{\"atUtc\": \"2026-10-14T01:38:01.249754+00:00\", \"monotonicNs\": \"1138257814376125\", \"lifecycle\": \"started\", \"endpoint\": \"http://127.0.0.1:60168\", \"model\": \"reservoir-fixture:input-evidence-0.16\", \"pid\": 6744, \"synthetic\": true, \"startedAtUtc\": \"2026-10-14T01:38:01.249199+00:00\", \"lifetimeSeconds\": 900, \"maximumChatRequests\": 5, \"maximumHttpRequests\": 32, \"scriptSha256\": \"a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb\", \"scenario\": [\"wide-reported\", \"absent\", \"malformed-string\", \"maximum-u64\", \"incomplete-reported\"]}\n{\"atUtc\": \"2026-10-14T01:38:33.081915+00:00\", \"monotonicNs\": \"1138289646734416\", \"method\": \"GET\", \"path\": \"/api/tags\", \"status\": 200, \"socketWriteCompleted\": true}\n{\"atUtc\": \"2026-10-14T01:39:04.634749+00:00\", \"monotonicNs\": \"1138321199781250\", \"method\": \"POST\", \"path\": \"/api/chat\", \"request\": 1, \"case\": {\"name\": \"wide-reported\", \"value\": 9007199254740993, \"expected\": \"reported\"}, \"requestBytes\": 1622, \"requestSha256\": \"a0a403e99a0046734d43973fa7e6eaac09141d915af2db4608f2e9fd1f066372\", \"promptBytes\": 1437, \"promptSha256\": \"8a82a38cedc887e41ff9135335164541f1cbc6d64afbde72327c94cdafa3fd12\", \"model\": \"reservoir-fixture:input-evidence-0.16\", \"options\": {\"num_ctx\": 8192, \"num_predict\": 1024, \"temperature\": 0}, \"stream\": false, \"responseFile\": \"response-01-wide-reported.json\", \"responseBytes\": 368, \"responseSha256\": \"b5bdf0fd98e9ed79fa27e099277af8fc27ee727a59d1c7b92a2eb640bb596e35\"}\n{\"atUtc\": \"2026-10-14T01:39:04.635323+00:00\", \"monotonicNs\": \"1138321200341708\", \"response\": 1, \"status\": 200, \"socketWriteCompleted\": true}\n",
+  "scope": "Owned synthetic provider selected; package started from exact bundle path; raw log retains lifecycle/readiness/generation ordering."
+}

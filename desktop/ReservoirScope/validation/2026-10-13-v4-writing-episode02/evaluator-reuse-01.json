@@ -1,0 +1,73 @@
+{
+  "schema": "reservoir-evaluator-reuse-v1",
+  "createdAtUtc": "2026-10-13T22:52:34.362714+00:00",
+  "status": "unchanged-qualified-tools-no-new-execution",
+  "tools": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/check_real_model_export.py",
+      "bytes": 25290,
+      "sha256": "9463bcded5e07982d0b56fb0240cc8ea93c59f478286c69bc58c8341e17b785b"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/test_real_model_export.py",
+      "bytes": 18247,
+      "sha256": "ead9500f98c6670cf0ca380e662fe89caf4958f7c1377c4a88529702655a4fdc"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/journal_quality.py",
+      "bytes": 28542,
+      "sha256": "49c13a0577829a9d7b7ebb2d7be60ff1f4139b2753f990d614dcf9332397d0ae"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/test_journal_quality.py",
+      "bytes": 27055,
+      "sha256": "35b6316010479b2794de57f795911c791e7520e9afd4087b5875e2c648b567f4"
+    }
+  ],
+  "priorFreeze": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/evaluation-freeze-01.json",
+    "bytes": 9963,
+    "sha256": "84717b16c913a8427da52745e66a4ec0b2518358d961155fac2f1c53bf078bf2"
+  },
+  "qualification": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/quality-tests-04.json",
+      "bytes": 1149,
+      "sha256": "2a72749f7205fe6daa032a224d5bab4aae987f4fdebc948302db8642f53e326e"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/quality-tests-04.log",
+      "bytes": 6690,
+      "sha256": "45260b077003229959b157be1f3603f5f90c4c6f36fe08fb66227c9ff14f9f28"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/checker-tests-01.json",
+      "bytes": 1371,
+      "sha256": "39e636ffb4e55a482036143570e43df175c06379638147414142fd6ae81cf40b"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/checker-tests-01.log",
+      "bytes": 3944,
+      "sha256": "55eec3435b779a9034fcca8bbe0c0817d71ec373d4af1c3635a03f0769b3aafe"
+    }
+  ],
+  "counts": {
+    "reviewTests": 43,
+    "integrityTests": 23
+  },
+  "testsRerunForEpisode02": false,
+  "rubricExactCopy": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/RUBRIC.md",
+    "bytes": 3444,
+    "sha256": "a6b163ff1cc9d9e9e73c35c288ddc46d6e99358376d49f5350ecc569d9cc3553"
+  },
+  "priorRubric": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/RUBRIC.md",
+    "bytes": 3444,
+    "sha256": "a6b163ff1cc9d9e9e73c35c288ddc46d6e99358376d49f5350ecc569d9cc3553"
+  },
+  "unchangedPriorFreezeFilesVerified": 32,
+  "sessionConfigAndEvaluationRequirementsMatchPriorPlan": true,
+  "preparationNote": "An initial receipt-writing command stopped at a mistaken test filename; it made no test/runtime call and created only prospective plan/rubric. The corrected source identity is test_real_model_export.py.",
+  "scope": "Exact source reuse and prior qualification binding. No new output, model call, app action, or newly executed test result is asserted."
+}

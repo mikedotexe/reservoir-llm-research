@@ -1,0 +1,28 @@
+{
+  "schema": "offline-evaluator-test-execution-v1",
+  "startedAtUtc": "2026-10-13T22:30:38.231164+00:00",
+  "endedAtUtc": "2026-10-13T22:30:39.237912+00:00",
+  "wallNanoseconds": 1006168833,
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_journal_quality.py"
+  ],
+  "cwd": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts",
+  "exitCode": 0,
+  "expectedTests": 43,
+  "logSha256": "45260b077003229959b157be1f3603f5f90c4c6f36fe08fb66227c9ff14f9f28",
+  "sources": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/journal_quality.py",
+      "sha256": "49c13a0577829a9d7b7ebb2d7be60ff1f4139b2753f990d614dcf9332397d0ae"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/test_journal_quality.py",
+      "sha256": "35b6316010479b2794de57f795911c791e7520e9afd4087b5875e2c648b567f4"
+    }
+  ],
+  "scope": "Offline synthetic/known corpus only. Final passing-source qualification after correction scope precedence and removal of a conflicting imaginary cue from the ambiguous-association test; prior failures retained."
+}

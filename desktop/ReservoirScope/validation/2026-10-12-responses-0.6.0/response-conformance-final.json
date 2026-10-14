@@ -1,0 +1,825 @@
+{
+  "schema": "reservoir-response-conformance-v1",
+  "createdAtUTC": "2026-10-12T20:44:09.321417+00:00",
+  "scope": "All retained response coordinates, declared scales, boundaries and reader/replacement rejections; no rerun of native dynamics or simulated model",
+  "modelsContacted": false,
+  "liveSourcesRead": false,
+  "outcome": "passed",
+  "checks": [
+    {
+      "name": "canonical-native-all-values",
+      "passed": true,
+      "expected": "identical decoded evidence",
+      "inputSha256": "15441269152bb282e2456d4d08fddae398879e4b0410cd08f71e80282f09e807",
+      "runs": [
+        {
+          "exitCode": 0,
+          "stdoutSha256": "e916f88080cea90cfff048cce79f230aaa4eeff52b9d991234ddc0f481d11575",
+          "stderr": ""
+        },
+        {
+          "exitCode": 0,
+          "stdoutSha256": "a4d17018c646450478029e86a576b99a98507528114b9ce918ebcbc895623d91",
+          "stderr": ""
+        }
+      ],
+      "counts": {
+        "boundaryCount": 8,
+        "frameCount": 8,
+        "receiptCount": 10
+      }
+    },
+    {
+      "name": "canonical-simulation-all-values",
+      "passed": true,
+      "expected": "identical decoded evidence",
+      "inputSha256": "fe97623dcccb4b089ce4e0a1b5cc99ec902793efed8fbfcf1041ce8c865e9100",
+      "runs": [
+        {
+          "exitCode": 0,
+          "stdoutSha256": "0d06e11b81a69cdbc4987f8af1b6e16a9f9ace81df12464ecd71b5a7db4740c4",
+          "stderr": ""
+        },
+        {
+          "exitCode": 0,
+          "stdoutSha256": "912cf7bf122699783b6c0bf97aaf9bd7430ab657295f49ade9d7ac5a39abbece",
+          "stderr": ""
+        }
+      ],
+      "counts": {
+        "frameCount": 65,
+        "nodeCount": 128
+      }
+    },
+    {
+      "name": "unchanged-native-replacement",
+      "passed": true,
+      "expected": "identical decoded evidence",
+      "inputSha256": "15441269152bb282e2456d4d08fddae398879e4b0410cd08f71e80282f09e807",
+      "runs": [
+        {
+          "exitCode": 0,
+          "stdoutSha256": "e916f88080cea90cfff048cce79f230aaa4eeff52b9d991234ddc0f481d11575",
+          "stderr": ""
+        },
+        {
+          "exitCode": 0,
+          "stdoutSha256": "a4d17018c646450478029e86a576b99a98507528114b9ce918ebcbc895623d91",
+          "stderr": ""
+        }
+      ],
+      "counts": {
+        "boundaryCount": 8,
+        "frameCount": 8,
+        "receiptCount": 10
+      }
+    },
+    {
+      "name": "native-wide-integers",
+      "passed": true,
+      "expected": "identical decoded evidence",
+      "inputSha256": "d4e9f9348508935be7fea967605f95d8e0510598c2178a5d2d3039a5973c43a8",
+      "runs": [
+        {
+          "exitCode": 0,
+          "stdoutSha256": "380152e2a81bc410127ad37f6ba323448bde9a38dc2d48d42059a7a8a24e8fde",
+          "stderr": ""
+        },
+        {
+          "exitCode": 0,
+          "stdoutSha256": "7fe1f796fbca2a8b2e8b5bbfc845815dfdeb62b2cc2f78001efe8cd6bd7a52c0",
+          "stderr": ""
+        }
+      ],
+      "counts": {
+        "boundaryCount": 8,
+        "frameCount": 8,
+        "receiptCount": 10
+      }
+    },
+    {
+      "name": "native-wide-decimal",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "cea2173eb738bb341995f17b145f410ab3ee759749410bcabed1218e88c6c8d5",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: DecodingError.dataCorrupted: Data was corrupted. Debug description: The given data was not valid JSON.. Underlying error: Error Domain=NSCocoaErrorDomain Code=3840 \"Number 18446744073709551615.0 is not representable in Swift.\" UserInfo={NSDebugDescription=Number 18446744073709551615.0 is not representable in Swift.}\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Response structure: Floating integer token is not representable in its native type. at line 1 column 3440\")\n"
+        }
+      ]
+    },
+    {
+      "name": "native-wide-exponent",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "6ea996e8d9d6445fa7ac5ab43d891bd1a02e7aba1680b745998b7d0f0b189ba0",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: DecodingError.dataCorrupted: Data was corrupted. Debug description: The given data was not valid JSON.. Underlying error: Error Domain=NSCocoaErrorDomain Code=3840 \"Number 18446744073709551615e0 is not representable in Swift.\" UserInfo={NSDebugDescription=Number 18446744073709551615e0 is not representable in Swift.}\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Response structure: Floating integer token is not representable in its native type. at line 1 column 3440\")\n"
+        }
+      ]
+    },
+    {
+      "name": "native-integral-decimal-above-js-safe",
+      "passed": true,
+      "expected": "identical decoded evidence",
+      "inputSha256": "33783fc5ac43ef6fadbd064ce8b89418793798c9bc74eea8ed61d5a129b01069",
+      "runs": [
+        {
+          "exitCode": 0,
+          "stdoutSha256": "6f7f1547bbafba506cae031e1f7c37eb67a9a69e4c26e55bd1935d869e719634",
+          "stderr": ""
+        },
+        {
+          "exitCode": 0,
+          "stdoutSha256": "035e24abee9fadd82dae445737b473021dc7f393f844c8ed22f43a3c4d6ba865",
+          "stderr": ""
+        }
+      ],
+      "counts": {
+        "boundaryCount": 8,
+        "frameCount": 8,
+        "receiptCount": 10
+      }
+    },
+    {
+      "name": "native-integral-decimal-above-signed-range",
+      "passed": true,
+      "expected": "identical decoded evidence",
+      "inputSha256": "557d8c0be5aab595cfd837386fb076eaa01880d52c1069e438c35bdcb16420bf",
+      "runs": [
+        {
+          "exitCode": 0,
+          "stdoutSha256": "b89dc34686117d53a8b6d2f3d7560bd002aa048a50fec0c6ad4b64a410242d52",
+          "stderr": ""
+        },
+        {
+          "exitCode": 0,
+          "stdoutSha256": "76b119850e40a6db33e7e21ad9ab424a6b75c9cdbbec6f808ea4c3af59896a8b",
+          "stderr": ""
+        }
+      ],
+      "counts": {
+        "boundaryCount": 8,
+        "frameCount": 8,
+        "receiptCount": 10
+      }
+    },
+    {
+      "name": "native-integral-decimal-largest-floating-safe",
+      "passed": true,
+      "expected": "identical decoded evidence",
+      "inputSha256": "c594100273b2492aa7f103b98ba94edda63faf5503eae3f0d20ebd127a8e8c65",
+      "runs": [
+        {
+          "exitCode": 0,
+          "stdoutSha256": "1b5f15334e5c4b94f3fccad5d0dbd687af3f5d8b791f6691cd58719c549dd9f3",
+          "stderr": ""
+        },
+        {
+          "exitCode": 0,
+          "stdoutSha256": "7631fdb17d2949fa89c0f4867fa13310b97c68bd38b946858db16b530782de51",
+          "stderr": ""
+        }
+      ],
+      "counts": {
+        "boundaryCount": 8,
+        "frameCount": 8,
+        "receiptCount": 10
+      }
+    },
+    {
+      "name": "unmeasured-fill",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "97e19c2939513cdfcce56df1bf3c8808e0c7592766664d215af37c485acbbfa4",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"Native rehearsal receipts cannot claim a measured fill, reference basis or unsupported wrapper field.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Native receipts cannot claim fill, a reference basis, or unsupported wrapper fields.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "unverified-basis",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "77e8fa138183adb607e4e316d639313b8289448dfb792e4edc1bf08c456b0712",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"Native rehearsal receipts cannot claim a measured fill, reference basis or unsupported wrapper field.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Native receipts cannot claim fill, a reference basis, or unsupported wrapper fields.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "live-relabel",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "eb693c37bf52ad366e4f823132c124972f513ac939885fd01ac912b8f6554bad",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"Expected isolated native rehearsal receipts with successful-step identities; live evidence is a separate contract.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Expected isolated native rehearsal receipts with successful-step identities; live evidence is a separate contract.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "empty-receipts",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "c790fe8a026ed85210d7c7fb5ddae3a4a0564f9bd049eaaa07eb3af7d2575691",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"A native bundle must contain 1\u20131024 receipts.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Native bundles require 1\u20131024 receipts.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "incorrect-delta",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "f31315a34a515e5390442eb9d66943a65c0f50c2f422585641d0757b605e5036",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"The action delta must equal Float32 applied minus ordinary state.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Action delta must equal Float32 applied minus ordinary state, including signed bits.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "incorrect-l2",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "46c0e86cb8b635ec2403083699f97a376b37e4a1f32e279438fc044e7fc025e3",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"Action measurements disagree with all 128 observed coordinates.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Native action measurements disagree with the full 128-coordinate delta.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "incorrect-maximum",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "76b53440463e14850781183077505c0df8d9dca6715c32e6a5a8ca5e04cf9cc7",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"Action measurements disagree with all 128 observed coordinates.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Native action measurements disagree with the full 128-coordinate delta.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "missing-noise",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "f9189e170683c13602ab384db98254c6cc2c3cdd2ab73926bec712eb0c745c1f",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"Applied receipts require their successful step, actual state, noise, leak and application measurements.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Applied boundaries require exact step, state, noise, leak and application measurements.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "failed-step-with-state",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "53729438030b85a5c5a8469e9a46edf823c543ea8c97464d2f685aea1dea9f34",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"Admission, terminal and failed events cannot present an applied state.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Admission, terminal and failed events cannot present an applied state.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "no-op-with-change",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "c2f3e470de3aca1a8d5ab9f504311aa2bf50542ee7d7b59ebdb3a8cf7da4389b",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"A no-op or headroom rejection cannot contain a state change.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"No-op or headroom rejection cannot contain a state change.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "duplicate-boundary",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "60fff43b193947cfe54b1a3057925c25600be8e174b1eed4deb9ef36e36136e5",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"A native action boundary is duplicated.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Native action boundary is duplicated.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "reverse-step",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "2a3ff4258809a0a55c76025aa84a41b02106db61a7c4929d7dea3b2571401f2e",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"A bundle cannot splice native identities or reverse successful steps.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"A native bundle cannot splice identities or reverse successful steps.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "overflow-direction",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "ae674963461bf8eb74915d5a6e468af10f885571e3bb9bdcfbb313e17a58a837",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: DecodingError.dataCorrupted: Data was corrupted. Debug description: The given data was not valid JSON.. Underlying error: Error Domain=NSCocoaErrorDomain Code=3840 \"Number 1e+40 is not representable in Swift.\" UserInfo={NSDebugDescription=Number 1e+40 is not representable in Swift.}\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Response structure: Number cannot be represented as a finite native Float32. at line 1 column 3043\")\n"
+        }
+      ]
+    },
+    {
+      "name": "unknown-wrapper",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "d14f0920bffdf35a94e8a29d254c4685ea0f99b4bfef3bfdc81765c7704648b8",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"Native rehearsal receipts cannot claim a measured fill, reference basis or unsupported wrapper field.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Native receipts cannot claim fill, a reference basis, or unsupported wrapper fields.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "unknown-receipt",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "8a5628ee44d0f2a169abd6a098db7cc619aa8aecae5b9f2c779ba34282c4e12c",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"Unsupported receipt fields or native identity fields were rejected.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Response structure: unknown field `fill`, expected one of `schema_version`, `command_id`, `intent_id`, `identity`, `pattern_id`, `pattern_sha256`, `direction`, `status`, `observed_at_unix_ms`, `successful_step_id`, `pulse_index`, `success_offset`, `requested_amount`, `before`, `after`, `delta`, `attenuation`, `actual_l2`, `max_abs_delta`, `clipped`, `boundary_wait_us`, `effective_leak`, `realized_noise`, `reason` at line 1 column 18705\")\n"
+        }
+      ]
+    },
+    {
+      "name": "changed-overlap",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "a07717a0d5b853a7fa272facbc9ad5c3ce14e9693cbbf57e57ef8e8225c6131c",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"An already observed native boundary changed in the same source identity.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"An already observed native boundary changed in the same source identity.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "older-complete-batch",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "8ab30d894230cbadf5db6ccc0bed209e02f0d67deb6078fd38a54f68ae1a98b3",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"The native source moved backwards; the retained batch remains visible.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Native source moved backwards; retain the previous bundle.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "changed-source",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "bc9d5e8c7cb15d73a070914be2b48a455fa9dbc3baa4902d87cb9025917a3350",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"Source code identity changed within the same native session.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Source code identity changed within the same native session.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "new-session-separate-replacement",
+      "passed": true,
+      "expected": "identical decoded evidence",
+      "inputSha256": "2f28896697f853f5fe194bddfc9a40c4746b54dd312a535cdf05412783ddc6bc",
+      "runs": [
+        {
+          "exitCode": 0,
+          "stdoutSha256": "648c6a91bce46c9fda78ca3824a018c99edb6ed487a3a7f9ff5c4590fec480d6",
+          "stderr": ""
+        },
+        {
+          "exitCode": 0,
+          "stdoutSha256": "88926945226a3baf06f5fec5abb200b519ebc9d9d6021cce15faf82535588542",
+          "stderr": ""
+        }
+      ],
+      "counts": {
+        "boundaryCount": 8,
+        "frameCount": 8,
+        "receiptCount": 10
+      }
+    },
+    {
+      "name": "canonical-session-cannot-bypass-source-identity",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "d751f917dc4c7b017b5f2c2c17a5a6ec52cde94d7dabef29a4c976413b749665",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"Source code identity changed within the same native session.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Source code identity changed within the same native session.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "canonical-command-cannot-bypass-immutable-boundary",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "66fa2a695679173b49490da6c3ecbd3387c135004ba2d0bdb77262452bc284be",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: NativeActionResponseFailure(message: \"An already observed native boundary changed in the same source identity.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"An already observed native boundary changed in the same source identity.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "canonically-equivalent-receipt-reason",
+      "passed": true,
+      "expected": "identical decoded evidence",
+      "inputSha256": "cda2270c04c74dc372280ebc9614fe3ab6fadd82d0de6e94c317449671a3ee87",
+      "runs": [
+        {
+          "exitCode": 0,
+          "stdoutSha256": "361bb1f110791b710bfcf799c86bca82fdf442067d4a0fe3226450ed66b8f3e1",
+          "stderr": ""
+        },
+        {
+          "exitCode": 0,
+          "stdoutSha256": "eb6cfaf4c442e37a3abcb704bedc597cba53093de5d9aed43fc05437d490e253",
+          "stderr": ""
+        }
+      ],
+      "counts": {
+        "boundaryCount": 8,
+        "frameCount": 8,
+        "receiptCount": 10
+      }
+    },
+    {
+      "name": "canonical-identity-across-boundaries",
+      "passed": true,
+      "expected": "identical decoded evidence",
+      "inputSha256": "e47d29ad8a56efff0e6393a113175c2bb9dcc2fb2d28139a115e83f67f04aa4d",
+      "runs": [
+        {
+          "exitCode": 0,
+          "stdoutSha256": "75eec9bd48db5721dccc654a0e642a65b095f8355c18bca3decee5484addc090",
+          "stderr": ""
+        },
+        {
+          "exitCode": 0,
+          "stdoutSha256": "329fb794d432ffe5963987d0b158704fafe6118606da531a5e65f9377883d9a8",
+          "stderr": ""
+        }
+      ],
+      "counts": {
+        "boundaryCount": 8,
+        "frameCount": 8,
+        "receiptCount": 10
+      }
+    },
+    {
+      "name": "simulation-fill",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "d9a95c7a56deea4f059a00784552ca71d7cf7e2e21eb86f80aeb19da005d73e0",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: StateResponseFailure(message: \"The simulation has no fill, PCA basis or measured seconds. Unsupported evidence fields were rejected.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Simulation cannot claim fill, reference basis, measured seconds or unsupported wrapper fields.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "simulation-clock",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "e113376f8fd8cf1746ee82edf8c02b4a188ac3f07bf1c76fd29162448c094113",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: StateResponseFailure(message: \"Response provenance cannot be relabeled as live or native evidence.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Simulation provenance cannot be relabeled as live or native evidence.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "simulation-delta",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "08aa71002b10fd834e50cdbf149811e3bf6b3ccb70477e544c5eb673dbb006d1",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: StateResponseFailure(message: \"Response delta does not equal its paired state difference.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Simulation delta differs from its paired state difference.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "simulation-distance",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "0ce54298bc6f4435e0f004b7fa45c513c6e98018eb374798726d1661d3195b64",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: StateResponseFailure(message: \"Response distance does not match its full coordinate vector.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Simulation distance differs from its full vector.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "simulation-boundary",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "abcfc03ea72bad3bca377876bfe07934a46c66d30d46379cb11c9b8a15624452",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: StateResponseFailure(message: \"Response boundary order is missing, duplicated or changed.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Simulation boundary order is missing, duplicated or changed.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "simulation-return",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "155ff2b2dc092c3083be9d715fe41aaf437dcd61ff5cbb4eb2f21c4e9e4dfd42",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: StateResponseFailure(message: \"Response return summary disagrees with its declared threshold and dwell.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Simulation return summary disagrees with threshold and eight-boundary dwell.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "simulation-peak",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "5261012f603e27dc3abf6cd585a1cce7abc4ad2998dcf8b2d9c04ce1ed82cd26",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: StateResponseFailure(message: \"Response peak summary disagrees with the full path.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Simulation peak summary disagrees with the full path.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "simulation-original-hash",
+      "passed": true,
+      "expected": "reject",
+      "inputSha256": "e9dc93df3a84c124184b17f47f75cd720f213c53a17ab8cb662aed081e7e6bdf",
+      "runs": [
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native response rejected: StateResponseFailure(message: \"Response evidence does not match its retained byte identity.\")\n"
+        },
+        {
+          "exitCode": 1,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Simulation does not match its retained byte identity.\")\n"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/NativeActionResponse.swift",
+      "sha256": "11aa1976869d22cdb062487c88fb30739367ba5cf833b32c6272013b7a55e942"
+    },
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/StateResponseExperience.swift",
+      "sha256": "8cfc783710186c2bd17165478a25990e8b397663d4828dcbd348149f0ff188da"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/src/response.rs",
+      "sha256": "363ec9c5004b8332c9ac8639d6706eefdd22cc1253bbebfc131100cb347f0581"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/examples/response_oracle.rs",
+      "sha256": "41abe549deb345093b280dd058574faefb9f499d1b8f41d06d8f726238f27454"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/check_response_oracles.py",
+      "sha256": "d1e48267b9c92bc146f8ddee6785d2659c0bbc896e54dfba03400a3c16fcc087"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/response_oracle.swift",
+      "sha256": "d2b47a641f10a0e0f80df953cadaeb21625597c925dab2889951143e49a4705e"
+    }
+  ],
+  "executables": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.6-response/swift-response-oracle",
+      "sha256": "d6ecc2af021ce9ecc4f3ab41202f342ffc6cde7a5265c02ebaccd6bd31b298e8"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/examples/response_oracle",
+      "sha256": "f29357712e6b8e082391732fe38a4e2903646b22178fde5e8abd9b03325013be"
+    }
+  ],
+  "resources": [
+    {
+      "name": "native-action-response.json",
+      "sha256": "15441269152bb282e2456d4d08fddae398879e4b0410cd08f71e80282f09e807"
+    },
+    {
+      "name": "state-response.json",
+      "sha256": "fe97623dcccb4b089ce4e0a1b5cc99ec902793efed8fbfcf1041ce8c865e9100"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "atUtc": "2026-10-13T19:23:13.811591+00:00",
+  "sessionDirectory": "/Users/v/Library/Application Support/research.reservoir.scope.tauri/sustained-v1/sustained-1791919382664-3",
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791919382664-3",
+    "generation": "3",
+    "revision": "1",
+    "config": {
+      "seed": "20261013",
+      "turnEvery": 30,
+      "maximumSteps": 121,
+      "maximumTurns": 4,
+      "maximumDurationSeconds": 600,
+      "storageBudgetBytes": 67108864,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:63515",
+        "model": "gemma3:4b",
+        "contextTokens": 4096
+      }
+    },
+    "phase": "ready",
+    "step": 0,
+    "durableStep": 0,
+    "elapsedMillis": 0,
+    "journalCount": 0,
+    "segmentCount": 0,
+    "lastSegmentSha256": null,
+    "checkpointSha256": "11eb41d8d74f741aece6e1f4ee6f2caa4eda9beffe4fb7ee39dcbf4dfe213c19",
+    "previousCheckpointSha256": null,
+    "diagnostics": [],
+    "attemptTiming": null
+  },
+  "process": {
+    "pid": 84707,
+    "startSeconds": "1791919206",
+    "startMicroseconds": "901451",
+    "executablePath": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop"
+  },
+  "packageSha256": "2fa824855d1172ebf707b4f1ce5f50d2c3eb74ab4aeeb437d41dc566f818db8d",
+  "readiness": "Exactownedendpointgemma3:4b digestmatchespinnedmanifest;actualappcheck",
+  "ui": "Preparednotstarted0/0;CreateandStartseparate"
+}

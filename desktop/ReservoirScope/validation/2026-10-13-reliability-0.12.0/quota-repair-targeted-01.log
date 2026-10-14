@@ -1,0 +1,19 @@
+   Compiling reservoir-scope-desktop v0.12.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `files`
+   --> src-tauri/src/sustained_quota_tests.rs:278:40
+    |
+278 |     assert_eq!(report.manifest_sha256, files::digest(&before));
+    |                                        ^^^^^ use of unresolved module or unlinked crate `files`
+    |
+help: to make use of source file src-tauri/src/files.rs, use `mod files` in this file to declare the module
+   --> src-tauri/src/main.rs:3:1
+    |
+  3 + mod files;
+    |
+help: consider importing this module
+    |
+  2 + use crate::files;
+    |
+
+For more information about this error, try `rustc --explain E0433`.
+error: could not compile `reservoir-scope-desktop` (bin "reservoir-scope-desktop" test) due to 1 previous error

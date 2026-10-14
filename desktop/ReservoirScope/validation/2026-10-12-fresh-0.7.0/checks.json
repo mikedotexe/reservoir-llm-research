@@ -1,0 +1,56 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": "python3 scripts/check_reference.py",
+    "evidence": "reference-check.log; 180 frozen native source files, 43 resources, 1 fixture unchanged."
+  },
+  {
+    "id": "resource-staging-tests",
+    "status": "passed",
+    "command": "python3 -m unittest discover -s scripts -p 'test_*.py'",
+    "evidence": "python-tests.log; 9 tests passed."
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": "npm test; npm test -- src/freshController.test.ts src/FreshExperiments.test.tsx",
+    "evidence": "frontend-agent-execution-receipt.json records actual 209-test/24-file pass before final recipe-switch clamp; fresh-frontend-final.log records 23 focused tests passed after it. Two later origin-label clarifications are presentation-only and covered by shipping TypeScript/build and packaged Library walkthrough, not inferred unit coverage."
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-core",
+    "evidence": "core-tests.log; 107 tests passed."
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-scope-desktop; cargo test --locked -p reservoir-scope-desktop sessions::tests; cargo test --locked -p reservoir-scope-desktop macos_termination::tests; cargo test --locked -p reservoir-scope-desktop close; cargo test --locked -p reservoir-scope-desktop committed_journal_turn_reads_entry_text_and_preserves_raw_reply_and_prompt -- --nocapture",
+    "evidence": "desktop-tests.log; 72 full-suite tests passed, followed by desktop-session-final.log; 16 session tests passed after final reset/checkpoint validation repairs. This records the actual sequence rather than claiming a second final full-suite run. macos-termination-tests.log records 2 bridge tests after quit-path repair; clean-close-barrier-tests.log records 8 focused close checks after the mutation barrier. The close-barrier invocation compiled 77 tests; a final full-suite rerun is not claimed. committed-journal-reader-tests.log records 1 focused regression after resolving displayed text from exact committed journal IDs, with prompts/raw replies unchanged."
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": "cargo clippy --locked -p reservoir-core --all-targets -- -D warnings; cargo clippy --locked -p reservoir-scope-desktop --all-targets -- -D warnings",
+    "evidence": "core-clippy.log and desktop-clippy.log; both passed. macos-termination-clippy.log and clean-close-barrier-clippy.log record strict desktop reruns after the two quit repairs. committed-journal-reader-clippy.log records the final strict desktop pass."
+  },
+  {
+    "id": "swift-export-verification",
+    "status": "passed",
+    "command": "scripts/check_fresh_conformance.py against target/qa/0.7-fixtures manifest",
+    "evidence": "fixture-conformance.json; 23 original records passed unchanged Swift and Rust verifiers, 23 changed seeded-weight controls rejected by both. Fixture records include actual local journal write/readback; this alone does not qualify packaged UI exports or storage. ui-explore-conformance.json and ui-journal-attempt3-conformance.json separately verify actual native-dialog exports and their negative controls. ui-journal-final-conformance.json verifies final-package export; recovery-export-equality.json proves the post-relaunch recovered export is identical."
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": "npm run tauri -- build --bundles app -- --locked (beforeBuildCommand runs tsc --noEmit and vite build)",
+    "evidence": "macos-build-attempt4.log; final TypeScript/production build passed. Existing >500kB chunk advisory retained; it is not a performance measurement."
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk npm run tauri -- build --bundles app -- --locked",
+    "evidence": "macos-build-attempt4.log; shipping .app built successfully. archive-check.json compares all 46 regular files. macos-ui.md separately records actual package interaction and earlier rejected/superseded candidates."
+  }
+]

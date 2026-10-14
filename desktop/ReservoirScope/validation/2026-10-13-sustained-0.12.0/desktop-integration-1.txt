@@ -1,0 +1,10 @@
+warning: unused import: `SustainedPhase`
+ --> src-tauri/src/sustained_store.rs:8:30
+  |
+8 |     SustainedPendingJournal, SustainedPhase, SustainedSaveReceipt, SustainedSegment,
+  |                              ^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: `reservoir-scope-desktop` (bin "reservoir-scope-desktop") generated 1 warning (run `cargo fix --bin "reservoir-scope-desktop" -p reservoir-scope-desktop` to apply 1 suggestion)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.20s

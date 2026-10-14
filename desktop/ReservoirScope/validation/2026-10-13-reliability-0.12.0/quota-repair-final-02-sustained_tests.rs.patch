@@ -1,0 +1,30 @@
+--- validation/2026-10-13-reliability-0.12.0/before-quota-repair-sustained_tests.rs.txt
++++ src-tauri/src/sustained_tests.rs
+@@ -464,11 +464,22 @@
+         .pending_journal()
+         .is_some());
+     fs::remove_file(filler).unwrap();
+-    s.retry_save("retry".into(), &id, &generation).unwrap();
+-    assert_eq!(
+-        s.lock().unwrap().active.as_ref().unwrap().catalog[0].entry_id,
+-        entry.id
+-    );
++    // A storage-budget hold reserves terminal capacity and does not reopen
++    // generation merely because an unrelated test obstruction was removed.
++    assert!(s.retry_save("retry".into(), &id, &generation).is_err());
++    assert!(s
++        .lock()
++        .unwrap()
++        .active
++        .as_ref()
++        .unwrap()
++        .catalog
++        .is_empty());
++    assert!(s.finish_close(true).unwrap());
++    assert!(matches!(
++        s.shared.store.verify(&id).unwrap().checkpoint.state.phase,
++        SustainedPhase::Ready
++    ));
+ }
+ 
+ #[test]

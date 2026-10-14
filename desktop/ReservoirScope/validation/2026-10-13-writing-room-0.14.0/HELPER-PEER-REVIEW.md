@@ -1,0 +1,7 @@
+# Source-only helper peer review
+
+Reviewed `owned_model.py` SHA-256 `9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f` and `test_owned_model.py` SHA-256 `145d75ad5d1d8a090bb3c1a9830a59d1127d3424354b8b59db208d0006da9b87`. This reviewer read source only: no helper tests, model launch, service call, process inspection or signal was performed.
+
+No concrete blocker was found in the scoped cleanup/lifetime review. Start-identity comparison excludes volatile scheduler status/PPID while retaining raw observations. UID/session/group and previously seen PID-start mismatches fail immediately. Bounded transient reads after TERM can settle within the grace interval, but do not authorize a signal against an unverified group. An unreadable leader is treated as exited only with exact unreaped-direct-child `waitid` evidence; an unknown peer never inherits that proof. The leader remains unreaped until the final scoped group-quiescence proof.
+
+The audit has explicit count/size bounds and fails closed instead of dropping evidence. EOF unregisters the pipe. The lifetime ceiling accepts the planned1200 seconds and defaults to900. Launch retains exclusive output-directory/cache/software checks, inherited HOME preservation and metadata-only conventional credential checks. This review does not establish actual cleanup success; the launched instance must retain its own result, including errors. Escaped descendants are outside its stated inspection scope.

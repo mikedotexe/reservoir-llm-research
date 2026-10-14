@@ -1,0 +1,36 @@
+{
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "-p",
+    "reservoir-scope-desktop",
+    "sustained_prompt_version",
+    "--",
+    "--nocapture"
+  ],
+  "cwd": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope",
+  "environment": {
+    "DEVELOPER_DIR": "/Applications/Xcode.app/Contents/Developer",
+    "SDKROOT": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+  },
+  "startedAtUtc": "2026-10-13T20:02:31.698815+00:00",
+  "finishedAtUtc": "2026-10-13T20:02:38.808898+00:00",
+  "exitCode": 0,
+  "log": "validation/2026-10-13-grounding-0.13.0/desktop-prompt-versions-02.log",
+  "logSha256": "9f58d2cdb424f09ee559f2dee5fbfae5de3687337c92124c5db8d1c4841adfb1",
+  "sourceBeforeSha256": {
+    "src-tauri/src/sustained_tests.rs": "eab05d7d5dbb2c068a972ac3ef4a6067aea7ebacb4eddbf09c4f53355afe8ca8",
+    "src-tauri/src/sustained.rs": "436211ec992b2ce907db8333c6ea13c9c336d4ac8d3b5d818c5a92c56f65c374",
+    "src-tauri/src/sustained_store.rs": "4dcf74443ce77c7e9e94cd2536002cdb3e6f410edec3f2e260794afbb40c37b6",
+    "crates/reservoir-core/src/sustained.rs": "56ace3c535e7a66ee41cb7be8af4eccd9a62645d601c0d1c669e879cb1fd3682"
+  },
+  "sourceAfterSha256": {
+    "src-tauri/src/sustained_tests.rs": "eab05d7d5dbb2c068a972ac3ef4a6067aea7ebacb4eddbf09c4f53355afe8ca8",
+    "src-tauri/src/sustained.rs": "436211ec992b2ce907db8333c6ea13c9c336d4ac8d3b5d818c5a92c56f65c374",
+    "src-tauri/src/sustained_store.rs": "4dcf74443ce77c7e9e94cd2536002cdb3e6f410edec3f2e260794afbb40c37b6",
+    "crates/reservoir-core/src/sustained.rs": "56ace3c535e7a66ee41cb7be8af4eccd9a62645d601c0d1c669e879cb1fd3682"
+  },
+  "scope": "Temporary scripted sessions only; no real app store, UI, service, model, or package build.",
+  "priorAttempt": "desktop-prompt-versions-01.json preserves initial test-only mistaken expectation that a paused worker must continue; corrected to inspect actual durable state."
+}

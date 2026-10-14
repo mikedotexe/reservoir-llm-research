@@ -1,0 +1,56 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": "python3 scripts/check_reference.py",
+    "evidence": "180 selected native sources, 43 canonical resources and 1 fixture verified against unchanged native 0.15.0 build 21, commit 96b60ed1d1fe9bdd3a5f50dec3a66a4754ad7f95."
+  },
+  {
+    "id": "resource-staging-tests",
+    "status": "passed",
+    "command": "python3 -m unittest discover -s scripts -p 'test_*.py'",
+    "evidence": "9 tests passed; 37 generated staged files. All 37 exactly match packaged resources; 34 manifest entries independently hash/length checked. See packaged-resources.json."
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": "npm test",
+    "evidence": "127 tests across 18 files passed at 08:50:05 America/Los_Angeles. Includes selected-case exports, source failures, stale requests, ordered paging, pause races, recorded clocks, gaps, native fill math and graphics scheduling."
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": "npm run tauri -- build --bundles app (beforeBuildCommand: npm run build)",
+    "evidence": "TypeScript + Vite passed in shipping build.70 modules; index-wUokQU2R.js 872.21kB, index-xCMbAsg-.css 40.92kB. Existing large-chunk advisory remains."
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": "cargo test --locked --workspace",
+    "evidence": "46 desktop tests passed in 69.28s, including bundled catalog upgrade preserving managed bytes/recents, selected-case derivatives and bounded independent Observatory sessions. Full log: workspace-tests.log."
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "passed",
+    "command": "cargo test --locked --workspace",
+    "evidence": "83 core tests passed. Independent unchanged Swift reader additionally matched 507 history rows, 131072 activation values and 1024 geometry rows; 6 rejection mutations passed. See observatory-conformance.json; actual package resource outputs matched both oracles in packaged-resources.json."
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": "cargo clippy --locked --workspace --all-targets -- -D warnings",
+    "evidence": "Strict all-target core/desktop Clippy passed without warnings; clippy.log."
+  },
+  {
+    "id": "swift-export-verification",
+    "status": "passed",
+    "command": "python3 scripts/check_case_export_conformance.py",
+    "evidence": "Independent Swift/Rust selected-case derivative export and reopen corpus: 10 checks passed (5 valid, 5 rejection), including preservation of embedded material/source references and native known-field export semantics. See selected-case-conformance.json. Source hashes still match final source. No new numeric experiment generation claim."
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": "env DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk npm run tauri -- build --bundles app",
+    "evidence": "Preview 0.5.0 app built successfully, 231.24 MiB, ad-hoc signing; notarization skipped. Archive byte/mode comparison passed for 41 regular files. GUI launch/testing attempt blocked by locked Mac; no 0.5 UI qualification inferred."
+  }
+]

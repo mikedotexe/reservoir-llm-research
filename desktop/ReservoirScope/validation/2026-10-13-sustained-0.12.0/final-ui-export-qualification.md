@@ -1,0 +1,9 @@
+# Final UI recovery export — offline qualification
+
+The final export `sustained-1791904526118-2-4-39` passed the pinned production whole-bundle verifier; all 13 copied corruption controls were rejected. Its original file inventory and the verifier remained unchanged. See [verification receipt](final-ui-export-qualification.json) and [continuity receipt](final-ui-recovery-continuity.json).
+
+The original generation-2 export's first seven segment files are byte-identical in the final generation-4 export. The prior saved journal is also byte-identical. The independently retained [after-quit capture](prepared-after-quit.json) has generation 3, step 9 and prepared attempt 3; its complete typed checkpoint exactly equals segment 12's final checkpoint and segment 13's starting checkpoint. Its recorded segment hash also equals the final export's actual segment-12 bytes.
+
+Attempt 3's new journal is saved at step 9 while the prior applied journal remains the held vector and automatic memory. There is exactly one language-start event for attempt 3 and exactly one application, at step 10. Step 11 has no application event and holds that same new vector. The full chain contains each numerical step 1–11 exactly once. Attempt 2 remains cancelled and is explicitly skipped at step 6; its response never becomes a journal. The saved journals match fixture requests 31 and 33 exactly, including prompts, response hashes, settings, memory and observation snapshots.
+
+The final retained fixture log contains 33 POST requests and equals the stopped provider's original log. This static check establishes retained continuity and exactly-once application; process exit/relaunch, explicit UI actions and absence of requests during those UI intervals are separately recorded UI observations. No real model was contacted, and local timestamps/provider labels do not authenticate an external execution.

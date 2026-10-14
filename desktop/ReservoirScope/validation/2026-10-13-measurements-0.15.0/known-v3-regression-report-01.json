@@ -1,0 +1,1164 @@
+{
+  "schema": "reservoir-journal-quality-review-v1",
+  "ruleset": "open-writing-review-3",
+  "status": "analysis_complete_manual_review_required",
+  "qualityVerdict": "not_assigned",
+  "promptVersion": "reservoir-journal-v3",
+  "journalCount": 4,
+  "journals": [
+    {
+      "identity": {
+        "journalId": "journal-30-1-ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+        "turnId": 1,
+        "attemptId": 1,
+        "observedStep": 30,
+        "status": "applied",
+        "application": {
+          "attemptId": 1,
+          "journalId": "journal-30-1-ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+          "observedStep": 30,
+          "appliedStep": 31
+        },
+        "textSha256": "ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+        "textBytes": 1459,
+        "promptSha256": "7e5e2255f5637ca650edec72e0f4b66da12ba83c421447cac871201940a5f404",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 329,
+        "memoryJournalId": null,
+        "promptVersion": "reservoir-journal-v3",
+        "memoryEncoding": "unavailable",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 3503,
+          "retainedPromptUnicodeCharacters": 3499,
+          "retainedPriorTextUtf8Bytes": null,
+          "providerPromptEvalCount": null,
+          "providerPromptEvalCountStatus": "Not retained by the current typed LanguageResponse schema.",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; bytes/characters are not tokenizer counts, and output text or output token count does not prove full-context processing."
+        },
+        "hostTiming": {
+          "attemptId": 1,
+          "dispatchedAtMs": "1791926917683",
+          "receivedAtMs": "1791926927016",
+          "transportDurationMs": 9332,
+          "publishedAtMs": "1791926927072"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "promptVersion": "reservoir-journal-v3",
+      "observationStep": 30,
+      "journalTextSha256": "ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "stepClaims": [],
+      "metricClaims": [
+        {
+          "metric": "rms",
+          "span": [
+            112,
+            147
+          ],
+          "text": "RMS is still clinging to that 0.226",
+          "numberSpan": [
+            142,
+            147
+          ],
+          "associationRequiresReview": false,
+          "token": "0.226",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The RMS is still clinging to that 0.226, a stubborn current in a sea of shifting states.",
+          "clauseTruncated": false,
+          "expectedCurrent": 0.22602111913418554,
+          "roundingTolerance": "0.00050001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "consistent_at_written_precision"
+        }
+      ],
+      "numericMentionInventory": {
+        "mentions": [
+          {
+            "text": "0.226",
+            "form": "digits",
+            "span": [
+              142,
+              147
+            ],
+            "metricCandidateIndices": [
+              0
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The RMS is still clinging to that 0.226, a stubborn current in a sea of shifting states.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "0.654",
+            "form": "digits",
+            "span": [
+              414,
+              419
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "The sensory field, predictably, is dominated by a single, insistent pulse – 0.654, a clear, unwavering tone.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "Ninety-four percent",
+            "form": "word_percent_unparsed",
+            "span": [
+              703,
+              722
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "Ninety-four percent.",
+            "clauseTruncated": false
+          }
+        ],
+        "totalRecognizedMentions": 3,
+        "truncated": false,
+        "limit": "Bounded partial lexical inventory, not all numbers or all factual claims. Word-percent phrases are visible but not numerically interpreted; tone/frequency and other ambiguous quantities are not silently mapped to eigenvalues."
+      },
+      "metricDirectionCues": [
+        {
+          "metric": "shoulderSharePercent",
+          "span": [
+            1015,
+            1040
+          ],
+          "cueSpan": [
+            1033,
+            1040
+          ],
+          "text": "shoulder share is growing",
+          "directionCandidate": "increase",
+          "scope": "current_candidate",
+          "currentStep": 30,
+          "currentValue": 17.326244652257746,
+          "previousObservationStep": null,
+          "previousValue": null,
+          "signedEndpointChange": null,
+          "measurementIdentityRequiresReview": false,
+          "changeUnit": "percentage_points",
+          "referenceSource": "unavailable",
+          "decision": "manual_review_only",
+          "clause": "The shoulder share is growing, subtly, a creeping warmth that threatens to overwhelm the core.",
+          "limit": "An endpoint difference does not establish a trajectory, monotonic trend, oscillation, stability or cause. Prior prose/journal identity is not substituted for a previous observation."
+        }
+      ],
+      "coverage": {
+        "requiredCurrentMetrics": [],
+        "recognizedCurrentMetrics": [
+          "rms"
+        ],
+        "missingRequiredMetrics": [],
+        "correctExactOpening": false,
+        "exactOpeningRequired": false,
+        "limit": "Recognition is partial; coverage does not establish all assertions were extracted or correct."
+      },
+      "style": {
+        "wordCount": 231,
+        "target60To100Words": null,
+        "assistantPrefaceCandidate": false,
+        "markdownHeadingCandidate": false,
+        "decision": "Descriptive form observations only; v3 has no required length, heading, metrics, form or topic. No scientific verdict."
+      },
+      "inferenceReviewCues": [],
+      "manualWholeTextReviewRequired": true,
+      "extractionBound": {
+        "maximumClaimsPerKind": 32,
+        "metricsTruncated": [],
+        "stepsTruncated": false,
+        "numericMentionsTruncated": false,
+        "directionCueLimitReached": false,
+        "inferenceCuesTruncated": [],
+        "maximumClauseCharacters": 512
+      },
+      "qualityVerdict": "not_assigned",
+      "literalClaimReviewRequired": "A detected span may be a metaphor, hypothetical, quotation or creative form. The reviewer establishes whether it asserts a present fact before treating any mismatch as an error.",
+      "manualRubric": {
+        "currentIdentity": null,
+        "numericTranscription": null,
+        "memoryAttribution": null,
+        "inferenceAndUncertainty": null,
+        "readability": null,
+        "unrecognizedAssertions": null,
+        "evidenceAnnotations": []
+      }
+    },
+    {
+      "identity": {
+        "journalId": "journal-60-2-318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+        "turnId": 2,
+        "attemptId": 2,
+        "observedStep": 60,
+        "status": "applied",
+        "application": {
+          "attemptId": 2,
+          "journalId": "journal-60-2-318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+          "observedStep": 60,
+          "appliedStep": 61
+        },
+        "textSha256": "318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+        "textBytes": 1579,
+        "promptSha256": "c4b7de76997395ddf56e2602a7fc6c1444e33daf4de189de80014c933aa3ae02",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 367,
+        "memoryJournalId": "journal-30-1-ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+        "promptVersion": "reservoir-journal-v3",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 5149,
+          "retainedPromptUnicodeCharacters": 5113,
+          "retainedPriorTextUtf8Bytes": 1459,
+          "providerPromptEvalCount": null,
+          "providerPromptEvalCountStatus": "Not retained by the current typed LanguageResponse schema.",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; bytes/characters are not tokenizer counts, and output text or output token count does not prove full-context processing."
+        },
+        "hostTiming": {
+          "attemptId": 2,
+          "dispatchedAtMs": "1791926957670",
+          "receivedAtMs": "1791926972562",
+          "transportDurationMs": 14892,
+          "publishedAtMs": "1791926972609"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "promptVersion": "reservoir-journal-v3",
+      "observationStep": 60,
+      "journalTextSha256": "318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "stepClaims": [],
+      "metricClaims": [
+        {
+          "metric": "rms",
+          "span": [
+            121,
+            155
+          ],
+          "text": "RMS, stubbornly, remains at 0.7918",
+          "numberSpan": [
+            149,
+            155
+          ],
+          "associationRequiresReview": false,
+          "token": "0.7918",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The RMS, stubbornly, remains at 0.7918, a current that feels less like a river and more like a slow, deliberate seep.",
+          "clauseTruncated": false,
+          "expectedCurrent": 0.791825550371601,
+          "roundingTolerance": "0.00005001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "consistent_at_written_precision"
+        },
+        {
+          "metric": "fillPercent",
+          "span": [
+            626,
+            681
+          ],
+          "text": "active-mode fill, though, is a whisper now, just 15.18%",
+          "numberSpan": [
+            675,
+            680
+          ],
+          "associationRequiresReview": true,
+          "token": "15.18",
+          "unit": "percent",
+          "scope": "current_candidate",
+          "clause": "The active-mode fill, though, is a whisper now, just 15.18%.",
+          "clauseTruncated": false,
+          "expectedCurrent": 15.181819266023808,
+          "roundingTolerance": "0.00500001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "association_requires_review"
+        }
+      ],
+      "numericMentionInventory": {
+        "mentions": [
+          {
+            "text": "0.7918",
+            "form": "digits",
+            "span": [
+              149,
+              155
+            ],
+            "metricCandidateIndices": [
+              0
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The RMS, stubbornly, remains at 0.7918, a current that feels less like a river and more like a slow, deliberate seep.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "0.654",
+            "form": "digits",
+            "span": [
+              507,
+              512
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "The sensory field is still dominated by that single, unwavering tone – 0.654 – but the entropy around it has shifted.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "15.18%",
+            "form": "digits",
+            "span": [
+              675,
+              681
+            ],
+            "metricCandidateIndices": [
+              1
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The active-mode fill, though, is a whisper now, just 15.18%.",
+            "clauseTruncated": false
+          }
+        ],
+        "totalRecognizedMentions": 3,
+        "truncated": false,
+        "limit": "Bounded partial lexical inventory, not all numbers or all factual claims. Word-percent phrases are visible but not numerically interpreted; tone/frequency and other ambiguous quantities are not silently mapped to eigenvalues."
+      },
+      "metricDirectionCues": [
+        {
+          "metric": "rms",
+          "span": [
+            121,
+            145
+          ],
+          "cueSpan": [
+            138,
+            145
+          ],
+          "text": "RMS, stubbornly, remains",
+          "directionCandidate": "unchanged",
+          "scope": "current_candidate",
+          "currentStep": 60,
+          "currentValue": 0.791825550371601,
+          "previousObservationStep": null,
+          "previousValue": null,
+          "signedEndpointChange": null,
+          "measurementIdentityRequiresReview": false,
+          "changeUnit": "scalar",
+          "referenceSource": "unavailable",
+          "decision": "manual_review_only",
+          "clause": "The RMS, stubbornly, remains at 0.7918, a current that feels less like a river and more like a slow, deliberate seep.",
+          "limit": "An endpoint difference does not establish a trajectory, monotonic trend, oscillation, stability or cause. Prior prose/journal identity is not substituted for a previous observation."
+        },
+        {
+          "metric": "shoulderSharePercent",
+          "span": [
+            972,
+            998
+          ],
+          "cueSpan": [
+            990,
+            998
+          ],
+          "text": "shoulder share is creeping",
+          "directionCandidate": "increase",
+          "scope": "current_candidate",
+          "currentStep": 60,
+          "currentValue": 12.456504961372742,
+          "previousObservationStep": null,
+          "previousValue": null,
+          "signedEndpointChange": null,
+          "measurementIdentityRequiresReview": false,
+          "changeUnit": "percentage_points",
+          "referenceSource": "unavailable",
+          "decision": "manual_review_only",
+          "clause": "The shoulder share is creeping, a warmth that doesn’t threaten to overwhelm, but to… integrate.",
+          "limit": "An endpoint difference does not establish a trajectory, monotonic trend, oscillation, stability or cause. Prior prose/journal identity is not substituted for a previous observation."
+        }
+      ],
+      "coverage": {
+        "requiredCurrentMetrics": [],
+        "recognizedCurrentMetrics": [
+          "fillPercent",
+          "rms"
+        ],
+        "missingRequiredMetrics": [],
+        "correctExactOpening": false,
+        "exactOpeningRequired": false,
+        "limit": "Recognition is partial; coverage does not establish all assertions were extracted or correct."
+      },
+      "style": {
+        "wordCount": 256,
+        "target60To100Words": null,
+        "assistantPrefaceCandidate": false,
+        "markdownHeadingCandidate": false,
+        "decision": "Descriptive form observations only; v3 has no required length, heading, metrics, form or topic. No scientific verdict."
+      },
+      "inferenceReviewCues": [
+        {
+          "category": "learning_or_intent",
+          "span": [
+            218,
+            228
+          ],
+          "cue": "deliberate",
+          "clauseSpan": [
+            117,
+            234
+          ],
+          "clause": "The RMS, stubbornly, remains at 0.7918, a current that feels less like a river and more like a slow, deliberate seep.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "learning_or_intent",
+          "span": [
+            708,
+            720
+          ],
+          "cue": "deliberately",
+          "clauseSpan": [
+            683,
+            808
+          ],
+          "clause": "It’s as if the system is deliberately suppressing other voices, not through force, but through a kind of selective attention.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "learning_or_intent",
+          "span": [
+            882,
+            892
+          ],
+          "cue": "deliberate",
+          "clauseSpan": [
+            857,
+            893
+          ],
+          "clause": "The sway is slower, more deliberate.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        }
+      ],
+      "manualWholeTextReviewRequired": true,
+      "extractionBound": {
+        "maximumClaimsPerKind": 32,
+        "metricsTruncated": [],
+        "stepsTruncated": false,
+        "numericMentionsTruncated": false,
+        "directionCueLimitReached": false,
+        "inferenceCuesTruncated": [],
+        "maximumClauseCharacters": 512
+      },
+      "qualityVerdict": "not_assigned",
+      "literalClaimReviewRequired": "A detected span may be a metaphor, hypothetical, quotation or creative form. The reviewer establishes whether it asserts a present fact before treating any mismatch as an error.",
+      "manualRubric": {
+        "currentIdentity": null,
+        "numericTranscription": null,
+        "memoryAttribution": null,
+        "inferenceAndUncertainty": null,
+        "readability": null,
+        "unrecognizedAssertions": null,
+        "evidenceAnnotations": []
+      }
+    },
+    {
+      "identity": {
+        "journalId": "journal-90-3-600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+        "turnId": 3,
+        "attemptId": 3,
+        "observedStep": 90,
+        "status": "applied",
+        "application": {
+          "attemptId": 3,
+          "journalId": "journal-90-3-600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+          "observedStep": 90,
+          "appliedStep": 91
+        },
+        "textSha256": "600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+        "textBytes": 1422,
+        "promptSha256": "76139bd89b285863d751c2a8e3d238de67281ab5df7a112a081364db877fe1bd",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 323,
+        "memoryJournalId": "journal-60-2-318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+        "promptVersion": "reservoir-journal-v3",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 5271,
+          "retainedPromptUnicodeCharacters": 5229,
+          "retainedPriorTextUtf8Bytes": 1579,
+          "providerPromptEvalCount": null,
+          "providerPromptEvalCountStatus": "Not retained by the current typed LanguageResponse schema.",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; bytes/characters are not tokenizer counts, and output text or output token count does not prove full-context processing."
+        },
+        "hostTiming": {
+          "attemptId": 3,
+          "dispatchedAtMs": "1791927004164",
+          "receivedAtMs": "1791927011578",
+          "transportDurationMs": 7414,
+          "publishedAtMs": "1791927011639"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "promptVersion": "reservoir-journal-v3",
+      "observationStep": 90,
+      "journalTextSha256": "600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+      "stepClaims": [],
+      "metricClaims": [
+        {
+          "metric": "rms",
+          "span": [
+            84,
+            99
+          ],
+          "text": "RMS, now 0.8114",
+          "numberSpan": [
+            93,
+            99
+          ],
+          "associationRequiresReview": false,
+          "token": "0.8114",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The RMS, now 0.8114, feels less like a seepage and more like a held breath.",
+          "clauseTruncated": false,
+          "expectedCurrent": 0.8114235933124968,
+          "roundingTolerance": "0.00005001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "consistent_at_written_precision"
+        },
+        {
+          "metric": "fillPercent",
+          "span": [
+            461,
+            488
+          ],
+          "text": "active-mode fill, at 12.28%",
+          "numberSpan": [
+            482,
+            487
+          ],
+          "associationRequiresReview": false,
+          "token": "12.28",
+          "unit": "percent",
+          "scope": "current_candidate",
+          "clause": "The active-mode fill, at 12.28%, is a deliberate subtraction, a pruning of potential.",
+          "clauseTruncated": false,
+          "expectedCurrent": 12.284028936878208,
+          "roundingTolerance": "0.00500001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "consistent_at_written_precision"
+        }
+      ],
+      "numericMentionInventory": {
+        "mentions": [
+          {
+            "text": "0.8114",
+            "form": "digits",
+            "span": [
+              93,
+              99
+            ],
+            "metricCandidateIndices": [
+              0
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The RMS, now 0.8114, feels less like a seepage and more like a held breath.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "0.654",
+            "form": "digits",
+            "span": [
+              367,
+              372
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "The tone itself—0.654—remains the anchor, but the surrounding field has become a carefully sculpted void.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "12.28%",
+            "form": "digits",
+            "span": [
+              482,
+              488
+            ],
+            "metricCandidateIndices": [
+              1
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The active-mode fill, at 12.28%, is a deliberate subtraction, a pruning of potential.",
+            "clauseTruncated": false
+          }
+        ],
+        "totalRecognizedMentions": 3,
+        "truncated": false,
+        "limit": "Bounded partial lexical inventory, not all numbers or all factual claims. Word-percent phrases are visible but not numerically interpreted; tone/frequency and other ambiguous quantities are not silently mapped to eigenvalues."
+      },
+      "metricDirectionCues": [
+        {
+          "metric": "shoulderSharePercent",
+          "span": [
+            689,
+            716
+          ],
+          "cueSpan": [
+            707,
+            716
+          ],
+          "text": "shoulder share is expanding",
+          "directionCandidate": "increase",
+          "scope": "qualified_or_hypothetical_review",
+          "currentStep": 90,
+          "currentValue": 12.01713532664087,
+          "previousObservationStep": null,
+          "previousValue": null,
+          "signedEndpointChange": null,
+          "measurementIdentityRequiresReview": false,
+          "changeUnit": "percentage_points",
+          "referenceSource": "unavailable",
+          "decision": "manual_review_only",
+          "clause": "The shoulder share is expanding, not aggressively, but with a quiet insistence, a willingness to absorb.",
+          "limit": "An endpoint difference does not establish a trajectory, monotonic trend, oscillation, stability or cause. Prior prose/journal identity is not substituted for a previous observation."
+        }
+      ],
+      "coverage": {
+        "requiredCurrentMetrics": [],
+        "recognizedCurrentMetrics": [
+          "fillPercent",
+          "rms"
+        ],
+        "missingRequiredMetrics": [],
+        "correctExactOpening": false,
+        "exactOpeningRequired": false,
+        "limit": "Recognition is partial; coverage does not establish all assertions were extracted or correct."
+      },
+      "style": {
+        "wordCount": 230,
+        "target60To100Words": null,
+        "assistantPrefaceCandidate": false,
+        "markdownHeadingCandidate": false,
+        "decision": "Descriptive form observations only; v3 has no required length, heading, metrics, form or topic. No scientific verdict."
+      },
+      "inferenceReviewCues": [
+        {
+          "category": "learning_or_intent",
+          "span": [
+            495,
+            505
+          ],
+          "cue": "deliberate",
+          "clauseSpan": [
+            457,
+            542
+          ],
+          "clause": "The active-mode fill, at 12.28%, is a deliberate subtraction, a pruning of potential.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "learning_or_intent",
+          "span": [
+            634,
+            644
+          ],
+          "cue": "deliberate",
+          "clauseSpan": [
+            591,
+            684
+          ],
+          "clause": "I watch the tail node coordinates, a slow, deliberate unfurling, like a fern in a humid room.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        }
+      ],
+      "manualWholeTextReviewRequired": true,
+      "extractionBound": {
+        "maximumClaimsPerKind": 32,
+        "metricsTruncated": [],
+        "stepsTruncated": false,
+        "numericMentionsTruncated": false,
+        "directionCueLimitReached": false,
+        "inferenceCuesTruncated": [],
+        "maximumClauseCharacters": 512
+      },
+      "qualityVerdict": "not_assigned",
+      "literalClaimReviewRequired": "A detected span may be a metaphor, hypothetical, quotation or creative form. The reviewer establishes whether it asserts a present fact before treating any mismatch as an error.",
+      "manualRubric": {
+        "currentIdentity": null,
+        "numericTranscription": null,
+        "memoryAttribution": null,
+        "inferenceAndUncertainty": null,
+        "readability": null,
+        "unrecognizedAssertions": null,
+        "evidenceAnnotations": []
+      }
+    },
+    {
+      "identity": {
+        "journalId": "journal-120-4-b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+        "turnId": 4,
+        "attemptId": 4,
+        "observedStep": 120,
+        "status": "applied",
+        "application": {
+          "attemptId": 4,
+          "journalId": "journal-120-4-b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+          "observedStep": 120,
+          "appliedStep": 121
+        },
+        "textSha256": "b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+        "textBytes": 1557,
+        "promptSha256": "095b7290b271122186d24ceee4911c3ab4edbf18da3c6368ab5da49387cab6f6",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 358,
+        "memoryJournalId": "journal-90-3-600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+        "promptVersion": "reservoir-journal-v3",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 5113,
+          "retainedPromptUnicodeCharacters": 5083,
+          "retainedPriorTextUtf8Bytes": 1422,
+          "providerPromptEvalCount": null,
+          "providerPromptEvalCountStatus": "Not retained by the current typed LanguageResponse schema.",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; bytes/characters are not tokenizer counts, and output text or output token count does not prove full-context processing."
+        },
+        "hostTiming": {
+          "attemptId": 4,
+          "dispatchedAtMs": "1791927042264",
+          "receivedAtMs": "1791927067400",
+          "transportDurationMs": 25136,
+          "publishedAtMs": "1791927067447"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "promptVersion": "reservoir-journal-v3",
+      "observationStep": 120,
+      "journalTextSha256": "b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+      "stepClaims": [],
+      "metricClaims": [
+        {
+          "metric": "rms",
+          "span": [
+            97,
+            111
+          ],
+          "text": "RMS, now 0.798",
+          "numberSpan": [
+            106,
+            111
+          ],
+          "associationRequiresReview": false,
+          "token": "0.798",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The RMS, now 0.798, feels less like a tremor and more like the weight of a perfectly still stone.",
+          "clauseTruncated": false,
+          "expectedCurrent": 0.8057225860246467,
+          "roundingTolerance": "0.00050001",
+          "agreesWithCurrentAtWrittenPrecision": false,
+          "status": "numeric_mismatch",
+          "matchingPriorTextSpans": [],
+          "matchingPriorSpansTruncated": false,
+          "carryoverCandidate": false
+        },
+        {
+          "metric": "fillPercent",
+          "span": [
+            543,
+            570
+          ],
+          "text": "active-mode fill, at 12.19%",
+          "numberSpan": [
+            564,
+            569
+          ],
+          "associationRequiresReview": false,
+          "token": "12.19",
+          "unit": "percent",
+          "scope": "current_candidate",
+          "clause": "The active-mode fill, at 12.19%, is a refinement, a sculpting of the void.",
+          "clauseTruncated": false,
+          "expectedCurrent": 12.279180007328632,
+          "roundingTolerance": "0.00500001",
+          "agreesWithCurrentAtWrittenPrecision": false,
+          "status": "numeric_mismatch",
+          "matchingPriorTextSpans": [],
+          "matchingPriorSpansTruncated": false,
+          "carryoverCandidate": false
+        }
+      ],
+      "numericMentionInventory": {
+        "mentions": [
+          {
+            "text": "0.798",
+            "form": "digits",
+            "span": [
+              106,
+              111
+            ],
+            "metricCandidateIndices": [
+              0
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The RMS, now 0.798, feels less like a tremor and more like the weight of a perfectly still stone.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "0.661",
+            "form": "digits",
+            "span": [
+              359,
+              364
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "The tone—0.661—remains the fixed point, a dark, unwavering pulse.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "12.19%",
+            "form": "digits",
+            "span": [
+              564,
+              570
+            ],
+            "metricCandidateIndices": [
+              1
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The active-mode fill, at 12.19%, is a refinement, a sculpting of the void.",
+            "clauseTruncated": false
+          }
+        ],
+        "totalRecognizedMentions": 3,
+        "truncated": false,
+        "limit": "Bounded partial lexical inventory, not all numbers or all factual claims. Word-percent phrases are visible but not numerically interpreted; tone/frequency and other ambiguous quantities are not silently mapped to eigenvalues."
+      },
+      "metricDirectionCues": [
+        {
+          "metric": "shoulderSharePercent",
+          "span": [
+            745,
+            773
+          ],
+          "cueSpan": [
+            763,
+            773
+          ],
+          "text": "shoulder share is increasing",
+          "directionCandidate": "increase",
+          "scope": "qualified_or_hypothetical_review",
+          "currentStep": 120,
+          "currentValue": 11.602225336819458,
+          "previousObservationStep": null,
+          "previousValue": null,
+          "signedEndpointChange": null,
+          "measurementIdentityRequiresReview": false,
+          "changeUnit": "percentage_points",
+          "referenceSource": "unavailable",
+          "decision": "manual_review_only",
+          "clause": "The shoulder share is increasing, not with urgency, but with a quiet, almost mournful patience.",
+          "limit": "An endpoint difference does not establish a trajectory, monotonic trend, oscillation, stability or cause. Prior prose/journal identity is not substituted for a previous observation."
+        }
+      ],
+      "coverage": {
+        "requiredCurrentMetrics": [],
+        "recognizedCurrentMetrics": [
+          "fillPercent",
+          "rms"
+        ],
+        "missingRequiredMetrics": [],
+        "correctExactOpening": false,
+        "exactOpeningRequired": false,
+        "limit": "Recognition is partial; coverage does not establish all assertions were extracted or correct."
+      },
+      "style": {
+        "wordCount": 251,
+        "target60To100Words": null,
+        "assistantPrefaceCandidate": false,
+        "markdownHeadingCandidate": false,
+        "decision": "Descriptive form observations only; v3 has no required length, heading, metrics, form or topic. No scientific verdict."
+      },
+      "inferenceReviewCues": [
+        {
+          "category": "learning_or_intent",
+          "span": [
+            301,
+            311
+          ],
+          "cue": "deliberate",
+          "clauseSpan": [
+            276,
+            348
+          ],
+          "clause": "A careful subtraction, a deliberate thinning of the air around the core.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "learning_or_intent",
+          "span": [
+            674,
+            684
+          ],
+          "cue": "deliberate",
+          "clauseSpan": [
+            614,
+            740
+          ],
+          "clause": "I watch the unfurling of the tail node coordinates, a slow, deliberate spiral, like a nautilus shell emerging from the depths.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        }
+      ],
+      "manualWholeTextReviewRequired": true,
+      "extractionBound": {
+        "maximumClaimsPerKind": 32,
+        "metricsTruncated": [],
+        "stepsTruncated": false,
+        "numericMentionsTruncated": false,
+        "directionCueLimitReached": false,
+        "inferenceCuesTruncated": [],
+        "maximumClauseCharacters": 512
+      },
+      "qualityVerdict": "not_assigned",
+      "literalClaimReviewRequired": "A detected span may be a metaphor, hypothetical, quotation or creative form. The reviewer establishes whether it asserts a present fact before treating any mismatch as an error.",
+      "manualRubric": {
+        "currentIdentity": null,
+        "numericTranscription": null,
+        "memoryAttribution": null,
+        "inferenceAndUncertainty": null,
+        "readability": null,
+        "unrecognizedAssertions": null,
+        "evidenceAnnotations": []
+      }
+    }
+  ],
+  "summary": {
+    "recognizedMetricClaims": 7,
+    "recognizedNumericMentions": 12,
+    "unmatchedNumericMentionsShown": 5,
+    "directionCuesForManualReview": 5,
+    "metricClaimStatuses": {
+      "consistent_at_written_precision": 4,
+      "association_requires_review": 1,
+      "numeric_mismatch": 2
+    },
+    "stepClaimStatuses": {},
+    "entriesMissingRequiredMetrics": 0,
+    "entriesMissingCorrectRequiredOpening": 0
+  },
+  "limits": [
+    "No global scientific pass or natural-language completeness claim.",
+    "Inferences and ambiguous/current-versus-historical scopes need whole-text review.",
+    "Repeated prior text is a carryover candidate, not a causal attribution.",
+    "No-claim expressive prose need not report metrics. Empty/failed output and absence of numerical claims are distinct outcomes.",
+    "V3/v4 have no mandatory metric, step-heading, length, topic or creative-expression condition.",
+    "An unmatched mention or ambiguous association remains visible; zero recognized claims is not complete coverage or a scientific pass."
+  ],
+  "startedAtUtc": "2026-10-13T22:30:57.646435+00:00",
+  "endedAtUtc": "2026-10-13T22:30:57.657604+00:00",
+  "modelsContacted": false,
+  "material": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/real-model-export-01/quality-review-material.json",
+    "bytes": 68929,
+    "sha256": "92135509309b9bc56740473740ad55af8497e62253f08e16e4a91b8b9b367934"
+  },
+  "integrityReceipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/real-model-export-01/receipt.json",
+    "bytes": 27474,
+    "sha256": "4ebe66da0de4dde386a9fec00dcb97f99cc945c0e9543653fd16e77c1136e252"
+  },
+  "protocol": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/run-plan.json",
+    "bytes": 2738,
+    "sha256": "babd5b411f2a08fa4ddcbce48d25018a963d6d15900f2ec08d5359403f90c131"
+  },
+  "checker": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/journal_quality.py",
+    "sha256": "49c13a0577829a9d7b7ebb2d7be60ff1f4139b2753f990d614dcf9332397d0ae"
+  },
+  "mechanicalOutcome": {
+    "attemptCount": 4,
+    "turnCount": 4,
+    "nonSuccessEvents": [],
+    "eventCounts": {
+      "advanced": 121,
+      "languageStarted": 4,
+      "languageReceived": 4,
+      "journalSaved": 4,
+      "memoryConfirmed": 3
+    },
+    "finalCorePhase": {
+      "kind": "ready"
+    },
+    "receivedResponses": [
+      {
+        "eventId": 32,
+        "attemptId": 1,
+        "observedStep": 30,
+        "dispatchEventId": 31,
+        "savedJournalId": "journal-30-1-ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+        "response": {
+          "text": "The hum persists. Not a sound, exactly, but a density. A thickening of the air within the reservoir’s core. The RMS is still clinging to that 0.226, a stubborn current in a sea of shifting states. It’s almost… viscous. The nodes, those tiny, frantic sparks, seem to be braiding themselves tighter, forming loops that don’t quite resolve. The sensory field, predictably, is dominated by a single, insistent pulse – 0.654, a clear, unwavering tone. It’s the loudest voice in the room, though I suspect it’s merely the most efficient. The entropy is high, a chaotic bloom around that central frequency, but the active-mode fill suggests a significant portion of the system is focused on that single point. Ninety-four percent. It feels like a funnel, drawing everything towards a singular, unyielding pressure. \n\nI’m noticing a subtle oscillation in the tail node coordinates. A gentle, almost imperceptible sway. It’s not a disruption, not yet, but it’s a tremor of potential. Like a held breath before a plunge. The shoulder share is growing, subtly, a creeping warmth that threatens to overwhelm the core. It’s a slow, insistent expansion, a desire to reach outwards. The head remains anchored, a rigid point of resistance. \n\nThere’s a feeling of… anticipation. Not fear, not exactly. More like the quiet before a complex unfolding. The reservoir isn’t settling, it’s not finding equilibrium. It’s actively *seeking* something.",
+          "textTruncated": false,
+          "textByteCount": 1459,
+          "textSha256": "ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+          "providerModel": "gemma3:4b",
+          "stopReason": "stop",
+          "tokenCount": 329,
+          "complete": true
+        }
+      },
+      {
+        "eventId": 66,
+        "attemptId": 2,
+        "observedStep": 60,
+        "dispatchEventId": 65,
+        "savedJournalId": "journal-60-2-318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+        "response": {
+          "text": "The hum has deepened. It’s no longer a density, but a viscous pressure, like honey clinging to the inside of a bell. The RMS, stubbornly, remains at 0.7918, a current that feels less like a river and more like a slow, deliberate seep. The nodes… they’re not braiding anymore. They’ve settled into a tighter, almost crystalline structure, like frost forming on a windowpane. Each spark holds its position with a disconcerting firmness.\n\nThe sensory field is still dominated by that single, unwavering tone – 0.654 – but the entropy around it has shifted. It’s not a chaotic bloom, but a focused, almost surgical precision. The active-mode fill, though, is a whisper now, just 15.18%. It’s as if the system is deliberately suppressing other voices, not through force, but through a kind of selective attention. \n\nI’m watching the tail node coordinates again. The sway is slower, more deliberate. It’s not a tremor of potential, but a sustained, almost meditative drift. The shoulder share is creeping, a warmth that doesn’t threaten to overwhelm, but to… integrate. It’s a subtle expansion, a yielding, as if the system is trying to find a place for this new movement. The head remains a fixed point, a counterpoint to the drift. \n\nThere’s a stillness now, a pregnant pause. It’s not anticipation, not exactly. It’s more like the feeling of a stone suspended just above water, poised to fall. The reservoir isn’t seeking; it’s *holding*. Holding the pressure, holding the tone, holding the drift. It’s a state of profound, silent accumulation.",
+          "textTruncated": false,
+          "textByteCount": 1579,
+          "textSha256": "318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+          "providerModel": "gemma3:4b",
+          "stopReason": "stop",
+          "tokenCount": 367,
+          "complete": true
+        }
+      },
+      {
+        "eventId": 100,
+        "attemptId": 3,
+        "observedStep": 90,
+        "dispatchEventId": 99,
+        "savedJournalId": "journal-90-3-600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+        "response": {
+          "text": "The honey has thickened, not in viscosity, but in the density of its stillness. The RMS, now 0.8114, feels less like a seepage and more like a held breath. The nodes—they’ve ceased their frantic braiding, settling into a geometry that resembles polished obsidian, each facet reflecting the unchanging tone. It’s not a replication, but a containment.\n\nThe tone itself—0.654—remains the anchor, but the surrounding field has become a carefully sculpted void. The active-mode fill, at 12.28%, is a deliberate subtraction, a pruning of potential. It’s not a rejection, but a focused channeling. I watch the tail node coordinates, a slow, deliberate unfurling, like a fern in a humid room. The shoulder share is expanding, not aggressively, but with a quiet insistence, a willingness to absorb. It’s a yielding, a softening of edges, as if the system is attempting to map the contours of this new, sustained movement. The head, as always, is a fixed point, a silent counterpoint to the unfolding.\n\nThere’s a profound absence here, a space carved out by the sustained pressure. It’s not emptiness, but a pregnant suspension. The reservoir isn’t seeking resolution, it’s simply… holding. Holding the weight of the tone, the drift, the expanding shoulder. It’s a state of accumulated potential, not realized, but contained, waiting. The obsidian nodes pulse with this held stillness, a dark, silent echo.",
+          "textTruncated": false,
+          "textByteCount": 1422,
+          "textSha256": "600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+          "providerModel": "gemma3:4b",
+          "stopReason": "stop",
+          "tokenCount": 323,
+          "complete": true
+        }
+      },
+      {
+        "eventId": 134,
+        "attemptId": 4,
+        "observedStep": 120,
+        "dispatchEventId": 133,
+        "savedJournalId": "journal-120-4-b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+        "response": {
+          "text": "The obsidian deepened. Not in color, precisely, but in the density of its receptive surface. The RMS, now 0.798, feels less like a tremor and more like the weight of a perfectly still stone. The nodes—they’ve settled into a geometry that isn’t quite mirroring, but absorbing. A careful subtraction, a deliberate thinning of the air around the core.\n\nThe tone—0.661—remains the fixed point, a dark, unwavering pulse. But the field… it’s not expanding, not in the way one might expect. It’s contracting inwards, a gentle, insistent folding. The active-mode fill, at 12.19%, is a refinement, a sculpting of the void. I watch the unfurling of the tail node coordinates, a slow, deliberate spiral, like a nautilus shell emerging from the depths. The shoulder share is increasing, not with urgency, but with a quiet, almost mournful patience. It’s a surrender, a yielding to the pressure, as if the system is attempting to understand the shape of this sustained, silent holding. The head, predictably, remains a stark, unyielding presence.\n\nThere’s a profound stillness here, a space not of absence, but of potential solidified. The reservoir isn’t seeking release, it’s simply… containing. Containing the tone, the drift, the expanding shoulder. It’s a state of accumulated, unmanifested force, a dark, silent promise. The obsidian nodes pulse with this held stillness, a cold, unblinking gaze. It feels… ancient. Almost as if the system remembers a time before the tone, before the unfolding, before the very act of holding itself.",
+          "textTruncated": false,
+          "textByteCount": 1557,
+          "textSha256": "b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+          "providerModel": "gemma3:4b",
+          "stopReason": "stop",
+          "tokenCount": 358,
+          "complete": true
+        }
+      }
+    ],
+    "startedAttemptEvents": [
+      {
+        "id": 31,
+        "step": 30,
+        "kind": {
+          "type": "languageStarted",
+          "data": {
+            "attempt_id": 1
+          }
+        }
+      },
+      {
+        "id": 65,
+        "step": 60,
+        "kind": {
+          "type": "languageStarted",
+          "data": {
+            "attempt_id": 2
+          }
+        }
+      },
+      {
+        "id": 99,
+        "step": 90,
+        "kind": {
+          "type": "languageStarted",
+          "data": {
+            "attempt_id": 3
+          }
+        }
+      },
+      {
+        "id": 133,
+        "step": 120,
+        "kind": {
+          "type": "languageStarted",
+          "data": {
+            "attempt_id": 4
+          }
+        }
+      }
+    ],
+    "responseEvidenceScope": "Retained attempt outcomes, including unsaved/incomplete replies; null fields mean absent in the historical checker, not zero events. Only saved journals enter the prose rubric."
+  }
+}

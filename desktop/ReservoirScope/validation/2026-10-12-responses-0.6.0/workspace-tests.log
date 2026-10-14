@@ -1,0 +1,235 @@
+   Compiling reservoir-core v0.1.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core)
+   Compiling reservoir-scope-desktop v0.6.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.45s
+     Running unittests src/lib.rs (target/debug/deps/reservoir_core-b0fb76d95f92efa3)
+
+running 17 tests
+test actions::unicode_parser_tests::ambiguous_foundation_json_stays_incomplete_with_unicode ... ok
+test cases::tests::foundation_unicode_comparison_vectors ... ok
+test preparation::tests::missing_receipts_are_unknown_not_zero_or_success ... ok
+test cases::tests::selected_derivative_rejects_wrong_identity_and_rechecks_selected_evidence ... ok
+test actions::unicode_parser_tests::native_unicode_envelope_whitespace_and_choice_rules ... ok
+test preparation::tests::exact_byte_identity_includes_whitespace_and_does_not_rewrite_original ... ok
+test cases::tests::selected_derivative_preserves_complete_case_and_original_source_references ... ok
+test preparation::tests::catalog_keeps_all_four_attempts_in_order_without_following_files ... ok
+test preparation::tests::invalid_schema_type_and_bounds_are_visible_errors ... ok
+test preparation::tests::retained_outcomes_and_native_summary_remain_distinct ... ok
+test cases::tests::embedded_evidence_contract_and_inert_historical_paths ... ok
+test preparation::tests::unknown_fields_cannot_promote_outcome_and_historical_paths_are_inert ... ok
+test cases::tests::bounds_and_required_fields ... ok
+test cases::tests::canonical_catalog_matches_embedded_hashes ... ok
+test cases::tests::every_bundled_selected_case_roundtrips_without_other_cases ... ok
+test cases::tests::selected_derivative_enforces_encoded_byte_bound ... ok
+test cases::tests::long_repeated_prefixes_and_invalid_boundary_matches ... ok
+
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.61s
+
+     Running unittests src/main.rs (target/debug/deps/reservoir_core-a880453b5ea5186b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/actions_conformance.rs (target/debug/deps/actions_conformance-97d75de08a0148b3)
+
+running 8 tests
+test unqualified_unicode_action_text_is_explicitly_incomplete ... ok
+test native_parser_differences_cannot_certify_a_false_response_failure ... ok
+test failed_save_has_no_feedback_and_prevents_the_paired_action ... ok
+test action_numerical_and_saved_evidence_chain_rejects_tampering ... ok
+test comparison_tape_and_wait_constraints_reject_tampering ... ok
+test required_structure_failure_gates_and_defaults_are_checked ... ok
+test terminal_cancellation_manual_actions_and_language_defaults_are_explicit ... ok
+test all_22_retained_swift_action_records_verify ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 20.69s
+
+     Running tests/conformance.rs (target/debug/deps/conformance-c730a354e79a2a21)
+
+running 12 tests
+test fill_and_controller_swift_vectors ... ok
+test swift_known_rng_and_hand_recurrence_vectors ... ok
+test swift_decode_if_present_defaults_include_explicit_null ... ok
+test recipe_and_endpoint_bounds_fail_closed ... ok
+test retained_swift_ascii_codec_oracle_vectors_match ... ok
+test rank_one_silence_degeneracy_and_eigenvector_meaning ... ok
+test full_u64_seed_and_unknown_bytes_roundtrip_without_javascript ... ok
+test stopped_failed_and_provider_records_are_verified_offline ... ok
+test each_scientific_link_rejects_independent_mutations ... ok
+test cli_reports_passed_failed_and_incomplete_with_distinct_exit_codes ... ok
+test unsupported_family_and_unicode_are_incomplete_not_passed ... ok
+test all_tracked_swift_stage_records_pass_independent_rust_verification ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 6.53s
+
+     Running tests/exploration.rs (target/debug/deps/exploration-689754555a98106b)
+
+running 14 tests
+test zero_amplitude_consumes_rng_and_invalid_controls_never_advance_it ... ok
+test recurrence_enabled_and_strength_change_only_the_current_drive ... ok
+test controls_reconstruct_raw_contributions_without_rewriting_source_weights ... ok
+test inactive_controls_still_validate_without_inventing_a_causal_effect ... ok
+test pulse_overrides_repeating_input_and_quiet_windows_follow_recorded_clock ... ok
+test constructor_defaults_are_quiet_but_missing_record_controls_are_not_defaulted ... ok
+test final_retained_covariance_must_also_satisfy_swift_resume_symmetry ... ok
+test field_restarts_and_valid_degenerate_bases_remain_valid_evidence ... ok
+test exploration_inspection_preserves_exact_bytes_and_full_seed_without_codec_restrictions ... ok
+test every_exploration_link_rejects_independent_mutations ... ok
+test retained_swift_exploration_oracles_replay_all_controls_and_spectra ... ok
+test verified_resume_retains_history_state_field_and_rng ... ok
+test exploration_is_bounded_empty_valid_and_unknown_family_is_incomplete ... ok
+test tiny_negative_eigenvalues_fail_even_inside_numerical_tolerance ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.51s
+
+     Running tests/geometry_conformance.rs (target/debug/deps/geometry_conformance-57bec26469436a5c)
+
+running 5 tests
+test both_canonical_synthetic_packets_and_resealed_controls_verify ... ok
+test body_chain_and_operation_identity_are_checked ... ok
+test source_vectors_clocks_and_bounds_reject_resealed_mutations ... ok
+test references_rms_authored_text_and_extraneous_fields_are_checked ... ok
+test upper_clock_and_packet_count_limits_are_exact ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running tests/guided_evidence.rs (target/debug/deps/guided_evidence-b1c598196957e67e)
+
+running 14 tests
+test unopened_zero_empty_and_post_record_cursors_have_no_fabricated_frame ... ok
+test recurrence_requires_matched_prefix_and_uses_fixed_tolerance ... ok
+test wait_requires_completed_choice_without_journal_or_save_receipt ... ok
+test memory_context_distinguishes_prepared_submitted_and_fixed_replies ... ok
+test sensory_measurement_is_required_and_does_not_imply_state_difference ... ok
+test return_requires_matching_reached_application_frame ... ok
+test all_write_model_is_an_observation_not_a_failed_expected_wait ... ok
+test journal_needs_successful_save_and_distinguishes_single_arm ... ok
+test regulation_requires_all_receipts_and_preserves_bounds_without_benefit_claim ... ok
+test memory_requires_prior_identity_text_and_prompt_inclusion ... ok
+test observation_comparison_requires_both_arms_and_reached_opportunities ... ok
+test future_action_journal_frame_and_application_changes_cannot_leak_backwards ... ok
+test every_canonical_cursor_equals_its_retained_prefix_and_rewinds ... ok
+test canonical_lesson_boundaries_are_verified_and_match_native_claims ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 9.07s
+
+     Running tests/observatory.rs (target/debug/deps/observatory-353d9fbfdbc34172)
+
+running 7 tests
+test history_seek_holds_previous_observation_and_nearest_ties_choose_earlier ... ok
+test canonical_history_preserves_all_samples_and_distinct_measurements ... ok
+test history_missingness_and_signed_identifiers_are_preserved ... ok
+test canonical_state_decodes_every_retained_coordinate_without_a_clock_or_fill_join ... ok
+test history_rejects_schema_shape_time_and_bounds_without_sorting_spectral_slots ... ok
+test state_rejects_byte_and_hash_corruption_before_presentation ... ok
+test rebound_state_mutations_reject_finite_range_dimension_order_and_identity_claim_errors ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.48s
+
+     Running tests/regulation.rs (target/debug/deps/regulation-4684440f027519c5)
+
+running 9 tests
+test specification_missing_and_null_fields_keep_native_defaults_and_notes_are_utf8_bounded ... ok
+test prefix_window_has_no_early_final_result_and_rewinds_without_future_state ... ok
+test complete_record_and_control_presence_are_required_not_partial_record_success ... ok
+test seeded_projection_is_exact_and_input_draws_cannot_be_swapped ... ok
+test controller_scalar_tolerance_is_one_e_minus_eight_not_spectral_tolerance ... ok
+test next_step_timing_fill_and_controller_state_mutations_fail ... ok
+test retained_swift_controller_replays_all_1200_arm_observations ... ok
+test spectral_geometry_rejects_corruption_but_allows_basis_sign_gauge ... ok
+test summary_window_and_retained_aggregate_mutations_fail ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 27.31s
+
+     Running tests/response.rs (target/debug/deps/response-55186d8e6086ecaa)
+
+running 7 tests
+test native_zero_boundaries_signed_zero_and_headroom_semantics ... ok
+test canonical_native_boundaries_preserve_float32_difference_and_measurements ... ok
+test exact_wide_native_integer_lexemes_do_not_pass_through_float64 ... ok
+test native_replacement_keeps_overlapping_boundaries_and_source_identity_immutable ... ok
+test retained_simulation_rechecks_all_vectors_and_summary_without_running_a_simulation ... ok
+test native_provenance_unknown_fields_dimensions_and_boundaries_are_strict ... ok
+test rebound_simulation_mutations_cannot_relabel_scope_time_or_displacement ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.91s
+
+     Running tests/unicode_codec_conformance.rs (target/debug/deps/unicode_codec_conformance-14bbb263c98729ff)
+
+running 3 tests
+test unicode_boundary_and_foundation_whitespace_remain_explicit ... ok
+test unicode_oracle_is_bound_to_unchanged_native_source ... ok
+test retained_native_unicode_vectors_match_without_relaxing_tolerance ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.89s
+
+     Running unittests src/main.rs (target/debug/deps/reservoir_scope_desktop-80ad5ac022a3925b)
+
+running 56 tests
+test cases::tests::selected_export_suggests_a_safe_bounded_filename_and_serializes_dialogs ... ok
+test files::tests::cannot_overwrite_resources_or_accept_relative_override ... ok
+test guide::tests::rejects_missing_or_mislabeled_model_source ... ok
+test guide::tests::rejects_nonordered_checkpoints_and_path_escape ... ok
+test guide::tests::authored_journey_and_recorded_model_sources_are_retained ... ok
+test geometry::tests::failed_replacement_preserves_exact_accepted_bytes_and_origin ... ok
+test library::tests::diagnostic_identity_uses_filename_bytes_not_lossy_display_text ... ok
+test files::tests::refuses_symbolic_links ... ok
+test cases::tests::invalid_replacement_retains_accepted_bytes_and_views ... ok
+test guide::tests::catalog_rejects_changed_packaged_authorship ... ok
+test files::tests::bounded_snapshot_and_exact_export ... ok
+test geometry::tests::operation_guard_serializes_dialogs_and_snapshot_exports_original_bytes ... ok
+test cases::tests::selected_export_is_independent_preserves_original_and_rejects_stale_selection ... ok
+test library::tests::numerical_failure_and_other_verified_scopes_never_publish ... ok
+test library::tests::publication_refuses_collision_and_index_directory_and_preserves_records ... ok
+test library::tests::ignored_cross_family_fields_cannot_break_or_promote_library_metadata ... ok
+test library::tests::corrupt_index_cannot_erase_published_record_and_rebuild_recovers ... ok
+test library::tests::missing_damaged_unsupported_unreadable_rows_remain_visible ... ok
+test observatory::tests::integer_identities_cross_ipc_as_strings_and_optional_values_remain_null ... ok
+test observatory::tests::corrupt_or_missing_track_leaves_independent_track_available_with_diagnostic ... ok
+test observatory::tests::independent_tracks_disclose_coverage_sources_and_meaning ... ok
+test library::tests::catalog_is_authored_order_read_only_and_coverage_is_honest ... ok
+test preparation::tests::altered_package_report_is_rejected_before_display_or_export ... ok
+test library::tests::exact_bytes_duplicates_embedded_ids_and_wide_seed_survive_restart ... ok
+test preparation::tests::export_snapshot_is_exact_and_rejects_stale_or_path_identities ... ok
+test library::tests::interrupted_persisted_scan_and_corrupt_payload_are_not_reported_as_empty ... ok
+test library::tests::symlink_roots_records_and_metadata_are_not_followed ... ok
+test observatory::tests::paged_timelines_cover_every_row_and_one_chosen_node_without_silent_truncation ... ok
+test observatory::tests::seek_replies_keep_request_identity_and_never_join_clocks ... ok
+test records::tests::handle_capacity_is_visible_and_released_by_close ... ok
+test library::tests::refresh_detects_removed_record_even_when_local_metadata_is_also_missing ... ok
+test preparation::tests::report_views_preserve_failed_outcome_and_historical_verification ... ok
+test observatory::tests::lifecycle_closes_idempotently_rejects_old_handles_and_bounds_sessions ... ok
+test records::tests::rejection_keeps_previous_and_unique_handles_are_independent ... ok
+test records::tests::verified_views_keep_wide_seed_missing_fill_and_exact_bytes ... ok
+test preparation::tests::retry_binding_requires_fixed_name_and_matching_bytes_without_following_paths ... ok
+test records::tests::recorded_text_boundary_and_real_fill_survive_view_adapter ... ok
+test response::tests::canonical_handles_keep_response_families_and_exact_values_separate ... ok
+test response::tests::events_keep_no_state_and_headroom_rejection_distinct_from_frames ... ok
+test response::tests::exports_are_original_bytes_and_snapshot_survives_close ... ok
+test response::tests::lifecycle_guards_and_handle_limits_are_bounded ... ok
+test response::tests::rejected_candidates_never_drop_or_change_the_previous_bytes ... ok
+test response::tests::wide_identifiers_and_float32_promotions_survive_json_ipc ... ok
+test records::tests::historical_defaults_and_bounded_timeline_are_explicit ... ok
+test library::tests::fixed_tape_route_never_becomes_model_source_from_unused_configuration ... ok
+test records::tests::guided_evidence_moves_with_frame_and_rewinds_before_feedback ... ok
+test records::tests::actions_preserve_saved_journal_and_next_step_identity ... ok
+test records::tests::ignored_fields_are_exportable_but_never_verified_display_evidence ... ok
+test records::tests::controller_view_exposes_no_reservoir_and_only_reached_evaluation ... ok
+test library::tests::query_and_scan_initialization_can_race_without_adopting_foreign_store ... ok
+test library::tests::opening_reverifies_exact_bytes_and_recents_persist_through_rebuild ... ok
+test library::tests::build_change_refreshes_catalog_without_touching_managed_bytes_or_recents ... ok
+test resources::tests::packaged_reference_values_have_declared_identity ... ok
+test resources::tests::missing_and_tampered_resources_are_not_qualified ... ok
+test library::tests::controller_import_filters_and_reopens_original_bytes has been running for over 60 seconds
+test library::tests::more_than_old_scan_limits_is_fully_pageable_and_interruptions_are_explicit has been running for over 60 seconds
+test library::tests::controller_import_filters_and_reopens_original_bytes ... ok
+test library::tests::more_than_old_scan_limits_is_fully_pageable_and_interruptions_are_explicit ... ok
+
+test result: ok. 56 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 66.36s
+
+   Doc-tests reservoir_core
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

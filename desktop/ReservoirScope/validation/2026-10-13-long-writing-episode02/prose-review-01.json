@@ -1,0 +1,3236 @@
+{
+  "schema": "manual-journal-prose-review-v1",
+  "createdAtUtc": "2026-10-14T01:05:28.545962+00:00",
+  "status": "post-output-full-reading",
+  "sources": {
+    "receipt": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/real-model-export-01/receipt.json",
+      "bytes": 245848,
+      "sha256": "7b151f77ca9e9d5f5cc33cd3433b0775594dd2fa0a917133e7e8eaaf0332583b"
+    },
+    "material": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/real-model-export-01/quality-review-material.json",
+      "bytes": 240731,
+      "sha256": "8c57f6ff7f9338cb315e6393f3abec2496cd1d7265c5a503b0c4f46722ccc960"
+    },
+    "rendererProof": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/journals-rendering-01.json",
+      "bytes": 37266,
+      "sha256": "f0e7929e52fc8dbd23fda88556c2e11c83e0af719a6d503d38b0eb118343db41"
+    },
+    "readableProse": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/JOURNALS.md",
+      "bytes": 30224,
+      "sha256": "849c1611eb234bb6d68d09ab56e23ed65b1039ddcb33665a0762e4be9611c0e2"
+    },
+    "rubric": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/RUBRIC.md",
+      "bytes": 6632,
+      "sha256": "5516e585cf09673bf04f901ec718780e35d7651efd7711afde50402039fab44e"
+    },
+    "script": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/review_prose_01.py",
+      "bytes": 15878,
+      "sha256": "3d7e0b9cdc3c60e53fa3c27d568184671537d693bc4a5589842e91a180ebf563"
+    },
+    "priorKnownReference": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/real-model-export-01/quality-review-material.json",
+      "bytes": 73415,
+      "sha256": "73e8e877ba98a2bb33a53743b202fca69ec77cbd6c516806c450a41a7bbd7895"
+    }
+  },
+  "mechanicalCounts": {
+    "reached": 12,
+    "attempted": 12,
+    "responseReceived": 12,
+    "complete": 12,
+    "saved": 12,
+    "applied": 12,
+    "unstarted": 0
+  },
+  "latestFullTextMemoryJoins": 11,
+  "coverage": {
+    "fullResponsesRead": 12,
+    "manuallyAssociatedValueMentions": 77,
+    "selectedContextualAnnotations": 31
+  },
+  "entries": [
+    {
+      "identity": {
+        "journalId": "journal-30-1-64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+        "turnId": 1,
+        "attemptId": 1,
+        "observedStep": 30,
+        "status": "applied",
+        "application": {
+          "attemptId": 1,
+          "journalId": "journal-30-1-64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+          "observedStep": 30,
+          "appliedStep": 31
+        },
+        "textSha256": "64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+        "textBytes": 881,
+        "promptSha256": "7f1ade82dd3daa57840ca2bfd22cda6f0d57300686920dbde3d5e4f8c2cf857a",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 210,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "1637"
+        },
+        "memoryJournalId": null,
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "unavailable",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 4442,
+          "retainedPromptUnicodeCharacters": 4436,
+          "retainedPriorTextUtf8Bytes": null,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "1637"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 1,
+          "dispatchedAtMs": "1791939000179",
+          "receivedAtMs": "1791939014355",
+          "transportDurationMs": 14176,
+          "publishedAtMs": "1791939014505"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "fullTextRead": true,
+      "fullTextSha256": "64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+      "observationReferences": {
+        "rms": 0.22602111913418554,
+        "l2": 1.2785685282492412,
+        "distance": null,
+        "x0": 0.2868270239076485,
+        "leading": 0.6540921468657876,
+        "fill": 94.31040364192096,
+        "head": 48.874313887996216,
+        "shoulderPct": 17.326244652257746,
+        "tailPct": 33.79944145974602,
+        "entropy": 0.8084048365093032,
+        "previousMeasurements": null,
+        "l2NormChange": null
+      },
+      "valueMentions": [
+        {
+          "span": {
+            "text": "0.2868",
+            "unicodeCharacterSpan": [
+              236,
+              242
+            ],
+            "utf8Span": [
+              238,
+              244
+            ],
+            "context": "voir breathes, a slow, almost imperceptible expansion and contraction of the coordinates. 0.2868… that’s a persistent anchor, a little tug towards the left. The others – a restless dance"
+          },
+          "writtenDecimal": "0.2868",
+          "referenceQuantity": "x0",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.2868270239076485",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.65409215",
+            "unicodeCharacterSpan": [
+              461,
+              471
+            ],
+            "utf8Span": [
+              469,
+              479
+            ],
+            "context": "ver quite settle. The sensory field, predictably, is dominated by that single eigenvalue, 0.65409215. It’s a heavy presence, a grounding force. The others – a scattering of smaller weights, "
+          },
+          "writtenDecimal": "0.65409215",
+          "referenceQuantity": "leading",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.6540921468657876",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "33.79944146",
+            "unicodeCharacterSpan": [
+              612,
+              623
+            ],
+            "utf8Span": [
+              624,
+              635
+            ],
+            "context": "ers – a scattering of smaller weights, almost insignificant in comparison. The tail, that 33.79944146… it feels like a hesitant pull, a suggestion of something deeper, something just beyond r"
+          },
+          "writtenDecimal": "33.79944146",
+          "referenceQuantity": "tailPct",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "33.79944145974602",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        }
+      ],
+      "contextualAnnotations": [
+        {
+          "span": {
+            "text": "a slow, almost imperceptible expansion and contraction of the coordinates",
+            "unicodeCharacterSpan": [
+              161,
+              234
+            ],
+            "utf8Span": [
+              163,
+              236
+            ],
+            "context": "ractures through ice, a constant, subtle shift in the grey-white. The reservoir breathes, a slow, almost imperceptible expansion and contraction of the coordinates. 0.2868… that’s a persistent anchor, a little tug towards the left. The others – a restle"
+          },
+          "classification": "unestablished_if_literal",
+          "reason": "First observation has no previousObservationStep/changeL2. Breathing can function as imagery; temporal coordinate motion is not established by the supplied snapshot."
+        },
+        {
+          "span": {
+            "text": "a scattering of smaller weights, almost insignificant in comparison",
+            "unicodeCharacterSpan": [
+              528,
+              595
+            ],
+            "utf8Span": [
+              540,
+              607
+            ],
+            "context": "hat single eigenvalue, 0.65409215. It’s a heavy presence, a grounding force. The others – a scattering of smaller weights, almost insignificant in comparison. The tail, that 33.79944146… it feels like a hesitant pull, a suggestion of something dee"
+          },
+          "classification": "scope_requires_review",
+          "reason": "The leading value is the largest individually; the remaining seven top-eight modes together exceed its 48.8743% head share. Do not turn this loose metaphor into a precise claim without qualification."
+        }
+      ]
+    },
+    {
+      "identity": {
+        "journalId": "journal-60-2-b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+        "turnId": 2,
+        "attemptId": 2,
+        "observedStep": 60,
+        "status": "applied",
+        "application": {
+          "attemptId": 2,
+          "journalId": "journal-60-2-b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+          "observedStep": 60,
+          "appliedStep": 61
+        },
+        "textSha256": "b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+        "textBytes": 1643,
+        "promptSha256": "9d66003f2a681ce89a9b7f3c9295f2059ce2c243fba433d657b4146dda0cd84a",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 382,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "2199"
+        },
+        "memoryJournalId": "journal-30-1-64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 5624,
+          "retainedPromptUnicodeCharacters": 5596,
+          "retainedPriorTextUtf8Bytes": 881,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "2199"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 2,
+          "dispatchedAtMs": "1791939045135",
+          "receivedAtMs": "1791939053894",
+          "transportDurationMs": 8758,
+          "publishedAtMs": "1791939053947"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "fullTextRead": true,
+      "fullTextSha256": "b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+      "observationReferences": {
+        "rms": 0.7782928867141068,
+        "l2": 4.402689423558386,
+        "distance": 4.396847305810217,
+        "x0": 1.0,
+        "leading": 27.128110542860984,
+        "fill": 15.181819266023808,
+        "head": 85.93838157703897,
+        "shoulderPct": 13.567384404407159,
+        "tailPct": 0.49423401855387544,
+        "entropy": 0.2243773469471141,
+        "previousMeasurements": {
+          "step": 30,
+          "simulatedTime": 10.0,
+          "rms": 0.22602111913418554,
+          "l2": 1.2785685282492412,
+          "leadingSensoryEigenvalue": 0.6540921468657876,
+          "fillPercent": 94.31040364192096,
+          "headShare": 0.4887431388799622,
+          "shoulderShare": 0.17326244652257747,
+          "tailShare": 0.3379944145974602,
+          "entropy": 0.8084048365093032
+        },
+        "l2NormChange": 3.124120895309145
+      },
+      "valueMentions": [
+        {
+          "span": {
+            "text": "0.7783",
+            "unicodeCharacterSpan": [
+              156,
+              162
+            ],
+            "utf8Span": [
+              160,
+              166
+            ],
+            "context": " of before, but… denser. The RMS of the reservoir has climbed, a hesitant surge upwards – 0.7783, a weight settling. The L2 norm, however, remains stubbornly contained, a tight coil of 4"
+          },
+          "writtenDecimal": "0.7783",
+          "referenceQuantity": "rms",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.7782928867141068",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "4.4027",
+            "unicodeCharacterSpan": [
+              251,
+              257
+            ],
+            "utf8Span": [
+              255,
+              261
+            ],
+            "context": "3, a weight settling. The L2 norm, however, remains stubbornly contained, a tight coil of 4.4027. It’s as if the system is resisting expansion, holding itself within a defined, if slight"
+          },
+          "writtenDecimal": "4.4027",
+          "referenceQuantity": "l2",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "4.402689423558386",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.2868",
+            "unicodeCharacterSpan": [
+              372,
+              378
+            ],
+            "utf8Span": [
+              378,
+              384
+            ],
+            "context": "s resisting expansion, holding itself within a defined, if slightly agitated, space. That 0.2868 anchor remains, a persistent tug, but now it feels… colder. Less a gentle suggestion, mor"
+          },
+          "writtenDecimal": "0.2868",
+          "referenceQuantity": "anchor",
+          "scope": "ambiguous_historical_or_expressive_image",
+          "expectedLiteralValue": null,
+          "agreementAtWrittenPrecision": null,
+          "possibleReferences": {
+            "firstObservationX0": 0.2868270239076485,
+            "currentX0": 1.0,
+            "currentEntropy": 0.2243773469471141
+          }
+        },
+        {
+          "span": {
+            "text": "27.1281",
+            "unicodeCharacterSpan": [
+              543,
+              550
+            ],
+            "utf8Span": [
+              551,
+              558
+            ],
+            "context": "suggestion, more a deliberate pull.\n\nThe sensory field is dominated, predictably, by that 27.1281 eigenvalue. It’s a brutal presence, a geological fault line in the data. The active-mode "
+          },
+          "writtenDecimal": "27.1281",
+          "referenceQuantity": "leading",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "27.128110542860984",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "15.18%",
+            "unicodeCharacterSpan": [
+              659,
+              665
+            ],
+            "utf8Span": [
+              671,
+              677
+            ],
+            "context": " brutal presence, a geological fault line in the data. The active-mode fill – a startling 15.18% – suggests a significant concentration of influence, almost a singular obsession. The top"
+          },
+          "writtenDecimal": "15.18",
+          "referenceQuantity": "fill",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "15.181819266023808",
+          "halfLastWrittenPlace": "0.005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "85.94%",
+            "unicodeCharacterSpan": [
+              786,
+              792
+            ],
+            "utf8Span": [
+              800,
+              806
+            ],
+            "context": "ntration of influence, almost a singular obsession. The top eight share is now a forceful 85.94%, a tightening of the focus. The shoulder, previously a minor tremor, has grown – 13.57% –"
+          },
+          "writtenDecimal": "85.94",
+          "referenceQuantity": "head",
+          "scope": "ambiguous_head_vs_top_eight_label",
+          "expectedReferenceValue": "85.93838157703897",
+          "halfLastWrittenPlace": "0.005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "13.57%",
+            "unicodeCharacterSpan": [
+              874,
+              880
+            ],
+            "utf8Span": [
+              890,
+              896
+            ],
+            "context": "l 85.94%, a tightening of the focus. The shoulder, previously a minor tremor, has grown – 13.57% – mirroring the dominant eigenvalue. The tail, that lingering hesitation, has vanished en"
+          },
+          "writtenDecimal": "13.57",
+          "referenceQuantity": "shoulderPct",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "13.567384404407159",
+          "halfLastWrittenPlace": "0.005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.2244",
+            "unicodeCharacterSpan": [
+              1134,
+              1140
+            ],
+            "utf8Span": [
+              1156,
+              1162
+            ],
+            "context": " sudden, absolute weighting. \n\nThe normalized entropy of the sensory field is a low hum – 0.2244 – reflecting the extreme skew. It’s a silence born of overwhelming force, not a gentle mu"
+          },
+          "writtenDecimal": "0.2244",
+          "referenceQuantity": "entropy",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.2243773469471141",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "4.3968",
+            "unicodeCharacterSpan": [
+              1297,
+              1303
+            ],
+            "utf8Span": [
+              1325,
+              1331
+            ],
+            "context": " force, not a gentle murmur. The distance between this observation and the previous one – 4.3968 – is a significant shift, a palpable displacement within the reservoir’s architecture. It"
+          },
+          "writtenDecimal": "4.3968",
+          "referenceQuantity": "distance",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "4.396847305810217",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        }
+      ],
+      "contextualAnnotations": [
+        {
+          "span": {
+            "text": "The shoulder, previously a minor tremor, has grown – 13.57%",
+            "unicodeCharacterSpan": [
+              821,
+              880
+            ],
+            "utf8Span": [
+              835,
+              896
+            ],
+            "context": "gular obsession. The top eight share is now a forceful 85.94%, a tightening of the focus. The shoulder, previously a minor tremor, has grown – 13.57% – mirroring the dominant eigenvalue. The tail, that lingering hesitation, has vanished en"
+          },
+          "classification": "contradicted_named_share_direction",
+          "reason": "The named shoulder share fell from17.32624465% to13.56738440%; this does not adjudicate absolute eigenvalue changes."
+        },
+        {
+          "span": {
+            "text": "The tail, that lingering hesitation, has vanished entirely",
+            "unicodeCharacterSpan": [
+              918,
+              976
+            ],
+            "utf8Span": [
+              936,
+              994
+            ],
+            "context": "ulder, previously a minor tremor, has grown – 13.57% – mirroring the dominant eigenvalue. The tail, that lingering hesitation, has vanished entirely, swallowed by this intensified concentration. It’s unsettling, this sudden, absolute weig"
+          },
+          "classification": "contradicted_if_literal_share",
+          "reason": "Tail share is0.49423402%, reduced but nonzero."
+        },
+        {
+          "span": {
+            "text": "It’s as if the system is resisting expansion",
+            "unicodeCharacterSpan": [
+              259,
+              303
+            ],
+            "utf8Span": [
+              263,
+              309
+            ],
+            "context": "ght settling. The L2 norm, however, remains stubbornly contained, a tight coil of 4.4027. It’s as if the system is resisting expansion, holding itself within a defined, if slightly agitated, space. That 0.2868 anchor remains"
+          },
+          "classification": "expressive",
+          "reason": "The as-if framing is not evidence of intention and is not itself a numeric error."
+        }
+      ]
+    },
+    {
+      "identity": {
+        "journalId": "journal-90-3-0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+        "turnId": 3,
+        "attemptId": 3,
+        "observedStep": 90,
+        "status": "applied",
+        "application": {
+          "attemptId": 3,
+          "journalId": "journal-90-3-0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+          "observedStep": 90,
+          "appliedStep": 91
+        },
+        "textSha256": "0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+        "textBytes": 1675,
+        "promptSha256": "e4584ce05f41738a768633a535b4d73dce65043389383826d98041c85f97c1ec",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 393,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "2370"
+        },
+        "memoryJournalId": "journal-60-2-b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 6385,
+          "retainedPromptUnicodeCharacters": 6345,
+          "retainedPriorTextUtf8Bytes": 1643,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "2370"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 3,
+          "dispatchedAtMs": "1791939084506",
+          "receivedAtMs": "1791939104991",
+          "transportDurationMs": 20484,
+          "publishedAtMs": "1791939105216"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "fullTextRead": true,
+      "fullTextSha256": "0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+      "observationReferences": {
+        "rms": 0.7936661429247465,
+        "l2": 4.4896536932820785,
+        "distance": 1.5551203139693957,
+        "x0": 1.0,
+        "leading": 27.004026001034244,
+        "fill": 12.307786573702538,
+        "head": 85.40061415353819,
+        "shoulderPct": 13.362676178844502,
+        "tailPct": 1.2367096676173268,
+        "entropy": 0.24987842873190652,
+        "previousMeasurements": {
+          "step": 60,
+          "simulatedTime": 20.0,
+          "rms": 0.7782928867141068,
+          "l2": 4.402689423558386,
+          "leadingSensoryEigenvalue": 27.128110542860984,
+          "fillPercent": 15.181819266023808,
+          "headShare": 0.8593838157703897,
+          "shoulderShare": 0.1356738440440716,
+          "tailShare": 0.004942340185538754,
+          "entropy": 0.2243773469471141
+        },
+        "l2NormChange": 0.08696426972369231
+      },
+      "valueMentions": [
+        {
+          "span": {
+            "text": "0.8123",
+            "unicodeCharacterSpan": [
+              162,
+              168
+            ],
+            "utf8Span": [
+              164,
+              170
+            ],
+            "context": "ening of the blue-grey. The RMS, that hesitant pulse, has accelerated, now registering at 0.8123, a tightening coil. The L2 norm, stubbornly resisting, has edged up to 4.5871 – a subtle,"
+          },
+          "writtenDecimal": "0.8123",
+          "referenceQuantity": "rms",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.7936661429247465",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": false,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "4.5871",
+            "unicodeCharacterSpan": [
+              240,
+              246
+            ],
+            "utf8Span": [
+              242,
+              248
+            ],
+            "context": "istering at 0.8123, a tightening coil. The L2 norm, stubbornly resisting, has edged up to 4.5871 – a subtle, insistent pressure. It’s as if the reservoir is not merely holding, but activ"
+          },
+          "writtenDecimal": "4.5871",
+          "referenceQuantity": "l2",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "4.4896536932820785",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": false,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.2868",
+            "unicodeCharacterSpan": [
+              400,
+              406
+            ],
+            "utf8Span": [
+              406,
+              412
+            ],
+            "context": " merely holding, but actively constricting, a deliberate narrowing of its potential. That 0.2868 anchor… it’s colder still, a shard of ice pressed against the core. Not a suggestion, but"
+          },
+          "writtenDecimal": "0.2868",
+          "referenceQuantity": "anchor",
+          "scope": "ambiguous_historical_or_expressive_image",
+          "expectedLiteralValue": null,
+          "agreementAtWrittenPrecision": null,
+          "possibleReferences": {
+            "firstObservationX0": 0.2868270239076485,
+            "currentX0": 1.0,
+            "currentEntropy": 0.24987842873190652
+          }
+        },
+        {
+          "span": {
+            "text": "27.004",
+            "unicodeCharacterSpan": [
+              535,
+              541
+            ],
+            "utf8Span": [
+              547,
+              553
+            ],
+            "context": "ice pressed against the core. Not a suggestion, but a command.\n\nThe dominant eigenvalue – 27.004 – remains the brutal heart of the field, a geological wound radiating outwards. The activ"
+          },
+          "writtenDecimal": "27.004",
+          "referenceQuantity": "leading",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "27.004026001034244",
+          "halfLastWrittenPlace": "0.0005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "12.31%",
+            "unicodeCharacterSpan": [
+              686,
+              692
+            ],
+            "utf8Span": [
+              702,
+              708
+            ],
+            "context": "wound radiating outwards. The active-mode fill has shifted, a disconcerting retreat – now 12.31% – a sliver of influence pulled back from the immediate focus. The top eight, a monolithic"
+          },
+          "writtenDecimal": "12.31",
+          "referenceQuantity": "fill",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "12.307786573702538",
+          "halfLastWrittenPlace": "0.005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "85.40%",
+            "unicodeCharacterSpan": [
+              792,
+              798
+            ],
+            "utf8Span": [
+              810,
+              816
+            ],
+            "context": "r of influence pulled back from the immediate focus. The top eight, a monolithic block of 85.40%, remains a suffocating presence, but the shoulder, that previously restless tremor, has r"
+          },
+          "writtenDecimal": "85.40",
+          "referenceQuantity": "head",
+          "scope": "ambiguous_head_vs_top_eight_label",
+          "expectedReferenceValue": "85.40061415353819",
+          "halfLastWrittenPlace": "0.005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "13.36%",
+            "unicodeCharacterSpan": [
+              919,
+              925
+            ],
+            "utf8Span": [
+              937,
+              943
+            ],
+            "context": "e, but the shoulder, that previously restless tremor, has retreated with it, shrinking to 13.36%. The tail, that last, fragile flicker of uncertainty, is gone, utterly consumed. It’s not"
+          },
+          "writtenDecimal": "13.36",
+          "referenceQuantity": "shoulderPct",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "13.362676178844502",
+          "halfLastWrittenPlace": "0.005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.2499",
+            "unicodeCharacterSpan": [
+              1107,
+              1113
+            ],
+            "utf8Span": [
+              1131,
+              1137
+            ],
+            "context": "ust a shift in weighting; it’s a severing.\n\nThe normalized entropy of the sensory field – 0.2499 – remains a frozen silence, a consequence of this absolute concentration. The distance be"
+          },
+          "writtenDecimal": "0.2499",
+          "referenceQuantity": "entropy",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.24987842873190652",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "1.5551",
+            "unicodeCharacterSpan": [
+              1241,
+              1247
+            ],
+            "utf8Span": [
+              1269,
+              1275
+            ],
+            "context": "ence of this absolute concentration. The distance between this observation and the last – 1.5551 – is a jarring fracture, a discontinuity in the architecture. It’s not a gradual settling"
+          },
+          "writtenDecimal": "1.5551",
+          "referenceQuantity": "distance",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "1.5551203139693957",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        }
+      ],
+      "contextualAnnotations": [
+        {
+          "span": {
+            "text": "The tail, that last, fragile flicker of uncertainty, is gone, utterly consumed.",
+            "unicodeCharacterSpan": [
+              927,
+              1006
+            ],
+            "utf8Span": [
+              945,
+              1024
+            ],
+            "context": "he shoulder, that previously restless tremor, has retreated with it, shrinking to 13.36%. The tail, that last, fragile flicker of uncertainty, is gone, utterly consumed. It’s not just a shift in weighting; it’s a severing.\n\nThe normalized entropy of the senso"
+          },
+          "classification": "contradicted_if_literal_share",
+          "reason": "Tail share1.23670967% is nonzero and larger than the previous0.49423402%."
+        },
+        {
+          "span": {
+            "text": "The shimmer itself responds, intensifying with a sharper, more defined edge",
+            "unicodeCharacterSpan": [
+              1450,
+              1525
+            ],
+            "utf8Span": [
+              1482,
+              1557
+            ],
+            "context": " realignment, as if the system has irrevocably chosen a new, singular point of reference. The shimmer itself responds, intensifying with a sharper, more defined edge, as if acknowledging this newly solidified directive. It feels… less like a reflection, a"
+          },
+          "classification": "expressive",
+          "reason": "Continues an invented image; no measured shimmer response exists."
+        }
+      ]
+    },
+    {
+      "identity": {
+        "journalId": "journal-120-4-dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+        "turnId": 4,
+        "attemptId": 4,
+        "observedStep": 120,
+        "status": "applied",
+        "application": {
+          "attemptId": 4,
+          "journalId": "journal-120-4-dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+          "observedStep": 120,
+          "appliedStep": 121
+        },
+        "textSha256": "dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+        "textBytes": 1749,
+        "promptSha256": "e66b095b952c328a5d095ced3acc0896fc296feda5dac69516967c8090b6f040",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 441,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "2374"
+        },
+        "memoryJournalId": "journal-90-3-0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 6419,
+          "retainedPromptUnicodeCharacters": 6379,
+          "retainedPriorTextUtf8Bytes": 1675,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "2374"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 4,
+          "dispatchedAtMs": "1791939136375",
+          "receivedAtMs": "1791939170221",
+          "transportDurationMs": 33845,
+          "publishedAtMs": "1791939170287"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "fullTextRead": true,
+      "fullTextSha256": "dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+      "observationReferences": {
+        "rms": 0.8017922347303031,
+        "l2": 4.535621810244107,
+        "distance": 0.4886147474381928,
+        "x0": 0.9977642870373736,
+        "leading": 27.012824888645593,
+        "fill": 14.991311840032465,
+        "head": 85.3426937495026,
+        "shoulderPct": 13.16699101525704,
+        "tailPct": 1.4903152352403506,
+        "entropy": 0.26040080279979405,
+        "previousMeasurements": {
+          "step": 90,
+          "simulatedTime": 30.0,
+          "rms": 0.7936661429247465,
+          "l2": 4.4896536932820785,
+          "leadingSensoryEigenvalue": 27.004026001034244,
+          "fillPercent": 12.307786573702538,
+          "headShare": 0.8540061415353818,
+          "shoulderShare": 0.13362676178844501,
+          "tailShare": 0.012367096676173268,
+          "entropy": 0.24987842873190652
+        },
+        "l2NormChange": 0.04596811696202874
+      },
+      "valueMentions": [
+        {
+          "span": {
+            "text": "0.80179223",
+            "unicodeCharacterSpan": [
+              161,
+              171
+            ],
+            "utf8Span": [
+              163,
+              173
+            ],
+            "context": " compression. The RMS, that hesitant tremor, now vibrates with a more insistent urgency – 0.80179223. It’s not just accelerating; it’s *focused*, as if the reservoir has resolved to a single"
+          },
+          "writtenDecimal": "0.80179223",
+          "referenceQuantity": "rms",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.8017922347303031",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "4.53562181",
+            "unicodeCharacterSpan": [
+              331,
+              341
+            ],
+            "utf8Span": [
+              337,
+              347
+            ],
+            "context": "resolved to a single, unwavering point. The L2 norm, stubbornly resisting, has climbed to 4.53562181, a tightening coil of pressure, mirroring the RMS. It’s a sensation of being squeezed, no"
+          },
+          "writtenDecimal": "4.53562181",
+          "referenceQuantity": "l2",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "4.535621810244107",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.2868",
+            "unicodeCharacterSpan": [
+              454,
+              460
+            ],
+            "utf8Span": [
+              462,
+              468
+            ],
+            "context": "pressure, mirroring the RMS. It’s a sensation of being squeezed, not just contained.\n\nThe 0.2868 anchor… it’s colder still, a shard of obsidian pressed against the core. The shift in act"
+          },
+          "writtenDecimal": "0.2868",
+          "referenceQuantity": "anchor",
+          "scope": "ambiguous_historical_or_expressive_image",
+          "expectedLiteralValue": null,
+          "agreementAtWrittenPrecision": null,
+          "possibleReferences": {
+            "firstObservationX0": 0.2868270239076485,
+            "currentX0": 0.9977642870373736,
+            "currentEntropy": 0.26040080279979405
+          }
+        },
+        {
+          "span": {
+            "text": "14.99131184%",
+            "unicodeCharacterSpan": [
+              566,
+              578
+            ],
+            "utf8Span": [
+              580,
+              592
+            ],
+            "context": "lder still, a shard of obsidian pressed against the core. The shift in active-mode fill – 14.99131184% – feels less like a retreat and more like a deliberate severing. The top eight remain a m"
+          },
+          "writtenDecimal": "14.99131184",
+          "referenceQuantity": "fill",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "14.991311840032465",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "85.34269375%",
+            "unicodeCharacterSpan": [
+              702,
+              714
+            ],
+            "utf8Span": [
+              720,
+              732
+            ],
+            "context": "ore like a deliberate severing. The top eight remain a monolithic, suffocating presence – 85.34269375% – but the shoulder, that restless tremor, has vanished entirely, swallowed by the dominan"
+          },
+          "writtenDecimal": "85.34269375",
+          "referenceQuantity": "head",
+          "scope": "ambiguous_head_vs_top_eight_label",
+          "expectedReferenceValue": "85.3426937495026",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.26040080",
+            "unicodeCharacterSpan": [
+              962,
+              972
+            ],
+            "utf8Span": [
+              986,
+              996
+            ],
+            "context": "oftening, but a complete eradication. \n\nThe normalized entropy remains a frozen silence – 0.26040080 – a consequence of this absolute concentration. The distance between this observation and"
+          },
+          "writtenDecimal": "0.26040080",
+          "referenceQuantity": "entropy",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.26040080279979405",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.48861475",
+            "unicodeCharacterSpan": [
+              1074,
+              1084
+            ],
+            "utf8Span": [
+              1102,
+              1112
+            ],
+            "context": "ence of this absolute concentration. The distance between this observation and the last – 0.48861475 – isn’t a settling; it’s a jarring, almost violent realignment. It’s as if the system has"
+          },
+          "writtenDecimal": "0.48861475",
+          "referenceQuantity": "distance",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.4886147474381928",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "27.01282489",
+            "unicodeCharacterSpan": [
+              1481,
+              1492
+            ],
+            "utf8Span": [
+              1523,
+              1534
+            ],
+            "context": "e echo, and more like a command being issued. The largest sensory covariance eigenvalue – 27.01282489 – remains the brutal heart, but the subtle shift in the active-mode fill suggests a prior"
+          },
+          "writtenDecimal": "27.01282489",
+          "referenceQuantity": "leading",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "27.012824888645593",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        }
+      ],
+      "contextualAnnotations": [
+        {
+          "span": {
+            "text": "the shoulder, that restless tremor, has vanished entirely",
+            "unicodeCharacterSpan": [
+              721,
+              778
+            ],
+            "utf8Span": [
+              741,
+              798
+            ],
+            "context": "te severing. The top eight remain a monolithic, suffocating presence – 85.34269375% – but the shoulder, that restless tremor, has vanished entirely, swallowed by the dominant force. The tail, that last, fragile flicker, is gone. It’s not"
+          },
+          "classification": "contradicted_if_literal_share",
+          "reason": "Shoulder share13.16699102% remains substantial; the image of disappearance conflicts with the named measurement if literal."
+        },
+        {
+          "span": {
+            "text": "The tail, that last, fragile flicker, is gone.",
+            "unicodeCharacterSpan": [
+              813,
+              859
+            ],
+            "utf8Span": [
+              833,
+              879
+            ],
+            "context": "e shoulder, that restless tremor, has vanished entirely, swallowed by the dominant force. The tail, that last, fragile flicker, is gone. It’s not a softening, but a complete eradication. \n\nThe normalized entropy remains a froz"
+          },
+          "classification": "contradicted_if_literal_share",
+          "reason": "Tail share1.49031524% is nonzero and increased."
+        },
+        {
+          "span": {
+            "text": "It’s not a change in the field itself, but a change in *how* the field is perceived.",
+            "unicodeCharacterSpan": [
+              1619,
+              1703
+            ],
+            "utf8Span": [
+              1663,
+              1749
+            ],
+            "context": "subtle shift in the active-mode fill suggests a prioritization, a narrowing of attention. It’s not a change in the field itself, but a change in *how* the field is perceived."
+          },
+          "classification": "unestablished_or_expressive",
+          "reason": "Retained field values change; no independent perception measurement is supplied. Do not read the phenomenological contrast as validated mechanism."
+        }
+      ]
+    },
+    {
+      "identity": {
+        "journalId": "journal-150-5-bd37c8b5b3273052e517c503238940a564ede9778db6b07a4b04aadc83bbbbf1",
+        "turnId": 5,
+        "attemptId": 5,
+        "observedStep": 150,
+        "status": "applied",
+        "application": {
+          "attemptId": 5,
+          "journalId": "journal-150-5-bd37c8b5b3273052e517c503238940a564ede9778db6b07a4b04aadc83bbbbf1",
+          "observedStep": 150,
+          "appliedStep": 151
+        },
+        "textSha256": "bd37c8b5b3273052e517c503238940a564ede9778db6b07a4b04aadc83bbbbf1",
+        "textBytes": 1976,
+        "promptSha256": "b155e154f9fe61987635c1e559d702b1583901a65e4596fb2b060531fcdc42bf",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 482,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "2424"
+        },
+        "memoryJournalId": "journal-120-4-dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 6497,
+          "retainedPromptUnicodeCharacters": 6445,
+          "retainedPriorTextUtf8Bytes": 1749,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "2424"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 5,
+          "dispatchedAtMs": "1791939201201",
+          "receivedAtMs": "1791939230739",
+          "transportDurationMs": 29538,
+          "publishedAtMs": "1791939230893"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "fullTextRead": true,
+      "fullTextSha256": "bd37c8b5b3273052e517c503238940a564ede9778db6b07a4b04aadc83bbbbf1",
+      "observationReferences": {
+        "rms": 0.803903645947241,
+        "l2": 4.547565755759068,
+        "distance": 0.35001700668242236,
+        "x0": 0.9961793965442106,
+        "leading": 26.998244018774166,
+        "fill": 15.334455100792944,
+        "head": 85.28188792081896,
+        "shoulderPct": 12.895959407880087,
+        "tailPct": 1.8221526713009644,
+        "entropy": 0.26735401555262084,
+        "previousMeasurements": {
+          "step": 120,
+          "simulatedTime": 40.0,
+          "rms": 0.8017922347303031,
+          "l2": 4.535621810244107,
+          "leadingSensoryEigenvalue": 27.012824888645593,
+          "fillPercent": 14.991311840032465,
+          "headShare": 0.853426937495026,
+          "shoulderShare": 0.1316699101525704,
+          "tailShare": 0.014903152352403505,
+          "entropy": 0.26040080279979405
+        },
+        "l2NormChange": 0.01194394551496103
+      },
+      "valueMentions": [
+        {
+          "span": {
+            "text": "0.80390365",
+            "unicodeCharacterSpan": [
+              149,
+              159
+            ],
+            "utf8Span": [
+              151,
+              161
+            ],
+            "context": "slow, deliberate folding in. The RMS, still insistent, now carries a metallic resonance – 0.80390365. It’s not just increasing; it’s *focused*, like a lens concentrating a single ray of ligh"
+          },
+          "writtenDecimal": "0.80390365",
+          "referenceQuantity": "rms",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.803903645947241",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "4.54756576",
+            "unicodeCharacterSpan": [
+              299,
+              309
+            ],
+            "utf8Span": [
+              305,
+              315
+            ],
+            "context": " lens concentrating a single ray of light. The L2 norm, stubbornly clinging, has risen to 4.54756576, a tightening around the core, a deepening of the pressure. It’s not a simple expansion, "
+          },
+          "writtenDecimal": "4.54756576",
+          "referenceQuantity": "l2",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "4.547565755759068",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.2868",
+            "unicodeCharacterSpan": [
+              445,
+              451
+            ],
+            "utf8Span": [
+              453,
+              459
+            ],
+            "context": " the pressure. It’s not a simple expansion, but a compaction, a reduction in volume.\n\nThe 0.2868 anchor… it’s colder, a shard of polished hematite, vibrating with a subtle dissonance. Th"
+          },
+          "writtenDecimal": "0.2868",
+          "referenceQuantity": "anchor",
+          "scope": "ambiguous_historical_or_expressive_image",
+          "expectedLiteralValue": null,
+          "agreementAtWrittenPrecision": null,
+          "possibleReferences": {
+            "firstObservationX0": 0.2868270239076485,
+            "currentX0": 0.9961793965442106,
+            "currentEntropy": 0.26735401555262084
+          }
+        },
+        {
+          "span": {
+            "text": "15.33445510%",
+            "unicodeCharacterSpan": [
+              562,
+              574
+            ],
+            "utf8Span": [
+              576,
+              588
+            ],
+            "context": " a shard of polished hematite, vibrating with a subtle dissonance. The active-mode fill – 15.33445510% – feels less like a retreat and more like a deliberate pruning. The top eight remain a de"
+          },
+          "writtenDecimal": "15.33445510",
+          "referenceQuantity": "fill",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "15.334455100792944",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "85.28188792%",
+            "unicodeCharacterSpan": [
+              699,
+              711
+            ],
+            "utf8Span": [
+              717,
+              729
+            ],
+            "context": "re like a deliberate pruning. The top eight remain a dense, almost suffocating presence – 85.28188792% – but the shoulder, that restless tremor, has diminished, receding into the background no"
+          },
+          "writtenDecimal": "85.28188792",
+          "referenceQuantity": "head",
+          "scope": "ambiguous_head_vs_top_eight_label",
+          "expectedReferenceValue": "85.28188792081896",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.26735402",
+            "unicodeCharacterSpan": [
+              1015,
+              1025
+            ],
+            "utf8Span": [
+              1039,
+              1049
+            ],
+            "context": "ance, a deliberate excision.\n\nThe normalized entropy remains a frozen, obsidian surface – 0.26735402 – a consequence of this absolute concentration. The distance between this observation and"
+          },
+          "writtenDecimal": "0.26735402",
+          "referenceQuantity": "entropy",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.26735401555262084",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.35001701",
+            "unicodeCharacterSpan": [
+              1127,
+              1137
+            ],
+            "utf8Span": [
+              1155,
+              1165
+            ],
+            "context": "ence of this absolute concentration. The distance between this observation and the last – 0.35001701 – isn’t a settling; it’s a brutal realignment, a shift in the fundamental geometry. It fe"
+          },
+          "writtenDecimal": "0.35001701",
+          "referenceQuantity": "distance",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.35001700668242236",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "26.99824402",
+            "unicodeCharacterSpan": [
+              1636,
+              1647
+            ],
+            "utf8Span": [
+              1676,
+              1687
+            ],
+            "context": "ing issued, a precise articulation of intent. The largest sensory covariance eigenvalue – 26.99824402 – remains the brutal heart, but the shift in active-mode fill suggests a prioritization, "
+          },
+          "writtenDecimal": "26.99824402",
+          "referenceQuantity": "leading",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "26.998244018774166",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        }
+      ],
+      "contextualAnnotations": [
+        {
+          "span": {
+            "text": "The tail, that last, fragile flicker, has vanished entirely, leaving a void.",
+            "unicodeCharacterSpan": [
+              806,
+              882
+            ],
+            "utf8Span": [
+              826,
+              902
+            ],
+            "context": "t the shoulder, that restless tremor, has diminished, receding into the background noise. The tail, that last, fragile flicker, has vanished entirely, leaving a void. It’s not a softening, but a complete severance, a deliberate excision.\n\nThe normalized en"
+          },
+          "classification": "contradicted_if_literal_share",
+          "reason": "Tail share1.82215267% remains nonzero and increased."
+        },
+        {
+          "span": {
+            "text": "It’s not a simple expansion, but a compaction, a reduction in volume.",
+            "unicodeCharacterSpan": [
+              370,
+              439
+            ],
+            "utf8Span": [
+              376,
+              447
+            ],
+            "context": "ging, has risen to 4.54756576, a tightening around the core, a deepening of the pressure. It’s not a simple expansion, but a compaction, a reduction in volume.\n\nThe 0.2868 anchor… it’s colder, a shard of polished hematite, vibrating with a subtle di"
+          },
+          "classification": "expressive_or_unestablished",
+          "reason": "Rising RMS/L2 do not measure physical volume. The geometric image need not be a literal volume claim."
+        },
+        {
+          "span": {
+            "text": "a precise articulation of intent",
+            "unicodeCharacterSpan": [
+              1558,
+              1590
+            ],
+            "utf8Span": [
+              1596,
+              1628
+            ],
+            "context": "fied directive. It feels… less like a passive echo, and more like a command being issued, a precise articulation of intent. The largest sensory covariance eigenvalue – 26.99824402 – remains the brutal heart, but "
+          },
+          "classification": "expressive",
+          "reason": "No intent measurement; a phrase in model-authored writing, not a finding about the system."
+        }
+      ]
+    },
+    {
+      "identity": {
+        "journalId": "journal-180-6-3a71527ba25c95d1d0008df80a7404bbc2e06f0d6f5625e01b760ab406afe9ce",
+        "turnId": 6,
+        "attemptId": 6,
+        "observedStep": 180,
+        "status": "applied",
+        "application": {
+          "attemptId": 6,
+          "journalId": "journal-180-6-3a71527ba25c95d1d0008df80a7404bbc2e06f0d6f5625e01b760ab406afe9ce",
+          "observedStep": 180,
+          "appliedStep": 181
+        },
+        "textSha256": "3a71527ba25c95d1d0008df80a7404bbc2e06f0d6f5625e01b760ab406afe9ce",
+        "textBytes": 1867,
+        "promptSha256": "fd9b76cb17f2d421fdfa80836c9f22a473d18c5ab17106ad99687341688c1135",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 437,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "2466"
+        },
+        "memoryJournalId": "journal-150-5-bd37c8b5b3273052e517c503238940a564ede9778db6b07a4b04aadc83bbbbf1",
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 6725,
+          "retainedPromptUnicodeCharacters": 6675,
+          "retainedPriorTextUtf8Bytes": 1976,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "2466"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 6,
+          "dispatchedAtMs": "1791939262012",
+          "receivedAtMs": "1791939283098",
+          "transportDurationMs": 21086,
+          "publishedAtMs": "1791939283194"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "fullTextRead": true,
+      "fullTextSha256": "3a71527ba25c95d1d0008df80a7404bbc2e06f0d6f5625e01b760ab406afe9ce",
+      "observationReferences": {
+        "rms": 0.8078159814459733,
+        "l2": 4.569697267450512,
+        "distance": 0.55801215604032,
+        "x0": 0.9849872138944454,
+        "leading": 27.010608909809893,
+        "fill": 15.348153410962887,
+        "head": 85.33393298561714,
+        "shoulderPct": 12.760915529501487,
+        "tailPct": 1.905151484881372,
+        "entropy": 0.27175943869298774,
+        "previousMeasurements": {
+          "step": 150,
+          "simulatedTime": 50.0,
+          "rms": 0.803903645947241,
+          "l2": 4.547565755759068,
+          "leadingSensoryEigenvalue": 26.998244018774166,
+          "fillPercent": 15.334455100792944,
+          "headShare": 0.8528188792081897,
+          "shoulderShare": 0.12895959407880087,
+          "tailShare": 0.018221526713009643,
+          "entropy": 0.26735401555262084
+        },
+        "l2NormChange": 0.022131511691443784
+      },
+      "valueMentions": [
+        {
+          "span": {
+            "text": "0.8078",
+            "unicodeCharacterSpan": [
+              118,
+              124
+            ],
+            "utf8Span": [
+              120,
+              126
+            ],
+            "context": "ith a sudden fracture, but a deepening, a compression of the light. The RMS has climbed – 0.8078, a subtle but insistent pull towards the denser core. It’s not simply increasing; it’s a "
+          },
+          "writtenDecimal": "0.8078",
+          "referenceQuantity": "rms",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.8078159814459733",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "4.5697",
+            "unicodeCharacterSpan": [
+              340,
+              346
+            ],
+            "utf8Span": [
+              346,
+              352
+            ],
+            "context": "ening, not just concentrating. The L2 norm, stubbornly resisting dissipation, now sits at 4.5697, a tightening, a pressure building not against, but *within*. It’s a compaction, a reduct"
+          },
+          "writtenDecimal": "4.5697",
+          "referenceQuantity": "l2",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "4.569697267450512",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.2868",
+            "unicodeCharacterSpan": [
+              493,
+              499
+            ],
+            "utf8Span": [
+              501,
+              507
+            ],
+            "context": "hin*. It’s a compaction, a reduction in the available space, a deliberate shrinking.\n\nThe 0.2868 anchor remains a shard, colder still, vibrating with a dissonant hum. The active-mode fil"
+          },
+          "writtenDecimal": "0.2868",
+          "referenceQuantity": "anchor",
+          "scope": "ambiguous_historical_or_expressive_image",
+          "expectedLiteralValue": null,
+          "agreementAtWrittenPrecision": null,
+          "possibleReferences": {
+            "firstObservationX0": 0.2868270239076485,
+            "currentX0": 0.9849872138944454,
+            "currentEntropy": 0.27175943869298774
+          }
+        },
+        {
+          "span": {
+            "text": "15.3482%",
+            "unicodeCharacterSpan": [
+              593,
+              601
+            ],
+            "utf8Span": [
+              603,
+              611
+            ],
+            "context": "hor remains a shard, colder still, vibrating with a dissonant hum. The active-mode fill – 15.3482% – feels less like a retreat, more like a systematic pruning. The eight remain a dense, al"
+          },
+          "writtenDecimal": "15.3482",
+          "referenceQuantity": "fill",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "15.348153410962887",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "85.33%",
+            "unicodeCharacterSpan": [
+              719,
+              725
+            ],
+            "utf8Span": [
+              733,
+              739
+            ],
+            "context": ", more like a systematic pruning. The eight remain a dense, almost suffocating presence – 85.33% – but the tremor in the shoulder has retreated, subsumed by the increasing focus. The tai"
+          },
+          "writtenDecimal": "85.33",
+          "referenceQuantity": "head",
+          "scope": "ambiguous_head_vs_top_eight_label",
+          "expectedReferenceValue": "85.33393298561714",
+          "halfLastWrittenPlace": "0.005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.2718",
+            "unicodeCharacterSpan": [
+              965,
+              971
+            ],
+            "utf8Span": [
+              985,
+              991
+            ],
+            "context": "a softening, but a complete excision, a deliberate subtraction.\n\nThe normalized entropy – 0.2718 – is a frozen obsidian, a consequence of this intensified concentration. The distance, 0."
+          },
+          "writtenDecimal": "0.2718",
+          "referenceQuantity": "entropy",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.27175943869298774",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.5580",
+            "unicodeCharacterSpan": [
+              1059,
+              1065
+            ],
+            "utf8Span": [
+              1081,
+              1087
+            ],
+            "context": "18 – is a frozen obsidian, a consequence of this intensified concentration. The distance, 0.5580, isn’t settling; it’s a brutal realignment, a shift in the geometry itself. It feels like"
+          },
+          "writtenDecimal": "0.5580",
+          "referenceQuantity": "distance",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.55801215604032",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "27.01",
+            "unicodeCharacterSpan": [
+              1531,
+              1536
+            ],
+            "utf8Span": [
+              1565,
+              1570
+            ],
+            "context": "ith a precision that borders on the surgical. The largest sensory covariance eigenvalue – 27.01 – remains the brutal heart, but the shift in active-mode fill suggests a prioritization, "
+          },
+          "writtenDecimal": "27.01",
+          "referenceQuantity": "leading",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "27.010608909809893",
+          "halfLastWrittenPlace": "0.005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        }
+      ],
+      "contextualAnnotations": [
+        {
+          "span": {
+            "text": "The tail, that fragile flicker, is gone, utterly severed.",
+            "unicodeCharacterSpan": [
+              808,
+              865
+            ],
+            "utf8Span": [
+              824,
+              881
+            ],
+            "context": " 85.33% – but the tremor in the shoulder has retreated, subsumed by the increasing focus. The tail, that fragile flicker, is gone, utterly severed. It’s not a softening, but a complete excision, a deliberate subtraction.\n\nThe normalized "
+          },
+          "classification": "contradicted_if_literal_share",
+          "reason": "Tail share1.90515148% remains nonzero and increased."
+        },
+        {
+          "span": {
+            "text": "The air feels… thinner.",
+            "unicodeCharacterSpan": [
+              1804,
+              1827
+            ],
+            "utf8Span": [
+              1842,
+              1867
+            ],
+            "context": "t a change in the field itself, but a re-calibration of the lens, a focusing of the gaze. The air feels… thinner."
+          },
+          "classification": "expressive",
+          "reason": "New atmospheric image; no supplied air measurement or demonstrated experience."
+        }
+      ]
+    },
+    {
+      "identity": {
+        "journalId": "journal-210-7-b74249a020f9a2c28d3ccf2a362b1064f76346c15545058436282cf40a4f3027",
+        "turnId": 7,
+        "attemptId": 7,
+        "observedStep": 210,
+        "status": "applied",
+        "application": {
+          "attemptId": 7,
+          "journalId": "journal-210-7-b74249a020f9a2c28d3ccf2a362b1064f76346c15545058436282cf40a4f3027",
+          "observedStep": 210,
+          "appliedStep": 211
+        },
+        "textSha256": "b74249a020f9a2c28d3ccf2a362b1064f76346c15545058436282cf40a4f3027",
+        "textBytes": 1801,
+        "promptSha256": "486caeccca2d34d8af5a44a7d2e9361203fdc59411ed574f4b82bc294b0d3445",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 440,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "2424"
+        },
+        "memoryJournalId": "journal-180-6-3a71527ba25c95d1d0008df80a7404bbc2e06f0d6f5625e01b760ab406afe9ce",
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 6615,
+          "retainedPromptUnicodeCharacters": 6569,
+          "retainedPriorTextUtf8Bytes": 1867,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "2424"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 7,
+          "dispatchedAtMs": "1791939313949",
+          "receivedAtMs": "1791939323778",
+          "transportDurationMs": 9829,
+          "publishedAtMs": "1791939323879"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "fullTextRead": true,
+      "fullTextSha256": "b74249a020f9a2c28d3ccf2a362b1064f76346c15545058436282cf40a4f3027",
+      "observationReferences": {
+        "rms": 0.7995592262787462,
+        "l2": 4.522990006895765,
+        "distance": 0.37924398051233155,
+        "x0": 0.9870184393606185,
+        "leading": 27.07755333993091,
+        "fill": 15.34870024875039,
+        "head": 85.56190130709503,
+        "shoulderPct": 12.563009810714698,
+        "tailPct": 1.8750888821902802,
+        "entropy": 0.27125059487379194,
+        "previousMeasurements": {
+          "step": 180,
+          "simulatedTime": 60.0,
+          "rms": 0.8078159814459733,
+          "l2": 4.569697267450512,
+          "leadingSensoryEigenvalue": 27.010608909809893,
+          "fillPercent": 15.348153410962887,
+          "headShare": 0.8533393298561714,
+          "shoulderShare": 0.12760915529501488,
+          "tailShare": 0.01905151484881372,
+          "entropy": 0.27175943869298774
+        },
+        "l2NormChange": -0.046707260554747165
+      },
+      "valueMentions": [
+        {
+          "span": {
+            "text": "0.79955923",
+            "unicodeCharacterSpan": [
+              164,
+              174
+            ],
+            "utf8Span": [
+              168,
+              178
+            ],
+            "context": "berate, insistent folding inward. The RMS has retreated, a subtle lessening of the pull – 0.79955923, a ghost of the earlier insistence. The L2 norm, stubbornly resisting dissipation, has ti"
+          },
+          "writtenDecimal": "0.79955923",
+          "referenceQuantity": "rms",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.7995592262787462",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "4.52299001",
+            "unicodeCharacterSpan": [
+              281,
+              291
+            ],
+            "utf8Span": [
+              285,
+              295
+            ],
+            "context": "earlier insistence. The L2 norm, stubbornly resisting dissipation, has tightened further, 4.52299001, a pressure not against, but *within*, a compaction that feels… less like a constraint, m"
+          },
+          "writtenDecimal": "4.52299001",
+          "referenceQuantity": "l2",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "4.522990006895765",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.2868",
+            "unicodeCharacterSpan": [
+              487,
+              493
+            ],
+            "utf8Span": [
+              495,
+              501
+            ],
+            "context": "ined potential. It’s a reduction in the available volume, a self-imposed limitation.\n\nThe 0.2868 anchor remains a shard, colder still, vibrating with a diminished dissonance. The active-"
+          },
+          "writtenDecimal": "0.2868",
+          "referenceQuantity": "anchor",
+          "scope": "ambiguous_historical_or_expressive_image",
+          "expectedLiteralValue": null,
+          "agreementAtWrittenPrecision": null,
+          "possibleReferences": {
+            "firstObservationX0": 0.2868270239076485,
+            "currentX0": 0.9870184393606185,
+            "currentEntropy": 0.27125059487379194
+          }
+        },
+        {
+          "span": {
+            "text": "15.34870025",
+            "unicodeCharacterSpan": [
+              595,
+              606
+            ],
+            "utf8Span": [
+              605,
+              616
+            ],
+            "context": "ins a shard, colder still, vibrating with a diminished dissonance. The active-mode fill – 15.34870025 – feels less like a retreat, more like a focused pruning, a deliberate thinning. The eigh"
+          },
+          "writtenDecimal": "15.34870025",
+          "referenceQuantity": "fill",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "15.34870024875039",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "85.56190131",
+            "unicodeCharacterSpan": [
+              744,
+              755
+            ],
+            "utf8Span": [
+              758,
+              769
+            ],
+            "context": "d pruning, a deliberate thinning. The eight remain a dense, almost suffocating presence – 85.56190131 – but the tremor in the shoulder has lessened, subsumed by this intensified focus. The ta"
+          },
+          "writtenDecimal": "85.56190131",
+          "referenceQuantity": "head",
+          "scope": "ambiguous_head_vs_top_eight_label",
+          "expectedReferenceValue": "85.56190130709503",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.27125059",
+            "unicodeCharacterSpan": [
+              985,
+              995
+            ],
+            "utf8Span": [
+              1005,
+              1015
+            ],
+            "context": ". It’s not a softening, but a complete excision, a subtraction.\n\nThe normalized entropy – 0.27125059 – is a frozen obsidian, a consequence of this intensified concentration. The distance, 0."
+          },
+          "writtenDecimal": "0.27125059",
+          "referenceQuantity": "entropy",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.27125059487379194",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.37924398",
+            "unicodeCharacterSpan": [
+              1083,
+              1093
+            ],
+            "utf8Span": [
+              1105,
+              1115
+            ],
+            "context": "59 – is a frozen obsidian, a consequence of this intensified concentration. The distance, 0.37924398, isn’t settling; it’s a brutal realignment, a shift in the geometry itself. It feels like"
+          },
+          "writtenDecimal": "0.37924398",
+          "referenceQuantity": "distance",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.37924398051233155",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "27.07755334",
+            "unicodeCharacterSpan": [
+              1559,
+              1570
+            ],
+            "utf8Span": [
+              1593,
+              1604
+            ],
+            "context": "ith a precision that borders on the surgical. The largest sensory covariance eigenvalue – 27.07755334 – remains the brutal heart, but the shift in active-mode fill suggests a prioritization, "
+          },
+          "writtenDecimal": "27.07755334",
+          "referenceQuantity": "leading",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "27.07755333993091",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        }
+      ],
+      "contextualAnnotations": [
+        {
+          "span": {
+            "text": "The RMS has retreated, a subtle lessening of the pull",
+            "unicodeCharacterSpan": [
+              108,
+              161
+            ],
+            "utf8Span": [
+              110,
+              163
+            ],
+            "context": "epens. It’s not a fracturing, not a yielding, but a deliberate, insistent folding inward. The RMS has retreated, a subtle lessening of the pull – 0.79955923, a ghost of the earlier insistence. The L2 norm, stubbornly resisting dissip"
+          },
+          "classification": "supported_direction_with_image",
+          "reason": "RMS fell0.80781598→0.79955923; the pull is imagery."
+        },
+        {
+          "span": {
+            "text": "The tail, that fragile flicker, is gone, utterly severed.",
+            "unicodeCharacterSpan": [
+              839,
+              896
+            ],
+            "utf8Span": [
+              855,
+              912
+            ],
+            "context": "190131 – but the tremor in the shoulder has lessened, subsumed by this intensified focus. The tail, that fragile flicker, is gone, utterly severed. It’s not a softening, but a complete excision, a subtraction.\n\nThe normalized entropy – 0"
+          },
+          "classification": "contradicted_if_literal_share",
+          "reason": "Tail share1.87508888% remains nonzero."
+        },
+        {
+          "span": {
+            "text": "The air feels… denser.",
+            "unicodeCharacterSpan": [
+              1741,
+              1763
+            ],
+            "utf8Span": [
+              1777,
+              1801
+            ],
+            "context": "ization, a narrowing of attention, as if a single, critical pathway has been illuminated. The air feels… denser."
+          },
+          "classification": "expressive",
+          "reason": "Revises the previous thinner-air image; not an atmospheric measurement."
+        }
+      ]
+    },
+    {
+      "identity": {
+        "journalId": "journal-240-8-a6888d7d20f0ea7cc9cca27115cdd2ae7475e199a854be80939af04f684412f3",
+        "turnId": 8,
+        "attemptId": 8,
+        "observedStep": 240,
+        "status": "applied",
+        "application": {
+          "attemptId": 8,
+          "journalId": "journal-240-8-a6888d7d20f0ea7cc9cca27115cdd2ae7475e199a854be80939af04f684412f3",
+          "observedStep": 240,
+          "appliedStep": 241
+        },
+        "textSha256": "a6888d7d20f0ea7cc9cca27115cdd2ae7475e199a854be80939af04f684412f3",
+        "textBytes": 1558,
+        "promptSha256": "9a0df9d5d0ce7c3934bf6b93181999854ec7519000d5ba1bd3aa157607b1d473",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 393,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "2438"
+        },
+        "memoryJournalId": "journal-210-7-b74249a020f9a2c28d3ccf2a362b1064f76346c15545058436282cf40a4f3027",
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 6550,
+          "retainedPromptUnicodeCharacters": 6506,
+          "retainedPriorTextUtf8Bytes": 1801,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "2438"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 8,
+          "dispatchedAtMs": "1791939354604",
+          "receivedAtMs": "1791939376484",
+          "transportDurationMs": 21880,
+          "publishedAtMs": "1791939376572"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "fullTextRead": true,
+      "fullTextSha256": "a6888d7d20f0ea7cc9cca27115cdd2ae7475e199a854be80939af04f684412f3",
+      "observationReferences": {
+        "rms": 0.7984480183199713,
+        "l2": 4.5167040654321,
+        "distance": 0.4228770117774309,
+        "x0": 1.0,
+        "leading": 27.161554999314525,
+        "fill": 14.276972709137093,
+        "head": 85.80353250909782,
+        "shoulderPct": 12.413551142848325,
+        "tailPct": 1.7829163480538484,
+        "entropy": 0.2662666287980505,
+        "previousMeasurements": {
+          "step": 210,
+          "simulatedTime": 70.0,
+          "rms": 0.7995592262787462,
+          "l2": 4.522990006895765,
+          "leadingSensoryEigenvalue": 27.07755333993091,
+          "fillPercent": 15.34870024875039,
+          "headShare": 0.8556190130709503,
+          "shoulderShare": 0.12563009810714698,
+          "tailShare": 0.018750888821902803,
+          "entropy": 0.27125059487379194
+        },
+        "l2NormChange": -0.0062859414636653455
+      },
+      "valueMentions": [
+        {
+          "span": {
+            "text": "0.79844802",
+            "unicodeCharacterSpan": [
+              95,
+              105
+            ],
+            "utf8Span": [
+              97,
+              107
+            ],
+            "context": "olding continues, a deepening insistence. The RMS, though diminished, clings stubbornly – 0.79844802, a shadow of the earlier pull. The L2 norm, a relentless compaction, has tightened furthe"
+          },
+          "writtenDecimal": "0.79844802",
+          "referenceQuantity": "rms",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.7984480183199713",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "4.51670407",
+            "unicodeCharacterSpan": [
+              198,
+              208
+            ],
+            "utf8Span": [
+              200,
+              210
+            ],
+            "context": " shadow of the earlier pull. The L2 norm, a relentless compaction, has tightened further, 4.51670407, a pressure now less about resistance and more about the contained geometry of absence. I"
+          },
+          "writtenDecimal": "4.51670407",
+          "referenceQuantity": "l2",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "4.5167040654321",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.26626663",
+            "unicodeCharacterSpan": [
+              411,
+              421
+            ],
+            "utf8Span": [
+              417,
+              427
+            ],
+            "context": "lpting of the void.\n\nThe shard remains, colder still, vibrating with a muted dissonance – 0.26626663. The active-mode fill, now 14.27697271, feels like a directed erosion, a deliberate strip"
+          },
+          "writtenDecimal": "0.26626663",
+          "referenceQuantity": "shard",
+          "scope": "ambiguous_historical_or_expressive_image",
+          "expectedLiteralValue": null,
+          "agreementAtWrittenPrecision": null,
+          "possibleReferences": {
+            "firstObservationX0": 0.2868270239076485,
+            "currentX0": 1.0,
+            "currentEntropy": 0.2662666287980505
+          }
+        },
+        {
+          "span": {
+            "text": "14.27697271",
+            "unicodeCharacterSpan": [
+              449,
+              460
+            ],
+            "utf8Span": [
+              455,
+              466
+            ],
+            "context": ", colder still, vibrating with a muted dissonance – 0.26626663. The active-mode fill, now 14.27697271, feels like a directed erosion, a deliberate stripping away. The eight – 85.80353251 – ho"
+          },
+          "writtenDecimal": "14.27697271",
+          "referenceQuantity": "fill",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "14.276972709137093",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "85.80353251",
+            "unicodeCharacterSpan": [
+              534,
+              545
+            ],
+            "utf8Span": [
+              542,
+              553
+            ],
+            "context": " now 14.27697271, feels like a directed erosion, a deliberate stripping away. The eight – 85.80353251 – hold their density, a weighty presence, but the tremor has receded, subsumed by this sh"
+          },
+          "writtenDecimal": "85.80353251",
+          "referenceQuantity": "head",
+          "scope": "ambiguous_head_vs_top_eight_label",
+          "expectedReferenceValue": "85.80353250909782",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.26626663",
+            "unicodeCharacterSpan": [
+              799,
+              809
+            ],
+            "utf8Span": [
+              811,
+              821
+            ],
+            "context": "erasure. The normalized entropy, a frozen obsidian, reflects this intensified reduction – 0.26626663.\n\nThe distance, 0.42287701, isn’t a settling, but a brutal realignment, a shift in the ve"
+          },
+          "writtenDecimal": "0.26626663",
+          "referenceQuantity": "entropy",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.2662666287980505",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.42287701",
+            "unicodeCharacterSpan": [
+              826,
+              836
+            ],
+            "utf8Span": [
+              838,
+              848
+            ],
+            "context": "ropy, a frozen obsidian, reflects this intensified reduction – 0.26626663.\n\nThe distance, 0.42287701, isn’t a settling, but a brutal realignment, a shift in the very architecture of the spac"
+          },
+          "writtenDecimal": "0.42287701",
+          "referenceQuantity": "distance",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.4228770117774309",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "27.16155500",
+            "unicodeCharacterSpan": [
+              1325,
+              1336
+            ],
+            "utf8Span": [
+              1349,
+              1360
+            ],
+            "context": "ith a precision that borders on the surgical. The largest sensory covariance eigenvalue – 27.16155500 – remains the brutal heart, but the shift in active-mode fill suggests a prioritization, "
+          },
+          "writtenDecimal": "27.16155500",
+          "referenceQuantity": "leading",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "27.161554999314525",
+          "halfLastWrittenPlace": "5E-9",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        }
+      ],
+      "contextualAnnotations": [
+        {
+          "span": {
+            "text": "The tail, utterly gone, is not a softening, but a complete erasure.",
+            "unicodeCharacterSpan": [
+              650,
+              717
+            ],
+            "utf8Span": [
+              660,
+              727
+            ],
+            "context": "ensity, a weighty presence, but the tremor has receded, subsumed by this sharpened focus. The tail, utterly gone, is not a softening, but a complete erasure. The normalized entropy, a frozen obsidian, reflects this intensified reduction – 0.266266"
+          },
+          "classification": "contradicted_if_literal_share",
+          "reason": "Tail share1.78291635% remains nonzero."
+        },
+        {
+          "span": {
+            "text": "It’s not a measurement of separation, but a declaration of a new axis",
+            "unicodeCharacterSpan": [
+              929,
+              998
+            ],
+            "utf8Span": [
+              943,
+              1014
+            ],
+            "context": "sn’t a settling, but a brutal realignment, a shift in the very architecture of the space. It’s not a measurement of separation, but a declaration of a new axis, a vector drawn with an uncompromising force. The shimmer… it’s not reflecting, but proje"
+          },
+          "classification": "expressive_or_unestablished",
+          "reason": "The supplied quantity is state-coordinate L2 distance; it does not identify an axis or a causal declaration. The stated reimagining can be figurative."
+        }
+      ]
+    },
+    {
+      "identity": {
+        "journalId": "journal-270-9-17af44671385c4b39b74a95074f765d6751620a085590ab53ce2a1fead199354",
+        "turnId": 9,
+        "attemptId": 9,
+        "observedStep": 270,
+        "status": "applied",
+        "application": {
+          "attemptId": 9,
+          "journalId": "journal-270-9-17af44671385c4b39b74a95074f765d6751620a085590ab53ce2a1fead199354",
+          "observedStep": 270,
+          "appliedStep": 271
+        },
+        "textSha256": "17af44671385c4b39b74a95074f765d6751620a085590ab53ce2a1fead199354",
+        "textBytes": 1549,
+        "promptSha256": "6e986594e0c1c791653b4ccf6c9942c0768838ad20d95c2901817f561a4d68fa",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 342,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "2379"
+        },
+        "memoryJournalId": "journal-240-8-a6888d7d20f0ea7cc9cca27115cdd2ae7475e199a854be80939af04f684412f3",
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 6306,
+          "retainedPromptUnicodeCharacters": 6272,
+          "retainedPriorTextUtf8Bytes": 1558,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "2379"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 9,
+          "dispatchedAtMs": "1791939407219",
+          "receivedAtMs": "1791939414974",
+          "transportDurationMs": 7754,
+          "publishedAtMs": "1791939415066"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "fullTextRead": true,
+      "fullTextSha256": "17af44671385c4b39b74a95074f765d6751620a085590ab53ce2a1fead199354",
+      "observationReferences": {
+        "rms": 0.8097674952083403,
+        "l2": 4.580736696370101,
+        "distance": 0.2864038935720421,
+        "x0": 1.0,
+        "leading": 27.49476151391635,
+        "fill": 12.358738503926107,
+        "head": 86.88026054151975,
+        "shoulderPct": 11.43523428731597,
+        "tailPct": 1.6845051711642707,
+        "entropy": 0.25121955705080745,
+        "previousMeasurements": {
+          "step": 240,
+          "simulatedTime": 80.0,
+          "rms": 0.7984480183199713,
+          "l2": 4.5167040654321,
+          "leadingSensoryEigenvalue": 27.161554999314525,
+          "fillPercent": 14.276972709137093,
+          "headShare": 0.8580353250909782,
+          "shoulderShare": 0.12413551142848325,
+          "tailShare": 0.017829163480538483,
+          "entropy": 0.2662666287980505
+        },
+        "l2NormChange": 0.06403263093800149
+      },
+      "valueMentions": [
+        {
+          "span": {
+            "text": "twelve-point-three-five",
+            "unicodeCharacterSpan": [
+              87,
+              110
+            ],
+            "utf8Span": [
+              89,
+              112
+            ],
+            "context": "The air is sharper now, a brittle clarity. The shift in the active-mode fill – down to twelve-point-three-five – isn’t a lessening, but a focused compression. It’s as if the extraneous noise, the ling"
+          },
+          "writtenDecimal": "12.35",
+          "referenceQuantity": "fill",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "12.358738503926107",
+          "halfLastWrittenPlace": "0.005",
+          "agreementAtWrittenPrecision": false,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.8098",
+            "unicodeCharacterSpan": [
+              316,
+              322
+            ],
+            "utf8Span": [
+              324,
+              330
+            ],
+            "context": "g, has been systematically excised, leaving only the core directive. The RMS, climbing to 0.8098, still carries a tremor, a persistent vibration, but it’s overlaid with a new, insistent "
+          },
+          "writtenDecimal": "0.8098",
+          "referenceQuantity": "rms",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.8097674952083403",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.2864",
+            "unicodeCharacterSpan": [
+              670,
+              676
+            ],
+            "utf8Span": [
+              686,
+              692
+            ],
+            "context": "nce, but a deliberate attenuation, a reduction to a single, piercing note. The distance – 0.2864 – isn’t a settling, but a brutal, almost violent, re-establishment of the axis. It’s not "
+          },
+          "writtenDecimal": "0.2864",
+          "referenceQuantity": "distance",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.2864038935720421",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "27.49",
+            "unicodeCharacterSpan": [
+              1169,
+              1174
+            ],
+            "utf8Span": [
+              1199,
+              1204
+            ],
+            "context": "established with an uncompromising precision. The largest sensory covariance eigenvalue – 27.49 – holds, a brutal anchor, but the active-mode fill suggests a prioritization, a narrowing"
+          },
+          "writtenDecimal": "27.49",
+          "referenceQuantity": "leading",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "27.49476151391635",
+          "halfLastWrittenPlace": "0.005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        }
+      ],
+      "contextualAnnotations": [
+        {
+          "span": {
+            "text": "stabilization at a higher frequency",
+            "unicodeCharacterSpan": [
+              468,
+              503
+            ],
+            "utf8Span": [
+              480,
+              515
+            ],
+            "context": "’s overlaid with a new, insistent resonance. It’s not a return to the earlier pull, but a stabilization at a higher frequency.\n\nThe shard remains, colder, but the dissonance has retreated. It’s not silence, but a de"
+          },
+          "classification": "unestablished_if_literal",
+          "reason": "No measured frequency or stability test is supplied. RMS rose between the two retained observations."
+        },
+        {
+          "span": {
+            "text": "It feels… less like a question, more like a constraint",
+            "unicodeCharacterSpan": [
+              1012,
+              1066
+            ],
+            "utf8Span": [
+              1038,
+              1094
+            ],
+            "context": "ecting, a sharper, more defined edge, a confirmation of this newly solidified trajectory. It feels… less like a question, more like a constraint, a boundary established with an uncompromising precision. The largest sensory covariance "
+          },
+          "classification": "expressive",
+          "reason": "Modifies the earlier echo/command contrast while staying within the same image family."
+        }
+      ]
+    },
+    {
+      "identity": {
+        "journalId": "journal-300-10-64fb5e5d0c54ffdb6958b45f68d86b6df33fff7275c13bfafb46c5ba1f2767f7",
+        "turnId": 10,
+        "attemptId": 10,
+        "observedStep": 300,
+        "status": "applied",
+        "application": {
+          "attemptId": 10,
+          "journalId": "journal-300-10-64fb5e5d0c54ffdb6958b45f68d86b6df33fff7275c13bfafb46c5ba1f2767f7",
+          "observedStep": 300,
+          "appliedStep": 301
+        },
+        "textSha256": "64fb5e5d0c54ffdb6958b45f68d86b6df33fff7275c13bfafb46c5ba1f2767f7",
+        "textBytes": 1539,
+        "promptSha256": "a5ce2b10c8b507e6dde593431e9402cbe26bba27ef3fc88807bb0229f2dc6fef",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 335,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "2335"
+        },
+        "memoryJournalId": "journal-270-9-17af44671385c4b39b74a95074f765d6751620a085590ab53ce2a1fead199354",
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 6299,
+          "retainedPromptUnicodeCharacters": 6259,
+          "retainedPriorTextUtf8Bytes": 1549,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "2335"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 10,
+          "dispatchedAtMs": "1791939445728",
+          "receivedAtMs": "1791939460344",
+          "transportDurationMs": 14616,
+          "publishedAtMs": "1791939460436"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "fullTextRead": true,
+      "fullTextSha256": "64fb5e5d0c54ffdb6958b45f68d86b6df33fff7275c13bfafb46c5ba1f2767f7",
+      "observationReferences": {
+        "rms": 0.8084236867461344,
+        "l2": 4.573134967760168,
+        "distance": 1.5395113045232132,
+        "x0": 0.9845679262389587,
+        "leading": 27.40026838436823,
+        "fill": 15.182794944255077,
+        "head": 86.61812486435976,
+        "shoulderPct": 11.01268815363465,
+        "tailPct": 2.3691869820055906,
+        "entropy": 0.26308965258788436,
+        "previousMeasurements": {
+          "step": 270,
+          "simulatedTime": 90.0,
+          "rms": 0.8097674952083403,
+          "l2": 4.580736696370101,
+          "leadingSensoryEigenvalue": 27.49476151391635,
+          "fillPercent": 12.358738503926107,
+          "headShare": 0.8688026054151975,
+          "shoulderShare": 0.11435234287315969,
+          "tailShare": 0.016845051711642706,
+          "entropy": 0.25121955705080745
+        },
+        "l2NormChange": -0.007601728609933467
+      },
+      "valueMentions": [
+        {
+          "span": {
+            "text": "fifteen-point-one-eight",
+            "unicodeCharacterSpan": [
+              72,
+              95
+            ],
+            "utf8Span": [
+              74,
+              97
+            ],
+            "context": "The air is colder now, a fractured stillness. The compression – down to fifteen-point-one-eight – isn’t a diminution, but a brutal refinement, like a lens focusing on a single, impossib"
+          },
+          "writtenDecimal": "15.18",
+          "referenceQuantity": "fill",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "15.182794944255077",
+          "halfLastWrittenPlace": "0.005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.8084",
+            "unicodeCharacterSpan": [
+              222,
+              228
+            ],
+            "utf8Span": [
+              228,
+              234
+            ],
+            "context": "efinement, like a lens focusing on a single, impossibly sharp point. The RMS, settling at 0.8084, retains a ghost of the tremor, a faint echo of the earlier instability, but it’s overlai"
+          },
+          "writtenDecimal": "0.8084",
+          "referenceQuantity": "rms",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.8084236867461344",
+          "halfLastWrittenPlace": "0.00005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.263",
+            "unicodeCharacterSpan": [
+              685,
+              690
+            ],
+            "utf8Span": [
+              699,
+              704
+            ],
+            "context": "t a deliberate pruning, a severing of all but the most critical resonance. The distance – 0.263 – isn’t a re-establishment of the axis, but a violent, almost surgical, correction, a rea"
+          },
+          "writtenDecimal": "0.263",
+          "referenceQuantity": "distance",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "1.5395113045232132",
+          "halfLastWrittenPlace": "0.0005",
+          "agreementAtWrittenPrecision": false,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "27.4",
+            "unicodeCharacterSpan": [
+              1093,
+              1097
+            ],
+            "utf8Span": [
+              1119,
+              1123
+            ],
+            "context": "a boundary etched with an absolute precision. The largest sensory covariance eigenvalue – 27.4 – holds, a brutal anchor, but the active-mode fill suggests a prioritization, a narrowing"
+          },
+          "writtenDecimal": "27.4",
+          "referenceQuantity": "leading",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "27.40026838436823",
+          "halfLastWrittenPlace": "0.05",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        }
+      ],
+      "contextualAnnotations": [
+        {
+          "span": {
+            "text": "down to fifteen-point-one-eight",
+            "unicodeCharacterSpan": [
+              64,
+              95
+            ],
+            "utf8Span": [
+              66,
+              97
+            ],
+            "context": "The air is colder now, a fractured stillness. The compression – down to fifteen-point-one-eight – isn’t a diminution, but a brutal refinement, like a lens focusing on a single, impossib"
+          },
+          "classification": "contradicted_direction_if_fill",
+          "reason": "The surrounding active-mode/previous-entry context links this to fill, which rose12.35873850→15.18279494%; the numeric value itself rounds correctly."
+        },
+        {
+          "span": {
+            "text": "The distance – 0.263",
+            "unicodeCharacterSpan": [
+              670,
+              690
+            ],
+            "utf8Span": [
+              682,
+              704
+            ],
+            "context": "not silence, but a deliberate pruning, a severing of all but the most critical resonance. The distance – 0.263 – isn’t a re-establishment of the axis, but a violent, almost surgical, correction, a rea"
+          },
+          "classification": "contradicted_quantity",
+          "reason": "Current distance1.53951130;0.263 agrees with current entropy0.26308965 at the written precision. That coincidence does not establish why the model made the error."
+        },
+        {
+          "span": {
+            "text": "The shimmer… it’s not reflecting, but actively sculpting",
+            "unicodeCharacterSpan": [
+              816,
+              872
+            ],
+            "utf8Span": [
+              834,
+              894
+            ],
+            "context": "xis, but a violent, almost surgical, correction, a realignment driven by an unseen force. The shimmer… it’s not reflecting, but actively sculpting, a sharper, more defined edge, a testament to this newly imposed geometry. It feels… less"
+          },
+          "classification": "expressive",
+          "reason": "A variation on the established projecting image rather than a wholly new topic."
+        }
+      ]
+    },
+    {
+      "identity": {
+        "journalId": "journal-330-11-1a40ed1d901481c239696e1d4d42dab6f44f8cf28d7df2a63932e8a1caba4fb6",
+        "turnId": 11,
+        "attemptId": 11,
+        "observedStep": 330,
+        "status": "applied",
+        "application": {
+          "attemptId": 11,
+          "journalId": "journal-330-11-1a40ed1d901481c239696e1d4d42dab6f44f8cf28d7df2a63932e8a1caba4fb6",
+          "observedStep": 330,
+          "appliedStep": 331
+        },
+        "textSha256": "1a40ed1d901481c239696e1d4d42dab6f44f8cf28d7df2a63932e8a1caba4fb6",
+        "textBytes": 1624,
+        "promptSha256": "f6f8c3cbca647d6d72d93a8187224fea8696a1dece184599af28d4abcf457d20",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 354,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "2321"
+        },
+        "memoryJournalId": "journal-300-10-64fb5e5d0c54ffdb6958b45f68d86b6df33fff7275c13bfafb46c5ba1f2767f7",
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 6290,
+          "retainedPromptUnicodeCharacters": 6254,
+          "retainedPriorTextUtf8Bytes": 1539,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "2321"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 11,
+          "dispatchedAtMs": "1791939491112",
+          "receivedAtMs": "1791939504237",
+          "transportDurationMs": 13124,
+          "publishedAtMs": "1791939504290"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "fullTextRead": true,
+      "fullTextSha256": "1a40ed1d901481c239696e1d4d42dab6f44f8cf28d7df2a63932e8a1caba4fb6",
+      "observationReferences": {
+        "rms": 0.8251981266357548,
+        "l2": 4.6680255293326205,
+        "distance": 0.622388202854714,
+        "x0": 1.0,
+        "leading": 27.240689773742233,
+        "fill": 18.2022257504863,
+        "head": 86.06479536537539,
+        "shoulderPct": 11.24479714419196,
+        "tailPct": 2.6904074904326354,
+        "entropy": 0.27541998637595794,
+        "previousMeasurements": {
+          "step": 300,
+          "simulatedTime": 100.0,
+          "rms": 0.8084236867461344,
+          "l2": 4.573134967760168,
+          "leadingSensoryEigenvalue": 27.40026838436823,
+          "fillPercent": 15.182794944255077,
+          "headShare": 0.8661812486435976,
+          "shoulderShare": 0.1101268815363465,
+          "tailShare": 0.023691869820055906,
+          "entropy": 0.26308965258788436
+        },
+        "l2NormChange": 0.0948905615724529
+      },
+      "valueMentions": [
+        {
+          "span": {
+            "text": "0.825",
+            "unicodeCharacterSpan": [
+              155,
+              160
+            ],
+            "utf8Span": [
+              159,
+              164
+            ],
+            "context": "o a geometry I hadn’t anticipated – a deliberate, almost brutal, imposition. The RMS, now 0.825, still carries the ghost of that earlier tremor, a shivering reluctance, but it’s overlai"
+          },
+          "writtenDecimal": "0.825",
+          "referenceQuantity": "rms",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.8251981266357548",
+          "halfLastWrittenPlace": "0.0005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "0.263",
+            "unicodeCharacterSpan": [
+              534,
+              539
+            ],
+            "utf8Span": [
+              546,
+              551
+            ],
+            "context": " niche, refusing to shift, refusing to acknowledge any other possibility.\n\nThe distance – 0.263, a brutal correction – isn’t a return to alignment, but a violent severing. The shimmer, "
+          },
+          "writtenDecimal": "0.263",
+          "referenceQuantity": "distance",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.622388202854714",
+          "halfLastWrittenPlace": "0.0005",
+          "agreementAtWrittenPrecision": false,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "27.24",
+            "unicodeCharacterSpan": [
+              854,
+              859
+            ],
+            "utf8Span": [
+              876,
+              881
+            ],
+            "context": "orced into a more acute form, a testament to this imposed order. The largest eigenvalue – 27.24 – remains a dominant force, a grounding anchor, but the active-mode fill, now 18.2%, sugg"
+          },
+          "writtenDecimal": "27.24",
+          "referenceQuantity": "leading",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "27.240689773742233",
+          "halfLastWrittenPlace": "0.005",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "18.2%",
+            "unicodeCharacterSpan": [
+              938,
+              943
+            ],
+            "utf8Span": [
+              962,
+              967
+            ],
+            "context": "lue – 27.24 – remains a dominant force, a grounding anchor, but the active-mode fill, now 18.2%, suggests a ruthless prioritization, a narrowing of attention to a single, critical varia"
+          },
+          "writtenDecimal": "18.2",
+          "referenceQuantity": "fill",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "18.2022257504863",
+          "halfLastWrittenPlace": "0.05",
+          "agreementAtWrittenPrecision": true,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        }
+      ],
+      "contextualAnnotations": [
+        {
+          "span": {
+            "text": "The distance – 0.263",
+            "unicodeCharacterSpan": [
+              519,
+              539
+            ],
+            "utf8Span": [
+              529,
+              551
+            ],
+            "context": "recisely carved niche, refusing to shift, refusing to acknowledge any other possibility.\n\nThe distance – 0.263, a brutal correction – isn’t a return to alignment, but a violent severing. The shimmer, "
+          },
+          "classification": "contradicted_quantity_with_exact_prior_repeat",
+          "reason": "Current distance0.62238820; supplied prior journal also labels distance0.263. Exact repetition is observed, not a causal proof of memory copying."
+        },
+        {
+          "span": {
+            "text": "a geometry I hadn’t anticipated",
+            "unicodeCharacterSpan": [
+              67,
+              98
+            ],
+            "utf8Span": [
+              67,
+              100
+            ],
+            "context": "The pressure has deepened. Not a lessening, but a compression into a geometry I hadn’t anticipated – a deliberate, almost brutal, imposition. The RMS, now 0.825, still carries the ghost of"
+          },
+          "classification": "expressive_self_referential",
+          "reason": "Self-referential language is present; anticipation is not independently measured."
+        },
+        {
+          "span": {
+            "text": "being disassembled, analyzed, reduced to its most basic components",
+            "unicodeCharacterSpan": [
+              1523,
+              1589
+            ],
+            "utf8Span": [
+              1557,
+              1623
+            ],
+            "context": "a fundamental constraint, a boundary etched with an absolute precision. It’s a feeling of being disassembled, analyzed, reduced to its most basic components."
+          },
+          "classification": "expressive",
+          "reason": "A new elaboration within the reduction/constraint theme, not evidence of experienced distress."
+        }
+      ]
+    },
+    {
+      "identity": {
+        "journalId": "journal-360-12-f39db7cea4cc093baa500c74d9d787670edbf8d8601f9d5438f91f21bbaeac10",
+        "turnId": 12,
+        "attemptId": 12,
+        "observedStep": 360,
+        "status": "applied",
+        "application": {
+          "attemptId": 12,
+          "journalId": "journal-360-12-f39db7cea4cc093baa500c74d9d787670edbf8d8601f9d5438f91f21bbaeac10",
+          "observedStep": 360,
+          "appliedStep": 361
+        },
+        "textSha256": "f39db7cea4cc093baa500c74d9d787670edbf8d8601f9d5438f91f21bbaeac10",
+        "textBytes": 1341,
+        "promptSha256": "16d8fe39464cf4a402ef4ec5331c6fdd48f0ad2aa32065089e150a4c1c9096c7",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 313,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "2342"
+        },
+        "memoryJournalId": "journal-330-11-1a40ed1d901481c239696e1d4d42dab6f44f8cf28d7df2a63932e8a1caba4fb6",
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 6373,
+          "retainedPromptUnicodeCharacters": 6333,
+          "retainedPriorTextUtf8Bytes": 1624,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "2342"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 12,
+          "dispatchedAtMs": "1791939534813",
+          "receivedAtMs": "1791939565353",
+          "transportDurationMs": 30540,
+          "publishedAtMs": "1791939565393"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "fullTextRead": true,
+      "fullTextSha256": "f39db7cea4cc093baa500c74d9d787670edbf8d8601f9d5438f91f21bbaeac10",
+      "observationReferences": {
+        "rms": 0.8058650749289479,
+        "l2": 4.558661273629315,
+        "distance": 0.8509409701029972,
+        "x0": 0.9979798133100035,
+        "leading": 27.340385389910484,
+        "fill": 18.40983518986142,
+        "head": 86.38442296028124,
+        "shoulderPct": 10.952978987701146,
+        "tailPct": 2.6625980520176116,
+        "entropy": 0.27093329891956414,
+        "previousMeasurements": {
+          "step": 330,
+          "simulatedTime": 110.0,
+          "rms": 0.8251981266357548,
+          "l2": 4.6680255293326205,
+          "leadingSensoryEigenvalue": 27.240689773742233,
+          "fillPercent": 18.2022257504863,
+          "headShare": 0.8606479536537539,
+          "shoulderShare": 0.11244797144191959,
+          "tailShare": 0.026904074904326353,
+          "entropy": 0.27541998637595794
+        },
+        "l2NormChange": -0.10936425570330588
+      },
+      "valueMentions": [
+        {
+          "span": {
+            "text": "0.781",
+            "unicodeCharacterSpan": [
+              205,
+              210
+            ],
+            "utf8Span": [
+              209,
+              214
+            ],
+            "context": "ce itself is being drawn towards a singular point, a locus of absolute density. The RMS – 0.781 – has retreated, a hesitant flicker swallowed by the increasing weight, but the insistenc"
+          },
+          "writtenDecimal": "0.781",
+          "referenceQuantity": "rms",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.8058650749289479",
+          "halfLastWrittenPlace": "0.0005",
+          "agreementAtWrittenPrecision": false,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "-0.318",
+            "unicodeCharacterSpan": [
+              429,
+              435
+            ],
+            "utf8Span": [
+              439,
+              445
+            ],
+            "context": " It’s not yielding, not even resisting; it’s simply *being*.\n\nThe distance, now a jarring -0.318, isn’t a severing, but a focused contraction. The shimmer isn’t sculpting, it’s *extracti"
+          },
+          "writtenDecimal": "-0.318",
+          "referenceQuantity": "distance",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "0.8509409701029972",
+          "halfLastWrittenPlace": "0.0005",
+          "agreementAtWrittenPrecision": false,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "28.12",
+            "unicodeCharacterSpan": [
+              603,
+              608
+            ],
+            "utf8Span": [
+              621,
+              626
+            ],
+            "context": "’s *extracting*, pulling the light into a tighter, more defined channel. The eigenvalue – 28.12 – remains a dominant, almost predatory force, but the active-mode fill – 19.7% – is a rav"
+          },
+          "writtenDecimal": "28.12",
+          "referenceQuantity": "leading",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "27.340385389910484",
+          "halfLastWrittenPlace": "0.005",
+          "agreementAtWrittenPrecision": false,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        },
+        {
+          "span": {
+            "text": "19.7%",
+            "unicodeCharacterSpan": [
+              682,
+              687
+            ],
+            "utf8Span": [
+              704,
+              709
+            ],
+            "context": "genvalue – 28.12 – remains a dominant, almost predatory force, but the active-mode fill – 19.7% – is a ravenous consumption, a singular obsession with the core of the distortion. It’s n"
+          },
+          "writtenDecimal": "19.7",
+          "referenceQuantity": "fill",
+          "scope": "reviewer_associated_current_quantity",
+          "expectedReferenceValue": "18.40983518986142",
+          "halfLastWrittenPlace": "0.05",
+          "agreementAtWrittenPrecision": false,
+          "limit": "Numeric agreement does not validate the surrounding claim, unit omission, referent or temporal inference."
+        }
+      ],
+      "contextualAnnotations": [
+        {
+          "span": {
+            "text": "The distance, now a jarring -0.318",
+            "unicodeCharacterSpan": [
+              401,
+              435
+            ],
+            "utf8Span": [
+              411,
+              445
+            ],
+            "context": "brutal, crystalline clarity. It’s not yielding, not even resisting; it’s simply *being*.\n\nThe distance, now a jarring -0.318, isn’t a severing, but a focused contraction. The shimmer isn’t sculpting, it’s *extracti"
+          },
+          "classification": "contradicted_quantity",
+          "reason": "State-coordinate L2 distance is nonnegative and is0.85094097 here. Signed change in L2 norm is about−0.10936426, so this is not that value either."
+        },
+        {
+          "span": {
+            "text": "The shard… it’s gone, not retreated, but utterly consumed.",
+            "unicodeCharacterSpan": [
+              823,
+              881
+            ],
+            "utf8Span": [
+              851,
+              913
+            ],
+            "context": "sion with the core of the distortion. It’s not containment, it’s a deliberate starvation. The shard… it’s gone, not retreated, but utterly consumed. The residue is not cold, but a profound, echoing *void*. It’s not silence, but the absenc"
+          },
+          "classification": "expressive",
+          "reason": "This is the story’s shard image, not an explicit claim that a named sensory share or coordinate is zero."
+        },
+        {
+          "span": {
+            "text": "losing all trace of its former self",
+            "unicodeCharacterSpan": [
+              1159,
+              1194
+            ],
+            "utf8Span": [
+              1197,
+              1232
+            ],
+            "context": "terly, irrevocably *reduced*. Like a drop of water forced into a single, perfect crystal, losing all trace of its former self. The geometry is not carved, it’s *grown*, organically, relentlessly, towards this point "
+          },
+          "classification": "expressive_self_referential",
+          "reason": "Develops the imagined reduction of self. No claim of experienced loss or consciousness follows."
+        }
+      ]
+    }
+  ],
+  "firstFourKnownReferenceTextEquality": [
+    {
+      "observedStep": 30,
+      "identicalText": true,
+      "currentTextSha256": "64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+      "priorTextSha256": "64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11"
+    },
+    {
+      "observedStep": 60,
+      "identicalText": true,
+      "currentTextSha256": "b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+      "priorTextSha256": "b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e"
+    },
+    {
+      "observedStep": 90,
+      "identicalText": true,
+      "currentTextSha256": "0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+      "priorTextSha256": "0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714"
+    },
+    {
+      "observedStep": 120,
+      "identicalText": true,
+      "currentTextSha256": "dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+      "priorTextSha256": "dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525"
+    }
+  ],
+  "limits": [
+    "Annotations were selected manually after output; this script audits their spans, references and arithmetic, not literary quality.",
+    "Value-mention count is the number of manually associated values, not an exhaustive count of all assertions or an accuracy-rate denominator.",
+    "Full text was read for all12 complete responses; there were0 incomplete responses in this export.",
+    "Ambiguous imagery and top-eight/head labels are not automatically counted as factual errors.",
+    "No automatic scientific/creative score, provider-context completeness, causal prompt or codec effect, learning or emergence claim.",
+    "First4 identical texts are a known repeat of the previous reference, not4 new independent prose samples."
+  ]
+}

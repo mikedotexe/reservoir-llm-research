@@ -1,0 +1,474 @@
+{
+  "schema": "reservoir-unicode-action-oracles-v1",
+  "createdAtUTC": "2026-10-12T03:21:21.425236+00:00",
+  "host": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "scope": "Terminal stage-4 journal verifier mutations; native codec features; no new provider results or broad Unicode/JSON parser parity",
+  "modelsContacted": false,
+  "originalFilesModified": false,
+  "rustRunner": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+    "sha256": "b78e3027e08d90d8ba249192a8e57a4da4db2028844845fec2ec37695f45cfb2"
+  },
+  "swiftRunner": {
+    "path": "/Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run",
+    "sha256": "d0a69c67725cbf002c9b0148cf5fc4cc4ead6db076bc483d46a51925a0d2a39d"
+  },
+  "inputs": [
+    {
+      "path": "essentials/examples/portable/example-model-4.json",
+      "sha256": "d46baa55b581a8406dc6e9380b0d3ab7f537396212a8e83c1c24feb5236fea76"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/unicode-codec-v1.json",
+      "sha256": "f05fb75b0a29c2d4c1e28474c7e3139c5aa8f85d884757a3269840af337cbe3e"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/check_unicode_action_oracles.py",
+      "sha256": "3fbfdcea030f9f506bedaf479eb66ad3f3a3bd4908306a231b01423ee5ce85dd"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/src/codec.rs",
+      "sha256": "6192482229710de6bf8a6377480ec891f940cf9ecd02da2f493b6e108db264ee"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/src/codec_unicode_data.rs",
+      "sha256": "dbfe035749c170abbd80982c1aa18b0d72140fcc9b4d04aa762124ef1f0d28c3"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/src/actions.rs",
+      "sha256": "bdb90090280915af0f8ab7183fcbabfd15dd3b1a896213c2fd3b82d0a7e3675c"
+    }
+  ],
+  "outcome": "failed",
+  "cases": [
+    {
+      "vector": 6,
+      "text": "\u00e9 e\u0301 \u00c9 E\u0301 \u00e0 \u00c5 A\u030a",
+      "derivedRecordingSha256": "a2e6d09726898e8c0d1565e960a068191895a80c7592d9577a46d1999553232b",
+      "expectedExitCodes": [
+        0,
+        0
+      ],
+      "checks": [
+        {
+          "command": [
+            "/Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-6.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-6.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v2\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":120,\"checkedTurns\":3,\"sha256\":\"a2e6d09726898e8c0d1565e960a068191895a80c7592d9577a46d1999553232b\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "vector": 7,
+      "text": "\u0130 I i \u0131 i\u0307",
+      "derivedRecordingSha256": "bad7dac7681c707cf503341c801139d0ccfe7f8c80309f6ba8536ac9343586d0",
+      "expectedExitCodes": [
+        0,
+        0
+      ],
+      "checks": [
+        {
+          "command": [
+            "/Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-7.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-7.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v2\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":120,\"checkedTurns\":3,\"sha256\":\"bad7dac7681c707cf503341c801139d0ccfe7f8c80309f6ba8536ac9343586d0\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "vector": 8,
+      "text": "\u039f\u03a3 \u039f\u03a3\u0391 \u03a3 \u03c3 \u03c2",
+      "derivedRecordingSha256": "ad38c2a8ec8d4394043c4b4eb2f4d988bee1dbe895bd3ebc7e31f586ce7d7439",
+      "expectedExitCodes": [
+        0,
+        0
+      ],
+      "checks": [
+        {
+          "command": [
+            "/Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-8.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-8.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v2\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":120,\"checkedTurns\":3,\"sha256\":\"ad38c2a8ec8d4394043c4b4eb2f4d988bee1dbe895bd3ebc7e31f586ce7d7439\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "vector": 10,
+      "text": "Stra\u00dfe STRASSE \u00df \u1e9e \ufb00",
+      "derivedRecordingSha256": "31beca8bbddad8af6faacea2d34481e0be19ab3c51016dc62c3f87879959dbfc",
+      "expectedExitCodes": [
+        0,
+        2
+      ],
+      "checks": [
+        {
+          "command": [
+            "/Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-10.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-10.json",
+            "--json"
+          ],
+          "exitCode": 2,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"incomplete\",\"format\":\"essentials-actions-v2\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"31beca8bbddad8af6faacea2d34481e0be19ab3c51016dc62c3f87879959dbfc\",\"modelsContacted\":false,\"diagnostics\":[\"Text codec scalar or grapheme is outside the retained Swift Unicode qualification; original UTF-8 bytes are retained\"]}",
+          "stderr": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "vector": 11,
+      "text": "\u00e9 e\u0301 \u00e9 e\u0301",
+      "derivedRecordingSha256": "e8c9ece33cf71e123238612fe9c8d35ef24c0a7ebee68591132f14a935c7e888",
+      "expectedExitCodes": [
+        0,
+        0
+      ],
+      "checks": [
+        {
+          "command": [
+            "/Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-11.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-11.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v2\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":120,\"checkedTurns\":3,\"sha256\":\"e8c9ece33cf71e123238612fe9c8d35ef24c0a7ebee68591132f14a935c7e888\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "vector": 12,
+      "text": "\u041f\u0440\u0438\u0432\u0435\u0442 \u041c\u0418\u0420 \u0401\u043b\u043a\u0430",
+      "derivedRecordingSha256": "da947aed3c55eee3b0167897a5ca66478be4f96ee1d346e62c9dfe173b113d1f",
+      "expectedExitCodes": [
+        0,
+        0
+      ],
+      "checks": [
+        {
+          "command": [
+            "/Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-12.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-12.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v2\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":120,\"checkedTurns\":3,\"sha256\":\"da947aed3c55eee3b0167897a5ca66478be4f96ee1d346e62c9dfe173b113d1f\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "vector": 13,
+      "text": "\u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac \u0391\u0392\u0393 \u03a9\u03bc\u03ad\u03b3\u03b1",
+      "derivedRecordingSha256": "85db30ed33b3b98a01a3c82fdd2353073be149d2c376ff8fa9f93024065cbb52",
+      "expectedExitCodes": [
+        0,
+        0
+      ],
+      "checks": [
+        {
+          "command": [
+            "/Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-13.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-13.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v2\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":120,\"checkedTurns\":3,\"sha256\":\"85db30ed33b3b98a01a3c82fdd2353073be149d2c376ff8fa9f93024065cbb52\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "vector": 14,
+      "text": "\u05e9\u05dc\u05d5\u05dd \u05e9\u05b8",
+      "derivedRecordingSha256": "4d0672f17ebe30be62b19adf72f1adcefb9b82ff6d54a09d646047c030b5c2be",
+      "expectedExitCodes": [
+        0,
+        0
+      ],
+      "checks": [
+        {
+          "command": [
+            "/Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-14.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-14.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v2\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":120,\"checkedTurns\":3,\"sha256\":\"4d0672f17ebe30be62b19adf72f1adcefb9b82ff6d54a09d646047c030b5c2be\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "vector": 16,
+      "text": "\u0928\u092e\u0938\u094d\u0924\u0947 \u0915\u093f \u0915\u094d\u0937 \u0915\u094d\u200d\u0937",
+      "derivedRecordingSha256": "e5472499fc331531cec282d862ef6ac9f07f77b3b9c8d1c92320b992be3855fc",
+      "expectedExitCodes": [
+        0,
+        0
+      ],
+      "checks": [
+        {
+          "command": [
+            "/Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-16.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-16.json",
+            "--json"
+          ],
+          "exitCode": 2,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"incomplete\",\"format\":\"essentials-actions-v2\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"e5472499fc331531cec282d862ef6ac9f07f77b3b9c8d1c92320b992be3855fc\",\"modelsContacted\":false,\"diagnostics\":[\"Text codec scalar or grapheme is outside the retained Swift Unicode qualification; original UTF-8 bytes are retained\"]}",
+          "stderr": ""
+        }
+      ],
+      "passed": false
+    },
+    {
+      "vector": 17,
+      "text": "\u4e2d\u6587 \u65e5\u672c\u8a9e \u304b\u306a \u30ab\u30ca",
+      "derivedRecordingSha256": "654ac2541c80e44712663087924af448aca94473e001f0dbf16340f4236ce7af",
+      "expectedExitCodes": [
+        0,
+        0
+      ],
+      "checks": [
+        {
+          "command": [
+            "/Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-17.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-17.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v2\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":120,\"checkedTurns\":3,\"sha256\":\"654ac2541c80e44712663087924af448aca94473e001f0dbf16340f4236ce7af\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "vector": 18,
+      "text": "\ud55c\uae00 \uac00 \uac01 \ud7a3",
+      "derivedRecordingSha256": "23f89945915fce1272d06d6a40d35e53b6bbb223be524a85fc6f82253eed2000",
+      "expectedExitCodes": [
+        0,
+        0
+      ],
+      "checks": [
+        {
+          "command": [
+            "/Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-18.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-18.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v2\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":120,\"checkedTurns\":3,\"sha256\":\"23f89945915fce1272d06d6a40d35e53b6bbb223be524a85fc6f82253eed2000\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "vector": 19,
+      "text": "\u00bd \u2162 \u00b2 \u0661 \u06f2 \u096f \uff11\uff12\uff13",
+      "derivedRecordingSha256": "4cec1c214930e6c6fd05485b3663a0db60769ed586f8be3e82a3b1a81ebc6abc",
+      "expectedExitCodes": [
+        0,
+        0
+      ],
+      "checks": [
+        {
+          "command": [
+            "/Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-19.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-19.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v2\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":120,\"checkedTurns\":3,\"sha256\":\"4cec1c214930e6c6fd05485b3663a0db60769ed586f8be3e82a3b1a81ebc6abc\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "vector": 20,
+      "text": "\u201cI wonder,\u201d she said. \u2018Perhaps?\u2019 Don't don\u2019t can't can\u2019t.",
+      "derivedRecordingSha256": "f9d862a5980eeb3a87e1274b82f66b4e4f64c6afb93dd5f3f3236576d40815c5",
+      "expectedExitCodes": [
+        0,
+        0
+      ],
+      "checks": [
+        {
+          "command": [
+            "/Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-20.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-unicode-action-s9ykzm4y/unicode-20.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v2\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":120,\"checkedTurns\":3,\"sha256\":\"f9d862a5980eeb3a87e1274b82f66b4e4f64c6afb93dd5f3f3236576d40815c5\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

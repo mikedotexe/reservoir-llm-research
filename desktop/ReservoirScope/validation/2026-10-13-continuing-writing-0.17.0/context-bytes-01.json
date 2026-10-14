@@ -1,0 +1,64 @@
+{
+  "schema": "reservoir-context-fixture-byte-comparison-v1",
+  "startedAtUtc": "2026-10-14T01:24:52.647400+00:00",
+  "script": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/measure_context_01.py",
+    "sha256": "3df397ad14e099c5c232da86a662204f71bf52879042ba316c713feb62a6e7f7"
+  },
+  "modelTokenizerUiOrApplicationCalls": false,
+  "scaffoldDefinition": "All prompt UTF-8 bytes except only the prior-text JSON string literal, including its surrounding quotes. The marker, provenance labels, section boundaries and final invitation remain scaffold. Without prior text, scaffold equals whole prompt.",
+  "scope": "Two deterministic expected prompt fixtures with matched step/RMS/fill/distance and exact prior text; not token counts, provider exposure, attention, writing quality or causal benefit.",
+  "comparisons": [
+    {
+      "step": 10,
+      "v4": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v4-observation-10.txt",
+        "bytes": 4445,
+        "sha256": "26bae96991e12bb591ba517c46345aeac167abbbdaf79858c514a35b8986f75f",
+        "priorJsonLiteralBytes": 0,
+        "decodedPriorTextBytes": 0,
+        "scaffoldBytes": 4445,
+        "trailingNewline": false
+      },
+      "v5": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v5-observation-10.txt",
+        "bytes": 1437,
+        "sha256": "5c9c1dbdb29e1058b59d23174cdab186c0aa60d76293f29bb99827b217025dd6",
+        "priorJsonLiteralBytes": 0,
+        "decodedPriorTextBytes": 0,
+        "scaffoldBytes": 1437,
+        "trailingNewline": false
+      },
+      "wholePromptByteReduction": 3008,
+      "scaffoldByteReduction": 3008,
+      "matchedSuppliedReadoutAndPriorText": true
+    },
+    {
+      "step": 20,
+      "v4": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v4-memory-20.txt",
+        "bytes": 4829,
+        "sha256": "d51753e1eddd68fd193ba46da49e6f909aaebdef328471ddf79e3b134b10c2c0",
+        "priorJsonLiteralBytes": 91,
+        "decodedPriorTextBytes": 89,
+        "scaffoldBytes": 4738,
+        "trailingNewline": false
+      },
+      "v5": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v5-memory-20.txt",
+        "bytes": 1627,
+        "sha256": "a828b3390d049b22faf115f74644374f2c86f74a4ac47fd806a5e69920de99fd",
+        "priorJsonLiteralBytes": 91,
+        "decodedPriorTextBytes": 89,
+        "scaffoldBytes": 1536,
+        "trailingNewline": false
+      },
+      "wholePromptByteReduction": 3202,
+      "scaffoldByteReduction": 3202,
+      "matchedSuppliedReadoutAndPriorText": true
+    }
+  ],
+  "status": "passed",
+  "inputsUnchanged": true,
+  "endedAtUtc": "2026-10-14T01:24:52.648835+00:00"
+}

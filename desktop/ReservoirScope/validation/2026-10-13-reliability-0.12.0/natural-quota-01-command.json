@@ -1,0 +1,61 @@
+{
+  "startedAtUtc": "2026-10-13T16:46:27.633588+00:00",
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "-p",
+    "reservoir-scope-desktop",
+    "natural_quota_",
+    "--",
+    "--ignored",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "cwd": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope",
+  "environment": {
+    "DEVELOPER_DIR": "/Applications/Xcode.app/Contents/Developer",
+    "SDKROOT": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+    "RESERVOIR_QUOTA_EVIDENCE": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-natural-quota-01"
+  },
+  "sourcesBefore": [
+    {
+      "path": "src-tauri/src/sustained.rs",
+      "sha256": "d1a5e8c10880dfd585fd79f33b782956b7d5e9a16a40dec9b812e6af446d7ba5"
+    },
+    {
+      "path": "src-tauri/src/sustained_store.rs",
+      "sha256": "bc46ef62b384727ca34718e84df202e5bcddc10cde171ff708b229715435ecf0"
+    },
+    {
+      "path": "src-tauri/src/sustained_tests.rs",
+      "sha256": "593c09ed24630e91fffa5cd8881cd308c183ef11f29c419fcf1a2eb6abcc6fa3"
+    },
+    {
+      "path": "src-tauri/src/sustained_quota_tests.rs",
+      "sha256": "fb735f00a397680cd338144d9833daa0350923c65796b6c9c4ab0cccf64df903"
+    }
+  ],
+  "scope": "Isolated accelerated temp-store natural quota case; production app/package/store/provider untouched.",
+  "finishedAtUtc": "2026-10-13T16:49:54.436979+00:00",
+  "elapsedSeconds": 206.80384766706266,
+  "exitCode": 0,
+  "sourcesAfter": [
+    {
+      "path": "src-tauri/src/sustained.rs",
+      "sha256": "d1a5e8c10880dfd585fd79f33b782956b7d5e9a16a40dec9b812e6af446d7ba5"
+    },
+    {
+      "path": "src-tauri/src/sustained_store.rs",
+      "sha256": "bc46ef62b384727ca34718e84df202e5bcddc10cde171ff708b229715435ecf0"
+    },
+    {
+      "path": "src-tauri/src/sustained_tests.rs",
+      "sha256": "593c09ed24630e91fffa5cd8881cd308c183ef11f29c419fcf1a2eb6abcc6fa3"
+    },
+    {
+      "path": "src-tauri/src/sustained_quota_tests.rs",
+      "sha256": "fb735f00a397680cd338144d9833daa0350923c65796b6c9c4ab0cccf64df903"
+    }
+  ]
+}

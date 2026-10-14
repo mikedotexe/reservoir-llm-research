@@ -1,0 +1,243 @@
+{
+  "schema": "reservoir-owned-model-retained-run-v1",
+  "capturedAtUtc": "2026-10-13T21:35:55.113817+00:00",
+  "scope": "Offline inspection and exclusive byte-preserving retention of six completed owned-run files only. No process inventory, signals, service contact, app interaction, or credential-content reads performed by this inspection.",
+  "files": [
+    {
+      "source": "target/qa/0.14-real-gemma3-4b-run01/endpoint.json",
+      "retained": "endpoint.json",
+      "sha256": "f2f64f343eda5fd10538f7de5f79bc06a0602102186cf575ab8c7ab5e9a1ad0a",
+      "sizeBytes": 277,
+      "sourceIdentityAtRead": {
+        "device": "16777234",
+        "inode": "386304902",
+        "sizeBytes": 277,
+        "mtimeNs": "1791926834204159513",
+        "ctimeNs": "1791926834204159513",
+        "mode": "0o600"
+      },
+      "exclusiveCopyReadbackEqual": true,
+      "sourceRecheckEqual": true
+    },
+    {
+      "source": "target/qa/0.14-real-gemma3-4b-run01/launch-intent.json",
+      "retained": "launch-intent.json",
+      "sha256": "be7b9d1c7e890eb2b12df806e785f174b619bf472244b140b5bdf9bbd0d1bae9",
+      "sizeBytes": 3338,
+      "sourceIdentityAtRead": {
+        "device": "16777234",
+        "inode": "386304898",
+        "sizeBytes": 3338,
+        "mtimeNs": "1791926834187539236",
+        "ctimeNs": "1791926834187539236",
+        "mode": "0o600"
+      },
+      "exclusiveCopyReadbackEqual": true,
+      "sourceRecheckEqual": true
+    },
+    {
+      "source": "target/qa/0.14-real-gemma3-4b-run01/owned-process.json",
+      "retained": "owned-process.json",
+      "sha256": "221587c0f20ca2de0c613cc1e640638b473891702453584fee65eec8c3cb1edc",
+      "sizeBytes": 1202,
+      "sourceIdentityAtRead": {
+        "device": "16777234",
+        "inode": "386304900",
+        "sizeBytes": 1202,
+        "mtimeNs": "1791926834190145263",
+        "ctimeNs": "1791926834190145263",
+        "mode": "0o600"
+      },
+      "exclusiveCopyReadbackEqual": true,
+      "sourceRecheckEqual": true
+    },
+    {
+      "source": "target/qa/0.14-real-gemma3-4b-run01/service.log",
+      "retained": "service.log",
+      "sha256": "63c3da3b954e46739eea15e82f9c8a64ab5c35d6ea4b322f6fba72fefd73ba8d",
+      "sizeBytes": 38089,
+      "sourceIdentityAtRead": {
+        "device": "16777234",
+        "inode": "386304899",
+        "sizeBytes": 38089,
+        "mtimeNs": "1791927067400220369",
+        "ctimeNs": "1791927067400220369",
+        "mode": "0o600"
+      },
+      "exclusiveCopyReadbackEqual": true,
+      "sourceRecheckEqual": true
+    },
+    {
+      "source": "target/qa/0.14-real-gemma3-4b-run01/stop-request",
+      "retained": "stop-request",
+      "sha256": "f003795668af5ac5f9aead2672f08b3500ad444ccd428367b3ca6ecac96430a1",
+      "sizeBytes": 97,
+      "sourceIdentityAtRead": {
+        "device": "16777234",
+        "inode": "386313087",
+        "sizeBytes": 97,
+        "mtimeNs": "1791927121764091842",
+        "ctimeNs": "1791927121764091842",
+        "mode": "0o644"
+      },
+      "exclusiveCopyReadbackEqual": true,
+      "sourceRecheckEqual": true
+    },
+    {
+      "source": "target/qa/0.14-real-gemma3-4b-run01/supervision-result.json",
+      "retained": "supervision-result.json",
+      "sha256": "1c885879e9a5b54bb0831cc599073363b4acac38ed70fed893c7162d91f3fa62",
+      "sizeBytes": 10247,
+      "sourceIdentityAtRead": {
+        "device": "16777234",
+        "inode": "386313093",
+        "sizeBytes": 10247,
+        "mtimeNs": "1791927121993898652",
+        "ctimeNs": "1791927121993898652",
+        "mode": "0o600"
+      },
+      "exclusiveCopyReadbackEqual": true,
+      "sourceRecheckEqual": true
+    }
+  ],
+  "bindings": {
+    "helper": {
+      "path": "../owned_model.py",
+      "sha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f"
+    },
+    "helperFreeze": {
+      "path": "../helper-source-freeze-01.json",
+      "sha256": "c36454de228053d5b5f68d969b2a6f74ef47db83be7838fac96ef009386e57f0"
+    },
+    "preStartBinding": {
+      "path": "../real-model-bound-before-start.json",
+      "sha256": "f93067eaf03f97aa8976b24da4ec4e1a2c9263118dcaebdfc5817e3179b11a4c"
+    },
+    "selectionSha256": "7de0ae35b3d231201679b2242484cb24a9122a8f9ce866b8554dfe6384a2d86a",
+    "stageReceiptSha256": "76cf4002d95bffcf6ef2665f728739e15ffb9aff1726dd8270510b50beeca3dc",
+    "serverExecutableSha256": "76535100c7aaf5aa94fe749b1bf0cfe3a702fa0743c7421fed059b783f4969de",
+    "versionFromPlist": "0.40.3",
+    "packageBinarySha256": "87eb89c76200603b1cb68f34e5b5deddc54dbfa5042530ab0c9787ca56606fa4"
+  },
+  "accessLog": {
+    "retainedBytes": 38089,
+    "discardedBytes": 0,
+    "parser": "^\\[GIN\\]\\s+(\\d{4}/\\d{2}/\\d{2}) - (\\d{2}:\\d{2}:\\d{2})\\s*\\|\\s*(\\d{3})\\s*\\|\\s*([^|]+?)\\s*\\|\\s*([^|]+?)\\s*\\|\\s*([A-Z]+)\\s+\"([^\"]+)\"\\s*$",
+    "entries": [
+      {
+        "line": 8,
+        "serverLocalTime": "2026/10/13 14:27:29",
+        "timezoneBasis": "UTC-07:00 from owned service structured log timestamps on this date",
+        "utcTime": "2026-10-13T21:27:29+00:00",
+        "status": 200,
+        "latencyText": "3.404375ms",
+        "client": "127.0.0.1",
+        "method": "GET",
+        "path": "/api/tags"
+      },
+      {
+        "line": 340,
+        "serverLocalTime": "2026/10/13 14:28:47",
+        "timezoneBasis": "UTC-07:00 from owned service structured log timestamps on this date",
+        "utcTime": "2026-10-13T21:28:47+00:00",
+        "status": 200,
+        "latencyText": "9.33210425s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat"
+      },
+      {
+        "line": 379,
+        "serverLocalTime": "2026/10/13 14:29:32",
+        "timezoneBasis": "UTC-07:00 from owned service structured log timestamps on this date",
+        "utcTime": "2026-10-13T21:29:32+00:00",
+        "status": 200,
+        "latencyText": "14.890474083s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat"
+      },
+      {
+        "line": 418,
+        "serverLocalTime": "2026/10/13 14:30:11",
+        "timezoneBasis": "UTC-07:00 from owned service structured log timestamps on this date",
+        "utcTime": "2026-10-13T21:30:11+00:00",
+        "status": 200,
+        "latencyText": "7.413168875s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat"
+      },
+      {
+        "line": 464,
+        "serverLocalTime": "2026/10/13 14:31:07",
+        "timezoneBasis": "UTC-07:00 from owned service structured log timestamps on this date",
+        "utcTime": "2026-10-13T21:31:07+00:00",
+        "status": 200,
+        "latencyText": "25.1351155s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat"
+      }
+    ],
+    "unparsedGinLines": [],
+    "counts": [
+      {
+        "method": "GET",
+        "path": "/api/tags",
+        "count": 1
+      },
+      {
+        "method": "POST",
+        "path": "/api/chat",
+        "count": 4
+      }
+    ],
+    "extraLoggedGenerationRequests": 0,
+    "interpretation": "Four completed POST /api/chat access records and one GET /api/tags metadata record, all HTTP 200. This is evidence from this retained owned service log only; HTTP 200 is not proof of complete/accepted generation or scientific quality. No statement about unlogged attempts, escaped processes, other services or all network activity."
+  },
+  "cleanup": {
+    "reason": "explicit stop",
+    "spawnedAtUtc": "2026-10-13T21:27:14.189803+00:00",
+    "endedAtUtc": "2026-10-13T21:32:01.993271+00:00",
+    "elapsedMonotonicSeconds": 287.80735833290964,
+    "pid": 33792,
+    "pgid": 33792,
+    "sid": 33792,
+    "supervisorPid": 33771,
+    "termEvents": 1,
+    "sigtermSentToOwnedGroup": true,
+    "sigkillSentToOwnedGroup": false,
+    "groupObservationCount": 4,
+    "finalGroupBeforeReap": {
+      "leaderExitedUnreaped": true,
+      "members": [
+        {
+          "pid": 33792,
+          "identityUnavailable": true,
+          "errno": 3,
+          "operation": "proc_pidinfo"
+        }
+      ],
+      "quiescent": true,
+      "unreadableLeaderExitProven": true
+    },
+    "ownedLeaderExitCode": 0,
+    "errors": [],
+    "interpretation": "The helper retained its exact direct child unreaped, accepted one scoped group SIGTERM, observed the other owned member disappear, accepted only the unreadable exact leader through waitid(P_PID, WNOWAIT) exit proof, verified original-group quiescence, then reaped the leader. This does not claim a separate fresh process-absence probe or inventory of escaped descendants."
+  },
+  "conventionalKeyConfigMetadata": {
+    "unchangedAsRetained": true,
+    "limit": "lstat continuity only; no key/config content read or hash",
+    "additionalCredentialReadsPerformed": false
+  },
+  "historical013": {
+    "supervisionResult": "target/qa/0.13-real-gemma3-4b-run01/supervision-result.json",
+    "sha256": "c13eb6fd8d15fabc42b23656a7eef703cd426f408221492bca9169d80b31955e",
+    "matchesPriorSupplement": true,
+    "supplement": "validation/2026-10-13-grounding-0.13.0/owned-model-cleanup-supplement-01.json",
+    "supplementSha256": "2082d2db2c96f49d06e4d956d35c24ba3a8665e0c953f39b8623b8d1f83eefae",
+    "originalFailurePreserved": true
+  },
+  "qualityAndResourceAssessment": "Not performed by this retention. Native export verification and reading evaluation are separate artifacts."
+}

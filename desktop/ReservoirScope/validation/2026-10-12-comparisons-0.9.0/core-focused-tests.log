@@ -1,0 +1,50 @@
+DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk cargo test --locked -p reservoir-core --test session --test session_actions --test session_comparisons
+   Compiling reservoir-core v0.1.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.06s
+     Running tests/session.rs (target/debug/deps/session-a4abe24a95d26322)
+
+running 10 tests
+test manual_budget_reserves_required_scheduled_actions ... ok
+test unsupported_recipes_and_invalid_bounds_do_not_start ... ok
+test d_records_saved_preparation_but_never_applies_feedback ... ok
+test manual_and_scheduled_journals_use_distinct_boundaries_and_monotonic_ids ... ok
+test explicit_failed_save_is_terminal_and_preserves_raw_candidate ... ok
+test pending_and_bad_save_proof_cannot_feed_or_create_portable_saved_claims ... ok
+test stage_thirty_prepares_and_thirty_one_applies_and_stop_is_terminal ... ok
+test stopped_journal_prefixes_remain_valid_and_immutable ... ok
+test complete_fresh_journal_mutations_are_rejected ... ok
+test incremental_stages_match_existing_batch_exactly ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.04s
+
+     Running tests/session_actions.rs (target/debug/deps/session_actions-3f413080611fe7a8)
+
+running 9 tests
+test comparisons_remain_explicitly_unsupported_and_manual_availability_is_exact ... ok
+test observer_and_output_are_passive_until_feedback_gate_opens ... ok
+test fixed_tape_is_boundary_indexed_and_manual_forces_write_over_wait ... ok
+test memory_requires_matching_readback_before_prompt_or_reply ... ok
+test h_control_is_next_step_and_fixed_tape_keeps_g_h_full_inputs_identical ... ok
+test wait_still_rereads_memory_but_does_not_clear_or_reapply_feedback ... ok
+test failed_memory_is_terminal_without_exposure_and_cancel_is_distinct ... ok
+test new_memory_choice_tape_and_controller_mutations_are_rejected ... ok
+test all_standalone_stages_both_modes_complete_with_exact_native_shapes ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.27s
+
+     Running tests/session_comparisons.rs (target/debug/deps/session_comparisons-e1074bbbaf7dff85)
+
+running 10 tests
+test manual_admission_reserves_both_arms_scheduled_capacity ... ok
+test ordered_save_gate_rejects_wrong_arm_path_and_blocks_both_clocks ... ok
+test stop_during_partner_save_preserves_first_save_and_historical_failure ... ok
+test observation_failure_still_attempts_partner_in_both_orders ... ok
+test manual_tape_wait_forces_both_writes_and_shared_reference_is_preserved ... ok
+test observation_matches_numerics_changes_exposure_and_alternates_real_order ... ok
+test rejects_unavailable_pairs_and_mutated_order_exposure_paths_and_controller ... ok
+test component_failure_cancels_unstarted_peer_or_retains_successful_first_arm ... ok
+test per_arm_memory_read_failure_and_explicit_stop_never_expose_missing_text ... ok
+test all_fourteen_component_pairs_preserve_native_tracks_ordinals_and_tapes ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.61s
+

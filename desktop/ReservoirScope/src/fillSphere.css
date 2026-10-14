@@ -1,0 +1,33 @@
+.recorded-fill-card { min-width: 0; border: 1px solid #26424c; background: #0b1922; border-radius: 22px; overflow: hidden; color: #e8f3f2; }
+.recorded-fill-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; padding: 26px 30px 20px; }
+.recorded-fill-heading h2 { margin: 7px 0; font-size: clamp(26px, 2.5vw, 38px); font-weight: 500; letter-spacing: -.035em; }
+.recorded-fill-heading p { color: #a4b8c3; margin: 5px 0 0; }
+.recorded-fill-number { font-size: clamp(44px, 5vw, 76px); line-height: 1; font-weight: 300; letter-spacing: -.05em; font-variant-numeric: tabular-nums; color: #94f6db; }
+.recorded-fill-number small { font-size: .36em; margin-left: 4px; }
+.recorded-fill-canvas { position: relative; height: clamp(340px, 48vh, 580px); background: #08151e; }
+.recorded-fill-canvas[data-show-graphics="false"] canvas { display: none; }
+.recorded-fill-canvas canvas { width: 100%; height: 100%; display: block; }
+.recorded-fill-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; text-align: center; padding: 28px; }
+.recorded-fill-fallback > span { font-size: 94px; line-height: 1; color: #638998; }
+.recorded-fill-fallback strong { font-weight: 500; font-size: 22px; }
+.recorded-fill-fallback p { color: #a7bcc5; max-width: 42em; margin: 0; line-height: 1.6; }
+.recorded-fill-caption { position: absolute; bottom: 20px; left: 28px; color: #bed1d8; line-height: 1.7; font-size: 13px; pointer-events: none; }
+.recorded-fill-caption span { color: #7ea4b3; }
+.recorded-fill-status { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 12px; color: #99bcba; padding: 13px 28px; border-top: 1px solid #243b46; }
+.recorded-fill-card .recorded-fill-values { margin: 6px 28px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px 24px; }
+.recorded-fill-values > div { display: block; min-width: 0; }
+.recorded-fill-values dt { min-width: 0; color: #90aebc; font-size: 12px; margin-bottom: 6px; }
+.recorded-fill-values dd { min-width: 0; margin: 0; font-size: 14px; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; user-select: text; }
+.recorded-fill-explanation, .recorded-fill-warning { margin: 20px 28px; max-width: 80ch; font-size: 13px; line-height: 1.7; color: #a7bcc5; }
+.recorded-fill-warning { color: #f3c591; }
+.recorded-fill-references, .recorded-fill-qualification { margin: 20px 28px; border-top: 1px solid #29414b; padding-top: 18px; }
+.recorded-fill-references summary, .recorded-fill-qualification summary { cursor: pointer; font-size: 14px; }
+.recorded-fill-references p, .recorded-fill-qualification p { font-size: 13px; line-height: 1.7; color: #a7bcc5; }
+.recorded-fill-references table { width: 100%; font-size: 13px; border-collapse: collapse; }
+.recorded-fill-references caption { text-align: left; color: #90aebc; padding: 8px 0 16px; overflow-wrap: anywhere; }
+.recorded-fill-references th, .recorded-fill-references td { text-align: left; border-bottom: 1px solid #243b46; padding: 9px 0; font-weight: 400; }
+.recorded-fill-references thead th { color: #90aebc; }
+.recorded-fill-references td { font-variant-numeric: tabular-nums; }
+.recorded-fill-swatch { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 9px; }
+.recorded-fill-qualification > div { display: flex; flex-wrap: wrap; gap: 10px; }
+@media(max-width: 640px) { .recorded-fill-heading { padding: 22px 20px; } .recorded-fill-card .recorded-fill-values { grid-template-columns: 1fr; margin-inline: 20px; } .recorded-fill-references,.recorded-fill-qualification,.recorded-fill-explanation,.recorded-fill-warning { margin-inline: 20px; } }

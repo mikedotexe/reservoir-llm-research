@@ -1,0 +1,219 @@
+{
+  "schema": "reservoir-legacy-replay-targets-v1",
+  "preparedAtUtc": "2026-10-13T21:18:56.847663+00:00",
+  "scope": "Read-only existing immutable bundles, prior receipts and pinned executable hashes. No executable invoked, model, app, UI or service called.",
+  "prospectiveEvaluationFreezeUnchanged": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/evaluation-freeze-01.json",
+    "bytes": 7713,
+    "sha256": "4452db458d2e79bc4ab4c48e66407e93e4d4f7088cc5d6ed2624d5c9e28cea85"
+  },
+  "targets": [
+    {
+      "id": "legacy-v3-held-0.13.0",
+      "bundle": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.13-open-writing/exports/sustained-1791923112800-6-6-36",
+      "priorPassingReceipt": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/native-export-review-01/receipt.json",
+        "bytes": 15576,
+        "sha256": "d75658b44c6ac1eadbbc76da9dd4e05acab0d4dc2f4fd45ffafd1bc3a7843f65"
+      },
+      "originalExecutable": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/native-export-review-01/reservoir-scope-desktop-pinned",
+        "bytes": 16801360,
+        "sha256": "689ed9e13e6cdbea8774c232b88018eaebd0c8fcbd2aaedc2d0fb0c6e1bb3b5b"
+      },
+      "priorExecutableVersion": "0.13.0",
+      "manifestSha256": "ac1b87e3e8bc50689d28f36a73a8a2e5ee1de2091d30117dbbbb44c294d46ef4",
+      "checkpointSha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff",
+      "sessionId": "sustained-1791923112800-6",
+      "generation": "6",
+      "revision": "36",
+      "step": 30,
+      "journalCount": 0,
+      "segmentCount": 2,
+      "sizeBytes": 235894,
+      "promptVersionRetained": "reservoir-journal-v3",
+      "promptVersionEffective": "reservoir-journal-v3",
+      "legacyGenerationBudgetFieldsAbsent": true,
+      "legacyEffectiveBudget": {
+        "outputTokens": 256,
+        "requestDeadlineSeconds": 60
+      },
+      "contextTokens": 4096,
+      "finalCorePhaseKind": "blocked",
+      "attemptCount": 1,
+      "inventory": {
+        "manifest.json": {
+          "bytes": 1106,
+          "sha256": "ac1b87e3e8bc50689d28f36a73a8a2e5ee1de2091d30117dbbbb44c294d46ef4"
+        },
+        "segments/segment-00000001.json": {
+          "bytes": 131112,
+          "sha256": "07356d64db1ecad7173a26a3c164ae13868edf7cc5683cc21fd622351fbfa350"
+        },
+        "segments/segment-00000002.json": {
+          "bytes": 69643,
+          "sha256": "1522ea129354c4416d80faf760abde702a60e42febdf3374829e398834bc1258"
+        },
+        "checkpoints/a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff.json": {
+          "bytes": 34033,
+          "sha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff"
+        }
+      },
+      "newReplayStatus": "not_executed_waiting_for_packaged_0.14.0",
+      "newReplayCommandTemplate": [
+        "/usr/bin/time",
+        "-l",
+        "<absolute newly pinned 0.14.0 executable>",
+        "--verify-sustained",
+        "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.13-open-writing/exports/sustained-1791923112800-6-6-36"
+      ],
+      "requiredNewReplayOutcome": "exit0/statuspassed/modelsContactedfalse; same step/journal/segment/manifest/checkpoint identities; original bundle inventory unchanged"
+    },
+    {
+      "id": "legacy-v1-completed-0.12.2",
+      "bundle": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-reading/exports/sustained-1791919382664-3-3-143",
+      "priorPassingReceipt": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/real-model-export-01/receipt.json",
+        "bytes": 14101,
+        "sha256": "7cc9bc59a8ff6c27f5ab740e586d80821b4a383206b59b1606fb07dfd19094c1"
+      },
+      "originalExecutable": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/real-model-export-01/reservoir-scope-desktop-pinned",
+        "bytes": 16783504,
+        "sha256": "2fa824855d1172ebf707b4f1ce5f50d2c3eb74ab4aeeb437d41dc566f818db8d"
+      },
+      "priorExecutableVersion": "0.12.2",
+      "manifestSha256": "215162126a8701c55f8ad039cbd081071f84a6d18903366c0e723f69d2780d1c",
+      "checkpointSha256": "1a066c4fec045169e8cacd582ba5b4d78a664be0576860c82e079eaa597c1e3e",
+      "sessionId": "sustained-1791919382664-3",
+      "generation": "3",
+      "revision": "143",
+      "step": 121,
+      "journalCount": 4,
+      "segmentCount": 19,
+      "sizeBytes": 1781880,
+      "promptVersionRetained": null,
+      "promptVersionEffective": "reservoir-journal-v1",
+      "legacyGenerationBudgetFieldsAbsent": true,
+      "legacyEffectiveBudget": {
+        "outputTokens": 256,
+        "requestDeadlineSeconds": 60
+      },
+      "contextTokens": 4096,
+      "finalCorePhaseKind": "ready",
+      "attemptCount": 4,
+      "inventory": {
+        "manifest.json": {
+          "bytes": 1001,
+          "sha256": "215162126a8701c55f8ad039cbd081071f84a6d18903366c0e723f69d2780d1c"
+        },
+        "segments/segment-00000001.json": {
+          "bytes": 129658,
+          "sha256": "d47cb0fef4c8af7a650c11e4450745fba7516425e884c4f6fa3486360fccc80d"
+        },
+        "segments/segment-00000002.json": {
+          "bytes": 69443,
+          "sha256": "654207eeafc6641ff52b670795b675b6bade75d98eba6f618a139838e08a9b50"
+        },
+        "segments/segment-00000003.json": {
+          "bytes": 68172,
+          "sha256": "c03d5b725461d719bdb51f16f6939410bf9fef414567c2cc731c583c873093f0"
+        },
+        "segments/segment-00000004.json": {
+          "bytes": 65126,
+          "sha256": "0c68ee5accba2952c1c988f6acc1903d1a4fe6f0ec403521158c64d00ee5e0f5"
+        },
+        "segments/segment-00000005.json": {
+          "bytes": 170931,
+          "sha256": "78dd29a2162a6577868f5973448f1886eb989bd4bbcaa621729000944d6be0fb"
+        },
+        "segments/segment-00000006.json": {
+          "bytes": 71168,
+          "sha256": "036f536ef3128060ddbc5615136416a2cd52dece7d159ce25887fe36a60c8b97"
+        },
+        "segments/segment-00000007.json": {
+          "bytes": 77287,
+          "sha256": "0450aae4880e6444497a87862548e3f3759aa567bd2e4d9b32ea10df70b025cc"
+        },
+        "segments/segment-00000008.json": {
+          "bytes": 73142,
+          "sha256": "5fdbaabe4611a50da2fefc7ab8324d0aa6b17baf0f5352180e37f273e91a6eeb"
+        },
+        "segments/segment-00000009.json": {
+          "bytes": 66045,
+          "sha256": "4a07c0177299412047b32bbf1d6311735a8439a34cf681852d4cbe06e7fdd8ff"
+        },
+        "segments/segment-00000010.json": {
+          "bytes": 170896,
+          "sha256": "605452cc202d73e4dd3e92aa37e7638a5a434a86adaa923ca1e6449273ca7979"
+        },
+        "segments/segment-00000011.json": {
+          "bytes": 70658,
+          "sha256": "c5c8fa33d87364ccacb58a5becb292af4dff6b568130b315218af66113783d58"
+        },
+        "segments/segment-00000012.json": {
+          "bytes": 77222,
+          "sha256": "18d763f1ed7e5a2239eb5ef239725966e32ec9c37b10c0b6b1cbaef5f9cfd82b"
+        },
+        "segments/segment-00000013.json": {
+          "bytes": 73369,
+          "sha256": "b1b8116b2b19d2bd99c7cdf9598869fc51aafd4cd6680579948895f3896cf081"
+        },
+        "segments/segment-00000014.json": {
+          "bytes": 66282,
+          "sha256": "15cd9ca78bccd91559b5298bfbdb8126ea4bd8d3736e5a5eb12ae47d5cf79a1a"
+        },
+        "segments/segment-00000015.json": {
+          "bytes": 170809,
+          "sha256": "5b5a735fe90330d89ffcdc341bc44fb3c829f72be940215cbed8b89fd8537995"
+        },
+        "segments/segment-00000016.json": {
+          "bytes": 71678,
+          "sha256": "2b40986be1b707124b6ee30a9b2dd67643c384e51b26ac8feacc7b5476ff45db"
+        },
+        "segments/segment-00000017.json": {
+          "bytes": 78784,
+          "sha256": "50c278e1361a54636aa93d101296940499b2591fd790f3f83d487589c5123d2c"
+        },
+        "segments/segment-00000018.json": {
+          "bytes": 74766,
+          "sha256": "9bd1072748aea656c531649add4571db74f49e707c84aa7e07db7d3b364e7033"
+        },
+        "segments/segment-00000019.json": {
+          "bytes": 66842,
+          "sha256": "dbef96dd68dad14a1839fcdea2abc8a8ebb1883b4e4e8c133b551f4db3025fd6"
+        },
+        "journals/journal-120-4-d53cc7433c2707c4c3d9b0494aa8a4ec9bc63eed55e4d276c9e0432b840e10df.json": {
+          "bytes": 10860,
+          "sha256": "8a216b3454bfd9e2298f101f48ecdde91df18308532fd88345d7452d04ecab0c"
+        },
+        "journals/journal-30-1-d63f1e5125621f264ed52d25a45a95d90639b625ada8f767afe111ffec47119e.json": {
+          "bytes": 7350,
+          "sha256": "685e5833c204577907f92ec41d9d79c70ed90298bc778c20a58d426238077f82"
+        },
+        "journals/journal-60-2-201687b88a028469621874d9f1652624bcf769269b005b89d8f2a81e1aed6b54.json": {
+          "bytes": 10051,
+          "sha256": "2a20de389b1a7a9ebd3a35b84ad774c495e8a1c0b1e650ed73a16497065c2668"
+        },
+        "journals/journal-90-3-908f59662d460581a7a579faad09c2c628eed0a862ec9a7ba57e81b1be689c7e.json": {
+          "bytes": 10118,
+          "sha256": "8ba7d4a676e95eaae38c92f071c8bbd6ff68347379fbaefc02cef067454e9e28"
+        },
+        "checkpoints/1a066c4fec045169e8cacd582ba5b4d78a664be0576860c82e079eaa597c1e3e.json": {
+          "bytes": 30222,
+          "sha256": "1a066c4fec045169e8cacd582ba5b4d78a664be0576860c82e079eaa597c1e3e"
+        }
+      },
+      "newReplayStatus": "not_executed_waiting_for_packaged_0.14.0",
+      "newReplayCommandTemplate": [
+        "/usr/bin/time",
+        "-l",
+        "<absolute newly pinned 0.14.0 executable>",
+        "--verify-sustained",
+        "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-reading/exports/sustained-1791919382664-3-3-143"
+      ],
+      "requiredNewReplayOutcome": "exit0/statuspassed/modelsContactedfalse; same step/journal/segment/manifest/checkpoint identities; original bundle inventory unchanged"
+    }
+  ],
+  "nextAction": "Wait for root-qualified new0.14.0 package hash. Pin it separately, verify hash, then use native headless --verify-sustained commands. Do not pass legacy bundles through the new-trial protocol checker: it correctly requires1024/180/8192 and would reject old budgets."
+}

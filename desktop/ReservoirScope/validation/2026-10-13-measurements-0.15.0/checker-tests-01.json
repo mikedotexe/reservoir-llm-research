@@ -1,0 +1,32 @@
+{
+  "schema": "offline-evaluator-test-execution-v1",
+  "startedAtUtc": "2026-10-13T22:28:06.172367+00:00",
+  "endedAtUtc": "2026-10-13T22:28:06.256869+00:00",
+  "wallNanoseconds": 84513542,
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_real_model_export.py"
+  ],
+  "cwd": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0",
+  "exitCode": 0,
+  "expectedTests": 23,
+  "logSha256": "55eec3435b779a9034fcca8bbe0c0817d71ec373d4af1c3635a03f0769b3aafe",
+  "sources": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/test_real_model_export.py",
+      "sha256": "ead9500f98c6670cf0ca380e662fe89caf4958f7c1377c4a88529702655a4fdc"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/check_real_model_export.py",
+      "sha256": "9463bcded5e07982d0b56fb0240cc8ea93c59f478286c69bc58c8341e17b785b"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/run-plan.json",
+      "sha256": "b9cd0206d80f42a40f91a34b501dc9a8c7fca26b33837e3f4b236465bb11eb7a"
+    }
+  ],
+  "scope": "Offline synthetic/known-retained-corpus checks only; no app/model/provider/UI/Being calls."
+}

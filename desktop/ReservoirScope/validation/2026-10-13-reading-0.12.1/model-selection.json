@@ -1,0 +1,275 @@
+{
+  "format": "reservoir-local-model-selection-v1",
+  "createdAtUtc": "2026-10-13T18:21:02.607681+00:00",
+  "status": "selection-and-prospective-launch-recipe-only",
+  "launchStatus": "notStarted",
+  "scope": "Owned Reservoir Scope rehearsal only. No Being process, workspace or service accessed. No local endpoint contacted, model copied, downloaded or launched by this selection task.",
+  "selectedModel": {
+    "tag": "gemma3:4b",
+    "selectionReason": "Modest cached 4B family candidate for a bounded plain-prose journal check; preserves cached identity and avoids a download.",
+    "manifestIdentity": {
+      "path": "/Users/v/.ollama/models/manifests/registry.ollama.ai/library/gemma3/4b",
+      "sha256": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+      "sizeBytes": 856,
+      "mtimeNs": "1774646903035670052",
+      "device": "16777234",
+      "inode": "6308174"
+    },
+    "manifest": {
+      "schemaVersion": 2,
+      "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+      "config": {
+        "mediaType": "application/vnd.docker.container.image.v1+json",
+        "digest": "sha256:b6ae5839783f2ba248e65e4b960ab15f9c4b7118db285827dba6cba9754759e2",
+        "size": 489
+      },
+      "layers": [
+        {
+          "mediaType": "application/vnd.ollama.image.model",
+          "digest": "sha256:aeda25e63ebd698fab8638ffb778e68bed908b960d39d0becc650fa981609d25",
+          "size": 3338792448
+        },
+        {
+          "mediaType": "application/vnd.ollama.image.template",
+          "digest": "sha256:e0a42594d802e5d31cdc786deb4823edb8adff66094d49de8fffe976d753e348",
+          "size": 358
+        },
+        {
+          "mediaType": "application/vnd.ollama.image.license",
+          "digest": "sha256:dd084c7d92a3c1c14cc09ae77153b903fd2024b64a100a0cc8ec9316063d2dbc",
+          "size": 8432
+        },
+        {
+          "mediaType": "application/vnd.ollama.image.params",
+          "digest": "sha256:3116c52250752e00dd06b16382e952bd33c34fd79fc4fe3a5d2c77cf7de1b14b",
+          "size": 77
+        }
+      ]
+    },
+    "declaredSelectedCopyBytesIncludingManifest": 3338802660,
+    "copyBudgetBytesExclusive": 3758096384,
+    "blobAvailability": "Not inspected: manifest only. Every referenced ordinary blob must pass exact size and digest validation before a private copy.",
+    "currentPublicTagShortDigestAtResearch": "68ceab7e468a",
+    "registryDifference": "Current registry tag differs from cached manifest; no pull, update or substitution authorized."
+  },
+  "installedSoftware": {
+    "commandPath": "/usr/local/bin/ollama",
+    "resolvedExecutablePath": "/Applications/Ollama.app/Contents/Resources/ollama",
+    "versionSource": "Application Info.plist only; binary not executed or hashed by selection task.",
+    "plistPath": "/Applications/Ollama.app/Contents/Info.plist",
+    "plistSha256": "20b38700aaa5fff48b94832e05d812b658fd93fcdd1bf6b0be61dec57820d15a",
+    "plistSizeBytes": 1377,
+    "CFBundleShortVersionString": "0.40.3",
+    "CFBundleVersion": "0.40.3",
+    "runtimeVersionVerified": false
+  },
+  "conventionalOllamaMetadata": [
+    {
+      "path": "/Users/v/.ollama/id_ed25519",
+      "exists": true,
+      "ordinaryFile": true,
+      "symlink": false,
+      "mode": "0600",
+      "uid": 501,
+      "sizeBytes": 387,
+      "contentsRead": false
+    },
+    {
+      "path": "/Users/v/.ollama/id_ed25519.pub",
+      "exists": true,
+      "ordinaryFile": true,
+      "symlink": false,
+      "mode": "0644",
+      "uid": 501,
+      "sizeBytes": 81,
+      "contentsRead": false
+    },
+    {
+      "path": "/Users/v/.ollama/server.json",
+      "exists": false,
+      "contentsRead": false
+    }
+  ],
+  "startupAudit": {
+    "basis": "Read-only review of official v0.40.3 source plus installed public app metadata and conventional key/config existence/permissions. This is conditional source evidence, not runtime proof or an OS sandbox.",
+    "expectedNoGlobalOllamaWritesConditions": [
+      "Existing ordinary private key remains present: initializeKeypair therefore does not create private/public keys. Abort if the precondition changes.",
+      "server.json is read by configuration loading, not created by the reviewed serve path.",
+      "OLLAMA_NO_CLOUD=1 prevents recommendation refresh/persistence; an existing conventional recommendation cache may still be read.",
+      "OLLAMA_DEBUG_LOG_REQUESTS=false disables request-body file logging.",
+      "All selected model files are private copies under OLLAMA_MODELS because startup model maintenance can write there even with OLLAMA_NOPRUNE=1."
+    ],
+    "runtimeBeforeAfterCheckRequired": true,
+    "keyOrConfigContentsIncluded": false,
+    "networkSandboxClaim": false
+  },
+  "proposedLaunch": {
+    "mustWaitFor": "Root completes the frozen minimized reliability run and explicitly begins this owned rehearsal; never before 2026-10-13T18:39:18.845510Z.",
+    "workingDirectory": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-real-gemma3-4b",
+    "argv": [
+      "/Applications/Ollama.app/Contents/Resources/ollama",
+      "serve"
+    ],
+    "environmentPolicy": "Child-only environment. Remove inherited OLLAMA_* and HTTP proxy overrides before applying this allowlist; preserve HOME unchanged. Do not use launchctl, the GUI launcher, ollama run/pull/list/stop, or an existing endpoint.",
+    "environment": {
+      "OLLAMA_HOST": "127.0.0.1:0",
+      "OLLAMA_MODELS": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-real-gemma3-4b/models",
+      "OLLAMA_NO_CLOUD": "1",
+      "OLLAMA_NOPRUNE": "1",
+      "OLLAMA_NUM_PARALLEL": "1",
+      "OLLAMA_MAX_LOADED_MODELS": "1",
+      "OLLAMA_MAX_QUEUE": "1",
+      "OLLAMA_CONTEXT_LENGTH": "4096",
+      "OLLAMA_KEEP_ALIVE": "2m",
+      "OLLAMA_LOAD_TIMEOUT": "60s",
+      "OLLAMA_DEBUG": "0",
+      "OLLAMA_DEBUG_LOG_REQUESTS": "false",
+      "OLLAMA_NOHISTORY": "1"
+    },
+    "modelCopyLayout": {
+      "manifestRelativePath": "manifests/registry.ollama.ai/library/gemma3/4b",
+      "blobRelativePathRule": "blobs/<digest with colon replaced by hyphen>",
+      "copyMethod": "Ordinary private copy or filesystem clone with independent writes; no symlinks or hard links to shared cache.",
+      "onMissingOrMismatch": "Abort; do not pull or substitute."
+    },
+    "endpointDiscovery": "Read the actual nonzero loopback listener port from this owned process log; only then configure the app endpoint. No default-service discovery or endpoint scan.",
+    "processOwnership": "Use a new process session/group (e.g. Popen(start_new_session=True)), retain PID/start identity/executable hash/PGID and direct child ownership evidence. Bundled runner is an owned child and normally inherits that group on Darwin.",
+    "cleanup": "Supervise for at most about 900 seconds. Signal only the still-verified owned PID/process group; wait and reap; any escalation stays within that verified group. Never broad pkill/killall or default-service stop.",
+    "lifetimeSeconds": 900
+  },
+  "proposedAppConfiguration": {
+    "seed": "20261013",
+    "turnEvery": 30,
+    "maximumSteps": 121,
+    "maximumTurns": 4,
+    "maximumDurationSeconds": 600,
+    "storageBudgetBytes": 67108864,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true,
+    "language": {
+      "backend": "ollama",
+      "endpoint": "http://127.0.0.1:<owned-actual-port>",
+      "model": "gemma3:4b",
+      "contextTokens": 4096,
+      "responseFormat": null
+    }
+  },
+  "requestBounds": {
+    "maximumOutputTokens": 256,
+    "temperature": 0,
+    "generationSeedSpecifiedByApp": false,
+    "stream": false,
+    "inventoryDeadlineSeconds": 5,
+    "generationDeadlineSeconds": 60,
+    "maximumResponseBytes": 1048576,
+    "redirects": false,
+    "proxies": false,
+    "automaticRetry": false,
+    "attemptBudgetMeaning": "Prepared provider attempts, including any explicit retries. This rehearsal proposes no retry.",
+    "journalGoal": "Up to four accepted and saved journals at steps 30/60/90/120, each with a following application boundary through step 121, if successful. Fewer accepted journals remain an observed outcome.",
+    "durationBoundary": "Already-dispatched generation may settle within its 60-second request deadline after the app duration boundary; no automatic follow-up or numerical application beyond a reached budget."
+  },
+  "resourceQualification": {
+    "hostMemoryGiBContext": 64,
+    "hostMemorySource": "Parent-provided host description; not remeasured here.",
+    "suggestedFreeDiskHeadroomBytes": 8589934592,
+    "headroomMeaning": "Prospective cushion for the private copy and owned temporary/cache/log files, not an enforced Ollama quota or a measured requirement.",
+    "modelCopyLimitSeparateFromRuntimeFiles": true,
+    "hardProcessMemoryLimit": null,
+    "runtimeMemoryQualityThroughputEnergyMeasured": false,
+    "warning": "Parallelism/context limits are controls, not a proven peak-memory or response-quality bound. Temperature zero does not guarantee bit-identical output across builds/hardware."
+  },
+  "requiredBeforeLaunch": [
+    "Finish frozen reliability run.",
+    "Recheck installed executable and helper identity; hash executable for the new run receipt without launching it for version discovery.",
+    "Recheck conventional key/public-key/server.json existence, types and identities privately; retain before/after identity evidence without key contents. Abort if a missing key would be created.",
+    "Validate all five referenced blobs against manifest sizes/digests; make only the selected private cache copy and verify it.",
+    "Record free space and exact process ownership before the first app request."
+  ],
+  "requiredAfterRun": [
+    "Cancel or settle the owned app request and retain the actual outcome; no manufactured success.",
+    "Stop and reap only the owned service/process group.",
+    "Verify conventional key/config identity unchanged and record any unexpected startup writes.",
+    "Retain exact owned model/manifest, service/app identities, request outcomes and resource observations; keep local model results separate from the prior synthetic reliability run."
+  ],
+  "sources": [
+    {
+      "id": "model_registry",
+      "url": "https://ollama.com/library/gemma3:4b",
+      "supports": "Current public tag availability; not the cached manifest identity."
+    },
+    {
+      "id": "model_card",
+      "url": "https://ai.google.dev/gemma/docs/core/model_card_3",
+      "supports": "Official Gemma 3 model family capabilities."
+    },
+    {
+      "id": "api",
+      "url": "https://docs.ollama.com/api/generate",
+      "supports": "Nonstreaming generation fields and options."
+    },
+    {
+      "id": "options",
+      "url": "https://docs.ollama.com/modelfile",
+      "supports": "num_predict, temperature and seed controls."
+    },
+    {
+      "id": "faq",
+      "url": "https://docs.ollama.com/faq",
+      "supports": "Host, models directory, cloud, context, concurrency and keep-alive settings."
+    },
+    {
+      "id": "gpu",
+      "url": "https://docs.ollama.com/gpu",
+      "supports": "Apple Metal support; not a measured resource claim."
+    },
+    {
+      "id": "startup",
+      "url": "https://github.com/ollama/ollama/blob/v0.40.3/cmd/cmd.go",
+      "supports": "Direct serve path; initializeKeypair writes only if conventional private key is absent; listen uses configured host."
+    },
+    {
+      "id": "environment",
+      "url": "https://github.com/ollama/ollama/blob/v0.40.3/envconfig/config.go",
+      "supports": "Port zero accepted; OLLAMA_MODELS and OLLAMA_NO_CLOUD; conventional server.json read path."
+    },
+    {
+      "id": "serve",
+      "url": "https://github.com/ollama/ollama/blob/v0.40.3/server/routes.go",
+      "supports": "Startup model-directory maintenance; actual listener address; owned runner shutdown."
+    },
+    {
+      "id": "recommendations",
+      "url": "https://github.com/ollama/ollama/blob/v0.40.3/server/model_recommendations.go",
+      "supports": "Existing conventional recommendation cache may be read; NO_CLOUD prevents refresh and persistence."
+    },
+    {
+      "id": "show_cache",
+      "url": "https://github.com/ollama/ollama/blob/v0.40.3/server/model_show_cache.go",
+      "supports": "Model-show process cache and cloud hydration guard."
+    },
+    {
+      "id": "request_log",
+      "url": "https://github.com/ollama/ollama/blob/v0.40.3/server/inference_request_log.go",
+      "supports": "Request-body logging disabled unless explicitly enabled."
+    },
+    {
+      "id": "runner",
+      "url": "https://github.com/ollama/ollama/blob/v0.40.3/llm/llama_server.go",
+      "supports": "Owned local llama-server child, loopback binding, offline flag and configured model path."
+    },
+    {
+      "id": "runner_group",
+      "url": "https://github.com/ollama/ollama/blob/v0.40.3/llm/llm_darwin.go",
+      "supports": "Darwin child SysProcAttr does not assign another process group."
+    },
+    {
+      "id": "runner_lookup",
+      "url": "https://github.com/ollama/ollama/blob/v0.40.3/llm/llama_binary.go",
+      "supports": "Local bundled helper search; no download proposed."
+    }
+  ]
+}

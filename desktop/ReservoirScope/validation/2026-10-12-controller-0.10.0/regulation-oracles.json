@@ -1,0 +1,636 @@
+{
+  "schema": "reservoir-core-regulation-oracles-v1",
+  "createdAtUTC": "2026-10-13T05:21:59.170662+00:00",
+  "scope": "Fixed essentials-regulation-v1 numerical replay, 600 paired field observations and native cursor-prefix target-error evidence; not sustained regulation or live-system evidence",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "modelsContacted": false,
+  "liveSourcesRead": false,
+  "outcome": "passed",
+  "cases": [
+    {
+      "name": "retained-swift-controller",
+      "expected": "accepted",
+      "sha256": "a592bdfb35b925ad03ff8ad3a988d6a1b9bd01f7e8ac4e30109647b78e5583a4",
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/essentials/examples/portable/example-regulation-controller.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 600 paired controller steps, shared full-dimensional inputs, next-step retention and the declared target-error window; no journal or model calls.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/essentials/examples/portable/example-regulation-controller.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-regulation-v1\",\"scope\":\"essentials-regulation-v1: 600 paired field-only controller steps, seed-derived common inputs/projection, reduced fill, next-step retention and fixed 301\u2013600 target-error window; no reservoir recurrence, journal, provider authentication, live-system or experience claim\",\"checkedSteps\":1200,\"checkedTurns\":0,\"sha256\":\"a592bdfb35b925ad03ff8ad3a988d6a1b9bd01f7e8ac4e30109647b78e5583a4\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "rust-generated-controller",
+      "expected": "accepted",
+      "sha256": "91b5f54204e4f48eee8d430448c65d3ae13caca1fae768a08851ee0018ec5288",
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/rust-generated.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 600 paired controller steps, shared full-dimensional inputs, next-step retention and the declared target-error window; no journal or model calls.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/rust-generated.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-regulation-v1\",\"scope\":\"essentials-regulation-v1: 600 paired field-only controller steps, seed-derived common inputs/projection, reduced fill, next-step retention and fixed 301\u2013600 target-error window; no reservoir recurrence, journal, provider authentication, live-system or experience claim\",\"checkedSteps\":1200,\"checkedTurns\":0,\"sha256\":\"91b5f54204e4f48eee8d430448c65d3ae13caca1fae768a08851ee0018ec5288\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "defaults-and-inert-path",
+      "expected": "accepted",
+      "sha256": "5484c68a65792159287754fe30ce4c4a10a821d767c6ee4441b87dd2b271eba0",
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 600 paired controller steps, shared full-dimensional inputs, next-step retention and the declared target-error window; no journal or model calls.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-regulation-v1\",\"scope\":\"essentials-regulation-v1: 600 paired field-only controller steps, seed-derived common inputs/projection, reduced fill, next-step retention and fixed 301\u2013600 target-error window; no reservoir recurrence, journal, provider authentication, live-system or experience claim\",\"checkedSteps\":1200,\"checkedTurns\":0,\"sha256\":\"5484c68a65792159287754fe30ce4c4a10a821d767c6ee4441b87dd2b271eba0\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "null-specification-fields",
+      "expected": "accepted",
+      "sha256": "96e0d13d4b654afae082d27e17fa81d67f7b766cbdf8ff6eca3a09dcd8ef53da",
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 600 paired controller steps, shared full-dimensional inputs, next-step retention and the declared target-error window; no journal or model calls.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-regulation-v1\",\"scope\":\"essentials-regulation-v1: 600 paired field-only controller steps, seed-derived common inputs/projection, reduced fill, next-step retention and fixed 301\u2013600 target-error window; no reservoir recurrence, journal, provider authentication, live-system or experience claim\",\"checkedSteps\":1200,\"checkedTurns\":0,\"sha256\":\"96e0d13d4b654afae082d27e17fa81d67f7b766cbdf8ff6eca3a09dcd8ef53da\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "clock-within-tolerance",
+      "expected": "accepted",
+      "sha256": "5b17952f4c6d6c3da0f05c7651ad315c4c5b31219c44d9a37bb6b99d9e1b8b72",
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 600 paired controller steps, shared full-dimensional inputs, next-step retention and the declared target-error window; no journal or model calls.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-regulation-v1\",\"scope\":\"essentials-regulation-v1: 600 paired field-only controller steps, seed-derived common inputs/projection, reduced fill, next-step retention and fixed 301\u2013600 target-error window; no reservoir recurrence, journal, provider authentication, live-system or experience claim\",\"checkedSteps\":1200,\"checkedTurns\":0,\"sha256\":\"5b17952f4c6d6c3da0f05c7651ad315c4c5b31219c44d9a37bb6b99d9e1b8b72\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "spectral-within-native-tolerance",
+      "expected": "accepted",
+      "sha256": "cfe62420fdbb0a48014d5b22e09500571120e00e4491d5f6930e6c7b67326c4c",
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 600 paired controller steps, shared full-dimensional inputs, next-step retention and the declared target-error window; no journal or model calls.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-regulation-v1\",\"scope\":\"essentials-regulation-v1: 600 paired field-only controller steps, seed-derived common inputs/projection, reduced fill, next-step retention and fixed 301\u2013600 target-error window; no reservoir recurrence, journal, provider authentication, live-system or experience claim\",\"checkedSteps\":1200,\"checkedTurns\":0,\"sha256\":\"cfe62420fdbb0a48014d5b22e09500571120e00e4491d5f6930e6c7b67326c4c\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "projection-one-ulp",
+      "expected": "rejected",
+      "sha256": "d95f47b131561b3a37003bff5c1503c726d2eeb9d1d2f795ce6d1e2b3cb6bd9f",
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Controller field projection differs from its seed."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-regulation-v1\",\"scope\":\"essentials-regulation-v1: 600 paired field-only controller steps, seed-derived common inputs/projection, reduced fill, next-step retention and fixed 301\u2013600 target-error window; no reservoir recurrence, journal, provider authentication, live-system or experience claim\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"d95f47b131561b3a37003bff5c1503c726d2eeb9d1d2f795ce6d1e2b3cb6bd9f\",\"modelsContacted\":false,\"diagnostics\":[\"Controller field projection differs from its seed\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "changed-common-input",
+      "expected": "rejected",
+      "sha256": "1b8f1276538f054956e01b141678be8e518f6738d76497f60ab85bd476e1e803",
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Controller common input differs."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-regulation-v1\",\"scope\":\"essentials-regulation-v1: 600 paired field-only controller steps, seed-derived common inputs/projection, reduced fill, next-step retention and fixed 301\u2013600 target-error window; no reservoir recurrence, journal, provider authentication, live-system or experience claim\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"1b8f1276538f054956e01b141678be8e518f6738d76497f60ab85bd476e1e803\",\"modelsContacted\":false,\"diagnostics\":[\"Controller common input differs (0.4841297575436466, expected 0.4831297575436466)\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "clock-outside-tolerance",
+      "expected": "rejected",
+      "sha256": "1cf435ce6a62fed99797651cb8e915b9c08b6858c86588b946e90e66a648101d",
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Controller clock differs."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-regulation-v1\",\"scope\":\"essentials-regulation-v1: 600 paired field-only controller steps, seed-derived common inputs/projection, reduced fill, next-step retention and fixed 301\u2013600 target-error window; no reservoir recurrence, journal, provider authentication, live-system or experience claim\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"1cf435ce6a62fed99797651cb8e915b9c08b6858c86588b946e90e66a648101d\",\"modelsContacted\":false,\"diagnostics\":[\"Controller clock differs (0.3333333833333333, expected 0.3333333333333333)\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "next-retention-outside-tolerance",
+      "expected": "rejected",
+      "sha256": "42d9eaa05414f4e52dc79ad62e9a96181141c8107fb99bed8508c93dda74c880",
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Controller next-step retention differs."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-regulation-v1\",\"scope\":\"essentials-regulation-v1: 600 paired field-only controller steps, seed-derived common inputs/projection, reduced fill, next-step retention and fixed 301\u2013600 target-error window; no reservoir recurrence, journal, provider authentication, live-system or experience claim\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"42d9eaa05414f4e52dc79ad62e9a96181141c8107fb99bed8508c93dda74c880\",\"modelsContacted\":false,\"diagnostics\":[\"Controller next-step retention differs (0.96500005, expected 0.965)\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "same-step-retention",
+      "expected": "rejected",
+      "sha256": "34ea6c2b3dd48ede49ac6c0191184416bd21be9e53ffc172854c5bbc64957e4e",
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Controller retention used differs."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-regulation-v1\",\"scope\":\"essentials-regulation-v1: 600 paired field-only controller steps, seed-derived common inputs/projection, reduced fill, next-step retention and fixed 301\u2013600 target-error window; no reservoir recurrence, journal, provider authentication, live-system or experience claim\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"34ea6c2b3dd48ede49ac6c0191184416bd21be9e53ffc172854c5bbc64957e4e\",\"modelsContacted\":false,\"diagnostics\":[\"Controller retention used differs (0.965, expected 0.955)\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "control-integral",
+      "expected": "rejected",
+      "sha256": "25270152e55fc13c587cee4ed379565958bade9bd3f95dffc6bf277bbf53d11e",
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Controller control integral differs."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-regulation-v1\",\"scope\":\"essentials-regulation-v1: 600 paired field-only controller steps, seed-derived common inputs/projection, reduced fill, next-step retention and fixed 301\u2013600 target-error window; no reservoir recurrence, journal, provider authentication, live-system or experience claim\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"25270152e55fc13c587cee4ed379565958bade9bd3f95dffc6bf277bbf53d11e\",\"modelsContacted\":false,\"diagnostics\":[\"Controller control integral differs (0.01, expected 0)\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "basis-corruption",
+      "expected": "rejected",
+      "sha256": "8dd732febb06f1b8f8a72144a528e44fddd88fa43b4f0ae8a2e098ed52146e92",
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: mode norm does not replay."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-regulation-v1\",\"scope\":\"essentials-regulation-v1: 600 paired field-only controller steps, seed-derived common inputs/projection, reduced fill, next-step retention and fixed 301\u2013600 target-error window; no reservoir recurrence, journal, provider authentication, live-system or experience claim\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"8dd732febb06f1b8f8a72144a528e44fddd88fa43b4f0ae8a2e098ed52146e92\",\"modelsContacted\":false,\"diagnostics\":[\"Eigenvector norm does not replay (0.9994746608999908, expected 1)\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "wrong-summary",
+      "expected": "rejected",
+      "sha256": "d41a94355e4fa42d4f6f9909ed0f5cca6a542bc90ab8076d54cab433939d1330",
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Controller regulated target error differs."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-regulation-v1\",\"scope\":\"essentials-regulation-v1: 600 paired field-only controller steps, seed-derived common inputs/projection, reduced fill, next-step retention and fixed 301\u2013600 target-error window; no reservoir recurrence, journal, provider authentication, live-system or experience claim\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"d41a94355e4fa42d4f6f9909ed0f5cca6a542bc90ab8076d54cab433939d1330\",\"modelsContacted\":false,\"diagnostics\":[\"Controller regulated target error differs (4.169937143601519, expected 4.159937143601519)\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "partial-record",
+      "expected": "rejected",
+      "sha256": "42c8610a0765158f4b4aaf67cac9e733b2b9cd6acc001470ace737d00349750b",
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Controller example must preserve all 600 paired observations."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-regulation-v1\",\"scope\":\"essentials-regulation-v1: 600 paired field-only controller steps, seed-derived common inputs/projection, reduced fill, next-step retention and fixed 301\u2013600 target-error window; no reservoir recurrence, journal, provider authentication, live-system or experience claim\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"42c8610a0765158f4b4aaf67cac9e733b2b9cd6acc001470ace737d00349750b\",\"modelsContacted\":false,\"diagnostics\":[\"Controller example must retain all 600 paired observations\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "wrong-qualified-seed",
+      "expected": "rejected",
+      "sha256": "ef43a7a9247ca94bee6ff26a5b704525b9f4f1731edc02649142d744e89bcf23",
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: The controller mechanism example must retain its qualified seeds, 600 steps, controller and 301\u2013600 evaluation window."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/mutation.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-regulation-v1\",\"scope\":\"essentials-regulation-v1: 600 paired field-only controller steps, seed-derived common inputs/projection, reduced fill, next-step retention and fixed 301\u2013600 target-error window; no reservoir recurrence, journal, provider authentication, live-system or experience claim\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"ef43a7a9247ca94bee6ff26a5b704525b9f4f1731edc02649142d744e89bcf23\",\"modelsContacted\":false,\"diagnostics\":[\"Controller example requires its qualified fixture, seeds, 600 steps, controller and 301\u2013600 evaluation window\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "retained-prefix-and-rewind",
+      "cursorSequence": [
+        0,
+        300,
+        301,
+        450,
+        599,
+        600,
+        450,
+        301,
+        300,
+        900
+      ],
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/regulation-window-oracle",
+            "/Users/v/other/reservoir-llm-research/essentials/examples/portable/example-regulation-controller.json"
+          ],
+          "exitCode": 0,
+          "stdout": "[{\"cursor\":0,\"evidence\":null},{\"cursor\":300,\"evidence\":null},{\"cursor\":301,\"evidence\":{\"baselineMeanAbsoluteError\":12.567835697756564,\"count\":1,\"firstStep\":301,\"isComplete\":false,\"lastStep\":301,\"regulatedMeanAbsoluteError\":5.650315352642465}},{\"cursor\":450,\"evidence\":{\"baselineMeanAbsoluteError\":11.62050457408682,\"count\":150,\"firstStep\":301,\"isComplete\":false,\"lastStep\":450,\"regulatedMeanAbsoluteError\":3.97169822486246}},{\"cursor\":599,\"evidence\":{\"baselineMeanAbsoluteError\":11.922187108579866,\"count\":299,\"firstStep\":301,\"isComplete\":false,\"lastStep\":599,\"regulatedMeanAbsoluteError\":4.158506264583471}},{\"cursor\":600,\"evidence\":{\"baselineMeanAbsoluteError\":11.924755885049205,\"count\":300,\"firstStep\":301,\"isComplete\":true,\"lastStep\":600,\"regulatedMeanAbsoluteError\":4.159937143601519}},{\"cursor\":450,\"evidence\":{\"baselineMeanAbsoluteError\":11.62050457408682,\"count\":150,\"firstStep\":301,\"isComplete\":false,\"lastStep\":450,\"regulatedMeanAbsoluteError\":3.97169822486246}},{\"cursor\":301,\"evidence\":{\"baselineMeanAbsoluteError\":12.567835697756564,\"count\":1,\"firstStep\":301,\"isComplete\":false,\"lastStep\":301,\"regulatedMeanAbsoluteError\":5.650315352642465}},{\"cursor\":300,\"evidence\":null},{\"cursor\":900,\"evidence\":{\"baselineMeanAbsoluteError\":11.924755885049205,\"count\":300,\"firstStep\":301,\"isComplete\":true,\"lastStep\":600,\"regulatedMeanAbsoluteError\":4.159937143601519}}]",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/examples/emit_regulation_record",
+            "windows",
+            "/Users/v/other/reservoir-llm-research/essentials/examples/portable/example-regulation-controller.json"
+          ],
+          "exitCode": 0,
+          "stdout": "[{\"cursor\":0,\"evidence\":null},{\"cursor\":300,\"evidence\":null},{\"cursor\":301,\"evidence\":{\"baselineMeanAbsoluteError\":12.567835697756564,\"count\":1,\"firstStep\":301,\"isComplete\":false,\"lastStep\":301,\"regulatedMeanAbsoluteError\":5.650315352642465}},{\"cursor\":450,\"evidence\":{\"baselineMeanAbsoluteError\":11.62050457408682,\"count\":150,\"firstStep\":301,\"isComplete\":false,\"lastStep\":450,\"regulatedMeanAbsoluteError\":3.97169822486246}},{\"cursor\":599,\"evidence\":{\"baselineMeanAbsoluteError\":11.922187108579866,\"count\":299,\"firstStep\":301,\"isComplete\":false,\"lastStep\":599,\"regulatedMeanAbsoluteError\":4.158506264583471}},{\"cursor\":600,\"evidence\":{\"baselineMeanAbsoluteError\":11.924755885049205,\"count\":300,\"firstStep\":301,\"isComplete\":true,\"lastStep\":600,\"regulatedMeanAbsoluteError\":4.159937143601519}},{\"cursor\":450,\"evidence\":{\"baselineMeanAbsoluteError\":11.62050457408682,\"count\":150,\"firstStep\":301,\"isComplete\":false,\"lastStep\":450,\"regulatedMeanAbsoluteError\":3.97169822486246}},{\"cursor\":301,\"evidence\":{\"baselineMeanAbsoluteError\":12.567835697756564,\"count\":1,\"firstStep\":301,\"isComplete\":false,\"lastStep\":301,\"regulatedMeanAbsoluteError\":5.650315352642465}},{\"cursor\":300,\"evidence\":null},{\"cursor\":900,\"evidence\":{\"baselineMeanAbsoluteError\":11.924755885049205,\"count\":300,\"firstStep\":301,\"isComplete\":true,\"lastStep\":600,\"regulatedMeanAbsoluteError\":4.159937143601519}}]",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "rust-generated-prefix-and-rewind",
+      "cursorSequence": [
+        0,
+        300,
+        301,
+        450,
+        599,
+        600,
+        450,
+        301,
+        300,
+        900
+      ],
+      "checks": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/regulation-window-oracle",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/rust-generated.json"
+          ],
+          "exitCode": 0,
+          "stdout": "[{\"cursor\":0,\"evidence\":null},{\"cursor\":300,\"evidence\":null},{\"cursor\":301,\"evidence\":{\"baselineMeanAbsoluteError\":12.567835697756564,\"count\":1,\"firstStep\":301,\"isComplete\":false,\"lastStep\":301,\"regulatedMeanAbsoluteError\":5.650315352642465}},{\"cursor\":450,\"evidence\":{\"baselineMeanAbsoluteError\":11.62050457408682,\"count\":150,\"firstStep\":301,\"isComplete\":false,\"lastStep\":450,\"regulatedMeanAbsoluteError\":3.97169822486246}},{\"cursor\":599,\"evidence\":{\"baselineMeanAbsoluteError\":11.922187108579866,\"count\":299,\"firstStep\":301,\"isComplete\":false,\"lastStep\":599,\"regulatedMeanAbsoluteError\":4.158506264583471}},{\"cursor\":600,\"evidence\":{\"baselineMeanAbsoluteError\":11.924755885049205,\"count\":300,\"firstStep\":301,\"isComplete\":true,\"lastStep\":600,\"regulatedMeanAbsoluteError\":4.159937143601519}},{\"cursor\":450,\"evidence\":{\"baselineMeanAbsoluteError\":11.62050457408682,\"count\":150,\"firstStep\":301,\"isComplete\":false,\"lastStep\":450,\"regulatedMeanAbsoluteError\":3.97169822486246}},{\"cursor\":301,\"evidence\":{\"baselineMeanAbsoluteError\":12.567835697756564,\"count\":1,\"firstStep\":301,\"isComplete\":false,\"lastStep\":301,\"regulatedMeanAbsoluteError\":5.650315352642465}},{\"cursor\":300,\"evidence\":null},{\"cursor\":900,\"evidence\":{\"baselineMeanAbsoluteError\":11.924755885049205,\"count\":300,\"firstStep\":301,\"isComplete\":true,\"lastStep\":600,\"regulatedMeanAbsoluteError\":4.159937143601519}}]",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/examples/emit_regulation_record",
+            "windows",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/rust-generated.json"
+          ],
+          "exitCode": 0,
+          "stdout": "[{\"cursor\":0,\"evidence\":null},{\"cursor\":300,\"evidence\":null},{\"cursor\":301,\"evidence\":{\"baselineMeanAbsoluteError\":12.567835697756564,\"count\":1,\"firstStep\":301,\"isComplete\":false,\"lastStep\":301,\"regulatedMeanAbsoluteError\":5.650315352642465}},{\"cursor\":450,\"evidence\":{\"baselineMeanAbsoluteError\":11.62050457408682,\"count\":150,\"firstStep\":301,\"isComplete\":false,\"lastStep\":450,\"regulatedMeanAbsoluteError\":3.97169822486246}},{\"cursor\":599,\"evidence\":{\"baselineMeanAbsoluteError\":11.922187108579866,\"count\":299,\"firstStep\":301,\"isComplete\":false,\"lastStep\":599,\"regulatedMeanAbsoluteError\":4.158506264583471}},{\"cursor\":600,\"evidence\":{\"baselineMeanAbsoluteError\":11.924755885049205,\"count\":300,\"firstStep\":301,\"isComplete\":true,\"lastStep\":600,\"regulatedMeanAbsoluteError\":4.159937143601519}},{\"cursor\":450,\"evidence\":{\"baselineMeanAbsoluteError\":11.62050457408682,\"count\":150,\"firstStep\":301,\"isComplete\":false,\"lastStep\":450,\"regulatedMeanAbsoluteError\":3.97169822486246}},{\"cursor\":301,\"evidence\":{\"baselineMeanAbsoluteError\":12.567835697756564,\"count\":1,\"firstStep\":301,\"isComplete\":false,\"lastStep\":301,\"regulatedMeanAbsoluteError\":5.650315352642465}},{\"cursor\":300,\"evidence\":null},{\"cursor\":900,\"evidence\":{\"baselineMeanAbsoluteError\":11.924755885049205,\"count\":300,\"firstStep\":301,\"isComplete\":true,\"lastStep\":600,\"regulatedMeanAbsoluteError\":4.159937143601519}}]",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    }
+  ],
+  "executables": {
+    "swiftVerifier": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+      "sha256": "d0a69c67725cbf002c9b0148cf5fc4cc4ead6db076bc483d46a51925a0d2a39d"
+    },
+    "nativePrefixOracle": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/regulation-window-oracle",
+      "sha256": "4b5ca1a32859b7d0cd39cc4e9f262a9474e621b4a220e5c171b260df7aa4c4e0"
+    },
+    "rustVerifier": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-core",
+      "sha256": "ffeb94f5a635da4535f401374cfe3404064b353dfd57253a32f5fa49192b1f61"
+    },
+    "rustHelper": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/examples/emit_regulation_record",
+      "sha256": "0c8cdcb22585d7dea0ca7aa427746b5d3f71cbba0a3abc8dc40c081b55eae753"
+    }
+  },
+  "sources": [
+    {
+      "path": "essentials/regulation/RegulationExample.swift",
+      "sha256": "afc5b8c9568624198adcfd1fe21dc2171ea0c8d6b86512367cd83631a46bf99a"
+    },
+    {
+      "path": "essentials/regulation/Regulation.swift",
+      "sha256": "63ef074bf615a63a28a7c15f813b8e76f975ad9efc57a273f48ad15e0a07137b"
+    },
+    {
+      "path": "essentials/spectral_bridge/SensoryField.swift",
+      "sha256": "8993986044309fefc911a052a9ef201c4f6efcd01afe63239512be4502022809"
+    },
+    {
+      "path": "essentials/actions/ActionVerification.swift",
+      "sha256": "34a6894808492767da18e4b25e1b3cba981d06203154ca19785d4d8ec0960ad3"
+    },
+    {
+      "path": "essentials/runner/Main.swift",
+      "sha256": "cc7274c893cce86611ee4ebb9a83899bb0a264c890105f663244b966fdd86bd7"
+    },
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/GuidedLessons.swift",
+      "sha256": "d6fbf60c4ac863e296d19ecb579fcf9c3e46da4c7d69e82a3351c87cfbc5aea3"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/src/regulation.rs",
+      "sha256": "7f2d62130bcc4875fa300e72690f48b2d8522cf738349a7ac99d5aed96548fdc"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/src/math.rs",
+      "sha256": "845ed5f908d4b7c0765694f47b635be2b201693ce06a3ca25bcd70abe3259bc7"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/src/stage.rs",
+      "sha256": "4b2603b2920c5479703d5e4dc89a8fef3e178040bc21185d88b246494df53a03"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/src/lib.rs",
+      "sha256": "98a6a60e6d789312ad53a130adb63fc6fd4caf8fa7bdc282478c242a58e757f6"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/check_regulation_oracles.py",
+      "sha256": "c7494e2a7317111df3089821f4cfc8a65e01149f3634426c3754956498c3157f"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/regulation_window_oracle.swift",
+      "sha256": "53bcc42c6dfbc72617109fcbccb719b191b19ee511f15c1f859abacff67d4313"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/examples/emit_regulation_record.rs",
+      "sha256": "d99a812a65d9eb66044c2615e408912816cc34b5fe36a956ad276acec25d5f3a"
+    }
+  ],
+  "fixture": {
+    "path": "essentials/examples/portable/example-regulation-controller.json",
+    "sha256": "a592bdfb35b925ad03ff8ad3a988d6a1b9bd01f7e8ac4e30109647b78e5583a4",
+    "bytes": 52776851
+  },
+  "rustGeneration": {
+    "command": [
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/examples/emit_regulation_record",
+      "generate",
+      "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-regulation-oracles-zhwttlsu/rust-generated.json"
+    ],
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+}

@@ -1,0 +1,84 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": "python3 desktop/ReservoirScope/scripts/check_reference.py",
+    "workingDirectory": "repository root",
+    "evidence": "Observed 2026-10-12 UTC: verified baseline 96b60ed1d1fe9bdd3a5f50dec3a66a4754ad7f95, 180 native/source inputs, 43 canonical resources and one derived fixture; exit 0.",
+    "observer": "tauri_platform_validation agent"
+  },
+  {
+    "id": "resource-staging-tests",
+    "status": "passed",
+    "command": "python3 -m unittest discover -s desktop/ReservoirScope/scripts -p 'test_*.py'",
+    "workingDirectory": "repository root",
+    "evidence": "Observed 2026-10-12 UTC after receipt-tool archive support: all 9 tests passed in 2.124s (5 reference/staging tests and 4 receipt tests); exit 0. Tests use disposable trees, not canonical source mutations.",
+    "observer": "tauri_platform_validation agent"
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": "npm test",
+    "workingDirectory": "desktop/ReservoirScope",
+    "evidence": "Frontend agent reported final sources passed all 10 tests across two test files after clear-color restoration correction, observed at 18:29 America/Los_Angeles on 2026-10-11.",
+    "observer": "app_parity_inventory agent",
+    "qualification": "No packaged-WebView or human acceptance inferred."
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": "npm run build",
+    "workingDirectory": "desktop/ReservoirScope",
+    "evidence": "Frontend agent reported final TypeScript check and Vite 7.3.7 production build succeeded after clear-color restoration correction, observed at 18:29 America/Los_Angeles on 2026-10-11. Standard graphics chunk greater-than-500-kB advisory remains.",
+    "observer": "app_parity_inventory agent"
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk cargo test --locked --package reservoir-scope-desktop",
+    "workingDirectory": "desktop/ReservoirScope",
+    "evidence": "Root observed the final standalone backend test invocation exit 0: 5 passed, 0 failed in 0.17s, after float-roundtrip, non-following input open and canonical export destination corrections.",
+    "observer": "root agent"
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "passed",
+    "command": "cargo test -p reservoir-core",
+    "workingDirectory": "desktop/ReservoirScope",
+    "evidence": "Core agent reported 12 passed, 0 failed in 6.15s. Coverage includes independent replay of all four tracked 300-step Swift stage records, 16 mutation cases, ten retained Swift ASCII vectors, lifecycle records, u64 seeds, byte retention and CLI statuses. Unit and doc-test targets contained zero tests. A later sourceSha256 metadata-only addition to the retained ASCII oracle fixture was followed by the focused oracle test, which passed; no Rust edits followed the broad run.",
+    "observer": "portable_core_assessment agent",
+    "qualification": "Stage/ASCII scope only. This crate is not yet linked into the M0 desktop UI.",
+    "followupCommand": "cargo test -p reservoir-core --test conformance retained_swift_ascii_codec_oracle_vectors_match",
+    "executionContext": "No environment override and no --locked flag; actual broad sequence was cargo fmt -p reservoir-core && cargo test -p reservoir-core && cargo clippy -p reservoir-core --all-targets -- -D warnings."
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": "cargo clippy -p reservoir-core --all-targets -- -D warnings",
+    "workingDirectory": "desktop/ReservoirScope",
+    "evidence": "Core agent reported clean exit after final endpoint authority/path corrections.",
+    "observer": "portable_core_assessment agent"
+  },
+  {
+    "id": "swift-export-verification",
+    "status": "passed",
+    "command": "python3 crates/reservoir-core/tests/support/check_swift_roundtrip.py --rust-runner target/debug/reservoir-core --swift-runner /Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run",
+    "workingDirectory": "desktop/ReservoirScope",
+    "evidence": "Retained independent receipt reports Rust-generated essentials-v1 stages 1\u20134 each passed unchanged Swift verification: 61 steps, u64::MAX seed and noiseAmplitude 0.01. Both executable identities and each generated record identity are retained. No models or live sources were accessed.",
+    "observer": "portable_core_assessment agent; retained machine-readable receipt inspected by tauri_platform_validation",
+    "evidenceFile": {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/validation/2026-10-11-swift-stage-roundtrip.json",
+      "sha256": "4b167b788eb4cadeb0b9f7b2cf8a426749541c35149a021634413bae36207a49"
+    },
+    "qualification": "This stage slice does not establish Unicode, other record-family or whole-app parity."
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk npm run tauri -- build --bundles app -- --locked",
+    "workingDirectory": "desktop/ReservoirScope",
+    "evidence": "Root observed final macOS arm64 .app rebuild exit 0 after clear-color restoration and dev configuration fixes: release build finished in 50.96s, approximately 9.02 MiB app. The locked build regenerated the frontend production bundle (index-dMYzQkB8.js).",
+    "observer": "root agent",
+    "qualification": "Local ad-hoc preview build only. Windows/Linux packaging, public signing/notarization and human acceptance are unexecuted."
+  }
+]

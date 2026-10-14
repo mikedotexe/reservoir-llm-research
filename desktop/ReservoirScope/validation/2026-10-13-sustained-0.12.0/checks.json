@@ -1,0 +1,56 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": "python3 scripts/check_reference.py",
+    "evidence": "reference-integrity.txt: 180 sources,43 resources,1 fixture"
+  },
+  {
+    "id": "resource-staging-tests",
+    "status": "passed",
+    "command": "python3 -m unittest discover -s scripts -p 'test_*.py'",
+    "evidence": "python-tests.txt:13 tests"
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": "npm test",
+    "evidence": "frontend-full-shipping.txt:295 tests; final frontend source unchanged"
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": "npm run build",
+    "evidence": "frontend-build-gpu-identity-final.txt and macos-final-package-build.txt"
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-scope-desktop; cargo test --locked -p reservoir-scope-desktop sustained::tests -- --skip sustained_accelerated --nocapture; cargo test --locked -p reservoir-scope-desktop close",
+    "evidence": "desktop-full-tests.txt:154 full tests; desktop-sustained-checkpoint-quit-final-02.log:20 focused on final saved-prepared quit change; combined-close-final-02.txt:15 final close tests; source continuity records the changed files"
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-core",
+    "evidence": "core-full-tests.txt:150 tests; core-qualification-final.json; core-segment-cli.json:36 individual segments"
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": "cargo clippy --locked -p reservoir-core --all-targets -- -D warnings; cargo clippy --locked -p reservoir-scope-desktop --all-targets -- -D warnings",
+    "evidence": "core-sustained-clippy.log; desktop-sustained-clippy-final-02.log"
+  },
+  {
+    "id": "swift-export-verification",
+    "status": "passed",
+    "command": "python3 scripts/check_language_session_conformance.py --swift target/qa/0.7-swift/bin/essentials-run --rust target/release/reservoir-core (exact inputs in legacy-conformance.json)",
+    "evidence": "63 historical finite originals,567 negative controls,6 permitted raw-diagnostic controls; new sustained format is outside the Swift verifier contract"
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": "npm run tauri -- build --bundles app -- --locked",
+    "evidence": "macos-final-package-build.txt; source-before-final-build.json; final-package-before-ui.json; final-archive-and-resource-check.json"
+  }
+]

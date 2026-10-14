@@ -1,0 +1,65 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": "python3 desktop/ReservoirScope/scripts/check_reference.py",
+    "observer": "root agent",
+    "evidence": "180 native sources, 43 canonical resources and one fixture match frozen commit 96b60ed1d1fe9bdd3a5f50dec3a66a4754ad7f95; exit 0."
+  },
+  {
+    "id": "resource-staging-tests",
+    "status": "passed",
+    "command": "python3 -m unittest discover -s desktop/ReservoirScope/scripts -p 'test_*.py'",
+    "observer": "root agent",
+    "evidence": "9 tests passed in 2.920 s. Resource staging verifies and copies 28 generated resource files from unchanged originals."
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": "npm test",
+    "observer": "root agent and app_parity_inventory agent",
+    "evidence": "Final 66 tests across 12 files passed. Earlier integrated 63 passed before three final guide identity regressions. Total current source suites: 153 (44 core + 66 frontend + 34 desktop + 9 Python)."
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": "npm run build",
+    "observer": "root agent and app_parity_inventory agent",
+    "evidence": "TypeScript/Vite passed. Final JS index-CbukVDY5.js, CSS index-BejTw5Th.css; chunk-size advisory remains."
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk cargo test --locked -p reservoir-scope-desktop",
+    "observer": "root agent",
+    "evidence": "34 tests passed in 37.65 s after final Library metadata fix. Includes 15 Library tests with 5,001 files and corruption/rebuild, 4 guide, 2 cases, 2 geometry and 11 record/file/resource checks. Final strict desktop Clippy passed separately by portable_core_assessment."
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "passed",
+    "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk cargo test --locked -p reservoir-core",
+    "observer": "root agent",
+    "evidence": "44 tests passed: 12 stage, 14 exploration, 8 actions, 5 cases, 5 geometry. Additional independent case Swift/Rust corpus: 24 checks passed; see case-conformance.json. Native geometry checker separately passed 96 checks. These are distinct scopes."
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk cargo clippy --locked -p reservoir-core --all-targets -- -D warnings",
+    "observer": "root agent",
+    "evidence": "Strict core Clippy passed in 1.49 s after final core formatting. Desktop strict Clippy passed in 3.35 s by portable_core_assessment after its final source fix."
+  },
+  {
+    "id": "swift-export-verification",
+    "status": "passed",
+    "command": "/Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run verify /Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/validation/offline-ui/final-exported-h.json",
+    "observer": "root agent",
+    "evidence": "Final packaged Library import → verified managed opening → native-dialog export retained all 11,296,543 original bytes; SHA-256 2ce8f33362e403a665bfb9de02d3005d1412dd4f6959c36e4afa9c1baa5fed32. Swift exit 0: Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback. This is a native-origin record roundtrip, not fresh Rust action-session generation."
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk npm run tauri -- build --bundles app -- --locked",
+    "observer": "root agent",
+    "evidence": "Final 0.3.0 arm64 app built successfully after all source fixes; optimized compile 1 m 06 s; package 148.34 MiB. Ad-hoc signing, not notarized. Source/package receipt and actual packaged UI account retained separately. Archive byte/mode comparison passed for all 32 regular files."
+  }
+]

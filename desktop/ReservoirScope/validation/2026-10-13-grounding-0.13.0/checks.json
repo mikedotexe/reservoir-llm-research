@@ -1,0 +1,98 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": [
+      "python3",
+      "scripts/check_reference.py"
+    ],
+    "evidence": "desktop-build-checks-02.json; reference-integrity-01.log"
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--run"
+    ],
+    "evidence": "frontend-final-02.json; frontend-tests-02.log; 329 passed"
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "evidence": "frontend-final-02.json; frontend-build-02.log; final package build also regenerated production assets"
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": [
+      "cargo",
+      "test",
+      "--locked",
+      "-p",
+      "reservoir-scope-desktop"
+    ],
+    "evidence": "desktop-build-checks-02.json; 172 passed/2 ignored; format-only-repair.json and final-package-checks-03.json bind subsequent two-line import reorder and focused checks"
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "passed",
+    "command": [
+      "cargo",
+      "test",
+      "--locked",
+      "-p",
+      "reservoir-core"
+    ],
+    "evidence": "core-source-checks-02.json; 162 passed"
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": [
+      "cargo",
+      "clippy",
+      "--locked",
+      "-p",
+      "reservoir-core",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "evidence": "core-source-checks-02.json"
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": [
+      "npm",
+      "run",
+      "tauri",
+      "--",
+      "build",
+      "--bundles",
+      "app",
+      "--",
+      "--locked"
+    ],
+    "evidence": "final-package-checks-03.json; source unchanged during build; package-before-ui.json"
+  },
+  {
+    "id": "swift-export-verification",
+    "status": "unexecuted",
+    "evidenceOrigin": "New sustained bundle is a distinct versioned format; no new Swift qualification claimed"
+  },
+  {
+    "id": "resource-staging-tests",
+    "status": "unexecuted",
+    "evidenceOrigin": "No new resource test-suite execution in this tranche; canonical/staged/package/archive identities checked separately"
+  }
+]

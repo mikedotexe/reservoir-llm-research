@@ -1,0 +1,17 @@
+# Recorded measurement context without prescribed writing
+
+The 0.14 run saved and applied four complete v3 journals. Its prose developed a thread, but repeated an earlier sensory value, invented final values and described increasing shoulder share while the recorded share fell. The existing invitation already distinguished current measurements from historical prose. Repeating that instruction alone would add no missing evidence.
+
+This tranche changes what numerical context is available and how it can be inspected. New v4 sessions retain a bounded summary of the previous reached observation, captured from numerical state before the current observation replaces it. The current observation and previous summary produce one reference table in Rust: current value, previous value and signed current-minus-previous difference. Percentage-valued rows use percentage points for differences. The table includes recurrent RMS/L2, largest sensory covariance eigenvalue, reduced sensory fill, top-eight head/shoulder/tail shares and entropy.
+
+The previous recorded observation is not necessarily the observation associated with the latest saved-and-applied journal. Failed or skipped opportunities can separate those clocks. Full-text memory keeps its original journal identity and exact bytes; the numerical comparison never comes from parsing that prose. First observations have no previous comparison. Legacy records expose only the numerical information they actually retain.
+
+The invitation still leaves topic, form and length open. No metric, heading, correction, summary or report is required. Two numerical endpoints establish net difference, not an intervening trend, oscillation, convergence, spatial geometry, subjective experience or writing-only cause. The new context does not remove or rewrite earlier prose. A complete response still follows the same save/readback/application gates regardless of the reading review.
+
+The reader gains a closed Recorded measurements panel beneath the entry. Its values belong to that entry's observation, not the live reservoir. Rust supplies the comparison; the frontend only formats it. The separate Evidence panel continues to expose exact prompt, raw observation and provenance. There is no automated truth badge or prose-editing control.
+
+V1/v2/v3 prompts, records and exact typed hashes remain independently replayable. New v4 observations use an explicit observation version and a bounded prior scalar summary, with whole-chain replay checking its provenance. Existing sessions do not acquire the new invitation on recovery. The 0.14 archive and all earlier model outcomes remain preserved.
+
+The offline review helper is separately versioned. Its previous source and tests are retained before changes. New coverage includes incidental numerical phrasing and an inventory of unmatched numerical mentions; ambiguous scope and metaphor require reading. The old four journals are a known regression corpus, not unseen evidence. The separately frozen new four-opportunity run has no retries, replacements, rewrites or extra comparison requests. Completion, factual findings and literary continuity are reported separately.
+
+A model can still make inaccurate claims despite better context. Any observed error remains an outcome and a next design question; it does not authorize a hidden regeneration. No conclusion about emergence, scientific benefit or the Beings follows from this application qualification.

@@ -1,0 +1,75 @@
+{
+  "recordedAt": "2026-10-13T20:57:12.521223+00:00",
+  "originalQualificationSha256": "5ed2064cc807fd3bd409be80704258bbfafe4b2b9e00c7ef201fb2178cd232da",
+  "runtimeSourcesUnchangedSinceFinalBuild": true,
+  "sourceChangesSinceBuild": [
+    "desktop/ReservoirScope/README.md",
+    "shared/reservoir-scope/PARITY.md"
+  ],
+  "packageUnchanged": true,
+  "binarySha256": "689ed9e13e6cdbea8774c232b88018eaebd0c8fcbd2aaedc2d0fb0c6e1bb3b5b",
+  "archiveUnchanged": true,
+  "archiveSha256": "d64cbd5e43618a5d178085b6f89769b687270264558c40e69e6bfd84c5a3ce5e",
+  "signing": {
+    "command": [
+      "codesign",
+      "--verify",
+      "--deep",
+      "--strict",
+      "--verbose=2",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app"
+    ],
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app: valid on disk\n/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app: satisfies its Designated Requirement"
+  },
+  "finalUi": "Paused, step30,0journals,1retainedattempt,Resume disabled,no active request,v3; temporary Finder window closed",
+  "finalManifestSha256": "e9e31a6118ce87f8ecac585a4cd69841ff99ff7744383899a29d561dfda3ac4a",
+  "additionalModelRequests": 0,
+  "evidence": [
+    {
+      "path": "native-export-completed-01.json",
+      "kind": "file",
+      "bytes": 1940,
+      "sha256": "f44dc788164a4dabba2c44bcdebf3e0862415156785ff47905555c436b254345"
+    },
+    {
+      "path": "native-clean-quit-01.json",
+      "kind": "file",
+      "bytes": 1804,
+      "sha256": "b1f2757af4969060401e469e5288f98f7b23a3f1839b88cd0a0b793248cf2d2e"
+    },
+    {
+      "path": "native-recovery-completed-01.json",
+      "kind": "file",
+      "bytes": 2205,
+      "sha256": "e5954d2da007779a2f3d588bc096d0804c0187fe49dc001df0ae2394a3b4fab4"
+    },
+    {
+      "path": "NATIVE-EXPORT-SUPPLEMENT.md",
+      "kind": "file",
+      "bytes": 2698,
+      "sha256": "cd7710f1e5067b601b34bf28a1fcc6741126ebfcd87137c1c9a2a60c48eac190"
+    },
+    {
+      "path": "RECOVERY-EXPORT-SUPPLEMENT.md",
+      "kind": "file",
+      "bytes": 3160,
+      "sha256": "56e0c74e55f146d0658b590cc4e314c2c7d4ffb152642683a0c1e96438758c34"
+    },
+    {
+      "path": "MACOS-UI.md",
+      "kind": "file",
+      "bytes": 6695,
+      "sha256": "8212677dd56b9dc169c5136dffa494ad27b726ddbe74b2835e3f0268d22c6890"
+    },
+    {
+      "path": "README.md",
+      "kind": "file",
+      "bytes": 6890,
+      "sha256": "c67da8e89baeb61968b23b08d936a4076b39372ee07bd89966982dcdb51d0a83"
+    }
+  ],
+  "rootRoadmapSha256": "021e5ed5ad34ca06d03f8f806305309eea782910eebfc7ccdc4861cf0d02d3a6",
+  "limitations": "Original incomplete response unchanged; no new v3 saved journal, running continuation, endurance, physical crash/sleep, all-platform or GPU claim. Historical automation failures remain recorded."
+}

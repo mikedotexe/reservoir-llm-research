@@ -1,0 +1,63 @@
+{
+  "observedAt": "2026-10-13T20:54:56.258858+00:00",
+  "uiSequence": [
+    "Idle guided launch",
+    "Experiments/My reservoir: no session running",
+    "Read recovery catalog",
+    "Verify and inspect exact held session at generation6/revision36",
+    "Restore paused for review",
+    "Accepted config retains v3 and all run bounds",
+    "Resume disabled; blocked first attempt remains; no network request active",
+    "Native export of restored paused snapshot succeeded"
+  ],
+  "manifestSha256": "e9e31a6118ce87f8ecac585a4cd69841ff99ff7744383899a29d561dfda3ac4a",
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791923112800-6",
+    "generation": "7",
+    "revision": "37",
+    "config": {
+      "seed": "20261013",
+      "turnEvery": 30,
+      "maximumSteps": 121,
+      "maximumTurns": 4,
+      "maximumDurationSeconds": 600,
+      "storageBudgetBytes": 67108864,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:49606",
+        "model": "gemma3:4b",
+        "contextTokens": 4096
+      },
+      "promptVersion": "reservoir-journal-v3"
+    },
+    "phase": "paused",
+    "step": 30,
+    "durableStep": 30,
+    "elapsedMillis": 51595,
+    "journalCount": 0,
+    "segmentCount": 2,
+    "lastSegmentSha256": "1522ea129354c4416d80faf760abde702a60e42febdf3374829e398834bc1258",
+    "checkpointSha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff",
+    "previousCheckpointSha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff",
+    "diagnostics": [
+      "Incomplete or token-limited response cannot become journal feedback"
+    ],
+    "attemptTiming": {
+      "attemptId": 1,
+      "dispatchedAtMs": "1791923176544",
+      "receivedAtMs": "1791923197681",
+      "transportDurationMs": 21137,
+      "publishedAtMs": null
+    }
+  },
+  "nativeRecoveryExports": [
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.13-open-writing/exports/sustained-1791923112800-6-7-37"
+  ],
+  "noStartRetrySkipOrModelRestart": true
+}

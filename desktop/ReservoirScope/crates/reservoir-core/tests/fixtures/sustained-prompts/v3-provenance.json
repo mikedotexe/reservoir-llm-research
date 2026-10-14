@@ -1,0 +1,39 @@
+{
+  "scope": "New v3 exact prompt vectors from caller-supplied prose only; no models or app. V1/v2 fixture bytes and their prior provenance are unchanged. Prepared first request deliberately interrupted and explicitly retried before save.",
+  "fixtureReceipt": "validation/2026-10-13-grounding-0.13.0/core-v3-fixtures-01.json",
+  "specification": {
+    "dt": 0.3333333333333333,
+    "initialRetention": 0.955,
+    "language": {
+      "backend": "scripted"
+    },
+    "leak": 0.65,
+    "maximumSteps": 180,
+    "maximumTurns": 30,
+    "noiseAmplitude": 0.02,
+    "promptVersion": "reservoir-journal-v3",
+    "regulationEnabled": true,
+    "seed": 18446744073709551615,
+    "turnEvery": 10
+  },
+  "fixtures": [
+    {
+      "fixture": "v3-observation-10.txt",
+      "bytes": 3506,
+      "sha256": "70165f72ba7bbc1997cb50a78503c489a32fc378c56c3ff2345ed276e0c31378",
+      "observedStep": 10,
+      "attemptId": 2,
+      "source": "target/qa/0.13-open-journal-core-fixtures-01/journals/journal-10-2-f6dae68aee8efeabfbbbff9cb851165314cf24e7af04b6d85c4b36ea63ebc541.json",
+      "sourceSha256": "06f6a40818dcc46d590b1b7e883a2a017cda4fecb855e6ddec1635c50fc33fc5"
+    },
+    {
+      "fixture": "v3-memory-20.txt",
+      "bytes": 3774,
+      "sha256": "1a705d99ce490bb7a3a1bffcc3a392a9d89275bc4e9dd8c7cfbc1edb6dfdf43c",
+      "observedStep": 20,
+      "attemptId": 3,
+      "source": "target/qa/0.13-open-journal-core-fixtures-01/journals/journal-20-3-d4d0a99e7ea8a90b7d0687d08e1f79bc03176aec0bc417da594c3044a6cd5594.json",
+      "sourceSha256": "fc036e19c22bb170ce2f260a46c946a6c6bea43d356986e90104285374da571a"
+    }
+  ]
+}

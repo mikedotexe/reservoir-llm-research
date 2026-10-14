@@ -1,0 +1,33 @@
+{
+  "checkedAtUtc": "2026-10-13T20:54:22.146217+00:00",
+  "scope": "Read-only direct byte equality of all four committed files, after both independent checker runs. No live store, app, provider or network access.",
+  "comparisonReceiptSha256": "ec738a88db91ef51567fe2bac210de86d9f9bf805717f74d0cc8dce1c0f11138",
+  "files": [
+    {
+      "path": "manifest.json",
+      "bytes": 1106,
+      "sha256": "ac1b87e3e8bc50689d28f36a73a8a2e5ee1de2091d30117dbbbb44c294d46ef4",
+      "exactByteComparisonEqual": true
+    },
+    {
+      "path": "segments/segment-00000001.json",
+      "bytes": 131112,
+      "sha256": "07356d64db1ecad7173a26a3c164ae13868edf7cc5683cc21fd622351fbfa350",
+      "exactByteComparisonEqual": true
+    },
+    {
+      "path": "segments/segment-00000002.json",
+      "bytes": 69643,
+      "sha256": "1522ea129354c4416d80faf760abde702a60e42febdf3374829e398834bc1258",
+      "exactByteComparisonEqual": true
+    },
+    {
+      "path": "checkpoints/a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff.json",
+      "bytes": 34033,
+      "sha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff",
+      "exactByteComparisonEqual": true
+    }
+  ],
+  "allExactBytesEqual": true,
+  "totalBytes": 235894
+}

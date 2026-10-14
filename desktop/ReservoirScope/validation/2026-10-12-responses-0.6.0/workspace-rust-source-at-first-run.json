@@ -1,0 +1,185 @@
+{
+  "note": "Rust sources captured at the end of the first complete workspace test execution, before the canonical-Unicode response replacement repair. See post-repair focused checks and source-continuity receipt.",
+  "files": [
+    {
+      "path": "crates/reservoir-core/examples/case_export_oracle.rs",
+      "sha256": "16cbf150106a2d5d8adc7793d0960be5e0dc81ff47eabb092ae7416141fad79a"
+    },
+    {
+      "path": "crates/reservoir-core/examples/emit_exploration_records.rs",
+      "sha256": "2eeba16c75327caa4a5ad95e6c2e94c71996c4802a02c07174be07f932facc7a"
+    },
+    {
+      "path": "crates/reservoir-core/examples/emit_regulation_record.rs",
+      "sha256": "d99a812a65d9eb66044c2615e408912816cc34b5fe36a956ad276acec25d5f3a"
+    },
+    {
+      "path": "crates/reservoir-core/examples/guided_evidence_oracle.rs",
+      "sha256": "2ab676c7de31b8f775447cc70e22f02291fc150445b8db6cbdf3c0046d9d5968"
+    },
+    {
+      "path": "crates/reservoir-core/examples/observatory_oracle.rs",
+      "sha256": "76f0b62eb77ad77d9736b4c2b21d4c0fc07d38ae14abc2bc0d9c8f2df8c67c12"
+    },
+    {
+      "path": "crates/reservoir-core/examples/response_oracle.rs",
+      "sha256": "41abe549deb345093b280dd058574faefb9f499d1b8f41d06d8f726238f27454"
+    },
+    {
+      "path": "crates/reservoir-core/src/actions.rs",
+      "sha256": "bdb90090280915af0f8ab7183fcbabfd15dd3b1a896213c2fd3b82d0a7e3675c"
+    },
+    {
+      "path": "crates/reservoir-core/src/cases.rs",
+      "sha256": "74f036a9785d7607478d2989da30ed128c2fb6ff7f7992bad40d46cbf17ed626"
+    },
+    {
+      "path": "crates/reservoir-core/src/codec.rs",
+      "sha256": "6192482229710de6bf8a6377480ec891f940cf9ecd02da2f493b6e108db264ee"
+    },
+    {
+      "path": "crates/reservoir-core/src/codec_unicode_data.rs",
+      "sha256": "dbfe035749c170abbd80982c1aa18b0d72140fcc9b4d04aa762124ef1f0d28c3"
+    },
+    {
+      "path": "crates/reservoir-core/src/exploration.rs",
+      "sha256": "f13e5936aa12fddaf740567ebd83027316b53204c31b634582617fe9691afc36"
+    },
+    {
+      "path": "crates/reservoir-core/src/geometry.rs",
+      "sha256": "1af480c924d2118c38fe28dbc05cad6e7f9f958ddf5da64bf0d3832f3c141243"
+    },
+    {
+      "path": "crates/reservoir-core/src/guided_evidence.rs",
+      "sha256": "158c61d9b3c6ba4a2895de599ce520608afab0acfa58b24fb0bc7eaf8bb64a6b"
+    },
+    {
+      "path": "crates/reservoir-core/src/lib.rs",
+      "sha256": "65de8327432459df5af201fdf5baef8a0435918dd216fb4f3ef872ec98ea5cbc"
+    },
+    {
+      "path": "crates/reservoir-core/src/main.rs",
+      "sha256": "85fdac3f55d5b6b0be3b8b29361f38d961b64aec2ecb1957b2d9f007510b04f0"
+    },
+    {
+      "path": "crates/reservoir-core/src/math.rs",
+      "sha256": "845ed5f908d4b7c0765694f47b635be2b201693ce06a3ca25bcd70abe3259bc7"
+    },
+    {
+      "path": "crates/reservoir-core/src/observatory.rs",
+      "sha256": "9b4a2d22a4f946583b750a6f0566cc029695cd75050985cbc0c6618b390e878e"
+    },
+    {
+      "path": "crates/reservoir-core/src/preparation.rs",
+      "sha256": "ab3efa3f96819003d83ee1a886af62d565406691c0cb01c22378298e54d95c08"
+    },
+    {
+      "path": "crates/reservoir-core/src/regulation.rs",
+      "sha256": "8d315361ba62bcdc93ed0b562bc4df401b5512cfc65be9f0a8bac2fa1df30123"
+    },
+    {
+      "path": "crates/reservoir-core/src/response.rs",
+      "sha256": "c44ab57409fe337edb970af21229a817f7c3ad3390518e78a6a83665ce7b12e5"
+    },
+    {
+      "path": "crates/reservoir-core/src/stage.rs",
+      "sha256": "9039109c11570fb0a89dddd155a9fa4c6d9037a57b78b0ff375d7b97103ee36c"
+    },
+    {
+      "path": "crates/reservoir-core/tests/actions_conformance.rs",
+      "sha256": "b024310c0faabaa660d77f9304b4af80d04be0f99eb033e69bc980752f5bc78f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/conformance.rs",
+      "sha256": "c170adb921e4e611c462bad99f6b5c61e95f4a2af212c582360efef4d9a9681b"
+    },
+    {
+      "path": "crates/reservoir-core/tests/exploration.rs",
+      "sha256": "05cdba305c942964ebe9223fb320b6a8f7c59facbdf81d4aa3d92eac11202efd"
+    },
+    {
+      "path": "crates/reservoir-core/tests/geometry_conformance.rs",
+      "sha256": "e15aa03d5dece003e165ef0adf76159fc131c1326829c1b1ad124b516f8cab17"
+    },
+    {
+      "path": "crates/reservoir-core/tests/guided_evidence.rs",
+      "sha256": "df0a7864c15c4f9728989a969db9e2e7bb4d4c4f8902abad698bad2c0941087e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/observatory.rs",
+      "sha256": "b1375fb9556a1c4d9699a4fcc116f96be5828b6b923192c50946a1753d646b65"
+    },
+    {
+      "path": "crates/reservoir-core/tests/regulation.rs",
+      "sha256": "02301b92f0046cdc8c47b4c83d40afd5abaa253eb025a007407722b3fc1d6604"
+    },
+    {
+      "path": "crates/reservoir-core/tests/response.rs",
+      "sha256": "993bc1a34790d1c6d7d454661229c037879f0af38f07430aaf60be815bf44b4c"
+    },
+    {
+      "path": "crates/reservoir-core/tests/unicode_codec_conformance.rs",
+      "sha256": "f0978cac8a3d8131bc5733f71ad22cdfdacb80150b4f415b9429db0ca8f835ba"
+    },
+    {
+      "path": "src-tauri/src/cases.rs",
+      "sha256": "4dc2bf996dfcf8120c20f9d676decee9cb67d4bc6117cbf0ac21c7420b02a2aa"
+    },
+    {
+      "path": "src-tauri/src/files.rs",
+      "sha256": "79cb4f33647037631f74a22d0d7863a9cf9ab519702219935741f028cb1a4405"
+    },
+    {
+      "path": "src-tauri/src/geometry.rs",
+      "sha256": "52c84cea8c759c0527a6f688fb698133351a705c24a2bcb731c13a5e7fac740c"
+    },
+    {
+      "path": "src-tauri/src/guide.rs",
+      "sha256": "6289ace1632b6f1ed29fad26cccbfa80b778851ba0219463aee7d38162cb16ae"
+    },
+    {
+      "path": "src-tauri/src/library.rs",
+      "sha256": "9417773e680d9d437fc99ec4c0c68b6f1b8ed030fc969eaf1fabbd68529e5cd2"
+    },
+    {
+      "path": "src-tauri/src/library_tests.rs",
+      "sha256": "b7ff34551e1ead9d5eaed52c824453b1cfc477eafe85be37962c3edbb0934fcb"
+    },
+    {
+      "path": "src-tauri/src/main.rs",
+      "sha256": "e54213d4b019f12cf43c94d395aab78f9ac39cdfd29bb3d47e9d0e3f4c76b7e6"
+    },
+    {
+      "path": "src-tauri/src/observatory.rs",
+      "sha256": "04d279e730f52624ff28a575f1d1cdd82de79f7ce7e81c5bab8eb5f4082c3b74"
+    },
+    {
+      "path": "src-tauri/src/observatory_tests.rs",
+      "sha256": "d7b6c9caadab7eacf0b27738fe303f3cae81ba7c71209fc20b06bff0278271ee"
+    },
+    {
+      "path": "src-tauri/src/preparation.rs",
+      "sha256": "73a2309c6bd1bf64840a46f0bbbf48730ffeb583d63236dd97dca16586bdb9a9"
+    },
+    {
+      "path": "src-tauri/src/records.rs",
+      "sha256": "83a6431137a718a3442f35c9e2636d2c8cd4fc06b321370e817b3ae2d7ef096f"
+    },
+    {
+      "path": "src-tauri/src/resources.rs",
+      "sha256": "6ef3c058d92bf535dffd26617cefb32c660ff5d6b228d9c08f4b0394a01b10c7"
+    },
+    {
+      "path": "src-tauri/src/response.rs",
+      "sha256": "bd1eb0242e565cd3adaaa62f10ab0912de9a6fcd326a6d14d6383699f0485d7b"
+    },
+    {
+      "path": "src-tauri/src/response_commands.rs",
+      "sha256": "2beecd570f2b8e4a8f4d9a11d3aac6437061d05cda918bf36667c0121ea3c693"
+    },
+    {
+      "path": "src-tauri/src/response_tests.rs",
+      "sha256": "2b2b99af6b65a3cbaea5f0068f7fae573674bd6e7b25a36d55d46e1afd2f258a"
+    }
+  ]
+}

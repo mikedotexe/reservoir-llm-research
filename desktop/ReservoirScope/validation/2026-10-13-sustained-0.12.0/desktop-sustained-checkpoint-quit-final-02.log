@@ -1,0 +1,31 @@
+DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk cargo test --locked -p reservoir-scope-desktop sustained::tests -- --skip sustained_accelerated --nocapture
+   Compiling reservoir-scope-desktop v0.12.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.02s
+     Running unittests src/main.rs (target/debug/deps/reservoir_scope_desktop-b723db6654d10cb9)
+
+running 20 tests
+test sustained::tests::recovery_refuses_linked_child_directory_and_export_guard_blocks_close ... ok
+test sustained::tests::real_worker_stop_cancels_owned_provider_and_ignores_late_success ... ok
+test sustained::tests::interruption_cancels_provider_and_requires_explicit_new_attempt ... ok
+test sustained::tests::quota_stops_before_journal_publication_and_retry_does_not_regenerate ... ok
+test sustained::tests::journal_publish_failure_is_idempotent_and_cannot_authorize_feedback ... ok
+test sustained::tests::stale_commands_invalid_config_and_full_width_checkpoint_values_fail_closed ... ok
+test sustained::tests::changing_host_bookkeeping_bytes_breaks_the_journal_chain_anchor ... ok
+test sustained::tests::final_attempt_budget_applies_saved_feedback_before_budget_pause ... ok
+test sustained::tests::real_worker_pause_allows_inflight_reply_to_save_without_numerical_resumption ... ok
+test sustained::tests::clean_close_barrier_and_explicit_discard_remove_prepared_eligibility ... ok
+test sustained::tests::pause_before_dispatch_never_starts_request_and_saved_feedback_waits_for_start ... ok
+test sustained::tests::actual_owned_journal_memory_read_refuses_tamper_and_has_no_fallback ... ok
+test sustained::tests::pending_journal_manifest_failure_retries_without_duplicate_commit_or_application ... ok
+test sustained::tests::rehashed_final_checkpoint_and_inconsistent_manifest_are_rejected ... ok
+test sustained::tests::close_discard_failure_keeps_exit_blocked_until_decision_is_durable ... ok
+test sustained::tests::stop_rejects_late_provider_result_and_subscription_ids_remain_bound ... ok
+test sustained::tests::uncommitted_segment_is_quarantined_when_explicit_skip_changes_pending_history ... ok
+test sustained::tests::recovery_restores_exact_global_cursor_and_applies_saved_feedback_only_once ... ok
+test sustained::tests::checkpoint_and_quit_preserves_durable_prepared_feedback_until_explicit_start ... ok
+test sustained::tests::visible_manifest_failure_reconciles_exact_prefix_before_new_skip_event ... ok
+
+test result: ok. 20 passed; 0 failed; 0 ignored; 0 measured; 135 filtered out; finished in 3.07s
+
+
+Exit status: 0

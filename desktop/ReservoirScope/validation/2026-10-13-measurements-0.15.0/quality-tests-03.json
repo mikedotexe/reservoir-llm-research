@@ -1,0 +1,28 @@
+{
+  "schema": "offline-evaluator-test-execution-v1",
+  "startedAtUtc": "2026-10-13T22:30:21.012938+00:00",
+  "endedAtUtc": "2026-10-13T22:30:22.175266+00:00",
+  "wallNanoseconds": 1162167292,
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_journal_quality.py"
+  ],
+  "cwd": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts",
+  "exitCode": 1,
+  "expectedTests": 43,
+  "logSha256": "96e571ffc813c368fb0d84ef2e2739ac2088e7330c93541a21ce6c496a7a3eda",
+  "sources": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/journal_quality.py",
+      "sha256": "49c13a0577829a9d7b7ebb2d7be60ff1f4139b2753f990d614dcf9332397d0ae"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/test_journal_quality.py",
+      "sha256": "a6a2b054875580d358eccab406da7df8cc6a1d4146a2333d4772661d30420463"
+    }
+  ],
+  "scope": "Offline synthetic/known corpus only; final correction scope takes precedence over ambiguous association, previous failed execution retained."
+}

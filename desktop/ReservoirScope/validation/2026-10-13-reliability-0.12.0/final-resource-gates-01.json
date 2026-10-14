@@ -1,0 +1,117 @@
+{
+  "schema": "reservoir-resource-gates-v1",
+  "createdAtUtc": "2026-10-13T18:45:35.765115+00:00",
+  "inputs": [
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/samples-01.jsonl",
+      "sha256": "cad9864c0f1d6e0ad0b5345ac2c5482bbc2fcfb5e62820ef2e9c3708bb6c1185"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/primary-markers-final-01.jsonl",
+      "sha256": "f649092dbfa011908e2b030f69af87d88628d1e668a5aa4c6aae62fd6bda3104"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/final-phase-analysis-02.json",
+      "sha256": "568e92ecdf9963896629cd887cfe8c3dcbc3e055f15baba80743c0aebf7b35f4"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/final-load-intervals-02.json",
+      "sha256": "439098c4dcc56debae784285334e0a13825aaac2f61946a75f7be8aab4633de3"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/prospective-freeze.json",
+      "sha256": "9f8335c295abf9196c9d1a09575c6e30fb3b86a79ddeb4b3a5dd35a9b5a039fb"
+    }
+  ],
+  "duration": {
+    "samplerFooterElapsedSeconds": 7836.242203583,
+    "startObservedToPauseObservedSeconds": 7731.351178416,
+    "operatorDeclaredMinimizedConservativeSeconds": 7211.206384167,
+    "sampledMinimizedProgressSpanSeconds": 7203.279207417,
+    "firstMinimizedSampleUtc": "2026-10-13T16:39:21.337886+00:00",
+    "lastMinimizedSampleUtc": "2026-10-13T18:39:24.571027+00:00",
+    "firstMinimizedDurableStep": 481,
+    "lastMinimizedDurableStep": 7081,
+    "firstMinimizedJournalCount": 16,
+    "lastMinimizedJournalCount": 236
+  },
+  "coverage": {
+    "sampleCount": 523,
+    "sequencesExactly0Through522": true,
+    "processMeasurementCount": 523,
+    "manifestMeasurementCount": 523,
+    "completeDiskScans": 131,
+    "maxSampleSpacingSeconds": 15.056361625000136,
+    "maxSampleMeasurementSeconds": 0.036038542,
+    "manifestMonotonicRegressions": [],
+    "minimizedManifestPhaseSamples": {
+      "running": 475,
+      "awaitingLanguage": 6
+    },
+    "largestIntervalBetweenObservedDurableIncreases": {
+      "seconds": 45.07604054100011,
+      "fromSequence": 204,
+      "toSequence": 207,
+      "fromStep": 2761,
+      "toStep": 2791
+    },
+    "largestConservativeSameDurableRunBracket": {
+      "firstEqualSequence": 204,
+      "lastEqualSequence": 206,
+      "durableStep": 2761,
+      "bracketingSeconds": 60.11072808300014,
+      "edgeCensored": false
+    },
+    "stallInterpretation": "For each maximal equal-durableStep run, bracket by the previous lower and next higher sampled publication, or the minimized marker at a window edge. This conservatively bounds any unobserved no-increase interval inside this regularly sampled window. It does not prove continuous UI visibility, replay correctness or exact sub-sample scheduling."
+  },
+  "comparisonTriggers": {
+    "allObservedResources": {
+      "earlyRssMedianBytes": 68313088.0,
+      "lateRssMedianBytes": 44662784.0,
+      "changeBytes": -23650304.0,
+      "changePercent": -34.620458088499824,
+      "investigationIncreaseThresholdBytes": 67108864,
+      "rssIncreaseTriggerReached": false,
+      "earlyThreadMedian": 23.0,
+      "lateThreadMedian": 23.0,
+      "earlyFdMedian": 13.0,
+      "lateFdMedian": 13.0,
+      "finalSettledCountTriggerStatus": "incomplete; no samples after operator Pause marker",
+      "earlyCpuDurationWeightedMeanPercent": 0.9031297297473649,
+      "lateCpuDurationWeightedMeanPercent": 0.923445173472932
+    },
+    "documentedLoadExcludedResources": {
+      "earlyRssMedianBytes": 68665344.0,
+      "lateRssMedianBytes": 44662784,
+      "changeBytes": -24002560.0,
+      "changePercent": -34.95585779050346,
+      "investigationIncreaseThresholdBytes": 67108864,
+      "rssIncreaseTriggerReached": false,
+      "earlyThreadMedian": 23.0,
+      "lateThreadMedian": 23,
+      "earlyFdMedian": 13.0,
+      "lateFdMedian": 13,
+      "finalSettledCountTriggerStatus": "incomplete; no samples after operator Pause marker",
+      "earlyCpuDurationWeightedMeanPercent": 0.9080306311722631,
+      "lateCpuDurationWeightedMeanPercent": 0.924842107919173
+    }
+  },
+  "otherTriggers": {
+    "maximumObservedRssBytes": 101810176,
+    "observationsAbove512MiB": 0,
+    "maximumIntervalCpuPercent": 2.1413356164426163,
+    "cpuIntervalsAboveOneCore": 0,
+    "selectedLogicalBudgetBytes": 268435456,
+    "maximumScannedLogicalBytes": 105908862,
+    "maximumScannedBudgetPercent": 39.45412561297417,
+    "scansAtOrAbove90Percent": 0,
+    "limits": "Point RSS observations cannot bound short unseen peaks. CPU values average ~15-second intervals; no GPU/energy or total-app-memory claim."
+  },
+  "plotInspection": {
+    "png": "final-resources-01.png",
+    "svg": "final-resources-01.svg",
+    "pngVisuallyInspected": true,
+    "svgXmlParsed": true,
+    "notes": "Three panels legible, phase markers and units visible, capture hash and scope caveats included; raw unfiltered series retained. Prepared/visible markers are close but vertically staggered. SVG follows exact same plotting recipe except export format."
+  }
+}

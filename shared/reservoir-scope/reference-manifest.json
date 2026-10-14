@@ -1,0 +1,1237 @@
+{
+  "baseline": {
+    "commit": "96b60ed1d1fe9bdd3a5f50dec3a66a4754ad7f95",
+    "frozenOn": "2026-10-11",
+    "nativeBuild": 21,
+    "nativeVersion": "0.15.0",
+    "status": "Unreleased native local candidate; reference source identity does not establish package acceptance."
+  },
+  "fixtures": [
+    {
+      "bytes": 6013,
+      "path": "shared/reservoir-scope/fixtures/reference-scenes.json",
+      "sha256": "616726ee8ec30827fe08690288f1a176e09b9497d83a24368d16fd4585026c59"
+    }
+  ],
+  "resources": [
+    {
+      "bytes": 336,
+      "name": "active-state-qualification.json",
+      "path": "essentials/examples/portable/active-state-qualification.json",
+      "sha256": "518913fe06c10150676b6057dc55ff9a1a5561527609b2dfc0c753529f84b6b8"
+    },
+    {
+      "bytes": 186596,
+      "name": "data.json",
+      "path": "visualizations/reservoir-3d/data.json",
+      "sha256": "03ebfb620c2371023a39de308eb16c292d31b313ead7dcb07db5df3dd0c6749d"
+    },
+    {
+      "bytes": 27763028,
+      "name": "essentials-actions-feedback.json",
+      "path": "essentials/examples/essentials-actions-feedback.json",
+      "sha256": "25c7ea2d390b3d73339f25a22a7f0d93f6ec23128a310ebf5a194f4445b6dbc7"
+    },
+    {
+      "bytes": 355779,
+      "name": "essentials-stage-1.json",
+      "path": "essentials/examples/essentials-stage-1.json",
+      "sha256": "dd536371d35d00d085508ffb02d348f335ff569b3bfe57c828403f7ce6da37d0"
+    },
+    {
+      "bytes": 13351775,
+      "name": "essentials-stage-2.json",
+      "path": "essentials/examples/essentials-stage-2.json",
+      "sha256": "21e7a6b8acb3be59efda3f3381f20ce1820d4927b22f7e42f56b2084c566cc78"
+    },
+    {
+      "bytes": 13337799,
+      "name": "essentials-stage-3.json",
+      "path": "essentials/examples/essentials-stage-3.json",
+      "sha256": "b1807f2593fffd36e87bd02d842539db6426b342b12b3fde81d0be7b7254389c"
+    },
+    {
+      "bytes": 13387369,
+      "name": "essentials-stage-4.json",
+      "path": "essentials/examples/essentials-stage-4.json",
+      "sha256": "2fe6156d2996d4b99eb9f365130913c47d82d6307be7efe879c0b295a1d41fdd"
+    },
+    {
+      "bytes": 492811,
+      "name": "example-component-1.json",
+      "path": "essentials/examples/portable/example-component-1.json",
+      "sha256": "a98fcbe631ed953d47ec8d9b8de4dfc58f94cb1f7d0dbed16491bc0348fcf6f6"
+    },
+    {
+      "bytes": 796610,
+      "name": "example-component-2.json",
+      "path": "essentials/examples/portable/example-component-2.json",
+      "sha256": "55981d377916c2b7d9fe7f02ea97b4883c5c728b5a9b36428b0b2b34fa726500"
+    },
+    {
+      "bytes": 5966130,
+      "name": "example-component-3.json",
+      "path": "essentials/examples/portable/example-component-3.json",
+      "sha256": "fc9f201630aaddad3b141adbbf16777eb8a76ee89ae1ea58c96058a9347164a7"
+    },
+    {
+      "bytes": 11144100,
+      "name": "example-component-4.json",
+      "path": "essentials/examples/portable/example-component-4.json",
+      "sha256": "72994239ab54496101d2790f9d5f97254ed7ef8019f2425fbbbaf2816aabb6a6"
+    },
+    {
+      "bytes": 11213594,
+      "name": "example-component-5.json",
+      "path": "essentials/examples/portable/example-component-5.json",
+      "sha256": "ba6a2ae9c1bd90ba9b1063ece1405aa39a6c299ebc60a99e96194d8713c3e1b3"
+    },
+    {
+      "bytes": 11276347,
+      "name": "example-component-6.json",
+      "path": "essentials/examples/portable/example-component-6.json",
+      "sha256": "eca61bbf63b06884d82d5cce17bb8aed7f7165e1a717966d344bed6b99c7e920"
+    },
+    {
+      "bytes": 11278830,
+      "name": "example-component-7.json",
+      "path": "essentials/examples/portable/example-component-7.json",
+      "sha256": "7e446a8c83efb64c461b76cbf34d02f808db8ece5bb58dd3dc8114f2a91399a5"
+    },
+    {
+      "bytes": 11296543,
+      "name": "example-component-8.json",
+      "path": "essentials/examples/portable/example-component-8.json",
+      "sha256": "2ce8f33362e403a665bfb9de02d3005d1412dd4f6959c36e4afa9c1baa5fed32"
+    },
+    {
+      "bytes": 5483223,
+      "name": "example-model-4.json",
+      "path": "essentials/examples/portable/example-model-4.json",
+      "sha256": "d46baa55b581a8406dc6e9380b0d3ab7f537396212a8e83c1c24feb5236fea76"
+    },
+    {
+      "bytes": 5541493,
+      "name": "example-model-5.json",
+      "path": "essentials/examples/portable/example-model-5.json",
+      "sha256": "ddb6765654c840d53f8d6d3226c5f7103621964a24f65e5422a2fb3e9878cb3b"
+    },
+    {
+      "bytes": 5544750,
+      "name": "example-model-6.json",
+      "path": "essentials/examples/portable/example-model-6.json",
+      "sha256": "8fefd365e757756280af8f0b3dd617ba62515f1f7c92c1e0365fb1abd20c0152"
+    },
+    {
+      "bytes": 5543533,
+      "name": "example-model-7.json",
+      "path": "essentials/examples/portable/example-model-7.json",
+      "sha256": "c61f35ab5499c249b3011d07067c0d1aa958af3e50446a11fc76339df991a0f1"
+    },
+    {
+      "bytes": 5568867,
+      "name": "example-model-8.json",
+      "path": "essentials/examples/portable/example-model-8.json",
+      "sha256": "aa8d304a1da4d10b0fe6200615b486bfaf98ec06277a70792d122fdc4075faf6"
+    },
+    {
+      "bytes": 5635819,
+      "name": "example-model-observation-active.json",
+      "path": "essentials/examples/portable/example-model-observation-active.json",
+      "sha256": "b36b925fa8820feaf8108e54ff710eb5627e7273c5275a09a243850c4b2f0f24"
+    },
+    {
+      "bytes": 10967761,
+      "name": "example-model-observation.json",
+      "path": "essentials/examples/portable/example-model-observation.json",
+      "sha256": "890de9d2c2253838827499903802b78c68ef0ac2abff0dfa29311c2588e5195f"
+    },
+    {
+      "bytes": 11065365,
+      "name": "example-observation-active-scripted.json",
+      "path": "essentials/examples/portable/example-observation-active-scripted.json",
+      "sha256": "e6a3dc7958badd9fc2bd5078fcf831ad5cb628e257c634c75da8c3b8c33e9bad"
+    },
+    {
+      "bytes": 10966410,
+      "name": "example-observation-scripted.json",
+      "path": "essentials/examples/portable/example-observation-scripted.json",
+      "sha256": "a184c1d52b8cb27aa02c4cbfac421b40baf268f706784f280b7c3d8144378142"
+    },
+    {
+      "bytes": 1446741,
+      "name": "example-preparation-1.json",
+      "path": "essentials/examples/portable/example-preparation-1.json",
+      "sha256": "371caa7d622944bd02effb4f70822d358ac68499e4d263449e8d3f389fbb6a7a"
+    },
+    {
+      "bytes": 1447658,
+      "name": "example-preparation-2.json",
+      "path": "essentials/examples/portable/example-preparation-2.json",
+      "sha256": "0881507fb413c6c05c166c83d388dc5bd14e1d18934794df60104e4f73edb12f"
+    },
+    {
+      "bytes": 1447682,
+      "name": "example-preparation-3.json",
+      "path": "essentials/examples/portable/example-preparation-3.json",
+      "sha256": "05368a4974a23e6235120b6941b247070b09032e4bbd7e013d8cbd47d3e67ffc"
+    },
+    {
+      "bytes": 1494246,
+      "name": "example-preparation-4.json",
+      "path": "essentials/examples/portable/example-preparation-4.json",
+      "sha256": "c164a873399f5af538b1fad9a1432ed46d66c73ca4195f008992d133bc5e0905"
+    },
+    {
+      "bytes": 52776851,
+      "name": "example-regulation-controller.json",
+      "path": "essentials/examples/portable/example-regulation-controller.json",
+      "sha256": "a592bdfb35b925ad03ff8ad3a988d6a1b9bd01f7e8ac4e30109647b78e5583a4"
+    },
+    {
+      "bytes": 7123,
+      "name": "examples-index.json",
+      "path": "essentials/examples/portable/examples-index.json",
+      "sha256": "d27ce889d05b32e99bac3f22ec5f4469d19dd0ac1093d15f25b4807bf19e3629"
+    },
+    {
+      "bytes": 5812,
+      "name": "guided-lessons.json",
+      "path": "essentials/examples/portable/guided-lessons.json",
+      "sha256": "e3f398bd8a531834dee4afea0612f28c31a304a33f29eb6bd0b217704ca3ea84"
+    },
+    {
+      "bytes": 4291,
+      "name": "guided-observation-amendment.json",
+      "path": "essentials/examples/portable/guided-observation-amendment.json",
+      "sha256": "5618712f55d351768edee9ce54c5d4f7240ee2b2fd63735c92a671f2d8d84230"
+    },
+    {
+      "bytes": 2388,
+      "name": "guided-observation-recording.json",
+      "path": "essentials/examples/portable/guided-observation-recording.json",
+      "sha256": "43af7942984d699c55a5a406bb3a49f070b520c20a9feb85f9b352b6162a3029"
+    },
+    {
+      "bytes": 3486,
+      "name": "guided-observation-retry-20260916.json",
+      "path": "essentials/examples/portable/guided-observation-retry-20260916.json",
+      "sha256": "227c5f988dcce1d61d40ee0979185ff832f1a760317fa3994f55d27af0baf3bc"
+    },
+    {
+      "bytes": 7172,
+      "name": "model-recordings.json",
+      "path": "essentials/examples/portable/model-recordings.json",
+      "sha256": "25db48c8a41540c6081c45d156095f9eff87c7912f6c60cd7837a6e28350ded6"
+    },
+    {
+      "bytes": 173481,
+      "name": "native-action-response.json",
+      "path": "research/examples/native-action-response.json",
+      "sha256": "15441269152bb282e2456d4d08fddae398879e4b0410cd08f71e80282f09e807"
+    },
+    {
+      "bytes": 65159,
+      "name": "research-cases-v1.json",
+      "path": "research/examples/research-cases-v1.json",
+      "sha256": "3998951c6eaa4f414ff7ce0cef643f19078001e47c980be521255175743d0652"
+    },
+    {
+      "bytes": 365219,
+      "name": "state-geometry.json",
+      "path": "visualizations/reservoir-3d/state-geometry.json",
+      "sha256": "5e90207e7dfd1d395b249d3bb5d668afa0f86b6d3e0e6383eda7b9eb52514317"
+    },
+    {
+      "bytes": 524288,
+      "name": "state-replay.bin",
+      "path": "native/ReservoirScope/Sources/ReservoirScope/Resources/state-replay.bin",
+      "sha256": "09ea4db8212809085aa2e07a040975f3095d7ef79d06eb8ba7404cc2424e282f"
+    },
+    {
+      "bytes": 1165,
+      "name": "state-replay.json",
+      "path": "native/ReservoirScope/Sources/ReservoirScope/Resources/state-replay.json",
+      "sha256": "9589a673e111df6d8643ab050fb6dc2112eb68c453e2c2e55f41699ac7940dd1"
+    },
+    {
+      "bytes": 656181,
+      "name": "state-response.json",
+      "path": "native/ReservoirScope/Sources/ReservoirScope/Resources/state-response.json",
+      "sha256": "fe97623dcccb4b089ce4e0a1b5cc99ec902793efed8fbfcf1041ce8c865e9100"
+    },
+    {
+      "bytes": 8222,
+      "name": "synthetic-geometry-example.json",
+      "path": "native/ReservoirScope/Tests/Fixtures/geometry-bookmarks/minime-synthetic-geometry.json",
+      "sha256": "25ecc19605ee1bed307735f52668b817a854af98239018e74072c17ffbe92abc"
+    },
+    {
+      "bytes": 12390,
+      "name": "verify-package.py",
+      "path": "native/ReservoirScope/package-identity.py",
+      "sha256": "dd670f88c481e891582cafc6bceeabf671fd811adb5c9eb63bd68854451c24ca"
+    }
+  ],
+  "schema": "reservoir-scope.reference.v1",
+  "sourcePatterns": [
+    "native/ReservoirScope/Sources/ReservoirScope/*.swift",
+    "native/ReservoirScope/Tests/*.swift",
+    "native/ReservoirScope/Tests/*.py",
+    "native/ReservoirScope/Tests/Fixtures/geometry-bookmarks/*.py",
+    "native/ReservoirScope/Tests/Fixtures/geometry-bookmarks/*.json",
+    "native/ReservoirScope/Tests/Fixtures/geometry-bookmarks/*.md",
+    "native/ReservoirScope/*.sh",
+    "native/ReservoirScope/*.py",
+    "native/ReservoirScope/Package.swift",
+    "native/ReservoirScope/resource-manifest.json",
+    "essentials/Package.swift",
+    "essentials/build.sh",
+    "essentials/reservoir/**/*.swift",
+    "essentials/reservoir/**/*.py",
+    "essentials/reservoir/**/*.sh",
+    "essentials/reservoir/**/*.json",
+    "essentials/reservoir/**/*.md",
+    "essentials/spectral_bridge/**/*.swift",
+    "essentials/spectral_bridge/**/*.py",
+    "essentials/spectral_bridge/**/*.sh",
+    "essentials/spectral_bridge/**/*.json",
+    "essentials/spectral_bridge/**/*.md",
+    "essentials/llm/**/*.swift",
+    "essentials/llm/**/*.py",
+    "essentials/llm/**/*.sh",
+    "essentials/llm/**/*.json",
+    "essentials/llm/**/*.md",
+    "essentials/regulation/**/*.swift",
+    "essentials/regulation/**/*.py",
+    "essentials/regulation/**/*.sh",
+    "essentials/regulation/**/*.json",
+    "essentials/regulation/**/*.md",
+    "essentials/stages/**/*.swift",
+    "essentials/stages/**/*.py",
+    "essentials/stages/**/*.sh",
+    "essentials/stages/**/*.json",
+    "essentials/stages/**/*.md",
+    "essentials/actions/**/*.swift",
+    "essentials/actions/**/*.py",
+    "essentials/actions/**/*.sh",
+    "essentials/actions/**/*.json",
+    "essentials/actions/**/*.md",
+    "essentials/runner/**/*.swift",
+    "essentials/runner/**/*.py",
+    "essentials/runner/**/*.sh",
+    "essentials/runner/**/*.json",
+    "essentials/runner/**/*.md",
+    "essentials/tests/**/*.swift",
+    "essentials/tests/**/*.py",
+    "essentials/tests/**/*.sh",
+    "essentials/tests/**/*.json",
+    "essentials/tests/**/*.md",
+    "essentials/README.md",
+    "essentials/EXPLORE.md",
+    "essentials/ACTIONS.md",
+    "essentials/check.sh"
+  ],
+  "sources": [
+    {
+      "bytes": 6758,
+      "path": "essentials/ACTIONS.md",
+      "sha256": "46129932fd3dccad05cc1e12dab3b5733cd477d480f9c6d447f373657708c32a"
+    },
+    {
+      "bytes": 5242,
+      "path": "essentials/EXPLORE.md",
+      "sha256": "424a9cffba290f2a3f817b2ace18dd588e135bf8b0843b8ad70027cd830f77da"
+    },
+    {
+      "bytes": 1319,
+      "path": "essentials/Package.swift",
+      "sha256": "1ea57d6037b66fcf127e620ab0167db797204506c368e93bd5250a743270c210"
+    },
+    {
+      "bytes": 8921,
+      "path": "essentials/README.md",
+      "sha256": "567efec960e5ed7cc7d05485b122677b4302a7c5e5082ae11775c95ff4f5c37d"
+    },
+    {
+      "bytes": 13350,
+      "path": "essentials/actions/ActionComparisonSession.swift",
+      "sha256": "250e10b40e87ad0c511a9a832ac1bcdbd1a446eb1c81f5a7b6a29fcb0721ec7e"
+    },
+    {
+      "bytes": 749,
+      "path": "essentials/actions/ActionForcing.swift",
+      "sha256": "9d720fad4715a5e37f0a3c6d90d75ee4507fc3037d8dc963441de098ba8a32b4"
+    },
+    {
+      "bytes": 15572,
+      "path": "essentials/actions/ActionMechanisms.swift",
+      "sha256": "fd934ed5ce805c868db90d8e6d5660d6b36d481957ad9661e7e8ec0982e1e01f"
+    },
+    {
+      "bytes": 13660,
+      "path": "essentials/actions/ActionTypes.swift",
+      "sha256": "de6c289b896a65c627761e806e4fc1f40f691b61496bf71143c5350d23e6efa5"
+    },
+    {
+      "bytes": 29651,
+      "path": "essentials/actions/ActionVerification.swift",
+      "sha256": "34a6894808492767da18e4b25e1b3cba981d06203154ca19785d4d8ec0960ad3"
+    },
+    {
+      "bytes": 286,
+      "path": "essentials/actions/recipes/A-minimal.json",
+      "sha256": "aeea20a951b6e39932ed4bdd4216c9a1ff61d8008cf80f736b94ab61dbb1220d"
+    },
+    {
+      "bytes": 285,
+      "path": "essentials/actions/recipes/B-recurrence.json",
+      "sha256": "02e37bacdd12bb4794aa07a55bfb35eb36fedb60b64fdc282ec99a571d96456e"
+    },
+    {
+      "bytes": 285,
+      "path": "essentials/actions/recipes/C-observer.json",
+      "sha256": "3e8dc5fa4f6b01debf2b35dd1946d20e01f2a38964ec1678944a040a50f288fc"
+    },
+    {
+      "bytes": 285,
+      "path": "essentials/actions/recipes/D-journal.json",
+      "sha256": "4f4eb9b172dd90bf5c04a501d0344f9a37c2018fa7b431e67cfc7717263d039c"
+    },
+    {
+      "bytes": 729,
+      "path": "essentials/actions/recipes/D-observation-comparison.json",
+      "sha256": "4a5286512a44102aeade277a2577c26f594f69ea7da35a73150676e9d2a160a5"
+    },
+    {
+      "bytes": 285,
+      "path": "essentials/actions/recipes/E-feedback.json",
+      "sha256": "5502dd959e5eca2f101cba827501a7dfd5f88a5b935f2cbfea6cfd7c8f3e8cad"
+    },
+    {
+      "bytes": 295,
+      "path": "essentials/actions/recipes/F-memory-independent.json",
+      "sha256": "b684ff84c1b2d67b14dd3657e20a0fb168fec9c6000edd9b9babbea0839d5813"
+    },
+    {
+      "bytes": 285,
+      "path": "essentials/actions/recipes/F-memory.json",
+      "sha256": "da7885e9ce11634f712fb5b64f824b1a1d6b6342f5a0b8f8dc586fa3883969fa"
+    },
+    {
+      "bytes": 285,
+      "path": "essentials/actions/recipes/G-choice.json",
+      "sha256": "d3a314cd36eb211bd13851d7632df3103c00e33a2b7e32d021843cbda7ef0435"
+    },
+    {
+      "bytes": 285,
+      "path": "essentials/actions/recipes/H-regulation.json",
+      "sha256": "8a4164f4a7981a65caf83d7e15d5be575ff35076add59a1dea89f26c3adefe5b"
+    },
+    {
+      "bytes": 1253,
+      "path": "essentials/build.sh",
+      "sha256": "fc1b42ae4fe37d3d17be4b053101ee5d3c6230a33fab9b84bad2f6dd6026f577"
+    },
+    {
+      "bytes": 281,
+      "path": "essentials/check.sh",
+      "sha256": "f2ef9c65c3918b1b5f276f3cf0c33e6cf2a69c45b809de2bb63e766c35dbfa02"
+    },
+    {
+      "bytes": 9786,
+      "path": "essentials/llm/Language.swift",
+      "sha256": "fc25fcf105ae0a7e54e5ea5f64894b3141f6bad84812d726539a15ab46efd6d9"
+    },
+    {
+      "bytes": 3164,
+      "path": "essentials/llm/README.md",
+      "sha256": "9c437b9eb7cec142dce777466df074dd0a08d05b4612b194dcd98d3e7994819e"
+    },
+    {
+      "bytes": 3884,
+      "path": "essentials/regulation/README.md",
+      "sha256": "ca4b81b2bb4d98b460b4a4d5364880c05ab87849396de51b5e2726ceab648884"
+    },
+    {
+      "bytes": 2611,
+      "path": "essentials/regulation/Regulation.swift",
+      "sha256": "63ef074bf615a63a28a7c15f813b8e76f975ad9efc57a273f48ad15e0a07137b"
+    },
+    {
+      "bytes": 13956,
+      "path": "essentials/regulation/RegulationExample.swift",
+      "sha256": "afc5b8c9568624198adcfd1fe21dc2171ea0c8d6b86512367cd83631a46bf99a"
+    },
+    {
+      "bytes": 5680,
+      "path": "essentials/reservoir/README.md",
+      "sha256": "6857aa88cb12ee391faf61c9dfd63d49704974d88fb7e4d0096e1a94e14c387a"
+    },
+    {
+      "bytes": 6048,
+      "path": "essentials/reservoir/Reservoir.swift",
+      "sha256": "63eea4dbfe5f3f50abbf3156cbc4d7a219a345967d0c4d761e3023d9058a6303"
+    },
+    {
+      "bytes": 17163,
+      "path": "essentials/reservoir/ReservoirExploration.swift",
+      "sha256": "4aae098c6de7d360847b3bcbcbeef08f8a0aa7de853db3837e720682d68db878"
+    },
+    {
+      "bytes": 6979,
+      "path": "essentials/runner/Main.swift",
+      "sha256": "cc7274c893cce86611ee4ebb9a83899bb0a264c890105f663244b966fdd86bd7"
+    },
+    {
+      "bytes": 5434,
+      "path": "essentials/runner/README.md",
+      "sha256": "be436fb4d7bcfa3f21782eb5622a970596363ce3051b9bb936852ad7f97daf8d"
+    },
+    {
+      "bytes": 3745,
+      "path": "essentials/spectral_bridge/README.md",
+      "sha256": "f910f5df31aa192032eb5e7151660f9cda2666055f19707d8a11b235565684f8"
+    },
+    {
+      "bytes": 7032,
+      "path": "essentials/spectral_bridge/SensoryField.swift",
+      "sha256": "8993986044309fefc911a052a9ef201c4f6efcd01afe63239512be4502022809"
+    },
+    {
+      "bytes": 6845,
+      "path": "essentials/spectral_bridge/TextCodec.swift",
+      "sha256": "46e55a2d33d37d561be0cecbdf5c5124330fcda7ffb2fce8a874c7ee664bd290"
+    },
+    {
+      "bytes": 244,
+      "path": "essentials/stages/01-reservoir.json",
+      "sha256": "e8932af9ef666e6b5be79d351a4baa2d2e5186ebeaaf7273fb457b79ccf4d7c8"
+    },
+    {
+      "bytes": 244,
+      "path": "essentials/stages/02-spectral-bridge.json",
+      "sha256": "b670e22632f0e6075e8e456a483a36d40f1afaedc76d061b9eb327da9bd9b67b"
+    },
+    {
+      "bytes": 244,
+      "path": "essentials/stages/03-llm-loop.json",
+      "sha256": "68df8559eadc8763299deababe532f492124072e2a6ac5d9460b181dbe24dd42"
+    },
+    {
+      "bytes": 245,
+      "path": "essentials/stages/04-regulation-disabled.json",
+      "sha256": "570f961f7f977f05102d6475c5fc3803007fcb0d3499b1e107dd254a7c71538c"
+    },
+    {
+      "bytes": 244,
+      "path": "essentials/stages/04-regulation.json",
+      "sha256": "620be80d7faf75c1f19163e37ec9bbdbc1fe086bc49f31dc45dad572966c8981"
+    },
+    {
+      "bytes": 7033,
+      "path": "essentials/stages/ACTIONS-AND-COMPARISONS.md",
+      "sha256": "cdc23de3e21f6feccf4a0bfd116d749b56d61def7337fbb51105436e2cf014f3"
+    },
+    {
+      "bytes": 10535,
+      "path": "essentials/stages/EssentialsSession.swift",
+      "sha256": "51bb56f60b5203c1543d2e0c7f1a3685bb716ba141b87a6cf7e4a260b3b155ec"
+    },
+    {
+      "bytes": 3998,
+      "path": "essentials/stages/README.md",
+      "sha256": "fbdc8803feea4dd9eeca05507f41cb4f9bf078492c276ba3d25667611185c8d0"
+    },
+    {
+      "bytes": 7088,
+      "path": "essentials/stages/RunTypes.swift",
+      "sha256": "fa8ae6ed594cd36029d27f416dc6029662016fa6701b5ad1cdfa4ff9c6d6fc83"
+    },
+    {
+      "bytes": 14894,
+      "path": "essentials/stages/Verification.swift",
+      "sha256": "400fafb610018795c2dff3b7429e800a705b6b1c42411682e3fec01103fad668"
+    },
+    {
+      "bytes": 22432,
+      "path": "essentials/tests/ActionComparisonTests.swift",
+      "sha256": "e2198becd646537dcfde73fb6d0bf42150b99bbf76117ffb4a39e9b4f71ac47b"
+    },
+    {
+      "bytes": 11992,
+      "path": "essentials/tests/ExplorationTests.swift",
+      "sha256": "eec9e9051f771b264b4a228deac3272eef07f8a8578363e14171d44694c9c68a"
+    },
+    {
+      "bytes": 11128,
+      "path": "essentials/tests/MechanismTests.swift",
+      "sha256": "90990d8c03d6560806f03a44a33b47bac83b9e9ba0aedf92ecf4d2792d10a1ee"
+    },
+    {
+      "bytes": 5086,
+      "path": "essentials/tests/ObservationComparisonTests.swift",
+      "sha256": "2113a3c8a7388480b687a88bd854b306be068b115f06b9267bb190cbcc7b4fe5"
+    },
+    {
+      "bytes": 3946,
+      "path": "essentials/tests/README.md",
+      "sha256": "f71174617b3edaaa4e681714a28aed825348a8c4441393e9ba93cedf7be3b444"
+    },
+    {
+      "bytes": 13196,
+      "path": "essentials/tests/RuntimeTests.swift",
+      "sha256": "0f99fdd5b9710f39146809516fb3f4e5fae2c15c091191b59d7c5db6834da8de"
+    },
+    {
+      "bytes": 10459,
+      "path": "essentials/tests/TeachingExampleTests.swift",
+      "sha256": "7b3ec355403488c922c8dd8d3cbf545184345f9b012055ada8e08caa19e63811"
+    },
+    {
+      "bytes": 6680,
+      "path": "essentials/tests/action_cli_smoke.py",
+      "sha256": "baca302b0bbf6eacd1932139a6435bbe989d163101c05f0e44146bacc9112269"
+    },
+    {
+      "bytes": 5572,
+      "path": "essentials/tests/action_http_smoke.py",
+      "sha256": "8a9a75c87426d6635b90130aeef47af960d327a921481bafc123fd168e31277f"
+    },
+    {
+      "bytes": 4783,
+      "path": "essentials/tests/guided_recording_preparation_test.py",
+      "sha256": "fe0af3a709a65311ac5149d2d194e8c3616eff33c68dcba83477725beaa514fc"
+    },
+    {
+      "bytes": 12475,
+      "path": "essentials/tests/http_smoke.py",
+      "sha256": "c6c1aa7759069475ddd2e8f3f3a1e7311a8acb4bc077d036f5d1cf0a267fb9b8"
+    },
+    {
+      "bytes": 861,
+      "path": "native/ReservoirScope/Package.swift",
+      "sha256": "d441c804f4a0f61b883a18ae19716aa8280154cd89aa7c6030b8dac6785014d0"
+    },
+    {
+      "bytes": 61702,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ActionComparisonExperience.swift",
+      "sha256": "0fed4d184b0e289e5fb18aeeff28664f21806ced4cf1fe88146e53f1030bcbad"
+    },
+    {
+      "bytes": 33165,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ActionComparisonViewModel.swift",
+      "sha256": "a53f3d05d27ccc60654d8298fa1f543c2998721e2dfb20488b45dc5726fc9310"
+    },
+    {
+      "bytes": 24963,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/EssentialsExperience.swift",
+      "sha256": "1dbadd2f570f6fe130d0cb5dbc46f06e52a80eb2dea5d60cc4c64c0c4c2e1cca"
+    },
+    {
+      "bytes": 14014,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/EssentialsViewModel.swift",
+      "sha256": "d9a7c66394b62f88e7416ebf8880738e0f779267a2ad0356e0fb81d21a5ec9cd"
+    },
+    {
+      "bytes": 21724,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/Evidence.swift",
+      "sha256": "4a8ec2a1d16fb095f987658be60434d2b8785bad8b27da3cd4a60b00c6aef4d5"
+    },
+    {
+      "bytes": 11470,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ExperimentLibraryView.swift",
+      "sha256": "73970f2fc9e2254ea465dd9ea201d3999f5634c3ad26687ba54f5161c7548de4"
+    },
+    {
+      "bytes": 1248,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ExperimentLifecycle.swift",
+      "sha256": "ed8d39368ceb580b2c47f8c28df8221d8c6fa991e3f8acf7410a99d230056056"
+    },
+    {
+      "bytes": 6288,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ExperimentStore.swift",
+      "sha256": "ae1dbafbe965dcc96c6a1e6514c502d71a6b56e742844220b5e5c7681eff8ba0"
+    },
+    {
+      "bytes": 27686,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ExplorationExperience.swift",
+      "sha256": "670a7fdbddc00958ebb57906b12d191cf07249c5b3ec37c85b9445bb66b5a94c"
+    },
+    {
+      "bytes": 13438,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ExplorationViewModel.swift",
+      "sha256": "2225d54792d0bb89f14938be5fc6850f0f96ebbea927df47df4c0f61dc53b8d0"
+    },
+    {
+      "bytes": 2476,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/FillTransition.swift",
+      "sha256": "132f205f61576aca1675f0458a4fbeaa815bb7f9fe643d4ea2b2e25d3f309623"
+    },
+    {
+      "bytes": 6565,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/FillWatermarkMemory.swift",
+      "sha256": "5631de3f8a1bcbc5ae4c4f03c7bab34ccb04956114d43156e8745b788d83d951"
+    },
+    {
+      "bytes": 4740,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/FillWatermarks.swift",
+      "sha256": "091c3db78354828a42da94a3a8fb10b829e6665775414f81d8ebfc3c15b4301f"
+    },
+    {
+      "bytes": 10748,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/GeometryBookmark.swift",
+      "sha256": "ca3e4d14dd51b114d3f71d78c7a87e0e9766687d504f83d3755f08fdb5c17a71"
+    },
+    {
+      "bytes": 11307,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/GeometryBookmarkView.swift",
+      "sha256": "3e3fba1a74e8f07a42c71f1b121289aa71e05c1bb6d08908f8e4857b5a7e7ab8"
+    },
+    {
+      "bytes": 2064,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/GeometryBookmarkViewModel.swift",
+      "sha256": "2357f111138ecdb92ea6ccc9d0e789e8d94ea50b75af1928a0590b911304d8c8"
+    },
+    {
+      "bytes": 4133,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/GuidedCharts.swift",
+      "sha256": "cfcc3c2ae6be27b5e7487f10376598293c20bd576e99bac41eb7f9efd7644c86"
+    },
+    {
+      "bytes": 12747,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/GuidedLessons.swift",
+      "sha256": "d6fbf60c4ac863e296d19ecb579fcf9c3e46da4c7d69e82a3351c87cfbc5aea3"
+    },
+    {
+      "bytes": 3746,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/GuidedTourModel.swift",
+      "sha256": "597d02e337d655f7f265b87bd3f24a1e36e5b57dd33bce228a3cc2fec51d8f0b"
+    },
+    {
+      "bytes": 15994,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/LiveState.swift",
+      "sha256": "abfde9c5e8e230aa9642c956e6ae44b11de7e8eef634398f901d314d984550a9"
+    },
+    {
+      "bytes": 11385,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/LiveTelemetry.swift",
+      "sha256": "65edaf5700aaf6729abe6da84532d7015cc4a97ca5139603fe2f7f62b3371922"
+    },
+    {
+      "bytes": 9949,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/LocalModelReadiness.swift",
+      "sha256": "c5f17bde952d9419728e508dd04c9394b28147872e1191c3e82bb76adf01225b"
+    },
+    {
+      "bytes": 10907,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/NativeActionResponse.swift",
+      "sha256": "11aa1976869d22cdb062487c88fb30739367ba5cf833b32c6272013b7a55e942"
+    },
+    {
+      "bytes": 18784,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/NativeActionResponseExperience.swift",
+      "sha256": "ac03a2fdad5a049be8d9027b9151a5ffd20b80f6dfc933d3ad120a4f9c5aa98b"
+    },
+    {
+      "bytes": 20406,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/Profiling.swift",
+      "sha256": "838090b6b8619a28752d91282bb40f83eb1d3f943e6ed984d0fadde65cc3abcc"
+    },
+    {
+      "bytes": 9034,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ReferenceWatermarksView.swift",
+      "sha256": "beb89d214c0c60e90bc9122e651b9c64732a5b9e65cdfdd09bb2728f8842ddd2"
+    },
+    {
+      "bytes": 9323,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ReferenceZones.swift",
+      "sha256": "2ce4df2568cc0895ac648a2e0ff3738d9dad6098d23cd1502257545a80e45a34"
+    },
+    {
+      "bytes": 11414,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/RegulationExampleView.swift",
+      "sha256": "519b86ad7ebd80059be29206dd4080a8f4db32f6d842d0edcbfcfe8aa0513e71"
+    },
+    {
+      "bytes": 649,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ReplayClock.swift",
+      "sha256": "8326a47becab81b6fb6f2c1550a51226dde9b203a027d1909b14ccc6d9e5ff81"
+    },
+    {
+      "bytes": 7901,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ResearchCase.swift",
+      "sha256": "ad727e20be5d2b11a4b080fa4a64a9abec604581d294d4d07c0e321ad479d483"
+    },
+    {
+      "bytes": 8947,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ResearchCaseView.swift",
+      "sha256": "3ad690f26a03023d2844eb134da56936617ab466deee7d48247ffbc5529f66c8"
+    },
+    {
+      "bytes": 4400,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ResearchCasesViewModel.swift",
+      "sha256": "b200d4d36032ed75cc1716530fcb821bcc9f98ca1ac7368d79b7cfb9f5b03a34"
+    },
+    {
+      "bytes": 4831,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ResearchCasesWorkspace.swift",
+      "sha256": "4ecff815e90f363791b5c46b638ff5ca871d2044515f9516c7996728bb99a329"
+    },
+    {
+      "bytes": 36991,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ReservoirScene.swift",
+      "sha256": "956d61ddf5809655d0d2f51ada64f7d0b72ea114d236ef06f6b55fc3c64e1771"
+    },
+    {
+      "bytes": 58371,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ReservoirScopeApp.swift",
+      "sha256": "2dfd8243bf59af0aa1993902b9a06ce04c7dad39083abd579224d87869b52829"
+    },
+    {
+      "bytes": 265,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ResourceBundle.swift",
+      "sha256": "22eb2c127d7692702a48d3f9cd4ab41057912ccd4cae6d25d23a7d248e3b4079"
+    },
+    {
+      "bytes": 6332,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ScopeWorkspace.swift",
+      "sha256": "72742616a78dd7d1298e963d6aa74713e0a033f9bad0583c13c76930a8c977e3"
+    },
+    {
+      "bytes": 21468,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/StateResponseExperience.swift",
+      "sha256": "8cfc783710186c2bd17165478a25990e8b397663d4828dcbd348149f0ff188da"
+    },
+    {
+      "bytes": 21652,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/StateSurface.swift",
+      "sha256": "d270de8d520b7a4fb39f56196dc96536cfc134c1e4f897b379c8dea92ca79a6d"
+    },
+    {
+      "bytes": 13835,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/StateSurfaceExperience.swift",
+      "sha256": "986808cc5ff56d195567a0b5bcd7a5af3f38164c5d6bf4c541f3c5701d36c828"
+    },
+    {
+      "bytes": 14772,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/StateSurfaceProfiling.swift",
+      "sha256": "70f2e481ef65e489816bcf97e461ebe367603c2bedea1a0a929e9e67a39772de"
+    },
+    {
+      "bytes": 26863,
+      "path": "native/ReservoirScope/Sources/ReservoirScope/StateSurfaceScene.swift",
+      "sha256": "22c345fd4146cbcc242ed69028e4b3bbe82dcab8b55908f70c1cde0a14285177"
+    },
+    {
+      "bytes": 12785,
+      "path": "native/ReservoirScope/Tests/ActionComparisonLayoutChecks.swift",
+      "sha256": "df0939d946354488222f044d3adb1e0c83b8c17895e772eff1a700b21c4dc951"
+    },
+    {
+      "bytes": 29926,
+      "path": "native/ReservoirScope/Tests/ActionComparisonViewModelChecks.swift",
+      "sha256": "719281bc3484141598a22ffcebcb2a1b3d519533048b7c057f3e6b3fb19279a2"
+    },
+    {
+      "bytes": 10187,
+      "path": "native/ReservoirScope/Tests/ActionInspectorLayoutChecks.swift",
+      "sha256": "66640f539cf5eb8dd9a4e993947eb6b58a717c0225fd9443458fbb43c20f8a75"
+    },
+    {
+      "bytes": 13282,
+      "path": "native/ReservoirScope/Tests/DynamicStateSurfaceChecks.swift",
+      "sha256": "02817e7ce93290869975da27155b09180cc1fe23bb012c08c004c819831992dc"
+    },
+    {
+      "bytes": 5233,
+      "path": "native/ReservoirScope/Tests/EssentialsLayoutChecks.swift",
+      "sha256": "74ad7bc1fd45244ddc17f74cdd34c0aef371556e99a32d497ba9324545098ae8"
+    },
+    {
+      "bytes": 7263,
+      "path": "native/ReservoirScope/Tests/EssentialsRunLayoutChecks.swift",
+      "sha256": "9e364f8a656b787164b2fb594fee4873d675b95f50282914aee91179c01d33a6"
+    },
+    {
+      "bytes": 9101,
+      "path": "native/ReservoirScope/Tests/EssentialsViewModelChecks.swift",
+      "sha256": "7ee2aa8e13761c3120ec84327337b5533858712c675fdce92ea3f9804c300ce7"
+    },
+    {
+      "bytes": 9212,
+      "path": "native/ReservoirScope/Tests/EvidenceFixtureChecks.swift",
+      "sha256": "1b6004a09f6dffdd64431b1171200473e6a099e8d2374a7194b03df2a4ede779"
+    },
+    {
+      "bytes": 9442,
+      "path": "native/ReservoirScope/Tests/ExplorationLayoutChecks.swift",
+      "sha256": "6171620aa24819a5be302914daddeb69aba2f2f07df638cc681cdce3ba3f60c5"
+    },
+    {
+      "bytes": 10740,
+      "path": "native/ReservoirScope/Tests/ExplorationViewModelChecks.swift",
+      "sha256": "f1c10247dd29e65e2429f0187373e6bbfe62ed0301691e4ae2eb5b296fc10ae6"
+    },
+    {
+      "bytes": 8841,
+      "path": "native/ReservoirScope/Tests/FillRendererChecks.swift",
+      "sha256": "27dd37c8d6674225f278cd9ae88af0e6da2994b58766df0a0d10ed6d9604ade3"
+    },
+    {
+      "bytes": 4865,
+      "path": "native/ReservoirScope/Tests/FillTransitionChecks.swift",
+      "sha256": "0259c462224d6b84c2a47f741e25ad42a6df6878b66362a609bb327209657c1c"
+    },
+    {
+      "bytes": 9222,
+      "path": "native/ReservoirScope/Tests/FillWatermarkChecks.swift",
+      "sha256": "a43f72cf7fd9a732e773a57389ff8f1987bfcac81a6fbb8919e97222137818ff"
+    },
+    {
+      "bytes": 14559,
+      "path": "native/ReservoirScope/Tests/FillWatermarkMemoryChecks.swift",
+      "sha256": "f6ddcf07f86f847bd97c3c97675f96ed4188389070ecf6128055c4566f7baafe"
+    },
+    {
+      "bytes": 2821,
+      "path": "native/ReservoirScope/Tests/Fixtures/geometry-bookmarks/README.md",
+      "sha256": "c20babd26dfc588bef2b18ac7c05c7b02e9e4a8fd002f6982698a769b880e08b"
+    },
+    {
+      "bytes": 8222,
+      "path": "native/ReservoirScope/Tests/Fixtures/geometry-bookmarks/astrid-synthetic-geometry.json",
+      "sha256": "f88f87ad27afa2cc78bb742a59d81d46680a2fee6b74cf3ee756a5e35dce7c53"
+    },
+    {
+      "bytes": 8352,
+      "path": "native/ReservoirScope/Tests/Fixtures/geometry-bookmarks/generate.py",
+      "sha256": "75e762e051cf0fc187d6735040d80221cf6a6f3d2f62d3e7bdd256c7925c3d0e"
+    },
+    {
+      "bytes": 8222,
+      "path": "native/ReservoirScope/Tests/Fixtures/geometry-bookmarks/minime-synthetic-geometry.json",
+      "sha256": "25ecc19605ee1bed307735f52668b817a854af98239018e74072c17ffbe92abc"
+    },
+    {
+      "bytes": 1981,
+      "path": "native/ReservoirScope/Tests/Fixtures/geometry-bookmarks/provenance.json",
+      "sha256": "8f24407d11cf5fdf5644d5890d1697cd60903ee06e3295543fdc43dd47177e8f"
+    },
+    {
+      "bytes": 10897,
+      "path": "native/ReservoirScope/Tests/GeometryBookmarkChecks.swift",
+      "sha256": "663e2ff668f7bf99defaf9472e5cf369d28ce8529222f1f812fd0c96cbd78128"
+    },
+    {
+      "bytes": 13544,
+      "path": "native/ReservoirScope/Tests/GeometryBookmarkPresentationChecks.swift",
+      "sha256": "daad17522a347c1c9873263b0ce37370d625e306703b9e024fc916724bde2169"
+    },
+    {
+      "bytes": 7411,
+      "path": "native/ReservoirScope/Tests/GuidedLessonChecks.swift",
+      "sha256": "bf89bfc6436407ae0aa95ae75860dc0e87d9e721ca56fec3cb61b47e94373410"
+    },
+    {
+      "bytes": 8483,
+      "path": "native/ReservoirScope/Tests/GuidedPlaybackPresentationChecks.swift",
+      "sha256": "78571a5af4c6112cd9ea3dcddf1a0869a04df9176924daa3df0f3505928fd2ee"
+    },
+    {
+      "bytes": 10358,
+      "path": "native/ReservoirScope/Tests/LiveStateChecks.swift",
+      "sha256": "2c33bade4bcc2979a18e3c9ac5ccc34e52893dd19025905e5a50127d1175a129"
+    },
+    {
+      "bytes": 10987,
+      "path": "native/ReservoirScope/Tests/NativeActionResponseChecks.swift",
+      "sha256": "a4b01964e7b1749b64c92a496d1a2cd4f4c32117f8b55876f380866258d8d6da"
+    },
+    {
+      "bytes": 4685,
+      "path": "native/ReservoirScope/Tests/PackageIdentityChecks.py",
+      "sha256": "9656741900fc8ce9ffea5899f1e3e20167cfe4fe9ca98a5b8cfe26909d44fd0d"
+    },
+    {
+      "bytes": 12850,
+      "path": "native/ReservoirScope/Tests/PortableStoreChecks.swift",
+      "sha256": "03b05051b2d08e648504774fdd588afd87e62297185113f5d83516a55f73b8c9"
+    },
+    {
+      "bytes": 17977,
+      "path": "native/ReservoirScope/Tests/ReadinessAndResearchCaseChecks.swift",
+      "sha256": "cb810367bc63742ab31c2f144d96365ae804cf4eaea158124432a887ea481420"
+    },
+    {
+      "bytes": 4111,
+      "path": "native/ReservoirScope/Tests/ReferenceZoneChecks.swift",
+      "sha256": "53096913660cf7326ec9f2822904cf78a214b79fc0d83be137844e69bed8c8c4"
+    },
+    {
+      "bytes": 4480,
+      "path": "native/ReservoirScope/Tests/ResearchCasePresentationChecks.swift",
+      "sha256": "d67ae47a25e0d6caeeeb8d02485b7b222f4e6e9f46973164dc82da29b6fb6e0c"
+    },
+    {
+      "bytes": 12142,
+      "path": "native/ReservoirScope/Tests/ResearchCasesWorkspaceChecks.swift",
+      "sha256": "c0f1ccd489e0122caad1941b583b0f9cfa799aef9251b92a92fe6a111802c61f"
+    },
+    {
+      "bytes": 2530,
+      "path": "native/ReservoirScope/Tests/SharedStateSurfaceCameraChecks.swift",
+      "sha256": "35547e622c08ad7e5f1e29c41eeb6f535d22d62f2b47b4aafd303dd405da5031"
+    },
+    {
+      "bytes": 7080,
+      "path": "native/ReservoirScope/Tests/StateResponseChecks.swift",
+      "sha256": "7d45b7124a8c5bd1e61202c88e164ff1084cd81043b3c58d05b22b989119981e"
+    },
+    {
+      "bytes": 13187,
+      "path": "native/ReservoirScope/Tests/StateSurfaceChecks.swift",
+      "sha256": "91556f5ba3a7c0af75953d0ae99b2432d3846f72d2d20183f73aa44eeefa48a2"
+    },
+    {
+      "bytes": 10196,
+      "path": "native/ReservoirScope/Tests/StateSurfaceDataChecks.swift",
+      "sha256": "9920c48d8ec0f5fce3000ca567173ab5dc9b98e471740aff282b36c5e7922133"
+    },
+    {
+      "bytes": 10192,
+      "path": "native/ReservoirScope/Tests/StateSurfaceRendererChecks.swift",
+      "sha256": "4dfbf410f805d4f8036758f8cd1892f47e865536ec2989f42b6a1cbae423939a"
+    },
+    {
+      "bytes": 18248,
+      "path": "native/ReservoirScope/Tests/TopographicRendererChecks.swift",
+      "sha256": "810e9ced4ef9168e39ae1e4f9208948d103fedc27459854182ecd1b8a586db9f"
+    },
+    {
+      "bytes": 14554,
+      "path": "native/ReservoirScope/Tests/TopographicSurfaceChecks.swift",
+      "sha256": "87baa248cc24a7e2b6d5effe216c6e134ddcc80963ec270e7f4808f2008174d3"
+    },
+    {
+      "bytes": 14162,
+      "path": "native/ReservoirScope/Tests/WatermarkViewChecks.swift",
+      "sha256": "01985030ded6d23c80d549cecd40d5f9cc721a73f76c3b2729b1d93cace9cc9f"
+    },
+    {
+      "bytes": 6142,
+      "path": "native/ReservoirScope/Tests/geometry_bookmark_workflow.py",
+      "sha256": "e33908a524184cefd92efd2362b246af6b68e2ce4591e514888bea25a92e87aa"
+    },
+    {
+      "bytes": 3350,
+      "path": "native/ReservoirScope/Tests/offline_portable.py",
+      "sha256": "ae8c0a33b8ffb59e278d8b6ec1e6d692b975f1a267416fea8b34c6bf8f086c9e"
+    },
+    {
+      "bytes": 3647,
+      "path": "native/ReservoirScope/build-app.sh",
+      "sha256": "dc5db75fd9ac90120a685b906e724559b5ef31fdd708fa48e5cf0682bc09f5d2"
+    },
+    {
+      "bytes": 823,
+      "path": "native/ReservoirScope/build-portable-checks.sh",
+      "sha256": "1cc291c51218ae6b947ae03483707971c44b34c1fdbbf4f57808cbea4d3bb59e"
+    },
+    {
+      "bytes": 2946,
+      "path": "native/ReservoirScope/check-action-comparison-layout.sh",
+      "sha256": "178a56e5cca126a9bd200f6c9c108f448bffb86fa510e17c6d046a17fcfd523e"
+    },
+    {
+      "bytes": 2944,
+      "path": "native/ReservoirScope/check-action-inspector-layout.sh",
+      "sha256": "c1017a222da8f80be3e98663a91962ecf3540d6f435c8f37737e6e52a610642f"
+    },
+    {
+      "bytes": 1064,
+      "path": "native/ReservoirScope/check-actions-ui.sh",
+      "sha256": "39a453dc5f2bed0fa66f5b34303b8e725da55dcb9311c9b58243282b80af2e5b"
+    },
+    {
+      "bytes": 772,
+      "path": "native/ReservoirScope/check-dynamic-state-surface.sh",
+      "sha256": "26fab239fdf2e04ef82ee341dc1c485c66edeac61e853b99e0713bd0926ceccd"
+    },
+    {
+      "bytes": 2498,
+      "path": "native/ReservoirScope/check-essentials-layout.sh",
+      "sha256": "f927b08d85d38dbcefea29323031863672811a2fd341c256070e63aab0aa823a"
+    },
+    {
+      "bytes": 2733,
+      "path": "native/ReservoirScope/check-essentials-run-layout.sh",
+      "sha256": "e23223069e05b80c125febeeec027069fa95c21b40d9b0e2fa88a8c64fa45671"
+    },
+    {
+      "bytes": 1128,
+      "path": "native/ReservoirScope/check-essentials-ui.sh",
+      "sha256": "9edec1ad6b55c2e1adb4404bf7c6d8c25c65277852604b78a47285328d3d49db"
+    },
+    {
+      "bytes": 1866,
+      "path": "native/ReservoirScope/check-evidence.sh",
+      "sha256": "a39f271dd5f83d3c7889d7837b87816c9139f8169759d80447ec9fa649309e9f"
+    },
+    {
+      "bytes": 2794,
+      "path": "native/ReservoirScope/check-exploration-layout.sh",
+      "sha256": "43975740c528a702e703f2b459a3e924b07fea99d48b5bfb0c4d64a36ebb160d"
+    },
+    {
+      "bytes": 1062,
+      "path": "native/ReservoirScope/check-exploration-ui.sh",
+      "sha256": "bda643f2952a27a624a86f5e70fbd25708fcac80e1724eb243d914eb3ecb3c44"
+    },
+    {
+      "bytes": 588,
+      "path": "native/ReservoirScope/check-fill-renderer.sh",
+      "sha256": "881455b4ed6b5056e62402382b6ad23ec76b658006d101b13659b93f4b3569ca"
+    },
+    {
+      "bytes": 503,
+      "path": "native/ReservoirScope/check-fill-transition.sh",
+      "sha256": "9b760a308d873ad9575503587fd18e531d41391181877037c04e052d20b80b72"
+    },
+    {
+      "bytes": 595,
+      "path": "native/ReservoirScope/check-fill-watermark-memory.sh",
+      "sha256": "c6eafd2c6be6b97e336553d257ceac3447aa3405b8427387bfffecd083295ea1"
+    },
+    {
+      "bytes": 519,
+      "path": "native/ReservoirScope/check-fill-watermarks.sh",
+      "sha256": "6ac3ec6ea4b81ac71feeb5773e81c6d1263cd1389ef96818527c2ecc518f503f"
+    },
+    {
+      "bytes": 964,
+      "path": "native/ReservoirScope/check-geometry-bookmark-presentation.sh",
+      "sha256": "d76fe94a1a93e42608a0cf58d2e45ea9d0768718a59e68860a56295267d49459"
+    },
+    {
+      "bytes": 738,
+      "path": "native/ReservoirScope/check-geometry-bookmarks.sh",
+      "sha256": "1812a804513d3c6e512fade18ce108de250a935a7ce0d19e6c6238420468ff1e"
+    },
+    {
+      "bytes": 633,
+      "path": "native/ReservoirScope/check-guided-lessons.sh",
+      "sha256": "d774cd96e25da84c2541869376f217c01e3344501a516ba8901fee75c771f06e"
+    },
+    {
+      "bytes": 4675,
+      "path": "native/ReservoirScope/check-guided-playback-presentation.sh",
+      "sha256": "8b3e67246f7e4ed307c5613e5e5560275d61aae052ad76c7e95f1c3bf3d373bc"
+    },
+    {
+      "bytes": 520,
+      "path": "native/ReservoirScope/check-native-action-response.sh",
+      "sha256": "569b7cde4f47bc6a109c060c497254be980f8bfe3dc8b88247e2ff27a352990d"
+    },
+    {
+      "bytes": 222,
+      "path": "native/ReservoirScope/check-package-identity.sh",
+      "sha256": "9805cbeed56325000f380b922a6f8d68ab3fd1a3265e82787d5aff9d73944691"
+    },
+    {
+      "bytes": 788,
+      "path": "native/ReservoirScope/check-readiness-and-cases.sh",
+      "sha256": "2e4a3a81d526d0b696471247136879aae4787dc150306a3946026b6fb30e5b43"
+    },
+    {
+      "bytes": 876,
+      "path": "native/ReservoirScope/check-research-case-layout.sh",
+      "sha256": "39021557704be3901e233021f0bc4b5262fc83c2e1f5ed10403e78a39d848531"
+    },
+    {
+      "bytes": 1067,
+      "path": "native/ReservoirScope/check-research-cases-workspace.sh",
+      "sha256": "c60d5fe29394a724b75cb7aa894e2c88a64945f25934de89b03f783d2e80ec6a"
+    },
+    {
+      "bytes": 1593,
+      "path": "native/ReservoirScope/check-shared-state-camera.sh",
+      "sha256": "94db12222f1e568e86602e5404abd19d9d448cfa3519f96ef11a6da3392f8fd4"
+    },
+    {
+      "bytes": 4437,
+      "path": "native/ReservoirScope/check-source-staging.sh",
+      "sha256": "fccba06ed14b05bab9ef07f9f9879b5291a3a26db6cf56ded1c76b22cc8c3bb1"
+    },
+    {
+      "bytes": 690,
+      "path": "native/ReservoirScope/check-state-response.sh",
+      "sha256": "8949ba22f14da26308c6029e7421d58b620902aba61b255446161dfc96cd014b"
+    },
+    {
+      "bytes": 993,
+      "path": "native/ReservoirScope/check-state-surface-data.sh",
+      "sha256": "e96b085a25fe6eecb6a7f79287425e9e469104da08139ca3ffe8d0f3c9490b68"
+    },
+    {
+      "bytes": 1035,
+      "path": "native/ReservoirScope/check-state-surface-renderer.sh",
+      "sha256": "9fc3a6e67c71c99e65c1312420ee3b0fd7c6e9cfd8bbb8acc9b8e02792baccbd"
+    },
+    {
+      "bytes": 561,
+      "path": "native/ReservoirScope/check-state-surface.sh",
+      "sha256": "93a5676786cd4c1052df7b4444644cc5b64eaf00c4c4395cc4becaf879ff8637"
+    },
+    {
+      "bytes": 3300,
+      "path": "native/ReservoirScope/check-topographic-renderer.sh",
+      "sha256": "aef246dabd82e8c8c3d0edf1adfdac123bd7935c5a971ab991067cb4358c4706"
+    },
+    {
+      "bytes": 583,
+      "path": "native/ReservoirScope/check-topographic-surface.sh",
+      "sha256": "43f507ff9fe0f1317e4287041ed4626eae67c429478e196d4ddd78c390852ec3"
+    },
+    {
+      "bytes": 2094,
+      "path": "native/ReservoirScope/check-watermark-view.sh",
+      "sha256": "a49dd184f59ab43eea6b14ace3d038bfa55d4a6b1668473cf83b8c4eb47745e0"
+    },
+    {
+      "bytes": 12390,
+      "path": "native/ReservoirScope/package-identity.py",
+      "sha256": "dd670f88c481e891582cafc6bceeabf671fd811adb5c9eb63bd68854451c24ca"
+    },
+    {
+      "bytes": 3018,
+      "path": "native/ReservoirScope/prepare-acceptance.py",
+      "sha256": "a0f0b3a3855118921558d1bd9028f623f13852983ae51e7b20eda805195f2cbb"
+    },
+    {
+      "bytes": 1914,
+      "path": "native/ReservoirScope/profile-app.sh",
+      "sha256": "8315080afc4677dcf8da27b26589f0524dac8ba81641e1b7bc04adf89a3cde9d"
+    },
+    {
+      "bytes": 9404,
+      "path": "native/ReservoirScope/resource-manifest.json",
+      "sha256": "933f2e55b214c3fa72ae81c10da6b1781f8f36de296489dff0bc0022ec503a88"
+    },
+    {
+      "bytes": 8630,
+      "path": "native/ReservoirScope/stage-package.py",
+      "sha256": "1cb8d4440493d7f6478f84360f917d02cb7889ae928f039bdcabd46cd342a084"
+    },
+    {
+      "bytes": 372,
+      "path": "native/ReservoirScope/stage-sources.sh",
+      "sha256": "9dffdbdbb599b048935282ac8a08dcdfbec8414964f657f389e593a7dea2cd4c"
+    },
+    {
+      "bytes": 2359,
+      "path": "native/ReservoirScope/verify-app-identity.py",
+      "sha256": "bdcb0be9e153860a8bdcfcc65a2ce4edd91dd50c2a3275e689c827fd4afa7bb8"
+    }
+  ]
+}

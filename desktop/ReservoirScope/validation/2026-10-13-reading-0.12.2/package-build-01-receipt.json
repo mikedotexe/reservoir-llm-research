@@ -1,0 +1,43 @@
+{
+  "startedAtUtc": "2026-10-13T19:13:43.761412+00:00",
+  "environmentOverrides": {
+    "DEVELOPER_DIR": "/Applications/Xcode.app/Contents/Developer",
+    "SDKROOT": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+  },
+  "checks": [
+    {
+      "name": "reference-integrity-01",
+      "command": [
+        "python3",
+        "scripts/check_reference.py"
+      ],
+      "startedAtUtc": "2026-10-13T19:13:43.761425+00:00",
+      "endedAtUtc": "2026-10-13T19:13:44.013801+00:00",
+      "elapsedSeconds": 0.2524129580706358,
+      "exitCode": 0,
+      "log": "validation/2026-10-13-reading-0.12.2/reference-integrity-01.log",
+      "logSha256": "e84ce451bbba9c3e7d8977919cd5f2ccfb976ea173385e2e6fdf6166c8915e47"
+    },
+    {
+      "name": "macos-package-build-01",
+      "command": [
+        "npm",
+        "run",
+        "tauri",
+        "--",
+        "build",
+        "--bundles",
+        "app",
+        "--",
+        "--locked"
+      ],
+      "startedAtUtc": "2026-10-13T19:13:44.013997+00:00",
+      "endedAtUtc": "2026-10-13T19:15:35.120170+00:00",
+      "elapsedSeconds": 111.106916916091,
+      "exitCode": 0,
+      "log": "validation/2026-10-13-reading-0.12.2/macos-package-build-01.log",
+      "logSha256": "6b905211068916ccb4a5177fba4d842386d4e139cdd69138e4c5be87a78a3f2f"
+    }
+  ],
+  "endedAtUtc": "2026-10-13T19:15:35.120653+00:00"
+}

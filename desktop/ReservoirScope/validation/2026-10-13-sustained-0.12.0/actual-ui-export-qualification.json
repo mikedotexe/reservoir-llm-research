@@ -1,0 +1,2336 @@
+{
+  "schema": "reservoir-sustained-ui-export-qualification-v1",
+  "createdAt": "2026-10-13T15:24:52.462842+00:00",
+  "modelsContacted": false,
+  "scope": "Offline qualification of explicit UI-exported bundles against a pinned production CLI and owned fixture log. No real model/provider calls. Fixture response log proves handler completion, not receipt by a cancelled client. Local timestamps are recorded observations, not authenticated execution.",
+  "verifierSource": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+    "sizeBytes": 16747744,
+    "sha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d"
+  },
+  "pinnedVerifier": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+    "sizeBytes": 16747744,
+    "sha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d"
+  },
+  "requestLogSnapshot": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/requests.snapshot.jsonl",
+    "sizeBytes": 100016,
+    "sha256": "bdd247eb7766416691b10084b5a0861927373f06cfced9205b022dce7169552d"
+  },
+  "checker": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-sustained-0.12.0/check_sustained_ui_exports.py",
+    "sizeBytes": 14705,
+    "sha256": "5df124ea9d9443ebb52c7baa921026f9cc31a6265ab9308611645964c0576689"
+  },
+  "bundles": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-ui/sustained-1791904148347-1-1-333",
+      "before": {
+        "checkpoints/3faa2ad304e716e0a13f3336d7ee7de11a3ff21599de478a30ebc2083100e781.json": {
+          "sizeBytes": 29377,
+          "sha256": "3faa2ad304e716e0a13f3336d7ee7de11a3ff21599de478a30ebc2083100e781"
+        },
+        "journals/journal-102-17-340e219cbfa2485892f28e308cb7acf9556dfd414576bae01c093b3efc58568e.json": {
+          "sizeBytes": 7549,
+          "sha256": "c9edfe089b7a418dfdcb40187a41c878aeb905018b3e819a8569554b543a0795"
+        },
+        "journals/journal-108-18-1c86d69c1c4858c024186295a15ac3500ce81bc0e435517e2d81701818b7854f.json": {
+          "sizeBytes": 7599,
+          "sha256": "7919e1aee0a57b09acebca6e8e80d147cc574acd8d3bb6463e5b3be493f5f4c4"
+        },
+        "journals/journal-114-19-a5663493155d1958ad2b4e27995ebd21c9fa5aad1de709f7bad1510d41850fcc.json": {
+          "sizeBytes": 7583,
+          "sha256": "e58b3a2b16b1a1584d5392a9b6c83bf1eeae730439ad480ff2f712aee09b417e"
+        },
+        "journals/journal-12-2-a19175e2c3d081aef11bb617cdd8851abb17799003ed81ca5456004a36268a0a.json": {
+          "sizeBytes": 7483,
+          "sha256": "4436878637be7f5c077f5132829a9ed1d47edc9d43c18176ecf443d8458b2aa4"
+        },
+        "journals/journal-120-20-180a36e03a36ec86fab68c8bc09cf5bfced017d4d11033bcc4c9dde734d28e52.json": {
+          "sizeBytes": 7558,
+          "sha256": "4eb8a0187aa8533edbcb96574a71c2827399b14fe3130e7d632d2994a0eb1f85"
+        },
+        "journals/journal-126-21-5aaee718ccd669c9af8487cae5f6a7dd471c5e279e64ba1294e854f0ce29bfb2.json": {
+          "sizeBytes": 7587,
+          "sha256": "23fdef5ef4146e68b906ca47a2204d8a258b2a636241fc73e5ef92dffe172275"
+        },
+        "journals/journal-132-22-bc0c52fb720142d40e2a0724dd34c96363774b75f0950799fd5cf2632dacca06.json": {
+          "sizeBytes": 7573,
+          "sha256": "1429554dbded23c12efe399bdd5bed75e375ec4792f364c7a7fcdabb9a31d520"
+        },
+        "journals/journal-138-23-3c4835c9e6c34d9ccc4a59ab258f81c26594679c06465e4e846b7a182ff1d413.json": {
+          "sizeBytes": 7566,
+          "sha256": "ec80834c72eb1c0770cf92d0eb3d18a2a70a87c2d6f606347dc674101ebd446d"
+        },
+        "journals/journal-144-24-3236dd7165135133fbff991b46ee196e88c90dc2dbf8cb541d2fc04bf8fd1561.json": {
+          "sizeBytes": 7552,
+          "sha256": "a3a1863c0f9ed6d63e7426b1c601dc45d6b3a783660f5d289109a5d861a55446"
+        },
+        "journals/journal-150-25-b36902beafdc0516ad47dbd606b03a57e806171f1452819570482c3f33ece2f8.json": {
+          "sizeBytes": 7572,
+          "sha256": "c98e6461aaae3b935f08fbcbafce2b07fbbaa9a4cba478510b307341d783dbaa"
+        },
+        "journals/journal-156-26-88b1402a8292ac7d14d9618466af5c20e1ceb922ab44ec40ffb049f4dc2d5b41.json": {
+          "sizeBytes": 7563,
+          "sha256": "676a2afea21de14e66f8401d1710fccc0b54beb2e4125c54a998f38618007282"
+        },
+        "journals/journal-162-27-a2194ca86411bcf77e5509bb0626d329b09cd8f8b74704c22e0d4bced225d03c.json": {
+          "sizeBytes": 7544,
+          "sha256": "6579eae6e984d3c90ad0b4d094723660ae01ab479dfdc6f805f2be1cb2d6d16c"
+        },
+        "journals/journal-168-28-66f7e2be166384262e173d09213c7d1978f88088a80fb3d3c40bc2f435d9eb9b.json": {
+          "sizeBytes": 7546,
+          "sha256": "481087d9d17c7e90d6c744ddbcd3f3bed595a7a5705e044236b647b9efd67182"
+        },
+        "journals/journal-174-29-5cbef348d4a27a78a89f76c74c8b5515d747d0fda17db2b6279860a17d5ce51e.json": {
+          "sizeBytes": 7540,
+          "sha256": "2d4e7cf21c245a9236e119c929a61d902f67b7bd1439863ff20fe88df0322665"
+        },
+        "journals/journal-18-3-f829cb14407f8444952ef1eb45ae6e40f465e3e8794afec0e40f0d0d132aafb3.json": {
+          "sizeBytes": 7477,
+          "sha256": "2ea4b80e87ccfcdca955c39e1a1e74c939a6c05f8bf966b0a5915c265493c683"
+        },
+        "journals/journal-180-30-500cfd6acd9b8e4a3eb89eb0282ed509d9092ee688154fb5ec0186f006da1427.json": {
+          "sizeBytes": 7577,
+          "sha256": "afe80afaf5d16b3bdfac757822631e6d40b012988d38694f530ff9f190ea799d"
+        },
+        "journals/journal-24-4-11045799e468fac1ad60b86c876d2e0cc9a97086eef43d6754a384eca1f563cd.json": {
+          "sizeBytes": 7474,
+          "sha256": "3d07fbc353a64821a7b9f723cc7aa4878fc10ee316be8d38acd94c29e492f579"
+        },
+        "journals/journal-30-5-d98766f012bbd07307001969b2c310fd5d19a8c04d921e2eace2bc1d7b190637.json": {
+          "sizeBytes": 7553,
+          "sha256": "8efb78f29ba254ca8e6889cc868f6c779d0336a7f02fd20da7169bedad5eaf83"
+        },
+        "journals/journal-36-6-aada6a75fee6d5a3918f51a0a02c63ffe310a7b826ffc444db895d88af3c4c37.json": {
+          "sizeBytes": 7538,
+          "sha256": "8669747990113dd57ce4482ba0488298056b5956b3fa4ebc98ec765456567978"
+        },
+        "journals/journal-42-7-d1daab869d8e6b7c098336cc432543f19bca68536f9efc277564a78c6258b66d.json": {
+          "sizeBytes": 7525,
+          "sha256": "f1a22da879773e9fee3848ef84627f3a58b86a894cfc831e1bf8e660bf44a067"
+        },
+        "journals/journal-48-8-a61bb66a79c97ec9a42d42e14145633af58ff6c27f2ed452fd8a6315d8990ac1.json": {
+          "sizeBytes": 7525,
+          "sha256": "2ed6f363e8cb6c380fff8421192012a675b8230736a70f3d1ba5a11b5d088255"
+        },
+        "journals/journal-54-9-1b051e2716bb7ae2afadb2501f59e702f3ee9d90290ab3eb0705c3d95d09ef2f.json": {
+          "sizeBytes": 7538,
+          "sha256": "30f59aab4b5ca7dcbc0af5a3a0c06702b296841ff0f072dcd60e69d403a927b1"
+        },
+        "journals/journal-6-1-0deffeeba688b84157fd94a932540870409838eec49059f49dcd61a0c67713a7.json": {
+          "sizeBytes": 6487,
+          "sha256": "156b0bca5416dbf678105bfc97cfd3f0c3aa932f4345fc876b6b122ad455fbe0"
+        },
+        "journals/journal-60-10-ef6bfd5f992cb8651eaf90e00aae003241fec62fbc12e0a07e3effda1f216468.json": {
+          "sizeBytes": 7569,
+          "sha256": "918db5114d87dfab8d43bff48c2d5e87f904d0b4f90982690cf90995b33498c1"
+        },
+        "journals/journal-66-11-496a043ec9ab14f48dadc135507e29ed4973794262e16a9e2c6ae396e3b9e674.json": {
+          "sizeBytes": 7549,
+          "sha256": "e5032652ad9105a21f741940fd93ad8441973f11381ee096c41026ac2b1a5b70"
+        },
+        "journals/journal-72-12-e934797739d3ee727a1548c0567690adc39685245b5071f546f5d20bb035b12e.json": {
+          "sizeBytes": 7562,
+          "sha256": "bec4d27a62be70686811e33246901e42f531a051eb1817059ea36fd00adb8b97"
+        },
+        "journals/journal-78-13-368ba185773c7a176a6c7aa10062b3a38420c2891100be165d78089ebf0ea4b3.json": {
+          "sizeBytes": 7541,
+          "sha256": "f2386fd280837abfd31111fca8728076d4d764bc624fcfbe7ebc1f3c8060f7ca"
+        },
+        "journals/journal-84-14-8d76e4eccb210bd11f1c62b5b27e2052e0906e9a7be2062f0cf8b742765eb095.json": {
+          "sizeBytes": 7552,
+          "sha256": "25399c35e6e045765f274090195ae6e01df3b9b211f2c24205a12b9c1600f686"
+        },
+        "journals/journal-90-15-12c678192f2ae3ba49ffd883b11c152eccdcbf3650046bcf867bd35bb422d13f.json": {
+          "sizeBytes": 7566,
+          "sha256": "3fba8ffa0b9787c2863f404878e1ba91e82e8a82e3d64f94d5d0de07ee5e6f31"
+        },
+        "journals/journal-96-16-7d66f0bde29b5750da482546f2645e2547b218cfa6ee6182f71ea7149fd1c369.json": {
+          "sizeBytes": 7562,
+          "sha256": "c9224ef3a217fd3c087fc995cc231dbb3398c342690a7bff2a1004a650dea6df"
+        },
+        "manifest.json": {
+          "sizeBytes": 1019,
+          "sha256": "a726e378d758f43bd74a3951a819dcceb905b93621790380cf8e1978725c987d"
+        },
+        "segments/segment-00000001.json": {
+          "sizeBytes": 59648,
+          "sha256": "86d4faabc88b8b309c8703057b43c24e863324f9301f6a69aaa4afec94d35889"
+        },
+        "segments/segment-00000002.json": {
+          "sizeBytes": 68920,
+          "sha256": "43baf9b218b5376d5920245e4b5d08b8a8b67f5193f542af6741464544c30cee"
+        },
+        "segments/segment-00000003.json": {
+          "sizeBytes": 66496,
+          "sha256": "ee83be9d5001c4ef3e6c047aaa85d0fc14f4beb61cd760d979157d236ce41827"
+        },
+        "segments/segment-00000004.json": {
+          "sizeBytes": 64661,
+          "sha256": "688fdd250f502dcc93ded4539e9b6d8e1f2e521f4b73581a2648d40c47990cbb"
+        },
+        "segments/segment-00000005.json": {
+          "sizeBytes": 81891,
+          "sha256": "837a8af16a86e69f3504b7c1067572091c590f74925d898e925e439497735733"
+        },
+        "segments/segment-00000006.json": {
+          "sizeBytes": 68715,
+          "sha256": "1ff6d99be353a0a318c19008819657be202ae35f42ad1aa294c8c07064157d65"
+        },
+        "segments/segment-00000007.json": {
+          "sizeBytes": 73090,
+          "sha256": "6b274dcbf605a45b3e304f6061c74f8684fc859f4054f1ae86f0b73faa7cc0db"
+        },
+        "segments/segment-00000008.json": {
+          "sizeBytes": 69670,
+          "sha256": "7860767ccd8e6dc1a04d73866cae5a601d23bf2bc3db89f2ba4244e4008d9767"
+        },
+        "segments/segment-00000009.json": {
+          "sizeBytes": 65100,
+          "sha256": "e5bcd60a593757ca344719907ddad1ada3ca9d791fe45cfc2f6af659cab760a6"
+        },
+        "segments/segment-00000010.json": {
+          "sizeBytes": 79594,
+          "sha256": "11b1f4166495166b64749f2c380b77616fa1a8d9364efb0b3e8133a75ba8a1c9"
+        },
+        "segments/segment-00000011.json": {
+          "sizeBytes": 67469,
+          "sha256": "92c449237e0c075f3325f0e145edbbce805f3dfd7ec6251d72c25411a1152531"
+        },
+        "segments/segment-00000012.json": {
+          "sizeBytes": 71846,
+          "sha256": "76f21ae28e860df6db5594756cdeeadc215d743c37b9891b5f0890c5fc1910ec"
+        },
+        "segments/segment-00000013.json": {
+          "sizeBytes": 68438,
+          "sha256": "165ee61017f65d83a44000cccd6de19f4804ec31bae9e87973dca04e519d1c9d"
+        },
+        "segments/segment-00000014.json": {
+          "sizeBytes": 64145,
+          "sha256": "85afa5acf47e65b6954f0dc74c5e1fb4d6a12949133701abddc522c0edc8d352"
+        },
+        "segments/segment-00000015.json": {
+          "sizeBytes": 79232,
+          "sha256": "f2278a585b5af56c019e2aeb8ac92dd35568f0376d1ee39a0c8d7abe4e557929"
+        },
+        "segments/segment-00000016.json": {
+          "sizeBytes": 67133,
+          "sha256": "510d450a0910a21491f8683d86b9cb09486610bcaa950d9af84e671f3d8a8ea0"
+        },
+        "segments/segment-00000017.json": {
+          "sizeBytes": 71509,
+          "sha256": "def7acb0cd4fcffc3919dbf50423945cfcdf70eb56617042e0f202dbddbda7ad"
+        },
+        "segments/segment-00000018.json": {
+          "sizeBytes": 68102,
+          "sha256": "16e6494b59c8b00d51da06460f6cd64f3b06aed5276d8a59fa8515d40b4b139f"
+        },
+        "segments/segment-00000019.json": {
+          "sizeBytes": 63790,
+          "sha256": "a5b66b8faa8430c026f50ea9719eb36ce3f1f95a683d562ea0c884290c260247"
+        },
+        "segments/segment-00000020.json": {
+          "sizeBytes": 79285,
+          "sha256": "ed64af72c6a4eb5a40f78d57eb599143ac956c9c7a2a92bcf5755ccf6ffec43d"
+        },
+        "segments/segment-00000021.json": {
+          "sizeBytes": 67556,
+          "sha256": "0fec5d97083403c7fa989e02474ffb197f24dc876356d293cd8594e43685479a"
+        },
+        "segments/segment-00000022.json": {
+          "sizeBytes": 71934,
+          "sha256": "1fb03feb2e362756c07a6e9a50021f2ef08b43a68c9dc05b100d8dcf85de1839"
+        },
+        "segments/segment-00000023.json": {
+          "sizeBytes": 68450,
+          "sha256": "39dd93747075bada49e89abe7a508da9627b658ed7bba5e74b8ec1110827f439"
+        },
+        "segments/segment-00000024.json": {
+          "sizeBytes": 64359,
+          "sha256": "76439756a2498f65237b1cb534b87af0e029715d50c520f7d1421ca0e258a730"
+        },
+        "segments/segment-00000025.json": {
+          "sizeBytes": 80698,
+          "sha256": "1977d01d69cff4bfdca9451c41a36f5276a96243563ae89e37640c0146452c43"
+        },
+        "segments/segment-00000026.json": {
+          "sizeBytes": 67447,
+          "sha256": "59e16386612fcaa53f44d3b4e19edbc68b382be0a5663185500c6109627a7e40"
+        },
+        "segments/segment-00000027.json": {
+          "sizeBytes": 71824,
+          "sha256": "bbea3f86fa155a9453d4c554339cd2b524d37f8023e5920e2a078e35d39d3a18"
+        },
+        "segments/segment-00000028.json": {
+          "sizeBytes": 68351,
+          "sha256": "7850fc220e7b54cf03f9066fe314d13e79a60b461251f06642d7334656a3619d"
+        },
+        "segments/segment-00000029.json": {
+          "sizeBytes": 64146,
+          "sha256": "a0a7d0c9a18536de8a65858279c630b4dde68a8d78fd44b480edc9dec1711c11"
+        },
+        "segments/segment-00000030.json": {
+          "sizeBytes": 80451,
+          "sha256": "b6c98fbc5db8bb1a66bc2c5da33686abe20cb283ad599d8df6adcc10ec591c21"
+        },
+        "segments/segment-00000031.json": {
+          "sizeBytes": 67378,
+          "sha256": "058a8d4b1f7d4a0f07adb059624085f1fc83214d6e4d8386356341566c2c00a3"
+        },
+        "segments/segment-00000032.json": {
+          "sizeBytes": 71757,
+          "sha256": "b771a6e437801cafec49f3fe5034b29d3fedc1d76a2d99f74f7a33fc09e1f6d9"
+        },
+        "segments/segment-00000033.json": {
+          "sizeBytes": 68303,
+          "sha256": "b9620d69683d091fa32ec34e5502ba2ceaae9f4de8b502778524b3357ae79aa9"
+        },
+        "segments/segment-00000034.json": {
+          "sizeBytes": 63639,
+          "sha256": "d8e143595fc5551df521120d3df229b743b8fa773b20f1b47df65c1f6f7a9adb"
+        },
+        "segments/segment-00000035.json": {
+          "sizeBytes": 78748,
+          "sha256": "3b37160304dc29b864818f9f4605d342e6d601cf4d0e451616129f4e8e726c48"
+        },
+        "segments/segment-00000036.json": {
+          "sizeBytes": 66800,
+          "sha256": "29aed7748b8053579a731a0eca4364da7f980dc10ef9d4fb92589d722b4a4be2"
+        },
+        "segments/segment-00000037.json": {
+          "sizeBytes": 71175,
+          "sha256": "c804915eda323687e5afa66a18dcc216381afab415d5f51228d4beb3340186c8"
+        },
+        "segments/segment-00000038.json": {
+          "sizeBytes": 67713,
+          "sha256": "c31b76fc754a83502877e66db26ed51656d131d56dac8eb1e60dc80a7c10dbfc"
+        },
+        "segments/segment-00000039.json": {
+          "sizeBytes": 63380,
+          "sha256": "445cad6bf1b6cb858fc5f00d2f4160a73aeb4e9fff027288f94e678926fe5701"
+        },
+        "segments/segment-00000040.json": {
+          "sizeBytes": 78766,
+          "sha256": "a024ba6c47ee8b55af06dc15771edca8a72154e961db55dc849f2007a1c203d4"
+        },
+        "segments/segment-00000041.json": {
+          "sizeBytes": 66886,
+          "sha256": "66801718d56b44493b5f3f32c4ce839a0898f2fa52426d22e75a625f28cc0faf"
+        },
+        "segments/segment-00000042.json": {
+          "sizeBytes": 71264,
+          "sha256": "d1fd93be84d820d2905d836766fc457822f17fcb55cb1c94d50b6e3c96525344"
+        },
+        "segments/segment-00000043.json": {
+          "sizeBytes": 67795,
+          "sha256": "63cda8cec56cb6155e05ce9c2f90cbfda1e9e9784e32887956b287d1b7d6ded6"
+        },
+        "segments/segment-00000044.json": {
+          "sizeBytes": 63392,
+          "sha256": "9097272663984c36045c75ba8f9a1910ea0ab4a2201fbe86f5644d02eac8d479"
+        },
+        "segments/segment-00000045.json": {
+          "sizeBytes": 78821,
+          "sha256": "e87eb8bb0c7ed15fc6d412e6277b836b06dd41fe39ac2117b7e58fa29e169e25"
+        },
+        "segments/segment-00000046.json": {
+          "sizeBytes": 67038,
+          "sha256": "76ba7703f9f813d6da8867fb589feff5f6efb1134f1e5e934d2ad25981040466"
+        },
+        "segments/segment-00000047.json": {
+          "sizeBytes": 71425,
+          "sha256": "9f6da2f9cad6f08b9ec5a95dc7e2c3f09474028525de838e3d4e86dd03def7de"
+        },
+        "segments/segment-00000048.json": {
+          "sizeBytes": 67941,
+          "sha256": "1bcd93efb662de2d66b7bb927bb1692bec0612b88bd57835ce95c2df59a70914"
+        },
+        "segments/segment-00000049.json": {
+          "sizeBytes": 64051,
+          "sha256": "451fbbf4f30f96c923e4d3e70d6ee85c9719d77ed5225042ea4935bfdccb0763"
+        },
+        "segments/segment-00000050.json": {
+          "sizeBytes": 80622,
+          "sha256": "0b9e56b6350f5f53ced1623a56b9c50e16cfee44300e64e2595f33a2c8a3dcdc"
+        },
+        "segments/segment-00000051.json": {
+          "sizeBytes": 67459,
+          "sha256": "14c47dc69461b6a56e9ea7d32133a178c7c59da938546ffa6382ecef2d71a90f"
+        },
+        "segments/segment-00000052.json": {
+          "sizeBytes": 71845,
+          "sha256": "0f58625b8582c9d08e8c7ea00362d2c09f61f5f321121767beab42e5718b2c8d"
+        },
+        "segments/segment-00000053.json": {
+          "sizeBytes": 68380,
+          "sha256": "0f0dba587bbb2fff65f721b2af5ec72db14635cb57303e631f4ad72d3315171b"
+        },
+        "segments/segment-00000054.json": {
+          "sizeBytes": 64113,
+          "sha256": "1ea2507c239be47910d519fbdff6b0c29aa8fe58652f90ca80f7c0d17e1a4aaa"
+        },
+        "segments/segment-00000055.json": {
+          "sizeBytes": 80535,
+          "sha256": "3cc2f049150fc68145863eb8804b29651932226418b1e9354152cc22e7a21f41"
+        },
+        "segments/segment-00000056.json": {
+          "sizeBytes": 67625,
+          "sha256": "cb9b23207ca0f659fac1a443191b9309d453abbc55d731f18aad49f40c818f03"
+        },
+        "segments/segment-00000057.json": {
+          "sizeBytes": 72012,
+          "sha256": "030b0d3f3fd016edf1f6b8c11441e945d890f07a59c67acc675f44deaaf68f5b"
+        },
+        "segments/segment-00000058.json": {
+          "sizeBytes": 68532,
+          "sha256": "c19d3b44efbf3288a53145995a3c7667e8d4df25cf9f6774fc3db2ed7109a277"
+        },
+        "segments/segment-00000059.json": {
+          "sizeBytes": 63926,
+          "sha256": "edafd4be65e60dc24fb741b47c72ee8b7c8dc8d238188abfc217588c905ffa3f"
+        },
+        "segments/segment-00000060.json": {
+          "sizeBytes": 78874,
+          "sha256": "fc738fa501b834089d6919579377139bbac172e54e21118035c957e4eeda28c4"
+        },
+        "segments/segment-00000061.json": {
+          "sizeBytes": 66764,
+          "sha256": "a132c4edb4a4c146653c61bb0aeaa2fe9b5ba26ba2d8d1af8c992b5ac55689f6"
+        },
+        "segments/segment-00000062.json": {
+          "sizeBytes": 71147,
+          "sha256": "e1dce9f87fc7363f58d243c269ffd15a0f253286abd7e4dab623bc2e31d74eb0"
+        },
+        "segments/segment-00000063.json": {
+          "sizeBytes": 67686,
+          "sha256": "f771e498ec1e3dcb9c05003e9508876239a5acfc89039aacb150dba22b323bfc"
+        },
+        "segments/segment-00000064.json": {
+          "sizeBytes": 63372,
+          "sha256": "29f969f1eb93999d45bcf3c55863f2246c9615ddff877f322b6c6531ca21e8eb"
+        },
+        "segments/segment-00000065.json": {
+          "sizeBytes": 78844,
+          "sha256": "e9377d3d6ac7f71f4bac2b638379a1f4edf2ac70761484fe13f0dd9b1accc33e"
+        },
+        "segments/segment-00000066.json": {
+          "sizeBytes": 66990,
+          "sha256": "7c26b5d248df08122d52e6c625766cbcb4ce0a4d681e766880deffa2cbacf2e2"
+        },
+        "segments/segment-00000067.json": {
+          "sizeBytes": 71374,
+          "sha256": "f03c4ea2d8ea74df67892c2da14106aa6f62f9fd51d9574043c7163388c8cd6e"
+        },
+        "segments/segment-00000068.json": {
+          "sizeBytes": 67904,
+          "sha256": "ed5d4a8a630cdd80a84ae767ee626d2ad22ef7586a03f002b8a6c0ad40066a75"
+        },
+        "segments/segment-00000069.json": {
+          "sizeBytes": 63433,
+          "sha256": "7a1624446f85b4952afb836e93ac4de615a60382e78d36c2cb0e2f6f28fefb27"
+        },
+        "segments/segment-00000070.json": {
+          "sizeBytes": 78883,
+          "sha256": "5285899c1bb08b0d1b9bf8976937a73226bd684cb7ee85e3a295c9685e3ab64d"
+        },
+        "segments/segment-00000071.json": {
+          "sizeBytes": 67082,
+          "sha256": "ab29807bb623d1605cec1e151e89fb3de7cde8985f7db71208ba4d2568f575d1"
+        },
+        "segments/segment-00000072.json": {
+          "sizeBytes": 71467,
+          "sha256": "de4de8a9a03994ed2dea8125d28e42f99a436bcc6c21aa11c24c1b7501cd9674"
+        },
+        "segments/segment-00000073.json": {
+          "sizeBytes": 67985,
+          "sha256": "8e8b2211de105368ab00a3afefd9bbb224c620da5c8502f4a5c5b06eab10492d"
+        },
+        "segments/segment-00000074.json": {
+          "sizeBytes": 64141,
+          "sha256": "0deae090ed5c6b3be927f00959121128c86a64b64958ed7e8bc32990edb9fe57"
+        },
+        "segments/segment-00000075.json": {
+          "sizeBytes": 80792,
+          "sha256": "ac3ceb235a8fd3e3eab8fa7ac811405ea41824f6d0ad16ad3c4c3be3c3b52d60"
+        },
+        "segments/segment-00000076.json": {
+          "sizeBytes": 67593,
+          "sha256": "a22c0dc87976dc4f4edb641c4ed1950808984aeb4fa4f0fdc4659e496343a134"
+        },
+        "segments/segment-00000077.json": {
+          "sizeBytes": 71977,
+          "sha256": "ea0e4bcdbd17631c5655a915194599bf834935693e989eb7c684eb6295452806"
+        },
+        "segments/segment-00000078.json": {
+          "sizeBytes": 68495,
+          "sha256": "8f5abf1d2498f19c2736eb5a125afa12e3af6ce38e8dbe830b6d5e222feeac8d"
+        },
+        "segments/segment-00000079.json": {
+          "sizeBytes": 64265,
+          "sha256": "beec26a62738ce27337fc469ec0b4962d4a059d3cd36ca661158e9ca4b7ce5fa"
+        },
+        "segments/segment-00000080.json": {
+          "sizeBytes": 80531,
+          "sha256": "f7e197adfd763028efb5121aeb30caa9d96a5940ecfcab0aa0a7d7e0e55d2d3b"
+        },
+        "segments/segment-00000081.json": {
+          "sizeBytes": 67493,
+          "sha256": "bfe50aced072d9691ef2d5af04bb67cdf78b6b9f7ac03ffccd8e4b4ab02c671e"
+        },
+        "segments/segment-00000082.json": {
+          "sizeBytes": 71881,
+          "sha256": "9848177cced82bddea2af51850bd128db7d7c85a74cd588c88cad5f44281da19"
+        },
+        "segments/segment-00000083.json": {
+          "sizeBytes": 68421,
+          "sha256": "c6e0d58ad5d044ad54048359f71e34cee74a0037186d1c1f7dfaffe9be1a5ecf"
+        },
+        "segments/segment-00000084.json": {
+          "sizeBytes": 63886,
+          "sha256": "cde3e9ddb7c0e77d84632da07d3100bc81b7c863fb416123f3517ede54ceafc9"
+        },
+        "segments/segment-00000085.json": {
+          "sizeBytes": 79191,
+          "sha256": "a1b38356c33a651cececc53db98e63075c81f9bd54a8a020320ae600a296c47d"
+        },
+        "segments/segment-00000086.json": {
+          "sizeBytes": 67307,
+          "sha256": "83095f271290a3039f8c2a3e1978d48343da4e1f3af782568f9548e36e78e15a"
+        },
+        "segments/segment-00000087.json": {
+          "sizeBytes": 71694,
+          "sha256": "75c251cc8e6b97c055428c1d9ea71793c09239dd111a2992792f1f0dc02dd289"
+        },
+        "segments/segment-00000088.json": {
+          "sizeBytes": 68182,
+          "sha256": "a70281f077019e55fef04222010162703f696cb3f666700cdea7bf9340e244d5"
+        },
+        "segments/segment-00000089.json": {
+          "sizeBytes": 63673,
+          "sha256": "9967d2aab35dd4b4784196ed694f44667962f244319a31e32d3295803cb340e3"
+        },
+        "segments/segment-00000090.json": {
+          "sizeBytes": 79091,
+          "sha256": "5df33b22808dc39a535f7d060e3451c66022298fe6f91a6a0ca7219a362ef23e"
+        },
+        "segments/segment-00000091.json": {
+          "sizeBytes": 67165,
+          "sha256": "5bf7f3514cc2448a19474c98cc8cc2b62783b95027f9c6e267a61bd46bdc9100"
+        },
+        "segments/segment-00000092.json": {
+          "sizeBytes": 71556,
+          "sha256": "9c646658f623cc47256dc01257f5d48650457c4a126856830d32187b4db8ddb0"
+        },
+        "segments/segment-00000093.json": {
+          "sizeBytes": 68068,
+          "sha256": "3c200cee335e0426ce683d49b4a1757c1d9f8c92a2e209e03f8492086af8807b"
+        },
+        "segments/segment-00000094.json": {
+          "sizeBytes": 63636,
+          "sha256": "142b41f1ca50ad7fc87a33efd9e9e0b831342a325b5e9c0587581cc47381c3f0"
+        },
+        "segments/segment-00000095.json": {
+          "sizeBytes": 79000,
+          "sha256": "7bf92bd7fe36b2a5e383d33ec2202942ef3fcf8cabef7b87370ea58cd94c6267"
+        },
+        "segments/segment-00000096.json": {
+          "sizeBytes": 67013,
+          "sha256": "1fa320c9a35ede8e7e6ce7a6426e845fa231d988cb2cbd767c263bfad5e14509"
+        },
+        "segments/segment-00000097.json": {
+          "sizeBytes": 71400,
+          "sha256": "c41c3740f9c81e3f0aa82b8691f491dfbb913dc677e8c9e994721dd088faea7d"
+        },
+        "segments/segment-00000098.json": {
+          "sizeBytes": 67929,
+          "sha256": "a4e6e922beb8ea7dd2b5db40ab548580175cd75a83f052635eb05992c29e7405"
+        },
+        "segments/segment-00000099.json": {
+          "sizeBytes": 64112,
+          "sha256": "d45149c40de9ebd345e2ee7ae546cc7be673297fd59861af628a8673580d0c20"
+        },
+        "segments/segment-00000100.json": {
+          "sizeBytes": 80882,
+          "sha256": "a25c36c99c0fa99e05287151f756e5e48301cbf7738f254730cee5e474e97a98"
+        },
+        "segments/segment-00000101.json": {
+          "sizeBytes": 67773,
+          "sha256": "c29f292af4bea197a255ac689b6f3b00e13199b7d4485b2f7cbba764ef06a475"
+        },
+        "segments/segment-00000102.json": {
+          "sizeBytes": 72164,
+          "sha256": "2e0db7e23b26e41611af30a2a27622d137ab06b3a2ae696d30fa7c558128d6cf"
+        },
+        "segments/segment-00000103.json": {
+          "sizeBytes": 68670,
+          "sha256": "492d87a105220e329555b1c3dbcabbac98a2304a340035c547fbf6e73a907e56"
+        },
+        "segments/segment-00000104.json": {
+          "sizeBytes": 64499,
+          "sha256": "fa5a86f8c0db878736d022c540fb492abfdfd70ac873acaec58f046b3ba385ba"
+        },
+        "segments/segment-00000105.json": {
+          "sizeBytes": 80871,
+          "sha256": "751c1afe220642c02a8a089f30120734aa25712e98cdd4553ad70750a86ffd73"
+        },
+        "segments/segment-00000106.json": {
+          "sizeBytes": 67605,
+          "sha256": "78623decb5fa855abe027ea2874d7c41be720df8d2271c3c18a1e6a0c9f25235"
+        },
+        "segments/segment-00000107.json": {
+          "sizeBytes": 71995,
+          "sha256": "03816969d26553abd71e90d011342247e690146ad250c99be651ef93297da473"
+        },
+        "segments/segment-00000108.json": {
+          "sizeBytes": 68513,
+          "sha256": "d4eb9af4f049b29cc91dec3b1b4025087fcdbbcfd8b2ea5a38df02b145bc08ac"
+        },
+        "segments/segment-00000109.json": {
+          "sizeBytes": 63659,
+          "sha256": "b5ab0b4644a54e01e7ddd99553efdebc15a3092cc8fd13ed1625a22822494b12"
+        },
+        "segments/segment-00000110.json": {
+          "sizeBytes": 78912,
+          "sha256": "0c22ef2357dfdc3f1e69767b7ed69552e0a90f89f6f0442f2f75959331de6603"
+        },
+        "segments/segment-00000111.json": {
+          "sizeBytes": 67114,
+          "sha256": "49b34ba719765257131553b20762ef99cdff956ccdcb601431cf62fb225ca592"
+        },
+        "segments/segment-00000112.json": {
+          "sizeBytes": 71501,
+          "sha256": "2ffa1aadda6bcaa6587f675124561c29f56821ef9aa3a2c7b6fa2d172b3e1e16"
+        },
+        "segments/segment-00000113.json": {
+          "sizeBytes": 68022,
+          "sha256": "0027c9944e643b6f4f8f302ff7a147cb8c8a437aa4871e9f1da523c2013186a3"
+        },
+        "segments/segment-00000114.json": {
+          "sizeBytes": 63637,
+          "sha256": "4956f4327f69b50121eb92379b1d6fea44fb68dd506634aacff383932602839d"
+        },
+        "segments/segment-00000115.json": {
+          "sizeBytes": 79022,
+          "sha256": "93b9c5056795160825280fcf1f60d5e3736fa5774a17a009260b9f01203d1d53"
+        },
+        "segments/segment-00000116.json": {
+          "sizeBytes": 67010,
+          "sha256": "ff97d5443aeae58014c4aa2fccdb4a6dc3b63487d1189f6f9286d5606a41ea6b"
+        },
+        "segments/segment-00000117.json": {
+          "sizeBytes": 71399,
+          "sha256": "3e47e5ab2d26730dbb40d0f747a0710f1576fa29d1cae16ad61526cbfd8645da"
+        },
+        "segments/segment-00000118.json": {
+          "sizeBytes": 67938,
+          "sha256": "c798d875f6e73e8df748b60bf1d2fe1a6bbc2cf306b68b1e7ea2bcc4525150e9"
+        },
+        "segments/segment-00000119.json": {
+          "sizeBytes": 63642,
+          "sha256": "699f4bbd53f8aaeb34d578a10313cfe04846b4055a999667afab4262401ed808"
+        },
+        "segments/segment-00000120.json": {
+          "sizeBytes": 78984,
+          "sha256": "d9d1579e66679266870a87d93637a7831c441eb0a3ec4aa62e474194f7806969"
+        },
+        "segments/segment-00000121.json": {
+          "sizeBytes": 67078,
+          "sha256": "6153dc2dd0b0cb61be00667cf97129f364af4f9aa00467df4901f2b7762c8e4a"
+        },
+        "segments/segment-00000122.json": {
+          "sizeBytes": 71465,
+          "sha256": "25a46ee2551480e1a2c0e93b5a855dfb858cce1cdab7dbdd9ed3d636e1af05d9"
+        },
+        "segments/segment-00000123.json": {
+          "sizeBytes": 67980,
+          "sha256": "77873c34b4d9be2b418dfab00762fc1508f447799d448f17302b891a9689c3b5"
+        },
+        "segments/segment-00000124.json": {
+          "sizeBytes": 64141,
+          "sha256": "65a9b1898cb6a3f2e3bf0afc81d6277cae59c81ff25fe4aef21eaab99b1f7a6b"
+        },
+        "segments/segment-00000125.json": {
+          "sizeBytes": 80814,
+          "sha256": "f0b55d980a7f66478889c45df2c5d5522909d1a765305a9b3e194e50a86fdbb2"
+        },
+        "segments/segment-00000126.json": {
+          "sizeBytes": 67573,
+          "sha256": "ec59cc3ee28adb4d2ad1add5236203da437169a3f3e6019ad9d5eb4127af7c68"
+        },
+        "segments/segment-00000127.json": {
+          "sizeBytes": 71963,
+          "sha256": "13a363f53576f7fecae4a2b1790652b2a1c8aae8b7b29e90fc72369b810c0218"
+        },
+        "segments/segment-00000128.json": {
+          "sizeBytes": 68491,
+          "sha256": "1aa1e3b8c53a9920106051ceeb0665c04fe167cec1dcf818ab75e25b1067883a"
+        },
+        "segments/segment-00000129.json": {
+          "sizeBytes": 64345,
+          "sha256": "0756aec2824a483ee2f68593e2fb235236840a418fca6e61c921724e80745711"
+        },
+        "segments/segment-00000130.json": {
+          "sizeBytes": 80693,
+          "sha256": "e1c345c70161edfa23c9f5f8576135421f31f0465a5fd60b454b07b6b067c912"
+        },
+        "segments/segment-00000131.json": {
+          "sizeBytes": 67606,
+          "sha256": "b8085d6e67b28165b3b2130f542de5aa68b1a44a21536789dd28e61c48eddfcd"
+        },
+        "segments/segment-00000132.json": {
+          "sizeBytes": 71995,
+          "sha256": "22cce96e9adf579006d365818ed10eaa69374dc437e54ec8c1f0116faea4dd4e"
+        },
+        "segments/segment-00000133.json": {
+          "sizeBytes": 68542,
+          "sha256": "f48ad9dda5d15fec162f805c8714429bc6e93dcef15662ca643f697c80933c79"
+        },
+        "segments/segment-00000134.json": {
+          "sizeBytes": 63847,
+          "sha256": "0ed2fcda598fd78bd1439fb31720d3127179298b6c63e43918c266a6e4527645"
+        },
+        "segments/segment-00000135.json": {
+          "sizeBytes": 78990,
+          "sha256": "0cdf7b8ad54eefe0dba6490f778fa5ca9e9fedc45c483904179a7125619893e7"
+        },
+        "segments/segment-00000136.json": {
+          "sizeBytes": 67086,
+          "sha256": "55e6a74ff22c22c1317c8ffe3de38d9303b4432d8961fd8551e89b626b34a991"
+        },
+        "segments/segment-00000137.json": {
+          "sizeBytes": 71474,
+          "sha256": "a3c76c71b3ef04efadb1537e8d639f80651280a347c13ae3919dfc14e71bc796"
+        },
+        "segments/segment-00000138.json": {
+          "sizeBytes": 68017,
+          "sha256": "afd9300d2aa50debdd6fa4861435ac512f7d406a7fe1b34423b087f15c222bed"
+        },
+        "segments/segment-00000139.json": {
+          "sizeBytes": 63673,
+          "sha256": "d3c35890994ba6154a23ca69c3193135b6a0c84a7a5dcba35c21d4f273e71656"
+        },
+        "segments/segment-00000140.json": {
+          "sizeBytes": 78938,
+          "sha256": "6f8123b3bbacdc20f2b040d12720b5268d13e33611c7daf1836273a2b19b4729"
+        },
+        "segments/segment-00000141.json": {
+          "sizeBytes": 67024,
+          "sha256": "5dd4fc65c3192a451714dae04e1f1dfce0f777a47e582660967f6155978667db"
+        },
+        "segments/segment-00000142.json": {
+          "sizeBytes": 71412,
+          "sha256": "1879ba1e7e0417e0130b8eb8cc8924cb5bb8af464aa29c206650e13e56836cf1"
+        },
+        "segments/segment-00000143.json": {
+          "sizeBytes": 67961,
+          "sha256": "e967519b26346564bbfe9520fb1f4b94a29709ed656276523c4bf66ea33c7efe"
+        },
+        "segments/segment-00000144.json": {
+          "sizeBytes": 63575,
+          "sha256": "980969a08616ecb08b0787559e8b7b6b2097c77e30adf129d75a5764366379b3"
+        },
+        "segments/segment-00000145.json": {
+          "sizeBytes": 79024,
+          "sha256": "3432c70e963e5e2815d788c7e4031f61ede23103d5b738a3f6df43f461a4063a"
+        },
+        "segments/segment-00000146.json": {
+          "sizeBytes": 67222,
+          "sha256": "29b924cb96fe55eb9a821ecac0012c36071cbb9d1b0d777a179122c26be25128"
+        },
+        "segments/segment-00000147.json": {
+          "sizeBytes": 71610,
+          "sha256": "6c20996653b9c2c1fc5223c4fbb60b716398edec80f7e28d86052095ef4e015d"
+        },
+        "segments/segment-00000148.json": {
+          "sizeBytes": 68122,
+          "sha256": "a8944b9dc763ebfaa217bbe127423bb6409486cc0ca824e27a978da5303ae4b5"
+        },
+        "segments/segment-00000149.json": {
+          "sizeBytes": 64323,
+          "sha256": "86fe8849ecb199281cefb9b6448fbe67c53f802813d393588a27399558bd0532"
+        }
+      },
+      "verification": {
+        "exitCode": 0,
+        "result": {
+          "modelsContacted": false,
+          "report": {
+            "checkpointSha256": "3faa2ad304e716e0a13f3336d7ee7de11a3ff21599de478a30ebc2083100e781",
+            "diagnostics": [],
+            "format": "reservoir-sustained-bundle-v1",
+            "journalCount": 30,
+            "manifestSha256": "a726e378d758f43bd74a3951a819dcceb905b93621790380cf8e1978725c987d",
+            "segmentCount": 149,
+            "sessionId": "sustained-1791904148347-1",
+            "sizeBytes": 10690170,
+            "step": 181,
+            "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+          },
+          "status": "passed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-ui/sustained-1791904148347-1-1-333"
+        ]
+      },
+      "requestEvidence": {
+        "sessionId": "sustained-1791904148347-1",
+        "seed": "18446744073709551615",
+        "step": 181,
+        "journalCount": 30,
+        "eventCounts": {
+          "advanced": 181,
+          "languageStarted": 30,
+          "languageReceived": 30,
+          "journalSaved": 30,
+          "memoryConfirmed": 29
+        },
+        "exactMatchedRequests": [
+          {
+            "request": 1,
+            "turnId": 1,
+            "attemptId": 1,
+            "observedStep": 6,
+            "journalId": "journal-6-1-0deffeeba688b84157fd94a932540870409838eec49059f49dcd61a0c67713a7",
+            "textSha256": "0deffeeba688b84157fd94a932540870409838eec49059f49dcd61a0c67713a7",
+            "requestBodySha256": "9aa79c6a332f20ee1645927e38989ae4f58233536339e251d816649e3de4d5a5",
+            "promptSha256": "b03c38de094fae2ed7444e80d5d28c871b0d1031629f0dba98036ad7a66b48ca",
+            "memoryJournalId": null,
+            "application": {
+              "attemptId": 1,
+              "journalId": "journal-6-1-0deffeeba688b84157fd94a932540870409838eec49059f49dcd61a0c67713a7",
+              "observedStep": 6,
+              "appliedStep": 7
+            },
+            "timing": {
+              "attemptId": 1,
+              "dispatchedAtMs": "1791904167456",
+              "receivedAtMs": "1791904167462",
+              "transportDurationMs": 6,
+              "publishedAtMs": "1791904167529"
+            },
+            "fixtureRequestAtMs": 1791904167460,
+            "fixtureHandlerCompletedAtMs": 1791904167462,
+            "fixtureHoldDurationMs": 2
+          },
+          {
+            "request": 2,
+            "turnId": 2,
+            "attemptId": 2,
+            "observedStep": 12,
+            "journalId": "journal-12-2-a19175e2c3d081aef11bb617cdd8851abb17799003ed81ca5456004a36268a0a",
+            "textSha256": "a19175e2c3d081aef11bb617cdd8851abb17799003ed81ca5456004a36268a0a",
+            "requestBodySha256": "00518f34415b9b5d10c8fa715a760ddba260c380ace915c4b12508f898fcf7a6",
+            "promptSha256": "cbb991148c92b42d62cebf4b59b78226a67d2d2419390b19a7199b1ee14c6736",
+            "memoryJournalId": "journal-6-1-0deffeeba688b84157fd94a932540870409838eec49059f49dcd61a0c67713a7",
+            "application": {
+              "attemptId": 2,
+              "journalId": "journal-12-2-a19175e2c3d081aef11bb617cdd8851abb17799003ed81ca5456004a36268a0a",
+              "observedStep": 12,
+              "appliedStep": 13
+            },
+            "timing": {
+              "attemptId": 2,
+              "dispatchedAtMs": "1791904173784",
+              "receivedAtMs": "1791904173787",
+              "transportDurationMs": 3,
+              "publishedAtMs": "1791904173832"
+            },
+            "fixtureRequestAtMs": 1791904173786,
+            "fixtureHandlerCompletedAtMs": 1791904173787,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 3,
+            "turnId": 3,
+            "attemptId": 3,
+            "observedStep": 18,
+            "journalId": "journal-18-3-f829cb14407f8444952ef1eb45ae6e40f465e3e8794afec0e40f0d0d132aafb3",
+            "textSha256": "f829cb14407f8444952ef1eb45ae6e40f465e3e8794afec0e40f0d0d132aafb3",
+            "requestBodySha256": "7ac7fc34843f8f158c9156a5c926b847e710c6ae9709e2f1d053a158bfb36d9b",
+            "promptSha256": "a6279db811bb7e0dd0c6ef0ed1d1686a20835bfbba1875f6a1324814e7059031",
+            "memoryJournalId": "journal-12-2-a19175e2c3d081aef11bb617cdd8851abb17799003ed81ca5456004a36268a0a",
+            "application": {
+              "attemptId": 3,
+              "journalId": "journal-18-3-f829cb14407f8444952ef1eb45ae6e40f465e3e8794afec0e40f0d0d132aafb3",
+              "observedStep": 18,
+              "appliedStep": 19
+            },
+            "timing": {
+              "attemptId": 3,
+              "dispatchedAtMs": "1791904180179",
+              "receivedAtMs": "1791904180180",
+              "transportDurationMs": 1,
+              "publishedAtMs": "1791904180260"
+            },
+            "fixtureRequestAtMs": 1791904180180,
+            "fixtureHandlerCompletedAtMs": 1791904180180,
+            "fixtureHoldDurationMs": 0
+          },
+          {
+            "request": 4,
+            "turnId": 4,
+            "attemptId": 4,
+            "observedStep": 24,
+            "journalId": "journal-24-4-11045799e468fac1ad60b86c876d2e0cc9a97086eef43d6754a384eca1f563cd",
+            "textSha256": "11045799e468fac1ad60b86c876d2e0cc9a97086eef43d6754a384eca1f563cd",
+            "requestBodySha256": "74730d99df14912378b9c80b1c28161ed572360c81cfed13a110a11591e93d81",
+            "promptSha256": "b2ec596fa53d7a20cc042ee1f3a6d9cf1ce99bdbf939f4ff9eb28e5a2ccf7585",
+            "memoryJournalId": "journal-18-3-f829cb14407f8444952ef1eb45ae6e40f465e3e8794afec0e40f0d0d132aafb3",
+            "application": {
+              "attemptId": 4,
+              "journalId": "journal-24-4-11045799e468fac1ad60b86c876d2e0cc9a97086eef43d6754a384eca1f563cd",
+              "observedStep": 24,
+              "appliedStep": 25
+            },
+            "timing": {
+              "attemptId": 4,
+              "dispatchedAtMs": "1791904186528",
+              "receivedAtMs": "1791904186530",
+              "transportDurationMs": 1,
+              "publishedAtMs": "1791904186597"
+            },
+            "fixtureRequestAtMs": 1791904186529,
+            "fixtureHandlerCompletedAtMs": 1791904186530,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 5,
+            "turnId": 5,
+            "attemptId": 5,
+            "observedStep": 30,
+            "journalId": "journal-30-5-d98766f012bbd07307001969b2c310fd5d19a8c04d921e2eace2bc1d7b190637",
+            "textSha256": "d98766f012bbd07307001969b2c310fd5d19a8c04d921e2eace2bc1d7b190637",
+            "requestBodySha256": "5b88a3d11a10774ecf069149fee3908bef6567341806178e79a5c50da5084488",
+            "promptSha256": "3a642560273c870ee8d6d4863f2c4b5ea5f9c1376230b387579120f0348ab2db",
+            "memoryJournalId": "journal-24-4-11045799e468fac1ad60b86c876d2e0cc9a97086eef43d6754a384eca1f563cd",
+            "application": {
+              "attemptId": 5,
+              "journalId": "journal-30-5-d98766f012bbd07307001969b2c310fd5d19a8c04d921e2eace2bc1d7b190637",
+              "observedStep": 30,
+              "appliedStep": 31
+            },
+            "timing": {
+              "attemptId": 5,
+              "dispatchedAtMs": "1791904192863",
+              "receivedAtMs": "1791904192866",
+              "transportDurationMs": 2,
+              "publishedAtMs": "1791904192932"
+            },
+            "fixtureRequestAtMs": 1791904192864,
+            "fixtureHandlerCompletedAtMs": 1791904192865,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 6,
+            "turnId": 6,
+            "attemptId": 6,
+            "observedStep": 36,
+            "journalId": "journal-36-6-aada6a75fee6d5a3918f51a0a02c63ffe310a7b826ffc444db895d88af3c4c37",
+            "textSha256": "aada6a75fee6d5a3918f51a0a02c63ffe310a7b826ffc444db895d88af3c4c37",
+            "requestBodySha256": "1dc2cd9e4cb35d31d14d3dbaed2ad3a33870b9839be19fb7914c8fc4cfef463c",
+            "promptSha256": "2896aca486ac6c20346bc7a77295b19e2bf4fb0178a27e6b198483248fda452a",
+            "memoryJournalId": "journal-30-5-d98766f012bbd07307001969b2c310fd5d19a8c04d921e2eace2bc1d7b190637",
+            "application": {
+              "attemptId": 6,
+              "journalId": "journal-36-6-aada6a75fee6d5a3918f51a0a02c63ffe310a7b826ffc444db895d88af3c4c37",
+              "observedStep": 36,
+              "appliedStep": 37
+            },
+            "timing": {
+              "attemptId": 6,
+              "dispatchedAtMs": "1791904199278",
+              "receivedAtMs": "1791904199280",
+              "transportDurationMs": 2,
+              "publishedAtMs": "1791904199335"
+            },
+            "fixtureRequestAtMs": 1791904199279,
+            "fixtureHandlerCompletedAtMs": 1791904199280,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 7,
+            "turnId": 7,
+            "attemptId": 7,
+            "observedStep": 42,
+            "journalId": "journal-42-7-d1daab869d8e6b7c098336cc432543f19bca68536f9efc277564a78c6258b66d",
+            "textSha256": "d1daab869d8e6b7c098336cc432543f19bca68536f9efc277564a78c6258b66d",
+            "requestBodySha256": "3cf03f2b4163a651eebd02f5a056fbe725cf6acc6acc29de2dae160bc69afb5c",
+            "promptSha256": "4a4f6c66f4f9c86a2e2886d7acbe3a6d73f354ddfb24eb448a595d89dd52abb5",
+            "memoryJournalId": "journal-36-6-aada6a75fee6d5a3918f51a0a02c63ffe310a7b826ffc444db895d88af3c4c37",
+            "application": {
+              "attemptId": 7,
+              "journalId": "journal-42-7-d1daab869d8e6b7c098336cc432543f19bca68536f9efc277564a78c6258b66d",
+              "observedStep": 42,
+              "appliedStep": 43
+            },
+            "timing": {
+              "attemptId": 7,
+              "dispatchedAtMs": "1791904205616",
+              "receivedAtMs": "1791904205618",
+              "transportDurationMs": 1,
+              "publishedAtMs": "1791904205658"
+            },
+            "fixtureRequestAtMs": 1791904205617,
+            "fixtureHandlerCompletedAtMs": 1791904205618,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 8,
+            "turnId": 8,
+            "attemptId": 8,
+            "observedStep": 48,
+            "journalId": "journal-48-8-a61bb66a79c97ec9a42d42e14145633af58ff6c27f2ed452fd8a6315d8990ac1",
+            "textSha256": "a61bb66a79c97ec9a42d42e14145633af58ff6c27f2ed452fd8a6315d8990ac1",
+            "requestBodySha256": "3c303168d59f010f1ce115cc8db0da23b23374dd393758df8a60b93f09a9087a",
+            "promptSha256": "952b0d77c44b1875ca4d7925173dbd998c92b118c9ec38eb4b0e547c810ababa",
+            "memoryJournalId": "journal-42-7-d1daab869d8e6b7c098336cc432543f19bca68536f9efc277564a78c6258b66d",
+            "application": {
+              "attemptId": 8,
+              "journalId": "journal-48-8-a61bb66a79c97ec9a42d42e14145633af58ff6c27f2ed452fd8a6315d8990ac1",
+              "observedStep": 48,
+              "appliedStep": 49
+            },
+            "timing": {
+              "attemptId": 8,
+              "dispatchedAtMs": "1791904211940",
+              "receivedAtMs": "1791904211944",
+              "transportDurationMs": 4,
+              "publishedAtMs": "1791904211983"
+            },
+            "fixtureRequestAtMs": 1791904211943,
+            "fixtureHandlerCompletedAtMs": 1791904211944,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 9,
+            "turnId": 9,
+            "attemptId": 9,
+            "observedStep": 54,
+            "journalId": "journal-54-9-1b051e2716bb7ae2afadb2501f59e702f3ee9d90290ab3eb0705c3d95d09ef2f",
+            "textSha256": "1b051e2716bb7ae2afadb2501f59e702f3ee9d90290ab3eb0705c3d95d09ef2f",
+            "requestBodySha256": "74b68ccf0ffb6d9d020bdc6133a298b838e3dbd9cfc7840ef73a80c195d75c22",
+            "promptSha256": "c8863c5be09a04c0f64b931e3dba8363e19d4fa033eb39f44075c5aa0df5a73d",
+            "memoryJournalId": "journal-48-8-a61bb66a79c97ec9a42d42e14145633af58ff6c27f2ed452fd8a6315d8990ac1",
+            "application": {
+              "attemptId": 9,
+              "journalId": "journal-54-9-1b051e2716bb7ae2afadb2501f59e702f3ee9d90290ab3eb0705c3d95d09ef2f",
+              "observedStep": 54,
+              "appliedStep": 55
+            },
+            "timing": {
+              "attemptId": 9,
+              "dispatchedAtMs": "1791904218286",
+              "receivedAtMs": "1791904218290",
+              "transportDurationMs": 3,
+              "publishedAtMs": "1791904218361"
+            },
+            "fixtureRequestAtMs": 1791904218287,
+            "fixtureHandlerCompletedAtMs": 1791904218290,
+            "fixtureHoldDurationMs": 3
+          },
+          {
+            "request": 10,
+            "turnId": 10,
+            "attemptId": 10,
+            "observedStep": 60,
+            "journalId": "journal-60-10-ef6bfd5f992cb8651eaf90e00aae003241fec62fbc12e0a07e3effda1f216468",
+            "textSha256": "ef6bfd5f992cb8651eaf90e00aae003241fec62fbc12e0a07e3effda1f216468",
+            "requestBodySha256": "634e1d9c43b7a76e7a2c7465144557d28ed9f186cca5a09c4491027eeebfb903",
+            "promptSha256": "9a96122ee4e64c34fb2f93c3eca47710305989c4c0cdb2ed28aa7b7b5d9e5870",
+            "memoryJournalId": "journal-54-9-1b051e2716bb7ae2afadb2501f59e702f3ee9d90290ab3eb0705c3d95d09ef2f",
+            "application": {
+              "attemptId": 10,
+              "journalId": "journal-60-10-ef6bfd5f992cb8651eaf90e00aae003241fec62fbc12e0a07e3effda1f216468",
+              "observedStep": 60,
+              "appliedStep": 61
+            },
+            "timing": {
+              "attemptId": 10,
+              "dispatchedAtMs": "1791904224641",
+              "receivedAtMs": "1791904224644",
+              "transportDurationMs": 3,
+              "publishedAtMs": "1791904224681"
+            },
+            "fixtureRequestAtMs": 1791904224643,
+            "fixtureHandlerCompletedAtMs": 1791904224644,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 11,
+            "turnId": 11,
+            "attemptId": 11,
+            "observedStep": 66,
+            "journalId": "journal-66-11-496a043ec9ab14f48dadc135507e29ed4973794262e16a9e2c6ae396e3b9e674",
+            "textSha256": "496a043ec9ab14f48dadc135507e29ed4973794262e16a9e2c6ae396e3b9e674",
+            "requestBodySha256": "1323f430ea3149781f93f5e79d6bddd004981569daca8eb043f5e39d7ddb8d09",
+            "promptSha256": "4dd247778d63fac06f0f21a7ca848db1013c2b1e25cc93989228042b18eb87bd",
+            "memoryJournalId": "journal-60-10-ef6bfd5f992cb8651eaf90e00aae003241fec62fbc12e0a07e3effda1f216468",
+            "application": {
+              "attemptId": 11,
+              "journalId": "journal-66-11-496a043ec9ab14f48dadc135507e29ed4973794262e16a9e2c6ae396e3b9e674",
+              "observedStep": 66,
+              "appliedStep": 67
+            },
+            "timing": {
+              "attemptId": 11,
+              "dispatchedAtMs": "1791904230997",
+              "receivedAtMs": "1791904230999",
+              "transportDurationMs": 2,
+              "publishedAtMs": "1791904231048"
+            },
+            "fixtureRequestAtMs": 1791904230998,
+            "fixtureHandlerCompletedAtMs": 1791904230999,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 12,
+            "turnId": 12,
+            "attemptId": 12,
+            "observedStep": 72,
+            "journalId": "journal-72-12-e934797739d3ee727a1548c0567690adc39685245b5071f546f5d20bb035b12e",
+            "textSha256": "e934797739d3ee727a1548c0567690adc39685245b5071f546f5d20bb035b12e",
+            "requestBodySha256": "46e6bf0933429089b55b516042660a8e991b50e82bf45952d7355707b7cca1df",
+            "promptSha256": "d7f6e21cefc512496a8819dfeeda82f56d270f0d9255dc19ece2fd2a8f1bb8bb",
+            "memoryJournalId": "journal-66-11-496a043ec9ab14f48dadc135507e29ed4973794262e16a9e2c6ae396e3b9e674",
+            "application": {
+              "attemptId": 12,
+              "journalId": "journal-72-12-e934797739d3ee727a1548c0567690adc39685245b5071f546f5d20bb035b12e",
+              "observedStep": 72,
+              "appliedStep": 73
+            },
+            "timing": {
+              "attemptId": 12,
+              "dispatchedAtMs": "1791904237361",
+              "receivedAtMs": "1791904237363",
+              "transportDurationMs": 1,
+              "publishedAtMs": "1791904237430"
+            },
+            "fixtureRequestAtMs": 1791904237362,
+            "fixtureHandlerCompletedAtMs": 1791904237363,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 13,
+            "turnId": 13,
+            "attemptId": 13,
+            "observedStep": 78,
+            "journalId": "journal-78-13-368ba185773c7a176a6c7aa10062b3a38420c2891100be165d78089ebf0ea4b3",
+            "textSha256": "368ba185773c7a176a6c7aa10062b3a38420c2891100be165d78089ebf0ea4b3",
+            "requestBodySha256": "855e549fe06e31bb8fea8b4970d354ed6d5d8a54e00f986750cf5a2312002c9f",
+            "promptSha256": "e315c2737366e644690fafa1bce547a3918cdf56e01f2faae9955762abcb5dba",
+            "memoryJournalId": "journal-72-12-e934797739d3ee727a1548c0567690adc39685245b5071f546f5d20bb035b12e",
+            "application": {
+              "attemptId": 13,
+              "journalId": "journal-78-13-368ba185773c7a176a6c7aa10062b3a38420c2891100be165d78089ebf0ea4b3",
+              "observedStep": 78,
+              "appliedStep": 79
+            },
+            "timing": {
+              "attemptId": 13,
+              "dispatchedAtMs": "1791904243787",
+              "receivedAtMs": "1791904243789",
+              "transportDurationMs": 1,
+              "publishedAtMs": "1791904243836"
+            },
+            "fixtureRequestAtMs": 1791904243788,
+            "fixtureHandlerCompletedAtMs": 1791904243788,
+            "fixtureHoldDurationMs": 0
+          },
+          {
+            "request": 14,
+            "turnId": 14,
+            "attemptId": 14,
+            "observedStep": 84,
+            "journalId": "journal-84-14-8d76e4eccb210bd11f1c62b5b27e2052e0906e9a7be2062f0cf8b742765eb095",
+            "textSha256": "8d76e4eccb210bd11f1c62b5b27e2052e0906e9a7be2062f0cf8b742765eb095",
+            "requestBodySha256": "48529066404a2c2adcebc5f2409cee9c5e2b0e0bc405302585ef1aa76fa4dfc8",
+            "promptSha256": "490ce36ec54ca54e97c8fc21a01b5be125c4d924ac9825e1f39fa3b37987a8ee",
+            "memoryJournalId": "journal-78-13-368ba185773c7a176a6c7aa10062b3a38420c2891100be165d78089ebf0ea4b3",
+            "application": {
+              "attemptId": 14,
+              "journalId": "journal-84-14-8d76e4eccb210bd11f1c62b5b27e2052e0906e9a7be2062f0cf8b742765eb095",
+              "observedStep": 84,
+              "appliedStep": 85
+            },
+            "timing": {
+              "attemptId": 14,
+              "dispatchedAtMs": "1791904250128",
+              "receivedAtMs": "1791904250130",
+              "transportDurationMs": 1,
+              "publishedAtMs": "1791904250188"
+            },
+            "fixtureRequestAtMs": 1791904250130,
+            "fixtureHandlerCompletedAtMs": 1791904250130,
+            "fixtureHoldDurationMs": 0
+          },
+          {
+            "request": 15,
+            "turnId": 15,
+            "attemptId": 15,
+            "observedStep": 90,
+            "journalId": "journal-90-15-12c678192f2ae3ba49ffd883b11c152eccdcbf3650046bcf867bd35bb422d13f",
+            "textSha256": "12c678192f2ae3ba49ffd883b11c152eccdcbf3650046bcf867bd35bb422d13f",
+            "requestBodySha256": "dc5b40afc1103ee6e843068a329b8f1bece62fec9c97cc08c7a11f1288c5605d",
+            "promptSha256": "1bf7d5f13bef755b1a95f4bf0bb6e5844b6024bd91a6d8b68638c4a9aea4ec7f",
+            "memoryJournalId": "journal-84-14-8d76e4eccb210bd11f1c62b5b27e2052e0906e9a7be2062f0cf8b742765eb095",
+            "application": {
+              "attemptId": 15,
+              "journalId": "journal-90-15-12c678192f2ae3ba49ffd883b11c152eccdcbf3650046bcf867bd35bb422d13f",
+              "observedStep": 90,
+              "appliedStep": 91
+            },
+            "timing": {
+              "attemptId": 15,
+              "dispatchedAtMs": "1791904256468",
+              "receivedAtMs": "1791904256470",
+              "transportDurationMs": 2,
+              "publishedAtMs": "1791904256521"
+            },
+            "fixtureRequestAtMs": 1791904256469,
+            "fixtureHandlerCompletedAtMs": 1791904256470,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 16,
+            "turnId": 16,
+            "attemptId": 16,
+            "observedStep": 96,
+            "journalId": "journal-96-16-7d66f0bde29b5750da482546f2645e2547b218cfa6ee6182f71ea7149fd1c369",
+            "textSha256": "7d66f0bde29b5750da482546f2645e2547b218cfa6ee6182f71ea7149fd1c369",
+            "requestBodySha256": "34513dffe5bcb751b9f001fc37d8327b549c240aace3a3d7936b525e44d1452e",
+            "promptSha256": "733bc07dce9763c426a7ead5b5d2158ce67099b5ced2672656f943375fcc30e9",
+            "memoryJournalId": "journal-90-15-12c678192f2ae3ba49ffd883b11c152eccdcbf3650046bcf867bd35bb422d13f",
+            "application": {
+              "attemptId": 16,
+              "journalId": "journal-96-16-7d66f0bde29b5750da482546f2645e2547b218cfa6ee6182f71ea7149fd1c369",
+              "observedStep": 96,
+              "appliedStep": 97
+            },
+            "timing": {
+              "attemptId": 16,
+              "dispatchedAtMs": "1791904262872",
+              "receivedAtMs": "1791904262875",
+              "transportDurationMs": 3,
+              "publishedAtMs": "1791904262969"
+            },
+            "fixtureRequestAtMs": 1791904262873,
+            "fixtureHandlerCompletedAtMs": 1791904262874,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 17,
+            "turnId": 17,
+            "attemptId": 17,
+            "observedStep": 102,
+            "journalId": "journal-102-17-340e219cbfa2485892f28e308cb7acf9556dfd414576bae01c093b3efc58568e",
+            "textSha256": "340e219cbfa2485892f28e308cb7acf9556dfd414576bae01c093b3efc58568e",
+            "requestBodySha256": "643da1a085a15d4e06a83bd88bf93691a3c45342427bddf0a60d8c2157fe66f5",
+            "promptSha256": "b14bab0c35363dcc2ae4a52bf14976932e355f634778eeebd08c27d7eaf9e148",
+            "memoryJournalId": "journal-96-16-7d66f0bde29b5750da482546f2645e2547b218cfa6ee6182f71ea7149fd1c369",
+            "application": {
+              "attemptId": 17,
+              "journalId": "journal-102-17-340e219cbfa2485892f28e308cb7acf9556dfd414576bae01c093b3efc58568e",
+              "observedStep": 102,
+              "appliedStep": 103
+            },
+            "timing": {
+              "attemptId": 17,
+              "dispatchedAtMs": "1791904269391",
+              "receivedAtMs": "1791904269395",
+              "transportDurationMs": 3,
+              "publishedAtMs": "1791904269449"
+            },
+            "fixtureRequestAtMs": 1791904269392,
+            "fixtureHandlerCompletedAtMs": 1791904269394,
+            "fixtureHoldDurationMs": 2
+          },
+          {
+            "request": 18,
+            "turnId": 18,
+            "attemptId": 18,
+            "observedStep": 108,
+            "journalId": "journal-108-18-1c86d69c1c4858c024186295a15ac3500ce81bc0e435517e2d81701818b7854f",
+            "textSha256": "1c86d69c1c4858c024186295a15ac3500ce81bc0e435517e2d81701818b7854f",
+            "requestBodySha256": "ec269308dc26f0068788d828695139a0d0c6a5cf252e0b7ff8f8127b47d09455",
+            "promptSha256": "753e0ca0e5a338fae2fd312d95818773660bb9f0f462ed53be0b1bdcb2115c64",
+            "memoryJournalId": "journal-102-17-340e219cbfa2485892f28e308cb7acf9556dfd414576bae01c093b3efc58568e",
+            "application": {
+              "attemptId": 18,
+              "journalId": "journal-108-18-1c86d69c1c4858c024186295a15ac3500ce81bc0e435517e2d81701818b7854f",
+              "observedStep": 108,
+              "appliedStep": 109
+            },
+            "timing": {
+              "attemptId": 18,
+              "dispatchedAtMs": "1791904275701",
+              "receivedAtMs": "1791904275704",
+              "transportDurationMs": 2,
+              "publishedAtMs": "1791904275754"
+            },
+            "fixtureRequestAtMs": 1791904275703,
+            "fixtureHandlerCompletedAtMs": 1791904275704,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 19,
+            "turnId": 19,
+            "attemptId": 19,
+            "observedStep": 114,
+            "journalId": "journal-114-19-a5663493155d1958ad2b4e27995ebd21c9fa5aad1de709f7bad1510d41850fcc",
+            "textSha256": "a5663493155d1958ad2b4e27995ebd21c9fa5aad1de709f7bad1510d41850fcc",
+            "requestBodySha256": "0e02eaaf57438d3541c0c454f610b9ca3be93d8810c411ca75bcc1123fd68f89",
+            "promptSha256": "761f44052077eb68a1b8dd94d9f911bf55fddafe48d89d59bca6d18a262efe77",
+            "memoryJournalId": "journal-108-18-1c86d69c1c4858c024186295a15ac3500ce81bc0e435517e2d81701818b7854f",
+            "application": {
+              "attemptId": 19,
+              "journalId": "journal-114-19-a5663493155d1958ad2b4e27995ebd21c9fa5aad1de709f7bad1510d41850fcc",
+              "observedStep": 114,
+              "appliedStep": 115
+            },
+            "timing": {
+              "attemptId": 19,
+              "dispatchedAtMs": "1791904282026",
+              "receivedAtMs": "1791904282028",
+              "transportDurationMs": 2,
+              "publishedAtMs": "1791904282079"
+            },
+            "fixtureRequestAtMs": 1791904282027,
+            "fixtureHandlerCompletedAtMs": 1791904282028,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 20,
+            "turnId": 20,
+            "attemptId": 20,
+            "observedStep": 120,
+            "journalId": "journal-120-20-180a36e03a36ec86fab68c8bc09cf5bfced017d4d11033bcc4c9dde734d28e52",
+            "textSha256": "180a36e03a36ec86fab68c8bc09cf5bfced017d4d11033bcc4c9dde734d28e52",
+            "requestBodySha256": "8b9ae6f8816616cdb3fcd94d264720bedb2b695334cc893bb158b209b5183b62",
+            "promptSha256": "6c3d848bcea4c2b163f408d3c45547c99c9be16979bbf7018a429cbf2f1c99c6",
+            "memoryJournalId": "journal-114-19-a5663493155d1958ad2b4e27995ebd21c9fa5aad1de709f7bad1510d41850fcc",
+            "application": {
+              "attemptId": 20,
+              "journalId": "journal-120-20-180a36e03a36ec86fab68c8bc09cf5bfced017d4d11033bcc4c9dde734d28e52",
+              "observedStep": 120,
+              "appliedStep": 121
+            },
+            "timing": {
+              "attemptId": 20,
+              "dispatchedAtMs": "1791904288406",
+              "receivedAtMs": "1791904288408",
+              "transportDurationMs": 1,
+              "publishedAtMs": "1791904288457"
+            },
+            "fixtureRequestAtMs": 1791904288407,
+            "fixtureHandlerCompletedAtMs": 1791904288408,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 21,
+            "turnId": 21,
+            "attemptId": 21,
+            "observedStep": 126,
+            "journalId": "journal-126-21-5aaee718ccd669c9af8487cae5f6a7dd471c5e279e64ba1294e854f0ce29bfb2",
+            "textSha256": "5aaee718ccd669c9af8487cae5f6a7dd471c5e279e64ba1294e854f0ce29bfb2",
+            "requestBodySha256": "c48bb6379404cfe72189160975788eee0d69f5351dbc2bd62dbec40c7241aa75",
+            "promptSha256": "339539aed6aa955679137272938ac7719d4e51a88c73d23a8f673e5fee0ff34a",
+            "memoryJournalId": "journal-120-20-180a36e03a36ec86fab68c8bc09cf5bfced017d4d11033bcc4c9dde734d28e52",
+            "application": {
+              "attemptId": 21,
+              "journalId": "journal-126-21-5aaee718ccd669c9af8487cae5f6a7dd471c5e279e64ba1294e854f0ce29bfb2",
+              "observedStep": 126,
+              "appliedStep": 127
+            },
+            "timing": {
+              "attemptId": 21,
+              "dispatchedAtMs": "1791904294777",
+              "receivedAtMs": "1791904294779",
+              "transportDurationMs": 1,
+              "publishedAtMs": "1791904294833"
+            },
+            "fixtureRequestAtMs": 1791904294778,
+            "fixtureHandlerCompletedAtMs": 1791904294779,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 22,
+            "turnId": 22,
+            "attemptId": 22,
+            "observedStep": 132,
+            "journalId": "journal-132-22-bc0c52fb720142d40e2a0724dd34c96363774b75f0950799fd5cf2632dacca06",
+            "textSha256": "bc0c52fb720142d40e2a0724dd34c96363774b75f0950799fd5cf2632dacca06",
+            "requestBodySha256": "ec64f447b4b2f33564d6f8d51b8e4343ab83f7a447eb7cf8659e2e4490f7432c",
+            "promptSha256": "20e1720f2648e2c8ab32cc3479885bc11539d2850f10bfa26ff80116e9480629",
+            "memoryJournalId": "journal-126-21-5aaee718ccd669c9af8487cae5f6a7dd471c5e279e64ba1294e854f0ce29bfb2",
+            "application": {
+              "attemptId": 22,
+              "journalId": "journal-132-22-bc0c52fb720142d40e2a0724dd34c96363774b75f0950799fd5cf2632dacca06",
+              "observedStep": 132,
+              "appliedStep": 133
+            },
+            "timing": {
+              "attemptId": 22,
+              "dispatchedAtMs": "1791904301158",
+              "receivedAtMs": "1791904301161",
+              "transportDurationMs": 2,
+              "publishedAtMs": "1791904301255"
+            },
+            "fixtureRequestAtMs": 1791904301159,
+            "fixtureHandlerCompletedAtMs": 1791904301160,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 23,
+            "turnId": 23,
+            "attemptId": 23,
+            "observedStep": 138,
+            "journalId": "journal-138-23-3c4835c9e6c34d9ccc4a59ab258f81c26594679c06465e4e846b7a182ff1d413",
+            "textSha256": "3c4835c9e6c34d9ccc4a59ab258f81c26594679c06465e4e846b7a182ff1d413",
+            "requestBodySha256": "c313083f4523f56263b0afc5edb85f868faddde95a7a13d958ada7f3c0913bb6",
+            "promptSha256": "b157a52a067ab6a9a445e63226dda63989c5c3c09d5672817f4ab25a1b62a58c",
+            "memoryJournalId": "journal-132-22-bc0c52fb720142d40e2a0724dd34c96363774b75f0950799fd5cf2632dacca06",
+            "application": {
+              "attemptId": 23,
+              "journalId": "journal-138-23-3c4835c9e6c34d9ccc4a59ab258f81c26594679c06465e4e846b7a182ff1d413",
+              "observedStep": 138,
+              "appliedStep": 139
+            },
+            "timing": {
+              "attemptId": 23,
+              "dispatchedAtMs": "1791904307629",
+              "receivedAtMs": "1791904307631",
+              "transportDurationMs": 1,
+              "publishedAtMs": "1791904307702"
+            },
+            "fixtureRequestAtMs": 1791904307630,
+            "fixtureHandlerCompletedAtMs": 1791904307631,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 24,
+            "turnId": 24,
+            "attemptId": 24,
+            "observedStep": 144,
+            "journalId": "journal-144-24-3236dd7165135133fbff991b46ee196e88c90dc2dbf8cb541d2fc04bf8fd1561",
+            "textSha256": "3236dd7165135133fbff991b46ee196e88c90dc2dbf8cb541d2fc04bf8fd1561",
+            "requestBodySha256": "5db3e66896b574f9867ec6b09c9add7baae5b53fa6fed31400091440901a826e",
+            "promptSha256": "1b361cfba8250c9b482c7f734923e4476656a312bf17d55fdaefe9e7268cda39",
+            "memoryJournalId": "journal-138-23-3c4835c9e6c34d9ccc4a59ab258f81c26594679c06465e4e846b7a182ff1d413",
+            "application": {
+              "attemptId": 24,
+              "journalId": "journal-144-24-3236dd7165135133fbff991b46ee196e88c90dc2dbf8cb541d2fc04bf8fd1561",
+              "observedStep": 144,
+              "appliedStep": 145
+            },
+            "timing": {
+              "attemptId": 24,
+              "dispatchedAtMs": "1791904314003",
+              "receivedAtMs": "1791904314006",
+              "transportDurationMs": 2,
+              "publishedAtMs": "1791904314051"
+            },
+            "fixtureRequestAtMs": 1791904314005,
+            "fixtureHandlerCompletedAtMs": 1791904314005,
+            "fixtureHoldDurationMs": 0
+          },
+          {
+            "request": 25,
+            "turnId": 25,
+            "attemptId": 25,
+            "observedStep": 150,
+            "journalId": "journal-150-25-b36902beafdc0516ad47dbd606b03a57e806171f1452819570482c3f33ece2f8",
+            "textSha256": "b36902beafdc0516ad47dbd606b03a57e806171f1452819570482c3f33ece2f8",
+            "requestBodySha256": "5154d1f0e49750b1b78a99e2924e22bbff682e3e1b7e871e3857601a3353ba6f",
+            "promptSha256": "6ceaf7e88e5eb4e521c9eff14efbc19f7ca3d21af3aa133947e7b808cf8512e6",
+            "memoryJournalId": "journal-144-24-3236dd7165135133fbff991b46ee196e88c90dc2dbf8cb541d2fc04bf8fd1561",
+            "application": {
+              "attemptId": 25,
+              "journalId": "journal-150-25-b36902beafdc0516ad47dbd606b03a57e806171f1452819570482c3f33ece2f8",
+              "observedStep": 150,
+              "appliedStep": 151
+            },
+            "timing": {
+              "attemptId": 25,
+              "dispatchedAtMs": "1791904320343",
+              "receivedAtMs": "1791904320344",
+              "transportDurationMs": 1,
+              "publishedAtMs": "1791904320380"
+            },
+            "fixtureRequestAtMs": 1791904320344,
+            "fixtureHandlerCompletedAtMs": 1791904320344,
+            "fixtureHoldDurationMs": 0
+          },
+          {
+            "request": 26,
+            "turnId": 26,
+            "attemptId": 26,
+            "observedStep": 156,
+            "journalId": "journal-156-26-88b1402a8292ac7d14d9618466af5c20e1ceb922ab44ec40ffb049f4dc2d5b41",
+            "textSha256": "88b1402a8292ac7d14d9618466af5c20e1ceb922ab44ec40ffb049f4dc2d5b41",
+            "requestBodySha256": "160d3a9aa9b511b42612a04eaa5ce424fc7ed7faca001f597ae4f25e594a30a3",
+            "promptSha256": "e2b757934b5a4303df4263ab8a95281f47b934b7ee0950b4d7ad59927aac0c4b",
+            "memoryJournalId": "journal-150-25-b36902beafdc0516ad47dbd606b03a57e806171f1452819570482c3f33ece2f8",
+            "application": {
+              "attemptId": 26,
+              "journalId": "journal-156-26-88b1402a8292ac7d14d9618466af5c20e1ceb922ab44ec40ffb049f4dc2d5b41",
+              "observedStep": 156,
+              "appliedStep": 157
+            },
+            "timing": {
+              "attemptId": 26,
+              "dispatchedAtMs": "1791904326672",
+              "receivedAtMs": "1791904326676",
+              "transportDurationMs": 3,
+              "publishedAtMs": "1791904326712"
+            },
+            "fixtureRequestAtMs": 1791904326675,
+            "fixtureHandlerCompletedAtMs": 1791904326676,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 27,
+            "turnId": 27,
+            "attemptId": 27,
+            "observedStep": 162,
+            "journalId": "journal-162-27-a2194ca86411bcf77e5509bb0626d329b09cd8f8b74704c22e0d4bced225d03c",
+            "textSha256": "a2194ca86411bcf77e5509bb0626d329b09cd8f8b74704c22e0d4bced225d03c",
+            "requestBodySha256": "4ce4fc4f0e821ab2ee1b2378d1cd3d80b397bf1e12e81e95d57fcbeacde63426",
+            "promptSha256": "ebc0814bdc8e69e1d27de5f23575d3c48fe9c591ffe07a3f3b35cb69701b2342",
+            "memoryJournalId": "journal-156-26-88b1402a8292ac7d14d9618466af5c20e1ceb922ab44ec40ffb049f4dc2d5b41",
+            "application": {
+              "attemptId": 27,
+              "journalId": "journal-162-27-a2194ca86411bcf77e5509bb0626d329b09cd8f8b74704c22e0d4bced225d03c",
+              "observedStep": 162,
+              "appliedStep": 163
+            },
+            "timing": {
+              "attemptId": 27,
+              "dispatchedAtMs": "1791904333048",
+              "receivedAtMs": "1791904333049",
+              "transportDurationMs": 1,
+              "publishedAtMs": "1791904333128"
+            },
+            "fixtureRequestAtMs": 1791904333049,
+            "fixtureHandlerCompletedAtMs": 1791904333049,
+            "fixtureHoldDurationMs": 0
+          },
+          {
+            "request": 28,
+            "turnId": 28,
+            "attemptId": 28,
+            "observedStep": 168,
+            "journalId": "journal-168-28-66f7e2be166384262e173d09213c7d1978f88088a80fb3d3c40bc2f435d9eb9b",
+            "textSha256": "66f7e2be166384262e173d09213c7d1978f88088a80fb3d3c40bc2f435d9eb9b",
+            "requestBodySha256": "871f5b5b28713b0f76327dfed7cd31027eb3ce00212b44e2835fd05d17a94e0b",
+            "promptSha256": "59c75eb8876a332d50fd88dcfee0cec8845ceec650f7243a940f68e87b5208bd",
+            "memoryJournalId": "journal-162-27-a2194ca86411bcf77e5509bb0626d329b09cd8f8b74704c22e0d4bced225d03c",
+            "application": {
+              "attemptId": 28,
+              "journalId": "journal-168-28-66f7e2be166384262e173d09213c7d1978f88088a80fb3d3c40bc2f435d9eb9b",
+              "observedStep": 168,
+              "appliedStep": 169
+            },
+            "timing": {
+              "attemptId": 28,
+              "dispatchedAtMs": "1791904339512",
+              "receivedAtMs": "1791904339514",
+              "transportDurationMs": 2,
+              "publishedAtMs": "1791904339591"
+            },
+            "fixtureRequestAtMs": 1791904339513,
+            "fixtureHandlerCompletedAtMs": 1791904339514,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 29,
+            "turnId": 29,
+            "attemptId": 29,
+            "observedStep": 174,
+            "journalId": "journal-174-29-5cbef348d4a27a78a89f76c74c8b5515d747d0fda17db2b6279860a17d5ce51e",
+            "textSha256": "5cbef348d4a27a78a89f76c74c8b5515d747d0fda17db2b6279860a17d5ce51e",
+            "requestBodySha256": "4bb76aa58865f0e717b72db154ba7f8ce858a45a9a2cdeb8144b5339902fb308",
+            "promptSha256": "10fca7ba4cb7e6fbfd9abb136ea45deed010e8f33d9d31b266187d277bc323a5",
+            "memoryJournalId": "journal-168-28-66f7e2be166384262e173d09213c7d1978f88088a80fb3d3c40bc2f435d9eb9b",
+            "application": {
+              "attemptId": 29,
+              "journalId": "journal-174-29-5cbef348d4a27a78a89f76c74c8b5515d747d0fda17db2b6279860a17d5ce51e",
+              "observedStep": 174,
+              "appliedStep": 175
+            },
+            "timing": {
+              "attemptId": 29,
+              "dispatchedAtMs": "1791904345940",
+              "receivedAtMs": "1791904345942",
+              "transportDurationMs": 1,
+              "publishedAtMs": "1791904346016"
+            },
+            "fixtureRequestAtMs": 1791904345941,
+            "fixtureHandlerCompletedAtMs": 1791904345942,
+            "fixtureHoldDurationMs": 1
+          },
+          {
+            "request": 30,
+            "turnId": 30,
+            "attemptId": 30,
+            "observedStep": 180,
+            "journalId": "journal-180-30-500cfd6acd9b8e4a3eb89eb0282ed509d9092ee688154fb5ec0186f006da1427",
+            "textSha256": "500cfd6acd9b8e4a3eb89eb0282ed509d9092ee688154fb5ec0186f006da1427",
+            "requestBodySha256": "8720318bde4271d456f84685dc3f940c3c7417c038bab97873f380e3822db166",
+            "promptSha256": "031b0ee50406cd43aeae689103280d7392e0303b1eb91370fedf650e40eaf163",
+            "memoryJournalId": "journal-174-29-5cbef348d4a27a78a89f76c74c8b5515d747d0fda17db2b6279860a17d5ce51e",
+            "application": {
+              "attemptId": 30,
+              "journalId": "journal-180-30-500cfd6acd9b8e4a3eb89eb0282ed509d9092ee688154fb5ec0186f006da1427",
+              "observedStep": 180,
+              "appliedStep": 181
+            },
+            "timing": {
+              "attemptId": 30,
+              "dispatchedAtMs": "1791904352350",
+              "receivedAtMs": "1791904352352",
+              "transportDurationMs": 2,
+              "publishedAtMs": "1791904352408"
+            },
+            "fixtureRequestAtMs": 1791904352350,
+            "fixtureHandlerCompletedAtMs": 1791904352351,
+            "fixtureHoldDurationMs": 1
+          }
+        ],
+        "cancelledRequestsWithNoAcceptedResponseOrJournal": []
+      },
+      "originalUnchanged": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-ui/sustained-1791904526118-2-2-19",
+      "before": {
+        "checkpoints/343f10ca741ffbc71972976e5572d12f9f84b5a4a865b9d8f735894214550dc7.json": {
+          "sizeBytes": 35598,
+          "sha256": "343f10ca741ffbc71972976e5572d12f9f84b5a4a865b9d8f735894214550dc7"
+        },
+        "checkpoints/55e346591bad98a94a5af813a9a954c2fc05ea6ae966c07512f966b9256693f5.json": {
+          "sizeBytes": 35683,
+          "sha256": "55e346591bad98a94a5af813a9a954c2fc05ea6ae966c07512f966b9256693f5"
+        },
+        "journals/journal-3-1-313d6d47dbafe341da73b1484b3506b2e2a9d539045c0856e81c409ca9276274.json": {
+          "sizeBytes": 6498,
+          "sha256": "61432ecf588c3c4335204cb0145f145cddfb965bf122c27459f8598d575bc0e0"
+        },
+        "manifest.json": {
+          "sizeBytes": 985,
+          "sha256": "78e07d9df9b02cb187edabe9688c3c2ea56533490a8017c69b291cb1b89afd61"
+        },
+        "segments/segment-00000001.json": {
+          "sizeBytes": 49370,
+          "sha256": "2c0b4dca9fe23de81adfad4a4bbac02a4f160e267dd59b00b3e4b8e0c26da4b5"
+        },
+        "segments/segment-00000002.json": {
+          "sizeBytes": 69214,
+          "sha256": "7ad96fee1df66ed9ddebbeea9ac4ce0439c214276f8336331431d3e5457dc54e"
+        },
+        "segments/segment-00000003.json": {
+          "sizeBytes": 66772,
+          "sha256": "2cd5ff04c26abbdf87430942a5c0b6cf78f4bfa279ffd3d99f7bf402b9c2256f"
+        },
+        "segments/segment-00000004.json": {
+          "sizeBytes": 64826,
+          "sha256": "91ebf49c41e4491622bed548071d319044eaaca8031cf7871d234d4cbfc15362"
+        },
+        "segments/segment-00000005.json": {
+          "sizeBytes": 70830,
+          "sha256": "8d486dfe250a6ee5cc501a54c48f8966dbab100b67e8374c4c280ba29c6118b4"
+        },
+        "segments/segment-00000006.json": {
+          "sizeBytes": 69224,
+          "sha256": "314d34ba3ae118f01e82e3a1283fdde213b28f693d5be6a813e047ba5b243561"
+        },
+        "segments/segment-00000007.json": {
+          "sizeBytes": 71780,
+          "sha256": "f77bbf153163b0dd16fb27162c8d1da9868c1910057b40da05ef565acefe49f4"
+        }
+      },
+      "verification": {
+        "exitCode": 0,
+        "result": {
+          "modelsContacted": false,
+          "report": {
+            "checkpointSha256": "55e346591bad98a94a5af813a9a954c2fc05ea6ae966c07512f966b9256693f5",
+            "diagnostics": [],
+            "format": "reservoir-sustained-bundle-v1",
+            "journalCount": 1,
+            "manifestSha256": "78e07d9df9b02cb187edabe9688c3c2ea56533490a8017c69b291cb1b89afd61",
+            "segmentCount": 7,
+            "sessionId": "sustained-1791904526118-2",
+            "sizeBytes": 540780,
+            "step": 6,
+            "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+          },
+          "status": "passed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-ui/sustained-1791904526118-2-2-19"
+        ]
+      },
+      "requestEvidence": {
+        "sessionId": "sustained-1791904526118-2",
+        "seed": "7",
+        "step": 6,
+        "journalCount": 1,
+        "eventCounts": {
+          "advanced": 6,
+          "languageStarted": 2,
+          "languageReceived": 1,
+          "journalSaved": 1,
+          "memoryConfirmed": 1,
+          "languageCancelled": 1
+        },
+        "exactMatchedRequests": [
+          {
+            "request": 31,
+            "turnId": 1,
+            "attemptId": 1,
+            "observedStep": 3,
+            "journalId": "journal-3-1-313d6d47dbafe341da73b1484b3506b2e2a9d539045c0856e81c409ca9276274",
+            "textSha256": "313d6d47dbafe341da73b1484b3506b2e2a9d539045c0856e81c409ca9276274",
+            "requestBodySha256": "fd40b30b1abcb6abf409973abb752bcdb68b2ec718b4f421fa5a0090d4195d16",
+            "promptSha256": "7a99d6e91069372ad39af9d32dc20918c297c59d9590a9edb6ee6c01b75e2b51",
+            "memoryJournalId": null,
+            "application": {
+              "attemptId": 1,
+              "journalId": "journal-3-1-313d6d47dbafe341da73b1484b3506b2e2a9d539045c0856e81c409ca9276274",
+              "observedStep": 3,
+              "appliedStep": 4
+            },
+            "timing": {
+              "attemptId": 1,
+              "dispatchedAtMs": "1791904535594",
+              "receivedAtMs": "1791904558845",
+              "transportDurationMs": 23251,
+              "publishedAtMs": "1791904558920"
+            },
+            "fixtureRequestAtMs": 1791904535597,
+            "fixtureHandlerCompletedAtMs": 1791904558845,
+            "fixtureHoldDurationMs": 23248
+          }
+        ],
+        "cancelledRequestsWithNoAcceptedResponseOrJournal": [
+          {
+            "request": 32,
+            "attemptId": 2,
+            "observedStep": 6,
+            "reason": "Explicit Stop cancelled the pending sustained language request.",
+            "cancelledEvent": {
+              "id": 12,
+              "step": 6,
+              "kind": {
+                "type": "languageCancelled",
+                "data": {
+                  "attempt_id": 2,
+                  "reason": "Explicit Stop cancelled the pending sustained language request."
+                }
+              }
+            },
+            "fixtureHandlerResponse": {
+              "response": 32,
+              "textSha256": "a96176c333312a7d11b4abe4cc42a1469e7630e0871fafebb5d5a5325e0dd464",
+              "at": 1791904666326,
+              "complete": true
+            },
+            "acceptedResponses": 0,
+            "journals": 0
+          }
+        ]
+      },
+      "originalUnchanged": true
+    }
+  ],
+  "negativeControls": [
+    {
+      "original": "sustained-1791904148347-1-1-333",
+      "control": "journal-text",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "journal",
+          "message": "Journal object bytes differ from immutable chain anchor",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904148347-1-1-333-journal-text"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904148347-1-1-333",
+      "control": "journal-configured-model-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "journal",
+          "message": "Immutable journal differs from its replayed response/save evidence",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904148347-1-1-333-journal-configured-model-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904148347-1-1-333",
+      "control": "journal-prompt-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "journal",
+          "message": "Immutable journal differs from its replayed response/save evidence",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904148347-1-1-333-journal-prompt-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904148347-1-1-333",
+      "control": "journal-negative-duration-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "verification",
+          "message": "invalid value: integer `-1`, expected u64 at line 1 column 7516",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904148347-1-1-333-journal-negative-duration-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904148347-1-1-333",
+      "control": "manifest-clock",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "chain",
+          "message": "Final manifest/checkpoint/journal count differs from replayed committed prefix",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904148347-1-1-333-manifest-clock"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904148347-1-1-333",
+      "control": "manifest-journal-count",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "chain",
+          "message": "Final manifest/checkpoint/journal count differs from replayed committed prefix",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904148347-1-1-333-manifest-journal-count"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904148347-1-1-333",
+      "control": "manifest-seed",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "chain",
+          "message": "Segment chain does not begin at exact genesis or previous committed continuation",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904148347-1-1-333-manifest-seed"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904148347-1-1-333",
+      "control": "missing-segment",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "file-io",
+          "message": "No such file or directory (os error 2)",
+          "modelsContacted": false,
+          "operation": "chain-link",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904148347-1-1-333-missing-segment"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904148347-1-1-333",
+      "control": "reordered-segment",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "chain",
+          "message": "Segment chain does not begin at exact genesis or previous committed continuation",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904148347-1-1-333-reordered-segment"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904148347-1-1-333",
+      "control": "non-genesis-checkpoint-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "chain",
+          "message": "Segment chain does not begin at exact genesis or previous committed continuation",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904148347-1-1-333-non-genesis-checkpoint-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904148347-1-1-333",
+      "control": "numerical-state-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "verification",
+          "message": "Sustained event does not reproduce its exact transition",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904148347-1-1-333-numerical-state-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904148347-1-1-333",
+      "control": "event-order-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "verification",
+          "message": "Response does not own the dispatched attempt",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904148347-1-1-333-event-order-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904148347-1-1-333",
+      "control": "missing-journal",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "file-io",
+          "message": "No such file or directory (os error 2)",
+          "modelsContacted": false,
+          "operation": "journal-evidence",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904148347-1-1-333-missing-journal"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-2-19",
+      "control": "journal-text",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "journal",
+          "message": "Journal object bytes differ from immutable chain anchor",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904526118-2-2-19-journal-text"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-2-19",
+      "control": "journal-configured-model-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "journal",
+          "message": "Immutable journal differs from its replayed response/save evidence",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904526118-2-2-19-journal-configured-model-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-2-19",
+      "control": "journal-prompt-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "journal",
+          "message": "Immutable journal differs from its replayed response/save evidence",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904526118-2-2-19-journal-prompt-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-2-19",
+      "control": "journal-negative-duration-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "verification",
+          "message": "invalid value: integer `-1`, expected u64 at line 1 column 6461",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904526118-2-2-19-journal-negative-duration-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-2-19",
+      "control": "manifest-clock",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "chain",
+          "message": "Final manifest/checkpoint/journal count differs from replayed committed prefix",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904526118-2-2-19-manifest-clock"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-2-19",
+      "control": "manifest-journal-count",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "chain",
+          "message": "Final manifest/checkpoint/journal count differs from replayed committed prefix",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904526118-2-2-19-manifest-journal-count"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-2-19",
+      "control": "manifest-seed",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "chain",
+          "message": "Segment chain does not begin at exact genesis or previous committed continuation",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904526118-2-2-19-manifest-seed"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-2-19",
+      "control": "missing-segment",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "file-io",
+          "message": "No such file or directory (os error 2)",
+          "modelsContacted": false,
+          "operation": "chain-link",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904526118-2-2-19-missing-segment"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-2-19",
+      "control": "reordered-segment",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "chain",
+          "message": "Segment chain does not begin at exact genesis or previous committed continuation",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904526118-2-2-19-reordered-segment"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-2-19",
+      "control": "non-genesis-checkpoint-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "chain",
+          "message": "Segment chain does not begin at exact genesis or previous committed continuation",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904526118-2-2-19-non-genesis-checkpoint-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-2-19",
+      "control": "numerical-state-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "verification",
+          "message": "Sustained event does not reproduce its exact transition",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904526118-2-2-19-numerical-state-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-2-19",
+      "control": "event-order-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "verification",
+          "message": "Response does not own the dispatched attempt",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904526118-2-2-19-event-order-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-2-19",
+      "control": "missing-journal",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "file-io",
+          "message": "No such file or directory (os error 2)",
+          "modelsContacted": false,
+          "operation": "journal-evidence",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/sustained-1791904526118-2-2-19-missing-journal"
+        ]
+      }
+    }
+  ],
+  "status": "passed",
+  "pinnedVerifierUnchanged": true,
+  "requestLogOriginalPrefixUnchanged": true,
+  "summary": {
+    "originals": 2,
+    "negativeControls": 26,
+    "negativeControlsRejected": 26
+  }
+}

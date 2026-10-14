@@ -1,0 +1,23 @@
+{
+  "schema": "offline-evaluation-execution-v1",
+  "startedAtUtc": "2026-10-13T21:32:55.546546+00:00",
+  "command": [
+    "python3",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/journal_quality.py",
+    "--material",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/real-model-export-01/quality-review-material.json",
+    "--integrity-receipt",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/real-model-export-01/receipt.json",
+    "--protocol",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/run-plan.json",
+    "--prompt-version",
+    "reservoir-journal-v3",
+    "--output",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/real-model-quality-review-01.json"
+  ],
+  "scope": "Deterministic candidate review of saved text; no automatic quality pass and no model calls.",
+  "endedAtUtc": "2026-10-13T21:32:55.621635+00:00",
+  "wallNanoseconds": 74953500,
+  "exitCode": 0,
+  "logSha256": "02690237671ddb3024e080897a3a139a2d4bfba2799671e35c80d94ef94b1887"
+}

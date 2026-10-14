@@ -1,0 +1,102 @@
+{
+  "schema": "reservoir-sustained-core-qualification-v1",
+  "createdAt": "2026-10-13T14:51:45.431052+00:00",
+  "modelsContacted": false,
+  "scope": "Pure core tests, strict lint, accelerated supplied-response stream and private-directory fixture generation. No wall-time soak, native Swift verification of this new family, real provider execution, OS sleep or cross-platform qualification.",
+  "environment": {
+    "DEVELOPER_DIR": "/Applications/Xcode.app/Contents/Developer",
+    "SDKROOT": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+  },
+  "checks": [
+    {
+      "command": "cargo test --locked -p reservoir-core --test sustained -- --nocapture",
+      "passed": 10,
+      "failed": 0,
+      "durationSeconds": 34.5,
+      "log": {
+        "path": "validation/2026-10-13-sustained-0.12.0/core-sustained-final-02.log",
+        "sizeBytes": 1451,
+        "sha256": "e62b0414859ee0090d20cfd71ae883dff33b6ba7496e96337da60e2aace3a5b7"
+      }
+    },
+    {
+      "command": "cargo clippy --locked -p reservoir-core --all-targets -- -D warnings",
+      "status": "passed",
+      "log": {
+        "path": "validation/2026-10-13-sustained-0.12.0/core-sustained-clippy.log",
+        "sizeBytes": 192,
+        "sha256": "e2db58940485aaee0b5ebe42090ca10a48fd5d5d6d0df9a6e3b2f272fc36818a"
+      },
+      "scopeNote": "After final production/test source; before metrics-only example correction. The corrected example is separately linted below."
+    },
+    {
+      "command": "cargo clippy --locked -p reservoir-core --example sustained_session_fixtures -- -D warnings",
+      "status": "passed",
+      "log": {
+        "path": "validation/2026-10-13-sustained-0.12.0/core-fixture-clippy-final-02.log",
+        "sizeBytes": 192,
+        "sha256": "a2c48f32e7aed2795ec9fdfe7c1c9946366cc3b09c1ac89aefba2403bfc70624"
+      }
+    },
+    {
+      "command": "cargo run --locked -p reservoir-core --example sustained_session_fixtures -- target/sustained-session-fixtures-0.12-final-02",
+      "status": "passed",
+      "log": {
+        "path": "validation/2026-10-13-sustained-0.12.0/core-fixture-generation-final-02.log",
+        "sizeBytes": 366,
+        "sha256": "6c60911f863d465c87b322f1c49825c39a0507a5d1c0cbd16b11fec13b58d1a5"
+      }
+    }
+  ],
+  "acceleratedStream": {
+    "steps": 3605,
+    "preparedAttempts": 120,
+    "verifiedSegments": 85,
+    "maximumRetainedEvents": 52,
+    "maximumSampledCheckpointBytes": 30221,
+    "checkpointSampling": "After each advance and synchronous settlement to ready/prepared; not every intermediate phase.",
+    "notWallTimeSoak": true
+  },
+  "fixture": {
+    "manifest": {
+      "path": "target/sustained-session-fixtures-0.12-final-02/manifest.json",
+      "sizeBytes": 73573,
+      "sha256": "a7abd0a19ce4bbb50e536d45954fdcf5c3450f053d65b07a8445e5e1fb604ad9"
+    },
+    "segments": 36,
+    "events": 249,
+    "steps": 180,
+    "seed": "18446744073709551615",
+    "maximumRetainedEvents": 13,
+    "maximumCheckpointBytes": 35599,
+    "checkpointSampling": "After every public engine transition, including memory, response, saved feedback and interrupted restore/retry.",
+    "generationVerification": "Each segment replays with SustainedSegment::verify before publication; this receipt independently checks byte hashes and exact adjacency from genesis to final checkpoint.",
+    "bytesAndAdjacency": "passed"
+  },
+  "source": [
+    {
+      "path": "crates/reservoir-core/src/sustained.rs",
+      "sizeBytes": 55043,
+      "sha256": "aab22751b10f3ddc9b961f2e3a3b80b2f534fbfa40978a9df62a00805b9efeb7"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained.rs",
+      "sizeBytes": 17958,
+      "sha256": "a18db5c2da46843000111a7a46a76edfcf42033a9bbee3b19c5fffb5d5f6a3e3"
+    },
+    {
+      "path": "crates/reservoir-core/examples/sustained_session_fixtures.rs",
+      "sizeBytes": 6696,
+      "sha256": "3b3fd04564d549a80571533052d12b10f52383e26aed81f5c1cabe4ddca0415b"
+    },
+    {
+      "path": "crates/reservoir-core/SUSTAINED.md",
+      "sizeBytes": 8740,
+      "sha256": "d1109cefea3ee6a5d27b179b17ca415a4869faf915be8e92d5ee7423b5f25ad8"
+    }
+  ],
+  "priorFixtureCorrection": {
+    "retained": "target/sustained-session-fixtures-0.12-final/manifest.json",
+    "reason": "Old metrics sampled only after numerical advance and understated intermediate retained events/checkpoint bytes; numerical segment contents unchanged."
+  }
+}

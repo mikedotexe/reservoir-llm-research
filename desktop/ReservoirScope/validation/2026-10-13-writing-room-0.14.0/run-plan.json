@@ -1,0 +1,62 @@
+{
+  "schema": "reservoir-journal-grounding-protocol-v1",
+  "revision": "open-writing-room-0.14.0",
+  "status": "prospective-before-output",
+  "promptVersion": "reservoir-journal-v3",
+  "model": "gemma3:4b",
+  "modelManifestSha256": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+  "contextTokens": 8192,
+  "maximumOutputTokens": 1024,
+  "requestDeadlineSeconds": 180,
+  "temperature": 0,
+  "serviceLifetimeSeconds": 1200,
+  "config": {
+    "seed": "20261013",
+    "promptVersion": "reservoir-journal-v3",
+    "outputTokens": 1024,
+    "requestDeadlineSeconds": 180,
+    "turnEvery": 30,
+    "maximumSteps": 121,
+    "maximumTurns": 4,
+    "maximumDurationSeconds": 900,
+    "storageBudgetBytes": 67108864,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true
+  },
+  "additionalComparisonRequests": 0,
+  "automaticRetries": 0,
+  "explicitRetries": 0,
+  "skips": 0,
+  "replaceMissingOrFailedSamples": false,
+  "expectedObservationStepsIfReached": [
+    30,
+    60,
+    90,
+    120
+  ],
+  "expectedApplicationStepsForSavedEntriesIfReached": [
+    31,
+    61,
+    91,
+    121
+  ],
+  "requiredHeading": null,
+  "requiredMetrics": [],
+  "requiredWordCount": null,
+  "requiredTopicOrForm": null,
+  "reviewCanBlockSaveOrFeedback": false,
+  "contextEvidenceLimit": "Configured8192tokens is requested capacity. Exact prompt/memory bytes establish retained content, not provider tokenization or full-context processing. Provider prompt_eval_count is unavailable in the current typed response schema; no character-based token-fit or capacity claim.",
+  "hostAdmission": {
+    "minimumFreePercent": 35,
+    "requiredPressureLevel": 1,
+    "scope": "One passive pre-Start exact host memory check, using the existing owned-run method. No polling. If not qualified, stop before Start; retain reason."
+  },
+  "endpoint": "Must be supplied from newly qualified owned listener; never a default endpoint.",
+  "packageSha256": "Must be supplied from the separately qualified0.14.0package before Start.",
+  "serviceStartLimit": "Before Start require at least960seconds remaining on owned1200second service lifetime; otherwise do not Start, record unexecuted. No lifetime extension or replacement service under this protocol.",
+  "qualityVerdict": "No automatic scientific or creative-quality pass. Read every response including incomplete outcomes and distinguish saving/application from interpretation.",
+  "comparisonLimit": "This changes output cap, request deadline, requested context and total time together. No isolated causal explanation or general completion rate; feedback changes later observations. Prior0.13cutoff and all old records stay immutable."
+}

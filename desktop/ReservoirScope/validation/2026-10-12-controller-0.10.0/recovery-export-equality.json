@@ -1,0 +1,38 @@
+{
+  "schema": "reservoir-controller-ui-export-equality-v1",
+  "checkedAtUTC": "2026-10-13T05:41:32.499317+00:00",
+  "scope": "Readonly hashes and retained metadata from actual native-dialog exports; UI observations recorded separately.",
+  "passed": true,
+  "checks": {
+    "progressStepOne": true,
+    "durableStepZero": true,
+    "noPortableHash": true,
+    "noNumericalFrames": true,
+    "noJournal": true,
+    "fixedPartialSpecification": true,
+    "recoveredBytesMatchExport": true,
+    "exportMatchesIndependentFixture": true
+  },
+  "files": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.10-ui/controller-progress-step1.json",
+      "bytes": 1703,
+      "sha256": "e1606ad0cb297e41c607bfc2a786e722cad3e61d5dbbbcded7d65067a97fac2f"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.10-ui/controller-complete-600.json",
+      "bytes": 52766034,
+      "sha256": "91b5f54204e4f48eee8d430448c65d3ae13caca1fae768a08851ee0018ec5288"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.10-ui/controller-recovered-600.json",
+      "bytes": 52766034,
+      "sha256": "91b5f54204e4f48eee8d430448c65d3ae13caca1fae768a08851ee0018ec5288"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/controller-0.10-fixtures/fresh-controller-600.json",
+      "bytes": 52766034,
+      "sha256": "91b5f54204e4f48eee8d430448c65d3ae13caca1fae768a08851ee0018ec5288"
+    }
+  ]
+}

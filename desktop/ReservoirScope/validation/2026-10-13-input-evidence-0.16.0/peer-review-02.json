@@ -1,0 +1,39 @@
+{
+  "schema": "reservoir-input-evidence-review-supplement-v1",
+  "checkedAtUtc": "2026-10-13T23:24:09.803994+00:00",
+  "priorReview": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/peer-review-01.json",
+    "bytes": 4443,
+    "sha256": "9bf51697bcecc2aad3510aebd5d9744ce5549f46a8f3d21e7d6ae0b3a7a536ce"
+  },
+  "status": "no-concrete-blocker",
+  "sourceChanges": [
+    {
+      "before": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src/MyReservoirRecovery.tsx",
+        "bytes": 6255,
+        "sha256": "6ca1061fef45863f2f1c7b8105d2ca1c7a61475f514913e764da6e982bd30f75"
+      },
+      "after": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src/MyReservoirRecovery.tsx",
+        "bytes": 6246,
+        "sha256": "f2b3e69f47e9050856bc1127abdf98d3d8537f1b81d578717674f2ec70353337"
+      }
+    },
+    {
+      "before": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src/MyReservoirRecovery.test.tsx",
+        "bytes": 1629,
+        "sha256": "21e4749332d31b8f3b4bb69e0bdc2bd71ee1d9d771ce5241c248a2c9f80942e3"
+      },
+      "after": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src/MyReservoirRecovery.test.tsx",
+        "bytes": 1620,
+        "sha256": "c76e9c29a91c43f930fe4d6f33ed12673110df32d44366654ef908959cf34066"
+      }
+    }
+  ],
+  "remainingReviewedSourcesUnchanged": true,
+  "review": "Closed recovery disclosure renamed Retained responses because scripted LanguageReceived events may be present. This avoids implying all retained responses came from a model provider. Test expectations match; no evidence, lifecycle, save gate, or Rust source change.",
+  "execution": "Read-only source comparison; no test/UI/process/provider action."
+}

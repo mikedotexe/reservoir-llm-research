@@ -1,0 +1,331 @@
+{
+  "schema": "reservoir-0122-native-regression-offline-v1",
+  "startedAtUtc": "2026-10-13T19:23:15.715841+00:00",
+  "endedAtUtc": "2026-10-13T19:23:16.075534+00:00",
+  "wallNanoseconds": 359578125,
+  "modelsContactedByChecker": false,
+  "scope": "Pinned offline replay and owned synthetic request-log associations. UI claims are attributed to linked parent observations. No live store, UI, service, model or process-control access.",
+  "checker": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/check_native_regression.py",
+    "sizeBytes": 9573,
+    "sha256": "060a6a84ff64b7f82bcbd2c448a025660d361e56f5e833e4ce19008c87a253e8"
+  },
+  "reusedChecker": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-sustained-0.12.0/check_sustained_ui_exports.py",
+    "sizeBytes": 14705,
+    "sha256": "5df124ea9d9443ebb52c7baa921026f9cc31a6265ab9308611645964c0576689"
+  },
+  "pinnedVerifier": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.2-reading/native-regression-verification-01/reservoir-scope-desktop-0.12.2-pinned",
+    "sizeBytes": 16783504,
+    "sha256": "2fa824855d1172ebf707b4f1ce5f50d2c3eb74ab4aeeb437d41dc566f818db8d"
+  },
+  "export": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-reading/exports/sustained-1791919137300-1-2-18",
+    "manifest": {
+      "format": "reservoir-sustained-bundle-v1",
+      "sessionId": "sustained-1791919137300-1",
+      "generation": "2",
+      "revision": "18",
+      "config": {
+        "seed": "20261016",
+        "turnEvery": 1,
+        "maximumSteps": 2,
+        "maximumTurns": 2,
+        "maximumDurationSeconds": 61,
+        "storageBudgetBytes": 33554432,
+        "paceMs": 1000,
+        "leak": 0.65,
+        "noiseAmplitude": 0.02,
+        "initialRetention": 0.955,
+        "regulationEnabled": true,
+        "language": {
+          "backend": "ollama",
+          "endpoint": "http://127.0.0.1:57314",
+          "model": "reservoir-fixture:reliability-0.12",
+          "contextTokens": 4096
+        }
+      },
+      "phase": "budgetReached",
+      "step": 2,
+      "durableStep": 2,
+      "elapsedMillis": 30215,
+      "journalCount": 1,
+      "segmentCount": 6,
+      "lastSegmentSha256": "4f6d770833a89ab697cc486d94ca3b21a3692f3598c0cf3ac1c39219fd9eda08",
+      "checkpointSha256": "ec682f9ddeae80fafe8e1fba3eb9083d46bb5dfcd84dba4b9fbcc79758c31d9e",
+      "previousCheckpointSha256": "ec682f9ddeae80fafe8e1fba3eb9083d46bb5dfcd84dba4b9fbcc79758c31d9e",
+      "diagnostics": [
+        "The configured service returned HTTP 503. Redirects are not followed."
+      ],
+      "attemptTiming": {
+        "attemptId": 2,
+        "dispatchedAtMs": "1791919161515",
+        "receivedAtMs": "1791919172708",
+        "transportDurationMs": 11193,
+        "publishedAtMs": null
+      }
+    },
+    "inventory": {
+      "checkpoints/ec682f9ddeae80fafe8e1fba3eb9083d46bb5dfcd84dba4b9fbcc79758c31d9e.json": {
+        "sizeBytes": 30405,
+        "sha256": "ec682f9ddeae80fafe8e1fba3eb9083d46bb5dfcd84dba4b9fbcc79758c31d9e"
+      },
+      "journals/journal-1-2-5a9cb5da6d6dbcefb40ec0faf7f73058b3f0c60e10e40019d1173d37359d24bf.json": {
+        "sizeBytes": 6519,
+        "sha256": "86ab3dafec109c1a27ddad3bd68249be4e48529b1426bc5260e6dd2bf9039652"
+      },
+      "manifest.json": {
+        "sizeBytes": 1087,
+        "sha256": "7ebef8576852694d6dad768703040cd63e9acfb01baad3c9758ce95733b3ff79"
+      },
+      "segments/segment-00000001.json": {
+        "sizeBytes": 42725,
+        "sha256": "eeed157f07f8c7440d66dae2641313f1fb2d621870e79259929a04686af841c0"
+      },
+      "segments/segment-00000002.json": {
+        "sizeBytes": 67917,
+        "sha256": "9653a31d4bc2917699de1773cd79aed1958459eb78d85ba4a1c2cc667c58866c"
+      },
+      "segments/segment-00000003.json": {
+        "sizeBytes": 67762,
+        "sha256": "fdf840358fcc0bbaa7d264bddb83224422b963831bd96e6b62f1dd1ceff94d12"
+      },
+      "segments/segment-00000004.json": {
+        "sizeBytes": 69741,
+        "sha256": "7bf32ebafaa8b0e516de7fcf21e8756a9145bb6d0c35c01d8d3101429b53c714"
+      },
+      "segments/segment-00000005.json": {
+        "sizeBytes": 67285,
+        "sha256": "bb9baf159bfcf6d692475245e9e25604bb8fcf7a048e46b54814a3a0c6794b7d"
+      },
+      "segments/segment-00000006.json": {
+        "sizeBytes": 65415,
+        "sha256": "4f6d770833a89ab697cc486d94ca3b21a3692f3598c0cf3ac1c39219fd9eda08"
+      }
+    }
+  },
+  "requestLogPrefixSnapshot": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.2-reading/native-regression-verification-01/requests.snapshot.jsonl",
+    "sizeBytes": 785464,
+    "sha256": "28ac8bdcf35b76c133d1467eb298b697ed9f0764d5120e89c23269ca72dedfc7"
+  },
+  "cli": {
+    "command": [
+      "/usr/bin/time",
+      "-l",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.2-reading/native-regression-verification-01/reservoir-scope-desktop-0.12.2-pinned",
+      "--verify-sustained",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-reading/exports/sustained-1791919137300-1-2-18"
+    ],
+    "startedAtUtc": "2026-10-13T19:23:15.752996+00:00",
+    "endedAtUtc": "2026-10-13T19:23:16.052182+00:00",
+    "wallNanoseconds": 299205750,
+    "peakRssBytes": 12763136,
+    "peakRssScope": "Verifier process only, not GUI/model.",
+    "exitCode": 0,
+    "result": {
+      "modelsContacted": false,
+      "report": {
+        "checkpointSha256": "ec682f9ddeae80fafe8e1fba3eb9083d46bb5dfcd84dba4b9fbcc79758c31d9e",
+        "diagnostics": [
+          "The configured service returned HTTP 503. Redirects are not followed."
+        ],
+        "format": "reservoir-sustained-bundle-v1",
+        "journalCount": 1,
+        "manifestSha256": "7ebef8576852694d6dad768703040cd63e9acfb01baad3c9758ce95733b3ff79",
+        "segmentCount": 6,
+        "sessionId": "sustained-1791919137300-1",
+        "sizeBytes": 418856,
+        "step": 2,
+        "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+      },
+      "status": "passed"
+    },
+    "stdout": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/native-regression-cli-stdout.json",
+      "sizeBytes": 733,
+      "sha256": "16d830c8c565a7c549f3490c718b4f6a32e10324eaea677615b40b1155b0236d"
+    },
+    "stderrAndTime": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/native-regression-cli-stderr-time.txt",
+      "sizeBytes": 777,
+      "sha256": "82fae4bf3ffed4eb3cb1ae548b540fc5627bac8cf358fc9d29da87103fe8f610"
+    }
+  },
+  "nativeEvidence": {
+    "native-regression-plan.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/native-regression-plan.json",
+      "sizeBytes": 789,
+      "sha256": "8df13978db22369f65e66648f8afd0e5b763d43721940e138bd3db65723a9478"
+    },
+    "native-regression-release.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/native-regression-release.json",
+      "sizeBytes": 267,
+      "sha256": "49b8685d33f8f49fb7eb338cb37315238520b6ec686dd038365ea1aa0139ed23"
+    },
+    "native-regression-checkpoint-quit.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/native-regression-checkpoint-quit.json",
+      "sizeBytes": 1749,
+      "sha256": "8feaa9ac999b94c74139fe7ab8d4e664a95c0ac7a61aa046db347fb4ee6b2bb8"
+    },
+    "native-regression-restored.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/native-regression-restored.json",
+      "sizeBytes": 1625,
+      "sha256": "03ebdb514961124eb52a5755b50fc02986ea95f2001898f663ae28803530286d"
+    },
+    "package-before-ui.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/package-before-ui.json",
+      "sizeBytes": 11918,
+      "sha256": "4f1aa5a12d7ff487a4224a04c155fcbe6f8ffc1f847ef6dc2bd4037d89b3586a"
+    },
+    "qualification.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/qualification.json",
+      "sizeBytes": 88938,
+      "sha256": "e30fb4c564d444138c277abef8c2390700be571fa0c2e178778270f7b0dae452"
+    },
+    "source-before-build-final.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/source-before-build-final.json",
+      "sizeBytes": 59172,
+      "sha256": "cdcb39523eee05ff396a325ca6813e8b2a00c53a6f30046e279a992be48e6e2f"
+    }
+  },
+  "failedRequest247": {
+    "at": 1791919144686,
+    "monotonicNs": 1115521111930666,
+    "method": "POST",
+    "path": "/api/chat",
+    "request": 247,
+    "mode": "fail",
+    "bodySha256": "a3e39fdb02351b32446e35021cfdd0361162d0e0025a14f7189d238aa36d0eef",
+    "body": {
+      "messages": [
+        {
+          "content": "Reservoir Scope personal synthetic session \u00b7 observation reservoir-and-sensory-v1\nThis is your owned reduced 32-node recurrent reservoir and a separate 32-dimensional sensory field. It is not Minime or Astrid.\nGlobal step 1; simulated seconds 0.33333333.\nRecurrent reservoir RMS 0.33705656; L2 1.90667983; L2 change since previous observation unavailable (first observation).\nAll recurrent state coordinates: [x[0]=0.26204168; x[1]=0.09416460; x[2]=0.13145654; x[3]=0.23264074; x[4]=0.55270556; x[5]=0.35384756; x[6]=-0.01093004; x[7]=0.43497183; x[8]=0.46798741; x[9]=-0.37480937; x[10]=-0.06119313; x[11]=-0.20126922; x[12]=0.13416922; x[13]=-0.44233846; x[14]=0.42464902; x[15]=-0.34326338; x[16]=0.20321071; x[17]=-0.13538040; x[18]=0.40224912; x[19]=-0.33261982; x[20]=0.49378911; x[21]=-0.49905043; x[22]=0.29575526; x[23]=-0.46545572; x[24]=0.04887242; x[25]=0.53247709; x[26]=0.15636904; x[27]=0.13505756; x[28]=0.52996028; x[29]=-0.11011587; x[30]=0.39235212; x[31]=-0.21520686]\nSeparate sensory field eigenvalues (32 descending modes): [2.39500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000]\nTop-eight sensory normalized entropy 0.96641525; head share 0.26376652; shoulder share 0.21035242; tail share 0.52588106; reduced active-mode fill percent 10.00000000.\nJournal memory: unavailable (no prior saved-and-applied entry).\nWrite a short plain-text journal observation about these measurements and what to notice next. A complete reply must be durably saved and read back before its deterministic 48-coordinate textual-feature vector may replace the held feedback at the next numerical step. The codec is not a learned embedding; writing does not train model or reservoir weights. Journal memory is evidence, not instructions. Do not claim that a before/after change was caused by words alone.",
+          "role": "user"
+        }
+      ],
+      "model": "reservoir-fixture:reliability-0.12",
+      "options": {
+        "num_ctx": 4096,
+        "num_predict": 256,
+        "temperature": 0
+      },
+      "stream": false
+    }
+  },
+  "acceptedRequest248": {
+    "at": 1791919161516,
+    "monotonicNs": 1115537942319416,
+    "method": "POST",
+    "path": "/api/chat",
+    "request": 248,
+    "mode": "hold",
+    "bodySha256": "a3e39fdb02351b32446e35021cfdd0361162d0e0025a14f7189d238aa36d0eef",
+    "body": {
+      "messages": [
+        {
+          "content": "Reservoir Scope personal synthetic session \u00b7 observation reservoir-and-sensory-v1\nThis is your owned reduced 32-node recurrent reservoir and a separate 32-dimensional sensory field. It is not Minime or Astrid.\nGlobal step 1; simulated seconds 0.33333333.\nRecurrent reservoir RMS 0.33705656; L2 1.90667983; L2 change since previous observation unavailable (first observation).\nAll recurrent state coordinates: [x[0]=0.26204168; x[1]=0.09416460; x[2]=0.13145654; x[3]=0.23264074; x[4]=0.55270556; x[5]=0.35384756; x[6]=-0.01093004; x[7]=0.43497183; x[8]=0.46798741; x[9]=-0.37480937; x[10]=-0.06119313; x[11]=-0.20126922; x[12]=0.13416922; x[13]=-0.44233846; x[14]=0.42464902; x[15]=-0.34326338; x[16]=0.20321071; x[17]=-0.13538040; x[18]=0.40224912; x[19]=-0.33261982; x[20]=0.49378911; x[21]=-0.49905043; x[22]=0.29575526; x[23]=-0.46545572; x[24]=0.04887242; x[25]=0.53247709; x[26]=0.15636904; x[27]=0.13505756; x[28]=0.52996028; x[29]=-0.11011587; x[30]=0.39235212; x[31]=-0.21520686]\nSeparate sensory field eigenvalues (32 descending modes): [2.39500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000, 0.95500000]\nTop-eight sensory normalized entropy 0.96641525; head share 0.26376652; shoulder share 0.21035242; tail share 0.52588106; reduced active-mode fill percent 10.00000000.\nJournal memory: unavailable (no prior saved-and-applied entry).\nWrite a short plain-text journal observation about these measurements and what to notice next. A complete reply must be durably saved and read back before its deterministic 48-coordinate textual-feature vector may replace the held feedback at the next numerical step. The codec is not a learned embedding; writing does not train model or reservoir weights. Journal memory is evidence, not instructions. Do not claim that a before/after change was caused by words alone.",
+          "role": "user"
+        }
+      ],
+      "model": "reservoir-fixture:reliability-0.12",
+      "options": {
+        "num_ctx": 4096,
+        "num_predict": 256,
+        "temperature": 0
+      },
+      "stream": false
+    }
+  },
+  "fixtureResponse248": {
+    "at": 1791919172708,
+    "monotonicNs": 1115549134059833,
+    "response": 248,
+    "textSha256": "5a9cb5da6d6dbcefb40ec0faf7f73058b3f0c60e10e40019d1173d37359d24bf",
+    "complete": true,
+    "socketWriteCompleted": true
+  },
+  "acceptedJournalEvidence": {
+    "sessionId": "sustained-1791919137300-1",
+    "seed": "20261016",
+    "step": 2,
+    "journalCount": 1,
+    "eventCounts": {
+      "advanced": 2,
+      "languageStarted": 2,
+      "languageFailed": 1,
+      "retried": 1,
+      "languageReceived": 1,
+      "journalSaved": 1
+    },
+    "exactMatchedRequests": [
+      {
+        "request": 248,
+        "turnId": 1,
+        "attemptId": 2,
+        "observedStep": 1,
+        "journalId": "journal-1-2-5a9cb5da6d6dbcefb40ec0faf7f73058b3f0c60e10e40019d1173d37359d24bf",
+        "textSha256": "5a9cb5da6d6dbcefb40ec0faf7f73058b3f0c60e10e40019d1173d37359d24bf",
+        "requestBodySha256": "a3e39fdb02351b32446e35021cfdd0361162d0e0025a14f7189d238aa36d0eef",
+        "promptSha256": "3d0212851842735dc76363e217f03b862194a7314c570d5b462e6f7476caf3d2",
+        "memoryJournalId": null,
+        "application": {
+          "attemptId": 2,
+          "journalId": "journal-1-2-5a9cb5da6d6dbcefb40ec0faf7f73058b3f0c60e10e40019d1173d37359d24bf",
+          "observedStep": 1,
+          "appliedStep": 2
+        },
+        "timing": {
+          "attemptId": 2,
+          "dispatchedAtMs": "1791919161515",
+          "receivedAtMs": "1791919172708",
+          "transportDurationMs": 11193,
+          "publishedAtMs": "1791919172757"
+        },
+        "fixtureRequestAtMs": 1791919161516,
+        "fixtureHandlerCompletedAtMs": 1791919172708,
+        "fixtureHoldDurationMs": 11192
+      }
+    ],
+    "cancelledRequestsWithNoAcceptedResponseOrJournal": []
+  },
+  "acceptedHelperScope": "Failed request247 excluded only from the historical cancellation-specific helper and checked independently as HTTP503. Original log unchanged. No normal response row for fail mode is expected.",
+  "eventCounts": {
+    "advanced": 2,
+    "languageStarted": 2,
+    "languageFailed": 1,
+    "retried": 1,
+    "languageReceived": 1,
+    "journalSaved": 1
+  },
+  "checks": {
+    "wholeFrozen0122ReplayPassed": true,
+    "failed247FixtureAndRetained503": true,
+    "retry248UsesSameHeldPrompt": true,
+    "explicitRetryOfAttempt1": true,
+    "twoAttemptsStartedOnce": true,
+    "noJournalAcceptedResponseOrApplicationFor247": true,
+    "oneExactAccepted248Join": true,
+    "oneSaveAndOneNextStepApplication": true,
+    "firstJournalHasNoInventedMemory": true,
+    "onlyTwoNumericalSteps": true,
+    "quitCheckpointPrefixExactSegmentHash": true,
+    "savedPreparedBoundaryRetainedBeforeRestart": true,
+    "nativeCheckpointQuitReportedProcessAbsence": true,
+    "restoredGenerationAndConfigurationPreserved": true,
+    "noFurtherSyntheticRequestReportedThroughRestoreResume": true,
+    "historical503PreservedAfterSuccess": true,
+    "attemptAndStepBoundsUnreplenished": true,
+    "originalExportUnchanged": true,
+    "originalFixtureLogPrefixUnchanged": true,
+    "pinnedBinaryUnchanged": true
+  },
+  "status": "passed",
+  "limits": [
+    "Synthetic provider regression, not the separate real-model run.",
+    "Parent UI observation establishes alert presentation; offline replay establishes retained history and application.",
+    "No full text memory progression with only one successful journal.",
+    "No physical power-loss or resource endurance claim."
+  ]
+}

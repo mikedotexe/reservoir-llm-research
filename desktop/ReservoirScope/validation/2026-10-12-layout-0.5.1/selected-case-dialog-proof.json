@@ -1,0 +1,139 @@
+{
+  "schema": "reservoir-scope.selected-case-dialog-proof.v1",
+  "capturedAtUtc": "2026-10-12T17:09:16.372604+00:00",
+  "status": "passed",
+  "scope": "Offline validation of the explicitly saved native-dialog export. UI action observations are recorded separately by the operator.",
+  "packageVersion": "0.5.1",
+  "packageBinary": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+    "bytes": 12277360,
+    "sha256": "f94545553fbd4122ab6d505210b6d0ab0c5639ea6d96154188fd1eecb7042d46"
+  },
+  "packagedCatalog": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/research-cases-v1.json",
+    "bytes": 65159,
+    "sha256": "3998951c6eaa4f414ff7ce0cef643f19078001e47c980be521255175743d0652"
+  },
+  "export": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.5.1-selected-case-export.json",
+    "bytes": 40132,
+    "sha256": "087f45ad6e4a6ecee1d94318838b280ec5f49df3501be675d3043d316305d4ce"
+  },
+  "caseCount": 1,
+  "caseId": "annotation-repair-20260907",
+  "bundledCaseIndex": 0,
+  "materialCount": 6,
+  "claimCount": 4,
+  "sequenceCount": 4,
+  "checks": {
+    "nativeVerification": "passed",
+    "rustVerification": "passed",
+    "nativeSelectedCaseSemanticEquality": true,
+    "exportBytesUnchanged": true,
+    "packagedCatalogBytesUnchanged": true,
+    "packageBinaryUnchanged": true
+  },
+  "nativeExpectedExportSha256": "c9a5add62dbd5bbb17a5f8eb8587935163a1818679bc1e436a8c1bd24f26f6b9",
+  "nativeOracleBuild": {
+    "compiledAtUtc": "2026-10-12T17:03:50.013335+00:00",
+    "nativeSource": {
+      "path": "/Users/v/other/reservoir-llm-research/native/ReservoirScope/Sources/ReservoirScope/ResearchCase.swift",
+      "bytes": 7901,
+      "sha256": "ad727e20be5d2b11a4b080fa4a64a9abec604581d294d4d07c0e321ad479d483"
+    },
+    "harnessSha256": "8b7102722911698e764b50b01c3af0067488a74def0041561f8d5fa3e0eacd7b",
+    "nativeExecutable": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.5.1-case-oracle/native-case-export",
+      "bytes": 262256,
+      "sha256": "bb2c88ab0e3ba1bd86c0678032c93cf466285ca9b881ed14dbbc54b9045c42a5"
+    },
+    "command": [
+      "swiftc",
+      "-parse-as-library",
+      "/Users/v/other/reservoir-llm-research/native/ReservoirScope/Sources/ReservoirScope/ResearchCase.swift",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.5.1-case-oracle/main.swift",
+      "-o",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.5.1-case-oracle/native-case-export"
+    ],
+    "swiftVersion": "Apple Swift version 6.2.4 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)\nTarget: arm64-apple-macosx28.0",
+    "scope": "Compiled only. No dialog-export validation has run yet."
+  },
+  "rustOracle": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/examples/case_export_oracle",
+    "bytes": 2204432,
+    "sha256": "c82ec3b9fd89e9f9f420b8bdbb375fc65e76c50f0edcfed316d035dac09fd7de"
+  },
+  "conformanceSources": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/native/ReservoirScope/Sources/ReservoirScope/ResearchCase.swift",
+      "bytes": 7901,
+      "sha256": "ad727e20be5d2b11a4b080fa4a64a9abec604581d294d4d07c0e321ad479d483"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/native/ReservoirScope/Sources/ReservoirScope/ResearchCaseView.swift",
+      "bytes": 8947,
+      "sha256": "3ad690f26a03023d2844eb134da56936617ab466deee7d48247ffbc5529f66c8"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/cases.rs",
+      "bytes": 20315,
+      "sha256": "74f036a9785d7607478d2989da30ed128c2fb6ff7f7992bad40d46cbf17ed626"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/check_case_export_conformance.py",
+      "bytes": 7691,
+      "sha256": "02a8c87bf8960a841b453d372203061ff5da8e0ccda7dfa059250dd0878c168b"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/examples/case_export_oracle.rs",
+      "bytes": 899,
+      "sha256": "16cbf150106a2d5d8adc7793d0960be5e0dc81ff47eabb092ae7416141fad79a"
+    }
+  ],
+  "referenceReceipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-12-observatory-0.5.0/selected-case-conformance.json",
+    "bytes": 6199,
+    "sha256": "a606ae8efb50ba1a201d351cbf3d5b23471b83e07bc6fee0de2bef0aa53e7266"
+  },
+  "commands": [
+    {
+      "command": [
+        "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.5.1-case-oracle/native-case-export",
+        "verify",
+        "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.5.1-selected-case-export.json",
+        "0",
+        "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.5.1-case-compare-cb_rqvf5/unused"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/examples/case_export_oracle",
+        "verify",
+        "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.5.1-selected-case-export.json",
+        "0",
+        "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.5.1-case-compare-cb_rqvf5/unused"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.5.1-case-oracle/native-case-export",
+        "export",
+        "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/research-cases-v1.json",
+        "0",
+        "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.5.1-case-compare-cb_rqvf5/native-selected.json"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "modelsContacted": false,
+  "historicalPathsAccessed": false,
+  "limits": "Semantic selected-case interchange, not Swift/Rust formatting-byte identity. Correlate caseId/index and package hash with the separate UI observation. No human acceptance or Windows/Linux qualification implied."
+}

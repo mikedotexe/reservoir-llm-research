@@ -1,0 +1,56 @@
+{
+  "startedAtUtc": "2026-10-13T17:28:03.323267+00:00",
+  "scope": "Source-only isolated tests; no app/provider actions or package rebuild. Concurrent frozen-binary soak cannot be used as idle-energy comparison during this interval.",
+  "sourcesBefore": [
+    {
+      "path": "src-tauri/src/sustained.rs",
+      "sizeBytes": 55673,
+      "sha256": "5343bdbd199144c190ee180b533758e25232a693abb86ed8b5a7da3e990057de"
+    },
+    {
+      "path": "src-tauri/src/sustained_store.rs",
+      "sizeBytes": 52636,
+      "sha256": "4dcf74443ce77c7e9e94cd2536002cdb3e6f410edec3f2e260794afbb40c37b6"
+    },
+    {
+      "path": "src-tauri/src/sustained_tests.rs",
+      "sizeBytes": 36829,
+      "sha256": "dd3e370a7ccec508fb151afbbd4cc43954623d1a2a33d528e950804e09bc002b"
+    },
+    {
+      "path": "src-tauri/src/sustained_quota_tests.rs",
+      "sizeBytes": 17542,
+      "sha256": "25572f3e5faf54b827b121e471318b17bd5bfaade5e4e025ece322584fe993a8"
+    },
+    {
+      "path": "crates/reservoir-core/src/sustained.rs",
+      "sizeBytes": 55060,
+      "sha256": "9c5377a4a1357f520ae11d6b327010cad5739290fc9af70aa2d97a1eac55de70"
+    }
+  ],
+  "frozenPackageBefore": {
+    "path": "target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+    "sizeBytes": 16747744,
+    "sha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d"
+  },
+  "commands": [
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "reservoir-scope-desktop",
+        "natural_quota_repaired_",
+        "--",
+        "--ignored",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "result": "2 passed; 166.25s test execution",
+      "logSha256": "e3dc85a412768504a33d8ec38f970b3fc35daa91abcf5db98dbbe693e1874109"
+    }
+  ],
+  "endedAtUtc": "2026-10-13T17:31:08.303512+00:00",
+  "qualificationScope": "Pre-review natural-profile execution only. Already compiled before source correction; orchestrator stopped before desktop/Clippy. Source changed later for retry-save post-persist guard and stronger tests. Not final-source qualification."
+}

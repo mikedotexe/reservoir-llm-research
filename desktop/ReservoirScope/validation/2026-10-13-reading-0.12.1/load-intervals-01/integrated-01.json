@@ -1,0 +1,19 @@
+{
+  "schema": "reservoir-background-load-interval-v1",
+  "label": "integrated-01",
+  "startedAtUtc": "2026-10-13T18:14:42.891838Z",
+  "endedAtUtc": "2026-10-13T18:14:46.390795Z",
+  "derivation": "Exact closed top-level command/check envelope; success and failure both remain background load.",
+  "sources": [
+    {
+      "path": "validation/2026-10-13-reading-0.12.1/integrated-01-qualification.json",
+      "bytes": 36352,
+      "sha256": "ae83534aa91b7d1f7e2639487ec3235ef942a36f0c91494816973625df354b5c",
+      "timestampPointers": [
+        "/startedAtUtc",
+        "/endedAtUtc"
+      ]
+    }
+  ],
+  "scope": "Documented concurrent host load only; never exclude functional progress, missing samples, errors or stalls. Not a claim that other times were idle."
+}

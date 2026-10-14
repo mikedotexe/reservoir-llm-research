@@ -1,0 +1,56 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": "python3 scripts/check_reference.py",
+    "evidence": "reference-integrity.log"
+  },
+  {
+    "id": "resource-staging-tests",
+    "status": "passed",
+    "command": "python3 -m unittest discover -s scripts -p 'test_*.py'",
+    "evidence": "python-tests.log; archive-and-resource-check.json"
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": "npm test",
+    "evidence": "frontend-full-shipping.txt:264 passed"
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": "npm run build",
+    "evidence": "frontend-build-shipping.txt; macos-package-build-final.log"
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-scope-desktop; cargo test --locked -p reservoir-scope-desktop sessions::tests::model_",
+    "evidence": "desktop-tests.log:125 passed; desktop-model-cancellation-final.log:10 passed after Stop reason repair"
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-core",
+    "evidence": "core-tests.log:140 passed"
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": "cargo clippy --locked -p reservoir-core --all-targets -- -D warnings; cargo clippy --locked -p reservoir-scope-desktop --all-targets -- -D warnings",
+    "evidence": "core-clippy.log; desktop-clippy-final.log"
+  },
+  {
+    "id": "swift-export-verification",
+    "status": "passed",
+    "command": "python3 scripts/check_language_session_conformance.py (commands/inputs retained in receipts)",
+    "evidence": "fixture-conformance-final.json; initial-ui-export-conformance.json; final-ui-export-conformance.json; recovery-export-conformance.json"
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": "npm run tauri -- build --bundles app -- --locked",
+    "evidence": "macos-package-build-final.log; final-package-before-ui.json"
+  }
+]

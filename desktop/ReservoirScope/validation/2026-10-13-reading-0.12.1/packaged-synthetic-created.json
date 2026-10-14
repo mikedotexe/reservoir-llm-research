@@ -1,0 +1,55 @@
+{
+  "atUtc": "2026-10-13T19:07:24.209741+00:00",
+  "sessionDirectory": "/Users/v/Library/Application Support/research.reservoir.scope.tauri/sustained-v1/sustained-1791918426303-1",
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791918426303-1",
+    "generation": "1",
+    "revision": "16",
+    "config": {
+      "seed": "20261015",
+      "turnEvery": 10,
+      "maximumSteps": 31,
+      "maximumTurns": 4,
+      "maximumDurationSeconds": 61,
+      "storageBudgetBytes": 33554432,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:57314",
+        "model": "reservoir-fixture:reliability-0.12",
+        "contextTokens": 4096
+      }
+    },
+    "phase": "attemptBlocked",
+    "step": 10,
+    "durableStep": 10,
+    "elapsedMillis": 10412,
+    "journalCount": 0,
+    "segmentCount": 2,
+    "lastSegmentSha256": "bef9b23fdfff1857ef8210fc4255b54df41a5bfe902009a69045b4e814e5c2dc",
+    "checkpointSha256": "867d8167f1a8c75dc866155150255e717b48169c64cc7424f6f90fe13dab896c",
+    "previousCheckpointSha256": "867d8167f1a8c75dc866155150255e717b48169c64cc7424f6f90fe13dab896c",
+    "diagnostics": [
+      "The configured service returned HTTP 503. Redirects are not followed."
+    ],
+    "attemptTiming": {
+      "attemptId": 1,
+      "dispatchedAtMs": "1791918442293",
+      "receivedAtMs": "1791918442497",
+      "transportDurationMs": 203,
+      "publishedAtMs": null
+    }
+  },
+  "process": {
+    "pid": 81100,
+    "startSeconds": "1791918294",
+    "startMicroseconds": "540086",
+    "executablePath": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop"
+  },
+  "binarySha256": "e66533cfd3371d8cdf80ce9969fae702b957987fad2a1a12974945c33842f43c"
+}

@@ -1,0 +1,12 @@
+   Compiling reservoir-scope-desktop v0.12.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 18.19s
+     Running unittests src/main.rs (target/debug/deps/reservoir_scope_desktop-b723db6654d10cb9)
+
+running 2 tests
+test sustained::tests::natural_quota::natural_quota_repaired_frequent_journals ... NATURAL_QUOTA_RESULT {"close":{"accepted":true,"ok":true},"currentExport":{"ok":true},"durableStep":75,"heldStep":75,"journalCount":24,"ownedBytes":8284793,"path":"/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-natural-quota-repaired-01/frequent-journals-cadence3/result.json","profile":"frequent-journals-cadence3","recoveryExport":{"ok":true},"restore":{"ok":true},"stop":{"ok":true}}
+ok
+test sustained::tests::natural_quota::natural_quota_repaired_sparse_observations ... NATURAL_QUOTA_RESULT {"close":{"accepted":true,"ok":true},"currentExport":{"ok":true},"durableStep":1740,"heldStep":1740,"journalCount":0,"ownedBytes":8317151,"path":"/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-natural-quota-repaired-01/sparse-observations-cadence1800/result.json","profile":"sparse-observations-cadence1800","recoveryExport":{"ok":true},"restore":{"ok":true},"stop":{"ok":true}}
+ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 168 filtered out; finished in 166.25s
+

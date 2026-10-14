@@ -1,0 +1,678 @@
+{
+  "schema": "reservoir-core-exploration-oracles-v1",
+  "createdAtUTC": "2026-10-12T01:58:54.959152+00:00",
+  "scope": "Bounded essentials-exploration-v1 numerical/control verification and verified resume; not full M1 or sustained sessions",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "modelsContacted": false,
+  "liveSourcesRead": false,
+  "outcome": "passed",
+  "cases": [
+    {
+      "kind": "retainedSwiftFixture",
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/control-transitions-u64-max.json",
+      "sha256": "a78e128640c7a14aaf7412d27b71688bb8b160b65eb3106168394733c9b6b3a1",
+      "steps": 18,
+      "seedDecimal": "18446744073709551615",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/control-transitions-u64-max.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 18 exploration steps, including applied controls, input, recurrent drive and exact states.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/control-transitions-u64-max.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":18,\"checkedTurns\":0,\"sha256\":\"a78e128640c7a14aaf7412d27b71688bb8b160b65eb3106168394733c9b6b3a1\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "retainedSwiftFixture",
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/empty-u64-max.json",
+      "sha256": "9a22d5f1b5ea3e2464639068fb37ab0ea15b1c0abc1a4264872f2e8391de3197",
+      "steps": 0,
+      "seedDecimal": "18446744073709551615",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/empty-u64-max.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 0 exploration steps, including applied controls, input, recurrent drive and exact states.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/empty-u64-max.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"9a22d5f1b5ea3e2464639068fb37ab0ea15b1c0abc1a4264872f2e8391de3197\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "retainedSwiftFixture",
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/pulsed-forcing.json",
+      "sha256": "59f1701f1f7b88bd0e5e6fde761b98f3b6aa8ac7803c0f89cb2c24a7fee72798",
+      "steps": 32,
+      "seedDecimal": "99",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/pulsed-forcing.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 32 exploration steps, including applied controls, input, recurrent drive and exact states.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/pulsed-forcing.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":32,\"checkedTurns\":0,\"sha256\":\"59f1701f1f7b88bd0e5e6fde761b98f3b6aa8ac7803c0f89cb2c24a7fee72798\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "retainedSwiftFixture",
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/quiet-defaults.json",
+      "sha256": "abf5639d7951c8105f71f8a21310695a12edc412d22736323423d161a6e2881f",
+      "steps": 8,
+      "seedDecimal": "20260909",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/quiet-defaults.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 8 exploration steps, including applied controls, input, recurrent drive and exact states.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/quiet-defaults.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":8,\"checkedTurns\":0,\"sha256\":\"abf5639d7951c8105f71f8a21310695a12edc412d22736323423d161a6e2881f\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "retainedSwiftFixture",
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/sensory-restarts-u64-large.json",
+      "sha256": "b984d5ed76cbe058a2c6a50d4f8e711f50a80200a9530c90686779a263c33569",
+      "steps": 6,
+      "seedDecimal": "9007199254740993",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/sensory-restarts-u64-large.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 6 exploration steps, including applied controls, input, recurrent drive and exact states.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/sensory-restarts-u64-large.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":6,\"checkedTurns\":0,\"sha256\":\"b984d5ed76cbe058a2c6a50d4f8e711f50a80200a9530c90686779a263c33569\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "rustGenerated",
+      "name": "control-transitions-u64-max.json",
+      "sha256": "90f982785cb02f485f4c9f41acc03c21d54bb6faaaf6e4edcecfac97fa65524a",
+      "steps": 18,
+      "seedDecimal": "18446744073709551615",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/control-transitions-u64-max.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 18 exploration steps, including applied controls, input, recurrent drive and exact states.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/control-transitions-u64-max.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":18,\"checkedTurns\":0,\"sha256\":\"90f982785cb02f485f4c9f41acc03c21d54bb6faaaf6e4edcecfac97fa65524a\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "rustGenerated",
+      "name": "empty-u64-max.json",
+      "sha256": "e463129a7008214295ad76f3dce5bcfd32763718f552c8c21b8b87a12cb2dc46",
+      "steps": 0,
+      "seedDecimal": "18446744073709551615",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/empty-u64-max.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 0 exploration steps, including applied controls, input, recurrent drive and exact states.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/empty-u64-max.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"e463129a7008214295ad76f3dce5bcfd32763718f552c8c21b8b87a12cb2dc46\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "rustGenerated",
+      "name": "pulsed-forcing.json",
+      "sha256": "cbd8efe532815123938bfac65f5ce9e5f7885ba44678185beca13abe9d036e84",
+      "steps": 32,
+      "seedDecimal": "99",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/pulsed-forcing.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 32 exploration steps, including applied controls, input, recurrent drive and exact states.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/pulsed-forcing.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":32,\"checkedTurns\":0,\"sha256\":\"cbd8efe532815123938bfac65f5ce9e5f7885ba44678185beca13abe9d036e84\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "rustGenerated",
+      "name": "quiet-defaults.json",
+      "sha256": "830cacf370884d8d7241a59856a6cc5de55b60e6d05b3ee0dbad9670ad4e0e9a",
+      "steps": 8,
+      "seedDecimal": "20260909",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/quiet-defaults.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 8 exploration steps, including applied controls, input, recurrent drive and exact states.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/quiet-defaults.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":8,\"checkedTurns\":0,\"sha256\":\"830cacf370884d8d7241a59856a6cc5de55b60e6d05b3ee0dbad9670ad4e0e9a\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "rustGenerated",
+      "name": "sensory-restarts-u64-large.json",
+      "sha256": "f3bf4a2ed45e0909e9020a911de8df79d082daaa04f4c8d7919dd5fd1222a589",
+      "steps": 6,
+      "seedDecimal": "9007199254740993",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/sensory-restarts-u64-large.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 6 exploration steps, including applied controls, input, recurrent drive and exact states.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/sensory-restarts-u64-large.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":6,\"checkedTurns\":0,\"sha256\":\"f3bf4a2ed45e0909e9020a911de8df79d082daaa04f4c8d7919dd5fd1222a589\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "rustGenerated",
+      "name": "swift-import-rust-continuation.json",
+      "sha256": "e151923a9b700f15b4b55df8c65d8ab74ce948522616f4a823fecabebb7adfb2",
+      "steps": 14,
+      "seedDecimal": "9007199254740993",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/swift-import-rust-continuation.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 14 exploration steps, including applied controls, input, recurrent drive and exact states.",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/swift-import-rust-continuation.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":14,\"checkedTurns\":0,\"sha256\":\"e151923a9b700f15b4b55df8c65d8ab74ce948522616f4a823fecabebb7adfb2\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "negativeMutation",
+      "name": "missing-control",
+      "sha256": "83b20cdf082bc3cef5601dc9cb410b92f5f6ed02c84fd4359d6b7b626a42a370",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-missing-control.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: The data couldn\u2019t be read because it is missing."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-missing-control.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"83b20cdf082bc3cef5601dc9cb410b92f5f6ed02c84fd4359d6b7b626a42a370\",\"modelsContacted\":false,\"diagnostics\":[\"Invalid exploration record: missing field `leak` at line 1 column 360\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "negativeMutation",
+      "name": "state",
+      "sha256": "afdbf76642ebbc5129bed33db8fe3156a71293fed9b181fdca8c850aa58a378d",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-state.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Exploration resulting state does not reproduce its numerical history."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-state.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"afdbf76642ebbc5129bed33db8fe3156a71293fed9b181fdca8c850aa58a378d\",\"modelsContacted\":false,\"diagnostics\":[\"resulting state[0] does not replay (0.09581856130673487, expected -0.00418143869326513)\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "negativeMutation",
+      "name": "weight",
+      "sha256": "be8a2db9952d2462b2582a4c2d07ebcd3dacc312440ec9987a35864173a4a719",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-weight.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Exploration weights do not match their seed."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-weight.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"be8a2db9952d2462b2582a4c2d07ebcd3dacc312440ec9987a35864173a4a719\",\"modelsContacted\":false,\"diagnostics\":[\"Exploration weights do not match their seed\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "negativeMutation",
+      "name": "retention",
+      "sha256": "68b889efffbb28abf2e774bcd5792451bb42f7cf5cebc8a14674105ba34fe3b6",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-retention.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Exploration sensory covariance does not reproduce its numerical history."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-retention.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"68b889efffbb28abf2e774bcd5792451bb42f7cf5cebc8a14674105ba34fe3b6\",\"modelsContacted\":false,\"diagnostics\":[\"Covariance[0] does not replay (0.92, expected 0.9)\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "negativeMutation",
+      "name": "noise",
+      "sha256": "68735416ab0a08794ba81a26e96b3dd15d5e8a56f070825e1e05ff4de987a277",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-noise.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Exploration realized noise does not reproduce its numerical history."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-noise.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"68735416ab0a08794ba81a26e96b3dd15d5e8a56f070825e1e05ff4de987a277\",\"modelsContacted\":false,\"diagnostics\":[\"realized noise[0] does not replay (0.13843563057505115, expected 0.038435630575051144)\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "negativeMutation",
+      "name": "field-presence",
+      "sha256": "05896f60ee7793e982d5dbcdd4c0c70fd9425912b3eba32285419f28e4628b03",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-field-presence.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Sensory measurement presence disagrees with its control."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-field-presence.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"05896f60ee7793e982d5dbcdd4c0c70fd9425912b3eba32285419f28e4628b03\",\"modelsContacted\":false,\"diagnostics\":[\"Exploration sensory measurement presence disagrees with its control\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "negativeMutation",
+      "name": "basis",
+      "sha256": "6a833fcf3825a34ceff17e08b8a9bcc4b2fba84ef946116a5ce7c834953f00ec",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-basis.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Exploration sensory eigenvector norm does not reproduce its numerical history."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-basis.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"6a833fcf3825a34ceff17e08b8a9bcc4b2fba84ef946116a5ce7c834953f00ec\",\"modelsContacted\":false,\"diagnostics\":[\"Eigenvector norm does not replay (1.01, expected 1)\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "negativeMutation",
+      "name": "negative-eigenvalue",
+      "sha256": "067ec1dcee7948f0dad1eb7e3d312490db73a9bf8c59035055e588720028d3bd",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-negative-eigenvalue.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Negative sensory eigenvalue."
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-negative-eigenvalue.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"067ec1dcee7948f0dad1eb7e3d312490db73a9bf8c59035055e588720028d3bd\",\"modelsContacted\":false,\"diagnostics\":[\"Negative exploration sensory eigenvalue\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    },
+    {
+      "kind": "negativeMutation",
+      "name": "final-covariance-asymmetry",
+      "sha256": "203e01fba1266b52f8e22df85630b4c6a46879425454fdc1a626dc1599e7c8b1",
+      "checks": [
+        {
+          "command": [
+            "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-final-covariance-asymmetry.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: The operation couldn\u2019t be completed. (EssentialsCore.MechanismError error 0.)"
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n/mutated-final-covariance-asymmetry.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and ASCII reply codec where applicable. Unicode and remaining families are incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"203e01fba1266b52f8e22df85630b4c6a46879425454fdc1a626dc1599e7c8b1\",\"modelsContacted\":false,\"diagnostics\":[\"Covariance must be symmetric\"]}",
+          "stderr": ""
+        }
+      ],
+      "outcome": "passed"
+    }
+  ],
+  "executables": {
+    "rustVerifier": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+      "sha256": "1b99ccecdca6759281ebfdce7f50f6246e2d8ec7b2bc0cc362451f6b633ab8dc"
+    },
+    "rustEmitter": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/examples/emit_exploration_records",
+      "sha256": "1e3213013e186e558f087c7b466bffa8217cb8ed1b3a18b8ad7afda3508fe85a"
+    },
+    "swiftVerifier": {
+      "path": "/private/tmp/reservoir-core-exploration-oracle/bin/essentials-run",
+      "sha256": "d0a69c67725cbf002c9b0148cf5fc4cc4ead6db076bc483d46a51925a0d2a39d"
+    }
+  },
+  "sources": [
+    {
+      "path": "essentials/reservoir/ReservoirExploration.swift",
+      "sha256": "4aae098c6de7d360847b3bcbcbeef08f8a0aa7de853db3837e720682d68db878"
+    },
+    {
+      "path": "essentials/reservoir/Reservoir.swift",
+      "sha256": "63eea4dbfe5f3f50abbf3156cbc4d7a219a345967d0c4d761e3023d9058a6303"
+    },
+    {
+      "path": "essentials/stages/EssentialsSession.swift",
+      "sha256": "51bb56f60b5203c1543d2e0c7f1a3685bb716ba141b87a6cf7e4a260b3b155ec"
+    },
+    {
+      "path": "essentials/spectral_bridge/SensoryField.swift",
+      "sha256": "8993986044309fefc911a052a9ef201c4f6efcd01afe63239512be4502022809"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/src/exploration.rs",
+      "sha256": "f13e5936aa12fddaf740567ebd83027316b53204c31b634582617fe9691afc36"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/src/math.rs",
+      "sha256": "845ed5f908d4b7c0765694f47b635be2b201693ce06a3ca25bcd70abe3259bc7"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/src/stage.rs",
+      "sha256": "9039109c11570fb0a89dddd155a9fa4c6d9037a57b78b0ff375d7b97103ee36c"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/src/lib.rs",
+      "sha256": "ba0c21c2c2f1d8bf5f9d7c94389eab9caf38110e0b24428a382fd927d77b477b"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/emit_exploration_vectors.swift",
+      "sha256": "65ccb1c6501514b923ddaae47c1c59841dbc374a5e712c647d3639b5dd910ebd"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/examples/emit_exploration_records.rs",
+      "sha256": "2eeba16c75327caa4a5ad95e6c2e94c71996c4802a02c07174be07f932facc7a"
+    }
+  ],
+  "rustGeneration": {
+    "command": [
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/examples/emit_exploration_records",
+      "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-exploration-oracles-w_qp6e7n"
+    ],
+    "exitCode": 0,
+    "stdout": "Generated six bounded exploration records; no model calls",
+    "stderr": ""
+  }
+}

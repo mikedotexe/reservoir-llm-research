@@ -1,0 +1,330 @@
+{
+  "schema": "reservoir-fixed-provider-export-review-v1",
+  "startedAtUtc": "2026-10-13T23:37:28.251691+00:00",
+  "script": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/check_fixture_export.py",
+    "bytes": 22534,
+    "sha256": "c1a4b065b9b8bc198febb9a49b9d6878c28e75be9d88b229fa0913b66df6c773"
+  },
+  "servicesContacted": false,
+  "realModelsUsed": false,
+  "writingQualityAssessed": false,
+  "executable": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.16-r2-pinned/reservoir-scope-desktop",
+    "bytes": 16983744,
+    "sha256": "73872388b56d2483054497aa8513e3659f79dfaf255699d6bca29041cafd258d"
+  },
+  "productionReplay": {
+    "command": [
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.16-r2-pinned/reservoir-scope-desktop",
+      "--verify-sustained",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.16-input-evidence/exports/sustained-1791934324379-1-2-77"
+    ],
+    "returncode": 0,
+    "stdout": "{\n  \"modelsContacted\": false,\n  \"report\": {\n    \"checkpointSha256\": \"eaba277ae0e0126bdf49b71a2b0a37dd64390553a1e89ea1bdc827eb35bacf2d\",\n    \"diagnostics\": [\n      \"Incomplete or token-limited response cannot become journal feedback\"\n    ],\n    \"format\": \"reservoir-sustained-bundle-v1\",\n    \"journalCount\": 4,\n    \"manifestSha256\": \"1ff7f5a83df2cef0d4e3cfb03b88bca140879dfdb672fb600fdd7783ecbee850\",\n    \"segmentCount\": 22,\n    \"sessionId\": \"sustained-1791934324379-1\",\n    \"sizeBytes\": 1742883,\n    \"step\": 50,\n    \"verification\": \"Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability.\"\n  },\n  \"status\": \"passed\"\n}\n",
+    "stderr": ""
+  },
+  "staticJoins": {
+    "status": "passed",
+    "bundle": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.16-input-evidence/exports/sustained-1791934324379-1-2-77",
+    "originalUnchanged": true,
+    "inventory": {
+      "checkpoints/eaba277ae0e0126bdf49b71a2b0a37dd64390553a1e89ea1bdc827eb35bacf2d.json": {
+        "bytes": 37751,
+        "sha256": "eaba277ae0e0126bdf49b71a2b0a37dd64390553a1e89ea1bdc827eb35bacf2d"
+      },
+      "journals/journal-10-1-65be3f5a5e7ee6ad2daf748e3d965456044a6b2716eb4f45c2233db2af855faf.json": {
+        "bytes": 8744,
+        "sha256": "1a346dddf36d8160663869e48d85d9dd7fdaa67faf79fd1f8ad71201ebb0f876"
+      },
+      "journals/journal-20-2-a6692e76647de384e9b1d732431b3e3e2c0b9885b01d72d5a7230cf072d76206.json": {
+        "bytes": 10022,
+        "sha256": "a6cd5e73e6b6e5422828bbf15f5f8218cf2fefb4473391b6b2d2be5596fa72c8"
+      },
+      "journals/journal-30-3-d64587a9ca66989058c939cf0f13f723f98c425ebd2eabaabc0fc293922ec906.json": {
+        "bytes": 10079,
+        "sha256": "c81c0f28cbce7439e6aa6940a99638b007ca4049a8408a4bc884dd129add12b3"
+      },
+      "journals/journal-40-4-8b38b154bb568861cb53935a22933ef9bab0b1986ba8532c10f4cdc723581847.json": {
+        "bytes": 10102,
+        "sha256": "922dca290c3bced9b884d2d2d7e24e02b404a20bfa416e091000216c931ae8fe"
+      },
+      "manifest.json": {
+        "bytes": 1171,
+        "sha256": "1ff7f5a83df2cef0d4e3cfb03b88bca140879dfdb672fb600fdd7783ecbee850"
+      },
+      "segments/segment-00000001.json": {
+        "bytes": 76255,
+        "sha256": "f1682eff076182149db2328f45223f31d3b269e7ea8b14ff58f02619ab3a4231"
+      },
+      "segments/segment-00000002.json": {
+        "bytes": 73993,
+        "sha256": "4eab825a19b3db202a378acd3318d5912e81909531dfeb5165c157be28cd745d"
+      },
+      "segments/segment-00000003.json": {
+        "bytes": 68937,
+        "sha256": "fd1497dc9f5b0385bea4bc0a372d70797529a3c8a156abbb523d1c3397a53b0c"
+      },
+      "segments/segment-00000004.json": {
+        "bytes": 64786,
+        "sha256": "90c4331c8f7f3a6038a848de95a05308e66296f13254e3bc803cc4b1e5342d3b"
+      },
+      "segments/segment-00000005.json": {
+        "bytes": 95103,
+        "sha256": "7b1bb0e820d6c6e57934eef7c58d184b30581970946db4a4121f67e25756caae"
+      },
+      "segments/segment-00000006.json": {
+        "bytes": 71031,
+        "sha256": "cb4304d5474bed138df5499879888edef4ddaa113f9ce49d6fa55fe63f50b61b"
+      },
+      "segments/segment-00000007.json": {
+        "bytes": 77639,
+        "sha256": "9d0dcd4bfb57b4fc3ebc7f787d4f572a1dabe1579bdcfd6a0a44d2530966c49f"
+      },
+      "segments/segment-00000008.json": {
+        "bytes": 71309,
+        "sha256": "2b077ffdcb7f586ed6d17a00250c30ce82bbf580202e55dd3744dcf3df1e0348"
+      },
+      "segments/segment-00000009.json": {
+        "bytes": 64356,
+        "sha256": "c4731911ce1bcc7a9eea07e3b7153a457afadc58a488242cc854565aa909eb76"
+      },
+      "segments/segment-00000010.json": {
+        "bytes": 93874,
+        "sha256": "a57cf8be3dc1da8379428adbf67e1edd9f7f99762defabed76511325b113655f"
+      },
+      "segments/segment-00000011.json": {
+        "bytes": 70366,
+        "sha256": "66ba40a27812336bfe6927f0448d4cfde3dcb52de4bcbdb1dd0af92b3e874e7e"
+      },
+      "segments/segment-00000012.json": {
+        "bytes": 77116,
+        "sha256": "c21b3688c136c3377f5102c61bfda5d3042ecd3fe90ca99b37106ff42b018be2"
+      },
+      "segments/segment-00000013.json": {
+        "bytes": 70733,
+        "sha256": "3959b7eadacc4d1eac37c337ade44fec1652aed0e896cc37d2fadfd287f8759b"
+      },
+      "segments/segment-00000014.json": {
+        "bytes": 64490,
+        "sha256": "84932e3815e478f6e918dfe4ffc9266094c0448d9d363b34c279244fc083285b"
+      },
+      "segments/segment-00000015.json": {
+        "bytes": 96813,
+        "sha256": "1cf1dfa1bcde2619fc3f251e73d6a311fffaac9811d36b6b913a710eaaa148de"
+      },
+      "segments/segment-00000016.json": {
+        "bytes": 71356,
+        "sha256": "70a6dd74dd984a373f2a3059cfcd5f9896c566dee20c3a4b046415ae54e6c51f"
+      },
+      "segments/segment-00000017.json": {
+        "bytes": 78113,
+        "sha256": "d7e72cf2e01f154b401e3799fc8237159633a5a600de4cf27c834c7e8e701f6b"
+      },
+      "segments/segment-00000018.json": {
+        "bytes": 71701,
+        "sha256": "fa8b032b609fb50fac60cb4f7755c4eb0dfeca481f4e46ff9d8df9a1c8b083c6"
+      },
+      "segments/segment-00000019.json": {
+        "bytes": 65060,
+        "sha256": "cb55ea74b19b13e8ee55a348f1816063e9eced8148d7fd1dd1a847982387be0d"
+      },
+      "segments/segment-00000020.json": {
+        "bytes": 94928,
+        "sha256": "75881eb024418a269befbab993ae05a7a40d1f6eb1925bc5001d1befb0abde1c"
+      },
+      "segments/segment-00000021.json": {
+        "bytes": 70832,
+        "sha256": "585bffdca69dbcb74d5cc2c8db6e0225551a78902ec70f5a8abc770597e6ffcd"
+      },
+      "segments/segment-00000022.json": {
+        "bytes": 76223,
+        "sha256": "6d3ddf17c5473c5bb3e4f9cd4ba8a332e32581b32de175eecaea97c6d3e4e4bb"
+      }
+    },
+    "manifest": {
+      "sessionId": "sustained-1791934324379-1",
+      "generation": "2",
+      "revision": "77",
+      "phase": "paused",
+      "step": 50,
+      "durableStep": 50,
+      "journalCount": 4,
+      "segmentCount": 22
+    },
+    "finalCorePhase": "blocked",
+    "eventCounts": {
+      "advanced": 50,
+      "languageStarted": 5,
+      "languageReceived": 5,
+      "journalSaved": 4,
+      "memoryConfirmed": 4
+    },
+    "cleanupEvents": [],
+    "fixtureEndpoint": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.16-input-evidence-provider-01/endpoint.json",
+      "sha256": "888dd96c23d4d3b05b5c3a7b33fba2105885634e7ee2a844e755521ea16935c2",
+      "endpoint": "http://127.0.0.1:55860",
+      "model": "reservoir-fixture:input-evidence-0.16",
+      "pid": 64448,
+      "synthetic": true,
+      "startedAtUtc": "2026-10-13T23:27:10.393586+00:00",
+      "lifetimeSeconds": 900,
+      "maximumChatRequests": 5,
+      "maximumHttpRequests": 32,
+      "scriptSha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb",
+      "scenario": [
+        "wide-reported",
+        "absent",
+        "malformed-string",
+        "maximum-u64",
+        "incomplete-reported"
+      ]
+    },
+    "prospectiveFreeze": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/prospective-freeze-01.json",
+      "bytes": 2940,
+      "sha256": "e6f89978e992fb84145547708248a4169d83561801e0df4bb1e045608d826c7e"
+    },
+    "fixtureLog": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.16-input-evidence-provider-01/requests.jsonl",
+      "inspectedBytes": 5254,
+      "inspectedPrefixSha256": "0486e6d338afe359a6e6a9ca67b8ca25bc01d66471f041bdec18033e1d29a1b9",
+      "prefixUnchanged": true,
+      "laterAppendedBytes": 0,
+      "readinessRequests": 1,
+      "lifecycleStoppedPresent": true
+    },
+    "responseFiles": {
+      "response-01-wide-reported.json": {
+        "bytes": 368,
+        "sha256": "b5bdf0fd98e9ed79fa27e099277af8fc27ee727a59d1c7b92a2eb640bb596e35"
+      },
+      "response-02-absent.json": {
+        "bytes": 331,
+        "sha256": "3597b8a370ccbb1ed3b8eefe682154527d56fcfc89fd74af9837d8fbaee3bc4c"
+      },
+      "response-03-malformed-string.json": {
+        "bytes": 358,
+        "sha256": "5703f189c8be1981d266b6bc633d4b2b9376bc4f8bbb79d352951baeef89c876"
+      },
+      "response-04-maximum-u64.json": {
+        "bytes": 372,
+        "sha256": "b3f014a748328a9cdf6b01cdf9533173361cea6c265c767987790f2b51cd71a3"
+      },
+      "response-05-incomplete-reported.json": {
+        "bytes": 358,
+        "sha256": "b2726c736fe3f33fc2afd064c0b27b37566c16f6f7f7664f484738be253f8b42"
+      }
+    },
+    "attempts": [
+      {
+        "attemptId": 1,
+        "observedStep": 10,
+        "fixtureCase": "wide-reported",
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": 9007199254740993
+        },
+        "countAsExactDecimal": "9007199254740993",
+        "complete": true,
+        "stopReason": "stop",
+        "responseTextSha256": "65be3f5a5e7ee6ad2daf748e3d965456044a6b2716eb4f45c2233db2af855faf",
+        "promptSha256": "e4c4b5932edc15919caabe86a8f76d011d412cb0e225478d94ea8bdba2e29f59",
+        "requestSha256": "925137e6ade779c97a97b6077dc2493c8d5b0d879eaf8bd806b0fb362dbbed4c",
+        "fixtureResponseSha256": "b5bdf0fd98e9ed79fa27e099277af8fc27ee727a59d1c7b92a2eb640bb596e35",
+        "saved": true,
+        "firstAppliedStep": 11,
+        "memoryJournalId": null,
+        "exactPromptRequestResponseAndMemoryJoins": true
+      },
+      {
+        "attemptId": 2,
+        "observedStep": 20,
+        "fixtureCase": "absent",
+        "providerPromptEvaluation": null,
+        "countAsExactDecimal": null,
+        "complete": true,
+        "stopReason": "stop",
+        "responseTextSha256": "a6692e76647de384e9b1d732431b3e3e2c0b9885b01d72d5a7230cf072d76206",
+        "promptSha256": "3decaf6caac0e706324b9a8707253701991f29eacf770b222a34b5c8e39a4e4b",
+        "requestSha256": "b8c998a09e3d57d38ec235ad61a0f6d9a48c45132e562a8d3445cfe1d6f04810",
+        "fixtureResponseSha256": "3597b8a370ccbb1ed3b8eefe682154527d56fcfc89fd74af9837d8fbaee3bc4c",
+        "saved": true,
+        "firstAppliedStep": 21,
+        "memoryJournalId": "journal-10-1-65be3f5a5e7ee6ad2daf748e3d965456044a6b2716eb4f45c2233db2af855faf",
+        "exactPromptRequestResponseAndMemoryJoins": true
+      },
+      {
+        "attemptId": 3,
+        "observedStep": 30,
+        "fixtureCase": "malformed-string",
+        "providerPromptEvaluation": {
+          "status": "unusable",
+          "reason": "wrongType"
+        },
+        "countAsExactDecimal": null,
+        "complete": true,
+        "stopReason": "stop",
+        "responseTextSha256": "d64587a9ca66989058c939cf0f13f723f98c425ebd2eabaabc0fc293922ec906",
+        "promptSha256": "4e3058ca2b7b8a11999324b7e714159a58231950b150e96f60fc3e52eb0ab5a0",
+        "requestSha256": "e64784c5e3d95e8a34e60b063ad40fb3022ee3de876559c45b82ce67fad176ed",
+        "fixtureResponseSha256": "5703f189c8be1981d266b6bc633d4b2b9376bc4f8bbb79d352951baeef89c876",
+        "saved": true,
+        "firstAppliedStep": 31,
+        "memoryJournalId": "journal-20-2-a6692e76647de384e9b1d732431b3e3e2c0b9885b01d72d5a7230cf072d76206",
+        "exactPromptRequestResponseAndMemoryJoins": true
+      },
+      {
+        "attemptId": 4,
+        "observedStep": 40,
+        "fixtureCase": "maximum-u64",
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": 18446744073709551615
+        },
+        "countAsExactDecimal": "18446744073709551615",
+        "complete": true,
+        "stopReason": "stop",
+        "responseTextSha256": "8b38b154bb568861cb53935a22933ef9bab0b1986ba8532c10f4cdc723581847",
+        "promptSha256": "b1ff4a039de6bdc6cade3b416dab01d9a0a543e559f8796bfbb9c8c743194efd",
+        "requestSha256": "db82a4561b1f00979b2d9c1e5935cd2722781b355c1e45816604a5fc034c50dd",
+        "fixtureResponseSha256": "b3f014a748328a9cdf6b01cdf9533173361cea6c265c767987790f2b51cd71a3",
+        "saved": true,
+        "firstAppliedStep": 41,
+        "memoryJournalId": "journal-30-3-d64587a9ca66989058c939cf0f13f723f98c425ebd2eabaabc0fc293922ec906",
+        "exactPromptRequestResponseAndMemoryJoins": true
+      },
+      {
+        "attemptId": 5,
+        "observedStep": 50,
+        "fixtureCase": "incomplete-reported",
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": 321
+        },
+        "countAsExactDecimal": "321",
+        "complete": false,
+        "stopReason": "length",
+        "responseTextSha256": "89b6a3a48bd37d23e601811423056830769ef5e28cc1d4105e203a7c88bf6024",
+        "promptSha256": "869c99aaf1413b3e654d9fb3146aa14d2e424034ddd31df520e855f1a7280d87",
+        "requestSha256": "e1ff78c5571907f6fc5f157190037874bf36499230ce54eff6d4dae56a1d263f",
+        "fixtureResponseSha256": "b2726c736fe3f33fc2afd064c0b27b37566c16f6f7f7664f484738be253f8b42",
+        "saved": false,
+        "firstAppliedStep": null,
+        "memoryJournalId": "journal-40-4-8b38b154bb568861cb53935a22933ef9bab0b1986ba8532c10f4cdc723581847",
+        "exactPromptRequestResponseAndMemoryJoins": true
+      }
+    ],
+    "fifthIncompleteHasNoJournalOrApplication": true,
+    "lastSavedFeedbackHeldThroughStep50": true,
+    "scope": "Fixed synthetic reply evidence and internal joins; production numerical replay is separately recorded below. No writing-quality or provider-context-coverage verdict."
+  },
+  "executableAfter": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.16-r2-pinned/reservoir-scope-desktop",
+    "bytes": 16983744,
+    "sha256": "73872388b56d2483054497aa8513e3659f79dfaf255699d6bca29041cafd258d"
+  },
+  "status": "passed",
+  "endedAtUtc": "2026-10-13T23:37:28.373885+00:00"
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "reservoir-owned-helper-episode-continuity-v1",
+  "capturedAtUtc": "2026-10-13T22:49:52.595801+00:00",
+  "status": "unchanged-helper-copied-no-execution",
+  "scope": "Exact copies only; no tests, staging, model/service/admission/UI/process inspection or launch. Historical files unchanged.",
+  "copies": [
+    {
+      "source": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/owned_model.py",
+        "bytes": 32949,
+        "sha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f"
+      },
+      "copy": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/owned_model.py",
+        "bytes": 32949,
+        "sha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f"
+      }
+    },
+    {
+      "source": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/test_owned_model.py",
+        "bytes": 21837,
+        "sha256": "145d75ad5d1d8a090bb3c1a9830a59d1127d3424354b8b59db208d0006da9b87"
+      },
+      "copy": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/test_owned_model.py",
+        "bytes": 21837,
+        "sha256": "145d75ad5d1d8a090bb3c1a9830a59d1127d3424354b8b59db208d0006da9b87"
+      }
+    }
+  ],
+  "qualifiedSourceFreeze": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/helper-source-freeze-01.json",
+    "bytes": 1663,
+    "sha256": "c36454de228053d5b5f68d969b2a6f74ef47db83be7838fac96ef009386e57f0"
+  },
+  "priorActualCleanup": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/CLEANUP-RESULTS.md",
+    "bytes": 6344,
+    "sha256": "4e88548d664b986ddbda9638025d0b9751767ecf5e93652def4e55e5fd336a53"
+  },
+  "originalSelection": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.1/model-selection.json",
+    "bytes": 13199,
+    "sha256": "7de0ae35b3d231201679b2242484cb24a9122a8f9ce866b8554dfe6384a2d86a"
+  },
+  "privateStageReceipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-real-gemma3-4b/stage-receipt.json",
+    "bytes": 12823,
+    "sha256": "76cf4002d95bffcf6ef2665f728739e15ffb9aff1726dd8270510b50beeca3dc"
+  },
+  "plannedSupervisionDirectory": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02-gemma3-4b-run01",
+  "plannedCommand": [
+    "python3",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/owned_model.py",
+    "launch",
+    "--seconds",
+    "1200",
+    "--supervision-directory",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02-gemma3-4b-run01"
+  ],
+  "commandExecuted": false,
+  "noStageRecopy": true,
+  "requiredBeforeStart": "Parent performs the new frozen single admission; if admitted, helper rehashes all six private selected files and rechecks exact software and conventional key/config lstat identities before launch. Parent retains >=960seconds of owned service lifetime before Start.",
+  "scopeLimit": "Previous mock and cleanup qualification are evidence for this unchanged helper, not proof that the new service has launched or will succeed."
+}

@@ -1,0 +1,34 @@
+{
+  "schema": "reservoir-header-version-review-v1",
+  "reviewedAtUtc": "2026-10-13T23:28:55.641080+00:00",
+  "status": "no-concrete-blocker",
+  "scope": "Read-only narrow App header version binding; native appearance/build result belongs to parent execution receipts.",
+  "sources": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src/App.tsx",
+      "bytes": 4414,
+      "sha256": "4a10f76e0bf24b61ab9292c321a935691073271bb36cea4e164428a99fdff2ac"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/package.json",
+      "bytes": 844,
+      "sha256": "4635d809b625047213ec3baf84b7c0b80d19d96d911ffa080490ca5f6d85a217"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/tsconfig.json",
+      "bytes": 416,
+      "sha256": "64ecd12e2fe2cff778fe53252c08b37bc72cef27cad57b1edd5ce4c98de01b3c"
+    }
+  ],
+  "findings": [
+    "The header imports the package version and interpolates it as React text; the current metadata value is 0.16.0.",
+    "Existing TypeScript Bundler/resolveJsonModule settings support the JSON import. The existing package version is the build-time source; this does not claim runtime querying of a different bundle.",
+    "No session, navigation, provider request, storage or lifecycle behavior is added by the header binding."
+  ],
+  "newTestsOrUIOrServicesExecuted": false,
+  "priorAttemptPreserved": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/ui-build01-stale-label.txt",
+    "bytes": 205,
+    "sha256": "7552946f64981fabe1b73e1e1ef7e266094d77f7ab6772fd62a403f7264b2baa"
+  }
+}

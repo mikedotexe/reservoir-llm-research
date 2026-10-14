@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "scripts/qualification_receipt.py",
+    "--app",
+    "target/release/bundle/macos/Reservoir Scope Tauri Preview.app",
+    "--archive",
+    "target/release/bundle/macos/ReservoirScopeTauriPreview-0.12.1-macos-arm64.tar.gz",
+    "--checks-file",
+    "validation/2026-10-13-reading-0.12.1/checks.json",
+    "--output",
+    "validation/2026-10-13-reading-0.12.1/qualification.json",
+    "--note",
+    "Preliminary package identity before completion of root-owned 0.12.1 packaged UI qualification. No UI or model launch was performed by packaging agent.",
+    "--note",
+    "Frontend323, desktop169 (2 ignored), core150 and workspace strict Clippy are earlier source checks, reused with explicit continuity evidence; no full suite repeated after six identity-only edits.",
+    "--note",
+    "The frozen 0.12.0 archive is preserved unchanged. Source fixes included in 0.12.1 are distinct from the earlier actual 0.12.0 reliability run.",
+    "--note",
+    "New code-signing observation is ad-hoc local verification, not notarization or distribution signing."
+  ],
+  "startedAtUtc": "2026-10-13T19:05:26.778575+00:00",
+  "endedAtUtc": "2026-10-13T19:05:27.755696+00:00",
+  "exitCode": 0
+}

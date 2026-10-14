@@ -1,0 +1,51 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": "python3 scripts/check_reference.py",
+    "evidence": "package-build-01.json",
+    "receiptSha256": "cc7d18c50e392b7061e657ed56904ee63217913ee70aa6c8c982f539e2f80c5c"
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": "npm test",
+    "evidence": "frontend-checks-02.json",
+    "receiptSha256": "a1b97ff5aebac437d6bd2d42480c842e0d5dea539093f191ac265a4c0f5e2923"
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": "npm run build",
+    "evidence": "frontend-checks-02.json",
+    "receiptSha256": "a1b97ff5aebac437d6bd2d42480c842e0d5dea539093f191ac265a4c0f5e2923"
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-scope-desktop",
+    "evidence": "rust-checks-01.json",
+    "receiptSha256": "d9d4b836e616dc414a6c4e9ddb7f929b5b008e2563192dac21a2cb4db8caa554"
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-core --all-targets",
+    "evidence": "rust-checks-01.json",
+    "receiptSha256": "d9d4b836e616dc414a6c4e9ddb7f929b5b008e2563192dac21a2cb4db8caa554"
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": "cargo clippy --locked -p reservoir-core -p reservoir-scope-desktop --all-targets -- -D warnings",
+    "evidence": "rust-checks-01.json",
+    "receiptSha256": "d9d4b836e616dc414a6c4e9ddb7f929b5b008e2563192dac21a2cb4db8caa554"
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": "npm run tauri -- build --bundles app -- --locked",
+    "evidence": "package-build-01.json",
+    "receiptSha256": "cc7d18c50e392b7061e657ed56904ee63217913ee70aa6c8c982f539e2f80c5c"
+  }
+]

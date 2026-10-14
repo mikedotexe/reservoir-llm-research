@@ -1,0 +1,30 @@
+{
+  "scope": "Expected prompt fixtures assembled from the approved v5 template and unchanged v4 fixed-eight numerical references before executing v5 tests; no provider calls, application-store writes, or Being data. Engine tests must compare these independent expected bytes.",
+  "promptVersion": "reservoir-journal-v5",
+  "observationVersion": "reservoir-and-sensory-v2",
+  "template": {
+    "path": "validation/2026-10-13-continuing-writing-0.17.0/PROMPT-V5-TEMPLATE.txt",
+    "sha256": "7107385f63cec5b27697a43bd4ba3d58f2f7f5c59b998e9ab8c929e76cd9b25f"
+  },
+  "seed": "18446744073709551615",
+  "turnEvery": 10,
+  "maximumSteps": 180,
+  "maximumTurns": 30,
+  "procedure": "Observe10; restore prepared Language as interrupted, explicitly retry attempt2 with same prompt; supplied prose saved/read back and explicitly authorized; apply at11; observe20 and confirm exact eligible memory. The core fixture test uses serialized typed readback, not a physical-storage proof.",
+  "fixtures": [
+    {
+      "file": "v5-observation-10.txt",
+      "bytes": 1437,
+      "sha256": "5c9c1dbdb29e1058b59d23174cdab186c0aa60d76293f29bb99827b217025dd6",
+      "numericalReference": "v4-observation-10.txt",
+      "numericalReferenceSha256": "26bae96991e12bb591ba517c46345aeac167abbbdaf79858c514a35b8986f75f"
+    },
+    {
+      "file": "v5-memory-20.txt",
+      "bytes": 1627,
+      "sha256": "a828b3390d049b22faf115f74644374f2c86f74a4ac47fd806a5e69920de99fd",
+      "numericalReference": "v4-memory-20.txt",
+      "numericalReferenceSha256": "d51753e1eddd68fd193ba46da49e6f909aaebdef328471ddf79e3b134b10c2c0"
+    }
+  ]
+}

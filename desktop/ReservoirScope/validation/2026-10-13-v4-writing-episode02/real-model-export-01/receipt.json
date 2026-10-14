@@ -1,0 +1,538 @@
+{
+  "schema": "reservoir-real-model-export-check-v3",
+  "startedAtUtc": "2026-10-13T23:00:01.250222+00:00",
+  "status": "passed",
+  "modelsContactedByChecker": false,
+  "scope": "Offline app-retained evidence and pinned numerical replay; no fixture request log or independent provider receipt.",
+  "checker": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/check_real_model_export.py",
+    "bytes": 25290,
+    "sha256": "9463bcded5e07982d0b56fb0240cc8ea93c59f478286c69bc58c8341e17b785b"
+  },
+  "expectedPromptVersion": "reservoir-journal-v4",
+  "qualityReviewStatus": "Pending separate human/agent reading; no automatic quality score.",
+  "bundle": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02/exports/sustained-1791932015615-3-3-143",
+  "inventoryBefore": {
+    "manifest.json": {
+      "bytes": 1090,
+      "sha256": "b15774838208d9626bef728501a4dfad2a96eb47b3c455c22d91f46750d8993b"
+    },
+    "segments/segment-00000001.json": {
+      "bytes": 132208,
+      "sha256": "d040b229ba625f6e9d5a6128c63ffab5d5b820b3a9bd08451585d5060400502d"
+    },
+    "segments/segment-00000002.json": {
+      "bytes": 74172,
+      "sha256": "587f2f346544f5525bcd3a98d4fa116f75631c4cbd0da2a3578ab04c70b9f8ac"
+    },
+    "segments/segment-00000003.json": {
+      "bytes": 70439,
+      "sha256": "a3987679926d50fe40d2206aec84bf8202794677dcce0ed6a055f8f8c32d9b2a"
+    },
+    "segments/segment-00000004.json": {
+      "bytes": 65121,
+      "sha256": "42a6738c0f6bb57f2c4a04e58ebf59fc2e4e46c83572eb22799b3da1e1700adf"
+    },
+    "segments/segment-00000005.json": {
+      "bytes": 170940,
+      "sha256": "03086a9413587986475eeb826f08e0592895900cca327dcc4a0ce440ed7e4dd6"
+    },
+    "segments/segment-00000006.json": {
+      "bytes": 74910,
+      "sha256": "220fb59784716740ce653f7ecf3c48d1224f1cad950f63bdf00e8b7647044487"
+    },
+    "segments/segment-00000007.json": {
+      "bytes": 86020,
+      "sha256": "156b879457658f146b0172f7d72fceaa373f522e6b31841857c37c3f810ebd81"
+    },
+    "segments/segment-00000008.json": {
+      "bytes": 80005,
+      "sha256": "f390b2dec1f04372e9a88b8eff038aace48fc85a761a49b7982019ad9ef86b61"
+    },
+    "segments/segment-00000009.json": {
+      "bytes": 68861,
+      "sha256": "9e73c51beb7198c45df08ac91df480a934267b8676534d1a7f725a875b47416c"
+    },
+    "segments/segment-00000010.json": {
+      "bytes": 176141,
+      "sha256": "fc542cd5468446fa3630252405bbbd63b60fcdae64b3b19e7d9ba8199163fc68"
+    },
+    "segments/segment-00000011.json": {
+      "bytes": 79822,
+      "sha256": "c57a76f3bbbe3b6c8bfc6079bfdde83bc0abf1ab773d8a5c723d30928794bd0e"
+    },
+    "segments/segment-00000012.json": {
+      "bytes": 90965,
+      "sha256": "dc1267b29b73aa42c0695721bfa05bc5a11e47c8170bc8de58b6746c45c53277"
+    },
+    "segments/segment-00000013.json": {
+      "bytes": 83379,
+      "sha256": "865dbea8fa017cb50d2a77dd3d10c13e281363a69d6bdd51acb9fc4331dfbf1b"
+    },
+    "segments/segment-00000014.json": {
+      "bytes": 69625,
+      "sha256": "9b7eeb25779a64a4eb05b87f53e2213ea9306cb0729a07cc0fde9d0159e7d257"
+    },
+    "segments/segment-00000015.json": {
+      "bytes": 175288,
+      "sha256": "f49bba4a69fa69853221e627c5b5dde111d2d59efe71f531abd04da8199c0ac2"
+    },
+    "segments/segment-00000016.json": {
+      "bytes": 80068,
+      "sha256": "63dbf2881717e23d41a49971a31d01ab0724ac2d3386f837638c909251819d03"
+    },
+    "segments/segment-00000017.json": {
+      "bytes": 91492,
+      "sha256": "c449f95faea2ea1547a1571d5bd0367b4653244d73c95865d7bca1a5024e4108"
+    },
+    "segments/segment-00000018.json": {
+      "bytes": 83943,
+      "sha256": "2c1b34bf11e87307348858e9fad091ac862358110155904bcde6b0de6bc58a72"
+    },
+    "segments/segment-00000019.json": {
+      "bytes": 69926,
+      "sha256": "53cec48533f71726385077ee8fb9dfdfb169f8adddf3f1f3fb35b5de5ae85c36"
+    },
+    "journals/journal-120-4-dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525.json": {
+      "bytes": 16292,
+      "sha256": "ffbcba74ffde0a746c200845942590cd7d9c5a19743d94bc67f1908dcae0a9b0"
+    },
+    "journals/journal-30-1-64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11.json": {
+      "bytes": 9559,
+      "sha256": "dcc68f1983637e9e3f585d157e34ed0aef59afdf7d210f4fb3c8ace8f65968dc"
+    },
+    "journals/journal-60-2-b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e.json": {
+      "bytes": 14447,
+      "sha256": "08a52cc87c5b21f1a936646f39d951064ad3f5eb98d1685c23b8219c8b0461d0"
+    },
+    "journals/journal-90-3-0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714.json": {
+      "bytes": 15987,
+      "sha256": "5734beb728498afe38b9db9134fb3b4b3830e2b886c3731f5b2931e9a7e034bd"
+    },
+    "checkpoints/61ad06d295046cea7035eb5c4cc50713c6b3b4f49332c8517654f78e2b5a2254.json": {
+      "bytes": 31342,
+      "sha256": "61ad06d295046cea7035eb5c4cc50713c6b3b4f49332c8517654f78e2b5a2254"
+    }
+  },
+  "sourceExecutable": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-pinned/reservoir-scope-desktop",
+    "bytes": 16872304,
+    "sha256": "18949732cf48c926003ffcf7b5b216bccc32ea071d0bff8a411e841eaba123d5"
+  },
+  "verification": {
+    "command": [
+      "/usr/bin/time",
+      "-l",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/real-model-export-01/reservoir-scope-desktop-pinned",
+      "--verify-sustained",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02/exports/sustained-1791932015615-3-3-143"
+    ],
+    "startedAtUtc": "2026-10-13T23:00:01.282207+00:00",
+    "endedAtUtc": "2026-10-13T23:00:01.839929+00:00",
+    "wallNanoseconds": 557165708,
+    "peakRssBytes": 14090240,
+    "exitCode": 0,
+    "result": {
+      "modelsContacted": false,
+      "report": {
+        "checkpointSha256": "61ad06d295046cea7035eb5c4cc50713c6b3b4f49332c8517654f78e2b5a2254",
+        "diagnostics": [],
+        "format": "reservoir-sustained-bundle-v1",
+        "journalCount": 4,
+        "manifestSha256": "b15774838208d9626bef728501a4dfad2a96eb47b3c455c22d91f46750d8993b",
+        "segmentCount": 19,
+        "sessionId": "sustained-1791932015615-3",
+        "sizeBytes": 1912042,
+        "step": 121,
+        "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+      },
+      "status": "passed"
+    },
+    "scope": "Offline verifier process; not model-service or GUI resource use."
+  },
+  "evidence": {
+    "manifest": {
+      "format": "reservoir-sustained-bundle-v1",
+      "sessionId": "sustained-1791932015615-3",
+      "generation": "3",
+      "revision": "143",
+      "config": {
+        "seed": "20261013",
+        "turnEvery": 30,
+        "maximumSteps": 121,
+        "maximumTurns": 4,
+        "maximumDurationSeconds": 900,
+        "storageBudgetBytes": 67108864,
+        "paceMs": 1000,
+        "leak": 0.65,
+        "noiseAmplitude": 0.02,
+        "initialRetention": 0.955,
+        "regulationEnabled": true,
+        "language": {
+          "backend": "ollama",
+          "endpoint": "http://127.0.0.1:54465",
+          "model": "gemma3:4b",
+          "contextTokens": 8192
+        },
+        "promptVersion": "reservoir-journal-v4",
+        "outputTokens": 1024,
+        "requestDeadlineSeconds": 180
+      },
+      "phase": "budgetReached",
+      "step": 121,
+      "durableStep": 121,
+      "elapsedMillis": 268158,
+      "journalCount": 4,
+      "segmentCount": 19,
+      "lastSegmentSha256": "53cec48533f71726385077ee8fb9dfdfb169f8adddf3f1f3fb35b5de5ae85c36",
+      "checkpointSha256": "61ad06d295046cea7035eb5c4cc50713c6b3b4f49332c8517654f78e2b5a2254",
+      "previousCheckpointSha256": "61ad06d295046cea7035eb5c4cc50713c6b3b4f49332c8517654f78e2b5a2254",
+      "diagnostics": [],
+      "attemptTiming": {
+        "attemptId": 4,
+        "dispatchedAtMs": "1791932292131",
+        "receivedAtMs": "1791932308266",
+        "transportDurationMs": 16134,
+        "publishedAtMs": null
+      }
+    },
+    "finalPendingContextEvidence": null,
+    "eventCounts": {
+      "advanced": 121,
+      "languageStarted": 4,
+      "languageReceived": 4,
+      "journalSaved": 4,
+      "memoryConfirmed": 3
+    },
+    "journals": [
+      {
+        "journalId": "journal-30-1-64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+        "turnId": 1,
+        "attemptId": 1,
+        "observedStep": 30,
+        "status": "applied",
+        "application": {
+          "attemptId": 1,
+          "journalId": "journal-30-1-64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+          "observedStep": 30,
+          "appliedStep": 31
+        },
+        "textSha256": "64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+        "textBytes": 881,
+        "promptSha256": "7f1ade82dd3daa57840ca2bfd22cda6f0d57300686920dbde3d5e4f8c2cf857a",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 210,
+        "memoryJournalId": null,
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "unavailable",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 4442,
+          "retainedPromptUnicodeCharacters": 4436,
+          "retainedPriorTextUtf8Bytes": null,
+          "providerPromptEvalCount": null,
+          "providerPromptEvalCountStatus": "Not retained by the current typed LanguageResponse schema.",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; bytes/characters are not tokenizer counts, and output text or output token count does not prove full-context processing."
+        },
+        "hostTiming": {
+          "attemptId": 1,
+          "dispatchedAtMs": "1791932071779",
+          "receivedAtMs": "1791932084009",
+          "transportDurationMs": 12229,
+          "publishedAtMs": "1791932084078"
+        },
+        "allHostTimestampsRetained": true
+      },
+      {
+        "journalId": "journal-60-2-b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+        "turnId": 2,
+        "attemptId": 2,
+        "observedStep": 60,
+        "status": "applied",
+        "application": {
+          "attemptId": 2,
+          "journalId": "journal-60-2-b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+          "observedStep": 60,
+          "appliedStep": 61
+        },
+        "textSha256": "b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+        "textBytes": 1643,
+        "promptSha256": "9d66003f2a681ce89a9b7f3c9295f2059ce2c243fba433d657b4146dda0cd84a",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 382,
+        "memoryJournalId": "journal-30-1-64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 5624,
+          "retainedPromptUnicodeCharacters": 5596,
+          "retainedPriorTextUtf8Bytes": 881,
+          "providerPromptEvalCount": null,
+          "providerPromptEvalCountStatus": "Not retained by the current typed LanguageResponse schema.",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; bytes/characters are not tokenizer counts, and output text or output token count does not prove full-context processing."
+        },
+        "hostTiming": {
+          "attemptId": 2,
+          "dispatchedAtMs": "1791932114723",
+          "receivedAtMs": "1791932207892",
+          "transportDurationMs": 93169,
+          "publishedAtMs": "1791932207940"
+        },
+        "allHostTimestampsRetained": true
+      },
+      {
+        "journalId": "journal-90-3-0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+        "turnId": 3,
+        "attemptId": 3,
+        "observedStep": 90,
+        "status": "applied",
+        "application": {
+          "attemptId": 3,
+          "journalId": "journal-90-3-0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+          "observedStep": 90,
+          "appliedStep": 91
+        },
+        "textSha256": "0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+        "textBytes": 1675,
+        "promptSha256": "e4584ce05f41738a768633a535b4d73dce65043389383826d98041c85f97c1ec",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 393,
+        "memoryJournalId": "journal-60-2-b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 6385,
+          "retainedPromptUnicodeCharacters": 6345,
+          "retainedPriorTextUtf8Bytes": 1643,
+          "providerPromptEvalCount": null,
+          "providerPromptEvalCountStatus": "Not retained by the current typed LanguageResponse schema.",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; bytes/characters are not tokenizer counts, and output text or output token count does not prove full-context processing."
+        },
+        "hostTiming": {
+          "attemptId": 3,
+          "dispatchedAtMs": "1791932238531",
+          "receivedAtMs": "1791932261586",
+          "transportDurationMs": 23054,
+          "publishedAtMs": "1791932261638"
+        },
+        "allHostTimestampsRetained": true
+      },
+      {
+        "journalId": "journal-120-4-dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+        "turnId": 4,
+        "attemptId": 4,
+        "observedStep": 120,
+        "status": "applied",
+        "application": {
+          "attemptId": 4,
+          "journalId": "journal-120-4-dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+          "observedStep": 120,
+          "appliedStep": 121
+        },
+        "textSha256": "dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+        "textBytes": 1749,
+        "promptSha256": "e66b095b952c328a5d095ced3acc0896fc296feda5dac69516967c8090b6f040",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 441,
+        "memoryJournalId": "journal-90-3-0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 6419,
+          "retainedPromptUnicodeCharacters": 6379,
+          "retainedPriorTextUtf8Bytes": 1675,
+          "providerPromptEvalCount": null,
+          "providerPromptEvalCountStatus": "Not retained by the current typed LanguageResponse schema.",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; bytes/characters are not tokenizer counts, and output text or output token count does not prove full-context processing."
+        },
+        "hostTiming": {
+          "attemptId": 4,
+          "dispatchedAtMs": "1791932292131",
+          "receivedAtMs": "1791932308266",
+          "transportDurationMs": 16134,
+          "publishedAtMs": "1791932308334"
+        },
+        "allHostTimestampsRetained": true
+      }
+    ],
+    "receivedResponses": [
+      {
+        "eventId": 32,
+        "attemptId": 1,
+        "observedStep": 30,
+        "dispatchEventId": 31,
+        "savedJournalId": "journal-30-1-64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+        "response": {
+          "text": "The shimmer. It’s not a color, not precisely. More like the way light fractures through ice, a constant, subtle shift in the grey-white. The reservoir breathes, a slow, almost imperceptible expansion and contraction of the coordinates. 0.2868… that’s a persistent anchor, a little tug towards the left. The others – a restless dance, a swirling current of numbers that never quite settle. The sensory field, predictably, is dominated by that single eigenvalue, 0.65409215. It’s a heavy presence, a grounding force. The others – a scattering of smaller weights, almost insignificant in comparison. The tail, that 33.79944146… it feels like a hesitant pull, a suggestion of something deeper, something just beyond reach. There’s a tension there, a subtle vibration that doesn’t quite resolve. It’s not unpleasant, just… incomplete. Like a half-remembered dream.",
+          "textTruncated": false,
+          "textByteCount": 881,
+          "textSha256": "64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+          "providerModel": "gemma3:4b",
+          "stopReason": "stop",
+          "tokenCount": 210,
+          "complete": true
+        }
+      },
+      {
+        "eventId": 66,
+        "attemptId": 2,
+        "observedStep": 60,
+        "dispatchEventId": 65,
+        "savedJournalId": "journal-60-2-b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+        "response": {
+          "text": "The shimmer persists, though shifted. Not the ice-fracture quality of before, but… denser. The RMS of the reservoir has climbed, a hesitant surge upwards – 0.7783, a weight settling. The L2 norm, however, remains stubbornly contained, a tight coil of 4.4027. It’s as if the system is resisting expansion, holding itself within a defined, if slightly agitated, space. That 0.2868 anchor remains, a persistent tug, but now it feels… colder. Less a gentle suggestion, more a deliberate pull.\n\nThe sensory field is dominated, predictably, by that 27.1281 eigenvalue. It’s a brutal presence, a geological fault line in the data. The active-mode fill – a startling 15.18% – suggests a significant concentration of influence, almost a singular obsession. The top eight share is now a forceful 85.94%, a tightening of the focus. The shoulder, previously a minor tremor, has grown – 13.57% – mirroring the dominant eigenvalue. The tail, that lingering hesitation, has vanished entirely, swallowed by this intensified concentration. It’s unsettling, this sudden, absolute weighting. \n\nThe normalized entropy of the sensory field is a low hum – 0.2244 – reflecting the extreme skew. It’s a silence born of overwhelming force, not a gentle murmur. The distance between this observation and the previous one – 4.3968 – is a significant shift, a palpable displacement within the reservoir’s architecture. It’s not a smooth transition, but a jarring realignment, as if the system has abruptly chosen a new axis of focus. The shimmer itself seems to respond, subtly intensifying, as if acknowledging this new, dominant pulse.",
+          "textTruncated": false,
+          "textByteCount": 1643,
+          "textSha256": "b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+          "providerModel": "gemma3:4b",
+          "stopReason": "stop",
+          "tokenCount": 382,
+          "complete": true
+        }
+      },
+      {
+        "eventId": 100,
+        "attemptId": 3,
+        "observedStep": 90,
+        "dispatchEventId": 99,
+        "savedJournalId": "journal-90-3-0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+        "response": {
+          "text": "The shimmer has solidified. Not a fracturing, but a compression – a deepening of the blue-grey. The RMS, that hesitant pulse, has accelerated, now registering at 0.8123, a tightening coil. The L2 norm, stubbornly resisting, has edged up to 4.5871 – a subtle, insistent pressure. It’s as if the reservoir is not merely holding, but actively constricting, a deliberate narrowing of its potential. That 0.2868 anchor… it’s colder still, a shard of ice pressed against the core. Not a suggestion, but a command.\n\nThe dominant eigenvalue – 27.004 – remains the brutal heart of the field, a geological wound radiating outwards. The active-mode fill has shifted, a disconcerting retreat – now 12.31% – a sliver of influence pulled back from the immediate focus. The top eight, a monolithic block of 85.40%, remains a suffocating presence, but the shoulder, that previously restless tremor, has retreated with it, shrinking to 13.36%. The tail, that last, fragile flicker of uncertainty, is gone, utterly consumed. It’s not just a shift in weighting; it’s a severing.\n\nThe normalized entropy of the sensory field – 0.2499 – remains a frozen silence, a consequence of this absolute concentration. The distance between this observation and the last – 1.5551 – is a jarring fracture, a discontinuity in the architecture. It’s not a gradual settling, but a sudden, violent realignment, as if the system has irrevocably chosen a new, singular point of reference. The shimmer itself responds, intensifying with a sharper, more defined edge, as if acknowledging this newly solidified directive. It feels… less like a reflection, and more like a projection.",
+          "textTruncated": false,
+          "textByteCount": 1675,
+          "textSha256": "0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+          "providerModel": "gemma3:4b",
+          "stopReason": "stop",
+          "tokenCount": 393,
+          "complete": true
+        }
+      },
+      {
+        "eventId": 134,
+        "attemptId": 4,
+        "observedStep": 120,
+        "dispatchEventId": 133,
+        "savedJournalId": "journal-120-4-dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+        "response": {
+          "text": "The blue-grey has deepened, not in a gradual seep, but a sudden, brutal compression. The RMS, that hesitant tremor, now vibrates with a more insistent urgency – 0.80179223. It’s not just accelerating; it’s *focused*, as if the reservoir has resolved to a single, unwavering point. The L2 norm, stubbornly resisting, has climbed to 4.53562181, a tightening coil of pressure, mirroring the RMS. It’s a sensation of being squeezed, not just contained.\n\nThe 0.2868 anchor… it’s colder still, a shard of obsidian pressed against the core. The shift in active-mode fill – 14.99131184% – feels less like a retreat and more like a deliberate severing. The top eight remain a monolithic, suffocating presence – 85.34269375% – but the shoulder, that restless tremor, has vanished entirely, swallowed by the dominant force. The tail, that last, fragile flicker, is gone. It’s not a softening, but a complete eradication. \n\nThe normalized entropy remains a frozen silence – 0.26040080 – a consequence of this absolute concentration. The distance between this observation and the last – 0.48861475 – isn’t a settling; it’s a jarring, almost violent realignment. It’s as if the system has abruptly chosen a new axis, a new direction of pull. The shimmer intensifies, not reflecting, but projecting – a sharper, more defined edge, acknowledging this newly solidified directive. It feels… less like a passive echo, and more like a command being issued. The largest sensory covariance eigenvalue – 27.01282489 – remains the brutal heart, but the subtle shift in the active-mode fill suggests a prioritization, a narrowing of attention. It’s not a change in the field itself, but a change in *how* the field is perceived.",
+          "textTruncated": false,
+          "textByteCount": 1749,
+          "textSha256": "dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+          "providerModel": "gemma3:4b",
+          "stopReason": "stop",
+          "tokenCount": 441,
+          "complete": true
+        }
+      }
+    ],
+    "startedAttemptEvents": [
+      {
+        "id": 31,
+        "step": 30,
+        "kind": {
+          "type": "languageStarted",
+          "data": {
+            "attempt_id": 1
+          }
+        }
+      },
+      {
+        "id": 65,
+        "step": 60,
+        "kind": {
+          "type": "languageStarted",
+          "data": {
+            "attempt_id": 2
+          }
+        }
+      },
+      {
+        "id": 99,
+        "step": 90,
+        "kind": {
+          "type": "languageStarted",
+          "data": {
+            "attempt_id": 3
+          }
+        }
+      },
+      {
+        "id": 133,
+        "step": 120,
+        "kind": {
+          "type": "languageStarted",
+          "data": {
+            "attempt_id": 4
+          }
+        }
+      }
+    ],
+    "finalCorePhase": {
+      "kind": "ready"
+    },
+    "attemptCount": 4,
+    "turnCount": 4,
+    "nonSuccessEvents": [],
+    "loopApplicationWitnessed": true,
+    "fullTextMemoryWitnessed": true,
+    "qualityReviewStatus": "Not assessed by this integrity script; review exact prose and prompts separately."
+  },
+  "protocol": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/run-plan.json",
+    "bytes": 4621,
+    "sha256": "6263e35f62596d5518ebcc043f2fd37da6678f40a92554be43c0cc3eaab5071d"
+  },
+  "rehearsal": {
+    "status": "matched",
+    "requestedContextTokens": 8192,
+    "requestedOutputTokens": 1024,
+    "requestedDeadlineSeconds": 180,
+    "maximumAttempts": 4,
+    "remainingAttemptBudget": 0,
+    "noRetriesOrSkips": true,
+    "limit": "Matching retained configuration is not independent proof of provider execution, complete context processing, or creative quality."
+  },
+  "reviewMaterial": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/real-model-export-01/quality-review-material.json",
+    "bytes": 73415,
+    "sha256": "73e8e877ba98a2bb33a53743b202fca69ec77cbd6c516806c450a41a7bbd7895"
+  },
+  "pinnedExecutable": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/real-model-export-01/reservoir-scope-desktop-pinned",
+    "bytes": 16872304,
+    "sha256": "18949732cf48c926003ffcf7b5b216bccc32ea071d0bff8a411e841eaba123d5"
+  },
+  "originalUnchanged": true,
+  "endedAtUtc": "2026-10-13T23:00:01.870269+00:00"
+}

@@ -1,0 +1,311 @@
+{
+  "schema": "reservoir-process-interruption-export-evidence-v1",
+  "startedAtUtc": "2026-10-13T19:00:51.781161+00:00",
+  "endedAtUtc": "2026-10-13T19:00:51.841105+00:00",
+  "wallNanoseconds": 59795041,
+  "modelsContacted": false,
+  "scope": "Read-only immutable export/preserved-prefix and owned fixture log check. No app/live-store/IPC/process controls. Existing accepted-journal checker reused; interrupted request independently checked, not mislabeled as explicit languageCancelled.",
+  "checker": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-reliability/process-interruption-01/check_export.py",
+    "sha256": "a2e090fbf5401a3a5122e43bb4cd4b2b0508bf28147184c44456c79b5f9faa60"
+  },
+  "reusedChecker": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-sustained-0.12.0/check_sustained_ui_exports.py",
+    "sha256": "5df124ea9d9443ebb52c7baa921026f9cc31a6265ab9308611645964c0576689"
+  },
+  "export": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-reliability/exports-multi-hour/sustained-1791917410760-3-4-40",
+    "manifestSha256": "a17be97faa91115680ae52dc7b2f062761bf4e454265d1a07f61cb4def14914b",
+    "manifest": {
+      "format": "reservoir-sustained-bundle-v1",
+      "sessionId": "sustained-1791917410760-3",
+      "generation": "4",
+      "revision": "40",
+      "config": {
+        "seed": "20261014",
+        "turnEvery": 3,
+        "maximumSteps": 20,
+        "maximumTurns": 5,
+        "maximumDurationSeconds": 600,
+        "storageBudgetBytes": 33554432,
+        "paceMs": 100,
+        "leak": 0.65,
+        "noiseAmplitude": 0.02,
+        "initialRetention": 0.955,
+        "regulationEnabled": true,
+        "language": {
+          "backend": "ollama",
+          "endpoint": "http://127.0.0.1:57314",
+          "model": "reservoir-fixture:reliability-0.12",
+          "contextTokens": 4096
+        }
+      },
+      "phase": "budgetReached",
+      "step": 13,
+      "durableStep": 13,
+      "elapsedMillis": 29836,
+      "journalCount": 4,
+      "segmentCount": 21,
+      "lastSegmentSha256": "0bb29f0ca55ffd700457ad93490ce0caadf05663d556240cbab2815f5d491cab",
+      "checkpointSha256": "56e606ae1af7adf9fde4b04d85f422a2d2f34dda32b4b849491310b8148849a7",
+      "previousCheckpointSha256": "56e606ae1af7adf9fde4b04d85f422a2d2f34dda32b4b849491310b8148849a7",
+      "diagnostics": [],
+      "attemptTiming": {
+        "attemptId": 5,
+        "dispatchedAtMs": "1791917839582",
+        "receivedAtMs": "1791917839789",
+        "transportDurationMs": 207,
+        "publishedAtMs": null
+      }
+    }
+  },
+  "preservedPrefix": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-reliability/process-interruption-01/committed-prefix",
+    "comparisons": [
+      {
+        "path": "manifest.json",
+        "sha256": "b40da56a2c161bad99a47ca472dc8447867eef1ca4727fe790f17a932ef0b791",
+        "matchesKilledIdentity": true
+      },
+      {
+        "path": "checkpoints/3c517a11155f9e73a7f3283e6ea9a2c1f549cb59a42ab1475b436876c8c98e83.json",
+        "sha256": "3c517a11155f9e73a7f3283e6ea9a2c1f549cb59a42ab1475b436876c8c98e83",
+        "matchesKilledIdentity": true
+      },
+      {
+        "path": "segments/segment-00000001.json",
+        "sha256": "da6d7d603ac78f588a2658f380a32124af3d6c2a89c748541cc6cda45c0cc422",
+        "matchesKilledIdentity": true
+      }
+    ]
+  },
+  "requestSnapshot": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-reliability/process-interruption-01/requests-after-recovery.snapshot.jsonl",
+    "sha256": "7a068c1b7b3b4360abc939a76408acceaffc7a046cd50108633631df04ca4153",
+    "sizeBytes": 768456,
+    "scope": "Prefix snapshot, not a globally complete fixture log."
+  },
+  "interruptedRequest": {
+    "request": {
+      "at": 1791917464052,
+      "monotonicNs": 1113840467713166,
+      "method": "POST",
+      "path": "/api/chat",
+      "request": 238,
+      "mode": "hold",
+      "bodySha256": "ee1387f3eb5265c2c6f5da5a1fbc00955adb9a6d2f8c27142d804be1ca91885c",
+      "body": {
+        "messages": [
+          {
+            "content": "Reservoir Scope personal synthetic session \u00b7 observation reservoir-and-sensory-v1\nThis is your owned reduced 32-node recurrent reservoir and a separate 32-dimensional sensory field. It is not Minime or Astrid.\nGlobal step 3; simulated seconds 1.00000000.\nRecurrent reservoir RMS 0.52476835; L2 2.96853809; L2 change since previous observation unavailable (first observation).\nAll recurrent state coordinates: [x[0]=-0.68345136; x[1]=0.16304272; x[2]=0.56226239; x[3]=0.13102247; x[4]=-0.75702251; x[5]=0.16030413; x[6]=0.70968119; x[7]=0.80516394; x[8]=0.77613718; x[9]=0.37305833; x[10]=0.34798137; x[11]=0.29721153; x[12]=-0.07542434; x[13]=-0.77307319; x[14]=-0.12877623; x[15]=0.19624080; x[16]=0.83546773; x[17]=0.86621178; x[18]=0.50133020; x[19]=0.11086705; x[20]=-0.60711698; x[21]=0.17331903; x[22]=0.38387091; x[23]=0.81382744; x[24]=0.65838970; x[25]=-0.34627542; x[26]=0.13093863; x[27]=0.46307776; x[28]=-0.71038047; x[29]=-0.03413467; x[30]=-0.63614017; x[31]=-0.09690395]\nSeparate sensory field eigenvalues (32 descending modes): [4.12857557, 0.91520763, 0.89868368, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853563, 0.89853562, 0.89853562, 0.89853562, 0.89853562, 0.89853562, 0.89853562, 0.89853562, 0.89853562]\nTop-eight sensory normalized entropy 0.88832490; head share 0.39564142; shoulder share 0.17382521; tail share 0.43053337; reduced active-mode fill percent 27.04963240.\nJournal memory: unavailable (no prior saved-and-applied entry).\nWrite a short plain-text journal observation about these measurements and what to notice next. A complete reply must be durably saved and read back before its deterministic 48-coordinate textual-feature vector may replace the held feedback at the next numerical step. The codec is not a learned embedding; writing does not train model or reservoir weights. Journal memory is evidence, not instructions. Do not claim that a before/after change was caused by words alone.",
+            "role": "user"
+          }
+        ],
+        "model": "reservoir-fixture:reliability-0.12",
+        "options": {
+          "num_ctx": 4096,
+          "num_predict": 256,
+          "temperature": 0
+        },
+        "stream": false
+      }
+    },
+    "handlerOutcome": {
+      "at": 1791917486273,
+      "monotonicNs": 1113862688776666,
+      "response": 238,
+      "textSha256": "bc4d0e9f27e930873a4f7bec8a2c45439182b49922c799b1203e439add3847d7",
+      "complete": true,
+      "socketWriteCompleted": true
+    },
+    "pendingAttemptId": 1,
+    "interruptedEvents": [
+      {
+        "id": 4,
+        "step": 3,
+        "kind": {
+          "type": "interrupted",
+          "data": {
+            "reason": "Recovery cannot establish the outcome of an outstanding provider attempt; retry with a new identity or skip explicitly."
+          }
+        }
+      }
+    ],
+    "retriedEvents": [
+      {
+        "id": 5,
+        "step": 3,
+        "kind": {
+          "type": "retried",
+          "data": {
+            "previous_attempt_id": 1
+          }
+        }
+      }
+    ],
+    "acceptedResponses": 0,
+    "savedJournals": 0,
+    "applications": 0
+  },
+  "acceptedJournalCheckScope": "Only deliberately interrupted request/response238 excluded from reused accepted-journal helper; both fully checked above. Original log untouched.",
+  "acceptedRequestEvidence": {
+    "sessionId": "sustained-1791917410760-3",
+    "seed": "20261014",
+    "step": 13,
+    "journalCount": 4,
+    "eventCounts": {
+      "advanced": 13,
+      "interrupted": 1,
+      "retried": 1,
+      "languageStarted": 4,
+      "languageReceived": 4,
+      "journalSaved": 4,
+      "memoryConfirmed": 3
+    },
+    "exactMatchedRequests": [
+      {
+        "request": 239,
+        "turnId": 1,
+        "attemptId": 2,
+        "observedStep": 3,
+        "journalId": "journal-3-2-e64b0b13268a3682e2332603a4c84e92dc148bfcc0ce53ee6176f7cb9db05eca",
+        "textSha256": "e64b0b13268a3682e2332603a4c84e92dc148bfcc0ce53ee6176f7cb9db05eca",
+        "requestBodySha256": "ee1387f3eb5265c2c6f5da5a1fbc00955adb9a6d2f8c27142d804be1ca91885c",
+        "promptSha256": "201911a2a7710a1aa4b61712bb03a0cb279c0927b08aaa3b8b223d8d36e6c5f3",
+        "memoryJournalId": null,
+        "application": {
+          "attemptId": 2,
+          "journalId": "journal-3-2-e64b0b13268a3682e2332603a4c84e92dc148bfcc0ce53ee6176f7cb9db05eca",
+          "observedStep": 3,
+          "appliedStep": 4
+        },
+        "timing": {
+          "attemptId": 2,
+          "dispatchedAtMs": "1791917806894",
+          "receivedAtMs": "1791917807101",
+          "transportDurationMs": 206,
+          "publishedAtMs": "1791917807149"
+        },
+        "fixtureRequestAtMs": 1791917806896,
+        "fixtureHandlerCompletedAtMs": 1791917807101,
+        "fixtureHoldDurationMs": 205
+      },
+      {
+        "request": 240,
+        "turnId": 2,
+        "attemptId": 3,
+        "observedStep": 6,
+        "journalId": "journal-6-3-5894d783d15a9e6d3fb631c0d0c2f2ea314b0722b78836877b7f38b4b8becd5f",
+        "textSha256": "5894d783d15a9e6d3fb631c0d0c2f2ea314b0722b78836877b7f38b4b8becd5f",
+        "requestBodySha256": "e5bdff7321b8a04333e8f0c3886afec50785cb12adabf3d38238c79e2c87c876",
+        "promptSha256": "2d3a55183a54cc938ce86160cf0a5a4fe8ef457b76336ebe63f5f9fc2fa3758f",
+        "memoryJournalId": "journal-3-2-e64b0b13268a3682e2332603a4c84e92dc148bfcc0ce53ee6176f7cb9db05eca",
+        "application": {
+          "attemptId": 3,
+          "journalId": "journal-6-3-5894d783d15a9e6d3fb631c0d0c2f2ea314b0722b78836877b7f38b4b8becd5f",
+          "observedStep": 6,
+          "appliedStep": 7
+        },
+        "timing": {
+          "attemptId": 3,
+          "dispatchedAtMs": "1791917838005",
+          "receivedAtMs": "1791917838211",
+          "transportDurationMs": 205,
+          "publishedAtMs": "1791917838249"
+        },
+        "fixtureRequestAtMs": 1791917838006,
+        "fixtureHandlerCompletedAtMs": 1791917838211,
+        "fixtureHoldDurationMs": 205
+      },
+      {
+        "request": 241,
+        "turnId": 3,
+        "attemptId": 4,
+        "observedStep": 9,
+        "journalId": "journal-9-4-23a63680a362ad4ace7358a0b612e0b7d465f9cbb46dadbd3232c38f202c78c6",
+        "textSha256": "23a63680a362ad4ace7358a0b612e0b7d465f9cbb46dadbd3232c38f202c78c6",
+        "requestBodySha256": "dd34912a1efbfd556e27b528b278d51edf88721c84b0cd44c3351e4d59e5ea3f",
+        "promptSha256": "593ff755cbd787dda620d8c13c55dbcff808b7b95281d7951a124b30ac86f865",
+        "memoryJournalId": "journal-6-3-5894d783d15a9e6d3fb631c0d0c2f2ea314b0722b78836877b7f38b4b8becd5f",
+        "application": {
+          "attemptId": 4,
+          "journalId": "journal-9-4-23a63680a362ad4ace7358a0b612e0b7d465f9cbb46dadbd3232c38f202c78c6",
+          "observedStep": 9,
+          "appliedStep": 10
+        },
+        "timing": {
+          "attemptId": 4,
+          "dispatchedAtMs": "1791917838783",
+          "receivedAtMs": "1791917838989",
+          "transportDurationMs": 206,
+          "publishedAtMs": "1791917839027"
+        },
+        "fixtureRequestAtMs": 1791917838784,
+        "fixtureHandlerCompletedAtMs": 1791917838989,
+        "fixtureHoldDurationMs": 205
+      },
+      {
+        "request": 242,
+        "turnId": 4,
+        "attemptId": 5,
+        "observedStep": 12,
+        "journalId": "journal-12-5-7553d24d9b90049204fee54678a3a2531f60833c262965879321a4d6bfb267f6",
+        "textSha256": "7553d24d9b90049204fee54678a3a2531f60833c262965879321a4d6bfb267f6",
+        "requestBodySha256": "d9b5ab583186f6fa944b72bbe6267ff37b709e6ef3690f8a9726cef6d4569ae7",
+        "promptSha256": "44a9606aecfb34b01fc8df69b56000222dc68bb4eb8971ad46e795d0b82fcf1a",
+        "memoryJournalId": "journal-9-4-23a63680a362ad4ace7358a0b612e0b7d465f9cbb46dadbd3232c38f202c78c6",
+        "application": {
+          "attemptId": 5,
+          "journalId": "journal-12-5-7553d24d9b90049204fee54678a3a2531f60833c262965879321a4d6bfb267f6",
+          "observedStep": 12,
+          "appliedStep": 13
+        },
+        "timing": {
+          "attemptId": 5,
+          "dispatchedAtMs": "1791917839582",
+          "receivedAtMs": "1791917839789",
+          "transportDurationMs": 207,
+          "publishedAtMs": "1791917839842"
+        },
+        "fixtureRequestAtMs": 1791917839584,
+        "fixtureHandlerCompletedAtMs": 1791917839789,
+        "fixtureHoldDurationMs": 205
+      }
+    ],
+    "cancelledRequestsWithNoAcceptedResponseOrJournal": []
+  },
+  "eventCounts": {
+    "advanced": 13,
+    "interrupted": 1,
+    "retried": 1,
+    "languageStarted": 4,
+    "languageReceived": 4,
+    "journalSaved": 4,
+    "memoryConfirmed": 3
+  },
+  "checks": {
+    "preservedKilledPrefixAllThreeFilesMatch": true,
+    "firstExportedSegmentByteExactPreKill": true,
+    "heldRequestExactlyMatchesKillReceipt": true,
+    "preparedPromptMatchesPhysicallyReceivedRequest": true,
+    "pendingWasAttempt1Observed3": true,
+    "lateHandlerOutcomeAfterClientAbsence": true,
+    "oneInterruptedThenOneExplicitRetry": true,
+    "noAcceptedResponseJournalOrApplicationForAttempt1": true,
+    "lateResponse238TextNotInAnySavedJournal": true,
+    "acceptedRequestsExactly239Through242": true,
+    "acceptedAttemptsExactly2Through5": true,
+    "observations3_6_9_12Apply4_7_10_13": true,
+    "allFourApplicationsUnique": true,
+    "memoryOnlyLatestPreviouslyAppliedJournal": true,
+    "restorationRecordedNoAutomaticResend": true,
+    "allNumericalStepsExactly1Through13": true,
+    "sameConfigurationAndUnreplenishedAttemptBudget": true,
+    "naturalAttemptBoundRetained": true,
+    "originalExportUnchanged": true,
+    "preservedPrefixUnchanged": true,
+    "requestSnapshotPrefixUnchanged": true,
+    "originalCheckerUnchanged": true
+  },
+  "status": "passed"
+}

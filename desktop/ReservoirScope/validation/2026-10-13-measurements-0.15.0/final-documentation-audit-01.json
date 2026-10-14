@@ -1,0 +1,259 @@
+{
+  "schema": "reservoir-final-documentation-audit-v1",
+  "recordedAtUtc": "2026-10-13T22:46:35.097561+00:00",
+  "status": "passed",
+  "scope": "Read-only report-to-receipt consistency and local Markdown file/heading links. No test/build/verifier/UI/provider/process actions were rerun during this audit; the separate legacy replay receipts retain actual execution. Only this new validation receipt is written.",
+  "documents": [
+    {
+      "path": "TAURI-ROADMAP.md",
+      "bytes": 163883,
+      "sha256": "ce9c08ddba71caf4fd683e83d60972053a830a23348e95af04a1c03f8356038d"
+    },
+    {
+      "path": "desktop/ReservoirScope/README.md",
+      "bytes": 33626,
+      "sha256": "4cd5cf0e0381b04baa8746137ccff227bc0d0dfac5613868497e1362890b747d"
+    },
+    {
+      "path": "shared/reservoir-scope/PARITY.md",
+      "bytes": 37019,
+      "sha256": "017e99e5bd22de54c0ee33c0e04ea3e4c47e47629c9cd0b73aaa2d1b94193e25"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/CORE-CONTEXT-QUALIFICATION.md",
+      "bytes": 4914,
+      "sha256": "c0d47b9fd0079d38b44baf31a96ffeb00527bbc28433c411cabef483585f0925"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/DESIGN.md",
+      "bytes": 3457,
+      "sha256": "5ab0c263d00933530a799568f6873c5083d740c314bfe1d68ffab590a6552f1d"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/EVALUATION.md",
+      "bytes": 3718,
+      "sha256": "d2af8cd960eb8437aa874f42319850b10f0d6efab39132b055749a23b8f5e986"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/EVALUATOR-PEER-REVIEW.md",
+      "bytes": 2248,
+      "sha256": "3431551899cb52ce517fd8340f1bf50449f07b561eab49214b68f3ee956b50d3"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/MACOS-UI.md",
+      "bytes": 3647,
+      "sha256": "88b2dc66eb374972403948d7c2424e7a3655bcd765b7660bf388cc6755b4b2a9"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/PEER-REVIEW.md",
+      "bytes": 4244,
+      "sha256": "edf0b4316cf5e886c3d08efb6c0a66b8c912383c0ef8d36247108fb9bd584fc4"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/PROTOCOL.md",
+      "bytes": 7847,
+      "sha256": "b4ad53a052fb3268a5c92019dcfd8b3775cbb80f15943c2be8f9812bd7ee2c1f"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/README.md",
+      "bytes": 4193,
+      "sha256": "9ab5c1ba8cffe86a9a4593a8b90e845779b7751edfa8b50c083254bc1e9be2f0"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/REAL-MODEL-RESULTS.md",
+      "bytes": 2871,
+      "sha256": "7c24d6b5337d432196af2c3d248937f391f2b24525182e26cc1522dd04a2c67f"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/RUBRIC.md",
+      "bytes": 3444,
+      "sha256": "a6b163ff1cc9d9e9e73c35c288ddc46d6e99358376d49f5350ecc569d9cc3553"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/SCRIPTED-RESULTS.md",
+      "bytes": 5127,
+      "sha256": "13333751343597aac06fbfb1cc779bdc81ec76d512ed27b038f4f3c9b92b037f"
+    }
+  ],
+  "documentBytesUnchangedDuringAudit": true,
+  "localLinks": {
+    "localFileLinksChecked": 239,
+    "headingLinksChecked": 6,
+    "missingFiles": [],
+    "unresolvedHeadings": [],
+    "externalUrlsChecked": false,
+    "method": "Inline Markdown link destinations with URI schemes excluded; local file existence and Markdown heading slug matching. No network requests."
+  },
+  "claimChecks": [
+    {
+      "claim": "Current version and build",
+      "result": "0.15.0 current position, executable18949732cf48c926003ffcf7b5b216bccc32ea071d0bff8a411e841eaba123d5 and archiveb02018a34fb1d80a4801b9c070354071985dae977546cbee87aa7379cc31909c agree with package receipts;46files and local ad-hoc verification retain limited scope."
+    },
+    {
+      "claim": "Source qualification",
+      "result": "341 frontend;174 core;182 desktop passed,2ignored; strictClippy and build passed. Failed intermediate checks remain separate."
+    },
+    {
+      "claim": "Real-model episode",
+      "result": "Admission pressure1/free32 against frozen minimum35 refused before service/readiness/generation. Four unstarted opportunities and no new v4 quality evidence are explicit; no scripted substitution."
+    },
+    {
+      "claim": "Separate scripted qualification",
+      "result": "121steps/4journals/19segments; reached observations30/60/90/120 use true previous scalar context and latest eligible full-text memory separately; applications31/61/91/121. UI report numeric examples agree with retained static-join output. No real-model authorship or scientific-writing improvement is claimed."
+    },
+    {
+      "claim": "Recovery and historical compatibility",
+      "result": "Recovered export has24identical non-manifest files with only manifest phase/generation/revision changed; pinned replay passed. Three old native exports independently passed this package unchanged. Broad cross-platform/human/GPU/power and durability claims remain open."
+    },
+    {
+      "claim": "Historical/source distinctions",
+      "result": "Old0.14real writing and0.12two-hour measurements remain build-specific; native reference remains separate. Stale macOS parity row was corrected before finalcapture."
+    }
+  ],
+  "postBuildDocumentation": {
+    "continuityReceipt": {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/source-continuity-final-02.json",
+      "bytes": 1912,
+      "sha256": "9a999cc7f2cb008964d812154af7d361c9236543b3670ab79299cc291622aec5"
+    },
+    "documentMatches": [
+      {
+        "path": "desktop/ReservoirScope/README.md",
+        "matchesCapturedAfter": true
+      },
+      {
+        "path": "shared/reservoir-scope/PARITY.md",
+        "matchesCapturedAfter": true
+      }
+    ],
+    "roadmapMatchesCapturedHash": true,
+    "limit": "Runtime/package continuity follows the separately captured identities and source map; this document audit does not reproduce a build."
+  },
+  "prospectiveFreeze": {
+    "filesChecked": 32,
+    "mismatches": []
+  },
+  "evidence": [
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/frontend-checks-02.json",
+      "bytes": 24830,
+      "sha256": "d8066301c336f4cc77e3dae40faa40ae10949ab4b0a6744b52ae55d75552d443"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/rust-checks-01.json",
+      "bytes": 37732,
+      "sha256": "e732f8e90fa84c3a4c54ff3fedc21e9b120db56bfb4e416883311fded27affce"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/package-build-01.json",
+      "bytes": 65394,
+      "sha256": "22ff8569aaebd825d04b0b13e3ca3461b696098d12458a3b6192e021a78d5985"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/archive-check.json",
+      "bytes": 21274,
+      "sha256": "d6cc40d820a78351a15f45b7bca9d5326f3973446306cb9a92340e05662f80a3"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/qualification-before-ui.json",
+      "bytes": 89950,
+      "sha256": "de91e4c6263339a19d35ff05ed9c40936eca06e025888d412bea938e4f54f95a"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/qualification-final-02.json",
+      "bytes": 91517,
+      "sha256": "8bff2e933d03ef3370c59c8702d8adf6b20bc237b50ff7a314b8cbeddbf55490"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/source-continuity-final-02.json",
+      "bytes": 1912,
+      "sha256": "9a999cc7f2cb008964d812154af7d361c9236543b3670ab79299cc291622aec5"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/quality-tests-04.json",
+      "bytes": 1149,
+      "sha256": "2a72749f7205fe6daa032a224d5bab4aae987f4fdebc948302db8642f53e326e"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/checker-tests-01.json",
+      "bytes": 1371,
+      "sha256": "39e636ffb4e55a482036143570e43df175c06379638147414142fd6ae81cf40b"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/evaluation-freeze-01.json",
+      "bytes": 9963,
+      "sha256": "84717b16c913a8427da52745e66a4ec0b2518358d961155fac2f1c53bf078bf2"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/legacy-replays-01.json",
+      "bytes": 3058,
+      "sha256": "1d7fcee5401a588f313c5349f645f79ab1108c8b620d94e165e097a8ed617a57"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/host-admission-01.json",
+      "bytes": 1402,
+      "sha256": "95d506c116667a4b0780cb2e731e4078b867498b6d7745b0912d0b3474a61408"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/real-model-outcome-01.json",
+      "bytes": 4491,
+      "sha256": "17528cd26d60c4a02ffe1960914c5a4c205cebf8d7d4b4002f7e73a602d3b87e"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/scripted-ui-plan-01.json",
+      "bytes": 1160,
+      "sha256": "0603b3729a416123d3c2b3d84ebcf226562a0cb337d1b7d67d83b6bf8447befb"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/scripted-bound-before-start.json",
+      "bytes": 1055,
+      "sha256": "896a582611a6e87892245115564a820907f95ff7e1a89b08e48827a734dd5fd9"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/native-scripted-start-01.json",
+      "bytes": 966,
+      "sha256": "f590c070d69689fba639b672cd061e9aef6a16514f8489c307d9776745c402e4"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/native-measurement-reading-01.json",
+      "bytes": 1429,
+      "sha256": "012e7ef9a20a29368135d8bbeb1c6e7f9a9f9340747131cc0289eb48427c5527"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/native-scripted-export-01.json",
+      "bytes": 659,
+      "sha256": "723db815349efd531c8b2de03326c5813914efee670b5e964d6f76ddc07a1edd"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/native-scripted-recovery-01.json",
+      "bytes": 7328,
+      "sha256": "e41abd63cb66398de5a2373b67913dc5c1227d333c493bd814301f8a3b31c654"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/scripted-cli-01.json",
+      "bytes": 1634,
+      "sha256": "80485bd07b50abe3185bd14f0660ce4f7542661b70536cf15a4bba6bbb96877a"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/scripted-measurement-chain-01.json",
+      "bytes": 16497,
+      "sha256": "186d15eb134d3253d3041166055495fcbc6a4da841fe066445819fa719cfda1f"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/scripted-measurement-chain-recovered-01.json",
+      "bytes": 16496,
+      "sha256": "90b29986d673258444220876cdda305f73453cb98ce2f1247b088fa67b6adcd1"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/scripted-recovery-comparison-01.json",
+      "bytes": 1187,
+      "sha256": "026d62108eab5f687de6b719dde983394a03cb285756663bfdc6330c08e2dfed"
+    }
+  ],
+  "unresolvedFindings": [],
+  "limitations": [
+    "Agent-native UI claims are cross-checked against retained operator receipts, not independently reenacted.",
+    "The static measurement companion is not an independent eigensolver; pinned production replay supplies numerical verification.",
+    "No new real-model accuracy, full context processing, broader platform or human acceptance is established."
+  ]
+}

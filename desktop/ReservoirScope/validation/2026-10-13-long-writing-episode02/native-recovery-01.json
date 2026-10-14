@@ -1,0 +1,33 @@
+{
+  "atUtc": "2026-10-14T01:04:24.344Z",
+  "sessionId": "sustained-1791938932286-3",
+  "original": {
+    "generation": "3",
+    "revision": "423",
+    "phase": "budgetReached"
+  },
+  "recovered": {
+    "generation": "4",
+    "revision": "424",
+    "phase": "paused"
+  },
+  "liveStep": 361,
+  "retainedStep": 361,
+  "savedJournals": 12,
+  "retainedAttempts": 12,
+  "resumeDisabled": true,
+  "cleanQuitVerified": true,
+  "idleRelaunchVerified": true,
+  "modelServiceStoppedBeforeRelaunch": true,
+  "recovery": "Exact owned session selected, verified and restored paused through native UI",
+  "export": "Actual native folder chooser produced distinct recovered export",
+  "sources": [
+    "native-quit-01.json",
+    "ui-relaunched-idle.txt",
+    "ui-restored-paused.txt",
+    "ui-recovered-exported.txt",
+    "ui-recovered-config.txt",
+    "ui-final-paused.txt"
+  ],
+  "qualificationLimit": "Clean relaunch and exhausted-budget recovery; not physical crash/power-loss, minimized or multi-hour test."
+}

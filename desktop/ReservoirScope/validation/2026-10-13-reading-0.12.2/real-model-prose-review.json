@@ -1,0 +1,384 @@
+{
+  "schema": "reservoir-real-model-prose-close-reading-v1",
+  "reviewedAtUtc": "2026-10-13T19:37:20.768605+00:00",
+  "scope": "All4 retained journals from one bounded actual Gemma3:4b session, judged against their current exact app-retained prompt/observation and prior supplied memory. Exploratory close reading, not a blinded benchmark or automated quality score.",
+  "reviewer": "Codex app_parity_inventory; independent read-only core-agent cross-check also read all4 texts/observations and confirmed main contrary evidence.",
+  "modelsContactedByReview": false,
+  "script": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/review_real_model_prose.py",
+    "sha256": "816ce549605e2a1a0de0f172f9ecb2f8596caa621148e39d912ab5eda58ae0da"
+  },
+  "inputReceipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/real-model-export-01/receipt.json",
+    "sha256": "7cc9bc59a8ff6c27f5ab740e586d80821b4a383206b59b1606fb07dfd19094c1"
+  },
+  "material": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/real-model-export-01/quality-review-material.json",
+    "sha256": "da9b912349e4a1efb60a07dac88cf12d35ac99246a41e7f3997c9ffc3d8b78a7"
+  },
+  "contextReceipts": {
+    "owned-model-server-start.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/owned-model-server-start.json",
+      "sha256": "7fe772f308bf0b6a87b5dadac251224ef4749a7c1115d4d9ef4f10a7eea3e0c7"
+    },
+    "real-model-created.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/real-model-created.json",
+      "sha256": "9a660412d9e8c4d94056f8926b12e2855a24c87395a0c11947b1af61e7698029"
+    },
+    "real-model-reading-first.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/real-model-reading-first.json",
+      "sha256": "287d6f6415e5dca35e032c745288f52ec7f5ca93e72afe40583f1d80a716d0b0"
+    },
+    "real-model-minimized.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/real-model-minimized.json",
+      "sha256": "9501b5597f27e5cca51d158aa2b7765ee94ec6d0284a49048bed36e625ff254f"
+    },
+    "real-model-before-restore.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/real-model-before-restore.json",
+      "sha256": "f921a93d1df216e0ca27a3fbed5244803396fd082d5ef4465ffc1a0eb5919b60"
+    },
+    "real-model-service-stop-request.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/real-model-service-stop-request.json",
+      "sha256": "53527e0551e053acbbe47a73a5626278f9b454a578152b7cb497d4806f1ede08"
+    },
+    "owned-model-cleanup-supplement-01.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/owned-model-cleanup-supplement-01.json",
+      "sha256": "d0e50aacb1e4da2d26fc2084b44ca66ade960c81806a0ff60da753982d5faab5"
+    },
+    "qualification.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/qualification.json",
+      "sha256": "e30fb4c564d444138c277abef8c2390700be571fa0c2e178778270f7b0dae452"
+    },
+    "source-before-build-final.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/source-before-build-final.json",
+      "sha256": "cdcb39523eee05ff396a325ca6813e8b2a00c53a6f30046e279a992be48e6e2f"
+    }
+  },
+  "journals": [
+    {
+      "identity": {
+        "journalId": "journal-30-1-d63f1e5125621f264ed52d25a45a95d90639b625ada8f767afe111ffec47119e",
+        "turnId": 1,
+        "attemptId": 1,
+        "observedStep": 30,
+        "status": "applied",
+        "application": {
+          "attemptId": 1,
+          "journalId": "journal-30-1-d63f1e5125621f264ed52d25a45a95d90639b625ada8f767afe111ffec47119e",
+          "observedStep": 30,
+          "appliedStep": 31
+        },
+        "textSha256": "d63f1e5125621f264ed52d25a45a95d90639b625ada8f767afe111ffec47119e",
+        "textBytes": 908,
+        "promptSha256": "7d89722ee70bd73e31d66c3aab096523b464440a84e3c71c0cbd4779a5dfca82",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 184,
+        "memoryJournalId": null,
+        "hostTiming": {
+          "attemptId": 1,
+          "dispatchedAtMs": "1791919428461",
+          "receivedAtMs": "1791919435550",
+          "transportDurationMs": 7089,
+          "publishedAtMs": "1791919435590"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "readability": "Readable paragraph(s), ending in a complete sentence; no visibly cut-off ending.",
+      "presentation": "Assistant-preface/quoted prose or Markdown headings remain exact, inert saved text; not cleaned or rewritten.",
+      "measurementBasis": {
+        "rms": 0.22602111913418554,
+        "l2": 1.2785685282492412,
+        "previousObservationStep": null,
+        "changeL2": null,
+        "sensoryTopEigenvalue": 0.6540921468657876,
+        "sensorySmallestEigenvalue": 0.0904444744876841,
+        "sensoryHeadToSmallestRatio": 7.231974651528944,
+        "sensoryEntropyTopEight": 0.8084048365093032,
+        "sensoryHeadSharePercentTopEight": 48.874313887996216,
+        "reducedActiveModeFillPercent": 94.31040364192096
+      },
+      "annotations": [
+        {
+          "quote": "RMS is low (0.226)",
+          "assessment": "value supported",
+          "basis": "Current RMS rounds to 0.226; low is a qualitative judgment without a stated comparison threshold."
+        },
+        {
+          "quote": "indicating good convergence within the first few steps",
+          "assessment": "not established",
+          "basis": "The prompt has one observation at global step30 and explicitly unavailable prior-observation change. A single RMS does not establish temporal convergence."
+        },
+        {
+          "quote": "dominant mode at 0.654",
+          "assessment": "value supported",
+          "basis": "Current top sensory eigenvalue rounds to0.654. The sensory field is explicitly separate from recurrent state."
+        },
+        {
+          "quote": "high normalized entropy (0.8084) and active-mode fill percentage (94.31%)",
+          "assessment": "values supported; processing inference not established",
+          "basis": "Both numbers round correctly. These are top-eight sensory entropy and reduced active-mode fill, not a direct measure of recurrent processing or cognition."
+        },
+        {
+          "quote": "consistent, near-uniform distribution of the sensory field eigenvalues",
+          "assessment": "overgeneralized",
+          "basis": "Much of the tail is near-flat, but the supplied32-mode spectrum includes a larger head. Calling the whole spectrum near-uniform needs qualification."
+        }
+      ]
+    },
+    {
+      "identity": {
+        "journalId": "journal-60-2-201687b88a028469621874d9f1652624bcf769269b005b89d8f2a81e1aed6b54",
+        "turnId": 2,
+        "attemptId": 2,
+        "observedStep": 60,
+        "status": "applied",
+        "application": {
+          "attemptId": 2,
+          "journalId": "journal-60-2-201687b88a028469621874d9f1652624bcf769269b005b89d8f2a81e1aed6b54",
+          "observedStep": 60,
+          "appliedStep": 61
+        },
+        "textSha256": "201687b88a028469621874d9f1652624bcf769269b005b89d8f2a81e1aed6b54",
+        "textBytes": 816,
+        "promptSha256": "610de47c06d7fc4dfe11d13edae719df45f88f0b72e4404a6c1bc525c4451fc1",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 150,
+        "memoryJournalId": "journal-30-1-d63f1e5125621f264ed52d25a45a95d90639b625ada8f767afe111ffec47119e",
+        "hostTiming": {
+          "attemptId": 2,
+          "dispatchedAtMs": "1791919466116",
+          "receivedAtMs": "1791919477059",
+          "transportDurationMs": 10942,
+          "publishedAtMs": "1791919477138"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "readability": "Readable paragraph(s), ending in a complete sentence; no visibly cut-off ending.",
+      "presentation": "Assistant-preface/quoted prose or Markdown headings remain exact, inert saved text; not cleaned or rewritten.",
+      "measurementBasis": {
+        "rms": 0.7997249468770827,
+        "l2": 4.523927464166693,
+        "previousObservationStep": 30,
+        "changeL2": 4.633194795187524,
+        "sensoryTopEigenvalue": 27.40278727066072,
+        "sensorySmallestEigenvalue": 0.018043220368765527,
+        "sensoryHeadToSmallestRatio": 1518.73039904215,
+        "sensoryEntropyTopEight": 0.21510500857213527,
+        "sensoryHeadSharePercentTopEight": 86.80851862780827,
+        "reducedActiveModeFillPercent": 15.181819266023808
+      },
+      "annotations": [
+        {
+          "quote": "high head share (86.8%)",
+          "assessment": "value supported",
+          "basis": "Current top-eight sensory head share is86.8085186%, correctly rounded to86.8%."
+        },
+        {
+          "quote": "suggests a significant focus on spatial information",
+          "assessment": "not established",
+          "basis": "No spatial interpretation of modes, input semantics, or spatial task is supplied. Spectral head share alone does not establish a spatial focus."
+        },
+        {
+          "quote": "relatively low RMS",
+          "assessment": "unsupported comparative description",
+          "basis": "Current RMS0.79972495 is much larger than the0.226 quoted in retained prior memory; prompt also supplies changeL2=4.63319480. No low threshold is stated."
+        },
+        {
+          "quote": "shifts in the eigenvector distribution",
+          "assessment": "not observable from supplied evidence",
+          "basis": "The prompt supplies recurrent coordinates and sensory eigenvalues, not eigenvectors."
+        },
+        {
+          "quote": "consistent eigenvalue values; this uniformity",
+          "assessment": "overgeneralized",
+          "basis": "Near-equal tail values coexist with a strongly unequal spectrum from27.40278727 to0.01804322; whole-spectrum uniformity is not supported."
+        }
+      ]
+    },
+    {
+      "identity": {
+        "journalId": "journal-90-3-908f59662d460581a7a579faad09c2c628eed0a862ec9a7ba57e81b1be689c7e",
+        "turnId": 3,
+        "attemptId": 3,
+        "observedStep": 90,
+        "status": "applied",
+        "application": {
+          "attemptId": 3,
+          "journalId": "journal-90-3-908f59662d460581a7a579faad09c2c628eed0a862ec9a7ba57e81b1be689c7e",
+          "observedStep": 90,
+          "appliedStep": 91
+        },
+        "textSha256": "908f59662d460581a7a579faad09c2c628eed0a862ec9a7ba57e81b1be689c7e",
+        "textBytes": 986,
+        "promptSha256": "d371396a4b43177819aeaabba9f3bcd5107d7100c69cc0911c78989377e1dba9",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 207,
+        "memoryJournalId": "journal-60-2-201687b88a028469621874d9f1652624bcf769269b005b89d8f2a81e1aed6b54",
+        "hostTiming": {
+          "attemptId": 3,
+          "dispatchedAtMs": "1791919507778",
+          "receivedAtMs": "1791919519931",
+          "transportDurationMs": 12152,
+          "publishedAtMs": "1791919519989"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "readability": "Readable paragraph(s), ending in a complete sentence; no visibly cut-off ending.",
+      "presentation": "Assistant-preface/quoted prose or Markdown headings remain exact, inert saved text; not cleaned or rewritten.",
+      "measurementBasis": {
+        "rms": 0.8297603237283347,
+        "l2": 4.693833213342804,
+        "previousObservationStep": 60,
+        "changeL2": 2.247455098950589,
+        "sensoryTopEigenvalue": 27.049112217807902,
+        "sensorySmallestEigenvalue": 0.015524101576516776,
+        "sensoryHeadToSmallestRatio": 1742.39469411389,
+        "sensoryEntropyTopEight": 0.25626367303248837,
+        "sensoryHeadSharePercentTopEight": 85.54188592553884,
+        "reducedActiveModeFillPercent": 12.348292471157292
+      },
+      "annotations": [
+        {
+          "quote": "Journal Entry - Observation 61",
+          "assessment": "incorrect current observation label",
+          "basis": "Actual current global step90;61 is the previous journal first-application boundary in the prompt. That resemblance suggests possible confusion but does not prove why the model wrote it."
+        },
+        {
+          "quote": "high head share (86.8%)",
+          "assessment": "stale numeric value",
+          "basis": "Current head share85.5418859%;86.8% matches the prior step60 journal supplied in memory."
+        },
+        {
+          "quote": "dominant sensory mode (eigenvalue 27.05)",
+          "assessment": "value supported",
+          "basis": "Current27.04911222 rounds to27.05."
+        },
+        {
+          "quote": "RMS remains relatively low (0.83)",
+          "assessment": "value supported; stability inference not established",
+          "basis": "Current RMS0.82976032 rounds to0.83. A similar norm is not evidence of an unchanged state; current changeL2=2.24745510."
+        },
+        {
+          "quote": "consistent eigenvalue values across all 32 modes",
+          "assessment": "contradicted as a whole-spectrum claim",
+          "basis": "Current top mode27.04911222 and smallest mode0.01552410 are strongly unequal. Repeated tail values do not make all32 modes consistent with one another."
+        },
+        {
+          "quote": "reduced active-mode fill percent (12.35%)",
+          "assessment": "value supported",
+          "basis": "Current12.34829247% rounds to12.35%."
+        },
+        {
+          "quote": "changes in the eigenvector distribution",
+          "assessment": "not observable from supplied evidence",
+          "basis": "No eigenvectors are supplied."
+        }
+      ]
+    },
+    {
+      "identity": {
+        "journalId": "journal-120-4-d53cc7433c2707c4c3d9b0494aa8a4ec9bc63eed55e4d276c9e0432b840e10df",
+        "turnId": 4,
+        "attemptId": 4,
+        "observedStep": 120,
+        "status": "applied",
+        "application": {
+          "attemptId": 4,
+          "journalId": "journal-120-4-d53cc7433c2707c4c3d9b0494aa8a4ec9bc63eed55e4d276c9e0432b840e10df",
+          "observedStep": 120,
+          "appliedStep": 121
+        },
+        "textSha256": "d53cc7433c2707c4c3d9b0494aa8a4ec9bc63eed55e4d276c9e0432b840e10df",
+        "textBytes": 1158,
+        "promptSha256": "3e9250098081d16a4a0a28d5743c3a0fd1b6d85b75fd337cd1b39d33b724700d",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 233,
+        "memoryJournalId": "journal-90-3-908f59662d460581a7a579faad09c2c628eed0a862ec9a7ba57e81b1be689c7e",
+        "hostTiming": {
+          "attemptId": 4,
+          "dispatchedAtMs": "1791919550512",
+          "receivedAtMs": "1791919555719",
+          "transportDurationMs": 5206,
+          "publishedAtMs": "1791919555767"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "readability": "Readable paragraph(s), ending in a complete sentence; no visibly cut-off ending.",
+      "presentation": "Assistant-preface/quoted prose or Markdown headings remain exact, inert saved text; not cleaned or rewritten.",
+      "measurementBasis": {
+        "rms": 0.8224217729018903,
+        "l2": 4.652320100915116,
+        "previousObservationStep": 90,
+        "changeL2": 1.9295766628527486,
+        "sensoryTopEigenvalue": 27.091030479545935,
+        "sensorySmallestEigenvalue": 0.013356691590113962,
+        "sensoryHeadToSmallestRatio": 2028.2740150710322,
+        "sensoryEntropyTopEight": 0.2659870230329972,
+        "sensoryHeadSharePercentTopEight": 85.61896760341445,
+        "reducedActiveModeFillPercent": 17.31500249378583
+      },
+      "annotations": [
+        {
+          "quote": "Journal Entry - Observation 61",
+          "assessment": "incorrect current observation label",
+          "basis": "Actual current global step120; the same mistaken heading appears in supplied prior memory."
+        },
+        {
+          "quote": "dominant sensory mode (27.09)",
+          "assessment": "value supported",
+          "basis": "Current27.09103048 rounds to27.09."
+        },
+        {
+          "quote": "high head share (86%)",
+          "assessment": "value supported at coarse precision",
+          "basis": "Current85.6189676% rounds to86% at whole-percent precision; this is not the earlier stale86.8% error."
+        },
+        {
+          "quote": "RMS of 0.83",
+          "assessment": "stale or inaccurate at stated precision",
+          "basis": "Current RMS0.82242177 rounds to0.82 to two decimals;0.83 is the value written in prior step90 memory."
+        },
+        {
+          "quote": "remarkably consistent eigenvalue distribution across all 32 modes",
+          "assessment": "misleading or unresolved interpretation",
+          "basis": "If this means equality across modes, current27.09103048 versus0.01335669 contradicts it. If temporal shape stability was intended, that different claim needs an explicit comparison; the sentence does not distinguish it."
+        },
+        {
+          "quote": "reduced active-mode fill (17.32%)",
+          "assessment": "value supported",
+          "basis": "Current17.31500249% rounds to17.32%."
+        },
+        {
+          "quote": "plateau in learning or a deliberate suppression of dynamic responses",
+          "assessment": "not established",
+          "basis": "No learning measure, controlled causal comparison or evidence of deliberate suppression is supplied. Prompt explicitly says the text codec is not a learned embedding and writing does not train model or reservoir weights."
+        }
+      ]
+    }
+  ],
+  "mechanicalResult": "4 complete replies,4 exact saves,4 unique next-step applications,3 exact latest-applied full-text memory links; pinned whole-bundle replay passed.",
+  "proseResult": "Readable and mechanically complete, with several correct measurements, but repeated stale/incorrect labels and numeric values plus unsupported spectral, spatial, stability and learning interpretations.",
+  "memoryResult": "Exact prior text is supplied. Repeated errors are consistent with carried prose influencing later wording, but no no-memory comparison establishes that causal effect or comprehension.",
+  "limits": [
+    "One finite episode;4 dependent journal entries are not4 independent replications.",
+    "No independent wire request/response log for owned Ollama; app-retained request and timing evidence only.",
+    "No model-weight training, causal benefit, consciousness, intent, power-loss durability or long-run real-model reliability result.",
+    "Cleanup supplement records original supervisor EPERM plus later exact-process/group absence, not an error-free original cleanup."
+  ]
+}

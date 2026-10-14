@@ -1,0 +1,72 @@
+{
+  "scope": "Read-only exact owned server/supervisor PID and original PGID inspection only; no HTTP, signals, model launch, other process enumeration, or credential reads.",
+  "helperSha256": "72f582e6477c3b1063cfda21f1c4da43bd85bb889a59ea9b8c6a2d7d9b0b3905",
+  "observations": [
+    {
+      "atUtc": "2026-10-13T20:30:10.468277+00:00",
+      "selectedPids": [
+        {
+          "pid": 13465,
+          "returnedBytes": 0,
+          "errno": 3
+        },
+        {
+          "pid": 13451,
+          "returnedBytes": 0,
+          "errno": 3
+        }
+      ],
+      "group": {
+        "pgid": 13465,
+        "returnedBytes": 0,
+        "errno": 0,
+        "query": "proc_listpids(PROC_PGRP_ONLY,13465)",
+        "members": []
+      }
+    },
+    {
+      "atUtc": "2026-10-13T20:30:10.673313+00:00",
+      "selectedPids": [
+        {
+          "pid": 13465,
+          "returnedBytes": 0,
+          "errno": 3
+        },
+        {
+          "pid": 13451,
+          "returnedBytes": 0,
+          "errno": 3
+        }
+      ],
+      "group": {
+        "pgid": 13465,
+        "returnedBytes": 0,
+        "errno": 0,
+        "query": "proc_listpids(PROC_PGRP_ONLY,13465)",
+        "members": []
+      }
+    },
+    {
+      "atUtc": "2026-10-13T20:30:10.874143+00:00",
+      "selectedPids": [
+        {
+          "pid": 13465,
+          "returnedBytes": 0,
+          "errno": 3
+        },
+        {
+          "pid": 13451,
+          "returnedBytes": 0,
+          "errno": 3
+        }
+      ],
+      "group": {
+        "pgid": 13465,
+        "returnedBytes": 0,
+        "errno": 0,
+        "query": "proc_listpids(PROC_PGRP_ONLY,13465)",
+        "members": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "schema": "reservoir-normalized-background-load-index-v1",
+  "createdAtUtc": "2026-10-13T18:28:34.950577Z",
+  "scope": "Reading-0.12.1 work receipts only. Lightweight metadata normalization; no active sampler, markers, app, model, provider or filesystem-store reads.",
+  "analyzerContract": "analyze_run.py accepts one object per --load-receipt with top-level startedAtUtc and endedAtUtc; pass the six normalizedReceipt files, not this index.",
+  "intervals": [
+    {
+      "label": "journal-focused-01",
+      "startedAtUtc": "2026-10-13T18:10:35.838072Z",
+      "endedAtUtc": "2026-10-13T18:10:36.771293Z",
+      "durationSeconds": 0.933221,
+      "normalizedReceipt": "validation/2026-10-13-reading-0.12.1/load-intervals-01/journal-focused-01.json",
+      "normalizedSha256": "ca31eface3753625a8fa00bc5ad8d39caa6998348293a9a0a98b8bf4a423d093",
+      "sources": [
+        {
+          "path": "validation/2026-10-13-reading-0.12.1/journal-focused-01.json",
+          "bytes": 1589,
+          "sha256": "3ccfae26b012f2596e803072d82bf79775ada3729c23dc385a82c4d45fcda340",
+          "timestampPointers": [
+            "/startedAtUtc",
+            "/endedAtUtc"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "journal-focused-02",
+      "startedAtUtc": "2026-10-13T18:11:12.549514Z",
+      "endedAtUtc": "2026-10-13T18:11:13.069353Z",
+      "durationSeconds": 0.519839,
+      "normalizedReceipt": "validation/2026-10-13-reading-0.12.1/load-intervals-01/journal-focused-02.json",
+      "normalizedSha256": "0918a40eb0874212fc2c08ac06302a2fe88a788a260d9902026dbb93455b7c1e",
+      "sources": [
+        {
+          "path": "validation/2026-10-13-reading-0.12.1/journal-focused-02.json",
+          "bytes": 1721,
+          "sha256": "8826adef5698451e0a4746cfb0e428d57d1d914a9e98bf63c3f11970da04085d",
+          "timestampPointers": [
+            "/startedAtUtc",
+            "/endedAtUtc"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "setup-checks-01",
+      "startedAtUtc": "2026-10-13T18:12:58.937318Z",
+      "endedAtUtc": "2026-10-13T18:13:02.223816Z",
+      "durationSeconds": 3.286498,
+      "normalizedReceipt": "validation/2026-10-13-reading-0.12.1/load-intervals-01/setup-checks-01.json",
+      "normalizedSha256": "ed9763273ba13f366fb80b1f946a7b1c1b8ec9aa168bc23bd926d90a6fc0a02a",
+      "sources": [
+        {
+          "path": "validation/2026-10-13-reading-0.12.1/setup-source-checks-01.json",
+          "bytes": 2925,
+          "sha256": "e278d2d6459257746a65930cd390e47d57e1d62eabb424c6ec88d726b948c141",
+          "timestampPointers": [
+            "/checks/0/startedAtUtc",
+            "/checks/0/closedAtUtc",
+            "/checks/1/startedAtUtc",
+            "/checks/1/closedAtUtc"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "integrated-01",
+      "startedAtUtc": "2026-10-13T18:14:42.891838Z",
+      "endedAtUtc": "2026-10-13T18:14:46.390795Z",
+      "durationSeconds": 3.498957,
+      "normalizedReceipt": "validation/2026-10-13-reading-0.12.1/load-intervals-01/integrated-01.json",
+      "normalizedSha256": "ee541d69c6b063649cc81835dc0357aa22695718577fdbbb31c81d55e78a59f1",
+      "sources": [
+        {
+          "path": "validation/2026-10-13-reading-0.12.1/integrated-01-qualification.json",
+          "bytes": 36352,
+          "sha256": "ae83534aa91b7d1f7e2639487ec3235ef942a36f0c91494816973625df354b5c",
+          "timestampPointers": [
+            "/startedAtUtc",
+            "/endedAtUtc"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "owned-preview",
+      "startedAtUtc": "2026-10-13T18:16:59.981049Z",
+      "endedAtUtc": "2026-10-13T18:21:02.432561Z",
+      "durationSeconds": 242.451512,
+      "normalizedReceipt": "validation/2026-10-13-reading-0.12.1/load-intervals-01/owned-preview.json",
+      "normalizedSha256": "c814daaaff0c14c24c4229aa37fe220a995e31c9c8e71070523003fc44b85a4f",
+      "sources": [
+        {
+          "path": "validation/2026-10-13-reading-0.12.1/preview-start.json",
+          "bytes": 411,
+          "sha256": "908a4c76ad77aebcaaf22954032785b7e217f98fa5f54775576ec03e5e018a4b",
+          "timestampPointers": [
+            "/startedAtUtc",
+            "/pid"
+          ]
+        },
+        {
+          "path": "validation/2026-10-13-reading-0.12.1/preview-closed.json",
+          "bytes": 458,
+          "sha256": "b1e6d63c6a4d7032b8163d1ce6cc7d356b575d5f2a2ffc76b52ec74558e8a7c6",
+          "timestampPointers": [
+            "/startedAtUtc",
+            "/endedAtUtc",
+            "/pid"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "integrated-02",
+      "startedAtUtc": "2026-10-13T18:21:34.819000Z",
+      "endedAtUtc": "2026-10-13T18:21:39.229833Z",
+      "durationSeconds": 4.410833,
+      "normalizedReceipt": "validation/2026-10-13-reading-0.12.1/load-intervals-01/integrated-02.json",
+      "normalizedSha256": "fda8c479442e5cd7b3b8e7c42ee7c8c17cbe86c42e59716bff8dfbb1cca09055",
+      "sources": [
+        {
+          "path": "validation/2026-10-13-reading-0.12.1/integrated-02-qualification.json",
+          "bytes": 36667,
+          "sha256": "75127d1ea4829b8f56779da5ce4673c222eab23b3f894489976f427da99272ba",
+          "timestampPointers": [
+            "/startedAtUtc",
+            "/endedAtUtc"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalDocumentedDurationSeconds": 255.10086,
+  "originalReceiptsPreserved": true,
+  "notConverted": [
+    {
+      "receipts": [
+        "before-edit.json",
+        "source-backup-extension-note.json",
+        "model-selection.json"
+      ],
+      "reason": "Point/capture metadata, not closed process load intervals; no boundaries inferred."
+    },
+    {
+      "receipts": [
+        "journal-focused-01-started.json",
+        "journal-focused-02-started.json",
+        "preview-start.json"
+      ],
+      "reason": "Open starts are corroboration only; their closed companion receipts already supply the applicable intervals."
+    }
+  ],
+  "limits": [
+    "Not a complete account of editing, preview-browser overhead, Codex, sampler or other host work.",
+    "Do not infer intervals from mtimes or relabel the later setup receipt capture as compiler completion.",
+    "Run final analysis only after primary sampler has a retained footer; normalization did not read or analyze it."
+  ]
+}

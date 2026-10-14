@@ -1,0 +1,55 @@
+{
+  "schema": "reservoir-swift-oracle-reuse-v1",
+  "priorReceipt": "validation/2026-10-12-regulation-oracles-final.json",
+  "checkedAtUTC": "2026-10-13T05:19:04.613599+00:00",
+  "outcome": "passed",
+  "checks": [
+    {
+      "role": "swiftVerifier",
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/essentials-run",
+      "sha256": "d0a69c67725cbf002c9b0148cf5fc4cc4ead6db076bc483d46a51925a0d2a39d",
+      "matchesPriorReceipt": true
+    },
+    {
+      "role": "nativePrefixOracle",
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/regulation-swift-oracle/bin/regulation-window-oracle",
+      "sha256": "4b5ca1a32859b7d0cd39cc4e9f262a9474e621b4a220e5c171b260df7aa4c4e0",
+      "matchesPriorReceipt": true
+    },
+    {
+      "path": "essentials/regulation/RegulationExample.swift",
+      "sha256": "afc5b8c9568624198adcfd1fe21dc2171ea0c8d6b86512367cd83631a46bf99a",
+      "matchesPriorReceipt": true
+    },
+    {
+      "path": "essentials/regulation/Regulation.swift",
+      "sha256": "63ef074bf615a63a28a7c15f813b8e76f975ad9efc57a273f48ad15e0a07137b",
+      "matchesPriorReceipt": true
+    },
+    {
+      "path": "essentials/spectral_bridge/SensoryField.swift",
+      "sha256": "8993986044309fefc911a052a9ef201c4f6efcd01afe63239512be4502022809",
+      "matchesPriorReceipt": true
+    },
+    {
+      "path": "essentials/actions/ActionVerification.swift",
+      "sha256": "34a6894808492767da18e4b25e1b3cba981d06203154ca19785d4d8ec0960ad3",
+      "matchesPriorReceipt": true
+    },
+    {
+      "path": "essentials/runner/Main.swift",
+      "sha256": "cc7274c893cce86611ee4ebb9a83899bb0a264c890105f663244b966fdd86bd7",
+      "matchesPriorReceipt": true
+    },
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/GuidedLessons.swift",
+      "sha256": "d6fbf60c4ac863e296d19ecb579fcf9c3e46da4c7d69e82a3351c87cfbc5aea3",
+      "matchesPriorReceipt": true
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/regulation_window_oracle.swift",
+      "sha256": "53bcc42c6dfbc72617109fcbccb719b191b19ee511f15c1f859abacff67d4313",
+      "matchesPriorReceipt": true
+    }
+  ]
+}

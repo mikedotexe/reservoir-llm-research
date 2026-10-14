@@ -1,0 +1,28 @@
+{
+  "schema": "offline-evaluator-test-execution-v1",
+  "startedAtUtc": "2026-10-13T22:30:07.367178+00:00",
+  "endedAtUtc": "2026-10-13T22:30:08.009193+00:00",
+  "wallNanoseconds": 641908167,
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_journal_quality.py"
+  ],
+  "cwd": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts",
+  "exitCode": 1,
+  "expectedTests": 43,
+  "logSha256": "1963154ee54059c5aa4d5fd6334a880ff00bf2fcbbfc8e893c3d62ac66d54978",
+  "sources": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/journal_quality.py",
+      "sha256": "6953e6cb54d86bb36a6f10ab494306cee68e98a734bd924c4ed64fc9e22a0b45"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/test_journal_quality.py",
+      "sha256": "a6a2b054875580d358eccab406da7df8cc6a1d4146a2333d4772661d30420463"
+    }
+  ],
+  "scope": "Final source after trailing-correction peer review; offline synthetic/known corpus only."
+}

@@ -1,0 +1,249 @@
+{
+  "schema": "reservoir-rust-source-qualification-v1",
+  "startedAtUtc": "2026-10-13T23:18:15.964028+00:00",
+  "endedAtUtc": "2026-10-13T23:23:31.286806+00:00",
+  "status": "passed",
+  "processOverrides": {
+    "DEVELOPER_DIR": "/Applications/Xcode.app/Contents/Developer",
+    "SDKROOT": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+  },
+  "sourceBefore": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/rust-source-before-01.json",
+    "bytes": 30206,
+    "sha256": "97f1fd34de2a69feb8b6fc7ac69ce33c3a1adaf58437f4ab70320769098065e9"
+  },
+  "sourceUnchanged": true,
+  "sourceScope": "Rust core/desktop compiled sources, fixtures, manifests, locks, toolchain and Tauri configuration; Markdown excluded. General qualification inventory exclusions apply. Frontend tests are separate.",
+  "results": [
+    {
+      "name": "core-tests-01",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "reservoir-core"
+      ],
+      "cwd": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope",
+      "startedAtUtc": "2026-10-13T23:18:15.964916+00:00",
+      "endedAtUtc": "2026-10-13T23:20:30.345589+00:00",
+      "elapsedNanoseconds": 134380725875,
+      "exitCode": 0,
+      "log": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/core-tests-01.log",
+        "bytes": 18993,
+        "sha256": "0251372c2554153f8e694fb877b3a606f0377fb280395721c08967aa2ba15edd"
+      },
+      "testResultSummaries": [
+        [
+          19,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          8,
+          0,
+          0
+        ],
+        [
+          12,
+          0,
+          0
+        ],
+        [
+          14,
+          0,
+          0
+        ],
+        [
+          5,
+          0,
+          0
+        ],
+        [
+          14,
+          0,
+          0
+        ],
+        [
+          7,
+          0,
+          0
+        ],
+        [
+          9,
+          0,
+          0
+        ],
+        [
+          8,
+          0,
+          0
+        ],
+        [
+          10,
+          0,
+          0
+        ],
+        [
+          9,
+          0,
+          0
+        ],
+        [
+          11,
+          0,
+          0
+        ],
+        [
+          8,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0
+        ],
+        [
+          10,
+          0,
+          0
+        ],
+        [
+          5,
+          0,
+          0
+        ],
+        [
+          7,
+          0,
+          0
+        ],
+        [
+          12,
+          0,
+          0
+        ],
+        [
+          7,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "totals": {
+        "passed": 181,
+        "failed": 0,
+        "ignored": 0
+      }
+    },
+    {
+      "name": "desktop-tests-01",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "reservoir-scope-desktop"
+      ],
+      "cwd": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope",
+      "startedAtUtc": "2026-10-13T23:20:30.345813+00:00",
+      "endedAtUtc": "2026-10-13T23:23:16.759911+00:00",
+      "elapsedNanoseconds": 166415106125,
+      "exitCode": 0,
+      "log": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/desktop-tests-01.log",
+        "bytes": 20002,
+        "sha256": "fbfc2c70e574dca9a26b83039949437179a19af1cb05f1214c6c5d9f96477a4d"
+      },
+      "testResultSummaries": [
+        [
+          190,
+          0,
+          2
+        ]
+      ],
+      "totals": {
+        "passed": 190,
+        "failed": 0,
+        "ignored": 2
+      }
+    },
+    {
+      "name": "core-clippy-01",
+      "command": [
+        "cargo",
+        "clippy",
+        "--locked",
+        "-p",
+        "reservoir-core",
+        "--all-targets",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "cwd": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope",
+      "startedAtUtc": "2026-10-13T23:23:16.760084+00:00",
+      "endedAtUtc": "2026-10-13T23:23:21.822770+00:00",
+      "elapsedNanoseconds": 5062731166,
+      "exitCode": 0,
+      "log": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/core-clippy-01.log",
+        "bytes": 192,
+        "sha256": "9e3d394dbfef96f69136839254818d031bfdba57ccb9a0d9a8b24284c3617668"
+      },
+      "testResultSummaries": [],
+      "totals": {
+        "passed": 0,
+        "failed": 0,
+        "ignored": 0
+      }
+    },
+    {
+      "name": "desktop-clippy-01",
+      "command": [
+        "cargo",
+        "clippy",
+        "--locked",
+        "-p",
+        "reservoir-scope-desktop",
+        "--all-targets",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "cwd": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope",
+      "startedAtUtc": "2026-10-13T23:23:21.822919+00:00",
+      "endedAtUtc": "2026-10-13T23:23:31.256299+00:00",
+      "elapsedNanoseconds": 9433455334,
+      "exitCode": 0,
+      "log": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/desktop-clippy-01.log",
+        "bytes": 310,
+        "sha256": "99cb9a0bdcb05be11a17310a70eb649fcf4ed43046e89b90097af2f36a25207f"
+      },
+      "testResultSummaries": [],
+      "totals": {
+        "passed": 0,
+        "failed": 0,
+        "ignored": 0
+      }
+    }
+  ],
+  "limits": "Tests may use owned synthetic local fixtures; no real model or native app was launched by this pipeline. No existing archive, receipt, or canonical source was modified."
+}

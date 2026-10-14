@@ -1,0 +1,83 @@
+
+> reservoir-scope-desktop@0.11.0 tauri
+> tauri build --bundles app -- --locked
+
+        Info Looking up installed tauri packages to check mismatched versions...
+     Running beforeBuildCommand `npm run prepare:resources && npm run build`
+
+> reservoir-scope-desktop@0.11.0 prepare:resources
+> node scripts/prepare.mjs
+
+{"baselineCommit": "96b60ed1d1fe9bdd3a5f50dec3a66a4754ad7f95", "destination": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri/resources", "files": 42, "status": "verified"}
+
+> reservoir-scope-desktop@0.11.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 91 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.47 kB │ gzip:   0.30 kB
+dist/assets/index-4THz0Qp6.css     60.60 kB │ gzip:  12.69 kB
+dist/assets/index-CkY8XQFt.js   1,002.10 kB │ gzip: 272.98 kB │ map: 4,543.49 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 2.19s
+   Compiling smallvec v1.16.3
+   Compiling tokio v1.53.2
+   Compiling futures-core v0.3.34
+   Compiling http-body v1.1.0
+   Compiling httparse v1.10.1
+   Compiling slab v0.4.12
+   Compiling futures-task v0.3.34
+   Compiling try-lock v0.2.5
+   Compiling tower-service v0.3.3
+   Compiling tower-layer v0.3.3
+   Compiling atomic-waker v1.1.2
+   Compiling ipnet v2.12.1
+   Compiling base64 v0.22.1
+   Compiling reservoir-scope-desktop v0.11.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+   Compiling sync_wrapper v1.0.2
+   Compiling futures-channel v0.3.34
+   Compiling want v0.3.1
+   Compiling http-body-util v0.1.5
+   Compiling reservoir-core v0.1.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core)
+   Compiling futures-util v0.3.34
+   Compiling icu_normalizer v2.3.0
+   Compiling rusqlite v0.40.2
+   Compiling idna_adapter v1.2.2
+   Compiling idna v1.1.0
+   Compiling url v2.5.8
+   Compiling urlpattern v0.6.0
+   Compiling wry v0.57.0
+   Compiling tao v0.37.1
+   Compiling tauri-utils v2.10.1
+   Compiling tower v0.5.3
+   Compiling hyper v1.11.1
+   Compiling tower-http v0.6.11
+   Compiling hyper-util v0.1.20
+   Compiling reqwest v0.13.4
+   Compiling tauri-runtime v2.12.1
+   Compiling tauri-runtime-wry v2.12.1
+   Compiling tauri v2.12.3
+   Compiling tauri-plugin-fs v2.7.0
+   Compiling tauri-plugin-single-instance v2.5.3
+   Compiling tauri-plugin-dialog v2.8.2
+    Finished `release` profile [optimized] target(s) in 2m 08s
+       Built application at: /Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-scope-desktop
+    Bundling Reservoir Scope Tauri Preview.app (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app)
+     Signing with identity "-"
+Signing with identity "-"
+Signing /Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop
+/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop: replacing existing signature
+Signing with identity "-"
+Signing /Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app
+/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app: replacing existing signature
+        Warn skipping app notarization, no APPLE_ID & APPLE_PASSWORD & APPLE_TEAM_ID or APPLE_API_KEY & APPLE_API_ISSUER & APPLE_API_KEY_PATH environment variables found
+    Finished 1 bundle at:
+        /Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app (234.69 MiB)
+

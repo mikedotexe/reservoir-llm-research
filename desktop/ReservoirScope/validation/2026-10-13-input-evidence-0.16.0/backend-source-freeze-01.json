@@ -1,0 +1,54 @@
+{
+  "schema": "reservoir-backend-input-evidence-freeze-v1",
+  "frozenAtUtc": "2026-10-13T23:17:48.476905+00:00",
+  "status": "focused-tests-passed-full-integrated-qualification-pending",
+  "sources": [
+    {
+      "path": "src-tauri/src/model_transport.rs",
+      "bytes": 15786,
+      "sha256": "23af2733a02092fd22521b0e8fc10eee2901b83a632adc2d137b7bf4a4112e28"
+    },
+    {
+      "path": "src-tauri/src/model_transport_tests.rs",
+      "bytes": 25546,
+      "sha256": "49e9ec1e07c871e1478934d3cc171e7354b40df8d0488240c2bac6ce7b34287a"
+    },
+    {
+      "path": "src-tauri/src/sustained.rs",
+      "bytes": 58956,
+      "sha256": "5399ac3d9faf9fcd291dcc6dd176f80c7cd712bc489e6969bfcf621a084223c8"
+    },
+    {
+      "path": "src-tauri/src/sustained_store.rs",
+      "bytes": 56229,
+      "sha256": "cc3a18469733b975eb0aafc03d41270619e88f6b64eefbcb7a40a91df09b2ef4"
+    },
+    {
+      "path": "src-tauri/src/sustained_tests.rs",
+      "bytes": 55999,
+      "sha256": "465130c736dbd3a31f889d263cca10065298706bad6e73911d955d9b8ef80e3e"
+    },
+    {
+      "path": "src-tauri/src/sustained_prompt_evidence_tests.rs",
+      "bytes": 9273,
+      "sha256": "983b3cacd436ae3689091e342c472fbe60c84023035529ad13fead873a5495ce"
+    }
+  ],
+  "executedFocusedTests": 8,
+  "executionReceipt": {
+    "path": "validation/2026-10-13-input-evidence-0.16.0/backend-prompt-evidence-tests-02.json",
+    "bytes": 3642,
+    "sha256": "9086fd3018b531bb1e4020248b246e1785fb6f7cbcdbb1f5ec48efef6dcb152d"
+  },
+  "priorExecution": {
+    "path": "validation/2026-10-13-input-evidence-0.16.0/backend-prompt-evidence-tests-01.json",
+    "bytes": 610,
+    "sha256": "ea2ba0eae418c1b80744b5e2b5315d8064b100e7caa9ca638540d9e4a5b5dd05"
+  },
+  "limits": [
+    "First run had6selectedtests and preceded final preview/type changes; only02 binds finalfocusedsource.",
+    "Provider input counts are assertions, not independent tokenizer/context-processing or understanding evidence.",
+    "Malformed optional metadata never determines completion/save; ordinary response envelope/model/output/cancel/deadline gates unchanged.",
+    "No packaged UI, real model/provider, or Being calls were performed. Temporary loopback fixture tests only."
+  ]
+}

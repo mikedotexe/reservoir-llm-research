@@ -1,0 +1,37 @@
+{
+  "capturedAtUtc": "2026-10-13T21:15:01.748312+00:00",
+  "purpose": "Prospective copied-helper qualification before parent-owned launch; no actual service execution by author.",
+  "sources": {
+    "owned_model.py": {
+      "sha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f",
+      "bytes": 32949
+    },
+    "test_owned_model.py": {
+      "sha256": "145d75ad5d1d8a090bb3c1a9830a59d1127d3424354b8b59db208d0006da9b87",
+      "bytes": 21837
+    },
+    "OWNED-SUPERVISION.md": {
+      "sha256": "d074414d8bd2c1f20f14f6d891a470c1385afe77abe5798c032bdeb8ef7247e8",
+      "bytes": 6802
+    },
+    "owned-helper-tests-01.json": {
+      "sha256": "fa5054f5e9bb5d3f982cdac63e2c83f95a162352a7ddc0ba366caa25eb1430ae",
+      "bytes": 1173
+    },
+    "owned-helper-tests-01.log": {
+      "sha256": "6f5d70c1c32e6e504e512ed944785633ea831577e3a721be5c6288c4b6fbb1f4",
+      "bytes": 4443
+    }
+  },
+  "peerReview": {
+    "reviewer": "app_parity_inventory",
+    "type": "Read-only source review; no tests/process/service/signals by reviewer",
+    "helperSha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f",
+    "result": "No concrete blocker found in stable identity, retained raw observations, foreign/reused rejection, exact leader-only exit proof, bounded post-TERM retries, no unknown-group escalation/reap, EOF and1200-second ceiling."
+  },
+  "oldHelper": {
+    "path": "../2026-10-13-grounding-0.13.0/owned_model.py",
+    "sha256": "72f582e6477c3b1063cfda21f1c4da43bd85bb889a59ea9b8c6a2d7d9b0b3905"
+  },
+  "actualLaunchAndCleanup": "Unexecuted in this qualification; parent-owned future run must retain its own outcome."
+}

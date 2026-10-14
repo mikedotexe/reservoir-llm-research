@@ -1,0 +1,55 @@
+{
+  "createdAtUtc": "2026-10-13T18:50:56.484794+00:00",
+  "sessionPath": "/Users/v/Library/Application Support/research.reservoir.scope.tauri/sustained-v1/sustained-1791917410760-3",
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791917410760-3",
+    "generation": "3",
+    "revision": "1",
+    "config": {
+      "seed": "20261014",
+      "turnEvery": 3,
+      "maximumSteps": 20,
+      "maximumTurns": 5,
+      "maximumDurationSeconds": 600,
+      "storageBudgetBytes": 33554432,
+      "paceMs": 100,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:57314",
+        "model": "reservoir-fixture:reliability-0.12",
+        "contextTokens": 4096
+      }
+    },
+    "phase": "ready",
+    "step": 0,
+    "durableStep": 0,
+    "elapsedMillis": 0,
+    "journalCount": 0,
+    "segmentCount": 0,
+    "lastSegmentSha256": null,
+    "checkpointSha256": "11592558f170909d33f922bc9a796d5ee9f236d1b0a931cb9fb5d747cfe641a5",
+    "previousCheckpointSha256": null,
+    "diagnostics": [],
+    "attemptTiming": null
+  },
+  "appIdentity": {
+    "pid": 76635,
+    "startSeconds": "1791916998",
+    "startMicroseconds": "781710",
+    "executablePath": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop"
+  },
+  "providerIdentity": {
+    "pid": 17666,
+    "startSeconds": "1791908439",
+    "startMicroseconds": "612665",
+    "executablePath": "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python"
+  },
+  "providerRequestsBeforeStart": 237,
+  "expectedNextRequest": 238,
+  "plannedTrigger": "SIGKILL only exact app PID during independently witnessed owned held request, before60second deadline. Preserveprefix and noautoretry onrelaunch. This is process interruption, not power loss."
+}

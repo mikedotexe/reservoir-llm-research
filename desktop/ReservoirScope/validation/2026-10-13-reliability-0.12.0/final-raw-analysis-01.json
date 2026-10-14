@@ -1,0 +1,403 @@
+{
+  "schema": "reservoir-macos-reliability-v1-analysis",
+  "inputSha256": "cad9864c0f1d6e0ad0b5345ac2c5482bbc2fcfb5e62820ef2e9c3708bb6c1185",
+  "inputBytes": 542233,
+  "measurementOnly": true,
+  "processIdentity": {
+    "pid": 17307,
+    "startSeconds": "1791908342",
+    "startMicroseconds": "773376",
+    "executablePath": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+    "executableSha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d",
+    "executableStat": {
+      "device": 16777234,
+      "inode": 384784783,
+      "bytes": 16747744,
+      "mtimeNs": "1791904890254314334"
+    }
+  },
+  "selection": {
+    "fromElapsedSeconds": 0,
+    "toElapsedSeconds": null,
+    "phase": "Not inferred; bind manually to retained UI phase evidence"
+  },
+  "coverage": {
+    "allSampleCount": 523,
+    "selectedSampleCount": 523,
+    "firstElapsedSeconds": 0.01520725,
+    "lastElapsedSeconds": 7833.511003,
+    "footer": {
+      "type": "footer",
+      "status": "sampler-signal-15",
+      "wallUtc": "2026-10-13T18:39:57.312655+00:00",
+      "monotonicNs": "1113173724517291",
+      "elapsedSeconds": 7836.242203583,
+      "sampleCount": 523,
+      "errors": [],
+      "finalExecutableSha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d"
+    },
+    "gaps": [],
+    "wallClockJumps": [],
+    "parseErrors": [],
+    "issues": [],
+    "sampleErrorCount": 0,
+    "incompleteDiskScans": 0
+  },
+  "operatorPhases": {
+    "sha256": "f649092dbfa011908e2b030f69af87d88628d1e668a5aa4c6aae62fd6bda3104",
+    "intervals": [
+      {
+        "phase": "prepared",
+        "monotonicNs": "1105418744951291",
+        "wallUtc": "2026-10-13T16:30:42.382980+00:00",
+        "note": "Sampler already running; UI prepared0, selected bounded fixture, no generation yet.",
+        "source": "operator-declared, not measured window state",
+        "fromElapsedSeconds": 81.262636458,
+        "toElapsedSeconds": 104.800667542,
+        "sampleCount": 1,
+        "firstSampleElapsedSeconds": 90.061237375,
+        "lastSampleElapsedSeconds": 90.061237375,
+        "metrics": {
+          "rssBytes": {
+            "count": 1,
+            "first": 64159744,
+            "last": 64159744,
+            "minimum": 64159744,
+            "maximum": 64159744,
+            "median": 64159744,
+            "p95NearestRank": 64159744,
+            "leastSquaresChangePerHour": null
+          },
+          "cpuIntervalPercent": null,
+          "fdCount": {
+            "count": 1,
+            "first": 13,
+            "last": 13,
+            "minimum": 13,
+            "maximum": 13,
+            "median": 13,
+            "p95NearestRank": 13,
+            "leastSquaresChangePerHour": null
+          },
+          "threadCount": {
+            "count": 1,
+            "first": 20,
+            "last": 20,
+            "minimum": 20,
+            "maximum": 20,
+            "median": 20,
+            "p95NearestRank": 20,
+            "leastSquaresChangePerHour": null
+          }
+        }
+      },
+      {
+        "phase": "visible",
+        "monotonicNs": "1105442282982375",
+        "wallUtc": "2026-10-13T16:31:05.920848+00:00",
+        "note": "CUA Start succeeded; Running, surface/fill WebGL2 ready with1frame each. Earlier stale CUA binding failed before action; rebound by bundle ID. Observer timestamp conservatively after successful action.",
+        "source": "operator-declared, not measured window state",
+        "fromElapsedSeconds": 104.800667542,
+        "toElapsedSeconds": 597.728396125,
+        "sampleCount": 33,
+        "firstSampleElapsedSeconds": 105.066050458,
+        "lastSampleElapsedSeconds": 585.217810583,
+        "metrics": {
+          "rssBytes": {
+            "count": 33,
+            "first": 68616192,
+            "last": 78495744,
+            "minimum": 68616192,
+            "maximum": 81068032,
+            "median": 75644928,
+            "p95NearestRank": 81035264,
+            "leastSquaresChangePerHour": 48184003.077526554
+          },
+          "cpuIntervalPercent": {
+            "count": 32,
+            "first": 1.1305529318666874,
+            "last": 1.3219677253771278,
+            "minimum": 0.8202641796187549,
+            "maximum": 2.1413356164426163,
+            "median": 1.3199338776450462,
+            "p95NearestRank": 1.7053510676753394,
+            "leastSquaresChangePerHour": 1.6098045897760074
+          },
+          "fdCount": {
+            "count": 33,
+            "first": 13,
+            "last": 13,
+            "minimum": 13,
+            "maximum": 14,
+            "median": 13,
+            "p95NearestRank": 13,
+            "leastSquaresChangePerHour": 0.6415120030788783
+          },
+          "threadCount": {
+            "count": 33,
+            "first": 22,
+            "last": 23,
+            "minimum": 22,
+            "maximum": 26,
+            "median": 23,
+            "p95NearestRank": 26,
+            "leastSquaresChangePerHour": 6.817324111054635e-05
+          }
+        }
+      },
+      {
+        "phase": "minimized",
+        "monotonicNs": "1105935210710958",
+        "wallUtc": "2026-10-13T16:39:18.845510+00:00",
+        "note": "Minimize click completed in a standalone CUA call. Prior combined minimize/Dock observation timed out twice; rebound and explicitly Raised app before this fresh action. Use this later marker as conservative interval start. No further app UI inspection until interval ends. Window visibility is operator-declared, not continuously instrumented. Visible prelude ran about8minutes rather than planned5; graphics were offscreen during journal reading.",
+        "source": "operator-declared, not measured window state",
+        "fromElapsedSeconds": 597.728396125,
+        "toElapsedSeconds": 7808.934780292,
+        "sampleCount": 481,
+        "firstSampleElapsedSeconds": 600.220656333,
+        "lastSampleElapsedSeconds": 7803.49986375,
+        "metrics": {
+          "rssBytes": {
+            "count": 481,
+            "first": 76464128,
+            "last": 45809664,
+            "minimum": 40992768,
+            "maximum": 77103104,
+            "median": 59637760,
+            "p95NearestRank": 76513280,
+            "leastSquaresChangePerHour": -16745792.904062808
+          },
+          "cpuIntervalPercent": {
+            "count": 480,
+            "first": 0.8602640988031851,
+            "last": 1.434293166528102,
+            "minimum": 0.33577168400819835,
+            "maximum": 1.5223044452573635,
+            "median": 0.7564027618707352,
+            "p95NearestRank": 1.392102244178842,
+            "leastSquaresChangePerHour": 0.03374401460622088
+          },
+          "fdCount": {
+            "count": 481,
+            "first": 13,
+            "last": 13,
+            "minimum": 13,
+            "maximum": 17,
+            "median": 13,
+            "p95NearestRank": 13,
+            "leastSquaresChangePerHour": -0.009260156279964706
+          },
+          "threadCount": {
+            "count": 481,
+            "first": 24,
+            "last": 23,
+            "minimum": 22,
+            "maximum": 26,
+            "median": 23,
+            "p95NearestRank": 24,
+            "leastSquaresChangePerHour": -0.15396009143886907
+          }
+        }
+      },
+      {
+        "phase": "restored",
+        "monotonicNs": "1113146417095125",
+        "wallUtc": "2026-10-13T18:39:30.005769+00:00",
+        "note": "Conservative end of untouched minimized interval before any CUA binding; operator-declared window state, no independent visibility sensor. Proceed to observed older-journal and pause checks.",
+        "source": "operator-declared, not measured window state",
+        "fromElapsedSeconds": 7808.934780292,
+        "toElapsedSeconds": 7836.151845958,
+        "sampleCount": 2,
+        "firstSampleElapsedSeconds": 7818.505125,
+        "lastSampleElapsedSeconds": 7833.511003,
+        "metrics": {
+          "rssBytes": {
+            "count": 2,
+            "first": 59719680,
+            "last": 59392000,
+            "minimum": 59392000,
+            "maximum": 59719680,
+            "median": 59555840.0,
+            "p95NearestRank": 59719680,
+            "leastSquaresChangePerHour": -78612394.42303908
+          },
+          "cpuIntervalPercent": {
+            "count": 1,
+            "first": 1.093929098983745,
+            "last": 1.093929098983745,
+            "minimum": 1.093929098983745,
+            "maximum": 1.093929098983745,
+            "median": 1.093929098983745,
+            "p95NearestRank": 1.093929098983745,
+            "leastSquaresChangePerHour": null
+          },
+          "fdCount": {
+            "count": 2,
+            "first": 13,
+            "last": 13,
+            "minimum": 13,
+            "maximum": 13,
+            "median": 13.0,
+            "p95NearestRank": 13,
+            "leastSquaresChangePerHour": 0.0
+          },
+          "threadCount": {
+            "count": 2,
+            "first": 26,
+            "last": 22,
+            "minimum": 22,
+            "maximum": 26,
+            "median": 24.0,
+            "p95NearestRank": 26,
+            "leastSquaresChangePerHour": -959.6239553593638
+          }
+        }
+      },
+      {
+        "phase": "paused",
+        "monotonicNs": "1113173634160791",
+        "wallUtc": "2026-10-13T18:39:57.222628+00:00",
+        "note": "Actual app returned with old step-30 journal and identical text SHA selected; Follow latest off with233new at236 journals. Pause succeeded atlive=durable7100, elapsed7721.3/7800,236 journals,101.12MiB. Surface/fill counters98 on initial return then99 after Pause; exactcoordinates and fill nowstep7100. No precise UI latency or GPU attribution.",
+        "source": "operator-declared, not measured window state",
+        "fromElapsedSeconds": 7836.151845958,
+        "toElapsedSeconds": null,
+        "sampleCount": 0,
+        "firstSampleElapsedSeconds": null,
+        "lastSampleElapsedSeconds": null,
+        "metrics": {
+          "rssBytes": null,
+          "cpuIntervalPercent": null,
+          "fdCount": null,
+          "threadCount": null
+        }
+      }
+    ],
+    "clockRequirement": "Marker monotonic clock must use the same host and boot as sampler"
+  },
+  "metrics": {
+    "rssBytes": {
+      "count": 523,
+      "first": 101810176,
+      "last": 59392000,
+      "minimum": 40992768,
+      "maximum": 101810176,
+      "median": 60407808,
+      "p95NearestRank": 76562432,
+      "leastSquaresChangePerHour": -16558015.621872671
+    },
+    "cpuIntervalPercent": {
+      "count": 522,
+      "first": 0.005312708575099399,
+      "last": 1.093929098983745,
+      "minimum": 0.0022862853444555633,
+      "maximum": 2.1413356164426163,
+      "median": 0.8325044561180186,
+      "p95NearestRank": 1.4230354445503297,
+      "leastSquaresChangePerHour": -0.012485532078549601
+    },
+    "threadCount": {
+      "count": 523,
+      "first": 19,
+      "last": 22,
+      "minimum": 19,
+      "maximum": 26,
+      "median": 23,
+      "p95NearestRank": 24,
+      "leastSquaresChangePerHour": -0.04385405588697563
+    },
+    "fdCount": {
+      "count": 523,
+      "first": 13,
+      "last": 13,
+      "minimum": 13,
+      "maximum": 17,
+      "median": 13,
+      "p95NearestRank": 13,
+      "leastSquaresChangePerHour": -0.003421019801519391
+    },
+    "logicalBytes": {
+      "count": 131,
+      "first": 6181,
+      "last": 105908862,
+      "minimum": 6181,
+      "maximum": 105908862,
+      "median": 52543926,
+      "p95NearestRank": 100568737,
+      "leastSquaresChangePerHour": 49119640.622173496
+    },
+    "allocatedBytes": {
+      "count": 131,
+      "first": 12288,
+      "last": 108072960,
+      "minimum": 12288,
+      "maximum": 108072960,
+      "median": 53628928,
+      "p95NearestRank": 102617088,
+      "leastSquaresChangePerHour": 50097662.35904987
+    },
+    "fileCount": {
+      "count": 131,
+      "first": 2,
+      "last": 1418,
+      "minimum": 2,
+      "maximum": 1418,
+      "median": 704,
+      "p95NearestRank": 1346,
+      "leastSquaresChangePerHour": 655.6607581198199
+    },
+    "volumeAvailableBytes": {
+      "count": 131,
+      "first": 57771565056,
+      "last": 40257208320,
+      "minimum": 36152926208,
+      "maximum": 57771565056,
+      "median": 42194186240,
+      "p95NearestRank": 56616714240,
+      "leastSquaresChangePerHour": -10634704105.229343
+    }
+  },
+  "manifestProgress": {
+    "count": 523,
+    "first": {
+      "sha256": "3df862197fbe6969592037068bd5fef520df7e2a61f6c6356eb23f9025bf05fe",
+      "bytes": 765,
+      "format": "reservoir-sustained-bundle-v1",
+      "sessionId": "sustained-1791908510756-1",
+      "generation": "1",
+      "revision": "1",
+      "phase": "ready",
+      "step": 0,
+      "durableStep": 0,
+      "elapsedMillis": 0,
+      "journalCount": 0,
+      "segmentCount": 0,
+      "lastSegmentSha256": null,
+      "checkpointSha256": "ecf1e92ceba918bc6bf19c0cf64597b8d135eca01beda481d47126a4cb6da84c"
+    },
+    "last": {
+      "sha256": "8c9579321471d37b7fb97c9a6974bc949bd51b2a1a00be7210fa73c8ef2273fa",
+      "bytes": 1034,
+      "format": "reservoir-sustained-bundle-v1",
+      "sessionId": "sustained-1791908510756-1",
+      "generation": "1",
+      "revision": "8283",
+      "phase": "paused",
+      "step": 7100,
+      "durableStep": 7100,
+      "elapsedMillis": 7721255,
+      "journalCount": 236,
+      "segmentCount": 1180,
+      "lastSegmentSha256": "19dd7d858462015ec1365ee12847595ea361fbefdbf5dd1ac6b4ede1100de645",
+      "checkpointSha256": "0466901e060547512ff5315d3646168cdd87e013fcc1bb200234be8840e19341"
+    },
+    "regressions": []
+  },
+  "limitations": [
+    "Only the explicitly selected main PID is measured; WebKit, GPU, provider and other helper processes are excluded.",
+    "No GPU utilization, energy, battery, thermal, total application footprint or UI responsiveness is measured.",
+    "RSS is resident memory, not a leak diagnosis. CPU is interval task CPU time / monotonic elapsed time; 100% means one core.",
+    "Disk scans are metadata-only, bounded and non-atomic while the app writes; allocated blocks may be shared on APFS.",
+    "Manifest fields describe a sampled publication, not independent chain/numerical verification or proof of hardware crash durability.",
+    "The sampler adds measurement overhead; missing metrics and incomplete scans remain explicit."
+  ]
+}

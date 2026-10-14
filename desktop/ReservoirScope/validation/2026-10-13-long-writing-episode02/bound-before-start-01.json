@@ -1,0 +1,77 @@
+{
+  "atUtc": "2026-10-14T00:49:19.429354+00:00",
+  "sessionId": "sustained-1791938932286-3",
+  "generation": "3",
+  "revision": "1",
+  "phase": "Prepared \u00b7 not started",
+  "step": 0,
+  "journals": 0,
+  "acceptedConfigObservedInNativeUI": {
+    "seed": "20261013",
+    "promptVersion": "reservoir-journal-v4",
+    "outputTokens": 1024,
+    "requestDeadlineSeconds": 180,
+    "turnEvery": 30,
+    "maximumSteps": 361,
+    "maximumTurns": 12,
+    "maximumDurationSeconds": 900,
+    "storageBudgetBytes": 67108864,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true,
+    "language": {
+      "backend": "ollama",
+      "endpoint": "http://127.0.0.1:58180",
+      "model": "gemma3:4b",
+      "contextTokens": 8192
+    }
+  },
+  "source": "ui-before-start.txt exact native accepted configuration compared with plan",
+  "readiness": {
+    "operation": "model-check-66664-1",
+    "epochMillis": "1791938928143",
+    "model": "gemma3:4b",
+    "digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+    "requests": 1
+  },
+  "service": {
+    "pid": 87265,
+    "supervisorPid": 87263,
+    "endpoint": "http://127.0.0.1:58180",
+    "remainingLifetimeSeconds": 1150.9090403330047,
+    "requiredRemainingSeconds": 1140
+  },
+  "appExecutableSha256": "73872388b56d2483054497aa8513e3659f79dfaf255699d6bca29041cafd258d",
+  "bindings": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/evaluation-freeze-01.json",
+      "sha256": "b819a6212d10ab84cf88e68e4f23894bc1677bbfa2444af5677c1fae56e4d6fe"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/host-admission-01.json",
+      "sha256": "eab9155f9531116915dc01e3dc8bb611149bc74d70a5a395305540bac3a00164"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/run-plan.json",
+      "sha256": "8f1c0620a959df21fbdd119d84ee5a0b8d859dd184ebb4dc264e83e2f1ef78ba"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/ui-before-start.txt",
+      "sha256": "02d315d1cb9cfdf603b67d51deef028144ecc66f6686a82fc6ea9f3ce6f8bd8f"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.16-long-writing-gemma3-4b-run02/owned-process.json",
+      "sha256": "e3523d740927942927b2c02e3423cf527daa9dae5d9abce6eea867182d3cef54"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.16-long-writing-gemma3-4b-run02/endpoint.json",
+      "sha256": "532c9b51c01847fd942091150e0afd05d2c126a2b743db9efb39a2941eb11b13"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.16-long-writing-gemma3-4b-run02/launch-intent.json",
+      "sha256": "645d80e5837225bf4d29f851b985c2dbf230d64ac2a9da7ab594d4c02fc08466"
+    }
+  ]
+}

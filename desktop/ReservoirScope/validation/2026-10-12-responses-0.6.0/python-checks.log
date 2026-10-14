@@ -1,0 +1,8 @@
+Executed during the 0.6.0 tranche:
+python3 scripts/check_reference.py
+Result: verified 180 native source files, 43 canonical resources and 1 fixture at commit 96b60ed1d1fe9bdd3a5f50dec3a66a4754ad7f95.
+
+python3 -m unittest discover -s scripts -p test_*.py
+Result: 9 tests passed in 2.389 seconds.
+
+This file summarizes tool-observed output; it is not a raw process capture.

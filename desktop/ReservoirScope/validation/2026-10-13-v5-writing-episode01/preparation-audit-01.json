@@ -1,0 +1,1190 @@
+{
+  "schema": "reservoir-v5-preparation-audit-v1",
+  "startedAtUtc": "2026-10-14T02:00:17.203822+00:00",
+  "endedAtUtc": "2026-10-14T02:00:17.401348+00:00",
+  "status": "passed-with-scope-limits",
+  "scope": "Read-only hashes and arithmetic on retained preparation/UI witness/passive-manifest receipts and unchanged app/archive/pin files. No live store, process, endpoint, model, UI, new host admission, or service calls.",
+  "inputIdentities": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/evaluation-freeze-01.json",
+      "bytes": 9295,
+      "sha256": "ce263d13a12293c50c03656d5ebf96d48a81bcd2e3cc06d279bf5896e92644a1"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/checker-freeze-01.json",
+      "bytes": 3122,
+      "sha256": "b2986fd76101a15f67527f7adde71a51460b7d0140ce5b8c4d9fbcf0a67d4e19"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/run-plan.json",
+      "bytes": 4410,
+      "sha256": "3ecd0226659b8dd534a23cbf5dcf11845a64724360639f59cec9535f966b8c8d"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/host-admission-01.json",
+      "bytes": 1465,
+      "sha256": "7da256d4d4ab67bb9d0e16a91e4383e981e238d347dcb240069cab95dc1aeaaf"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/bound-before-start-01.json",
+      "bytes": 1496,
+      "sha256": "a2bf4d48fe09eb05e8df0400d3dbd3ac35afcca2bf8e212fe775bdb67f69c670"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/ui-start-before-01.json",
+      "bytes": 144,
+      "sha256": "fb9549bbb78e254f46391717feee38335f9ebfbf7eac8d9f173edb42520ea910"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/ui-start-after-01.json",
+      "bytes": 100,
+      "sha256": "f3c9939e9f24918f939d93da4685e295ccd369c926e157cbca4a19bdd3d79c74"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/passive-manifest-01.json",
+      "bytes": 1443,
+      "sha256": "0591d4ff092bef333a6e7020827af63a796f0176477c965c35484a029334ca29"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/passive-manifest-02.json",
+      "bytes": 1603,
+      "sha256": "158108776c0ac6ca8419787d8a276de592e9602fb2765221f78b645caa9b381f"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/package-provenance-01.json",
+      "bytes": 15637,
+      "sha256": "cfbbb526cbc01e914c4ebe20cac4588c25be03556bc7111b50e210434d621760"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/helper-continuity-01.json",
+      "bytes": 1423,
+      "sha256": "dc5df708320afee710cb48940b8af50fca239732671807847153e4f2b46d3aed"
+    }
+  ],
+  "frozenFileCount": 21,
+  "frozenMatches": [
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/PROTOCOL.md",
+        "bytes": 3175,
+        "sha256": "3fe8b515a5bc52d24b1a83131045ce0ecb0a2e58b92b999d4fefb4b24089d738"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/PROTOCOL.md",
+        "bytes": 3175,
+        "sha256": "3fe8b515a5bc52d24b1a83131045ce0ecb0a2e58b92b999d4fefb4b24089d738"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/run-plan.json",
+        "bytes": 4410,
+        "sha256": "3ecd0226659b8dd534a23cbf5dcf11845a64724360639f59cec9535f966b8c8d"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/run-plan.json",
+        "bytes": 4410,
+        "sha256": "3ecd0226659b8dd534a23cbf5dcf11845a64724360639f59cec9535f966b8c8d"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/RUBRIC.md",
+        "bytes": 7822,
+        "sha256": "70eb080230576fc25347bc7fc83601f2c258e534ced74b0dc6c20e003bf05169"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/RUBRIC.md",
+        "bytes": 7822,
+        "sha256": "70eb080230576fc25347bc7fc83601f2c258e534ced74b0dc6c20e003bf05169"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/EVALUATION.md",
+        "bytes": 9149,
+        "sha256": "4bba0532d6135d3cf37569928f13e695b6801f9b9662106231f873d554bf53f3"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/EVALUATION.md",
+        "bytes": 9149,
+        "sha256": "4bba0532d6135d3cf37569928f13e695b6801f9b9662106231f873d554bf53f3"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/check_real_model_export.py",
+        "bytes": 44756,
+        "sha256": "954a08bff12c79a1b81fe3c81d690dc76be172c6be3340512655905020821ec9"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/check_real_model_export.py",
+        "bytes": 44756,
+        "sha256": "954a08bff12c79a1b81fe3c81d690dc76be172c6be3340512655905020821ec9"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/test_real_model_export.py",
+        "bytes": 25300,
+        "sha256": "290c56def25029a51aaafe37b7e3edc02966e12c9b351233f112eca34f955a28"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/test_real_model_export.py",
+        "bytes": 25300,
+        "sha256": "290c56def25029a51aaafe37b7e3edc02966e12c9b351233f112eca34f955a28"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/checker-tests-01.json",
+        "bytes": 3138,
+        "sha256": "a884711e3ededa50fef94dcb462afe743bd6c2a927f52b77026ed19f6e9455fd"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/checker-tests-01.json",
+        "bytes": 3138,
+        "sha256": "a884711e3ededa50fef94dcb462afe743bd6c2a927f52b77026ed19f6e9455fd"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/checker-freeze-01.json",
+        "bytes": 3122,
+        "sha256": "b2986fd76101a15f67527f7adde71a51460b7d0140ce5b8c4d9fbcf0a67d4e19"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/checker-freeze-01.json",
+        "bytes": 3122,
+        "sha256": "b2986fd76101a15f67527f7adde71a51460b7d0140ce5b8c4d9fbcf0a67d4e19"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/PRE-RUN-REVIEW.md",
+        "bytes": 4254,
+        "sha256": "d8e7f78e83c17601b42a3d1d0192b8904e7ca79f32d9c40d066bd2a7ef95fb77"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/PRE-RUN-REVIEW.md",
+        "bytes": 4254,
+        "sha256": "d8e7f78e83c17601b42a3d1d0192b8904e7ca79f32d9c40d066bd2a7ef95fb77"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/admit_once.py",
+        "bytes": 2783,
+        "sha256": "2be244fb00c5305f86fd4e415ffaf2035bedefce3e2a04caa277239cb0192b5a"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/admit_once.py",
+        "bytes": 2783,
+        "sha256": "2be244fb00c5305f86fd4e415ffaf2035bedefce3e2a04caa277239cb0192b5a"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/freeze_episode.py",
+        "bytes": 2162,
+        "sha256": "39453765ea7b810b25442d94b0757aaf48214210fdbfe84626ced658674a49ae"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/freeze_episode.py",
+        "bytes": 2162,
+        "sha256": "39453765ea7b810b25442d94b0757aaf48214210fdbfe84626ced658674a49ae"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/owned_model.py",
+        "bytes": 32949,
+        "sha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/owned_model.py",
+        "bytes": 32949,
+        "sha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/test_owned_model.py",
+        "bytes": 21837,
+        "sha256": "145d75ad5d1d8a090bb3c1a9830a59d1127d3424354b8b59db208d0006da9b87"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/test_owned_model.py",
+        "bytes": 21837,
+        "sha256": "145d75ad5d1d8a090bb3c1a9830a59d1127d3424354b8b59db208d0006da9b87"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/helper-continuity-01.json",
+        "bytes": 1423,
+        "sha256": "dc5df708320afee710cb48940b8af50fca239732671807847153e4f2b46d3aed"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/helper-continuity-01.json",
+        "bytes": 1423,
+        "sha256": "dc5df708320afee710cb48940b8af50fca239732671807847153e4f2b46d3aed"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/package-provenance-01.json",
+        "bytes": 15637,
+        "sha256": "cfbbb526cbc01e914c4ebe20cac4588c25be03556bc7111b50e210434d621760"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/package-provenance-01.json",
+        "bytes": 15637,
+        "sha256": "cfbbb526cbc01e914c4ebe20cac4588c25be03556bc7111b50e210434d621760"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/journal_quality.py",
+        "bytes": 28798,
+        "sha256": "2d5a51e1524fa8fe1a0eb762aa34a4ed3938060f900e17e6b3c2825551f6e068"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/journal_quality.py",
+        "bytes": 28798,
+        "sha256": "2d5a51e1524fa8fe1a0eb762aa34a4ed3938060f900e17e6b3c2825551f6e068"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/test_journal_quality.py",
+        "bytes": 31808,
+        "sha256": "e0d4eeb16f55183d5611c943294147e24b5a8f6dd4fb3d6ed870f5f380f80dce"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/test_journal_quality.py",
+        "bytes": 31808,
+        "sha256": "e0d4eeb16f55183d5611c943294147e24b5a8f6dd4fb3d6ed870f5f380f80dce"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/quality-helper-tests-01.json",
+        "bytes": 3198,
+        "sha256": "b81b0e3dd85a8b529c75c39b4dfbe54ae6752c7d9998a5775ddcd75337efd274"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/quality-helper-tests-01.json",
+        "bytes": 3198,
+        "sha256": "b81b0e3dd85a8b529c75c39b4dfbe54ae6752c7d9998a5775ddcd75337efd274"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v5-observation-10.txt",
+        "bytes": 1437,
+        "sha256": "5c9c1dbdb29e1058b59d23174cdab186c0aa60d76293f29bb99827b217025dd6"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v5-observation-10.txt",
+        "bytes": 1437,
+        "sha256": "5c9c1dbdb29e1058b59d23174cdab186c0aa60d76293f29bb99827b217025dd6"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v5-memory-20.txt",
+        "bytes": 1627,
+        "sha256": "a828b3390d049b22faf115f74644374f2c86f74a4ac47fd806a5e69920de99fd"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v5-memory-20.txt",
+        "bytes": 1627,
+        "sha256": "a828b3390d049b22faf115f74644374f2c86f74a4ac47fd806a5e69920de99fd"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v5-provenance.json",
+        "bytes": 1606,
+        "sha256": "6ce6828ed6552c65b2f2d81d5511cb1f02b431f05a00e933d8bb17b599158fba"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v5-provenance.json",
+        "bytes": 1606,
+        "sha256": "6ce6828ed6552c65b2f2d81d5511cb1f02b431f05a00e933d8bb17b599158fba"
+      },
+      "matched": true
+    }
+  ],
+  "checkerFreezeRenamedBytesUnchanged": true,
+  "qualifiedTests": [
+    {
+      "receipt": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/checker-tests-01.json",
+        "bytes": 3138,
+        "sha256": "a884711e3ededa50fef94dcb462afe743bd6c2a927f52b77026ed19f6e9455fd"
+      },
+      "testCount": 31,
+      "sourceAndLogMatched": true
+    },
+    {
+      "receipt": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/quality-helper-tests-01.json",
+        "bytes": 3198,
+        "sha256": "b81b0e3dd85a8b529c75c39b4dfbe54ae6752c7d9998a5775ddcd75337efd274"
+      },
+      "testCount": 47,
+      "sourceAndLogMatched": true
+    }
+  ],
+  "chronologyMatches": true,
+  "admission": {
+    "capturedUtc": "2026-10-14T01:56:04.787449+00:00",
+    "pressureLevel": 1,
+    "freePercent": 52,
+    "diskFreeBytes": 11902164992,
+    "admitted": true
+  },
+  "startWitnesses": [
+    {
+      "witness": "before",
+      "atUtc": "2026-10-14T01:57:02.055Z",
+      "retainedRemainingSeconds": 1150.952,
+      "recomputedFromRetainedWallClockSeconds": 1150.952748,
+      "marginAboveRequiredSeconds": 10.951999999999998
+    },
+    {
+      "witness": "after",
+      "atUtc": "2026-10-14T01:57:02.146Z",
+      "retainedRemainingSeconds": 1150.861,
+      "recomputedFromRetainedWallClockSeconds": 1150.861748,
+      "marginAboveRequiredSeconds": 10.861000000000104
+    }
+  ],
+  "startWitnessBracketSeconds": 0.091,
+  "precedingBoundReceipt": {
+    "atUtc": "2026-10-14T01:56:52.163260+00:00",
+    "remainingSeconds": 1160.8416298748925,
+    "ownedSpawnMonotonicSeconds": 1139349.576602208,
+    "sourceMeaning": "Parent-recorded monotonic pre-click remaining-time check; no new monotonic/process query."
+  },
+  "startLimits": [
+    "Before/after files are operator-recorded native Start witnesses, not authenticated operating-system event timestamps.",
+    "Wall-clock-derived remaining time is consistent with retained spawn time; agreement alone cannot prove the absence of a wall-clock jump.",
+    "No inference about overall session completion, eventual writing quality, future resource conditions or provider context processing."
+  ],
+  "acceptedConfigurationSnapshots": [
+    {
+      "receipt": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/passive-manifest-01.json",
+        "bytes": 1443,
+        "sha256": "0591d4ff092bef333a6e7020827af63a796f0176477c965c35484a029334ca29"
+      },
+      "capturedAtUtc": "2026-10-14T01:57:47.974586+00:00",
+      "sourcePathRecordedButNotRead": "/Users/v/Library/Application Support/research.reservoir.scope.tauri/sustained-v1/sustained-1791942995555-1/manifest.json",
+      "sessionId": "sustained-1791942995555-1",
+      "generation": "1",
+      "revision": "33",
+      "step": 30,
+      "durableStep": 30,
+      "journalCount": 0,
+      "phase": "awaitingLanguage",
+      "config": {
+        "seed": "20261013",
+        "turnEvery": 30,
+        "maximumSteps": 361,
+        "maximumTurns": 12,
+        "maximumDurationSeconds": 900,
+        "storageBudgetBytes": 67108864,
+        "paceMs": 1000,
+        "leak": 0.65,
+        "noiseAmplitude": 0.02,
+        "initialRetention": 0.955,
+        "regulationEnabled": true,
+        "language": {
+          "backend": "ollama",
+          "endpoint": "http://127.0.0.1:60782",
+          "model": "gemma3:4b",
+          "contextTokens": 8192
+        },
+        "promptVersion": "reservoir-journal-v5",
+        "outputTokens": 1024,
+        "requestDeadlineSeconds": 180
+      },
+      "matchesFrozenConfig": true
+    },
+    {
+      "receipt": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/passive-manifest-02.json",
+        "bytes": 1603,
+        "sha256": "158108776c0ac6ca8419787d8a276de592e9602fb2765221f78b645caa9b381f"
+      },
+      "capturedAtUtc": "2026-10-14T01:58:13.647731+00:00",
+      "sourcePathRecordedButNotRead": "/Users/v/Library/Application Support/research.reservoir.scope.tauri/sustained-v1/sustained-1791942995555-1/manifest.json",
+      "sessionId": "sustained-1791942995555-1",
+      "generation": "1",
+      "revision": "37",
+      "step": 31,
+      "durableStep": 31,
+      "journalCount": 1,
+      "phase": "running",
+      "config": {
+        "seed": "20261013",
+        "turnEvery": 30,
+        "maximumSteps": 361,
+        "maximumTurns": 12,
+        "maximumDurationSeconds": 900,
+        "storageBudgetBytes": 67108864,
+        "paceMs": 1000,
+        "leak": 0.65,
+        "noiseAmplitude": 0.02,
+        "initialRetention": 0.955,
+        "regulationEnabled": true,
+        "language": {
+          "backend": "ollama",
+          "endpoint": "http://127.0.0.1:60782",
+          "model": "gemma3:4b",
+          "contextTokens": 8192
+        },
+        "promptVersion": "reservoir-journal-v5",
+        "outputTokens": 1024,
+        "requestDeadlineSeconds": 180
+      },
+      "matchesFrozenConfig": true
+    }
+  ],
+  "package": {
+    "fileCount": 46,
+    "files": [
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Info.plist",
+          "bytes": 1120,
+          "sha256": "28e1ab0870aa6f14d29f0fdd3739093431984da1bb5c938efbcb59ac20a3e2b0"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Info.plist",
+          "bytes": 1120,
+          "sha256": "28e1ab0870aa6f14d29f0fdd3739093431984da1bb5c938efbcb59ac20a3e2b0"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+          "bytes": 16984368,
+          "sha256": "7d46719838495b7a9ba57eea69ac9c940bb81f2fdc47cd12b761d97bb472d081"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+          "bytes": 16984368,
+          "sha256": "7d46719838495b7a9ba57eea69ac9c940bb81f2fdc47cd12b761d97bb472d081"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/icon.icns",
+          "bytes": 122675,
+          "sha256": "7dca3ee6c3e79ebcb2c54bf44841d2f2b208c1fb727b16035341cd067a12e5ed"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/icon.icns",
+          "bytes": 122675,
+          "sha256": "7dca3ee6c3e79ebcb2c54bf44841d2f2b208c1fb727b16035341cd067a12e5ed"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/data.json",
+          "bytes": 186596,
+          "sha256": "03ebfb620c2371023a39de308eb16c292d31b313ead7dcb07db5df3dd0c6749d"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/data.json",
+          "bytes": 186596,
+          "sha256": "03ebfb620c2371023a39de308eb16c292d31b313ead7dcb07db5df3dd0c6749d"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/essentials-stage-1.json",
+          "bytes": 355779,
+          "sha256": "dd536371d35d00d085508ffb02d348f335ff569b3bfe57c828403f7ce6da37d0"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/essentials-stage-1.json",
+          "bytes": 355779,
+          "sha256": "dd536371d35d00d085508ffb02d348f335ff569b3bfe57c828403f7ce6da37d0"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/essentials-stage-2.json",
+          "bytes": 13351775,
+          "sha256": "21e7a6b8acb3be59efda3f3381f20ce1820d4927b22f7e42f56b2084c566cc78"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/essentials-stage-2.json",
+          "bytes": 13351775,
+          "sha256": "21e7a6b8acb3be59efda3f3381f20ce1820d4927b22f7e42f56b2084c566cc78"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/essentials-stage-3.json",
+          "bytes": 13337799,
+          "sha256": "b1807f2593fffd36e87bd02d842539db6426b342b12b3fde81d0be7b7254389c"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/essentials-stage-3.json",
+          "bytes": 13337799,
+          "sha256": "b1807f2593fffd36e87bd02d842539db6426b342b12b3fde81d0be7b7254389c"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/essentials-stage-4.json",
+          "bytes": 13387369,
+          "sha256": "2fe6156d2996d4b99eb9f365130913c47d82d6307be7efe879c0b295a1d41fdd"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/essentials-stage-4.json",
+          "bytes": 13387369,
+          "sha256": "2fe6156d2996d4b99eb9f365130913c47d82d6307be7efe879c0b295a1d41fdd"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-1.json",
+          "bytes": 492811,
+          "sha256": "a98fcbe631ed953d47ec8d9b8de4dfc58f94cb1f7d0dbed16491bc0348fcf6f6"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-1.json",
+          "bytes": 492811,
+          "sha256": "a98fcbe631ed953d47ec8d9b8de4dfc58f94cb1f7d0dbed16491bc0348fcf6f6"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-2.json",
+          "bytes": 796610,
+          "sha256": "55981d377916c2b7d9fe7f02ea97b4883c5c728b5a9b36428b0b2b34fa726500"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-2.json",
+          "bytes": 796610,
+          "sha256": "55981d377916c2b7d9fe7f02ea97b4883c5c728b5a9b36428b0b2b34fa726500"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-3.json",
+          "bytes": 5966130,
+          "sha256": "fc9f201630aaddad3b141adbbf16777eb8a76ee89ae1ea58c96058a9347164a7"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-3.json",
+          "bytes": 5966130,
+          "sha256": "fc9f201630aaddad3b141adbbf16777eb8a76ee89ae1ea58c96058a9347164a7"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-4.json",
+          "bytes": 11144100,
+          "sha256": "72994239ab54496101d2790f9d5f97254ed7ef8019f2425fbbbaf2816aabb6a6"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-4.json",
+          "bytes": 11144100,
+          "sha256": "72994239ab54496101d2790f9d5f97254ed7ef8019f2425fbbbaf2816aabb6a6"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-5.json",
+          "bytes": 11213594,
+          "sha256": "ba6a2ae9c1bd90ba9b1063ece1405aa39a6c299ebc60a99e96194d8713c3e1b3"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-5.json",
+          "bytes": 11213594,
+          "sha256": "ba6a2ae9c1bd90ba9b1063ece1405aa39a6c299ebc60a99e96194d8713c3e1b3"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-6.json",
+          "bytes": 11276347,
+          "sha256": "eca61bbf63b06884d82d5cce17bb8aed7f7165e1a717966d344bed6b99c7e920"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-6.json",
+          "bytes": 11276347,
+          "sha256": "eca61bbf63b06884d82d5cce17bb8aed7f7165e1a717966d344bed6b99c7e920"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-7.json",
+          "bytes": 11278830,
+          "sha256": "7e446a8c83efb64c461b76cbf34d02f808db8ece5bb58dd3dc8114f2a91399a5"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-7.json",
+          "bytes": 11278830,
+          "sha256": "7e446a8c83efb64c461b76cbf34d02f808db8ece5bb58dd3dc8114f2a91399a5"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-8.json",
+          "bytes": 11296543,
+          "sha256": "2ce8f33362e403a665bfb9de02d3005d1412dd4f6959c36e4afa9c1baa5fed32"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-8.json",
+          "bytes": 11296543,
+          "sha256": "2ce8f33362e403a665bfb9de02d3005d1412dd4f6959c36e4afa9c1baa5fed32"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-4.json",
+          "bytes": 5483223,
+          "sha256": "d46baa55b581a8406dc6e9380b0d3ab7f537396212a8e83c1c24feb5236fea76"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-4.json",
+          "bytes": 5483223,
+          "sha256": "d46baa55b581a8406dc6e9380b0d3ab7f537396212a8e83c1c24feb5236fea76"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-5.json",
+          "bytes": 5541493,
+          "sha256": "ddb6765654c840d53f8d6d3226c5f7103621964a24f65e5422a2fb3e9878cb3b"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-5.json",
+          "bytes": 5541493,
+          "sha256": "ddb6765654c840d53f8d6d3226c5f7103621964a24f65e5422a2fb3e9878cb3b"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-6.json",
+          "bytes": 5544750,
+          "sha256": "8fefd365e757756280af8f0b3dd617ba62515f1f7c92c1e0365fb1abd20c0152"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-6.json",
+          "bytes": 5544750,
+          "sha256": "8fefd365e757756280af8f0b3dd617ba62515f1f7c92c1e0365fb1abd20c0152"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-7.json",
+          "bytes": 5543533,
+          "sha256": "c61f35ab5499c249b3011d07067c0d1aa958af3e50446a11fc76339df991a0f1"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-7.json",
+          "bytes": 5543533,
+          "sha256": "c61f35ab5499c249b3011d07067c0d1aa958af3e50446a11fc76339df991a0f1"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-8.json",
+          "bytes": 5568867,
+          "sha256": "aa8d304a1da4d10b0fe6200615b486bfaf98ec06277a70792d122fdc4075faf6"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-8.json",
+          "bytes": 5568867,
+          "sha256": "aa8d304a1da4d10b0fe6200615b486bfaf98ec06277a70792d122fdc4075faf6"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-observation-active.json",
+          "bytes": 5635819,
+          "sha256": "b36b925fa8820feaf8108e54ff710eb5627e7273c5275a09a243850c4b2f0f24"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-observation-active.json",
+          "bytes": 5635819,
+          "sha256": "b36b925fa8820feaf8108e54ff710eb5627e7273c5275a09a243850c4b2f0f24"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-observation.json",
+          "bytes": 10967761,
+          "sha256": "890de9d2c2253838827499903802b78c68ef0ac2abff0dfa29311c2588e5195f"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-observation.json",
+          "bytes": 10967761,
+          "sha256": "890de9d2c2253838827499903802b78c68ef0ac2abff0dfa29311c2588e5195f"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-observation-active-scripted.json",
+          "bytes": 11065365,
+          "sha256": "e6a3dc7958badd9fc2bd5078fcf831ad5cb628e257c634c75da8c3b8c33e9bad"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-observation-active-scripted.json",
+          "bytes": 11065365,
+          "sha256": "e6a3dc7958badd9fc2bd5078fcf831ad5cb628e257c634c75da8c3b8c33e9bad"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-observation-scripted.json",
+          "bytes": 10966410,
+          "sha256": "a184c1d52b8cb27aa02c4cbfac421b40baf268f706784f280b7c3d8144378142"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-observation-scripted.json",
+          "bytes": 10966410,
+          "sha256": "a184c1d52b8cb27aa02c4cbfac421b40baf268f706784f280b7c3d8144378142"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-preparation-1.json",
+          "bytes": 1446741,
+          "sha256": "371caa7d622944bd02effb4f70822d358ac68499e4d263449e8d3f389fbb6a7a"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-preparation-1.json",
+          "bytes": 1446741,
+          "sha256": "371caa7d622944bd02effb4f70822d358ac68499e4d263449e8d3f389fbb6a7a"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-preparation-2.json",
+          "bytes": 1447658,
+          "sha256": "0881507fb413c6c05c166c83d388dc5bd14e1d18934794df60104e4f73edb12f"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-preparation-2.json",
+          "bytes": 1447658,
+          "sha256": "0881507fb413c6c05c166c83d388dc5bd14e1d18934794df60104e4f73edb12f"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-preparation-3.json",
+          "bytes": 1447682,
+          "sha256": "05368a4974a23e6235120b6941b247070b09032e4bbd7e013d8cbd47d3e67ffc"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-preparation-3.json",
+          "bytes": 1447682,
+          "sha256": "05368a4974a23e6235120b6941b247070b09032e4bbd7e013d8cbd47d3e67ffc"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-preparation-4.json",
+          "bytes": 1494246,
+          "sha256": "c164a873399f5af538b1fad9a1432ed46d66c73ca4195f008992d133bc5e0905"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-preparation-4.json",
+          "bytes": 1494246,
+          "sha256": "c164a873399f5af538b1fad9a1432ed46d66c73ca4195f008992d133bc5e0905"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-regulation-controller.json",
+          "bytes": 52776851,
+          "sha256": "a592bdfb35b925ad03ff8ad3a988d6a1b9bd01f7e8ac4e30109647b78e5583a4"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-regulation-controller.json",
+          "bytes": 52776851,
+          "sha256": "a592bdfb35b925ad03ff8ad3a988d6a1b9bd01f7e8ac4e30109647b78e5583a4"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/examples-index.json",
+          "bytes": 7123,
+          "sha256": "d27ce889d05b32e99bac3f22ec5f4469d19dd0ac1093d15f25b4807bf19e3629"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/examples-index.json",
+          "bytes": 7123,
+          "sha256": "d27ce889d05b32e99bac3f22ec5f4469d19dd0ac1093d15f25b4807bf19e3629"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/guided-lessons.json",
+          "bytes": 5812,
+          "sha256": "e3f398bd8a531834dee4afea0612f28c31a304a33f29eb6bd0b217704ca3ea84"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/guided-lessons.json",
+          "bytes": 5812,
+          "sha256": "e3f398bd8a531834dee4afea0612f28c31a304a33f29eb6bd0b217704ca3ea84"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/guided-observation-amendment.json",
+          "bytes": 4291,
+          "sha256": "5618712f55d351768edee9ce54c5d4f7240ee2b2fd63735c92a671f2d8d84230"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/guided-observation-amendment.json",
+          "bytes": 4291,
+          "sha256": "5618712f55d351768edee9ce54c5d4f7240ee2b2fd63735c92a671f2d8d84230"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/guided-observation-recording.json",
+          "bytes": 2388,
+          "sha256": "43af7942984d699c55a5a406bb3a49f070b520c20a9feb85f9b352b6162a3029"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/guided-observation-recording.json",
+          "bytes": 2388,
+          "sha256": "43af7942984d699c55a5a406bb3a49f070b520c20a9feb85f9b352b6162a3029"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/guided-observation-retry-20260916.json",
+          "bytes": 3486,
+          "sha256": "227c5f988dcce1d61d40ee0979185ff832f1a760317fa3994f55d27af0baf3bc"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/guided-observation-retry-20260916.json",
+          "bytes": 3486,
+          "sha256": "227c5f988dcce1d61d40ee0979185ff832f1a760317fa3994f55d27af0baf3bc"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/native-action-response.json",
+          "bytes": 173481,
+          "sha256": "15441269152bb282e2456d4d08fddae398879e4b0410cd08f71e80282f09e807"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/native-action-response.json",
+          "bytes": 173481,
+          "sha256": "15441269152bb282e2456d4d08fddae398879e4b0410cd08f71e80282f09e807"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/reference-manifest.json",
+          "bytes": 46438,
+          "sha256": "f3d7d2aeea4b991aeaa92403a52e736fa627e7ce9f3bc813311313ec9522e759"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/reference-manifest.json",
+          "bytes": 46438,
+          "sha256": "f3d7d2aeea4b991aeaa92403a52e736fa627e7ce9f3bc813311313ec9522e759"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/reference-scenes.json",
+          "bytes": 6013,
+          "sha256": "616726ee8ec30827fe08690288f1a176e09b9497d83a24368d16fd4585026c59"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/reference-scenes.json",
+          "bytes": 6013,
+          "sha256": "616726ee8ec30827fe08690288f1a176e09b9497d83a24368d16fd4585026c59"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/research-cases-v1.json",
+          "bytes": 65159,
+          "sha256": "3998951c6eaa4f414ff7ce0cef643f19078001e47c980be521255175743d0652"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/research-cases-v1.json",
+          "bytes": 65159,
+          "sha256": "3998951c6eaa4f414ff7ce0cef643f19078001e47c980be521255175743d0652"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/resource-index.json",
+          "bytes": 9575,
+          "sha256": "0d34bc83ebc05c6ea9cccba1a60496a834d4b368bf03ac6c92bf176f57041e52"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/resource-index.json",
+          "bytes": 9575,
+          "sha256": "0d34bc83ebc05c6ea9cccba1a60496a834d4b368bf03ac6c92bf176f57041e52"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/state-geometry.json",
+          "bytes": 365219,
+          "sha256": "5e90207e7dfd1d395b249d3bb5d668afa0f86b6d3e0e6383eda7b9eb52514317"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/state-geometry.json",
+          "bytes": 365219,
+          "sha256": "5e90207e7dfd1d395b249d3bb5d668afa0f86b6d3e0e6383eda7b9eb52514317"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/state-replay.bin",
+          "bytes": 524288,
+          "sha256": "09ea4db8212809085aa2e07a040975f3095d7ef79d06eb8ba7404cc2424e282f"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/state-replay.bin",
+          "bytes": 524288,
+          "sha256": "09ea4db8212809085aa2e07a040975f3095d7ef79d06eb8ba7404cc2424e282f"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/state-replay.json",
+          "bytes": 1165,
+          "sha256": "9589a673e111df6d8643ab050fb6dc2112eb68c453e2c2e55f41699ac7940dd1"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/state-replay.json",
+          "bytes": 1165,
+          "sha256": "9589a673e111df6d8643ab050fb6dc2112eb68c453e2c2e55f41699ac7940dd1"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/state-response.json",
+          "bytes": 656181,
+          "sha256": "fe97623dcccb4b089ce4e0a1b5cc99ec902793efed8fbfcf1041ce8c865e9100"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/state-response.json",
+          "bytes": 656181,
+          "sha256": "fe97623dcccb4b089ce4e0a1b5cc99ec902793efed8fbfcf1041ce8c865e9100"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/synthetic-geometry-example.json",
+          "bytes": 8222,
+          "sha256": "25ecc19605ee1bed307735f52668b817a854af98239018e74072c17ffbe92abc"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/synthetic-geometry-example.json",
+          "bytes": 8222,
+          "sha256": "25ecc19605ee1bed307735f52668b817a854af98239018e74072c17ffbe92abc"
+        },
+        "matched": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/_CodeSignature/CodeResources",
+          "bytes": 13986,
+          "sha256": "62d59d5b1d94d9dced11e9a3cf66409b112bd9f62208f7f4d732f9a7f9bc0906"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/_CodeSignature/CodeResources",
+          "bytes": 13986,
+          "sha256": "62d59d5b1d94d9dced11e9a3cf66409b112bd9f62208f7f4d732f9a7f9bc0906"
+        },
+        "matched": true
+      }
+    ],
+    "exactPathSet": true,
+    "archive": {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/ReservoirScopeTauriPreview-0.17.0-macos-arm64.tar.gz",
+        "bytes": 96676764,
+        "sha256": "3628110243c963d5aeca943864b174ea9873b357dbbfd949ee497299d9d5190a"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/ReservoirScopeTauriPreview-0.17.0-macos-arm64.tar.gz",
+        "bytes": 96676764,
+        "sha256": "3628110243c963d5aeca943864b174ea9873b357dbbfd949ee497299d9d5190a"
+      },
+      "matched": true
+    },
+    "pin": {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.17-pinned/reservoir-scope-desktop",
+        "bytes": 16984368,
+        "sha256": "7d46719838495b7a9ba57eea69ac9c940bb81f2fdc47cd12b761d97bb472d081"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.17-pinned/reservoir-scope-desktop",
+        "bytes": 16984368,
+        "sha256": "7d46719838495b7a9ba57eea69ac9c940bb81f2fdc47cd12b761d97bb472d081"
+      },
+      "matched": true
+    },
+    "priorQualification": {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/qualification-after-ui-01.json",
+        "bytes": 93653,
+        "sha256": "5c5f4e5243ed8ba87486619bf828a9fa96e2de457fd196c558d8934377a0f51e"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/qualification-after-ui-01.json",
+        "bytes": 93653,
+        "sha256": "5c5f4e5243ed8ba87486619bf828a9fa96e2de457fd196c558d8934377a0f51e"
+      },
+      "matched": true
+    },
+    "priorArchiveCheck": {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/archive-check-01.json",
+        "bytes": 21274,
+        "sha256": "d5ad1ce4eda1b432ff2161a596ac9ea5af075b3cff880f74ca10df7f52225f5f"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/archive-check-01.json",
+        "bytes": 21274,
+        "sha256": "d5ad1ce4eda1b432ff2161a596ac9ea5af075b3cff880f74ca10df7f52225f5f"
+      },
+      "matched": true
+    },
+    "newBuildOrSignatureVerificationExecuted": false
+  },
+  "helperContinuity": [
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/owned_model.py",
+        "bytes": 32949,
+        "sha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/owned_model.py",
+        "bytes": 32949,
+        "sha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/test_owned_model.py",
+        "bytes": 21837,
+        "sha256": "145d75ad5d1d8a090bb3c1a9830a59d1127d3424354b8b59db208d0006da9b87"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/test_owned_model.py",
+        "bytes": 21837,
+        "sha256": "145d75ad5d1d8a090bb3c1a9830a59d1127d3424354b8b59db208d0006da9b87"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/helper-continuity-01.json",
+        "bytes": 1042,
+        "sha256": "26961ca83517f0033f138ca02d7eb38b17e80b3afc6e7946ce2a64ebe62c1552"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/helper-continuity-01.json",
+        "bytes": 1042,
+        "sha256": "26961ca83517f0033f138ca02d7eb38b17e80b3afc6e7946ce2a64ebe62c1552"
+      },
+      "matched": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.1/model-selection.json",
+        "bytes": 13199,
+        "sha256": "7de0ae35b3d231201679b2242484cb24a9122a8f9ce866b8554dfe6384a2d86a"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.1/model-selection.json",
+        "bytes": 13199,
+        "sha256": "7de0ae35b3d231201679b2242484cb24a9122a8f9ce866b8554dfe6384a2d86a"
+      },
+      "matched": true
+    }
+  ],
+  "privateModelBlobsRehashedByThisAudit": false,
+  "newLiveActions": false
+}

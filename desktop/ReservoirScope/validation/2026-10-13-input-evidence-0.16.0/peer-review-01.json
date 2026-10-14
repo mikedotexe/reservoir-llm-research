@@ -1,0 +1,95 @@
+{
+  "schema": "reservoir-input-evidence-peer-review-v1",
+  "reviewedAtUtc": "2026-10-13T23:19:12.620585+00:00",
+  "status": "no-remaining-concrete-blocker",
+  "account": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/PEER-REVIEW.md",
+    "bytes": 2761,
+    "sha256": "05303467c30af76c06fde28d8b3fd359f9aff13bb53e3dd62b2a4b6e335fbe8d"
+  },
+  "sources": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/session.rs",
+      "bytes": 51273,
+      "sha256": "d9f15552bbf605e11e9cb2d1ebbc35c4b73b48e97110a0f3ac7dc1768bf9b706"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/sustained.rs",
+      "bytes": 81680,
+      "sha256": "2c5b190812504d097623a309f451bb4c6d550c165193834362ba77258e2167b7"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/sustained_provider_evidence.rs",
+      "bytes": 10950,
+      "sha256": "3575b7021bd32c772125d4b4244b120c29829558781f08ab8d6a708807b8a722"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri/src/model_transport.rs",
+      "bytes": 15786,
+      "sha256": "23af2733a02092fd22521b0e8fc10eee2901b83a632adc2d137b7bf4a4112e28"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri/src/model_transport_tests.rs",
+      "bytes": 25546,
+      "sha256": "49e9ec1e07c871e1478934d3cc171e7354b40df8d0488240c2bac6ce7b34287a"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri/src/sustained_store.rs",
+      "bytes": 56229,
+      "sha256": "cc3a18469733b975eb0aafc03d41270619e88f6b64eefbcb7a40a91df09b2ef4"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri/src/sustained.rs",
+      "bytes": 58956,
+      "sha256": "5399ac3d9faf9fcd291dcc6dd176f80c7cd712bc489e6969bfcf621a084223c8"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri/src/sustained_tests.rs",
+      "bytes": 55999,
+      "sha256": "465130c736dbd3a31f889d263cca10065298706bad6e73911d955d9b8ef80e3e"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src/myReservoirTypes.ts",
+      "bytes": 8222,
+      "sha256": "91ec32487081436c8945eef633d28d677a69e6558d88800917b3e50ec12cd875"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src/myReservoirController.ts",
+      "bytes": 22581,
+      "sha256": "f470bfee266744bdb84a3569929a62818ca82cbe7267f8ff02da4802a59b1dcd"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src/ProviderPromptEvidence.tsx",
+      "bytes": 1683,
+      "sha256": "53bd6ccd93cfc34094e3407b62b4b174df27661ae8b67619bbed94855c2dc091"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src/ProviderPromptEvidence.test.tsx",
+      "bytes": 2872,
+      "sha256": "a504a46f093fb20acdf2fcda377a0fb95fb67320fbb4178be720d468175b66dd"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src/MyReservoirJournals.tsx",
+      "bytes": 9195,
+      "sha256": "972f9690a57237765d3ef0134842ed84fe111620b1ead3dc35122b278a5432b6"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src/MyReservoirRecovery.tsx",
+      "bytes": 6255,
+      "sha256": "6ca1061fef45863f2f1c7b8105d2ca1c7a61475f514913e764da6e982bd30f75"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src/MyReservoirRecovery.test.tsx",
+      "bytes": 1629,
+      "sha256": "21e4749332d31b8f3b4bb69e0bdc2bd71ee1d9d771ce5241c248a2c9f80942e3"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/shared/reservoir-scope/provider-prompt-evidence.md",
+      "bytes": 3416,
+      "sha256": "ae0078cc712105c2a1b67fe4afe7ef2d39c464beba720614f236eaefe89def80"
+    }
+  ],
+  "resolvedFinding": "New recovery output-token i64 values now cross IPC as exact signed decimal strings; source remains unchanged on disk.",
+  "scope": "Read-only core/transport/store/IPC/frontend semantics and retained compatibility contract. Full suites and packaged execution have separate receipts.",
+  "noUIOrProcessOrModelActions": true
+}

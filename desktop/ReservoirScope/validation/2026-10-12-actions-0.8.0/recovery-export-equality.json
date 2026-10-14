@@ -1,0 +1,263 @@
+{
+  "schema": "reservoir-scope.recovery-export-equality.v1",
+  "executedAtUtc": "2026-10-12T22:19:30.720298+00:00",
+  "method": "Static Python standard-library exact-byte comparison, SHA-256, arbitrary-precision integer JSON parsing, retained-field and array equality checks. No verifier or numerical engine was run.",
+  "inputs": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.8-ui/fresh-h-tape-11.json",
+      "bytes": 626321,
+      "sha256": "a7623dd5b4f90a80ed4ba401b53dfb3fffaa0601f1315020d8674aeb20a6aa15"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.8-ui/fresh-h-tape-11-recovered.json",
+      "bytes": 626321,
+      "sha256": "a7623dd5b4f90a80ed4ba401b53dfb3fffaa0601f1315020d8674aeb20a6aa15"
+    }
+  ],
+  "checks": [
+    {
+      "name": "original and recovered exports have exactly equal bytes",
+      "passed": true,
+      "evidence": {
+        "comparison": "Python bytes equality across the complete two files",
+        "equal": true
+      }
+    },
+    {
+      "name": "full-width unsigned seed retained without floating conversion",
+      "passed": true,
+      "evidence": {
+        "specification.seedDecimal": "18446744073709551615",
+        "tape.seedDecimal": "18446744073709551615",
+        "rawSeedIntegerTokens": [
+          "18446744073709551615",
+          "18446744073709551615"
+        ],
+        "parser": "Python json.loads(parse_int=int)"
+      }
+    },
+    {
+      "name": "standalone completed H fixed-replay record has ten packets and eleven frames",
+      "passed": true,
+      "evidence": {
+        "format": "essentials-actions-v3",
+        "specification.stage": 8,
+        "specification.mode": "fixedReplay",
+        "specification.steps": 11,
+        "specification.turnEvery": 3,
+        "tape.format": "essentials-action-tape-v1",
+        "tapePacketCount": 10,
+        "frameCount": 11,
+        "status": "completed"
+      }
+    },
+    {
+      "name": "three scheduled action receipts and two journal entries retained",
+      "passed": true,
+      "evidence": {
+        "opportunityCount": 3,
+        "journalCount": 2,
+        "actionOutcomes": [
+          {
+            "id": 1,
+            "observedStep": 3,
+            "chosenAction": "WRITE_JOURNAL",
+            "status": "completed"
+          },
+          {
+            "id": 2,
+            "observedStep": 6,
+            "chosenAction": "WRITE_JOURNAL",
+            "status": "completed"
+          },
+          {
+            "id": 3,
+            "observedStep": 9,
+            "chosenAction": "WAIT",
+            "status": "completed"
+          }
+        ]
+      }
+    },
+    {
+      "name": "all replies carry retained tape provenance without provider request",
+      "passed": true,
+      "evidence": {
+        "actionProvenance": [
+          {
+            "id": 1,
+            "requestStarted": false,
+            "requestOrder": null,
+            "tapePacketID": 3,
+            "providerModel": "essentials-action-tape-v1",
+            "stopReason": "replayed"
+          },
+          {
+            "id": 2,
+            "requestStarted": false,
+            "requestOrder": null,
+            "tapePacketID": 6,
+            "providerModel": "essentials-action-tape-v1",
+            "stopReason": "replayed"
+          },
+          {
+            "id": 3,
+            "requestStarted": false,
+            "requestOrder": null,
+            "tapePacketID": 9,
+            "providerModel": "essentials-action-tape-v1",
+            "stopReason": "replayed"
+          }
+        ]
+      }
+    },
+    {
+      "name": "memory IDs and text match the preceding saved journals",
+      "passed": true,
+      "evidence": {
+        "memoryLinks": [
+          {
+            "actionID": 1,
+            "observedStep": 3,
+            "memoryEntryID": null,
+            "expectedLatestJournalID": null,
+            "memoryTextMatchesExactJournalText": true,
+            "quotedMemoryMatchesPrompt": true,
+            "memoryTextSha256": null
+          },
+          {
+            "actionID": 2,
+            "observedStep": 6,
+            "memoryEntryID": "journal-3-1-7ae2e7ab9eddfc3e7fa0693cd9c63854d88a20677716dd72423b196ec451db6b",
+            "expectedLatestJournalID": "journal-3-1-7ae2e7ab9eddfc3e7fa0693cd9c63854d88a20677716dd72423b196ec451db6b",
+            "memoryTextMatchesExactJournalText": true,
+            "quotedMemoryMatchesPrompt": true,
+            "memoryTextSha256": "7ae2e7ab9eddfc3e7fa0693cd9c63854d88a20677716dd72423b196ec451db6b"
+          },
+          {
+            "actionID": 3,
+            "observedStep": 9,
+            "memoryEntryID": "journal-6-2-4b3292ed3bd920b75322007cb654f77491e8bdf8883c56083c7da47aeee70c7b",
+            "expectedLatestJournalID": "journal-6-2-4b3292ed3bd920b75322007cb654f77491e8bdf8883c56083c7da47aeee70c7b",
+            "memoryTextMatchesExactJournalText": true,
+            "quotedMemoryMatchesPrompt": true,
+            "memoryTextSha256": "4b3292ed3bd920b75322007cb654f77491e8bdf8883c56083c7da47aeee70c7b"
+          }
+        ]
+      }
+    },
+    {
+      "name": "retained saved actions first apply at 3-to-4 and 6-to-7 boundaries",
+      "passed": true,
+      "evidence": {
+        "savedApplications": [
+          {
+            "actionID": 1,
+            "observedStep": 3,
+            "applicationStep": 4,
+            "journalEntryID": "journal-3-1-7ae2e7ab9eddfc3e7fa0693cd9c63854d88a20677716dd72423b196ec451db6b",
+            "saveReceipt": {
+              "status": "saved",
+              "entryID": "journal-3-1-7ae2e7ab9eddfc3e7fa0693cd9c63854d88a20677716dd72423b196ec451db6b",
+              "sha256": "7ae2e7ab9eddfc3e7fa0693cd9c63854d88a20677716dd72423b196ec451db6b",
+              "relativePath": "right/journal-3-1-7ae2e7ab9eddfc3e7fa0693cd9c63854d88a20677716dd72423b196ec451db6b.json",
+              "failure": null
+            },
+            "actualTextSha256": "7ae2e7ab9eddfc3e7fa0693cd9c63854d88a20677716dd72423b196ec451db6b",
+            "firstAppliedFrameMatchesRetainedVector": true,
+            "feedbackNotAppliedAtObservation": true,
+            "passed": true
+          },
+          {
+            "actionID": 2,
+            "observedStep": 6,
+            "applicationStep": 7,
+            "journalEntryID": "journal-6-2-4b3292ed3bd920b75322007cb654f77491e8bdf8883c56083c7da47aeee70c7b",
+            "saveReceipt": {
+              "status": "saved",
+              "entryID": "journal-6-2-4b3292ed3bd920b75322007cb654f77491e8bdf8883c56083c7da47aeee70c7b",
+              "sha256": "4b3292ed3bd920b75322007cb654f77491e8bdf8883c56083c7da47aeee70c7b",
+              "relativePath": "right/journal-6-2-4b3292ed3bd920b75322007cb654f77491e8bdf8883c56083c7da47aeee70c7b.json",
+              "failure": null
+            },
+            "actualTextSha256": "4b3292ed3bd920b75322007cb654f77491e8bdf8883c56083c7da47aeee70c7b",
+            "firstAppliedFrameMatchesRetainedVector": true,
+            "feedbackNotAppliedAtObservation": true,
+            "passed": true
+          }
+        ],
+        "limit": "Retained save receipts are inspected; this static check does not independently authenticate physical journal storage."
+      }
+    },
+    {
+      "name": "WAIT at step nine has an action receipt but no save or feedback receipt",
+      "passed": true,
+      "evidence": {
+        "actionID": 3,
+        "observedStep": 9,
+        "rawReply": "{\"action\":\"WAIT\",\"text\":\"\"}",
+        "saveReceipt": null,
+        "journalEntryID": null,
+        "encodedFeatures": null,
+        "semanticVector": null,
+        "applicationStep": null
+      }
+    },
+    {
+      "name": "step-nine WAIT preserves action-two feedback through steps nine ten and eleven",
+      "passed": true,
+      "evidence": {
+        "heldFeedbackFrames": [
+          {
+            "step": 9,
+            "semanticActionID": 2,
+            "semanticInputEqualsSavedAction2Vector": true,
+            "inputSemanticLaneEqualsSavedAction2Vector": true
+          },
+          {
+            "step": 10,
+            "semanticActionID": 2,
+            "semanticInputEqualsSavedAction2Vector": true,
+            "inputSemanticLaneEqualsSavedAction2Vector": true
+          },
+          {
+            "step": 11,
+            "semanticActionID": 2,
+            "semanticInputEqualsSavedAction2Vector": true,
+            "inputSemanticLaneEqualsSavedAction2Vector": true
+          }
+        ],
+        "coordinateRange": "input indices 18 through 65 inclusive"
+      }
+    },
+    {
+      "name": "step eleven uses 0.985 retention and records 0.975 next retention",
+      "passed": true,
+      "evidence": {
+        "step": 11,
+        "retentionUsed": 0.985,
+        "control.appliedRetention": 0.975,
+        "precedingStepControlAppliedRetention": 0.985,
+        "nextFramePresent": false,
+        "limit": "The next-retention value is retained control output. No step 12 was executed in this finite record."
+      }
+    },
+    {
+      "name": "both input files unchanged through static inspection",
+      "passed": true,
+      "evidence": {
+        "inputsStable": true
+      }
+    }
+  ],
+  "passed": true,
+  "numericalVerifierRun": false,
+  "modelsContacted": false,
+  "liveSystemsAccessed": false,
+  "limits": [
+    "These two dialog-export files are the complete inspection scope.",
+    "This receipt checks retained content and byte identity; it does not independently observe UI actions or durable writes.",
+    "Journal receipts and memory links here are recorded evidence; backend physical read/write behavior and independent Swift/Rust numerical conformance have separate qualification receipts.",
+    "No future controller frame or benefit of memory, language, control, or any live system is inferred."
+  ]
+}

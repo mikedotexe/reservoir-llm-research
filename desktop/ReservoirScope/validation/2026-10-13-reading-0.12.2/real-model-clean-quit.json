@@ -1,0 +1,60 @@
+{
+  "atUtc": "2026-10-13T19:35:45.741798+00:00",
+  "action": "Native Cmd-Q after complete immutable export and keyboard Follow latest inspection",
+  "processBefore": {
+    "pid": 84707,
+    "startSeconds": "1791919206",
+    "startMicroseconds": "901451",
+    "executablePath": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop"
+  },
+  "processAfter": {
+    "errno": 3,
+    "error": "[Errno 3] Selected PID information unavailable or ABI size mismatch"
+  },
+  "exactPidAbsent": true,
+  "executableSha256": "2fa824855d1172ebf707b4f1ce5f50d2c3eb74ab4aeeb437d41dc566f818db8d",
+  "executableUnchanged": true,
+  "manifestAfterQuit": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791919382664-3",
+    "generation": "3",
+    "revision": "143",
+    "config": {
+      "seed": "20261013",
+      "turnEvery": 30,
+      "maximumSteps": 121,
+      "maximumTurns": 4,
+      "maximumDurationSeconds": 600,
+      "storageBudgetBytes": 67108864,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:63515",
+        "model": "gemma3:4b",
+        "contextTokens": 4096
+      }
+    },
+    "phase": "budgetReached",
+    "step": 121,
+    "durableStep": 121,
+    "elapsedMillis": 158846,
+    "journalCount": 4,
+    "segmentCount": 19,
+    "lastSegmentSha256": "dbef96dd68dad14a1839fcdea2abc8a8ebb1883b4e4e8c133b551f4db3025fd6",
+    "checkpointSha256": "1a066c4fec045169e8cacd582ba5b4d78a664be0576860c82e079eaa597c1e3e",
+    "previousCheckpointSha256": "1a066c4fec045169e8cacd582ba5b4d78a664be0576860c82e079eaa597c1e3e",
+    "diagnostics": [],
+    "attemptTiming": {
+      "attemptId": 4,
+      "dispatchedAtMs": "1791919550512",
+      "receivedAtMs": "1791919555719",
+      "transportDurationMs": 5206,
+      "publishedAtMs": null
+    }
+  },
+  "scope": "No forced signal; no model request or budget extension. App-quit tool result independently checked with libproc."
+}

@@ -1,0 +1,75 @@
+{
+  "startedAtUtc": "2026-10-13T18:43:58.074907+00:00",
+  "endedAtUtc": "2026-10-13T18:43:58.159237+00:00",
+  "scope": "Supplemental final phase analysis only, after primary sampler closed. No app/provider/process operation.",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "validation/2026-10-13-reliability-0.12.0/analyze_run.py",
+    "--input",
+    "validation/2026-10-13-reliability-0.12.0/samples-01.jsonl",
+    "--markers",
+    "validation/2026-10-13-reliability-0.12.0/primary-markers-final-01.jsonl",
+    "--load-receipt",
+    "validation/2026-10-13-reliability-0.12.0/publisher-final-01-qualification.json",
+    "--load-receipt",
+    "validation/2026-10-13-reliability-0.12.0/sampler-analysis-02-qualification.json",
+    "--load-receipt",
+    "validation/2026-10-13-reliability-0.12.0/natural-quota-01-command.json",
+    "--load-receipt",
+    "validation/2026-10-13-reliability-0.12.0/analysis-workflow-01-qualification.json",
+    "--load-receipt",
+    "validation/2026-10-13-reliability-0.12.0/analysis-workflow-02-qualification.json",
+    "--load-receipt",
+    "validation/2026-10-13-reliability-0.12.0/frontend-final-load-02.json",
+    "--load-receipt",
+    "validation/2026-10-13-reliability-0.12.0/resource-plot-01-qualification.json",
+    "--load-receipt",
+    "validation/2026-10-13-reliability-0.12.0/quota-repair-final-01-qualification.json",
+    "--load-receipt",
+    "validation/2026-10-13-reliability-0.12.0/frontend-final-load-03.json",
+    "--load-receipt",
+    "validation/2026-10-13-reliability-0.12.0/quota-repair-final-02-qualification.json",
+    "--load-receipt",
+    "validation/2026-10-13-reading-0.12.1/load-intervals-01/journal-focused-01.json",
+    "--load-receipt",
+    "validation/2026-10-13-reading-0.12.1/load-intervals-01/journal-focused-02.json",
+    "--load-receipt",
+    "validation/2026-10-13-reading-0.12.1/load-intervals-01/setup-checks-01.json",
+    "--load-receipt",
+    "validation/2026-10-13-reading-0.12.1/load-intervals-01/integrated-01.json",
+    "--load-receipt",
+    "validation/2026-10-13-reading-0.12.1/load-intervals-01/owned-preview.json",
+    "--load-receipt",
+    "validation/2026-10-13-reading-0.12.1/load-intervals-01/integrated-02.json",
+    "--load-receipt",
+    "validation/2026-10-13-reading-0.12.1/owned-model-helper-01-qualification.json",
+    "--load-receipt",
+    "validation/2026-10-13-reliability-0.12.0/natural-quota-clippy-load-01.json",
+    "--output",
+    "validation/2026-10-13-reliability-0.12.0/final-phase-analysis-02.json"
+  ],
+  "exitCode": 0,
+  "whyNewReceipt": "Include retained natural quota Clippy closed interval omitted from first final list; preserve first output.",
+  "artifacts": [
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/natural-quota-clippy-load-01.json",
+      "sha256": "3d39fc2ecf8cd2d3d95bbb369b58a7a2250837ae2b0e917a53e8d953be6a55f2"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/final-load-intervals-02.json",
+      "sha256": "439098c4dcc56debae784285334e0a13825aaac2f61946a75f7be8aab4633de3"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/final-phase-analysis-02.json",
+      "sha256": "568e92ecdf9963896629cd887cfe8c3dcbc3e055f15baba80743c0aebf7b35f4"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/samples-01.jsonl",
+      "sha256": "cad9864c0f1d6e0ad0b5345ac2c5482bbc2fcfb5e62820ef2e9c3708bb6c1185"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/primary-markers-final-01.jsonl",
+      "sha256": "f649092dbfa011908e2b030f69af87d88628d1e668a5aa4c6aae62fd6bda3104"
+    }
+  ]
+}

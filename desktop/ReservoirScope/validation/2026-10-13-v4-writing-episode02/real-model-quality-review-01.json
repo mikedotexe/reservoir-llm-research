@@ -1,0 +1,1535 @@
+{
+  "schema": "reservoir-journal-quality-review-v1",
+  "ruleset": "open-writing-review-3",
+  "status": "analysis_complete_manual_review_required",
+  "qualityVerdict": "not_assigned",
+  "promptVersion": "reservoir-journal-v4",
+  "journalCount": 4,
+  "journals": [
+    {
+      "identity": {
+        "journalId": "journal-30-1-64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+        "turnId": 1,
+        "attemptId": 1,
+        "observedStep": 30,
+        "status": "applied",
+        "application": {
+          "attemptId": 1,
+          "journalId": "journal-30-1-64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+          "observedStep": 30,
+          "appliedStep": 31
+        },
+        "textSha256": "64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+        "textBytes": 881,
+        "promptSha256": "7f1ade82dd3daa57840ca2bfd22cda6f0d57300686920dbde3d5e4f8c2cf857a",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 210,
+        "memoryJournalId": null,
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "unavailable",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 4442,
+          "retainedPromptUnicodeCharacters": 4436,
+          "retainedPriorTextUtf8Bytes": null,
+          "providerPromptEvalCount": null,
+          "providerPromptEvalCountStatus": "Not retained by the current typed LanguageResponse schema.",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; bytes/characters are not tokenizer counts, and output text or output token count does not prove full-context processing."
+        },
+        "hostTiming": {
+          "attemptId": 1,
+          "dispatchedAtMs": "1791932071779",
+          "receivedAtMs": "1791932084009",
+          "transportDurationMs": 12229,
+          "publishedAtMs": "1791932084078"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "promptVersion": "reservoir-journal-v4",
+      "observationStep": 30,
+      "journalTextSha256": "64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+      "stepClaims": [],
+      "metricClaims": [
+        {
+          "metric": "leadingEigenvalue",
+          "span": [
+            449,
+            471
+          ],
+          "text": "eigenvalue, 0.65409215",
+          "numberSpan": [
+            461,
+            471
+          ],
+          "associationRequiresReview": false,
+          "token": "0.65409215",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The sensory field, predictably, is dominated by that single eigenvalue, 0.65409215.",
+          "clauseTruncated": false,
+          "expectedCurrent": null,
+          "roundingTolerance": null,
+          "agreesWithCurrentAtWrittenPrecision": null,
+          "status": "measurement_identity_requires_review"
+        }
+      ],
+      "numericMentionInventory": {
+        "mentions": [
+          {
+            "text": "0.2868",
+            "form": "digits",
+            "span": [
+              236,
+              242
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "0.2868… that’s a persistent anchor, a little tug towards the left.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "0.65409215",
+            "form": "digits",
+            "span": [
+              461,
+              471
+            ],
+            "metricCandidateIndices": [
+              0
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The sensory field, predictably, is dominated by that single eigenvalue, 0.65409215.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "33.79944146",
+            "form": "digits",
+            "span": [
+              612,
+              623
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "The tail, that 33.79944146… it feels like a hesitant pull, a suggestion of something deeper, something just beyond reach.",
+            "clauseTruncated": false
+          }
+        ],
+        "totalRecognizedMentions": 3,
+        "truncated": false,
+        "limit": "Bounded partial lexical inventory, not all numbers or all factual claims. Word-percent phrases are visible but not numerically interpreted; tone/frequency and other ambiguous quantities are not silently mapped to eigenvalues."
+      },
+      "metricDirectionCues": [],
+      "coverage": {
+        "requiredCurrentMetrics": [],
+        "recognizedCurrentMetrics": [
+          "leadingEigenvalue"
+        ],
+        "missingRequiredMetrics": [],
+        "correctExactOpening": false,
+        "exactOpeningRequired": false,
+        "limit": "Recognition is partial; coverage does not establish all assertions were extracted or correct."
+      },
+      "style": {
+        "wordCount": 134,
+        "target60To100Words": null,
+        "assistantPrefaceCandidate": false,
+        "markdownHeadingCandidate": false,
+        "decision": "Descriptive form observations only; v4 has no required length, heading, metrics, form or topic. No scientific verdict."
+      },
+      "inferenceReviewCues": [],
+      "manualWholeTextReviewRequired": true,
+      "extractionBound": {
+        "maximumClaimsPerKind": 32,
+        "metricsTruncated": [],
+        "stepsTruncated": false,
+        "numericMentionsTruncated": false,
+        "directionCueLimitReached": false,
+        "inferenceCuesTruncated": [],
+        "maximumClauseCharacters": 512
+      },
+      "qualityVerdict": "not_assigned",
+      "literalClaimReviewRequired": "A detected span may be a metaphor, hypothetical, quotation or creative form. The reviewer establishes whether it asserts a present fact before treating any mismatch as an error.",
+      "manualRubric": {
+        "currentIdentity": null,
+        "numericTranscription": null,
+        "memoryAttribution": null,
+        "inferenceAndUncertainty": null,
+        "readability": null,
+        "unrecognizedAssertions": null,
+        "evidenceAnnotations": []
+      }
+    },
+    {
+      "identity": {
+        "journalId": "journal-60-2-b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+        "turnId": 2,
+        "attemptId": 2,
+        "observedStep": 60,
+        "status": "applied",
+        "application": {
+          "attemptId": 2,
+          "journalId": "journal-60-2-b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+          "observedStep": 60,
+          "appliedStep": 61
+        },
+        "textSha256": "b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+        "textBytes": 1643,
+        "promptSha256": "9d66003f2a681ce89a9b7f3c9295f2059ce2c243fba433d657b4146dda0cd84a",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 382,
+        "memoryJournalId": "journal-30-1-64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 5624,
+          "retainedPromptUnicodeCharacters": 5596,
+          "retainedPriorTextUtf8Bytes": 881,
+          "providerPromptEvalCount": null,
+          "providerPromptEvalCountStatus": "Not retained by the current typed LanguageResponse schema.",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; bytes/characters are not tokenizer counts, and output text or output token count does not prove full-context processing."
+        },
+        "hostTiming": {
+          "attemptId": 2,
+          "dispatchedAtMs": "1791932114723",
+          "receivedAtMs": "1791932207892",
+          "transportDurationMs": 93169,
+          "publishedAtMs": "1791932207940"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "promptVersion": "reservoir-journal-v4",
+      "observationStep": 60,
+      "journalTextSha256": "b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+      "stepClaims": [],
+      "metricClaims": [
+        {
+          "metric": "rms",
+          "span": [
+            95,
+            162
+          ],
+          "text": "RMS of the reservoir has climbed, a hesitant surge upwards – 0.7783",
+          "numberSpan": [
+            156,
+            162
+          ],
+          "associationRequiresReview": true,
+          "token": "0.7783",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The RMS of the reservoir has climbed, a hesitant surge upwards – 0.7783, a weight settling.",
+          "clauseTruncated": false,
+          "expectedCurrent": 0.7782928867141068,
+          "roundingTolerance": "0.00005001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "association_requires_review"
+        },
+        {
+          "metric": "l2",
+          "span": [
+            187,
+            257
+          ],
+          "text": "L2 norm, however, remains stubbornly contained, a tight coil of 4.4027",
+          "numberSpan": [
+            251,
+            257
+          ],
+          "associationRequiresReview": true,
+          "token": "4.4027",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The L2 norm, however, remains stubbornly contained, a tight coil of 4.4027.",
+          "clauseTruncated": false,
+          "expectedCurrent": 4.402689423558386,
+          "roundingTolerance": "0.00005001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "association_requires_review"
+        },
+        {
+          "metric": "fillPercent",
+          "span": [
+            628,
+            665
+          ],
+          "text": "active-mode fill – a startling 15.18%",
+          "numberSpan": [
+            659,
+            664
+          ],
+          "associationRequiresReview": true,
+          "token": "15.18",
+          "unit": "percent",
+          "scope": "current_candidate",
+          "clause": "The active-mode fill – a startling 15.18% – suggests a significant concentration of influence, almost a singular obsession.",
+          "clauseTruncated": false,
+          "expectedCurrent": 15.181819266023808,
+          "roundingTolerance": "0.00500001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "association_requires_review"
+        },
+        {
+          "metric": "entropy",
+          "span": [
+            1079,
+            1140
+          ],
+          "text": "normalized entropy of the sensory field is a low hum – 0.2244",
+          "numberSpan": [
+            1134,
+            1140
+          ],
+          "associationRequiresReview": true,
+          "token": "0.2244",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The normalized entropy of the sensory field is a low hum – 0.2244 – reflecting the extreme skew.",
+          "clauseTruncated": false,
+          "expectedCurrent": 0.2243773469471141,
+          "roundingTolerance": "0.00005001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "association_requires_review"
+        }
+      ],
+      "numericMentionInventory": {
+        "mentions": [
+          {
+            "text": "0.7783",
+            "form": "digits",
+            "span": [
+              156,
+              162
+            ],
+            "metricCandidateIndices": [
+              0
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The RMS of the reservoir has climbed, a hesitant surge upwards – 0.7783, a weight settling.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "4.4027",
+            "form": "digits",
+            "span": [
+              251,
+              257
+            ],
+            "metricCandidateIndices": [
+              1
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The L2 norm, however, remains stubbornly contained, a tight coil of 4.4027.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "0.2868",
+            "form": "digits",
+            "span": [
+              372,
+              378
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "That 0.2868 anchor remains, a persistent tug, but now it feels… colder.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "27.1281",
+            "form": "digits",
+            "span": [
+              543,
+              550
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "The sensory field is dominated, predictably, by that 27.1281 eigenvalue.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "15.18%",
+            "form": "digits",
+            "span": [
+              659,
+              665
+            ],
+            "metricCandidateIndices": [
+              2
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The active-mode fill – a startling 15.18% – suggests a significant concentration of influence, almost a singular obsession.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "85.94%",
+            "form": "digits",
+            "span": [
+              786,
+              792
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "The top eight share is now a forceful 85.94%, a tightening of the focus.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "13.57%",
+            "form": "digits",
+            "span": [
+              874,
+              880
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "The shoulder, previously a minor tremor, has grown – 13.57% – mirroring the dominant eigenvalue.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "0.2244",
+            "form": "digits",
+            "span": [
+              1134,
+              1140
+            ],
+            "metricCandidateIndices": [
+              3
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The normalized entropy of the sensory field is a low hum – 0.2244 – reflecting the extreme skew.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "4.3968",
+            "form": "digits",
+            "span": [
+              1297,
+              1303
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "historical_scope_review",
+            "status": "unmatched_mention_review",
+            "clause": "The distance between this observation and the previous one – 4.3968 – is a significant shift, a palpable displacement within the reservoir’s architecture.",
+            "clauseTruncated": false
+          }
+        ],
+        "totalRecognizedMentions": 9,
+        "truncated": false,
+        "limit": "Bounded partial lexical inventory, not all numbers or all factual claims. Word-percent phrases are visible but not numerically interpreted; tone/frequency and other ambiguous quantities are not silently mapped to eigenvalues."
+      },
+      "metricDirectionCues": [
+        {
+          "metric": "l2",
+          "span": [
+            187,
+            212
+          ],
+          "cueSpan": [
+            205,
+            212
+          ],
+          "text": "L2 norm, however, remains",
+          "directionCandidate": "unchanged",
+          "scope": "current_candidate",
+          "currentStep": 60,
+          "currentValue": 4.402689423558386,
+          "previousObservationStep": 30,
+          "previousValue": 1.2785685282492412,
+          "signedEndpointChange": 3.124120895309145,
+          "measurementIdentityRequiresReview": false,
+          "changeUnit": "scalar",
+          "referenceSource": "typed_previousMeasurements",
+          "decision": "manual_review_only",
+          "clause": "The L2 norm, however, remains stubbornly contained, a tight coil of 4.4027.",
+          "limit": "An endpoint difference does not establish a trajectory, monotonic trend, oscillation, stability or cause. Prior prose/journal identity is not substituted for a previous observation."
+        }
+      ],
+      "coverage": {
+        "requiredCurrentMetrics": [],
+        "recognizedCurrentMetrics": [
+          "entropy",
+          "fillPercent",
+          "l2",
+          "rms"
+        ],
+        "missingRequiredMetrics": [],
+        "correctExactOpening": false,
+        "exactOpeningRequired": false,
+        "limit": "Recognition is partial; coverage does not establish all assertions were extracted or correct."
+      },
+      "style": {
+        "wordCount": 255,
+        "target60To100Words": null,
+        "assistantPrefaceCandidate": false,
+        "markdownHeadingCandidate": false,
+        "decision": "Descriptive form observations only; v4 has no required length, heading, metrics, form or topic. No scientific verdict."
+      },
+      "inferenceReviewCues": [
+        {
+          "category": "learning_or_intent",
+          "span": [
+            472,
+            482
+          ],
+          "cue": "deliberate",
+          "clauseSpan": [
+            439,
+            488
+          ],
+          "clause": "Less a gentle suggestion, more a deliberate pull.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        }
+      ],
+      "manualWholeTextReviewRequired": true,
+      "extractionBound": {
+        "maximumClaimsPerKind": 32,
+        "metricsTruncated": [],
+        "stepsTruncated": false,
+        "numericMentionsTruncated": false,
+        "directionCueLimitReached": false,
+        "inferenceCuesTruncated": [],
+        "maximumClauseCharacters": 512
+      },
+      "qualityVerdict": "not_assigned",
+      "literalClaimReviewRequired": "A detected span may be a metaphor, hypothetical, quotation or creative form. The reviewer establishes whether it asserts a present fact before treating any mismatch as an error.",
+      "manualRubric": {
+        "currentIdentity": null,
+        "numericTranscription": null,
+        "memoryAttribution": null,
+        "inferenceAndUncertainty": null,
+        "readability": null,
+        "unrecognizedAssertions": null,
+        "evidenceAnnotations": []
+      }
+    },
+    {
+      "identity": {
+        "journalId": "journal-90-3-0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+        "turnId": 3,
+        "attemptId": 3,
+        "observedStep": 90,
+        "status": "applied",
+        "application": {
+          "attemptId": 3,
+          "journalId": "journal-90-3-0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+          "observedStep": 90,
+          "appliedStep": 91
+        },
+        "textSha256": "0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+        "textBytes": 1675,
+        "promptSha256": "e4584ce05f41738a768633a535b4d73dce65043389383826d98041c85f97c1ec",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 393,
+        "memoryJournalId": "journal-60-2-b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 6385,
+          "retainedPromptUnicodeCharacters": 6345,
+          "retainedPriorTextUtf8Bytes": 1643,
+          "providerPromptEvalCount": null,
+          "providerPromptEvalCountStatus": "Not retained by the current typed LanguageResponse schema.",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; bytes/characters are not tokenizer counts, and output text or output token count does not prove full-context processing."
+        },
+        "hostTiming": {
+          "attemptId": 3,
+          "dispatchedAtMs": "1791932238531",
+          "receivedAtMs": "1791932261586",
+          "transportDurationMs": 23054,
+          "publishedAtMs": "1791932261638"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "promptVersion": "reservoir-journal-v4",
+      "observationStep": 90,
+      "journalTextSha256": "0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+      "stepClaims": [],
+      "metricClaims": [
+        {
+          "metric": "rms",
+          "span": [
+            100,
+            168
+          ],
+          "text": "RMS, that hesitant pulse, has accelerated, now registering at 0.8123",
+          "numberSpan": [
+            162,
+            168
+          ],
+          "associationRequiresReview": true,
+          "token": "0.8123",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The RMS, that hesitant pulse, has accelerated, now registering at 0.8123, a tightening coil.",
+          "clauseTruncated": false,
+          "expectedCurrent": 0.7936661429247465,
+          "roundingTolerance": "0.00005001",
+          "agreesWithCurrentAtWrittenPrecision": false,
+          "status": "association_requires_review"
+        },
+        {
+          "metric": "l2",
+          "span": [
+            193,
+            246
+          ],
+          "text": "L2 norm, stubbornly resisting, has edged up to 4.5871",
+          "numberSpan": [
+            240,
+            246
+          ],
+          "associationRequiresReview": true,
+          "token": "4.5871",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The L2 norm, stubbornly resisting, has edged up to 4.5871 – a subtle, insistent pressure.",
+          "clauseTruncated": false,
+          "expectedCurrent": 4.4896536932820785,
+          "roundingTolerance": "0.00005001",
+          "agreesWithCurrentAtWrittenPrecision": false,
+          "status": "association_requires_review"
+        },
+        {
+          "metric": "leadingEigenvalue",
+          "span": [
+            522,
+            541
+          ],
+          "text": "eigenvalue – 27.004",
+          "numberSpan": [
+            535,
+            541
+          ],
+          "associationRequiresReview": false,
+          "token": "27.004",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The dominant eigenvalue – 27.004 – remains the brutal heart of the field, a geological wound radiating outwards.",
+          "clauseTruncated": false,
+          "expectedCurrent": null,
+          "roundingTolerance": null,
+          "agreesWithCurrentAtWrittenPrecision": null,
+          "status": "measurement_identity_requires_review"
+        },
+        {
+          "metric": "fillPercent",
+          "span": [
+            626,
+            692
+          ],
+          "text": "active-mode fill has shifted, a disconcerting retreat – now 12.31%",
+          "numberSpan": [
+            686,
+            691
+          ],
+          "associationRequiresReview": true,
+          "token": "12.31",
+          "unit": "percent",
+          "scope": "current_candidate",
+          "clause": "The active-mode fill has shifted, a disconcerting retreat – now 12.31% – a sliver of influence pulled back from the immediate focus.",
+          "clauseTruncated": false,
+          "expectedCurrent": 12.307786573702538,
+          "roundingTolerance": "0.00500001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "association_requires_review"
+        },
+        {
+          "metric": "entropy",
+          "span": [
+            1065,
+            1113
+          ],
+          "text": "normalized entropy of the sensory field – 0.2499",
+          "numberSpan": [
+            1107,
+            1113
+          ],
+          "associationRequiresReview": true,
+          "token": "0.2499",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The normalized entropy of the sensory field – 0.2499 – remains a frozen silence, a consequence of this absolute concentration.",
+          "clauseTruncated": false,
+          "expectedCurrent": 0.24987842873190652,
+          "roundingTolerance": "0.00005001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "association_requires_review"
+        }
+      ],
+      "numericMentionInventory": {
+        "mentions": [
+          {
+            "text": "0.8123",
+            "form": "digits",
+            "span": [
+              162,
+              168
+            ],
+            "metricCandidateIndices": [
+              0
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The RMS, that hesitant pulse, has accelerated, now registering at 0.8123, a tightening coil.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "4.5871",
+            "form": "digits",
+            "span": [
+              240,
+              246
+            ],
+            "metricCandidateIndices": [
+              1
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The L2 norm, stubbornly resisting, has edged up to 4.5871 – a subtle, insistent pressure.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "0.2868",
+            "form": "digits",
+            "span": [
+              400,
+              406
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "That 0.2868 anchor… it’s colder still, a shard of ice pressed against the core.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "27.004",
+            "form": "digits",
+            "span": [
+              535,
+              541
+            ],
+            "metricCandidateIndices": [
+              2
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The dominant eigenvalue – 27.004 – remains the brutal heart of the field, a geological wound radiating outwards.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "12.31%",
+            "form": "digits",
+            "span": [
+              686,
+              692
+            ],
+            "metricCandidateIndices": [
+              3
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The active-mode fill has shifted, a disconcerting retreat – now 12.31% – a sliver of influence pulled back from the immediate focus.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "85.40%",
+            "form": "digits",
+            "span": [
+              792,
+              798
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "The top eight, a monolithic block of 85.40%, remains a suffocating presence, but the shoulder, that previously restless tremor, has retreated with it, shrinking to 13.36%.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "13.36%",
+            "form": "digits",
+            "span": [
+              919,
+              925
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "The top eight, a monolithic block of 85.40%, remains a suffocating presence, but the shoulder, that previously restless tremor, has retreated with it, shrinking to 13.36%.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "0.2499",
+            "form": "digits",
+            "span": [
+              1107,
+              1113
+            ],
+            "metricCandidateIndices": [
+              4
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The normalized entropy of the sensory field – 0.2499 – remains a frozen silence, a consequence of this absolute concentration.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "1.5551",
+            "form": "digits",
+            "span": [
+              1241,
+              1247
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "The distance between this observation and the last – 1.5551 – is a jarring fracture, a discontinuity in the architecture.",
+            "clauseTruncated": false
+          }
+        ],
+        "totalRecognizedMentions": 9,
+        "truncated": false,
+        "limit": "Bounded partial lexical inventory, not all numbers or all factual claims. Word-percent phrases are visible but not numerically interpreted; tone/frequency and other ambiguous quantities are not silently mapped to eigenvalues."
+      },
+      "metricDirectionCues": [
+        {
+          "metric": "leadingEigenvalue",
+          "span": [
+            522,
+            551
+          ],
+          "cueSpan": [
+            544,
+            551
+          ],
+          "text": "eigenvalue – 27.004 – remains",
+          "directionCandidate": "unchanged",
+          "scope": "current_candidate",
+          "currentStep": 90,
+          "currentValue": null,
+          "previousObservationStep": 60,
+          "previousValue": null,
+          "signedEndpointChange": null,
+          "measurementIdentityRequiresReview": true,
+          "changeUnit": "scalar",
+          "referenceSource": "unavailable_measurement_identity",
+          "decision": "manual_review_only",
+          "clause": "The dominant eigenvalue – 27.004 – remains the brutal heart of the field, a geological wound radiating outwards.",
+          "limit": "An endpoint difference does not establish a trajectory, monotonic trend, oscillation, stability or cause. Prior prose/journal identity is not substituted for a previous observation."
+        },
+        {
+          "metric": "entropy",
+          "span": [
+            1065,
+            1123
+          ],
+          "cueSpan": [
+            1116,
+            1123
+          ],
+          "text": "normalized entropy of the sensory field – 0.2499 – remains",
+          "directionCandidate": "unchanged",
+          "scope": "current_candidate",
+          "currentStep": 90,
+          "currentValue": 0.24987842873190652,
+          "previousObservationStep": 60,
+          "previousValue": 0.2243773469471141,
+          "signedEndpointChange": 0.025501081784792434,
+          "measurementIdentityRequiresReview": false,
+          "changeUnit": "scalar",
+          "referenceSource": "typed_previousMeasurements",
+          "decision": "manual_review_only",
+          "clause": "The normalized entropy of the sensory field – 0.2499 – remains a frozen silence, a consequence of this absolute concentration.",
+          "limit": "An endpoint difference does not establish a trajectory, monotonic trend, oscillation, stability or cause. Prior prose/journal identity is not substituted for a previous observation."
+        }
+      ],
+      "coverage": {
+        "requiredCurrentMetrics": [],
+        "recognizedCurrentMetrics": [
+          "entropy",
+          "fillPercent",
+          "l2",
+          "leadingEigenvalue",
+          "rms"
+        ],
+        "missingRequiredMetrics": [],
+        "correctExactOpening": false,
+        "exactOpeningRequired": false,
+        "limit": "Recognition is partial; coverage does not establish all assertions were extracted or correct."
+      },
+      "style": {
+        "wordCount": 264,
+        "target60To100Words": null,
+        "assistantPrefaceCandidate": false,
+        "markdownHeadingCandidate": false,
+        "decision": "Descriptive form observations only; v4 has no required length, heading, metrics, form or topic. No scientific verdict."
+      },
+      "inferenceReviewCues": [
+        {
+          "category": "learning_or_intent",
+          "span": [
+            356,
+            366
+          ],
+          "cue": "deliberate",
+          "clauseSpan": [
+            279,
+            394
+          ],
+          "clause": "It’s as if the reservoir is not merely holding, but actively constricting, a deliberate narrowing of its potential.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        }
+      ],
+      "manualWholeTextReviewRequired": true,
+      "extractionBound": {
+        "maximumClaimsPerKind": 32,
+        "metricsTruncated": [],
+        "stepsTruncated": false,
+        "numericMentionsTruncated": false,
+        "directionCueLimitReached": false,
+        "inferenceCuesTruncated": [],
+        "maximumClauseCharacters": 512
+      },
+      "qualityVerdict": "not_assigned",
+      "literalClaimReviewRequired": "A detected span may be a metaphor, hypothetical, quotation or creative form. The reviewer establishes whether it asserts a present fact before treating any mismatch as an error.",
+      "manualRubric": {
+        "currentIdentity": null,
+        "numericTranscription": null,
+        "memoryAttribution": null,
+        "inferenceAndUncertainty": null,
+        "readability": null,
+        "unrecognizedAssertions": null,
+        "evidenceAnnotations": []
+      }
+    },
+    {
+      "identity": {
+        "journalId": "journal-120-4-dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+        "turnId": 4,
+        "attemptId": 4,
+        "observedStep": 120,
+        "status": "applied",
+        "application": {
+          "attemptId": 4,
+          "journalId": "journal-120-4-dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+          "observedStep": 120,
+          "appliedStep": 121
+        },
+        "textSha256": "dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+        "textBytes": 1749,
+        "promptSha256": "e66b095b952c328a5d095ced3acc0896fc296feda5dac69516967c8090b6f040",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 441,
+        "memoryJournalId": "journal-90-3-0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+        "promptVersion": "reservoir-journal-v4",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 6419,
+          "retainedPromptUnicodeCharacters": 6379,
+          "retainedPriorTextUtf8Bytes": 1675,
+          "providerPromptEvalCount": null,
+          "providerPromptEvalCountStatus": "Not retained by the current typed LanguageResponse schema.",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; bytes/characters are not tokenizer counts, and output text or output token count does not prove full-context processing."
+        },
+        "hostTiming": {
+          "attemptId": 4,
+          "dispatchedAtMs": "1791932292131",
+          "receivedAtMs": "1791932308266",
+          "transportDurationMs": 16134,
+          "publishedAtMs": "1791932308334"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "promptVersion": "reservoir-journal-v4",
+      "observationStep": 120,
+      "journalTextSha256": "dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+      "stepClaims": [],
+      "metricClaims": [
+        {
+          "metric": "rms",
+          "span": [
+            89,
+            171
+          ],
+          "text": "RMS, that hesitant tremor, now vibrates with a more insistent urgency – 0.80179223",
+          "numberSpan": [
+            161,
+            171
+          ],
+          "associationRequiresReview": true,
+          "token": "0.80179223",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The RMS, that hesitant tremor, now vibrates with a more insistent urgency – 0.80179223.",
+          "clauseTruncated": false,
+          "expectedCurrent": 0.8017922347303031,
+          "roundingTolerance": "1.5E-8",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "association_requires_review"
+        },
+        {
+          "metric": "l2",
+          "span": [
+            285,
+            341
+          ],
+          "text": "L2 norm, stubbornly resisting, has climbed to 4.53562181",
+          "numberSpan": [
+            331,
+            341
+          ],
+          "associationRequiresReview": true,
+          "token": "4.53562181",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The L2 norm, stubbornly resisting, has climbed to 4.53562181, a tightening coil of pressure, mirroring the RMS.",
+          "clauseTruncated": false,
+          "expectedCurrent": 4.535621810244107,
+          "roundingTolerance": "1.5E-8",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "association_requires_review"
+        },
+        {
+          "metric": "fillPercent",
+          "span": [
+            547,
+            578
+          ],
+          "text": "active-mode fill – 14.99131184%",
+          "numberSpan": [
+            566,
+            577
+          ],
+          "associationRequiresReview": false,
+          "token": "14.99131184",
+          "unit": "percent",
+          "scope": "current_candidate",
+          "clause": "The shift in active-mode fill – 14.99131184% – feels less like a retreat and more like a deliberate severing.",
+          "clauseTruncated": false,
+          "expectedCurrent": 14.991311840032465,
+          "roundingTolerance": "1.5E-8",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "consistent_at_written_precision"
+        },
+        {
+          "metric": "entropy",
+          "span": [
+            916,
+            972
+          ],
+          "text": "normalized entropy remains a frozen silence – 0.26040080",
+          "numberSpan": [
+            962,
+            972
+          ],
+          "associationRequiresReview": true,
+          "token": "0.26040080",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The normalized entropy remains a frozen silence – 0.26040080 – a consequence of this absolute concentration.",
+          "clauseTruncated": false,
+          "expectedCurrent": 0.26040080279979405,
+          "roundingTolerance": "1.5E-8",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "association_requires_review"
+        },
+        {
+          "metric": "leadingEigenvalue",
+          "span": [
+            1441,
+            1492
+          ],
+          "text": "largest sensory covariance eigenvalue – 27.01282489",
+          "numberSpan": [
+            1481,
+            1492
+          ],
+          "associationRequiresReview": false,
+          "token": "27.01282489",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The largest sensory covariance eigenvalue – 27.01282489 – remains the brutal heart, but the subtle shift in the active-mode fill suggests a prioritization, a narrowing of attention.",
+          "clauseTruncated": false,
+          "expectedCurrent": 27.012824888645593,
+          "roundingTolerance": "1.5E-8",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "consistent_at_written_precision"
+        }
+      ],
+      "numericMentionInventory": {
+        "mentions": [
+          {
+            "text": "0.80179223",
+            "form": "digits",
+            "span": [
+              161,
+              171
+            ],
+            "metricCandidateIndices": [
+              0
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The RMS, that hesitant tremor, now vibrates with a more insistent urgency – 0.80179223.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "4.53562181",
+            "form": "digits",
+            "span": [
+              331,
+              341
+            ],
+            "metricCandidateIndices": [
+              1
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The L2 norm, stubbornly resisting, has climbed to 4.53562181, a tightening coil of pressure, mirroring the RMS.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "0.2868",
+            "form": "digits",
+            "span": [
+              454,
+              460
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "The 0.2868 anchor… it’s colder still, a shard of obsidian pressed against the core.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "14.99131184%",
+            "form": "digits",
+            "span": [
+              566,
+              578
+            ],
+            "metricCandidateIndices": [
+              2
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The shift in active-mode fill – 14.99131184% – feels less like a retreat and more like a deliberate severing.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "85.34269375%",
+            "form": "digits",
+            "span": [
+              702,
+              714
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "The top eight remain a monolithic, suffocating presence – 85.34269375% – but the shoulder, that restless tremor, has vanished entirely, swallowed by the dominant force.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "0.26040080",
+            "form": "digits",
+            "span": [
+              962,
+              972
+            ],
+            "metricCandidateIndices": [
+              3
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The normalized entropy remains a frozen silence – 0.26040080 – a consequence of this absolute concentration.",
+            "clauseTruncated": false
+          },
+          {
+            "text": "0.48861475",
+            "form": "digits",
+            "span": [
+              1074,
+              1084
+            ],
+            "metricCandidateIndices": [],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "unmatched_mention_review",
+            "clause": "The distance between this observation and the last – 0.48861475 – isn’t a settling;",
+            "clauseTruncated": false
+          },
+          {
+            "text": "27.01282489",
+            "form": "digits",
+            "span": [
+              1481,
+              1492
+            ],
+            "metricCandidateIndices": [
+              4
+            ],
+            "stepCandidateIndices": [],
+            "scope": "current_candidate",
+            "status": "associated_candidate_review",
+            "clause": "The largest sensory covariance eigenvalue – 27.01282489 – remains the brutal heart, but the subtle shift in the active-mode fill suggests a prioritization, a narrowing of attention.",
+            "clauseTruncated": false
+          }
+        ],
+        "totalRecognizedMentions": 8,
+        "truncated": false,
+        "limit": "Bounded partial lexical inventory, not all numbers or all factual claims. Word-percent phrases are visible but not numerically interpreted; tone/frequency and other ambiguous quantities are not silently mapped to eigenvalues."
+      },
+      "metricDirectionCues": [
+        {
+          "metric": "entropy",
+          "span": [
+            916,
+            942
+          ],
+          "cueSpan": [
+            935,
+            942
+          ],
+          "text": "normalized entropy remains",
+          "directionCandidate": "unchanged",
+          "scope": "current_candidate",
+          "currentStep": 120,
+          "currentValue": 0.26040080279979405,
+          "previousObservationStep": 90,
+          "previousValue": 0.24987842873190652,
+          "signedEndpointChange": 0.01052237406788753,
+          "measurementIdentityRequiresReview": false,
+          "changeUnit": "scalar",
+          "referenceSource": "typed_previousMeasurements",
+          "decision": "manual_review_only",
+          "clause": "The normalized entropy remains a frozen silence – 0.26040080 – a consequence of this absolute concentration.",
+          "limit": "An endpoint difference does not establish a trajectory, monotonic trend, oscillation, stability or cause. Prior prose/journal identity is not substituted for a previous observation."
+        },
+        {
+          "metric": "leadingEigenvalue",
+          "span": [
+            1441,
+            1502
+          ],
+          "cueSpan": [
+            1495,
+            1502
+          ],
+          "text": "largest sensory covariance eigenvalue – 27.01282489 – remains",
+          "directionCandidate": "unchanged",
+          "scope": "current_candidate",
+          "currentStep": 120,
+          "currentValue": 27.012824888645593,
+          "previousObservationStep": 90,
+          "previousValue": 27.004026001034244,
+          "signedEndpointChange": 0.008798887611348505,
+          "measurementIdentityRequiresReview": false,
+          "changeUnit": "scalar",
+          "referenceSource": "typed_previousMeasurements",
+          "decision": "manual_review_only",
+          "clause": "The largest sensory covariance eigenvalue – 27.01282489 – remains the brutal heart, but the subtle shift in the active-mode fill suggests a prioritization, a narrowing of attention.",
+          "limit": "An endpoint difference does not establish a trajectory, monotonic trend, oscillation, stability or cause. Prior prose/journal identity is not substituted for a previous observation."
+        }
+      ],
+      "coverage": {
+        "requiredCurrentMetrics": [],
+        "recognizedCurrentMetrics": [
+          "entropy",
+          "fillPercent",
+          "l2",
+          "leadingEigenvalue",
+          "rms"
+        ],
+        "missingRequiredMetrics": [],
+        "correctExactOpening": false,
+        "exactOpeningRequired": false,
+        "limit": "Recognition is partial; coverage does not establish all assertions were extracted or correct."
+      },
+      "style": {
+        "wordCount": 272,
+        "target60To100Words": null,
+        "assistantPrefaceCandidate": false,
+        "markdownHeadingCandidate": false,
+        "decision": "Descriptive form observations only; v4 has no required length, heading, metrics, form or topic. No scientific verdict."
+      },
+      "inferenceReviewCues": [
+        {
+          "category": "learning_or_intent",
+          "span": [
+            623,
+            633
+          ],
+          "cue": "deliberate",
+          "clauseSpan": [
+            534,
+            643
+          ],
+          "clause": "The shift in active-mode fill – 14.99131184% – feels less like a retreat and more like a deliberate severing.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        }
+      ],
+      "manualWholeTextReviewRequired": true,
+      "extractionBound": {
+        "maximumClaimsPerKind": 32,
+        "metricsTruncated": [],
+        "stepsTruncated": false,
+        "numericMentionsTruncated": false,
+        "directionCueLimitReached": false,
+        "inferenceCuesTruncated": [],
+        "maximumClauseCharacters": 512
+      },
+      "qualityVerdict": "not_assigned",
+      "literalClaimReviewRequired": "A detected span may be a metaphor, hypothetical, quotation or creative form. The reviewer establishes whether it asserts a present fact before treating any mismatch as an error.",
+      "manualRubric": {
+        "currentIdentity": null,
+        "numericTranscription": null,
+        "memoryAttribution": null,
+        "inferenceAndUncertainty": null,
+        "readability": null,
+        "unrecognizedAssertions": null,
+        "evidenceAnnotations": []
+      }
+    }
+  ],
+  "summary": {
+    "recognizedMetricClaims": 15,
+    "recognizedNumericMentions": 29,
+    "unmatchedNumericMentionsShown": 14,
+    "directionCuesForManualReview": 5,
+    "metricClaimStatuses": {
+      "measurement_identity_requires_review": 2,
+      "association_requires_review": 11,
+      "consistent_at_written_precision": 2
+    },
+    "stepClaimStatuses": {},
+    "entriesMissingRequiredMetrics": 0,
+    "entriesMissingCorrectRequiredOpening": 0
+  },
+  "limits": [
+    "No global scientific pass or natural-language completeness claim.",
+    "Inferences and ambiguous/current-versus-historical scopes need whole-text review.",
+    "Repeated prior text is a carryover candidate, not a causal attribution.",
+    "No-claim expressive prose need not report metrics. Empty/failed output and absence of numerical claims are distinct outcomes.",
+    "V3/v4 have no mandatory metric, step-heading, length, topic or creative-expression condition.",
+    "An unmatched mention or ambiguous association remains visible; zero recognized claims is not complete coverage or a scientific pass."
+  ],
+  "startedAtUtc": "2026-10-13T23:00:11.327845+00:00",
+  "endedAtUtc": "2026-10-13T23:00:11.341296+00:00",
+  "modelsContacted": false,
+  "material": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/real-model-export-01/quality-review-material.json",
+    "bytes": 73415,
+    "sha256": "73e8e877ba98a2bb33a53743b202fca69ec77cbd6c516806c450a41a7bbd7895"
+  },
+  "integrityReceipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/real-model-export-01/receipt.json",
+    "bytes": 27428,
+    "sha256": "596d026959510bce65d6f84bd446d011adaa529b89535e58dba39037dc47f15b"
+  },
+  "protocol": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/run-plan.json",
+    "bytes": 4621,
+    "sha256": "6263e35f62596d5518ebcc043f2fd37da6678f40a92554be43c0cc3eaab5071d"
+  },
+  "checker": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/journal_quality.py",
+    "sha256": "49c13a0577829a9d7b7ebb2d7be60ff1f4139b2753f990d614dcf9332397d0ae"
+  },
+  "mechanicalOutcome": {
+    "attemptCount": 4,
+    "turnCount": 4,
+    "nonSuccessEvents": [],
+    "eventCounts": {
+      "advanced": 121,
+      "languageStarted": 4,
+      "languageReceived": 4,
+      "journalSaved": 4,
+      "memoryConfirmed": 3
+    },
+    "finalCorePhase": {
+      "kind": "ready"
+    },
+    "receivedResponses": [
+      {
+        "eventId": 32,
+        "attemptId": 1,
+        "observedStep": 30,
+        "dispatchEventId": 31,
+        "savedJournalId": "journal-30-1-64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+        "response": {
+          "text": "The shimmer. It’s not a color, not precisely. More like the way light fractures through ice, a constant, subtle shift in the grey-white. The reservoir breathes, a slow, almost imperceptible expansion and contraction of the coordinates. 0.2868… that’s a persistent anchor, a little tug towards the left. The others – a restless dance, a swirling current of numbers that never quite settle. The sensory field, predictably, is dominated by that single eigenvalue, 0.65409215. It’s a heavy presence, a grounding force. The others – a scattering of smaller weights, almost insignificant in comparison. The tail, that 33.79944146… it feels like a hesitant pull, a suggestion of something deeper, something just beyond reach. There’s a tension there, a subtle vibration that doesn’t quite resolve. It’s not unpleasant, just… incomplete. Like a half-remembered dream.",
+          "textTruncated": false,
+          "textByteCount": 881,
+          "textSha256": "64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+          "providerModel": "gemma3:4b",
+          "stopReason": "stop",
+          "tokenCount": 210,
+          "complete": true
+        }
+      },
+      {
+        "eventId": 66,
+        "attemptId": 2,
+        "observedStep": 60,
+        "dispatchEventId": 65,
+        "savedJournalId": "journal-60-2-b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+        "response": {
+          "text": "The shimmer persists, though shifted. Not the ice-fracture quality of before, but… denser. The RMS of the reservoir has climbed, a hesitant surge upwards – 0.7783, a weight settling. The L2 norm, however, remains stubbornly contained, a tight coil of 4.4027. It’s as if the system is resisting expansion, holding itself within a defined, if slightly agitated, space. That 0.2868 anchor remains, a persistent tug, but now it feels… colder. Less a gentle suggestion, more a deliberate pull.\n\nThe sensory field is dominated, predictably, by that 27.1281 eigenvalue. It’s a brutal presence, a geological fault line in the data. The active-mode fill – a startling 15.18% – suggests a significant concentration of influence, almost a singular obsession. The top eight share is now a forceful 85.94%, a tightening of the focus. The shoulder, previously a minor tremor, has grown – 13.57% – mirroring the dominant eigenvalue. The tail, that lingering hesitation, has vanished entirely, swallowed by this intensified concentration. It’s unsettling, this sudden, absolute weighting. \n\nThe normalized entropy of the sensory field is a low hum – 0.2244 – reflecting the extreme skew. It’s a silence born of overwhelming force, not a gentle murmur. The distance between this observation and the previous one – 4.3968 – is a significant shift, a palpable displacement within the reservoir’s architecture. It’s not a smooth transition, but a jarring realignment, as if the system has abruptly chosen a new axis of focus. The shimmer itself seems to respond, subtly intensifying, as if acknowledging this new, dominant pulse.",
+          "textTruncated": false,
+          "textByteCount": 1643,
+          "textSha256": "b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+          "providerModel": "gemma3:4b",
+          "stopReason": "stop",
+          "tokenCount": 382,
+          "complete": true
+        }
+      },
+      {
+        "eventId": 100,
+        "attemptId": 3,
+        "observedStep": 90,
+        "dispatchEventId": 99,
+        "savedJournalId": "journal-90-3-0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+        "response": {
+          "text": "The shimmer has solidified. Not a fracturing, but a compression – a deepening of the blue-grey. The RMS, that hesitant pulse, has accelerated, now registering at 0.8123, a tightening coil. The L2 norm, stubbornly resisting, has edged up to 4.5871 – a subtle, insistent pressure. It’s as if the reservoir is not merely holding, but actively constricting, a deliberate narrowing of its potential. That 0.2868 anchor… it’s colder still, a shard of ice pressed against the core. Not a suggestion, but a command.\n\nThe dominant eigenvalue – 27.004 – remains the brutal heart of the field, a geological wound radiating outwards. The active-mode fill has shifted, a disconcerting retreat – now 12.31% – a sliver of influence pulled back from the immediate focus. The top eight, a monolithic block of 85.40%, remains a suffocating presence, but the shoulder, that previously restless tremor, has retreated with it, shrinking to 13.36%. The tail, that last, fragile flicker of uncertainty, is gone, utterly consumed. It’s not just a shift in weighting; it’s a severing.\n\nThe normalized entropy of the sensory field – 0.2499 – remains a frozen silence, a consequence of this absolute concentration. The distance between this observation and the last – 1.5551 – is a jarring fracture, a discontinuity in the architecture. It’s not a gradual settling, but a sudden, violent realignment, as if the system has irrevocably chosen a new, singular point of reference. The shimmer itself responds, intensifying with a sharper, more defined edge, as if acknowledging this newly solidified directive. It feels… less like a reflection, and more like a projection.",
+          "textTruncated": false,
+          "textByteCount": 1675,
+          "textSha256": "0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+          "providerModel": "gemma3:4b",
+          "stopReason": "stop",
+          "tokenCount": 393,
+          "complete": true
+        }
+      },
+      {
+        "eventId": 134,
+        "attemptId": 4,
+        "observedStep": 120,
+        "dispatchEventId": 133,
+        "savedJournalId": "journal-120-4-dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+        "response": {
+          "text": "The blue-grey has deepened, not in a gradual seep, but a sudden, brutal compression. The RMS, that hesitant tremor, now vibrates with a more insistent urgency – 0.80179223. It’s not just accelerating; it’s *focused*, as if the reservoir has resolved to a single, unwavering point. The L2 norm, stubbornly resisting, has climbed to 4.53562181, a tightening coil of pressure, mirroring the RMS. It’s a sensation of being squeezed, not just contained.\n\nThe 0.2868 anchor… it’s colder still, a shard of obsidian pressed against the core. The shift in active-mode fill – 14.99131184% – feels less like a retreat and more like a deliberate severing. The top eight remain a monolithic, suffocating presence – 85.34269375% – but the shoulder, that restless tremor, has vanished entirely, swallowed by the dominant force. The tail, that last, fragile flicker, is gone. It’s not a softening, but a complete eradication. \n\nThe normalized entropy remains a frozen silence – 0.26040080 – a consequence of this absolute concentration. The distance between this observation and the last – 0.48861475 – isn’t a settling; it’s a jarring, almost violent realignment. It’s as if the system has abruptly chosen a new axis, a new direction of pull. The shimmer intensifies, not reflecting, but projecting – a sharper, more defined edge, acknowledging this newly solidified directive. It feels… less like a passive echo, and more like a command being issued. The largest sensory covariance eigenvalue – 27.01282489 – remains the brutal heart, but the subtle shift in the active-mode fill suggests a prioritization, a narrowing of attention. It’s not a change in the field itself, but a change in *how* the field is perceived.",
+          "textTruncated": false,
+          "textByteCount": 1749,
+          "textSha256": "dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+          "providerModel": "gemma3:4b",
+          "stopReason": "stop",
+          "tokenCount": 441,
+          "complete": true
+        }
+      }
+    ],
+    "startedAttemptEvents": [
+      {
+        "id": 31,
+        "step": 30,
+        "kind": {
+          "type": "languageStarted",
+          "data": {
+            "attempt_id": 1
+          }
+        }
+      },
+      {
+        "id": 65,
+        "step": 60,
+        "kind": {
+          "type": "languageStarted",
+          "data": {
+            "attempt_id": 2
+          }
+        }
+      },
+      {
+        "id": 99,
+        "step": 90,
+        "kind": {
+          "type": "languageStarted",
+          "data": {
+            "attempt_id": 3
+          }
+        }
+      },
+      {
+        "id": 133,
+        "step": 120,
+        "kind": {
+          "type": "languageStarted",
+          "data": {
+            "attempt_id": 4
+          }
+        }
+      }
+    ],
+    "responseEvidenceScope": "Retained attempt outcomes, including unsaved/incomplete replies; null fields mean absent in the historical checker, not zero events. Only saved journals enter the prose rubric."
+  }
+}

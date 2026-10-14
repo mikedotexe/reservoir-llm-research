@@ -1,0 +1,29 @@
+{
+  "schema": "reservoir-background-load-interval-v1",
+  "label": "owned-preview",
+  "startedAtUtc": "2026-10-13T18:16:59.981049Z",
+  "endedAtUtc": "2026-10-13T18:21:02.432561Z",
+  "derivation": "Exact closed preview-server envelope, matched to its original start receipt and PID. This records prior activity; this normalization neither starts nor controls a process.",
+  "sources": [
+    {
+      "path": "validation/2026-10-13-reading-0.12.1/preview-start.json",
+      "bytes": 411,
+      "sha256": "908a4c76ad77aebcaaf22954032785b7e217f98fa5f54775576ec03e5e018a4b",
+      "timestampPointers": [
+        "/startedAtUtc",
+        "/pid"
+      ]
+    },
+    {
+      "path": "validation/2026-10-13-reading-0.12.1/preview-closed.json",
+      "bytes": 458,
+      "sha256": "b1e6d63c6a4d7032b8163d1ce6cc7d356b575d5f2a2ffc76b52ec74558e8a7c6",
+      "timestampPointers": [
+        "/startedAtUtc",
+        "/endedAtUtc",
+        "/pid"
+      ]
+    }
+  ],
+  "scope": "Documented concurrent host load only; never exclude functional progress, missing samples, errors or stalls. Not a claim that other times were idle."
+}

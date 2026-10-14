@@ -1,0 +1,26 @@
+.preparation-history{margin-top:1rem;border:1px solid var(--border,#33404d);border-radius:12px;background:var(--panel,#151e27);overflow:hidden}
+.preparation-history>summary{padding:1rem;font-weight:650;cursor:pointer}
+.preparation-content{padding:0 1rem 1rem;min-width:0}
+.preparation-content header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.preparation-content h3,.preparation-content h4,.preparation-content h5{margin:.25rem 0 .6rem}
+.preparation-content p{line-height:1.5}
+.preparation-reports{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;margin:1rem 0}
+.preparation-reports button{display:flex;flex-direction:column;gap:.55rem;align-items:flex-start;text-align:left;padding:.9rem;white-space:normal;overflow-wrap:anywhere}
+.preparation-reports button.selected{border-color:var(--accent,#87c9bd);box-shadow:inset 0 0 0 1px var(--accent,#87c9bd)}
+.preparation-reports button span{font-size:.8rem;font-weight:400;line-height:1.4}
+.preparation-detail{border-top:1px solid var(--border,#33404d);padding-top:1rem;min-width:0}
+.preparation-identity,.preparation-message{font-size:.8rem;overflow-wrap:anywhere}
+.preparation-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem 1.2rem;font-size:.84rem}
+.preparation-fields>div{min-width:0;border-bottom:1px solid var(--border,#33404d);padding-bottom:.65rem}
+.preparation-fields dt{color:var(--muted,#a8b5c0);margin-bottom:.3rem}
+.preparation-fields dd{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.preparation-attempt{padding:1rem;margin:1rem 0;border:1px solid var(--border,#33404d);border-radius:8px}
+.preparation-verification{white-space:pre-wrap;overflow-wrap:anywhere}
+.preparation-metadata{margin:1rem 0}
+.preparation-metadata>summary{cursor:pointer;font-weight:600}
+.preparation-metadata section{margin-top:1rem}
+.preparation-examples{border-top:1px solid var(--border,#33404d);padding-top:1rem}
+.preparation-examples ul{list-style:none;padding:0}
+.preparation-examples li{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.75rem 0;border-bottom:1px solid var(--border,#33404d);flex-wrap:wrap}
+.preparation-examples li p{font-size:.82rem;margin:.4rem 0}
+@media(max-width:850px){.preparation-reports{grid-template-columns:1fr}.preparation-fields{grid-template-columns:1fr}}

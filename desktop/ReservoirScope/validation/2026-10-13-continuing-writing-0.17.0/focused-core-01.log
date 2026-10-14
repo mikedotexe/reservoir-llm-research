@@ -1,0 +1,59 @@
+   Compiling reservoir-core v0.1.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.39s
+     Running tests/sustained_continuing_prompt.rs (target/debug/deps/sustained_continuing_prompt-9544401a013b8a4d)
+
+running 9 tests
+test historical_prompt_fixture_hashes_are_unchanged ... ok
+test full_observation_is_retained_while_the_scaffold_exposes_only_compact_optional_context ... ok
+test incomplete_text_is_retained_but_never_saved_or_applied_by_v5 ... ok
+test adversarial_prior_text_remains_exact_json_data_at_the_end_of_context ... ok
+test first_and_later_prompts_match_independently_assembled_fixtures_after_retry ... ok
+test failed_skipped_boundary_is_readout_reference_independent_from_eligible_prose_memory ... ok
+test save_readback_restore_and_next_step_authorization_remain_separate_gates ... ok
+test identical_supplied_replies_keep_v4_v5_full_observations_and_numerical_continuation_identical ... ok
+test changed_prompt_version_and_prior_evidence_fail_even_after_rehashing ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s
+
+     Running tests/sustained_generation_budget.rs (target/debug/deps/sustained_generation_budget-bd26912cfb3efaf6)
+
+running 5 tests
+test new_defaults_and_legacy_deserialization_are_distinct_and_budget_bounds_fail_closed ... ok
+test historical_v3_budget_omission_preserves_exact_segment_bytes_hashes_and_replay ... ok
+test request_budget_does_not_reword_prompt_and_cannot_be_mutated_with_a_new_hash ... ok
+test selected_token_bound_and_completeness_each_independently_gate_feedback ... ok
+test long_complete_journal_survives_save_prepared_restore_application_memory_and_replay ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.24s
+
+     Running tests/sustained_prompts.rs (target/debug/deps/sustained_prompts-eafab40f825ed520)
+
+running 12 tests
+test fresh_defaults_v5_but_missing_serialized_version_is_v1_and_unknowns_fail_closed ... ok
+test v2_is_prompt_guidance_not_an_unearned_scientific_quality_acceptance_filter ... ok
+test v2_quotes_full_historical_text_without_promoting_its_headings_or_identity ... ok
+test legacy_genesis_restore_retry_and_physical_memory_handoff_stay_v1 ... ok
+test v3_preserves_free_choice_and_exact_full_memory_without_mandatory_measurements ... ok
+test v3_prompt_bytes_are_frozen_at_initial_and_full_memory_observations ... ok
+test v2_prompt_bytes_are_frozen_at_initial_and_full_memory_observations ... ok
+test rehashed_prompt_and_version_mutations_still_fail_reconstruction ... ok
+test v3_version_and_prompt_tampering_cannot_be_hidden_by_rehashing ... ok
+test v3_serialized_journal_and_prepared_continuation_preserve_gates_and_exact_replay ... ok
+test v2_serialized_journal_and_prepared_continuation_preserve_gates_and_exact_replay ... ok
+test actual_frozen_v1_segments_keep_prompt_state_and_serialized_bytes ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.20s
+
+     Running tests/sustained_provider_evidence.rs (target/debug/deps/sustained_provider_evidence-8aa431c9a9302a68)
+
+running 7 tests
+test typed_evidence_rejects_ambiguous_or_unbounded_schema_but_transport_issues_are_data ... ok
+test reported_zero_and_wide_integer_values_and_unusable_reasons_roundtrip_exactly ... ok
+test absent_or_null_evidence_keeps_historical_response_bytes ... ok
+test replay_does_not_authenticate_a_self_consistently_changed_provider_assertion ... ok
+test inconsistent_event_and_candidate_evidence_fails_replay_even_with_valid_checkpoint_hash ... ok
+test incomplete_response_keeps_input_evidence_without_journal_or_feedback ... ok
+test input_evidence_never_changes_prompts_save_gate_application_or_numerical_state ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.79s
+

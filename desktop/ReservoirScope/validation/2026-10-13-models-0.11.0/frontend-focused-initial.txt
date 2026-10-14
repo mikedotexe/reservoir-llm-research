@@ -1,0 +1,69 @@
+
+> reservoir-scope-desktop@0.11.0 test
+> vitest run src/localModelController.test.ts src/LocalModelReadiness.test.tsx src/freshController.test.ts src/FreshExperiments.test.tsx src/FreshActionEvidence.test.tsx src/FreshComparison.test.tsx src/FreshRegulation.test.tsx
+
+
+ RUN  v4.1.11 /Users/v/other/reservoir-llm-research/desktop/ReservoirScope
+
+ ❯ src/LocalModelReadiness.test.tsx (6 tests | 1 failed) 12ms
+     × shows explicit contact controls and fixed request bounds without claiming automatic readiness 7ms
+ ❯ src/FreshActionEvidence.test.tsx (8 tests | 1 failed) 18ms
+     × uses backend manual opportunity capability and preserves independent turn/frame selection 8ms
+ ❯ src/FreshRegulation.test.tsx (11 tests | 1 failed) 59ms
+     × accepts historical fields atomically, retains both on peer failure, and ignores reset-stale reads 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/FreshActionEvidence.test.tsx > fresh action recipe and evidence presentation > uses backend manual opportunity capability and preserves independent turn/frame selection
+AssertionError: expected '<section class="fresh-journals"><head…' to contain 'Exact scripted request context'
+
+- Expected
++ Received
+
+- Exact scripted request context
++ <section class="fresh-journals"><header><div><span class="eyebrow">DURABLE JOURNAL BOUNDARY</span><h2>Journal and action evidence</h2></div><span>Current · 3 retained turns · 2 journals</span></header><p>A WRITE reply must be written and read back by the backend before it is saved. E–H can return only saved text at a later numerical step; D never feeds it back. WAIT creates no journal.</p><button disabled="">Request manual WRITE at this boundary</button><p class="fresh-small">Manual WRITE is a human request, separate from scheduled choices. It forces an attempt in each eligible arm, even in G/H. Only an unused, nonscheduled, nonfinal boundary is eligible.</p><div class="fresh-turn-picker"><label>Retained turn number<input type="number" min="1" max="3" value="1"/></label><button>Inspect retained turn</button></div><article class="fresh-turn"><p class="fresh-small">Current turn snapshot at session revision 7. Inspect again to refresh a later application receipt; frame navigation does not change this text selection.</p><div class="fresh-action-evidence"><section class="fresh-choice-card" aria-label="Retained action outcome"><span class="eyebrow">OPPORTUNITY 90</span><h3>WAIT</h3><p>WAIT creates no new journal or application receipt. The previously returned input remains in place.</p><dl><dt>Requested action</dt><dd>WAIT</dd><dt>Outcome</dt><dd>completed</dd><dt>Journal entry ID</dt><dd>None retained</dd><dt>Journal text SHA-256</dt><dd class="fresh-hash">None retained</dd><dt>Application step</dt><dd>No application receipt retained</dd></dl></section><section class="fresh-memory-card" aria-label="Saved journal memory"><span class="eyebrow">EARLIER SAVED JOURNAL → CURRENT CONTEXT</span><h3>Memory supplied at this opportunity</h3><p>Exact reread journal text included in this scripted context. This is evidence of exposure, not evidence that the reply used it well.</p><pre>&lt;script&gt;stay inert&lt;/script&gt;
++ Earlier saved text</pre><dl><dt>Memory entry</dt><dd>entry-2</dd><dt>Memory text SHA-256</dt><dd class="fresh-hash">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</dd></dl></section></div><details class="fresh-turn-identity"><summary>Exact turn identity and source</summary><dl><dt>Turn</dt><dd>3 · 3</dd><dt>Observed / applied</dt><dd>90 / Not recorded</dd><dt>Status</dt><dd>completed</dd><dt>Recorded source</dt><dd>scripted</dd><dt>Configured model</dt><dd>Not recorded</dd><dt>Returned provider model</dt><dd>scripted</dd><dt>Request started</dt><dd>Recorded as yes</dd><dt>Tape packet ID</dt><dd>Not recorded</dd><dt>Failure phase</dt><dd>Not recorded</dd><dt>Journal saved</dt><dd>Recorded as no</dd><dt>Requested / chosen action</dt><dd>WAIT / WAIT</dd><dt>Context</dt><dd>languageRequest</dd><dt>Memory entry IDs</dt><dd>entry-2</dd><dt>Journal path</dt><dd>Not recorded</dd></dl><dl><dt>Actual request order</dt><dd>2</dd></dl></details><details open=""><summary>Retained WAIT reply · no journal</summary><pre>No reply text retained.</pre></details><details><summary>Exact dispatched request context</summary><pre>Exact context</pre></details><details><summary>Raw reply</summary><pre>{&quot;action&quot;:&quot;WAIT&quot;}</pre></details><details><summary>Encoded features and semantic vector</summary><p>Encoded text features: unavailable at this boundary.</p><p>Semantic vector: unavailable at this boundary.</p></details></article></section>
+
+ ❯ src/FreshActionEvidence.test.tsx:56:226
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/FreshRegulation.test.tsx > fixed fresh field-only study > accepts historical fields atomically, retains both on peer failure, and ignores reset-stale reads
+AssertionError: expected 'fields-1' to be 'fields-2' // Object.is equality
+
+Expected: "fields-2"
+Received: "fields-1"
+
+ ❯ src/FreshRegulation.test.tsx:75:122
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/LocalModelReadiness.test.tsx > explicit readiness and pending model presentation > shows explicit contact controls and fixed request bounds without claiming automatic readiness
+ReferenceError: Cannot access 'api2' before initialization
+ ❯ new LocalModelController src/localModelController.ts:29:48
+     27|   private state: ModelReadinessState = { key: '', checking: false, res…
+     28|   private listeners = new Set<() => void>(); private epoch = 0; privat…
+     29|   constructor(private api: ModelReadinessApi = api) {}
+       |                                                ^
+     30|   snapshot = () => this.state;
+     31|   subscribe = (fn: () => void) => { this.listeners.add(fn); return () …
+ ❯ src/LocalModelReadiness.tsx:10:34
+ ❯ useReducer node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:4086:15
+ ❯ Object.useState node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10277:18
+ ❯ process.env.NODE_ENV.exports.useState node_modules/react/cjs/react.development.js:1309:34
+ ❯ LocalModelReadiness src/LocalModelReadiness.tsx:10:19
+ ❯ Object.react_stack_bottom_frame node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10371:18
+ ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5361:19
+ ❯ renderElement node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5796:23
+ ❯ retryNode node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:6783:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  3 failed | 4 passed (7)
+      Tests  3 failed | 72 passed (75)
+   Start at  22:59:42
+   Duration  380ms (transform 904ms, setup 0ms, import 1.38s, tests 134ms, environment 0ms)
+

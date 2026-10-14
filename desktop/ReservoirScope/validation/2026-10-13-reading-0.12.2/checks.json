@@ -1,0 +1,54 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": "python3 scripts/check_reference.py",
+    "evidence": "reference-integrity-01.log and package-build-01-receipt.json: 180 sources, 43 resources, 1 fixture"
+  },
+  {
+    "id": "resource-staging-tests",
+    "status": "unexecuted",
+    "evidence": "Unit suite not rerun for this targeted frontend/identity packaging step. Fresh build staged 42 files; package-resource-check.json compares 39 canonical resources plus index/reference files."
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": "npm test (prior full suite); npm test -- src/MyReservoirPresentation.test.tsx src/MyReservoir.test.tsx src/myReservoirQuota.test.tsx; npx tsc --noEmit (current delta)",
+    "evidence": "Prior full suite: ../2026-10-13-reading-0.12.1/integrated-02-qualification.json and integrated-02-frontend.log, 323 tests/36 files. Current delta: boundary-source-checks-02.json, boundary-focused-02.log (26 tests/3 files; 3 new cases) and boundary-types-02.log (tsc passed). source-test-continuity-01.json binds unchanged frontend sources and the targeted alert fix. Full suite was not rerun; counts are not additive."
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": "npm run build (Tauri beforeBuildCommand)",
+    "evidence": "macos-package-build-01.log; package-build-01-receipt.json"
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-scope-desktop --all-targets",
+    "evidence": "../2026-10-13-reliability-0.12.0/quota-repair-final-02-desktop-tests.log and quota-repair-final-02-qualification.json: 169 passed, 2 ignored. source-test-continuity-01.json records no backend/core Rust source change since the previously qualified 0.12.1 build; only desktop crate version metadata changed. No rerun."
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-core --all-targets",
+    "evidence": "../2026-10-13-reliability-0.12.0/quota-repair-final-02-core-tests.log and quota-repair-final-02-qualification.json: 150 passed; no core change for this package"
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": "cargo clippy --locked --workspace --all-targets -- -D warnings",
+    "evidence": "../2026-10-13-reliability-0.12.0/quota-repair-final-02-clippy.log and quota-repair-final-02-qualification.json; source-test-continuity-01.json records unchanged Rust sources. Reused; no rerun after desktop version metadata edit."
+  },
+  {
+    "id": "swift-export-verification",
+    "status": "unexecuted",
+    "evidence": "No new Swift corpus execution in this packaging step. Prior finite compatibility evidence is retained in ../2026-10-13-sustained-0.12.0/legacy-conformance.json; sustained format is outside native Swift format parity."
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk npm run tauri -- build --bundles app -- --locked",
+    "evidence": "package-build-01-receipt.json; macos-package-build-01.log; source-before-build-final.json; package-before-ui.json and root-package-before-ui.json (matching independent captures); archive-check.json; package-resource-check.json. Packaged UI qualification is separate and pending."
+  }
+]

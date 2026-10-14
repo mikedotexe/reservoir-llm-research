@@ -1,0 +1,42 @@
+{
+  "startedAtUtc": "2026-10-13T17:32:34.913899+00:00",
+  "scope": "Source-only isolated tests; no app/provider actions or package rebuild. Concurrent frozen-binary soak cannot be used as idle-energy comparison during this interval.",
+  "sourcesBefore": [
+    {
+      "path": "src-tauri/src/sustained.rs",
+      "sizeBytes": 55784,
+      "sha256": "69b0cf66e89daad0bc434ce8db24d9e11adb9e023bbc1aa22c2d9bd924928b20"
+    },
+    {
+      "path": "src-tauri/src/sustained_store.rs",
+      "sizeBytes": 52636,
+      "sha256": "4dcf74443ce77c7e9e94cd2536002cdb3e6f410edec3f2e260794afbb40c37b6"
+    },
+    {
+      "path": "src-tauri/src/sustained_tests.rs",
+      "sizeBytes": 36829,
+      "sha256": "dd3e370a7ccec508fb151afbbd4cc43954623d1a2a33d528e950804e09bc002b"
+    },
+    {
+      "path": "src-tauri/src/sustained_quota_tests.rs",
+      "sizeBytes": 19370,
+      "sha256": "88d638b51067f2ac7f0ad38af7ecc14049749e04c174f03e55473f030c1a600c"
+    },
+    {
+      "path": "crates/reservoir-core/src/sustained.rs",
+      "sizeBytes": 55060,
+      "sha256": "9c5377a4a1357f520ae11d6b327010cad5739290fc9af70aa2d97a1eac55de70"
+    }
+  ],
+  "frozenPackageBefore": {
+    "path": "target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+    "sizeBytes": 16747744,
+    "sha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d"
+  },
+  "environmentOverrides": {
+    "DEVELOPER_DIR": "/Applications/Xcode.app/Contents/Developer",
+    "SDKROOT": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+    "RESERVOIR_QUOTA_EVIDENCE": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-natural-quota-repaired-02"
+  },
+  "commands": []
+}

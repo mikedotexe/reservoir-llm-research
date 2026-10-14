@@ -1,0 +1,127 @@
+{
+  "schema": "reservoir-sustained-ui-recovery-continuity-v1",
+  "createdAt": "2026-10-13T15:28:42.288473+00:00",
+  "status": "passed",
+  "modelsContacted": false,
+  "scope": "Read-only exact file/typed checkpoint/event comparison of two actual exports and retained after-quit capture. Full numerical and journal verification is in final-ui-export-qualification.json. Process absence and user click ordering are separately observed UI evidence, not inferred from these files.",
+  "inputs": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-ui/sustained-1791904526118-2-2-19/manifest.json",
+      "sizeBytes": 985,
+      "sha256": "78e07d9df9b02cb187edabe9688c3c2ea56533490a8017c69b291cb1b89afd61"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-sustained-0.12.0/prepared-after-quit.json",
+      "sizeBytes": 48751,
+      "sha256": "d072c2254fc87dd8d02c4dacbe775105b8c58c937eef39242304e846f6004c78"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-ui/sustained-1791904526118-2-4-39/manifest.json",
+      "sizeBytes": 999,
+      "sha256": "47fbb633059ca37eb7eda27f5f66df30bb84eadafb6d13649898c736af3fbd9d"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-sustained-0.12.0/owned-provider-requests.jsonl",
+      "sizeBytes": 100016,
+      "sha256": "bdd247eb7766416691b10084b5a0861927373f06cfced9205b022dce7169552d"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-sustained-0.12.0/final-ui-export-qualification.json",
+      "sizeBytes": 21744,
+      "sha256": "fe1fa17a02e6b34e697a12dc7a6a763f70f1fecf8e93d738df2c6c7d2f094748"
+    }
+  ],
+  "sessionId": "sustained-1791904526118-2",
+  "generations": [
+    "2",
+    "3",
+    "4"
+  ],
+  "steps": [
+    6,
+    9,
+    11
+  ],
+  "byteIdenticalInitialSegments": [
+    {
+      "file": "segment-00000001.json",
+      "sha256": "2c0b4dca9fe23de81adfad4a4bbac02a4f160e267dd59b00b3e4b8e0c26da4b5"
+    },
+    {
+      "file": "segment-00000002.json",
+      "sha256": "7ad96fee1df66ed9ddebbeea9ac4ce0439c214276f8336331431d3e5457dc54e"
+    },
+    {
+      "file": "segment-00000003.json",
+      "sha256": "2cd5ff04c26abbdf87430942a5c0b6cf78f4bfa279ffd3d99f7bf402b9c2256f"
+    },
+    {
+      "file": "segment-00000004.json",
+      "sha256": "91ebf49c41e4491622bed548071d319044eaaca8031cf7871d234d4cbfc15362"
+    },
+    {
+      "file": "segment-00000005.json",
+      "sha256": "8d486dfe250a6ee5cc501a54c48f8966dbab100b67e8374c4c280ba29c6118b4"
+    },
+    {
+      "file": "segment-00000006.json",
+      "sha256": "314d34ba3ae118f01e82e3a1283fdde213b28f693d5be6a813e047ba5b243561"
+    },
+    {
+      "file": "segment-00000007.json",
+      "sha256": "f77bbf153163b0dd16fb27162c8d1da9868c1910057b40da05ef565acefe49f4"
+    }
+  ],
+  "unchangedPriorJournal": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-ui/sustained-1791904526118-2-2-19/journals/journal-3-1-313d6d47dbafe341da73b1484b3506b2e2a9d539045c0856e81c409ca9276274.json",
+    "sizeBytes": 6498,
+    "sha256": "61432ecf588c3c4335204cb0145f145cddfb965bf122c27459f8598d575bc0e0"
+  },
+  "preparedAfterQuit": {
+    "step": 9,
+    "attemptId": 3,
+    "journalId": "journal-9-3-98c1734b19d2f0bad09626783ccd511a4f20a3d1e91914135e0f1a896df8ee8f",
+    "intendedApplicationStep": 10,
+    "capturedCheckpointSha256": "27922fe5dec4cea2783a807b164f660887d7074c06f01d6dc5e2aed1cf9e817c",
+    "matchesSegment12FinalAndSegment13Initial": true,
+    "segment12ByteSha256": "87c8eb3db8f39a61f54982651fac42c7da3ff11294aec971defd01ec0db76c4a",
+    "latestAppliedMemoryAttempt": 1
+  },
+  "applications": [
+    {
+      "attemptId": 1,
+      "journalId": "journal-3-1-313d6d47dbafe341da73b1484b3506b2e2a9d539045c0856e81c409ca9276274",
+      "observedStep": 3,
+      "appliedStep": 4
+    },
+    {
+      "attemptId": 3,
+      "journalId": "journal-9-3-98c1734b19d2f0bad09626783ccd511a4f20a3d1e91914135e0f1a896df8ee8f",
+      "observedStep": 9,
+      "appliedStep": 10
+    }
+  ],
+  "newAttempt3LanguageStarts": 1,
+  "newAttempt3Applications": 1,
+  "step11HasNoNewApplicationAndHoldsAttempt3Vector": true,
+  "advancedStepsExactlyOnce": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "cancelledAttempt2SkippedAtStep6": true,
+  "retainedProviderLogPosts": 33,
+  "matchedFinalJournalRequests": [
+    31,
+    33
+  ],
+  "cancelledRequestWithoutAcceptedJournal": 32
+}

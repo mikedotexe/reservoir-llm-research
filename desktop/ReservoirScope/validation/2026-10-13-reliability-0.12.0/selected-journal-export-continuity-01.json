@@ -1,0 +1,25 @@
+{
+  "schema": "reservoir-postcapture-selected-journal-continuity-v1",
+  "startedAtUtc": "2026-10-13T18:44:58.486264+00:00",
+  "endedAtUtc": "2026-10-13T18:44:58.487028+00:00",
+  "scope": "Byte/hash comparison of immutable exported first journal with pre-minimize identity receipt. Does not independently prove UI selection remained visible or application timing.",
+  "baselinePath": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0/selected-journal-before.json",
+  "baselineSha256": "e2fd9367df0f211f7e474cbf22c52d747a626b0d0917371bd92d2d5489058561",
+  "exportedJournalPath": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-reliability/exports-multi-hour/sustained-1791908510756-1-1-8283/journals/journal-30-1-0d13d66fa338b79d8a2d7683a94a86e22cbe135318676038c0b9242f7ba7812b.json",
+  "retainedCopyPath": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-reliability/export-verification-01/selected-journal-after-export.json",
+  "observedStep": 30,
+  "journalId": "journal-30-1-0d13d66fa338b79d8a2d7683a94a86e22cbe135318676038c0b9242f7ba7812b",
+  "journalObjectBytes": 6065,
+  "journalObjectSha256": "1cabdd0a2f238f15c83ddfeb38b57f1def54caa459616488e1509fd8246baa70",
+  "journalTextSha256": "0d13d66fa338b79d8a2d7683a94a86e22cbe135318676038c0b9242f7ba7812b",
+  "checks": {
+    "objectBytesEqual": true,
+    "objectSha256Equal": true,
+    "textSha256Equal": true,
+    "entryIdentityEqual": true,
+    "observedStepEqual": true,
+    "copyByteExact": true
+  },
+  "status": "passed",
+  "modelsContacted": false
+}

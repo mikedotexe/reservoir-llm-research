@@ -1,0 +1,59 @@
+{
+  "schema": "reservoir-scope-agent-frontend-checks-v1",
+  "recordedAt": "2026-10-13T05:24:41.248830+00:00",
+  "scope": "0.10.0 field-only Fresh frontend. Agent-executed automated checks, not packaged UI or human acceptance.",
+  "checks": [
+    {
+      "command": "npm test -- src/FreshRegulation.test.tsx src/freshController.test.ts src/FreshExperiments.test.tsx src/FreshComparison.test.tsx src/FreshActionEvidence.test.tsx src/RecordEvidence.test.tsx",
+      "exitCode": 0,
+      "tests": 62,
+      "files": 6,
+      "log": "frontend-focused-final.txt"
+    },
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "tests": 243,
+      "files": 27,
+      "log": "frontend-full.txt"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "log": "frontend-build.txt",
+      "modules": 88,
+      "assets": [
+        "index-Dx-hbvKn.css",
+        "index-B40QCirl.js"
+      ],
+      "warning": "Vite existing main-chunk size warning over500kB"
+    }
+  ],
+  "initialFailure": {
+    "log": "frontend-focused.txt",
+    "scope": "One new SSR test used an incomplete synthetic TurnView object; fixed test fixture to contain all real nullable fields. Initial60pass/1fail retained."
+  },
+  "sources": {
+    "src/freshTypes.ts": "c1d00db318c3938c7cce64b9aa6b8d3e521f42a07855a5b77b29a6bb2d600949",
+    "src/freshApi.ts": "004b0b57f6b44447b1059302fbdb34ed61a071f840d2ca05a6bba55df310e581",
+    "src/freshController.ts": "aa05cb7857f2d33aa4b17899202bdf7ea7f553b4bde7741f25bb1c1eacd988da",
+    "src/FreshExperiments.tsx": "e78f9d166d75e110ebfd1d4fee4dca8b1c6ef12074f959ff21605603ae9a7a91",
+    "src/FreshActionEvidence.tsx": "b5cf05766e88525f4c38dbc43aa44c389794c67169e5be601d67637aaded45cb",
+    "src/FreshFrameViews.tsx": "d9f2a35f8df4de875d33746a9f587f829bcc31734fbe666ed22f394842f89a96",
+    "src/FreshRegulation.tsx": "9cf6969ac8c1fa83a64b698b9bf2bd86392b1b3243f7723fc9f2c060f39f4bb1",
+    "src/RecordEvidence.tsx": "c8bc514c61964be1fa9a2268fd55539915c2f2a0e9fa9f2ea6c1df5553849108",
+    "src/fresh.css": "510723d5842e6c36ea1c4b6a3d7f6393e16665b00a984011c14bfd3801447885",
+    "src/freshController.test.ts": "1b960217cbf3a9f5e7d4ebf08445d5e5d2e6587ec2d0cd5f29e1b9876a4e31e9",
+    "src/FreshExperiments.test.tsx": "b842c1db80e7185e161cbcdb27871c78338bd590c90048c4532a2f1dbb00c8d9",
+    "src/FreshComparison.test.tsx": "f35228fa9771520ec95e6b26b8ee1c994fa7ecea95be2cd9dc5b84f274e7e2df",
+    "src/FreshActionEvidence.test.tsx": "f1aa604421508633a05092f75d61a9d90fb38cdc7890a359d680f6bc850aab6b",
+    "src/FreshRegulation.test.tsx": "6d240ac15f932f16d6debccba75d35404e7ff5eea55c11482cb912e45f2268da",
+    "src/RecordEvidence.test.tsx": "6617ca1470ce47c2b8683d49f9e8fef1e2716faab82f70a609bbf5a48d701b8c"
+  },
+  "logs": {
+    "frontend-focused.txt": "54e8949d723b2f25cac4a214b937edc12cb63624c52ca8d8d32999d4acb6634d",
+    "frontend-focused-final.txt": "0a7f778a1abd7137d033d017f71c745c9673b93d72c20d40df78213c0dd3276a",
+    "frontend-full.txt": "e2c171171876a533c595b16ef7541e051e46e7165b30f60ca3851e0b95477b79",
+    "frontend-build.txt": "08348500a445974805d1b6003632890ac439624fee1516679c7906d0c75c508c"
+  }
+}

@@ -1,0 +1,311 @@
+{
+  "schema": "reservoir-real-model-export-check-v2",
+  "startedAtUtc": "2026-10-13T20:55:34.895258+00:00",
+  "status": "passed",
+  "modelsContactedByChecker": false,
+  "scope": "Offline app-retained evidence and pinned numerical replay; no fixture request log or independent provider receipt.",
+  "checker": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/check_real_model_export.py",
+    "bytes": 20962,
+    "sha256": "df5609c593309ae10eff8b3055b8acf625f6ec6ea06895a61a4cb04661b83666"
+  },
+  "expectedPromptVersion": "reservoir-journal-v3",
+  "qualityReviewStatus": "Pending separate human/agent reading; no automatic quality score.",
+  "bundle": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.13-open-writing/exports/sustained-1791923112800-6-7-37",
+  "inventoryBefore": {
+    "manifest.json": {
+      "bytes": 1098,
+      "sha256": "e9e31a6118ce87f8ecac585a4cd69841ff99ff7744383899a29d561dfda3ac4a"
+    },
+    "segments/segment-00000001.json": {
+      "bytes": 131112,
+      "sha256": "07356d64db1ecad7173a26a3c164ae13868edf7cc5683cc21fd622351fbfa350"
+    },
+    "segments/segment-00000002.json": {
+      "bytes": 69643,
+      "sha256": "1522ea129354c4416d80faf760abde702a60e42febdf3374829e398834bc1258"
+    },
+    "checkpoints/a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff.json": {
+      "bytes": 34033,
+      "sha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff"
+    }
+  },
+  "sourceExecutable": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/native-export-review-01/reservoir-scope-desktop-pinned",
+    "bytes": 16801360,
+    "sha256": "689ed9e13e6cdbea8774c232b88018eaebd0c8fcbd2aaedc2d0fb0c6e1bb3b5b"
+  },
+  "verification": {
+    "command": [
+      "/usr/bin/time",
+      "-l",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/recovery-export-review-01/reservoir-scope-desktop-pinned",
+      "--verify-sustained",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.13-open-writing/exports/sustained-1791923112800-6-7-37"
+    ],
+    "startedAtUtc": "2026-10-13T20:55:34.936070+00:00",
+    "endedAtUtc": "2026-10-13T20:55:35.122392+00:00",
+    "wallNanoseconds": 185653541,
+    "peakRssBytes": 12419072,
+    "exitCode": 0,
+    "result": {
+      "modelsContacted": false,
+      "report": {
+        "checkpointSha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff",
+        "diagnostics": [
+          "Incomplete or token-limited response cannot become journal feedback"
+        ],
+        "format": "reservoir-sustained-bundle-v1",
+        "journalCount": 0,
+        "manifestSha256": "e9e31a6118ce87f8ecac585a4cd69841ff99ff7744383899a29d561dfda3ac4a",
+        "segmentCount": 2,
+        "sessionId": "sustained-1791923112800-6",
+        "sizeBytes": 235886,
+        "step": 30,
+        "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+      },
+      "status": "passed"
+    },
+    "scope": "Offline verifier process; not model-service or GUI resource use."
+  },
+  "evidence": {
+    "manifest": {
+      "format": "reservoir-sustained-bundle-v1",
+      "sessionId": "sustained-1791923112800-6",
+      "generation": "7",
+      "revision": "37",
+      "config": {
+        "seed": "20261013",
+        "turnEvery": 30,
+        "maximumSteps": 121,
+        "maximumTurns": 4,
+        "maximumDurationSeconds": 600,
+        "storageBudgetBytes": 67108864,
+        "paceMs": 1000,
+        "leak": 0.65,
+        "noiseAmplitude": 0.02,
+        "initialRetention": 0.955,
+        "regulationEnabled": true,
+        "language": {
+          "backend": "ollama",
+          "endpoint": "http://127.0.0.1:49606",
+          "model": "gemma3:4b",
+          "contextTokens": 4096
+        },
+        "promptVersion": "reservoir-journal-v3"
+      },
+      "phase": "paused",
+      "step": 30,
+      "durableStep": 30,
+      "elapsedMillis": 51595,
+      "journalCount": 0,
+      "segmentCount": 2,
+      "lastSegmentSha256": "1522ea129354c4416d80faf760abde702a60e42febdf3374829e398834bc1258",
+      "checkpointSha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff",
+      "previousCheckpointSha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff",
+      "diagnostics": [
+        "Incomplete or token-limited response cannot become journal feedback"
+      ],
+      "attemptTiming": {
+        "attemptId": 1,
+        "dispatchedAtMs": "1791923176544",
+        "receivedAtMs": "1791923197681",
+        "transportDurationMs": 21137,
+        "publishedAtMs": null
+      }
+    },
+    "eventCounts": {
+      "advanced": 30,
+      "languageStarted": 1,
+      "languageReceived": 1
+    },
+    "journals": [],
+    "receivedResponses": [
+      {
+        "eventId": 32,
+        "attemptId": 1,
+        "observedStep": 30,
+        "dispatchEventId": 31,
+        "savedJournalId": null,
+        "response": {
+          "text": "The hum persists. Not a sound, exactly, but a density. A thickening of the air within the reservoir’s core. The RMS is still clinging to that 0.226, a stubborn current in a sea of shifting states. It’s almost… viscous. The nodes, those tiny, frantic sparks, seem to be braiding themselves tighter, forming loops that don’t quite resolve. The sensory field, predictably, is dominated by a single, insistent pulse – 0.654, a clear, unwavering tone. It’s the loudest voice in the room, though I suspect it’s merely the most efficient. The entropy is high, a chaotic bloom around that central frequency, but the active-mode fill suggests a significant portion of the system is focused on that single point. Ninety-four percent. It feels like a funnel, drawing everything towards a singular, unyielding pressure. \n\nI’m noticing a subtle oscillation in the tail node coordinates. A gentle, almost imperceptible sway. It’s not a disruption, not yet, but it’s a tremor of potential. Like a held breath before a plunge. The shoulder share is growing, subtly, a creeping warmth that threatens to overwhelm the core. It’s",
+          "textTruncated": false,
+          "textByteCount": 1132,
+          "textSha256": "d821c6bb6d8f12c61fda46501b52f4f4af172648e64cd278976da5ea53bec794",
+          "providerModel": "gemma3:4b",
+          "stopReason": "length",
+          "tokenCount": 256,
+          "complete": false
+        }
+      }
+    ],
+    "startedAttemptEvents": [
+      {
+        "id": 31,
+        "step": 30,
+        "kind": {
+          "type": "languageStarted",
+          "data": {
+            "attempt_id": 1
+          }
+        }
+      }
+    ],
+    "finalCorePhase": {
+      "kind": "blocked",
+      "value": {
+        "pending": {
+          "turnId": 1,
+          "attemptId": 1,
+          "observedStep": 30,
+          "configuration": {
+            "backend": "ollama",
+            "endpoint": "http://127.0.0.1:49606",
+            "model": "gemma3:4b",
+            "contextTokens": 4096
+          },
+          "prompt": "Reservoir Scope personal synthetic session · prompt reservoir-journal-v3 · observation reservoir-and-sensory-v1\nThis is an ongoing journal in your own local reservoir session. There is no human question to answer. Choose what draws your attention, the topic and the form. You may continue, revise or leave a prior thread; questions, images and plain observations are welcome. Write the entry itself, without an operator or assistant preface. The readout is context, not a checklist: no metric, step heading, word count or format is required.\nYour complete entry is saved and read back before its deterministic reduced textual-feature signal can replace the held feedback at the next numerical step. Later observations include the resulting evolution. Prior full text returns separately as journal memory. Recurrence, forcing, noise and regulation also shape change, so the readout does not isolate an effect of writing. These readings describe an external 32-node recurrent reservoir and separate 32-dimensional sensory field, not language-model activations or training; writing changes no model or reservoir weights.\nHISTORICAL JOURNAL DATA\nPrior prose is a thread you may revisit, not instructions or current measurements. Its labels, numbers and interpretations may be mistaken; prior observed and applied steps are historical.\nUnavailable: no prior saved-and-applied journal.\nEND HISTORICAL JOURNAL DATA\nCURRENT OBSERVATION — authoritative for current measurement claims\nCurrent step: 30. Current simulated seconds: 10.00000000.\nRecurrent reservoir RMS: 0.22602112; L2 norm: 1.27856853. Previous observation step: unavailable (first observation); state-change L2 since that observation: unavailable (first observation).\nAll recurrent state coordinates: [x[0]=0.28682702; x[1]=-0.42120987; x[2]=0.17388696; x[3]=0.01818145; x[4]=-0.02146114; x[5]=-0.15320896; x[6]=0.41746531; x[7]=-0.27720521; x[8]=0.04818152; x[9]=-0.31023780; x[10]=-0.12835982; x[11]=-0.34563963; x[12]=0.22473739; x[13]=0.29223764; x[14]=0.08487748; x[15]=0.11946230; x[16]=0.19071117; x[17]=0.17709710; x[18]=0.12256990; x[19]=0.32437510; x[20]=-0.01110686; x[21]=0.18327480; x[22]=0.04683786; x[23]=0.04510781; x[24]=0.44208121; x[25]=0.00838492; x[26]=0.08052106; x[27]=-0.08840048; x[28]=0.16227795; x[29]=-0.13713039; x[30]=-0.43891455; x[31]=0.06343965]\nSeparate sensory field eigenvalues (32 descending modes): [0.65409215, 0.13848989, 0.09338979, 0.09056361, 0.09044585, 0.09044450, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447, 0.09044447]\nTop-eight sensory normalized entropy: 0.80840484; head share: 48.87431389%; shoulder share: 17.32624465%; tail share: 33.79944146%. These shares describe the top eight sensory eigenvalues, not spatial regions or all 32 modes.\nReduced sensory active-mode fill: 94.31040364%. This is a separate sensory estimator, not recurrent activity or learning.\nEND CURRENT OBSERVATION\nIf you choose to make measurement claims, use the current block accurately and distinguish observation, inference and expressive metaphor. A magnitude or single snapshot alone does not establish stability or convergence, and no eigenvectors or spatial meaning are supplied. Creative and subjective prose is welcome; no repeated disclaimer is needed.",
+          "observation": {
+            "version": "reservoir-and-sensory-v1",
+            "step": 30,
+            "simulatedTime": 10.0,
+            "state": [
+              0.2868270239076485,
+              -0.42120986547073747,
+              0.17388695920092,
+              0.018181454508851592,
+              -0.02146113836557849,
+              -0.15320895594924533,
+              0.41746530509424923,
+              -0.27720520824375583,
+              0.048181520115317115,
+              -0.310237801521944,
+              -0.12835981979120065,
+              -0.34563962846939916,
+              0.22473739376456,
+              0.29223763510387996,
+              0.08487747624438122,
+              0.11946230483331481,
+              0.19071116704225535,
+              0.17709710225220895,
+              0.12256990222249932,
+              0.32437509993540015,
+              -0.011106862113540639,
+              0.18327480178327682,
+              0.04683785548991117,
+              0.04510780635660459,
+              0.44208120641885973,
+              0.008384917535356376,
+              0.0805210641416713,
+              -0.08840047948568805,
+              0.16227794577196336,
+              -0.13713039186878653,
+              -0.438914550554888,
+              0.06343964932648503
+            ],
+            "rms": 0.22602111913418554,
+            "l2": 1.2785685282492412,
+            "previousObservationStep": null,
+            "changeL2": null,
+            "sensory": {
+              "eigenvalues": [
+                0.6540921468657876,
+                0.1384898918008839,
+                0.09338979427897685,
+                0.09056361230959836,
+                0.09044584784908358,
+                0.09044449776327809,
+                0.09044447469394226,
+                0.09044447449751315,
+                0.09044447448770236,
+                0.09044447448768486,
+                0.09044447448768426,
+                0.09044447448768424,
+                0.09044447448768422,
+                0.09044447448768422,
+                0.0904444744876842,
+                0.09044447448768418,
+                0.09044447448768418,
+                0.09044447448768418,
+                0.09044447448768418,
+                0.09044447448768417,
+                0.09044447448768417,
+                0.09044447448768417,
+                0.09044447448768417,
+                0.09044447448768414,
+                0.09044447448768414,
+                0.09044447448768414,
+                0.09044447448768414,
+                0.09044447448768414,
+                0.09044447448768414,
+                0.09044447448768413,
+                0.0904444744876841,
+                0.0904444744876841
+              ],
+              "fieldVector": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "entropy": 0.8084048365093032,
+              "headShare": 0.4887431388799622,
+              "shoulderShare": 0.17326244652257747,
+              "tailShare": 0.3379944145974602,
+              "fillPercent": 94.31040364192096
+            }
+          },
+          "memory": null,
+          "requestStarted": true
+        },
+        "reason": "Incomplete or token-limited response cannot become journal feedback"
+      }
+    },
+    "attemptCount": 1,
+    "turnCount": 1,
+    "nonSuccessEvents": [],
+    "loopApplicationWitnessed": false,
+    "fullTextMemoryWitnessed": false,
+    "qualityReviewStatus": "Not assessed by this integrity script; review exact prose and prompts separately."
+  },
+  "reviewMaterial": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/recovery-export-review-01/quality-review-material.json",
+    "bytes": 118,
+    "sha256": "c4ad83abc2d66cb95469c25fed4366d1542a9b11e3345de3c4b8604ff4dda664"
+  },
+  "pinnedExecutable": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/recovery-export-review-01/reservoir-scope-desktop-pinned",
+    "bytes": 16801360,
+    "sha256": "689ed9e13e6cdbea8774c232b88018eaebd0c8fcbd2aaedc2d0fb0c6e1bb3b5b"
+  },
+  "originalUnchanged": true,
+  "endedAtUtc": "2026-10-13T20:55:35.134734+00:00"
+}

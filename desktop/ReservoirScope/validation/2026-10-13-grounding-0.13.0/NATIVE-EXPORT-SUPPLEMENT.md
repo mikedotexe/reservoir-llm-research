@@ -1,0 +1,13 @@
+# Native export verified — October 13, 2026
+
+The native export is now qualified for the same held v3 session. After the user dismissed the original blocked sheet, the parent completed the native folder flow and recorded success at 20:53:09.324493 UTC in [native-export-completed-01.json](native-export-completed-01.json). This later success does not erase the earlier automation failure or relabel the passive copy as a native export.
+
+The native bundle is `target/qa/0.13-open-writing/exports/sustained-1791923112800-6-6-36`. Its manifest, checkpoint and two segments are **exactly byte-identical** to the previously reviewed passive copy: four files totaling 235,894 bytes. The [inventory comparison](native-export-comparison-01.json) and separate [direct byte comparison](native-export-byte-comparison-01.json) retain paths, sizes and SHA-256 identities. Both originals remained unchanged.
+
+The frozen version-aware checker independently passed on this actual native export, using a newly pinned copy of the same 0.13.0 executable, SHA-256 `689ed9e13e6cdbea8774c232b88018eaebd0c8fcbd2aaedc2d0fb0c6e1bb3b5b`. It required retained `reservoir-journal-v3`, `gemma3:4b` and the original explicit endpoint identity; it contacted no endpoint. [The checker receipt](native-export-review-01/receipt.json) has SHA-256 `d75658b44c6ac1eadbbc76da9dd4e05acab0d4dc2f4fd45ffafd1bc3a7843f65`.
+
+Pinned whole-chain replay ran from 20:53:41.754812 to 20:53:41.995838 UTC, with measured subprocess wall time 0.240457917 seconds and peak RSS 12,271,616 bytes. Those values describe the offline verifier only. The manifest hash remains `ac1b87e3e8bc50689d28f36a73a8a2e5ee1de2091d30117dbbbb44c294d46ef4`; the checkpoint hash remains `a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff`.
+
+The extracted evidence view and review-material bytes also match the prior checker exactly. No new prose review or duplicate quality-harness run was needed: [the original manual reading](real-model-prose-review-01.json) and [zero-journal quality report](held-quality-review-01.json) describe these same bytes. The result remains step 30, one incomplete 256-token response, zero saved journals/applications and three unstarted opportunities. No retry, numerical resume, model request or additional response occurred as part of this verification.
+
+This supplement closes the native-export evidence gap identified in [REAL-MODEL-RESULTS](REAL-MODEL-RESULTS.md). It does not establish a completed v3 writing loop, change the prose interpretation, or qualify later quit/recovery actions; the parent records those separately. Historical blocked-dialog, passive-copy, protocol and model-outcome receipts remain unchanged.

@@ -1,0 +1,243 @@
+{
+  "schema": "reservoir-observatory-native-reader-oracle-v1",
+  "createdAtUTC": "2026-10-12T15:47:21.300094+00:00",
+  "scope": "Frozen retained evidence structure, all decoded numeric values and row identities; no historical engine regeneration or cross-track clock join",
+  "modelsContacted": false,
+  "liveSourcesRead": false,
+  "outcome": "passed",
+  "checks": [
+    {
+      "name": "all-retained-values-and-identities",
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/observatory-oracle/native-observatory-oracle",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri/resources"
+          ],
+          "exitCode": 0,
+          "stdoutSHA256": "07f9d759f42b43d1a7a2a2fb3b739b98537c68d45ede17d3c4e5c8f8ab3db582",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/examples/observatory_oracle",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri/resources"
+          ],
+          "exitCode": 0,
+          "stdoutSHA256": "668be1339ba77b0eba15b87156b4718e7c7dcc61e4e328061803a62d26782a48",
+          "stderr": ""
+        }
+      ],
+      "counts": {
+        "historyCount": 507,
+        "stateRows": 1024,
+        "dimensions": 128
+      },
+      "numericDigests": {
+        "bandsNumericSHA256": "b23a6bab79841eb8e74ea5ae5ebd4f17e50a2edbce65dba20a298111ac7c689b",
+        "geometryNumericSHA256": "14459350a87710eeaca81833559cb21d56099d1a8f61a9765b32ea90d4c2e7f1",
+        "historyNumericSHA256": "fb87c33fb3db488cb6256acd88f8d38f871a218d3557762cfdf3f31ff141d8ee",
+        "stateNumericSHA256": "69117d8b687e1a8bf5fe40b5076c5c11f776870081108b7addabad0d1ae78771"
+      }
+    },
+    {
+      "name": "fill-outside-range",
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/observatory-oracle/native-observatory-oracle",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-observatory-oracle-bpmidd6o"
+          ],
+          "exitCode": 1,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native evidence rejected: invalid(\"Historical sample 0 has invalid time, fill, or spectral components.\")\n"
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/examples/observatory_oracle",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-observatory-oracle-bpmidd6o"
+          ],
+          "exitCode": 1,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Historical sample has invalid time, fill, or spectral slots.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "elapsed-order",
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/observatory-oracle/native-observatory-oracle",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-observatory-oracle-3i9kje7e"
+          ],
+          "exitCode": 1,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native evidence rejected: invalid(\"Historical sample 1 does not follow the previous elapsed time.\")\n"
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/examples/observatory_oracle",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-observatory-oracle-3i9kje7e"
+          ],
+          "exitCode": 1,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Historical elapsed times must increase strictly.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "missing-spectral-slot",
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/observatory-oracle/native-observatory-oracle",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-observatory-oracle-cc8e62jx"
+          ],
+          "exitCode": 1,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native evidence rejected: invalid(\"Historical sample 0 has invalid time, fill, or spectral components.\")\n"
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/examples/observatory_oracle",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-observatory-oracle-cc8e62jx"
+          ],
+          "exitCode": 1,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Historical sample has invalid time, fill, or spectral slots.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "invented-node-layout",
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/observatory-oracle/native-observatory-oracle",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-observatory-oracle-8p6um_0i"
+          ],
+          "exitCode": 1,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native evidence rejected: invalid(\"State replay must be a bounded 128-coordinate retained capture with ordinal rows and no invented time, fill, or node-layout identity.\")\n"
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/examples/observatory_oracle",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-observatory-oracle-8p6um_0i"
+          ],
+          "exitCode": 1,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Expected bounded 128-coordinate ordinal state capture, with no invented time, paired fill or node-layout identity.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "binary-length",
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/observatory-oracle/native-observatory-oracle",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-observatory-oracle-2br0t0m4"
+          ],
+          "exitCode": 1,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native evidence rejected: invalid(\"Retained activation byte count or SHA-256 does not match the replay manifest.\")\n"
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/examples/observatory_oracle",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-observatory-oracle-2br0t0m4"
+          ],
+          "exitCode": 1,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"State replay byte count or SHA-256 differs from manifest.\")\n"
+        }
+      ]
+    },
+    {
+      "name": "rebound-nonfinite-state",
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/observatory-oracle/native-observatory-oracle",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-observatory-oracle-k6hi4atx"
+          ],
+          "exitCode": 1,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Native evidence rejected: invalid(\"Retained activation row 0 has non-finite or out-of-range coordinates.\")\n"
+        },
+        {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/examples/observatory_oracle",
+            "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/reservoir-observatory-oracle-k6hi4atx"
+          ],
+          "exitCode": 1,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Error: Invalid(\"Retained activations must be finite and within \u22121\u20261.\")\n"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/Evidence.swift",
+      "sha256": "4a8ec2a1d16fb095f987658be60434d2b8785bad8b27da3cd4a60b00c6aef4d5"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/src/observatory.rs",
+      "sha256": "9b4a2d22a4f946583b750a6f0566cc029695cd75050985cbc0c6618b390e878e"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/examples/observatory_oracle.rs",
+      "sha256": "76f0b62eb77ad77d9736b4c2b21d4c0fc07d38ae14abc2bc0d9c8f2df8c67c12"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/check_observatory_oracles.py",
+      "sha256": "091b57b9ffba79368ca8a758cbf0aefbeadb9ca07c307bb5d8532d9f06c4e01e"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/observatory_oracle.swift",
+      "sha256": "f040ef9fd005d89c1af8d5d7b3c1b0162cb59bcf7111b1feabdcf32bd6f6eeb9"
+    }
+  ],
+  "resources": [
+    {
+      "name": "data.json",
+      "sha256": "03ebfb620c2371023a39de308eb16c292d31b313ead7dcb07db5df3dd0c6749d",
+      "bytes": 186596
+    },
+    {
+      "name": "state-replay.json",
+      "sha256": "9589a673e111df6d8643ab050fb6dc2112eb68c453e2c2e55f41699ac7940dd1",
+      "bytes": 1165
+    },
+    {
+      "name": "state-replay.bin",
+      "sha256": "09ea4db8212809085aa2e07a040975f3095d7ef79d06eb8ba7404cc2424e282f",
+      "bytes": 524288
+    },
+    {
+      "name": "state-geometry.json",
+      "sha256": "5e90207e7dfd1d395b249d3bb5d668afa0f86b6d3e0e6383eda7b9eb52514317",
+      "bytes": 365219
+    }
+  ],
+  "executables": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/observatory-oracle/native-observatory-oracle",
+      "sha256": "cd5954919ecc35c89a15b987af90070d6e27743c08fe7e7149921fe3f7c37576"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/examples/observatory_oracle",
+      "sha256": "29f8a8f28e68bf123f9fe94c505cc547124f73df77be17581ada3951738d0d56"
+    }
+  ]
+}

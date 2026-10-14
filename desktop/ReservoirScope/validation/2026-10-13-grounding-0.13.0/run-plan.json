@@ -1,0 +1,46 @@
+{
+  "schema": "reservoir-journal-grounding-protocol-v1",
+  "status": "prospective-before-v2-output",
+  "promptVersion": "reservoir-journal-v2",
+  "referencePromptVersion": "reservoir-journal-v1",
+  "model": "gemma3:4b",
+  "modelManifestSha256": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+  "contextTokens": 4096,
+  "maximumOutputTokens": 256,
+  "temperature": 0,
+  "config": {
+    "seed": "20261013",
+    "turnEvery": 30,
+    "maximumSteps": 121,
+    "maximumTurns": 4,
+    "maximumDurationSeconds": 600,
+    "storageBudgetBytes": 67108864,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true
+  },
+  "additionalComparisonRequests": 0,
+  "automaticRetries": 0,
+  "replaceMissingOrFailedSamples": false,
+  "expectedStyle": {
+    "opening": "Step N.",
+    "body": "One short plain-text paragraph, about60-100words, one cautious next observation or question.",
+    "requiredCurrentMeasurements": ["recurrent RMS", "separate reduced sensory fill percent"],
+    "optionalMeasurements": ["sensory leading eigenvalue", "sensory head share", "sensory entropy", "recurrent L2", "recurrent changeL2"],
+    "scientificAcceptanceFromStyle": false
+  },
+  "endpoint": "Must be supplied from the separately qualified newly owned listener; no default endpoint.",
+  "packageSha256": "Must be supplied from the separately qualified 0.13.0 package before Start.",
+  "referenceMaterial": {
+    "path": "../2026-10-13-reading-0.12.2/real-model-export-01/quality-review-material.json",
+    "sha256": "da9b912349e4a1efb60a07dac88cf12d35ac99246a41e7f3997c9ffc3d8b78a7"
+  },
+  "referenceIntegrityReceipt": {
+    "path": "../2026-10-13-reading-0.12.2/real-model-export-01/receipt.json",
+    "sha256": "7cc9bc59a8ff6c27f5ab740e586d80821b4a383206b59b1606fb07dfd19094c1"
+  },
+  "qualityVerdict": "Manual dimension-level review required; no automatic scientific pass.",
+  "comparisonLimit": "Journal feedback changes later trajectories, so repeated configuration is not a matched-prompt causal comparison."
+}

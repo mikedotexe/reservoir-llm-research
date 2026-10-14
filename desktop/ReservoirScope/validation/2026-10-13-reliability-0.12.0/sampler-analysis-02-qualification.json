@@ -1,0 +1,48 @@
+{
+  "scope": "Analysis-only CPU interval selection correction; no app, provider, running sampler, or capture data interaction. Synthetic fixtures and own test PID only.",
+  "startedAt": "2026-10-13T16:44:53.692248+00:00",
+  "endedAt": "2026-10-13T16:44:54.124044+00:00",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts",
+    "-p",
+    "test_macos_reliability.py",
+    "-v"
+  ],
+  "cwd": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope",
+  "exitCode": 0,
+  "testsPassed": 14,
+  "sourceSha256": "326fb72a668f1cac1f32585e0b61e791a56a959b1ac0ae32560fcebd0fba5215",
+  "testSha256": "db6712f2db95d6a5f5fc88e1954e7960cec2606a2bbe87cdf4e75e80f637d513",
+  "logSha256": "cf5187b69efc2472e37047d6846b30c7c7663ca9235828188b0699e4c2586096",
+  "before": {
+    "previousTestLogSha256": "3863746d15895ca72f402d80e688f07397c470edbe0bb8fc1bf6cfb22b606626",
+    "captureSourceSha256": "108b03157d93804c187ba18e0ab747d5a5695af2857167839fcab307862c738c"
+  },
+  "after": {
+    "previousTestLogSha256": "3863746d15895ca72f402d80e688f07397c470edbe0bb8fc1bf6cfb22b606626",
+    "captureSourceSha256": "108b03157d93804c187ba18e0ab747d5a5695af2857167839fcab307862c738c"
+  },
+  "previousArtifactsUnchanged": true,
+  "captureDefinitionsUnchanged": true,
+  "captureDefinitionsCompared": [
+    "utc",
+    "sha",
+    "ordinary_path",
+    "file_identity",
+    "read_regular",
+    "hash_file",
+    "BSDInfo",
+    "TaskInfo",
+    "Timebase",
+    "MacProcess",
+    "manifest_snapshot",
+    "disk_snapshot",
+    "error",
+    "sample"
+  ]
+}

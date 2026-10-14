@@ -1,0 +1,24 @@
+Command: cargo test --locked -p reservoir-scope-desktop sessions::tests::model_
+DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk
+   Compiling reservoir-scope-desktop v0.11.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.40s
+     Running unittests src/main.rs (target/debug/deps/reservoir_scope_desktop-5859a17479a19a03)
+
+running 10 tests
+test sessions::tests::model_config_rejects_ineligible_recipes_without_replacing_or_contacting ... ok
+test sessions::tests::model_real_loopback_http_bridge_sends_exact_prompt_and_retains_native_response ... ok
+test sessions::tests::model_stage_manual_step_subscription_pause_and_next_step_feedback ... ok
+test sessions::tests::model_unqualified_reply_is_blocked_without_retry_until_explicit_stop ... ok
+test sessions::tests::model_pending_checkpoint_rejects_identity_and_response_corruption ... ok
+test sessions::tests::model_action_write_requires_real_save_before_feedback_and_reports_sources ... ok
+test sessions::tests::model_pending_recovery_binds_identity_and_failed_intent_does_not_dispatch ... ok
+test sessions::tests::model_stop_reset_and_close_reject_late_provider_result ... ok
+test sessions::tests::model_memory_read_failure_prevents_dispatch_and_retains_terminal_native_receipt ... ok
+test sessions::tests::model_observation_failure_attempts_peer_and_components_cancel_peer ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 115 filtered out; finished in 1.14s
+
+
+Exit status: 0
+Elapsed seconds: 7.05

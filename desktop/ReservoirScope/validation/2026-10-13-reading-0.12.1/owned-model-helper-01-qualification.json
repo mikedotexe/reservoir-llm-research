@@ -1,0 +1,49 @@
+{
+  "format": "reservoir-owned-model-helper-qualification-v1",
+  "startedAtUtc": "2026-10-13T18:37:45.205727+00:00",
+  "endedAtUtc": "2026-10-13T18:37:45.345315+00:00",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "desktop/ReservoirScope/validation/2026-10-13-reading-0.12.1",
+    "-p",
+    "test_owned_model.py",
+    "-v"
+  ],
+  "exitCode": 0,
+  "scope": "Synthetic temporary files and mocked process operations only. No staging, blobs, model launch, endpoint, app, sampler or provider operation.",
+  "pythonExecutable": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+  "pythonVersion": "3.14.3 (main, Feb  3 2026, 15:32:20) [Clang 17.0.0 (clang-1700.6.3.2)]",
+  "nonReapingWaitFeatures": {
+    "waitid": true,
+    "WNOWAIT": true,
+    "WEXITED": true,
+    "WNOHANG": true,
+    "P_PID": true
+  },
+  "files": [
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-reading-0.12.1/owned_model.py",
+      "sha256": "ef02c818d22991cbcfef49c122c732dd5290968cdcb5cbfaf59c54aeff485e51",
+      "sizeBytes": 20893
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-reading-0.12.1/test_owned_model.py",
+      "sha256": "7dc549edd77f64421a37f4fe8ac248fa7d8f7a0482513750c78d013ef3fcef3e",
+      "sizeBytes": 7591
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-reading-0.12.1/OWNED-MODEL-HELPER.md",
+      "sha256": "77d3120712af3221feaaeba996a6f88db16d91e776bf454523b49dfcbb01af50",
+      "sizeBytes": 4554
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-13-reading-0.12.1/owned-model-tests-01.log",
+      "sha256": "a531065762e00f857fa205dad763587509df5fff03c86398f4df61a21573c411",
+      "sizeBytes": 1577
+    }
+  ]
+}

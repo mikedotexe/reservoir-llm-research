@@ -1,0 +1,381 @@
+--- validation/2026-10-13-reliability-0.12.0/before-quota-repair-sustained_store.rs.txt
++++ src-tauri/src/sustained_store.rs
+@@ -18,7 +18,42 @@
+ const OWNER: &[u8] = b"reservoir-scope-sustained-v1\n";
+ pub const OBJECT_LIMIT: u64 = 4 * 1024 * 1024;
+ const MANIFEST_LIMIT: u64 = 128 * 1024;
++// Low water is one maximum accepted segment/checkpoint transaction. The actual
++// candidate is sized separately; this is not a second up-front transaction.
++pub const RUN_HEADROOM: u64 = 2 * OBJECT_LIMIT + MANIFEST_LIMIT;
++const HEADROOM_DIAGNOSTIC: &str = "Storage headroom reached; the exact current boundary is retained and further execution is held. Stop or explicitly skip pending feedback before closing.";
++pub fn storage_held(manifest: &Manifest) -> bool {
++    manifest
++        .diagnostics
++        .iter()
++        .any(|d| d == HEADROOM_DIAGNOSTIC)
++}
++pub fn hold_storage(manifest: &mut Manifest) {
++    manifest.phase = "budgetReached".into();
++    if !storage_held(manifest) {
++        manifest.diagnostics.push(HEADROOM_DIAGNOSTIC.into());
++        trim_diagnostics(manifest);
++    }
++}
++pub fn trim_diagnostics(manifest: &mut Manifest) {
++    while manifest.diagnostics.len() > 32 {
++        let removable = manifest
++            .diagnostics
++            .iter()
++            .position(|d| d != HEADROOM_DIAGNOSTIC)
++            .unwrap_or(0);
++        manifest.diagnostics.remove(removable);
++    }
++}
++#[derive(Clone, Copy, PartialEq, Eq)]
++pub enum Admission {
++    Ordinary,
++    Stop,
++    Skip,
++    Close,
++}
+ const MAX_SEGMENTS: u64 = 100_000;
++const MAX_OBJECTS: u64 = MAX_SEGMENTS + 20_100;
+ fn err(kind: &str, message: impl Into<String>) -> AppError {
+     AppError::new("sustained-storage", kind, message)
+ }
+@@ -166,6 +201,91 @@
+     segment: SustainedSegment,
+     journal_sha256s: BTreeMap<String, String>,
+ }
++
++/// Size the allowed Stop/cancel -> Skip -> close suffix for the actual candidate
++/// state. Only a clone is changed. All three manifest replacements are reserved,
++/// and old checkpoints are not subtracted before their eventual cleanup.
++fn terminal_reserve(
++    engine: &SustainedSession,
++    admission: Admission,
++) -> Result<(u64, u64), AppError> {
++    let mut preview = engine.clone();
++    if let Some(last) = preview.events().back() {
++        preview.acknowledge_events(last.id).map_err(ce)?;
++    }
++    let manifests = match admission {
++        Admission::Ordinary => 3,
++        Admission::Stop => 2,
++        Admission::Skip => 1,
++        Admission::Close => 0,
++    };
++    let mut required = manifests * MANIFEST_LIMIT;
++    let mut segments = 0;
++    let reason = "\0".repeat(4096); // Maximum bounded reason and JSON escaping.
++    for cancel in [true, false] {
++        if (cancel && admission != Admission::Ordinary)
++            || (!cancel && matches!(admission, Admission::Skip | Admission::Close))
++        {
++            continue;
++        }
++        let initial = preview.checkpoint();
++        if cancel {
++            if let Some(p) = preview.pending_language() {
++                preview.cancel_language(p.attempt_id, &reason).map_err(ce)?;
++            }
++        } else if !matches!(preview.phase(), core::SustainedPhase::Ready) {
++            preview.skip_pending(&reason).map_err(ce)?;
++        }
++        if preview.events().is_empty() {
++            continue;
++        }
++        let final_checkpoint = preview.checkpoint();
++        let cp = json(&final_checkpoint)?;
++        let envelope = Envelope {
++            format: "reservoir-sustained-chain-link-v1".into(),
++            sequence: u64::MAX,
++            previous_sha256: Some("0".repeat(64)),
++            journal_sha256s: BTreeMap::new(),
++            segment: SustainedSegment {
++                format: core::FORMAT.into(),
++                initial_checkpoint: initial,
++                events: preview.events().iter().cloned().collect(),
++                final_checkpoint,
++            },
++        };
++        let segment = json(&envelope)?;
++        if cp.len() as u64 > OBJECT_LIMIT || segment.len() as u64 > OBJECT_LIMIT {
++            return Err(err(
++                "budget",
++                "Candidate's bounded terminal transition exceeds an object limit",
++            ));
++        }
++        required += cp.len() as u64 + segment.len() as u64;
++        segments += 1;
++        if let Some(last) = preview.events().back() {
++            preview.acknowledge_events(last.id).map_err(ce)?;
++        }
++    }
++    Ok((required, segments))
++}
++
++/// Existing identical immutable objects need a sync/readback, not a second
++/// allocation. Conflicting checkpoints never count as reusable capacity.
++fn immutable_allocation(path: &Path, bytes: &[u8]) -> Result<u64, AppError> {
++    match fs::symlink_metadata(path) {
++        Ok(_) => {
++            if files::read_bounded(path, OBJECT_LIMIT, "allocation")? != bytes {
++                return Err(err(
++                    "conflict",
++                    "Immutable object differs during budget admission",
++                ));
++            }
++            Ok(0)
++        }
++        Err(e) if e.kind() == std::io::ErrorKind::NotFound => Ok(bytes.len() as u64),
++        Err(e) => Err(io(e)),
++    }
++}
+ #[derive(Clone, Serialize, Deserialize, Default)]
+ #[serde(rename_all = "camelCase", deny_unknown_fields)]
+ pub struct AttemptTiming {
+@@ -324,10 +444,14 @@
+         manifest: &mut Manifest,
+         initial: &SustainedCheckpoint,
+         engine: &mut SustainedSession,
++        admission: Admission,
+     ) -> Result<SustainedCheckpoint, AppError> {
+         let p = self.prepare(&manifest.session_id)?;
+         let checkpoint = engine.checkpoint();
+         let cpbytes = json(&checkpoint)?;
++        if cpbytes.len() as u64 > OBJECT_LIMIT {
++            return Err(err("budget", "Checkpoint exceeds object limit"));
++        }
+         let cphash = files::digest(&cpbytes);
+         let mut events: Vec<_> = engine.events().iter().cloned().collect();
+         let mut candidate = manifest.clone();
+@@ -414,13 +538,68 @@
+         candidate.durable_step = engine.step();
+         candidate.previous_checkpoint_sha256 = Some(candidate.checkpoint_sha256.clone());
+         candidate.checkpoint_sha256 = cphash.clone();
+-        let required = segment_bytes.as_ref().map_or(0, |b| b.len() as u64)
+-            + cpbytes.len() as u64
+-            + json(&candidate)?.len() as u64;
+-        // Keep a bounded margin for diagnostics/clean stop; no pruning of evidence
+-        // to make a numerical step fit inside a full store.
+-        if disk_bytes(&p)?.saturating_add(required) > candidate.config.storage_budget_bytes {
+-            return Err(err("budget","Owned storage budget reached; pending state remains in memory until Retry or explicit discard."));
++        let (used, objects) = disk_usage(&p)?;
++        let checkpoint_allocation = immutable_allocation(
++            &p.join("checkpoints").join(format!("{cphash}.json")),
++            &cpbytes,
++        )?;
++        let mut segment_allocation = 0;
++        let mut quarantine_allocation = 0;
++        if let Some(bytes) = &segment_bytes {
++            let next_path = p
++                .join("segments")
++                .join(segment_name(candidate.segment_count));
++            if next_path.exists() {
++                let old = files::read_bounded(&next_path, OBJECT_LIMIT, "uncommitted-link")?;
++                if old != *bytes {
++                    // Quarantine currently copies before removing the conflicting
++                    // uncommitted sequence. Include that transient extra copy.
++                    let orphan = p.join("segments").join(format!(
++                        "orphan-{}-{}.json",
++                        candidate.segment_count,
++                        files::digest(&old)
++                    ));
++                    quarantine_allocation = immutable_allocation(&orphan, &old)?;
++                    segment_allocation = bytes.len() as u64;
++                }
++            } else {
++                segment_allocation = bytes.len() as u64;
++            }
++        }
++        let allocation = segment_allocation + quarantine_allocation + checkpoint_allocation;
++        let new_objects = u64::from(segment_allocation > 0)
++            + u64::from(quarantine_allocation > 0)
++            + u64::from(checkpoint_allocation > 0);
++        let ordinary_peak = used
++            .saturating_add(allocation)
++            .saturating_add(json(&candidate)?.len() as u64);
++        let (terminal_bytes, terminal_segments) = terminal_reserve(engine, admission)?;
++        if admission == Admission::Ordinary
++            && (candidate.segment_count.saturating_add(3) >= MAX_SEGMENTS
++                || objects.saturating_add(new_objects).saturating_add(7) >= MAX_OBJECTS
++                || storage_held(&candidate)
++                || ordinary_peak.saturating_add(RUN_HEADROOM)
++                    > candidate.config.storage_budget_bytes)
++        {
++            hold_storage(&mut candidate);
++        }
++        let manifest_bytes = json(&candidate)?;
++        if manifest_bytes.len() as u64 > MANIFEST_LIMIT {
++            return Err(err("budget", "Manifest exceeds object limit"));
++        }
++        let peak = used
++            .saturating_add(allocation)
++            .saturating_add(manifest_bytes.len() as u64);
++        // Every accepted state retains its actual bounded terminal suffix, not
++        // an assumption that a reply or a buffered numerical tail is small.
++        if peak.saturating_add(terminal_bytes) > candidate.config.storage_budget_bytes
++            || candidate.segment_count.saturating_add(terminal_segments) > MAX_SEGMENTS
++            || objects
++                .saturating_add(new_objects)
++                .saturating_add(2 * terminal_segments + 1)
++                > MAX_OBJECTS
++        {
++            return Err(err("budget","Owned storage budget cannot retain this candidate and its terminal transition; pending state remains unsaved."));
+         }
+         if let Some(bytes) = segment_bytes {
+             let next_path = p
+@@ -462,7 +641,7 @@
+             false,
+         )?;
+         self.injected(3)?;
+-        publish(&p.join("manifest.json"), &json(&candidate)?, true)?;
++        publish(&p.join("manifest.json"), &manifest_bytes, true)?;
+         self.injected(4)?;
+         if let Some(last) = engine.events().back() {
+             engine.acknowledge_events(last.id).map_err(ce)?;
+@@ -536,7 +715,7 @@
+         }
+         let bytes = json(&object)?;
+         if bytes.len() as u64 > OBJECT_LIMIT
+-            || disk_bytes(&p)?.saturating_add(bytes.len() as u64 + OBJECT_LIMIT)
++            || disk_bytes(&p)?.saturating_add(bytes.len() as u64 + RUN_HEADROOM)
+                 > config.storage_budget_bytes
+         {
+             return Err(err(
+@@ -713,6 +892,9 @@
+     format!("segment-{n:08}.json")
+ }
+ fn disk_bytes(path: &Path) -> Result<u64, AppError> {
++    Ok(disk_usage(path)?.0)
++}
++fn disk_usage(path: &Path) -> Result<(u64, u64), AppError> {
+     ordinary(path)?;
+     let mut n = 0u64;
+     let mut count = 0u64;
+@@ -729,7 +911,7 @@
+             for child in fs::read_dir(e.path()).map_err(io)? {
+                 let child = child.map_err(io)?;
+                 count += 1;
+-                if count > MAX_SEGMENTS + 20_100 {
++                if count > MAX_OBJECTS {
+                     return Err(err("bound", "Owned object count exceeds bound"));
+                 }
+                 if !child.file_type().map_err(io)?.is_file() {
+@@ -744,7 +926,7 @@
+             }
+         } else if t.is_file() {
+             count += 1;
+-            if count > MAX_SEGMENTS + 20_100 {
++            if count > MAX_OBJECTS {
+                 return Err(err("bound", "Owned object count exceeds bound"));
+             }
+             n = n
+@@ -757,7 +939,7 @@
+             ));
+         }
+     }
+-    Ok(n)
++    Ok((n, count))
+ }
+ fn read_link(path: &Path, n: u64) -> Result<(Envelope, String), AppError> {
+     let bytes = files::read_bounded(
+@@ -1089,3 +1271,97 @@
+     }
+     Ok(())
+ }
++
++#[cfg(test)]
++mod quota_projection_tests {
++    use super::*;
++    #[test]
++    fn quota_projection_is_pure_and_terminal_suffix_can_spend_reserved_capacity() {
++        let directory = tempfile::tempdir().unwrap();
++        let store = SustainedStore::new(directory.path().join("store"));
++        let config = SustainedConfig {
++            turn_every: 3,
++            storage_budget_bytes: 16 * 1024 * 1024,
++            ..Default::default()
++        };
++        let mut engine = SustainedSession::new(config.specification().unwrap()).unwrap();
++        let mut manifest = Manifest {
++            format: "reservoir-sustained-bundle-v1".into(),
++            session_id: "quota-test".into(),
++            generation: "1".into(),
++            revision: "1".into(),
++            config,
++            phase: "ready".into(),
++            step: 0,
++            durable_step: 0,
++            elapsed_millis: 0,
++            journal_count: 0,
++            segment_count: 0,
++            last_segment_sha256: None,
++            checkpoint_sha256: String::new(),
++            previous_checkpoint_sha256: None,
++            diagnostics: vec![],
++            attempt_timing: None,
++        };
++        let mut committed = engine.checkpoint();
++        store.initialize(&mut manifest, &committed).unwrap();
++        for _ in 0..3 {
++            engine.advance().unwrap();
++        }
++        committed = store
++            .persist(&mut manifest, &committed, &mut engine, Admission::Ordinary)
++            .unwrap();
++        let before = json(&engine.checkpoint()).unwrap();
++        let (reserve, links) = terminal_reserve(&engine, Admission::Ordinary).unwrap();
++        assert_eq!(links, 2);
++        assert_eq!(json(&engine.checkpoint()).unwrap(), before);
++        assert!(engine.events().is_empty());
++        let root = store.path(&manifest.session_id).unwrap();
++        let padding = root.join("quota-test-pressure.bin");
++        let f = fs::File::create(&padding).unwrap();
++        let used = disk_bytes(&root).unwrap();
++        // Exact projection plus a single small candidate publication, far less
++        // than the general 8 MiB ordinary low-water threshold.
++        f.set_len(manifest.config.storage_budget_bytes - used - reserve - 8192)
++            .unwrap();
++        committed = store
++            .persist(&mut manifest, &committed, &mut engine, Admission::Ordinary)
++            .unwrap();
++        assert!(storage_held(&manifest));
++        let attempt = engine.pending_language().unwrap().attempt_id;
++        engine.cancel_language(attempt, "Explicit Stop").unwrap();
++        manifest.phase = "stopped".into();
++        manifest.revision = "2".into();
++        committed = store
++            .persist(&mut manifest, &committed, &mut engine, Admission::Stop)
++            .unwrap();
++        assert_eq!(terminal_reserve(&engine, Admission::Stop).unwrap().1, 1);
++        engine.skip_pending("Explicit Skip").unwrap();
++        manifest.revision = "3".into();
++        committed = store
++            .persist(&mut manifest, &committed, &mut engine, Admission::Skip)
++            .unwrap();
++        assert_eq!(
++            terminal_reserve(&engine, Admission::Skip).unwrap(),
++            (MANIFEST_LIMIT, 0)
++        );
++        // Leave only actual manifest replacement space: a final Close must not
++        // demand another hypothetical future Stop/Skip/close reserve.
++        let used = disk_bytes(&root).unwrap();
++        let old = f.metadata().unwrap().len();
++        let mut final_candidate = manifest.clone();
++        final_candidate.previous_checkpoint_sha256 = Some(manifest.checkpoint_sha256.clone());
++        let remaining = json(&final_candidate).unwrap().len() as u64 + 1;
++        f.set_len(old + manifest.config.storage_budget_bytes - used - remaining)
++            .unwrap();
++        store
++            .persist(&mut manifest, &committed, &mut engine, Admission::Close)
++            .unwrap();
++        let verified = store.verify(&manifest.session_id).unwrap();
++        assert!(matches!(
++            verified.checkpoint.state.phase,
++            core::SustainedPhase::Ready
++        ));
++        assert!(verified.report.size_bytes <= manifest.config.storage_budget_bytes);
++    }
++}

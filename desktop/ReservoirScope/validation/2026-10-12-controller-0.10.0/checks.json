@@ -1,0 +1,56 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": "python3 scripts/check_reference.py",
+    "evidence": "reference-check.log; frozen native source/resource identity unchanged."
+  },
+  {
+    "id": "resource-staging-tests",
+    "status": "passed",
+    "command": "python3 -m unittest discover -s scripts -p 'test_*.py'",
+    "evidence": "python-tests-final.log;13 tests passed, including4 export-checker protocol tests."
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": "npm test",
+    "evidence": "frontend-tests-final.log;243 tests in27 files passed after the final toggle-label clarification. Earlier source-bound frontend receipt is retained."
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": "npm run build",
+    "evidence": "frontend-build-final.log and package-build.log; TypeScript and88-module build passed. Existing Vite >500kB chunk advisory remains; not a performance measurement."
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-core",
+    "evidence": "core-tests.log;132 tests passed, including transactional field-pair rollback, exact seeded inputs, next-step retention and prefix/completion boundaries."
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-scope-desktop",
+    "evidence": "desktop-tests.log;98 tests passed, including600-step Library/recovery, metadata-only partial persistence, locked configuration, scheduler replacement and actual request order."
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": "cargo clippy --locked -p reservoir-core --all-targets -- -D warnings; cargo clippy --locked -p reservoir-scope-desktop --all-targets -- -D warnings",
+    "evidence": "core-clippy.log and desktop-clippy.log; both clean."
+  },
+  {
+    "id": "swift-export-verification",
+    "status": "passed",
+    "command": "python3 crates/reservoir-core/tests/support/check_regulation_oracles.py; python3 scripts/check_controller_export.py with explicit files and executables",
+    "evidence": "regulation-oracles.json passes18 cases; incremental-export-conformance.json and packaged-export-conformance.json independently accept actual600-step exports, reject one-ULP projection changes, agree on native prefix/rewind evidence. Reused Swift identities and unchanged sources checked."
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": "npm run tauri -- build --bundles app -- --locked with pinned Xcode/SDK environment",
+    "evidence": "package-build.log;0.10.0 arm64 package, ad-hoc signing, no notarization.46 archive files and42 packaged resource files checked. macos-ui.md records actual dialogs, field rendering, prefix rewind, Library, guarded quit and byte-identical recovery. All-target acceptance remains open."
+  }
+]

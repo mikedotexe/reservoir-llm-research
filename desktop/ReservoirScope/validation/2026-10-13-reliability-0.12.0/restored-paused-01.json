@@ -1,0 +1,48 @@
+{
+  "capturedAtUtc": "2026-10-13T18:47:05.030292+00:00",
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791908510756-1",
+    "generation": "2",
+    "revision": "8284",
+    "config": {
+      "seed": "20261013",
+      "turnEvery": 30,
+      "maximumSteps": 10000,
+      "maximumTurns": 400,
+      "maximumDurationSeconds": 7800,
+      "storageBudgetBytes": 268435456,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:57314",
+        "model": "reservoir-fixture:reliability-0.12",
+        "contextTokens": 4096
+      }
+    },
+    "phase": "paused",
+    "step": 7100,
+    "durableStep": 7100,
+    "elapsedMillis": 7721255,
+    "journalCount": 236,
+    "segmentCount": 1180,
+    "lastSegmentSha256": "19dd7d858462015ec1365ee12847595ea361fbefdbf5dd1ac6b4ede1100de645",
+    "checkpointSha256": "0466901e060547512ff5315d3646168cdd87e013fcc1bb200234be8840e19341",
+    "previousCheckpointSha256": "0466901e060547512ff5315d3646168cdd87e013fcc1bb200234be8840e19341",
+    "diagnostics": [],
+    "attemptTiming": {
+      "attemptId": 236,
+      "dispatchedAtMs": "1791916760244",
+      "receivedAtMs": "1791916760451",
+      "transportDurationMs": 206,
+      "publishedAtMs": null
+    }
+  },
+  "manifestSha256": "37e7e23d176e7b1315491947ec37a412d6b14c638fe57835a9fc8eed40c7e455",
+  "providerRequests": 236,
+  "ui": "Explicit Restore completed paused. Exact elapsed7721.3/7800 and step7100 unchanged. Paged221\u2013236of236, reselected step30 exact originalhash/text, saved/applied31. No implicit request or numerical advance. Next action will be explicit Resume with78.745seconds budget left."
+}

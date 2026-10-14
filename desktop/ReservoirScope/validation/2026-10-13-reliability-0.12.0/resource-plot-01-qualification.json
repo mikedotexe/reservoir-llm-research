@@ -1,0 +1,42 @@
+{
+  "scope": "Synthetic plot fixture and segmentation tests only; actual capture not read/rendered",
+  "startedAt": "2026-10-13T17:14:24.883040+00:00",
+  "endedAt": "2026-10-13T17:14:25.570754+00:00",
+  "tests": {
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0",
+      "-p",
+      "test_plot_resources.py",
+      "-v"
+    ],
+    "exitCode": 0,
+    "passed": 3
+  },
+  "render": {
+    "command": [
+      "python3",
+      "desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0/plot_resources.py",
+      "--input",
+      "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/resource-plot-fixture-wt7jv9tm/samples.jsonl",
+      "--markers",
+      "/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/resource-plot-fixture-wt7jv9tm/markers.jsonl",
+      "--output",
+      "desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0/resource-plot-synthetic-sanity-01.png",
+      "--allow-incomplete",
+      "--label",
+      "SYNTHETIC TEST DATA \u2014 not application measurements"
+    ],
+    "exitCode": 0
+  },
+  "files": {
+    "plot_resources.py": "aa642a501653132ba506194a737d0bc8e92d46494df9505c07f837210493e472",
+    "test_plot_resources.py": "79af784621d79b72c34263e59acfe0005e5aede976459768b16cfe21229c549f",
+    "resource-plot-tests-01.log": "3ae73a9310cf384fd2184db89a3d96350b4bf523f42171216dba69c837048b40",
+    "resource-plot-synthetic-sanity-01.png": "afde368a2f6978eef8a73be7e9502c3365a0f70f9ea76cb4bee49cd68e39754d"
+  }
+}

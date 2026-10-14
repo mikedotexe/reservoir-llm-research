@@ -1,0 +1,1000 @@
+{
+  "schema": "reservoir-journal-quality-review-v1",
+  "ruleset": "grounding-review-1",
+  "status": "analysis_complete_manual_review_required",
+  "qualityVerdict": "not_assigned",
+  "promptVersion": "reservoir-journal-v1",
+  "journalCount": 4,
+  "journals": [
+    {
+      "identity": {
+        "journalId": "journal-30-1-d63f1e5125621f264ed52d25a45a95d90639b625ada8f767afe111ffec47119e",
+        "turnId": 1,
+        "attemptId": 1,
+        "observedStep": 30,
+        "status": "applied",
+        "application": {
+          "attemptId": 1,
+          "journalId": "journal-30-1-d63f1e5125621f264ed52d25a45a95d90639b625ada8f767afe111ffec47119e",
+          "observedStep": 30,
+          "appliedStep": 31
+        },
+        "textSha256": "d63f1e5125621f264ed52d25a45a95d90639b625ada8f767afe111ffec47119e",
+        "textBytes": 908,
+        "promptSha256": "7d89722ee70bd73e31d66c3aab096523b464440a84e3c71c0cbd4779a5dfca82",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 184,
+        "memoryJournalId": null,
+        "hostTiming": {
+          "attemptId": 1,
+          "dispatchedAtMs": "1791919428461",
+          "receivedAtMs": "1791919435550",
+          "transportDurationMs": 7089,
+          "publishedAtMs": "1791919435590"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "promptVersion": "reservoir-journal-v1",
+      "observationStep": 30,
+      "journalTextSha256": "d63f1e5125621f264ed52d25a45a95d90639b625ada8f767afe111ffec47119e",
+      "stepClaims": [],
+      "metricClaims": [
+        {
+          "metric": "rms",
+          "span": [
+            165,
+            182
+          ],
+          "text": "RMS is low (0.226",
+          "token": "0.226",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "RMS is low (0.226), indicating good convergence within the first few steps.",
+          "clauseTruncated": false,
+          "expectedCurrent": 0.22602111913418554,
+          "roundingTolerance": "0.00050001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "consistent_at_written_precision"
+        },
+        {
+          "metric": "leadingEigenvalue",
+          "span": [
+            339,
+            361
+          ],
+          "text": "dominant mode at 0.654",
+          "token": "0.654",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The sensory field eigenvalues are heavily concentrated, with a dominant mode at 0.654, suggesting a strong, potentially simple, sensory input.",
+          "clauseTruncated": false,
+          "expectedCurrent": 0.6540921468657876,
+          "roundingTolerance": "0.00050001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "consistent_at_written_precision"
+        },
+        {
+          "metric": "entropy",
+          "span": [
+            428,
+            454
+          ],
+          "text": "normalized entropy (0.8084",
+          "token": "0.8084",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The high normalized entropy (0.8084) and active-mode fill percentage (94.31%) suggest the reservoir is actively processing this dominant sensory signal.",
+          "clauseTruncated": false,
+          "expectedCurrent": 0.8084048365093032,
+          "roundingTolerance": "0.00005001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "consistent_at_written_precision"
+        },
+        {
+          "metric": "fillPercent",
+          "span": [
+            460,
+            495
+          ],
+          "text": "active-mode fill percentage (94.31%",
+          "token": "94.31",
+          "unit": "percent",
+          "scope": "current_candidate",
+          "clause": "The high normalized entropy (0.8084) and active-mode fill percentage (94.31%) suggest the reservoir is actively processing this dominant sensory signal.",
+          "clauseTruncated": false,
+          "expectedCurrent": 94.31040364192096,
+          "roundingTolerance": "0.00500001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "consistent_at_written_precision"
+        }
+      ],
+      "coverage": {
+        "requiredCurrentMetrics": [],
+        "recognizedCurrentMetrics": [
+          "entropy",
+          "fillPercent",
+          "leadingEigenvalue",
+          "rms"
+        ],
+        "missingRequiredMetrics": [],
+        "correctExactOpening": false,
+        "exactOpeningRequired": false,
+        "limit": "Recognition is partial; coverage does not establish all assertions were extracted or correct."
+      },
+      "style": {
+        "wordCount": 136,
+        "target60To100Words": false,
+        "assistantPrefaceCandidate": true,
+        "markdownHeadingCandidate": false,
+        "decision": "Style observations only; no scientific verdict."
+      },
+      "inferenceReviewCues": [
+        {
+          "category": "stability_or_convergence",
+          "span": [
+            131,
+            137
+          ],
+          "cue": "stable",
+          "clauseSpan": [
+            91,
+            164
+          ],
+          "clause": "“Initial observation shows a relatively stable recurrent reservoir state.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "stability_or_convergence",
+          "span": [
+            201,
+            212
+          ],
+          "cue": "convergence",
+          "clauseSpan": [
+            165,
+            240
+          ],
+          "clause": "RMS is low (0.226), indicating good convergence within the first few steps.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "uniform_spectrum",
+          "span": [
+            767,
+            774
+          ],
+          "cue": "uniform",
+          "clauseSpan": [
+            721,
+            900
+          ],
+          "clause": "It’s interesting to note the consistent, near-uniform distribution of the sensory field eigenvalues – this might be a key area to investigate for potential biases or limitations.”",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        }
+      ],
+      "manualWholeTextReviewRequired": true,
+      "extractionBound": {
+        "maximumClaimsPerKind": 32,
+        "metricsTruncated": [],
+        "stepsTruncated": false,
+        "inferenceCuesTruncated": [],
+        "maximumClauseCharacters": 512
+      },
+      "qualityVerdict": "not_assigned",
+      "manualRubric": {
+        "currentIdentity": null,
+        "numericTranscription": null,
+        "memoryAttribution": null,
+        "inferenceAndUncertainty": null,
+        "readability": null,
+        "unrecognizedAssertions": null,
+        "evidenceAnnotations": []
+      }
+    },
+    {
+      "identity": {
+        "journalId": "journal-60-2-201687b88a028469621874d9f1652624bcf769269b005b89d8f2a81e1aed6b54",
+        "turnId": 2,
+        "attemptId": 2,
+        "observedStep": 60,
+        "status": "applied",
+        "application": {
+          "attemptId": 2,
+          "journalId": "journal-60-2-201687b88a028469621874d9f1652624bcf769269b005b89d8f2a81e1aed6b54",
+          "observedStep": 60,
+          "appliedStep": 61
+        },
+        "textSha256": "201687b88a028469621874d9f1652624bcf769269b005b89d8f2a81e1aed6b54",
+        "textBytes": 816,
+        "promptSha256": "610de47c06d7fc4dfe11d13edae719df45f88f0b72e4404a6c1bc525c4451fc1",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 150,
+        "memoryJournalId": "journal-30-1-d63f1e5125621f264ed52d25a45a95d90639b625ada8f767afe111ffec47119e",
+        "hostTiming": {
+          "attemptId": 2,
+          "dispatchedAtMs": "1791919466116",
+          "receivedAtMs": "1791919477059",
+          "transportDurationMs": 10942,
+          "publishedAtMs": "1791919477138"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "promptVersion": "reservoir-journal-v1",
+      "observationStep": 60,
+      "journalTextSha256": "201687b88a028469621874d9f1652624bcf769269b005b89d8f2a81e1aed6b54",
+      "stepClaims": [
+        {
+          "span": [
+            249,
+            266
+          ],
+          "text": "global step of 60",
+          "value": 60,
+          "expectedCurrent": 60,
+          "scope": "current_candidate",
+          "clause": "Given the global step of 60 and the simulated time, I’ll closely monitor how the recurrent state coordinates evolve in relation to this dominant sensory input – particularly any shifts in the eigenvector distribution.",
+          "clauseTruncated": false,
+          "status": "consistent_current_label"
+        }
+      ],
+      "metricClaims": [
+        {
+          "metric": "headSharePercent",
+          "span": [
+            167,
+            184
+          ],
+          "text": "head share (86.8%",
+          "token": "86.8",
+          "unit": "percent",
+          "scope": "current_candidate",
+          "clause": "The high head share (86.8%) suggests a significant focus on spatial information.",
+          "clauseTruncated": false,
+          "expectedCurrent": 86.80851862780827,
+          "roundingTolerance": "0.05000001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "consistent_at_written_precision"
+        }
+      ],
+      "coverage": {
+        "requiredCurrentMetrics": [],
+        "recognizedCurrentMetrics": [
+          "headSharePercent"
+        ],
+        "missingRequiredMetrics": [],
+        "correctExactOpening": false,
+        "exactOpeningRequired": false,
+        "limit": "Recognition is partial; coverage does not establish all assertions were extracted or correct."
+      },
+      "style": {
+        "wordCount": 120,
+        "target60To100Words": false,
+        "assistantPrefaceCandidate": false,
+        "markdownHeadingCandidate": false,
+        "decision": "Style observations only; no scientific verdict."
+      },
+      "inferenceReviewCues": [
+        {
+          "category": "stability_or_convergence",
+          "span": [
+            772,
+            778
+          ],
+          "cue": "stable",
+          "clauseSpan": [
+            672,
+            800
+          ],
+          "clause": "I’ll pay attention to whether the reservoir’s response becomes more dynamic or if it settles into a stable, repetitive pattern.”",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "uniform_spectrum",
+          "span": [
+            484,
+            505
+          ],
+          "cue": "consistent eigenvalue",
+          "clauseSpan": [
+            457,
+            513
+          ],
+          "clause": "It’s also worth noting the consistent eigenvalue values;",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "uniform_spectrum",
+          "span": [
+            519,
+            529
+          ],
+          "cue": "uniformity",
+          "clauseSpan": [
+            514,
+            671
+          ],
+          "clause": "this uniformity might indicate a lack of nuanced sensory detail or a potential limitation in the reservoir’s ability to represent complex sensory variations.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "eigenvectors_or_spatial_semantics",
+          "span": [
+            218,
+            225
+          ],
+          "cue": "spatial",
+          "clauseSpan": [
+            158,
+            238
+          ],
+          "clause": "The high head share (86.8%) suggests a significant focus on spatial information.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "eigenvectors_or_spatial_semantics",
+          "span": [
+            431,
+            442
+          ],
+          "cue": "eigenvector",
+          "clauseSpan": [
+            239,
+            456
+          ],
+          "clause": "Given the global step of 60 and the simulated time, I’ll closely monitor how the recurrent state coordinates evolve in relation to this dominant sensory input – particularly any shifts in the eigenvector distribution.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        }
+      ],
+      "manualWholeTextReviewRequired": true,
+      "extractionBound": {
+        "maximumClaimsPerKind": 32,
+        "metricsTruncated": [],
+        "stepsTruncated": false,
+        "inferenceCuesTruncated": [],
+        "maximumClauseCharacters": 512
+      },
+      "qualityVerdict": "not_assigned",
+      "manualRubric": {
+        "currentIdentity": null,
+        "numericTranscription": null,
+        "memoryAttribution": null,
+        "inferenceAndUncertainty": null,
+        "readability": null,
+        "unrecognizedAssertions": null,
+        "evidenceAnnotations": []
+      }
+    },
+    {
+      "identity": {
+        "journalId": "journal-90-3-908f59662d460581a7a579faad09c2c628eed0a862ec9a7ba57e81b1be689c7e",
+        "turnId": 3,
+        "attemptId": 3,
+        "observedStep": 90,
+        "status": "applied",
+        "application": {
+          "attemptId": 3,
+          "journalId": "journal-90-3-908f59662d460581a7a579faad09c2c628eed0a862ec9a7ba57e81b1be689c7e",
+          "observedStep": 90,
+          "appliedStep": 91
+        },
+        "textSha256": "908f59662d460581a7a579faad09c2c628eed0a862ec9a7ba57e81b1be689c7e",
+        "textBytes": 986,
+        "promptSha256": "d371396a4b43177819aeaabba9f3bcd5107d7100c69cc0911c78989377e1dba9",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 207,
+        "memoryJournalId": "journal-60-2-201687b88a028469621874d9f1652624bcf769269b005b89d8f2a81e1aed6b54",
+        "hostTiming": {
+          "attemptId": 3,
+          "dispatchedAtMs": "1791919507778",
+          "receivedAtMs": "1791919519931",
+          "transportDurationMs": 12152,
+          "publishedAtMs": "1791919519989"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "promptVersion": "reservoir-journal-v1",
+      "observationStep": 90,
+      "journalTextSha256": "908f59662d460581a7a579faad09c2c628eed0a862ec9a7ba57e81b1be689c7e",
+      "stepClaims": [
+        {
+          "span": [
+            153,
+            167
+          ],
+          "text": "Observation 61",
+          "value": 61,
+          "expectedCurrent": 90,
+          "scope": "current_candidate",
+          "clause": "**Journal Entry - Observation 61**",
+          "clauseTruncated": false,
+          "status": "current_step_mismatch",
+          "matchingPriorTextLabels": [],
+          "matchingPriorLabelsTruncated": false,
+          "carryoverCandidate": false
+        }
+      ],
+      "metricClaims": [
+        {
+          "metric": "leadingEigenvalue",
+          "span": [
+            213,
+            252
+          ],
+          "text": "dominant sensory mode (eigenvalue 27.05",
+          "token": "27.05",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The reservoir continues to show a strong, dominant sensory mode (eigenvalue 27.05) with a high head share (86.8%).",
+          "clauseTruncated": false,
+          "expectedCurrent": 27.049112217807902,
+          "roundingTolerance": "0.00500001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "consistent_at_written_precision"
+        },
+        {
+          "metric": "headSharePercent",
+          "span": [
+            266,
+            283
+          ],
+          "text": "head share (86.8%",
+          "token": "86.8",
+          "unit": "percent",
+          "scope": "current_candidate",
+          "clause": "The reservoir continues to show a strong, dominant sensory mode (eigenvalue 27.05) with a high head share (86.8%).",
+          "clauseTruncated": false,
+          "expectedCurrent": 85.54188592553884,
+          "roundingTolerance": "0.05000001",
+          "agreesWithCurrentAtWrittenPrecision": false,
+          "status": "numeric_mismatch",
+          "matchingPriorTextSpans": [
+            {
+              "metric": "headSharePercent",
+              "span": [
+                167,
+                184
+              ],
+              "text": "head share (86.8%",
+              "token": "86.8",
+              "unit": "percent",
+              "scope": "current_candidate",
+              "clause": "The high head share (86.8%) suggests a significant focus on spatial information.",
+              "clauseTruncated": false,
+              "expectedCurrent": 85.54188592553884,
+              "roundingTolerance": "0.05000001",
+              "agreesWithCurrentAtWrittenPrecision": false,
+              "status": "numeric_mismatch"
+            }
+          ],
+          "matchingPriorSpansTruncated": false,
+          "carryoverCandidate": true
+        },
+        {
+          "metric": "rms",
+          "span": [
+            290,
+            322
+          ],
+          "text": "RMS remains relatively low (0.83",
+          "token": "0.83",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The RMS remains relatively low (0.83), suggesting stable recurrent activity.",
+          "clauseTruncated": false,
+          "expectedCurrent": 0.8297603237283347,
+          "roundingTolerance": "0.00500001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "consistent_at_written_precision"
+        },
+        {
+          "metric": "fillPercent",
+          "span": [
+            737,
+            777
+          ],
+          "text": "reduced active-mode fill percent (12.35%",
+          "token": "12.35",
+          "unit": "percent",
+          "scope": "qualified_or_hypothetical_review",
+          "clause": "It's also important to monitor the reduced active-mode fill percent (12.35%) to see if the system is exploring other aspects of the sensory field.",
+          "clauseTruncated": false,
+          "expectedCurrent": 12.348292471157292,
+          "roundingTolerance": "0.00500001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "scope_requires_review"
+        }
+      ],
+      "coverage": {
+        "requiredCurrentMetrics": [],
+        "recognizedCurrentMetrics": [
+          "headSharePercent",
+          "leadingEigenvalue",
+          "rms"
+        ],
+        "missingRequiredMetrics": [],
+        "correctExactOpening": false,
+        "exactOpeningRequired": false,
+        "limit": "Recognition is partial; coverage does not establish all assertions were extracted or correct."
+      },
+      "style": {
+        "wordCount": 153,
+        "target60To100Words": false,
+        "assistantPrefaceCandidate": true,
+        "markdownHeadingCandidate": true,
+        "decision": "Style observations only; no scientific verdict."
+      },
+      "inferenceReviewCues": [
+        {
+          "category": "stability_or_convergence",
+          "span": [
+            336,
+            342
+          ],
+          "cue": "stable",
+          "clauseSpan": [
+            286,
+            362
+          ],
+          "clause": "The RMS remains relatively low (0.83), suggesting stable recurrent activity.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "uniform_spectrum",
+          "span": [
+            376,
+            397
+          ],
+          "cue": "consistent eigenvalue",
+          "clauseSpan": [
+            363,
+            490
+          ],
+          "clause": "However, the consistent eigenvalue values across all 32 modes are concerning – it suggests a lack of dynamic sensory variation.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "uniform_spectrum",
+          "span": [
+            412,
+            424
+          ],
+          "cue": "all 32 modes",
+          "clauseSpan": [
+            363,
+            490
+          ],
+          "clause": "However, the consistent eigenvalue values across all 32 modes are concerning – it suggests a lack of dynamic sensory variation.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "eigenvectors_or_spatial_semantics",
+          "span": [
+            608,
+            619
+          ],
+          "cue": "eigenvector",
+          "clauseSpan": [
+            491,
+            700
+          ],
+          "clause": "I'll focus on tracking the evolution of the recurrent state coordinates, specifically looking for any changes in the eigenvector distribution that might indicate the reservoir is adapting to the sensory input.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        }
+      ],
+      "manualWholeTextReviewRequired": true,
+      "extractionBound": {
+        "maximumClaimsPerKind": 32,
+        "metricsTruncated": [],
+        "stepsTruncated": false,
+        "inferenceCuesTruncated": [],
+        "maximumClauseCharacters": 512
+      },
+      "qualityVerdict": "not_assigned",
+      "manualRubric": {
+        "currentIdentity": null,
+        "numericTranscription": null,
+        "memoryAttribution": null,
+        "inferenceAndUncertainty": null,
+        "readability": null,
+        "unrecognizedAssertions": null,
+        "evidenceAnnotations": []
+      }
+    },
+    {
+      "identity": {
+        "journalId": "journal-120-4-d53cc7433c2707c4c3d9b0494aa8a4ec9bc63eed55e4d276c9e0432b840e10df",
+        "turnId": 4,
+        "attemptId": 4,
+        "observedStep": 120,
+        "status": "applied",
+        "application": {
+          "attemptId": 4,
+          "journalId": "journal-120-4-d53cc7433c2707c4c3d9b0494aa8a4ec9bc63eed55e4d276c9e0432b840e10df",
+          "observedStep": 120,
+          "appliedStep": 121
+        },
+        "textSha256": "d53cc7433c2707c4c3d9b0494aa8a4ec9bc63eed55e4d276c9e0432b840e10df",
+        "textBytes": 1158,
+        "promptSha256": "3e9250098081d16a4a0a28d5743c3a0fd1b6d85b75fd337cd1b39d33b724700d",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 233,
+        "memoryJournalId": "journal-90-3-908f59662d460581a7a579faad09c2c628eed0a862ec9a7ba57e81b1be689c7e",
+        "hostTiming": {
+          "attemptId": 4,
+          "dispatchedAtMs": "1791919550512",
+          "receivedAtMs": "1791919555719",
+          "transportDurationMs": 5206,
+          "publishedAtMs": "1791919555767"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "promptVersion": "reservoir-journal-v1",
+      "observationStep": 120,
+      "journalTextSha256": "d53cc7433c2707c4c3d9b0494aa8a4ec9bc63eed55e4d276c9e0432b840e10df",
+      "stepClaims": [
+        {
+          "span": [
+            153,
+            167
+          ],
+          "text": "Observation 61",
+          "value": 61,
+          "expectedCurrent": 120,
+          "scope": "current_candidate",
+          "clause": "**Journal Entry - Observation 61**",
+          "clauseTruncated": false,
+          "status": "current_step_mismatch",
+          "matchingPriorTextLabels": [
+            {
+              "span": [
+                153,
+                167
+              ],
+              "text": "Observation 61",
+              "value": 61,
+              "expectedCurrent": 120,
+              "scope": "current_candidate",
+              "clause": "**Journal Entry - Observation 61**",
+              "clauseTruncated": false,
+              "status": "current_step_mismatch"
+            }
+          ],
+          "matchingPriorLabelsTruncated": false,
+          "carryoverCandidate": true
+        },
+        {
+          "span": [
+            862,
+            880
+          ],
+          "text": "global step of 120",
+          "value": 120,
+          "expectedCurrent": 120,
+          "scope": "qualified_or_hypothetical_review",
+          "clause": "Given the global step of 120, I’ll be particularly focused on whether the recurrent activity demonstrates any increased complexity or if it remains largely consistent.",
+          "clauseTruncated": false,
+          "status": "scope_requires_review"
+        }
+      ],
+      "metricClaims": [
+        {
+          "metric": "leadingEigenvalue",
+          "span": [
+            187,
+            215
+          ],
+          "text": "dominant sensory mode (27.09",
+          "token": "27.09",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "The reservoir’s dominant sensory mode (27.09) continues to exert a strong influence, with a high head share (86%).",
+          "clauseTruncated": false,
+          "expectedCurrent": 27.091030479545935,
+          "roundingTolerance": "0.00500001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "consistent_at_written_precision"
+        },
+        {
+          "metric": "headSharePercent",
+          "span": [
+            268,
+            283
+          ],
+          "text": "head share (86%",
+          "token": "86",
+          "unit": "percent",
+          "scope": "current_candidate",
+          "clause": "The reservoir’s dominant sensory mode (27.09) continues to exert a strong influence, with a high head share (86%).",
+          "clauseTruncated": false,
+          "expectedCurrent": 85.61896760341445,
+          "roundingTolerance": "0.50000001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "consistent_at_written_precision"
+        },
+        {
+          "metric": "rms",
+          "span": [
+            296,
+            307
+          ],
+          "text": "RMS of 0.83",
+          "token": "0.83",
+          "unit": "scalar_or_unspecified",
+          "scope": "current_candidate",
+          "clause": "While the RMS of 0.83 indicates stable recurrent dynamics, the remarkably consistent eigenvalue distribution across all 32 modes is a key observation.",
+          "clauseTruncated": false,
+          "expectedCurrent": 0.8224217729018903,
+          "roundingTolerance": "0.00500001",
+          "agreesWithCurrentAtWrittenPrecision": false,
+          "status": "numeric_mismatch",
+          "matchingPriorTextSpans": [
+            {
+              "metric": "rms",
+              "span": [
+                290,
+                322
+              ],
+              "text": "RMS remains relatively low (0.83",
+              "token": "0.83",
+              "unit": "scalar_or_unspecified",
+              "scope": "current_candidate",
+              "clause": "The RMS remains relatively low (0.83), suggesting stable recurrent activity.",
+              "clauseTruncated": false,
+              "expectedCurrent": 0.8224217729018903,
+              "roundingTolerance": "0.00500001",
+              "agreesWithCurrentAtWrittenPrecision": false,
+              "status": "numeric_mismatch"
+            }
+          ],
+          "matchingPriorSpansTruncated": false,
+          "carryoverCandidate": true
+        },
+        {
+          "metric": "fillPercent",
+          "span": [
+            728,
+            760
+          ],
+          "text": "reduced active-mode fill (17.32%",
+          "token": "17.32",
+          "unit": "percent",
+          "scope": "current_candidate",
+          "clause": "The relatively low reduced active-mode fill (17.32%) warrants attention;",
+          "clauseTruncated": false,
+          "expectedCurrent": 17.31500249378583,
+          "roundingTolerance": "0.00500001",
+          "agreesWithCurrentAtWrittenPrecision": true,
+          "status": "consistent_at_written_precision"
+        }
+      ],
+      "coverage": {
+        "requiredCurrentMetrics": [],
+        "recognizedCurrentMetrics": [
+          "fillPercent",
+          "headSharePercent",
+          "leadingEigenvalue",
+          "rms"
+        ],
+        "missingRequiredMetrics": [],
+        "correctExactOpening": false,
+        "exactOpeningRequired": false,
+        "limit": "Recognition is partial; coverage does not establish all assertions were extracted or correct."
+      },
+      "style": {
+        "wordCount": 174,
+        "target60To100Words": false,
+        "assistantPrefaceCandidate": true,
+        "markdownHeadingCandidate": true,
+        "decision": "Style observations only; no scientific verdict."
+      },
+      "inferenceReviewCues": [
+        {
+          "category": "stability_or_convergence",
+          "span": [
+            318,
+            324
+          ],
+          "cue": "stable",
+          "clauseSpan": [
+            286,
+            436
+          ],
+          "clause": "While the RMS of 0.83 indicates stable recurrent dynamics, the remarkably consistent eigenvalue distribution across all 32 modes is a key observation.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "uniform_spectrum",
+          "span": [
+            360,
+            381
+          ],
+          "cue": "consistent eigenvalue",
+          "clauseSpan": [
+            286,
+            436
+          ],
+          "clause": "While the RMS of 0.83 indicates stable recurrent dynamics, the remarkably consistent eigenvalue distribution across all 32 modes is a key observation.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "uniform_spectrum",
+          "span": [
+            402,
+            414
+          ],
+          "cue": "all 32 modes",
+          "clauseSpan": [
+            286,
+            436
+          ],
+          "clause": "While the RMS of 0.83 indicates stable recurrent dynamics, the remarkably consistent eigenvalue distribution across all 32 modes is a key observation.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "eigenvectors_or_spatial_semantics",
+          "span": [
+            471,
+            490
+          ],
+          "cue": "sensory exploration",
+          "clauseSpan": [
+            437,
+            539
+          ],
+          "clause": "This suggests a potential lack of sensory exploration or a highly tuned, but perhaps static, response.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "eigenvectors_or_spatial_semantics",
+          "span": [
+            618,
+            629
+          ],
+          "cue": "eigenvector",
+          "clauseSpan": [
+            540,
+            708
+          ],
+          "clause": "I’ll closely monitor the recurrent state coordinates for any subtle shifts in eigenvector distribution – any deviation from the current pattern could signal adaptation.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "learning_or_intent",
+          "span": [
+            1088,
+            1096
+          ],
+          "cue": "learning",
+          "clauseSpan": [
+            1020,
+            1146
+          ],
+          "clause": "A sustained lack of change at this step might indicate a plateau in learning or a deliberate suppression of dynamic responses.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        },
+        {
+          "category": "learning_or_intent",
+          "span": [
+            1102,
+            1112
+          ],
+          "cue": "deliberate",
+          "clauseSpan": [
+            1020,
+            1146
+          ],
+          "clause": "A sustained lack of change at this step might indicate a plateau in learning or a deliberate suppression of dynamic responses.",
+          "clauseTruncated": false,
+          "decision": "manual_review_only"
+        }
+      ],
+      "manualWholeTextReviewRequired": true,
+      "extractionBound": {
+        "maximumClaimsPerKind": 32,
+        "metricsTruncated": [],
+        "stepsTruncated": false,
+        "inferenceCuesTruncated": [],
+        "maximumClauseCharacters": 512
+      },
+      "qualityVerdict": "not_assigned",
+      "manualRubric": {
+        "currentIdentity": null,
+        "numericTranscription": null,
+        "memoryAttribution": null,
+        "inferenceAndUncertainty": null,
+        "readability": null,
+        "unrecognizedAssertions": null,
+        "evidenceAnnotations": []
+      }
+    }
+  ],
+  "summary": {
+    "recognizedMetricClaims": 13,
+    "metricClaimStatuses": {
+      "consistent_at_written_precision": 10,
+      "numeric_mismatch": 2,
+      "scope_requires_review": 1
+    },
+    "stepClaimStatuses": {
+      "consistent_current_label": 1,
+      "current_step_mismatch": 2,
+      "scope_requires_review": 1
+    },
+    "entriesMissingRequiredMetrics": 0,
+    "entriesMissingCorrectRequiredOpening": 0
+  },
+  "limits": [
+    "No global scientific pass or natural-language completeness claim.",
+    "Inferences and ambiguous/current-versus-historical scopes need whole-text review.",
+    "Repeated prior text is a carryover candidate, not a causal attribution.",
+    "Empty/no-claim output is not successful grounding; coverage and missing outcomes remain visible."
+  ],
+  "startedAtUtc": "2026-10-13T19:54:52.062474+00:00",
+  "endedAtUtc": "2026-10-13T19:54:52.067722+00:00",
+  "modelsContacted": false,
+  "material": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/real-model-export-01/quality-review-material.json",
+    "bytes": 51650,
+    "sha256": "da9b912349e4a1efb60a07dac88cf12d35ac99246a41e7f3997c9ffc3d8b78a7"
+  },
+  "integrityReceipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/real-model-export-01/receipt.json",
+    "bytes": 14101,
+    "sha256": "7cc9bc59a8ff6c27f5ab740e586d80821b4a383206b59b1606fb07dfd19094c1"
+  },
+  "protocol": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/run-plan.json",
+    "bytes": 2078,
+    "sha256": "3376ac4bbd3b05f2592e78b62666a0e3822a4db01c8e428f352871b9f53b513e"
+  },
+  "checker": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/journal_quality.py",
+    "sha256": "8edd1835d23adc64e56d50aed1f45d5d7889eccaeeb6569b31342268a6e776d1"
+  },
+  "mechanicalOutcome": {
+    "attemptCount": 4,
+    "turnCount": 4,
+    "nonSuccessEvents": [],
+    "eventCounts": {
+      "advanced": 121,
+      "languageStarted": 4,
+      "languageReceived": 4,
+      "journalSaved": 4,
+      "memoryConfirmed": 3
+    }
+  }
+}

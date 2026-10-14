@@ -1,0 +1,53 @@
+{
+  "capturedAtUtc": "2026-10-13T19:54:57.261850+00:00",
+  "scope": "Helper source freeze after mock tests and independent read-only review. Actual owned model service execution/cleanup still unexecuted for this revision.",
+  "files": [
+    {
+      "path": "owned_model.py",
+      "sha256": "72f582e6477c3b1063cfda21f1c4da43bd85bb889a59ea9b8c6a2d7d9b0b3905",
+      "bytes": 27753
+    },
+    {
+      "path": "test_owned_model.py",
+      "sha256": "64d83a6f45ba2118fa9a4477f2d2e628ceeda2bdf016a40ff6c6a522c3b04bea",
+      "bytes": 14196
+    },
+    {
+      "path": "owned-helper-tests-02.json",
+      "sha256": "4cb2c30d9fda9d7f36a31ff5411d76733358d5c48dc08a16eaf6e402b67975ef",
+      "bytes": 1304
+    },
+    {
+      "path": "SUPERVISION-INPUT-REVIEW.md",
+      "sha256": "4d2346f61b0fa02d8f76070884eac13e79fff17c8cedbac2ab61910053274fbb",
+      "bytes": 4946
+    },
+    {
+      "path": "POINTER-SOURCE.md",
+      "sha256": "9d7be07cb5e4b59a76cce26a353a2aeb2bd0b94acff74925132f1b17988aa5ed",
+      "bytes": 5496
+    }
+  ],
+  "mockTestsPassed": 19,
+  "processActionsByThisRevision": 0,
+  "reviews": [
+    {
+      "reviewer": "app_parity_inventory",
+      "scope": "Cleanup and exclusive supervision output",
+      "result": "No concrete blocker; earlier18-test source before explicit zombie sid:null refinement",
+      "execution": "Read-only; no tests/process/model calls"
+    },
+    {
+      "reviewer": "portable_core_assessment",
+      "scope": "Current final helper including zombie sid:null handling",
+      "result": "No actionable blocker",
+      "execution": "Read-only; no tests/process/model calls"
+    }
+  ],
+  "preservedHistoricalHelperSha256": "ef02c818d22991cbcfef49c122c732dd5290968cdcb5cbfaf59c54aeff485e51",
+  "limits": [
+    "Original EPERM receipt remains failure; exact historical failing syscall is unproven.",
+    "Original process group only; escaped descendants are not inventoried.",
+    "The macOS Reopen handler is separate lifecycle hardening, not a demonstrated causal pointer remedy."
+  ]
+}

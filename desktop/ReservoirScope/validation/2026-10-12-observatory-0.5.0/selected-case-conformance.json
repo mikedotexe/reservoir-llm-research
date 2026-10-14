@@ -1,0 +1,169 @@
+{
+  "schema": "reservoir-scope.case-export-conformance.v1",
+  "executedAtUtc": "2026-10-12T15:37:30.058954+00:00",
+  "sources": [
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ResearchCase.swift",
+      "sha256": "ad727e20be5d2b11a4b080fa4a64a9abec604581d294d4d07c0e321ad479d483"
+    },
+    {
+      "path": "native/ReservoirScope/Sources/ReservoirScope/ResearchCaseView.swift",
+      "sha256": "3ad690f26a03023d2844eb134da56936617ab466deee7d48247ffbc5529f66c8"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/src/cases.rs",
+      "sha256": "74f036a9785d7607478d2989da30ed128c2fb6ff7f7992bad40d46cbf17ed626"
+    },
+    {
+      "path": "desktop/ReservoirScope/scripts/check_case_export_conformance.py",
+      "sha256": "02a8c87bf8960a841b453d372203061ff5da8e0ccda7dfa059250dd0878c168b"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/examples/case_export_oracle.rs",
+      "sha256": "16cbf150106a2d5d8adc7793d0960be5e0dc81ff47eabb092ae7416141fad79a"
+    }
+  ],
+  "harnessSha256": "8b7102722911698e764b50b01c3af0067488a74def0041561f8d5fa3e0eacd7b",
+  "swiftVersion": "Apple Swift version 6.2.4 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)\nTarget: arm64-apple-macosx28.0",
+  "modelsContacted": false,
+  "historicalPathsAccessed": false,
+  "checks": [
+    {
+      "name": "canonical-case-1",
+      "inputSha256": "90f7d945925a5506345fd593308455d6a6a4c1d47412824e0b2cee970cf9021b",
+      "index": 0,
+      "expectedPass": true,
+      "swiftExit": 0,
+      "rustExit": 0,
+      "originalBytesUnchanged": true,
+      "swiftExportSha256": "c9a5add62dbd5bbb17a5f8eb8587935163a1818679bc1e436a8c1bd24f26f6b9",
+      "rustExportSha256": "087f45ad6e4a6ecee1d94318838b280ec5f49df3501be675d3043d316305d4ce",
+      "semanticExportEquality": true,
+      "exactlyOneSelectedCase": true,
+      "nativeReopensRust": true,
+      "rustReopensNative": true,
+      "passed": true
+    },
+    {
+      "name": "canonical-case-2",
+      "inputSha256": "90f7d945925a5506345fd593308455d6a6a4c1d47412824e0b2cee970cf9021b",
+      "index": 1,
+      "expectedPass": true,
+      "swiftExit": 0,
+      "rustExit": 0,
+      "originalBytesUnchanged": true,
+      "swiftExportSha256": "da6ac352963941832191e56027d6f5aaf16430da27eeb05601d34e12693c5088",
+      "rustExportSha256": "7f554f3631c7d35a9b41fada164359ab42d8f5f4e0abc3c94a95bdf4af10cd98",
+      "semanticExportEquality": true,
+      "exactlyOneSelectedCase": true,
+      "nativeReopensRust": true,
+      "rustReopensNative": true,
+      "passed": true
+    },
+    {
+      "name": "synthetic-case-1",
+      "inputSha256": "287376b92a0615dc3c87b00a05b8e51bf2dba399c5a724829754b9d8ea6c4327",
+      "index": 0,
+      "expectedPass": true,
+      "swiftExit": 0,
+      "rustExit": 0,
+      "originalBytesUnchanged": true,
+      "swiftExportSha256": "fc81ebe026de6ba992bf91aa5b2147433f70bb7db55f36656786d12bc280a311",
+      "rustExportSha256": "49a8fcae53ec1a5c958cf7e47e20871290616248b6ed5ad3704b26188308634a",
+      "semanticExportEquality": true,
+      "exactlyOneSelectedCase": true,
+      "nativeReopensRust": true,
+      "rustReopensNative": true,
+      "passed": true
+    },
+    {
+      "name": "synthetic-case-2",
+      "inputSha256": "287376b92a0615dc3c87b00a05b8e51bf2dba399c5a724829754b9d8ea6c4327",
+      "index": 1,
+      "expectedPass": true,
+      "swiftExit": 0,
+      "rustExit": 0,
+      "originalBytesUnchanged": true,
+      "swiftExportSha256": "c472b86e20c5d7a1bbb5538cf8c3ec8d8cce8365f8916f3c4fe0cc2bb7ddc36a",
+      "rustExportSha256": "8526b1364c40b49f69c60f42d0a3e44ff496874a5f83b547839ddc8db6a70ccb",
+      "semanticExportEquality": true,
+      "exactlyOneSelectedCase": true,
+      "nativeReopensRust": true,
+      "rustReopensNative": true,
+      "passed": true
+    },
+    {
+      "name": "synthetic-case-3",
+      "inputSha256": "287376b92a0615dc3c87b00a05b8e51bf2dba399c5a724829754b9d8ea6c4327",
+      "index": 2,
+      "expectedPass": true,
+      "swiftExit": 0,
+      "rustExit": 0,
+      "originalBytesUnchanged": true,
+      "swiftExportSha256": "0cf26665888f7abced0c9af4d9c43c0077814da6e9c690129f1ae9536010cd24",
+      "rustExportSha256": "5d1e607cc527863cf45e491d88e462900edf0040e5d05bc4c2aeec4e1150d622",
+      "semanticExportEquality": true,
+      "exactlyOneSelectedCase": true,
+      "nativeReopensRust": true,
+      "rustReopensNative": true,
+      "passed": true
+    },
+    {
+      "name": "changed-embedded-hash",
+      "inputSha256": "40bac3a2106250fdaf3680b68ebf79708dc90127e1b4372e0031557be60cff52",
+      "index": 0,
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "originalBytesUnchanged": true,
+      "noOutputWritten": true,
+      "passed": true
+    },
+    {
+      "name": "absent-reference",
+      "inputSha256": "d5e098c7aa88b30d09bcd63a495113a27181735a069b9ef4e159edc614cb521b",
+      "index": 0,
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "originalBytesUnchanged": true,
+      "noOutputWritten": true,
+      "passed": true
+    },
+    {
+      "name": "missing-limits",
+      "inputSha256": "3649a1f894198bf7a1030dad5e271c0fad01a832e71aea2acf48de0dc857ffc2",
+      "index": 0,
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "originalBytesUnchanged": true,
+      "noOutputWritten": true,
+      "passed": true
+    },
+    {
+      "name": "selection-outside-catalog",
+      "inputSha256": "287376b92a0615dc3c87b00a05b8e51bf2dba399c5a724829754b9d8ea6c4327",
+      "index": 3,
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "originalBytesUnchanged": true,
+      "noOutputWritten": true,
+      "passed": true
+    },
+    {
+      "name": "negative-selection",
+      "inputSha256": "287376b92a0615dc3c87b00a05b8e51bf2dba399c5a724829754b9d8ea6c4327",
+      "index": -1,
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "originalBytesUnchanged": true,
+      "noOutputWritten": true,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "limits": "Finite offline schema/export interoperability corpus. JSON formatting bytes may differ. Native dialogs, packaged permissions, Windows/Linux and human usability are not exercised."
+}

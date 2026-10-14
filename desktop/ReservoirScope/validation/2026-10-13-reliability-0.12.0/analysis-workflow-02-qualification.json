@@ -1,0 +1,24 @@
+{
+  "scope": "Extended read-only analysis workflow synthetic tests only; no app/sampler/provider process interaction",
+  "startedAt": "2026-10-13T17:01:04.420244+00:00",
+  "endedAt": "2026-10-13T17:01:04.513558+00:00",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0",
+    "-p",
+    "test_analysis_workflow.py",
+    "-v"
+  ],
+  "exitCode": 0,
+  "testsPassed": 5,
+  "files": {
+    "analyze_run.py": "8f4dd78ad095aba3f8ba77c716ea83d1b8e6020b8606feb48755636fb35a3d0f",
+    "test_analysis_workflow.py": "5439088ee4cba23c810a3c6a685fcc8bd7641c627e78373579117a7927bdc438",
+    "FINAL-ANALYSIS-WORKFLOW.md": "46ce4034e214fdfbf9df28a940feb9dd787512665abb0eb3a08a16ab439ca9d1",
+    "analysis-workflow-tests-02.log": "006da37e46ab59d4d408cbaaf60a2050c9affd1228b0347958a93a9791b72823"
+  }
+}

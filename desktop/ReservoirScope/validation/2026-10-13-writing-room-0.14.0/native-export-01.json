@@ -1,0 +1,177 @@
+{
+  "atUtc": "2026-10-13T21:32:01.761430+00:00",
+  "nativeUi": "Runbudgetreached,live121/retained121,4journals/4attempts; Step30readingselectionretainedwith1newindicator. Nativefolderchooser raised, exact0.14ownedexportparentselected; appreportedCommittedsessionexportedimmutablebundle,revision143.",
+  "bundle": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.14-writing/exports/sustained-1791926853510-1-1-143",
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791926853510-1",
+    "generation": "1",
+    "revision": "143",
+    "config": {
+      "seed": "20261013",
+      "turnEvery": 30,
+      "maximumSteps": 121,
+      "maximumTurns": 4,
+      "maximumDurationSeconds": 900,
+      "storageBudgetBytes": 67108864,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:51691",
+        "model": "gemma3:4b",
+        "contextTokens": 8192
+      },
+      "promptVersion": "reservoir-journal-v3",
+      "outputTokens": 1024,
+      "requestDeadlineSeconds": 180
+    },
+    "phase": "budgetReached",
+    "step": 121,
+    "durableStep": 121,
+    "elapsedMillis": 181254,
+    "journalCount": 4,
+    "segmentCount": 19,
+    "lastSegmentSha256": "318514bb96501ff1845b86abeb2f17511ba3c82c3b309455e39517dcf8a9e5b3",
+    "checkpointSha256": "c048f58ad8fb5c0237da73a00af023b69633d772e98ee5e6b0a7b2499a22515e",
+    "previousCheckpointSha256": "c048f58ad8fb5c0237da73a00af023b69633d772e98ee5e6b0a7b2499a22515e",
+    "diagnostics": [],
+    "attemptTiming": {
+      "attemptId": 4,
+      "dispatchedAtMs": "1791927042264",
+      "receivedAtMs": "1791927067400",
+      "transportDurationMs": 25136,
+      "publishedAtMs": null
+    }
+  },
+  "files": [
+    {
+      "path": "checkpoints/c048f58ad8fb5c0237da73a00af023b69633d772e98ee5e6b0a7b2499a22515e.json",
+      "bytes": 30901,
+      "sha256": "c048f58ad8fb5c0237da73a00af023b69633d772e98ee5e6b0a7b2499a22515e"
+    },
+    {
+      "path": "journals/journal-120-4-b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40.json",
+      "bytes": 14114,
+      "sha256": "18df7fc742bbca5c41c52c1e16f90fdca4b751861f178230c5bd11770513724d"
+    },
+    {
+      "path": "journals/journal-30-1-ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0.json",
+      "bytes": 9919,
+      "sha256": "708ccafc638116f05fa535410044a1b6104dbc60c6a59959bc00d74c5d3d273f"
+    },
+    {
+      "path": "journals/journal-60-2-318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541.json",
+      "bytes": 14131,
+      "sha256": "e88d8c789c51f8f2a29a575f285bdd379158e1ef05ba365ece40a3134b32ce04"
+    },
+    {
+      "path": "journals/journal-90-3-600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669.json",
+      "bytes": 14050,
+      "sha256": "a353af6b2376c78a4e42b4f747b4d0bb813920defcf97a13a52333bc7cbcf47c"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 1090,
+      "sha256": "82a5f50dd3f1cb061bb2b195cca43083b9aee9bb9b7bfe9a89b3bc6ba00432c4"
+    },
+    {
+      "path": "segments/segment-00000001.json",
+      "bytes": 131259,
+      "sha256": "292dc90294aa6234229b304a6368fa5835673c20da2ab0e3e21fa11e958df9fc"
+    },
+    {
+      "path": "segments/segment-00000002.json",
+      "bytes": 74166,
+      "sha256": "b2846beaf3455d3d64346ac90313ee74ea66ca73a6113f2ae03f3f544018f4a2"
+    },
+    {
+      "path": "segments/segment-00000003.json",
+      "bytes": 72110,
+      "sha256": "85c757b94a730dedcd59e07b8247ddc8cb74e82c43dc02acc776b6b23886d78a"
+    },
+    {
+      "path": "segments/segment-00000004.json",
+      "bytes": 66755,
+      "sha256": "c1d4db31bbf1d9fc7776076fe59d66dbefb60c25c428a4d59c4487d350688fb2"
+    },
+    {
+      "path": "segments/segment-00000005.json",
+      "bytes": 174313,
+      "sha256": "a43635888a7aa2e45da0654421c34166289d270085cf4fda32cf3509cdd3dad0"
+    },
+    {
+      "path": "segments/segment-00000006.json",
+      "bytes": 76241,
+      "sha256": "332be65239f51511adaaad4fb31f4bc51c229f5af60db3f2adb50bf74ce9caf6"
+    },
+    {
+      "path": "segments/segment-00000007.json",
+      "bytes": 86109,
+      "sha256": "7083c15b14a599bd566d5db2bf8a435a9a99cc43fee86109894872e729b9e665"
+    },
+    {
+      "path": "segments/segment-00000008.json",
+      "bytes": 80238,
+      "sha256": "7b817ec1c987c1bf7022bb37ed386177e06f8962b99444953351d21f085efc90"
+    },
+    {
+      "path": "segments/segment-00000009.json",
+      "bytes": 68607,
+      "sha256": "9b6b666505aa4235a2706952cb36bc479925d56668501608d28cb7bd90c4cc1d"
+    },
+    {
+      "path": "segments/segment-00000010.json",
+      "bytes": 174801,
+      "sha256": "b4471bd2b3fae42050da325285cb52ca7082a58737a9a2b2521ca82c904deffd"
+    },
+    {
+      "path": "segments/segment-00000011.json",
+      "bytes": 76968,
+      "sha256": "222773f44aaf7c51eb29e58f986a015ce461c527a52cb396db55b265388c9288"
+    },
+    {
+      "path": "segments/segment-00000012.json",
+      "bytes": 86366,
+      "sha256": "aa6e54791affa36bf23057aa1aae2c5a773bf48180310a7d6c0b654eaf99eb10"
+    },
+    {
+      "path": "segments/segment-00000013.json",
+      "bytes": 80105,
+      "sha256": "5254c9ce4d9274cd70491a8b7891b7620b8b20b9e6327825ab1ae4d19ca2d2a6"
+    },
+    {
+      "path": "segments/segment-00000014.json",
+      "bytes": 68493,
+      "sha256": "0d6c319dd3257e0ded345995b53f307079d5b636da48a6542349b99bd70710d1"
+    },
+    {
+      "path": "segments/segment-00000015.json",
+      "bytes": 174757,
+      "sha256": "dc83067877c0aede0427f42cb4e6ddd28302af730c2e0937d5f1bff5caa84ae2"
+    },
+    {
+      "path": "segments/segment-00000016.json",
+      "bytes": 76267,
+      "sha256": "0de3a1d16ab5f7e8f6e302bfd62f8b6b7e6164d50b08f7f859f9a84a723213d6"
+    },
+    {
+      "path": "segments/segment-00000017.json",
+      "bytes": 86148,
+      "sha256": "4503f60fc87923aa9bdd049d32c4365de7d4e007e2f5a03708c3582d3d5e6e21"
+    },
+    {
+      "path": "segments/segment-00000018.json",
+      "bytes": 80393,
+      "sha256": "67bf8b90f07fb4a9635d1f6055a6f9351b7634354981ce57c6af5545288bade0"
+    },
+    {
+      "path": "segments/segment-00000019.json",
+      "bytes": 68889,
+      "sha256": "318514bb96501ff1845b86abeb2f17511ba3c82c3b309455e39517dcf8a9e5b3"
+    }
+  ]
+}

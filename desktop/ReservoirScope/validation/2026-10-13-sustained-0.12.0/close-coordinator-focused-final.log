@@ -1,0 +1,13 @@
+   Compiling reservoir-scope-desktop v0.12.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.29s
+     Running unittests src/main.rs (target/debug/deps/reservoir_scope_desktop-b723db6654d10cb9)
+
+running 5 tests
+test execution_admission::tests::stale_finish_preserves_newer_review_and_committed_exit ... ok
+test execution_admission::tests::return_between_finish_settlement_and_exit_check_still_wins ... ok
+test execution_admission::tests::committed_exit_cannot_reopen_between_authorization_and_process_exit ... ok
+test execution_admission::tests::return_after_deferred_wait_invalidates_final_authorization ... ok
+test execution_admission::tests::return_during_slow_finish_reopens_late_gate_without_exit ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 149 filtered out; finished in 0.00s
+

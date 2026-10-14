@@ -1,0 +1,43 @@
+{
+  "atUtc": "2026-10-13T18:56:35.443649+00:00",
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791917410760-3",
+    "generation": "4",
+    "revision": "7",
+    "config": {
+      "seed": "20261014",
+      "turnEvery": 3,
+      "maximumSteps": 20,
+      "maximumTurns": 5,
+      "maximumDurationSeconds": 600,
+      "storageBudgetBytes": 33554432,
+      "paceMs": 100,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:57314",
+        "model": "reservoir-fixture:reliability-0.12",
+        "contextTokens": 4096
+      }
+    },
+    "phase": "paused",
+    "step": 3,
+    "durableStep": 3,
+    "elapsedMillis": 437,
+    "journalCount": 0,
+    "segmentCount": 2,
+    "lastSegmentSha256": "d6224d72156dd73e0bfacd0a35aeba50d5ad61bde5e6dabbcd4ba6e381318f83",
+    "checkpointSha256": "83cb28075ba24fc766a2d0b6fed084300182bacc6714aeffbc80b2b1a26e4839",
+    "previousCheckpointSha256": "3c517a11155f9e73a7f3283e6ea9a2c1f549cb59a42ab1475b436876c8c98e83",
+    "diagnostics": [],
+    "attemptTiming": null
+  },
+  "manifestSha256": "e2850ef4da3b7939f9b46823cdaaf8347eb9561c0af30294c820d102453e090b",
+  "ui": "Explicit Restore: Paused, step3, elapsed0.4/600, attempt1/5, blocked no request active, operation4:0:1,0journals; Resume disabled; Retry new attempt and Skip visible",
+  "providerPostCount": 238,
+  "providerResponse238": []
+}

@@ -1,0 +1,23 @@
+   Compiling reservoir-scope-desktop v0.12.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.23s
+     Running unittests src/main.rs (target/debug/deps/reservoir_scope_desktop-b723db6654d10cb9)
+
+running 15 tests
+test sessions::tests::stale_close_completion_reopens_gate_without_erasing_new_review ... ok
+test records::tests::handle_capacity_is_visible_and_released_by_close ... ok
+test response::tests::exports_are_original_bytes_and_snapshot_survives_close ... ok
+test observatory::tests::independent_tracks_disclose_coverage_sources_and_meaning ... ok
+test sustained::tests::recovery_refuses_linked_child_directory_and_export_guard_blocks_close ... ok
+test sustained::tests::stale_commands_invalid_config_and_full_width_checkpoint_values_fail_closed ... ok
+test sessions::tests::clean_close_serializes_with_first_creation_and_export_without_blocking ... ok
+test sessions::tests::close_refuses_writes_and_unsaved_then_closing_rejects_commands ... ok
+test sessions::tests::scheduler_runs_without_ui_and_close_flag_pauses_without_resuming ... ok
+test sessions::tests::returning_from_other_labs_close_review_reopens_finite_owner ... ok
+test observatory::tests::lifecycle_closes_idempotently_rejects_old_handles_and_bounds_sessions ... ok
+test sessions::tests::model_stop_reset_and_close_reject_late_provider_result ... ok
+test sessions::tests::clean_close_refuses_inflight_mutation_even_when_atomics_still_look_clean ... ok
+test sustained::tests::close_discard_failure_keeps_exit_blocked_until_decision_is_durable ... ok
+test sustained::tests::clean_close_barrier_and_explicit_discard_remove_prepared_eligibility ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 140 filtered out; finished in 1.21s
+

@@ -1,0 +1,43 @@
+{
+  "schema": "reservoir-scope-owned-provider-evidence-v1",
+  "endpoint": {
+    "endpoint": "http://127.0.0.1:56117",
+    "model": "reservoir-fixture:0.11",
+    "kind": "owned synthetic provider, no model service"
+  },
+  "requestLogSha256": "92895066c3f74329646aa52804352f8e1582f1bff815923719c58e7fbe6f45e5",
+  "readinessRequests": 1,
+  "generationRequests": 4,
+  "unexpectedRequests": 0,
+  "realModelContacted": false,
+  "completedRecordPromptsMatchedSentBodies": true,
+  "secondPromptContainsExactFirstSavedJournal": true,
+  "applicationSteps": [
+    4,
+    7
+  ],
+  "lateResponsesEnteredFeedback": false,
+  "recoveryExactByteEquality": true,
+  "exports": [
+    {
+      "path": "target/qa/0.11-ui/model-f-complete-7.json",
+      "bytes": 420469,
+      "sha256": "112ac08ad3f2c973b4bed7da6cb1bd4684224cf27ea9bfad331fd0e2ae2f1624"
+    },
+    {
+      "path": "target/qa/0.11-ui/model-f-cancelled-initial.json",
+      "bytes": 231262,
+      "sha256": "a9ac49ddf69872df78f3c0ff2db1cd24fda8ac1d9c0bce38116a98d4b5c7660c"
+    },
+    {
+      "path": "target/qa/0.11-ui/model-f-cancelled-final.json",
+      "bytes": 231270,
+      "sha256": "ca5b06e532b50b5b14db99c8e096491de91524486e2b630c603e5b4a570e775b"
+    },
+    {
+      "path": "target/qa/0.11-ui/model-f-recovered-7.json",
+      "bytes": 420469,
+      "sha256": "112ac08ad3f2c973b4bed7da6cb1bd4684224cf27ea9bfad331fd0e2ae2f1624"
+    }
+  ]
+}

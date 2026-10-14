@@ -1,0 +1,23 @@
+{
+  "createdAtUtc": "2026-10-13T16:32:32.814583+00:00",
+  "sourceOnly": true,
+  "baselineSourceInventory": "../2026-10-13-sustained-0.12.0/source-before-final-build.json",
+  "baselineCopies": "Reconstructed by reversing this patch and SHA-256 checked against the retained final package inventory before saving; no historical files rewritten.",
+  "baselineExecutableSha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d",
+  "files": [
+    {
+      "path": "src-tauri/src/sustained.rs",
+      "baselineBytes": 48601,
+      "baselineSha256": "fcb3c82dac1bfd79f36b05b14339a5518d93bf29e36b94c5163c16e897b31d62",
+      "pendingBytes": 51025,
+      "pendingSha256": "d1a5e8c10880dfd585fd79f33b782956b7d5e9a16a40dec9b812e6af446d7ba5"
+    },
+    {
+      "path": "src-tauri/src/sustained_tests.rs",
+      "baselineBytes": 28159,
+      "baselineSha256": "1d6b1d969840841df830b56cba81f7401cb8ad8e12f250e2514429f19b49ddeb",
+      "pendingBytes": 36413,
+      "pendingSha256": "58a0b12a431a236d4b89c2897d34bfafbddb9205576bae9361ecbfde6ddd1512"
+    }
+  ]
+}

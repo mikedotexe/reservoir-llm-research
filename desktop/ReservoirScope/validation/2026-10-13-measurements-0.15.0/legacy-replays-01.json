@@ -1,0 +1,73 @@
+{
+  "schema": "reservoir-legacy-replay-aggregate-v1",
+  "atUtc": "2026-10-13T22:35:58.306122+00:00",
+  "status": "passed",
+  "executable": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-pinned/reservoir-scope-desktop",
+    "bytes": 16872304,
+    "sha256": "18949732cf48c926003ffcf7b5b216bccc32ea071d0bff8a411e841eaba123d5"
+  },
+  "targets": [
+    {
+      "targetId": "legacy-v3-completed-0.14.0",
+      "status": "passed",
+      "receipt": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/legacy-v3-completed-0.14.0-on-0.15-01.receipt.json",
+        "bytes": 11662,
+        "sha256": "ac58397a1933c238eb6b55cdb92edc3974e0d92b92359701b72c23d7ec3dc841"
+      },
+      "wallSeconds": 0.299410084,
+      "peakRssBytes": 13942784,
+      "report": {
+        "manifestSha256": "82a5f50dd3f1cb061bb2b195cca43083b9aee9bb9b7bfe9a89b3bc6ba00432c4",
+        "checkpointSha256": "c048f58ad8fb5c0237da73a00af023b69633d772e98ee5e6b0a7b2499a22515e",
+        "step": 121,
+        "journalCount": 4,
+        "segmentCount": 19,
+        "sizeBytes": 1887190,
+        "sessionId": "sustained-1791926853510-1"
+      }
+    },
+    {
+      "targetId": "legacy-v3-held-0.13.0",
+      "status": "passed",
+      "receipt": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/legacy-v3-held-0.13.0-on-0.15-01.receipt.json",
+        "bytes": 4852,
+        "sha256": "dedaf0136c8f48ccf02c6cc062b615e54d0e7c15096fc56560621f79e38a2e45"
+      },
+      "wallSeconds": 0.0211545,
+      "peakRssBytes": 12189696,
+      "report": {
+        "manifestSha256": "ac1b87e3e8bc50689d28f36a73a8a2e5ee1de2091d30117dbbbb44c294d46ef4",
+        "checkpointSha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff",
+        "step": 30,
+        "journalCount": 0,
+        "segmentCount": 2,
+        "sizeBytes": 235894,
+        "sessionId": "sustained-1791923112800-6"
+      }
+    },
+    {
+      "targetId": "legacy-v1-completed-0.12.2",
+      "status": "passed",
+      "receipt": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/legacy-v1-completed-0.12.2-on-0.15-01.receipt.json",
+        "bytes": 11658,
+        "sha256": "56b2e0fdc86d587be826082125d970c97e382b7787db113dbc0e5cf63c2c38b1"
+      },
+      "wallSeconds": 0.133520166,
+      "peakRssBytes": 13877248,
+      "report": {
+        "manifestSha256": "215162126a8701c55f8ad039cbd081071f84a6d18903366c0e723f69d2780d1c",
+        "checkpointSha256": "1a066c4fec045169e8cacd582ba5b4d78a664be0576860c82e079eaa597c1e3e",
+        "step": 121,
+        "journalCount": 4,
+        "segmentCount": 19,
+        "sizeBytes": 1781880,
+        "sessionId": "sustained-1791919382664-3"
+      }
+    }
+  ],
+  "scope": "Three historical exports, unchanged bytes and identities. This establishes scoped replay compatibility, not all historical input compatibility or provider execution."
+}

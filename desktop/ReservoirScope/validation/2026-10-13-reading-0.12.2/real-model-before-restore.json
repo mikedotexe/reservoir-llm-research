@@ -1,0 +1,48 @@
+{
+  "atUtc": "2026-10-13T19:27:18.650471+00:00",
+  "monotonicNs": 1116015079236500,
+  "lowerBoundMinimizedSeconds": 91.029388792,
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791919382664-3",
+    "generation": "3",
+    "revision": "143",
+    "config": {
+      "seed": "20261013",
+      "turnEvery": 30,
+      "maximumSteps": 121,
+      "maximumTurns": 4,
+      "maximumDurationSeconds": 600,
+      "storageBudgetBytes": 67108864,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:63515",
+        "model": "gemma3:4b",
+        "contextTokens": 4096
+      }
+    },
+    "phase": "budgetReached",
+    "step": 121,
+    "durableStep": 121,
+    "elapsedMillis": 158846,
+    "journalCount": 4,
+    "segmentCount": 19,
+    "lastSegmentSha256": "dbef96dd68dad14a1839fcdea2abc8a8ebb1883b4e4e8c133b551f4db3025fd6",
+    "checkpointSha256": "1a066c4fec045169e8cacd582ba5b4d78a664be0576860c82e079eaa597c1e3e",
+    "previousCheckpointSha256": "1a066c4fec045169e8cacd582ba5b4d78a664be0576860c82e079eaa597c1e3e",
+    "diagnostics": [],
+    "attemptTiming": {
+      "attemptId": 4,
+      "dispatchedAtMs": "1791919550512",
+      "receivedAtMs": "1791919555719",
+      "transportDurationMs": 5206,
+      "publishedAtMs": null
+    }
+  },
+  "scope": "Shortrealmodelcheckincludescompletionatbudget;not60secondscontinuousadvancementandnotanothermulti-hourqualification"
+}

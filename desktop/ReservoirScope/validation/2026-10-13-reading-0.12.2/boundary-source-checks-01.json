@@ -1,0 +1,41 @@
+{
+  "startedAtUtc": "2026-10-13T19:11:43.285634+00:00",
+  "scope": "Source-only active-error presentation correction. No build, version change, model/service or running-app action.",
+  "commands": [
+    {
+      "name": "boundary-focused-01",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "src/MyReservoirPresentation.test.tsx",
+        "src/MyReservoir.test.tsx",
+        "src/myReservoirQuota.test.tsx"
+      ],
+      "startedAtUtc": "2026-10-13T19:11:43.285783+00:00",
+      "endedAtUtc": "2026-10-13T19:11:44.231240+00:00",
+      "exitCode": 1,
+      "log": "validation/2026-10-13-reading-0.12.2/boundary-focused-01.log",
+      "logSha256": "1abc6e7053ea4cc19e65ad218433ee1ccf1e6a9154aa15d01fa8c8c51a782b12"
+    }
+  ],
+  "endedAtUtc": "2026-10-13T19:11:44.231448+00:00",
+  "sourceAfter": [
+    {
+      "path": "src/MyReservoir.tsx",
+      "bytes": 14749,
+      "sha256": "4fa30ecf4076f56bfdc742704c86c7567d16e189548419f37de6dc50933242d9"
+    },
+    {
+      "path": "src/MyReservoirPresentation.test.tsx",
+      "bytes": 7270,
+      "sha256": "1db8abe255c58b2340d7e6cf94954a59e62a3676d7670336a6c2f277205db09a"
+    }
+  ],
+  "packageBinaryAfter": {
+    "path": "target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+    "bytes": 16783472,
+    "sha256": "e66533cfd3371d8cdf80ce9969fae702b957987fad2a1a12974945c33842f43c"
+  },
+  "packageBinaryUnchanged": true
+}

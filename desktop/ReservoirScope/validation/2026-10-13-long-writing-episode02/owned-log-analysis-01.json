@@ -1,0 +1,586 @@
+{
+  "schema": "reservoir-owned-log-cleanup-audit-v1",
+  "capturedAtUtc": "2026-10-14T01:02:24.444635+00:00",
+  "episodeId": "long-writing-0.16.0-episode02",
+  "status": "passed-with-stated-scope",
+  "retention": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/owned-run-01/retention.json",
+    "bytes": 4047,
+    "sha256": "ee6bd7175efc02c4700040130b301f60adf06c8b8bddbac92ea9af3734bf5af5"
+  },
+  "sources": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/owned-run-01/endpoint.json",
+      "bytes": 277,
+      "sha256": "532c9b51c01847fd942091150e0afd05d2c126a2b743db9efb39a2941eb11b13"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/owned-run-01/launch-intent.json",
+      "bytes": 3354,
+      "sha256": "645d80e5837225bf4d29f851b985c2dbf230d64ac2a9da7ab594d4c02fc08466"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/owned-run-01/owned-process.json",
+      "bytes": 1202,
+      "sha256": "e3523d740927942927b2c02e3423cf527daa9dae5d9abce6eea867182d3cef54"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/owned-run-01/service.log",
+      "bytes": 82184,
+      "sha256": "e4eadad82d9b2ca742c6dc6b86ebe796a2ddc5d2547e56279d9d2288778b0a57"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/owned-run-01/stop-request",
+      "bytes": 98,
+      "sha256": "0a0e68f7c6ff8212c0c3cd2fe56863e83c051f14614b94ad3f842b05539f36a0"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/owned-run-01/supervision-result.json",
+      "bytes": 14676,
+      "sha256": "658cc46999cfde27d66b9326c0b87fbcbdfc8982e779f89fcbbd91cb7f91ebe1"
+    }
+  ],
+  "identityChecks": {
+    "ownedProcessMatchesSupervision": true,
+    "endpointMatchesOwnedPid": true,
+    "selectionMatches": true,
+    "endpoint": "http://127.0.0.1:58180",
+    "pid": 87265,
+    "pgid": 87265,
+    "sid": 87265,
+    "supervisorPid": 87263,
+    "executableSha256": "76535100c7aaf5aa94fe749b1bf0cfe3a702fa0743c7421fed059b783f4969de",
+    "versionFromPlist": "0.40.3",
+    "homePreserved": true,
+    "ownedModels": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-real-gemma3-4b/models"
+  },
+  "serviceLifetime": {
+    "spawnedAtUtc": "2026-10-14T00:48:30.346515+00:00",
+    "endedAtUtc": "2026-10-14T01:00:14.177242+00:00",
+    "elapsedMonotonicSeconds": 703.8431128330994,
+    "limitSeconds": 1200,
+    "endedBeforeLimit": true,
+    "reason": "explicit stop",
+    "limit": "Supervisor/process lifetime includes setup, readiness, app time and cleanup. It is not app active duration or exact Start time."
+  },
+  "stopRequest": {
+    "identity": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/owned-run-01/stop-request",
+      "bytes": 98,
+      "sha256": "0a0e68f7c6ff8212c0c3cd2fe56863e83c051f14614b94ad3f842b05539f36a0"
+    },
+    "text": "Explicit stop after native twelve-journal completion at step361; 2026-10-14T01:00:13.670101+00:00\n",
+    "limit": "Operator completion description is retained verbatim; journal completion is independently checked from native exports elsewhere."
+  },
+  "httpLog": {
+    "lineCount": 906,
+    "retainedBytes": 82184,
+    "discardedBytes": 0,
+    "unparsedAccessLines": [],
+    "counts": [
+      {
+        "method": "GET",
+        "path": "/api/tags",
+        "status": 200,
+        "count": 1
+      },
+      {
+        "method": "POST",
+        "path": "/api/chat",
+        "status": 200,
+        "count": 12
+      }
+    ],
+    "requests": [
+      {
+        "line": 8,
+        "localTimestampAsLogged": "2026/10/13 - 17:48:48",
+        "status": 200,
+        "durationAsLogged": "2.452416ms",
+        "client": "127.0.0.1",
+        "method": "GET",
+        "path": "/api/tags",
+        "raw": "[GIN] 2026/10/13 - 17:48:48 | 200 |    2.452416ms |       127.0.0.1 | GET      \"/api/tags\""
+      },
+      {
+        "line": 341,
+        "localTimestampAsLogged": "2026/10/13 - 17:50:14",
+        "status": 200,
+        "durationAsLogged": "14.172036958s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat",
+        "raw": "[GIN] 2026/10/13 - 17:50:14 | 200 | 14.172036958s |       127.0.0.1 | POST     \"/api/chat\""
+      },
+      {
+        "line": 380,
+        "localTimestampAsLogged": "2026/10/13 - 17:50:53",
+        "status": 200,
+        "durationAsLogged": "8.756892792s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat",
+        "raw": "[GIN] 2026/10/13 - 17:50:53 | 200 |  8.756892792s |       127.0.0.1 | POST     \"/api/chat\""
+      },
+      {
+        "line": 424,
+        "localTimestampAsLogged": "2026/10/13 - 17:51:44",
+        "status": 200,
+        "durationAsLogged": "20.483764875s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat",
+        "raw": "[GIN] 2026/10/13 - 17:51:44 | 200 | 20.483764875s |       127.0.0.1 | POST     \"/api/chat\""
+      },
+      {
+        "line": 475,
+        "localTimestampAsLogged": "2026/10/13 - 17:52:50",
+        "status": 200,
+        "durationAsLogged": "33.844604083s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat",
+        "raw": "[GIN] 2026/10/13 - 17:52:50 | 200 | 33.844604083s |       127.0.0.1 | POST     \"/api/chat\""
+      },
+      {
+        "line": 525,
+        "localTimestampAsLogged": "2026/10/13 - 17:53:50",
+        "status": 200,
+        "durationAsLogged": "29.537865334s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat",
+        "raw": "[GIN] 2026/10/13 - 17:53:50 | 200 | 29.537865334s |       127.0.0.1 | POST     \"/api/chat\""
+      },
+      {
+        "line": 575,
+        "localTimestampAsLogged": "2026/10/13 - 17:54:43",
+        "status": 200,
+        "durationAsLogged": "21.085132625s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat",
+        "raw": "[GIN] 2026/10/13 - 17:54:43 | 200 | 21.085132625s |       127.0.0.1 | POST     \"/api/chat\""
+      },
+      {
+        "line": 624,
+        "localTimestampAsLogged": "2026/10/13 - 17:55:23",
+        "status": 200,
+        "durationAsLogged": "9.828728833s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat",
+        "raw": "[GIN] 2026/10/13 - 17:55:23 | 200 |  9.828728833s |       127.0.0.1 | POST     \"/api/chat\""
+      },
+      {
+        "line": 678,
+        "localTimestampAsLogged": "2026/10/13 - 17:56:16",
+        "status": 200,
+        "durationAsLogged": "21.878794541s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat",
+        "raw": "[GIN] 2026/10/13 - 17:56:16 | 200 | 21.878794541s |       127.0.0.1 | POST     \"/api/chat\""
+      },
+      {
+        "line": 730,
+        "localTimestampAsLogged": "2026/10/13 - 17:56:54",
+        "status": 200,
+        "durationAsLogged": "7.754110958s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat",
+        "raw": "[GIN] 2026/10/13 - 17:56:54 | 200 |  7.754110958s |       127.0.0.1 | POST     \"/api/chat\""
+      },
+      {
+        "line": 786,
+        "localTimestampAsLogged": "2026/10/13 - 17:57:40",
+        "status": 200,
+        "durationAsLogged": "14.615094667s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat",
+        "raw": "[GIN] 2026/10/13 - 17:57:40 | 200 | 14.615094667s |       127.0.0.1 | POST     \"/api/chat\""
+      },
+      {
+        "line": 843,
+        "localTimestampAsLogged": "2026/10/13 - 17:58:24",
+        "status": 200,
+        "durationAsLogged": "13.123794916s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat",
+        "raw": "[GIN] 2026/10/13 - 17:58:24 | 200 | 13.123794916s |       127.0.0.1 | POST     \"/api/chat\""
+      },
+      {
+        "line": 906,
+        "localTimestampAsLogged": "2026/10/13 - 17:59:25",
+        "status": 200,
+        "durationAsLogged": "30.539317625s",
+        "client": "127.0.0.1",
+        "method": "POST",
+        "path": "/api/chat",
+        "raw": "[GIN] 2026/10/13 - 17:59:25 | 200 | 30.539317625s |       127.0.0.1 | POST     \"/api/chat\""
+      }
+    ],
+    "limit": "Counts cover recognized access lines in this exact owned service log. They are not a network capture or proof concerning other services. No extra endpoint contact was performed by this audit."
+  },
+  "runnerSelfReports": {
+    "timings": [
+      {
+        "line": 335,
+        "taskId": 0,
+        "kind": "prompt eval time",
+        "millisecondsAsLogged": "2569.77",
+        "tokensAsLogged": 1637,
+        "raw": "slot print_timing: id  0 | task 0 | prompt eval time =    2569.77 ms /  1637 tokens (    1.57 ms per token,   637.02 tokens per second)"
+      },
+      {
+        "line": 336,
+        "taskId": 0,
+        "kind": "eval time",
+        "millisecondsAsLogged": "7994.31",
+        "tokensAsLogged": 210,
+        "raw": "slot print_timing: id  0 | task 0 |        eval time =    7994.31 ms /   210 tokens (   38.25 ms per token,    26.14 tokens per second)"
+      },
+      {
+        "line": 374,
+        "taskId": 213,
+        "kind": "prompt eval time",
+        "millisecondsAsLogged": "2572.00",
+        "tokensAsLogged": 2199,
+        "raw": "slot print_timing: id  0 | task 213 | prompt eval time =    2572.00 ms /  2199 tokens (    1.17 ms per token,   854.98 tokens per second)"
+      },
+      {
+        "line": 375,
+        "taskId": 213,
+        "kind": "eval time",
+        "millisecondsAsLogged": "6128.10",
+        "tokensAsLogged": 382,
+        "raw": "slot print_timing: id  0 | task 213 |        eval time =    6128.10 ms /   382 tokens (   16.08 ms per token,    62.17 tokens per second)"
+      },
+      {
+        "line": 418,
+        "taskId": 599,
+        "kind": "prompt eval time",
+        "millisecondsAsLogged": "5844.52",
+        "tokensAsLogged": 2370,
+        "raw": "slot print_timing: id  0 | task 599 | prompt eval time =    5844.52 ms /  2370 tokens (    2.47 ms per token,   405.51 tokens per second)"
+      },
+      {
+        "line": 419,
+        "taskId": 599,
+        "kind": "eval time",
+        "millisecondsAsLogged": "14586.81",
+        "tokensAsLogged": 393,
+        "raw": "slot print_timing: id  0 | task 599 |        eval time =   14586.81 ms /   393 tokens (   37.21 ms per token,    26.87 tokens per second)"
+      },
+      {
+        "line": 469,
+        "taskId": 996,
+        "kind": "prompt eval time",
+        "millisecondsAsLogged": "7374.39",
+        "tokensAsLogged": 2374,
+        "raw": "slot print_timing: id  0 | task 996 | prompt eval time =    7374.39 ms /  2374 tokens (    3.11 ms per token,   321.93 tokens per second)"
+      },
+      {
+        "line": 470,
+        "taskId": 996,
+        "kind": "eval time",
+        "millisecondsAsLogged": "26166.73",
+        "tokensAsLogged": 441,
+        "raw": "slot print_timing: id  0 | task 996 |        eval time =   26166.73 ms /   441 tokens (   59.47 ms per token,    16.82 tokens per second)"
+      },
+      {
+        "line": 519,
+        "taskId": 1441,
+        "kind": "prompt eval time",
+        "millisecondsAsLogged": "4774.07",
+        "tokensAsLogged": 2424,
+        "raw": "slot print_timing: id  0 | task 1441 | prompt eval time =    4774.07 ms /  2424 tokens (    1.97 ms per token,   507.74 tokens per second)"
+      },
+      {
+        "line": 520,
+        "taskId": 1441,
+        "kind": "eval time",
+        "millisecondsAsLogged": "24704.26",
+        "tokensAsLogged": 482,
+        "raw": "slot print_timing: id  0 | task 1441 |        eval time =   24704.26 ms /   482 tokens (   51.36 ms per token,    19.47 tokens per second)"
+      },
+      {
+        "line": 569,
+        "taskId": 1927,
+        "kind": "prompt eval time",
+        "millisecondsAsLogged": "6084.44",
+        "tokensAsLogged": 2466,
+        "raw": "slot print_timing: id  0 | task 1927 | prompt eval time =    6084.44 ms /  2466 tokens (    2.47 ms per token,   405.30 tokens per second)"
+      },
+      {
+        "line": 570,
+        "taskId": 1927,
+        "kind": "eval time",
+        "millisecondsAsLogged": "14870.41",
+        "tokensAsLogged": 437,
+        "raw": "slot print_timing: id  0 | task 1927 |        eval time =   14870.41 ms /   437 tokens (   34.11 ms per token,    29.32 tokens per second)"
+      },
+      {
+        "line": 618,
+        "taskId": 2368,
+        "kind": "prompt eval time",
+        "millisecondsAsLogged": "2813.27",
+        "tokensAsLogged": 2424,
+        "raw": "slot print_timing: id  0 | task 2368 | prompt eval time =    2813.27 ms /  2424 tokens (    1.16 ms per token,   861.63 tokens per second)"
+      },
+      {
+        "line": 619,
+        "taskId": 2368,
+        "kind": "eval time",
+        "millisecondsAsLogged": "6966.07",
+        "tokensAsLogged": 440,
+        "raw": "slot print_timing: id  0 | task 2368 |        eval time =    6966.07 ms /   440 tokens (   15.87 ms per token,    63.02 tokens per second)"
+      },
+      {
+        "line": 672,
+        "taskId": 2812,
+        "kind": "prompt eval time",
+        "millisecondsAsLogged": "3371.99",
+        "tokensAsLogged": 2438,
+        "raw": "slot print_timing: id  0 | task 2812 | prompt eval time =    3371.99 ms /  2438 tokens (    1.38 ms per token,   723.02 tokens per second)"
+      },
+      {
+        "line": 673,
+        "taskId": 2812,
+        "kind": "eval time",
+        "millisecondsAsLogged": "18383.14",
+        "tokensAsLogged": 393,
+        "raw": "slot print_timing: id  0 | task 2812 |        eval time =   18383.14 ms /   393 tokens (   46.90 ms per token,    21.32 tokens per second)"
+      },
+      {
+        "line": 724,
+        "taskId": 3209,
+        "kind": "prompt eval time",
+        "millisecondsAsLogged": "2793.95",
+        "tokensAsLogged": 2379,
+        "raw": "slot print_timing: id  0 | task 3209 | prompt eval time =    2793.95 ms /  2379 tokens (    1.17 ms per token,   851.48 tokens per second)"
+      },
+      {
+        "line": 725,
+        "taskId": 3209,
+        "kind": "eval time",
+        "millisecondsAsLogged": "4891.44",
+        "tokensAsLogged": 342,
+        "raw": "slot print_timing: id  0 | task 3209 |        eval time =    4891.44 ms /   342 tokens (   14.34 ms per token,    69.71 tokens per second)"
+      },
+      {
+        "line": 780,
+        "taskId": 3555,
+        "kind": "prompt eval time",
+        "millisecondsAsLogged": "3145.13",
+        "tokensAsLogged": 2335,
+        "raw": "slot print_timing: id  0 | task 3555 | prompt eval time =    3145.13 ms /  2335 tokens (    1.35 ms per token,   742.42 tokens per second)"
+      },
+      {
+        "line": 781,
+        "taskId": 3555,
+        "kind": "eval time",
+        "millisecondsAsLogged": "11416.90",
+        "tokensAsLogged": 335,
+        "raw": "slot print_timing: id  0 | task 3555 |        eval time =   11416.90 ms /   335 tokens (   34.18 ms per token,    29.25 tokens per second)"
+      },
+      {
+        "line": 837,
+        "taskId": 3894,
+        "kind": "prompt eval time",
+        "millisecondsAsLogged": "3865.25",
+        "tokensAsLogged": 2321,
+        "raw": "slot print_timing: id  0 | task 3894 | prompt eval time =    3865.25 ms /  2321 tokens (    1.67 ms per token,   600.48 tokens per second)"
+      },
+      {
+        "line": 838,
+        "taskId": 3894,
+        "kind": "eval time",
+        "millisecondsAsLogged": "9202.73",
+        "tokensAsLogged": 354,
+        "raw": "slot print_timing: id  0 | task 3894 |        eval time =    9202.73 ms /   354 tokens (   26.07 ms per token,    38.36 tokens per second)"
+      },
+      {
+        "line": 900,
+        "taskId": 4252,
+        "kind": "prompt eval time",
+        "millisecondsAsLogged": "5838.32",
+        "tokensAsLogged": 2342,
+        "raw": "slot print_timing: id  0 | task 4252 | prompt eval time =    5838.32 ms /  2342 tokens (    2.49 ms per token,   401.14 tokens per second)"
+      },
+      {
+        "line": 901,
+        "taskId": 4252,
+        "kind": "eval time",
+        "millisecondsAsLogged": "24626.36",
+        "tokensAsLogged": 313,
+        "raw": "slot print_timing: id  0 | task 4252 |        eval time =   24626.36 ms /   313 tokens (   78.93 ms per token,    12.67 tokens per second)"
+      }
+    ],
+    "releases": [
+      {
+        "line": 339,
+        "taskId": 0,
+        "nTokensAsLogged": 1846,
+        "truncatedAsLogged": 0,
+        "raw": "slot      release: id  0 | task 0 | stop processing: n_tokens = 1846, truncated = 0"
+      },
+      {
+        "line": 378,
+        "taskId": 213,
+        "nTokensAsLogged": 2580,
+        "truncatedAsLogged": 0,
+        "raw": "slot      release: id  0 | task 213 | stop processing: n_tokens = 2580, truncated = 0"
+      },
+      {
+        "line": 422,
+        "taskId": 599,
+        "nTokensAsLogged": 2762,
+        "truncatedAsLogged": 0,
+        "raw": "slot      release: id  0 | task 599 | stop processing: n_tokens = 2762, truncated = 0"
+      },
+      {
+        "line": 473,
+        "taskId": 996,
+        "nTokensAsLogged": 2814,
+        "truncatedAsLogged": 0,
+        "raw": "slot      release: id  0 | task 996 | stop processing: n_tokens = 2814, truncated = 0"
+      },
+      {
+        "line": 523,
+        "taskId": 1441,
+        "nTokensAsLogged": 2905,
+        "truncatedAsLogged": 0,
+        "raw": "slot      release: id  0 | task 1441 | stop processing: n_tokens = 2905, truncated = 0"
+      },
+      {
+        "line": 573,
+        "taskId": 1927,
+        "nTokensAsLogged": 2902,
+        "truncatedAsLogged": 0,
+        "raw": "slot      release: id  0 | task 1927 | stop processing: n_tokens = 2902, truncated = 0"
+      },
+      {
+        "line": 622,
+        "taskId": 2368,
+        "nTokensAsLogged": 2863,
+        "truncatedAsLogged": 0,
+        "raw": "slot      release: id  0 | task 2368 | stop processing: n_tokens = 2863, truncated = 0"
+      },
+      {
+        "line": 676,
+        "taskId": 2812,
+        "nTokensAsLogged": 2830,
+        "truncatedAsLogged": 0,
+        "raw": "slot      release: id  0 | task 2812 | stop processing: n_tokens = 2830, truncated = 0"
+      },
+      {
+        "line": 728,
+        "taskId": 3209,
+        "nTokensAsLogged": 2720,
+        "truncatedAsLogged": 0,
+        "raw": "slot      release: id  0 | task 3209 | stop processing: n_tokens = 2720, truncated = 0"
+      },
+      {
+        "line": 784,
+        "taskId": 3555,
+        "nTokensAsLogged": 2669,
+        "truncatedAsLogged": 0,
+        "raw": "slot      release: id  0 | task 3555 | stop processing: n_tokens = 2669, truncated = 0"
+      },
+      {
+        "line": 841,
+        "taskId": 3894,
+        "nTokensAsLogged": 2674,
+        "truncatedAsLogged": 0,
+        "raw": "slot      release: id  0 | task 3894 | stop processing: n_tokens = 2674, truncated = 0"
+      },
+      {
+        "line": 904,
+        "taskId": 4252,
+        "nTokensAsLogged": 2654,
+        "truncatedAsLogged": 0,
+        "raw": "slot      release: id  0 | task 4252 | stop processing: n_tokens = 2654, truncated = 0"
+      }
+    ],
+    "limit": "Runner token/truncation diagnostics are log self-reports, not typed app providerPromptEvaluation evidence, authenticated per-attempt joins, complete-context proof, or an accuracy/quality judgment."
+  },
+  "cleanup": {
+    "events": [
+      {
+        "atUtc": "2026-10-14T01:00:13.801264+00:00",
+        "operation": "killpg",
+        "pgid": 87265,
+        "signal": 15,
+        "before": {
+          "leaderExitedUnreaped": false,
+          "members": [
+            {
+              "pid": 87265,
+              "ppid": 87263,
+              "pgid": 87265,
+              "sid": 87265,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791938910",
+              "startMicroseconds": "343977"
+            },
+            {
+              "pid": 88157,
+              "ppid": 87265,
+              "pgid": 87265,
+              "sid": 87265,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791939000",
+              "startMicroseconds": "250241"
+            }
+          ],
+          "quiescent": false,
+          "unreadableLeaderExitProven": false
+        },
+        "sent": true,
+        "outcome": "syscall accepted; quiescence still requires verification"
+      }
+    ],
+    "groupObservationCount": 9,
+    "transientObservationCount": 5,
+    "sigtermSentToOwnedGroup": true,
+    "sigkillSentToOwnedGroup": false,
+    "finalGroupBeforeReap": {
+      "leaderExitedUnreaped": true,
+      "members": [
+        {
+          "pid": 87265,
+          "identityUnavailable": true,
+          "errno": 3,
+          "operation": "proc_pidinfo"
+        }
+      ],
+      "quiescent": true,
+      "unreadableLeaderExitProven": true
+    },
+    "serverExitCode": 0,
+    "errors": [],
+    "limit": "Original owned process group verified quiescent before leader reap. Escaped descendants were not inventoried.",
+    "freshPostReapProcessInspectionPerformed": false
+  },
+  "conventionalMetadata": {
+    "reportedUnchanged": true,
+    "beforeAfterEqual": true,
+    "limit": "lstat continuity only; no key/config content read or hash"
+  },
+  "limits": [
+    "Preserves PREPARATION-AUDIT exact Start-click timing limitation; no retroactive precise margin claim.",
+    "No new GPU, memory, energy, minimized, sleep or endurance qualification.",
+    "No app export/recovery or literary conclusion derived here.",
+    "No new process inspection, signal, service/model request or UI action."
+  ]
+}

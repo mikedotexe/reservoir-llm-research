@@ -1,0 +1,23 @@
+Command: ['/Users/v/.nvm/versions/node/v20.20.1/bin/npm', 'run', 'build']
+Started UTC: 2026-10-14T01:14:58.411802+00:00
+
+> reservoir-scope-desktop@0.17.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 105 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.46 kB │ gzip:   0.30 kB
+dist/assets/index-B5xmNyFI.css     70.13 kB │ gzip:  14.29 kB
+dist/assets/index-D2MPRbce.js   1,066.64 kB │ gzip: 289.77 kB │ map: 4,690.34 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.11s
+
+Ended UTC: 2026-10-14T01:15:02.560687+00:00
+Exit code: 0

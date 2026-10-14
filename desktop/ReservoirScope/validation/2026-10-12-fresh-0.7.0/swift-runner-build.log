@@ -1,0 +1,18 @@
+/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/sources/spectral_bridge/SensoryField.swift:106:9: warning: 'dsyev_' was deprecated in macOS 13.3: The CLAPACK interface is deprecated.  Please compile with -DACCELERATE_NEW_LAPACK to access the new lapack headers. [#DeprecatedDeclaration]
+104 |         var length: __CLPK_integer = -1
+105 |         var query = [Double](repeating: 0, count: 1)
+106 |         dsyev_(&job, &upper, &n, &a, &lda, &values, &query, &length, &info)
+    |         `- warning: 'dsyev_' was deprecated in macOS 13.3: The CLAPACK interface is deprecated.  Please compile with -DACCELERATE_NEW_LAPACK to access the new lapack headers. [#DeprecatedDeclaration]
+107 |         guard info == 0 else { throw MechanismError.eigensolverFailed(Int(info)) }
+108 |         length = __CLPK_integer(max(1, Int(query[0])))
+
+/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/sources/spectral_bridge/SensoryField.swift:110:9: warning: 'dsyev_' was deprecated in macOS 13.3: The CLAPACK interface is deprecated.  Please compile with -DACCELERATE_NEW_LAPACK to access the new lapack headers. [#DeprecatedDeclaration]
+108 |         length = __CLPK_integer(max(1, Int(query[0])))
+109 |         var work = [Double](repeating: 0, count: Int(length))
+110 |         dsyev_(&job, &upper, &n, &a, &lda, &values, &work, &length, &info)
+    |         `- warning: 'dsyev_' was deprecated in macOS 13.3: The CLAPACK interface is deprecated.  Please compile with -DACCELERATE_NEW_LAPACK to access the new lapack headers. [#DeprecatedDeclaration]
+111 |         guard info == 0 else { throw MechanismError.eigensolverFailed(Int(info)) }
+112 |         var vectors: [Double] = []
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run

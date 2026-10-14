@@ -1,0 +1,61 @@
+{
+  "schema": "reservoir-tauri-public-checkpoint-v1",
+  "recordedAt": "2026-10-14T02:32:15.997093+00:00",
+  "branch": "codex/tauri-0.17-checkpoint",
+  "baseCommit": "ef5a543c66bd6dfd4ab451a22edca6c6eccba8e2",
+  "originalResearchCommit": "96b60ed1d1fe9bdd3a5f50dec3a66a4754ad7f95",
+  "unpublishedResearchAncestorsExcluded": 38,
+  "runtimeSourceIdentity": {
+    "rustInputsMatched": 105,
+    "frontendInputsMatched": 123,
+    "rustReceipt": "../2026-10-13-continuing-writing-0.17.0/rust-checks-04.json",
+    "frontendReceipt": "../2026-10-13-continuing-writing-0.17.0/frontend-checks-01.json"
+  },
+  "freshWorktreeChecks": [
+    {
+      "command": "python3 -B scripts/check_reference.py",
+      "exitCode": 0,
+      "sources": 180,
+      "resources": 43,
+      "fixtures": 1
+    },
+    {
+      "command": "python3 -B scripts/stage_resources.py",
+      "exitCode": 0,
+      "stagedFiles": 42
+    },
+    {
+      "command": "python3 -B -m unittest discover -s desktop/ReservoirScope/scripts -p 'test_*.py'",
+      "exitCode": 0,
+      "tests": 70,
+      "seconds": 3.632,
+      "afterBothPlatformTestGuards": true
+    },
+    {
+      "command": "npm ci --ignore-scripts --no-audit --no-fund",
+      "exitCode": 0,
+      "node": "20.20.1",
+      "packages": 108
+    },
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "tests": 362,
+      "testFiles": 39
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "scope": "TypeScript and Vite; existing >500 kB bundle warning retained"
+    }
+  ],
+  "testOnlyCorrections": {
+    "scripts/test_macos_reliability.py": "bafb63a559d64296cedee4e2b615750bd6f6ee66e33bb17dbe9ad274a71b7125",
+    "scripts/test_journal_quality.py": "12bdcea5ce7c6f2ada24e4fc4e4bb5282ce69ae25df755702c2ac6c9c3da3b2e"
+  },
+  "newAppBuild": false,
+  "newRustTestExecution": false,
+  "newModelRequests": 0,
+  "newDesktopAcceptance": false,
+  "windowsLinuxQualification": "pending; configuration and portable guards are not executed platform qualification"
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "reservoir-source-checks-v1",
+  "closedAtUtc": "2026-10-13T18:13:37.966435+00:00",
+  "scope": "Calmer setup source-only change. No build/dist/app/CUA/sampler/provider interaction. Existing package and sustained soak remain unchanged; test/compiler activity times recorded for resource-analysis context.",
+  "changes": [
+    "Visible explicit source selection and local endpoint/model/readiness; deterministic source clearly synthetic.",
+    "Compact cadence/pace/duration/storage summary plus visible step/attempt ceilings and first-bound-wins statement.",
+    "Seed, detailed limits and numerical settings under closed Advanced settings.",
+    "Exact integer duration editor decomposes hours/minutes/seconds. Invalid draft remains invalid rather than reusing prior accepted seconds; root integrates Create disabled guard.",
+    "Shared human-readable duration formatting is display-only and floors fractional elapsed seconds; exact editor never rounds."
+  ],
+  "checks": [
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "src/MyReservoirSetup.test.tsx"
+      ],
+      "startedAtUtc": "2026-10-13T18:12:58.937318+00:00",
+      "closedAtUtc": "2026-10-13T18:12:59.977827+00:00",
+      "exitCode": 0,
+      "log": "validation/2026-10-13-reading-0.12.1/setup-focused-01.log",
+      "testFilesPassed": 1,
+      "testsPassed": 7,
+      "integerDurationsRoundTripped": 86400
+    },
+    {
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit"
+      ],
+      "startedAtUtc": "2026-10-13T18:12:58.937840+00:00",
+      "closedAtUtc": "2026-10-13T18:13:02.223816+00:00",
+      "exitCode": 0,
+      "log": "validation/2026-10-13-reading-0.12.1/setup-types-01.log"
+    }
+  ],
+  "sourceHashesCapturedAfterChecks": [
+    {
+      "path": "src/MyReservoirConfig.tsx",
+      "bytes": 7618,
+      "sha256": "7f0203ab82a0a773f1b89a719fcf2d266674257c88cffda2b4e1c7aa22457f69"
+    },
+    {
+      "path": "src/sessionDuration.ts",
+      "bytes": 1593,
+      "sha256": "3188acdac677a47a19772fd6f3bff836ea0f71b113410849ba9edd3a28d2db15"
+    },
+    {
+      "path": "src/MyReservoirSetup.test.tsx",
+      "bytes": 6864,
+      "sha256": "e90ccbdaaccb1732d45671729c50cf0f2fcaed3244c2bb79a39c6709cb5a2761"
+    }
+  ],
+  "logs": [
+    {
+      "path": "validation/2026-10-13-reading-0.12.1/setup-focused-01.log",
+      "bytes": 590,
+      "sha256": "7fa08dea0b952932d9b0c53e57c9ded483edc832553e57f4d043c14dbcf79b34"
+    },
+    {
+      "path": "validation/2026-10-13-reading-0.12.1/setup-types-01.log",
+      "bytes": 235,
+      "sha256": "7eac2cb12c6dc8cf4d52c9b1677dc0d8b95a6fea923cc7bb22309abdf7bee2cc"
+    }
+  ],
+  "limits": [
+    "Focused pure conversion, static render and callback/controller-selection tests; no DOM interaction, pixel layout or packaged qualification.",
+    "Root owns global CSS, status use of shared formatter, existing-test changes and Create validation integration."
+  ]
+}

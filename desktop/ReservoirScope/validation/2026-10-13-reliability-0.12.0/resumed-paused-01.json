@@ -1,0 +1,48 @@
+{
+  "capturedAtUtc": "2026-10-13T18:47:58.829794+00:00",
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791908510756-1",
+    "generation": "2",
+    "revision": "8319",
+    "config": {
+      "seed": "20261013",
+      "turnEvery": 30,
+      "maximumSteps": 10000,
+      "maximumTurns": 400,
+      "maximumDurationSeconds": 7800,
+      "storageBudgetBytes": 268435456,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:57314",
+        "model": "reservoir-fixture:reliability-0.12",
+        "contextTokens": 4096
+      }
+    },
+    "phase": "paused",
+    "step": 7127,
+    "durableStep": 7127,
+    "elapsedMillis": 7748510,
+    "journalCount": 237,
+    "segmentCount": 1186,
+    "lastSegmentSha256": "56b3a5b3f2c1911a5975371f4a78f3b3f2e0c1a083ab7779640726bfdfd24455",
+    "checkpointSha256": "68823dd057883e5f870d3d85e8ab8042afe37afa8eedbcbf64d54c8ff563404b",
+    "previousCheckpointSha256": "43c0cd53e85c83dec695a1a7d4255d287201ff996220c3566a3ea15af7fa607a",
+    "diagnostics": [],
+    "attemptTiming": {
+      "attemptId": 237,
+      "dispatchedAtMs": "1791917240152",
+      "receivedAtMs": "1791917240361",
+      "transportDurationMs": 208,
+      "publishedAtMs": null
+    }
+  },
+  "manifestSha256": "fc012b6c55582baa966c51d0b91eb8f1161253e29e0cd17f4ea1ad1053dcc021",
+  "providerRequests": 237,
+  "ui": "Explicit Resume then Pause. live=durable7127,237 journals,elapsed7748.5/7800. Old step30 remains selected with Follow latest off and1new. One new request only; full exported-chain continuation will be independently checked."
+}

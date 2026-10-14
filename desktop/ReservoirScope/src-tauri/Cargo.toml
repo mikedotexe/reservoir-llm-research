@@ -1,0 +1,30 @@
+[package]
+name = "reservoir-scope-desktop"
+version = "0.17.0"
+edition = "2021"
+rust-version = "1.94.1"
+description = "Reservoir Scope Tauri offline research workspaces"
+
+[build-dependencies]
+tauri-build = { version = "=2.7.2", features = [] }
+
+[dependencies]
+reservoir-core = { path = "../crates/reservoir-core" }
+tauri = { version = "=2.12.3", features = [] }
+tauri-plugin-dialog = "=2.8.2"
+tauri-plugin-single-instance = "=2.5.3"
+serde = { version = "=1.0.229", features = ["derive"] }
+serde_json = { version = "=1.0.154", features = ["float_roundtrip", "raw_value"] }
+sha2 = "=0.10.9"
+tempfile = "=3.27.0"
+rusqlite = { version = "=0.40.2", features = ["bundled"] }
+# Explicit HTTP-only loopback transport, with no TLS, proxy, redirect or compression defaults.
+reqwest = { version = "=0.13.4", default-features = false, features = ["json"] }
+tokio = { version = "=1.53.2", features = ["rt", "net", "time"] }
+
+[target.'cfg(unix)'.dependencies]
+libc = "=0.2.190"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2 = "=0.6.5"
+

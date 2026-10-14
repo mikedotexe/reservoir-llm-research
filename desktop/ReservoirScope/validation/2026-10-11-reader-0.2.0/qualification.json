@@ -1,0 +1,979 @@
+{
+  "archive": {
+    "bytes": 48661361,
+    "kind": "file",
+    "path": "ReservoirScopeTauriPreview-0.2.0-macos-arm64.tar.gz",
+    "sha256": "f4b4ee334d1357989e90952fa829646242d62dd8441327077563bbef85a6fcfa"
+  },
+  "capturedAtUtc": "2026-10-12T02:17:31.502180+00:00",
+  "checkEvidenceFile": {
+    "bytes": 3760,
+    "name": "checks.json",
+    "sha256": "22c86a303cb45ccae4f0902f43f00443071dd0f02f1b2d5ec2b9bd9725f28732"
+  },
+  "checks": [
+    {
+      "command": "python3 desktop/ReservoirScope/scripts/check_reference.py",
+      "description": "Frozen native source/resource identity check",
+      "evidence": "Verified unchanged native baseline, 180 source inputs, 43 canonical resources and one fixture; exit 0.",
+      "evidenceOrigin": "Caller-supplied observation; not executed by receipt capture",
+      "id": "reference-integrity",
+      "observer": "root agent",
+      "status": "passed"
+    },
+    {
+      "command": "python3 -m unittest discover -s desktop/ReservoirScope/scripts -p 'test_*.py'",
+      "description": "Resource staging and mutation tests",
+      "evidence": "9 tests passed in 2.469s after catalog expansion. Staging copies 19 files, preserving canonical bytes.",
+      "evidenceOrigin": "Caller-supplied observation; not executed by receipt capture",
+      "id": "resource-staging-tests",
+      "observer": "root agent",
+      "status": "passed"
+    },
+    {
+      "command": "npm test",
+      "description": "Frontend unit tests",
+      "evidence": "35 tests across six files passed; root integrated invocation at 19:04 local. Lifecycle, scalar gaps, render policy, math and evidence labels covered.",
+      "evidenceOrigin": "Caller-supplied observation; not executed by receipt capture",
+      "id": "frontend-tests",
+      "observer": "root agent",
+      "status": "passed"
+    },
+    {
+      "command": "npm run build",
+      "description": "TypeScript and frontend production build",
+      "evidence": "TypeScript and Vite passed; final JS index-sAL60zpT.js and CSS index-31s4ehMz.css. Graphics bundle size advisory remains.",
+      "evidenceOrigin": "Caller-supplied observation; not executed by receipt capture",
+      "id": "frontend-build",
+      "observer": "root agent",
+      "status": "passed"
+    },
+    {
+      "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk cargo test --locked -p reservoir-scope-desktop",
+      "description": "Rust desktop file/resource boundary tests",
+      "evidence": "12 tests passed in 13.95s; standalone desktop package. Wide seeds, typed evidence projection, exact bytes, rejected replacements, handle bounds and journal next-step boundary included. Desktop strict Clippy also passed.",
+      "evidenceOrigin": "Caller-supplied observation; not executed by receipt capture",
+      "id": "desktop-boundary-tests",
+      "observer": "root agent",
+      "status": "passed"
+    },
+    {
+      "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk cargo test --locked -p reservoir-core",
+      "description": "Rust core conformance tests",
+      "evidence": "34 tests passed: 12 stages, 14 exploration, 8 actions. All 22 canonical action records and four stage examples pass. Unsupported Unicode/parser edges stay incomplete.",
+      "evidenceOrigin": "Caller-supplied observation; not executed by receipt capture",
+      "id": "core-conformance-tests",
+      "observer": "root agent",
+      "status": "passed"
+    },
+    {
+      "command": "cargo clippy --locked --package reservoir-core --all-targets -- -D warnings",
+      "description": "Rust core strict Clippy check",
+      "evidence": "Final action source frozen after 8 passing action tests; strict core Clippy clean, reported 1.15s.",
+      "evidenceOrigin": "Caller-supplied observation; not executed by receipt capture",
+      "id": "core-clippy",
+      "observer": "tauri_platform_validation agent",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run verify /Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/validation/reader-ui/exported-component-h.json",
+      "description": "Independent native Swift verification of Rust exports",
+      "evidence": "Native-dialog export is exactly 11,296,543 original bytes, SHA-256 2ce8f33362e403a665bfb9de02d3005d1412dd4f6959c36e4afa9c1baa5fed32. Swift exit 0: Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback. Separate exploration oracle receipt has 20 passing cases; historical stage roundtrip remains unchanged.",
+      "evidenceOrigin": "Caller-supplied observation; not executed by receipt capture",
+      "id": "swift-export-verification",
+      "observer": "root agent",
+      "status": "passed"
+    },
+    {
+      "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk npm run tauri -- build --bundles app -- --locked",
+      "description": "Tauri macOS package build",
+      "evidence": "0.2.0 native arm64 .app built successfully; optimized Rust build 66s. App 119.14 MiB. Ad-hoc signing, not notarized. Pristine packaged app used for agent UI checks documented separately.",
+      "evidenceOrigin": "Caller-supplied observation; not executed by receipt capture",
+      "id": "macos-package-build",
+      "observer": "root agent",
+      "status": "passed"
+    }
+  ],
+  "codesign": {
+    "display": {
+      "command": [
+        "codesign",
+        "--display",
+        "--verbose=4",
+        "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app"
+      ],
+      "exitCode": 0,
+      "stderr": "Executable=/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop\nIdentifier=research.reservoir.scope.tauri\nFormat=app bundle with Mach-O thin (arm64)\nCodeDirectory v=20500 size=17567 flags=0x10002(adhoc,runtime) hashes=542+3 location=embedded\nVersionPlatform=1\nVersionMin=917504\nVersionSDK=1704448\nHash type=sha256 size=32\nCandidateCDHash sha256=bb4be33d824a30d25993ac4361b4ab431072514d\nCandidateCDHashFull sha256=bb4be33d824a30d25993ac4361b4ab431072514d52f4b36c75f7722076c09565\nHash choices=sha256\nCMSDigest=bb4be33d824a30d25993ac4361b4ab431072514d52f4b36c75f7722076c09565\nCMSDigestType=2\nExecutable Segment base=0\nExecutable Segment limit=7421952\nExecutable Segment flags=0x1\nPage size=16384\nCDHash=bb4be33d824a30d25993ac4361b4ab431072514d\nSignature=adhoc\nInfo.plist entries=15\nTeamIdentifier=not set\nRuntime Version=26.2.0\nSealed Resources version=2 rules=13 files=20\nInternal requirements count=0 size=12\nTotal signatures=1\nChosen signature=1",
+      "stdout": ""
+    },
+    "meaning": "Local codesign verification only; does not establish notarization, distribution identity or human acceptance.",
+    "status": "verified",
+    "verification": {
+      "command": [
+        "codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=2",
+        "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app"
+      ],
+      "exitCode": 0,
+      "stderr": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app: valid on disk\n/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app: satisfies its Designated Requirement",
+      "stdout": ""
+    }
+  },
+  "host": {
+    "architecture": "arm64",
+    "processOverrides": {},
+    "python": "3.14.3",
+    "release": "27.0.0",
+    "system": "Darwin",
+    "version": "Darwin Kernel Version 27.0.0: Tue Aug 11 21:05:48 PDT 2026; root:xnu-13432.1.9~1/RELEASE_ARM64_T6041"
+  },
+  "identities": {
+    "cargoLock": {
+      "bytes": 122415,
+      "kind": "file",
+      "path": "desktop/ReservoirScope/Cargo.lock",
+      "sha256": "62a962ef40e03a8f11cfc8fd5c143b507338a4d7388bffe9ff42e10151b61076"
+    },
+    "nativeReference": {
+      "bytes": 46438,
+      "kind": "file",
+      "path": "shared/reservoir-scope/reference-manifest.json",
+      "sha256": "f3d7d2aeea4b991aeaa92403a52e736fa627e7ce9f3bc813311313ec9522e759"
+    },
+    "nativeResources": {
+      "bytes": 9404,
+      "kind": "file",
+      "path": "native/ReservoirScope/resource-manifest.json",
+      "sha256": "933f2e55b214c3fa72ae81c10da6b1781f8f36de296489dff0bc0022ec503a88"
+    },
+    "npmLock": {
+      "bytes": 85282,
+      "kind": "file",
+      "path": "desktop/ReservoirScope/package-lock.json",
+      "sha256": "6d9e2c56efd0db39c1f29eacbcf5ccc756b6a4d2d23141677c94067ebd3e8d1d"
+    },
+    "referenceScenes": {
+      "bytes": 6013,
+      "kind": "file",
+      "path": "shared/reservoir-scope/fixtures/reference-scenes.json",
+      "sha256": "616726ee8ec30827fe08690288f1a176e09b9497d83a24368d16fd4585026c59"
+    },
+    "rustToolchain": {
+      "bytes": 87,
+      "kind": "file",
+      "path": "desktop/ReservoirScope/rust-toolchain.toml",
+      "sha256": "c07cdb6cac85a9e5a7d9b832145d791c04ffb58e8e45859942363f2bffed3ebc"
+    },
+    "stagedResourceIndex": {
+      "bytes": 4089,
+      "kind": "file",
+      "path": "desktop/ReservoirScope/src-tauri/resources/resource-index.json",
+      "sha256": "89e71c4c3c338d8927db5bed163b1f2fe8abd9ef29a8e1fe49c26d50597c8658"
+    }
+  },
+  "implementation": {
+    "excludedDirectoryNames": [
+      ".pytest_cache",
+      "__pycache__",
+      "dist",
+      "node_modules",
+      "target",
+      "validation"
+    ],
+    "excludedPrefixes": [
+      "desktop/ReservoirScope/src-tauri/gen/",
+      "desktop/ReservoirScope/src-tauri/resources/",
+      "desktop/ReservoirScope/src-tauri/permissions/autogenerated/"
+    ],
+    "files": [
+      {
+        "bytes": 5165,
+        "kind": "file",
+        "path": ".github/workflows/tauri.yml",
+        "sha256": "95f318384a35bb782d2408c974df60b7a1dcefed443dc5691b74bf405c1e4c1c"
+      },
+      {
+        "bytes": 97,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/.gitignore",
+        "sha256": "bd06a5ab27ecc3e080054c3b00a52b297bf3945b2df41fec6458e2c82ed4614b"
+      },
+      {
+        "bytes": 122415,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/Cargo.lock",
+        "sha256": "62a962ef40e03a8f11cfc8fd5c143b507338a4d7388bffe9ff42e10151b61076"
+      },
+      {
+        "bytes": 171,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/Cargo.toml",
+        "sha256": "877e5cba91e1ecd94a928ebb4b98b8e5b3aa883ff39d8aa6098699527e72d341"
+      },
+      {
+        "bytes": 15403,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/README.md",
+        "sha256": "2756bc20713fb0b06ae460f580718540b1e60ff097d98cf7cb59ce72e4007433"
+      },
+      {
+        "bytes": 6838,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/ACTIONS.md",
+        "sha256": "2c417d75d648154ed0f79e89e27bcbaf9cec0bf2649365db78c47d5fecd1a142"
+      },
+      {
+        "bytes": 363,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/Cargo.toml",
+        "sha256": "d8a1c5492f2473ac1b99039739f9cd080d28c36c0487a5808c446bb750238e52"
+      },
+      {
+        "bytes": 7237,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/EXPLORATION.md",
+        "sha256": "b5d95c17bbcab80aea90227d7ac72ca3a530be075e01237d93379e07652032f4"
+      },
+      {
+        "bytes": 5538,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/README.md",
+        "sha256": "ef204e47a5e9d47858380c4b328c513aa96d154640439ab4bb47507a115a08a9"
+      },
+      {
+        "bytes": 2585,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/examples/emit_exploration_records.rs",
+        "sha256": "2eeba16c75327caa4a5ad95e6c2e94c71996c4802a02c07174be07f932facc7a"
+      },
+      {
+        "bytes": 46488,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/actions.rs",
+        "sha256": "f96185efbbb77d1f0cbe52031ab3c7af36d4eeb502ca98970b03d889f2de8384"
+      },
+      {
+        "bytes": 7827,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/codec.rs",
+        "sha256": "28d59b0790ab8a6e0febbbf39b14f185d2d59e0aa3c451d99b7422a55357f77e"
+      },
+      {
+        "bytes": 14256,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/exploration.rs",
+        "sha256": "f13e5936aa12fddaf740567ebd83027316b53204c31b634582617fe9691afc36"
+      },
+      {
+        "bytes": 7303,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/lib.rs",
+        "sha256": "ba0c21c2c2f1d8bf5f9d7c94389eab9caf38110e0b24428a382fd927d77b477b"
+      },
+      {
+        "bytes": 3129,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/main.rs",
+        "sha256": "2db137ddffd7140975e91265651d81050216082a0c55bd1c794394ed95e8d2d6"
+      },
+      {
+        "bytes": 15101,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/math.rs",
+        "sha256": "845ed5f908d4b7c0765694f47b635be2b201693ce06a3ca25bcd70abe3259bc7"
+      },
+      {
+        "bytes": 36109,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/stage.rs",
+        "sha256": "9039109c11570fb0a89dddd155a9fa4c6d9037a57b78b0ff375d7b97103ee36c"
+      },
+      {
+        "bytes": 14053,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/actions_conformance.rs",
+        "sha256": "3bca4fc096929d0413841878e58c211fb421a903c012aa917618b93b0a5887ea"
+      },
+      {
+        "bytes": 13281,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/conformance.rs",
+        "sha256": "330743b85fd59be2a839fca0d1c6fd401e4caa356c1247e0359bc6e73755d11d"
+      },
+      {
+        "bytes": 19816,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/exploration.rs",
+        "sha256": "05cdba305c942964ebe9223fb320b6a8f7c59facbdf81d4aa3d92eac11202efd"
+      },
+      {
+        "bytes": 8338,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/ascii-codec-vectors.json",
+        "sha256": "b40c03fe500fec01280871b998fae0c5a2e08474a162e70e604c8ab9186bcdbd"
+      },
+      {
+        "bytes": 492916,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/control-transitions-u64-max.json",
+        "sha256": "a78e128640c7a14aaf7412d27b71688bb8b160b65eb3106168394733c9b6b3a1"
+      },
+      {
+        "bytes": 88772,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/empty-u64-max.json",
+        "sha256": "9a22d5f1b5ea3e2464639068fb37ab0ea15b1c0abc1a4264872f2e8391de3197"
+      },
+      {
+        "bytes": 178083,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/pulsed-forcing.json",
+        "sha256": "59f1701f1f7b88bd0e5e6fde761b98f3b6aa8ac7803c0f89cb2c24a7fee72798"
+      },
+      {
+        "bytes": 96426,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/quiet-defaults.json",
+        "sha256": "abf5639d7951c8105f71f8a21310695a12edc412d22736323423d161a6e2881f"
+      },
+      {
+        "bytes": 281850,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/sensory-restarts-u64-large.json",
+        "sha256": "b984d5ed76cbe058a2c6a50d4f8e711f50a80200a9530c90686779a263c33569"
+      },
+      {
+        "bytes": 6483,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/check_exploration_oracles.py",
+        "sha256": "d74f099638792b284fb19f48a2306be85d9af3fd2e0bfba1cfb938de78bddb4e"
+      },
+      {
+        "bytes": 3364,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/check_swift_roundtrip.py",
+        "sha256": "a8828edd12ea81cc5b708de9c50038313f451863afb37948dc84d800e478901d"
+      },
+      {
+        "bytes": 1173,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/emit_codec_vectors.swift",
+        "sha256": "0d7607288262241274c317cb5da8e422974018562cf68441c8347845609fd86d"
+      },
+      {
+        "bytes": 2149,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/emit_exploration_vectors.swift",
+        "sha256": "65ccb1c6501514b923ddaae47c1c59841dbc374a5e712c647d3639b5dd910ebd"
+      },
+      {
+        "bytes": 372,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/index.html",
+        "sha256": "db20ec00f7cb0fccb6cbb110cdb9c5694b9da0f36582364c959661a9f27a6648"
+      },
+      {
+        "bytes": 85282,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/package-lock.json",
+        "sha256": "6d9e2c56efd0db39c1f29eacbcf5ccc756b6a4d2d23141677c94067ebd3e8d1d"
+      },
+      {
+        "bytes": 843,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/package.json",
+        "sha256": "0849833140c58715e2e5eab8b6efc11866d57833c7b60786e327090fb8887ed7"
+      },
+      {
+        "bytes": 87,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/rust-toolchain.toml",
+        "sha256": "c07cdb6cac85a9e5a7d9b832145d791c04ffb58e8e45859942363f2bffed3ebc"
+      },
+      {
+        "bytes": 843,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/scripts/check_reference.py",
+        "sha256": "d8ac52f13d7b09c0d725c59eb3327af0cd3e18273666bc246f49f7590dcb28f3"
+      },
+      {
+        "bytes": 476,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/scripts/prepare.mjs",
+        "sha256": "99032a4f1423d29a68f50376730434feeba70d0cf34d0f764ea3e02cfba625ff"
+      },
+      {
+        "bytes": 14472,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/scripts/qualification_receipt.py",
+        "sha256": "c371184ae82c1f34314b59fc333ae2fceb0959a4997a532ed63e0cbece00e1cb"
+      },
+      {
+        "bytes": 4778,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/scripts/reference_support.py",
+        "sha256": "bee3ccc96b35872b8f0b06ee8ec68002ecd0febbba0df247c325a3b955b03fda"
+      },
+      {
+        "bytes": 3522,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/scripts/stage_resources.py",
+        "sha256": "b5e5f23edc9e101d76f6d2813a9ec03c827b5e3e7284d82baf3b0e454a324b1a"
+      },
+      {
+        "bytes": 3143,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/scripts/test_qualification_receipt.py",
+        "sha256": "771088956a8630640c76996e134b4b20355b258ddebf97cf6fa3ec0b19e9a46c"
+      },
+      {
+        "bytes": 3211,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/scripts/test_reference.py",
+        "sha256": "ec819f702d5ab7633328193fd7e8ae2bb6da8f233e4572123d3d2afc1991ec2d"
+      },
+      {
+        "bytes": 643,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src-tauri/Cargo.toml",
+        "sha256": "e098eda175a97e0c6c86c92b66e2ae29d98f997de61624fd0d7c43c26554cce8"
+      },
+      {
+        "bytes": 488,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src-tauri/build.rs",
+        "sha256": "b6c2dd76bc6a76084e4274b6b2393f5b9246cbc541b92dca3bf37fc4eb7f605d"
+      },
+      {
+        "bytes": 519,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src-tauri/capabilities/main.json",
+        "sha256": "0f50a8eb323ae34de0b9169003ef9e6e31450b2b307d429205e2748e21bc0be4"
+      },
+      {
+        "bytes": 671,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src-tauri/icon.svg",
+        "sha256": "99c8306011d25b3e6cc0eadaef2f3c76ba699134ad1ec7c9eb1e3a9bf669fb8a"
+      },
+      {
+        "bytes": 5202,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src-tauri/icons/128x128.png",
+        "sha256": "328a6f62bb4ce55ed5dbdcfdb8a0d46c95739c49df3fa272b7efeadcc4eb6c6d"
+      },
+      {
+        "bytes": 10367,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src-tauri/icons/128x128@2x.png",
+        "sha256": "f2a5f5611b4dbfa2776fcc28be25783506c10be207f88285f42151345d6b748e"
+      },
+      {
+        "bytes": 1254,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src-tauri/icons/32x32.png",
+        "sha256": "36b5a3d8b3c4ed19646ef603ec74aab8edcf161c3439918eee95426d1b549d6d"
+      },
+      {
+        "bytes": 122675,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src-tauri/icons/icon.icns",
+        "sha256": "7dca3ee6c3e79ebcb2c54bf44841d2f2b208c1fb727b16035341cd067a12e5ed"
+      },
+      {
+        "bytes": 19748,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src-tauri/icons/icon.ico",
+        "sha256": "029f55ca149d9ac6abf29f06f29680f1692229e9e3fe6b3f8316425765b63d42"
+      },
+      {
+        "bytes": 21354,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src-tauri/icons/icon.png",
+        "sha256": "585dabe7c3b2490d8371be560055be742aaac3b4ea6a671247fa5862279aedf1"
+      },
+      {
+        "bytes": 7179,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src-tauri/src/files.rs",
+        "sha256": "79cb4f33647037631f74a22d0d7863a9cf9ab519702219935741f028cb1a4405"
+      },
+      {
+        "bytes": 7899,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src-tauri/src/main.rs",
+        "sha256": "689587f614b68c7e2499d8519ae6c7d07f52569699c3dc5a22b23ecc1bb42cb3"
+      },
+      {
+        "bytes": 27597,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src-tauri/src/records.rs",
+        "sha256": "9a7191bffe31cec5c2683a6ac67dcc293d710ed91cbacf50788d4b7a74fc0218"
+      },
+      {
+        "bytes": 9090,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src-tauri/src/resources.rs",
+        "sha256": "81f6daf41730e698f042d8773fc5e96254869ea64f56b6c330205d4b1ca19463"
+      },
+      {
+        "bytes": 1830,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src-tauri/tauri.conf.json",
+        "sha256": "6c0b65e9932f29960de8616d758c548a74f9e384adee288981fb49f32371a020"
+      },
+      {
+        "bytes": 10817,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/App.tsx",
+        "sha256": "70c7447d6b2d2b093f7237d2980c0141a8a72ef3d72a1ca8bcd285335e86ed1e"
+      },
+      {
+        "bytes": 3088,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/CoordinateInspector.tsx",
+        "sha256": "6f41d55b357ce1c316ac62487d7fc307fd531626885ef41694db9bec69e5b969"
+      },
+      {
+        "bytes": 17358,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/RecordedExperiments.tsx",
+        "sha256": "9b1d24317d26f0cd51611d82a8546b55eb8772e82ec50d81abd7e962fb8f38db"
+      },
+      {
+        "bytes": 17302,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/SurfaceView.tsx",
+        "sha256": "1b8e3a701287109b02b9bc61d85b4ce61346c3b30cc6b6af523ca249c71c5fd1"
+      },
+      {
+        "bytes": 594,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/api.test.ts",
+        "sha256": "61be099f6b652a83e92ec3cc052ddb414daef0036302fea576c0477903f11846"
+      },
+      {
+        "bytes": 1811,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/api.ts",
+        "sha256": "7f1c8d5a88cfd8678b53cc2240b8bf0f8d7bb894a5486dcc86a160cfadb910c4"
+      },
+      {
+        "bytes": 230,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/main.tsx",
+        "sha256": "a920ec27028d3f1997c93d79da61fa77c0ff613085a6fb2a8ea2dea92cab28a9"
+      },
+      {
+        "bytes": 1102,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/recordingChart.test.ts",
+        "sha256": "58d16b2a013bd294f25c4a1d2eee00206e4fa8f55f91cf7b0509d33721c2b053"
+      },
+      {
+        "bytes": 1176,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/recordingChart.ts",
+        "sha256": "ead149b361a2e341b5bf72338aaf941ce76705cfa25b0810a9bcef849dfe45d1"
+      },
+      {
+        "bytes": 7454,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/recordingController.test.ts",
+        "sha256": "322d7c2e363d681cfa809bd5f85262db969ba105102291f580a52377eb097974"
+      },
+      {
+        "bytes": 9125,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/recordingController.ts",
+        "sha256": "365e0f54f8ed2d14c971106a558696ec3b143c1847489cc07a80838850dba7b9"
+      },
+      {
+        "bytes": 4076,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/recordingView.test.ts",
+        "sha256": "0637e3d52cd2edb64eb5259e9b85e94b010e354b36e82442a815eb67ce9ee37a"
+      },
+      {
+        "bytes": 5559,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/recordings.css",
+        "sha256": "a5951f19d00c99b1f431b66059de53e0d30dd3be7cb1c4ea0becba88f07c6193"
+      },
+      {
+        "bytes": 4117,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/renderPolicy.test.ts",
+        "sha256": "875308e3d98b6b1d7f4ed2bc1cff27a6ad68dee7c504f1c4ff5ea49723db4e5f"
+      },
+      {
+        "bytes": 2169,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/renderPolicy.ts",
+        "sha256": "048ded4ad7d7d804c6f9132e0aa3f1357bc57343e24b738faf73f5a8480fb9c4"
+      },
+      {
+        "bytes": 13517,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/styles.css",
+        "sha256": "c3089b78ae086bb638ef55f9ab72b5368f6b1a75b65eef9e829a4ad4a9a57130"
+      },
+      {
+        "bytes": 4967,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/surfaceMath.test.ts",
+        "sha256": "670611b15549aa92d2d1ddb4af3515e7b2d9b2fb265d2eebf0f28fcc7c06dfa2"
+      },
+      {
+        "bytes": 5785,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/surfaceMath.ts",
+        "sha256": "7e25fe36987dd69fd4dbf56bc3f6a910c19700264b6172c95d1a592f625bfd31"
+      },
+      {
+        "bytes": 2991,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/src/types.ts",
+        "sha256": "b1c7e6e277b916437cbb12edaac53587158350170b016480ca1f9152cabee816"
+      },
+      {
+        "bytes": 416,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/tsconfig.json",
+        "sha256": "64ecd12e2fe2cff778fe53252c08b37bc72cef27cad57b1edd5ce4c98de01b3c"
+      },
+      {
+        "bytes": 283,
+        "kind": "file",
+        "path": "desktop/ReservoirScope/vite.config.ts",
+        "sha256": "0eb2f5c51aa3e93fb74ed6dd0d3c4d7190ea1ff1f684612c0c8a81bf5121430b"
+      },
+      {
+        "bytes": 4727,
+        "kind": "file",
+        "path": "shared/reservoir-scope/PARITY.md",
+        "sha256": "c0a3f0621aa3551a785113f9f71d0da2812b31991fd0bf079c4ed8e82ea38e21"
+      },
+      {
+        "bytes": 3312,
+        "kind": "file",
+        "path": "shared/reservoir-scope/README.md",
+        "sha256": "044f2f32393f4480cae1f772c13967aebcb3991adc601703691a4201d7d70f99"
+      },
+      {
+        "bytes": 6013,
+        "kind": "file",
+        "path": "shared/reservoir-scope/fixtures/reference-scenes.json",
+        "sha256": "616726ee8ec30827fe08690288f1a176e09b9497d83a24368d16fd4585026c59"
+      },
+      {
+        "bytes": 3519,
+        "kind": "file",
+        "path": "shared/reservoir-scope/record-reader-ipc.md",
+        "sha256": "552b2048fcb3e04db4fec837c16556a9932c74b394bd3b14269ba75dfed65759"
+      },
+      {
+        "bytes": 46438,
+        "kind": "file",
+        "path": "shared/reservoir-scope/reference-manifest.json",
+        "sha256": "f3d7d2aeea4b991aeaa92403a52e736fa627e7ce9f3bc813311313ec9522e759"
+      }
+    ],
+    "generatedPermissionsExclusion": "Small retained permissions/autogenerated outputs are excluded because build.rs regenerates command permissions; build.rs and capability files are hashed as authoritative inputs.",
+    "inventorySha256": "ab1462da5ce5086613e3d911c388c23a23c654e11c3f0935c1b3740c4eb76b3b",
+    "roots": [
+      "desktop/ReservoirScope",
+      "shared/reservoir-scope",
+      ".github/workflows/tauri.yml"
+    ]
+  },
+  "nativeBaseline": {
+    "commit": "96b60ed1d1fe9bdd3a5f50dec3a66a4754ad7f95",
+    "frozenOn": "2026-10-11",
+    "nativeBuild": 21,
+    "nativeVersion": "0.15.0",
+    "status": "Unreleased native local candidate; reference source identity does not establish package acceptance."
+  },
+  "notes": [
+    "Actual pristine-package agent UI observations are in macos-ui.md next to this receipt; not collaborator or steward acceptance.",
+    "Archive bytes and file permissions compared with all 23 packaged files before receipt capture.",
+    "Windows/Linux, minimum macOS 14, measured GPU/power/RSS and complete accessibility/lifecycle remain unqualified. No model service or live producer was contacted."
+  ],
+  "package": {
+    "binary": {
+      "bytes": 8885552,
+      "kind": "file",
+      "mode": "0o755",
+      "path": "Contents/MacOS/reservoir-scope-desktop",
+      "sha256": "468452aded7a891accd620be87ab62ac6034b18101da0991c1314e0c555160c5"
+    },
+    "build": "0.2.0",
+    "bundleIdentifier": "research.reservoir.scope.tauri",
+    "files": [
+      {
+        "bytes": 1118,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Info.plist",
+        "sha256": "9befe3982dc18b94b1dacde06fcd8a7ce90d6f0110f10cf17efc7eca83f67b4f"
+      },
+      {
+        "bytes": 8885552,
+        "kind": "file",
+        "mode": "0o755",
+        "path": "Contents/MacOS/reservoir-scope-desktop",
+        "sha256": "468452aded7a891accd620be87ab62ac6034b18101da0991c1314e0c555160c5"
+      },
+      {
+        "bytes": 122675,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/icon.icns",
+        "sha256": "7dca3ee6c3e79ebcb2c54bf44841d2f2b208c1fb727b16035341cd067a12e5ed"
+      },
+      {
+        "bytes": 355779,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/essentials-stage-1.json",
+        "sha256": "dd536371d35d00d085508ffb02d348f335ff569b3bfe57c828403f7ce6da37d0"
+      },
+      {
+        "bytes": 13351775,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/essentials-stage-2.json",
+        "sha256": "21e7a6b8acb3be59efda3f3381f20ce1820d4927b22f7e42f56b2084c566cc78"
+      },
+      {
+        "bytes": 13337799,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/essentials-stage-3.json",
+        "sha256": "b1807f2593fffd36e87bd02d842539db6426b342b12b3fde81d0be7b7254389c"
+      },
+      {
+        "bytes": 13387369,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/essentials-stage-4.json",
+        "sha256": "2fe6156d2996d4b99eb9f365130913c47d82d6307be7efe879c0b295a1d41fdd"
+      },
+      {
+        "bytes": 492811,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/example-component-1.json",
+        "sha256": "a98fcbe631ed953d47ec8d9b8de4dfc58f94cb1f7d0dbed16491bc0348fcf6f6"
+      },
+      {
+        "bytes": 796610,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/example-component-2.json",
+        "sha256": "55981d377916c2b7d9fe7f02ea97b4883c5c728b5a9b36428b0b2b34fa726500"
+      },
+      {
+        "bytes": 5966130,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/example-component-3.json",
+        "sha256": "fc9f201630aaddad3b141adbbf16777eb8a76ee89ae1ea58c96058a9347164a7"
+      },
+      {
+        "bytes": 11144100,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/example-component-4.json",
+        "sha256": "72994239ab54496101d2790f9d5f97254ed7ef8019f2425fbbbaf2816aabb6a6"
+      },
+      {
+        "bytes": 11213594,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/example-component-5.json",
+        "sha256": "ba6a2ae9c1bd90ba9b1063ece1405aa39a6c299ebc60a99e96194d8713c3e1b3"
+      },
+      {
+        "bytes": 11276347,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/example-component-6.json",
+        "sha256": "eca61bbf63b06884d82d5cce17bb8aed7f7165e1a717966d344bed6b99c7e920"
+      },
+      {
+        "bytes": 11278830,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/example-component-7.json",
+        "sha256": "7e446a8c83efb64c461b76cbf34d02f808db8ece5bb58dd3dc8114f2a91399a5"
+      },
+      {
+        "bytes": 11296543,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/example-component-8.json",
+        "sha256": "2ce8f33362e403a665bfb9de02d3005d1412dd4f6959c36e4afa9c1baa5fed32"
+      },
+      {
+        "bytes": 11065365,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/example-observation-active-scripted.json",
+        "sha256": "e6a3dc7958badd9fc2bd5078fcf831ad5cb628e257c634c75da8c3b8c33e9bad"
+      },
+      {
+        "bytes": 46438,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/reference-manifest.json",
+        "sha256": "f3d7d2aeea4b991aeaa92403a52e736fa627e7ce9f3bc813311313ec9522e759"
+      },
+      {
+        "bytes": 6013,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/reference-scenes.json",
+        "sha256": "616726ee8ec30827fe08690288f1a176e09b9497d83a24368d16fd4585026c59"
+      },
+      {
+        "bytes": 4089,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/resource-index.json",
+        "sha256": "89e71c4c3c338d8927db5bed163b1f2fe8abd9ef29a8e1fe49c26d50597c8658"
+      },
+      {
+        "bytes": 365219,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/state-geometry.json",
+        "sha256": "5e90207e7dfd1d395b249d3bb5d668afa0f86b6d3e0e6383eda7b9eb52514317"
+      },
+      {
+        "bytes": 524288,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/state-replay.bin",
+        "sha256": "09ea4db8212809085aa2e07a040975f3095d7ef79d06eb8ba7404cc2424e282f"
+      },
+      {
+        "bytes": 1165,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/Resources/resources/state-replay.json",
+        "sha256": "9589a673e111df6d8643ab050fb6dc2112eb68c453e2c2e55f41699ac7940dd1"
+      },
+      {
+        "bytes": 7612,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "Contents/_CodeSignature/CodeResources",
+        "sha256": "c949d8ebaf0a3d3aee90ee1c0a1df020f8b1b4abc82beba52e0caeadd8867ebe"
+      }
+    ],
+    "inventorySha256": "f61bbabc9ec67a798350d8762c1ae2ce68cf04bf43d76014a33cabd433003248",
+    "name": "Reservoir Scope Tauri Preview.app",
+    "version": "0.2.0"
+  },
+  "purpose": "Local candidate identity and evidence inventory; not a release or parity approval",
+  "qualificationGates": [
+    {
+      "id": "macos-packaged-human-acceptance",
+      "scope": "Actual graphics, exact selection, context recovery, file dialogs, accessibility and lifecycle",
+      "status": "unexecuted"
+    },
+    {
+      "id": "windows-x64-package-and-ui",
+      "scope": "Build/install/launch, WebView2, native dialogs, GPU and accessibility",
+      "status": "unexecuted"
+    },
+    {
+      "id": "linux-x64-package-and-ui",
+      "scope": "Build/install/launch, WebKitGTK, display server/GPU, native dialogs and accessibility",
+      "status": "unexecuted"
+    },
+    {
+      "id": "public-distribution-signing",
+      "scope": "Notarization, Windows signing and public release delivery",
+      "status": "unexecuted"
+    },
+    {
+      "id": "full-native-parity",
+      "scope": "Remaining roadmap milestones and cross-platform acceptance",
+      "status": "incomplete"
+    }
+  ],
+  "repository": {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "exitCode": 0,
+    "stderr": "",
+    "stdout": "96b60ed1d1fe9bdd3a5f50dec3a66a4754ad7f95"
+  },
+  "schema": "reservoir-scope.qualification-receipt.v1",
+  "sourcePackageRelation": "Sources and package were co-captured after the reported build. This receipt alone does not prove that the binary was built from these sources.",
+  "toolchain": {
+    "cargo": {
+      "command": [
+        "cargo",
+        "--version"
+      ],
+      "exitCode": 0,
+      "stderr": "",
+      "stdout": "cargo 1.94.1 (29ea6fb6a 2026-03-24)"
+    },
+    "node": {
+      "command": [
+        "node",
+        "--version"
+      ],
+      "exitCode": 0,
+      "stderr": "",
+      "stdout": "v20.20.1"
+    },
+    "npm": {
+      "command": [
+        "npm",
+        "--version"
+      ],
+      "exitCode": 0,
+      "stderr": "",
+      "stdout": "10.8.2"
+    },
+    "rustc": {
+      "command": [
+        "rustc",
+        "--version",
+        "--verbose"
+      ],
+      "exitCode": 0,
+      "stderr": "",
+      "stdout": "rustc 1.94.1 (e408947bf 2026-03-25)\nbinary: rustc\ncommit-hash: e408947bfd200af42db322daf0fadfe7e26d3bd1\ncommit-date: 2026-03-25\nhost: aarch64-apple-darwin\nrelease: 1.94.1\nLLVM version: 21.1.8"
+    },
+    "sdk": {
+      "command": [
+        "xcrun",
+        "--show-sdk-path"
+      ],
+      "exitCode": 0,
+      "stderr": "",
+      "stdout": "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+    },
+    "xcode": {
+      "command": [
+        "xcodebuild",
+        "-version"
+      ],
+      "exitCode": 0,
+      "stderr": "",
+      "stdout": "Xcode 26.3\nBuild version 17C529"
+    }
+  }
+}

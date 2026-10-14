@@ -1,0 +1,65 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": "python3 desktop/ReservoirScope/scripts/check_reference.py",
+    "observer": "root agent",
+    "evidence": "Verified unchanged native baseline, 180 source inputs, 43 canonical resources and one fixture; exit 0."
+  },
+  {
+    "id": "resource-staging-tests",
+    "status": "passed",
+    "command": "python3 -m unittest discover -s desktop/ReservoirScope/scripts -p 'test_*.py'",
+    "observer": "root agent",
+    "evidence": "9 tests passed in 2.469s after catalog expansion. Staging copies 19 files, preserving canonical bytes."
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": "npm test",
+    "observer": "root agent",
+    "evidence": "35 tests across six files passed; root integrated invocation at 19:04 local. Lifecycle, scalar gaps, render policy, math and evidence labels covered."
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": "npm run build",
+    "observer": "root agent",
+    "evidence": "TypeScript and Vite passed; final JS index-sAL60zpT.js and CSS index-31s4ehMz.css. Graphics bundle size advisory remains."
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk cargo test --locked -p reservoir-scope-desktop",
+    "observer": "root agent",
+    "evidence": "12 tests passed in 13.95s; standalone desktop package. Wide seeds, typed evidence projection, exact bytes, rejected replacements, handle bounds and journal next-step boundary included. Desktop strict Clippy also passed."
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "passed",
+    "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk cargo test --locked -p reservoir-core",
+    "observer": "root agent",
+    "evidence": "34 tests passed: 12 stages, 14 exploration, 8 actions. All 22 canonical action records and four stage examples pass. Unsupported Unicode/parser edges stay incomplete."
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": "cargo clippy --locked --package reservoir-core --all-targets -- -D warnings",
+    "observer": "tauri_platform_validation agent",
+    "evidence": "Final action source frozen after 8 passing action tests; strict core Clippy clean, reported 1.15s."
+  },
+  {
+    "id": "swift-export-verification",
+    "status": "passed",
+    "command": "/Users/v/.cache/reservoir-research/Essentials-build/bin/essentials-run verify /Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/validation/reader-ui/exported-component-h.json",
+    "observer": "root agent",
+    "evidence": "Native-dialog export is exactly 11,296,543 original bytes, SHA-256 2ce8f33362e403a665bfb9de02d3005d1412dd4f6959c36e4afa9c1baa5fed32. Swift exit 0: Verified 120 action steps per arm, journal receipts, prompts, reply tape and applied feedback. Separate exploration oracle receipt has 20 passing cases; historical stage roundtrip remains unchanged."
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk npm run tauri -- build --bundles app -- --locked",
+    "observer": "root agent",
+    "evidence": "0.2.0 native arm64 .app built successfully; optimized Rust build 66s. App 119.14 MiB. Ad-hoc signing, not notarized. Pristine packaged app used for agent UI checks documented separately."
+  }
+]

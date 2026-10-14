@@ -1,0 +1,60 @@
+{
+  "schema": "reservoir-offline-continuity-checker-qualification-v1",
+  "startedAtUtc": "2026-10-14T00:24:24.651482+00:00",
+  "endedAtUtc": "2026-10-14T00:24:25.560677+00:00",
+  "command": [
+    "python3",
+    "-B",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/test_real_model_export.py",
+    "-v"
+  ],
+  "returncode": 0,
+  "testCount": 27,
+  "sourceBefore": {
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/check_real_model_export.py": {
+      "bytes": 39641,
+      "sha256": "ba4d03747ea29dde79fd93bb9b15488800eae0b865d5224902c6561b0b60b443"
+    },
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/test_real_model_export.py": {
+      "bytes": 21200,
+      "sha256": "f9d2e14f816f56b5c57129ee9a27feff8076d665050e8d5b1ab4267de528ea02"
+    },
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/EVALUATION.md": {
+      "bytes": 7050,
+      "sha256": "3837489bd6b75f5b2838bb4462e2f51ef8548f8cd11ab83346ff77616a8ca033"
+    },
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/run-plan.json": {
+      "bytes": 3939,
+      "sha256": "321d54c98b4269bb940bfb84465b8d3e3b61aabefdd2446a07b07373b32caed5"
+    }
+  },
+  "sourceAfter": {
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/check_real_model_export.py": {
+      "bytes": 39641,
+      "sha256": "ba4d03747ea29dde79fd93bb9b15488800eae0b865d5224902c6561b0b60b443"
+    },
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/test_real_model_export.py": {
+      "bytes": 21200,
+      "sha256": "f9d2e14f816f56b5c57129ee9a27feff8076d665050e8d5b1ab4267de528ea02"
+    },
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/EVALUATION.md": {
+      "bytes": 7050,
+      "sha256": "3837489bd6b75f5b2838bb4462e2f51ef8548f8cd11ab83346ff77616a8ca033"
+    },
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/run-plan.json": {
+      "bytes": 3939,
+      "sha256": "321d54c98b4269bb940bfb84465b8d3e3b61aabefdd2446a07b07373b32caed5"
+    }
+  },
+  "sourceUnchanged": true,
+  "status": "passed",
+  "log": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/checker-tests-01.log",
+    "sha256": "147441cc5d2d9e641545b01410194f08444c5a368bcf05d658da7d15d5a32f6f"
+  },
+  "scope": "Pure helper and temporary synthetic structural-bundle tests. No production CLI, numerical simulation, real export inspection, app, provider, UI or model calls. Historical checker and runtime source unchanged.",
+  "historicalBasis": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/check_real_model_export.py",
+    "sha256": "9463bcded5e07982d0b56fb0240cc8ea93c59f478286c69bc58c8341e17b785b"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "atUtc": "2026-10-13T19:11:50.113197+00:00",
+  "exactAppProcesses": [],
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791918426303-1",
+    "generation": "2",
+    "revision": "56",
+    "config": {
+      "seed": "20261015",
+      "turnEvery": 10,
+      "maximumSteps": 31,
+      "maximumTurns": 4,
+      "maximumDurationSeconds": 61,
+      "storageBudgetBytes": 33554432,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:57314",
+        "model": "reservoir-fixture:reliability-0.12",
+        "contextTokens": 4096
+      }
+    },
+    "phase": "budgetReached",
+    "step": 31,
+    "durableStep": 31,
+    "elapsedMillis": 39592,
+    "journalCount": 3,
+    "segmentCount": 16,
+    "lastSegmentSha256": "ded361c2ed3b3fdf6add982da2d314e7f5baae04bcef774d36c61790d2158f93",
+    "checkpointSha256": "43c9761b890375aeb38cd5aaf05a6542df628685c7f043fc7dfeb55582168b76",
+    "previousCheckpointSha256": "43c9761b890375aeb38cd5aaf05a6542df628685c7f043fc7dfeb55582168b76",
+    "diagnostics": [
+      "The configured service returned HTTP 503. Redirects are not followed."
+    ],
+    "attemptTiming": {
+      "attemptId": 4,
+      "dispatchedAtMs": "1791918617308",
+      "receivedAtMs": "1791918617518",
+      "transportDurationMs": 209,
+      "publishedAtMs": null
+    }
+  },
+  "ui": [
+    "ExplicitRestoreheld10/0,noautomaticretry",
+    "Retry2 thenCmdQ displayedCloseReview,PausedsavedPrepared10->11,1journal",
+    "Returntoapp thenResume deliveredupdates through31,3journals4attemptbound",
+    "Oldstep10 selectedafterrunended,Followlatestoff;Evidenceexpandedshowedreadbackhash,application11,rawreplyandprompt",
+    "Nativeexportsucceededrevision56",
+    "CmdQcleanexitafterexport"
+  ],
+  "foundIssue": "Historical503wasstillrenderedascurrentalertinPreparedandbudgetReached. Retainedas0.12.1finding; separate0.12.2fixpending",
+  "limits": [
+    "Oldentryselectedafterboundhere,notyetnewpackagewhilewriting",
+    "Checkpointandquitbuttonnotexecutedhere",
+    "Screenshotsinlineonly"
+  ]
+}

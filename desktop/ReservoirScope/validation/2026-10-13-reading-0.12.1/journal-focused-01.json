@@ -1,0 +1,48 @@
+{
+  "startedAtUtc": "2026-10-13T18:10:35.838072+00:00",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/MyReservoirReading.test.tsx"
+  ],
+  "scope": "Source-only focused rendering tests. No dist/package build, app/process action, provider or sampler change.",
+  "sourcesBefore": [
+    {
+      "path": "src/MyReservoirJournals.tsx",
+      "bytes": 8464,
+      "sha256": "50292864df2cf6d7ce439b5e39197b5d7077f0253fc7976fd53aba392277808e"
+    },
+    {
+      "path": "src/MyReservoirReading.test.tsx",
+      "bytes": 5140,
+      "sha256": "45772c05325b7e3703250a8b23e28263cab3530ff219c9587683bc48f23a8d23"
+    }
+  ],
+  "packageBefore": {
+    "path": "target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+    "bytes": 16747744,
+    "sha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d"
+  },
+  "endedAtUtc": "2026-10-13T18:10:36.771293+00:00",
+  "exitCode": 1,
+  "sourcesAfter": [
+    {
+      "path": "src/MyReservoirJournals.tsx",
+      "bytes": 8464,
+      "sha256": "50292864df2cf6d7ce439b5e39197b5d7077f0253fc7976fd53aba392277808e"
+    },
+    {
+      "path": "src/MyReservoirReading.test.tsx",
+      "bytes": 5140,
+      "sha256": "45772c05325b7e3703250a8b23e28263cab3530ff219c9587683bc48f23a8d23"
+    }
+  ],
+  "packageAfter": {
+    "path": "target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+    "bytes": 16747744,
+    "sha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d"
+  },
+  "sourceUnchanged": true,
+  "packageUnchanged": true
+}

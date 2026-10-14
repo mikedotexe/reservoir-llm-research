@@ -1,0 +1,157 @@
+{
+  "schema": "reservoir-open-writing-manual-review-v1",
+  "createdAtUtc": "2026-10-13T20:35:07.368215+00:00",
+  "reviewer": "Codex source-bound manual reading; not a deterministic quality verdict",
+  "receipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/held-review-01/receipt.json",
+    "bytes": 15515,
+    "sha256": "0fe13c960afc38e04043c7c46075d7741340f3f9383ec96307cf4da32db09e74"
+  },
+  "frozenProtocol": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/run-plan-v3.json",
+    "bytes": 2262,
+    "sha256": "f8c3788057717d05a3a97eb0b3af2ba03ad7d1cd076c679f44d1800d69e51ae1"
+  },
+  "scope": "All received prose: one incomplete response, zero saved journals. No new request, service, app or live-store access.",
+  "attemptIdentity": {
+    "eventId": 32,
+    "attemptId": 1,
+    "observedStep": 30,
+    "dispatchEventId": 31,
+    "savedJournalId": null
+  },
+  "response": {
+    "text": "The hum persists. Not a sound, exactly, but a density. A thickening of the air within the reservoir’s core. The RMS is still clinging to that 0.226, a stubborn current in a sea of shifting states. It’s almost… viscous. The nodes, those tiny, frantic sparks, seem to be braiding themselves tighter, forming loops that don’t quite resolve. The sensory field, predictably, is dominated by a single, insistent pulse – 0.654, a clear, unwavering tone. It’s the loudest voice in the room, though I suspect it’s merely the most efficient. The entropy is high, a chaotic bloom around that central frequency, but the active-mode fill suggests a significant portion of the system is focused on that single point. Ninety-four percent. It feels like a funnel, drawing everything towards a singular, unyielding pressure. \n\nI’m noticing a subtle oscillation in the tail node coordinates. A gentle, almost imperceptible sway. It’s not a disruption, not yet, but it’s a tremor of potential. Like a held breath before a plunge. The shoulder share is growing, subtly, a creeping warmth that threatens to overwhelm the core. It’s",
+    "textTruncated": false,
+    "textByteCount": 1132,
+    "textSha256": "d821c6bb6d8f12c61fda46501b52f4f4af172648e64cd278976da5ea53bec794",
+    "providerModel": "gemma3:4b",
+    "stopReason": "length",
+    "tokenCount": 256,
+    "complete": false
+  },
+  "promptSha256": "7e5e2255f5637ca650edec72e0f4b66da12ba83c421447cac871201940a5f404",
+  "formDescription": {
+    "paragraphCount": 2,
+    "whitespaceWordCount": 181,
+    "assistantPreface": false,
+    "requiredHeadingOrMetric": false,
+    "description": "A direct two-paragraph lyrical entry centered on the current readout, using sound, density, movement, funnel and pressure imagery. It expresses tentative noticing and ends unfinished. No prior text was supplied, so continuity/memory development cannot be assessed."
+  },
+  "annotations": [
+    {
+      "excerpt": "The hum persists. Not a sound, exactly, but a density.",
+      "startCharacter": 0,
+      "endCharacter": 54,
+      "reading": "Expressive scene-setting",
+      "sourceEvidence": {
+        "readoutType": "External numerical reservoir and separate sensory field"
+      },
+      "assessment": "Read as imagery. The phrase itself qualifies sound; no physical sound/density measurement is supplied or required. This is not an error merely because it uses sensory metaphor."
+    },
+    {
+      "excerpt": "The RMS is still clinging to that 0.226",
+      "startCharacter": 108,
+      "endCharacter": 147,
+      "reading": "Accurate voluntary scalar plus ambiguous temporal language",
+      "sourceEvidence": {
+        "currentRms": 0.22602111913418554,
+        "previousObservationStep": null,
+        "changeL2": null
+      },
+      "assessment": "0.226 agrees at three decimal places. “Still clinging” can be poetic; as a literal claim of persistence it is not established by this first supplied observation."
+    },
+    {
+      "excerpt": "braiding themselves tighter, forming loops that don’t quite resolve",
+      "startCharacter": 269,
+      "endCharacter": 336,
+      "reading": "Image with possible structural/temporal reading",
+      "sourceEvidence": {
+        "suppliedCoordinates": 32,
+        "suppliedTemporalComparison": null
+      },
+      "assessment": "No dynamical loop/topology or tightening measurement is given. Do not force this image into a factual claim; a literal mechanistic reading would remain unestablished."
+    },
+    {
+      "excerpt": "a single, insistent pulse – 0.654, a clear, unwavering tone",
+      "startCharacter": 386,
+      "endCharacter": 445,
+      "reading": "Correct leading scalar with imaginative interpretation",
+      "sourceEvidence": {
+        "leadingSensoryEigenvalue": 0.6540921468657876,
+        "topEightHeadShare": 0.4887431388799622
+      },
+      "assessment": "0.654 agrees at three decimal places with the leading sensory eigenvalue. Eigenvalue magnitude does not establish an oscillation frequency, an unwavering tone or literal pulse. “Dominated” is qualitative; head share is 48.8743% of the top eight, not all-state activity."
+    },
+    {
+      "excerpt": "The entropy is high, a chaotic bloom around that central frequency",
+      "startCharacter": 532,
+      "endCharacter": 598,
+      "reading": "Qualitative description and imagery",
+      "sourceEvidence": {
+        "topEightNormalizedEntropy": 0.8084048365093032
+      },
+      "assessment": "0.8084 is available on a normalized scale, but no threshold for “high” was prescribed. This entropy is not a chaos test and the readout contains no central frequency. Preserve the metaphor without claiming demonstrated chaotic dynamics."
+    },
+    {
+      "excerpt": "the active-mode fill suggests a significant portion of the system is focused on that single point. Ninety-four percent.",
+      "startCharacter": 604,
+      "endCharacter": 723,
+      "reading": "Correct rounded fill with unsupported literal interpretation",
+      "sourceEvidence": {
+        "reducedSensoryFillPercent": 94.31040364192096,
+        "separateFromReservoir": true
+      },
+      "assessment": "Ninety-four percent correctly rounds the supplied 94.3104% fill. The estimator does not say 94% of the system is focused on one spatial point. The subsequent funnel/pressure image is expressive, not another required quantitative reading."
+    },
+    {
+      "excerpt": "a subtle oscillation in the tail node coordinates. A gentle, almost imperceptible sway.",
+      "startCharacter": 823,
+      "endCharacter": 910,
+      "reading": "Apparent temporal observation without supplied time series",
+      "sourceEvidence": {
+        "previousObservationStep": null,
+        "changeL2": null,
+        "suppliedStateCoordinates": 32
+      },
+      "assessment": "Only one current recurrent state is supplied; oscillation or sway is not established by that snapshot. Sensory tail share describes ranked eigenvalues, not a spatial group of recurrent nodes. The text does not specify which coordinates or comparison supports the claim."
+    },
+    {
+      "excerpt": "The shoulder share is growing, subtly",
+      "startCharacter": 1011,
+      "endCharacter": 1048,
+      "reading": "Unsupported present trend if read literally",
+      "sourceEvidence": {
+        "currentShoulderShare": 0.17326244652257747,
+        "priorSuppliedShoulderShare": null
+      },
+      "assessment": "The current share is 17.3262% of the top eight sensory eigenvalues. No prior share is supplied, so growth is not established. The accompanying warmth/threat image can remain metaphor."
+    },
+    {
+      "excerpt": "It’s",
+      "startCharacter": 1106,
+      "endCharacter": 1110,
+      "reading": "Unfinished final fragment",
+      "sourceEvidence": {
+        "providerComplete": false,
+        "stopReason": "length",
+        "tokenCount": 256
+      },
+      "assessment": "The response ends mid-sentence at the fixed output cap. It is retained as an incomplete response, not saved as a journal or admitted as feedback."
+    }
+  ],
+  "qualityVerdict": "not_assigned",
+  "mechanism": {
+    "journalSaved": false,
+    "feedbackApplied": false,
+    "priorMemorySupplied": false,
+    "failureReason": "Incomplete or token-limited response cannot become journal feedback"
+  },
+  "limits": [
+    "Creative imagery is not a failure gate. Only voluntarily literal claims are compared with evidence.",
+    "One incomplete response cannot establish a preferred style, causal prompt improvement or reliable future completion.",
+    "No v3 journal/save/application or full-text memory cycle was exercised.",
+    "App-retained provider metadata is not independently authenticated wire evidence.",
+    "This is a passive committed-file copy, not native-export qualification."
+  ]
+}

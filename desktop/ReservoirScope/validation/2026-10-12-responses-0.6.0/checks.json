@@ -1,0 +1,55 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": "python3 scripts/check_reference.py; npm run prepare:resources",
+    "evidence": "180 native sources, 43 canonical resources and 1 fixture verified at frozen build21; 42 resources staged. See python-checks.log and package-build.log."
+  },
+  {
+    "id": "resource-staging-tests",
+    "status": "passed",
+    "command": "python3 -m unittest discover -s scripts -p 'test_*.py'",
+    "evidence": "9 tests passed; summarized tool-observed output in python-checks.log."
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": "npm test",
+    "evidence": "186 tests across22 files passed on final frontend; frontend-tests-final.log."
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": "npm run tauri -- build --bundles app (beforeBuildCommand runs npm run build)",
+    "evidence": "TypeScript and Vite production build passed; see package-build.log. Existing large-chunk advisory remains."
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "passed",
+    "command": "cargo test --locked --workspace; cargo test --locked -p reservoir-core --test response",
+    "evidence": "First full suite:96 core tests passed. Canonical-Unicode response repair followed; final8 response tests passed. All unrelated Rust sources remain unchanged; see workspace-tests.log,response-core-final.log,source-continuity.json. Independent final response oracle passes40 cases; see response-conformance-final.json."
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": "cargo test --locked --workspace; cargo test --locked -p reservoir-scope-desktop response::tests",
+    "evidence": "First full suite:56 desktop tests passed. Post-repair final7 response desktop tests passed, including immutable replacement, exact export, handle limits and operation guard. See response-desktop-final-boxed.log and source-continuity.json."
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": "cargo clippy --locked --workspace --all-targets -- -D warnings",
+    "evidence": "Strict final workspace/all-target Clippy passed; clippy-final.log. Earlier large-enum diagnostic retained in clippy.log; simulation payload boxed before final pass."
+  },
+  {
+    "id": "swift-export-verification",
+    "status": "unexecuted",
+    "evidence": "No new Rust-generated experiment format/record is introduced in this tranche. Native-dialog exports await unlocked packaged UI. Original-byte backend export tests passed; independent Swift/Rust response conformance is separately recorded in response-conformance-final.json, not represented as a fresh-experiment or UI-export run."
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": "env DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk npm run tauri -- build --bundles app",
+    "evidence": "Preview0.6.0 arm64 shipping app built and ad-hoc signed; notarization skipped. package-build.log,archive-check.json,packaged-resources.json and qualification.json bind artifact identity. Actual new UI check blocked by locked Mac; macos-ui.md retains status and checklist."
+  }
+]

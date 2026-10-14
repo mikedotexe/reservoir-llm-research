@@ -1,0 +1,27 @@
+{
+  "startedAtUtc": "2026-10-13T18:11:12.549514+00:00",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/MyReservoirReading.test.tsx"
+  ],
+  "scope": "Source-only focused rendering tests; first retained failure was a test assertion expecting tokens without the existing stop-reason prefix. No production fix was needed. No dist/package build, app/process action, provider or sampler change.",
+  "sourcesBefore": [
+    {
+      "path": "src/MyReservoirJournals.tsx",
+      "bytes": 8464,
+      "sha256": "50292864df2cf6d7ce439b5e39197b5d7077f0253fc7976fd53aba392277808e"
+    },
+    {
+      "path": "src/MyReservoirReading.test.tsx",
+      "bytes": 5154,
+      "sha256": "b56161ff713c29515feb633ba93d808638973710540e4d32a5976b4f4dae5335"
+    }
+  ],
+  "packageBefore": {
+    "path": "target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+    "bytes": 16747744,
+    "sha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d"
+  }
+}

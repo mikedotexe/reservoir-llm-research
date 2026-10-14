@@ -1,0 +1,10 @@
+--- core-sustained-before-Clone
++++ crates/reservoir-core/src/sustained.rs
+@@ -412,6 +412,7 @@
+     pub final_checkpoint: SustainedCheckpoint,
+ }
+ 
++#[derive(Clone)]
+ pub struct SustainedSession {
+     state: SustainedContinuation,
+     model: ReservoirModel,

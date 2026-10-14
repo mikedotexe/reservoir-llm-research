@@ -1,0 +1,234 @@
+{
+  "schema": "reservoir-bounded-real-model-outcome-v1",
+  "createdAtUtc": "2026-10-13T23:05:36.683789+00:00",
+  "episodeId": "v4-writing-episode02",
+  "status": "completed_mechanical_loop_mixed_factual_reading",
+  "promptVersion": "reservoir-journal-v4",
+  "packageExecutableSha256": "18949732cf48c926003ffcf7b5b216bccc32ea071d0bff8a411e841eaba123d5",
+  "sessionId": "sustained-1791932015615-3",
+  "generation": "3",
+  "revision": "143",
+  "plannedOpportunities": 4,
+  "attempts": 4,
+  "receivedResponses": 4,
+  "completeResponses": 4,
+  "savedJournals": 4,
+  "appliedJournals": 4,
+  "exactFullTextMemoryLinks": 3,
+  "observedSteps": [
+    30,
+    60,
+    90,
+    120
+  ],
+  "firstAppliedSteps": [
+    31,
+    61,
+    91,
+    121
+  ],
+  "outputTokens": [
+    210,
+    382,
+    393,
+    441
+  ],
+  "stopReasons": [
+    "stop",
+    "stop",
+    "stop",
+    "stop"
+  ],
+  "remainingPlannedOpportunities": 0,
+  "retryCount": 0,
+  "skipCount": 0,
+  "retainedStep": 121,
+  "retainedElapsedMillis": 268158,
+  "manifestPhase": "budgetReached",
+  "finalCorePhase": {
+    "kind": "ready"
+  },
+  "nativeExport": {
+    "bundle": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02/exports/sustained-1791932015615-3-3-143",
+    "files": 25,
+    "bytes": 1912042,
+    "segments": 19,
+    "manifestSha256": "b15774838208d9626bef728501a4dfad2a96eb47b3c455c22d91f46750d8993b",
+    "checkpointSha256": "61ad06d295046cea7035eb5c4cc50713c6b3b4f49332c8517654f78e2b5a2254"
+  },
+  "independentOfflineVerification": {
+    "command": [
+      "/usr/bin/time",
+      "-l",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/real-model-export-01/reservoir-scope-desktop-pinned",
+      "--verify-sustained",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02/exports/sustained-1791932015615-3-3-143"
+    ],
+    "startedAtUtc": "2026-10-13T23:00:01.282207+00:00",
+    "endedAtUtc": "2026-10-13T23:00:01.839929+00:00",
+    "wallNanoseconds": 557165708,
+    "peakRssBytes": 14090240,
+    "exitCode": 0,
+    "result": {
+      "modelsContacted": false,
+      "report": {
+        "checkpointSha256": "61ad06d295046cea7035eb5c4cc50713c6b3b4f49332c8517654f78e2b5a2254",
+        "diagnostics": [],
+        "format": "reservoir-sustained-bundle-v1",
+        "journalCount": 4,
+        "manifestSha256": "b15774838208d9626bef728501a4dfad2a96eb47b3c455c22d91f46750d8993b",
+        "segmentCount": 19,
+        "sessionId": "sustained-1791932015615-3",
+        "sizeBytes": 1912042,
+        "step": 121,
+        "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+      },
+      "status": "passed"
+    },
+    "scope": "Offline verifier process; not model-service or GUI resource use."
+  },
+  "manualReviewScope": {
+    "receivedResponses": 4,
+    "savedJournals": 4,
+    "fullyReadResponses": 4,
+    "digitBearingNumericalMentionsAnnotated": 29,
+    "numericAnnotationCounts": {
+      "identity_or_temporal_scope_requires_review": 7,
+      "consistent_at_written_precision": 20,
+      "numeric_mismatch": 2
+    },
+    "selectedQualitativeAnnotations": 19
+  },
+  "deterministicCandidateInventory": {
+    "recognizedMetricClaims": 15,
+    "recognizedNumericMentions": 29,
+    "unmatchedNumericMentionsShown": 14,
+    "directionCuesForManualReview": 5,
+    "metricClaimStatuses": {
+      "measurement_identity_requires_review": 2,
+      "association_requires_review": 11,
+      "consistent_at_written_precision": 2
+    },
+    "stepClaimStatuses": {},
+    "entriesMissingRequiredMetrics": 0,
+    "entriesMissingCorrectRequiredOpening": 0
+  },
+  "qualityVerdict": "not_assigned",
+  "factualResult": "Concrete current-value and literal direction/disappearance errors remain alongside correct values and an expressive continuing thread. No automatic scientific/creative pass or causal prompt-improvement claim.",
+  "originalBundleUnchanged": true,
+  "frozenInputsUnchanged": true,
+  "recovery": {
+    "source": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/native-recovery-01.json",
+      "bytes": 10303,
+      "sha256": "731952c9f37c0d64c2835f1d564cf1a315b1e95041968732d5917125da9e9b1c"
+    },
+    "parentPinnedReplay": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/recovered-cli-01.json",
+      "bytes": 1193,
+      "sha256": "5c575920538ee498b63d1ba9f91fa57746645b299be9c8a3d61baf9a27f5c26d"
+    },
+    "independentlyComparedFiles": 25,
+    "nonManifestFilesExact": 24,
+    "manifestOnlyChanges": {
+      "generation": {
+        "original": "3",
+        "recovered": "4"
+      },
+      "revision": {
+        "original": "143",
+        "recovered": "144"
+      },
+      "phase": {
+        "original": "budgetReached",
+        "recovered": "paused"
+      }
+    },
+    "scope": "Parent-observed clean quit/idle relaunch/explicit paused restore with disabled Resume; no forced interruption or new generation request."
+  },
+  "modelsContactedByEvaluator": false,
+  "appOrServiceActionsByEvaluator": false,
+  "priorRefusedEpisodePreserved": true,
+  "evidence": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/evaluation-freeze-01.json",
+      "bytes": 7631,
+      "sha256": "86eb76caed2dc313ede2bf021a6a023ba742bc62537e0d275d907e34f0f38f67"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/run-plan.json",
+      "bytes": 4621,
+      "sha256": "6263e35f62596d5518ebcc043f2fd37da6678f40a92554be43c0cc3eaab5071d"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/host-admission-01.json",
+      "bytes": 1474,
+      "sha256": "e2e318e37d3c6d42ae5bb75e8ea130e2c0181d2eeefaf6532f67a28a4bb570a3"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/bound-before-start-01.json",
+      "bytes": 3801,
+      "sha256": "2934f0e3c8816d8208ff717a202b309a751bb40a30121b268412012c06cbb428"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/native-export-01.json",
+      "bytes": 5179,
+      "sha256": "3e61269776c4f2fc6ace7782febbd7dee5cb53287b0a82df9814191f1c999e0c"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/real-model-export-01/receipt.json",
+      "bytes": 27428,
+      "sha256": "596d026959510bce65d6f84bd446d011adaa529b89535e58dba39037dc47f15b"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/real-model-check-execution-01.json",
+      "bytes": 1468,
+      "sha256": "cabe5431c8089307f44572baac98ac3ab3b1860b9db6f389ed4f62c48e61178c"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/real-model-quality-review-01.json",
+      "bytes": 63650,
+      "sha256": "3b531edd94a1dd84c388885f1dc8e028449ed819aa8964f786bdcaee1c15ec23"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/real-model-quality-execution-01.json",
+      "bytes": 1251,
+      "sha256": "b43fcca04033c8fa6c8921e8038afa21ce78c34b52dfcb65465e3c3c72003c12"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/real-model-prose-review-01.json",
+      "bytes": 24598,
+      "sha256": "b627a298ef8a005a86bacc733c9825bb12ba30f3e0709b80f4435e31809a0792"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/journals-rendering-01.json",
+      "bytes": 2835,
+      "sha256": "9365213787c35e89269560d6533e6a8290b5cb8d91defd30da6810b7699648cf"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/PROSE-PEER-REVIEW.md",
+      "bytes": 5931,
+      "sha256": "82739df3f5049780eb808e252688f3e1d333de1bc42a69395d771d21c6171b4f"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/native-recovery-01.json",
+      "bytes": 10303,
+      "sha256": "731952c9f37c0d64c2835f1d564cf1a315b1e95041968732d5917125da9e9b1c"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/recovered-cli-01.json",
+      "bytes": 1193,
+      "sha256": "5c575920538ee498b63d1ba9f91fa57746645b299be9c8a3d61baf9a27f5c26d"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/CLEANUP-RESULTS.md",
+      "bytes": 4412,
+      "sha256": "892354f617238fb2b300f40e0df597fb3cef93663ab62185241395b74c3baed1"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/owned-run-01/retention.json",
+      "bytes": 19611,
+      "sha256": "16b5e6a066f211ea28eaf5d96b036f31f133d5580979481d7b44eb8e9ff550d4"
+    }
+  ]
+}

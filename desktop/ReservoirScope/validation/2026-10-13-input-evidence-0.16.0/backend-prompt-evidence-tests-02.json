@@ -1,0 +1,107 @@
+{
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "-p",
+    "reservoir-scope-desktop",
+    "prompt_evaluation",
+    "--",
+    "--nocapture"
+  ],
+  "startedAtUtc": "2026-10-13T23:16:56.404488+00:00",
+  "finishedAtUtc": "2026-10-13T23:17:29.715006+00:00",
+  "wallSeconds": 33.31062870891765,
+  "exitCode": 0,
+  "environment": {
+    "DEVELOPER_DIR": "/Applications/Xcode.app/Contents/Developer",
+    "SDKROOT": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+  },
+  "logSha256": "c584277467ba008e29115424c77f06420f5a6b5c5fc6ff09fb251091986639ca",
+  "sourcesBefore": [
+    {
+      "path": "src-tauri/src/model_transport.rs",
+      "bytes": 15786,
+      "sha256": "23af2733a02092fd22521b0e8fc10eee2901b83a632adc2d137b7bf4a4112e28"
+    },
+    {
+      "path": "src-tauri/src/model_transport_tests.rs",
+      "bytes": 25546,
+      "sha256": "49e9ec1e07c871e1478934d3cc171e7354b40df8d0488240c2bac6ce7b34287a"
+    },
+    {
+      "path": "src-tauri/src/sustained.rs",
+      "bytes": 58956,
+      "sha256": "5399ac3d9faf9fcd291dcc6dd176f80c7cd712bc489e6969bfcf621a084223c8"
+    },
+    {
+      "path": "src-tauri/src/sustained_store.rs",
+      "bytes": 56229,
+      "sha256": "cc3a18469733b975eb0aafc03d41270619e88f6b64eefbcb7a40a91df09b2ef4"
+    },
+    {
+      "path": "src-tauri/src/sustained_tests.rs",
+      "bytes": 55999,
+      "sha256": "465130c736dbd3a31f889d263cca10065298706bad6e73911d955d9b8ef80e3e"
+    },
+    {
+      "path": "src-tauri/src/sustained_prompt_evidence_tests.rs",
+      "bytes": 9273,
+      "sha256": "983b3cacd436ae3689091e342c472fbe60c84023035529ad13fead873a5495ce"
+    },
+    {
+      "path": "src-tauri/Cargo.toml",
+      "bytes": 1031,
+      "sha256": "8f4ab0d8849775cf32e96bd1806b2cdca070c676c8bb4ee973094a6a997e0223"
+    },
+    {
+      "path": "crates/reservoir-core/src/session.rs",
+      "bytes": 51273,
+      "sha256": "d9f15552bbf605e11e9cb2d1ebbc35c4b73b48e97110a0f3ac7dc1768bf9b706"
+    }
+  ],
+  "sourcesAfter": [
+    {
+      "path": "src-tauri/src/model_transport.rs",
+      "bytes": 15786,
+      "sha256": "23af2733a02092fd22521b0e8fc10eee2901b83a632adc2d137b7bf4a4112e28"
+    },
+    {
+      "path": "src-tauri/src/model_transport_tests.rs",
+      "bytes": 25546,
+      "sha256": "49e9ec1e07c871e1478934d3cc171e7354b40df8d0488240c2bac6ce7b34287a"
+    },
+    {
+      "path": "src-tauri/src/sustained.rs",
+      "bytes": 58956,
+      "sha256": "5399ac3d9faf9fcd291dcc6dd176f80c7cd712bc489e6969bfcf621a084223c8"
+    },
+    {
+      "path": "src-tauri/src/sustained_store.rs",
+      "bytes": 56229,
+      "sha256": "cc3a18469733b975eb0aafc03d41270619e88f6b64eefbcb7a40a91df09b2ef4"
+    },
+    {
+      "path": "src-tauri/src/sustained_tests.rs",
+      "bytes": 55999,
+      "sha256": "465130c736dbd3a31f889d263cca10065298706bad6e73911d955d9b8ef80e3e"
+    },
+    {
+      "path": "src-tauri/src/sustained_prompt_evidence_tests.rs",
+      "bytes": 9273,
+      "sha256": "983b3cacd436ae3689091e342c472fbe60c84023035529ad13fead873a5495ce"
+    },
+    {
+      "path": "src-tauri/Cargo.toml",
+      "bytes": 1031,
+      "sha256": "8f4ab0d8849775cf32e96bd1806b2cdca070c676c8bb4ee973094a6a997e0223"
+    },
+    {
+      "path": "crates/reservoir-core/src/session.rs",
+      "bytes": 51273,
+      "sha256": "d9f15552bbf605e11e9cb2d1ebbc35c4b73b48e97110a0f3ac7dc1768bf9b706"
+    }
+  ],
+  "sourcesUnchanged": true,
+  "scope": "Eight focused backend tests; parser/raw-token evidence, explicitly owned temporary fake HTTP fixtures, save/export/recovery/IPC metadata, bounded retained-response view and reanchored negative mutations. No model/provider service or app UI."
+}

@@ -1,0 +1,194 @@
+{
+  "schema": "reservoir-review-document-continuity-v1",
+  "recordedAtUtc": "2026-10-14T00:27:31.477967+00:00",
+  "status": "exact-frozen-review-restored-amendment-preserved",
+  "freeze": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/evaluation-freeze-01.json",
+    "bytes": 8959,
+    "sha256": "ea2ec0b090b1164651c720e4e99353296ca83c87e8f5799ebfc3fd4e7dd61c00"
+  },
+  "freezeAtUtc": "2026-10-14T00:25:07.814803+00:00",
+  "admission": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/host-admission-01.json",
+    "bytes": 1467,
+    "sha256": "f59d40c6177dbcf8b4e630711753a1f3c82e9de38d161dd3be484766370918ff"
+  },
+  "admissionCapturedUtc": "2026-10-14T00:25:07.910524+00:00",
+  "restoredPreRunReview": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/PRE-RUN-REVIEW.md",
+    "bytes": 4776,
+    "sha256": "4da4588184829791493b5bacecc8be50319f5117b07452a4bc352855e6201bb5"
+  },
+  "preservedPostFreezeReview": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/POST-FREEZE-REVIEW.md",
+    "bytes": 5145,
+    "sha256": "4e4ff9b61faaf0aba70b2ba3bbee2069a803023c1efefa4a1091a1bb6c4e6b54"
+  },
+  "restorationMethod": "Inverse of known paragraph replacement and removal of exactly the two added identity-table rows; restoration allowed only after reconstructed bytes matched frozen SHA-256 and size. Readback matched.",
+  "currentFrozenInventoryMatches": true,
+  "continuousFrozenImmutabilityEstablished": false,
+  "timingLimit": "The review creation timestamp remains in both byte-preserved versions; it is not the amendment time. No separately retained timestamp establishes the exact amendment instant relative to probe completion. The admission helper checked frozen hashes before its probes; no claim of continuous unchanged review bytes follows.",
+  "files": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/PROTOCOL.md",
+      "expectedSha256": "ee32a5846d96de3d9c399f84de31c57a13062a44d9fc3b2255af9243133f4278",
+      "actualSha256": "ee32a5846d96de3d9c399f84de31c57a13062a44d9fc3b2255af9243133f4278",
+      "expectedBytes": 4794,
+      "actualBytes": 4794,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/run-plan.json",
+      "expectedSha256": "321d54c98b4269bb940bfb84465b8d3e3b61aabefdd2446a07b07373b32caed5",
+      "actualSha256": "321d54c98b4269bb940bfb84465b8d3e3b61aabefdd2446a07b07373b32caed5",
+      "expectedBytes": 3939,
+      "actualBytes": 3939,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/RUBRIC.md",
+      "expectedSha256": "5516e585cf09673bf04f901ec718780e35d7651efd7711afde50402039fab44e",
+      "actualSha256": "5516e585cf09673bf04f901ec718780e35d7651efd7711afde50402039fab44e",
+      "expectedBytes": 6632,
+      "actualBytes": 6632,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/EVALUATION.md",
+      "expectedSha256": "3837489bd6b75f5b2838bb4462e2f51ef8548f8cd11ab83346ff77616a8ca033",
+      "actualSha256": "3837489bd6b75f5b2838bb4462e2f51ef8548f8cd11ab83346ff77616a8ca033",
+      "expectedBytes": 7050,
+      "actualBytes": 7050,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/check_real_model_export.py",
+      "expectedSha256": "ba4d03747ea29dde79fd93bb9b15488800eae0b865d5224902c6561b0b60b443",
+      "actualSha256": "ba4d03747ea29dde79fd93bb9b15488800eae0b865d5224902c6561b0b60b443",
+      "expectedBytes": 39641,
+      "actualBytes": 39641,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/test_real_model_export.py",
+      "expectedSha256": "f9d2e14f816f56b5c57129ee9a27feff8076d665050e8d5b1ab4267de528ea02",
+      "actualSha256": "f9d2e14f816f56b5c57129ee9a27feff8076d665050e8d5b1ab4267de528ea02",
+      "expectedBytes": 21200,
+      "actualBytes": 21200,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/checker-tests-01.json",
+      "expectedSha256": "8865e29e4c9d48026bf5407abe83d033db04885d73f5e37627d0d9f95751c853",
+      "actualSha256": "8865e29e4c9d48026bf5407abe83d033db04885d73f5e37627d0d9f95751c853",
+      "expectedBytes": 3165,
+      "actualBytes": 3165,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/PRE-RUN-REVIEW.md",
+      "expectedSha256": "4da4588184829791493b5bacecc8be50319f5117b07452a4bc352855e6201bb5",
+      "actualSha256": "4da4588184829791493b5bacecc8be50319f5117b07452a4bc352855e6201bb5",
+      "expectedBytes": 4776,
+      "actualBytes": 4776,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/ADMISSION-REVIEW.md",
+      "expectedSha256": "f4a31763fa00a27c358677f726f5c860cdd613889a15901050544923364b5551",
+      "actualSha256": "f4a31763fa00a27c358677f726f5c860cdd613889a15901050544923364b5551",
+      "expectedBytes": 1304,
+      "actualBytes": 1304,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/admit_once.py",
+      "expectedSha256": "d4346c26688261591926528e684375b532808cfd469ff00d9d3e4fa74ddb7368",
+      "actualSha256": "d4346c26688261591926528e684375b532808cfd469ff00d9d3e4fa74ddb7368",
+      "expectedBytes": 2785,
+      "actualBytes": 2785,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/freeze_episode.py",
+      "expectedSha256": "0ca4025febc88d58612b88389408a5f6ae1efac22cba3ad7debe3545305527e2",
+      "actualSha256": "0ca4025febc88d58612b88389408a5f6ae1efac22cba3ad7debe3545305527e2",
+      "expectedBytes": 2219,
+      "actualBytes": 2219,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/owned_model.py",
+      "expectedSha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f",
+      "actualSha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f",
+      "expectedBytes": 32949,
+      "actualBytes": 32949,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/test_owned_model.py",
+      "expectedSha256": "145d75ad5d1d8a090bb3c1a9830a59d1127d3424354b8b59db208d0006da9b87",
+      "actualSha256": "145d75ad5d1d8a090bb3c1a9830a59d1127d3424354b8b59db208d0006da9b87",
+      "expectedBytes": 21837,
+      "actualBytes": 21837,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/helper-continuity-01.json",
+      "expectedSha256": "85c1d6bde18853b0a079cdc978979b632585a374577dc3235956c9603d5996f8",
+      "actualSha256": "85c1d6bde18853b0a079cdc978979b632585a374577dc3235956c9603d5996f8",
+      "expectedBytes": 1548,
+      "actualBytes": 1548,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/package-provenance-01.json",
+      "expectedSha256": "95423fd9665ceef6eda73a689fad480c0fd5fb22b65eb90255fe1897c6b4aaaf",
+      "actualSha256": "95423fd9665ceef6eda73a689fad480c0fd5fb22b65eb90255fe1897c6b4aaaf",
+      "expectedBytes": 15495,
+      "actualBytes": 15495,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/journal_quality.py",
+      "expectedSha256": "49c13a0577829a9d7b7ebb2d7be60ff1f4139b2753f990d614dcf9332397d0ae",
+      "actualSha256": "49c13a0577829a9d7b7ebb2d7be60ff1f4139b2753f990d614dcf9332397d0ae",
+      "expectedBytes": 28542,
+      "actualBytes": 28542,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/test_journal_quality.py",
+      "expectedSha256": "35b6316010479b2794de57f795911c791e7520e9afd4087b5875e2c648b567f4",
+      "actualSha256": "35b6316010479b2794de57f795911c791e7520e9afd4087b5875e2c648b567f4",
+      "expectedBytes": 27055,
+      "actualBytes": 27055,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v4-observation-10.txt",
+      "expectedSha256": "26bae96991e12bb591ba517c46345aeac167abbbdaf79858c514a35b8986f75f",
+      "actualSha256": "26bae96991e12bb591ba517c46345aeac167abbbdaf79858c514a35b8986f75f",
+      "expectedBytes": 4445,
+      "actualBytes": 4445,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v4-memory-20.txt",
+      "expectedSha256": "d51753e1eddd68fd193ba46da49e6f909aaebdef328471ddf79e3b134b10c2c0",
+      "actualSha256": "d51753e1eddd68fd193ba46da49e6f909aaebdef328471ddf79e3b134b10c2c0",
+      "expectedBytes": 4829,
+      "actualBytes": 4829,
+      "matches": true
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v4-provenance.json",
+      "expectedSha256": "aa8d4e2af9a04cd8455634364481d97ce8ecc9110fa9028fb6af20f1152b980f",
+      "actualSha256": "aa8d4e2af9a04cd8455634364481d97ce8ecc9110fa9028fb6af20f1152b980f",
+      "expectedBytes": 682,
+      "actualBytes": 682,
+      "matches": true
+    }
+  ],
+  "scope": "Only PRE-RUN-REVIEW.md restored under explicit parent authorization; amendment retained exclusively and freeze/admission never rewritten. No app, endpoint, provider, process or admission actions."
+}

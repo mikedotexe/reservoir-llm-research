@@ -1,0 +1,54 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": "python3 scripts/check_reference.py",
+    "evidence": "reference-integrity-01.log and package-build-01-receipt.json: 180 sources, 43 resources, 1 fixture"
+  },
+  {
+    "id": "resource-staging-tests",
+    "status": "unexecuted",
+    "evidence": "No unit rerun for the identity-only packaging step. Fresh build staged 42 files and package-resource-check.json independently compares 39 canonical resources plus index/reference files."
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": "npm test",
+    "evidence": "integrated-02-qualification.json and integrated-02-frontend.log: 323 tests/36 files; reused-source-test-evidence-01.json verifies all 112 frontend files match apart from version badge"
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": "npm run build (Tauri beforeBuildCommand)",
+    "evidence": "macos-package-build-01.log; package-build-01-receipt.json"
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-scope-desktop --all-targets",
+    "evidence": "../2026-10-13-reliability-0.12.0/quota-repair-final-02-desktop-tests.log and quota-repair-final-02-qualification.json: 169 passed, 2 ignored; reused-source-test-evidence-01.json; no rerun after version-only edit"
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-core --all-targets",
+    "evidence": "../2026-10-13-reliability-0.12.0/quota-repair-final-02-core-tests.log and quota-repair-final-02-qualification.json: 150 passed; no core change for this package"
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": "cargo clippy --locked --workspace --all-targets -- -D warnings",
+    "evidence": "../2026-10-13-reliability-0.12.0/quota-repair-final-02-clippy.log and quota-repair-final-02-qualification.json; reused, no rerun after version-only edit"
+  },
+  {
+    "id": "swift-export-verification",
+    "status": "unexecuted",
+    "evidence": "No new Swift corpus execution in this packaging step. Prior finite compatibility evidence is retained in ../2026-10-13-sustained-0.12.0/legacy-conformance.json; sustained format is outside native Swift format parity."
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk npm run tauri -- build --bundles app -- --locked",
+    "evidence": "package-build-01-receipt.json; macos-package-build-01.log; source-before-build-final.json; package-before-ui.json; archive-check.json; package-resource-check.json"
+  }
+]

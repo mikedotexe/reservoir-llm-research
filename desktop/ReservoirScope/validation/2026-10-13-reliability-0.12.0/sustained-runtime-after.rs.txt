@@ -1,0 +1,1353 @@
+//! One backend-owned sustained clock. Provider calls happen outside the state
+//! mutex, and only a durable prepared checkpoint can authorize feedback.
+use crate::{
+    files::AppError,
+    records::FrameView,
+    sessions::SessionFrame,
+    sustained_store::{self, JournalIndex, Manifest, SustainedStore},
+};
+use reservoir_core::{
+    session::LanguageResponse,
+    stage::{LanguageConfiguration, LanguageKind, SCRIPTED_REPLIES},
+    sustained::{
+        SustainedCheckpoint, SustainedEventKind, SustainedPhase, SustainedSession,
+        SustainedSpecification,
+    },
+};
+use serde::{Deserialize, Serialize};
+use std::{
+    path::{Path, PathBuf},
+    sync::{
+        atomic::{AtomicBool, AtomicU64, Ordering},
+        mpsc::{sync_channel, SyncSender},
+        Arc, Mutex, MutexGuard,
+    },
+    time::{Duration, Instant, SystemTime},
+};
+
+fn err(kind: &str, message: impl Into<String>) -> AppError {
+    AppError::new("sustained", kind, message)
+}
+fn ce(e: impl std::fmt::Display) -> AppError {
+    err("engine", e.to_string())
+}
+#[derive(Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct SustainedConfig {
+    pub seed: String,
+    pub turn_every: u64,
+    pub maximum_steps: u64,
+    pub maximum_turns: u64,
+    pub maximum_duration_seconds: u64,
+    pub storage_budget_bytes: u64,
+    pub pace_ms: u64,
+    pub leak: f64,
+    pub noise_amplitude: f64,
+    pub initial_retention: f64,
+    pub regulation_enabled: bool,
+    pub language: LanguageConfiguration,
+}
+impl Default for SustainedConfig {
+    fn default() -> Self {
+        Self {
+            seed: "20260909".into(),
+            turn_every: 30,
+            maximum_steps: 10800,
+            maximum_turns: 360,
+            maximum_duration_seconds: 21600,
+            storage_budget_bytes: 268435456,
+            pace_ms: 1000,
+            leak: 0.65,
+            noise_amplitude: 0.02,
+            initial_retention: 0.955,
+            regulation_enabled: true,
+            language: LanguageConfiguration::default(),
+        }
+    }
+}
+impl SustainedConfig {
+    pub fn validate(&self) -> Result<(), AppError> {
+        if !(1..=1_000_000).contains(&self.maximum_steps)
+            || !(1..=10_000).contains(&self.maximum_turns)
+            || !(1..=86_400).contains(&self.maximum_duration_seconds)
+            || !(16 * 1024 * 1024..=512 * 1024 * 1024).contains(&self.storage_budget_bytes)
+            || !(100..=10_000).contains(&self.pace_ms)
+        {
+            return Err(err("configuration","Sustained budgets: 1–1,000,000 steps, 1–10,000 attempts, 1–86,400 seconds, 16–512 MiB and 100–10,000 ms pacing."));
+        }
+        self.specification()?.validate().map_err(ce)?;
+        if self.language.backend == LanguageKind::Ollama {
+            crate::model_transport::validate_configuration(&self.language).map_err(ce)?;
+        }
+        Ok(())
+    }
+    pub fn specification(&self) -> Result<SustainedSpecification, AppError> {
+        let seed = self
+            .seed
+            .parse::<u64>()
+            .map_err(|_| err("seed", "Use an unsigned decimal 64-bit seed"))?;
+        if self.seed != seed.to_string() {
+            return Err(err("seed", "Seed must be canonical unsigned decimal"));
+        }
+        Ok(SustainedSpecification {
+            seed,
+            dt: 1.0 / 3.0,
+            leak: self.leak,
+            noise_amplitude: self.noise_amplitude,
+            initial_retention: self.initial_retention,
+            regulation_enabled: self.regulation_enabled,
+            turn_every: self.turn_every,
+            maximum_steps: self.maximum_steps,
+            maximum_turns: self.maximum_turns,
+            language: self.language.clone(),
+        })
+    }
+}
+#[derive(Clone, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct PendingLanguage {
+    pub operation_id: String,
+    pub turn_id: u64,
+    pub attempt_id: u64,
+    pub observed_step: u64,
+    pub endpoint: String,
+    pub model: String,
+    pub state: String,
+}
+#[derive(Clone, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct PendingSave {
+    pub attempt_id: u64,
+    pub entry_id: String,
+    pub observed_step: u64,
+}
+#[derive(Clone, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct PendingApplication {
+    pub attempt_id: u64,
+    pub entry_id: String,
+    pub observed_step: u64,
+    pub intended_step: u64,
+}
+#[derive(Clone, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct SustainedSummary {
+    pub session_id: String,
+    pub generation: String,
+    pub revision: String,
+    pub config: SustainedConfig,
+    pub phase: String,
+    pub step: u64,
+    pub durable_step: u64,
+    pub simulated_time: f64,
+    pub elapsed_seconds: f64,
+    pub used_bytes: u64,
+    pub journal_count: u64,
+    pub turn_count: u64,
+    pub can_start: bool,
+    pub can_pause: bool,
+    pub can_stop: bool,
+    pub can_retry_save: bool,
+    pub can_retry_provider: bool,
+    pub can_skip_feedback: bool,
+    pub pending_language: Option<PendingLanguage>,
+    pub pending_save: Option<PendingSave>,
+    pub pending_application: Option<PendingApplication>,
+    pub diagnostics: Vec<String>,
+}
+#[derive(Clone, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct SustainedUpdate {
+    pub request_id: String,
+    pub snapshot_sequence: String,
+    pub summary: Option<SustainedSummary>,
+    pub frame: Option<SessionFrame>,
+    pub close_requested: bool,
+}
+#[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct JournalPage {
+    pub request_id: String,
+    pub session_id: String,
+    pub generation: String,
+    pub revision: String,
+    pub total: usize,
+    pub offset: usize,
+    pub has_more: bool,
+    pub entries: Vec<JournalIndex>,
+}
+#[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct JournalDetail {
+    pub request_id: String,
+    pub session_id: String,
+    pub generation: String,
+    pub revision: String,
+    pub journal: serde_json::Value,
+}
+type Listener = Arc<dyn Fn(SustainedUpdate) -> bool + Send + Sync>;
+type Provider = Arc<
+    dyn Fn(&LanguageConfiguration, &str, &AtomicBool) -> Result<LanguageResponse, String>
+        + Send
+        + Sync,
+>;
+struct Active {
+    engine: SustainedSession,
+    manifest: Manifest,
+    committed: SustainedCheckpoint,
+    used_bytes: u64,
+    catalog: Vec<JournalIndex>,
+    epoch: u64,
+    worker_active: bool,
+    run_requested: bool,
+    dispatch_once: bool,
+    last_accounted: Instant,
+}
+struct Inner {
+    active: Option<Active>,
+    listener: Option<Listener>,
+    generation: u64,
+}
+struct Shared {
+    inner: Mutex<Inner>,
+    store: SustainedStore,
+    provider: Provider,
+    closing: AtomicBool,
+    close_requested: AtomicBool,
+    busy: AtomicBool,
+    pause: AtomicBool,
+    cancel: AtomicBool,
+    interrupted: AtomicBool,
+    epoch: AtomicU64,
+    exports: AtomicU64,
+    snapshot_sequence: AtomicU64,
+    updates: SyncSender<()>,
+}
+#[derive(Clone)]
+pub struct SustainedState {
+    shared: Arc<Shared>,
+}
+impl SustainedState {
+    pub fn new(root: PathBuf) -> Self {
+        Self::with_provider(
+            root,
+            Arc::new(|c, p, x| {
+                crate::model_transport::generate(c, p, x).map_err(|e| e.to_string())
+            }),
+        )
+    }
+    fn with_provider(root: PathBuf, provider: Provider) -> Self {
+        // A single coalescing publisher serves this state, including across
+        // successive runs. Slow state reads or WebView callbacks cannot block
+        // the clock/watchdog or allocate an unbounded queue of old snapshots.
+        let (updates, receiver) = sync_channel(1);
+        let state = Self {
+            shared: Arc::new(Shared {
+                inner: Mutex::new(Inner {
+                    active: None,
+                    listener: None,
+                    generation: 0,
+                }),
+                store: SustainedStore::new(root),
+                provider,
+                closing: AtomicBool::new(false),
+                close_requested: AtomicBool::new(false),
+                busy: AtomicBool::new(false),
+                pause: AtomicBool::new(false),
+                cancel: AtomicBool::new(false),
+                interrupted: AtomicBool::new(false),
+                epoch: AtomicU64::new(0),
+                exports: AtomicU64::new(0),
+                snapshot_sequence: AtomicU64::new(0),
+                updates,
+            }),
+        };
+        let weak = Arc::downgrade(&state.shared);
+        std::thread::spawn(move || {
+            while receiver.recv().is_ok() {
+                let Some(shared) = weak.upgrade() else { break };
+                Self { shared }.deliver_update();
+            }
+        });
+        state
+    }
+    fn lock(&self) -> Result<MutexGuard<'_, Inner>, AppError> {
+        let g = self
+            .shared
+            .inner
+            .lock()
+            .map_err(|_| err("lock", "Sustained state unavailable"))?;
+        if self.shared.closing.load(Ordering::SeqCst) {
+            return Err(err("closing", "Application close has been authorized"));
+        }
+        Ok(g)
+    }
+    pub fn begin_export(&self) -> Result<ExportGuard, AppError> {
+        let _g = self.lock()?;
+        self.shared.exports.fetch_add(1, Ordering::SeqCst);
+        Ok(ExportGuard(self.shared.clone()))
+    }
+    pub fn is_busy(&self) -> bool {
+        self.shared.busy.load(Ordering::SeqCst)
+    }
+    pub fn request_close_pause(&self) {
+        self.shared.close_requested.store(true, Ordering::SeqCst);
+        self.shared.pause.store(true, Ordering::SeqCst);
+    }
+    pub fn interrupt(&self, _reason: &str) {
+        self.shared.interrupted.store(true, Ordering::SeqCst);
+        self.shared.pause.store(true, Ordering::SeqCst);
+        self.shared.cancel.store(true, Ordering::SeqCst);
+    }
+    pub fn reopen_after_stale_close(&self) {
+        self.shared.closing.store(false, Ordering::SeqCst);
+    }
+    pub fn cancel_close(&self) {
+        self.shared.closing.store(false, Ordering::SeqCst);
+        self.shared.close_requested.store(false, Ordering::SeqCst);
+    }
+    pub fn authorize_clean_close(&self) -> bool {
+        if self.shared.closing.load(Ordering::SeqCst) {
+            return true;
+        }
+        let Ok(g) = self.shared.inner.try_lock() else {
+            return false;
+        };
+        let clean = self.shared.exports.load(Ordering::SeqCst) == 0
+            && g.active.as_ref().is_none_or(|a| {
+                !a.worker_active
+                    && !a.run_requested
+                    && a.engine.events().is_empty()
+                    && a.engine.pending_journal().is_none()
+                    && a.engine.pending_language().is_none()
+                    && a.engine.prepared_application().is_none()
+            });
+        if clean {
+            self.shared.closing.store(true, Ordering::SeqCst);
+        }
+        clean
+    }
+    pub fn finish_close(&self, allow_discard: bool) -> Result<bool, AppError> {
+        let mut g = self.lock()?;
+        if self.shared.exports.load(Ordering::SeqCst) > 0 {
+            return Ok(false);
+        }
+        if let Some(a) = g.active.as_mut() {
+            if a.worker_active {
+                return Ok(false);
+            }
+            if !allow_discard
+                && (a.engine.pending_language().is_some()
+                    || a.engine.pending_journal().is_some()
+                    || !a.engine.events().is_empty())
+            {
+                return Ok(false);
+            }
+            // Explicit checkpoint-and-quit may retain an already committed
+            // Prepared boundary. Recovery clears ephemeral application permission
+            // and restores paused; only a later explicit Start can apply it.
+            a.run_requested = false;
+            if allow_discard && !matches!(a.engine.phase(), SustainedPhase::Ready) {
+                a.engine.skip_pending("User explicitly discarded the held opportunity when closing; it cannot become future memory or feedback.").map_err(ce)?;
+            }
+            a.manifest.phase = "stopped".into();
+            a.manifest.revision = next(&a.manifest.revision);
+            self.persist(a)?;
+        }
+        self.shared.busy.store(false, Ordering::SeqCst);
+        self.shared.closing.store(true, Ordering::SeqCst);
+        Ok(true)
+    }
+    pub fn create(
+        &self,
+        request_id: String,
+        config: SustainedConfig,
+    ) -> Result<SustainedUpdate, AppError> {
+        config.validate()?;
+        let engine = SustainedSession::new(config.specification()?).map_err(ce)?;
+        let mut g = self.lock()?;
+        if g.active.as_ref().is_some_and(|a| {
+            a.worker_active
+                || !matches!(a.manifest.phase.as_str(), "stopped" | "budgetReached")
+                || !a.engine.events().is_empty()
+        }) {
+            return Err(err(
+                "active",
+                "Stop and durably retain the existing sustained session first",
+            ));
+        }
+        g.generation += 1;
+        let id = format!(
+            "sustained-{}-{}",
+            crate::session_store::now_ms(),
+            g.generation
+        );
+        let committed = engine.checkpoint();
+        let mut manifest = Manifest {
+            format: "reservoir-sustained-bundle-v1".into(),
+            session_id: id.clone(),
+            generation: g.generation.to_string(),
+            revision: "1".into(),
+            config,
+            phase: "ready".into(),
+            step: 0,
+            durable_step: 0,
+            elapsed_millis: 0,
+            journal_count: 0,
+            segment_count: 0,
+            last_segment_sha256: None,
+            checkpoint_sha256: String::new(),
+            previous_checkpoint_sha256: None,
+            diagnostics: vec![],
+            attempt_timing: None,
+        };
+        self.shared.store.initialize(&mut manifest, &committed)?;
+        let used_bytes = self.shared.store.used_bytes(&id)?;
+        g.active = Some(Active {
+            engine,
+            manifest,
+            committed,
+            used_bytes,
+            catalog: vec![],
+            epoch: 0,
+            worker_active: false,
+            run_requested: false,
+            dispatch_once: false,
+            last_accounted: Instant::now(),
+        });
+        self.shared.busy.store(true, Ordering::SeqCst);
+        self.shared.pause.store(false, Ordering::SeqCst);
+        self.shared.interrupted.store(false, Ordering::SeqCst);
+        Ok(self.update(&g, request_id))
+    }
+    pub fn get(
+        &self,
+        request_id: String,
+        listener: Option<Listener>,
+    ) -> Result<SustainedUpdate, AppError> {
+        let mut g = self.lock()?;
+        if let Some(l) = listener {
+            let subscription_id = request_id.clone();
+            g.listener = Some(Arc::new(move |mut u| {
+                u.request_id = subscription_id.clone();
+                l(u)
+            }));
+        }
+        Ok(self.update(&g, request_id))
+    }
+    pub fn start(
+        &self,
+        request_id: String,
+        id: &str,
+        generation: &str,
+    ) -> Result<SustainedUpdate, AppError> {
+        let mut g = self.lock()?;
+        let a = active(&mut g, id, generation)?;
+        if a.worker_active
+            || a.engine.blocked().is_some()
+            || matches!(
+                a.manifest.phase.as_str(),
+                "stopped" | "storageBlocked" | "providerFailed" | "compatibilityBlocked"
+            )
+        {
+            return Err(err(
+                "phase",
+                "Resolve the held outcome before explicitly starting",
+            ));
+        }
+        if self.duration_reached(a) || self.step_budget_reached(a) {
+            return Err(err("budget", "A configured sustained budget is exhausted"));
+        }
+        a.run_requested = true;
+        a.manifest.phase = "running".into();
+        a.manifest.revision = next(&a.manifest.revision);
+        self.shared.pause.store(false, Ordering::SeqCst);
+        self.shared.cancel.store(false, Ordering::SeqCst);
+        self.shared.interrupted.store(false, Ordering::SeqCst);
+        a.last_accounted = Instant::now();
+        self.persist(a)?;
+        self.launch(a);
+        let update = self.update(&g, request_id);
+        drop(g);
+        self.emit();
+        Ok(update)
+    }
+    pub fn pause(
+        &self,
+        request_id: String,
+        id: &str,
+        generation: &str,
+    ) -> Result<SustainedUpdate, AppError> {
+        let mut g = self.lock()?;
+        let a = active(&mut g, id, generation)?;
+        a.run_requested = false;
+        a.dispatch_once = false;
+        self.shared.pause.store(true, Ordering::SeqCst);
+        a.manifest.revision = next(&a.manifest.revision);
+        if !a.worker_active {
+            a.manifest.phase = "paused".into();
+            self.persist(a)?;
+        }
+        Ok(self.update(&g, request_id))
+    }
+    pub fn stop(
+        &self,
+        request_id: String,
+        id: &str,
+        generation: &str,
+    ) -> Result<SustainedUpdate, AppError> {
+        let mut g = self.lock()?;
+        let a = active(&mut g, id, generation)?;
+        a.run_requested = false;
+        a.dispatch_once = false;
+        self.shared.pause.store(true, Ordering::SeqCst);
+        self.shared.cancel.store(true, Ordering::SeqCst);
+        a.epoch = self.shared.epoch.fetch_add(1, Ordering::SeqCst) + 1;
+        if let Some(p) = a.engine.pending_language().cloned() {
+            a.engine
+                .cancel_language(
+                    p.attempt_id,
+                    "Explicit Stop cancelled the pending sustained language request.",
+                )
+                .map_err(ce)?;
+        }
+        a.manifest.phase = "stopped".into();
+        a.manifest.revision = next(&a.manifest.revision);
+        self.persist(a)?;
+        if !a.worker_active {
+            self.shared.busy.store(false, Ordering::SeqCst);
+        }
+        Ok(self.update(&g, request_id))
+    }
+    pub fn retry_save(
+        &self,
+        request_id: String,
+        id: &str,
+        generation: &str,
+    ) -> Result<SustainedUpdate, AppError> {
+        let mut g = self.lock()?;
+        let a = active(&mut g, id, generation)?;
+        if a.worker_active {
+            return Err(err("busy", "Wait for the active write/request to settle"));
+        }
+        a.run_requested = false;
+        a.manifest.phase = "paused".into();
+        a.manifest.revision = next(&a.manifest.revision);
+        self.persist(a)?;
+        if a.engine.pending_journal().is_some() {
+            self.save_journal(a)?;
+        }
+        Ok(self.update(&g, request_id))
+    }
+    pub fn retry_language(
+        &self,
+        request_id: String,
+        id: &str,
+        generation: &str,
+    ) -> Result<SustainedUpdate, AppError> {
+        let mut g = self.lock()?;
+        let a = active(&mut g, id, generation)?;
+        if a.worker_active {
+            return Err(err("busy", "Previous request has not settled"));
+        }
+        a.engine.retry_language().map_err(ce)?;
+        a.dispatch_once = true;
+        a.run_requested = false;
+        a.manifest.phase = "awaitingLanguage".into();
+        a.manifest.revision = next(&a.manifest.revision);
+        self.shared.cancel.store(false, Ordering::SeqCst);
+        self.shared.interrupted.store(false, Ordering::SeqCst);
+        self.shared.pause.store(true, Ordering::SeqCst);
+        self.persist(a)?;
+        self.launch(a);
+        Ok(self.update(&g, request_id))
+    }
+    pub fn skip(
+        &self,
+        request_id: String,
+        id: &str,
+        generation: &str,
+        entry_id: Option<String>,
+        attempt_id: Option<u64>,
+    ) -> Result<SustainedUpdate, AppError> {
+        let mut g = self.lock()?;
+        let a = active(&mut g, id, generation)?;
+        if a.worker_active {
+            return Err(err(
+                "busy",
+                "Pause and settle the active request before skipping",
+            ));
+        }
+        let expected_entry = a
+            .engine
+            .pending_journal()
+            .map(|p| p.entry.id.clone())
+            .or_else(|| a.engine.prepared_application().map(|p| p.entry.id.clone()));
+        let expected_attempt = a
+            .engine
+            .pending_language()
+            .map(|p| p.attempt_id)
+            .or_else(|| a.engine.blocked().map(|p| p.pending.attempt_id))
+            .or_else(|| a.engine.pending_journal().map(|p| p.entry.attempt_id))
+            .or_else(|| a.engine.prepared_application().map(|p| p.entry.attempt_id));
+        if expected_entry != entry_id || expected_attempt != attempt_id {
+            return Err(err(
+                "stale",
+                "Pending opportunity changed before explicit skip",
+            ));
+        }
+        a.engine
+            .skip_pending(
+                "User explicitly skipped this opportunity; previous applied feedback remains held.",
+            )
+            .map_err(ce)?;
+        a.manifest.phase = "paused".into();
+        a.manifest.revision = next(&a.manifest.revision);
+        self.persist(a)?;
+        Ok(self.update(&g, request_id))
+    }
+    fn duration_reached(&self, a: &Active) -> bool {
+        a.manifest.elapsed_millis >= a.manifest.config.maximum_duration_seconds * 1000
+    }
+    fn step_budget_reached(&self, a: &Active) -> bool {
+        a.engine.step() >= a.manifest.config.maximum_steps
+            || (a.engine.budget_reached()
+                && a.engine.prepared_application().is_none()
+                && a.engine.pending_language().is_none()
+                && a.engine.pending_journal().is_none()
+                && a.engine.pending_memory().is_none())
+    }
+    fn persist(&self, a: &mut Active) -> Result<(), AppError> {
+        let events: Vec<_> = a.engine.events().iter().cloned().collect();
+        match self
+            .shared
+            .store
+            .persist(&mut a.manifest, &a.committed, &mut a.engine)
+        {
+            Ok(cp) => {
+                a.committed = cp;
+                apply_catalog(&mut a.catalog, &events);
+                for row in a.catalog.iter_mut().filter(|j| j.object_sha256.is_empty()) {
+                    if let Ok((_, hash)) = self
+                        .shared
+                        .store
+                        .read_journal_proof(&a.manifest.session_id, &row.entry_id)
+                    {
+                        row.object_sha256 = hash;
+                    }
+                }
+                a.used_bytes = self
+                    .shared
+                    .store
+                    .used_bytes(&a.manifest.session_id)
+                    .unwrap_or(a.used_bytes);
+                Ok(())
+            }
+            Err(e) => {
+                a.run_requested = false;
+                a.manifest.phase = "storageBlocked".into();
+                diagnostic(a, &e.message);
+                Err(e)
+            }
+        }
+    }
+    fn save_journal(&self, a: &mut Active) -> Result<(), AppError> {
+        let pending = a
+            .engine
+            .pending_journal()
+            .cloned()
+            .ok_or_else(|| err("phase", "No pending journal save"))?;
+        a.manifest.phase = "savingJournal".into();
+        let (receipt, readback) = match self.shared.store.commit_journal(
+            &a.manifest.session_id,
+            &pending,
+            &a.manifest.config,
+            a.manifest.attempt_timing.as_ref(),
+        ) {
+            Ok(v) => v,
+            Err(e) => {
+                a.run_requested = false;
+                a.manifest.phase = "storageBlocked".into();
+                diagnostic(a, &e.message);
+                return Err(e);
+            }
+        };
+        a.engine.confirm_saved(&receipt, &readback).map_err(ce)?;
+        a.manifest.journal_count += 1;
+        a.manifest.phase = if a.run_requested { "running" } else { "paused" }.into();
+        a.manifest.revision = next(&a.manifest.revision);
+        self.persist(a)?;
+        Ok(())
+    }
+    fn launch(&self, a: &mut Active) {
+        a.epoch = self.shared.epoch.fetch_add(1, Ordering::SeqCst) + 1;
+        a.worker_active = true;
+        let epoch = a.epoch;
+        let state = self.clone();
+        std::thread::spawn(move || state.worker(epoch));
+    }
+    fn worker(&self, epoch: u64) {
+        let activity = crate::run_activity::RunActivity::begin();
+        if let Err(e) = activity {
+            self.worker_failure(epoch, &e.message);
+            if let Ok(mut g) = self.shared.inner.lock() {
+                if let Some(a) = g.active.as_mut() {
+                    if a.epoch == epoch {
+                        a.worker_active = false;
+                    }
+                }
+            }
+            self.emit();
+            return;
+        }
+        let _activity = activity.ok();
+        let done = Arc::new(AtomicBool::new(false));
+        let watch_done = done.clone();
+        let watch = self.clone();
+        let watchdog = std::thread::spawn(move || {
+            let mut last = SystemTime::now();
+            while !watch_done.load(Ordering::SeqCst) {
+                std::thread::sleep(Duration::from_millis(100));
+                let now = SystemTime::now();
+                if now
+                    .duration_since(last)
+                    .is_ok_and(|d| d > Duration::from_secs(5))
+                {
+                    watch.interrupt("Wall-clock interruption requires explicit resume");
+                }
+                last = now;
+                watch.emit();
+            }
+        });
+        loop {
+            let outcome = self.worker_boundary(epoch);
+            match outcome {
+                Ok(Work::Provider(p)) => {
+                    let transport_start = Instant::now();
+                    let response = if p.configuration.backend == LanguageKind::Scripted {
+                        Ok(LanguageResponse {
+                            text: SCRIPTED_REPLIES
+                                [((p.attempt_id - 1) as usize) % SCRIPTED_REPLIES.len()]
+                            .into(),
+                            provider_model: None,
+                            stop_reason: Some("stop".into()),
+                            token_count: None,
+                            complete: true,
+                        })
+                    } else {
+                        (self.shared.provider)(&p.configuration, &p.prompt, &self.shared.cancel)
+                    };
+                    if let Err(e) = self.settle(
+                        epoch,
+                        p.attempt_id,
+                        response,
+                        transport_start.elapsed().as_millis() as u64,
+                    ) {
+                        self.worker_failure(epoch, &e.message);
+                        break;
+                    }
+                }
+                Ok(Work::Continue(pace)) => {
+                    let start = Instant::now();
+                    while start.elapsed() < Duration::from_millis(pace) {
+                        if self.shared.pause.load(Ordering::SeqCst)
+                            || self.shared.cancel.load(Ordering::SeqCst)
+                        {
+                            break;
+                        }
+                        std::thread::sleep(Duration::from_millis(20));
+                    }
+                }
+                Ok(Work::Done) => break,
+                Err(e) => {
+                    self.worker_failure(epoch, &e.message);
+                    break;
+                }
+            }
+        }
+        done.store(true, Ordering::SeqCst);
+        let _ = watchdog.join();
+        self.finish_worker(epoch);
+    }
+    fn finish_worker(&self, epoch: u64) {
+        if let Ok(mut g) = self.shared.inner.lock() {
+            if let Some(a) = g.active.as_mut() {
+                // Old worker completion may release its in-flight flag, but never mutate a replacement run.
+                if a.epoch == epoch || a.manifest.phase == "stopped" {
+                    a.worker_active = false;
+                    if a.manifest.phase == "stopped" {
+                        self.shared.busy.store(false, Ordering::SeqCst);
+                    }
+                }
+            }
+        }
+        // No periodic tick is guaranteed after worker_active changes. Publish
+        // settled capabilities explicitly, including after Stop invalidates the
+        // worker epoch while it is still waiting for a cancelled provider.
+        self.emit();
+    }
+    fn worker_boundary(&self, epoch: u64) -> Result<Work, AppError> {
+        let mut g = self.lock()?;
+        let a = g
+            .active
+            .as_mut()
+            .ok_or_else(|| err("missing", "No sustained session"))?;
+        if a.epoch != epoch {
+            return Ok(Work::Done);
+        }
+        let elapsed = a.last_accounted.elapsed();
+        a.last_accounted = Instant::now();
+        a.manifest.elapsed_millis = a
+            .manifest
+            .elapsed_millis
+            .saturating_add(elapsed.as_millis().min(u64::MAX as u128) as u64);
+        if self.shared.interrupted.load(Ordering::SeqCst) {
+            if a.engine.pending_language().is_some() {
+                a.engine.interrupt("System sleep/wake or a long wall-clock interruption; explicit recovery choice is required.").map_err(ce)?;
+            }
+            a.run_requested = false;
+            a.manifest.phase = "interrupted".into();
+            a.manifest.revision = next(&a.manifest.revision);
+            self.persist(a)?;
+            return Ok(Work::Done);
+        }
+        if self.shared.pause.load(Ordering::SeqCst) {
+            a.run_requested = false;
+        }
+        if !a.run_requested
+            && !a.dispatch_once
+            && (a.engine.pending_memory().is_some() || a.engine.pending_language().is_some())
+        {
+            a.manifest.phase = "paused".into();
+            a.manifest.revision = next(&a.manifest.revision);
+            self.persist(a)?;
+            return Ok(Work::Done);
+        }
+        if self.duration_reached(a)
+            && (a.engine.pending_memory().is_some() || a.engine.pending_language().is_some())
+        {
+            a.run_requested = false;
+            a.manifest.phase = "budgetReached".into();
+            self.persist(a)?;
+            return Ok(Work::Done);
+        }
+        if let Some(p) = a.engine.pending_memory().cloned() {
+            match self
+                .shared
+                .store
+                .read_journal(&a.manifest.session_id, &p.entry.id)
+            {
+                Ok(j) => {
+                    if let Err(e) = a.engine.confirm_memory(&j.pending.entry) {
+                        a.engine.fail_memory(&e.to_string()).map_err(ce)?;
+                    }
+                }
+                Err(e) => a.engine.fail_memory(&e.message).map_err(ce)?,
+            }
+            a.manifest.revision = next(&a.manifest.revision);
+            self.persist(a)?;
+        }
+        if let Some(p) = a.engine.pending_language().cloned() {
+            if p.request_started {
+                return Err(err(
+                    "request",
+                    "An uncertain dispatched request cannot be sent again",
+                ));
+            }
+            a.manifest.phase = "awaitingLanguage".into();
+            a.manifest.revision = next(&a.manifest.revision);
+            self.persist(a)?;
+            a.engine.start_language(p.attempt_id).map_err(ce)?;
+            a.manifest.revision = next(&a.manifest.revision);
+            a.dispatch_once = false;
+            a.manifest.attempt_timing = Some(sustained_store::AttemptTiming {
+                attempt_id: p.attempt_id,
+                dispatched_at_ms: if p.configuration.backend == LanguageKind::Ollama {
+                    Some(crate::session_store::now_ms().to_string())
+                } else {
+                    None
+                },
+                ..Default::default()
+            });
+            return Ok(Work::Provider(Box::new(p)));
+        }
+        if a.engine.pending_journal().is_some() {
+            self.save_journal(a)?;
+        }
+        if let Some(b) = a.engine.blocked() {
+            let reason = b.reason.clone();
+            a.run_requested = false;
+            a.manifest.phase = "attemptBlocked".into();
+            a.manifest.revision = next(&a.manifest.revision);
+            diagnostic(a, &reason);
+            self.persist(a)?;
+            return Ok(Work::Done);
+        }
+        if !a.run_requested {
+            a.manifest.phase = "paused".into();
+            a.manifest.revision = next(&a.manifest.revision);
+            self.persist(a)?;
+            return Ok(Work::Done);
+        }
+        if self.duration_reached(a) || self.step_budget_reached(a) {
+            a.run_requested = false;
+            a.manifest.phase = "budgetReached".into();
+            a.manifest.revision = next(&a.manifest.revision);
+            self.persist(a)?;
+            self.shared.busy.store(false, Ordering::SeqCst);
+            return Ok(Work::Done);
+        }
+        if let Some(p) = a.engine.prepared_application() {
+            a.engine
+                .authorize_application(p.entry.attempt_id)
+                .map_err(ce)?;
+        }
+        let f = a.engine.advance().map_err(ce)?;
+        a.manifest.phase = "running".into();
+        a.manifest.revision = next(&a.manifest.revision);
+        if f.application.is_some()
+            || f.step.is_multiple_of(30)
+            || a.engine.pending_memory().is_some()
+            || a.engine.pending_language().is_some()
+        {
+            self.persist(a)?;
+        }
+        Ok(Work::Continue(a.manifest.config.pace_ms))
+    }
+    fn settle(
+        &self,
+        epoch: u64,
+        attempt: u64,
+        response: Result<LanguageResponse, String>,
+        duration_ms: u64,
+    ) -> Result<(), AppError> {
+        let mut g = self.lock()?;
+        let Some(a) = g.active.as_mut() else {
+            return Ok(());
+        };
+        if a.epoch != epoch
+            || a.engine
+                .pending_language()
+                .is_none_or(|p| p.attempt_id != attempt)
+        {
+            return Ok(());
+        }
+        if let Some(t) = a.manifest.attempt_timing.as_mut() {
+            t.received_at_ms = Some(crate::session_store::now_ms().to_string());
+            t.transport_duration_ms = Some(duration_ms);
+        }
+        if self.shared.interrupted.load(Ordering::SeqCst) {
+            a.engine.interrupt("Provider operation interrupted by sleep/wake or a long wall-clock gap; no automatic resend.").map_err(ce)?;
+            a.run_requested = false;
+            a.manifest.phase = "interrupted".into();
+        } else {
+            match response {
+                Ok(r) => a.engine.confirm_language(attempt, &r).map_err(ce)?,
+                Err(message) => a
+                    .engine
+                    .fail_language(attempt, &message.chars().take(4096).collect::<String>())
+                    .map_err(ce)?,
+            }
+        }
+        a.manifest.revision = next(&a.manifest.revision);
+        self.persist(a)?;
+        Ok(())
+    }
+    fn worker_failure(&self, epoch: u64, message: &str) {
+        if let Ok(mut g) = self.shared.inner.lock() {
+            if let Some(a) = g.active.as_mut() {
+                if a.epoch == epoch {
+                    a.run_requested = false;
+                    if a.manifest.phase != "storageBlocked" {
+                        a.manifest.phase = "paused".into();
+                    }
+                    diagnostic(a, message);
+                    a.manifest.revision = next(&a.manifest.revision);
+                }
+            }
+        }
+    }
+    fn update(&self, g: &Inner, request_id: String) -> SustainedUpdate {
+        // Called only while the state lock is held. This process-local sequence
+        // orders transient capabilities too, without changing durable revision.
+        // Exhaustion fails closed instead of wrapping to an apparently old update.
+        let previous = self
+            .shared
+            .snapshot_sequence
+            .fetch_update(Ordering::Relaxed, Ordering::Relaxed, |n| n.checked_add(1))
+            .expect("Sustained snapshot sequence exhausted; restart the application");
+        SustainedUpdate {
+            request_id,
+            snapshot_sequence: (previous + 1).to_string(),
+            summary: g.active.as_ref().map(|a| self.summary(a)),
+            frame: g
+                .active
+                .as_ref()
+                .and_then(|a| a.engine.latest_frame())
+                .map(frame),
+            close_requested: self.shared.close_requested.load(Ordering::SeqCst),
+        }
+    }
+    fn summary(&self, a: &Active) -> SustainedSummary {
+        let language = a
+            .engine
+            .pending_language()
+            .map(|p| (p, "prepared"))
+            .or_else(|| a.engine.blocked().map(|p| (&p.pending, "blocked")));
+        let pending_language = language.map(|(p, state)| PendingLanguage {
+            operation_id: format!("{}:{}:{}", a.manifest.generation, a.epoch, p.attempt_id),
+            turn_id: p.turn_id,
+            attempt_id: p.attempt_id,
+            observed_step: p.observed_step,
+            endpoint: p.configuration.endpoint.clone().unwrap_or_default(),
+            model: p.configuration.model.clone().unwrap_or_default(),
+            state: if p.request_started && state == "prepared" {
+                "requesting"
+            } else {
+                state
+            }
+            .into(),
+        });
+        let cp = &a.committed.state;
+        SustainedSummary {
+            session_id: a.manifest.session_id.clone(),
+            generation: a.manifest.generation.clone(),
+            revision: a.manifest.revision.clone(),
+            config: a.manifest.config.clone(),
+            phase: a.manifest.phase.clone(),
+            step: a.engine.step(),
+            durable_step: a.committed.state.step,
+            simulated_time: a.engine.step() as f64 / 3.0,
+            elapsed_seconds: a.manifest.elapsed_millis as f64 / 1000.0,
+            used_bytes: a.used_bytes,
+            journal_count: a.catalog.len() as u64,
+            turn_count: cp.attempt_cursor,
+            can_start: !a.worker_active
+                && !a.run_requested
+                && a.engine.blocked().is_none()
+                && !matches!(a.manifest.phase.as_str(), "stopped" | "storageBlocked")
+                && !self.duration_reached(a)
+                && !self.step_budget_reached(a),
+            can_pause: a.worker_active || a.run_requested,
+            can_stop: a.manifest.phase != "stopped",
+            can_retry_save: !a.worker_active
+                && (a.engine.pending_journal().is_some() || a.manifest.phase == "storageBlocked"),
+            can_retry_provider: !a.worker_active
+                && a.engine.blocked().is_some()
+                && cp.attempt_cursor < a.manifest.config.maximum_turns,
+            can_skip_feedback: !a.worker_active
+                && !matches!(a.engine.phase(), SustainedPhase::Ready),
+            pending_language,
+            pending_save: a.engine.pending_journal().map(|p| PendingSave {
+                attempt_id: p.entry.attempt_id,
+                entry_id: p.entry.id.clone(),
+                observed_step: p.entry.observed_step,
+            }),
+            pending_application: a.engine.prepared_application().map(|p| PendingApplication {
+                attempt_id: p.entry.attempt_id,
+                entry_id: p.entry.id.clone(),
+                observed_step: p.entry.observed_step,
+                intended_step: p.application_step,
+            }),
+            diagnostics: a.manifest.diagnostics.clone(),
+        }
+    }
+    fn emit(&self) {
+        // Full means one newer snapshot is already requested. Never wait for
+        // delivery from the watchdog or numerical/provider worker.
+        let _ = self.shared.updates.try_send(());
+    }
+    fn deliver_update(&self) {
+        let pair = if let Ok(g) = self.shared.inner.lock() {
+            g.listener
+                .as_ref()
+                .map(|l| (l.clone(), self.update(&g, String::new())))
+        } else {
+            None
+        };
+        if let Some((l, u)) = pair {
+            if !l(u) {
+                // A disconnected WebView should not retain its channel forever.
+                // Do not remove a newer subscription installed during delivery.
+                if let Ok(mut g) = self.shared.inner.lock() {
+                    if g.listener
+                        .as_ref()
+                        .is_some_and(|current| Arc::ptr_eq(current, &l))
+                    {
+                        g.listener = None;
+                    }
+                }
+            }
+        }
+    }
+    pub fn journal_page(
+        &self,
+        request_id: String,
+        id: &str,
+        generation: &str,
+        offset: usize,
+        limit: usize,
+    ) -> Result<JournalPage, AppError> {
+        if !(1..=50).contains(&limit) {
+            return Err(err("page", "Page size must be 1–50"));
+        }
+        let mut g = self.lock()?;
+        let a = active(&mut g, id, generation)?;
+        let total = a.catalog.len();
+        if offset > total {
+            return Err(err("page", "Offset exceeds journal count"));
+        }
+        Ok(JournalPage {
+            request_id,
+            session_id: id.into(),
+            generation: generation.into(),
+            revision: a.manifest.revision.clone(),
+            total,
+            offset,
+            has_more: offset.saturating_add(limit) < total,
+            entries: a
+                .catalog
+                .iter()
+                .rev()
+                .skip(offset)
+                .take(limit)
+                .cloned()
+                .collect(),
+        })
+    }
+    pub fn journal(
+        &self,
+        request_id: String,
+        id: &str,
+        generation: &str,
+        entry_id: &str,
+    ) -> Result<JournalDetail, AppError> {
+        let mut g = self.lock()?;
+        let a = active(&mut g, id, generation)?;
+        let index = a
+            .catalog
+            .iter()
+            .find(|j| j.entry_id == entry_id)
+            .ok_or_else(|| err("journal", "Journal is not in the committed prefix"))?;
+        let (j, object_hash) = self.shared.store.read_journal_proof(id, entry_id)?;
+        if object_hash != index.object_sha256 {
+            return Err(err(
+                "journal",
+                "Journal object changed since its committed chain anchor",
+            ));
+        }
+        let p = j.pending;
+        let memory=p.memory.map(|m|serde_json::json!({"entryId":m.entry.id,"text":m.entry.text,"sha256":m.entry.sha256}));
+        let application=index.first_applied_step.map(|s|serde_json::json!({"journalId":entry_id,"observedStep":index.observed_step,"appliedStep":s,"attemptId":index.attempt_id}));
+        Ok(JournalDetail {
+            request_id,
+            session_id: id.into(),
+            generation: generation.into(),
+            revision: a.manifest.revision.clone(),
+            journal: serde_json::json!({"entryId":p.entry.id,"turnId":p.entry.turn_id,"attemptId":p.entry.attempt_id,"observedStep":p.entry.observed_step,"firstAppliedStep":index.first_applied_step,"text":p.entry.text,"sha256":p.entry.sha256,"prompt":p.prompt,"rawReply":p.response.text,"observation":p.observation,"memory":memory,"encodedFeatures":p.encoded_features,"semanticVector":p.semantic_vector,"saveReceipt":{"entryId":entry_id,"sha256":index.sha256,"relativePath":format!("journals/{entry_id}.json")},"providerModel":p.response.provider_model,"stopReason":p.response.stop_reason,"tokenCount":p.response.token_count,"providerComplete":p.response.complete,"configuredModel":j.configured_model,"objectSha256":object_hash,"requestStarted":j.request_started,"timing":j.timing,"status":index.status,"application":application}),
+        })
+    }
+    pub fn recovery(&self, request_id: String) -> Result<sustained_store::RecoveryPage, AppError> {
+        self.shared.store.recovery(request_id)
+    }
+    pub fn inspect(
+        &self,
+        request_id: String,
+        id: &str,
+    ) -> Result<sustained_store::RecoveryDetail, AppError> {
+        let v = self.shared.store.verify(id)?;
+        Ok(sustained_store::RecoveryDetail {
+            request_id,
+            manifest: v.manifest,
+            checkpoint: checkpoint_view(&v.checkpoint)?,
+            report: v.report,
+        })
+    }
+    pub fn resume(
+        &self,
+        request_id: String,
+        id: &str,
+        expected_generation: &str,
+        expected_revision: &str,
+    ) -> Result<SustainedUpdate, AppError> {
+        let mut g = self.lock()?;
+        if g.active.as_ref().is_some_and(|a| {
+            a.worker_active
+                || a.run_requested
+                || !a.engine.events().is_empty()
+                || a.manifest.phase != "stopped"
+        }) {
+            return Err(err(
+                "active",
+                "Stop the current sustained session before restoring a retained one",
+            ));
+        }
+        let v = self.shared.store.verify(id)?;
+        if v.manifest.generation != expected_generation || v.manifest.revision != expected_revision
+        {
+            return Err(err("stale", "Recovery selection changed"));
+        }
+        let mut engine = SustainedSession::restore(v.checkpoint.clone()).map_err(ce)?;
+        let mut manifest = v.manifest;
+        g.generation = g.generation.max(manifest.generation.parse().unwrap_or(0)) + 1;
+        manifest.generation = g.generation.to_string();
+        manifest.revision = next(&manifest.revision);
+        manifest.phase = "paused".into();
+        let committed = self
+            .shared
+            .store
+            .persist(&mut manifest, &v.checkpoint, &mut engine)?;
+        let mut catalog = self.shared.store.journal_index(id)?;
+        catalog.sort_by_key(|e| e.attempt_id);
+        g.active = Some(Active {
+            engine,
+            manifest,
+            committed,
+            used_bytes: v.report.size_bytes,
+            catalog,
+            epoch: 0,
+            worker_active: false,
+            run_requested: false,
+            dispatch_once: false,
+            last_accounted: Instant::now(),
+        });
+        self.shared.busy.store(true, Ordering::SeqCst);
+        self.shared.pause.store(true, Ordering::SeqCst);
+        self.shared.interrupted.store(false, Ordering::SeqCst);
+        self.shared.cancel.store(false, Ordering::SeqCst);
+        Ok(self.update(&g, request_id))
+    }
+    pub fn export(
+        &self,
+        id: &str,
+        generation: &str,
+        revision: Option<&str>,
+        destination: &Path,
+        forbidden: &[PathBuf],
+    ) -> Result<(String, sustained_store::BundleReport), AppError> {
+        let g = self.lock()?;
+        if let Some(a) = &g.active {
+            if a.manifest.session_id == id
+                && (a.manifest.generation != generation
+                    || revision.is_some_and(|r| r != a.manifest.revision))
+            {
+                return Err(err(
+                    "stale",
+                    "Selected session snapshot changed before export",
+                ));
+            }
+        }
+        let v = self.shared.store.verify(id)?;
+        if v.manifest.generation != generation || revision.is_some_and(|r| r != v.manifest.revision)
+        {
+            return Err(err("stale", "Retained snapshot changed"));
+        }
+        let report = self.shared.store.export(id, destination, forbidden)?;
+        Ok((v.manifest.revision, report))
+    }
+}
+fn active<'a>(g: &'a mut Inner, id: &str, generation: &str) -> Result<&'a mut Active, AppError> {
+    let a = g
+        .active
+        .as_mut()
+        .ok_or_else(|| err("missing", "No accepted sustained session"))?;
+    if a.manifest.session_id != id || a.manifest.generation != generation {
+        return Err(err("stale", "Session identity or generation changed"));
+    }
+    Ok(a)
+}
+fn next(s: &str) -> String {
+    s.parse::<u64>().unwrap_or(0).saturating_add(1).to_string()
+}
+fn diagnostic(a: &mut Active, s: &str) {
+    let s: String = s.chars().take(1024).collect();
+    if a.manifest.diagnostics.last() != Some(&s) {
+        a.manifest.diagnostics.push(s);
+        if a.manifest.diagnostics.len() > 32 {
+            a.manifest.diagnostics.remove(0);
+        }
+    }
+}
+fn frame(f: &reservoir_core::sustained::SustainedFrame) -> SessionFrame {
+    SessionFrame {
+        frame: FrameView {
+            index: (f.step - 1) as usize,
+            step: f.step.to_string(),
+            time: Some(f.simulated_time),
+            state: f.state.clone(),
+            input: f.input.clone(),
+            noise: f.noise.clone(),
+            fill_percent: Some(f.sensory.fill_percent),
+            eigenvalues: Some(f.sensory.eigenvalues.clone()),
+            retention_used: Some(f.retention_used),
+            semantic_turn_id: f.semantic_journal_id.clone(),
+            next_retention: Some(f.next_retention),
+            lesson_evidence: None,
+            regulation_evidence: None,
+        },
+        exploration_controls: None,
+        control: None,
+    }
+}
+fn apply_catalog(
+    catalog: &mut Vec<JournalIndex>,
+    events: &[reservoir_core::sustained::SustainedEvent],
+) {
+    for event in events {
+        match &event.kind {
+            SustainedEventKind::JournalSaved { entry, .. } => catalog.push(JournalIndex {
+                entry_id: entry.id.clone(),
+                turn_id: entry.turn_id,
+                attempt_id: entry.attempt_id,
+                observed_step: entry.observed_step,
+                first_applied_step: None,
+                status: "savedPendingApplication".into(),
+                text_preview: entry.text.chars().take(160).collect(),
+                sha256: entry.sha256.clone(),
+                object_sha256: String::new(),
+            }),
+            SustainedEventKind::Advanced(f) => {
+                if let Some(applied) = &f.application {
+                    if let Some(j) = catalog
+                        .iter_mut()
+                        .find(|j| j.entry_id == applied.journal_id)
+                    {
+                        j.first_applied_step = Some(applied.applied_step);
+                        j.status = "applied".into();
+                    }
+                }
+            }
+            SustainedEventKind::Skipped { .. } => {
+                if let Some(j) = catalog.last_mut() {
+                    if j.status == "savedPendingApplication" {
+                        j.status = "skipped".into();
+                    }
+                }
+            }
+            _ => {}
+        }
+    }
+}
+enum Work {
+    Provider(Box<reservoir_core::sustained::SustainedPendingLanguage>),
+    Continue(u64),
+    Done,
+}
+#[cfg(test)]
+#[path = "sustained_tests.rs"]
+mod tests;
+
+fn checkpoint_view(cp: &SustainedCheckpoint) -> Result<serde_json::Value, AppError> {
+    let mut v = serde_json::to_value(cp).map_err(ce)?;
+    v["state"]["specification"]["seed"] = cp.state.specification.seed.to_string().into();
+    v["state"]["rngState"] = cp.state.rng_state.to_string().into();
+    // This is an inert IPC inspection view, never original-byte serialization.
+    Ok(v)
+}
+
+pub struct ExportGuard(Arc<Shared>);
+impl Drop for ExportGuard {
+    fn drop(&mut self) {
+        self.0.exports.fetch_sub(1, Ordering::SeqCst);
+    }
+}

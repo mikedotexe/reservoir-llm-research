@@ -1,0 +1,175 @@
+
+> reservoir-scope-desktop@0.12.0 test
+> vitest run src/MyReservoirReading.test.tsx
+
+
+ RUN  v4.1.11 /Users/v/other/reservoir-llm-research/desktop/ReservoirScope
+
+ ❯ src/MyReservoirReading.test.tsx (4 tests | 1 failed) 16ms
+     × keeps identity, source and full evidence in one closed disclosure 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MyReservoirReading.test.tsx > journal prose and optional evidence > keeps identity, source and full evidence in one closed disclosure
+AssertionError: expected '<summary>Evidence</summary><h4>Journa…' to contain '>127<'
+
+- Expected
++ Received
+
+- >127<
++ <summary>Evidence</summary><h4>Journal and request identity</h4><dl class="my-reservoir-data"><dt>Entry identity</dt><dd class="my-reservoir-hash">long-entry-identity-unique</dd><dt>Turn / attempt</dt><dd>2 / 2</dd><dt>Journal SHA-256</dt><dd class="my-reservoir-hash">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</dd><dt>Configured model</dt><dd>configured-model-unique</dd><dt>Returned model identity</dt><dd>returned-model-unique</dd><dt>Request recorded started</dt><dd>false</dd><dt>Provider completeness</dt><dd>true</dd><dt>Stop reason / tokens</dt><dd>stop / 127</dd><dt>Captured session revision</dt><dd>9007199254740993</dd></dl><section><h4>Host request and save timing</h4><p>Local host bookkeeping, separate from simulated time. A dispatch timestamp records transport handoff, not proof of provider receipt.</p><dl class="my-reservoir-data"><dt>Attempt identity</dt><dd>2</dd><dt>Dispatch · epoch milliseconds</dt><dd>18446744073709551614</dd><dt>Response received · epoch milliseconds</dt><dd>18446744073709551615</dd><dt>Transport duration · monotonic milliseconds</dt><dd>987</dd><dt>Journal publication · epoch milliseconds</dt><dd>18446744073709551616</dd></dl></section><section><h4>Exact prompt and observation</h4><p>Recurrent coordinates and summaries are separate from sensory measurements. Reading or selecting a coordinate in this app does not edit this retained prompt.</p><h5>Exact prompt</h5><pre>&lt;script&gt;inert exact prompt&lt;/script&gt;</pre><h5>Versioned numerical observation</h5><pre>{
++   &quot;contract&quot;: &quot;test-observation&quot;,
++   &quot;reservoirState&quot;: [
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1
++   ],
++   &quot;seed&quot;: &quot;18446744073709551615&quot;
++ }</pre><p>Retained prompt context alone does not prove provider receipt. Request-start and response evidence remain separately recorded.</p></section><section><h4>Retained full-text memory</h4><p class="my-reservoir-hash">Entry journal-1 · SHA-256 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p><pre>Prior applied text</pre><p>Exact memory text retained with this opportunity. This is distinct from the reduced vector applied to the numerical system.</p></section><section><h4>Save and feedback provenance</h4><dl class="my-reservoir-data"><dt>Saved entry</dt><dd>journal-2</dd><dt>Readback SHA-256</dt><dd class="my-reservoir-hash">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</dd><dt>Owned path label</dt><dd>journals/journal-2.json · never followed from this view</dd></dl><h5>Encoded features</h5><pre>[
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0
++ ]</pre><h5>Prepared semantic vector</h5><pre>[
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1
++ ]</pre><h5>Application evidence</h5><pre>{
++   &quot;observedStep&quot;: 6,
++   &quot;appliedStep&quot;: 7
++ }</pre><p>The encoded vector changes input to the reservoir and separate sensory field; it does not train the model or recurrent weights. State differences also depend on the retained forcing, noise and controls.</p></section><section><h4>Raw received reply</h4><pre>Journal 2</pre></section></details></article>
+
+ ❯ src/MyReservoirReading.test.tsx:42:22
+     40|     expect(evidence).toContain('Prior applied text');
+     41|     expect(evidence).toContain('0.1');
+     42|     expect(evidence).toContain('>127<');
+       |                      ^
+     43|     expect(evidence).toContain('987');
+     44|     expect(evidence).not.toContain('<script>');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  11:10:36
+   Duration  182ms (transform 66ms, setup 0ms, import 94ms, tests 16ms, environment 0ms)
+

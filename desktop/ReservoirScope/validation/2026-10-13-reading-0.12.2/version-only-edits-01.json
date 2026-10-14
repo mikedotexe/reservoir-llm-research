@@ -1,0 +1,43 @@
+{
+  "atUtc": "2026-10-13T19:13:43.625408+00:00",
+  "fromVersion": "0.12.1",
+  "toVersion": "0.12.2",
+  "files": [
+    {
+      "path": "package.json",
+      "beforeSha256": "c2f7310674519452d947f659ff4fbac5b2436c06008685eaa9d68de201aa7c4f",
+      "afterSha256": "5f7706d6625f31394f1585a354f107acfc5dd43f9ae8ee288eafbcbd5098b46e",
+      "diff": "--- package.json\n+++ package.json\n@@ -1,6 +1,6 @@\n {\n   \"name\": \"reservoir-scope-desktop\",\n-  \"version\": \"0.12.1\",\n+  \"version\": \"0.12.2\",\n   \"private\": true,\n   \"type\": \"module\",\n   \"engines\": {\n"
+    },
+    {
+      "path": "package-lock.json",
+      "beforeSha256": "380eba5fc7f0c598babb022cc7609950adfe3900b1b438a7a2bbab07cdec57d1",
+      "afterSha256": "5c2dcec9c2c769ca95c3af723387a2ef257d2ca8cc5304ba3fe0b953ca7f7491",
+      "diff": "--- package-lock.json\n+++ package-lock.json\n@@ -1,12 +1,12 @@\n {\n   \"name\": \"reservoir-scope-desktop\",\n-  \"version\": \"0.12.1\",\n+  \"version\": \"0.12.2\",\n   \"lockfileVersion\": 3,\n   \"requires\": true,\n   \"packages\": {\n     \"\": {\n       \"name\": \"reservoir-scope-desktop\",\n-      \"version\": \"0.12.1\",\n+      \"version\": \"0.12.2\",\n       \"dependencies\": {\n         \"@tauri-apps/api\": \"2.12.3\",\n         \"react\": \"19.3.0\",\n"
+    },
+    {
+      "path": "src-tauri/tauri.conf.json",
+      "beforeSha256": "a5a9e9a5d8fccb751dceade7fc7600ebf884404a0dab39e9891abb81bde4e293",
+      "afterSha256": "399592a08162a1c05ade8ae2b47005284d24e06cca79101a6f4b20a8009f1089",
+      "diff": "--- src-tauri/tauri.conf.json\n+++ src-tauri/tauri.conf.json\n@@ -1,7 +1,7 @@\n {\n   \"$schema\": \"https://schema.tauri.app/config/2\",\n   \"productName\": \"Reservoir Scope Tauri Preview\",\n-  \"version\": \"0.12.1\",\n+  \"version\": \"0.12.2\",\n   \"identifier\": \"research.reservoir.scope.tauri\",\n   \"build\": {\n     \"beforeDevCommand\": \"npm run prepare:resources && npm run dev\",\n"
+    },
+    {
+      "path": "src-tauri/Cargo.toml",
+      "beforeSha256": "c9126fa16028c80c08616b07548371edc6773a13b339774aa4b3f8e09edd0791",
+      "afterSha256": "2d7463154d53f16d8cd226a49ba35520ea727bf61063b52f9d68da834d58c837",
+      "diff": "--- src-tauri/Cargo.toml\n+++ src-tauri/Cargo.toml\n@@ -1,6 +1,6 @@\n [package]\n name = \"reservoir-scope-desktop\"\n-version = \"0.12.1\"\n+version = \"0.12.2\"\n edition = \"2021\"\n rust-version = \"1.94.1\"\n description = \"Reservoir Scope Tauri offline research workspaces\"\n"
+    },
+    {
+      "path": "Cargo.lock",
+      "beforeSha256": "d4ae95d7b059f70bb9819c7dfe0cd60c76162f0a269383928baa1b9ec4e8fb49",
+      "afterSha256": "98e674f6f239b36236f7ca16f55a2fac415734fa9e8b0323f4eaccd116b7fea0",
+      "diff": "--- Cargo.lock\n+++ Cargo.lock\n@@ -2903,7 +2903,7 @@\n \n [[package]]\n name = \"reservoir-scope-desktop\"\n-version = \"0.12.1\"\n+version = \"0.12.2\"\n dependencies = [\n  \"libc\",\n  \"objc2\",\n"
+    },
+    {
+      "path": "src/App.tsx",
+      "beforeSha256": "58113c01d5ae91830ec98a67ffe94d5a78233d0cea35ea0cde33a6b840ebebf0",
+      "afterSha256": "f48493a9f9c1a858331d6e125da766d2392ca7c2fdffdcb2937b74db4955b23a",
+      "diff": "--- src/App.tsx\n+++ src/App.tsx\n@@ -27,7 +27,7 @@\n     <a className=\"skip-link\" href=\"#workspace-main\">Skip to workspace</a>\n     <header className=\"app-header\">\n       <div className=\"brand\"><span className=\"brand-mark\" aria-hidden=\"true\">\u25c9</span><div><strong>Reservoir Scope</strong><span>THE CROSS-PLATFORM LAB</span></div></div>\n-      <span className=\"milestone-pill\"><span /> 0.12.1 \u00b7 My reservoir</span>\n+      <span className=\"milestone-pill\"><span /> 0.12.2 \u00b7 My reservoir</span>\n     </header>\n     <nav className=\"workspace-nav\" aria-label=\"Workspaces\">{workspaces.map(name => <button key={name} aria-current={workspace === name ? 'page' : undefined} onClick={() => navigate(name)}>{name}</button>)}</nav>\n     <FreshClosePanel /><SustainedClosePanel />\n"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "startedUtc": "2026-10-13T23:01:30.624459+00:00",
+  "finishedUtc": "2026-10-13T23:01:30.741138+00:00",
+  "command": [
+    "target/qa/0.15-pinned/reservoir-scope-desktop",
+    "--verify-sustained",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02/exports/sustained-1791932015615-3-4-144"
+  ],
+  "exit": 0,
+  "stdout": "{\n  \"modelsContacted\": false,\n  \"report\": {\n    \"checkpointSha256\": \"61ad06d295046cea7035eb5c4cc50713c6b3b4f49332c8517654f78e2b5a2254\",\n    \"diagnostics\": [],\n    \"format\": \"reservoir-sustained-bundle-v1\",\n    \"journalCount\": 4,\n    \"manifestSha256\": \"b7e2fdbc0e1d349b095be9cc0bdf02e7e6079b61af127f7eee21fb1099e875e4\",\n    \"segmentCount\": 19,\n    \"sessionId\": \"sustained-1791932015615-3\",\n    \"sizeBytes\": 1912035,\n    \"step\": 121,\n    \"verification\": \"Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability.\"\n  },\n  \"status\": \"passed\"\n}\n",
+  "stderr": "",
+  "executableSha256": "18949732cf48c926003ffcf7b5b216bccc32ea071d0bff8a411e841eaba123d5"
+}

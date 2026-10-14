@@ -1,0 +1,51 @@
+{
+  "schema": "reservoir-postcapture-frozen-export-verification-v1",
+  "scope": "Offline immutable export replay. Separate post-capture CLI process; no Tauri UI, live session store, provider or sampler interaction. Exact frozen shipping bytes copied before invocation.",
+  "startedAtUtc": "2026-10-13T18:43:52.867437+00:00",
+  "endedAtUtc": "2026-10-13T18:43:57.496229+00:00",
+  "wallNanoseconds": 4628683125,
+  "wallSeconds": 4.628683125,
+  "command": [
+    "/usr/bin/time",
+    "-l",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-reliability/export-verification-01/reservoir-scope-desktop-frozen",
+    "--verify-sustained",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-reliability/exports-multi-hour/sustained-1791908510756-1-1-8283"
+  ],
+  "exitCode": 0,
+  "peakRssBytes": 13778944,
+  "peakRssSource": "macOS /usr/bin/time -l maximum resident set size; this CLI process, not the running GUI",
+  "shippingExecutable": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+    "sha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d"
+  },
+  "pinnedExecutable": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-reliability/export-verification-01/reservoir-scope-desktop-frozen",
+    "sha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d"
+  },
+  "stdout": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0/export-frozen-cli-01-stdout.json",
+    "sha256": "49c868fe7b29632ee8b22e0824ad800bf6187883f5e70158d341b538dde718d7"
+  },
+  "stderrAndTime": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0/export-frozen-cli-01-stderr-time.txt",
+    "sha256": "47923bc42afe6f4e21bdf8c4d0fe32b37e53820888291ff4082f0c97b0a66ca1"
+  },
+  "modelsContacted": false,
+  "result": {
+    "modelsContacted": false,
+    "report": {
+      "checkpointSha256": "0466901e060547512ff5315d3646168cdd87e013fcc1bb200234be8840e19341",
+      "diagnostics": [],
+      "format": "reservoir-sustained-bundle-v1",
+      "journalCount": 236,
+      "manifestSha256": "8c9579321471d37b7fb97c9a6974bc949bd51b2a1a00be7210fa73c8ef2273fa",
+      "segmentCount": 1180,
+      "sessionId": "sustained-1791908510756-1",
+      "sizeBytes": 106035294,
+      "step": 7100,
+      "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+    },
+    "status": "passed"
+  }
+}

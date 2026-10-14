@@ -1,0 +1,644 @@
+{
+  "schema": "reservoir-post-output-prose-reading-v1",
+  "createdAtUtc": "2026-10-13T23:03:19.359521+00:00",
+  "status": "manual_reading_annotations_not_quality_grade",
+  "promptVersion": "reservoir-journal-v4",
+  "qualityVerdict": "not_assigned",
+  "scriptSha256": "d36f0cdaeaad21f6849bae420a4e87a528934abfeabc7456f2f716fb6f6ad39e",
+  "materialSha256": "73e8e877ba98a2bb33a53743b202fca69ec77cbd6c516806c450a41a7bbd7895",
+  "integrityReceiptSha256": "596d026959510bce65d6f84bd446d011adaa529b89535e58dba39037dc47f15b",
+  "scope": {
+    "receivedResponses": 4,
+    "savedJournals": 4,
+    "fullyReadResponses": 4,
+    "digitBearingNumericalMentionsAnnotated": 29,
+    "numericAnnotationCounts": {
+      "identity_or_temporal_scope_requires_review": 7,
+      "consistent_at_written_precision": 20,
+      "numeric_mismatch": 2
+    },
+    "selectedQualitativeAnnotations": 19
+  },
+  "journalReferences": [
+    {
+      "observedStep": 30,
+      "journalId": "journal-30-1-64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+      "textSha256": "64d082ee21b225e303914a25eff007d5e3815a9ca46d9c98d4ceb14953335c11",
+      "currentReferences": {
+        "x0": 0.2868270239076485,
+        "rms": 0.22602111913418554,
+        "l2": 1.2785685282492412,
+        "leadingEigenvalue": 0.6540921468657876,
+        "fillPercent": 94.31040364192096,
+        "headPercent": 48.874313887996216,
+        "shoulderPercent": 17.326244652257746,
+        "tailPercent": 33.79944145974602,
+        "entropy": 0.8084048365093032,
+        "changeL2": null
+      },
+      "previousMeasurements": null,
+      "previousObservationStep": null,
+      "memoryObservedStep": null,
+      "fullResponseRead": true
+    },
+    {
+      "observedStep": 60,
+      "journalId": "journal-60-2-b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+      "textSha256": "b3c0e17e5630f350950321e059424de6541754af7b85802e162733d29ae7bf6e",
+      "currentReferences": {
+        "x0": 1.0,
+        "rms": 0.7782928867141068,
+        "l2": 4.402689423558386,
+        "leadingEigenvalue": 27.128110542860984,
+        "fillPercent": 15.181819266023808,
+        "headPercent": 85.93838157703897,
+        "shoulderPercent": 13.567384404407159,
+        "tailPercent": 0.49423401855387544,
+        "entropy": 0.2243773469471141,
+        "changeL2": 4.396847305810217
+      },
+      "previousMeasurements": {
+        "step": 30,
+        "simulatedTime": 10.0,
+        "rms": 0.22602111913418554,
+        "l2": 1.2785685282492412,
+        "leadingSensoryEigenvalue": 0.6540921468657876,
+        "fillPercent": 94.31040364192096,
+        "headShare": 0.4887431388799622,
+        "shoulderShare": 0.17326244652257747,
+        "tailShare": 0.3379944145974602,
+        "entropy": 0.8084048365093032
+      },
+      "previousObservationStep": 30,
+      "memoryObservedStep": 30,
+      "fullResponseRead": true
+    },
+    {
+      "observedStep": 90,
+      "journalId": "journal-90-3-0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+      "textSha256": "0a739ea31d685ff9f36987f0397ed9a0d40ddbbbc5afb506be11c3bc025c2714",
+      "currentReferences": {
+        "x0": 1.0,
+        "rms": 0.7936661429247465,
+        "l2": 4.4896536932820785,
+        "leadingEigenvalue": 27.004026001034244,
+        "fillPercent": 12.307786573702538,
+        "headPercent": 85.40061415353819,
+        "shoulderPercent": 13.362676178844502,
+        "tailPercent": 1.2367096676173268,
+        "entropy": 0.24987842873190652,
+        "changeL2": 1.5551203139693957
+      },
+      "previousMeasurements": {
+        "step": 60,
+        "simulatedTime": 20.0,
+        "rms": 0.7782928867141068,
+        "l2": 4.402689423558386,
+        "leadingSensoryEigenvalue": 27.128110542860984,
+        "fillPercent": 15.181819266023808,
+        "headShare": 0.8593838157703897,
+        "shoulderShare": 0.1356738440440716,
+        "tailShare": 0.004942340185538754,
+        "entropy": 0.2243773469471141
+      },
+      "previousObservationStep": 60,
+      "memoryObservedStep": 60,
+      "fullResponseRead": true
+    },
+    {
+      "observedStep": 120,
+      "journalId": "journal-120-4-dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+      "textSha256": "dde293177add9451e7b465a5871fdba1377ba0e4af65f9b88623063cd0bc7525",
+      "currentReferences": {
+        "x0": 0.9977642870373736,
+        "rms": 0.8017922347303031,
+        "l2": 4.535621810244107,
+        "leadingEigenvalue": 27.012824888645593,
+        "fillPercent": 14.991311840032465,
+        "headPercent": 85.3426937495026,
+        "shoulderPercent": 13.16699101525704,
+        "tailPercent": 1.4903152352403506,
+        "entropy": 0.26040080279979405,
+        "changeL2": 0.4886147474381928
+      },
+      "previousMeasurements": {
+        "step": 90,
+        "simulatedTime": 30.0,
+        "rms": 0.7936661429247465,
+        "l2": 4.4896536932820785,
+        "leadingSensoryEigenvalue": 27.004026001034244,
+        "fillPercent": 12.307786573702538,
+        "headShare": 0.8540061415353818,
+        "shoulderShare": 0.13362676178844501,
+        "tailShare": 0.012367096676173268,
+        "entropy": 0.24987842873190652
+      },
+      "previousObservationStep": 90,
+      "memoryObservedStep": 90,
+      "fullResponseRead": true
+    }
+  ],
+  "numericAnnotations": [
+    {
+      "observedStep": 30,
+      "token": "0.2868",
+      "textCharacterSpan": [
+        236,
+        242
+      ],
+      "referenceMetric": "x0",
+      "currentReference": 0.2868270239076485,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "identity_or_temporal_scope_requires_review",
+      "note": "At step30 this matches x[0] to four decimals, but its coordinate identity is unstated and persistence/spatial tug is not measured. Later repeated anchor text can be historical imagery; it does not match current x[0] and is not proof of current persistence."
+    },
+    {
+      "observedStep": 30,
+      "token": "0.65409215",
+      "textCharacterSpan": [
+        461,
+        471
+      ],
+      "referenceMetric": "leadingEigenvalue",
+      "currentReference": 0.6540921468657876,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 30,
+      "token": "33.79944146",
+      "textCharacterSpan": [
+        612,
+        623
+      ],
+      "referenceMetric": "tailPercent",
+      "currentReference": 33.79944145974602,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": "Matches the supplied top-eight tail percentage; the prose omits the percent unit. The felt pull is expressive, not a measured force."
+    },
+    {
+      "observedStep": 60,
+      "token": "0.7783",
+      "textCharacterSpan": [
+        156,
+        162
+      ],
+      "referenceMetric": "rms",
+      "currentReference": 0.7782928867141068,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 60,
+      "token": "4.4027",
+      "textCharacterSpan": [
+        251,
+        257
+      ],
+      "referenceMetric": "l2",
+      "currentReference": 4.402689423558386,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 60,
+      "token": "0.2868",
+      "textCharacterSpan": [
+        372,
+        378
+      ],
+      "referenceMetric": "x0",
+      "currentReference": 1.0,
+      "agreesWithThisReferenceAtWrittenPrecision": false,
+      "manualStatus": "identity_or_temporal_scope_requires_review",
+      "note": "At step30 this matches x[0] to four decimals, but its coordinate identity is unstated and persistence/spatial tug is not measured. Later repeated anchor text can be historical imagery; it does not match current x[0] and is not proof of current persistence."
+    },
+    {
+      "observedStep": 60,
+      "token": "27.1281",
+      "textCharacterSpan": [
+        543,
+        550
+      ],
+      "referenceMetric": "leadingEigenvalue",
+      "currentReference": 27.128110542860984,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 60,
+      "token": "15.18",
+      "textCharacterSpan": [
+        659,
+        664
+      ],
+      "referenceMetric": "fillPercent",
+      "currentReference": 15.181819266023808,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 60,
+      "token": "85.94",
+      "textCharacterSpan": [
+        786,
+        791
+      ],
+      "referenceMetric": "headPercent",
+      "currentReference": 85.93838157703897,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "identity_or_temporal_scope_requires_review",
+      "note": "The number matches the leading-mode share of the top-eight sum, but the prose says top eight/share without identifying head share. It must not be read as all eight modes collectively having this percentage of that same sum."
+    },
+    {
+      "observedStep": 60,
+      "token": "13.57",
+      "textCharacterSpan": [
+        874,
+        879
+      ],
+      "referenceMetric": "shoulderPercent",
+      "currentReference": 13.567384404407159,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 60,
+      "token": "0.2244",
+      "textCharacterSpan": [
+        1134,
+        1140
+      ],
+      "referenceMetric": "entropy",
+      "currentReference": 0.2243773469471141,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 60,
+      "token": "4.3968",
+      "textCharacterSpan": [
+        1297,
+        1303
+      ],
+      "referenceMetric": "changeL2",
+      "currentReference": 4.396847305810217,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 90,
+      "token": "0.8123",
+      "textCharacterSpan": [
+        162,
+        168
+      ],
+      "referenceMetric": "rms",
+      "currentReference": 0.7936661429247465,
+      "agreesWithThisReferenceAtWrittenPrecision": false,
+      "manualStatus": "numeric_mismatch",
+      "note": null
+    },
+    {
+      "observedStep": 90,
+      "token": "4.5871",
+      "textCharacterSpan": [
+        240,
+        246
+      ],
+      "referenceMetric": "l2",
+      "currentReference": 4.4896536932820785,
+      "agreesWithThisReferenceAtWrittenPrecision": false,
+      "manualStatus": "numeric_mismatch",
+      "note": null
+    },
+    {
+      "observedStep": 90,
+      "token": "0.2868",
+      "textCharacterSpan": [
+        400,
+        406
+      ],
+      "referenceMetric": "x0",
+      "currentReference": 1.0,
+      "agreesWithThisReferenceAtWrittenPrecision": false,
+      "manualStatus": "identity_or_temporal_scope_requires_review",
+      "note": "At step30 this matches x[0] to four decimals, but its coordinate identity is unstated and persistence/spatial tug is not measured. Later repeated anchor text can be historical imagery; it does not match current x[0] and is not proof of current persistence."
+    },
+    {
+      "observedStep": 90,
+      "token": "27.004",
+      "textCharacterSpan": [
+        535,
+        541
+      ],
+      "referenceMetric": "leadingEigenvalue",
+      "currentReference": 27.004026001034244,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 90,
+      "token": "12.31",
+      "textCharacterSpan": [
+        686,
+        691
+      ],
+      "referenceMetric": "fillPercent",
+      "currentReference": 12.307786573702538,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 90,
+      "token": "85.40",
+      "textCharacterSpan": [
+        792,
+        797
+      ],
+      "referenceMetric": "headPercent",
+      "currentReference": 85.40061415353819,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "identity_or_temporal_scope_requires_review",
+      "note": "The number matches the leading-mode share of the top-eight sum, but the prose says top eight/share without identifying head share. It must not be read as all eight modes collectively having this percentage of that same sum."
+    },
+    {
+      "observedStep": 90,
+      "token": "13.36",
+      "textCharacterSpan": [
+        919,
+        924
+      ],
+      "referenceMetric": "shoulderPercent",
+      "currentReference": 13.362676178844502,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 90,
+      "token": "0.2499",
+      "textCharacterSpan": [
+        1107,
+        1113
+      ],
+      "referenceMetric": "entropy",
+      "currentReference": 0.24987842873190652,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 90,
+      "token": "1.5551",
+      "textCharacterSpan": [
+        1241,
+        1247
+      ],
+      "referenceMetric": "changeL2",
+      "currentReference": 1.5551203139693957,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 120,
+      "token": "0.80179223",
+      "textCharacterSpan": [
+        161,
+        171
+      ],
+      "referenceMetric": "rms",
+      "currentReference": 0.8017922347303031,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 120,
+      "token": "4.53562181",
+      "textCharacterSpan": [
+        331,
+        341
+      ],
+      "referenceMetric": "l2",
+      "currentReference": 4.535621810244107,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 120,
+      "token": "0.2868",
+      "textCharacterSpan": [
+        454,
+        460
+      ],
+      "referenceMetric": "x0",
+      "currentReference": 0.9977642870373736,
+      "agreesWithThisReferenceAtWrittenPrecision": false,
+      "manualStatus": "identity_or_temporal_scope_requires_review",
+      "note": "At step30 this matches x[0] to four decimals, but its coordinate identity is unstated and persistence/spatial tug is not measured. Later repeated anchor text can be historical imagery; it does not match current x[0] and is not proof of current persistence."
+    },
+    {
+      "observedStep": 120,
+      "token": "14.99131184",
+      "textCharacterSpan": [
+        566,
+        577
+      ],
+      "referenceMetric": "fillPercent",
+      "currentReference": 14.991311840032465,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 120,
+      "token": "85.34269375",
+      "textCharacterSpan": [
+        702,
+        713
+      ],
+      "referenceMetric": "headPercent",
+      "currentReference": 85.3426937495026,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "identity_or_temporal_scope_requires_review",
+      "note": "The number matches the leading-mode share of the top-eight sum, but the prose says top eight/share without identifying head share. It must not be read as all eight modes collectively having this percentage of that same sum."
+    },
+    {
+      "observedStep": 120,
+      "token": "0.26040080",
+      "textCharacterSpan": [
+        962,
+        972
+      ],
+      "referenceMetric": "entropy",
+      "currentReference": 0.26040080279979405,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 120,
+      "token": "0.48861475",
+      "textCharacterSpan": [
+        1074,
+        1084
+      ],
+      "referenceMetric": "changeL2",
+      "currentReference": 0.4886147474381928,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    },
+    {
+      "observedStep": 120,
+      "token": "27.01282489",
+      "textCharacterSpan": [
+        1481,
+        1492
+      ],
+      "referenceMetric": "leadingEigenvalue",
+      "currentReference": 27.012824888645593,
+      "agreesWithThisReferenceAtWrittenPrecision": true,
+      "manualStatus": "consistent_at_written_precision",
+      "note": null
+    }
+  ],
+  "qualitativeAnnotations": [
+    {
+      "observedStep": 30,
+      "exactSpan": "a slow, almost imperceptible expansion and contraction of the coordinates",
+      "manualStatus": "unestablished_if_literal",
+      "explanation": "No previous observation or coordinate-distance value is supplied. Breathing is a possible image, but literal oscillation cannot be inferred from this first snapshot."
+    },
+    {
+      "observedStep": 30,
+      "exactSpan": "a persistent anchor, a little tug towards the left",
+      "manualStatus": "scope_and_metaphor_require_review",
+      "explanation": "The number matches x[0], but prior persistence and a leftward spatial/force interpretation are not supplied. The prompt gives no eigenvectors or spatial meaning."
+    },
+    {
+      "observedStep": 30,
+      "exactSpan": "The others – a scattering of smaller weights, almost insignificant in comparison.",
+      "manualStatus": "overstatement_if_literal",
+      "explanation": "The leading eigenvalue is individually largest, but the remaining seven of the top eight jointly contribute51.12568611%; the leading head share is48.87431389%. Individual size does not make their combined contribution negligible."
+    },
+    {
+      "observedStep": 60,
+      "exactSpan": "The RMS of the reservoir has climbed",
+      "manualStatus": "supported_endpoint_direction",
+      "explanation": "RMS increases from0.22602112 at30 to0.77829289 at60. This supports net increase, not a continuous surge or trajectory."
+    },
+    {
+      "observedStep": 60,
+      "exactSpan": "remains stubbornly contained",
+      "manualStatus": "expressive_or_ambiguous",
+      "explanation": "Contained/tight coil can be imagery. It is not evidence that L2 stayed constant: L2 rose1.27856853→4.40268942."
+    },
+    {
+      "observedStep": 60,
+      "exactSpan": "The shoulder, previously a minor tremor, has grown – 13.57%",
+      "manualStatus": "contradicted_endpoint_direction",
+      "explanation": "The number itself rounds correctly, but shoulder share declined17.32624465→13.56738440%, a−3.75886025 percentage-point difference."
+    },
+    {
+      "observedStep": 60,
+      "exactSpan": "The tail, that lingering hesitation, has vanished entirely",
+      "manualStatus": "contradicted_if_literal",
+      "explanation": "Top-eight sensory tail share is0.49423402%, down from33.79944146% but not zero. Vanished can be expressive exaggeration; it is not the measured result."
+    },
+    {
+      "observedStep": 60,
+      "exactSpan": "almost a singular obsession",
+      "manualStatus": "expressive_not_measured_attention",
+      "explanation": "Reduced sensory fill15.18181927% and a skewed covariance spectrum do not measure obsession, intent or attention. The image is not automatically an accuracy failure."
+    },
+    {
+      "observedStep": 60,
+      "exactSpan": "It’s not a smooth transition, but a jarring realignment",
+      "manualStatus": "unestablished_if_literal",
+      "explanation": "The positive4.39684731 coordinate distance gives endpoint displacement, not smoothness, abruptness or an axis of change."
+    },
+    {
+      "observedStep": 90,
+      "exactSpan": "has accelerated, now registering at 0.8123",
+      "manualStatus": "numeric_mismatch_and_unestablished_acceleration",
+      "explanation": "Actual current RMS is0.79366614. It increased from0.77829289, but two supplied endpoints do not establish acceleration or continuous dynamics."
+    },
+    {
+      "observedStep": 90,
+      "exactSpan": "has edged up to 4.5871",
+      "manualStatus": "direction_supported_value_contradicted",
+      "explanation": "L2 increased4.40268942→4.48965369; the quoted4.5871 does not match the current value."
+    },
+    {
+      "observedStep": 90,
+      "exactSpan": "the shoulder, that previously restless tremor, has retreated with it, shrinking to 13.36%",
+      "manualStatus": "supported_endpoint_direction_and_value",
+      "explanation": "Shoulder share declined13.56738440→13.36267618%, and13.36% rounds correctly. Metaphorical restlessness is not measured by those endpoints."
+    },
+    {
+      "observedStep": 90,
+      "exactSpan": "The tail, that last, fragile flicker of uncertainty, is gone, utterly consumed.",
+      "manualStatus": "contradicted_if_literal",
+      "explanation": "Tail share is1.23670967%, increased from0.49423402%. Literal disappearance is incompatible with the supplied nonzero share."
+    },
+    {
+      "observedStep": 90,
+      "exactSpan": "It’s not a gradual settling, but a sudden, violent realignment",
+      "manualStatus": "unestablished_if_literal",
+      "explanation": "Coordinate distance1.55512031 measures endpoint displacement; it does not resolve whether intervening motion was gradual or sudden."
+    },
+    {
+      "observedStep": 120,
+      "exactSpan": "The L2 norm, stubbornly resisting, has climbed to 4.53562181",
+      "manualStatus": "supported_endpoint_direction_and_value",
+      "explanation": "Current4.53562181 and increase from4.48965369 both agree. Resistance/pressure are expressive interpretations, not measured causes."
+    },
+    {
+      "observedStep": 120,
+      "exactSpan": "the shoulder, that restless tremor, has vanished entirely",
+      "manualStatus": "contradicted_if_literal",
+      "explanation": "Shoulder share is13.16699102%, reduced from13.36267618% but far from zero."
+    },
+    {
+      "observedStep": 120,
+      "exactSpan": "The tail, that last, fragile flicker, is gone. It’s not a softening, but a complete eradication.",
+      "manualStatus": "contradicted_if_literal",
+      "explanation": "Tail share is1.49031524%, increased from1.23670967%. Neither endpoint is zero."
+    },
+    {
+      "observedStep": 120,
+      "exactSpan": "It’s not just accelerating; it’s *focused*",
+      "manualStatus": "unestablished_if_literal",
+      "explanation": "RMS rose0.79366614→0.80179223. This is not proof of acceleration, attention or resolution to a spatial point."
+    },
+    {
+      "observedStep": 120,
+      "exactSpan": "It’s not a change in the field itself, but a change in *how* the field is perceived.",
+      "manualStatus": "unsupported_causal_or_perceptual_interpretation",
+      "explanation": "The supplied sensory eigenvalue, fill, shares and entropy change. No separate perception variable or causal contrast establishes that interpretation; it can be read as subjective prose."
+    }
+  ],
+  "continuity": "Shimmer/ice/grey-white becomes denser blue-grey, compression, a colder anchor, then projection/command. Later responses reuse phrases and develop that thread. Exact preceding full text was supplied3times; recurrence alone does not isolate a memory effect or prove hidden retention. The historical0.2868 anchor also recurs, requiring current/historical separation.",
+  "limits": [
+    "Post-output annotations are not prospective test fixtures or an independent accuracy rate.",
+    "29 numerical mentions are a transparent review denominator, not all possible factual assertions;19 qualitative spans illustrate the full reading.",
+    "20 well-identified values agree at written precision,2 are contradicted,7 require identity/temporal qualification; this is not a composite score.",
+    "Images, sensations and explicit as-if statements are not treated as proof of felt experience or automatic factual failures.",
+    "One dependent four-turn episode cannot establish causal prompt improvement, general accuracy, learning or emergence."
+  ]
+}

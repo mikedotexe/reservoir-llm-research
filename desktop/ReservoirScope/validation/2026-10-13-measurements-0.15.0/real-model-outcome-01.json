@@ -1,0 +1,109 @@
+{
+  "schema": "reservoir-measurement-context-real-model-outcome-v1",
+  "recordedAtUtc": "2026-10-13T22:37:24.198835+00:00",
+  "status": "unexecuted_admission_failed",
+  "scope": "The planned real-model v4 rehearsal only; any separate scripted native qualification is not a substitute or included outcome.",
+  "protocol": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/PROTOCOL.md",
+    "bytes": 7847,
+    "sha256": "b4ad53a052fb3268a5c92019dcfd8b3775cbb80f15943c2be8f9812bd7ee2c1f"
+  },
+  "plan": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/run-plan.json",
+    "bytes": 3041,
+    "sha256": "b9cd0206d80f42a40f91a34b501dc9a8c7fca26b33837e3f4b236465bb11eb7a"
+  },
+  "prospectiveFreeze": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/evaluation-freeze-01.json",
+    "bytes": 9963,
+    "sha256": "84717b16c913a8427da52745e66a4ec0b2518358d961155fac2f1c53bf078bf2"
+  },
+  "hostAdmission": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/host-admission-01.json",
+    "bytes": 1402,
+    "sha256": "95d506c116667a4b0780cb2e731e4078b867498b6d7745b0912d0b3474a61408"
+  },
+  "admission": {
+    "capturedAtUtc": "2026-10-13T22:36:01.425806+00:00",
+    "requiredPressureLevel": 1,
+    "observedPressureLevel": 1,
+    "requiredMinimumFreePercent": 35,
+    "observedFreePercent": 32,
+    "admitted": false,
+    "reason": "Reported free memory32% was below frozen35%; pressure level1 met its separate requirement."
+  },
+  "execution": {
+    "source": "Parent operator reported admission refusal before any service launch, readiness, model-session creation or generation. This evaluator performs no process or service inspection.",
+    "serviceLaunched": false,
+    "readinessRequests": 0,
+    "realModelSessionCreated": false,
+    "realModelSessionId": null,
+    "generationRequests": 0,
+    "receivedResponses": 0,
+    "savedJournals": 0,
+    "appliedJournals": 0,
+    "fullTextMemoryConfirmations": 0,
+    "polling": false,
+    "retries": 0,
+    "skips": 0,
+    "budgetExtensions": 0,
+    "replacementRequests": 0
+  },
+  "plannedOpportunities": [
+    {
+      "ordinal": 1,
+      "plannedObservationStepIfReached": 30,
+      "plannedApplicationStepIfSavedAndReached": 31,
+      "status": "unstarted",
+      "actualAttemptId": null,
+      "actualObservedStep": null,
+      "reason": "Host admission refused before service launch."
+    },
+    {
+      "ordinal": 2,
+      "plannedObservationStepIfReached": 60,
+      "plannedApplicationStepIfSavedAndReached": 61,
+      "status": "unstarted",
+      "actualAttemptId": null,
+      "actualObservedStep": null,
+      "reason": "Host admission refused before service launch."
+    },
+    {
+      "ordinal": 3,
+      "plannedObservationStepIfReached": 90,
+      "plannedApplicationStepIfSavedAndReached": 91,
+      "status": "unstarted",
+      "actualAttemptId": null,
+      "actualObservedStep": null,
+      "reason": "Host admission refused before service launch."
+    },
+    {
+      "ordinal": 4,
+      "plannedObservationStepIfReached": 120,
+      "plannedApplicationStepIfSavedAndReached": 121,
+      "status": "unstarted",
+      "actualAttemptId": null,
+      "actualObservedStep": null,
+      "reason": "Host admission refused before service launch."
+    }
+  ],
+  "unstartedPlannedOpportunities": 4,
+  "qualitySignal": {
+    "newRealModelProseAvailable": false,
+    "manualProseReview": "not_possible_no_new_responses",
+    "newQualityReport": "not_created_no_new_model_material",
+    "scientificOrCreativeVerdict": "not_assigned",
+    "accuracyOrPromptImprovementClaim": false
+  },
+  "knownV3Regression": {
+    "report": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/known-v3-regression-report-01.json",
+      "bytes": 49297,
+      "sha256": "3378fe3ee043860d4ba2f8c04fc9ba14ab1d358f7396341914544b0da674ec3b"
+    },
+    "meaning": "Previously observed0.14v3material reused as a known engineering regression, not unseen data or newv4writing."
+  },
+  "frozenInputsUnchanged": true,
+  "modelsContactedByEvaluator": false,
+  "nextAction": "No automatic retry, polling, extension or replacement. Any later real-model window requires separate authorization/admission; this refusal remains preserved."
+}

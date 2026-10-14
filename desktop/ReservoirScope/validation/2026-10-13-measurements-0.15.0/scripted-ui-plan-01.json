@@ -1,0 +1,33 @@
+{
+  "recordedUtc": "2026-10-13T22:36:51.714723+00:00",
+  "scope": "Separate native offline scripted functional check after the real-model pre-Start admission was refused. This does not replace, continue or score the unexecuted model episode.",
+  "config": {
+    "seed": "20261013",
+    "promptVersion": "reservoir-journal-v4",
+    "outputTokens": 1024,
+    "requestDeadlineSeconds": 180,
+    "turnEvery": 30,
+    "maximumSteps": 121,
+    "maximumTurns": 4,
+    "maximumDurationSeconds": 900,
+    "storageBudgetBytes": 67108864,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true,
+    "language": {
+      "backend": "scripted"
+    }
+  },
+  "checks": [
+    "Default v4 accepted",
+    "First reference has no prior scalar values",
+    "Later reference shows true prior observation values and percentage-point differences",
+    "Older journal remains selected while live state advances",
+    "Native export and pinned whole-chain replay",
+    "Clean relaunch and explicit paused exhausted-budget recovery; no automatic run"
+  ],
+  "modelsContacted": false,
+  "qualityEvaluation": false
+}

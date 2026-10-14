@@ -1,0 +1,27 @@
+{
+  "schema": "reservoir-read-only-source-review-v1",
+  "recordedUtc": "2026-10-13T23:19:17.062396+00:00",
+  "scope": "Independent read-only source review of optional provider input-count evidence. No build/test execution, app/provider/process actions or live-system access performed by this review. Earlier separately logged tests are not attributed to this receipt.",
+  "reviewedSources": {
+    "desktop/ReservoirScope/src-tauri/src/model_transport.rs": "23af2733a02092fd22521b0e8fc10eee2901b83a632adc2d137b7bf4a4112e28",
+    "desktop/ReservoirScope/src-tauri/src/model_transport_tests.rs": "49e9ec1e07c871e1478934d3cc171e7354b40df8d0488240c2bac6ce7b34287a",
+    "desktop/ReservoirScope/src-tauri/src/sustained.rs": "5399ac3d9faf9fcd291dcc6dd176f80c7cd712bc489e6969bfcf621a084223c8",
+    "desktop/ReservoirScope/src-tauri/src/sustained_store.rs": "cc3a18469733b975eb0aafc03d41270619e88f6b64eefbcb7a40a91df09b2ef4",
+    "desktop/ReservoirScope/src-tauri/src/sustained_prompt_evidence_tests.rs": "983b3cacd436ae3689091e342c472fbe60c84023035529ad13fead873a5495ce",
+    "shared/reservoir-scope/provider-prompt-evidence.md": "ae0078cc712105c2a1b67fe4afe7ef2d39c464beba720614f236eaefe89def80"
+  },
+  "findings": [],
+  "conclusions": [
+    "Raw JSON prompt_eval_count is classified without float conversion. Missing/null stays absent; negative/noninteger/wrong-type/out-of-range/duplicate metadata becomes bounded unusable evidence, outside reply completeness/save predicates.",
+    "Existing model identity, response byte cap, deadline, cancellation and no-retry controls remain in the transport path.",
+    "LanguageReceived events and full journal responses retain typed evidence; existing replay and immutable journal comparisons require internal consistency. This is not provider authentication.",
+    "Selected journal, nested checkpoint inspection and received-response summaries project wide provider counts as exact decimal strings; stored original-byte data is not rewritten for IPC.",
+    "Explicit recovery inspection collects newest50 bounded metadata summaries in the existing chain traversal. Stop-reason previews retain a256-character cap with explicit truncation status; full evidence stays in the bundle.",
+    "Shared contract distinguishes consistency checks from numerical behavior and names the actually probed0.15 reader scope. No universal input-coverage or writing-quality claim follows from a reported token count."
+  ],
+  "limitations": [
+    "Review binds only the source hashes listed here; owners may still be finalizing their tests.",
+    "No new actual export or HTTP exchange is qualified by this receipt.",
+    "Source tests were read, not independently rerun in this review."
+  ]
+}

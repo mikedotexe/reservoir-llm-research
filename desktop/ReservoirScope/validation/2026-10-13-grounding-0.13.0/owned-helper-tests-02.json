@@ -1,0 +1,40 @@
+{
+  "scope": "Synthetic files and mocked process operations only. No app activation, model launch, cache copy, endpoint contact, process enumeration or signal.",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "validation/2026-10-13-grounding-0.13.0",
+    "-p",
+    "test_owned_model.py",
+    "-v"
+  ],
+  "startedAtUtc": "2026-10-13T19:54:24.872862+00:00",
+  "finishedAtUtc": "2026-10-13T19:54:25.025904+00:00",
+  "elapsedSeconds": 0.15261829202063382,
+  "exitCode": 0,
+  "log": {
+    "path": "validation/2026-10-13-grounding-0.13.0/owned-helper-tests-02.log",
+    "bytes": 3041,
+    "sha256": "94a6e815efaf5b13a1cb2f0d8cc4ae0aedb04777afe917c6bcbc48253274aa75"
+  },
+  "sources": [
+    {
+      "path": "validation/2026-10-13-grounding-0.13.0/owned_model.py",
+      "bytes": 27753,
+      "sha256": "72f582e6477c3b1063cfda21f1c4da43bd85bb889a59ea9b8c6a2d7d9b0b3905"
+    },
+    {
+      "path": "validation/2026-10-13-grounding-0.13.0/test_owned_model.py",
+      "bytes": 14196,
+      "sha256": "64d83a6f45ba2118fa9a4477f2d2e628ceeda2bdf016a40ff6c6a522c3b04bea"
+    }
+  ],
+  "historicalHelper": {
+    "path": "validation/2026-10-13-reading-0.12.1/owned_model.py",
+    "bytes": 20893,
+    "sha256": "ef02c818d22991cbcfef49c122c732dd5290968cdcb5cbfaf59c54aeff485e51"
+  }
+}

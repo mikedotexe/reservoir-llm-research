@@ -1,0 +1,29 @@
+{
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "-p",
+    "reservoir-scope-desktop",
+    "sustained_prompt_version",
+    "--",
+    "--nocapture"
+  ],
+  "cwd": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope",
+  "environment": {
+    "DEVELOPER_DIR": "/Applications/Xcode.app/Contents/Developer",
+    "SDKROOT": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+  },
+  "startedAtUtc": "2026-10-13T20:01:40.118615+00:00",
+  "finishedAtUtc": "2026-10-13T20:01:54.574162+00:00",
+  "exitCode": 101,
+  "log": "validation/2026-10-13-grounding-0.13.0/desktop-prompt-versions-01.log",
+  "logSha256": "4f654e25dcc30f430325eff022a4fbeed6b1a4a404035f48d4b9140271b7e86a",
+  "sourceSha256": {
+    "src-tauri/src/sustained_tests.rs": "5c2b7bf237bc806af3df71bd268305854328a7f059117e3c1a73f9f94572310b",
+    "src-tauri/src/sustained.rs": "436211ec992b2ce907db8333c6ea13c9c336d4ac8d3b5d818c5a92c56f65c374",
+    "src-tauri/src/sustained_store.rs": "4dcf74443ce77c7e9e94cd2536002cdb3e6f410edec3f2e260794afbb40c37b6",
+    "crates/reservoir-core/src/sustained.rs": "56ace3c535e7a66ee41cb7be8af4eccd9a62645d601c0d1c669e879cb1fd3682"
+  },
+  "scope": "Temporary scripted sessions only; no real app store, UI, service, model, or package build."
+}

@@ -1,0 +1,49 @@
+{
+  "atUtc": "2026-10-13T19:21:13.252886+00:00",
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791919137300-1",
+    "generation": "2",
+    "revision": "18",
+    "config": {
+      "seed": "20261016",
+      "turnEvery": 1,
+      "maximumSteps": 2,
+      "maximumTurns": 2,
+      "maximumDurationSeconds": 61,
+      "storageBudgetBytes": 33554432,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:57314",
+        "model": "reservoir-fixture:reliability-0.12",
+        "contextTokens": 4096
+      }
+    },
+    "phase": "budgetReached",
+    "step": 2,
+    "durableStep": 2,
+    "elapsedMillis": 30215,
+    "journalCount": 1,
+    "segmentCount": 6,
+    "lastSegmentSha256": "4f6d770833a89ab697cc486d94ca3b21a3692f3598c0cf3ac1c39219fd9eda08",
+    "checkpointSha256": "ec682f9ddeae80fafe8e1fba3eb9083d46bb5dfcd84dba4b9fbcc79758c31d9e",
+    "previousCheckpointSha256": "ec682f9ddeae80fafe8e1fba3eb9083d46bb5dfcd84dba4b9fbcc79758c31d9e",
+    "diagnostics": [
+      "The configured service returned HTTP 503. Redirects are not followed."
+    ],
+    "attemptTiming": {
+      "attemptId": 2,
+      "dispatchedAtMs": "1791919161515",
+      "receivedAtMs": "1791919172708",
+      "transportDurationMs": 11193,
+      "publishedAtMs": null
+    }
+  },
+  "ui": "Checkpointandquitthenidlelaunch/wholeinspect/RestorePausedPrepared1->2 withoutcurrent503alert; explicitResumeretainedjournalapplied2",
+  "providerPosts": 248
+}

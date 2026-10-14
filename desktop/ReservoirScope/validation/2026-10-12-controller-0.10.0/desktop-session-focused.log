@@ -1,0 +1,33 @@
+DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk
+
+Command: cargo test --locked -p reservoir-scope-desktop sessions::tests::regulation_
+   Compiling reservoir-scope-desktop v0.10.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.62s
+     Running unittests src/main.rs (target/debug/deps/reservoir_scope_desktop-5eecd54901b550bb)
+
+running 5 tests
+test sessions::tests::regulation_fixed_configuration_rejects_changes_without_replacing_accepted_generation ... ok
+test sessions::tests::regulation_stopped_progress_checkpoint_retry_cannot_restart_the_terminal_engine ... ok
+test sessions::tests::regulation_partial_stop_reset_and_checkpoint_reopen_preserve_metadata_only_limits ... ok
+test sessions::tests::regulation_scheduler_pause_and_replaced_worker_never_advance_new_generation ... ok
+test sessions::tests::regulation_completes_exact_native_record_and_library_recovery_without_future_summary ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 93 filtered out; finished in 59.06s
+
+
+Process exit: 0
+Elapsed seconds: 61.06
+
+Command: cargo test --locked -p reservoir-scope-desktop sessions::tests::request_order_is_only
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s
+     Running unittests src/main.rs (target/debug/deps/reservoir_scope_desktop-5eecd54901b550bb)
+
+running 1 test
+test sessions::tests::request_order_is_only_the_actual_receipt_and_observation_can_reverse_it ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 97 filtered out; finished in 0.85s
+
+
+Process exit: 0
+Elapsed seconds: 1.07

@@ -1,0 +1,8 @@
+{
+  "atUtc": "2026-10-13T23:28:49.508618+00:00",
+  "finding": "First0.16package had hardcoded0.15 header; native launch and navigation only, no readiness/create/start.",
+  "evidence": "ui-build01-stale-label.txt",
+  "originalExecutableSha256": "750b379c9bf00ce1014f2272c51488c88ed03739a383b30dce5c2ebcb0f8bbdd",
+  "action": "Preserve first archive/pin; derive header from package.json; build distinct r2 archive and pin after frontend recheck.",
+  "fixture": "Ownedfixture55860 staysidle underoriginal900secondlifetime, no restart/extension."
+}

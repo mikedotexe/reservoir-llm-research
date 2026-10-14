@@ -1,0 +1,189 @@
+Window: "Reservoir Scope Tauri Preview", App: Reservoir Scope Tauri Preview.
+0 standard window Reservoir Scope Tauri Preview, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Reservoir Scope · Research lab, URL: tauri://localhost
+			3 link Skip to workspace, Value: tauri://localhost#workspace-main
+			4 container
+				5 text Reservoir Scope THE CROSS-PLATFORM LAB 0.17.0  · My reservoir
+			6 container Workspaces
+				7 button Guided tour
+				8 button Experiments
+				9 button Research cases
+				10 button Geometry bookmarks
+				11 button Observatory
+			12 container
+				13 container Experiment views
+					14 button Library
+					15 button Recording reader
+					16 button My reservoir
+					17 button Fresh experiments
+				18 text YOUR OWN RESERVOIR
+				19 heading My reservoir, Value: 1
+					20 text My reservoir
+				21 text Watch a seeded reservoir, read its writing, and inspect how saved text returns as input. The session can continue while this app is open or minimized, within your chosen run and storage bounds.
+				22 container
+					23 checkbox Replace 3D with exact values, Value: 0
+					24 text Replace 3D with exact values
+				25 container Prepare your reservoir
+					26 text Prepare your reservoir
+					27 container
+						28 text Reply source
+						29 pop up button (collapsed) Reply source, Value: My local Ollama model, Secondary Actions: Expand
+					30 container
+						31 text HTTP loopback endpoint
+						32 text field (settable) HTTP loopback endpoint, Value: http://127.0.0.1:60168, Placeholder: http://127.0.0.1:11435
+					33 container
+						34 text Exact model name
+						35 text field (settable) Exact model name, Value: reservoir-fixture:input-evidence-0.16
+					36 text Check contacts only the explicitly entered loopback endpoint. It neither starts a server nor downloads a model. Create saves local configuration only. Start explicitly begins the session and permits bounded generation requests at its writing boundaries.
+					37 button Check local model
+					38 container Selected local model readiness receipt
+						39 text Model identity found at this endpoint
+						40 description list
+							41 text Endpoint
+							42 text http://127.0.0.1:60168
+							43 text Requested model
+							44 text reservoir-fixture:input-evidence-0.16
+							45 text Matched model
+							46 text reservoir-fixture:input-evidence-0.16
+							47 text Retained digest
+							48 text synthetic-no-model-weights
+							49 text Check time
+							50 text 1791941913082 epoch milliseconds
+							51 text Operation
+							52 text model-check-6689-1
+						53 text This is availability and identity evidence at one check, not a memory-capacity or generation-success qualification. It starts no experiment and generates no text.
+					54 text Room for up to 1,024 output tokens per entry, within 3 minutes. These are ceilings, not a requested length. Incomplete replies stay available as retained attempts; they do not enter feedback.
+					55 description list Selected session limits
+						56 text Writing cadence
+						57 text Every 10 steps
+						58 text Requested pace
+						59 text 1 second per step
+						60 text Duration limit
+						61 text 3 minutes
+						62 text Storage budget
+						63 text 32 MiB
+					64 text Up to 51 numerical steps or 5 writing attempts, including retries. The first run or storage limit reached holds execution. Writing and saving hold the numerical clock, so pace is not a promise of wall-clock throughput.
+					65 container (expanded) Secondary Actions: Collapse
+						66 summary Advanced settings, Value: on
+							67 text Advanced settings
+						68 heading Writing limits, Value: 3
+							69 text Writing limits
+						70 container
+							71 text Maximum output tokens per entry
+							72 number field (settable) Maximum output tokens per entry, Value: 1024
+								73 stepper 0
+									74 unknown
+									75 unknown
+						76 container
+							77 text Request deadline · seconds
+							78 number field (settable) Request deadline · seconds, Value: 180
+								79 stepper 0
+									80 unknown
+									81 unknown
+						82 container
+							83 text Context tokens
+							84 number field (settable) Context tokens, Value: 8192
+								85 stepper 0
+									86 unknown
+									87 unknown
+						88 text The context holds the current readings and prior writing as well as the reply. The selected size does not prove the model processed every supplied token. Temperature stays at zero; responses stay within one MiB. No automatic provider retry.
+						89 text These limits are fixed when you create a session. Existing sessions keep their original limits.
+						90 heading Seed and run limits, Value: 3
+							91 text Seed and run limits
+						92 container
+							93 text Seed · unsigned integer
+							94 text field (settable) Seed · unsigned integer, Value: 20261013
+						95 container
+							96 text Write every · numerical steps
+							97 number field (settable) Write every · numerical steps, Value: 010
+								98 stepper 0
+									99 unknown
+									100 unknown
+						101 container
+							102 text Pace · milliseconds per step
+							103 number field (settable) Pace · milliseconds per step, Value: 1000
+								104 stepper 0
+									105 unknown
+									106 unknown
+						107 container
+							108 text Maximum numerical steps
+							109 number field (settable) Maximum numerical steps, Value: 051
+								110 stepper 0
+									111 unknown
+									112 unknown
+						113 container
+							114 text Maximum writing attempts · including retries
+							115 number field (settable) Maximum writing attempts · including retries, Value: 05
+								116 stepper 0
+									117 unknown
+									118 unknown
+						119 container
+							120 text Storage budget · MiB
+							121 number field (settable) Storage budget · MiB, Value: 032
+								122 stepper 0
+									123 unknown
+									124 unknown
+						125 container Duration limit
+							126 text Duration limit
+							127 container
+								128 text Hours
+								129 text field (settable) Hours, Value: 0
+							130 container
+								131 text Minutes
+								132 text field (settable) Minutes, Value: 3
+							133 container
+								134 text Seconds
+								135 text field (settable) Seconds, Value: 0
+							136 text 3 minutes · exactly 180 seconds
+						137 text Some storage is reserved for saving, stopping and closing safely. The session can stop before the selected storage limit is full.
+						138 text Journal prompt: continuing open-ended writing, with a compact optional readout and the complete previous journal near the invitation. Saved sessions keep the prompt they were created with.
+						139 heading Numerical controls and observation policy, Value: 3
+							140 text Numerical controls and observation policy
+						141 container
+							142 text Leak · new-state mix
+							143 number field (settable) Leak · new-state mix, Value: 0.65
+								144 stepper 0
+									145 unknown
+									146 unknown
+						147 container
+							148 text Seeded noise amplitude
+							149 number field (settable) Seeded noise amplitude, Value: 0.02
+								150 stepper 0
+									151 unknown
+									152 unknown
+						153 container
+							154 text Initial sensory retention
+							155 number field (settable) Initial sensory retention, Value: 0.955
+								156 stepper 0
+									157 unknown
+									158 unknown
+						159 container
+							160 text Sensory retention regulation
+							161 pop up button (collapsed) Sensory retention regulation, Value: Regulate separate sensory fill, Secondary Actions: Expand
+						162 text Each opportunity retains the full numerical observation for Evidence. The prompt supplies only current and prior recurrent RMS and separate sensory fill with their differences, plus state-coordinate L2 distance since the previous observation. Camera selection changes neither the observation nor prompt. Full-text memory uses the latest saved and applied journal; reduced feedback is a separate deterministic encoding, not model training.
+					163 text The journal invitation leaves the topic and form open. Saved writing returns as reservoir input and as context for the next entry; you can read along without directing each turn.
+					164 text This app runs while open or minimized, with no background service. Create prepares local state; Start is a separate action.
+				165 button Create my reservoir
+				166 text Create prepares local state only. Start is a separate, explicit action.
+				167 heading Start with your own seed and bounds, Value: 2
+					168 text Start with your own seed and bounds
+				169 text No experiment starts from navigation. This mode keeps its own state, journals and versioned storage; it does not open or modify a Being’s workspace.
+				170 summary Inspect and recover an owned session, Value: off
+					171 text Inspect and recover an owned session
+			172 container
+				173 text Offline evidence · explicit local-model connections macOS · Windows · Linux / target platforms; qualification tracked separately
+		174 scroll bar (settable, float) 0.1556962
+	175 close button
+	176 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	177 minimize button
+	178 text Reservoir Scope Tauri Preview
+179 menu bar
+	180 Reservoir Scope Tauri Preview
+	181 File
+	182 Edit
+	183 View
+	184 Window
+	185 Help
+
+The focused UI element is 2 HTML content Description: Reservoir Scope · Research lab, URL: tauri://localhost

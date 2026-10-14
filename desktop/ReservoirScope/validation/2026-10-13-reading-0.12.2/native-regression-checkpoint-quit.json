@@ -1,0 +1,50 @@
+{
+  "atUtc": "2026-10-13T19:20:00.225279+00:00",
+  "exactAppProcesses": [],
+  "sessionDirectory": "/Users/v/Library/Application Support/research.reservoir.scope.tauri/sustained-v1/sustained-1791919137300-1",
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791919137300-1",
+    "generation": "1",
+    "revision": "14",
+    "config": {
+      "seed": "20261016",
+      "turnEvery": 1,
+      "maximumSteps": 2,
+      "maximumTurns": 2,
+      "maximumDurationSeconds": 61,
+      "storageBudgetBytes": 33554432,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:57314",
+        "model": "reservoir-fixture:reliability-0.12",
+        "contextTokens": 4096
+      }
+    },
+    "phase": "stopped",
+    "step": 1,
+    "durableStep": 1,
+    "elapsedMillis": 29165,
+    "journalCount": 1,
+    "segmentCount": 5,
+    "lastSegmentSha256": "bb9baf159bfcf6d692475245e9e25604bb8fcf7a048e46b54814a3a0c6794b7d",
+    "checkpointSha256": "9f0af468224000e7368a360d8b1446996b9b978f5a70c97b6d6d862f8cc22582",
+    "previousCheckpointSha256": "9f0af468224000e7368a360d8b1446996b9b978f5a70c97b6d6d862f8cc22582",
+    "diagnostics": [
+      "The configured service returned HTTP 503. Redirects are not followed."
+    ],
+    "attemptTiming": {
+      "attemptId": 2,
+      "dispatchedAtMs": "1791919161515",
+      "receivedAtMs": "1791919172708",
+      "transportDurationMs": 11193,
+      "publishedAtMs": null
+    }
+  },
+  "ui": "ActualCheckpointandquitbutton:CloseReviewPausedsavedPrepared1->2,1journal;historical503NOTdisplayedascurrentalert;processabsent"
+}

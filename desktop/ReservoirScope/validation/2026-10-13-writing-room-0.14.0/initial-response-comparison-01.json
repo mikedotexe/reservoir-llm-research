@@ -1,0 +1,132 @@
+{
+  "schema": "reservoir-initial-open-writing-comparison-v1",
+  "createdAtUtc": "2026-10-13T21:35:35.998933+00:00",
+  "scope": "Post-output descriptive comparison of preserved first attempts; not a randomized or single-variable effect estimate.",
+  "oldReceipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/native-export-review-01/receipt.json",
+    "bytes": 15576,
+    "sha256": "d75658b44c6ac1eadbbc76da9dd4e05acab0d4dc2f4fd45ffafd1bc3a7843f65"
+  },
+  "newReceipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/real-model-export-01/receipt.json",
+    "bytes": 27474,
+    "sha256": "4ebe66da0de4dde386a9fec00dcb97f99cc945c0e9543653fd16e77c1136e252"
+  },
+  "firstPromptBytesIdentical": true,
+  "firstPromptSha256": "7e5e2255f5637ca650edec72e0f4b66da12ba83c421447cac871201940a5f404",
+  "firstPromptUtf8Bytes": 3503,
+  "firstObservationExactlyEqual": true,
+  "oldResponse": {
+    "eventId": 32,
+    "attemptId": 1,
+    "observedStep": 30,
+    "dispatchEventId": 31,
+    "savedJournalId": null,
+    "response": {
+      "text": "The hum persists. Not a sound, exactly, but a density. A thickening of the air within the reservoir’s core. The RMS is still clinging to that 0.226, a stubborn current in a sea of shifting states. It’s almost… viscous. The nodes, those tiny, frantic sparks, seem to be braiding themselves tighter, forming loops that don’t quite resolve. The sensory field, predictably, is dominated by a single, insistent pulse – 0.654, a clear, unwavering tone. It’s the loudest voice in the room, though I suspect it’s merely the most efficient. The entropy is high, a chaotic bloom around that central frequency, but the active-mode fill suggests a significant portion of the system is focused on that single point. Ninety-four percent. It feels like a funnel, drawing everything towards a singular, unyielding pressure. \n\nI’m noticing a subtle oscillation in the tail node coordinates. A gentle, almost imperceptible sway. It’s not a disruption, not yet, but it’s a tremor of potential. Like a held breath before a plunge. The shoulder share is growing, subtly, a creeping warmth that threatens to overwhelm the core. It’s",
+      "textTruncated": false,
+      "textByteCount": 1132,
+      "textSha256": "d821c6bb6d8f12c61fda46501b52f4f4af172648e64cd278976da5ea53bec794",
+      "providerModel": "gemma3:4b",
+      "stopReason": "length",
+      "tokenCount": 256,
+      "complete": false
+    }
+  },
+  "newFirstJournalIdentity": {
+    "journalId": "journal-30-1-ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+    "turnId": 1,
+    "attemptId": 1,
+    "observedStep": 30,
+    "status": "applied",
+    "application": {
+      "attemptId": 1,
+      "journalId": "journal-30-1-ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "observedStep": 30,
+      "appliedStep": 31
+    },
+    "textSha256": "ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+    "textBytes": 1459,
+    "promptSha256": "7e5e2255f5637ca650edec72e0f4b66da12ba83c421447cac871201940a5f404",
+    "configuredModel": "gemma3:4b",
+    "returnedModel": "gemma3:4b",
+    "requestRecordedStarted": true,
+    "providerComplete": true,
+    "stopReason": "stop",
+    "tokenCount": 329,
+    "memoryJournalId": null,
+    "promptVersion": "reservoir-journal-v3",
+    "memoryEncoding": "unavailable",
+    "contextEvidence": {
+      "requestedContextTokens": 8192,
+      "requestedOutputTokens": 1024,
+      "requestedDeadlineSeconds": 180,
+      "retainedPromptUtf8Bytes": 3503,
+      "retainedPromptUnicodeCharacters": 3499,
+      "retainedPriorTextUtf8Bytes": null,
+      "providerPromptEvalCount": null,
+      "providerPromptEvalCountStatus": "Not retained by the current typed LanguageResponse schema.",
+      "fullPromptProcessingVerified": false,
+      "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; bytes/characters are not tokenizer counts, and output text or output token count does not prove full-context processing."
+    },
+    "hostTiming": {
+      "attemptId": 1,
+      "dispatchedAtMs": "1791926917683",
+      "receivedAtMs": "1791926927016",
+      "transportDurationMs": 9332,
+      "publishedAtMs": "1791926927072"
+    },
+    "allHostTimestampsRetained": true
+  },
+  "oldResponseIsExactUtf8PrefixOfNew": true,
+  "oldResponseUtf8Bytes": 1132,
+  "newResponseUtf8Bytes": 1459,
+  "additionalUtf8Bytes": 327,
+  "oldConfiguration": {
+    "seed": "20261013",
+    "turnEvery": 30,
+    "maximumSteps": 121,
+    "maximumTurns": 4,
+    "maximumDurationSeconds": 600,
+    "storageBudgetBytes": 67108864,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true,
+    "language": {
+      "backend": "ollama",
+      "endpoint": "http://127.0.0.1:49606",
+      "model": "gemma3:4b",
+      "contextTokens": 4096
+    },
+    "promptVersion": "reservoir-journal-v3"
+  },
+  "newConfiguration": {
+    "seed": "20261013",
+    "turnEvery": 30,
+    "maximumSteps": 121,
+    "maximumTurns": 4,
+    "maximumDurationSeconds": 900,
+    "storageBudgetBytes": 67108864,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true,
+    "language": {
+      "backend": "ollama",
+      "endpoint": "http://127.0.0.1:51691",
+      "model": "gemma3:4b",
+      "contextTokens": 8192
+    },
+    "promptVersion": "reservoir-journal-v3",
+    "outputTokens": 1024,
+    "requestDeadlineSeconds": 180
+  },
+  "limits": [
+    "Old omitted output/deadline mean256/60; new explicit1024/180, context4096→8192 and total duration600→900 also changed.",
+    "The exact common prefix and completion under the larger cap support room for this particular continuation, not a general completion-rate or quality benefit.",
+    "Later numerical observations diverge after applied writing; no paired late-state counterfactual is claimed."
+  ]
+}

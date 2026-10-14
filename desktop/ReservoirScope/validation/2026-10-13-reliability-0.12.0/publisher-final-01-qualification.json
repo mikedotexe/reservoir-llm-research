@@ -1,0 +1,119 @@
+{
+  "scope": "Source-only pending publisher repair; historical packaged 0.12 app is not rebuilt or qualified by these tests.",
+  "startedAtUtc": "2026-10-13T16:31:50.400328+00:00",
+  "environment": {
+    "DEVELOPER_DIR": "/Applications/Xcode.app/Contents/Developer",
+    "SDKROOT": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+  },
+  "cwd": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope",
+  "sourcesBefore": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri/src/sustained.rs",
+      "bytes": 51025,
+      "sha256": "d1a5e8c10880dfd585fd79f33b782956b7d5e9a16a40dec9b812e6af446d7ba5"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri/src/sustained_tests.rs",
+      "bytes": 36413,
+      "sha256": "58a0b12a431a236d4b89c2897d34bfafbddb9205576bae9361ecbfde6ddd1512"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri/Cargo.toml",
+      "bytes": 1018,
+      "sha256": "f5cce9f6bfc2a72e7e78670adc88c4330d4d57f3247e12b3e92a24c0068dc482"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/Cargo.toml",
+      "bytes": 171,
+      "sha256": "877e5cba91e1ecd94a928ebb4b98b8e5b3aa883ff39d8aa6098699527e72d341"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/Cargo.lock",
+      "bytes": 124966,
+      "sha256": "bd72ab23916bf1dc4385c5f817f07938472a58e237323ab5b495c871c9905314"
+    }
+  ],
+  "packageBefore": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+    "bytes": 16747744,
+    "sha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d"
+  },
+  "commands": [
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "reservoir-scope-desktop"
+      ],
+      "startedAtUtc": "2026-10-13T16:31:50.408822+00:00",
+      "finishedAtUtc": "2026-10-13T16:34:28.707476+00:00",
+      "elapsedSeconds": 158.29966604197398,
+      "exitCode": 0,
+      "log": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0/publisher-final-01-desktop-tests.log",
+        "bytes": 16595,
+        "sha256": "57af64ccc601428e76d6b480a2dfcbf92e0d96f71eac4f508ac468591cf4d3ec"
+      }
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "--locked",
+        "-p",
+        "reservoir-scope-desktop",
+        "--all-targets",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "startedAtUtc": "2026-10-13T16:34:28.707719+00:00",
+      "finishedAtUtc": "2026-10-13T16:34:35.547769+00:00",
+      "elapsedSeconds": 6.8401175418403,
+      "exitCode": 0,
+      "log": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0/publisher-final-01-desktop-clippy.log",
+        "bytes": 625,
+        "sha256": "d9ea9d9bec499cdff414fbe113ff1debabea27ac1fc6403fd7c6726c244f0203"
+      }
+    }
+  ],
+  "sourcesAfter": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri/src/sustained.rs",
+      "bytes": 51025,
+      "sha256": "d1a5e8c10880dfd585fd79f33b782956b7d5e9a16a40dec9b812e6af446d7ba5"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri/src/sustained_tests.rs",
+      "bytes": 36413,
+      "sha256": "58a0b12a431a236d4b89c2897d34bfafbddb9205576bae9361ecbfde6ddd1512"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri/Cargo.toml",
+      "bytes": 1018,
+      "sha256": "f5cce9f6bfc2a72e7e78670adc88c4330d4d57f3247e12b3e92a24c0068dc482"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/Cargo.toml",
+      "bytes": 171,
+      "sha256": "877e5cba91e1ecd94a928ebb4b98b8e5b3aa883ff39d8aa6098699527e72d341"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/Cargo.lock",
+      "bytes": 124966,
+      "sha256": "bd72ab23916bf1dc4385c5f817f07938472a58e237323ab5b495c871c9905314"
+    }
+  ],
+  "packageAfter": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+    "bytes": 16747744,
+    "sha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d"
+  },
+  "sourceUnchangedDuringChecks": true,
+  "packageUnchangedDuringChecks": true,
+  "finishedAtUtc": "2026-10-13T16:34:35.556782+00:00",
+  "passed": true
+}

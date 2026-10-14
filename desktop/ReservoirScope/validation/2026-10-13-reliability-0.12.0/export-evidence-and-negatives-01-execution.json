@@ -1,0 +1,33 @@
+{
+  "schema": "reservoir-postcapture-export-checker-execution-v1",
+  "scope": "Offline exact request/evidence joins and negative controls on new scratch copies only. No app/store/provider/sampler actions. Existing checker unchanged.",
+  "startedAtUtc": "2026-10-13T18:44:33.858795+00:00",
+  "endedAtUtc": "2026-10-13T18:45:08.241965+00:00",
+  "wallNanoseconds": 34383190167,
+  "wallSeconds": 34.383190167,
+  "command": [
+    "/usr/bin/time",
+    "-l",
+    "python3",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-sustained-0.12.0/check_sustained_ui_exports.py",
+    "--executable",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-reliability/export-verification-01/reservoir-scope-desktop-frozen",
+    "--requests",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-reliability/provider/requests.jsonl",
+    "--scratch",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-reliability/export-verification-01/negative-controls",
+    "--output",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0/export-evidence-and-negatives-01.json",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-reliability/exports-multi-hour/sustained-1791908510756-1-1-8283"
+  ],
+  "exitCode": 0,
+  "peakRssBytes": 126861312,
+  "peakRssSource": "macOS /usr/bin/time -l for the Python checker invocation, not the running GUI",
+  "checkerSha256Before": "5df124ea9d9443ebb52c7baa921026f9cc31a6265ab9308611645964c0576689",
+  "checkerSha256After": "5df124ea9d9443ebb52c7baa921026f9cc31a6265ab9308611645964c0576689",
+  "stdoutSha256": "0cfc2b4b5c06d66080ecd27f43d90b5d3af0d24d7ed519955617802299864f9e",
+  "stderrAndTimeSha256": "cfd6d1fd215d5c54ca66ad65055517059520ec2758d0c75fdadf003d90962174",
+  "resultPath": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0/export-evidence-and-negatives-01.json",
+  "resultSha256": "aeeaa2f851b1c1c7a0757265222219b4a107b0eadf1ac72b6ce8cad5ffe17cb0",
+  "modelsContacted": false
+}

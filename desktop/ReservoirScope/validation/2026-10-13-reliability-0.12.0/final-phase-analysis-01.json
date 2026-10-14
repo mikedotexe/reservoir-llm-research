@@ -1,0 +1,2583 @@
+{
+  "schema": "reservoir-reliability-report-workflow-v1",
+  "status": "measurement-summary-not-acceptance",
+  "base": {
+    "schema": "reservoir-macos-reliability-v1-analysis",
+    "inputSha256": "cad9864c0f1d6e0ad0b5345ac2c5482bbc2fcfb5e62820ef2e9c3708bb6c1185",
+    "inputBytes": 542233,
+    "measurementOnly": true,
+    "processIdentity": {
+      "pid": 17307,
+      "startSeconds": "1791908342",
+      "startMicroseconds": "773376",
+      "executablePath": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+      "executableSha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d",
+      "executableStat": {
+        "device": 16777234,
+        "inode": 384784783,
+        "bytes": 16747744,
+        "mtimeNs": "1791904890254314334"
+      }
+    },
+    "selection": {
+      "fromElapsedSeconds": 0,
+      "toElapsedSeconds": null,
+      "phase": "Not inferred; bind manually to retained UI phase evidence"
+    },
+    "coverage": {
+      "allSampleCount": 523,
+      "selectedSampleCount": 523,
+      "firstElapsedSeconds": 0.01520725,
+      "lastElapsedSeconds": 7833.511003,
+      "footer": {
+        "type": "footer",
+        "status": "sampler-signal-15",
+        "wallUtc": "2026-10-13T18:39:57.312655+00:00",
+        "monotonicNs": "1113173724517291",
+        "elapsedSeconds": 7836.242203583,
+        "sampleCount": 523,
+        "errors": [],
+        "finalExecutableSha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d"
+      },
+      "gaps": [],
+      "wallClockJumps": [],
+      "parseErrors": [],
+      "issues": [],
+      "sampleErrorCount": 0,
+      "incompleteDiskScans": 0
+    },
+    "operatorPhases": {
+      "sha256": "f649092dbfa011908e2b030f69af87d88628d1e668a5aa4c6aae62fd6bda3104",
+      "intervals": [
+        {
+          "phase": "prepared",
+          "monotonicNs": "1105418744951291",
+          "wallUtc": "2026-10-13T16:30:42.382980+00:00",
+          "note": "Sampler already running; UI prepared0, selected bounded fixture, no generation yet.",
+          "source": "operator-declared, not measured window state",
+          "fromElapsedSeconds": 81.262636458,
+          "toElapsedSeconds": 104.800667542,
+          "sampleCount": 1,
+          "firstSampleElapsedSeconds": 90.061237375,
+          "lastSampleElapsedSeconds": 90.061237375,
+          "metrics": {
+            "rssBytes": {
+              "count": 1,
+              "first": 64159744,
+              "last": 64159744,
+              "minimum": 64159744,
+              "maximum": 64159744,
+              "median": 64159744,
+              "p95NearestRank": 64159744,
+              "leastSquaresChangePerHour": null
+            },
+            "cpuIntervalPercent": null,
+            "fdCount": {
+              "count": 1,
+              "first": 13,
+              "last": 13,
+              "minimum": 13,
+              "maximum": 13,
+              "median": 13,
+              "p95NearestRank": 13,
+              "leastSquaresChangePerHour": null
+            },
+            "threadCount": {
+              "count": 1,
+              "first": 20,
+              "last": 20,
+              "minimum": 20,
+              "maximum": 20,
+              "median": 20,
+              "p95NearestRank": 20,
+              "leastSquaresChangePerHour": null
+            }
+          }
+        },
+        {
+          "phase": "visible",
+          "monotonicNs": "1105442282982375",
+          "wallUtc": "2026-10-13T16:31:05.920848+00:00",
+          "note": "CUA Start succeeded; Running, surface/fill WebGL2 ready with1frame each. Earlier stale CUA binding failed before action; rebound by bundle ID. Observer timestamp conservatively after successful action.",
+          "source": "operator-declared, not measured window state",
+          "fromElapsedSeconds": 104.800667542,
+          "toElapsedSeconds": 597.728396125,
+          "sampleCount": 33,
+          "firstSampleElapsedSeconds": 105.066050458,
+          "lastSampleElapsedSeconds": 585.217810583,
+          "metrics": {
+            "rssBytes": {
+              "count": 33,
+              "first": 68616192,
+              "last": 78495744,
+              "minimum": 68616192,
+              "maximum": 81068032,
+              "median": 75644928,
+              "p95NearestRank": 81035264,
+              "leastSquaresChangePerHour": 48184003.077526554
+            },
+            "cpuIntervalPercent": {
+              "count": 32,
+              "first": 1.1305529318666874,
+              "last": 1.3219677253771278,
+              "minimum": 0.8202641796187549,
+              "maximum": 2.1413356164426163,
+              "median": 1.3199338776450462,
+              "p95NearestRank": 1.7053510676753394,
+              "leastSquaresChangePerHour": 1.6098045897760074
+            },
+            "fdCount": {
+              "count": 33,
+              "first": 13,
+              "last": 13,
+              "minimum": 13,
+              "maximum": 14,
+              "median": 13,
+              "p95NearestRank": 13,
+              "leastSquaresChangePerHour": 0.6415120030788783
+            },
+            "threadCount": {
+              "count": 33,
+              "first": 22,
+              "last": 23,
+              "minimum": 22,
+              "maximum": 26,
+              "median": 23,
+              "p95NearestRank": 26,
+              "leastSquaresChangePerHour": 6.817324111054635e-05
+            }
+          }
+        },
+        {
+          "phase": "minimized",
+          "monotonicNs": "1105935210710958",
+          "wallUtc": "2026-10-13T16:39:18.845510+00:00",
+          "note": "Minimize click completed in a standalone CUA call. Prior combined minimize/Dock observation timed out twice; rebound and explicitly Raised app before this fresh action. Use this later marker as conservative interval start. No further app UI inspection until interval ends. Window visibility is operator-declared, not continuously instrumented. Visible prelude ran about8minutes rather than planned5; graphics were offscreen during journal reading.",
+          "source": "operator-declared, not measured window state",
+          "fromElapsedSeconds": 597.728396125,
+          "toElapsedSeconds": 7808.934780292,
+          "sampleCount": 481,
+          "firstSampleElapsedSeconds": 600.220656333,
+          "lastSampleElapsedSeconds": 7803.49986375,
+          "metrics": {
+            "rssBytes": {
+              "count": 481,
+              "first": 76464128,
+              "last": 45809664,
+              "minimum": 40992768,
+              "maximum": 77103104,
+              "median": 59637760,
+              "p95NearestRank": 76513280,
+              "leastSquaresChangePerHour": -16745792.904062808
+            },
+            "cpuIntervalPercent": {
+              "count": 480,
+              "first": 0.8602640988031851,
+              "last": 1.434293166528102,
+              "minimum": 0.33577168400819835,
+              "maximum": 1.5223044452573635,
+              "median": 0.7564027618707352,
+              "p95NearestRank": 1.392102244178842,
+              "leastSquaresChangePerHour": 0.03374401460622088
+            },
+            "fdCount": {
+              "count": 481,
+              "first": 13,
+              "last": 13,
+              "minimum": 13,
+              "maximum": 17,
+              "median": 13,
+              "p95NearestRank": 13,
+              "leastSquaresChangePerHour": -0.009260156279964706
+            },
+            "threadCount": {
+              "count": 481,
+              "first": 24,
+              "last": 23,
+              "minimum": 22,
+              "maximum": 26,
+              "median": 23,
+              "p95NearestRank": 24,
+              "leastSquaresChangePerHour": -0.15396009143886907
+            }
+          }
+        },
+        {
+          "phase": "restored",
+          "monotonicNs": "1113146417095125",
+          "wallUtc": "2026-10-13T18:39:30.005769+00:00",
+          "note": "Conservative end of untouched minimized interval before any CUA binding; operator-declared window state, no independent visibility sensor. Proceed to observed older-journal and pause checks.",
+          "source": "operator-declared, not measured window state",
+          "fromElapsedSeconds": 7808.934780292,
+          "toElapsedSeconds": 7836.151845958,
+          "sampleCount": 2,
+          "firstSampleElapsedSeconds": 7818.505125,
+          "lastSampleElapsedSeconds": 7833.511003,
+          "metrics": {
+            "rssBytes": {
+              "count": 2,
+              "first": 59719680,
+              "last": 59392000,
+              "minimum": 59392000,
+              "maximum": 59719680,
+              "median": 59555840.0,
+              "p95NearestRank": 59719680,
+              "leastSquaresChangePerHour": -78612394.42303908
+            },
+            "cpuIntervalPercent": {
+              "count": 1,
+              "first": 1.093929098983745,
+              "last": 1.093929098983745,
+              "minimum": 1.093929098983745,
+              "maximum": 1.093929098983745,
+              "median": 1.093929098983745,
+              "p95NearestRank": 1.093929098983745,
+              "leastSquaresChangePerHour": null
+            },
+            "fdCount": {
+              "count": 2,
+              "first": 13,
+              "last": 13,
+              "minimum": 13,
+              "maximum": 13,
+              "median": 13.0,
+              "p95NearestRank": 13,
+              "leastSquaresChangePerHour": 0.0
+            },
+            "threadCount": {
+              "count": 2,
+              "first": 26,
+              "last": 22,
+              "minimum": 22,
+              "maximum": 26,
+              "median": 24.0,
+              "p95NearestRank": 26,
+              "leastSquaresChangePerHour": -959.6239553593638
+            }
+          }
+        },
+        {
+          "phase": "paused",
+          "monotonicNs": "1113173634160791",
+          "wallUtc": "2026-10-13T18:39:57.222628+00:00",
+          "note": "Actual app returned with old step-30 journal and identical text SHA selected; Follow latest off with233new at236 journals. Pause succeeded atlive=durable7100, elapsed7721.3/7800,236 journals,101.12MiB. Surface/fill counters98 on initial return then99 after Pause; exactcoordinates and fill nowstep7100. No precise UI latency or GPU attribution.",
+          "source": "operator-declared, not measured window state",
+          "fromElapsedSeconds": 7836.151845958,
+          "toElapsedSeconds": null,
+          "sampleCount": 0,
+          "firstSampleElapsedSeconds": null,
+          "lastSampleElapsedSeconds": null,
+          "metrics": {
+            "rssBytes": null,
+            "cpuIntervalPercent": null,
+            "fdCount": null,
+            "threadCount": null
+          }
+        }
+      ],
+      "clockRequirement": "Marker monotonic clock must use the same host and boot as sampler"
+    },
+    "metrics": {
+      "rssBytes": {
+        "count": 523,
+        "first": 101810176,
+        "last": 59392000,
+        "minimum": 40992768,
+        "maximum": 101810176,
+        "median": 60407808,
+        "p95NearestRank": 76562432,
+        "leastSquaresChangePerHour": -16558015.621872671
+      },
+      "cpuIntervalPercent": {
+        "count": 522,
+        "first": 0.005312708575099399,
+        "last": 1.093929098983745,
+        "minimum": 0.0022862853444555633,
+        "maximum": 2.1413356164426163,
+        "median": 0.8325044561180186,
+        "p95NearestRank": 1.4230354445503297,
+        "leastSquaresChangePerHour": -0.012485532078549601
+      },
+      "threadCount": {
+        "count": 523,
+        "first": 19,
+        "last": 22,
+        "minimum": 19,
+        "maximum": 26,
+        "median": 23,
+        "p95NearestRank": 24,
+        "leastSquaresChangePerHour": -0.04385405588697563
+      },
+      "fdCount": {
+        "count": 523,
+        "first": 13,
+        "last": 13,
+        "minimum": 13,
+        "maximum": 17,
+        "median": 13,
+        "p95NearestRank": 13,
+        "leastSquaresChangePerHour": -0.003421019801519391
+      },
+      "logicalBytes": {
+        "count": 131,
+        "first": 6181,
+        "last": 105908862,
+        "minimum": 6181,
+        "maximum": 105908862,
+        "median": 52543926,
+        "p95NearestRank": 100568737,
+        "leastSquaresChangePerHour": 49119640.622173496
+      },
+      "allocatedBytes": {
+        "count": 131,
+        "first": 12288,
+        "last": 108072960,
+        "minimum": 12288,
+        "maximum": 108072960,
+        "median": 53628928,
+        "p95NearestRank": 102617088,
+        "leastSquaresChangePerHour": 50097662.35904987
+      },
+      "fileCount": {
+        "count": 131,
+        "first": 2,
+        "last": 1418,
+        "minimum": 2,
+        "maximum": 1418,
+        "median": 704,
+        "p95NearestRank": 1346,
+        "leastSquaresChangePerHour": 655.6607581198199
+      },
+      "volumeAvailableBytes": {
+        "count": 131,
+        "first": 57771565056,
+        "last": 40257208320,
+        "minimum": 36152926208,
+        "maximum": 57771565056,
+        "median": 42194186240,
+        "p95NearestRank": 56616714240,
+        "leastSquaresChangePerHour": -10634704105.229343
+      }
+    },
+    "manifestProgress": {
+      "count": 523,
+      "first": {
+        "sha256": "3df862197fbe6969592037068bd5fef520df7e2a61f6c6356eb23f9025bf05fe",
+        "bytes": 765,
+        "format": "reservoir-sustained-bundle-v1",
+        "sessionId": "sustained-1791908510756-1",
+        "generation": "1",
+        "revision": "1",
+        "phase": "ready",
+        "step": 0,
+        "durableStep": 0,
+        "elapsedMillis": 0,
+        "journalCount": 0,
+        "segmentCount": 0,
+        "lastSegmentSha256": null,
+        "checkpointSha256": "ecf1e92ceba918bc6bf19c0cf64597b8d135eca01beda481d47126a4cb6da84c"
+      },
+      "last": {
+        "sha256": "8c9579321471d37b7fb97c9a6974bc949bd51b2a1a00be7210fa73c8ef2273fa",
+        "bytes": 1034,
+        "format": "reservoir-sustained-bundle-v1",
+        "sessionId": "sustained-1791908510756-1",
+        "generation": "1",
+        "revision": "8283",
+        "phase": "paused",
+        "step": 7100,
+        "durableStep": 7100,
+        "elapsedMillis": 7721255,
+        "journalCount": 236,
+        "segmentCount": 1180,
+        "lastSegmentSha256": "19dd7d858462015ec1365ee12847595ea361fbefdbf5dd1ac6b4ede1100de645",
+        "checkpointSha256": "0466901e060547512ff5315d3646168cdd87e013fcc1bb200234be8840e19341"
+      },
+      "regressions": []
+    },
+    "limitations": [
+      "Only the explicitly selected main PID is measured; WebKit, GPU, provider and other helper processes are excluded.",
+      "No GPU utilization, energy, battery, thermal, total application footprint or UI responsiveness is measured.",
+      "RSS is resident memory, not a leak diagnosis. CPU is interval task CPU time / monotonic elapsed time; 100% means one core.",
+      "Disk scans are metadata-only, bounded and non-atomic while the app writes; allocated blocks may be shared on APFS.",
+      "Manifest fields describe a sampled publication, not independent chain/numerical verification or proof of hardware crash durability.",
+      "The sampler adds measurement overhead; missing metrics and incomplete scans remain explicit."
+    ]
+  },
+  "source": {
+    "wrapperSha256": "8f4dd78ad095aba3f8ba77c716ea83d1b8e6020b8606feb48755636fb35a3d0f",
+    "analyzerSha256": "326fb72a668f1cac1f32585e0b61e791a56a959b1ac0ae32560fcebd0fba5215"
+  },
+  "documentedBackgroundLoadIntervals": [
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/publisher-final-01-qualification.json",
+      "sha256": "2502da6031ca94886dbd8c3c8401ff02a8b795060d1433054735b62332c180d7",
+      "startUtc": "2026-10-13T16:31:50.400328+00:00",
+      "endUtc": "2026-10-13T16:34:35.556782+00:00"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/sampler-analysis-02-qualification.json",
+      "sha256": "668a8c42876ae4996c3968995eb8f4eb5f71c2ac75cbc59ba1603a9010039a41",
+      "startUtc": "2026-10-13T16:44:53.692248+00:00",
+      "endUtc": "2026-10-13T16:44:54.124044+00:00"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/natural-quota-01-command.json",
+      "sha256": "728843a56e83308d1bca064765d04fccf2d54b60db1258e1484ca69e2e2c4306",
+      "startUtc": "2026-10-13T16:46:27.633588+00:00",
+      "endUtc": "2026-10-13T16:49:54.436979+00:00"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/analysis-workflow-01-qualification.json",
+      "sha256": "c5d3abde3fd8c074646b8ee15498e942b4f44d54d385ada32d1a05508903c9ba",
+      "startUtc": "2026-10-13T16:59:55.764599+00:00",
+      "endUtc": "2026-10-13T16:59:55.833623+00:00"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/analysis-workflow-02-qualification.json",
+      "sha256": "49529fa21ab1ab6dd0e06baa79011a9559b5a4e5da14e6131833607e91549875",
+      "startUtc": "2026-10-13T17:01:04.420244+00:00",
+      "endUtc": "2026-10-13T17:01:04.513558+00:00"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/frontend-final-load-02.json",
+      "sha256": "1d3c889f2e4eefa8b06ffa55a8d309b34b9928de5e79d76fd8502321ab01d64e",
+      "startUtc": "2026-10-13T17:02:22.939678+00:00",
+      "endUtc": "2026-10-13T17:02:26.615750+00:00"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/resource-plot-01-qualification.json",
+      "sha256": "74c3d03d9f66826c91f781c3ba2b29746bb841bd12b2d46cc749110372f4764f",
+      "startUtc": "2026-10-13T17:14:24.883040+00:00",
+      "endUtc": "2026-10-13T17:14:25.570754+00:00"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/quota-repair-final-01-qualification.json",
+      "sha256": "17b679920b5a3f511d1cb562868f58a90bee2df986a7e6eeaec0bbe772a3d639",
+      "startUtc": "2026-10-13T17:28:03.323267+00:00",
+      "endUtc": "2026-10-13T17:31:08.303512+00:00"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/frontend-final-load-03.json",
+      "sha256": "fc467927450a3769070bfeb298b25f2c4ecf2cf3f6950615f2fc694dac2e544e",
+      "startUtc": "2026-10-13T17:30:15.073535+00:00",
+      "endUtc": "2026-10-13T17:30:19.620296+00:00"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/quota-repair-final-02-qualification.json",
+      "sha256": "fc5e8c2a4f376028e0f0cf00cfee0ab139e59a7bb6f3d4b0cff83f789f715fa9",
+      "startUtc": "2026-10-13T17:32:34.913899+00:00",
+      "endUtc": "2026-10-13T17:40:11.274699+00:00"
+    },
+    {
+      "path": "validation/2026-10-13-reading-0.12.1/load-intervals-01/journal-focused-01.json",
+      "sha256": "ca31eface3753625a8fa00bc5ad8d39caa6998348293a9a0a98b8bf4a423d093",
+      "startUtc": "2026-10-13T18:10:35.838072Z",
+      "endUtc": "2026-10-13T18:10:36.771293Z"
+    },
+    {
+      "path": "validation/2026-10-13-reading-0.12.1/load-intervals-01/journal-focused-02.json",
+      "sha256": "0918a40eb0874212fc2c08ac06302a2fe88a788a260d9902026dbb93455b7c1e",
+      "startUtc": "2026-10-13T18:11:12.549514Z",
+      "endUtc": "2026-10-13T18:11:13.069353Z"
+    },
+    {
+      "path": "validation/2026-10-13-reading-0.12.1/load-intervals-01/setup-checks-01.json",
+      "sha256": "ed9763273ba13f366fb80b1f946a7b1c1b8ec9aa168bc23bd926d90a6fc0a02a",
+      "startUtc": "2026-10-13T18:12:58.937318Z",
+      "endUtc": "2026-10-13T18:13:02.223816Z"
+    },
+    {
+      "path": "validation/2026-10-13-reading-0.12.1/load-intervals-01/integrated-01.json",
+      "sha256": "ee541d69c6b063649cc81835dc0357aa22695718577fdbbb31c81d55e78a59f1",
+      "startUtc": "2026-10-13T18:14:42.891838Z",
+      "endUtc": "2026-10-13T18:14:46.390795Z"
+    },
+    {
+      "path": "validation/2026-10-13-reading-0.12.1/load-intervals-01/owned-preview.json",
+      "sha256": "c814daaaff0c14c24c4229aa37fe220a995e31c9c8e71070523003fc44b85a4f",
+      "startUtc": "2026-10-13T18:16:59.981049Z",
+      "endUtc": "2026-10-13T18:21:02.432561Z"
+    },
+    {
+      "path": "validation/2026-10-13-reading-0.12.1/load-intervals-01/integrated-02.json",
+      "sha256": "fda8c479442e5cd7b3b8e7c42ee7c8c17cbe86c42e59716bff8dfbb1cca09055",
+      "startUtc": "2026-10-13T18:21:34.819000Z",
+      "endUtc": "2026-10-13T18:21:39.229833Z"
+    },
+    {
+      "path": "validation/2026-10-13-reading-0.12.1/owned-model-helper-01-qualification.json",
+      "sha256": "18b30d3092111213d3e26118de9997de01bb883fa9e071dde4517220a7e2ea37",
+      "startUtc": "2026-10-13T18:37:45.205727+00:00",
+      "endUtc": "2026-10-13T18:37:45.345315+00:00"
+    }
+  ],
+  "windows": [
+    {
+      "id": "operator-0-prepared",
+      "qualificationNote": "Operator-declared phase; last open phase is truncated to the latest sampled instant",
+      "allObservedResources": {
+        "window": {
+          "fromElapsedSeconds": 81.262636458,
+          "toElapsedSeconds": 104.800667542
+        },
+        "sampleCount": 1,
+        "firstSampleElapsedSeconds": 90.061237375,
+        "lastSampleElapsedSeconds": 90.061237375,
+        "metrics": {
+          "rssBytes": {
+            "statistics": {
+              "count": 1,
+              "first": 64159744,
+              "last": 64159744,
+              "minimum": 64159744,
+              "maximum": 64159744,
+              "median": 64159744,
+              "p95NearestRank": 64159744,
+              "leastSquaresChangePerHour": null
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 90.061237375,
+            "lastMeasuredElapsedSeconds": 90.061237375
+          },
+          "cpuIntervalPercent": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null,
+            "durationWeightedMeanPercent": null,
+            "coveredCpuIntervalSeconds": 0.0
+          },
+          "threadCount": {
+            "statistics": {
+              "count": 1,
+              "first": 20,
+              "last": 20,
+              "minimum": 20,
+              "maximum": 20,
+              "median": 20,
+              "p95NearestRank": 20,
+              "leastSquaresChangePerHour": null
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 90.061237375,
+            "lastMeasuredElapsedSeconds": 90.061237375
+          },
+          "fdCount": {
+            "statistics": {
+              "count": 1,
+              "first": 13,
+              "last": 13,
+              "minimum": 13,
+              "maximum": 13,
+              "median": 13,
+              "p95NearestRank": 13,
+              "leastSquaresChangePerHour": null
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 90.061237375,
+            "lastMeasuredElapsedSeconds": 90.061237375
+          },
+          "logicalBytes": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null
+          },
+          "allocatedBytes": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null
+          },
+          "fileCount": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null
+          },
+          "volumeAvailableBytes": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null
+          }
+        },
+        "manifestProgressUnfiltered": {
+          "first": [
+            90.061237375,
+            {
+              "sha256": "3df862197fbe6969592037068bd5fef520df7e2a61f6c6356eb23f9025bf05fe",
+              "bytes": 765,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "1",
+              "phase": "ready",
+              "step": 0,
+              "durableStep": 0,
+              "elapsedMillis": 0,
+              "journalCount": 0,
+              "segmentCount": 0,
+              "lastSegmentSha256": null,
+              "checkpointSha256": "ecf1e92ceba918bc6bf19c0cf64597b8d135eca01beda481d47126a4cb6da84c"
+            }
+          ],
+          "last": [
+            90.061237375,
+            {
+              "sha256": "3df862197fbe6969592037068bd5fef520df7e2a61f6c6356eb23f9025bf05fe",
+              "bytes": 765,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "1",
+              "phase": "ready",
+              "step": 0,
+              "durableStep": 0,
+              "elapsedMillis": 0,
+              "journalCount": 0,
+              "segmentCount": 0,
+              "lastSegmentSha256": null,
+              "checkpointSha256": "ecf1e92ceba918bc6bf19c0cf64597b8d135eca01beda481d47126a4cb6da84c"
+            }
+          ],
+          "phaseSampleCounts": {
+            "ready": 1
+          }
+        },
+        "note": "Only resource summaries exclude documented load; functional gaps, errors and progress remain in the unfiltered base analysis."
+      },
+      "documentedLoadExcludedResources": {
+        "window": {
+          "fromElapsedSeconds": 81.262636458,
+          "toElapsedSeconds": 104.800667542
+        },
+        "sampleCount": 1,
+        "firstSampleElapsedSeconds": 90.061237375,
+        "lastSampleElapsedSeconds": 90.061237375,
+        "metrics": {
+          "rssBytes": {
+            "statistics": {
+              "count": 1,
+              "first": 64159744,
+              "last": 64159744,
+              "minimum": 64159744,
+              "maximum": 64159744,
+              "median": 64159744,
+              "p95NearestRank": 64159744,
+              "leastSquaresChangePerHour": null
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 90.061237375,
+            "lastMeasuredElapsedSeconds": 90.061237375
+          },
+          "cpuIntervalPercent": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null,
+            "durationWeightedMeanPercent": null,
+            "coveredCpuIntervalSeconds": 0.0
+          },
+          "threadCount": {
+            "statistics": {
+              "count": 1,
+              "first": 20,
+              "last": 20,
+              "minimum": 20,
+              "maximum": 20,
+              "median": 20,
+              "p95NearestRank": 20,
+              "leastSquaresChangePerHour": null
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 90.061237375,
+            "lastMeasuredElapsedSeconds": 90.061237375
+          },
+          "fdCount": {
+            "statistics": {
+              "count": 1,
+              "first": 13,
+              "last": 13,
+              "minimum": 13,
+              "maximum": 13,
+              "median": 13,
+              "p95NearestRank": 13,
+              "leastSquaresChangePerHour": null
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 90.061237375,
+            "lastMeasuredElapsedSeconds": 90.061237375
+          },
+          "logicalBytes": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null
+          },
+          "allocatedBytes": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null
+          },
+          "fileCount": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null
+          },
+          "volumeAvailableBytes": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null
+          }
+        },
+        "manifestProgressUnfiltered": {
+          "first": [
+            90.061237375,
+            {
+              "sha256": "3df862197fbe6969592037068bd5fef520df7e2a61f6c6356eb23f9025bf05fe",
+              "bytes": 765,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "1",
+              "phase": "ready",
+              "step": 0,
+              "durableStep": 0,
+              "elapsedMillis": 0,
+              "journalCount": 0,
+              "segmentCount": 0,
+              "lastSegmentSha256": null,
+              "checkpointSha256": "ecf1e92ceba918bc6bf19c0cf64597b8d135eca01beda481d47126a4cb6da84c"
+            }
+          ],
+          "last": [
+            90.061237375,
+            {
+              "sha256": "3df862197fbe6969592037068bd5fef520df7e2a61f6c6356eb23f9025bf05fe",
+              "bytes": 765,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "1",
+              "phase": "ready",
+              "step": 0,
+              "durableStep": 0,
+              "elapsedMillis": 0,
+              "journalCount": 0,
+              "segmentCount": 0,
+              "lastSegmentSha256": null,
+              "checkpointSha256": "ecf1e92ceba918bc6bf19c0cf64597b8d135eca01beda481d47126a4cb6da84c"
+            }
+          ],
+          "phaseSampleCounts": {
+            "ready": 1
+          }
+        },
+        "note": "Only resource summaries exclude documented load; functional gaps, errors and progress remain in the unfiltered base analysis."
+      }
+    },
+    {
+      "id": "operator-1-visible",
+      "qualificationNote": "Operator-declared phase; last open phase is truncated to the latest sampled instant",
+      "allObservedResources": {
+        "window": {
+          "fromElapsedSeconds": 104.800667542,
+          "toElapsedSeconds": 597.728396125
+        },
+        "sampleCount": 33,
+        "firstSampleElapsedSeconds": 105.066050458,
+        "lastSampleElapsedSeconds": 585.217810583,
+        "metrics": {
+          "rssBytes": {
+            "statistics": {
+              "count": 33,
+              "first": 68616192,
+              "last": 78495744,
+              "minimum": 68616192,
+              "maximum": 81068032,
+              "median": 75644928,
+              "p95NearestRank": 81035264,
+              "leastSquaresChangePerHour": 48184003.077526554
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 105.066050458,
+            "lastMeasuredElapsedSeconds": 585.217810583
+          },
+          "cpuIntervalPercent": {
+            "statistics": {
+              "count": 32,
+              "first": 1.1305529318666874,
+              "last": 1.3219677253771278,
+              "minimum": 0.8202641796187549,
+              "maximum": 2.1413356164426163,
+              "median": 1.3199338776450462,
+              "p95NearestRank": 1.7053510676753394,
+              "leastSquaresChangePerHour": 1.6098045897760074
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 120.071296583,
+            "lastMeasuredElapsedSeconds": 585.217810583,
+            "durationWeightedMeanPercent": 1.333734619307202,
+            "coveredCpuIntervalSeconds": 480.15176012499995
+          },
+          "threadCount": {
+            "statistics": {
+              "count": 33,
+              "first": 22,
+              "last": 23,
+              "minimum": 22,
+              "maximum": 26,
+              "median": 23,
+              "p95NearestRank": 26,
+              "leastSquaresChangePerHour": 6.817324111054635e-05
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 105.066050458,
+            "lastMeasuredElapsedSeconds": 585.217810583
+          },
+          "fdCount": {
+            "statistics": {
+              "count": 33,
+              "first": 13,
+              "last": 13,
+              "minimum": 13,
+              "maximum": 14,
+              "median": 13,
+              "p95NearestRank": 13,
+              "leastSquaresChangePerHour": 0.6415120030788783
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 105.066050458,
+            "lastMeasuredElapsedSeconds": 585.217810583
+          },
+          "logicalBytes": {
+            "statistics": {
+              "count": 8,
+              "first": 6245,
+              "last": 6221986,
+              "minimum": 6245,
+              "maximum": 6221986,
+              "median": 3082801.5,
+              "p95NearestRank": 6221986,
+              "leastSquaresChangePerHour": 53471898.019905046
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 120.071296583,
+            "lastMeasuredElapsedSeconds": 540.204845333,
+            "netChange": 6215741,
+            "netChangePerHour": 53260844.478085734
+          },
+          "allocatedBytes": {
+            "statistics": {
+              "count": 8,
+              "first": 12288,
+              "last": 6377472,
+              "minimum": 12288,
+              "maximum": 6377472,
+              "median": 3166208.0,
+              "p95NearestRank": 6377472,
+              "leastSquaresChangePerHour": 54746127.998602964
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 120.071296583,
+            "lastMeasuredElapsedSeconds": 540.204845333,
+            "netChange": 6365184,
+            "netChangePerHour": 54541377.30294742
+          },
+          "fileCount": {
+            "statistics": {
+              "count": 8,
+              "first": 2,
+              "last": 86,
+              "minimum": 2,
+              "maximum": 86,
+              "median": 44.0,
+              "p95NearestRank": 86,
+              "leastSquaresChangePerHour": 719.7714840753997
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 120.071296583,
+            "lastMeasuredElapsedSeconds": 540.204845333,
+            "netChange": 84,
+            "netChangePerHour": 719.7711320595889
+          },
+          "volumeAvailableBytes": {
+            "statistics": {
+              "count": 8,
+              "first": 56742719488,
+              "last": 55466078208,
+              "minimum": 55466078208,
+              "maximum": 56742719488,
+              "median": 56622622720.0,
+              "p95NearestRank": 56742719488,
+              "leastSquaresChangePerHour": -6327802431.750611
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 120.071296583,
+            "lastMeasuredElapsedSeconds": 540.204845333,
+            "netChange": -1276641280,
+            "netChangePerHour": -10939161182.614317
+          }
+        },
+        "manifestProgressUnfiltered": {
+          "first": [
+            105.066050458,
+            {
+              "sha256": "300b349a9d0856e4a63b1767d3a4071bad8fa8f6c540251576006f2cb122a5a0",
+              "bytes": 829,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "2",
+              "phase": "running",
+              "step": 0,
+              "durableStep": 0,
+              "elapsedMillis": 0,
+              "journalCount": 0,
+              "segmentCount": 0,
+              "lastSegmentSha256": null,
+              "checkpointSha256": "ecf1e92ceba918bc6bf19c0cf64597b8d135eca01beda481d47126a4cb6da84c"
+            }
+          ],
+          "last": [
+            585.217810583,
+            {
+              "sha256": "96eff0bb961d243bc33682a609da38d517766800fe0dd3d06459561e162faf6b",
+              "bytes": 1027,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "527",
+              "phase": "running",
+              "step": 451,
+              "durableStep": 451,
+              "elapsedMillis": 462779,
+              "journalCount": 15,
+              "segmentCount": 74,
+              "lastSegmentSha256": "a4ba9b0a14d1e52d33efc93f95fdcb6513eed5649dd93449cb34b2907e6d452a",
+              "checkpointSha256": "81439a2e6764cc7d72e37006953f071b6feb27f49699010b77f8aed4e298dbf4"
+            }
+          ],
+          "phaseSampleCounts": {
+            "running": 32,
+            "awaitingLanguage": 1
+          }
+        },
+        "note": "Only resource summaries exclude documented load; functional gaps, errors and progress remain in the unfiltered base analysis."
+      },
+      "documentedLoadExcludedResources": {
+        "window": {
+          "fromElapsedSeconds": 104.800667542,
+          "toElapsedSeconds": 597.728396125
+        },
+        "sampleCount": 33,
+        "firstSampleElapsedSeconds": 105.066050458,
+        "lastSampleElapsedSeconds": 585.217810583,
+        "metrics": {
+          "rssBytes": {
+            "statistics": {
+              "count": 22,
+              "first": 68616192,
+              "last": 78495744,
+              "minimum": 68616192,
+              "maximum": 81068032,
+              "median": 76881920.0,
+              "p95NearestRank": 81035264,
+              "leastSquaresChangePerHour": 71162708.83553228
+            },
+            "excludedByDocumentedLoadCount": 11,
+            "firstMeasuredElapsedSeconds": 105.066050458,
+            "lastMeasuredElapsedSeconds": 585.217810583
+          },
+          "cpuIntervalPercent": {
+            "statistics": {
+              "count": 20,
+              "first": 1.1305529318666874,
+              "last": 1.3219677253771278,
+              "minimum": 0.90869854814261,
+              "maximum": 2.1413356164426163,
+              "median": 1.3244699784561438,
+              "p95NearestRank": 1.7053510676753394,
+              "leastSquaresChangePerHour": 1.327253162535903
+            },
+            "excludedByDocumentedLoadCount": 12,
+            "firstMeasuredElapsedSeconds": 120.071296583,
+            "lastMeasuredElapsedSeconds": 585.217810583,
+            "durationWeightedMeanPercent": 1.3572955269548717,
+            "coveredCpuIntervalSeconds": 300.07859704199996
+          },
+          "threadCount": {
+            "statistics": {
+              "count": 22,
+              "first": 22,
+              "last": 23,
+              "minimum": 22,
+              "maximum": 26,
+              "median": 23.0,
+              "p95NearestRank": 26,
+              "leastSquaresChangePerHour": 1.0512473296253786
+            },
+            "excludedByDocumentedLoadCount": 11,
+            "firstMeasuredElapsedSeconds": 105.066050458,
+            "lastMeasuredElapsedSeconds": 585.217810583
+          },
+          "fdCount": {
+            "statistics": {
+              "count": 22,
+              "first": 13,
+              "last": 13,
+              "minimum": 13,
+              "maximum": 14,
+              "median": 13.0,
+              "p95NearestRank": 13,
+              "leastSquaresChangePerHour": 0.5255816560347699
+            },
+            "excludedByDocumentedLoadCount": 11,
+            "firstMeasuredElapsedSeconds": 105.066050458,
+            "lastMeasuredElapsedSeconds": 585.217810583
+          },
+          "logicalBytes": {
+            "statistics": {
+              "count": 5,
+              "first": 6245,
+              "last": 6221986,
+              "minimum": 6245,
+              "maximum": 6221986,
+              "median": 4426943,
+              "p95NearestRank": 6221986,
+              "leastSquaresChangePerHour": 53224263.3120324
+            },
+            "excludedByDocumentedLoadCount": 3,
+            "firstMeasuredElapsedSeconds": 120.071296583,
+            "lastMeasuredElapsedSeconds": 540.204845333,
+            "netChange": 6215741,
+            "netChangePerHour": 53260844.478085734
+          },
+          "allocatedBytes": {
+            "statistics": {
+              "count": 5,
+              "first": 12288,
+              "last": 6377472,
+              "minimum": 12288,
+              "maximum": 6377472,
+              "median": 4542464,
+              "p95NearestRank": 6377472,
+              "leastSquaresChangePerHour": 54514102.950094156
+            },
+            "excludedByDocumentedLoadCount": 3,
+            "firstMeasuredElapsedSeconds": 120.071296583,
+            "lastMeasuredElapsedSeconds": 540.204845333,
+            "netChange": 6365184,
+            "netChangePerHour": 54541377.30294742
+          },
+          "fileCount": {
+            "statistics": {
+              "count": 5,
+              "first": 2,
+              "last": 86,
+              "minimum": 2,
+              "maximum": 86,
+              "median": 62,
+              "p95NearestRank": 86,
+              "leastSquaresChangePerHour": 719.7666185437805
+            },
+            "excludedByDocumentedLoadCount": 3,
+            "firstMeasuredElapsedSeconds": 120.071296583,
+            "lastMeasuredElapsedSeconds": 540.204845333,
+            "netChange": 84,
+            "netChangePerHour": 719.7711320595889
+          },
+          "volumeAvailableBytes": {
+            "statistics": {
+              "count": 5,
+              "first": 56742719488,
+              "last": 55466078208,
+              "minimum": 55466078208,
+              "maximum": 56742719488,
+              "median": 56616714240,
+              "p95NearestRank": 56742719488,
+              "leastSquaresChangePerHour": -7219806674.268858
+            },
+            "excludedByDocumentedLoadCount": 3,
+            "firstMeasuredElapsedSeconds": 120.071296583,
+            "lastMeasuredElapsedSeconds": 540.204845333,
+            "netChange": -1276641280,
+            "netChangePerHour": -10939161182.614317
+          }
+        },
+        "manifestProgressUnfiltered": {
+          "first": [
+            105.066050458,
+            {
+              "sha256": "300b349a9d0856e4a63b1767d3a4071bad8fa8f6c540251576006f2cb122a5a0",
+              "bytes": 829,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "2",
+              "phase": "running",
+              "step": 0,
+              "durableStep": 0,
+              "elapsedMillis": 0,
+              "journalCount": 0,
+              "segmentCount": 0,
+              "lastSegmentSha256": null,
+              "checkpointSha256": "ecf1e92ceba918bc6bf19c0cf64597b8d135eca01beda481d47126a4cb6da84c"
+            }
+          ],
+          "last": [
+            585.217810583,
+            {
+              "sha256": "96eff0bb961d243bc33682a609da38d517766800fe0dd3d06459561e162faf6b",
+              "bytes": 1027,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "527",
+              "phase": "running",
+              "step": 451,
+              "durableStep": 451,
+              "elapsedMillis": 462779,
+              "journalCount": 15,
+              "segmentCount": 74,
+              "lastSegmentSha256": "a4ba9b0a14d1e52d33efc93f95fdcb6513eed5649dd93449cb34b2907e6d452a",
+              "checkpointSha256": "81439a2e6764cc7d72e37006953f071b6feb27f49699010b77f8aed4e298dbf4"
+            }
+          ],
+          "phaseSampleCounts": {
+            "running": 32,
+            "awaitingLanguage": 1
+          }
+        },
+        "note": "Only resource summaries exclude documented load; functional gaps, errors and progress remain in the unfiltered base analysis."
+      }
+    },
+    {
+      "id": "operator-2-minimized",
+      "qualificationNote": "Operator-declared phase; last open phase is truncated to the latest sampled instant",
+      "allObservedResources": {
+        "window": {
+          "fromElapsedSeconds": 597.728396125,
+          "toElapsedSeconds": 7808.934780292
+        },
+        "sampleCount": 481,
+        "firstSampleElapsedSeconds": 600.220656333,
+        "lastSampleElapsedSeconds": 7803.49986375,
+        "metrics": {
+          "rssBytes": {
+            "statistics": {
+              "count": 481,
+              "first": 76464128,
+              "last": 45809664,
+              "minimum": 40992768,
+              "maximum": 77103104,
+              "median": 59637760,
+              "p95NearestRank": 76513280,
+              "leastSquaresChangePerHour": -16745792.904062808
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 600.220656333,
+            "lastMeasuredElapsedSeconds": 7803.49986375
+          },
+          "cpuIntervalPercent": {
+            "statistics": {
+              "count": 480,
+              "first": 0.8602640988031851,
+              "last": 1.434293166528102,
+              "minimum": 0.33577168400819835,
+              "maximum": 1.5223044452573635,
+              "median": 0.7564027618707352,
+              "p95NearestRank": 1.392102244178842,
+              "leastSquaresChangePerHour": 0.03374401460622088
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 615.2238155,
+            "lastMeasuredElapsedSeconds": 7803.49986375,
+            "durationWeightedMeanPercent": 0.8886096848931216,
+            "coveredCpuIntervalSeconds": 7203.279207417
+          },
+          "threadCount": {
+            "statistics": {
+              "count": 481,
+              "first": 24,
+              "last": 23,
+              "minimum": 22,
+              "maximum": 26,
+              "median": 23,
+              "p95NearestRank": 24,
+              "leastSquaresChangePerHour": -0.15396009143886907
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 600.220656333,
+            "lastMeasuredElapsedSeconds": 7803.49986375
+          },
+          "fdCount": {
+            "statistics": {
+              "count": 481,
+              "first": 13,
+              "last": 13,
+              "minimum": 13,
+              "maximum": 17,
+              "median": 13,
+              "p95NearestRank": 13,
+              "leastSquaresChangePerHour": -0.009260156279964706
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 600.220656333,
+            "lastMeasuredElapsedSeconds": 7803.49986375
+          },
+          "logicalBytes": {
+            "statistics": {
+              "count": 121,
+              "first": 7119620,
+              "last": 105908862,
+              "minimum": 7119620,
+              "maximum": 105908862,
+              "median": 56151033,
+              "p95NearestRank": 100568737,
+              "leastSquaresChangePerHour": 49020370.885547906
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 600.220656333,
+            "lastMeasuredElapsedSeconds": 7803.49986375,
+            "netChange": 98789242,
+            "netChangePerHour": 49372134.68468734
+          },
+          "allocatedBytes": {
+            "statistics": {
+              "count": 121,
+              "first": 7294976,
+              "last": 108072960,
+              "minimum": 7294976,
+              "maximum": 108072960,
+              "median": 57298944,
+              "p95NearestRank": 102617088,
+              "leastSquaresChangePerHour": 49993843.785334386
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 600.220656333,
+            "lastMeasuredElapsedSeconds": 7803.49986375,
+            "netChange": 100777984,
+            "netChangePerHour": 50366053.00908439
+          },
+          "fileCount": {
+            "statistics": {
+              "count": 121,
+              "first": 98,
+              "last": 1418,
+              "minimum": 98,
+              "maximum": 1418,
+              "median": 752,
+              "p95NearestRank": 1346,
+              "leastSquaresChangePerHour": 654.3449035474549
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 600.220656333,
+            "lastMeasuredElapsedSeconds": 7803.49986375,
+            "netChange": 1320,
+            "netChangePerHour": 659.699542828634
+          },
+          "volumeAvailableBytes": {
+            "statistics": {
+              "count": 121,
+              "first": 53244092416,
+              "last": 40257208320,
+              "minimum": 36152926208,
+              "maximum": 56164114432,
+              "median": 41329557504,
+              "p95NearestRank": 55861227520,
+              "leastSquaresChangePerHour": -10503064431.666883
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 600.220656333,
+            "lastMeasuredElapsedSeconds": 7803.49986375,
+            "netChange": -12986884096,
+            "netChangePerHour": -6490485985.530044
+          }
+        },
+        "manifestProgressUnfiltered": {
+          "first": [
+            600.220656333,
+            {
+              "sha256": "3c2083ffc9051adde002dae8431df04781c720c951efc35d3f4bd8e6476b23d9",
+              "bytes": 1027,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "562",
+              "phase": "running",
+              "step": 481,
+              "durableStep": 481,
+              "elapsedMillis": 493580,
+              "journalCount": 16,
+              "segmentCount": 79,
+              "lastSegmentSha256": "7aa74ae02ef79be07117a722fd1f96423ac776549671a5ff898e3a059c286bd9",
+              "checkpointSha256": "21ad0bc33123437de575bb6701b9f75f8a6159d6bf62327e5bb6267b3e40774e"
+            }
+          ],
+          "last": [
+            7803.49986375,
+            {
+              "sha256": "9045708083bdf92f81517443d738fc2715498150c48722a4c040538c8b46007c",
+              "bytes": 1035,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "8262",
+              "phase": "running",
+              "step": 7081,
+              "durableStep": 7081,
+              "elapsedMillis": 7700824,
+              "journalCount": 236,
+              "segmentCount": 1179,
+              "lastSegmentSha256": "e959437bd5c8278d2f3011b82ccbde95f1348a0bdcc5a5928547108483632036",
+              "checkpointSha256": "a4944ad34f6137e4ebbc93678dd6b1da39eb0ef5ec741487d82aa7c3b107de4d"
+            }
+          ],
+          "phaseSampleCounts": {
+            "running": 475,
+            "awaitingLanguage": 6
+          }
+        },
+        "note": "Only resource summaries exclude documented load; functional gaps, errors and progress remain in the unfiltered base analysis."
+      },
+      "documentedLoadExcludedResources": {
+        "window": {
+          "fromElapsedSeconds": 597.728396125,
+          "toElapsedSeconds": 7808.934780292
+        },
+        "sampleCount": 481,
+        "firstSampleElapsedSeconds": 600.220656333,
+        "lastSampleElapsedSeconds": 7803.49986375,
+        "metrics": {
+          "rssBytes": {
+            "statistics": {
+              "count": 406,
+              "first": 76464128,
+              "last": 45809664,
+              "minimum": 40992768,
+              "maximum": 77103104,
+              "median": 56508416.0,
+              "p95NearestRank": 76546048,
+              "leastSquaresChangePerHour": -16858604.36012884
+            },
+            "excludedByDocumentedLoadCount": 75,
+            "firstMeasuredElapsedSeconds": 600.220656333,
+            "lastMeasuredElapsedSeconds": 7803.49986375
+          },
+          "cpuIntervalPercent": {
+            "statistics": {
+              "count": 390,
+              "first": 0.8602640988031851,
+              "last": 1.434293166528102,
+              "minimum": 0.45003062081196743,
+              "maximum": 1.5223044452573635,
+              "median": 0.7546078167994298,
+              "p95NearestRank": 1.3970324257184237,
+              "leastSquaresChangePerHour": 0.039575054599373126
+            },
+            "excludedByDocumentedLoadCount": 90,
+            "firstMeasuredElapsedSeconds": 615.2238155,
+            "lastMeasuredElapsedSeconds": 7803.49986375,
+            "durationWeightedMeanPercent": 0.8974035624688723,
+            "coveredCpuIntervalSeconds": 5852.521818
+          },
+          "threadCount": {
+            "statistics": {
+              "count": 406,
+              "first": 24,
+              "last": 23,
+              "minimum": 22,
+              "maximum": 26,
+              "median": 23.0,
+              "p95NearestRank": 24,
+              "leastSquaresChangePerHour": -0.14937446933507162
+            },
+            "excludedByDocumentedLoadCount": 75,
+            "firstMeasuredElapsedSeconds": 600.220656333,
+            "lastMeasuredElapsedSeconds": 7803.49986375
+          },
+          "fdCount": {
+            "statistics": {
+              "count": 406,
+              "first": 13,
+              "last": 13,
+              "minimum": 13,
+              "maximum": 17,
+              "median": 13.0,
+              "p95NearestRank": 13,
+              "leastSquaresChangePerHour": -0.010498265439760662
+            },
+            "excludedByDocumentedLoadCount": 75,
+            "firstMeasuredElapsedSeconds": 600.220656333,
+            "lastMeasuredElapsedSeconds": 7803.49986375
+          },
+          "logicalBytes": {
+            "statistics": {
+              "count": 104,
+              "first": 7119620,
+              "last": 105908862,
+              "minimum": 7119620,
+              "maximum": 105908862,
+              "median": 60063932.5,
+              "p95NearestRank": 101458754,
+              "leastSquaresChangePerHour": 49001591.33702707
+            },
+            "excludedByDocumentedLoadCount": 17,
+            "firstMeasuredElapsedSeconds": 600.220656333,
+            "lastMeasuredElapsedSeconds": 7803.49986375,
+            "netChange": 98789242,
+            "netChangePerHour": 49372134.68468734
+          },
+          "allocatedBytes": {
+            "statistics": {
+              "count": 104,
+              "first": 7294976,
+              "last": 108072960,
+              "minimum": 7294976,
+              "maximum": 108072960,
+              "median": 61284352.0,
+              "p95NearestRank": 103526400,
+              "leastSquaresChangePerHour": 49975920.16319346
+            },
+            "excludedByDocumentedLoadCount": 17,
+            "firstMeasuredElapsedSeconds": 600.220656333,
+            "lastMeasuredElapsedSeconds": 7803.49986375,
+            "netChange": 100777984,
+            "netChangePerHour": 50366053.00908439
+          },
+          "fileCount": {
+            "statistics": {
+              "count": 104,
+              "first": 98,
+              "last": 1418,
+              "minimum": 98,
+              "maximum": 1418,
+              "median": 803.5,
+              "p95NearestRank": 1358,
+              "leastSquaresChangePerHour": 654.1572219778523
+            },
+            "excludedByDocumentedLoadCount": 17,
+            "firstMeasuredElapsedSeconds": 600.220656333,
+            "lastMeasuredElapsedSeconds": 7803.49986375,
+            "netChange": 1320,
+            "netChangePerHour": 659.699542828634
+          },
+          "volumeAvailableBytes": {
+            "statistics": {
+              "count": 104,
+              "first": 53244092416,
+              "last": 40257208320,
+              "minimum": 36152926208,
+              "maximum": 56164114432,
+              "median": 40392980480.0,
+              "p95NearestRank": 56060907520,
+              "leastSquaresChangePerHour": -10614313788.091476
+            },
+            "excludedByDocumentedLoadCount": 17,
+            "firstMeasuredElapsedSeconds": 600.220656333,
+            "lastMeasuredElapsedSeconds": 7803.49986375,
+            "netChange": -12986884096,
+            "netChangePerHour": -6490485985.530044
+          }
+        },
+        "manifestProgressUnfiltered": {
+          "first": [
+            600.220656333,
+            {
+              "sha256": "3c2083ffc9051adde002dae8431df04781c720c951efc35d3f4bd8e6476b23d9",
+              "bytes": 1027,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "562",
+              "phase": "running",
+              "step": 481,
+              "durableStep": 481,
+              "elapsedMillis": 493580,
+              "journalCount": 16,
+              "segmentCount": 79,
+              "lastSegmentSha256": "7aa74ae02ef79be07117a722fd1f96423ac776549671a5ff898e3a059c286bd9",
+              "checkpointSha256": "21ad0bc33123437de575bb6701b9f75f8a6159d6bf62327e5bb6267b3e40774e"
+            }
+          ],
+          "last": [
+            7803.49986375,
+            {
+              "sha256": "9045708083bdf92f81517443d738fc2715498150c48722a4c040538c8b46007c",
+              "bytes": 1035,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "8262",
+              "phase": "running",
+              "step": 7081,
+              "durableStep": 7081,
+              "elapsedMillis": 7700824,
+              "journalCount": 236,
+              "segmentCount": 1179,
+              "lastSegmentSha256": "e959437bd5c8278d2f3011b82ccbde95f1348a0bdcc5a5928547108483632036",
+              "checkpointSha256": "a4944ad34f6137e4ebbc93678dd6b1da39eb0ef5ec741487d82aa7c3b107de4d"
+            }
+          ],
+          "phaseSampleCounts": {
+            "running": 475,
+            "awaitingLanguage": 6
+          }
+        },
+        "note": "Only resource summaries exclude documented load; functional gaps, errors and progress remain in the unfiltered base analysis."
+      }
+    },
+    {
+      "id": "operator-3-restored",
+      "qualificationNote": "Operator-declared phase; last open phase is truncated to the latest sampled instant",
+      "allObservedResources": {
+        "window": {
+          "fromElapsedSeconds": 7808.934780292,
+          "toElapsedSeconds": 7833.511003
+        },
+        "sampleCount": 2,
+        "firstSampleElapsedSeconds": 7818.505125,
+        "lastSampleElapsedSeconds": 7833.511003,
+        "metrics": {
+          "rssBytes": {
+            "statistics": {
+              "count": 2,
+              "first": 59719680,
+              "last": 59392000,
+              "minimum": 59392000,
+              "maximum": 59719680,
+              "median": 59555840.0,
+              "p95NearestRank": 59719680,
+              "leastSquaresChangePerHour": -78612394.42303908
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 7818.505125,
+            "lastMeasuredElapsedSeconds": 7833.511003
+          },
+          "cpuIntervalPercent": {
+            "statistics": {
+              "count": 1,
+              "first": 1.093929098983745,
+              "last": 1.093929098983745,
+              "minimum": 1.093929098983745,
+              "maximum": 1.093929098983745,
+              "median": 1.093929098983745,
+              "p95NearestRank": 1.093929098983745,
+              "leastSquaresChangePerHour": null
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 7833.511003,
+            "lastMeasuredElapsedSeconds": 7833.511003,
+            "durationWeightedMeanPercent": 1.0939290989837451,
+            "coveredCpuIntervalSeconds": 15.005877999999939
+          },
+          "threadCount": {
+            "statistics": {
+              "count": 2,
+              "first": 26,
+              "last": 22,
+              "minimum": 22,
+              "maximum": 26,
+              "median": 24.0,
+              "p95NearestRank": 26,
+              "leastSquaresChangePerHour": -959.6239553593638
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 7818.505125,
+            "lastMeasuredElapsedSeconds": 7833.511003
+          },
+          "fdCount": {
+            "statistics": {
+              "count": 2,
+              "first": 13,
+              "last": 13,
+              "minimum": 13,
+              "maximum": 13,
+              "median": 13.0,
+              "p95NearestRank": 13,
+              "leastSquaresChangePerHour": 0.0
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 7818.505125,
+            "lastMeasuredElapsedSeconds": 7833.511003
+          },
+          "logicalBytes": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null
+          },
+          "allocatedBytes": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null
+          },
+          "fileCount": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null
+          },
+          "volumeAvailableBytes": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null
+          }
+        },
+        "manifestProgressUnfiltered": {
+          "first": [
+            7818.505125,
+            {
+              "sha256": "9045708083bdf92f81517443d738fc2715498150c48722a4c040538c8b46007c",
+              "bytes": 1035,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "8262",
+              "phase": "running",
+              "step": 7081,
+              "durableStep": 7081,
+              "elapsedMillis": 7700824,
+              "journalCount": 236,
+              "segmentCount": 1179,
+              "lastSegmentSha256": "e959437bd5c8278d2f3011b82ccbde95f1348a0bdcc5a5928547108483632036",
+              "checkpointSha256": "a4944ad34f6137e4ebbc93678dd6b1da39eb0ef5ec741487d82aa7c3b107de4d"
+            }
+          ],
+          "last": [
+            7833.511003,
+            {
+              "sha256": "8c9579321471d37b7fb97c9a6974bc949bd51b2a1a00be7210fa73c8ef2273fa",
+              "bytes": 1034,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "8283",
+              "phase": "paused",
+              "step": 7100,
+              "durableStep": 7100,
+              "elapsedMillis": 7721255,
+              "journalCount": 236,
+              "segmentCount": 1180,
+              "lastSegmentSha256": "19dd7d858462015ec1365ee12847595ea361fbefdbf5dd1ac6b4ede1100de645",
+              "checkpointSha256": "0466901e060547512ff5315d3646168cdd87e013fcc1bb200234be8840e19341"
+            }
+          ],
+          "phaseSampleCounts": {
+            "running": 1,
+            "paused": 1
+          }
+        },
+        "note": "Only resource summaries exclude documented load; functional gaps, errors and progress remain in the unfiltered base analysis."
+      },
+      "documentedLoadExcludedResources": {
+        "window": {
+          "fromElapsedSeconds": 7808.934780292,
+          "toElapsedSeconds": 7833.511003
+        },
+        "sampleCount": 2,
+        "firstSampleElapsedSeconds": 7818.505125,
+        "lastSampleElapsedSeconds": 7833.511003,
+        "metrics": {
+          "rssBytes": {
+            "statistics": {
+              "count": 2,
+              "first": 59719680,
+              "last": 59392000,
+              "minimum": 59392000,
+              "maximum": 59719680,
+              "median": 59555840.0,
+              "p95NearestRank": 59719680,
+              "leastSquaresChangePerHour": -78612394.42303908
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 7818.505125,
+            "lastMeasuredElapsedSeconds": 7833.511003
+          },
+          "cpuIntervalPercent": {
+            "statistics": {
+              "count": 1,
+              "first": 1.093929098983745,
+              "last": 1.093929098983745,
+              "minimum": 1.093929098983745,
+              "maximum": 1.093929098983745,
+              "median": 1.093929098983745,
+              "p95NearestRank": 1.093929098983745,
+              "leastSquaresChangePerHour": null
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 7833.511003,
+            "lastMeasuredElapsedSeconds": 7833.511003,
+            "durationWeightedMeanPercent": 1.0939290989837451,
+            "coveredCpuIntervalSeconds": 15.005877999999939
+          },
+          "threadCount": {
+            "statistics": {
+              "count": 2,
+              "first": 26,
+              "last": 22,
+              "minimum": 22,
+              "maximum": 26,
+              "median": 24.0,
+              "p95NearestRank": 26,
+              "leastSquaresChangePerHour": -959.6239553593638
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 7818.505125,
+            "lastMeasuredElapsedSeconds": 7833.511003
+          },
+          "fdCount": {
+            "statistics": {
+              "count": 2,
+              "first": 13,
+              "last": 13,
+              "minimum": 13,
+              "maximum": 13,
+              "median": 13.0,
+              "p95NearestRank": 13,
+              "leastSquaresChangePerHour": 0.0
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 7818.505125,
+            "lastMeasuredElapsedSeconds": 7833.511003
+          },
+          "logicalBytes": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null
+          },
+          "allocatedBytes": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null
+          },
+          "fileCount": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null
+          },
+          "volumeAvailableBytes": {
+            "statistics": null,
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": null,
+            "lastMeasuredElapsedSeconds": null
+          }
+        },
+        "manifestProgressUnfiltered": {
+          "first": [
+            7818.505125,
+            {
+              "sha256": "9045708083bdf92f81517443d738fc2715498150c48722a4c040538c8b46007c",
+              "bytes": 1035,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "8262",
+              "phase": "running",
+              "step": 7081,
+              "durableStep": 7081,
+              "elapsedMillis": 7700824,
+              "journalCount": 236,
+              "segmentCount": 1179,
+              "lastSegmentSha256": "e959437bd5c8278d2f3011b82ccbde95f1348a0bdcc5a5928547108483632036",
+              "checkpointSha256": "a4944ad34f6137e4ebbc93678dd6b1da39eb0ef5ec741487d82aa7c3b107de4d"
+            }
+          ],
+          "last": [
+            7833.511003,
+            {
+              "sha256": "8c9579321471d37b7fb97c9a6974bc949bd51b2a1a00be7210fa73c8ef2273fa",
+              "bytes": 1034,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "8283",
+              "phase": "paused",
+              "step": 7100,
+              "durableStep": 7100,
+              "elapsedMillis": 7721255,
+              "journalCount": 236,
+              "segmentCount": 1180,
+              "lastSegmentSha256": "19dd7d858462015ec1365ee12847595ea361fbefdbf5dd1ac6b4ede1100de645",
+              "checkpointSha256": "0466901e060547512ff5315d3646168cdd87e013fcc1bb200234be8840e19341"
+            }
+          ],
+          "phaseSampleCounts": {
+            "running": 1,
+            "paused": 1
+          }
+        },
+        "note": "Only resource summaries exclude documented load; functional gaps, errors and progress remain in the unfiltered base analysis."
+      }
+    },
+    {
+      "id": "prospective-early-minutes10-25",
+      "qualificationNote": "Predeclared relative-to-observed-Start window lies within a declared minimized interval; continuity still requires raw evidence",
+      "allObservedResources": {
+        "window": {
+          "fromElapsedSeconds": 704.800667542,
+          "toElapsedSeconds": 1604.800667542
+        },
+        "sampleCount": 60,
+        "firstSampleElapsedSeconds": 705.239891125,
+        "lastSampleElapsedSeconds": 1590.486936667,
+        "metrics": {
+          "rssBytes": {
+            "statistics": {
+              "count": 60,
+              "first": 76693504,
+              "last": 64815104,
+              "minimum": 63471616,
+              "maximum": 77103104,
+              "median": 68313088.0,
+              "p95NearestRank": 77037568,
+              "leastSquaresChangePerHour": -55211523.55153977
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 705.239891125,
+            "lastMeasuredElapsedSeconds": 1590.486936667
+          },
+          "cpuIntervalPercent": {
+            "statistics": {
+              "count": 59,
+              "first": 0.9452369918047827,
+              "last": 0.6624731620925329,
+              "minimum": 0.5348984779577638,
+              "maximum": 1.2821469130098124,
+              "median": 0.8840271522780051,
+              "p95NearestRank": 1.273439077193766,
+              "leastSquaresChangePerHour": 0.13179087490574276
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 720.244465875,
+            "lastMeasuredElapsedSeconds": 1590.486936667,
+            "durationWeightedMeanPercent": 0.9031297297473649,
+            "coveredCpuIntervalSeconds": 885.247045542
+          },
+          "threadCount": {
+            "statistics": {
+              "count": 60,
+              "first": 22,
+              "last": 22,
+              "minimum": 22,
+              "maximum": 24,
+              "median": 23.0,
+              "p95NearestRank": 24,
+              "leastSquaresChangePerHour": 1.8733027701285256
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 705.239891125,
+            "lastMeasuredElapsedSeconds": 1590.486936667
+          },
+          "fdCount": {
+            "statistics": {
+              "count": 60,
+              "first": 13,
+              "last": 13,
+              "minimum": 13,
+              "maximum": 17,
+              "median": 13.0,
+              "p95NearestRank": 13,
+              "leastSquaresChangePerHour": -0.5866289908644791
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 705.239891125,
+            "lastMeasuredElapsedSeconds": 1590.486936667
+          },
+          "logicalBytes": {
+            "statistics": {
+              "count": 15,
+              "first": 8914706,
+              "last": 20618312,
+              "minimum": 8914706,
+              "maximum": 20618312,
+              "median": 14760197,
+              "p95NearestRank": 20618312,
+              "leastSquaresChangePerHour": 50466198.17289328
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 720.244465875,
+            "lastMeasuredElapsedSeconds": 1560.484224375,
+            "netChange": 11703606,
+            "netChangePerHour": 50143998.98811739
+          },
+          "allocatedBytes": {
+            "statistics": {
+              "count": 15,
+              "first": 9129984,
+              "last": 21057536,
+              "minimum": 9129984,
+              "maximum": 21057536,
+              "median": 15093760,
+              "p95NearestRank": 21057536,
+              "leastSquaresChangePerHour": 51436712.85162376
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 720.244465875,
+            "lastMeasuredElapsedSeconds": 1560.484224375,
+            "netChange": 11927552,
+            "netChangePerHour": 51103493.69405614
+          },
+          "fileCount": {
+            "statistics": {
+              "count": 15,
+              "first": 122,
+              "last": 278,
+              "minimum": 122,
+              "maximum": 278,
+              "median": 200,
+              "p95NearestRank": 278,
+              "leastSquaresChangePerHour": 671.5911553634552
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 720.244465875,
+            "lastMeasuredElapsedSeconds": 1560.484224375,
+            "netChange": 156,
+            "netChangePerHour": 668.380654829487
+          },
+          "volumeAvailableBytes": {
+            "statistics": {
+              "count": 15,
+              "first": 54306664448,
+              "last": 56098607104,
+              "minimum": 54092103680,
+              "maximum": 56164114432,
+              "median": 54306664448,
+              "p95NearestRank": 56164114432,
+              "leastSquaresChangePerHour": 10525642764.53164
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 720.244465875,
+            "lastMeasuredElapsedSeconds": 1560.484224375,
+            "netChange": 1791942656,
+            "netChangePerHour": 7677562857.911347
+          }
+        },
+        "manifestProgressUnfiltered": {
+          "first": [
+            705.239891125,
+            {
+              "sha256": "d4196abc4bdcf76e90a2fb453a89a1d80ba672413ef343561b91d85cc55bdc8a",
+              "bytes": 1027,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "667",
+              "phase": "running",
+              "step": 571,
+              "durableStep": 571,
+              "elapsedMillis": 588064,
+              "journalCount": 19,
+              "segmentCount": 94,
+              "lastSegmentSha256": "f2943d1ebdb264d9c9eed36ad089902b88cf02c445d6fbc8f0380aa8ae161e70",
+              "checkpointSha256": "2acfe37a59055b3936f46c00d0fd705d762b93894ebb68c6c3b9befe88bdf3c7"
+            }
+          ],
+          "last": [
+            1590.486936667,
+            {
+              "sha256": "322800f9c2931f4ca66d43011cb2c8f03f7d926d54cb2d2024e2a216237f3cc3",
+              "bytes": 1032,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "1647",
+              "phase": "running",
+              "step": 1411,
+              "durableStep": 1411,
+              "elapsedMillis": 1479150,
+              "journalCount": 47,
+              "segmentCount": 234,
+              "lastSegmentSha256": "36cd355d1ffa7a1fa802f8ae30b964636e299c0ddf80b96447155170b9f53e77",
+              "checkpointSha256": "a4141e97ee62dd24dc5484203f4b3762d673f6739b0da86bc65ea693caf6b08e"
+            }
+          ],
+          "phaseSampleCounts": {
+            "running": 58,
+            "awaitingLanguage": 2
+          }
+        },
+        "note": "Only resource summaries exclude documented load; functional gaps, errors and progress remain in the unfiltered base analysis."
+      },
+      "documentedLoadExcludedResources": {
+        "window": {
+          "fromElapsedSeconds": 704.800667542,
+          "toElapsedSeconds": 1604.800667542
+        },
+        "sampleCount": 60,
+        "firstSampleElapsedSeconds": 705.239891125,
+        "lastSampleElapsedSeconds": 1590.486936667,
+        "metrics": {
+          "rssBytes": {
+            "statistics": {
+              "count": 46,
+              "first": 76693504,
+              "last": 64815104,
+              "minimum": 64651264,
+              "maximum": 77103104,
+              "median": 68665344.0,
+              "p95NearestRank": 77037568,
+              "leastSquaresChangePerHour": -55348455.29589425
+            },
+            "excludedByDocumentedLoadCount": 14,
+            "firstMeasuredElapsedSeconds": 705.239891125,
+            "lastMeasuredElapsedSeconds": 1590.486936667
+          },
+          "cpuIntervalPercent": {
+            "statistics": {
+              "count": 43,
+              "first": 0.9452369918047827,
+              "last": 0.6624731620925329,
+              "minimum": 0.5845524649883816,
+              "maximum": 1.2821469130098124,
+              "median": 0.8840271522780051,
+              "p95NearestRank": 1.2611386814817869,
+              "leastSquaresChangePerHour": 0.20544315350901077
+            },
+            "excludedByDocumentedLoadCount": 16,
+            "firstMeasuredElapsedSeconds": 720.244465875,
+            "lastMeasuredElapsedSeconds": 1590.486936667,
+            "durationWeightedMeanPercent": 0.9005071728345727,
+            "coveredCpuIntervalSeconds": 645.16532175
+          },
+          "threadCount": {
+            "statistics": {
+              "count": 46,
+              "first": 22,
+              "last": 22,
+              "minimum": 22,
+              "maximum": 24,
+              "median": 23.0,
+              "p95NearestRank": 24,
+              "leastSquaresChangePerHour": 1.9903498393298178
+            },
+            "excludedByDocumentedLoadCount": 14,
+            "firstMeasuredElapsedSeconds": 705.239891125,
+            "lastMeasuredElapsedSeconds": 1590.486936667
+          },
+          "fdCount": {
+            "statistics": {
+              "count": 46,
+              "first": 13,
+              "last": 13,
+              "minimum": 13,
+              "maximum": 17,
+              "median": 13.0,
+              "p95NearestRank": 13,
+              "leastSquaresChangePerHour": -0.6276776516049188
+            },
+            "excludedByDocumentedLoadCount": 14,
+            "firstMeasuredElapsedSeconds": 705.239891125,
+            "lastMeasuredElapsedSeconds": 1590.486936667
+          },
+          "logicalBytes": {
+            "statistics": {
+              "count": 12,
+              "first": 8914706,
+              "last": 20618312,
+              "minimum": 8914706,
+              "maximum": 20618312,
+              "median": 14761967.5,
+              "p95NearestRank": 20618312,
+              "leastSquaresChangePerHour": 50440653.96957001
+            },
+            "excludedByDocumentedLoadCount": 3,
+            "firstMeasuredElapsedSeconds": 720.244465875,
+            "lastMeasuredElapsedSeconds": 1560.484224375,
+            "netChange": 11703606,
+            "netChangePerHour": 50143998.98811739
+          },
+          "allocatedBytes": {
+            "statistics": {
+              "count": 12,
+              "first": 9129984,
+              "last": 21057536,
+              "minimum": 9129984,
+              "maximum": 21057536,
+              "median": 15093760.0,
+              "p95NearestRank": 21057536,
+              "leastSquaresChangePerHour": 51410863.46666987
+            },
+            "excludedByDocumentedLoadCount": 3,
+            "firstMeasuredElapsedSeconds": 720.244465875,
+            "lastMeasuredElapsedSeconds": 1560.484224375,
+            "netChange": 11927552,
+            "netChangePerHour": 51103493.69405614
+          },
+          "fileCount": {
+            "statistics": {
+              "count": 12,
+              "first": 122,
+              "last": 278,
+              "minimum": 122,
+              "maximum": 278,
+              "median": 200.0,
+              "p95NearestRank": 278,
+              "leastSquaresChangePerHour": 671.2448217137576
+            },
+            "excludedByDocumentedLoadCount": 3,
+            "firstMeasuredElapsedSeconds": 720.244465875,
+            "lastMeasuredElapsedSeconds": 1560.484224375,
+            "netChange": 156,
+            "netChangePerHour": 668.380654829487
+          },
+          "volumeAvailableBytes": {
+            "statistics": {
+              "count": 12,
+              "first": 54306664448,
+              "last": 56098607104,
+              "minimum": 54191489024,
+              "maximum": 56164114432,
+              "median": 54688876544.0,
+              "p95NearestRank": 56164114432,
+              "leastSquaresChangePerHour": 10374466970.737804
+            },
+            "excludedByDocumentedLoadCount": 3,
+            "firstMeasuredElapsedSeconds": 720.244465875,
+            "lastMeasuredElapsedSeconds": 1560.484224375,
+            "netChange": 1791942656,
+            "netChangePerHour": 7677562857.911347
+          }
+        },
+        "manifestProgressUnfiltered": {
+          "first": [
+            705.239891125,
+            {
+              "sha256": "d4196abc4bdcf76e90a2fb453a89a1d80ba672413ef343561b91d85cc55bdc8a",
+              "bytes": 1027,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "667",
+              "phase": "running",
+              "step": 571,
+              "durableStep": 571,
+              "elapsedMillis": 588064,
+              "journalCount": 19,
+              "segmentCount": 94,
+              "lastSegmentSha256": "f2943d1ebdb264d9c9eed36ad089902b88cf02c445d6fbc8f0380aa8ae161e70",
+              "checkpointSha256": "2acfe37a59055b3936f46c00d0fd705d762b93894ebb68c6c3b9befe88bdf3c7"
+            }
+          ],
+          "last": [
+            1590.486936667,
+            {
+              "sha256": "322800f9c2931f4ca66d43011cb2c8f03f7d926d54cb2d2024e2a216237f3cc3",
+              "bytes": 1032,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "1647",
+              "phase": "running",
+              "step": 1411,
+              "durableStep": 1411,
+              "elapsedMillis": 1479150,
+              "journalCount": 47,
+              "segmentCount": 234,
+              "lastSegmentSha256": "36cd355d1ffa7a1fa802f8ae30b964636e299c0ddf80b96447155170b9f53e77",
+              "checkpointSha256": "a4141e97ee62dd24dc5484203f4b3762d673f6739b0da86bc65ea693caf6b08e"
+            }
+          ],
+          "phaseSampleCounts": {
+            "running": 58,
+            "awaitingLanguage": 2
+          }
+        },
+        "note": "Only resource summaries exclude documented load; functional gaps, errors and progress remain in the unfiltered base analysis."
+      }
+    },
+    {
+      "id": "prospective-late-minutes110-125",
+      "qualificationNote": "Predeclared relative-to-observed-Start window lies within a declared minimized interval; continuity still requires raw evidence",
+      "allObservedResources": {
+        "window": {
+          "fromElapsedSeconds": 6704.800667542,
+          "toElapsedSeconds": 7604.800667542
+        },
+        "sampleCount": 60,
+        "firstSampleElapsedSeconds": 6708.106232583,
+        "lastSampleElapsedSeconds": 7593.447491583,
+        "metrics": {
+          "rssBytes": {
+            "statistics": {
+              "count": 60,
+              "first": 44367872,
+              "last": 47104000,
+              "minimum": 40992768,
+              "maximum": 47104000,
+              "median": 44662784.0,
+              "p95NearestRank": 44957696,
+              "leastSquaresChangePerHour": -820440.7385943369
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 6708.106232583,
+            "lastMeasuredElapsedSeconds": 7593.447491583
+          },
+          "cpuIntervalPercent": {
+            "statistics": {
+              "count": 59,
+              "first": 0.4936000741596019,
+              "last": 0.7427029368975955,
+              "minimum": 0.4681110718938917,
+              "maximum": 1.5223044452573635,
+              "median": 0.7261652624870965,
+              "p95NearestRank": 1.4528402451699105,
+              "leastSquaresChangePerHour": 1.009966267028169
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 6723.115752208,
+            "lastMeasuredElapsedSeconds": 7593.447491583,
+            "durationWeightedMeanPercent": 0.923445173472932,
+            "coveredCpuIntervalSeconds": 885.3412589999998
+          },
+          "threadCount": {
+            "statistics": {
+              "count": 60,
+              "first": 22,
+              "last": 23,
+              "minimum": 22,
+              "maximum": 24,
+              "median": 23.0,
+              "p95NearestRank": 24,
+              "leastSquaresChangePerHour": -0.38010875257657545
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 6708.106232583,
+            "lastMeasuredElapsedSeconds": 7593.447491583
+          },
+          "fdCount": {
+            "statistics": {
+              "count": 60,
+              "first": 13,
+              "last": 13,
+              "minimum": 13,
+              "maximum": 13,
+              "median": 13.0,
+              "p95NearestRank": 13,
+              "leastSquaresChangePerHour": 0.0
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 6708.106232583,
+            "lastMeasuredElapsedSeconds": 7593.447491583
+          },
+          "logicalBytes": {
+            "statistics": {
+              "count": 15,
+              "first": 90780796,
+              "last": 102350211,
+              "minimum": 90780796,
+              "maximum": 102350211,
+              "median": 96567670,
+              "p95NearestRank": 102350211,
+              "leastSquaresChangePerHour": 48881546.04131815
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 6723.115752208,
+            "lastMeasuredElapsedSeconds": 7563.440580542,
+            "netChange": 11569415,
+            "netChangePerHour": 49564040.708607525
+          },
+          "allocatedBytes": {
+            "statistics": {
+              "count": 15,
+              "first": 92614656,
+              "last": 104435712,
+              "minimum": 92614656,
+              "maximum": 104435712,
+              "median": 98525184,
+              "p95NearestRank": 104435712,
+              "leastSquaresChangePerHour": 49960376.27440301
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 6723.115752208,
+            "lastMeasuredElapsedSeconds": 7563.440580542,
+            "netChange": 11821056,
+            "netChangePerHour": 50642085.25692347
+          },
+          "fileCount": {
+            "statistics": {
+              "count": 15,
+              "first": 1214,
+              "last": 1370,
+              "minimum": 1214,
+              "maximum": 1370,
+              "median": 1292,
+              "p95NearestRank": 1370,
+              "leastSquaresChangePerHour": 659.3166210198877
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 6723.115752208,
+            "lastMeasuredElapsedSeconds": 7563.440580542,
+            "netChange": 156,
+            "netChangePerHour": 668.3129916718152
+          },
+          "volumeAvailableBytes": {
+            "statistics": {
+              "count": 15,
+              "first": 40409759744,
+              "last": 40151490560,
+              "minimum": 40151490560,
+              "maximum": 40409759744,
+              "median": 40284233728,
+              "p95NearestRank": 40409759744,
+              "leastSquaresChangePerHour": -1209529410.1620843
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 6723.115752208,
+            "lastMeasuredElapsedSeconds": 7563.440580542,
+            "netChange": -258269184,
+            "netChangePerHour": -1106440070.6133237
+          }
+        },
+        "manifestProgressUnfiltered": {
+          "first": [
+            6708.106232583,
+            {
+              "sha256": "96876cecbeffe2d7ae610af6e36e22128e10d3dbffb59a8e0ae6e6bf70a41358",
+              "bytes": 1035,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "7072",
+              "phase": "running",
+              "step": 6061,
+              "durableStep": 6061,
+              "elapsedMillis": 6597065,
+              "journalCount": 202,
+              "segmentCount": 1009,
+              "lastSegmentSha256": "7d97c97e5e282e97b4eb58391746680bb81a098418f990af6f1f3eebfe1a0ab1",
+              "checkpointSha256": "4450e83c8281b5b92248e86d7960a713f33c7d135535c5ca604ba67fd261f701"
+            }
+          ],
+          "last": [
+            7593.447491583,
+            {
+              "sha256": "7ade76cdf5dbc45abd5bba22620d71c784d591295c5331d5ae692e591fe1a4f3",
+              "bytes": 1035,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "8017",
+              "phase": "running",
+              "step": 6871,
+              "durableStep": 6871,
+              "elapsedMillis": 7478494,
+              "journalCount": 229,
+              "segmentCount": 1144,
+              "lastSegmentSha256": "27a49764fc431901a82312f3df63b6127e9aa258480b42ebd7bbc4f61d5d45a8",
+              "checkpointSha256": "9e1abfae08f7df92846ad463279d2807a29b61ee80518acc9447ce55887db03b"
+            }
+          ],
+          "phaseSampleCounts": {
+            "running": 60
+          }
+        },
+        "note": "Only resource summaries exclude documented load; functional gaps, errors and progress remain in the unfiltered base analysis."
+      },
+      "documentedLoadExcludedResources": {
+        "window": {
+          "fromElapsedSeconds": 6704.800667542,
+          "toElapsedSeconds": 7604.800667542
+        },
+        "sampleCount": 60,
+        "firstSampleElapsedSeconds": 6708.106232583,
+        "lastSampleElapsedSeconds": 7593.447491583,
+        "metrics": {
+          "rssBytes": {
+            "statistics": {
+              "count": 59,
+              "first": 44367872,
+              "last": 47104000,
+              "minimum": 40992768,
+              "maximum": 47104000,
+              "median": 44662784,
+              "p95NearestRank": 44974080,
+              "leastSquaresChangePerHour": -880474.0346887546
+            },
+            "excludedByDocumentedLoadCount": 1,
+            "firstMeasuredElapsedSeconds": 6708.106232583,
+            "lastMeasuredElapsedSeconds": 7593.447491583
+          },
+          "cpuIntervalPercent": {
+            "statistics": {
+              "count": 57,
+              "first": 0.4936000741596019,
+              "last": 0.7427029368975955,
+              "minimum": 0.4681110718938917,
+              "maximum": 1.5223044452573635,
+              "median": 0.7261652624870965,
+              "p95NearestRank": 1.4528402451699105,
+              "leastSquaresChangePerHour": 1.0820768532639176
+            },
+            "excludedByDocumentedLoadCount": 2,
+            "firstMeasuredElapsedSeconds": 6723.115752208,
+            "lastMeasuredElapsedSeconds": 7593.447491583,
+            "durationWeightedMeanPercent": 0.924842107919173,
+            "coveredCpuIntervalSeconds": 855.3179437079998
+          },
+          "threadCount": {
+            "statistics": {
+              "count": 59,
+              "first": 22,
+              "last": 23,
+              "minimum": 22,
+              "maximum": 24,
+              "median": 23,
+              "p95NearestRank": 24,
+              "leastSquaresChangePerHour": -0.3386542826555179
+            },
+            "excludedByDocumentedLoadCount": 1,
+            "firstMeasuredElapsedSeconds": 6708.106232583,
+            "lastMeasuredElapsedSeconds": 7593.447491583
+          },
+          "fdCount": {
+            "statistics": {
+              "count": 59,
+              "first": 13,
+              "last": 13,
+              "minimum": 13,
+              "maximum": 13,
+              "median": 13,
+              "p95NearestRank": 13,
+              "leastSquaresChangePerHour": 0.0
+            },
+            "excludedByDocumentedLoadCount": 1,
+            "firstMeasuredElapsedSeconds": 6708.106232583,
+            "lastMeasuredElapsedSeconds": 7593.447491583
+          },
+          "logicalBytes": {
+            "statistics": {
+              "count": 15,
+              "first": 90780796,
+              "last": 102350211,
+              "minimum": 90780796,
+              "maximum": 102350211,
+              "median": 96567670,
+              "p95NearestRank": 102350211,
+              "leastSquaresChangePerHour": 48881546.04131815
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 6723.115752208,
+            "lastMeasuredElapsedSeconds": 7563.440580542,
+            "netChange": 11569415,
+            "netChangePerHour": 49564040.708607525
+          },
+          "allocatedBytes": {
+            "statistics": {
+              "count": 15,
+              "first": 92614656,
+              "last": 104435712,
+              "minimum": 92614656,
+              "maximum": 104435712,
+              "median": 98525184,
+              "p95NearestRank": 104435712,
+              "leastSquaresChangePerHour": 49960376.27440301
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 6723.115752208,
+            "lastMeasuredElapsedSeconds": 7563.440580542,
+            "netChange": 11821056,
+            "netChangePerHour": 50642085.25692347
+          },
+          "fileCount": {
+            "statistics": {
+              "count": 15,
+              "first": 1214,
+              "last": 1370,
+              "minimum": 1214,
+              "maximum": 1370,
+              "median": 1292,
+              "p95NearestRank": 1370,
+              "leastSquaresChangePerHour": 659.3166210198877
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 6723.115752208,
+            "lastMeasuredElapsedSeconds": 7563.440580542,
+            "netChange": 156,
+            "netChangePerHour": 668.3129916718152
+          },
+          "volumeAvailableBytes": {
+            "statistics": {
+              "count": 15,
+              "first": 40409759744,
+              "last": 40151490560,
+              "minimum": 40151490560,
+              "maximum": 40409759744,
+              "median": 40284233728,
+              "p95NearestRank": 40409759744,
+              "leastSquaresChangePerHour": -1209529410.1620843
+            },
+            "excludedByDocumentedLoadCount": 0,
+            "firstMeasuredElapsedSeconds": 6723.115752208,
+            "lastMeasuredElapsedSeconds": 7563.440580542,
+            "netChange": -258269184,
+            "netChangePerHour": -1106440070.6133237
+          }
+        },
+        "manifestProgressUnfiltered": {
+          "first": [
+            6708.106232583,
+            {
+              "sha256": "96876cecbeffe2d7ae610af6e36e22128e10d3dbffb59a8e0ae6e6bf70a41358",
+              "bytes": 1035,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "7072",
+              "phase": "running",
+              "step": 6061,
+              "durableStep": 6061,
+              "elapsedMillis": 6597065,
+              "journalCount": 202,
+              "segmentCount": 1009,
+              "lastSegmentSha256": "7d97c97e5e282e97b4eb58391746680bb81a098418f990af6f1f3eebfe1a0ab1",
+              "checkpointSha256": "4450e83c8281b5b92248e86d7960a713f33c7d135535c5ca604ba67fd261f701"
+            }
+          ],
+          "last": [
+            7593.447491583,
+            {
+              "sha256": "7ade76cdf5dbc45abd5bba22620d71c784d591295c5331d5ae692e591fe1a4f3",
+              "bytes": 1035,
+              "format": "reservoir-sustained-bundle-v1",
+              "sessionId": "sustained-1791908510756-1",
+              "generation": "1",
+              "revision": "8017",
+              "phase": "running",
+              "step": 6871,
+              "durableStep": 6871,
+              "elapsedMillis": 7478494,
+              "journalCount": 229,
+              "segmentCount": 1144,
+              "lastSegmentSha256": "27a49764fc431901a82312f3df63b6127e9aa258480b42ebd7bbc4f61d5d45a8",
+              "checkpointSha256": "9e1abfae08f7df92846ad463279d2807a29b61ee80518acc9447ce55887db03b"
+            }
+          ],
+          "phaseSampleCounts": {
+            "running": 60
+          }
+        },
+        "note": "Only resource summaries exclude documented load; functional gaps, errors and progress remain in the unfiltered base analysis."
+      }
+    }
+  ],
+  "limits": [
+    "Load exclusion is a descriptive sensitivity analysis; thermal/caching effects may persist and unrecorded host work remains unknown.",
+    "Never delete a functional stall or missing measurement when excluding resource-load samples.",
+    "Marker state is operator-declared; no continuous window-state instrumentation or independent GPU attribution.",
+    "Wall-clock-to-load matching is uncertain if base coverage records wall-clock jumps; review those before interpreting excluded summaries.",
+    "Observed-Start marker follows the UI action and is a conservative time origin, not an exact HTTP or numerical admission timestamp.",
+    "Incomplete early/late windows retain partial statistics for inspection only and cannot satisfy the prospective comparison."
+  ]
+}

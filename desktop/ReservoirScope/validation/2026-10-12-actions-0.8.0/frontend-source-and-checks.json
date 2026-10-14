@@ -1,0 +1,85 @@
+{
+  "schema": "frontend-execution-source-binding-v1",
+  "capturedAt": "2026-10-12T22:09:01.194841+00:00",
+  "scope": "0.8 standalone Actions A\u2013H frontend; agent executed checks before this capture, no subsequent source edits by agent",
+  "checks": [
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "testCount": 220,
+      "testFiles": 25,
+      "stdout": "target/qa/0.8-frontend/npm-test.txt"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "modules": 86,
+      "stdout": "target/qa/0.8-frontend/npm-build.txt",
+      "javascript": "index-BaowtHXr.js",
+      "css": "index-DGLZtiRj.css",
+      "warning": "Vite existing chunk larger than500kB warning"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/freshTypes.ts",
+      "sha256": "a17347030309da37a9970c52020fec6354a5765017b47c31ea43e7ae59949d23",
+      "sizeBytes": 8988
+    },
+    {
+      "path": "src/freshController.ts",
+      "sha256": "10577ae43c4a4e62b46ccc9d8b858951a35810c59d4cd1ad37a42dabbac57d33",
+      "sizeBytes": 17712
+    },
+    {
+      "path": "src/freshApi.ts",
+      "sha256": "b088b389be4c45f703c3de8f7fc8f722a50a1b3794f493cbf41d11cd76d2b891",
+      "sizeBytes": 2403
+    },
+    {
+      "path": "src/FreshExperiments.tsx",
+      "sha256": "f1f8bb74267c925b531b792bc84c5004ad19a37691525ff09287e217f5c4a14f",
+      "sizeBytes": 31352
+    },
+    {
+      "path": "src/FreshActionEvidence.tsx",
+      "sha256": "a188b22ec9f27a577da2ad985f872a127fa96929192a8070e13572290f003db7",
+      "sizeBytes": 5888
+    },
+    {
+      "path": "src/fresh.css",
+      "sha256": "4c84f59cf00a64bfe43c0aec66554d548a40bd4ff6886479415ee9a41253a643",
+      "sizeBytes": 8053
+    },
+    {
+      "path": "src/FreshExperiments.test.tsx",
+      "sha256": "d160622cac46e42150276662412cfb33fd6a7254098624ac23907a539363fa63",
+      "sizeBytes": 4149
+    },
+    {
+      "path": "src/FreshActionEvidence.test.tsx",
+      "sha256": "3dc4105fdf7ad1294eb235fab4236c122c57436306856f816f4311b6f6d3c7e7",
+      "sizeBytes": 8579
+    },
+    {
+      "path": "src/freshController.test.ts",
+      "sha256": "d33452afad42c2ccefe93bb4aaff7e2939fdcd440b1eda526fd136739e03419d",
+      "sizeBytes": 20877
+    },
+    {
+      "path": "target/qa/0.8-frontend/npm-test.txt",
+      "sha256": "81d14d260ecb0c3868f856b62f9921eaf2f618f33ab5e3fdc10c4edfef9c4b0b",
+      "sizeBytes": 303
+    },
+    {
+      "path": "target/qa/0.8-frontend/npm-build.txt",
+      "sha256": "bc84916291f55951e830199e5fbffa9f47a9b94b805c630f7d256104a54cddbf",
+      "sizeBytes": 772
+    }
+  ],
+  "notExecuted": [
+    "packaged UI qualification",
+    "native independent oracle (other agent owns)",
+    "Windows/Linux UI"
+  ]
+}

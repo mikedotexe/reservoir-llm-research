@@ -1,0 +1,89 @@
+{
+  "boundBeforeStartUtc": "2026-10-13T22:53:58.385350+00:00",
+  "episodeId": "v4-writing-episode02",
+  "sessionId": "sustained-1791932015615-3",
+  "generation": "3",
+  "revision": "1",
+  "acceptedConfigObservedInNativeUI": {
+    "seed": "20261013",
+    "promptVersion": "reservoir-journal-v4",
+    "outputTokens": 1024,
+    "requestDeadlineSeconds": 180,
+    "turnEvery": 30,
+    "maximumSteps": 121,
+    "maximumTurns": 4,
+    "maximumDurationSeconds": 900,
+    "storageBudgetBytes": 67108864,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true,
+    "language": {
+      "backend": "ollama",
+      "endpoint": "http://127.0.0.1:54465",
+      "model": "gemma3:4b",
+      "contextTokens": 8192
+    }
+  },
+  "source": "Native accessibility: Prepared/not started; step0,0journals. Each backend accepted configuration field compared with prospective plan.",
+  "readiness": {
+    "operation": "model-check-50033-1",
+    "epochMillis": "1791932012087",
+    "model": "gemma3:4b",
+    "digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+    "requests": 1
+  },
+  "service": {
+    "pid": 56024,
+    "supervisorPid": 55992,
+    "endpoint": "http://127.0.0.1:54465",
+    "supervisionDirectory": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02-gemma3-4b-run01",
+    "remainingLifetimeSeconds": 1162.7627134590875,
+    "requiredRemainingSeconds": 960
+  },
+  "packageBinarySha256": "18949732cf48c926003ffcf7b5b216bccc32ea071d0bff8a411e841eaba123d5",
+  "packageArchiveSha256": "b02018a34fb1d80a4801b9c070354071985dae977546cbee87aa7379cc31909c",
+  "bindings": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/run-plan.json",
+      "bytes": 4621,
+      "sha256": "6263e35f62596d5518ebcc043f2fd37da6678f40a92554be43c0cc3eaab5071d"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/evaluation-freeze-01.json",
+      "bytes": 7631,
+      "sha256": "86eb76caed2dc313ede2bf021a6a023ba742bc62537e0d275d907e34f0f38f67"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/host-admission-01.json",
+      "bytes": 1474,
+      "sha256": "e2e318e37d3c6d42ae5bb75e8ea130e2c0181d2eeefaf6532f67a28a4bb570a3"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/package-provenance-01.json",
+      "bytes": 21559,
+      "sha256": "0dbe51a591f039582ba3c22c0c1bb71c48c38ab80f6b9d56a567d9f84a45c202"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/helper-continuity-01.json",
+      "bytes": 3539,
+      "sha256": "72ed94bc24dd2278a61e859cb7cb0f7f1e8d4b2cdede05c1b58ca556d69f9151"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02-gemma3-4b-run01/launch-intent.json",
+      "bytes": 3370,
+      "sha256": "052d996a64378da4e7f7c2d5660fd9d37aabf06e44efc16f065c0c0d2551442c"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02-gemma3-4b-run01/owned-process.json",
+      "bytes": 1201,
+      "sha256": "f8d62f87960a3a9d6cfecc98305407894c37691466617d461e2131b05ffceb1f"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02-gemma3-4b-run01/endpoint.json",
+      "bytes": 277,
+      "sha256": "b698c39c165c3f9d01669f8c8d8dec008723aeab87467de5c0da543b5d7ab0af"
+    }
+  ]
+}

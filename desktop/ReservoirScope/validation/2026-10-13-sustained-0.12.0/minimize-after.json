@@ -1,0 +1,45 @@
+{
+  "observedAtNs": 1791904257922852000,
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791904148347-1",
+    "generation": "1",
+    "revision": "167",
+    "config": {
+      "seed": "18446744073709551615",
+      "turnEvery": 6,
+      "maximumSteps": 200,
+      "maximumTurns": 30,
+      "maximumDurationSeconds": 600,
+      "storageBudgetBytes": 33554432,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:54935",
+        "model": "reservoir-fixture:0.12",
+        "contextTokens": 4096
+      }
+    },
+    "phase": "running",
+    "step": 91,
+    "durableStep": 91,
+    "elapsedMillis": 95206,
+    "journalCount": 15,
+    "segmentCount": 74,
+    "lastSegmentSha256": "0deae090ed5c6b3be927f00959121128c86a64b64958ed7e8bc32990edb9fe57",
+    "checkpointSha256": "882490535a45019118bf7061713d6c7f9c9bc44f065980eeb0629358d3e6bade",
+    "previousCheckpointSha256": "d99d3144dafec94c89a6a1f0bdf01593b571fc3a4a8f48f1fffd5b55bd0fe12c",
+    "diagnostics": [],
+    "attemptTiming": {
+      "attemptId": 15,
+      "dispatchedAtMs": "1791904256468",
+      "receivedAtMs": "1791904256470",
+      "transportDurationMs": 2,
+      "publishedAtMs": null
+    }
+  }
+}

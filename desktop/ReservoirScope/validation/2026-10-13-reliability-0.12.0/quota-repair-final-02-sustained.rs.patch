@@ -1,0 +1,302 @@
+--- validation/2026-10-13-reliability-0.12.0/before-quota-repair-sustained.rs.txt
++++ src-tauri/src/sustained.rs
+@@ -352,11 +352,43 @@
+             }
+             a.manifest.phase = "stopped".into();
+             a.manifest.revision = next(&a.manifest.revision);
+-            self.persist(a)?;
++            if let Err(error) = self.persist_mode(a, sustained_store::Admission::Close) {
++                if !allow_discard || error.category != "budget" {
++                    return Err(error);
++                }
++                self.discard_volatile_ready_prefix(a)?;
++            }
+         }
+         self.shared.busy.store(false, Ordering::SeqCst);
+         self.shared.closing.store(true, Ordering::SeqCst);
+         Ok(true)
++    }
++    fn discard_volatile_ready_prefix(&self, a: &mut Active) -> Result<(), AppError> {
++        // Explicit close only. Never choose an older Ready checkpoint when the
++        // current committed prefix still contains a pending opportunity.
++        let retained = self.shared.store.verify(&a.manifest.session_id)?;
++        if retained.manifest.generation != a.manifest.generation
++            || retained.checkpoint.sha256 != a.committed.sha256
++            || !matches!(retained.checkpoint.state.phase, SustainedPhase::Ready)
++        {
++            return Err(err("budget", "The current committed boundary has retained intent or changed identity. A durable Skip is required before discard; no committed opportunity was erased."));
++        }
++        let live_step = a.engine.step();
++        let old_revision = a.manifest.revision.clone();
++        let engine = SustainedSession::restore(retained.checkpoint.clone()).map_err(ce)?;
++        let mut catalog = self.shared.store.journal_index(&a.manifest.session_id)?;
++        catalog.sort_by_key(|row| row.attempt_id);
++        a.engine = engine;
++        a.committed = retained.checkpoint;
++        a.manifest = retained.manifest;
++        a.manifest.revision = next(&old_revision);
++        a.manifest.phase = "stopped".into();
++        a.run_requested = false;
++        a.dispatch_once = false;
++        a.catalog = catalog;
++        a.used_bytes = retained.report.size_bytes;
++        diagnostic(a, &format!("Explicit discard released unsaved progress after durable step {} (live step was {}). The verified Ready prefix and all committed files are unchanged; this stopped decision is process-local, not a saved terminal manifest.", a.engine.step(), live_step));
++        Ok(())
+     }
+     pub fn create(
+         &self,
+@@ -444,10 +476,15 @@
+         let mut g = self.lock()?;
+         let a = active(&mut g, id, generation)?;
+         if a.worker_active
++            || sustained_store::storage_held(&a.manifest)
+             || a.engine.blocked().is_some()
+             || matches!(
+                 a.manifest.phase.as_str(),
+-                "stopped" | "storageBlocked" | "providerFailed" | "compatibilityBlocked"
++                "stopped"
++                    | "storageBlocked"
++                    | "providerFailed"
++                    | "compatibilityBlocked"
++                    | "budgetReached"
+             )
+         {
+             return Err(err(
+@@ -466,6 +503,9 @@
+         self.shared.interrupted.store(false, Ordering::SeqCst);
+         a.last_accounted = Instant::now();
+         self.persist(a)?;
++        if a.manifest.phase == "budgetReached" {
++            return Ok(self.update(&g, request_id));
++        }
+         self.launch(a);
+         let update = self.update(&g, request_id);
+         drop(g);
+@@ -513,7 +553,7 @@
+         }
+         a.manifest.phase = "stopped".into();
+         a.manifest.revision = next(&a.manifest.revision);
+-        self.persist(a)?;
++        self.persist_mode(a, sustained_store::Admission::Stop)?;
+         if !a.worker_active {
+             self.shared.busy.store(false, Ordering::SeqCst);
+         }
+@@ -527,6 +567,9 @@
+     ) -> Result<SustainedUpdate, AppError> {
+         let mut g = self.lock()?;
+         let a = active(&mut g, id, generation)?;
++        if a.manifest.phase == "budgetReached" || sustained_store::storage_held(&a.manifest) {
++            return Err(err("budget", "Budget headroom is reserved for terminal handling; explicitly skip retained feedback rather than retrying its save."));
++        }
+         if a.worker_active {
+             return Err(err("busy", "Wait for the active write/request to settle"));
+         }
+@@ -534,6 +577,9 @@
+         a.manifest.phase = "paused".into();
+         a.manifest.revision = next(&a.manifest.revision);
+         self.persist(a)?;
++        if a.manifest.phase == "budgetReached" {
++            return Ok(self.update(&g, request_id));
++        }
+         if a.engine.pending_journal().is_some() {
+             self.save_journal(a)?;
+         }
+@@ -547,6 +593,13 @@
+     ) -> Result<SustainedUpdate, AppError> {
+         let mut g = self.lock()?;
+         let a = active(&mut g, id, generation)?;
++        if a.manifest.phase == "budgetReached"
++            || sustained_store::storage_held(&a.manifest)
++            || a.used_bytes.saturating_add(sustained_store::RUN_HEADROOM)
++                > a.manifest.config.storage_budget_bytes
++        {
++            return Err(err("budget", "Storage headroom is reserved for terminal handling; no new provider attempt was admitted."));
++        }
+         if a.worker_active {
+             return Err(err("busy", "Previous request has not settled"));
+         }
+@@ -559,6 +612,9 @@
+         self.shared.interrupted.store(false, Ordering::SeqCst);
+         self.shared.pause.store(true, Ordering::SeqCst);
+         self.persist(a)?;
++        if a.manifest.phase == "budgetReached" {
++            return Ok(self.update(&g, request_id));
++        }
+         self.launch(a);
+         Ok(self.update(&g, request_id))
+     }
+@@ -603,7 +659,7 @@
+             .map_err(ce)?;
+         a.manifest.phase = "paused".into();
+         a.manifest.revision = next(&a.manifest.revision);
+-        self.persist(a)?;
++        self.persist_mode(a, sustained_store::Admission::Skip)?;
+         Ok(self.update(&g, request_id))
+     }
+     fn duration_reached(&self, a: &Active) -> bool {
+@@ -618,14 +674,26 @@
+                 && a.engine.pending_memory().is_none())
+     }
+     fn persist(&self, a: &mut Active) -> Result<(), AppError> {
++        self.persist_mode(a, sustained_store::Admission::Ordinary)
++    }
++    fn persist_mode(
++        &self,
++        a: &mut Active,
++        admission: sustained_store::Admission,
++    ) -> Result<(), AppError> {
+         let events: Vec<_> = a.engine.events().iter().cloned().collect();
+         match self
+             .shared
+             .store
+-            .persist(&mut a.manifest, &a.committed, &mut a.engine)
++            .persist(&mut a.manifest, &a.committed, &mut a.engine, admission)
+         {
+             Ok(cp) => {
+                 a.committed = cp;
++                if a.manifest.phase == "budgetReached" {
++                    a.run_requested = false;
++                    a.dispatch_once = false;
++                    self.shared.pause.store(true, Ordering::SeqCst);
++                }
+                 apply_catalog(&mut a.catalog, &events);
+                 for row in a.catalog.iter_mut().filter(|j| j.object_sha256.is_empty()) {
+                     if let Ok((_, hash)) = self
+@@ -667,6 +735,13 @@
+             Ok(v) => v,
+             Err(e) => {
+                 a.run_requested = false;
++                if e.category == "budget" {
++                    sustained_store::hold_storage(&mut a.manifest);
++                    diagnostic(a, &e.message);
++                    a.manifest.revision = next(&a.manifest.revision);
++                    self.persist(a)?;
++                    return Ok(());
++                }
+                 a.manifest.phase = "storageBlocked".into();
+                 diagnostic(a, &e.message);
+                 return Err(e);
+@@ -795,6 +870,10 @@
+         if a.epoch != epoch {
+             return Ok(Work::Done);
+         }
++        if a.manifest.phase == "budgetReached" {
++            a.run_requested = false;
++            return Ok(Work::Done);
++        }
+         let elapsed = a.last_accounted.elapsed();
+         a.last_accounted = Instant::now();
+         a.manifest.elapsed_millis = a
+@@ -828,6 +907,7 @@
+         {
+             a.run_requested = false;
+             a.manifest.phase = "budgetReached".into();
++            a.manifest.revision = next(&a.manifest.revision);
+             self.persist(a)?;
+             return Ok(Work::Done);
+         }
+@@ -846,6 +926,9 @@
+             }
+             a.manifest.revision = next(&a.manifest.revision);
+             self.persist(a)?;
++            if a.manifest.phase == "budgetReached" {
++                return Ok(Work::Done);
++            }
+         }
+         if let Some(p) = a.engine.pending_language().cloned() {
+             if p.request_started {
+@@ -857,6 +940,9 @@
+             a.manifest.phase = "awaitingLanguage".into();
+             a.manifest.revision = next(&a.manifest.revision);
+             self.persist(a)?;
++            if a.manifest.phase == "budgetReached" {
++                return Ok(Work::Done);
++            }
+             a.engine.start_language(p.attempt_id).map_err(ce)?;
+             a.manifest.revision = next(&a.manifest.revision);
+             a.dispatch_once = false;
+@@ -873,6 +959,9 @@
+         }
+         if a.engine.pending_journal().is_some() {
+             self.save_journal(a)?;
++            if a.manifest.phase == "budgetReached" {
++                return Ok(Work::Done);
++            }
+         }
+         if let Some(b) = a.engine.blocked() {
+             let reason = b.reason.clone();
+@@ -958,7 +1047,10 @@
+             if let Some(a) = g.active.as_mut() {
+                 if a.epoch == epoch {
+                     a.run_requested = false;
+-                    if a.manifest.phase != "storageBlocked" {
++                    if !matches!(
++                        a.manifest.phase.as_str(),
++                        "storageBlocked" | "budgetReached"
++                    ) {
+                         a.manifest.phase = "paused".into();
+                     }
+                     diagnostic(a, message);
+@@ -1024,15 +1116,21 @@
+             turn_count: cp.attempt_cursor,
+             can_start: !a.worker_active
+                 && !a.run_requested
++                && !sustained_store::storage_held(&a.manifest)
+                 && a.engine.blocked().is_none()
+-                && !matches!(a.manifest.phase.as_str(), "stopped" | "storageBlocked")
++                && !matches!(
++                    a.manifest.phase.as_str(),
++                    "stopped" | "storageBlocked" | "budgetReached"
++                )
+                 && !self.duration_reached(a)
+                 && !self.step_budget_reached(a),
+             can_pause: a.worker_active || a.run_requested,
+             can_stop: a.manifest.phase != "stopped",
+             can_retry_save: !a.worker_active
++                && !sustained_store::storage_held(&a.manifest)
+                 && (a.engine.pending_journal().is_some() || a.manifest.phase == "storageBlocked"),
+             can_retry_provider: !a.worker_active
++                && !sustained_store::storage_held(&a.manifest)
+                 && a.engine.blocked().is_some()
+                 && cp.attempt_cursor < a.manifest.config.maximum_turns,
+             can_skip_feedback: !a.worker_active
+@@ -1193,10 +1291,12 @@
+         manifest.generation = g.generation.to_string();
+         manifest.revision = next(&manifest.revision);
+         manifest.phase = "paused".into();
+-        let committed = self
+-            .shared
+-            .store
+-            .persist(&mut manifest, &v.checkpoint, &mut engine)?;
++        let committed = self.shared.store.persist(
++            &mut manifest,
++            &v.checkpoint,
++            &mut engine,
++            sustained_store::Admission::Ordinary,
++        )?;
+         let mut catalog = self.shared.store.journal_index(id)?;
+         catalog.sort_by_key(|e| e.attempt_id);
+         g.active = Some(Active {
+@@ -1227,10 +1327,7 @@
+     ) -> Result<(String, sustained_store::BundleReport), AppError> {
+         let g = self.lock()?;
+         if let Some(a) = &g.active {
+-            if a.manifest.session_id == id
+-                && (a.manifest.generation != generation
+-                    || revision.is_some_and(|r| r != a.manifest.revision))
+-            {
++            if a.manifest.session_id == id && a.manifest.generation != generation {
+                 return Err(err(
+                     "stale",
+                     "Selected session snapshot changed before export",
+@@ -1263,9 +1360,7 @@
+     let s: String = s.chars().take(1024).collect();
+     if a.manifest.diagnostics.last() != Some(&s) {
+         a.manifest.diagnostics.push(s);
+-        if a.manifest.diagnostics.len() > 32 {
+-            a.manifest.diagnostics.remove(0);
+-        }
++        sustained_store::trim_diagnostics(&mut a.manifest);
+     }
+ }
+ fn frame(f: &reservoir_core::sustained::SustainedFrame) -> SessionFrame {

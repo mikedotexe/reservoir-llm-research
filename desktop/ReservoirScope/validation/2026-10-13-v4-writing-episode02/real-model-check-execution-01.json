@@ -1,0 +1,29 @@
+{
+  "command": [
+    "python3",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/check_real_model_export.py",
+    "--bundle",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-v4-writing-episode02/exports/sustained-1791932015615-3-3-143",
+    "--executable",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-pinned/reservoir-scope-desktop",
+    "--expected-executable-sha256",
+    "18949732cf48c926003ffcf7b5b216bccc32ea071d0bff8a411e841eaba123d5",
+    "--expected-model",
+    "gemma3:4b",
+    "--expected-endpoint",
+    "http://127.0.0.1:54465",
+    "--expected-prompt-version",
+    "reservoir-journal-v4",
+    "--protocol",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/run-plan.json",
+    "--output-directory",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v4-writing-episode02/real-model-export-01"
+  ],
+  "startedAtUtc": "2026-10-13T23:00:01.206027+00:00",
+  "finishedAtUtc": "2026-10-13T23:00:01.877727+00:00",
+  "wallSeconds": 0.6716194581240416,
+  "exitCode": 0,
+  "scriptSha256": "9463bcded5e07982d0b56fb0240cc8ea93c59f478286c69bc58c8341e17b785b",
+  "logSha256": "e5886b92c6ba98bc8b8e77b5c033ee225ee29cdb77174895e93553306429e1dd",
+  "scope": "Offline frozen checker and pinned numerical CLI only; no app, model or service calls."
+}

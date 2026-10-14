@@ -1,0 +1,39 @@
+{
+  "capturedAtUtc": "2026-10-13T20:14:30.805497+00:00",
+  "packageInventorySha256": "50b6bc5067c83eed1e6680cf5d5af66430e61ac157c6f1bd0c1344a2117c36a1",
+  "binary": {
+    "path": "Contents/MacOS/reservoir-scope-desktop",
+    "kind": "file",
+    "bytes": 16801360,
+    "sha256": "689ed9e13e6cdbea8774c232b88018eaebd0c8fcbd2aaedc2d0fb0c6e1bb3b5b",
+    "mode": "0o755"
+  },
+  "codesign": {
+    "display": {
+      "command": [
+        "codesign",
+        "--display",
+        "--verbose=4",
+        "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "Executable=/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop\nIdentifier=research.reservoir.scope.tauri\nFormat=app bundle with Mach-O thin (arm64)\nCodeDirectory v=20500 size=32991 flags=0x10002(adhoc,runtime) hashes=1024+3 location=embedded\nVersionPlatform=1\nVersionMin=917504\nVersionSDK=1704448\nHash type=sha256 size=32\nCandidateCDHash sha256=1eaa463836bb5831e1fd7e8bceabbda6d6cb4f29\nCandidateCDHashFull sha256=1eaa463836bb5831e1fd7e8bceabbda6d6cb4f2913dc800ab5d2d03b8bdf376f\nHash choices=sha256\nCMSDigest=1eaa463836bb5831e1fd7e8bceabbda6d6cb4f2913dc800ab5d2d03b8bdf376f\nCMSDigestType=2\nExecutable Segment base=0\nExecutable Segment limit=14270464\nExecutable Segment flags=0x1\nPage size=16384\nCDHash=1eaa463836bb5831e1fd7e8bceabbda6d6cb4f29\nSignature=adhoc\nInfo.plist entries=15\nTeamIdentifier=not set\nRuntime Version=26.2.0\nSealed Resources version=2 rules=13 files=43\nInternal requirements count=0 size=12\nTotal signatures=1\nChosen signature=1"
+    },
+    "verification": {
+      "command": [
+        "codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=2",
+        "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app: valid on disk\n/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app: satisfies its Designated Requirement"
+    },
+    "meaning": "Local signature verification only; no notarization, distribution identity, UI, or model-execution claim.",
+    "status": "verified"
+  }
+}

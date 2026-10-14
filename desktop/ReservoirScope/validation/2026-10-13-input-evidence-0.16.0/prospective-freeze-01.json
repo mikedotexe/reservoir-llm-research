@@ -1,0 +1,61 @@
+{
+  "schema": "reservoir-synthetic-input-evidence-prospective-freeze-v1",
+  "frozenAtUtc": "2026-10-13T23:14:41.436840+00:00",
+  "status": "before-fixture-launch-and-packaged-UI",
+  "files": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/PROTOCOL.md",
+      "bytes": 7234,
+      "sha256": "31087bbf4068fff708aaea302a0d3ec6f0f63d308ec3ddb08b09243664484584"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/packaged-ui-plan-01.json",
+      "bytes": 2198,
+      "sha256": "9172bfc00659ff3344ad853eafeba93247b63d76d492b7f3d89dca56b316910d"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/owned_provider.py",
+      "bytes": 9067,
+      "sha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/test_owned_provider.py",
+      "bytes": 2946,
+      "sha256": "734a3db118701c503a7ef0ab2b157ba0069a13c62e195d156df8947f039c319a"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/fixture-tests-01.json",
+      "bytes": 1428,
+      "sha256": "29af1857384c9e92f294307235590618d512e29a7c9414cfc3840a4cfc8c0c60"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/fixture-tests-01.log",
+      "bytes": 1010,
+      "sha256": "9f9652756da4daaa9e97da452397eada296661ccc2e19253738077eab3ad99ab"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/prior-package-preservation-01.json",
+      "bytes": 13187,
+      "sha256": "7c5f922ef10d16185d1e3a47eb2004e7364cf11b647de183db69b23f16727007"
+    }
+  ],
+  "implementationBasis": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0/owned_provider.py",
+    "bytes": 6211,
+    "sha256": "e7fa0bb05efa27643125df08cbb76fec007d9b4effe96ae8cd9d1e5526cda06a"
+  },
+  "qualificationTool": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/qualification_receipt.py",
+    "bytes": 14472,
+    "sha256": "c371184ae82c1f34314b59fc333ae2fceb0959a4997a532ed63e0cbece00e1cb"
+  },
+  "sourceTests": {
+    "status": "passed",
+    "testCount": 7,
+    "scope": "pure fixture functions; no HTTP/socket/app/model execution"
+  },
+  "fixtureLaunched": false,
+  "endpointContacted": false,
+  "modelUsed": false,
+  "limits": "This prospective scope tests optional evidence representation and unchanged completion/save boundaries; it is not model-context processing or writing-quality evidence."
+}

@@ -1,0 +1,15 @@
+   Compiling reservoir-scope-desktop v0.6.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.04s
+     Running unittests src/main.rs (target/debug/deps/reservoir_scope_desktop-80ad5ac022a3925b)
+
+running 7 tests
+test response::tests::wide_identifiers_and_float32_promotions_survive_json_ipc ... ok
+test response::tests::events_keep_no_state_and_headroom_rejection_distinct_from_frames ... ok
+test response::tests::canonically_equivalent_identity_does_not_allow_mutated_boundary_replacement ... ok
+test response::tests::exports_are_original_bytes_and_snapshot_survives_close ... ok
+test response::tests::rejected_candidates_never_drop_or_change_the_previous_bytes ... ok
+test response::tests::canonical_handles_keep_response_families_and_exact_values_separate ... ok
+test response::tests::lifecycle_guards_and_handle_limits_are_bounded ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 50 filtered out; finished in 0.14s
+

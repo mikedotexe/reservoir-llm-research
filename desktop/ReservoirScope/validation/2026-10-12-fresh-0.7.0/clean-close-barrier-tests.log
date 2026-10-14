@@ -1,0 +1,22 @@
+Working directory: /Users/v/other/reservoir-llm-research/desktop/ReservoirScope
+DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk
+Command: cargo test --locked -p reservoir-scope-desktop close -- --nocapture
+   Compiling reservoir-scope-desktop v0.7.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.19s
+     Running unittests src/main.rs (target/debug/deps/reservoir_scope_desktop-1d6667c241061d9e)
+
+running 8 tests
+test records::tests::handle_capacity_is_visible_and_released_by_close ... ok
+test response::tests::exports_are_original_bytes_and_snapshot_survives_close ... ok
+test observatory::tests::independent_tracks_disclose_coverage_sources_and_meaning ... ok
+test sessions::tests::clean_close_serializes_with_first_creation_and_export_without_blocking ... ok
+test sessions::tests::close_refuses_writes_and_unsaved_then_closing_rejects_commands ... ok
+test sessions::tests::scheduler_runs_without_ui_and_close_flag_pauses_without_resuming ... ok
+test sessions::tests::clean_close_refuses_inflight_mutation_even_when_atomics_still_look_clean ... ok
+test observatory::tests::lifecycle_closes_idempotently_rejects_old_handles_and_bounds_sessions ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 69 filtered out; finished in 0.70s
+
+
+Exit code: 0

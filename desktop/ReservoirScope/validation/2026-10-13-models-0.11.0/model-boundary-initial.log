@@ -1,0 +1,36 @@
+   Compiling reservoir-scope-desktop v0.11.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 9.62s
+     Running unittests src/main.rs (target/debug/deps/reservoir_scope_desktop-5859a17479a19a03)
+
+running 28 tests
+test model_readiness::tests::explicit_cancellation_and_duplicate_request_ids ... ok
+test model_readiness::tests::cancellation_before_registration_and_old_cancellation_preserve_new_owner ... ok
+test model_readiness::tests::supersession_and_late_completion_do_not_clear_new_owner ... ok
+test model_transport::tests::prose_requests_do_not_silently_add_json_or_context ... ok
+test model_transport::tests::inventory_rejects_missing_ambiguous_or_malformed_identities ... ok
+test model_transport::tests::malformed_envelopes_and_provider_substitution_fail ... ok
+test model_transport::tests::operational_endpoint_boundary_is_loopback_only ... ok
+test model_transport::tests::incomplete_envelopes_remain_incomplete_without_losing_raw_text ... ok
+test model_transport::tests::pre_cancelled_or_oversized_prompt_makes_no_connection ... ok
+test guide::tests::rejects_missing_or_mislabeled_model_source ... ok
+test guide::tests::authored_journey_and_recorded_model_sources_are_retained ... ok
+test model_transport::tests::generation_posts_native_bounded_options_and_retains_response ... ok
+test model_transport::tests::inventory_uses_only_explicit_get_and_exact_identity ... ok
+test model_transport::tests::redirects_are_not_followed_and_status_failures_are_retained ... ok
+test model_transport::tests::declared_and_chunked_response_sizes_are_bounded ... ok
+test model_transport::tests::exact_one_mib_is_accepted_before_decoding ... ok
+test model_transport::tests::cancellation_drops_inflight_request_and_late_reply_cannot_win ... ok
+test sessions::tests::model_config_rejects_ineligible_recipes_without_replacing_or_contacting ... ok
+test model_transport::tests::stalled_headers_and_body_obey_total_deadline ... ok
+test sessions::tests::stage_context_provenance_is_not_promoted_to_a_model_or_journal ... ok
+test sessions::tests::model_real_loopback_http_bridge_sends_exact_prompt_and_retains_native_response ... ok
+test sessions::tests::model_unqualified_reply_is_blocked_without_retry_until_explicit_stop ... ok
+test sessions::tests::model_stage_manual_step_subscription_pause_and_next_step_feedback ... ok
+test sessions::tests::model_action_write_requires_real_save_before_feedback_and_reports_sources ... ok
+test sessions::tests::model_pending_recovery_binds_identity_and_failed_intent_does_not_dispatch ... ok
+test sessions::tests::model_stop_reset_and_close_reject_late_provider_result ... ok
+test sessions::tests::model_observation_failure_attempts_peer_and_components_cancel_peer ... ok
+test library::tests::fixed_tape_route_never_becomes_model_source_from_unused_configuration ... ok
+
+test result: ok. 28 passed; 0 failed; 0 ignored; 0 measured; 94 filtered out; finished in 22.40s
+

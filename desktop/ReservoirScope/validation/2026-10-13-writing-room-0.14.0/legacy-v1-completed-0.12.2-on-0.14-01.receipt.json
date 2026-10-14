@@ -1,0 +1,73 @@
+{
+  "schema": "reservoir-legacy-packaged-replay-v1",
+  "startedAtUtc": "2026-10-13T21:26:52.487484+00:00",
+  "endedAtUtc": "2026-10-13T21:26:52.620273+00:00",
+  "wallNanoseconds": 132785333,
+  "command": [
+    "/usr/bin/time",
+    "-l",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.14-pinned/reservoir-scope-desktop",
+    "--verify-sustained",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-reading/exports/sustained-1791919382664-3-3-143"
+  ],
+  "exitCode": 0,
+  "peakRssBytes": 13942784,
+  "scope": "Offline pinned0.14CLI verification of immutable older native export. CPU/RSS belong to verifier, not GUI or model. No network/model/UI/live-store operations.",
+  "executable": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.14-pinned/reservoir-scope-desktop",
+    "bytes": 16819344,
+    "sha256": "87eb89c76200603b1cb68f34e5b5deddc54dbfa5042530ab0c9787ca56606fa4"
+  },
+  "targetReceipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/legacy-replay-targets-01.json",
+    "bytes": 10387,
+    "sha256": "b345a878d0e50e7bfb3925ef9c94cf5f96561932ef2aaccd68316db778bb7637"
+  },
+  "targetId": "legacy-v1-completed-0.12.2",
+  "bundle": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-reading/exports/sustained-1791919382664-3-3-143",
+  "retainedPromptVersionEffective": "reservoir-journal-v1",
+  "retainedGenerationBudgetFieldsAbsent": true,
+  "effectiveLegacyBudget": {
+    "outputTokens": 256,
+    "requestDeadlineSeconds": 60
+  },
+  "result": {
+    "modelsContacted": false,
+    "report": {
+      "checkpointSha256": "1a066c4fec045169e8cacd582ba5b4d78a664be0576860c82e079eaa597c1e3e",
+      "diagnostics": [],
+      "format": "reservoir-sustained-bundle-v1",
+      "journalCount": 4,
+      "manifestSha256": "215162126a8701c55f8ad039cbd081071f84a6d18903366c0e723f69d2780d1c",
+      "segmentCount": 19,
+      "sessionId": "sustained-1791919382664-3",
+      "sizeBytes": 1781880,
+      "step": 121,
+      "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+    },
+    "status": "passed"
+  },
+  "expectedReport": {
+    "manifestSha256": "215162126a8701c55f8ad039cbd081071f84a6d18903366c0e723f69d2780d1c",
+    "checkpointSha256": "1a066c4fec045169e8cacd582ba5b4d78a664be0576860c82e079eaa597c1e3e",
+    "step": 121,
+    "journalCount": 4,
+    "segmentCount": 19,
+    "sizeBytes": 1781880,
+    "sessionId": "sustained-1791919382664-3"
+  },
+  "reportMatchesHistoricalIdentityAndCounts": true,
+  "originalBundleUnchanged": true,
+  "executableUnchanged": true,
+  "stdout": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/legacy-v1-completed-0.12.2-on-0.14-01.stdout.json",
+    "bytes": 654,
+    "sha256": "86783788ebe521ed73d8dd4bebdf4a8130f5106853de0ed5f207ade16da4b546"
+  },
+  "stderrAndTiming": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/legacy-v1-completed-0.12.2-on-0.14-01.stderr-time.txt",
+    "bytes": 777,
+    "sha256": "07d1a7d6b8d4b8ff09f487d4be191de3fca0903786a5d15d1c2c153f3410b537"
+  },
+  "status": "passed"
+}

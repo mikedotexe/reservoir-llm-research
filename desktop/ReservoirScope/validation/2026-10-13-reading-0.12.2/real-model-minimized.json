@@ -1,0 +1,49 @@
+{
+  "atUtc": "2026-10-13T19:25:47.621309+00:00",
+  "monotonicNs": 1115924049658916,
+  "marker": "after successful nativeMinimize",
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791919382664-3",
+    "generation": "3",
+    "revision": "107",
+    "config": {
+      "seed": "20261013",
+      "turnEvery": 30,
+      "maximumSteps": 121,
+      "maximumTurns": 4,
+      "maximumDurationSeconds": 600,
+      "storageBudgetBytes": 67108864,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:63515",
+        "model": "gemma3:4b",
+        "contextTokens": 4096
+      }
+    },
+    "phase": "running",
+    "step": 91,
+    "durableStep": 91,
+    "elapsedMillis": 121993,
+    "journalCount": 3,
+    "segmentCount": 14,
+    "lastSegmentSha256": "15cd9ca78bccd91559b5298bfbdb8126ea4bd8d3736e5a5eb12ae47d5cf79a1a",
+    "checkpointSha256": "ac2ac8823ba21e4473e6c1a9f32b1336964b228b7be45489d89b9f49c3a9b8b0",
+    "previousCheckpointSha256": "6298aaa4ff50bfd67d66f4bc601b95bba307619191a61374578658c10d878e53",
+    "diagnostics": [],
+    "attemptTiming": {
+      "attemptId": 3,
+      "dispatchedAtMs": "1791919507778",
+      "receivedAtMs": "1791919519931",
+      "transportDurationMs": 12152,
+      "publishedAtMs": null
+    }
+  },
+  "uiBefore": "live100,durable91,3saved;selectedoldstep30,Followlatestoff2new;surface60andfill60drawn;renderersalreadyoffscreenwhilejournalreading",
+  "scope": "Shortrealmodelminimizecheck,notanothermulti-hourmeasurement"
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "reservoir-owned-fixture-qualification-v1",
+  "startedAtUtc": "2026-10-13T23:11:42.139358+00:00",
+  "endedAtUtc": "2026-10-13T23:11:42.213821+00:00",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0",
+    "-p",
+    "test_owned_provider.py",
+    "-v"
+  ],
+  "exitCode": 0,
+  "sources": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/owned_provider.py",
+      "bytes": 9067,
+      "sha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/test_owned_provider.py",
+      "bytes": 2946,
+      "sha256": "734a3db118701c503a7ef0ab2b157ba0069a13c62e195d156df8947f039c319a"
+    }
+  ],
+  "sourceUnchanged": true,
+  "log": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-input-evidence-0.16.0/fixture-tests-01.log",
+    "bytes": 1010,
+    "sha256": "9f9652756da4daaa9e97da452397eada296661ccc2e19253738077eab3ad99ab"
+  },
+  "scope": "Seven pure synthetic fixture tests; no socket or child provider, app, process inspection, model, or endpoint call."
+}

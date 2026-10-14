@@ -1,0 +1,31 @@
+cwd: /Users/v/other/reservoir-llm-research/desktop/ReservoirScope
+DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk
+command: ["cargo", "test", "--locked", "-p", "reservoir-scope-desktop", "sessions::tests", "--", "--nocapture"]
+
+   Compiling reservoir-scope-desktop v0.7.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.51s
+     Running unittests src/main.rs (target/debug/deps/reservoir_scope_desktop-99c4d3a12fe2282f)
+
+running 16 tests
+test sessions::tests::invalid_seed_provider_recipe_and_unmarked_store_are_rejected ... ok
+test sessions::tests::stage_context_provenance_is_not_promoted_to_a_model_or_journal ... ok
+test sessions::tests::recovery_refuses_nested_symlink_directories_and_reports_incomplete_files ... ok
+test sessions::tests::close_refuses_writes_and_unsaved_then_closing_rejects_commands ... ok
+test sessions::tests::explicit_failed_save_is_terminal_and_exportable ... ok
+test sessions::tests::recovered_checkpoint_metadata_must_agree_with_retained_record_and_pending_text ... ok
+test sessions::tests::scheduler_runs_without_ui_and_close_flag_pauses_without_resuming ... ok
+test sessions::tests::stale_controls_pause_reset_and_old_worker_cannot_mutate_replacement ... ok
+test sessions::tests::persistence_cadence_and_controls_are_bound_to_actual_frames ... ok
+test sessions::tests::pending_save_failure_retry_and_application_are_distinct ... ok
+test sessions::tests::reset_storage_failure_returns_retained_terminal_state_instead_of_stale_candidate ... ok
+test sessions::tests::committed_journal_checkpoint_failure_recovers_without_double_feedback ... ok
+test sessions::tests::recovery_cutoff_is_explicit_and_existing_journal_retry_preserves_exact_bytes ... ok
+test sessions::tests::stopped_checkpoint_retry_never_resumes_a_terminal_engine ... ok
+test sessions::tests::every_recipe_has_finite_steps_and_verified_existing_format ... ok
+test sessions::tests::created_library_origin_survives_scan_and_index_failure_keeps_files ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 57 filtered out; finished in 37.11s
+
+
+exitCode: 0

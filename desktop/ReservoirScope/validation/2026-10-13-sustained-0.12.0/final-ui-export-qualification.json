@@ -1,0 +1,529 @@
+{
+  "schema": "reservoir-sustained-ui-export-qualification-v1",
+  "createdAt": "2026-10-13T15:27:06.234537+00:00",
+  "modelsContacted": false,
+  "scope": "Offline qualification of explicit UI-exported bundles against a pinned production CLI and owned fixture log. No real model/provider calls. Fixture response log proves handler completion, not receipt by a cancelled client. Local timestamps are recorded observations, not authenticated execution.",
+  "verifierSource": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/initial-exports/reservoir-scope-desktop-pinned",
+    "sizeBytes": 16747744,
+    "sha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d"
+  },
+  "pinnedVerifier": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/reservoir-scope-desktop-pinned",
+    "sizeBytes": 16747744,
+    "sha256": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d"
+  },
+  "requestLogSnapshot": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/requests.snapshot.jsonl",
+    "sizeBytes": 100016,
+    "sha256": "bdd247eb7766416691b10084b5a0861927373f06cfced9205b022dce7169552d"
+  },
+  "checker": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-sustained-0.12.0/check_sustained_ui_exports.py",
+    "sizeBytes": 14705,
+    "sha256": "5df124ea9d9443ebb52c7baa921026f9cc31a6265ab9308611645964c0576689"
+  },
+  "bundles": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-ui/sustained-1791904526118-2-4-39",
+      "before": {
+        "checkpoints/bed1ae8c34d67bd4f89bde1f627778186b7bf4e5a1cbf707e5b0e86ee942f684.json": {
+          "sizeBytes": 29776,
+          "sha256": "bed1ae8c34d67bd4f89bde1f627778186b7bf4e5a1cbf707e5b0e86ee942f684"
+        },
+        "checkpoints/ea5261018c0c54f78d4b08ad14a4c18bb508abfbbfd70a4742d17daafc4cb18a.json": {
+          "sizeBytes": 29962,
+          "sha256": "ea5261018c0c54f78d4b08ad14a4c18bb508abfbbfd70a4742d17daafc4cb18a"
+        },
+        "journals/journal-3-1-313d6d47dbafe341da73b1484b3506b2e2a9d539045c0856e81c409ca9276274.json": {
+          "sizeBytes": 6498,
+          "sha256": "61432ecf588c3c4335204cb0145f145cddfb965bf122c27459f8598d575bc0e0"
+        },
+        "journals/journal-9-3-98c1734b19d2f0bad09626783ccd511a4f20a3d1e91914135e0f1a896df8ee8f.json": {
+          "sizeBytes": 7504,
+          "sha256": "5a2d114417018dac55d05e474bc5b43d8650e4523c6cebdf4f65e20e85084fbd"
+        },
+        "manifest.json": {
+          "sizeBytes": 999,
+          "sha256": "47fbb633059ca37eb7eda27f5f66df30bb84eadafb6d13649898c736af3fbd9d"
+        },
+        "segments/segment-00000001.json": {
+          "sizeBytes": 49370,
+          "sha256": "2c0b4dca9fe23de81adfad4a4bbac02a4f160e267dd59b00b3e4b8e0c26da4b5"
+        },
+        "segments/segment-00000002.json": {
+          "sizeBytes": 69214,
+          "sha256": "7ad96fee1df66ed9ddebbeea9ac4ce0439c214276f8336331431d3e5457dc54e"
+        },
+        "segments/segment-00000003.json": {
+          "sizeBytes": 66772,
+          "sha256": "2cd5ff04c26abbdf87430942a5c0b6cf78f4bfa279ffd3d99f7bf402b9c2256f"
+        },
+        "segments/segment-00000004.json": {
+          "sizeBytes": 64826,
+          "sha256": "91ebf49c41e4491622bed548071d319044eaaca8031cf7871d234d4cbfc15362"
+        },
+        "segments/segment-00000005.json": {
+          "sizeBytes": 70830,
+          "sha256": "8d486dfe250a6ee5cc501a54c48f8966dbab100b67e8374c4c280ba29c6118b4"
+        },
+        "segments/segment-00000006.json": {
+          "sizeBytes": 69224,
+          "sha256": "314d34ba3ae118f01e82e3a1283fdde213b28f693d5be6a813e047ba5b243561"
+        },
+        "segments/segment-00000007.json": {
+          "sizeBytes": 71780,
+          "sha256": "f77bbf153163b0dd16fb27162c8d1da9868c1910057b40da05ef565acefe49f4"
+        },
+        "segments/segment-00000008.json": {
+          "sizeBytes": 66056,
+          "sha256": "3261143af947b23228044498ec5000c146148bbe152ae9349fae297e3cebb83d"
+        },
+        "segments/segment-00000009.json": {
+          "sizeBytes": 74342,
+          "sha256": "6fc6b0517d49a54c6f91cc1505780885924206b87175123d9b626f0806310564"
+        },
+        "segments/segment-00000010.json": {
+          "sizeBytes": 68953,
+          "sha256": "2cee86190268c8d490f71c70872e659c5549586e8a94da837e28507286967e23"
+        },
+        "segments/segment-00000011.json": {
+          "sizeBytes": 73324,
+          "sha256": "023f11fc621ceb227e6788c8caf79da99b397d3aed0d1f2dc5b5a356525d29de"
+        },
+        "segments/segment-00000012.json": {
+          "sizeBytes": 69874,
+          "sha256": "87c8eb3db8f39a61f54982651fac42c7da3ff11294aec971defd01ec0db76c4a"
+        },
+        "segments/segment-00000013.json": {
+          "sizeBytes": 65747,
+          "sha256": "b6675b49c6a585e680550682b4f20c4490b27d90ee5c7361bf4b16cee4cecf76"
+        },
+        "segments/segment-00000014.json": {
+          "sizeBytes": 63821,
+          "sha256": "ef65b12ea3ccef80dd53c526ec8bea41fec4846be8d93fe3e47b2bcfc226e565"
+        }
+      },
+      "verification": {
+        "exitCode": 0,
+        "result": {
+          "modelsContacted": false,
+          "report": {
+            "checkpointSha256": "bed1ae8c34d67bd4f89bde1f627778186b7bf4e5a1cbf707e5b0e86ee942f684",
+            "diagnostics": [],
+            "format": "reservoir-sustained-bundle-v1",
+            "journalCount": 2,
+            "manifestSha256": "47fbb633059ca37eb7eda27f5f66df30bb84eadafb6d13649898c736af3fbd9d",
+            "segmentCount": 14,
+            "sessionId": "sustained-1791904526118-2",
+            "sizeBytes": 1018872,
+            "step": 11,
+            "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+          },
+          "status": "passed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-ui/sustained-1791904526118-2-4-39"
+        ]
+      },
+      "requestEvidence": {
+        "sessionId": "sustained-1791904526118-2",
+        "seed": "7",
+        "step": 11,
+        "journalCount": 2,
+        "eventCounts": {
+          "advanced": 11,
+          "languageStarted": 3,
+          "languageReceived": 2,
+          "journalSaved": 2,
+          "memoryConfirmed": 2,
+          "languageCancelled": 1,
+          "skipped": 1
+        },
+        "exactMatchedRequests": [
+          {
+            "request": 31,
+            "turnId": 1,
+            "attemptId": 1,
+            "observedStep": 3,
+            "journalId": "journal-3-1-313d6d47dbafe341da73b1484b3506b2e2a9d539045c0856e81c409ca9276274",
+            "textSha256": "313d6d47dbafe341da73b1484b3506b2e2a9d539045c0856e81c409ca9276274",
+            "requestBodySha256": "fd40b30b1abcb6abf409973abb752bcdb68b2ec718b4f421fa5a0090d4195d16",
+            "promptSha256": "7a99d6e91069372ad39af9d32dc20918c297c59d9590a9edb6ee6c01b75e2b51",
+            "memoryJournalId": null,
+            "application": {
+              "attemptId": 1,
+              "journalId": "journal-3-1-313d6d47dbafe341da73b1484b3506b2e2a9d539045c0856e81c409ca9276274",
+              "observedStep": 3,
+              "appliedStep": 4
+            },
+            "timing": {
+              "attemptId": 1,
+              "dispatchedAtMs": "1791904535594",
+              "receivedAtMs": "1791904558845",
+              "transportDurationMs": 23251,
+              "publishedAtMs": "1791904558920"
+            },
+            "fixtureRequestAtMs": 1791904535597,
+            "fixtureHandlerCompletedAtMs": 1791904558845,
+            "fixtureHoldDurationMs": 23248
+          },
+          {
+            "request": 33,
+            "turnId": 3,
+            "attemptId": 3,
+            "observedStep": 9,
+            "journalId": "journal-9-3-98c1734b19d2f0bad09626783ccd511a4f20a3d1e91914135e0f1a896df8ee8f",
+            "textSha256": "98c1734b19d2f0bad09626783ccd511a4f20a3d1e91914135e0f1a896df8ee8f",
+            "requestBodySha256": "f5a2eb5804104a5888ce687ee3a041a4f5b02d9544edc232e160a326f055d2cd",
+            "promptSha256": "55e653150622cbeaad0e6e20d582cf552132a543dd2634da23212940b2348388",
+            "memoryJournalId": "journal-3-1-313d6d47dbafe341da73b1484b3506b2e2a9d539045c0856e81c409ca9276274",
+            "application": {
+              "attemptId": 3,
+              "journalId": "journal-9-3-98c1734b19d2f0bad09626783ccd511a4f20a3d1e91914135e0f1a896df8ee8f",
+              "observedStep": 9,
+              "appliedStep": 10
+            },
+            "timing": {
+              "attemptId": 3,
+              "dispatchedAtMs": "1791905011130",
+              "receivedAtMs": "1791905030244",
+              "transportDurationMs": 19113,
+              "publishedAtMs": "1791905030281"
+            },
+            "fixtureRequestAtMs": 1791905011133,
+            "fixtureHandlerCompletedAtMs": 1791905030244,
+            "fixtureHoldDurationMs": 19111
+          }
+        ],
+        "cancelledRequestsWithNoAcceptedResponseOrJournal": [
+          {
+            "request": 32,
+            "attemptId": 2,
+            "observedStep": 6,
+            "reason": "Explicit Stop cancelled the pending sustained language request.",
+            "cancelledEvent": {
+              "id": 12,
+              "step": 6,
+              "kind": {
+                "type": "languageCancelled",
+                "data": {
+                  "attempt_id": 2,
+                  "reason": "Explicit Stop cancelled the pending sustained language request."
+                }
+              }
+            },
+            "fixtureHandlerResponse": {
+              "response": 32,
+              "textSha256": "a96176c333312a7d11b4abe4cc42a1469e7630e0871fafebb5d5a5325e0dd464",
+              "at": 1791904666326,
+              "complete": true
+            },
+            "acceptedResponses": 0,
+            "journals": 0
+          }
+        ]
+      },
+      "originalUnchanged": true
+    }
+  ],
+  "negativeControls": [
+    {
+      "original": "sustained-1791904526118-2-4-39",
+      "control": "journal-text",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "journal",
+          "message": "Journal object bytes differ from immutable chain anchor",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/sustained-1791904526118-2-4-39-journal-text"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-4-39",
+      "control": "journal-configured-model-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "journal",
+          "message": "Immutable journal differs from its replayed response/save evidence",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/sustained-1791904526118-2-4-39-journal-configured-model-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-4-39",
+      "control": "journal-prompt-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "journal",
+          "message": "Immutable journal differs from its replayed response/save evidence",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/sustained-1791904526118-2-4-39-journal-prompt-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-4-39",
+      "control": "journal-negative-duration-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "verification",
+          "message": "invalid value: integer `-1`, expected u64 at line 1 column 6461",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/sustained-1791904526118-2-4-39-journal-negative-duration-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-4-39",
+      "control": "manifest-clock",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "chain",
+          "message": "Final manifest/checkpoint/journal count differs from replayed committed prefix",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/sustained-1791904526118-2-4-39-manifest-clock"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-4-39",
+      "control": "manifest-journal-count",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "chain",
+          "message": "Final manifest/checkpoint/journal count differs from replayed committed prefix",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/sustained-1791904526118-2-4-39-manifest-journal-count"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-4-39",
+      "control": "manifest-seed",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "chain",
+          "message": "Segment chain does not begin at exact genesis or previous committed continuation",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/sustained-1791904526118-2-4-39-manifest-seed"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-4-39",
+      "control": "missing-segment",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "file-io",
+          "message": "No such file or directory (os error 2)",
+          "modelsContacted": false,
+          "operation": "chain-link",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/sustained-1791904526118-2-4-39-missing-segment"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-4-39",
+      "control": "reordered-segment",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "chain",
+          "message": "Segment chain does not begin at exact genesis or previous committed continuation",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/sustained-1791904526118-2-4-39-reordered-segment"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-4-39",
+      "control": "non-genesis-checkpoint-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "chain",
+          "message": "Segment chain does not begin at exact genesis or previous committed continuation",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/sustained-1791904526118-2-4-39-non-genesis-checkpoint-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-4-39",
+      "control": "numerical-state-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "verification",
+          "message": "Sustained event does not reproduce its exact transition",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/sustained-1791904526118-2-4-39-numerical-state-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-4-39",
+      "control": "event-order-reanchored",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "verification",
+          "message": "Response does not own the dispatched attempt",
+          "modelsContacted": false,
+          "operation": "sustained-storage",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/sustained-1791904526118-2-4-39-event-order-reanchored"
+        ]
+      }
+    },
+    {
+      "original": "sustained-1791904526118-2-4-39",
+      "control": "missing-journal",
+      "expected": "rejected",
+      "passed": true,
+      "verification": {
+        "exitCode": 1,
+        "result": {
+          "category": "file-io",
+          "message": "No such file or directory (os error 2)",
+          "modelsContacted": false,
+          "operation": "journal-evidence",
+          "status": "failed"
+        },
+        "stderr": "",
+        "command": [
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/reservoir-scope-desktop-pinned",
+          "--verify-sustained",
+          "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-proof/final-export/sustained-1791904526118-2-4-39-missing-journal"
+        ]
+      }
+    }
+  ],
+  "status": "passed",
+  "pinnedVerifierUnchanged": true,
+  "requestLogOriginalPrefixUnchanged": true,
+  "summary": {
+    "originals": 1,
+    "negativeControls": 13,
+    "negativeControlsRejected": 13
+  }
+}

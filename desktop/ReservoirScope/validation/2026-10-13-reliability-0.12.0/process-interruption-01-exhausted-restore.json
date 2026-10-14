@@ -1,0 +1,55 @@
+{
+  "atUtc": "2026-10-13T18:59:07.797507+00:00",
+  "identity": [
+    {
+      "pid": 79294,
+      "startSeconds": "1791917884",
+      "startMicroseconds": "550580",
+      "executablePath": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop"
+    }
+  ],
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791917410760-3",
+    "generation": "5",
+    "revision": "41",
+    "config": {
+      "seed": "20261014",
+      "turnEvery": 3,
+      "maximumSteps": 20,
+      "maximumTurns": 5,
+      "maximumDurationSeconds": 600,
+      "storageBudgetBytes": 33554432,
+      "paceMs": 100,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:57314",
+        "model": "reservoir-fixture:reliability-0.12",
+        "contextTokens": 4096
+      }
+    },
+    "phase": "paused",
+    "step": 13,
+    "durableStep": 13,
+    "elapsedMillis": 29836,
+    "journalCount": 4,
+    "segmentCount": 21,
+    "lastSegmentSha256": "0bb29f0ca55ffd700457ad93490ce0caadf05663d556240cbab2815f5d491cab",
+    "checkpointSha256": "56e606ae1af7adf9fde4b04d85f422a2d2f34dda32b4b849491310b8148849a7",
+    "previousCheckpointSha256": "56e606ae1af7adf9fde4b04d85f422a2d2f34dda32b4b849491310b8148849a7",
+    "diagnostics": [],
+    "attemptTiming": {
+      "attemptId": 5,
+      "dispatchedAtMs": "1791917839582",
+      "receivedAtMs": "1791917839789",
+      "transportDurationMs": 207,
+      "publishedAtMs": null
+    }
+  },
+  "providerPostCount": 242,
+  "ui": "Clean idle launch then explicit inspect and Restore: Paused step13 durable13,4savedjournals,5/5attempts,29.8/600seconds,Resume explicitly disabled. No budget increase or automatic run."
+}

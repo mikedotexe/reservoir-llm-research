@@ -1,0 +1,72 @@
+{
+  "schema": "reservoir-offline-checker-qualification-reuse-v1",
+  "recordedAtUtc": "2026-10-14T00:45:05.786551+00:00",
+  "status": "reused-qualified",
+  "scope": "Exact byte reuse of an already-qualified offline checker, tests, evaluation plan and rubric. No new test, production verifier, session/export, model, provider, app, UI, resource, process or cleanup execution.",
+  "newTestsExecuted": false,
+  "newActualExportEvaluated": false,
+  "copiedFileCount": 4,
+  "copiedFiles": [
+    {
+      "source": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/check_real_model_export.py",
+      "destination": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/check_real_model_export.py",
+      "bytes": 39641,
+      "sha256": "ba4d03747ea29dde79fd93bb9b15488800eae0b865d5224902c6561b0b60b443",
+      "byteIdentical": true,
+      "sourceUnchanged": true
+    },
+    {
+      "source": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/test_real_model_export.py",
+      "destination": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/test_real_model_export.py",
+      "bytes": 21200,
+      "sha256": "f9d2e14f816f56b5c57129ee9a27feff8076d665050e8d5b1ab4267de528ea02",
+      "byteIdentical": true,
+      "sourceUnchanged": true
+    },
+    {
+      "source": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/EVALUATION.md",
+      "destination": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/EVALUATION.md",
+      "bytes": 7050,
+      "sha256": "3837489bd6b75f5b2838bb4462e2f51ef8548f8cd11ab83346ff77616a8ca033",
+      "byteIdentical": true,
+      "sourceUnchanged": true
+    },
+    {
+      "source": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/RUBRIC.md",
+      "destination": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/RUBRIC.md",
+      "bytes": 6632,
+      "sha256": "5516e585cf09673bf04f901ec718780e35d7651efd7711afde50402039fab44e",
+      "byteIdentical": true,
+      "sourceUnchanged": true
+    }
+  ],
+  "reusedQualification": {
+    "relativeReceipt": "../2026-10-13-long-writing-0.16.0/checker-tests-01.json",
+    "receiptPath": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/checker-tests-01.json",
+    "receiptSha256": "8865e29e4c9d48026bf5407abe83d033db04885d73f5e37627d0d9f95751c853",
+    "testCount": 27,
+    "status": "passed",
+    "startedAtUtc": "2026-10-14T00:24:24.651482+00:00",
+    "endedAtUtc": "2026-10-14T00:24:25.560677+00:00",
+    "sourceBeforeAfterEqual": true,
+    "logRelativePath": "../2026-10-13-long-writing-0.16.0/checker-tests-01.log",
+    "logSha256": "147441cc5d2d9e641545b01410194f08444c5a368bcf05d658da7d15d5a32f6f",
+    "limits": "Pure helper and temporary synthetic structural-bundle tests. No production CLI, numerical simulation, real export inspection, app, provider, UI or model calls. Historical checker and runtime source unchanged."
+  },
+  "copiedRubricAndEvaluationBasis": {
+    "freezeRelativePath": "../2026-10-13-long-writing-0.16.0/evaluation-freeze-01.json",
+    "freezeSha256": "ea2ec0b090b1164651c720e4e99353296ca83c87e8f5799ebfc3fd4e7dd61c00",
+    "scope": "All four copied source byte identities match their original frozen hashes. The separately documented prior review-file amendment is not copied into this source set."
+  },
+  "relativePathReview": {
+    "checker": "CLI input/output/protocol/executable paths remain explicit absolute arguments; no embedded episode or owned endpoint fallback.",
+    "test": "Python import resolves copied checker beside the test file; protocol tests read neighboring run-plan.json. No test run occurred here.",
+    "documentation": "EVALUATION local checker-tests-01.json resolves this reuse receipt, which links the historical executed qualification; shared/root links retain the same directory depth.",
+    "pendingRootOwnedFiles": [
+      "PROTOCOL.md",
+      "run-plan.json"
+    ],
+    "protocolQualification": "The new protocol/admission must be separately frozen and reviewed. Reused tests do not qualify changed configuration or prove a new model episode completed."
+  },
+  "originalQualificationAndLogUnchanged": true
+}

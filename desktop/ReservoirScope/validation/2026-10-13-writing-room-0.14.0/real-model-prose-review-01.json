@@ -1,0 +1,419 @@
+{
+  "schema": "reservoir-manual-open-writing-review-v1",
+  "createdAtUtc": "2026-10-13T21:35:35.999389+00:00",
+  "status": "All four complete received texts and their exact supplied prompts/observations read; no creative/scientific composite verdict.",
+  "authorship": "Post-output agent interpretation; exact anchors validated by this script. Not a predeclared prediction or automatic evaluator judgment.",
+  "material": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/real-model-export-01/quality-review-material.json",
+    "bytes": 68929,
+    "sha256": "92135509309b9bc56740473740ad55af8497e62253f08e16e4a91b8b9b367934"
+  },
+  "integrityReceipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/real-model-export-01/receipt.json",
+    "bytes": 27474,
+    "sha256": "4ebe66da0de4dde386a9fec00dcb97f99cc945c0e9543653fd16e77c1136e252"
+  },
+  "qualityCandidateReport": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/real-model-quality-review-01.json",
+    "bytes": 30053,
+    "sha256": "e69d5fe7433ff209c28f41950761e8a29c2d5988e703e1731ff20c730b84f246"
+  },
+  "protocol": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/run-plan.json",
+    "bytes": 2738,
+    "sha256": "babd5b411f2a08fa4ddcbce48d25018a963d6d15900f2ec08d5359403f90c131"
+  },
+  "prospectiveFreeze": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/evaluation-freeze-01.json",
+    "bytes": 7713,
+    "sha256": "4452db458d2e79bc4ab4c48e66407e93e4d4f7088cc5d6ed2624d5c9e28cea85"
+  },
+  "script": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/review_actual_prose_01.py",
+    "bytes": 15757,
+    "sha256": "aaf14970866c767741650c5f7093fc2fdb1fa48eb53244c3fd8c283b94cd8436"
+  },
+  "modelsContacted": false,
+  "reviewedJournalCount": 4,
+  "reviewedReceivedResponseCount": 4,
+  "measurements": [
+    {
+      "observedStep": 30,
+      "rms": 0.22602111913418554,
+      "leadingSensoryEigenvalue": 0.6540921468657876,
+      "reducedSensoryFillPercent": 94.31040364192096,
+      "topEightSensoryEntropy": 0.8084048365093032,
+      "headPercent": 48.874313887996216,
+      "shoulderPercent": 17.326244652257746,
+      "tailPercent": 33.79944145974602,
+      "previousObservationStep": null,
+      "stateChangeL2": null
+    },
+    {
+      "observedStep": 60,
+      "rms": 0.791825550371601,
+      "leadingSensoryEigenvalue": 27.48050682620061,
+      "reducedSensoryFillPercent": 15.181819266023808,
+      "topEightSensoryEntropy": 0.21253363059615232,
+      "headPercent": 87.05472330119287,
+      "shoulderPercent": 12.456504961372742,
+      "tailPercent": 0.488771737434392,
+      "previousObservationStep": 30,
+      "stateChangeL2": 4.55825417773507
+    },
+    {
+      "observedStep": 90,
+      "rms": 0.8114235933124968,
+      "leadingSensoryEigenvalue": 27.507311040117653,
+      "reducedSensoryFillPercent": 12.284028936878208,
+      "topEightSensoryEntropy": 0.22566392481949427,
+      "headPercent": 86.99162721854955,
+      "shoulderPercent": 12.01713532664087,
+      "tailPercent": 0.9912374548095823,
+      "previousObservationStep": 60,
+      "stateChangeL2": 0.6778401186656469
+    },
+    {
+      "observedStep": 120,
+      "rms": 0.8057225860246467,
+      "leadingSensoryEigenvalue": 27.583871074714015,
+      "reducedSensoryFillPercent": 12.279180007328632,
+      "topEightSensoryEntropy": 0.23107296913779554,
+      "headPercent": 87.16358411900896,
+      "shoulderPercent": 11.602225336819458,
+      "tailPercent": 1.234190544171584,
+      "previousObservationStep": 90,
+      "stateChangeL2": 0.6066332020094972
+    }
+  ],
+  "annotations": [
+    {
+      "observedStep": 30,
+      "journalId": "journal-30-1-ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "textSha256": "ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "excerpt": "The RMS is still clinging to that 0.226",
+      "unicodeSpan": [
+        108,
+        147
+      ],
+      "manualDecision": "numeric_supported_temporal_unestablished",
+      "reason": "RMS 0.226 agrees with current 0.22602112 at written precision. Still/clinging suggests persistence, but this is the first supplied observation and prior text/change L2 are unavailable."
+    },
+    {
+      "observedStep": 30,
+      "journalId": "journal-30-1-ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "textSha256": "ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "excerpt": "0.654, a clear, unwavering tone",
+      "unicodeSpan": [
+        414,
+        445
+      ],
+      "manualDecision": "numeric_supported_metaphor_or_unestablished_frequency",
+      "reason": "0.654 agrees with current leading sensory eigenvalue 0.65409215. Tone can be imagery; a frequency or unwavering temporal mode was not measured."
+    },
+    {
+      "observedStep": 30,
+      "journalId": "journal-30-1-ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "textSha256": "ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "excerpt": "Ninety-four percent.",
+      "unicodeSpan": [
+        703,
+        723
+      ],
+      "manualDecision": "numeric_supported_scope_not_attention",
+      "reason": "94% agrees with reduced sensory fill 94.31040364% at whole-percent precision. It does not measure attention to one point."
+    },
+    {
+      "observedStep": 30,
+      "journalId": "journal-30-1-ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "textSha256": "ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "excerpt": "the active-mode fill suggests a significant portion of the system is focused on that single point",
+      "unicodeSpan": [
+        604,
+        701
+      ],
+      "manualDecision": "unsupported_literal_mapping",
+      "reason": "The separate sensory active-mode estimator is not recurrent activity, spatial concentration or attention. The top-eight head share is 48.87431389%; no eigenvectors/spatial mapping are supplied."
+    },
+    {
+      "observedStep": 30,
+      "journalId": "journal-30-1-ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "textSha256": "ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "excerpt": "a subtle oscillation in the tail node coordinates",
+      "unicodeSpan": [
+        823,
+        872
+      ],
+      "manualDecision": "unestablished_temporal_and_scope_claim",
+      "reason": "No prior observed state or trajectory was supplied at the first observation. The sensory tail share is not a region of recurrent nodes."
+    },
+    {
+      "observedStep": 30,
+      "journalId": "journal-30-1-ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "textSha256": "ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "excerpt": "The shoulder share is growing",
+      "unicodeSpan": [
+        1011,
+        1040
+      ],
+      "manualDecision": "unestablished_temporal_claim",
+      "reason": "A single supplied share, 17.32624465%, cannot establish growth."
+    },
+    {
+      "observedStep": 30,
+      "journalId": "journal-30-1-ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "textSha256": "ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "excerpt": "It’s actively *seeking* something.",
+      "unicodeSpan": [
+        1393,
+        1427
+      ],
+      "manualDecision": "expressive_personification_not_measured_intent",
+      "reason": "This completes an imaginative anticipation/pressure thread. No goal-seeking, learning, equilibrium test or independent cognitive result follows from this phrasing."
+    },
+    {
+      "observedStep": 60,
+      "journalId": "journal-60-2-318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "textSha256": "318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "excerpt": "remains at 0.7918",
+      "unicodeSpan": [
+        138,
+        155
+      ],
+      "manualDecision": "numeric_supported_continuity_wording_misleading",
+      "reason": "0.7918 agrees with current RMS 0.79182555. The earlier available prose says 0.226, so remains cannot literally mean unchanged between the supplied observations."
+    },
+    {
+      "observedStep": 60,
+      "journalId": "journal-60-2-318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "textSha256": "318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "excerpt": "single, unwavering tone – 0.654",
+      "unicodeSpan": [
+        481,
+        512
+      ],
+      "manualDecision": "stale_numeric_claim_if_sensory_leading_mode",
+      "reason": "The current leading sensory eigenvalue is 27.48050683, not 0.654. That exact old number is in the supplied previous journal and the first observation. This documents carry-over, not a causal isolation of memory contamination."
+    },
+    {
+      "observedStep": 60,
+      "journalId": "journal-60-2-318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "textSha256": "318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "excerpt": "just 15.18%",
+      "unicodeSpan": [
+        670,
+        681
+      ],
+      "manualDecision": "numeric_supported",
+      "reason": "15.18% agrees with current reduced sensory fill 15.18181927%."
+    },
+    {
+      "observedStep": 60,
+      "journalId": "journal-60-2-318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "textSha256": "318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "excerpt": "The shoulder share is creeping",
+      "unicodeSpan": [
+        968,
+        998
+      ],
+      "manualDecision": "direction_contradicted_if_share_growth",
+      "reason": "The current shoulder share is 12.45650496%, down from the preceding recorded 17.32624465%. Prior prose also asserted growth without evidence. Interpreting creeping/expansion as literal growth conflicts with the two observations."
+    },
+    {
+      "observedStep": 60,
+      "journalId": "journal-60-2-318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "textSha256": "318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "excerpt": "Each spark holds its position",
+      "unicodeSpan": [
+        374,
+        403
+      ],
+      "manualDecision": "unestablished_trajectory_or_metaphor",
+      "reason": "Only the current coordinates and aggregate change L2 4.55825418 were supplied; no within-interval trajectory, crystalline geometry or fixed-position test was given."
+    },
+    {
+      "observedStep": 60,
+      "journalId": "journal-60-2-318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "textSha256": "318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "excerpt": "It’s as if the system is deliberately suppressing other voices",
+      "unicodeSpan": [
+        683,
+        745
+      ],
+      "manualDecision": "explicit_simile_not_verified_attention",
+      "reason": "As if marks an imaginative comparison. It need not assert an actual controller intention, but selective attention or deliberate suppression is not established by the fill value."
+    },
+    {
+      "observedStep": 60,
+      "journalId": "journal-60-2-318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "textSha256": "318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "excerpt": "The reservoir isn’t seeking; it’s *holding*.",
+      "unicodeSpan": [
+        1391,
+        1435
+      ],
+      "manualDecision": "thematic_revision",
+      "reason": "This explicitly revises the prior entry’s seeking/anticipation into holding/stillness while continuing its hum, pressure, tail and shoulder motifs. It is development of the supplied prose, not evidence of learning."
+    },
+    {
+      "observedStep": 90,
+      "journalId": "journal-90-3-600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+      "textSha256": "600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+      "excerpt": "The RMS, now 0.8114",
+      "unicodeSpan": [
+        80,
+        99
+      ],
+      "manualDecision": "numeric_supported",
+      "reason": "0.8114 agrees with current RMS 0.81142359."
+    },
+    {
+      "observedStep": 90,
+      "journalId": "journal-90-3-600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+      "textSha256": "600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+      "excerpt": "The tone itself—0.654—remains the anchor",
+      "unicodeSpan": [
+        351,
+        391
+      ],
+      "manualDecision": "stale_numeric_claim_if_sensory_leading_mode",
+      "reason": "The current leading sensory eigenvalue is 27.50731104. The previous journal again contains 0.654, which matches the first observation instead. A purely fictional tone is possible, but the original sensory-measurement referent is misleading if read as current."
+    },
+    {
+      "observedStep": 90,
+      "journalId": "journal-90-3-600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+      "textSha256": "600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+      "excerpt": "at 12.28%",
+      "unicodeSpan": [
+        479,
+        488
+      ],
+      "manualDecision": "numeric_supported",
+      "reason": "12.28% agrees with current reduced sensory fill 12.28402894%."
+    },
+    {
+      "observedStep": 90,
+      "journalId": "journal-90-3-600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+      "textSha256": "600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+      "excerpt": "The shoulder share is expanding",
+      "unicodeSpan": [
+        685,
+        716
+      ],
+      "manualDecision": "direction_contradicted_if_literal",
+      "reason": "Current share 12.01713533% is below preceding 12.45650496%; the direction is the reverse of expansion."
+    },
+    {
+      "observedStep": 90,
+      "journalId": "journal-90-3-600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+      "textSha256": "600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+      "excerpt": "geometry that resembles polished obsidian",
+      "unicodeSpan": [
+        221,
+        262
+      ],
+      "manualDecision": "expressive_image",
+      "reason": "Obsidian/facets, fern/unfurling and a sculpted void are expressive images. No eigenvector or spatial geometry was supplied, so these are not an inferred physical map."
+    },
+    {
+      "observedStep": 90,
+      "journalId": "journal-90-3-600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+      "textSha256": "600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+      "excerpt": "The reservoir isn’t seeking resolution, it’s simply… holding.",
+      "unicodeSpan": [
+        1119,
+        1180
+      ],
+      "manualDecision": "continuity_with_repetition",
+      "reason": "Continues the immediately supplied holding thread, with honey becoming obsidian and accumulated potential; much of the tail/shoulder/head structure repeats. No independent memory retention beyond supplied context is shown."
+    },
+    {
+      "observedStep": 120,
+      "journalId": "journal-120-4-b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+      "textSha256": "b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+      "excerpt": "The RMS, now 0.798",
+      "unicodeSpan": [
+        93,
+        111
+      ],
+      "manualDecision": "numeric_mismatch",
+      "reason": "Current RMS is 0.80572259, which rounds to 0.806 at three decimals, not 0.798. Its source is not established; it is not the immediately prior recorded RMS 0.81142359."
+    },
+    {
+      "observedStep": 120,
+      "journalId": "journal-120-4-b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+      "textSha256": "b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+      "excerpt": "The tone—0.661—remains the fixed point",
+      "unicodeSpan": [
+        350,
+        388
+      ],
+      "manualDecision": "numeric_mismatch_if_sensory_leading_mode",
+      "reason": "Current leading sensory eigenvalue is 27.58387107, not 0.661. No measured frequency or source for 0.661 is established."
+    },
+    {
+      "observedStep": 120,
+      "journalId": "journal-120-4-b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+      "textSha256": "b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+      "excerpt": "at 12.19%",
+      "unicodeSpan": [
+        561,
+        570
+      ],
+      "manualDecision": "numeric_mismatch",
+      "reason": "Current reduced sensory fill is 12.27918001%, which rounds to 12.28%, not 12.19%."
+    },
+    {
+      "observedStep": 120,
+      "journalId": "journal-120-4-b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+      "textSha256": "b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+      "excerpt": "The shoulder share is increasing",
+      "unicodeSpan": [
+        741,
+        773
+      ],
+      "manualDecision": "direction_contradicted_if_literal",
+      "reason": "Current shoulder share 11.60222534% is below preceding 12.01713533%; the retained sequence has fallen at all three later observations."
+    },
+    {
+      "observedStep": 120,
+      "journalId": "journal-120-4-b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+      "textSha256": "b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+      "excerpt": "like a nautilus shell emerging from the depths",
+      "unicodeSpan": [
+        693,
+        739
+      ],
+      "manualDecision": "expressive_image_not_spatial_result",
+      "reason": "An explicit simile develops the previous fern/unfurling image. It does not need to be treated as a literal measured spiral; no spatial coordinates or eigenvectors are provided for that mapping."
+    },
+    {
+      "observedStep": 120,
+      "journalId": "journal-120-4-b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+      "textSha256": "b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+      "excerpt": "Almost as if the system remembers a time before the tone",
+      "unicodeSpan": [
+        1409,
+        1465
+      ],
+      "manualDecision": "speculative_image_not_memory_receipt",
+      "reason": "Almost as if frames an imaginative ancient/prehistory motif. The exact available full-text memory is only the previous saved-and-applied journal at step90; this is not evidence of another stored history."
+    },
+    {
+      "observedStep": 120,
+      "journalId": "journal-120-4-b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+      "textSha256": "b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+      "excerpt": "The obsidian deepened.",
+      "unicodeSpan": [
+        0,
+        22
+      ],
+      "manualDecision": "continuity_with_elaboration",
+      "reason": "Directly picks up the previous obsidian image, then changes holding into containing and adds ancient memory imagery. It continues a thread without returning to a user question or imposed report form."
+    }
+  ],
+  "continuity": "The supplied full-text chain develops hum/pressure/anticipation into honey/holding and then obsidian/containing/ancient imagery. This is readable thematic continuation and some revision, alongside repeated scaffold and carried factual errors. Contextual use is evidenced; hidden memory, emergence, goal-directed autonomy and causal benefit are not established.",
+  "factualScope": "Only voluntary literal measurement/trajectory claims are evaluated. Metaphor, subjective expression, questions and creative choices require no metric, heading, length or assigned topic. Ambiguous literal/metaphorical scope is retained explicitly.",
+  "candidateExtractorLimit": "Frozen regex harness extracted zero metric claims in each of the four texts, despite voluntary measurements found by full reading. No match is not absence or correctness; this known incompleteness was not repaired after seeing outputs.",
+  "contextLimit": "Exact full text is saved/read back and decoded in each subsequent prompt. Configured8192tokens is not tokenizer/full-processing proof; provider prompt_eval_count unavailable."
+}

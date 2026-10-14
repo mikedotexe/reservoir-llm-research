@@ -1,0 +1,136 @@
+name: Tauri desktop foundation
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'desktop/ReservoirScope/**'
+      - 'crates/**'
+      - 'shared/reservoir-scope/**'
+      - 'native/ReservoirScope/**'
+      - 'essentials/**'
+      - 'visualizations/reservoir-3d/**'
+      - 'research/examples/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - 'rust-toolchain.toml'
+      - '.github/workflows/tauri.yml'
+  push:
+    paths:
+      - 'desktop/ReservoirScope/**'
+      - 'crates/**'
+      - 'shared/reservoir-scope/**'
+      - 'native/ReservoirScope/**'
+      - 'essentials/**'
+      - 'visualizations/reservoir-3d/**'
+      - 'research/examples/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - 'rust-toolchain.toml'
+      - '.github/workflows/tauri.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tauri-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  desktop:
+    name: ${{ matrix.runner }} · ${{ matrix.target }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # GitHub currently documents macos-14 as arm64. Assert this below;
+          # an alias change must fail rather than silently qualify another target.
+          - runner: macos-14
+            target: aarch64-apple-darwin
+            architecture: arm64
+            bundle: app
+          - runner: windows-2022
+            target: x86_64-pc-windows-msvc
+            architecture: x64
+            bundle: nsis
+          - runner: ubuntu-24.04
+            target: x86_64-unknown-linux-gnu
+            architecture: x64
+            bundle: deb
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Preserve frozen source bytes in checkout
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.20.1'
+          cache: npm
+          cache-dependency-path: desktop/ReservoirScope/package-lock.json
+      - name: Assert native runner architecture
+        env:
+          EXPECTED_ARCHITECTURE: ${{ matrix.architecture }}
+        run: |
+          python - <<'PY'
+          import os, platform
+          aliases = {'aarch64': 'arm64', 'arm64': 'arm64', 'amd64': 'x64', 'x86_64': 'x64'}
+          actual = aliases.get(platform.machine().lower(), platform.machine().lower())
+          print(f"OS={platform.platform()} architecture={actual}")
+          assert actual == os.environ['EXPECTED_ARCHITECTURE'], 'Runner architecture changed; review the support matrix'
+          PY
+      - name: Install Linux desktop prerequisites
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev
+      - name: Install pinned Rust toolchain
+        run: rustup toolchain install 1.94.1 --profile minimal --target ${{ matrix.target }}
+      - name: Check frozen native reference and staging behavior
+        run: |
+          python desktop/ReservoirScope/scripts/check_reference.py
+          python -m unittest discover -s desktop/ReservoirScope/scripts -p 'test_*.py'
+          python desktop/ReservoirScope/scripts/stage_resources.py
+      - name: Install exact frontend dependencies
+        working-directory: desktop/ReservoirScope
+        run: npm ci
+      - name: Check frontend
+        working-directory: desktop/ReservoirScope
+        run: |
+          npm test
+          npm run build
+      - name: Test portable core and desktop boundary independently
+        working-directory: desktop/ReservoirScope
+        # Separate invocations also catch missing per-package Cargo features that
+        # a workspace-wide build could accidentally supply through unification.
+        run: |
+          cargo test --locked --package reservoir-core
+          cargo test --locked --package reservoir-scope-desktop
+      - name: Build native desktop package
+        working-directory: desktop/ReservoirScope
+        run: npm run tauri -- build --ci --target ${{ matrix.target }} --bundles ${{ matrix.bundle }} -- --locked
+      - name: Archive bundles with executable permissions
+        env:
+          BUILD_TARGET: ${{ matrix.target }}
+        run: |
+          python - <<'PYTHON'
+          import os, pathlib, tarfile
+          base = pathlib.Path('desktop/ReservoirScope/target') / os.environ['BUILD_TARGET'] / 'release'
+          bundle = base / 'bundle'
+          assert bundle.is_dir(), 'Bundle output missing'
+          with tarfile.open(base / 'bundle-artifacts.tar.gz', 'w:gz') as archive:
+              archive.add(bundle, arcname='bundle')
+          PYTHON
+      - name: Retain CI packages for manual acceptance
+        uses: actions/upload-artifact@v4
+        with:
+          name: reservoir-scope-tauri-${{ matrix.target }}-unqualified
+          path: desktop/ReservoirScope/target/${{ matrix.target }}/release/bundle-artifacts.tar.gz
+          if-no-files-found: error
+          retention-days: 14

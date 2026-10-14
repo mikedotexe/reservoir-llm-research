@@ -1,0 +1,19 @@
+{
+  "schema": "reservoir-background-load-interval-v1",
+  "label": "journal-focused-01",
+  "startedAtUtc": "2026-10-13T18:10:35.838072Z",
+  "endedAtUtc": "2026-10-13T18:10:36.771293Z",
+  "derivation": "Exact closed top-level command/check envelope; success and failure both remain background load.",
+  "sources": [
+    {
+      "path": "validation/2026-10-13-reading-0.12.1/journal-focused-01.json",
+      "bytes": 1589,
+      "sha256": "3ccfae26b012f2596e803072d82bf79775ada3729c23dc385a82c4d45fcda340",
+      "timestampPointers": [
+        "/startedAtUtc",
+        "/endedAtUtc"
+      ]
+    }
+  ],
+  "scope": "Documented concurrent host load only; never exclude functional progress, missing samples, errors or stalls. Not a claim that other times were idle."
+}

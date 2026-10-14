@@ -1,0 +1,26 @@
+{
+  "recordedAtMs": 1791908655824,
+  "observedCommands": [
+    {
+      "command": [
+        "pmset",
+        "-g",
+        "custom"
+      ],
+      "exitCode": 0,
+      "stdout": "AC Power:\n Sleep On Power Button 1\n autorestartatconnect 0\n powermode            2\n standby              0\n ttyskeepawake        1\n powernap             1\n displaysleep         0\n womp                 1\n networkoversleep     0\n sleep                0\n tcpkeepalive         1\n autorestart          0\n disksleep            10\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "pmset",
+        "-g",
+        "batt"
+      ],
+      "exitCode": 0,
+      "stdout": "Now drawing from 'AC Power'\n",
+      "stderr": ""
+    }
+  ],
+  "settingsChanged": false
+}

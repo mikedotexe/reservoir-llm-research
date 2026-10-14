@@ -1,0 +1,85 @@
+{
+  "boundBeforeStartUtc": "2026-10-13T21:28:04.389582+00:00",
+  "sessionId": "sustained-1791926853510-1",
+  "generation": "1",
+  "acceptedConfigObservedInNativeUI": {
+    "seed": "20261013",
+    "promptVersion": "reservoir-journal-v3",
+    "outputTokens": 1024,
+    "requestDeadlineSeconds": 180,
+    "turnEvery": 30,
+    "maximumSteps": 121,
+    "maximumTurns": 4,
+    "maximumDurationSeconds": 900,
+    "storageBudgetBytes": 67108864,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true,
+    "language": {
+      "backend": "ollama",
+      "endpoint": "http://127.0.0.1:51691",
+      "model": "gemma3:4b",
+      "contextTokens": 8192
+    }
+  },
+  "packageBinarySha256": "87eb89c76200603b1cb68f34e5b5deddc54dbfa5042530ab0c9787ca56606fa4",
+  "packageArchiveSha256": "032d9353d97688128e450468fb90c454f46d3b3f4fe1d9dcae814b37c15f8348",
+  "endpoint": {
+    "atUtc": "2026-10-13T21:27:14.203962+00:00",
+    "endpoint": "http://127.0.0.1:51691",
+    "port": 51691,
+    "pid": 33792,
+    "selectionSha256": "7de0ae35b3d231201679b2242484cb24a9122a8f9ce866b8554dfe6384a2d86a",
+    "source": "owned process listener log; no endpoint contacted"
+  },
+  "ownedProcess": {
+    "pid": 33792,
+    "pgid": 33792,
+    "sid": 33792,
+    "directChildOfSupervisorPid": 33771,
+    "spawnedAtUtc": "2026-10-13T21:27:14.189803+00:00",
+    "spawnedAtMonotonicSeconds": 1123210.660458833,
+    "software": {
+      "executable": {
+        "path": "/Applications/Ollama.app/Contents/Resources/ollama",
+        "exists": true,
+        "ordinaryFile": true,
+        "symlink": false,
+        "device": "16777234",
+        "inode": "379069922",
+        "sizeBytes": 52076880,
+        "mtimeNs": "1791748632957886657",
+        "ctimeNs": "1791748632957886657",
+        "mode": "0755",
+        "uid": 501,
+        "sha256": "76535100c7aaf5aa94fe749b1bf0cfe3a702fa0743c7421fed059b783f4969de",
+        "readBytes": 52076880
+      },
+      "plist": {
+        "path": "/Applications/Ollama.app/Contents/Info.plist",
+        "exists": true,
+        "ordinaryFile": true,
+        "symlink": false,
+        "device": "16777234",
+        "inode": "379070259",
+        "sizeBytes": 1377,
+        "mtimeNs": "1791748633282462956",
+        "ctimeNs": "1791748633282462956",
+        "mode": "0755",
+        "uid": 501,
+        "sha256": "20b38700aaa5fff48b94832e05d812b658fd93fcdd1bf6b0be61dec57820d15a",
+        "readBytes": 1377
+      },
+      "versionFromPlist": "0.40.3"
+    }
+  },
+  "serviceRemainingSecondsAtBinding": 1149.8057765420526,
+  "serviceSupervisorExecSession": 3327,
+  "planSha256": "babd5b411f2a08fa4ddcbce48d25018a963d6d15900f2ec08d5359403f90c131",
+  "evaluationFreezeSha256": "4452db458d2e79bc4ab4c48e66407e93e4d4f7088cc5d6ed2624d5c9e28cea85",
+  "helperSha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f",
+  "admissionReceiptSha256": "b74cd4b488d35886f16ceaec7450e42d8384a02febf59fe45b712395c31bbb39",
+  "readiness": "Native metadata-only check matched exactmodel/digest at ownedloopback; Create stayedPrepared step0. No generation before Start."
+}

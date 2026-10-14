@@ -1,0 +1,56 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": "python3 scripts/check_reference.py",
+    "evidence": "reference-check.log; 180 frozen native sources, 43 resources and 1 fixture unchanged."
+  },
+  {
+    "id": "resource-staging-tests",
+    "status": "passed",
+    "command": "python3 -m unittest discover -s scripts -p 'test_*.py'",
+    "evidence": "python-tests.log; 9 tests passed."
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": "npm test",
+    "evidence": "frontend-tests.log and frontend-source-and-checks.json; 220 tests in 25 files passed."
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-core",
+    "evidence": "core-tests.log; 116 tests passed."
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": "cargo test --locked -p reservoir-scope-desktop",
+    "evidence": "desktop-tests.log; 85 tests passed, including actual missing/tampered/linked-memory failures, WAIT checkpoint/feedback continuity and legacy defaults."
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": "cargo clippy --locked -p reservoir-core --all-targets -- -D warnings; cargo clippy --locked -p reservoir-scope-desktop --all-targets -- -D warnings",
+    "evidence": "core-clippy.log and desktop-clippy.log; both passed."
+  },
+  {
+    "id": "swift-export-verification",
+    "status": "passed",
+    "command": "python3 scripts/check_action_session_conformance.py with explicit 36-record manifest, Swift and Rust executables and required mutation coverage",
+    "evidence": "fixture-conformance.json; 36 originals passed both unchanged Swift and current Rust, 150 mutations rejected by both. swift-oracle-identity.json binds reused Swift executable and unchanged sources. Packaged export checks are recorded separately. ui-h-conformance.json separately checks the actual native-dialog export and seven mutations; recovery-export-equality.json proves post-relaunch byte identity and eleven static contract checks."
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": "npm run build; npm run tauri -- build --bundles app -- --locked",
+    "evidence": "frontend-build.log and package-build.log; TypeScript and 86-module production build passed. Existing Vite >500kB chunk advisory remains; it is not a performance measurement."
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk npm run tauri -- build --bundles app -- --locked",
+    "evidence": "package-build.log; shipping arm64 .app built. package-resource-check.json checks 39 canonical inputs plus manifest/scenes/index; archive-check.json checks all46 regular files. macos-ui.md records a separate actual H-only walkthrough."
+  }
+]

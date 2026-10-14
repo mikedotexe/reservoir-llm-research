@@ -1,0 +1,89 @@
+{
+  "schema": "reservoir-scope.pending-language-core-checks.v1",
+  "recordedAtUtc": "2026-10-13T06:15:04.455157+00:00",
+  "workingDirectory": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope",
+  "cargoEnvironment": {
+    "DEVELOPER_DIR": "/Applications/Xcode.app/Contents/Developer",
+    "SDKROOT": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+  },
+  "commands": [
+    {
+      "command": "cargo test --locked -p reservoir-core",
+      "exitCode": 0,
+      "passedTests": 140,
+      "log": "core-tests.log"
+    },
+    {
+      "command": "cargo clippy --locked -p reservoir-core --all-targets -- -D warnings",
+      "exitCode": 0,
+      "log": "core-clippy.log"
+    },
+    {
+      "command": "cargo build --locked --release -p reservoir-core --bin reservoir-core --example language_session_fixtures",
+      "exitCode": 0,
+      "log": "core-release-build.log"
+    },
+    {
+      "command": "target/release/examples/language_session_fixtures target/language-session-fixtures-0.11",
+      "exitCode": 0,
+      "log": "core-fixture-generation.log"
+    },
+    {
+      "command": "python3 scripts/check_language_session_conformance.py --swift target/qa/0.7-swift/bin/essentials-run --rust target/release/reservoir-core --swift-baseline validation/2026-10-12-fresh-0.7.0/fixture-conformance.json --output validation/2026-10-13-models-0.11.0/fixture-conformance-final.json --require stage-response-codec --require stage-failed-feedback --require right-accepted-incomplete --require left-request-order --require wait-feedback --require memory-text --require controller-retention target/language-session-fixtures-0.11/stage-*.json target/language-session-fixtures-0.11/single-*.json target/language-session-fixtures-0.11/pair-*.json target/language-session-fixtures-0.11/observation-*.json",
+      "exitCode": 0,
+      "log": "fixture-conformance-final.log"
+    }
+  ],
+  "logs": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-models-0.11.0/core-tests.log",
+      "bytes": 14423,
+      "sha256": "9825ed338d5fb09fc8952190c6933bbf0b92fa0b0da8ec2537f5ff655fd85cba"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-models-0.11.0/core-clippy.log",
+      "bytes": 192,
+      "sha256": "57fb4cfce01fe559ccba693d7d985a41cbb98d3e9f66646cd66b7d60e5dc841f"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-models-0.11.0/core-release-build.log",
+      "bytes": 183,
+      "sha256": "16111eb2f20d743120d7011a42f6de86381eba537c788446eee197c3b0868f82"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-models-0.11.0/core-fixture-generation.log",
+      "bytes": 52,
+      "sha256": "0de6156a8a279a479ead14d509b8723f91c49ebc3b01254fd9fcbc3538bb6be1"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-models-0.11.0/fixture-conformance.log",
+      "bytes": 1217,
+      "sha256": "7d5595303bcf50d258385b1e2aa654c6dea104e327ec5d44f25bf969287448fd"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-models-0.11.0/fixture-conformance-final.log",
+      "bytes": 1263,
+      "sha256": "f8290c19c1647b61efb3270eef6a825f8a737b6129d95d0f5a59b05158f17bbf"
+    }
+  ],
+  "fixtureManifest": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/language-session-fixtures-0.11/manifest.json",
+    "bytes": 10569,
+    "sha256": "cb7b621fef926851ae3fdcb5108b06732d1b4b4914b4ab8f8e866009eaa83439"
+  },
+  "all63FixtureIdentitiesMatchManifest": true,
+  "conformance": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-models-0.11.0/fixture-conformance-final.json",
+    "bytes": 1061471,
+    "sha256": "def35bdd92b926f381effafd00f518158e151e0f30290c2853daa367adcf84a1"
+  },
+  "earlierCheckerAssumptionFailure": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-models-0.11.0/fixture-conformance.json",
+    "bytes": 1049546,
+    "sha256": "b9ac723a2fb3bff9b24b353ed30cd9bce442026a9e39e33e8480fa815f6376b9"
+  },
+  "explanation": "First checker run: all63 originals passed; six cancelled-stage rawReply controls were incorrectly expected to fail. Native and Rust permit inert raw diagnostics. Corrected checker tests accepted reply prohibition and separately records raw-diagnostic compatibility; no core/native/fixture changes.",
+  "modelsContacted": false,
+  "liveSourcesRead": false,
+  "passed": true
+}

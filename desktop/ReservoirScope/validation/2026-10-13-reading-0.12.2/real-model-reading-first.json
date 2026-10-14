@@ -1,0 +1,47 @@
+{
+  "atUtc": "2026-10-13T19:25:05.728289+00:00",
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791919382664-3",
+    "generation": "3",
+    "revision": "72",
+    "config": {
+      "seed": "20261013",
+      "turnEvery": 30,
+      "maximumSteps": 121,
+      "maximumTurns": 4,
+      "maximumDurationSeconds": 600,
+      "storageBudgetBytes": 67108864,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:63515",
+        "model": "gemma3:4b",
+        "contextTokens": 4096
+      }
+    },
+    "phase": "running",
+    "step": 61,
+    "durableStep": 61,
+    "elapsedMillis": 79129,
+    "journalCount": 2,
+    "segmentCount": 9,
+    "lastSegmentSha256": "4a07c0177299412047b32bbf1d6311735a8439a34cf681852d4cbe06e7fdd8ff",
+    "checkpointSha256": "e920c987b2cd1f8cb77ebc0a99d487d900075a08b492959a6afbddebe6b76a15",
+    "previousCheckpointSha256": "a178de1b483dd4160c3c4282b53a5959e4a4b4e9d023268d08cf00664711a014",
+    "diagnostics": [],
+    "attemptTiming": {
+      "attemptId": 2,
+      "dispatchedAtMs": "1791919466116",
+      "receivedAtMs": "1791919477059",
+      "transportDurationMs": 10942,
+      "publishedAtMs": null
+    }
+  },
+  "ui": "Atlive60firstsavedstep30selectedexplicitly;Followlatestoff. Subsequentactualscreenshotshows2savedjournals,Followlatest1new,stillWritingatstep30,firstapplied31,Evidenceclosed;completeprosedisplayed",
+  "readingObservation": "Firstentryincludesassistantstyleprefaceandconvergence/stabilityinferencesfromfirstobservation;requiresseparatequalitativereview. Notinstructionsorverifiedscientificclaims."
+}

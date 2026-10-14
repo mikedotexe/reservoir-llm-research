@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "scope": "Independent comparison of two explicit immutable native exports and their separate static measurement-chain receipts; native actions are established by native-scripted-recovery-01.json, not this comparison.",
+  "recordedUtc": "2026-10-13T22:45:17.988347+00:00",
+  "originalBundle": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-measurements/exports/sustained-1791931028053-1-1-143",
+  "recoveredBundle": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-measurements/exports/sustained-1791931028053-1-2-144",
+  "fileCount": 25,
+  "byteIdenticalNonManifestCount": 24,
+  "changedFiles": [
+    "manifest.json"
+  ],
+  "manifestChanges": {
+    "phase": {
+      "before": "budgetReached",
+      "after": "paused"
+    },
+    "generation": {
+      "before": "1",
+      "after": "2"
+    },
+    "revision": {
+      "before": "143",
+      "after": "144"
+    }
+  },
+  "measurementAndJournalJoinsUnchanged": true,
+  "originalReceiptSha256": "186d15eb134d3253d3041166055495fcbc6a4da841fe066445819fa719cfda1f",
+  "recoveredReceiptSha256": "90b29986d673258444220876cdda305f73453cb98ce2f1247b088fa67b6adcd1"
+}

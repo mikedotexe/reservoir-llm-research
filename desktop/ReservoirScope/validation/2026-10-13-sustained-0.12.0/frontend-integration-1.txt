@@ -1,0 +1,6 @@
+
+> reservoir-scope-desktop@0.12.0 build
+> tsc --noEmit && vite build
+
+src/myReservoirController.ts(81,10): error TS7053: Element implicitly has an 'any' type because expression of type 'SustainedAction' can't be used to index type '{ start: boolean; pause: boolean; stop: boolean; retrySave: boolean; }'.
+  Property 'retryProvider' does not exist on type '{ start: boolean; pause: boolean; stop: boolean; retrySave: boolean; }'.

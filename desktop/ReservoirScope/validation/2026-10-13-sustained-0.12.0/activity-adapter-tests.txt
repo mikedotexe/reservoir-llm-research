@@ -1,0 +1,19 @@
+   Compiling reservoir-scope-desktop v0.12.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+   Compiling reservoir-core v0.1.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core)
+warning: unused import: `SustainedPhase`
+ --> src-tauri/src/sustained_store.rs:8:30
+  |
+8 |     SustainedPendingJournal, SustainedPhase, SustainedSaveReceipt, SustainedSegment,
+  |                              ^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: `reservoir-scope-desktop` (bin "reservoir-scope-desktop" test) generated 1 warning (run `cargo fix --bin "reservoir-scope-desktop" -p reservoir-scope-desktop --tests` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 11.09s
+     Running unittests src/main.rs (target/debug/deps/reservoir_scope_desktop-b723db6654d10cb9)
+
+running 1 test
+test run_activity::platform::tests::user_activity_preserves_system_and_display_sleep ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 127 filtered out; finished in 0.00s
+

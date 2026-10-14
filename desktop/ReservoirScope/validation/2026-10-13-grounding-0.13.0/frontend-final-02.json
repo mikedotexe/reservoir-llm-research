@@ -1,0 +1,31 @@
+{
+  "recordedAtUtc": "2026-10-13T20:00:45.509532+00:00",
+  "checks": [
+    {
+      "log": "frontend-tests-01.log",
+      "sha256": "547981efbd417f9623874e2a0de7fd11acafc8910c89c79aec7e1a0f93ad622f"
+    },
+    {
+      "log": "frontend-build-01.log",
+      "sha256": "b241c639eec64fb1a8db61958a8847c8f619dd9aff86506e91bcd24d4ddcd547"
+    },
+    {
+      "log": "frontend-tests-02.log",
+      "sha256": "45d6f006e5e98b241ee73e8f424baa1b1f738ce99bc6aed8e50118c81514991a"
+    },
+    {
+      "log": "frontend-build-02.log",
+      "sha256": "c437a13ed482aa01c02429b9c321269b4061ace4cd2c47aeefe0c3fc37a778b9"
+    }
+  ],
+  "result": "329 frontend tests passed twice; first typecheck found weak optional-only test parameter typing; fixed function parameter to complete SustainedConfig; final TypeScript and production build passed.",
+  "source": {
+    "src/myReservoirTypes.ts": "140cd00a07fc96be0a2f4b8de2b70ad312fd77aae8e2a5ebd8627917ffbd50ba",
+    "src/myReservoirController.ts": "68abbbbf3cb012773875e3ca61b961fcafeab1d329eca6161921a724268c5687",
+    "src/myReservoirController.test.ts": "e837164742133952724fef7d4656a42890806a3d7f08d1d88e25dac7eb81feb8",
+    "src/myReservoirTestFixtures.ts": "d2acfe25f89160bf8fd0ffdb818538ef07d72a841a94f9baf90108db18589e7c",
+    "src/MyReservoirConfig.tsx": "6be858d9b8baa5597760223cd5362ba572ac17f2be86728111735e49fccbf65a",
+    "src/MyReservoirJournals.tsx": "bb8d1353ece984956c1ad396c01cf56e6f559107e566e95a27ba33a388801e0b",
+    "src/MyReservoirReading.test.tsx": "29dcca5e7ee4565f8561bc5d3c5c71c20e8485669065eeece6ece59f504a65c5"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "schema": "reservoir-scope.agent-execution-receipt.v1",
+  "capturedAtUtc": "2026-10-12T21:28:58.639595+00:00",
+  "agent": "/root/app_parity_inventory",
+  "workingDirectory": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope",
+  "scope": "Executed frontend unit/render/lifecycle checks and production build before the root turnEvery-clamp edit; no packaged UI, native dialogs, model calls, or human acceptance claimed.",
+  "provenance": "Transcribed from successful exec_command/write_stdin tool results retained in this task conversation. These were not originally redirected to log files. Commands were not rerun to create this receipt.",
+  "executions": [
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "observedResult": {
+        "testFilesPassed": 24,
+        "testsPassed": 209
+      },
+      "toolSessionId": 16395,
+      "capturedOutput": "> reservoir-scope-desktop@0.7.0 test\n> vitest run\n\n RUN  v4.1.11 /Users/v/other/reservoir-llm-research/desktop/ReservoirScope\n\n Test Files  24 passed (24)\n      Tests  209 passed (209)\n   Start at  14:25:47\n   Duration  990ms (transform 1.91s, setup 0ms, import 2.83s, tests 1.42s, environment 1ms)\n",
+      "clockQualification": "The Vitest local clock text does not include a timezone. UTC command-start time was not separately captured."
+    },
+    {
+      "command": "npx tsc --noEmit",
+      "exitCode": 0,
+      "toolSessionId": 95685,
+      "capturedOutput": ""
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "toolSessionId": 11440,
+      "capturedOutput": "> reservoir-scope-desktop@0.7.0 build\n> tsc --noEmit && vite build\n\nvite v7.3.7 building client environment for production...\ntransforming...\n\u2713 85 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.47 kB \u2502 gzip:   0.30 kB\ndist/assets/index-BgIo4PKS.css   54.87 kB \u2502 gzip:  11.70 kB\ndist/assets/index-BSn-tn7t.js   949.69 kB \u2502 gzip: 258.82 kB \u2502 map: 4,431.54 kB\n\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n\u2713 built in 1.16s\n"
+    }
+  ],
+  "postCheckChanges": [
+    {
+      "path": "src/FreshExperiments.tsx",
+      "author": "root",
+      "change": "Recipe switching now clamps turnEvery to maximum(recipe), alongside steps.",
+      "coveredByThisReceipt": false,
+      "followUp": "Root is recording final shipping build and focused Fresh test coverage separately."
+    }
+  ],
+  "ownedSourceIdentities": [
+    {
+      "path": "src/FreshExperiments.tsx",
+      "checkSourceSha256": "13ce2065d92544a5225081dd7807c6625148ab98d73f146fb7de9e66e7750ae3",
+      "checkSourceBytes": 29411,
+      "currentCapturedSha256": "3e1aeb802f48bfb39ab4e31a47ea80827c7b76224a73172f9885d75728a9f43c",
+      "currentCapturedBytes": 29467,
+      "identityProvenance": "Pre-check bytes reconstructed in memory by reversing exactly the root-reported single post-freeze turnEvery clamp addition. The original check did not retain an on-disk source snapshot."
+    },
+    {
+      "path": "src/freshController.ts",
+      "checkSourceSha256": "59078994fe4056a0e6bd524d4314635beb36c5135bc067b5bfb01ed501b36628",
+      "checkSourceBytes": 17280,
+      "currentCapturedSha256": "59078994fe4056a0e6bd524d4314635beb36c5135bc067b5bfb01ed501b36628",
+      "currentCapturedBytes": 17280,
+      "identityProvenance": "Current bytes captured after the check; agent-owned file remained frozen after the reported run."
+    },
+    {
+      "path": "src/freshApi.ts",
+      "checkSourceSha256": "b088b389be4c45f703c3de8f7fc8f722a50a1b3794f493cbf41d11cd76d2b891",
+      "checkSourceBytes": 2403,
+      "currentCapturedSha256": "b088b389be4c45f703c3de8f7fc8f722a50a1b3794f493cbf41d11cd76d2b891",
+      "currentCapturedBytes": 2403,
+      "identityProvenance": "Current bytes captured after the check; agent-owned file remained frozen after the reported run."
+    },
+    {
+      "path": "src/freshTypes.ts",
+      "checkSourceSha256": "3dfb21e76916f87e467941258047d5ab6f73f147de182168ead192ae218dbaa1",
+      "checkSourceBytes": 5860,
+      "currentCapturedSha256": "3dfb21e76916f87e467941258047d5ab6f73f147de182168ead192ae218dbaa1",
+      "currentCapturedBytes": 5860,
+      "identityProvenance": "Current bytes captured after the check; agent-owned file remained frozen after the reported run."
+    },
+    {
+      "path": "src/fresh.css",
+      "checkSourceSha256": "79caf7a9d914f496a6f65e796f2ae96adce67cbfd506c93e7cbc07b271a1cecf",
+      "checkSourceBytes": 6642,
+      "currentCapturedSha256": "79caf7a9d914f496a6f65e796f2ae96adce67cbfd506c93e7cbc07b271a1cecf",
+      "currentCapturedBytes": 6642,
+      "identityProvenance": "Current bytes captured after the check; agent-owned file remained frozen after the reported run."
+    },
+    {
+      "path": "src/freshController.test.ts",
+      "checkSourceSha256": "6ab824a0bb509624cb5afdc01c92e8134ed6d405b224846f1f8608775199f0c1",
+      "checkSourceBytes": 18389,
+      "currentCapturedSha256": "6ab824a0bb509624cb5afdc01c92e8134ed6d405b224846f1f8608775199f0c1",
+      "currentCapturedBytes": 18389,
+      "identityProvenance": "Current bytes captured after the check; agent-owned file remained frozen after the reported run."
+    },
+    {
+      "path": "src/FreshExperiments.test.tsx",
+      "checkSourceSha256": "988f49e18b4fb8f4b6bc83f0c2a7b9f53b720a83a94bb21b3001e9afd2351f57",
+      "checkSourceBytes": 4113,
+      "currentCapturedSha256": "988f49e18b4fb8f4b6bc83f0c2a7b9f53b720a83a94bb21b3001e9afd2351f57",
+      "currentCapturedBytes": 4113,
+      "identityProvenance": "Current bytes captured after the check; agent-owned file remained frozen after the reported run."
+    },
+    {
+      "path": "src/CoordinateInspector.tsx",
+      "checkSourceSha256": "6379bb7d9ed02a6344f3b5b8e824d31d1f3bf0eb9568fff61e9ea6660a6885ab",
+      "checkSourceBytes": 3227,
+      "currentCapturedSha256": "6379bb7d9ed02a6344f3b5b8e824d31d1f3bf0eb9568fff61e9ea6660a6885ab",
+      "currentCapturedBytes": 3227,
+      "identityProvenance": "Current bytes captured after the check; agent-owned file remained frozen after the reported run."
+    }
+  ],
+  "sourceIdentityLimits": "This inventory covers the eight owned frontend files, not all integrated application sources. Hashes were captured when writing this receipt; the changed file has an explicitly reconstructed pre-edit identity. Root final source/package inventory must be used to bind the shipping candidate. No prior immutable receipt was edited."
+}

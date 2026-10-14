@@ -1,0 +1,29 @@
+{
+  "schema": "offline-evaluation-execution-v1",
+  "startedAtUtc": "2026-10-13T21:32:42.541775+00:00",
+  "command": [
+    "python3",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/check_real_model_export.py",
+    "--bundle",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.14-writing/exports/sustained-1791926853510-1-1-143",
+    "--executable",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.14-pinned/reservoir-scope-desktop",
+    "--expected-executable-sha256",
+    "87eb89c76200603b1cb68f34e5b5deddc54dbfa5042530ab0c9787ca56606fa4",
+    "--expected-model",
+    "gemma3:4b",
+    "--expected-endpoint",
+    "http://127.0.0.1:51691",
+    "--expected-prompt-version",
+    "reservoir-journal-v3",
+    "--protocol",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/run-plan.json",
+    "--output-directory",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/real-model-export-01"
+  ],
+  "scope": "Offline immutable native export only; no UI, model, HTTP or app-store access.",
+  "endedAtUtc": "2026-10-13T21:32:43.107057+00:00",
+  "wallNanoseconds": 565138708,
+  "exitCode": 0,
+  "logSha256": "6a6fbab85642666367455d8e3713f89216fa24ca39827fff88ed0fddd0a6a607"
+}

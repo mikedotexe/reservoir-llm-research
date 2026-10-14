@@ -1,0 +1,42 @@
+{
+  "schema": "reservoir-scope-agent-source-fix-v1",
+  "recordedAt": "2026-10-13T16:34:28.862868+00:00",
+  "scope": "Unbuilt frontend follow-up to publisher/watchdog fix. Required process-local snapshotSequence rejects older/equal UI snapshots while preserving manifest revision semantics. Not part of frozen0.12.0 measured package.",
+  "changes": [
+    "Canonical positive u64 decimal sequence validated and compared with BigInt. Admission still requires request/session/generation identity and non-regressing persisted revision.",
+    "New owner admission retains process-wide sequence order. Rejected replacement reports failure and preserves reading.",
+    "Return to app reattaches after close cancellation to invalidate old queued close-review updates."
+  ],
+  "checks": [
+    {
+      "command": "npm test -- src/myReservoirController.test.ts src/myReservoirOrdering.test.ts src/MyReservoir.test.tsx",
+      "exitCode": 0,
+      "tests": 37,
+      "files": 3,
+      "log": "frontend-snapshot-ordering.log"
+    },
+    {
+      "command": "npx tsc --noEmit",
+      "exitCode": 0,
+      "log": "frontend-snapshot-types.log"
+    }
+  ],
+  "sources": {
+    "src/myReservoirTypes.ts": "81257353722ecc960df54eb7206b695b6bdab310b6aa699710ff5b4424e2a8ed",
+    "src/myReservoirController.ts": "03448265a1ad017160878244c30648a451594ea675d037e3da7f1e5b5c832e9e",
+    "src/myReservoirTestFixtures.ts": "1f945ef01fba2f5958509812946318112f6d20b1ca9a2e8cac1eebbba86f9261",
+    "src/myReservoirController.test.ts": "8dec860e82eeea023117e9bd25a16f69af88868f6340dcd1f0da9d8ea6b7a70b",
+    "src/myReservoirOrdering.test.ts": "ffc3e4b457fc1636ceac633a45808b7cd6a0d783146f6b5d9d33fd80591dac3f"
+  },
+  "logs": {
+    "frontend-snapshot-initial.log": "4b6bf271fd560a4298cd9c9a202da353168eae1b47f8114efeeccca2ce06e26b",
+    "frontend-snapshot-types-initial.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "frontend-snapshot-ordering.log": "b089f06e66c392dc802c378893070b2574e4c08d0d9883b56c8c10a57e040ea9",
+    "frontend-snapshot-types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "limits": [
+    "No vite production build, no dist edits, no shipping executable changes, no actual-app UI control.",
+    "No real provider contacts; controller fixtures simulate snapshot ordering and lifecycle responses.",
+    "Root owns later integrated package/version qualification; this source requires matching Rust snapshotSequence DTO."
+  ]
+}

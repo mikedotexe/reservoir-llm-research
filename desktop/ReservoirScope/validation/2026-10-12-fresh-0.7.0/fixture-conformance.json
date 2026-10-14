@@ -1,0 +1,1509 @@
+{
+  "schema": "reservoir-scope.fresh-record-conformance.v1",
+  "executedAtUtc": "2026-10-12T21:20:35.611326+00:00",
+  "purpose": "Independent replay of explicitly supplied fresh records and changed-weight controls",
+  "inputsStable": true,
+  "executables": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+      "bytes": 1276560,
+      "sha256": "d0a69c67725cbf002c9b0148cf5fc4cc4ead6db076bc483d46a51925a0d2a39d"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+      "bytes": 5902848,
+      "sha256": "0ad8ce37d8d1c88afe5471ed34d0203ad122def9f9d2d6ecb333d571ca7754bd"
+    }
+  ],
+  "sources": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/check_fresh_conformance.py",
+      "bytes": 4908,
+      "sha256": "03f8a7138e2e1f06b98583f380e58b73f8a4954fb4a599a2cbc23e3c192ab3eb"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/actions/ActionComparisonSession.swift",
+      "bytes": 13350,
+      "sha256": "250e10b40e87ad0c511a9a832ac1bcdbd1a446eb1c81f5a7b6a29fcb0721ec7e"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/actions/ActionForcing.swift",
+      "bytes": 749,
+      "sha256": "9d720fad4715a5e37f0a3c6d90d75ee4507fc3037d8dc963441de098ba8a32b4"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/actions/ActionMechanisms.swift",
+      "bytes": 15572,
+      "sha256": "fd934ed5ce805c868db90d8e6d5660d6b36d481957ad9661e7e8ec0982e1e01f"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/actions/ActionTypes.swift",
+      "bytes": 13660,
+      "sha256": "de6c289b896a65c627761e806e4fc1f40f691b61496bf71143c5350d23e6efa5"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/actions/ActionVerification.swift",
+      "bytes": 29651,
+      "sha256": "34a6894808492767da18e4b25e1b3cba981d06203154ca19785d4d8ec0960ad3"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/llm/Language.swift",
+      "bytes": 9786,
+      "sha256": "fc25fcf105ae0a7e54e5ea5f64894b3141f6bad84812d726539a15ab46efd6d9"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/regulation/Regulation.swift",
+      "bytes": 2611,
+      "sha256": "63ef074bf615a63a28a7c15f813b8e76f975ad9efc57a273f48ad15e0a07137b"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/regulation/RegulationExample.swift",
+      "bytes": 13956,
+      "sha256": "afc5b8c9568624198adcfd1fe21dc2171ea0c8d6b86512367cd83631a46bf99a"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/reservoir/Reservoir.swift",
+      "bytes": 6048,
+      "sha256": "63eea4dbfe5f3f50abbf3156cbc4d7a219a345967d0c4d761e3023d9058a6303"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/reservoir/ReservoirExploration.swift",
+      "bytes": 17163,
+      "sha256": "4aae098c6de7d360847b3bcbcbeef08f8a0aa7de853db3837e720682d68db878"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/runner/Main.swift",
+      "bytes": 6979,
+      "sha256": "cc7274c893cce86611ee4ebb9a83899bb0a264c890105f663244b966fdd86bd7"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/spectral_bridge/SensoryField.swift",
+      "bytes": 7032,
+      "sha256": "8993986044309fefc911a052a9ef201c4f6efcd01afe63239512be4502022809"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/spectral_bridge/TextCodec.swift",
+      "bytes": 6845,
+      "sha256": "46e55a2d33d37d561be0cecbdf5c5124330fcda7ffb2fce8a874c7ee664bd290"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/stages/EssentialsSession.swift",
+      "bytes": 10535,
+      "sha256": "51bb56f60b5203c1543d2e0c7f1a3685bb716ba141b87a6cf7e4a260b3b155ec"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/stages/RunTypes.swift",
+      "bytes": 7088,
+      "sha256": "fa8ae6ed594cd36029d27f416dc6029662016fa6701b5ad1cdfa4ff9c6d6fc83"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/stages/Verification.swift",
+      "bytes": 14894,
+      "sha256": "400fafb610018795c2dff3b7429e800a705b6b1c42411682e3fec01103fad668"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/tests/ActionComparisonTests.swift",
+      "bytes": 22432,
+      "sha256": "e2198becd646537dcfde73fb6d0bf42150b99bbf76117ffb4a39e9b4f71ac47b"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/tests/ExplorationTests.swift",
+      "bytes": 11992,
+      "sha256": "eec9e9051f771b264b4a228deac3272eef07f8a8578363e14171d44694c9c68a"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/tests/MechanismTests.swift",
+      "bytes": 11128,
+      "sha256": "90990d8c03d6560806f03a44a33b47bac83b9e9ba0aedf92ecf4d2792d10a1ee"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/tests/ObservationComparisonTests.swift",
+      "bytes": 5086,
+      "sha256": "2113a3c8a7388480b687a88bd854b306be068b115f06b9267bb190cbcc7b4fe5"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/tests/RuntimeTests.swift",
+      "bytes": 13196,
+      "sha256": "0f99fdd5b9710f39146809516fb3f4e5fae2c15c091191b59d7c5db6834da8de"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/essentials/tests/TeachingExampleTests.swift",
+      "bytes": 10459,
+      "sha256": "7b3ec355403488c922c8dd8d3cbf545184345f9b012055ada8e08caa19e63811"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/actions.rs",
+      "bytes": 48666,
+      "sha256": "2af189ad895f6af1ad1f69cdf6ae39dab441ad5556f114eec80503b3c56333cd"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/cases.rs",
+      "bytes": 20315,
+      "sha256": "74f036a9785d7607478d2989da30ed128c2fb6ff7f7992bad40d46cbf17ed626"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/codec.rs",
+      "bytes": 11574,
+      "sha256": "6192482229710de6bf8a6377480ec891f940cf9ecd02da2f493b6e108db264ee"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/codec_unicode_data.rs",
+      "bytes": 44996,
+      "sha256": "dbfe035749c170abbd80982c1aa18b0d72140fcc9b4d04aa762124ef1f0d28c3"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/exploration.rs",
+      "bytes": 14256,
+      "sha256": "f13e5936aa12fddaf740567ebd83027316b53204c31b634582617fe9691afc36"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/geometry.rs",
+      "bytes": 13466,
+      "sha256": "1af480c924d2118c38fe28dbc05cad6e7f9f958ddf5da64bf0d3832f3c141243"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/guided_evidence.rs",
+      "bytes": 15074,
+      "sha256": "158c61d9b3c6ba4a2895de599ce520608afab0acfa58b24fb0bc7eaf8bb64a6b"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/lib.rs",
+      "bytes": 8843,
+      "sha256": "9223736ea03513512c289c428df662b2ca4a7d26af3054adc99fbeef83631699"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/main.rs",
+      "bytes": 3182,
+      "sha256": "85fdac3f55d5b6b0be3b8b29361f38d961b64aec2ecb1957b2d9f007510b04f0"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/math.rs",
+      "bytes": 15101,
+      "sha256": "845ed5f908d4b7c0765694f47b635be2b201693ce06a3ca25bcd70abe3259bc7"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/observatory.rs",
+      "bytes": 15925,
+      "sha256": "9b4a2d22a4f946583b750a6f0566cc029695cd75050985cbc0c6618b390e878e"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/preparation.rs",
+      "bytes": 22085,
+      "sha256": "ab3efa3f96819003d83ee1a886af62d565406691c0cb01c22378298e54d95c08"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/regulation.rs",
+      "bytes": 18693,
+      "sha256": "8d315361ba62bcdc93ed0b562bc4df401b5512cfc65be9f0a8bac2fa1df30123"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/response.rs",
+      "bytes": 31824,
+      "sha256": "363ec9c5004b8332c9ac8639d6706eefdd22cc1253bbebfc131100cb347f0581"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/session.rs",
+      "bytes": 20671,
+      "sha256": "ae3122c1ac920b1d174b3910cd87f218df4cd67f21293844e561ff4d810f7c34"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/stage.rs",
+      "bytes": 36109,
+      "sha256": "9039109c11570fb0a89dddd155a9fa4c6d9037a57b78b0ff375d7b97103ee36c"
+    }
+  ],
+  "modelsContacted": false,
+  "historicalPathsRead": false,
+  "checks": [
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-1-step-30.json",
+        "bytes": 161542,
+        "sha256": "65f048bf74400cce92c0f9f4c83f47bdab5795a185a1817a27ad4d655e78e66c"
+      },
+      "family": "essentials-v1",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-1-step-30.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 30 steps and 0 language turns, including recurrence, spectra, feedback and regulation.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-1-step-30.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":30,\"checkedTurns\":0,\"sha256\":\"65f048bf74400cce92c0f9f4c83f47bdab5795a185a1817a27ad4d655e78e66c\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-0.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded input weights[0] does not replay (0.5189429202831845, expected 0.39394292028318445).\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-0.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"7a79cbc378d92bf723b0763fc4594484c764f82cddbb2a178635db46861984c2\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded input weights[0] does not replay (0.5189429202831845, expected 0.39394292028318445)\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-1-step-32.json",
+        "bytes": 167832,
+        "sha256": "82608919ef138989cbbfb7437450827b23f52c6564695ef99242b3e1c7b90152"
+      },
+      "family": "essentials-v1",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-1-step-32.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 32 steps and 0 language turns, including recurrence, spectra, feedback and regulation.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-1-step-32.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":32,\"checkedTurns\":0,\"sha256\":\"82608919ef138989cbbfb7437450827b23f52c6564695ef99242b3e1c7b90152\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-1.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded input weights[0] does not replay (0.5189429202831845, expected 0.39394292028318445).\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-1.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"ddfe6ad83a1c244665d6ac06f57167d7498319f89d521c83c7bd00712e0137a6\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded input weights[0] does not replay (0.5189429202831845, expected 0.39394292028318445)\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-2-step-30.json",
+        "bytes": 2199059,
+        "sha256": "6315863846f7ab59ca0993a9965d3e28ccb12245b83d9f0d0614b47fc4ce6a29"
+      },
+      "family": "essentials-v1",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-2-step-30.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 30 steps and 1 language turns, including recurrence, spectra, feedback and regulation.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-2-step-30.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":30,\"checkedTurns\":1,\"sha256\":\"6315863846f7ab59ca0993a9965d3e28ccb12245b83d9f0d0614b47fc4ce6a29\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-2.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded input weights[0] does not replay (0.5189429202831845, expected 0.39394292028318445).\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-2.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"1c34b4c20c2e88c61b928673159aba6af47123eb2920d46ac2f1e90286395f83\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded input weights[0] does not replay (0.5189429202831845, expected 0.39394292028318445)\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-2-step-32.json",
+        "bytes": 2338004,
+        "sha256": "d24058fc0fe7602ad30d6f30864da0f865b64f740fc21a7e1ae049f7b8190942"
+      },
+      "family": "essentials-v1",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-2-step-32.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 32 steps and 1 language turns, including recurrence, spectra, feedback and regulation.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-2-step-32.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":32,\"checkedTurns\":1,\"sha256\":\"d24058fc0fe7602ad30d6f30864da0f865b64f740fc21a7e1ae049f7b8190942\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-3.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded input weights[0] does not replay (0.5189429202831845, expected 0.39394292028318445).\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-3.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"f59921a61753daddd9e9915ef57a4d5c416c3b79a38430af5a17625f302f8147\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded input weights[0] does not replay (0.5189429202831845, expected 0.39394292028318445)\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-3-step-30.json",
+        "bytes": 2199047,
+        "sha256": "327deef94228b582f5187a55592d06e478a63d645c3cc641d6feca43f7200c01"
+      },
+      "family": "essentials-v1",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-3-step-30.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 30 steps and 1 language turns, including recurrence, spectra, feedback and regulation.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-3-step-30.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":30,\"checkedTurns\":1,\"sha256\":\"327deef94228b582f5187a55592d06e478a63d645c3cc641d6feca43f7200c01\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-4.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded input weights[0] does not replay (0.5189429202831845, expected 0.39394292028318445).\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-4.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"7837a81c9a97c30e961283be4ec77ce088ce5c0bfb40bf24c4a00699d7821cc2\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded input weights[0] does not replay (0.5189429202831845, expected 0.39394292028318445)\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-3-step-32.json",
+        "bytes": 2338146,
+        "sha256": "0fb1e6c17e6547429bc6b53d6bd7d6253c82b4a5b88d04720417c9e3f9b6fb31"
+      },
+      "family": "essentials-v1",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-3-step-32.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 32 steps and 1 language turns, including recurrence, spectra, feedback and regulation.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-3-step-32.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":32,\"checkedTurns\":1,\"sha256\":\"0fb1e6c17e6547429bc6b53d6bd7d6253c82b4a5b88d04720417c9e3f9b6fb31\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-5.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded input weights[0] does not replay (0.5189429202831845, expected 0.39394292028318445).\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-5.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"2a304e7e8058e5d556485df107e718d79b8e98e5d132bd5e9496ed73c7998b6b\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded input weights[0] does not replay (0.5189429202831845, expected 0.39394292028318445)\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-4-step-30.json",
+        "bytes": 2216390,
+        "sha256": "7ac761957c338a4ad42b0de8a62919631cc7cdfcf3243bc261bcce4114da8e6f"
+      },
+      "family": "essentials-v1",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-4-step-30.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 30 steps and 1 language turns, including recurrence, spectra, feedback and regulation.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-4-step-30.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":30,\"checkedTurns\":1,\"sha256\":\"7ac761957c338a4ad42b0de8a62919631cc7cdfcf3243bc261bcce4114da8e6f\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-6.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded input weights[0] does not replay (0.5189429202831845, expected 0.39394292028318445).\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-6.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"45921c46c7817b3333ad4df8af6233e41aa58159afabb566c733d5e39e2007d0\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded input weights[0] does not replay (0.5189429202831845, expected 0.39394292028318445)\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-4-step-32.json",
+        "bytes": 2355978,
+        "sha256": "5097da1c07fa58e1cb8d7522c645855c3bb5b20d02d194f093a9e53e26a9b6bd"
+      },
+      "family": "essentials-v1",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-4-step-32.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 32 steps and 1 language turns, including recurrence, spectra, feedback and regulation.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/stage-4-step-32.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":32,\"checkedTurns\":1,\"sha256\":\"5097da1c07fa58e1cb8d7522c645855c3bb5b20d02d194f093a9e53e26a9b6bd\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-7.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded input weights[0] does not replay (0.5189429202831845, expected 0.39394292028318445).\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-7.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"f15c96f3487801bee6d7e386dffe0684a8b976709831be7bce3b0861dca9bca8\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded input weights[0] does not replay (0.5189429202831845, expected 0.39394292028318445)\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/explore-step-17.json",
+        "bytes": 1044531,
+        "sha256": "718239e3dc4eeeecbb1e3ccbd8fea8e2814d5201ce288a277d7be0dd06db9c61"
+      },
+      "family": "essentials-exploration-v1",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/explore-step-17.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 17 exploration steps, including applied controls, input, recurrent drive and exact states.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/explore-step-17.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":17,\"checkedTurns\":0,\"sha256\":\"718239e3dc4eeeecbb1e3ccbd8fea8e2814d5201ce288a277d7be0dd06db9c61\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-8.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Exploration weights do not match their seed.\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-8.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"f834ee1bea9ac7e7195c5a02b1018b2b14ffedfe9763b424b6fa2e377b7c9ec8\",\"modelsContacted\":false,\"diagnostics\":[\"Exploration weights do not match their seed\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/explore-step-32.json",
+        "bytes": 2123887,
+        "sha256": "a36e191b406f4acc38097de9d83c20fe8f510b533ba0c8e24f3e706c0a70a3e9"
+      },
+      "family": "essentials-exploration-v1",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/explore-step-32.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 32 exploration steps, including applied controls, input, recurrent drive and exact states.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/explore-step-32.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":32,\"checkedTurns\":0,\"sha256\":\"a36e191b406f4acc38097de9d83c20fe8f510b533ba0c8e24f3e706c0a70a3e9\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-9.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Exploration weights do not match their seed.\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-9.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-exploration-v1\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"8d257a990d10253fcf320f8e8fe7ea7288f84977275cfcf1e259387a854a1931\",\"modelsContacted\":false,\"diagnostics\":[\"Exploration weights do not match their seed\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-scheduled-step-30.json",
+        "bytes": 2438895,
+        "sha256": "9c1a77de96ccda9a7727e2a676612a01a66dc4226dc1f7c3cd9849f531834b00"
+      },
+      "family": "essentials-actions-v3",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-scheduled-step-30.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 30 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-scheduled-step-30.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":30,\"checkedTurns\":1,\"sha256\":\"9c1a77de96ccda9a7727e2a676612a01a66dc4226dc1f7c3cd9849f531834b00\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-10.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded action weights/projection differ.\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-10.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"95c2e78a2b1e6f2cef6d00d56cb24dd41d5512027d563f1575955a3edd3d40bd\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded action model/projection differs\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-scheduled-step-31.json",
+        "bytes": 2515932,
+        "sha256": "e0afd059559c13de6d23c2c8f785d284d052f0a40832e54130d799870fe40482"
+      },
+      "family": "essentials-actions-v3",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-scheduled-step-31.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 31 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-scheduled-step-31.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":31,\"checkedTurns\":1,\"sha256\":\"e0afd059559c13de6d23c2c8f785d284d052f0a40832e54130d799870fe40482\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-11.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded action weights/projection differ.\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-11.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"7eecd4f26915a95a35fb48a901f81c3b70ac527f2d4ab78556cafa616c997c36\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded action model/projection differs\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-scheduled-step-65.json",
+        "bytes": 5122205,
+        "sha256": "bc25772bd309070cda2145ddeae903ac24c6caded1992f17b99614a5c90facb9"
+      },
+      "family": "essentials-actions-v3",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-scheduled-step-65.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 65 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-scheduled-step-65.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":65,\"checkedTurns\":2,\"sha256\":\"bc25772bd309070cda2145ddeae903ac24c6caded1992f17b99614a5c90facb9\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-12.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded action weights/projection differ.\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-12.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"633e6b3fb6db9bd06669d45eb1bee600865bc2855fa4e5d2bfdcd4f60d77d561\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded action model/projection differs\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-manual-and-scheduled-step-30.json",
+        "bytes": 2443352,
+        "sha256": "29eba78ed2701f8c5b7e4371bd4e81c7c7531e48f5b7d6950cb3f4e4c37cfaa0"
+      },
+      "family": "essentials-actions-v3",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-manual-and-scheduled-step-30.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 30 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-manual-and-scheduled-step-30.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":30,\"checkedTurns\":2,\"sha256\":\"29eba78ed2701f8c5b7e4371bd4e81c7c7531e48f5b7d6950cb3f4e4c37cfaa0\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-13.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded action weights/projection differ.\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-13.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"9ea832d1e132294ab898d951b70ed897b7024a6f9788ec7fae7fd2aa56b74de7\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded action model/projection differs\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-manual-and-scheduled-step-31.json",
+        "bytes": 2520389,
+        "sha256": "9c25d775db3824baceef42d5827c3ff9868dd56aad410a4917eabc4fcd5e0efa"
+      },
+      "family": "essentials-actions-v3",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-manual-and-scheduled-step-31.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 31 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-manual-and-scheduled-step-31.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":31,\"checkedTurns\":2,\"sha256\":\"9c25d775db3824baceef42d5827c3ff9868dd56aad410a4917eabc4fcd5e0efa\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-14.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded action weights/projection differ.\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-14.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"06ad114b21df19f2108ec4a106bb06cd6771acc3d247323f95b75b8cce7a47f7\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded action model/projection differs\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-manual-and-scheduled-step-65.json",
+        "bytes": 5126631,
+        "sha256": "8cb69aea6c0f2cfe15ecafc470dbecb69f308d9633e4b2a487aa3740acdd773e"
+      },
+      "family": "essentials-actions-v3",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-manual-and-scheduled-step-65.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 65 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-4-manual-and-scheduled-step-65.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":65,\"checkedTurns\":3,\"sha256\":\"8cb69aea6c0f2cfe15ecafc470dbecb69f308d9633e4b2a487aa3740acdd773e\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-15.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded action weights/projection differ.\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-15.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"dbe24d66063f25fb5f347237e172cf8014bd85587e89f8e9480ca217369210fd\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded action model/projection differs\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-scheduled-step-30.json",
+        "bytes": 2438895,
+        "sha256": "917a396f0d70d152a140ca616f42f0ee0a34a8164d15f7bb05cb1900a207b272"
+      },
+      "family": "essentials-actions-v3",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-scheduled-step-30.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 30 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-scheduled-step-30.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":30,\"checkedTurns\":1,\"sha256\":\"917a396f0d70d152a140ca616f42f0ee0a34a8164d15f7bb05cb1900a207b272\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-16.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded action weights/projection differ.\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-16.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"af5f2b7a3b3413350f9ecae842cc6c6348ed28b0a8088f487f0ad02ead073412\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded action model/projection differs\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-scheduled-step-31.json",
+        "bytes": 2516459,
+        "sha256": "40a7153bda31b29c0b845c66d7c54c66c0ae3b13cb957531bbf76bce09fb7272"
+      },
+      "family": "essentials-actions-v3",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-scheduled-step-31.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 31 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-scheduled-step-31.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":31,\"checkedTurns\":1,\"sha256\":\"40a7153bda31b29c0b845c66d7c54c66c0ae3b13cb957531bbf76bce09fb7272\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-17.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded action weights/projection differ.\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-17.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"31b0c91f57e7f0fdc18f56d011d146060ee8ab99df9f6dd5481feb6bdef9df9b\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded action model/projection differs\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-scheduled-step-65.json",
+        "bytes": 5138014,
+        "sha256": "263643bc6f6208cee04e2fef5e8f62dc7af53885c7e2d36dc2cea4aa186ffced"
+      },
+      "family": "essentials-actions-v3",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-scheduled-step-65.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 65 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-scheduled-step-65.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":65,\"checkedTurns\":2,\"sha256\":\"263643bc6f6208cee04e2fef5e8f62dc7af53885c7e2d36dc2cea4aa186ffced\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-18.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded action weights/projection differ.\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-18.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"0ac91b67d6c6cdd48b04cb5ec48cb8c266df4e8b4d92369d0322db781c26fd0b\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded action model/projection differs\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-manual-and-scheduled-step-30.json",
+        "bytes": 2447113,
+        "sha256": "110f72f5416372da47726d836c01f56939a3af4e034bdcb8f1dd188ef494ec70"
+      },
+      "family": "essentials-actions-v3",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-manual-and-scheduled-step-30.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 30 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-manual-and-scheduled-step-30.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":30,\"checkedTurns\":2,\"sha256\":\"110f72f5416372da47726d836c01f56939a3af4e034bdcb8f1dd188ef494ec70\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-19.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded action weights/projection differ.\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-19.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"f0d28afe255c6df7d783f4fac077cbec4e357a1134fca8cff686ad9dc6ae1796\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded action model/projection differs\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-manual-and-scheduled-step-31.json",
+        "bytes": 2524327,
+        "sha256": "d8ad72886b5fc21fd27415827fea489517aa21bd280b60641a37b083716a9c58"
+      },
+      "family": "essentials-actions-v3",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-manual-and-scheduled-step-31.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 31 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-manual-and-scheduled-step-31.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":31,\"checkedTurns\":2,\"sha256\":\"d8ad72886b5fc21fd27415827fea489517aa21bd280b60641a37b083716a9c58\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-20.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded action weights/projection differ.\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-20.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"7033c7dd95338975691d2d93c25be74e5524932d50e14db463f7e3dd4248e423\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded action model/projection differs\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-manual-and-scheduled-step-65.json",
+        "bytes": 5143022,
+        "sha256": "300fc9675f011a988a1494ef877fb7999321fcb24899f1879418bc9b605a24f4"
+      },
+      "family": "essentials-actions-v3",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-manual-and-scheduled-step-65.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 65 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-manual-and-scheduled-step-65.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":65,\"checkedTurns\":3,\"sha256\":\"300fc9675f011a988a1494ef877fb7999321fcb24899f1879418bc9b605a24f4\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-21.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded action weights/projection differ.\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-21.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"d9dc7b46ca4f49b9bc1d143bd5568f6c501d2a4cf3556076bc58faa919174b3a\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded action model/projection differs\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    },
+    {
+      "record": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-terminal-save-failure.json",
+        "bytes": 2422808,
+        "sha256": "69746a1932ae62befb5fec8e00cea683a19a2ea66abe22e9912d1f8003c8f2ce"
+      },
+      "family": "essentials-actions-v3",
+      "original": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-terminal-save-failure.json"
+          ],
+          "exitCode": 0,
+          "stdout": "Verified 30 action steps per arm, journal receipts, prompts, reply tape and applied feedback.\n",
+          "stderr": ""
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-fixtures/journal-5-terminal-save-failure.json",
+            "--json"
+          ],
+          "exitCode": 0,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"passed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":30,\"checkedTurns\":1,\"sha256\":\"69746a1932ae62befb5fec8e00cea683a19a2ea66abe22e9912d1f8003c8f2ce\",\"modelsContacted\":false,\"diagnostics\":[\"Record reproduces its retained numerical chain and supported text contract. No provider calls were made.\"]}\n",
+          "stderr": ""
+        }
+      },
+      "negativeChangedSeededWeight": {
+        "swift": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.7-swift/bin/essentials-run",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-22.json"
+          ],
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "essentials-run: Seeded action weights/projection differ.\n"
+        },
+        "rust": {
+          "command": [
+            "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/reservoir-core",
+            "verify",
+            "/private/var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/scope-fresh-negative-q9bs_0_c/changed-seeded-weight-22.json",
+            "--json"
+          ],
+          "exitCode": 1,
+          "stdout": "{\"schema\":\"reservoir-core-verification-v1\",\"status\":\"failed\",\"format\":\"essentials-actions-v3\",\"scope\":\"Supported family structure and numerical replay; retained prompts and bounded qualified Unicode text codec where applicable. Unqualified scalars/graphemes and parser cases remain incomplete; not full desktop or M1 parity.\",\"checkedSteps\":0,\"checkedTurns\":0,\"sha256\":\"d55bc5e102bd9ec2fafdf82675162fb5a151fa9eb49fdaea27214cde020faca3\",\"modelsContacted\":false,\"diagnostics\":[\"Seeded action model/projection differs\"]}\n",
+          "stderr": ""
+        }
+      },
+      "originalBytesUnchanged": true,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "limits": "CLI numerical/text compatibility only. Save receipts in portable records do not authenticate storage. Native dialogs, pending-save lifecycle, packaged behavior and human acceptance require separate checks."
+}

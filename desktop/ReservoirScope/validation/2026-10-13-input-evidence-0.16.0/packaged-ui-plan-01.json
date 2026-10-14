@@ -1,0 +1,47 @@
+{
+  "schema": "reservoir-input-evidence-ui-plan-v1",
+  "status": "prospective-unexecuted",
+  "scope": "Owned synthetic provider only; no real model, Being, default service, or new writing-quality study.",
+  "fixture": {
+    "script": "owned_provider.py",
+    "outputDirectory": "target/qa/0.16-input-evidence-provider-01",
+    "model": "reservoir-fixture:input-evidence-0.16",
+    "lifetimeSeconds": 900,
+    "maximumChatRequests": 5,
+    "readinessRequestsPlanned": 1,
+    "endpoint": "Use only the ephemeral 127.0.0.1 endpoint written by this fixture.",
+    "responseSequence": ["wide-reported", "absent", "malformed-string", "maximum-u64", "incomplete-reported"]
+  },
+  "config": {
+    "seed": "20261013",
+    "promptVersion": "reservoir-journal-v4",
+    "outputTokens": 1024,
+    "requestDeadlineSeconds": 180,
+    "turnEvery": 10,
+    "maximumSteps": 51,
+    "maximumTurns": 5,
+    "maximumDurationSeconds": 180,
+    "storageBudgetBytes": 33554432,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true,
+    "language": {"backend": "ollama", "model": "reservoir-fixture:input-evidence-0.16", "contextTokens": 8192}
+  },
+  "expected": {
+    "heldStep": 50,
+    "receivedResponses": 5,
+    "completeResponses": 4,
+    "savedJournals": 4,
+    "firstAppliedSteps": [11, 21, 31, 41],
+    "reportedCountsAsExactDecimalStrings": ["9007199254740993", "18446744073709551615"],
+    "missingCount": "absent, no invented zero",
+    "malformedCount": "unusable/wrongType, complete prose still eligible",
+    "incompleteCount": "321 is optional metadata, not evidence of completeness or save eligibility",
+    "qualityVerdict": "not assessed"
+  },
+  "execution": {"fixtureLaunched": false, "appLaunched": false, "endpointContacted": false, "modelLaunched": false},
+  "cleanup": "Parent creates fixture stop-request and retains terminal log; any app Stop/Skip is explicit and separately recorded, with no retry or further Start.",
+  "limits": ["No provider context processing proof", "No numerical/prompt/save-gate change intended", "No real-model quality, GPU, minimized-duration, crash/power-loss or cross-platform qualification"]
+}

@@ -1,0 +1,28 @@
+{
+  "startedAtUtc": "2026-10-13T20:32:50.258517+00:00",
+  "endedAtUtc": "2026-10-13T20:32:50.873509+00:00",
+  "wallNanoseconds": 614868750,
+  "command": [
+    "python3",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/check_real_model_export.py",
+    "--bundle",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.13-open-writing/held-evidence-copy-01",
+    "--executable",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+    "--expected-executable-sha256",
+    "689ed9e13e6cdbea8774c232b88018eaebd0c8fcbd2aaedc2d0fb0c6e1bb3b5b",
+    "--expected-model",
+    "gemma3:4b",
+    "--expected-endpoint",
+    "http://127.0.0.1:49606",
+    "--expected-prompt-version",
+    "reservoir-journal-v3",
+    "--output-directory",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/held-review-01"
+  ],
+  "exitCode": 0,
+  "scope": "Offline verification of passive exact committed-file copy; not native export. No model, UI or live store reads.",
+  "copyReceiptSha256": "8e3f48f433fce4060444a28e0f0ff0f4df9dfe136351cb154eb26bafed6aa3df",
+  "prospectiveFreezeSha256": "7ffff291440dc5ff93f465ec7fd02238748bf5ab6fe4b4ae5b39738e3a854f5c",
+  "logSha256": "ac285f145b32f26427898e322cd5f4f3ec941426079522e7874f76d347980623"
+}

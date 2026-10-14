@@ -1,0 +1,25 @@
+{
+  "schema": "reservoir-offline-checker-tests-v1",
+  "startedAtUtc": "2026-10-13T23:35:12.588060+00:00",
+  "endedAtUtc": "2026-10-13T23:35:12.648486+00:00",
+  "command": [
+    "python3",
+    "validation/2026-10-13-input-evidence-0.16.0/test_check_fixture_export.py",
+    "-v"
+  ],
+  "exitCode": 0,
+  "status": "passed",
+  "sourceBefore": {
+    "validation/2026-10-13-input-evidence-0.16.0/check_fixture_export.py": "c1a4b065b9b8bc198febb9a49b9d6878c28e75be9d88b229fa0913b66df6c773",
+    "validation/2026-10-13-input-evidence-0.16.0/test_check_fixture_export.py": "6c76c1367b4afd4150fdf6fd8ed3408aba91a6b56952af095a7291f2079c74da"
+  },
+  "sourceAfter": {
+    "validation/2026-10-13-input-evidence-0.16.0/check_fixture_export.py": "c1a4b065b9b8bc198febb9a49b9d6878c28e75be9d88b229fa0913b66df6c773",
+    "validation/2026-10-13-input-evidence-0.16.0/test_check_fixture_export.py": "6c76c1367b4afd4150fdf6fd8ed3408aba91a6b56952af095a7291f2079c74da"
+  },
+  "sourceUnchanged": true,
+  "testCount": 7,
+  "scope": "Pure checker-helper tests only; no actual exported bundle, pinned CLI, app, model, service, or provider action.",
+  "log": "validation/2026-10-13-input-evidence-0.16.0/export-checker-tests-01.log",
+  "logSha256": "60dfab6fc1d88707ac4631b46a6e31f808101abb86f4950b0df53852f27631c3"
+}

@@ -1,0 +1,28 @@
+{
+  "recordedAtUtc": "2026-10-13T19:01:35.128225+00:00",
+  "plannedVersion": "0.12.1",
+  "scope": "Separate actual native UI qualification; does not inherit0.12.0 multi-hour result",
+  "checks": [
+    "Idle launch and explicit navigation; source selection makes no request",
+    "Invalid duration remains invalid across disclosure collapse and unrelated edit; repair exact61seconds",
+    "Synthetic owned provider failure stays visible, explicit new retry saves; older journal selection persists",
+    "Close review Return reconnects snapshot subscription; checkpoint quit preserves committed work",
+    "Bounded owned gemma3:4b session with exact selected settings; retain first failure without automaticretry",
+    "Native export and whole-history replay; actual request/save/application and fulltextmemory evidence",
+    "Explicit owned-process cleanup with identities; noBeingprocessactions"
+  ],
+  "realModelPlan": "model-selection.json",
+  "realModelAttemptCount": 4,
+  "realModelMaximumSteps": 121,
+  "realModelMaximumSeconds": 600,
+  "realModelStorageBytes": 67108864,
+  "realModelTurnEvery": 30,
+  "realModelPaceMs": 1000,
+  "sustainedRunPolicy": "Open or minimized only; noautoresume or backgroundservice",
+  "limits": [
+    "Not24hourqualification",
+    "Notphysicalpowerloss",
+    "NoGPUwattsortotalappmemoryclaim",
+    "OtherOSunqualified"
+  ]
+}

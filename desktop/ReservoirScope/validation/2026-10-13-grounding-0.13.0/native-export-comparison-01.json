@@ -1,0 +1,104 @@
+{
+  "schema": "reservoir-native-export-comparison-v1",
+  "startedAtUtc": "2026-10-13T20:53:41.685698+00:00",
+  "endedAtUtc": "2026-10-13T20:53:42.031225+00:00",
+  "wallNanoseconds": 345412584,
+  "command": [
+    "python3",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/check_real_model_export.py",
+    "--bundle",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.13-open-writing/exports/sustained-1791923112800-6-6-36",
+    "--executable",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+    "--expected-executable-sha256",
+    "689ed9e13e6cdbea8774c232b88018eaebd0c8fcbd2aaedc2d0fb0c6e1bb3b5b",
+    "--expected-model",
+    "gemma3:4b",
+    "--expected-endpoint",
+    "http://127.0.0.1:49606",
+    "--expected-prompt-version",
+    "reservoir-journal-v3",
+    "--output-directory",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/native-export-review-01"
+  ],
+  "exitCode": 0,
+  "scope": "Offline exact-file comparison and pinned replay of actual native export; no UI, model, HTTP or live-store actions.",
+  "nativeExportReceipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/native-export-completed-01.json",
+    "bytes": 1940,
+    "sha256": "f44dc788164a4dabba2c44bcdebf3e0862415156785ff47905555c436b254345"
+  },
+  "nativeExport": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.13-open-writing/exports/sustained-1791923112800-6-6-36",
+  "passiveCopy": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.13-open-writing/held-evidence-copy-01",
+  "exactFileInventoryMatches": true,
+  "inventory": {
+    "manifest.json": {
+      "bytes": 1106,
+      "sha256": "ac1b87e3e8bc50689d28f36a73a8a2e5ee1de2091d30117dbbbb44c294d46ef4"
+    },
+    "segments/segment-00000001.json": {
+      "bytes": 131112,
+      "sha256": "07356d64db1ecad7173a26a3c164ae13868edf7cc5683cc21fd622351fbfa350"
+    },
+    "segments/segment-00000002.json": {
+      "bytes": 69643,
+      "sha256": "1522ea129354c4416d80faf760abde702a60e42febdf3374829e398834bc1258"
+    },
+    "checkpoints/a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff.json": {
+      "bytes": 34033,
+      "sha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff"
+    }
+  },
+  "nativeCheckerReceipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/native-export-review-01/receipt.json",
+    "bytes": 15576,
+    "sha256": "d75658b44c6ac1eadbbc76da9dd4e05acab0d4dc2f4fd45ffafd1bc3a7843f65"
+  },
+  "previousCheckerReceipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/held-review-01/receipt.json",
+    "bytes": 15515,
+    "sha256": "0fe13c960afc38e04043c7c46075d7741340f3f9383ec96307cf4da32db09e74"
+  },
+  "sameEvidenceView": true,
+  "sameReviewMaterialBytes": true,
+  "nativeExportUnchanged": true,
+  "passiveCopyUnchanged": true,
+  "verification": {
+    "command": [
+      "/usr/bin/time",
+      "-l",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/native-export-review-01/reservoir-scope-desktop-pinned",
+      "--verify-sustained",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.13-open-writing/exports/sustained-1791923112800-6-6-36"
+    ],
+    "startedAtUtc": "2026-10-13T20:53:41.754812+00:00",
+    "endedAtUtc": "2026-10-13T20:53:41.995838+00:00",
+    "wallNanoseconds": 240457917,
+    "peakRssBytes": 12271616,
+    "exitCode": 0,
+    "result": {
+      "modelsContacted": false,
+      "report": {
+        "checkpointSha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff",
+        "diagnostics": [
+          "Incomplete or token-limited response cannot become journal feedback"
+        ],
+        "format": "reservoir-sustained-bundle-v1",
+        "journalCount": 0,
+        "manifestSha256": "ac1b87e3e8bc50689d28f36a73a8a2e5ee1de2091d30117dbbbb44c294d46ef4",
+        "segmentCount": 2,
+        "sessionId": "sustained-1791923112800-6",
+        "sizeBytes": 235894,
+        "step": 30,
+        "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+      },
+      "status": "passed"
+    },
+    "scope": "Offline verifier process; not model-service or GUI resource use."
+  },
+  "log": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/native-export-checker-01.log",
+    "bytes": 279,
+    "sha256": "9c346b9d63526c624b7eee0486db5424fa28154b202a143dc45072555dda225d"
+  }
+}

@@ -1,0 +1,15 @@
+# Held-response recovery and second native export
+
+The restored session's second native export passes the same frozen checker and pinned whole-chain verifier. Its checkpoint and both segments are exactly byte-identical to the first native export. Only three manifest fields changed: generation `6 → 7`, revision `36 → 37`, and wrapper phase `attemptBlocked → paused`.
+
+The parent’s [clean-quit receipt](native-clean-quit-01.json) records Cmd-Q, app exit and unchanged generation-6 manifest at 20:53:43.595229 UTC. The [recovery receipt](native-recovery-completed-01.json) then records an idle launch, explicit recovery catalog/verification, Restore paused for review, disabled Resume, and successful native export at 20:54:56.258858 UTC. It explicitly records no Start, retry, skip or model-service restart. Those UI observations are parent-provided evidence; this independent check performed only offline file reads and verifier execution.
+
+The second native bundle is `target/qa/0.13-open-writing/exports/sustained-1791923112800-6-7-37`. Its manifest SHA-256 is `e9e31a6118ce87f8ecac585a4cd69841ff99ff7744383899a29d561dfda3ac4a`. Its checkpoint remains `a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff`.
+
+[The comparison receipt](recovery-export-comparison-01.json) records direct byte equality for the checkpoint and two segments, the complete manifest difference, and unchanged configuration, budgets, elapsed duration, diagnostics and attempt timing. The same four files are present. The eight-byte smaller total, 235,886 bytes, is entirely the shorter manifest phase string. Both exported originals remained unchanged.
+
+The restored wrapper is paused; the retained core checkpoint is still **blocked** on attempt 1 at step 30. It still contains the same incomplete `length`/256-token response, zero journals, no application and no prior full-text memory. The extracted core evidence view and review-material bytes are identical to the original, so the earlier [manual prose review](real-model-prose-review-01.json) and [zero-journal quality report](held-quality-review-01.json) remain applicable. No new response or successful writing loop was inferred from Restore.
+
+The [new checker receipt](recovery-export-review-01/receipt.json), SHA-256 `9aef70f5fdad9c926c0aefc759fdce045779735a0a6078c32036285da5b55f3a`, binds the same executable SHA-256 `689ed9e13e6cdbea8774c232b88018eaebd0c8fcbd2aaedc2d0fb0c6e1bb3b5b`, retained v3 prompt version and original explicit model/endpoint identity. The endpoint was not contacted. Whole-chain replay ran from 20:55:34.936070 to 20:55:35.122392 UTC, measured subprocess wall time 0.185653541 seconds, peak RSS 12,419,072 bytes; these describe the offline verifier only.
+
+This qualifies clean-quit recovery and re-export of the specific held response in the recorded native flow. It does not demonstrate physical power-loss durability, successful retry, numerical resume or model execution after restoration. The [original results](REAL-MODEL-RESULTS.md), earlier blocked-dialog evidence, [first native-export supplement](NATIVE-EXPORT-SUPPLEMENT.md), and all existing receipts remain intact.

@@ -1,0 +1,42 @@
+{
+  "schema": "reservoir-process-interruption-frozen-verification-v1",
+  "scope": "Offline immutable native export after forced process interruption and explicit new-attempt recovery. No app/store/provider/process-control action.",
+  "startedAtUtc": "2026-10-13T18:59:31.137424+00:00",
+  "endedAtUtc": "2026-10-13T18:59:31.269318+00:00",
+  "wallNanoseconds": 131719333,
+  "wallSeconds": 0.131719333,
+  "command": [
+    "/usr/bin/time",
+    "-l",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-reliability/export-verification-01/reservoir-scope-desktop-frozen",
+    "--verify-sustained",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-reliability/exports-multi-hour/sustained-1791917410760-3-4-40"
+  ],
+  "exitCode": 0,
+  "peakRssBytes": 13107200,
+  "peakRssSource": "macOS /usr/bin/time -l; pinned verifier process, not GUI",
+  "pinnedExecutable": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12-reliability/export-verification-01/reservoir-scope-desktop-frozen",
+    "sha256Before": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d",
+    "sha256After": "f68a3752a628edf11ac6161a26e6979bb22dcf4c3ee1c63f10add2cea86ab40d"
+  },
+  "stdoutSha256": "af11677100da5625536b8f9c833e5ab66c72a2752bbe1cbd5837aea9484a5027",
+  "stderrAndTimeSha256": "f8283c63f07b0205deede023ca21b20749d6fc2a8f3a7756b3176b9da0c2003c",
+  "modelsContacted": false,
+  "result": {
+    "modelsContacted": false,
+    "report": {
+      "checkpointSha256": "56e606ae1af7adf9fde4b04d85f422a2d2f34dda32b4b849491310b8148849a7",
+      "diagnostics": [],
+      "format": "reservoir-sustained-bundle-v1",
+      "journalCount": 4,
+      "manifestSha256": "a17be97faa91115680ae52dc7b2f062761bf4e454265d1a07f61cb4def14914b",
+      "segmentCount": 21,
+      "sessionId": "sustained-1791917410760-3",
+      "sizeBytes": 1500534,
+      "step": 13,
+      "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+    },
+    "status": "passed"
+  }
+}

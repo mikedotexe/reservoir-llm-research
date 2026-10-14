@@ -1,0 +1,23 @@
+{
+  "atUtc": "2026-10-13T19:14:24.233740+00:00",
+  "purpose": "Native regression for resolved historical failure in Prepared and exhausted-budget states",
+  "ownedEndpoint": "http://127.0.0.1:57314",
+  "ownedModel": "reservoir-fixture:reliability-0.12",
+  "config": {
+    "seed": "20261016",
+    "turnEvery": 1,
+    "maximumSteps": 2,
+    "maximumTurns": 2,
+    "maximumDurationSeconds": 61,
+    "paceMs": 1000,
+    "storageBudgetBytes": 33554432
+  },
+  "sequence": [
+    "fail firstattempt",
+    "explicitRetry heldresponse",
+    "CmdQreview thenrelease onlyownedrequest",
+    "Preparedsavedfeedbackmustnotpresentold503ascurrentalert;historyretained",
+    "ReturnandResumeonce; budgetReachedmustnotpresentold503ascurrentalert",
+    "exportandwholeverify; nojournalforfailedattempt"
+  ]
+}

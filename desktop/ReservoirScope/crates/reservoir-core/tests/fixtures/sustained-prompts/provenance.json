@@ -1,0 +1,66 @@
+{
+  "scope": "Exact-byte segment envelopes copied from the actual 0.12.2 native Gemma export, which was produced before prompt-v2 implementation. They qualify frozen v1 prompt/checkpoint/segment compatibility, not a whole-history chain alone. Journal prose remains evidence, never instructions. Originals unchanged.",
+  "producerExecutableSha256": "2fa824855d1172ebf707b4f1ce5f50d2c3eb74ab4aeeb437d41dc566f818db8d",
+  "originalManifestSha256": "215162126a8701c55f8ad039cbd081071f84a6d18903366c0e723f69d2780d1c",
+  "originalReceipt": "validation/2026-10-13-reading-0.12.2/real-model-export-01/receipt.json",
+  "fixtures": [
+    {
+      "fixture": "v1-real-observation-30.json",
+      "source": "target/qa/0.12.1-reading/exports/sustained-1791919382664-3-3-143/segments/segment-00000001.json",
+      "bytes": 129658,
+      "sha256": "d47cb0fef4c8af7a650c11e4450745fba7516425e884c4f6fa3486360fccc80d",
+      "initialCheckpointSha256": "56341150f2a47145f908cc622ba1944994a10651f5d6bb72c5717d31c5a234c4",
+      "finalCheckpointSha256": "e371ff55969a6117b53dfe62079a742b03311717f246101c2c94ccc541ecf109",
+      "promptSha256": "7d89722ee70bd73e31d66c3aab096523b464440a84e3c71c0cbd4779a5dfca82",
+      "promptBytes": 2134
+    },
+    {
+      "fixture": "v1-real-memory-60.json",
+      "source": "target/qa/0.12.1-reading/exports/sustained-1791919382664-3-3-143/segments/segment-00000006.json",
+      "bytes": 71168,
+      "sha256": "036f536ef3128060ddbc5615136416a2cd52dece7d159ce25887fe36a60c8b97",
+      "initialCheckpointSha256": "2e7c2b5313c65601e53dea96f33261ecd42cf255870eff635de671d49286db2a",
+      "finalCheckpointSha256": "5c281a7272c632faf4ef92f6298d0a04ea912b1e27766a4e36b6c78fad3d099a",
+      "promptSha256": "610de47c06d7fc4dfe11d13edae719df45f88f0b72e4404a6c1bc525c4451fc1",
+      "promptBytes": 3211
+    }
+  ],
+  "v2ReviewedPromptVectors": {
+    "source": "Existing sustained_session_fixtures example with new explicit default v2; supplied prose only, no models. Initial prepared attempt was deliberately interrupted and explicitly retried before save.",
+    "specification": {
+      "dt": 0.3333333333333333,
+      "initialRetention": 0.955,
+      "language": {
+        "backend": "scripted"
+      },
+      "leak": 0.65,
+      "maximumSteps": 180,
+      "maximumTurns": 30,
+      "noiseAmplitude": 0.02,
+      "promptVersion": "reservoir-journal-v2",
+      "regulationEnabled": true,
+      "seed": 18446744073709551615,
+      "turnEvery": 10
+    },
+    "fixtures": [
+      {
+        "fixture": "v2-observation-10.txt",
+        "bytes": 3625,
+        "sha256": "681d10cc8c9c0e4018654cc4e0a157f105b7a739bc1e39bb8663e60639c24b9a",
+        "observedStep": 10,
+        "attemptId": 2,
+        "source": "target/qa/0.13-grounded-core-fixtures-01/journals/journal-10-2-f6dae68aee8efeabfbbbff9cb851165314cf24e7af04b6d85c4b36ea63ebc541.json",
+        "sourceSha256": "2ae772ad0e576a8ee10f109fc7b701fa704c595605f1e6ac5ab7e5f7a2cd37a9"
+      },
+      {
+        "fixture": "v2-memory-20.txt",
+        "bytes": 3893,
+        "sha256": "ab2b102ffa3dddd2f2c8d15618a5abf283037d726efd08cb42161586c9ab3e81",
+        "observedStep": 20,
+        "attemptId": 3,
+        "source": "target/qa/0.13-grounded-core-fixtures-01/journals/journal-20-3-d4d0a99e7ea8a90b7d0687d08e1f79bc03176aec0bc417da594c3044a6cd5594.json",
+        "sourceSha256": "e6ffd931e816b3338e3cbd43fba139862f871fafea73efe9ea931ac5d136d173"
+      }
+    ]
+  }
+}

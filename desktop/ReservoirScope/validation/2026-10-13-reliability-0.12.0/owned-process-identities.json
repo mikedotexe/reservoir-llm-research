@@ -1,0 +1,31 @@
+{
+  "capturedAtMs": 1791909680155,
+  "processes": [
+    {
+      "role": "app",
+      "pid": 17307,
+      "startSeconds": "1791908342",
+      "startMicroseconds": "773376",
+      "executablePath": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop"
+    },
+    {
+      "role": "provider",
+      "pid": 17666,
+      "startSeconds": "1791908439",
+      "startMicroseconds": "612665",
+      "executablePath": "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python",
+      "script": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0/owned_provider.py",
+      "scriptSha256": "e7fa0bb05efa27643125df08cbb76fec007d9b4effe96ae8cd9d1e5526cda06a"
+    },
+    {
+      "role": "sampler",
+      "pid": 20466,
+      "startSeconds": "1791908961",
+      "startMicroseconds": "60835",
+      "executablePath": "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python",
+      "script": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0/macos_reliability-capture-01.py",
+      "scriptSha256": "108b03157d93804c187ba18e0ab747d5a5695af2857167839fcab307862c738c"
+    }
+  ],
+  "note": "Match exact PID,start identity and executable before any scoped cleanup. App and provider are measured separately; sampler metrics cover app PID only."
+}

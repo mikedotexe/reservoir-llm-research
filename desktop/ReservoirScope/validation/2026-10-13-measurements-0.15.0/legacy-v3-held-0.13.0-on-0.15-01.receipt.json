@@ -1,0 +1,111 @@
+{
+  "schema": "reservoir-legacy-packaged-replay-v1",
+  "startedAtUtc": "2026-10-13T22:35:58.119942+00:00",
+  "endedAtUtc": "2026-10-13T22:35:58.141119+00:00",
+  "wallNanoseconds": 21154500,
+  "command": [
+    "/usr/bin/time",
+    "-l",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-pinned/reservoir-scope-desktop",
+    "--verify-sustained",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.13-open-writing/exports/sustained-1791923112800-6-6-36"
+  ],
+  "exitCode": 0,
+  "peakRssBytes": 12189696,
+  "scope": "Offline pinned 0.15 CLI verification of an immutable older native export. Timing and RSS belong only to the verifier. No UI, session restore, provider, network or live-store operation.",
+  "executable": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-pinned/reservoir-scope-desktop",
+    "bytes": 16872304,
+    "sha256": "18949732cf48c926003ffcf7b5b216bccc32ea071d0bff8a411e841eaba123d5"
+  },
+  "priorPassingReceipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/native-export-review-01/receipt.json",
+    "bytes": 15576,
+    "sha256": "d75658b44c6ac1eadbbc76da9dd4e05acab0d4dc2f4fd45ffafd1bc3a7843f65"
+  },
+  "targetId": "legacy-v3-held-0.13.0",
+  "bundle": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.13-open-writing/exports/sustained-1791923112800-6-6-36",
+  "retainedPromptVersionEffective": "reservoir-journal-v3",
+  "retainedGenerationBudgetFieldsAbsent": true,
+  "effectiveGenerationBudget": {
+    "outputTokens": 256,
+    "requestDeadlineSeconds": 60
+  },
+  "inventoryBefore": {
+    "checkpoints/a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff.json": {
+      "bytes": 34033,
+      "sha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff"
+    },
+    "manifest.json": {
+      "bytes": 1106,
+      "sha256": "ac1b87e3e8bc50689d28f36a73a8a2e5ee1de2091d30117dbbbb44c294d46ef4"
+    },
+    "segments/segment-00000001.json": {
+      "bytes": 131112,
+      "sha256": "07356d64db1ecad7173a26a3c164ae13868edf7cc5683cc21fd622351fbfa350"
+    },
+    "segments/segment-00000002.json": {
+      "bytes": 69643,
+      "sha256": "1522ea129354c4416d80faf760abde702a60e42febdf3374829e398834bc1258"
+    }
+  },
+  "inventoryAfter": {
+    "checkpoints/a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff.json": {
+      "bytes": 34033,
+      "sha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff"
+    },
+    "manifest.json": {
+      "bytes": 1106,
+      "sha256": "ac1b87e3e8bc50689d28f36a73a8a2e5ee1de2091d30117dbbbb44c294d46ef4"
+    },
+    "segments/segment-00000001.json": {
+      "bytes": 131112,
+      "sha256": "07356d64db1ecad7173a26a3c164ae13868edf7cc5683cc21fd622351fbfa350"
+    },
+    "segments/segment-00000002.json": {
+      "bytes": 69643,
+      "sha256": "1522ea129354c4416d80faf760abde702a60e42febdf3374829e398834bc1258"
+    }
+  },
+  "result": {
+    "modelsContacted": false,
+    "report": {
+      "checkpointSha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff",
+      "diagnostics": [
+        "Incomplete or token-limited response cannot become journal feedback"
+      ],
+      "format": "reservoir-sustained-bundle-v1",
+      "journalCount": 0,
+      "manifestSha256": "ac1b87e3e8bc50689d28f36a73a8a2e5ee1de2091d30117dbbbb44c294d46ef4",
+      "segmentCount": 2,
+      "sessionId": "sustained-1791923112800-6",
+      "sizeBytes": 235894,
+      "step": 30,
+      "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+    },
+    "status": "passed"
+  },
+  "expectedReport": {
+    "manifestSha256": "ac1b87e3e8bc50689d28f36a73a8a2e5ee1de2091d30117dbbbb44c294d46ef4",
+    "checkpointSha256": "a9a85f0f32db910bf3f86573d5103069acfbe533b0c9a1cfd2f86241099461ff",
+    "step": 30,
+    "journalCount": 0,
+    "segmentCount": 2,
+    "sizeBytes": 235894,
+    "sessionId": "sustained-1791923112800-6"
+  },
+  "reportMatchesHistoricalIdentityAndCounts": true,
+  "originalBundleUnchanged": true,
+  "executableUnchanged": true,
+  "stdout": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/legacy-v3-held-0.13.0-on-0.15-01.stdout.json",
+    "bytes": 732,
+    "sha256": "d16c18c95cab5f17630a220a2abb977f167987a6510cfd56952b9f8853fbd041"
+  },
+  "stderrAndTiming": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-measurements-0.15.0/legacy-v3-held-0.13.0-on-0.15-01.stderr-time.txt",
+    "bytes": 777,
+    "sha256": "54da6a9d7367b82bdddb17ee3c71674b0d20f904e29d5d388b7509ca7734b521"
+  },
+  "status": "passed"
+}

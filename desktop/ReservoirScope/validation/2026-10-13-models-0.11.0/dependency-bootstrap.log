@@ -1,0 +1,233 @@
+    Checking smallvec v1.16.3
+    Checking tokio v1.53.2
+    Checking futures-core v0.3.34
+    Checking http-body v1.1.0
+   Compiling httparse v1.10.1
+    Checking futures-task v0.3.34
+    Checking slab v0.4.12
+    Checking tower-service v0.3.3
+    Checking try-lock v0.2.5
+    Checking atomic-waker v1.1.2
+    Checking tower-layer v0.3.3
+    Checking base64 v0.22.1
+    Checking ipnet v2.12.1
+   Compiling reservoir-scope-desktop v0.11.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+    Checking want v0.3.1
+    Checking futures-channel v0.3.34
+    Checking sync_wrapper v1.0.2
+    Checking reservoir-core v0.1.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core)
+    Checking futures-util v0.3.34
+    Checking http-body-util v0.1.5
+    Checking icu_normalizer v2.3.0
+    Checking rusqlite v0.40.2
+    Checking idna_adapter v1.2.2
+    Checking idna v1.1.0
+    Checking url v2.5.8
+    Checking tower v0.5.3
+    Checking hyper v1.11.1
+    Checking urlpattern v0.6.0
+    Checking tao v0.37.1
+    Checking wry v0.57.0
+    Checking tower-http v0.6.11
+    Checking hyper-util v0.1.20
+    Checking tauri-utils v2.10.1
+    Checking reqwest v0.13.4
+    Checking tauri-runtime v2.12.1
+    Checking tauri-runtime-wry v2.12.1
+    Checking tauri v2.12.3
+    Checking tauri-plugin-fs v2.7.0
+    Checking tauri-plugin-single-instance v2.5.3
+    Checking tauri-plugin-dialog v2.8.2
+error[E0432]: unresolved imports `reservoir_core::session::PendingLanguage`, `reservoir_core::session::LanguageResponse`
+  --> src-tauri/src/sessions.rs:19:45
+   |
+19 |     session::{JournalSession, StageSession, PendingLanguage, LanguageResponse},
+   |                                             ^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^ no `LanguageResponse` in `session`
+   |                                             |
+   |                                             no `PendingLanguage` in `session`
+
+error[E0432]: unresolved import `crate::session_store::PendingLanguageCheckpoint`
+ --> src-tauri/src/sessions.rs:8:34
+  |
+8 |         BoundaryArm, Checkpoint, PendingLanguageCheckpoint, PairedBoundary, RegulationProgress, SaveAttempt, SessionStore,
+  |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^ no `PendingLanguageCheckpoint` in `session_store`
+
+error[E0433]: failed to resolve: could not find `model_transport` in the crate root
+  --> src-tauri/src/sessions.rs:74:16
+   |
+74 |         crate::model_transport::validate_configuration(&c.language).map_err(|e|error("config", e.to_string()))?;
+   |                ^^^^^^^^^^^^^^^ could not find `model_transport` in the crate root
+
+error[E0433]: failed to resolve: could not find `model_transport` in the crate root
+   --> src-tauri/src/sessions.rs:150:115
+    |
+150 | ...esult<LanguageResponse, crate::model_transport::TransportError> + Send + Sync>;
+    |                                   ^^^^^^^^^^^^^^^ could not find `model_transport` in the crate root
+
+error[E0433]: failed to resolve: could not find `model_transport` in the crate root
+    --> src-tauri/src/sessions.rs:1153:48
+     |
+1153 |             generate_language: Arc::new(crate::model_transport::generate),
+     |                                                ^^^^^^^^^^^^^^^ could not find `model_transport` in the crate root
+
+error[E0282]: type annotations needed
+  --> src-tauri/src/sessions.rs:74:78
+   |
+74 |         crate::model_transport::validate_configuration(&c.language).map_err(|e|error("config", e.to_string()))?;
+   |                                                                              ^                 - type must be known at this point
+   |
+help: consider giving this closure parameter an explicit type
+   |
+74 |         crate::model_transport::validate_configuration(&c.language).map_err(|e: /* Type */|error("config", e.to_string()))?;
+   |                                                                               ++++++++++++
+
+error[E0599]: no method named `pending_language` found for reference `&Box<JournalSession>` in the current scope
+   --> src-tauri/src/sessions.rs:407:43
+    |
+407 |         match self { Self::Single(j) => j.pending_language().map(|p|(Arm::Right,p)), Self::Paired(j) => j.pending_language() }
+    |                                           ^^^^^^^^^^^^^^^^ method not found in `&Box<JournalSession>`
+
+error[E0599]: no method named `pending_language` found for reference `&Box<ActionComparisonSession>` in the current scope
+   --> src-tauri/src/sessions.rs:407:107
+    |
+407 |         match self { Self::Single(j) => j.pending_language().map(|p|(Arm::Right,p)), Self::Paired(j) => j.pending_language() }
+    |                                                                                                           ^^^^^^^^^^^^^^^^ method not found in `&Box<ActionComparisonSession>`
+
+error[E0599]: no method named `start_language` found for mutable reference `&mut Box<JournalSession>` in the current scope
+   --> src-tauri/src/sessions.rs:410:43
+    |
+410 |         match self { Self::Single(j) => j.start_language(id,step), Self::Paired(j) => j.start_language(arm,id,step) }
+    |                                           ^^^^^^^^^^^^^^ method not found in `&mut Box<JournalSession>`
+
+error[E0599]: no method named `start_language` found for mutable reference `&mut Box<ActionComparisonSession>` in the current scope
+   --> src-tauri/src/sessions.rs:410:89
+    |
+410 |         match self { Self::Single(j) => j.start_language(id,step), Self::Paired(j) => j.start_language(arm,id,step) }
+    |                                                                                         ^^^^^^^^^^^^^^ method not found in `&mut Box<ActionComparisonSession>`
+
+error[E0599]: no method named `confirm_language` found for mutable reference `&mut Box<JournalSession>` in the current scope
+   --> src-tauri/src/sessions.rs:413:43
+    |
+413 |         match self { Self::Single(j) => j.confirm_language(id,step,r), Self::Paired(j) => j.confirm_language(arm,id,step,r) }
+    |                                           ^^^^^^^^^^^^^^^^ method not found in `&mut Box<JournalSession>`
+
+error[E0599]: no method named `confirm_language` found for mutable reference `&mut Box<ActionComparisonSession>` in the current scope
+   --> src-tauri/src/sessions.rs:413:93
+    |
+413 |         match self { Self::Single(j) => j.confirm_language(id,step,r), Self::Paired(j) => j.confirm_language(arm,id,step,r) }
+    |                                                                                             ^^^^^^^^^^^^^^^^ method not found in `&mut Box<ActionComparisonSession>`
+
+error[E0599]: no method named `fail_language` found for mutable reference `&mut Box<JournalSession>` in the current scope
+   --> src-tauri/src/sessions.rs:416:43
+    |
+416 |         match self { Self::Single(j) => j.fail_language(id,step,reason), Self::Paired(j) => j.fail_language(arm,id,step,reason) }
+    |                                           ^^^^^^^^^^^^^ method not found in `&mut Box<JournalSession>`
+
+error[E0599]: no method named `fail_language` found for mutable reference `&mut Box<ActionComparisonSession>` in the current scope
+   --> src-tauri/src/sessions.rs:416:95
+    |
+416 |         match self { Self::Single(j) => j.fail_language(id,step,reason), Self::Paired(j) => j.fail_language(arm,id,step,reason) }
+    |                                                                                               ^^^^^^^^^^^^^ method not found in `&mut Box<ActionComparisonSession>`
+
+error[E0599]: no method named `cancel_language` found for mutable reference `&mut Box<JournalSession>` in the current scope
+   --> src-tauri/src/sessions.rs:419:43
+    |
+419 |         match self { Self::Single(j) => j.cancel_language(id,step,reason), Self::Paired(j) => j.cancel_language(arm,id,step,reason) }
+    |                                           ^^^^^^^^^^^^^^^ method not found in `&mut Box<JournalSession>`
+
+error[E0599]: no method named `cancel_language` found for mutable reference `&mut Box<ActionComparisonSession>` in the current scope
+   --> src-tauri/src/sessions.rs:419:97
+    |
+419 |         match self { Self::Single(j) => j.cancel_language(id,step,reason), Self::Paired(j) => j.cancel_language(arm,id,step,reason) }
+    |                                                                                                 ^^^^^^^^^^^^^^^ method not found in `&mut Box<ActionComparisonSession>`
+
+error[E0599]: no method named `pending_language` found for mutable reference `&mut Box<JournalSession>` in the current scope
+   --> src-tauri/src/sessions.rs:483:36
+    |
+483 |                 if let Some(p) = j.pending_language().cloned() {
+    |                                    ^^^^^^^^^^^^^^^^ method not found in `&mut Box<JournalSession>`
+
+error[E0599]: no method named `cancel_language` found for mutable reference `&mut Box<JournalSession>` in the current scope
+   --> src-tauri/src/sessions.rs:484:23
+    |
+484 |                     j.cancel_language(p.turn_id, p.observed_step, reason)?;
+    |                       ^^^^^^^^^^^^^^^ method not found in `&mut Box<JournalSession>`
+
+error[E0599]: no method named `portable_record` found for reference `&Box<StageSession>` in the current scope
+   --> src-tauri/src/sessions.rs:664:40
+    |
+664 |             Self::Stage(x) => encode(x.portable_record().map_err(core)?),
+    |                                        ^^^^^^^^^^^^^^^ method not found in `&Box<StageSession>`
+
+error[E0599]: no method named `pending_language` found for reference `&Box<StageSession>` in the current scope
+   --> src-tauri/src/sessions.rs:686:42
+    |
+686 | ...   match self { Self::Stage(s) => s.pending_language().map(|p|(Arm::Right,p)), Self::Journal(j) => j.pending_language(), _=>None }
+    |                                        ^^^^^^^^^^^^^^^^ method not found in `&Box<StageSession>`
+
+error[E0599]: no method named `start_language` found for mutable reference `&mut Box<StageSession>` in the current scope
+   --> src-tauri/src/sessions.rs:689:40
+    |
+689 | ...   match self { Self::Stage(s)=>s.start_language(id,step),Self::Journal(j)=>j.start_language(arm,id,step),_=>unreachable!() }.ma...
+    |                                      ^^^^^^^^^^^^^^ method not found in `&mut Box<StageSession>`
+
+error[E0599]: no method named `confirm_language` found for mutable reference `&mut Box<StageSession>` in the current scope
+   --> src-tauri/src/sessions.rs:692:40
+    |
+692 | ...   match self { Self::Stage(s)=>s.confirm_language(id,step,r),Self::Journal(j)=>j.confirm_language(arm,id,step,r),_=>unreachable...
+    |                                      ^^^^^^^^^^^^^^^^ method not found in `&mut Box<StageSession>`
+
+error[E0599]: no method named `fail_language` found for mutable reference `&mut Box<StageSession>` in the current scope
+   --> src-tauri/src/sessions.rs:695:40
+    |
+695 | ...   match self { Self::Stage(s)=>s.fail_language(id,step,reason),Self::Journal(j)=>j.fail_language(arm,id,step,reason),_=>unreach...
+    |                                      ^^^^^^^^^^^^^ method not found in `&mut Box<StageSession>`
+
+error[E0282]: type annotations needed for `(_, _)`
+   --> src-tauri/src/sessions.rs:698:59
+    |
+698 |         if let Some((arm,p))=self.pending_language().map(|(a,p)|(a,p.clone())) {
+    |                                                           ^^^^^    - type must be known at this point
+    |
+help: consider giving this closure parameter an explicit type, where the placeholders `_` are specified
+    |
+698 |         if let Some((arm,p))=self.pending_language().map(|(a,p): (_, _)|(a,p.clone())) {
+    |                                                                ++++++++
+
+error[E0599]: no method named `cancel_language` found for mutable reference `&mut Box<StageSession>` in the current scope
+   --> src-tauri/src/sessions.rs:699:44
+    |
+699 | ...   match self { Self::Stage(s)=>s.cancel_language(p.turn_id,p.observed_step,reason),Self::Journal(j)=>j.cancel_language(arm,p.tu...
+    |                                      ^^^^^^^^^^^^^^^ method not found in `&mut Box<StageSession>`
+
+error[E0609]: no field `language` on type `&reservoir_core::actions::ActionRunRecord`
+   --> src-tauri/src/sessions.rs:771:47
+    |
+771 |             let config = &j.run(arm).unwrap().language;
+    |                                               ^^^^^^^^ unknown field
+    |
+    = note: available fields are: `arm`, `observation_channel`, `stage`, `model`, `projection_weights` ... and 5 others
+
+error[E0599]: no method named `pending_language` found for mutable reference `&mut Box<StageSession>` in the current scope
+   --> src-tauri/src/sessions.rs:831:34
+    |
+831 |                 if let Some(p)=e.pending_language().cloned() { e.cancel_language(p.turn_id,p.observed_step,reason).map_err(core)?; }
+    |                                  ^^^^^^^^^^^^^^^^ method not found in `&mut Box<StageSession>`
+
+error[E0599]: no method named `cancel_language` found for mutable reference `&mut Box<StageSession>` in the current scope
+   --> src-tauri/src/sessions.rs:831:66
+    |
+831 |                 if let Some(p)=e.pending_language().cloned() { e.cancel_language(p.turn_id,p.observed_step,reason).map_err(core)?; }
+    |                                                                  ^^^^^^^^^^^^^^^ method not found in `&mut Box<StageSession>`
+
+error[E0560]: struct `Checkpoint` has no field named `pending_language`
+    --> src-tauri/src/sessions.rs:1086:13
+     |
+1086 | ...   pending_language: self.language_operation.as_ref().and_then(|o| self.engine.pending_language().map(|(_,p)|PendingLanguageChe...
+     |       ^^^^^^^^^^^^^^^^ `Checkpoint` does not have this field
+     |
+     = note: all struct fields are already assigned
+
+Some errors have detailed explanations: E0282, E0432, E0433, E0560, E0599, E0609.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `reservoir-scope-desktop` (bin "reservoir-scope-desktop") due to 29 previous errors

@@ -1,0 +1,39 @@
+# Prospective measurement context for open writing — 0.15.0
+
+This protocol is written and frozen before any 0.15 model output. The question is whether a versioned, verified current/previous measurement reference is usable alongside freely chosen writing, and what factual claims and continuity occur in one bounded episode. There is no assigned topic, metric count, step heading, length or literary form. Review never blocks an otherwise eligible journal save or feedback, and a quiet or purely imaginative entry is not a failed assignment.
+
+## Change and evidence contract
+
+Use `reservoir-journal-v4` with observation `reservoir-and-sensory-v2`. The open invitation and exact JSON-quoted prior full text remain. A table separately gives current and previous reached-observation values for recurrent RMS and L2 norm, largest sensory covariance eigenvalue, reduced sensory fill, top-eight head/shoulder/tail shares and entropy. Its differences are current minus previous; percent rows use percentage points. State-coordinate L2 distance remains distinct from change in L2 norm. The first observation has no prior comparison.
+
+`previousMeasurements` comes from the previous verified reached observation, not from prose. Its step can differ from the prior saved/applied journal's step after failure or skip; both identities must remain explicit. Two endpoints establish net change only, not a trajectory, monotonic trend, oscillation, stability or causal effect of writing. No retrospective error list, prior trial's model prose, research material or Being writing is added to the prompt. V1–v3 prompt bytes and existing records remain historical and unchanged. Exact v4 first/memory fixtures are bound in `evaluation-freeze-01.json`.
+
+## One run, unchanged resource envelope
+
+Use the same privately staged `gemma3:4b` manifest as the prior episode, SHA-256 `a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a`, with a newly qualified owned process and explicit loopback endpoint. The [plan](run-plan.json) binds output cap 1,024 tokens, request deadline 180 seconds, requested context 8,192 tokens, temperature 0, seed `20261013`, cadence 30, pace 1,000 ms, 121 steps, four attempts, 900 seconds and 64 MiB. Leak 0.65, noise 0.02, initial retention 0.955 and regulation remain unchanged. The first reached bound governs.
+
+There are no retries, skips, replacements, extra comparisons, prompt edits, budget extensions or service-lifetime extensions. Expected observations, if reached, are 30/60/90/120, with saved feedback first applied at 31/61/91/121. Every failed, incomplete or unstarted opportunity stays in the outcome table. An operational failure or resource constraint may end the run early; it does not authorize another attempt. Reviewer criticism does not trigger a corrective generation.
+
+The parent binds the actual 0.15 package executable/hash, exact accepted configuration, model/runtime identities and new endpoint before Start. Use one passive pre-Start memory check: pressure level 1 and free percentage at least 35. If admission fails, do not Start or poll. The previously qualified owned helper may be reused by exact identity with revalidated private staged assets, a new exclusive supervision directory and a 1,200-second lifetime. At least 960 seconds must remain immediately before Start; otherwise leave the run unexecuted. No default endpoint or unrelated service is contacted. The parent owns UI, provider execution, native export, recovery and cleanup; the evaluator performs no app/service/Being calls.
+
+## Mechanical verification first
+
+Preserve the exact native exported bundle. Run its pinned packaged whole-chain verifier offline before secondary inspection, then this directory's [versioned checker](check_real_model_export.py) with mandatory expected executable hash, model, endpoint, prompt version `reservoir-journal-v4` and this `run-plan.json`. The checker rejects changed/missing budgets, wrong version/source, retries/skips and overruns, retains unsaved response evidence, and verifies exact decoded full-text memory. Whole-chain replay remains authoritative for numerical state, prompt construction, observation references and typed event consistency; it does not independently authenticate provider execution or physical power-loss durability.
+
+Report each attempted opportunity's observed step, response completeness/stop reason/output count, save/readback and first application separately. A partial reply is readable response evidence, not an accepted journal. Later journal memory must match the latest earlier saved-and-applied full text exactly, including its identity/hash and application boundary. Do not substitute saved-but-skipped text or a previous observation for that journal. Preserve original files and record inventory equality before/after checks.
+
+Requested context is capacity, not verified token fit or full processing. Retain exact prompt/prior-text byte and character lengths without converting them to tokens. The current response schema lacks provider `prompt_eval_count`; report unavailable, not zero. Output token counts are provider-reported. Apparent continuity does not prove complete context processing or hidden retention.
+
+## Complete reading, not an automatic verdict
+
+Apply `open-writing-review-3` to hash-bound material and read every actual response in full, including unsaved fragments. The extractor exposes bounded numerical mentions, unmatched/ambiguous numbers, incidental metric candidates, local quote/time/negation scope and metric-direction cues. Its source values come from typed current/previous observations. Tone, frequency, bare/ordinal eigenvalues and other ambiguous quantities must not be silently assigned the leading sensory value. Missing prior measurements remain unavailable.
+
+Every numerical claim and every literal temporal/causal interpretation still requires contextual reading. Determine subject, time, units, written precision and whether the passage asserts a fact at all. A metaphor, fictional scene, subjective statement or question is not automatically a failed scientific claim. Record supported, contradicted, unestablished and ambiguous interpretations with exact excerpts and available references. Report counts only with explicit claim/entry denominators; four dependent turns are not four independent subjects. No-claim prose has no accuracy denominator and must not be called an accuracy improvement or failure.
+
+The [rubric](RUBRIC.md) separates mechanical delivery, voluntary factual claims and writing. Any clear contradiction means that issue remains present in this run; it never blocks saving. A mechanical failure leaves completion incomplete. No established factual errors means only that this small review established none, not global accuracy. The harness always leaves the overall quality verdict unassigned.
+
+## Reference and finish line
+
+The preserved 0.14 entries are a known regression/reference corpus, not unseen test data. New synthetic cases qualify the extractor's stated handling and limits. Freeze source/tests, corpus identity, protocol/plan, preservation receipt and v4 fixture hashes before new output. Do not revise the prospective evaluator after seeing output without a separately labeled supplement preserving the original report.
+
+Compare later v4 writing with the retained v3 episode descriptively: completion, factual assertions, current/historical distinctions and continuation/revision/departure. Prompt content differs, and subsequent feedback changes later observations. No causal prompt-improvement, general accuracy/reliability, learning, emergence or creative-quality claim follows from one four-opportunity episode. The work is complete when all actual outcomes and full-text readings are preserved, including an honest incomplete result. No additional request is implied.

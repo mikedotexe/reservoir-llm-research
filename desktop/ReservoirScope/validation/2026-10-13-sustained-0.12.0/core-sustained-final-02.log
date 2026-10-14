@@ -1,0 +1,19 @@
+   Compiling reservoir-core v0.1.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.70s
+     Running tests/sustained.rs (target/debug/deps/sustained-0a3e717c66f08617)
+
+running 10 tests
+test memory_must_be_reread_and_skipped_saved_journal_never_enters_memory ... ok
+test cancellation_is_terminal_for_attempt_and_all_failure_events_replay ... ok
+test skipped_memory_failures_count_opportunities_without_fabricating_provider_attempts ... ok
+test save_then_persist_authorization_then_exactly_one_next_step_application ... ok
+test prepared_or_started_recovery_never_resends_and_retry_allocates_new_attempt ... ok
+test checkpoint_integrity_deep_prompt_vector_guards_and_segment_replay_reject_tampering ... ok
+test failed_incomplete_mismatched_and_unqualified_responses_never_gain_feedback ... ok
+test bounded_outbox_backpressure_and_step_attempt_budget_extension_preserve_rng ... ok
+test segmented_and_serialized_continuation_matches_uninterrupted_across_all_saved_gates ... ok
+{"attempts":120,"maximumCheckpointBytes":30221,"maximumRetainedEvents":52,"modelsContacted":false,"qualification":"accelerated-core-stream-not-wall-time-soak","steps":3605,"verifiedSegments":85}
+test stream_passes_historical_caps_with_bounded_outbox_and_no_rng_restart ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 34.50s
+

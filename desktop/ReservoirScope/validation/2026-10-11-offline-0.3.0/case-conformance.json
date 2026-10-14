@@ -1,0 +1,229 @@
+{
+  "schema": "reservoir-scope.case-conformance.v1",
+  "executedAtUtc": "2026-10-12T02:35:14.528189+00:00",
+  "nativeSource": "native/ReservoirScope/Sources/ReservoirScope/ResearchCase.swift",
+  "nativeSourceSha256": "ad727e20be5d2b11a4b080fa4a64a9abec604581d294d4d07c0e321ad479d483",
+  "swiftVersion": "Apple Swift version 6.2.4 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)\nTarget: arm64-apple-macosx28.0",
+  "modelsContacted": false,
+  "historicalPathsAccessed": false,
+  "checks": [
+    {
+      "name": "canonical-reviewed-cases",
+      "inputSha256": "947d26789d7ccd96e56f86afafdd7a4d9fee4dc723f74b9e8e20f353d650473a",
+      "expectedPass": true,
+      "swiftExit": 0,
+      "rustExit": 0,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "minimal-inert-path",
+      "inputSha256": "ee7a0e20e88bfdf016422686bfeee2a11f414afa175c8d47093d140c3dd85db3",
+      "expectedPass": true,
+      "swiftExit": 0,
+      "rustExit": 0,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "canonical-duplicate",
+      "inputSha256": "5bc0cdf370267fea39969911a2917f52a417a37b39cf1c6a01fc1cd6e86898f8",
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "canonical-match",
+      "inputSha256": "b1cab324ce165e92e035e1abf394836b7ac0c63a5d858d508682f25395d55f92",
+      "expectedPass": true,
+      "swiftExit": 0,
+      "rustExit": 0,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "accent-not-partial",
+      "inputSha256": "ea2049c57bf9a874ebde39ffeb488cf44a073d239174caeed6b6628beee717a7",
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "nonoverlap",
+      "inputSha256": "8f04def9b9181dbba7b9f851571cf59ee393d9d3405b07d121fa734a67086bd2",
+      "expectedPass": true,
+      "swiftExit": 0,
+      "rustExit": 0,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "ligature-not-folded",
+      "inputSha256": "509735d8fed5842d772a2adf0d2bfec949567a255e692e994a850cabd2d02761",
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "width-not-folded",
+      "inputSha256": "e8ceb67ffa40a67fec392ed0b786d1fab449125439d4f35682372368d157f6b4",
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "flag-not-partial",
+      "inputSha256": "432eaf214cc1e3805dc86c90c01a592454e8d447abb81d323bede7f9e0c35883",
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "emoji-zwj-not-partial",
+      "inputSha256": "5dc2f603c100e23c15e99791da1ee1aaf45435d753b94cfd717c388297f3fba4",
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "emoji-modifier-not-partial",
+      "inputSha256": "5b17b4f3928035f575dbc569c634107e1908b6481f046f1a8c25164f6c27cb8f",
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "crlf-not-partial",
+      "inputSha256": "38cb10679e70e70c6de806e6aed98fbe9c07fc581ace4c546553cace09d0aa2d",
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "combining-mark-not-partial",
+      "inputSha256": "b33a8599b867779cc4ff3905a493dc1e75385ae60c3a731629d58a13800b26a7",
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "later-valid-match",
+      "inputSha256": "d6c334d90e18fb6dab91fe561980a657d074f2e753828fa5a96afc987d3a556d",
+      "expectedPass": true,
+      "swiftExit": 0,
+      "rustExit": 0,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "indic-cluster-not-partial",
+      "inputSha256": "fe89ab8c7852eeb73a61b896fa54056186e7cc937540bd62f18b8a0db540f3ec",
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "ideographic-quote",
+      "inputSha256": "be3464272f821946346ad8366928fb400d8497c58f6bd888966809a5322321d0",
+      "expectedPass": true,
+      "swiftExit": 0,
+      "rustExit": 0,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "changed-embedded-bytes",
+      "inputSha256": "ce6a5b41e90597b9a10386bb04f5310151d1f7f4a86f7ff08f78231297b1b6d7",
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "missing-evidence",
+      "inputSha256": "2c9cdd5e0b8c6542d0a76c36094c8a2b5a7ba2200d9635518629df5abd9de08d",
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "missing-limits",
+      "inputSha256": "0a62623595f2814c443b07ec45e3b750ddbd28ad876226c899e636331d94d2fa",
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "unrecognized-classification",
+      "inputSha256": "6b108770f6cfe53ad8006524c457cdb5ea753b5d3902e6fb86a03085a02d9f98",
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "observed-without-evidence",
+      "inputSha256": "4532f49771504efbd440307bcab520f9749b4ad8756a266d1be67635fba36932",
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "foundation-zero-width-whitespace",
+      "inputSha256": "e11376689eb8b73e4864e7282847ba4a100412b60dddb00e811ac72c1a2a1eca",
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "duplicate-canonical-material-id",
+      "inputSha256": "a6e0c29aefd72f0cb6236a14b607481cb5b5b2e9cce183028b32eb1bfef4eebc",
+      "expectedPass": false,
+      "swiftExit": 1,
+      "rustExit": 1,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    },
+    {
+      "name": "canonical-reference",
+      "inputSha256": "4c10acb8395f825a045c48daf55bd4bdbab843d66683ad08138671f99cebc55c",
+      "expectedPass": true,
+      "swiftExit": 0,
+      "rustExit": 0,
+      "matched": true,
+      "rustScope": "Reviewed-case structure, embedded UTF-8 hashes, unique quotations and internal references. This checks retained evidence integrity, not whether authored interpretations are true."
+    }
+  ],
+  "passed": true,
+  "limits": "This finite corpus is not exhaustive Unicode-version or cross-platform qualification."
+}

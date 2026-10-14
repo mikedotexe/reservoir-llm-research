@@ -1,0 +1,153 @@
+{
+  "schema": "reservoir-quality-evaluation-freeze-v3",
+  "frozenAtUtc": "2026-10-13T21:16:58.859599+00:00",
+  "status": "prospective-before-0.14-output",
+  "scope": "One four-attempt open-writing rehearsal at increased bounded output/deadline/context. No model, provider, app, UI or native verifier execution by evaluation task.",
+  "newModelRequests": 0,
+  "promptVersion": "reservoir-journal-v3",
+  "promptVectorsUnchanged": true,
+  "finalSyntheticTests": {
+    "count": 22,
+    "exitCode": 0,
+    "receipt": "checker-tests-02.json"
+  },
+  "qualityHarnessReused": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/journal_quality.py",
+    "bytes": 17870,
+    "sha256": "6e13b49d7488066f82fbfc3e61278e3ce5b9408dfb1063f51ea7e47145642432"
+  },
+  "qualityHarnessPriorTests": {
+    "count": 26,
+    "receipt": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/quality-v3-tests-02.json",
+    "rerunThisTranche": false
+  },
+  "noRequiredHeadingMetricLengthOrForm": true,
+  "automaticQualityPass": false,
+  "reviewCanBlockSaveOrFeedback": false,
+  "peerReview": "Helper owner found no integrity blocker; clarified remainingAttemptBudget label so it does not imply reachable opportunities. Final source tests include that correction.",
+  "identities": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/PROTOCOL.md",
+      "bytes": 8176,
+      "sha256": "9c162c287c0706589a1a3d3f6170072607c5e4328df8ac0a3d6e66d431cf99ae"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/RUBRIC.md",
+      "bytes": 2892,
+      "sha256": "1e39edf894da3d7e9109d9bf2b0f06295d08147f2ea69e5cffcc5816531ae1f6"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/EVALUATION.md",
+      "bytes": 3429,
+      "sha256": "87793cfdb2235f343280ce95477cbc6d493f167d61b064a9a8e91b47b73a0315"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/run-plan.json",
+      "bytes": 2738,
+      "sha256": "babd5b411f2a08fa4ddcbce48d25018a963d6d15900f2ec08d5359403f90c131"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/check_real_model_export.py",
+      "bytes": 25257,
+      "sha256": "f80c81be84e1b68ccc1f3814994809728ad417df3db2b89279873962bb3f32e0"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/test_real_model_export.py",
+      "bytes": 16843,
+      "sha256": "d74cb51c6de2b2f34e5682f1bbb9d9f289d036b87a334e274c9222cb5aaa61ef"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/checker-provenance-01.json",
+      "bytes": 1815,
+      "sha256": "53f97680f3a60b48a8b109507a4d62a2f11d8b727da256a1651c88d134205912"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/checker-tests-02.json",
+      "bytes": 1319,
+      "sha256": "bc48546d7abd398e87bb2b90d68a31e8ff219aa8b600a9545b9531eb0b8e67c1"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/checker-tests-02.log",
+      "bytes": 3758,
+      "sha256": "839dceda813d9d484927dc966027e532e684d2404c5435837a3571260922a960"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/HELPER-PEER-REVIEW.md",
+      "bytes": 1469,
+      "sha256": "99e12b3fcea1b4edfb9cff0e2166255c69c36b84260343be4528ed4b447c820f"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v3-observation-10.txt",
+      "bytes": 3506,
+      "sha256": "70165f72ba7bbc1997cb50a78503c489a32fc378c56c3ff2345ed276e0c31378"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v3-memory-20.txt",
+      "bytes": 3774,
+      "sha256": "1a705d99ce490bb7a3a1bffcc3a392a9d89275bc4e9dd8c7cfbc1edb6dfdf43c"
+    }
+  ],
+  "preservedHistoricalReferences": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/evaluation-freeze-v3-01.json",
+      "bytes": 10998,
+      "sha256": "7ffff291440dc5ff93f465ec7fd02238748bf5ab6fe4b4ae5b39738e3a854f5c"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/quality-v3-tests-02.json",
+      "bytes": 957,
+      "sha256": "21702d40282e8dc5f3d684f11345691b1da0db50e7f39e14cfed994c19db18a5"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/RUBRIC-V3.md",
+      "bytes": 4753,
+      "sha256": "b256ff3c6f7f8c1e5fc8c2f73064831a3dbe2599b9f5101f46a552db9b8c091e"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/real-model-outcome-01.json",
+      "bytes": 3072,
+      "sha256": "6c80c6d35e15557546e1acbfe58de428b016b246be6af1c501e551f6338d8977"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/real-model-prose-review-01.json",
+      "bytes": 8837,
+      "sha256": "881c0cdd974f51b71355c2090cf130b2970789ee6dad37c7d4dca6d23a05233d"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/held-review-01/receipt.json",
+      "bytes": 15515,
+      "sha256": "0fe13c960afc38e04043c7c46075d7741340f3f9383ec96307cf4da32db09e74"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/native-export-review-01/receipt.json",
+      "bytes": 15576,
+      "sha256": "d75658b44c6ac1eadbbc76da9dd4e05acab0d4dc2f4fd45ffafd1bc3a7843f65"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/recovery-export-review-01/receipt.json",
+      "bytes": 15567,
+      "sha256": "9aef70f5fdad9c926c0aefc759fdce045779735a0a6078c32036285da5b55f3a"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/check_real_model_export.py",
+      "bytes": 20962,
+      "sha256": "df5609c593309ae10eff8b3055b8acf625f6ec6ea06895a61a4cb04661b83666"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/test_journal_quality.py",
+      "bytes": 15064,
+      "sha256": "8b3fa6f8b04928454d7ca34ae627f68a7219f2704b75c518f5347b1215f263d0"
+    }
+  ],
+  "priorFirstPromptReference": {
+    "receipt": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/held-review-01/receipt.json",
+      "bytes": 15515,
+      "sha256": "0fe13c960afc38e04043c7c46075d7741340f3f9383ec96307cf4da32db09e74"
+    },
+    "observedStep": 30,
+    "promptSha256": "7e5e2255f5637ca650edec72e0f4b66da12ba83c421447cac871201940a5f404",
+    "promptUtf8Bytes": 3503,
+    "comparisonMeaning": "First pre-feedback prompt equality can check unchanged setup. It does not isolate context/output/deadline changes or establish full provider processing."
+  }
+}

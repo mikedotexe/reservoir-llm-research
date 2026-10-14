@@ -1,0 +1,78 @@
+{
+  "schema": "reservoir-v5-synthetic-harness-tests-v1",
+  "startedAtUtc": "2026-10-14T01:17:53.933917+00:00",
+  "endedAtUtc": "2026-10-14T01:17:54.094250+00:00",
+  "status": "passed",
+  "scope": "Pure Python helper tests only. No socket/server, model, app, production CLI, resource probe or Rust build invoked.",
+  "sourceBefore": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/owned_provider.py",
+      "bytes": 9067,
+      "sha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/test_owned_provider.py",
+      "bytes": 2946,
+      "sha256": "734a3db118701c503a7ef0ab2b157ba0069a13c62e195d156df8947f039c319a"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/check_fixture_export.py",
+      "bytes": 27033,
+      "sha256": "3331ff0e66dfb17097d3ae5f89bb73f83746341a8a7bd1b9aea15e138705bee7"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/test_check_fixture_export.py",
+      "bytes": 7322,
+      "sha256": "126ce843655b8b4dc446dc0abe5581b237cf93b5336957895ac62debd4be2b0a"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/owned_provider.py",
+      "bytes": 9067,
+      "sha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/test_owned_provider.py",
+      "bytes": 2946,
+      "sha256": "734a3db118701c503a7ef0ab2b157ba0069a13c62e195d156df8947f039c319a"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/check_fixture_export.py",
+      "bytes": 27033,
+      "sha256": "3331ff0e66dfb17097d3ae5f89bb73f83746341a8a7bd1b9aea15e138705bee7"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/test_check_fixture_export.py",
+      "bytes": 7322,
+      "sha256": "126ce843655b8b4dc446dc0abe5581b237cf93b5336957895ac62debd4be2b0a"
+    }
+  ],
+  "sourceUnchanged": true,
+  "results": [
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/test_owned_provider.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "log": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/test_owned_provider-01.log",
+      "logSha256": "ead9f8c85b8019f6ce8100fdfe3fcb751a7e3b37771e767d98f5513177328a08",
+      "output": "test_bounded_sequence_has_no_retry_or_wrap (__main__.FixtureTests.test_bounded_sequence_has_no_retry_or_wrap) ... ok\ntest_incomplete_is_not_a_complete_fixture_response (__main__.FixtureTests.test_incomplete_is_not_a_complete_fixture_response) ... ok\ntest_missing_and_malformed_are_complete_unchanged_prose (__main__.FixtureTests.test_missing_and_malformed_are_complete_unchanged_prose) ... ok\ntest_request_bound_and_scalar_reject (__main__.FixtureTests.test_request_bound_and_scalar_reject) ... ok\ntest_request_metadata_omits_prompt_body (__main__.FixtureTests.test_request_metadata_omits_prompt_body) ... ok\ntest_wide_numbers_retain_integer_lexemes (__main__.FixtureTests.test_wide_numbers_retain_integer_lexemes) ... ok\ntest_wrong_model_budget_and_shape_reject (__main__.FixtureTests.test_wrong_model_budget_and_shape_reject) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/test_check_fixture_export.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "log": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/test_check_fixture_export-01.log",
+      "logSha256": "7fea230e4df14de0da9b8691e4697630651622e6fa878aa97c14858ba146ac5f",
+      "output": "test_absence_does_not_equal_null_or_zero (__main__.InspectionHelpers.test_absence_does_not_equal_null_or_zero) ... ok\ntest_distance_is_not_signed_scalar_change (__main__.InspectionHelpers.test_distance_is_not_signed_scalar_change) ... ok\ntest_duplicates_and_nonfinite_json_rejected (__main__.InspectionHelpers.test_duplicates_and_nonfinite_json_rejected) ... ok\ntest_first_compact_prompt_has_unavailable_not_zero (__main__.InspectionHelpers.test_first_compact_prompt_has_unavailable_not_zero) ... ok\ntest_frozen_case_evidence_cannot_make_fifth_complete (__main__.InspectionHelpers.test_frozen_case_evidence_cannot_make_fifth_complete) ... ok\ntest_full_observation_required_despite_shorter_prompt (__main__.InspectionHelpers.test_full_observation_required_despite_shorter_prompt) ... ok\ntest_historical_field_words_and_unicode_are_not_scaffold_exposure (__main__.InspectionHelpers.test_historical_field_words_and_unicode_are_not_scaffold_exposure) ... ok\ntest_inventory_binds_exact_bytes_and_rejects_links (__main__.InspectionHelpers.test_inventory_binds_exact_bytes_and_rejects_links) ... ok\ntest_missing_prior_cannot_be_replaced_by_zero (__main__.InspectionHelpers.test_missing_prior_cannot_be_replaced_by_zero) ... ok\ntest_old_version_and_extra_post_memory_instruction_reject (__main__.InspectionHelpers.test_old_version_and_extra_post_memory_instruction_reject) ... ok\ntest_raw_vector_or_identity_in_scaffold_rejected (__main__.InspectionHelpers.test_raw_vector_or_identity_in_scaffold_rejected) ... ok\ntest_request_bytes_retain_unicode_quoted_memory (__main__.InspectionHelpers.test_request_bytes_retain_unicode_quoted_memory) ... ok\ntest_truncated_or_changed_quoted_memory_rejected (__main__.InspectionHelpers.test_truncated_or_changed_quoted_memory_rejected) ... ok\ntest_typed_equality_rejects_float_boolean_and_string_counts (__main__.InspectionHelpers.test_typed_equality_rejects_float_boolean_and_string_counts) ... ok\ntest_wide_numbers_remain_exact_and_numeric (__main__.InspectionHelpers.test_wide_numbers_remain_exact_and_numeric) ... ok\n\n----------------------------------------------------------------------\nRan 15 tests in 0.003s\n\nOK\n"
+    }
+  ]
+}

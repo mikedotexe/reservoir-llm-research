@@ -1,0 +1,5 @@
+
+> reservoir-scope-desktop@0.13.0 build
+> tsc --noEmit && vite build
+
+src/myReservoirController.test.ts(9,35): error TS2559: Type '{ seed: string; turnEvery: number; maximumSteps: number; maximumTurns: number; maximumDurationSeconds: number; storageBudgetBytes: number; paceMs: number; leak: number; noiseAmplitude: number; initialRetention: number; regulationEnabled: boolean; language: LanguageConfiguration; }' has no properties in common with type '{ promptVersion?: SustainedPromptVersion | undefined; }'.

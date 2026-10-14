@@ -1,0 +1,28 @@
+{
+  "schema": "offline-evaluator-test-execution-v1",
+  "startedAtUtc": "2026-10-13T22:28:05.614446+00:00",
+  "endedAtUtc": "2026-10-13T22:28:06.171572+00:00",
+  "wallNanoseconds": 557012416,
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_journal_quality.py"
+  ],
+  "cwd": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts",
+  "exitCode": 0,
+  "expectedTests": 42,
+  "logSha256": "c203aec1b90a67cd0adb40e194e601f76b3fafd1ffe15a6303ef855426c25ac9",
+  "sources": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/test_journal_quality.py",
+      "sha256": "99624edd069bf97cc0ee27b86f8345416014847473cd95a28f4cdb5bf1587d55"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/journal_quality.py",
+      "sha256": "db4427877938dc8a88c285ee6aff9e9c390f2f6fe736a5eb61aabc7a5851b49f"
+    }
+  ],
+  "scope": "Offline synthetic/known-retained-corpus checks only; no app/model/provider/UI/Being calls."
+}

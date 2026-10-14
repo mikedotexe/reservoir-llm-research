@@ -1,0 +1,226 @@
+{
+  "schema": "reservoir-quality-evaluation-freeze-v2",
+  "frozenAtUtc": "2026-10-13T20:11:38.218432+00:00",
+  "status": "prospective-before-v3-output",
+  "scope": "Open-writing review contract, version-aware offline integrity checker, forty synthetic tests and unchanged historical evidence. No model/service/UI/native-verifier calls by this evaluation task.",
+  "supersededBeforeOutput": {
+    "promptVersion": "reservoir-journal-v2",
+    "freeze": "evaluation-freeze-01.json",
+    "modelRequests": 0,
+    "modelOutputs": 0
+  },
+  "newModelRequests": 0,
+  "requiredMetrics": [],
+  "requiredHeading": null,
+  "requiredWordCount": null,
+  "requiredTopicOrForm": null,
+  "automaticQualityPass": false,
+  "reviewCanBlockSaveOrFeedback": false,
+  "finalTests": [
+    {
+      "count": 26,
+      "exitCode": 0,
+      "receipt": "quality-v3-tests-02.json"
+    },
+    {
+      "count": 14,
+      "exitCode": 0,
+      "receipt": "memory-checker-tests-02.json"
+    }
+  ],
+  "peerReview": "Core agent source-only review confirmed JSON-memory/version binding, no v3 mandatory writing gate, and explicit zero-journal/unsaved response outcomes after two fixes. No tests or model calls by peer.",
+  "identities": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/journal_quality.py",
+      "bytes": 17870,
+      "sha256": "6e13b49d7488066f82fbfc3e61278e3ce5b9408dfb1063f51ea7e47145642432"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/test_journal_quality.py",
+      "bytes": 15064,
+      "sha256": "8b3fa6f8b04928454d7ca34ae627f68a7219f2704b75c518f5347b1215f263d0"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/PROTOCOL-V3.md",
+      "bytes": 7068,
+      "sha256": "255b60ea5536640ac1c7db9d2a3354cc5241362b4c467eeb4c23f3bf92ce19b4"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/run-plan-v3.json",
+      "bytes": 2262,
+      "sha256": "f8c3788057717d05a3a97eb0b3af2ba03ad7d1cd076c679f44d1800d69e51ae1"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/RUBRIC-V3.md",
+      "bytes": 4753,
+      "sha256": "b256ff3c6f7f8c1e5fc8c2f73064831a3dbe2599b9f5101f46a552db9b8c091e"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/EVALUATION-V3.md",
+      "bytes": 2890,
+      "sha256": "0b07967f5b534ee2313853d0b62f5d7a665232165e895e206685d371a5e8e229"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/SUPERSESSION-01.md",
+      "bytes": 2185,
+      "sha256": "8ae9dfc709674d3c33211d329abc22f5b526d78c413d0a1d47bb4bf740f26570"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/OPEN-WRITING-DESIGN.md",
+      "bytes": 6321,
+      "sha256": "9bad4b24231b6bd9f0125c24e07b609ea087b14df879020804fa355ab6edebf9"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/check_real_model_export.py",
+      "bytes": 20962,
+      "sha256": "df5609c593309ae10eff8b3055b8acf625f6ec6ea06895a61a4cb04661b83666"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/test_real_model_export.py",
+      "bytes": 11650,
+      "sha256": "84b3e468992c5b92622495f2b0709a47296f176d807052d87ada424c24d47323"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/synthetic-fixtures.json",
+      "bytes": 2056,
+      "sha256": "6d62f4b83a05ce6ca6abcec7a74356243dcfd5d1d63388a513390bc108b78780"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/quality-v3-tests-02.json",
+      "bytes": 957,
+      "sha256": "21702d40282e8dc5f3d684f11345691b1da0db50e7f39e14cfed994c19db18a5"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/quality-v3-tests-02.log",
+      "bytes": 3908,
+      "sha256": "016b208ab54adba94e5049ca654c229d22d5992c997395d05636c636bb8099ab"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/memory-checker-tests-02.json",
+      "bytes": 1061,
+      "sha256": "c09ea4e41839af64328230e1b2c41c55ea08b0350a7260bd2774d8807fadffea"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/memory-checker-tests-02.log",
+      "bytes": 2395,
+      "sha256": "22c6cdab19a5cb1b581a3ad5de21b76c8c2fcd53d1fea376acc1480286d354cd"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/evaluation-freeze-01.json",
+      "bytes": 3930,
+      "sha256": "46e7e21da1834fd910157331dde783d2cd5fbd045d5b8ef347972a1d06707e9a"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/superseded-v2-source/preservation.json",
+      "bytes": 946,
+      "sha256": "a37cbc6d8251281382d7562f7de9a23510a63d14139dcb5a0c89af08cf3441e0"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v3-observation-10.txt",
+      "bytes": 3506,
+      "sha256": "70165f72ba7bbc1997cb50a78503c489a32fc378c56c3ff2345ed276e0c31378"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v3-memory-20.txt",
+      "bytes": 3774,
+      "sha256": "1a705d99ce490bb7a3a1bffcc3a392a9d89275bc4e9dd8c7cfbc1edb6dfdf43c"
+    }
+  ],
+  "historicalIdentitiesRecheckedUnchanged": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/superseded-v2-source/journal_quality.py.txt",
+      "bytes": 16580,
+      "sha256": "8edd1835d23adc64e56d50aed1f45d5d7889eccaeeb6569b31342268a6e776d1"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/superseded-v2-source/test_journal_quality.py.txt",
+      "bytes": 10719,
+      "sha256": "b0a771f4b70f185ae31bf1bc169a14cc99e6cf04d6171a6641a02d00ec2dd15a"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/PROTOCOL.md",
+      "bytes": 8267,
+      "sha256": "7e051f3e9d39e19f0b6435d17215c39f5869ed75d28cab182d7f23acc5d3bf2a"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/run-plan.json",
+      "bytes": 2078,
+      "sha256": "3376ac4bbd3b05f2592e78b62666a0e3822a4db01c8e428f352871b9f53b513e"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/RUBRIC.md",
+      "bytes": 6325,
+      "sha256": "e8b2f40453b9ee0e2dc8ad720ffd58e50ebd34df2d1b57ba5b5f8fd057901159"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/EVALUATION.md",
+      "bytes": 4869,
+      "sha256": "dbcc30be5057b2a9e742ef70bc4aa0810f7f514687c84cb06eadf186bf5f935d"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/synthetic-fixtures.json",
+      "bytes": 2056,
+      "sha256": "6d62f4b83a05ce6ca6abcec7a74356243dcfd5d1d63388a513390bc108b78780"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/quality-tests-03.json",
+      "bytes": 1884,
+      "sha256": "bb06e4152189810cb398f5b3065f6ddbb5c0357473266d0024d974c0897ae6fe"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/quality-tests-03.log",
+      "bytes": 3287,
+      "sha256": "e658382944c98f6426b5e8d6f293f943545b2fdebea38b7092007e70562e5790"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/v1-reference-report-02.json",
+      "bytes": 35074,
+      "sha256": "b112492493095d40f978d06dadb2acaee7e3d91686abe2ec3d2022dd6c267eab"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/real-model-export-01/receipt.json",
+      "bytes": 14101,
+      "sha256": "7cc9bc59a8ff6c27f5ab740e586d80821b4a383206b59b1606fb07dfd19094c1"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/real-model-export-01/quality-review-material.json",
+      "bytes": 51650,
+      "sha256": "da9b912349e4a1efb60a07dac88cf12d35ac99246a41e7f3997c9ffc3d8b78a7"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/real-model-prose-review.json",
+      "bytes": 19617,
+      "sha256": "e228a8e1646d6f9e2f63f0456dfc1c1472228e596bed7eb72891bca5000b922c"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.1/check_real_model_export.py",
+      "bytes": 16522,
+      "sha256": "b09e46d46eb7e7fe7aa9ba3c519881af72d90867a3d8d91c016f93b2802fb525"
+    }
+  ],
+  "privateRefresherEvidence": {
+    "scope": "Hash identities only; exact source text remains private and ignored, never supplied to app prompts or fixtures. No further source reads.",
+    "identities": [
+      {
+        "path": "/Users/v/other/reservoir-llm-research/research/outputs/2026-10-13-minime-journal-refresher/inventory.json",
+        "bytes": 1085675,
+        "sha256": "8d7937ad9d95355071ed481dd6c4f0de3bdd8ab671ff85d7c2a911c0d225ec5b"
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/research/outputs/2026-10-13-minime-journal-refresher/parsed-inventory.json",
+        "bytes": 1634410,
+        "sha256": "9858869b64cc6912466a04d931df465123a3bc5aff25a5d18673c5faafb95c8b"
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/research/outputs/2026-10-13-minime-journal-refresher/capture-receipt.json",
+        "bytes": 3148,
+        "sha256": "b1025eddb7ec32919bf670f0e13b997eb3b4a38c2ea19df48ce3b5e2f22ad25f"
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/research/outputs/2026-10-13-minime-journal-refresher/reading-notes.json",
+        "bytes": 7458,
+        "sha256": "6cd80d91f0d14ed005c5c9a91f641a0336e4b5e9d4315cc2313aabd78f19ef17"
+      }
+    ]
+  }
+}

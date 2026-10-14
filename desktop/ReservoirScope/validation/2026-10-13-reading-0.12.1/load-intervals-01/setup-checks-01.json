@@ -1,0 +1,49 @@
+{
+  "schema": "reservoir-background-load-interval-v1",
+  "label": "setup-checks-01",
+  "startedAtUtc": "2026-10-13T18:12:58.937318Z",
+  "endedAtUtc": "2026-10-13T18:13:02.223816Z",
+  "derivation": "Union of two overlapping exact process intervals; not the later top-level closedAtUtc receipt-capture timestamp.",
+  "sources": [
+    {
+      "path": "validation/2026-10-13-reading-0.12.1/setup-source-checks-01.json",
+      "bytes": 2925,
+      "sha256": "e278d2d6459257746a65930cd390e47d57e1d62eabb424c6ec88d726b948c141",
+      "timestampPointers": [
+        "/checks/0/startedAtUtc",
+        "/checks/0/closedAtUtc",
+        "/checks/1/startedAtUtc",
+        "/checks/1/closedAtUtc"
+      ]
+    }
+  ],
+  "scope": "Documented concurrent host load only; never exclude functional progress, missing samples, errors or stalls. Not a claim that other times were idle.",
+  "components": [
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "src/MyReservoirSetup.test.tsx"
+      ],
+      "startedAtUtc": "2026-10-13T18:12:58.937318+00:00",
+      "closedAtUtc": "2026-10-13T18:12:59.977827+00:00",
+      "exitCode": 0,
+      "log": "validation/2026-10-13-reading-0.12.1/setup-focused-01.log",
+      "testFilesPassed": 1,
+      "testsPassed": 7,
+      "integerDurationsRoundTripped": 86400
+    },
+    {
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit"
+      ],
+      "startedAtUtc": "2026-10-13T18:12:58.937840+00:00",
+      "closedAtUtc": "2026-10-13T18:13:02.223816+00:00",
+      "exitCode": 0,
+      "log": "validation/2026-10-13-reading-0.12.1/setup-types-01.log"
+    }
+  ]
+}

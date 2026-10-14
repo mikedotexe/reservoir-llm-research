@@ -1,0 +1,101 @@
+{
+  "schema": "reservoir-source-checks-v1",
+  "recordedAtUtc": "2026-10-13T17:00:32.602516+00:00",
+  "scope": "Frontend source-only quota clarification and committed-prefix export tests. No Vite build, dist modification, package replacement, CUA, provider or running-session interaction. Prior full301 source-test receipt and frozen0.12 package qualification remain historical and separate.",
+  "changes": [
+    "Exact live and durable step distinction with unsaved numerical range.",
+    "Recovery inspection and committed-prefix export remain reachable with pending writing/save; retained phase explicitly historical.",
+    "Main current-snapshot export retains its original live-revision validation; inspected-prefix export uses inspected generation/revision/hash.",
+    "Close review states loss risk and does not claim a successful final checkpoint."
+  ],
+  "executedChecks": [
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "src/myReservoirController.test.ts",
+        "src/myReservoirOrdering.test.ts",
+        "src/myReservoirQuota.test.tsx",
+        "src/MyReservoir.test.tsx"
+      ],
+      "exitCode": 0,
+      "testFilesPassed": 4,
+      "testsPassed": 44,
+      "log": "validation/2026-10-13-reliability-0.12.0/frontend-quota-prefix-01.log"
+    },
+    {
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit"
+      ],
+      "exitCode": 0,
+      "log": "validation/2026-10-13-reliability-0.12.0/frontend-quota-types-01.log"
+    }
+  ],
+  "newRegressions": 7,
+  "sourceHashesCapturedAfterChecks": [
+    {
+      "path": "src/MyReservoir.tsx",
+      "sha256": "208d8d8333fe4543b16d6f81d2941c56ef318dd3d5b2578c99a8a21a04833876",
+      "bytes": 12600
+    },
+    {
+      "path": "src/MyReservoirRecovery.tsx",
+      "sha256": "cfe4a1bbc10e3177fe8e3c1b5c3f7329cb1438806c6948fd27f922d3cdfbe941",
+      "bytes": 5277
+    },
+    {
+      "path": "src/myReservoirController.ts",
+      "sha256": "9fd876adbcbbb2f465e7904ca903c081f5324b19f4ee937ac471723ab41b9703",
+      "bytes": 21201
+    },
+    {
+      "path": "src/myReservoirQuota.test.tsx",
+      "sha256": "3fce940844f01f997751a7a66fa54f28e25e777f1d84b541107164db86e9a9d5",
+      "bytes": 7205
+    },
+    {
+      "path": "src/myReservoirTypes.ts",
+      "sha256": "81257353722ecc960df54eb7206b695b6bdab310b6aa699710ff5b4424e2a8ed",
+      "bytes": 5602
+    },
+    {
+      "path": "src/myReservoirTestFixtures.ts",
+      "sha256": "1f945ef01fba2f5958509812946318112f6d20b1ca9a2e8cac1eebbba86f9261",
+      "bytes": 6235
+    },
+    {
+      "path": "src/myReservoirController.test.ts",
+      "sha256": "8dec860e82eeea023117e9bd25a16f69af88868f6340dcd1f0da9d8ea6b7a70b",
+      "bytes": 16021
+    },
+    {
+      "path": "src/myReservoirOrdering.test.ts",
+      "sha256": "ffc3e4b457fc1636ceac633a45808b7cd6a0d783146f6b5d9d33fd80591dac3f",
+      "bytes": 7400
+    },
+    {
+      "path": "src/MyReservoir.test.tsx",
+      "sha256": "2a8361c8dc470d4a12d619bfb8cb70f83f7d5af80e946591dae778920981cc4b",
+      "bytes": 10771
+    }
+  ],
+  "logs": [
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/frontend-quota-prefix-01.log",
+      "sha256": "77e3a101938787a25163ba9e3f289584188792163aebf9bb8ee89e3a0b6b26ee",
+      "bytes": 770
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/frontend-quota-types-01.log",
+      "sha256": "11b9c64760e2a2a29c90780af40f7f5be8bd61bcc5df2c497cef91e8019288db",
+      "bytes": 222
+    }
+  ],
+  "limits": [
+    "Frontend mocks exercise IPC argument/proof and state-retention semantics; actual Rust export repair is qualified separately.",
+    "No production build or packaged/human UI qualification is claimed."
+  ]
+}

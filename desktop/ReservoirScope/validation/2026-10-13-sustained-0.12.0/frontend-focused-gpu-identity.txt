@@ -1,0 +1,29 @@
+
+> reservoir-scope-desktop@0.12.0 test
+> vitest run src/myReservoirController.test.ts src/MyReservoir.test.tsx src/RecordedFillSphere.test.tsx src/LocalModelReadiness.test.tsx
+
+
+ RUN  v4.1.11 /Users/v/other/reservoir-llm-research/desktop/ReservoirScope
+
+ ❯ src/myReservoirController.test.ts (19 tests | 1 failed) 24ms
+     × honors null frames and never reuses a numerical step from a different generation 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/myReservoirController.test.ts > sustained owner and independent reading > honors null frames and never reuses a numerical step from a different generation
+AssertionError: expected '1' to be '2' // Object.is equality
+
+Expected: "2"
+Received: "1"
+
+ ❯ src/myReservoirController.test.ts:35:106
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 44 passed (45)
+   Start at  08:03:17
+   Duration  544ms (transform 866ms, setup 0ms, import 1.19s, tests 108ms, environment 0ms)
+

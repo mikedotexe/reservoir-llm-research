@@ -1,0 +1,42 @@
+{
+  "startedAtUtc": "2026-10-13T19:54:51.646628+00:00",
+  "endedAtUtc": "2026-10-13T19:54:51.977165+00:00",
+  "wallNanoseconds": 330366125,
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_journal_quality"
+  ],
+  "cwd": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts",
+  "exitCode": 0,
+  "scope": "22 synthetic quality harness tests, including own offline CLI subprocess. No model/service/UI actions.",
+  "logSha256": "e658382944c98f6426b5e8d6f293f943545b2fdebea38b7092007e70562e5790",
+  "sourceIdentities": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/journal_quality.py",
+      "sha256": "8edd1835d23adc64e56d50aed1f45d5d7889eccaeeb6569b31342268a6e776d1"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/test_journal_quality.py",
+      "sha256": "b0a771f4b70f185ae31bf1bc169a14cc99e6cf04d6171a6641a02d00ec2dd15a"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/synthetic-fixtures.json",
+      "sha256": "6d62f4b83a05ce6ca6abcec7a74356243dcfd5d1d63388a513390bc108b78780"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/PROTOCOL.md",
+      "sha256": "7e051f3e9d39e19f0b6435d17215c39f5869ed75d28cab182d7f23acc5d3bf2a"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/run-plan.json",
+      "sha256": "3376ac4bbd3b05f2592e78b62666a0e3822a4db01c8e428f352871b9f53b513e"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/RUBRIC.md",
+      "sha256": "e8b2f40453b9ee0e2dc8ad720ffd58e50ebd34df2d1b57ba5b5f8fd057901159"
+    }
+  ]
+}

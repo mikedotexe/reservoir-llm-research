@@ -1,0 +1,291 @@
+{
+  "schema": "reservoir-writing-room-outcome-v1",
+  "createdAtUtc": "2026-10-13T21:35:35.999942+00:00",
+  "scope": "New actual native0.14 immutable export, mechanically replayed offline and all four texts manually read.",
+  "protocol": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/run-plan.json",
+    "bytes": 2738,
+    "sha256": "babd5b411f2a08fa4ddcbce48d25018a963d6d15900f2ec08d5359403f90c131"
+  },
+  "prospectiveFreeze": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/evaluation-freeze-01.json",
+    "bytes": 7713,
+    "sha256": "4452db458d2e79bc4ab4c48e66407e93e4d4f7088cc5d6ed2624d5c9e28cea85"
+  },
+  "integrityReceipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/real-model-export-01/receipt.json",
+    "bytes": 27474,
+    "sha256": "4ebe66da0de4dde386a9fec00dcb97f99cc945c0e9543653fd16e77c1136e252"
+  },
+  "manualReview": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/real-model-prose-review-01.json",
+    "bytes": 20582,
+    "sha256": "9482149703bd9ee8cad7dcb2b1b9ecf70d45af345b3b2d7e4b5f008c44ce72da"
+  },
+  "initialComparison": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/initial-response-comparison-01.json",
+    "bytes": 6103,
+    "sha256": "6e72d4930a202fd284e6f9742c85941f05b9a4f3474c60b0e3dbdd3a7148d163"
+  },
+  "nativeExportReceipt": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/native-export-01.json",
+    "bytes": 6311,
+    "sha256": "ab6a7b771a0077203f73b7fd61b974ac3c179574a91b04c7a4ceeffcaeaa1126"
+  },
+  "beforeStartBinding": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/real-model-bound-before-start.json",
+    "bytes": 3123,
+    "sha256": "f93067eaf03f97aa8976b24da4ec4e1a2c9263118dcaebdfc5817e3179b11a4c"
+  },
+  "nativeInventoryExactlyMatchesChecker": true,
+  "originalUnchanged": true,
+  "exportFileCount": 25,
+  "manifestSha256": "82a5f50dd3f1cb061bb2b195cca43083b9aee9bb9b7bfe9a89b3bc6ba00432c4",
+  "checkpointSha256": "c048f58ad8fb5c0237da73a00af023b69633d772e98ee5e6b0a7b2499a22515e",
+  "packageExecutableSha256": "87eb89c76200603b1cb68f34e5b5deddc54dbfa5042530ab0c9787ca56606fa4",
+  "sessionId": "sustained-1791926853510-1",
+  "mechanics": {
+    "step": 121,
+    "savedJournals": 4,
+    "appliedJournals": 4,
+    "attempts": 4,
+    "turns": 4,
+    "memoryConfirmations": 3,
+    "segments": 19,
+    "unstartedPlannedOpportunities": 0,
+    "noRetriesOrSkips": true,
+    "eventCounts": {
+      "advanced": 121,
+      "languageStarted": 4,
+      "languageReceived": 4,
+      "journalSaved": 4,
+      "memoryConfirmed": 3
+    },
+    "finalManifestPhase": "budgetReached",
+    "finalCorePhase": {
+      "kind": "ready"
+    },
+    "elapsedMillis": 181254
+  },
+  "journals": [
+    {
+      "journalId": "journal-30-1-ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "turnId": 1,
+      "attemptId": 1,
+      "observedStep": 30,
+      "status": "applied",
+      "application": {
+        "attemptId": 1,
+        "journalId": "journal-30-1-ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+        "observedStep": 30,
+        "appliedStep": 31
+      },
+      "textSha256": "ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "textBytes": 1459,
+      "promptSha256": "7e5e2255f5637ca650edec72e0f4b66da12ba83c421447cac871201940a5f404",
+      "configuredModel": "gemma3:4b",
+      "returnedModel": "gemma3:4b",
+      "requestRecordedStarted": true,
+      "providerComplete": true,
+      "stopReason": "stop",
+      "tokenCount": 329,
+      "memoryJournalId": null,
+      "promptVersion": "reservoir-journal-v3",
+      "memoryEncoding": "unavailable",
+      "contextEvidence": {
+        "requestedContextTokens": 8192,
+        "requestedOutputTokens": 1024,
+        "requestedDeadlineSeconds": 180,
+        "retainedPromptUtf8Bytes": 3503,
+        "retainedPromptUnicodeCharacters": 3499,
+        "retainedPriorTextUtf8Bytes": null,
+        "providerPromptEvalCount": null,
+        "providerPromptEvalCountStatus": "Not retained by the current typed LanguageResponse schema.",
+        "fullPromptProcessingVerified": false,
+        "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; bytes/characters are not tokenizer counts, and output text or output token count does not prove full-context processing."
+      },
+      "hostTiming": {
+        "attemptId": 1,
+        "dispatchedAtMs": "1791926917683",
+        "receivedAtMs": "1791926927016",
+        "transportDurationMs": 9332,
+        "publishedAtMs": "1791926927072"
+      },
+      "allHostTimestampsRetained": true
+    },
+    {
+      "journalId": "journal-60-2-318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "turnId": 2,
+      "attemptId": 2,
+      "observedStep": 60,
+      "status": "applied",
+      "application": {
+        "attemptId": 2,
+        "journalId": "journal-60-2-318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+        "observedStep": 60,
+        "appliedStep": 61
+      },
+      "textSha256": "318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "textBytes": 1579,
+      "promptSha256": "c4b7de76997395ddf56e2602a7fc6c1444e33daf4de189de80014c933aa3ae02",
+      "configuredModel": "gemma3:4b",
+      "returnedModel": "gemma3:4b",
+      "requestRecordedStarted": true,
+      "providerComplete": true,
+      "stopReason": "stop",
+      "tokenCount": 367,
+      "memoryJournalId": "journal-30-1-ac1fb0f5d457d947b8de7e9ec1fa8a1056d6a6955673ff0f4d55138e6611a0f0",
+      "promptVersion": "reservoir-journal-v3",
+      "memoryEncoding": "json-string-exact-decoded-text",
+      "contextEvidence": {
+        "requestedContextTokens": 8192,
+        "requestedOutputTokens": 1024,
+        "requestedDeadlineSeconds": 180,
+        "retainedPromptUtf8Bytes": 5149,
+        "retainedPromptUnicodeCharacters": 5113,
+        "retainedPriorTextUtf8Bytes": 1459,
+        "providerPromptEvalCount": null,
+        "providerPromptEvalCountStatus": "Not retained by the current typed LanguageResponse schema.",
+        "fullPromptProcessingVerified": false,
+        "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; bytes/characters are not tokenizer counts, and output text or output token count does not prove full-context processing."
+      },
+      "hostTiming": {
+        "attemptId": 2,
+        "dispatchedAtMs": "1791926957670",
+        "receivedAtMs": "1791926972562",
+        "transportDurationMs": 14892,
+        "publishedAtMs": "1791926972609"
+      },
+      "allHostTimestampsRetained": true
+    },
+    {
+      "journalId": "journal-90-3-600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+      "turnId": 3,
+      "attemptId": 3,
+      "observedStep": 90,
+      "status": "applied",
+      "application": {
+        "attemptId": 3,
+        "journalId": "journal-90-3-600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+        "observedStep": 90,
+        "appliedStep": 91
+      },
+      "textSha256": "600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+      "textBytes": 1422,
+      "promptSha256": "76139bd89b285863d751c2a8e3d238de67281ab5df7a112a081364db877fe1bd",
+      "configuredModel": "gemma3:4b",
+      "returnedModel": "gemma3:4b",
+      "requestRecordedStarted": true,
+      "providerComplete": true,
+      "stopReason": "stop",
+      "tokenCount": 323,
+      "memoryJournalId": "journal-60-2-318cb5846de83260e19aa8070d4df8c11bc2191628cf96c03a71d89d82d10541",
+      "promptVersion": "reservoir-journal-v3",
+      "memoryEncoding": "json-string-exact-decoded-text",
+      "contextEvidence": {
+        "requestedContextTokens": 8192,
+        "requestedOutputTokens": 1024,
+        "requestedDeadlineSeconds": 180,
+        "retainedPromptUtf8Bytes": 5271,
+        "retainedPromptUnicodeCharacters": 5229,
+        "retainedPriorTextUtf8Bytes": 1579,
+        "providerPromptEvalCount": null,
+        "providerPromptEvalCountStatus": "Not retained by the current typed LanguageResponse schema.",
+        "fullPromptProcessingVerified": false,
+        "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; bytes/characters are not tokenizer counts, and output text or output token count does not prove full-context processing."
+      },
+      "hostTiming": {
+        "attemptId": 3,
+        "dispatchedAtMs": "1791927004164",
+        "receivedAtMs": "1791927011578",
+        "transportDurationMs": 7414,
+        "publishedAtMs": "1791927011639"
+      },
+      "allHostTimestampsRetained": true
+    },
+    {
+      "journalId": "journal-120-4-b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+      "turnId": 4,
+      "attemptId": 4,
+      "observedStep": 120,
+      "status": "applied",
+      "application": {
+        "attemptId": 4,
+        "journalId": "journal-120-4-b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+        "observedStep": 120,
+        "appliedStep": 121
+      },
+      "textSha256": "b1c4a23da6bdd3c4265f9d2920953b5f83f2f992688d1ca3f0c7d41017b04d40",
+      "textBytes": 1557,
+      "promptSha256": "095b7290b271122186d24ceee4911c3ab4edbf18da3c6368ab5da49387cab6f6",
+      "configuredModel": "gemma3:4b",
+      "returnedModel": "gemma3:4b",
+      "requestRecordedStarted": true,
+      "providerComplete": true,
+      "stopReason": "stop",
+      "tokenCount": 358,
+      "memoryJournalId": "journal-90-3-600e99ad53ac0ed2aa93dcce0fabf0577466bb62fff34afb1f0792ecba943669",
+      "promptVersion": "reservoir-journal-v3",
+      "memoryEncoding": "json-string-exact-decoded-text",
+      "contextEvidence": {
+        "requestedContextTokens": 8192,
+        "requestedOutputTokens": 1024,
+        "requestedDeadlineSeconds": 180,
+        "retainedPromptUtf8Bytes": 5113,
+        "retainedPromptUnicodeCharacters": 5083,
+        "retainedPriorTextUtf8Bytes": 1422,
+        "providerPromptEvalCount": null,
+        "providerPromptEvalCountStatus": "Not retained by the current typed LanguageResponse schema.",
+        "fullPromptProcessingVerified": false,
+        "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; bytes/characters are not tokenizer counts, and output text or output token count does not prove full-context processing."
+      },
+      "hostTiming": {
+        "attemptId": 4,
+        "dispatchedAtMs": "1791927042264",
+        "receivedAtMs": "1791927067400",
+        "transportDurationMs": 25136,
+        "publishedAtMs": "1791927067447"
+      },
+      "allHostTimestampsRetained": true
+    }
+  ],
+  "verification": {
+    "command": [
+      "/usr/bin/time",
+      "-l",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/real-model-export-01/reservoir-scope-desktop-pinned",
+      "--verify-sustained",
+      "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.14-writing/exports/sustained-1791926853510-1-1-143"
+    ],
+    "startedAtUtc": "2026-10-13T21:32:42.615912+00:00",
+    "endedAtUtc": "2026-10-13T21:32:43.018427+00:00",
+    "wallNanoseconds": 401993917,
+    "peakRssBytes": 13778944,
+    "exitCode": 0,
+    "result": {
+      "modelsContacted": false,
+      "report": {
+        "checkpointSha256": "c048f58ad8fb5c0237da73a00af023b69633d772e98ee5e6b0a7b2499a22515e",
+        "diagnostics": [],
+        "format": "reservoir-sustained-bundle-v1",
+        "journalCount": 4,
+        "manifestSha256": "82a5f50dd3f1cb061bb2b195cca43083b9aee9bb9b7bfe9a89b3bc6ba00432c4",
+        "segmentCount": 19,
+        "sessionId": "sustained-1791926853510-1",
+        "sizeBytes": 1887190,
+        "step": 121,
+        "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+      },
+      "status": "passed"
+    },
+    "scope": "Offline verifier process; not model-service or GUI resource use."
+  },
+  "scientificAndCreativeVerdict": "Not assigned. Mechanical completion is established for this run; all-text interpretation and explicit factual mismatches are separate.",
+  "modelContactByThisReview": false,
+  "limits": [
+    "One four-attempt run, not a causal comparison or general reliability estimate.",
+    "No independent raw HTTP provider receipt or authenticated full-context-processing evidence.",
+    "Verifier resource measurements concern only its offline process.",
+    "Native UI lifecycle/service cleanup belong to parent-owned receipts, not to this offline script."
+  ]
+}

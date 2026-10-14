@@ -1,0 +1,19 @@
+   Compiling reservoir-scope-desktop v0.12.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 10.13s
+     Running unittests src/main.rs (target/debug/deps/reservoir_scope_desktop-b723db6654d10cb9)
+
+running 11 tests
+test sustained::tests::natural_quota::natural_quota_repaired_frequent_journals ... ignored, Opt-in isolated16MiB natural quota investigation; retains own temporary evidence
+test sustained::tests::natural_quota::natural_quota_repaired_sparse_observations ... ignored, Opt-in isolated16MiB natural quota investigation; retains own temporary evidence
+test sustained::tests::natural_quota::quota_duration_pending_boundary_has_new_durable_revision ... ok
+test sustained::tests::natural_quota::quota_escaped_rejected_response_cannot_publish_or_claim_discard_of_retained_language ... ok
+test sustained::tests::natural_quota::quota_held_marker_survives_diagnostics_and_terminal_revision_changes ... ok
+test sustained::tests::natural_quota::quota_legacy_retry_that_newly_reaches_low_water_does_not_publish_journal ... ok
+test sustained::tests::natural_quota::quota_old_ready_prefix_exports_and_discards_only_volatile_tail ... ok
+test sustained::tests::natural_quota::quota_old_retained_intent_never_uses_ready_discard_fallback ... ok
+test sustained::tests::natural_quota::quota_transport_sized_escaped_responses_retain_exact_terminal_path ... ok
+test sustained::tests::quota_stops_before_journal_publication_and_retry_does_not_regenerate ... ok
+test sustained_store::quota_projection_tests::quota_projection_is_pure_and_terminal_suffix_can_spend_reserved_capacity ... ok
+
+test result: ok. 9 passed; 0 failed; 2 ignored; 0 measured; 160 filtered out; finished in 67.32s
+

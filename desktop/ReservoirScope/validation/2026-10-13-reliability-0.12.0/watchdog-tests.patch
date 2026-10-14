@@ -1,0 +1,145 @@
+--- packaged-0.12/src-tauri/src/sustained_tests.rs
++++ source-patch/src-tauri/src/sustained_tests.rs
+@@ -490,6 +490,7 @@
+     s.stop("stop".into(), &id, &generation).unwrap();
+     s.settle(epoch, p.attempt_id, Ok(answer()), 1).unwrap();
+     s.emit();
++    wait_for(|| !received.lock().unwrap().is_empty());
+     let v = s.shared.store.verify(&id).unwrap();
+     assert_eq!(v.manifest.phase, "stopped");
+     assert_eq!(v.manifest.journal_count, 0);
+@@ -881,3 +882,134 @@
+     );
+     assert_eq!(verified.manifest.journal_count, 1);
+ }
++
++#[test]
++fn watchdog_does_not_treat_session_mutex_work_as_system_sleep() {
++    let (_d, s, id, generation) = setup(100, 100);
++    {
++        let mut g = s.lock().unwrap();
++        g.active.as_mut().unwrap().manifest.config.pace_ms = 1000;
++    }
++    s.start("start".into(), &id, &generation).unwrap();
++    wait_for(|| s.lock().unwrap().active.as_ref().unwrap().engine.step() >= 1);
++    // The same mutex covers an owned export/persistence operation. This keeps
++    // the process awake and both OS/monotonic clocks ticking for longer than
++    // the watchdog's sleep threshold; UI observation must not block that timer.
++    let g = s.lock().unwrap();
++    std::thread::sleep(Duration::from_millis(5500));
++    drop(g);
++    std::thread::sleep(Duration::from_millis(350));
++    let falsely_interrupted = s.shared.interrupted.load(Ordering::SeqCst);
++    s.stop("cleanup".into(), &id, &generation).unwrap();
++    wait_for(|| !s.lock().unwrap().active.as_ref().unwrap().worker_active);
++    assert!(
++        !falsely_interrupted,
++        "A live session mutex delay was falsely classified as system sleep"
++    );
++}
++
++#[test]
++fn watchdog_and_clock_continue_while_one_coalesced_subscriber_is_slow() {
++    let (_d, s, id, generation) = setup(100, 100);
++    let entered = Arc::new(AtomicBool::new(false));
++    let release = Arc::new(AtomicBool::new(false));
++    let delivered = Arc::new(Mutex::new(Vec::new()));
++    let (e, r, d) = (entered.clone(), release.clone(), delivered.clone());
++    s.get(
++        "slow-subscription".into(),
++        Some(Arc::new(move |update| {
++            e.store(true, Ordering::SeqCst);
++            while !r.load(Ordering::SeqCst) {
++                std::thread::sleep(Duration::from_millis(5));
++            }
++            d.lock().unwrap().push(update.summary.unwrap().step);
++            true
++        })),
++    )
++    .unwrap();
++    s.start("start".into(), &id, &generation).unwrap();
++    wait_for(|| entered.load(Ordering::SeqCst));
++    std::thread::sleep(Duration::from_millis(5500));
++    let step = s.lock().unwrap().active.as_ref().unwrap().engine.step();
++    s.pause("pause".into(), &id, &generation).unwrap();
++    wait_for(|| !s.lock().unwrap().active.as_ref().unwrap().worker_active);
++    let falsely_interrupted = s.shared.interrupted.load(Ordering::SeqCst);
++    release.store(true, Ordering::SeqCst);
++    wait_for(|| delivered.lock().unwrap().len() >= 2);
++    let observed = delivered.lock().unwrap();
++    // The subscriber catches up to the latest state. A final watchdog tick
++    // may publish after worker_active is cleared; bounded queue behavior is
++    // checked independently below without that lifecycle race.
++    assert!(observed.last().is_some_and(|latest| *latest >= step));
++    assert!(step >= 5, "A slow UI callback blocked the numerical worker");
++    assert!(!falsely_interrupted);
++}
++
++#[test]
++fn disconnected_subscriber_is_released_without_erasing_its_replacement() {
++    let (_d, s, _, _) = setup(10, 10);
++    let entered = Arc::new(AtomicBool::new(false));
++    let release = Arc::new(AtomicBool::new(false));
++    let (e, r) = (entered.clone(), release.clone());
++    s.get(
++        "old".into(),
++        Some(Arc::new(move |_| {
++            e.store(true, Ordering::SeqCst);
++            while !r.load(Ordering::SeqCst) {
++                std::thread::sleep(Duration::from_millis(5));
++            }
++            false
++        })),
++    )
++    .unwrap();
++    s.emit();
++    wait_for(|| entered.load(Ordering::SeqCst));
++    let new_delivery = Arc::new(AtomicBool::new(false));
++    let n = new_delivery.clone();
++    s.get(
++        "replacement".into(),
++        Some(Arc::new(move |_| {
++            n.store(true, Ordering::SeqCst);
++            false
++        })),
++    )
++    .unwrap();
++    s.emit();
++    release.store(true, Ordering::SeqCst);
++    wait_for(|| new_delivery.load(Ordering::SeqCst));
++    wait_for(|| s.lock().unwrap().listener.is_none());
++}
++
++#[test]
++fn publisher_coalesces_pending_signals_and_releases_the_last_state() {
++    let (_d, s, _, _) = setup(10, 10);
++    let entered = Arc::new(AtomicBool::new(false));
++    let release = Arc::new(AtomicBool::new(false));
++    let calls = Arc::new(AtomicU64::new(0));
++    let (e, r, c) = (entered.clone(), release.clone(), calls.clone());
++    s.get(
++        "bounded".into(),
++        Some(Arc::new(move |_| {
++            e.store(true, Ordering::SeqCst);
++            while !r.load(Ordering::SeqCst) {
++                std::thread::sleep(Duration::from_millis(5));
++            }
++            c.fetch_add(1, Ordering::SeqCst);
++            true
++        })),
++    )
++    .unwrap();
++    s.emit();
++    wait_for(|| entered.load(Ordering::SeqCst));
++    for _ in 0..1000 {
++        s.emit();
++    }
++    release.store(true, Ordering::SeqCst);
++    wait_for(|| calls.load(Ordering::SeqCst) == 2);
++    let weak = Arc::downgrade(&s.shared);
++    drop(s);
++    // The publisher owns only Weak between deliveries. Dropping the final
++    // application state closes its channel and releases its stored listener.
++    wait_for(|| weak.upgrade().is_none());
++    assert_eq!(calls.load(Ordering::SeqCst), 2);
++}

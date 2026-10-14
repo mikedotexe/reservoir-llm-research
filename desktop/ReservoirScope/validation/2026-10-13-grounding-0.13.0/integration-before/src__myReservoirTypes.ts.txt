@@ -1,0 +1,57 @@
+import type { LanguageConfiguration, SessionFrame } from './freshTypes';
+
+export interface SustainedConfig {
+  seed: string; turnEvery: number; maximumSteps: number; maximumTurns: number; maximumDurationSeconds: number;
+  storageBudgetBytes: number; paceMs: number; leak: number; noiseAmplitude: number; initialRetention: number;
+  regulationEnabled: boolean; language: LanguageConfiguration;
+}
+export const DEFAULT_SUSTAINED_CONFIG: SustainedConfig = {
+  seed: '20260909', turnEvery: 30, maximumSteps: 10800, maximumTurns: 360, maximumDurationSeconds: 21600,
+  storageBudgetBytes: 268435456, paceMs: 1000, leak: .65, noiseAmplitude: .02, initialRetention: .955,
+  regulationEnabled: true, language: { backend: 'scripted' },
+};
+export interface SustainedSummary {
+  sessionId: string; generation: string; revision: string; config: SustainedConfig; phase: string;
+  step: number; durableStep: number; simulatedTime: number; elapsedSeconds: number; usedBytes: number;
+  journalCount: number; turnCount: number; canStart: boolean; canPause: boolean; canStop: boolean; canRetrySave: boolean;
+  canRetryProvider: boolean; canSkipFeedback: boolean;
+  pendingLanguage: { operationId: string; turnId: number; attemptId: number; observedStep: number; endpoint: string; model: string; state: 'prepared' | 'requesting' | 'blocked' } | null;
+  pendingSave: { entryId: string; attemptId: number; observedStep: number } | null; diagnostics: string[];
+  pendingApplication: { entryId: string; attemptId: number; observedStep: number; intendedStep: number } | null;
+}
+export interface SustainedUpdate { requestId: string; snapshotSequence: string; summary: SustainedSummary | null; frame: SessionFrame | null; closeRequested: boolean }
+export type SustainedAction = 'start' | 'pause' | 'stop' | 'retrySave' | 'retryProvider' | 'skipFeedback';
+export interface SustainedBundleReport { format: string; sessionId: string; manifestSha256: string; checkpointSha256: string; segmentCount: number; step: number; journalCount: number; sizeBytes: number; verification: string; diagnostics: string[] }
+export interface SustainedExport { requestId: string; sessionId: string; generation: string; revision: string; bundle: SustainedBundleReport | null }
+export interface SustainedManifest { format: string; sessionId: string; generation: string; revision: string; config: SustainedConfig; phase: string; step: number; durableStep: number; elapsedMillis: number; journalCount: number; segmentCount: number; lastSegmentSha256: string | null; checkpointSha256: string; previousCheckpointSha256: string | null; diagnostics: string[] }
+export interface SustainedRecoveryEntry { sessionId: string; generation: string | null; revision: string | null; phase: string | null; step: number | null; durableStep: number | null; journalCount: number | null; diagnostic: string | null }
+export interface SustainedRecoveryPage { requestId: string; entries: SustainedRecoveryEntry[]; complete: boolean }
+export interface SustainedRecoveryDetail { requestId: string; manifest: SustainedManifest; checkpoint: unknown; report: SustainedBundleReport }
+export interface SustainedJournalRow {
+  entryId: string; turnId: number; attemptId: number; observedStep: number; firstAppliedStep: number | null;
+  status: 'savedPendingApplication' | 'applied' | 'skipped'; textPreview: string; sha256: string;
+}
+export interface SustainedJournal extends Omit<SustainedJournalRow, 'textPreview'> {
+  text: string; prompt: string; rawReply: string; observation: unknown;
+  memory: { entryId: string; text: string; sha256: string } | null;
+  encodedFeatures: number[]; semanticVector: number[]; saveReceipt: { entryId: string; sha256: string; relativePath: string };
+  providerModel: string | null; stopReason: string | null; tokenCount: number | null; providerComplete: boolean;
+  configuredModel: string | null; requestStarted: boolean; application: unknown | null;
+  timing?: { attemptId: number; dispatchedAtMs: string | null; receivedAtMs: string | null; transportDurationMs: number | null; publishedAtMs: string | null };
+}
+export interface SustainedJournalPage { requestId: string; sessionId: string; generation: string; revision: string; total: number; offset: number; hasMore: boolean; entries: SustainedJournalRow[] }
+export interface SustainedJournalResult { requestId: string; sessionId: string; generation: string; revision: string; journal: SustainedJournal }
+export interface MyReservoirApi {
+  get(requestId: string, onUpdate: (update: SustainedUpdate) => void): Promise<SustainedUpdate>;
+  create(requestId: string, config: SustainedConfig): Promise<SustainedUpdate>;
+  action(action: SustainedAction, requestId: string, sessionId: string, generation: string, expectedEntryId?: string | null, expectedAttemptId?: number | null): Promise<SustainedUpdate>;
+  journals(requestId: string, sessionId: string, generation: string, offset: number, limit: number): Promise<SustainedJournalPage>;
+  journal(requestId: string, sessionId: string, generation: string, entryId: string): Promise<SustainedJournalResult>;
+  listenClose(handler: () => void): Promise<() => void>;
+  finishClose(allowDiscard: boolean): Promise<boolean>;
+  cancelClose(): Promise<void>;
+  export(requestId: string, sessionId: string, generation: string, expectedRevision?: string): Promise<SustainedExport>;
+  recovery(requestId: string): Promise<SustainedRecoveryPage>;
+  inspect(requestId: string, sessionId: string): Promise<SustainedRecoveryDetail>;
+  restore(requestId: string, sessionId: string, expectedGeneration: string, expectedRevision: string): Promise<SustainedUpdate>;
+}

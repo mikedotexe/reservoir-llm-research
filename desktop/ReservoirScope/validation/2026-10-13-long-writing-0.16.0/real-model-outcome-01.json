@@ -1,0 +1,369 @@
+{
+  "schema": "reservoir-real-model-episode-outcome-v1",
+  "recordedAtUtc": "2026-10-14T00:29:36.595719+00:00",
+  "episodeId": "long-writing-0.16.0-episode01",
+  "status": "unexecuted-admission-refused",
+  "admissionCapturedUtc": "2026-10-14T00:25:07.910524+00:00",
+  "admission": {
+    "admitted": false,
+    "pressureLevel": {
+      "actual": 1,
+      "required": 1,
+      "passed": true
+    },
+    "freeMemoryPercent": {
+      "actual": 32,
+      "minimum": 35,
+      "passed": false
+    },
+    "diskFreeBytes": {
+      "actual": 5587763200,
+      "minimum": 8589934592,
+      "passed": false
+    },
+    "failedCriteria": [
+      "freeMemoryPercent",
+      "diskFreeBytes"
+    ],
+    "sampleCount": 1,
+    "retryOrPollingAfterRefusal": false
+  },
+  "execution": {
+    "ownedServiceLaunched": false,
+    "readinessRequests": 0,
+    "newModelSessionCreated": false,
+    "generationStarted": false,
+    "generationRequests": 0,
+    "receivedResponses": 0,
+    "savedJournals": 0,
+    "appliedJournals": 0,
+    "plannedOpportunities": 12,
+    "unstartedOpportunities": 12,
+    "sessionId": null,
+    "endpoint": null,
+    "nativeExport": null,
+    "recoveryExecution": false,
+    "evidenceBasis": "Parent operator handoff: prepared UI only; prior completed synthetic session stopped; no new owned service, readiness, model-session Create or Start. This author read retained files only and did not independently probe processes or services."
+  },
+  "opportunities": [
+    {
+      "slot": 1,
+      "plannedObservedStep": 30,
+      "plannedFirstApplicationStepIfSaved": 31,
+      "status": "unstarted",
+      "reason": "host-admission-refused",
+      "attemptId": null,
+      "actualObservedStep": null,
+      "response": null,
+      "journalId": null,
+      "actualFirstApplicationStep": null
+    },
+    {
+      "slot": 2,
+      "plannedObservedStep": 60,
+      "plannedFirstApplicationStepIfSaved": 61,
+      "status": "unstarted",
+      "reason": "host-admission-refused",
+      "attemptId": null,
+      "actualObservedStep": null,
+      "response": null,
+      "journalId": null,
+      "actualFirstApplicationStep": null
+    },
+    {
+      "slot": 3,
+      "plannedObservedStep": 90,
+      "plannedFirstApplicationStepIfSaved": 91,
+      "status": "unstarted",
+      "reason": "host-admission-refused",
+      "attemptId": null,
+      "actualObservedStep": null,
+      "response": null,
+      "journalId": null,
+      "actualFirstApplicationStep": null
+    },
+    {
+      "slot": 4,
+      "plannedObservedStep": 120,
+      "plannedFirstApplicationStepIfSaved": 121,
+      "status": "unstarted",
+      "reason": "host-admission-refused",
+      "attemptId": null,
+      "actualObservedStep": null,
+      "response": null,
+      "journalId": null,
+      "actualFirstApplicationStep": null
+    },
+    {
+      "slot": 5,
+      "plannedObservedStep": 150,
+      "plannedFirstApplicationStepIfSaved": 151,
+      "status": "unstarted",
+      "reason": "host-admission-refused",
+      "attemptId": null,
+      "actualObservedStep": null,
+      "response": null,
+      "journalId": null,
+      "actualFirstApplicationStep": null
+    },
+    {
+      "slot": 6,
+      "plannedObservedStep": 180,
+      "plannedFirstApplicationStepIfSaved": 181,
+      "status": "unstarted",
+      "reason": "host-admission-refused",
+      "attemptId": null,
+      "actualObservedStep": null,
+      "response": null,
+      "journalId": null,
+      "actualFirstApplicationStep": null
+    },
+    {
+      "slot": 7,
+      "plannedObservedStep": 210,
+      "plannedFirstApplicationStepIfSaved": 211,
+      "status": "unstarted",
+      "reason": "host-admission-refused",
+      "attemptId": null,
+      "actualObservedStep": null,
+      "response": null,
+      "journalId": null,
+      "actualFirstApplicationStep": null
+    },
+    {
+      "slot": 8,
+      "plannedObservedStep": 240,
+      "plannedFirstApplicationStepIfSaved": 241,
+      "status": "unstarted",
+      "reason": "host-admission-refused",
+      "attemptId": null,
+      "actualObservedStep": null,
+      "response": null,
+      "journalId": null,
+      "actualFirstApplicationStep": null
+    },
+    {
+      "slot": 9,
+      "plannedObservedStep": 270,
+      "plannedFirstApplicationStepIfSaved": 271,
+      "status": "unstarted",
+      "reason": "host-admission-refused",
+      "attemptId": null,
+      "actualObservedStep": null,
+      "response": null,
+      "journalId": null,
+      "actualFirstApplicationStep": null
+    },
+    {
+      "slot": 10,
+      "plannedObservedStep": 300,
+      "plannedFirstApplicationStepIfSaved": 301,
+      "status": "unstarted",
+      "reason": "host-admission-refused",
+      "attemptId": null,
+      "actualObservedStep": null,
+      "response": null,
+      "journalId": null,
+      "actualFirstApplicationStep": null
+    },
+    {
+      "slot": 11,
+      "plannedObservedStep": 330,
+      "plannedFirstApplicationStepIfSaved": 331,
+      "status": "unstarted",
+      "reason": "host-admission-refused",
+      "attemptId": null,
+      "actualObservedStep": null,
+      "response": null,
+      "journalId": null,
+      "actualFirstApplicationStep": null
+    },
+    {
+      "slot": 12,
+      "plannedObservedStep": 360,
+      "plannedFirstApplicationStepIfSaved": 361,
+      "status": "unstarted",
+      "reason": "host-admission-refused",
+      "attemptId": null,
+      "actualObservedStep": null,
+      "response": null,
+      "journalId": null,
+      "actualFirstApplicationStep": null
+    }
+  ],
+  "evaluation": {
+    "productionVerifierExecuted": false,
+    "actualExportCheckerExecuted": false,
+    "qualityHarnessExecutedOnNewOutput": false,
+    "fullTextReadingPerformed": false,
+    "newQualitySignal": false,
+    "journalsRenderingCreated": false,
+    "priorSyntheticQualification": "The frozen checker-tests-01.json records 27 already-executed offline synthetic tests; these are not a real-model episode or new result execution."
+  },
+  "sourceBindings": {
+    "evaluation-freeze-01.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/evaluation-freeze-01.json",
+      "bytes": 8959,
+      "sha256": "ea2ec0b090b1164651c720e4e99353296ca83c87e8f5799ebfc3fd4e7dd61c00"
+    },
+    "host-admission-01.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/host-admission-01.json",
+      "bytes": 1467,
+      "sha256": "f59d40c6177dbcf8b4e630711753a1f3c82e9de38d161dd3be484766370918ff"
+    },
+    "run-plan.json": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/run-plan.json",
+      "bytes": 3939,
+      "sha256": "321d54c98b4269bb940bfb84465b8d3e3b61aabefdd2446a07b07373b32caed5"
+    },
+    "PROTOCOL.md": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/PROTOCOL.md",
+      "bytes": 4794,
+      "sha256": "ee32a5846d96de3d9c399f84de31c57a13062a44d9fc3b2255af9243133f4278"
+    },
+    "RUBRIC.md": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/RUBRIC.md",
+      "bytes": 6632,
+      "sha256": "5516e585cf09673bf04f901ec718780e35d7651efd7711afde50402039fab44e"
+    },
+    "EVALUATION.md": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/EVALUATION.md",
+      "bytes": 7050,
+      "sha256": "3837489bd6b75f5b2838bb4462e2f51ef8548f8cd11ab83346ff77616a8ca033"
+    },
+    "admit_once.py": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/admit_once.py",
+      "bytes": 2785,
+      "sha256": "d4346c26688261591926528e684375b532808cfd469ff00d9d3e4fa74ddb7368"
+    },
+    "ADMISSION-REVIEW.md": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/ADMISSION-REVIEW.md",
+      "bytes": 1304,
+      "sha256": "f4a31763fa00a27c358677f726f5c860cdd613889a15901050544923364b5551"
+    },
+    "REVIEW-CONTINUITY.md": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/REVIEW-CONTINUITY.md",
+      "bytes": 2770,
+      "sha256": "a92ec53cc98b1efc1a9eb94a07dc9396ef48d0e2a54eb4662b0b949390f9bd91"
+    },
+    "POST-FREEZE-REVIEW.md": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/POST-FREEZE-REVIEW.md",
+      "bytes": 5145,
+      "sha256": "4e4ff9b61faaf0aba70b2ba3bbee2069a803023c1efefa4a1091a1bb6c4e6b54"
+    }
+  },
+  "frozenInputsReadback": {
+    "checkedAtUtc": "2026-10-14T00:29:36.595719+00:00",
+    "count": 20,
+    "allCurrentlyMatchFreeze": true,
+    "files": [
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/PROTOCOL.md",
+        "sha256": "ee32a5846d96de3d9c399f84de31c57a13062a44d9fc3b2255af9243133f4278",
+        "bytes": 4794
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/run-plan.json",
+        "sha256": "321d54c98b4269bb940bfb84465b8d3e3b61aabefdd2446a07b07373b32caed5",
+        "bytes": 3939
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/RUBRIC.md",
+        "sha256": "5516e585cf09673bf04f901ec718780e35d7651efd7711afde50402039fab44e",
+        "bytes": 6632
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/EVALUATION.md",
+        "sha256": "3837489bd6b75f5b2838bb4462e2f51ef8548f8cd11ab83346ff77616a8ca033",
+        "bytes": 7050
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/check_real_model_export.py",
+        "sha256": "ba4d03747ea29dde79fd93bb9b15488800eae0b865d5224902c6561b0b60b443",
+        "bytes": 39641
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/test_real_model_export.py",
+        "sha256": "f9d2e14f816f56b5c57129ee9a27feff8076d665050e8d5b1ab4267de528ea02",
+        "bytes": 21200
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/checker-tests-01.json",
+        "sha256": "8865e29e4c9d48026bf5407abe83d033db04885d73f5e37627d0d9f95751c853",
+        "bytes": 3165
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/PRE-RUN-REVIEW.md",
+        "sha256": "4da4588184829791493b5bacecc8be50319f5117b07452a4bc352855e6201bb5",
+        "bytes": 4776
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/ADMISSION-REVIEW.md",
+        "sha256": "f4a31763fa00a27c358677f726f5c860cdd613889a15901050544923364b5551",
+        "bytes": 1304
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/admit_once.py",
+        "sha256": "d4346c26688261591926528e684375b532808cfd469ff00d9d3e4fa74ddb7368",
+        "bytes": 2785
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/freeze_episode.py",
+        "sha256": "0ca4025febc88d58612b88389408a5f6ae1efac22cba3ad7debe3545305527e2",
+        "bytes": 2219
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/owned_model.py",
+        "sha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f",
+        "bytes": 32949
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/test_owned_model.py",
+        "sha256": "145d75ad5d1d8a090bb3c1a9830a59d1127d3424354b8b59db208d0006da9b87",
+        "bytes": 21837
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/helper-continuity-01.json",
+        "sha256": "85c1d6bde18853b0a079cdc978979b632585a374577dc3235956c9603d5996f8",
+        "bytes": 1548
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-0.16.0/package-provenance-01.json",
+        "sha256": "95423fd9665ceef6eda73a689fad480c0fd5fb22b65eb90255fe1897c6b4aaaf",
+        "bytes": 15495
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/journal_quality.py",
+        "sha256": "49c13a0577829a9d7b7ebb2d7be60ff1f4139b2753f990d614dcf9332397d0ae",
+        "bytes": 28542
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/test_journal_quality.py",
+        "sha256": "35b6316010479b2794de57f795911c791e7520e9afd4087b5875e2c648b567f4",
+        "bytes": 27055
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v4-observation-10.txt",
+        "sha256": "26bae96991e12bb591ba517c46345aeac167abbbdaf79858c514a35b8986f75f",
+        "bytes": 4445
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v4-memory-20.txt",
+        "sha256": "d51753e1eddd68fd193ba46da49e6f909aaebdef328471ddf79e3b134b10c2c0",
+        "bytes": 4829
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v4-provenance.json",
+        "sha256": "aa8d4e2af9a04cd8455634364481d97ce8ecc9110fa9028fb6af20f1152b980f",
+        "bytes": 682
+      }
+    ],
+    "chronology": "Initial account readback detected a post-freeze amendment to PRE-RUN-REVIEW.md. Root-authorized owner preserved amended bytes as POST-FREEZE-REVIEW.md and restored hash-matching original; REVIEW-CONTINUITY.md retains the race. Current equality does not erase this event. No protocol, plan, checker, helper, admission or application change occurred in that documentation repair."
+  },
+  "limits": [
+    "Refusal is an operational outcome, not a model failure, prose judgment or test of twelve-turn continuity.",
+    "No conclusion about prompt-context completeness, attention, input-token reporting, accuracy, learning or emergence follows.",
+    "No retries, polling, budget extension, replacement output or service/model/UI actions were performed by this review.",
+    "Earlier real-writing and synthetic qualifications remain historical; they do not fill these twelve unstarted slots."
+  ]
+}

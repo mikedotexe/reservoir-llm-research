@@ -1,0 +1,19 @@
+   Compiling reservoir-scope-desktop v0.12.0 (/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.16s
+     Running unittests src/main.rs (target/debug/deps/reservoir_scope_desktop-b723db6654d10cb9)
+
+running 1 test
+
+thread 'sustained::tests::watchdog_does_not_treat_session_mutex_work_as_system_sleep' (33157123) panicked at src-tauri/src/sustained_tests.rs:904:5:
+A live session mutex delay was falsely classified as system sleep
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test sustained::tests::watchdog_does_not_treat_session_mutex_work_as_system_sleep ... FAILED
+
+failures:
+
+failures:
+    sustained::tests::watchdog_does_not_treat_session_mutex_work_as_system_sleep
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 155 filtered out; finished in 5.97s
+
+error: test failed, to rerun pass `-p reservoir-scope-desktop --bin reservoir-scope-desktop`

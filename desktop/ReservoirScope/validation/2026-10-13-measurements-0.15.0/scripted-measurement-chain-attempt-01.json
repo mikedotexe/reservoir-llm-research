@@ -1,0 +1,8 @@
+{
+  "scope": "Companion checker development failure; production CLI passed and original bundle was read only.",
+  "recordedAt": "2026-10-13T22:42:15.098293+00:00",
+  "scriptSha256": "444d25b6f92c5af2e9c20e008e7a0403658ec5e1885b0c4d9f490a63e6985d18",
+  "failure": "Manifest final anchor differs",
+  "cause": "The initial companion check compared a manifest checkpoint FILE-byte SHA256 to the typed checkpoint STATE SHA256. These intentionally hash different objects.",
+  "correction": "Read the hash-addressed checkpoint file, verify its byte hash, and compare the parsed checkpoint with the final segment checkpoint. No application/source/export changes."
+}

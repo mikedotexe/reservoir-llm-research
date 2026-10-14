@@ -1,0 +1,86 @@
+{
+  "schema": "reservoir-v5-synthetic-harness-freeze-v1",
+  "atUtc": "2026-10-14T01:20:05.769392+00:00",
+  "status": "ready-for-parent-prospective-freeze",
+  "files": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/owned_provider.py",
+      "bytes": 9067,
+      "sha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/test_owned_provider.py",
+      "bytes": 2946,
+      "sha256": "734a3db118701c503a7ef0ab2b157ba0069a13c62e195d156df8947f039c319a"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/check_fixture_export.py",
+      "bytes": 27033,
+      "sha256": "3331ff0e66dfb17097d3ae5f89bb73f83746341a8a7bd1b9aea15e138705bee7"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/test_check_fixture_export.py",
+      "bytes": 7322,
+      "sha256": "126ce843655b8b4dc446dc0abe5581b237cf93b5336957895ac62debd4be2b0a"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/synthetic-harness-basis-01.json",
+      "bytes": 1569,
+      "sha256": "e046e25c1eae2b2f2721d96c916d2df24a92035282b24ff8373b22e8561b1fe0"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/synthetic-harness-tests-01.json",
+      "bytes": 6760,
+      "sha256": "df32f29d3a383a9f012fd3feae8a8e2ac636f4d4f31fe1c0f03046f4c0e78aea"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/NATIVE-QUALIFICATION-PLAN.md",
+      "bytes": 5007,
+      "sha256": "73d55b5d3f3b984620a034e0287a2a7b59255c2703a2c65d1ad8ffe24d4fac03"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/packaged-ui-plan-01.json",
+      "bytes": 3254,
+      "sha256": "506ec9fe7d0502b286e904e06d90e8d798df3d0dc49b17c292ab97a029a9996d"
+    }
+  ],
+  "desktopTestSource": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/src-tauri/src/sustained_tests.rs",
+    "bytes": 65088,
+    "sha256": "d902c77449fde262b23e81ce222550a6e72e2c7c25736234aa71afcc43609c51"
+  },
+  "checks": {
+    "pureProviderTestsPassed": 7,
+    "pureCheckerTestsPassed": 15,
+    "peerReview": "portable_core_assessment read-only source review; no blocker; no execution by reviewer",
+    "rustTestsExecutedByThisAgent": false,
+    "nativeOrProviderStarted": false
+  },
+  "launchCommand": [
+    "python3",
+    "-B",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/owned_provider.py",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.17-continuing-writing-provider-01",
+    "--lifetime-seconds",
+    "900"
+  ],
+  "checkerCommandTemplate": [
+    "python3",
+    "-B",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-continuing-writing-0.17.0/check_fixture_export.py",
+    "<immutable-bundle>",
+    "--fixture",
+    "<exact-owned-fixture-dir>",
+    "--cli",
+    "<pinned-0.17-cli>",
+    "--expected-cli-sha256",
+    "<exact-sha256>",
+    "--output",
+    "<new-exclusive-receipt>"
+  ],
+  "requiredParentArtifact": "prospective-freeze-01.json",
+  "limits": [
+    "Fixture retains 0.16 in its synthetic model label by exact-source reuse.",
+    "Production replay, actual native workflow and final package identities remain unexecuted here."
+  ]
+}

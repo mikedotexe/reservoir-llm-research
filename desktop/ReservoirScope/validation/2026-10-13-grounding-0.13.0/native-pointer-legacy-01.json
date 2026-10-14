@@ -1,0 +1,59 @@
+{
+  "recordedAtUtc": "2026-10-13T20:23:49.820365+00:00",
+  "packageSha256": "689ed9e13e6cdbea8774c232b88018eaebd0c8fcbd2aaedc2d0fb0c6e1bb3b5b",
+  "observedVia": "Native CUA pointer/keyboard, exact packagedapp",
+  "session": "sustained-1791919382664-3",
+  "manifestSha256": "5f5f38de99e91d5a7a706b37b35210d39c8fba967e159eef14d0a18b8e6fa90a",
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791919382664-3",
+    "generation": "5",
+    "revision": "146",
+    "config": {
+      "seed": "20261013",
+      "turnEvery": 30,
+      "maximumSteps": 121,
+      "maximumTurns": 4,
+      "maximumDurationSeconds": 600,
+      "storageBudgetBytes": 67108864,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:63515",
+        "model": "gemma3:4b",
+        "contextTokens": 4096
+      }
+    },
+    "phase": "stopped",
+    "step": 121,
+    "durableStep": 121,
+    "elapsedMillis": 158846,
+    "journalCount": 4,
+    "segmentCount": 19,
+    "lastSegmentSha256": "dbef96dd68dad14a1839fcdea2abc8a8ebb1883b4e4e8c133b551f4db3025fd6",
+    "checkpointSha256": "1a066c4fec045169e8cacd582ba5b4d78a664be0576860c82e079eaa597c1e3e",
+    "previousCheckpointSha256": "1a066c4fec045169e8cacd582ba5b4d78a664be0576860c82e079eaa597c1e3e",
+    "diagnostics": [],
+    "attemptTiming": {
+      "attemptId": 4,
+      "dispatchedAtMs": "1791919550512",
+      "receivedAtMs": "1791919555719",
+      "transportDurationMs": 5206,
+      "publishedAtMs": null
+    }
+  },
+  "observations": [
+    "Version0.13.0 visible on launch. Navigation started no session.",
+    "Legacy v1 restored paused at121steps/4journals; Resume disabled; Evidence showedreservoir-journal-v1.",
+    "Older step30 selection retained through CmdM and Finder Open exact rebuiltapp. Finder stale oldinode was refreshed via parentfolder before Open.",
+    "Offscreen AX click Followlatest initially did notactivate; Evidence control worked. After explicit scroll, screenshot-grounded pointer1052,684 changed Followlatest off\u2192on and selectedstep120.",
+    "Second visible-target cycle selectedstep120 manually (Followlatestoff), CmdM thenFinderOpen, samecoordinateFollowlatest changedtoon.",
+    "Native export dialog opened; Cancel completed. Toolpipe interruption afterCancel was resolved byreadonlyUIcheck, which showedExportcancelled andretainedsession.",
+    "Stopped old owned qualification session explicitly topermitnewsession. No model service was running and noStart wasissued."
+  ],
+  "interpretation": "Tested native reopen and visible pointer controls pass. Historicalintermittentcause remainsunproven; offscreen automation scroll/targetbehavior is not an establishedapp handlerbug."
+}

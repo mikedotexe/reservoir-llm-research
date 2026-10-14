@@ -1,0 +1,498 @@
+{
+  "schema": "reservoir-preparation-audit-v1",
+  "capturedAtUtc": "2026-10-14T00:54:22.395609+00:00",
+  "episodeId": "long-writing-0.16.0-episode02",
+  "status": "passed-with-explicit-timing-limit",
+  "scope": "Read-only immutable setup receipt and file identity audit. No running logs, model responses, process inspection, new resource probe, network, UI or test execution. Does not certify episode completion.",
+  "frozenManifest": {
+    "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/evaluation-freeze-01.json",
+    "bytes": 10928,
+    "sha256": "b819a6212d10ab84cf88e68e4f23894bc1677bbfa2444af5677c1fae56e4d6fe"
+  },
+  "frozenAtUtc": "2026-10-14T00:48:19.181652+00:00",
+  "frozenFiles": [
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/PROTOCOL.md",
+        "bytes": 2789,
+        "sha256": "bb47f7523371d759d6952b36a4cb960420f118c5174fb5efafb5215a42c3164a"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/PROTOCOL.md",
+        "bytes": 2789,
+        "sha256": "bb47f7523371d759d6952b36a4cb960420f118c5174fb5efafb5215a42c3164a"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/run-plan.json",
+        "bytes": 4332,
+        "sha256": "8f1c0620a959df21fbdd119d84ee5a0b8d859dd184ebb4dc264e83e2f1ef78ba"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/run-plan.json",
+        "bytes": 4332,
+        "sha256": "8f1c0620a959df21fbdd119d84ee5a0b8d859dd184ebb4dc264e83e2f1ef78ba"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/RUBRIC.md",
+        "bytes": 6632,
+        "sha256": "5516e585cf09673bf04f901ec718780e35d7651efd7711afde50402039fab44e"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/RUBRIC.md",
+        "bytes": 6632,
+        "sha256": "5516e585cf09673bf04f901ec718780e35d7651efd7711afde50402039fab44e"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/EVALUATION.md",
+        "bytes": 7050,
+        "sha256": "3837489bd6b75f5b2838bb4462e2f51ef8548f8cd11ab83346ff77616a8ca033"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/EVALUATION.md",
+        "bytes": 7050,
+        "sha256": "3837489bd6b75f5b2838bb4462e2f51ef8548f8cd11ab83346ff77616a8ca033"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/check_real_model_export.py",
+        "bytes": 39641,
+        "sha256": "ba4d03747ea29dde79fd93bb9b15488800eae0b865d5224902c6561b0b60b443"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/check_real_model_export.py",
+        "bytes": 39641,
+        "sha256": "ba4d03747ea29dde79fd93bb9b15488800eae0b865d5224902c6561b0b60b443"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/test_real_model_export.py",
+        "bytes": 21200,
+        "sha256": "f9d2e14f816f56b5c57129ee9a27feff8076d665050e8d5b1ab4267de528ea02"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/test_real_model_export.py",
+        "bytes": 21200,
+        "sha256": "f9d2e14f816f56b5c57129ee9a27feff8076d665050e8d5b1ab4267de528ea02"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/checker-tests-01.json",
+        "bytes": 4530,
+        "sha256": "2f58a382dc9bed9cdfd162da59c9eebb2db5fba5e9a95bad3cae40404446e59a"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/checker-tests-01.json",
+        "bytes": 4530,
+        "sha256": "2f58a382dc9bed9cdfd162da59c9eebb2db5fba5e9a95bad3cae40404446e59a"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/PRE-RUN-REVIEW.md",
+        "bytes": 6666,
+        "sha256": "fd0fdce137b9c7ad4ce48a4a6db8bd65c3760bf55e2049f563ff718344f6daa2"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/PRE-RUN-REVIEW.md",
+        "bytes": 6666,
+        "sha256": "fd0fdce137b9c7ad4ce48a4a6db8bd65c3760bf55e2049f563ff718344f6daa2"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/cleanup-result.json",
+        "bytes": 669,
+        "sha256": "381197e236db9cb2b959517fef38003fedaa6c807f172073d478f08feb109edf"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/cleanup-result.json",
+        "bytes": 669,
+        "sha256": "381197e236db9cb2b959517fef38003fedaa6c807f172073d478f08feb109edf"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/cleanup-protected-before.json",
+        "bytes": 7758570,
+        "sha256": "90202fd54916652a8a5b4e1d5db105647f6e5696a3c60e1fc318591cc7b9db1c"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/cleanup-protected-before.json",
+        "bytes": 7758570,
+        "sha256": "90202fd54916652a8a5b4e1d5db105647f6e5696a3c60e1fc318591cc7b9db1c"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/admit_once.py",
+        "bytes": 2785,
+        "sha256": "c416da52242be798f315e9a5384065373d694c5da6ce0e242aad796977053045"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/admit_once.py",
+        "bytes": 2785,
+        "sha256": "c416da52242be798f315e9a5384065373d694c5da6ce0e242aad796977053045"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/freeze_episode.py",
+        "bytes": 2278,
+        "sha256": "31dc3eeffd1d5c1f91a942f0a275488458b7a6cc564753c8831595e18daabec3"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/freeze_episode.py",
+        "bytes": 2278,
+        "sha256": "31dc3eeffd1d5c1f91a942f0a275488458b7a6cc564753c8831595e18daabec3"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/reclaim_incremental.py",
+        "bytes": 4194,
+        "sha256": "59c0ac9a1c0c192c66d25fb09a9d099b6699edcefcf7bf38ba9f15ddfe401067"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/reclaim_incremental.py",
+        "bytes": 4194,
+        "sha256": "59c0ac9a1c0c192c66d25fb09a9d099b6699edcefcf7bf38ba9f15ddfe401067"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/owned_model.py",
+        "bytes": 32949,
+        "sha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/owned_model.py",
+        "bytes": 32949,
+        "sha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/test_owned_model.py",
+        "bytes": 21837,
+        "sha256": "145d75ad5d1d8a090bb3c1a9830a59d1127d3424354b8b59db208d0006da9b87"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/test_owned_model.py",
+        "bytes": 21837,
+        "sha256": "145d75ad5d1d8a090bb3c1a9830a59d1127d3424354b8b59db208d0006da9b87"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/helper-continuity-01.json",
+        "bytes": 1042,
+        "sha256": "26961ca83517f0033f138ca02d7eb38b17e80b3afc6e7946ce2a64ebe62c1552"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/helper-continuity-01.json",
+        "bytes": 1042,
+        "sha256": "26961ca83517f0033f138ca02d7eb38b17e80b3afc6e7946ce2a64ebe62c1552"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/package-provenance-01.json",
+        "bytes": 16048,
+        "sha256": "83fea222a8366f2d3482b9c2140f623da36406c9914ddc44aafcbcb3f0af74cc"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/package-provenance-01.json",
+        "bytes": 16048,
+        "sha256": "83fea222a8366f2d3482b9c2140f623da36406c9914ddc44aafcbcb3f0af74cc"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/journal_quality.py",
+        "bytes": 28542,
+        "sha256": "49c13a0577829a9d7b7ebb2d7be60ff1f4139b2753f990d614dcf9332397d0ae"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/journal_quality.py",
+        "bytes": 28542,
+        "sha256": "49c13a0577829a9d7b7ebb2d7be60ff1f4139b2753f990d614dcf9332397d0ae"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/test_journal_quality.py",
+        "bytes": 27055,
+        "sha256": "35b6316010479b2794de57f795911c791e7520e9afd4087b5875e2c648b567f4"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/test_journal_quality.py",
+        "bytes": 27055,
+        "sha256": "35b6316010479b2794de57f795911c791e7520e9afd4087b5875e2c648b567f4"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v4-observation-10.txt",
+        "bytes": 4445,
+        "sha256": "26bae96991e12bb591ba517c46345aeac167abbbdaf79858c514a35b8986f75f"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v4-observation-10.txt",
+        "bytes": 4445,
+        "sha256": "26bae96991e12bb591ba517c46345aeac167abbbdaf79858c514a35b8986f75f"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v4-memory-20.txt",
+        "bytes": 4829,
+        "sha256": "d51753e1eddd68fd193ba46da49e6f909aaebdef328471ddf79e3b134b10c2c0"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v4-memory-20.txt",
+        "bytes": 4829,
+        "sha256": "d51753e1eddd68fd193ba46da49e6f909aaebdef328471ddf79e3b134b10c2c0"
+      },
+      "matches": true
+    },
+    {
+      "expected": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v4-provenance.json",
+        "bytes": 682,
+        "sha256": "aa8d4e2af9a04cd8455634364481d97ce8ecc9110fa9028fb6af20f1152b980f"
+      },
+      "actual": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v4-provenance.json",
+        "bytes": 682,
+        "sha256": "aa8d4e2af9a04cd8455634364481d97ce8ecc9110fa9028fb6af20f1152b980f"
+      },
+      "matches": true
+    }
+  ],
+  "frozenFileCount": 22,
+  "allFrozenFilesMatch": true,
+  "admission": {
+    "identity": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/host-admission-01.json",
+      "bytes": 1467,
+      "sha256": "eab9155f9531116915dc01e3dc8bb611149bc74d70a5a395305540bac3a00164"
+    },
+    "freezeBindingMatches": true,
+    "capturedUtc": "2026-10-14T00:48:19.319767+00:00",
+    "admitted": true,
+    "pressureLevel": 1,
+    "freePercent": 51,
+    "diskFreeBytes": 11249311744,
+    "allCommandsExitZero": true,
+    "thresholdsMatchPlan": true
+  },
+  "beforeStart": {
+    "identity": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/bound-before-start-01.json",
+      "bytes": 3090,
+      "sha256": "96cc38e8ffa4f3bfdbae09ac36fce7a0afe233c66b3a95796e23c0f72112ba73"
+    },
+    "allBindingsMatch": true,
+    "bindings": [
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/evaluation-freeze-01.json",
+          "sha256": "b819a6212d10ab84cf88e68e4f23894bc1677bbfa2444af5677c1fae56e4d6fe"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/evaluation-freeze-01.json",
+          "bytes": 10928,
+          "sha256": "b819a6212d10ab84cf88e68e4f23894bc1677bbfa2444af5677c1fae56e4d6fe"
+        },
+        "matches": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/host-admission-01.json",
+          "sha256": "eab9155f9531116915dc01e3dc8bb611149bc74d70a5a395305540bac3a00164"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/host-admission-01.json",
+          "bytes": 1467,
+          "sha256": "eab9155f9531116915dc01e3dc8bb611149bc74d70a5a395305540bac3a00164"
+        },
+        "matches": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/run-plan.json",
+          "sha256": "8f1c0620a959df21fbdd119d84ee5a0b8d859dd184ebb4dc264e83e2f1ef78ba"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/run-plan.json",
+          "bytes": 4332,
+          "sha256": "8f1c0620a959df21fbdd119d84ee5a0b8d859dd184ebb4dc264e83e2f1ef78ba"
+        },
+        "matches": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/ui-before-start.txt",
+          "sha256": "02d315d1cb9cfdf603b67d51deef028144ecc66f6686a82fc6ea9f3ce6f8bd8f"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/ui-before-start.txt",
+          "bytes": 12255,
+          "sha256": "02d315d1cb9cfdf603b67d51deef028144ecc66f6686a82fc6ea9f3ce6f8bd8f"
+        },
+        "matches": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.16-long-writing-gemma3-4b-run02/owned-process.json",
+          "sha256": "e3523d740927942927b2c02e3423cf527daa9dae5d9abce6eea867182d3cef54"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.16-long-writing-gemma3-4b-run02/owned-process.json",
+          "bytes": 1202,
+          "sha256": "e3523d740927942927b2c02e3423cf527daa9dae5d9abce6eea867182d3cef54"
+        },
+        "matches": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.16-long-writing-gemma3-4b-run02/endpoint.json",
+          "sha256": "532c9b51c01847fd942091150e0afd05d2c126a2b743db9efb39a2941eb11b13"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.16-long-writing-gemma3-4b-run02/endpoint.json",
+          "bytes": 277,
+          "sha256": "532c9b51c01847fd942091150e0afd05d2c126a2b743db9efb39a2941eb11b13"
+        },
+        "matches": true
+      },
+      {
+        "expected": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.16-long-writing-gemma3-4b-run02/launch-intent.json",
+          "sha256": "645d80e5837225bf4d29f851b985c2dbf230d64ac2a9da7ab594d4c02fc08466"
+        },
+        "actual": {
+          "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.16-long-writing-gemma3-4b-run02/launch-intent.json",
+          "bytes": 3354,
+          "sha256": "645d80e5837225bf4d29f851b985c2dbf230d64ac2a9da7ab594d4c02fc08466"
+        },
+        "matches": true
+      }
+    ],
+    "acceptedNumericalConfigurationMatchesPlan": true,
+    "languageMatches": true,
+    "modelDigestMatchesPlan": true,
+    "packageHashMatchesPlan": true,
+    "sessionId": "sustained-1791938932286-3",
+    "generation": "3",
+    "measuredAtUtc": "2026-10-14T00:49:19.429354+00:00",
+    "measuredRemainingLifetimeSeconds": 1150.9090403330047,
+    "requiredRemainingSeconds": 1140,
+    "measuredGatePassed": true,
+    "timingLimit": "The pre-Start measurement exceeds the required margin by 10.909 seconds. native-start-01.json is written after the observation and is not an exact click/dispatch timestamp. Exact remaining lifetime at the click is not established by these two JSON receipts alone."
+  },
+  "nativeStartReceipt": {
+    "identity": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/native-start-01.json",
+      "bytes": 607,
+      "sha256": "09f30ae74b40dddc95cb25e8ad6036f0bdd27a58044d5d410b658e8b3eeeae31"
+    },
+    "source": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/ui-started.txt",
+      "bytes": 16987,
+      "sha256": "5b472591f5dc416e25829e879d6a09fdc0a4af5e31518884891b77321f236bb1"
+    },
+    "sourceHashMatches": true,
+    "sameSessionAndGeneration": true,
+    "reportedPhase": "Running",
+    "reportedStep": 1,
+    "timingLimit": "Receipt written after native observation; this is not exact dispatch wall time."
+  },
+  "cleanup": {
+    "identity": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/cleanup-result.json",
+      "bytes": 669,
+      "sha256": "381197e236db9cb2b959517fef38003fedaa6c807f172073d478f08feb109edf"
+    },
+    "receipt": {
+      "atUtc": "2026-10-14T00:46:50.408739+00:00",
+      "removedOnly": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/debug/incremental",
+      "cacheAbsent": true,
+      "removedCacheFiles": 23896,
+      "logicalBytesRemoved": 8116832165,
+      "freeDiskBytesBefore": 7036129280,
+      "freeDiskBytesAfter": 12715892736,
+      "observedFreeDiskIncreaseBytes": 5679763456,
+      "diskDeltaLimit": "Concurrent filesystem activity and APFS allocation may affect the observed free-space delta.",
+      "protectedFileCount": 29589,
+      "protectedIdentitiesUnchanged": true,
+      "changedProtectedPaths": [],
+      "status": "passed",
+      "noAppsOrServicesStopped": true,
+      "noModelRequests": true
+    },
+    "protectedBeforeInventoryIdentity": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/cleanup-protected-before.json",
+      "bytes": 7758570,
+      "sha256": "90202fd54916652a8a5b4e1d5db105647f6e5696a3c60e1fc318591cc7b9db1c"
+    },
+    "protectedBeforeInventoryCount": 29589,
+    "cacheCurrentlyAbsent": true,
+    "limit": "Protected before/after equality and absence of process/service changes are root cleanup receipt evidence. This audit does not rerun the full protected inventory while the new owned run is active. Observed free-space delta is not causal attribution and does not explain prior memory recovery."
+  },
+  "packageProvenance": {
+    "identity": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-long-writing-episode02/package-provenance-01.json",
+      "bytes": 16048,
+      "sha256": "83fea222a8366f2d3482b9c2140f623da36406c9914ddc44aafcbcb3f0af74cc"
+    },
+    "status": "matched-existing-0.16.0-r2",
+    "fileCount": 46,
+    "archive": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/ReservoirScopeTauriPreview-0.16.0-r2-macos-arm64.tar.gz",
+      "bytes": 96675714,
+      "sha256": "8c3ddbca021e381ecd39c6aadd8cad5ecc47fb1070857acb92a0f51138395d5e"
+    },
+    "pinnedVerifier": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.16-r2-pinned/reservoir-scope-desktop",
+      "bytes": 16983744,
+      "sha256": "73872388b56d2483054497aa8513e3659f79dfaf255699d6bca29041cafd258d"
+    },
+    "limit": "Frozen package provenance receipt is checked; package signature and all 46 package files are not independently rehashed during this audit."
+  },
+  "limits": [
+    "No sustained resource qualification or active pressure watcher.",
+    "No evidence from running provider logs or journal text inspected.",
+    "No completion, save/application, context-use or writing-quality result inferred.",
+    "Current frozen-file equality is a point-in-time check, not a filesystem immutability mechanism."
+  ]
+}

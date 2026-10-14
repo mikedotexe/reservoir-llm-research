@@ -1,0 +1,24 @@
+{
+  "schema": "reservoir-scope-initial-ui-account-v1",
+  "candidate": "package-before-ui.json",
+  "applicationPid": 18536,
+  "version": "0.11.0",
+  "ownedProvider": "http://127.0.0.1:56117",
+  "model": "reservoir-fixture:0.11",
+  "realModelContacted": false,
+  "completeSession": "session-1791872447091-18536-1",
+  "cancelledSession": "session-1791872614953-18536-2",
+  "observed": [
+    "No requests before explicit readiness",
+    "Endpoint/model initially blank; context4096; readiness matched exact model and retained fixture digest",
+    "F standalone7steps cadence3; Create atstep0; first WRITE held step3, no journal eligibility before save",
+    "Actual save changed durable step0 to3; step4 retained first application",
+    "Second opportunity step6 reread first saved journal; save then step7 completed with2journals",
+    "Turn inspector showed actual configured/returned model, requestStarted and requestOrder",
+    "Save to Library; native-dialog complete export",
+    "Second session: in-flight HTTP heldstep3; Pause leftrequestawaiting; Stop terminalizedcancelled,0journals",
+    "Provider repliedafterStop; no late journal or application accepted",
+    "Native-dialog cancelled export; saveLibrary; CmdQ closedcleanly"
+  ],
+  "issue": "Initial cancellation reason incorrectly named a pending journal save. Runtime data gates correct; final build changes reason only and addsassertion. Initial package retained separately."
+}

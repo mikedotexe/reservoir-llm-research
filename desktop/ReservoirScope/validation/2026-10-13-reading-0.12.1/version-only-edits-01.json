@@ -1,0 +1,44 @@
+{
+  "atUtc": "2026-10-13T19:00:16.894154+00:00",
+  "fromVersion": "0.12.0",
+  "toVersion": "0.12.1",
+  "scope": "Desktop identity metadata and App badge only; no dependencies or core/native version changed.",
+  "files": [
+    {
+      "path": "package.json",
+      "beforeSha256": "da9907f517e3315ab31fb2b27e469e5c1e6339047e283c7c6f7a60d0eb1254fd",
+      "afterSha256": "c2f7310674519452d947f659ff4fbac5b2436c06008685eaa9d68de201aa7c4f",
+      "diff": "--- package.json\n+++ package.json\n@@ -1,6 +1,6 @@\n {\n   \"name\": \"reservoir-scope-desktop\",\n-  \"version\": \"0.12.0\",\n+  \"version\": \"0.12.1\",\n   \"private\": true,\n   \"type\": \"module\",\n   \"engines\": {\n"
+    },
+    {
+      "path": "package-lock.json",
+      "beforeSha256": "f09f349b471916d8746ad50effd9b79338f1c0fd246ae81994eba95a56002697",
+      "afterSha256": "380eba5fc7f0c598babb022cc7609950adfe3900b1b438a7a2bbab07cdec57d1",
+      "diff": "--- package-lock.json\n+++ package-lock.json\n@@ -1,12 +1,12 @@\n {\n   \"name\": \"reservoir-scope-desktop\",\n-  \"version\": \"0.12.0\",\n+  \"version\": \"0.12.1\",\n   \"lockfileVersion\": 3,\n   \"requires\": true,\n   \"packages\": {\n     \"\": {\n       \"name\": \"reservoir-scope-desktop\",\n-      \"version\": \"0.12.0\",\n+      \"version\": \"0.12.1\",\n       \"dependencies\": {\n         \"@tauri-apps/api\": \"2.12.3\",\n         \"react\": \"19.3.0\",\n"
+    },
+    {
+      "path": "src-tauri/tauri.conf.json",
+      "beforeSha256": "e7cd16477519092f89e0aa9908223f580af43699ee0d51977dae46627f2d68c5",
+      "afterSha256": "a5a9e9a5d8fccb751dceade7fc7600ebf884404a0dab39e9891abb81bde4e293",
+      "diff": "--- src-tauri/tauri.conf.json\n+++ src-tauri/tauri.conf.json\n@@ -1,7 +1,7 @@\n {\n   \"$schema\": \"https://schema.tauri.app/config/2\",\n   \"productName\": \"Reservoir Scope Tauri Preview\",\n-  \"version\": \"0.12.0\",\n+  \"version\": \"0.12.1\",\n   \"identifier\": \"research.reservoir.scope.tauri\",\n   \"build\": {\n     \"beforeDevCommand\": \"npm run prepare:resources && npm run dev\",\n"
+    },
+    {
+      "path": "src-tauri/Cargo.toml",
+      "beforeSha256": "f5cce9f6bfc2a72e7e78670adc88c4330d4d57f3247e12b3e92a24c0068dc482",
+      "afterSha256": "c9126fa16028c80c08616b07548371edc6773a13b339774aa4b3f8e09edd0791",
+      "diff": "--- src-tauri/Cargo.toml\n+++ src-tauri/Cargo.toml\n@@ -1,6 +1,6 @@\n [package]\n name = \"reservoir-scope-desktop\"\n-version = \"0.12.0\"\n+version = \"0.12.1\"\n edition = \"2021\"\n rust-version = \"1.94.1\"\n description = \"Reservoir Scope Tauri offline research workspaces\"\n"
+    },
+    {
+      "path": "Cargo.lock",
+      "beforeSha256": "bd72ab23916bf1dc4385c5f817f07938472a58e237323ab5b495c871c9905314",
+      "afterSha256": "d4ae95d7b059f70bb9819c7dfe0cd60c76162f0a269383928baa1b9ec4e8fb49",
+      "diff": "--- Cargo.lock\n+++ Cargo.lock\n@@ -2903,7 +2903,7 @@\n \n [[package]]\n name = \"reservoir-scope-desktop\"\n-version = \"0.12.0\"\n+version = \"0.12.1\"\n dependencies = [\n  \"libc\",\n  \"objc2\",\n"
+    },
+    {
+      "path": "src/App.tsx",
+      "beforeSha256": "31f0e720479f5b22354ebe374d95579a2385196327cf79298e4fd6fe2a3b2f33",
+      "afterSha256": "58113c01d5ae91830ec98a67ffe94d5a78233d0cea35ea0cde33a6b840ebebf0",
+      "diff": "--- src/App.tsx\n+++ src/App.tsx\n@@ -27,7 +27,7 @@\n     <a className=\"skip-link\" href=\"#workspace-main\">Skip to workspace</a>\n     <header className=\"app-header\">\n       <div className=\"brand\"><span className=\"brand-mark\" aria-hidden=\"true\">\u25c9</span><div><strong>Reservoir Scope</strong><span>THE CROSS-PLATFORM LAB</span></div></div>\n-      <span className=\"milestone-pill\"><span /> 0.12.0 \u00b7 My reservoir</span>\n+      <span className=\"milestone-pill\"><span /> 0.12.1 \u00b7 My reservoir</span>\n     </header>\n     <nav className=\"workspace-nav\" aria-label=\"Workspaces\">{workspaces.map(name => <button key={name} aria-current={workspace === name ? 'page' : undefined} onClick={() => navigate(name)}>{name}</button>)}</nav>\n     <FreshClosePanel /><SustainedClosePanel />\n"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "schema": "reservoir-final-resource-results-receipt-v1",
+  "createdAtUtc": "2026-10-13T18:52:23.781911+00:00",
+  "scope": "Final post-capture resource analysis and report; no app/provider/UI/model/sampler/process mutation. Original measurement bytes preserved.",
+  "status": "completed-bounded-analysis-not-blanket-product-qualification",
+  "analysisCommandIntervals": [
+    {
+      "startedAtUtc": "2026-10-13T18:42:04.441524+00:00",
+      "endedAtUtc": "2026-10-13T18:42:05.630447+00:00",
+      "receipt": "final-resource-analysis-01-qualification.json"
+    },
+    {
+      "startedAtUtc": "2026-10-13T18:43:58.074907+00:00",
+      "endedAtUtc": "2026-10-13T18:43:58.159237+00:00",
+      "receipt": "final-resource-analysis-02-qualification.json"
+    }
+  ],
+  "postCaptureReportingEnvelope": {
+    "startedAtUtc": "2026-10-13T18:42:04.441524+00:00",
+    "endedAtUtc": "2026-10-13T18:52:23.781911+00:00",
+    "meaning": "From first precisely retained analysis command through final reporting/peer review; includes idle and small metadata reads, not continuous CPU load. Entire interval follows primary sampler footer."
+  },
+  "peerReview": {
+    "reviewer": "tauri_platform_validation",
+    "mode": "read-only",
+    "result": "No actionable interpretation correction found; trigger definitions, conservative progress bracket, whole CPU intervals, unequal excluded coverage and incomplete settled gate reviewed. No duplicate tests/analysis or process/UI actions."
+  },
+  "files": [
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/RESOURCE-RESULTS.md",
+      "sizeBytes": 15407,
+      "sha256": "094d8baabb93d3f187b775bbbcaa2bdb3bbe510c72e7c2d3984174d0abaf058a"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/samples-01.jsonl",
+      "sizeBytes": 542233,
+      "sha256": "cad9864c0f1d6e0ad0b5345ac2c5482bbc2fcfb5e62820ef2e9c3708bb6c1185"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/primary-markers-final-01.jsonl",
+      "sizeBytes": 4113,
+      "sha256": "f649092dbfa011908e2b030f69af87d88628d1e668a5aa4c6aae62fd6bda3104"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/final-raw-analysis-01.json",
+      "sizeBytes": 14345,
+      "sha256": "242fbb2d90c5a68d2ac6f2c1dca92525f60614af64ebfb46e078b787b4c5e678"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/final-phase-analysis-02.json",
+      "sizeBytes": 98901,
+      "sha256": "568e92ecdf9963896629cd887cfe8c3dcbc3e055f15baba80743c0aebf7b35f4"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/final-load-intervals-02.json",
+      "sizeBytes": 5904,
+      "sha256": "439098c4dcc56debae784285334e0a13825aaac2f61946a75f7be8aab4633de3"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/natural-quota-clippy-load-01.json",
+      "sizeBytes": 834,
+      "sha256": "3d39fc2ecf8cd2d3d95bbb369b58a7a2250837ae2b0e917a53e8d953be6a55f2"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/final-resource-gates-01.json",
+      "sizeBytes": 5031,
+      "sha256": "7d59c440fff2905b061db46e67e5dcf8f4b79c45439f8761b1fbc81a8f2c40b0"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/summarize_resource_gates_01.py",
+      "sizeBytes": 6883,
+      "sha256": "d9c7b859c0dc2be67b411d667b8198e003447080728380912b71e32f59dbe653"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/final-resources-01.png",
+      "sizeBytes": 279855,
+      "sha256": "66afeed6fa0491dc7c389555ba69d87d4d068a25c418c798d74c281fcc40c1f7"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/final-resources-01.svg",
+      "sizeBytes": 275659,
+      "sha256": "ff422ea2f98b957434f7c33656af560481df2d977482ebe8faae493d57a0ffdc"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/final-resource-analysis-01-qualification.json",
+      "sizeBytes": 13219,
+      "sha256": "a252f263f1182297af8a84fbbe411e17a5279f0cce63dcd6dab3876eb6913e68"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/final-resource-analysis-02-qualification.json",
+      "sizeBytes": 3611,
+      "sha256": "51a35974418cf1223264b894adf231ec17ad24cb4386ca10d1f63ca4f031264d"
+    },
+    {
+      "path": "validation/2026-10-13-reliability-0.12.0/final-resource-gates-01-qualification.json",
+      "sizeBytes": 1187,
+      "sha256": "80359c5106c4226194d1e804010547d7778797f7deb62bf056c50179bef5073d"
+    }
+  ],
+  "limits": [
+    "Main PID only; no GPU, energy, total-app memory or leak claim.",
+    "Operator-declared minimized window, not continuous visibility instrumentation.",
+    "Recovery evidence is separate and linked; forced interruption and final continuation replay are not established by this resource report.",
+    "No samples after observed Pause; final settled thread/FD trigger incomplete.",
+    "First phase analysis preserved; second adds one closed Clippy interval for18total; no observations removed from raw or functional checks."
+  ]
+}

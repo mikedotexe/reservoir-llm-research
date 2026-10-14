@@ -1,0 +1,178 @@
+{
+  "schema": "reservoir-owned-model-cleanup-supplement-v1",
+  "capturedAtUtc": "2026-10-13T20:31:14.979294+00:00",
+  "scope": "Exact owned supervisor13451/server13465/original group13465 only. No HTTP, launch, retry, signals, unrelated process inventory, credential-content reads, or package/source edits.",
+  "originalSupervisionResult": {
+    "path": "target/qa/0.13-real-gemma3-4b-run01/supervision-result.json",
+    "sha256": "c13eb6fd8d15fabc42b23656a7eef703cd426f408221492bca9169d80b31955e",
+    "errors": [
+      "Owned cleanup: Owned group membership did not stabilize; no signal authorized"
+    ],
+    "preserved": true
+  },
+  "readOnlyProof": {
+    "path": "validation/2026-10-13-grounding-0.13.0/owned-model-cleanup-readonly-01.json",
+    "sha256": "abfa4f3a54383b0ee4d31af0ba19cf74f0524a8a324e796a763a9b86a414fa7e",
+    "observations": [
+      {
+        "atUtc": "2026-10-13T20:30:10.468277+00:00",
+        "selectedPids": [
+          {
+            "pid": 13465,
+            "returnedBytes": 0,
+            "errno": 3
+          },
+          {
+            "pid": 13451,
+            "returnedBytes": 0,
+            "errno": 3
+          }
+        ],
+        "group": {
+          "pgid": 13465,
+          "returnedBytes": 0,
+          "errno": 0,
+          "query": "proc_listpids(PROC_PGRP_ONLY,13465)",
+          "members": []
+        }
+      },
+      {
+        "atUtc": "2026-10-13T20:30:10.673313+00:00",
+        "selectedPids": [
+          {
+            "pid": 13465,
+            "returnedBytes": 0,
+            "errno": 3
+          },
+          {
+            "pid": 13451,
+            "returnedBytes": 0,
+            "errno": 3
+          }
+        ],
+        "group": {
+          "pgid": 13465,
+          "returnedBytes": 0,
+          "errno": 0,
+          "query": "proc_listpids(PROC_PGRP_ONLY,13465)",
+          "members": []
+        }
+      },
+      {
+        "atUtc": "2026-10-13T20:30:10.874143+00:00",
+        "selectedPids": [
+          {
+            "pid": 13465,
+            "returnedBytes": 0,
+            "errno": 3
+          },
+          {
+            "pid": 13451,
+            "returnedBytes": 0,
+            "errno": 3
+          }
+        ],
+        "group": {
+          "pgid": 13465,
+          "returnedBytes": 0,
+          "errno": 0,
+          "query": "proc_listpids(PROC_PGRP_ONLY,13465)",
+          "members": []
+        }
+      }
+    ]
+  },
+  "conclusion": {
+    "ownedServerAbsent": true,
+    "ownedSupervisorAbsent": true,
+    "originalProcessGroupEmpty": true,
+    "additionalSignalsSent": false,
+    "cleanupRequiredNow": false,
+    "supervisorVerificationPassed": false
+  },
+  "recordedTermination": {
+    "events": [
+      {
+        "atUtc": "2026-10-13T20:29:26.776961+00:00",
+        "operation": "killpg",
+        "pgid": 13465,
+        "signal": 15,
+        "before": {
+          "leaderExitedUnreaped": false,
+          "members": [
+            {
+              "pid": 13465,
+              "ppid": 13451,
+              "pgid": 13465,
+              "sid": 13465,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1791923031",
+              "startMicroseconds": "481111"
+            }
+          ],
+          "quiescent": false
+        },
+        "sent": true,
+        "outcome": "syscall accepted; quiescence still requires verification"
+      }
+    ],
+    "sigtermSentToOwnedGroup": true,
+    "sigkillSentToOwnedGroup": false,
+    "failure": {
+      "type": "ValueError",
+      "errno": null,
+      "message": "Owned group membership did not stabilize; no signal authorized"
+    }
+  },
+  "causeAssessment": {
+    "confirmed": "SIGTERM was accepted after a stable owned-group identity at20:29:26.776961Z. A later checked_owned_group call exhausted three immediate snapshot attempts. The error is from post-signal identity/quiescence verification, not a rejected SIGTERM.",
+    "specificTransientCause": "Not established: rejected snapshot pairs and per-attempt ESRCH observations were not retained by the frozen helper.",
+    "sourceRisk": "checked_owned_group compares all members including transient BSD status and retries ESRCH or unequal snapshots only three times without delay. Any exhausted read aborts cleanup_owned before its outer ten-second grace period can continue. This can report verification failure during a normal exit transition.",
+    "followUp": "Before reusing supervision for another run, qualify a separate helper revision with bounded post-signal retry/audit of transient identity observations, preserving fail-closed behavior for foreign identity and preserving the unreaped leader until final proof. No frozen helper edited."
+  },
+  "helperSha256": "72f582e6477c3b1063cfda21f1c4da43bd85bb889a59ea9b8c6a2d7d9b0b3905",
+  "conventionalMetadataAfterSupplement": [
+    {
+      "path": "/Users/v/.ollama/id_ed25519",
+      "exists": true,
+      "ordinaryFile": true,
+      "symlink": false,
+      "device": "16777234",
+      "inode": "3076462",
+      "sizeBytes": 387,
+      "mtimeNs": "1772811118116572068",
+      "ctimeNs": "1772811118116572068",
+      "mode": "0600",
+      "uid": 501
+    },
+    {
+      "path": "/Users/v/.ollama/id_ed25519.pub",
+      "exists": true,
+      "ordinaryFile": true,
+      "symlink": false,
+      "device": "16777234",
+      "inode": "3076463",
+      "sizeBytes": 81,
+      "mtimeNs": "1772811118116677943",
+      "ctimeNs": "1772811118116677943",
+      "mode": "0644",
+      "uid": 501
+    },
+    {
+      "path": "/Users/v/.ollama/server.json",
+      "exists": false
+    }
+  ],
+  "conventionalMetadataUnchanged": true,
+  "credentialCheckLimit": "lstat continuity only; no key/config contents read or hashed.",
+  "selectedExecutableUnchanged": true,
+  "selectedExecutableSha256": "76535100c7aaf5aa94fe749b1bf0cfe3a702fa0743c7421fed059b783f4969de",
+  "limits": [
+    "No retrospective success claim for the supervisor: its original exit1/failure remains.",
+    "Read-only evidence establishes absence at the recorded observation times, not the exact historical termination instant.",
+    "Escaped descendants were not inventoried; no claim about unrelated services or endpoints."
+  ]
+}

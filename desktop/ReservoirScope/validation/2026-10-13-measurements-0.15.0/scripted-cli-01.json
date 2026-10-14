@@ -1,0 +1,32 @@
+{
+  "scope": "Offline pinned production CLI on explicit native scripted export; no actual model or service access.",
+  "command": [
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-pinned/reservoir-scope-desktop",
+    "--verify-sustained",
+    "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.15-measurements/exports/sustained-1791931028053-1-1-143"
+  ],
+  "executableSha256Before": "18949732cf48c926003ffcf7b5b216bccc32ea071d0bff8a411e841eaba123d5",
+  "executableSha256After": "18949732cf48c926003ffcf7b5b216bccc32ea071d0bff8a411e841eaba123d5",
+  "startedAt": "2026-10-13T22:41:34.817760+00:00",
+  "endedAt": "2026-10-13T22:41:34.900689+00:00",
+  "wallSeconds": 0.09987987484782934,
+  "exitCode": 0,
+  "stdoutSha256": "91d4246246deb6d40e75469c906c27f80863172eb8d7b2daf4241b4eed7b6c22",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "verification": {
+    "modelsContacted": false,
+    "report": {
+      "checkpointSha256": "08ee24959cb82955a697bf277ad7c2e01033ef17af343669b8ccbd976501aad9",
+      "diagnostics": [],
+      "format": "reservoir-sustained-bundle-v1",
+      "journalCount": 4,
+      "manifestSha256": "281de345c12a3f0d07b96e68d9da96e0485483282c57a563907ba4e6257ddaa1",
+      "segmentCount": 19,
+      "sessionId": "sustained-1791931028053-1",
+      "sizeBytes": 1747206,
+      "step": 121,
+      "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+    },
+    "status": "passed"
+  }
+}

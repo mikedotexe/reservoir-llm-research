@@ -1,0 +1,81 @@
+{
+  "schema": "reservoir-quality-evaluation-freeze-v1",
+  "frozenAtUtc": "2026-10-13T19:55:55.492185+00:00",
+  "status": "prospective-before-v2-output",
+  "scope": "Evaluation sources,22passing synthetic tests,prospective4-requestprotocol,andimmutableknownv1reference. No modelservice/process/UIlaunch; no runtimeRust/frontend edits.",
+  "newModelRequests": 0,
+  "automaticScientificPass": false,
+  "finalTests": {
+    "count": 22,
+    "exitCode": 0,
+    "receipt": "quality-tests-03.json"
+  },
+  "peerReview": "Two concrete unit/measurement-identity findings fixed with regressions; frozen priorv1records remain unchanged.",
+  "identities": [
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/journal_quality.py",
+      "bytes": 16580,
+      "sha256": "8edd1835d23adc64e56d50aed1f45d5d7889eccaeeb6569b31342268a6e776d1"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/scripts/test_journal_quality.py",
+      "bytes": 10719,
+      "sha256": "b0a771f4b70f185ae31bf1bc169a14cc99e6cf04d6171a6641a02d00ec2dd15a"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/PROTOCOL.md",
+      "bytes": 8267,
+      "sha256": "7e051f3e9d39e19f0b6435d17215c39f5869ed75d28cab182d7f23acc5d3bf2a"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/run-plan.json",
+      "bytes": 2078,
+      "sha256": "3376ac4bbd3b05f2592e78b62666a0e3822a4db01c8e428f352871b9f53b513e"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/RUBRIC.md",
+      "bytes": 6325,
+      "sha256": "e8b2f40453b9ee0e2dc8ad720ffd58e50ebd34df2d1b57ba5b5f8fd057901159"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/EVALUATION.md",
+      "bytes": 4869,
+      "sha256": "dbcc30be5057b2a9e742ef70bc4aa0810f7f514687c84cb06eadf186bf5f935d"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/synthetic-fixtures.json",
+      "bytes": 2056,
+      "sha256": "6d62f4b83a05ce6ca6abcec7a74356243dcfd5d1d63388a513390bc108b78780"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/quality-tests-03.json",
+      "bytes": 1884,
+      "sha256": "bb06e4152189810cb398f5b3065f6ddbb5c0357473266d0024d974c0897ae6fe"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/quality-tests-03.log",
+      "bytes": 3287,
+      "sha256": "e658382944c98f6426b5e8d6f293f943545b2fdebea38b7092007e70562e5790"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/v1-reference-report-02.json",
+      "bytes": 35074,
+      "sha256": "b112492493095d40f978d06dadb2acaee7e3d91686abe2ec3d2022dd6c267eab"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/real-model-export-01/receipt.json",
+      "bytes": 14101,
+      "sha256": "7cc9bc59a8ff6c27f5ab740e586d80821b4a383206b59b1606fb07dfd19094c1"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/real-model-export-01/quality-review-material.json",
+      "bytes": 51650,
+      "sha256": "da9b912349e4a1efb60a07dac88cf12d35ac99246a41e7f3997c9ffc3d8b78a7"
+    },
+    {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.2/real-model-prose-review.json",
+      "bytes": 19617,
+      "sha256": "e228a8e1646d6f9e2f63f0456dfc1c1472228e596bed7eb72891bca5000b922c"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+
+> reservoir-scope-desktop@0.12.1 test
+> vitest run src/MyReservoirPresentation.test.tsx src/MyReservoir.test.tsx src/myReservoirQuota.test.tsx
+
+
+ RUN  v4.1.11 /Users/v/other/reservoir-llm-research/desktop/ReservoirScope
+
+ ❯ src/MyReservoirPresentation.test.tsx (6 tests | 1 failed) 13ms
+     × keeps a retried provider failure in history after saved feedback is prepared, without a current failure alert 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MyReservoirPresentation.test.tsx > calm running view and visible recovery actions > keeps a retried provider failure in history after saved feedback is prepared, without a current failure alert
+AssertionError: expected '<details class="my-reservoir-boundary…' to contain 'prepared for step 11'
+
+Expected: "prepared for step 11"
+Received: "<details class="my-reservoir-boundary needs-attention" open=""><summary>Writing and feedback · review needed</summary><h3>Writing attempt blocked</h3><p role="alert" class="my-reservoir-error">The local model returned HTTP 503.</p><p>Observed step 10. The numerical clock is held; you can keep reading and inspecting.</p><p>No network request is active. This opportunity has no accepted journal or feedback; it is not automatically retried.</p><details><summary>Request details</summary><dl class="my-reservoir-data"><dt>Turn / attempt</dt><dd>1 / 1</dd><dt>Operation</dt><dd>failed-attempt</dd><dt>Configured source</dt><dd>Deterministic script · no model request</dd></dl></details><p>A retry is a new writing attempt with a new identity. The earlier failure remains retained.</p><button>Retry as a new attempt</button></details>"
+
+ ❯ src/MyReservoirPresentation.test.tsx:50:22
+     48|     const boundary = renderToStaticMarkup(<MyReservoirBoundary state={…
+     49|     expect(boundary).toMatch(/^<details class="my-reservoir-boundary n…
+     50|     expect(boundary).toContain('prepared for step 11');
+       |                      ^
+     51|     expect(boundary).not.toContain(diagnostic);
+     52|     expect(boundary).not.toContain('role="alert"');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 25 passed (26)
+   Start at  12:11:43
+   Duration  285ms (transform 368ms, setup 0ms, import 542ms, tests 77ms, environment 0ms)
+
