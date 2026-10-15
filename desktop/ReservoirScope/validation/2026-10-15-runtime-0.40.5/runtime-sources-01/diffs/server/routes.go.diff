@@ -1,0 +1,11 @@
+--- v0.40.4/server/routes.go
++++ v0.40.5/server/routes.go
+@@ -2395,7 +2395,7 @@
+ 	r.POST("/api/chat", s.withInferenceRequestLogging("/api/chat", s.ChatHandler)...)
+ 	r.POST("/api/embed", s.EmbedHandler)
+ 	r.POST("/api/embeddings", s.EmbeddingsHandler)
+-	r.POST("/v1/systemone", s.SystemOneHandler)
++	r.POST("/v1/systemone", cloudPassthroughMiddleware(cloudErrRemoteInferenceUnavailable), s.SystemOneHandler)
+ 
+ 	// Inference (OpenAI compatibility)
+ 	// TODO(cloud-stage-a): apply Modelfile overlay deltas for local models with cloud

@@ -1,0 +1,32 @@
+{
+  "atUtc": "2026-10-15T20:43:55.846831+00:00",
+  "status": "passed_for_prospective_preflight",
+  "runtimeExecuted": false,
+  "softwareSelection": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/software-selection.json",
+    "bytes": 1771,
+    "sha256": "b055ddd7c91e67c75fae0df183b234836ef11eb3a96574b9da458b06576196fa"
+  },
+  "review": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-review-01.json",
+    "bytes": 13804,
+    "sha256": "b4d2006bd186ace728003c8308e2e31855d0e08ae773246c8faba9c019671472"
+  },
+  "syntheticChecks": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-02/runtime-checks-01.json",
+    "bytes": 9811,
+    "sha256": "1eb7a9dd4582711471d225c6800bcb754ff20c054d1f2d8c95c3b4b424f3fc70"
+  },
+  "additionalBindingChecks": {
+    "count": 7,
+    "exitCode": 0,
+    "log": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-02/runtime-qualification-bindings-01.log",
+      "bytes": 1120,
+      "sha256": "d563887a7232219b48020f654d2dc6121442a82ba3369ba3c1349e1fbc5e3139"
+    }
+  },
+  "sourceFiles": 53,
+  "preparationNote": "First file-binding invocation used a duplicated repository prefix and stopped before writes; corrected working-directory invocation retained here. No admission or service action occurred.",
+  "scope": "Source/identity and 84 synthetic supervisor/transport/renderer/reuse tests, plus seven binding checks. Actual runtime behavior remains gated by this window; no service started."
+}

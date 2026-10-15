@@ -1,7 +1,8 @@
 # Tauri 0.20 source checkpoint and documentation housekeeping
 
-October 15, 2026. The user selected housekeeping before continuing the next bounded
-writing diagnostic. The new [current-status page](../../STATUS.md) owns the active
+October 15, 2026. Local commit **1552bbccb7089ff46641ad102f5644b44d9223ca**
+saves the reviewed source checkpoint; it has not been pushed. The user selected
+housekeeping before continuing the next bounded writing diagnostic. The new [current-status page](../../STATUS.md) owns the active
 backlog; the [roadmap](../../../../TAURI-ROADMAP.md) retains the accepted program and
 contracts, and the [parity ledger](../../../../shared/reservoir-scope/PARITY.md)
 separates implemented capabilities from qualification still required.
@@ -41,3 +42,7 @@ No push, signing, release or platform acceptance is implied. Private packages,
 app stores, selected model assets and research outputs remain in their existing
 ignored locations. Historical validation scripts retain original absolute paths;
 they are evidence, not a promise of fresh-clone diagnostic replay.
+
+The separately prepared [source-role window](../2026-10-15-context-sources-02/README.md)
+subsequently refused its single memory admission before launch. Its later receipt
+does not amend this checkpoint or the older runtime refusal.

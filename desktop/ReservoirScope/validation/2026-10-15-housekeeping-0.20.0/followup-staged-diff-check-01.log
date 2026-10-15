@@ -1,0 +1,161 @@
+desktop/ReservoirScope/validation/2026-10-15-context-sources-02/retain_and_analyze.py:183: new blank line at EOF.
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:4: trailing whitespace.
++ 
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:6: space before tab in indent.
++ 	code := w.ResponseWriter.Status()
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:16: space before tab in indent.
++ 	if code != http.StatusOK {
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:17: space before tab in indent.
++ 		return w.writeError(data)
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:18: space before tab in indent.
++ 	}
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:20: space before tab in indent.
++ 	message := err.Error()
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:21: space before tab in indent.
++ 	status := http.StatusBadGateway
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:22: space before tab in indent.
++ 	errorCode := "api_error"
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:24: space before tab in indent.
++ 	var authorizationError api.AuthorizationError
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:25: space before tab in indent.
++ 	var statusError api.StatusError
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:26: space before tab in indent.
++ 	switch {
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:27: space before tab in indent.
++ 	case errors.As(err, &authorizationError):
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:28: space before tab in indent.
++ 		status = authorizationError.StatusCode
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:29: space before tab in indent.
++ 		errorCode = "authentication_error"
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:35: space before tab in indent.
++ 	case errors.As(err, &statusError):
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:36: space before tab in indent.
++ 		status = statusError.StatusCode
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:37: space before tab in indent.
++ 		if status == http.StatusTooManyRequests {
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:38: space before tab in indent.
++ 			errorCode = "rate_limit_exceeded"
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:42: space before tab in indent.
++ 		}
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:43: space before tab in indent.
++ 	}
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:44: space before tab in indent.
++ 	if !w.inner.stream {
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:45: space before tab in indent.
++ 		w.ResponseWriter.Header().Set("Content-Type", "application/json")
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:46: space before tab in indent.
++ 		w.ResponseWriter.WriteHeader(status)
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:47: space before tab in indent.
++ 		w.done = true
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:51: space before tab in indent.
++ 		return json.NewEncoder(w.ResponseWriter).Encode(openai.NewError(status, message))
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:52: space before tab in indent.
++ 	}
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:53: space before tab in indent.
++ 	w.ResponseWriter.Header().Set("Content-Type", "text/event-stream")
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:55: space before tab in indent.
++ 			"total_tokens":         usage.PromptEvalCount + usage.EvalCount,
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:56: space before tab in indent.
++ 			"input_tokens_details": map[string]any{"cached_tokens": optionalIntValue(usage.PromptEvalCachedCount)},
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:57: space before tab in indent.
++ 		},
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:61: space before tab in indent.
++ 	}
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:62: space before tab in indent.
++ 	initialEvents := w.inner.converter.Process(api.ChatResponse{})
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/middleware/openai.go.diff:63: space before tab in indent.
++ 	for _, event := range initialEvents {
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/model/renderers/renderer.go.diff:4: space before tab in indent.
++ 		return &Nemotron3NanoRenderer{}
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/model/renderers/renderer.go.diff:5: space before tab in indent.
++ 	case "nemotron-3.5-nano":
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/model/renderers/renderer.go.diff:6: space before tab in indent.
++ 		return &Nemotron3NanoRenderer{v35: true}
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/model/renderers/renderer.go.diff:9: space before tab in indent.
++ 	case "gemma4", "gemma4-small":
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/model/renderers/renderer.go.diff:10: space before tab in indent.
++ 		return &Gemma4Renderer{useImgTags: RenderImgTags}
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/model/renderers/renderer.go.diff:11: space before tab in indent.
++ 	case "gemma4-large":
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/openai/responses.go.diff:4: space before tab in indent.
++ 		return err
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/openai/responses.go.diff:5: space before tab in indent.
++ 	}
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/openai/responses.go.diff:6: trailing whitespace.
++ 
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/openai/responses.go.diff:16: space before tab in indent.
++ 	if aux.CallID != nil && strings.TrimSpace(*aux.CallID) == "" {
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/openai/responses.go.diff:17: space before tab in indent.
++ 		return errors.New("function output call_id must not be empty")
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/openai/responses.go.diff:18: space before tab in indent.
++ 	}
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/openai/responses.go.diff:20: space before tab in indent.
++ 			return nil, err
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/openai/responses.go.diff:21: space before tab in indent.
++ 		}
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/openai/responses.go.diff:22: space before tab in indent.
++ 		return fc, nil
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/openai/responses.go.diff:49: space before tab in indent.
++ 		var output ResponsesFunctionCallOutput
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/openai/responses.go.diff:50: space before tab in indent.
++ 		if err := json.Unmarshal(data, &output); err != nil {
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/openai/responses.go.diff:51: space before tab in indent.
++ 			return nil, err
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/openai/responses.go.diff:52: space before tab in indent.
++ 		}
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/openai/responses.go.diff:54: space before tab in indent.
++ 		return output, nil
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/openai/responses.go.diff:55: space before tab in indent.
++ 	case "tool_search_call":
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/openai/responses.go.diff:56: space before tab in indent.
++ 		var call ResponsesToolSearchCall
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:5: trailing whitespace.
++ 
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:9: space before tab in indent.
++ 	if err != nil {
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:10: space before tab in indent.
++ 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:11: space before tab in indent.
++ 		return
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:13: trailing whitespace.
++ 
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:14: space before tab in indent.
++ 	if err := cloudProxySignRequest(outReq.Context(), outReq); err != nil {
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:15: space before tab in indent.
++ 		slog.Warn("cloud proxy signing failed", "error", err)
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:18: space before tab in indent.
++ 		return
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:19: space before tab in indent.
++ 	}
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:20: trailing whitespace.
++ 
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:22: space before tab in indent.
++ 	}
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:23: space before tab in indent.
++ 	payload["model"] = modelJSON
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:24: trailing whitespace.
++ 
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:41: trailing whitespace.
++ 
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:44: space before tab in indent.
++ 	return false
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:46: trailing whitespace.
++ 
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:49: space before tab in indent.
++ 	signinURL, err := cloudProxySigninURL()
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:50: space before tab in indent.
++ 	if err != nil {
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/cloud_proxy.go.diff:71: trailing whitespace.
++ 
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/routes.go.diff:4: space before tab in indent.
++ 	r.POST("/api/chat", s.withInferenceRequestLogging("/api/chat", s.ChatHandler)...)
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/routes.go.diff:5: space before tab in indent.
++ 	r.POST("/api/embed", s.EmbedHandler)
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/routes.go.diff:6: space before tab in indent.
++ 	r.POST("/api/embeddings", s.EmbeddingsHandler)
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/routes.go.diff:9: trailing whitespace.
++ 
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/routes.go.diff:10: space before tab in indent.
++ 	// Inference (OpenAI compatibility)
+desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/diffs/server/routes.go.diff:11: space before tab in indent.
++ 	// TODO(cloud-stage-a): apply Modelfile overlay deltas for local models with cloud

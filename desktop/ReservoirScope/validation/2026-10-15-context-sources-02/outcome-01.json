@@ -1,0 +1,106 @@
+{
+  "schema": "reservoir-context-sources-outcome-v1",
+  "episodeId": "context-sources-02",
+  "atUtc": "2026-10-15T20:47:41.453691+00:00",
+  "status": "refused_before_launch",
+  "reason": "One admission: normal pressure1,31% free memory below fixed35%;disk passed.",
+  "admission": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-02/host-admission-01.json",
+    "bytes": 1457,
+    "sha256": "0a8287b889599614dffeb0cd723b8c720a44e34844314c5938a5d5487b3c22d6"
+  },
+  "serviceLaunchInvocations": 0,
+  "probeInvocations": 0,
+  "inventoryRequests": 0,
+  "generationRequests": 0,
+  "slots": [
+    {
+      "slot": 1,
+      "anchorStep": 30,
+      "condition": "A",
+      "status": "unstarted",
+      "reason": "resource_admission_refused"
+    },
+    {
+      "slot": 2,
+      "anchorStep": 30,
+      "condition": "B",
+      "status": "unstarted",
+      "reason": "resource_admission_refused"
+    },
+    {
+      "slot": 3,
+      "anchorStep": 60,
+      "condition": "B",
+      "status": "unstarted",
+      "reason": "resource_admission_refused"
+    },
+    {
+      "slot": 4,
+      "anchorStep": 60,
+      "condition": "A",
+      "status": "unstarted",
+      "reason": "resource_admission_refused"
+    },
+    {
+      "slot": 5,
+      "anchorStep": 90,
+      "condition": "A",
+      "status": "unstarted",
+      "reason": "resource_admission_refused"
+    },
+    {
+      "slot": 6,
+      "anchorStep": 90,
+      "condition": "B",
+      "status": "unstarted",
+      "reason": "resource_admission_refused"
+    },
+    {
+      "slot": 7,
+      "anchorStep": 120,
+      "condition": "B",
+      "status": "unstarted",
+      "reason": "resource_admission_refused"
+    },
+    {
+      "slot": 8,
+      "anchorStep": 120,
+      "condition": "A",
+      "status": "unstarted",
+      "reason": "resource_admission_refused"
+    },
+    {
+      "slot": 9,
+      "anchorStep": 330,
+      "condition": "A",
+      "status": "unstarted",
+      "reason": "resource_admission_refused"
+    },
+    {
+      "slot": 10,
+      "anchorStep": 330,
+      "condition": "B",
+      "status": "unstarted",
+      "reason": "resource_admission_refused"
+    },
+    {
+      "slot": 11,
+      "anchorStep": 360,
+      "condition": "B",
+      "status": "unstarted",
+      "reason": "resource_admission_refused"
+    },
+    {
+      "slot": 12,
+      "anchorStep": 360,
+      "condition": "A",
+      "status": "unstarted",
+      "reason": "resource_admission_refused"
+    }
+  ],
+  "cleanup": "Not needed: no owned child/service directory created. No signal sent.",
+  "reading": "No fresh responses exist; candidate writing effects unassessed.",
+  "productionChanged": false,
+  "automaticRetryQueued": false
+}

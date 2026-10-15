@@ -1,0 +1,11 @@
+--- v0.40.4/model/renderers/renderer.go
++++ v0.40.5/model/renderers/renderer.go
+@@ -99,6 +99,8 @@
+ 		return &Nemotron3NanoRenderer{}
+ 	case "nemotron-3.5-nano":
+ 		return &Nemotron3NanoRenderer{v35: true}
++	case "nemotron-3.5-super":
++		return &Nemotron3NanoRenderer{v35: true, imageLabels: true}
+ 	case "gemma4", "gemma4-small":
+ 		return &Gemma4Renderer{useImgTags: RenderImgTags}
+ 	case "gemma4-large":

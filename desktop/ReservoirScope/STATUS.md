@@ -41,34 +41,36 @@ open. Full retained observations remain inspectable; only the compact selected
 readout is supplied in v8 context. Saved text becomes full-text memory only after
 actual application. Describing controls in prose does not execute them.
 
-## First active work: qualify the runtime, then test source roles
+## Writing investigation: prepared; execution awaits a new memory window
 
-The [source-role diagnostic](validation/2026-10-15-context-sources-01/README.md)
-prepared a small paragraph distinguishing recorded observations, remembered writing
-and imagined continuation. It preserved exact v8 blocks, values, full previous prose,
-block order and final invitation. Resource admission passed, but its one launch
-refused before spawn because installed Ollama reported **0.40.5**, while the frozen
-selection required **0.40.4**. All twelve slots remain unstarted: no service, probe
-request or new writing occurred.
+The [first source-role window](validation/2026-10-15-context-sources-01/README.md)
+refused the changed installed runtime before spawn. That refusal remains intact.
+The [separate runtime review](validation/2026-10-15-runtime-0.40.5/RUNTIME-REVIEW.md)
+now binds installed Ollama 0.40.5 and finds no new blocker in the checked startup
+and isolation paths. It is source/identity qualification, not executed model behavior.
 
-First qualify the separately identified installed runtime and its owned-launch
-contract. Only then prepare a distinct bounded window using the unchanged source-role
-candidate and controls, with a new prospective freeze and admission. Preserve the
-refused window; do not silently replace its runtime pin or restart it. A favorable
-diagnostic would still require a fresh continuing-session check and separately
-versioned production/replay qualification. There is no automatic run or prose-quality
-save gate.
+The [new comparison window](validation/2026-10-15-context-sources-02/README.md)
+preserves all twelve prompt bytes and fixed bounds. Fourteen preparation and 84
+synthetic helper tests passed, followed by independent review and a prospective
+freeze. Its single admission refused normal pressure 1 / 31% free memory against
+the unchanged 35% minimum. All twelve slots are unstarted; no service or provider
+request began. Both refusals, prior comparisons and original app journals remain exact.
+
+A lower-memory, distinctly identified window is needed to assess the candidate.
+No retry, app cleanup or automatic follow-up is queued. Production v8 stays unchanged.
+A favorable diagnostic would still require a fresh continuing-session check and
+separately versioned production/replay qualification; there is no prose-quality
+save gate. Independent Observatory work does not depend on this experiment finishing.
 
 The earlier [block-order comparison](validation/2026-10-15-context-order-03/README.md)
 and [time/distance comparison](validation/2026-10-15-time-direction-03/README.md)
-remain bounded, known-context diagnostics. Neither candidate was promoted. Production
-v8 and its current block order remain unchanged.
+remain bounded, known-context diagnostics. Neither candidate was promoted.
 
 ## Six bounded areas remaining
 
 | Area | Next useful completion boundary |
 | --- | --- |
-| 1. Writing-context investigation | Finish the runtime qualification and separately frozen source-role comparison above. Keep full-response reading, failure/unstarted outcomes and optional literal-claim checks distinct from creative expression. No prescribed voice or style score. |
+| 1. Writing-context investigation | Use the completed runtime preflight in a new admitted window to finish the source-role comparison above. Keep full-response reading, failure/unstarted outcomes and optional literal-claim checks distinct from creative expression. No prescribed voice or style score. |
 | 2. Observatory and reading/rendering | Complete one useful trajectory/topography/spectrum inspection workflow at a time, with exact selected values, provenance and honest independent clocks. Exercise journal navigation with new arrivals in the native package. Measure interaction, hidden rendering and GPU/memory contention; implemented scheduling bounds are not measured power savings. |
 | 3. Sustained lifecycle and endurance | Qualify the current build's real-model multi-hour use, then a separately bounded 24-hour run; cover pending requests, sleep/wake, phase-specific interruption, quota and recovery. Decide and implement explicit budget extension if wanted: the roadmap promises it, but the current API has no extension operation. Do not silently replenish exhausted budgets or turn recovery into automatic resume. |
 | 4. Conformance and optional selected feeds | Close named Unicode/parser and file/workflow edges with independent evidence. Selected health/activation feeds remain a separate unimplemented read-only tranche, including sequence, clock, gap and staleness semantics; they are optional, not a prerequisite for the personal loop. |
@@ -89,9 +91,9 @@ watchdog detects interruptions; full platform sleep adapters and actual pending-
 sleep/wake checks remain open. Whole provider-context processing is not proved by
 requested capacity or reported input-token counts.
 
-The [earlier source checkpoint](validation/2026-10-13-public-checkpoint/README.md)
-is historical. Newer local changes and this documentation housekeeping are pending a
-new source checkpoint; no commit/push is implied here. Source checks, a local package,
+The [0.20 housekeeping/source checkpoint](validation/2026-10-15-housekeeping-0.20.0/README.md)
+is saved locally at `1552bbccb7089ff46641ad102f5644b44d9223ca`; it has not been pushed.
+The later runtime preparation and refused comparison have their separate evidence. Source checks, a local package,
 agent UI observations and collaborator acceptance are separate evidence. This
 housekeeping changes no product source, prompt, package or prior receipt.
 

@@ -1,0 +1,106 @@
+{
+  "schema": "reservoir-context-sources-file-only-failure-review-v1",
+  "episodeId": "context-sources-02",
+  "startedUtc": "2026-10-15T20:51:14.777263+00:00",
+  "finishedUtc": "2026-10-15T20:51:14.981463+00:00",
+  "status": "passed",
+  "scope": "Independent file-only closeout review; no host/resource queries, executable runs, endpoint calls, process inspection/control, model access or UI actions.",
+  "inputs": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-02/outcome-01.json",
+      "bytes": 2747,
+      "sha256": "db3e6e7272ad7e17206268a7429f06c03fbf98cafb9db70b82ade8f7a349e20f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-02/host-admission-01.json",
+      "bytes": 1457,
+      "sha256": "0a8287b889599614dffeb0cd723b8c720a44e34844314c5938a5d5487b3c22d6"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-02/preservation-01.json",
+      "bytes": 453,
+      "sha256": "c1a700d985f16b8b46ffa98a1f1f9f935699600903153db0640d09a369b8671a"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-02/evaluation-freeze-01.json",
+      "bytes": 303828,
+      "sha256": "06093deb0d29ecd09c5aac631d5aaa6e1a02e7c47ab5abe977d273d2dd79e107"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-02/runtime-copy-01.json",
+      "bytes": 282327,
+      "sha256": "96ee388a5fff7a67f436ca3bf9fa796c8b3771656c2a83fb3030967c0229bcf8"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-02/frozen-inputs.json",
+      "bytes": 6182,
+      "sha256": "82b26c97f7099fc4ba6b7aa38deca3a902db00f4c399792ac2f7a1b4391d66dd"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-02/run-plan.json",
+      "bytes": 4716,
+      "sha256": "ab40b67f0d2452a4af0aa0fc0c8400fb9fe52dab6b1ad06561cdbe87ee29838a"
+    }
+  ],
+  "checks": {
+    "frozenReferences": 1054,
+    "frozenReferencesMatched": 1054,
+    "priorReferences": 438,
+    "priorReferencesMatched": 438,
+    "priorBeforeAfterEqual": true,
+    "originalExportFiles": 73,
+    "originalExportFilesMatched": 73,
+    "originalExportExactNames": true,
+    "originalExport": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-v8-writing-episode01/exports/sustained-1792007792954-1-1-423",
+    "sourceReceipt": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/real-model-export-01/receipt.json",
+      "bytes": 220343,
+      "sha256": "07aff62e23ee5c08e85e97c2ae93702d3b145473aa38d58c0c0345d85d1aa603"
+    },
+    "oldRefusal": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/outcome-01.json",
+      "bytes": 7535,
+      "sha256": "832d2a9459d3c8fefbd10636c03f89731af1caf0ea79adcfed90281214298b69"
+    },
+    "oldRefusalStatus": "refused_before_service_spawn",
+    "plannedSlots": 12,
+    "unstartedSlots": 12,
+    "operatorReportedCounts": {
+      "serviceLaunchInvocations": 0,
+      "probeInvocations": 0,
+      "inventoryRequests": 0,
+      "generationRequests": 0
+    },
+    "exactOwnedPathAbsence": [
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-sources-gemma3-4b-run02",
+        "lexists": false
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-sources-results02",
+        "lexists": false
+      }
+    ],
+    "admission": {
+      "pressureLevel": 1,
+      "freePercent": 31,
+      "minimumFreePercent": 35,
+      "diskFreeBytes": 508033990656,
+      "admitted": false
+    },
+    "automaticRetryQueuedReported": false
+  },
+  "interpretation": {
+    "prelaunchRefusalConsistent": true,
+    "zeroOwnedSpawnEvidence": "Operator receipt reports zero launch invocations; both exact planned owned run/results paths are absent. These support the recorded prelaunch refusal, not global process absence or independent proof about every possible launch.",
+    "freshOutputs": "All 12 requests remain unstarted; no fresh writing comparison or effect can be assessed.",
+    "runtimeQualification": "Ollama 0.40.5 source/selection and synthetic qualification remain conditional; this window provides no actual owned startup/inventory/generation qualification.",
+    "noMoreRunQueued": "The operator receipt reports automaticRetryQueued=false; this review creates no scheduled or runtime action."
+  },
+  "errors": [],
+  "review": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-02/FAILURE-REVIEW.md",
+    "bytes": 1841,
+    "sha256": "f641b1d5d59858465ce7e9850102965f257ce45fb9bcd77096a60417fc4c2a5f"
+  }
+}

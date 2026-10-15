@@ -33,11 +33,15 @@ and paused recovery preserved all 72 nonmanifest files. Full readings found cont
 and repetition, correct selected current values and mistaken interval directions.
 These are bounded writing observations, not an accuracy or prompt-benefit guarantee.
 
-Standalone order and time/distance diagnostics did not change production. The latest
-[source-role window](../../desktop/ReservoirScope/validation/2026-10-15-context-sources-01/README.md)
-refused before spawn when installed Ollama 0.40.5 differed from its frozen 0.40.4 pin;
-all twelve slots remain unstarted. Runtime requalification and a distinct bounded
-comparison are the first active work in [STATUS.md](../../desktop/ReservoirScope/STATUS.md).
+Standalone order and time/distance diagnostics did not change production. The
+[first source-role window](../../desktop/ReservoirScope/validation/2026-10-15-context-sources-01/README.md)
+refused the changed installed runtime before spawn. Separate 0.40.5 source/identity
+review and 84 synthetic helper checks now pass, with actual execution unqualified.
+The [new window](../../desktop/ReservoirScope/validation/2026-10-15-context-sources-02/README.md)
+retained exact prompts and bounds, then refused its one admission at 31% free memory
+against the unchanged 35% threshold. All twelve slots are unstarted; no model service
+or provider request began. Both refusals and source evidence remain exact.
+See [STATUS.md](../../desktop/ReservoirScope/STATUS.md) for the active backlog.
 
 ## Capability matrix
 
@@ -98,7 +102,7 @@ decision and implementation. Actual two-hour synthetic evidence remains tied to
 The complete former ledger is preserved byte-for-byte in
 [PARITY-HISTORY-2026-10-15.md](PARITY-HISTORY-2026-10-15.md). It includes prior test
 failures, corrections, refusals and qualification accounts with their original links.
-Historical “next” sections are not the current backlog. New source checkpointing is
-pending; this documentation consolidation adds no package or platform acceptance.
+Historical “next” sections are not the current backlog. The 0.20 source and documentation checkpoint is saved locally at `1552bbc`; it is
+not pushed and adds no package or platform acceptance.
 Native backports remain focused proposals after Tauri qualification. Live Being
 producers and services remain outside this implementation program.

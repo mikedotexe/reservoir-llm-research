@@ -13,17 +13,19 @@ not claims that every listed workflow is implemented or qualified. Current progr
 and the active backlog are consolidated in **STATUS.md**.
 
 The qualified product remains **0.20.0**, with the open-writing `reservoir-journal-v8`
-contract. The latest source-role diagnostic stopped before service launch when the
-installed runtime no longer matched its pin; it produced no replies and made no
-production change. The first active work is separate runtime qualification before
-any distinctly identified comparison using those unchanged candidate prompts.
+contract. Separate source/identity and synthetic-helper qualification of Ollama
+0.40.5 is complete. The new source-role comparison preserved exact prompts and
+bounds, then refused its single memory admission before launch; all twelve slots
+remain unstarted. Actual runtime execution and candidate writing effects remain
+unassessed. [Current outcome and next boundary](desktop/ReservoirScope/STATUS.md).
 
 The complete pre-housekeeping document—including every dated execution account and
 historical “next” statement—is preserved byte-for-byte in
 [the October 15 roadmap history](TAURI-ROADMAP-HISTORY-2026-10-15.md).
-Its historical priorities do not override the current backlog. This housekeeping is
-local documentation work pending a source checkpoint; it adds no package, runtime
-or collaborator acceptance.
+Its historical priorities do not override the current backlog. The
+[housekeeping/source checkpoint](desktop/ReservoirScope/validation/2026-10-15-housekeeping-0.20.0/README.md)
+is saved locally at `1552bbc` and has not been pushed. Source checkpointing adds no
+new package, runtime or collaborator acceptance.
 
 ## 1. Goal, decisions, and definition of success
 

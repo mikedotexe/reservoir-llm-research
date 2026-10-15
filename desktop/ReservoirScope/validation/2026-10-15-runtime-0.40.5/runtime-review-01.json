@@ -1,0 +1,340 @@
+{
+  "format": "reservoir-runtime-source-review-v1",
+  "reviewedAtUtc": "2026-10-15T20:42:46.599687+00:00",
+  "outcome": "no_concrete_startup_boundary_regression_found_conditional_prospective_use",
+  "executionQualification": false,
+  "oldCommit": "45e6011815c74acde6a346512856b69dd79dd22b",
+  "newCommit": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+  "compare": {
+    "atUtc": "2026-10-15T20:39:46.283746+00:00",
+    "url": "https://api.github.com/repos/ollama/ollama/compare/v0.40.4...v0.40.5",
+    "finalUrl": "https://api.github.com/repos/ollama/ollama/compare/v0.40.4...v0.40.5",
+    "httpStatus": 200,
+    "bytes": 305685,
+    "sha256": "4bec880a0d5a97ff0989e4b0938c4589381c64f33f51786930d44dbe418f89dc",
+    "oldCommit": "45e6011815c74acde6a346512856b69dd79dd22b",
+    "newCommit": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+    "totalCommits": 16,
+    "returnedCommits": 16,
+    "changedFiles": 70
+  },
+  "sourceCapture": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/runtime-sources-01/source-capture.json",
+    "bytes": 35483,
+    "sha256": "954a8d4c81552b2294110db978535ff84bedd28f9f514c9afbde760f9cd24f8a"
+  },
+  "selectedPaths": 20,
+  "retainedSourceFiles": 40,
+  "identicalWholeFiles": 13,
+  "changedSelectedPaths": [
+    "server/routes.go",
+    "LLAMA_CPP_VERSION",
+    "MLX_VERSION",
+    "server/cloud_proxy.go",
+    "model/renderers/renderer.go",
+    "middleware/openai.go",
+    "openai/responses.go"
+  ],
+  "identicalFunctionChecks": [
+    {
+      "sourcePath": "cmd/cmd.go",
+      "function": "RunServer",
+      "versions": [
+        {
+          "tag": "v0.40.4",
+          "startLine": 2223,
+          "endLine": 2239,
+          "bytes": 300,
+          "sha256": "d3528bd0bf9f921be303e8ca4d80c7ff5eb39e4af7f920ddd293204e4218628b"
+        },
+        {
+          "tag": "v0.40.5",
+          "startLine": 2223,
+          "endLine": 2239,
+          "bytes": 300,
+          "sha256": "d3528bd0bf9f921be303e8ca4d80c7ff5eb39e4af7f920ddd293204e4218628b"
+        }
+      ],
+      "identical": true
+    },
+    {
+      "sourcePath": "cmd/cmd.go",
+      "function": "initializeKeypair",
+      "versions": [
+        {
+          "tag": "v0.40.4",
+          "startLine": 2241,
+          "endLine": 2285,
+          "bytes": 1160,
+          "sha256": "ee45d7c7850173856aeabfd69a6a7ea46ddafeef954b338a8602ad141e25793b"
+        },
+        {
+          "tag": "v0.40.5",
+          "startLine": 2241,
+          "endLine": 2285,
+          "bytes": 1160,
+          "sha256": "ee45d7c7850173856aeabfd69a6a7ea46ddafeef954b338a8602ad141e25793b"
+        }
+      ],
+      "identical": true
+    },
+    {
+      "sourcePath": "server/routes.go",
+      "function": "Serve",
+      "versions": [
+        {
+          "tag": "v0.40.4",
+          "startLine": 2437,
+          "endLine": 2561,
+          "bytes": 3556,
+          "sha256": "a213597e91b5a324a43107cad9f6809083a2620784444a601ee053192bd33c1d"
+        },
+        {
+          "tag": "v0.40.5",
+          "startLine": 2437,
+          "endLine": 2561,
+          "bytes": 3556,
+          "sha256": "a213597e91b5a324a43107cad9f6809083a2620784444a601ee053192bd33c1d"
+        }
+      ],
+      "identical": true
+    },
+    {
+      "sourcePath": "server/routes.go",
+      "function": "ChatHandler",
+      "versions": [
+        {
+          "tag": "v0.40.4",
+          "startLine": 2978,
+          "endLine": 3414,
+          "bytes": 12967,
+          "sha256": "2409a53426ea46cb52fa735a73aaada34b53bedab9c1bd161cdecdcb831cab78"
+        },
+        {
+          "tag": "v0.40.5",
+          "startLine": 2978,
+          "endLine": 3414,
+          "bytes": 12967,
+          "sha256": "2409a53426ea46cb52fa735a73aaada34b53bedab9c1bd161cdecdcb831cab78"
+        }
+      ],
+      "identical": true
+    },
+    {
+      "sourcePath": "llm/llama_server.go",
+      "function": "SetupLlamaServerCommandEnv",
+      "versions": [
+        {
+          "tag": "v0.40.4",
+          "startLine": 469,
+          "endLine": 499,
+          "bytes": 870,
+          "sha256": "60bfceb03456ebc29f1842f615a3758e87938e1d6805296792b9a2543d15199d"
+        },
+        {
+          "tag": "v0.40.5",
+          "startLine": 469,
+          "endLine": 499,
+          "bytes": 870,
+          "sha256": "60bfceb03456ebc29f1842f615a3758e87938e1d6805296792b9a2543d15199d"
+        }
+      ],
+      "identical": true
+    },
+    {
+      "sourcePath": "llm/llama_server.go",
+      "function": "appendLlamaServerLogArgs",
+      "versions": [
+        {
+          "tag": "v0.40.4",
+          "startLine": 596,
+          "endLine": 603,
+          "bytes": 230,
+          "sha256": "addc547877ac447824cb14e8ce8436cf4d7edaa0186f92e4c392f51fc618d947"
+        },
+        {
+          "tag": "v0.40.5",
+          "startLine": 596,
+          "endLine": 603,
+          "bytes": 230,
+          "sha256": "addc547877ac447824cb14e8ce8436cf4d7edaa0186f92e4c392f51fc618d947"
+        }
+      ],
+      "identical": true
+    }
+  ],
+  "softwareSelection": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/software-selection.json",
+    "bytes": 1771,
+    "sha256": "b055ddd7c91e67c75fae0df183b234836ef11eb3a96574b9da458b06576196fa"
+  },
+  "installedSoftware": {
+    "commandPath": "/usr/local/bin/ollama",
+    "resolvedExecutablePath": "/Applications/Ollama.app/Contents/Resources/ollama",
+    "versionSource": "Installed application public Info.plist; no binary execution or endpoint discovery.",
+    "plistPath": "/Applications/Ollama.app/Contents/Info.plist",
+    "plistSha256": "10d340acf299d8357c8f8c699bc1c7cb10ae0e16508f39795a31d023fe6ecbe8",
+    "plistSizeBytes": 1377,
+    "CFBundleShortVersionString": "0.40.5",
+    "CFBundleVersion": "0.40.5",
+    "runtimeVersionVerified": false,
+    "executableSha256": "3501c7c3d9885269fb5b3d141a0a3789e868f6ad15150d4a07b195965be33a5d",
+    "executableSizeBytes": 52290224
+  },
+  "installedIdentityCloseout": {
+    "atUtc": "2026-10-15T20:42:46.599906+00:00",
+    "plist": {
+      "path": "/Applications/Ollama.app/Contents/Info.plist",
+      "bytes": 1377,
+      "sha256": "10d340acf299d8357c8f8c699bc1c7cb10ae0e16508f39795a31d023fe6ecbe8"
+    },
+    "executable": {
+      "path": "/Applications/Ollama.app/Contents/Resources/ollama",
+      "bytes": 52290224,
+      "sha256": "3501c7c3d9885269fb5b3d141a0a3789e868f6ad15150d4a07b195965be33a5d"
+    },
+    "versionFromPlist": "0.40.5",
+    "identitiesUnchanged": true,
+    "binaryExecuted": false
+  },
+  "helperReadOnlyReview": {
+    "file": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/owned_model.py",
+      "bytes": 38692,
+      "sha256": "415a585dfa4502e555331b4472cf08b6afbd3207944e6d02d952e133175f8c1b"
+    },
+    "lineRanges": [
+      [
+        204,
+        275
+      ],
+      [
+        313,
+        320
+      ],
+      [
+        588,
+        721
+      ]
+    ],
+    "newTestsRunByReviewer": false
+  },
+  "modelSelectionReference": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.1/model-selection.json",
+    "bytes": 13199,
+    "sha256": "7de0ae35b3d231201679b2242484cb24a9122a8f9ce866b8554dfe6384a2d86a"
+  },
+  "priorSelectionUnchanged": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/software-selection.json",
+    "bytes": 1374,
+    "sha256": "f86c9011ed33881ffae71679a3c96755c3d7d1cfbd434b0b9535a3493192a127"
+  },
+  "priorSourceIdentitiesMatched": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/cmd/cmd.go",
+      "bytes": 76224,
+      "sha256": "749cd910c303a7b7189e8a6c309dafd8d0aa55afe87620db3bac36410eaff56c"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/envconfig/config.go",
+      "bytes": 16343,
+      "sha256": "0b0ea669b31cfe2b54313427257326a2b7a909bbc7bf8a671035efc446fb1895"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/server/routes.go",
+      "bytes": 107111,
+      "sha256": "23b3202e270e8f3dba0c716c128529432db02e8b1e40e6d73c94345abf6cfde4"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/server/images.go",
+      "bytes": 54321,
+      "sha256": "41903a5408026cf30b4c07ce84c9365c8fa504d523e946d644131d095b22220f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/server/sched.go",
+      "bytes": 60875,
+      "sha256": "3383fad80c474ae352da2289ed6ecc5a22763be722433eda4ac9816775ff382d"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/server/model_recommendations.go",
+      "bytes": 10733,
+      "sha256": "7100f8d5e7d9354c535e2199d1a350b6f94bce126434111162b370f52255749f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/server/model_show_cache.go",
+      "bytes": 18193,
+      "sha256": "4cd00596aff8fdc9160ed262ecea50292fae264c824251cff4672a2eba903854"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/server/inference_request_log.go",
+      "bytes": 3719,
+      "sha256": "fa5e49084ef74e34626e4c914e7d46bce69ae329689ca8866e490aba022ac5ec"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/llm/llama_server.go",
+      "bytes": 91649,
+      "sha256": "be96301d662bf18527fe0d481c15a4631ff47055c6db7ce1400feb264315c6bf"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/llm/llm_darwin.go",
+      "bytes": 88,
+      "sha256": "a12b3401f1dd322f61e23ff519c56f5b9e1f3d5c544d713a765b3f7761abcb72"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/llm/llama_binary.go",
+      "bytes": 4034,
+      "sha256": "0361397eaea1f50ecf6d2774124dcba10c9a26a66f4d25479bf424998d8c3847"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/manifest/manifest.go",
+      "bytes": 46476,
+      "sha256": "2aa036f61cfffdff2f85fa3e0f29478c314c00c53aced8f9c6cb9103359f1bec"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/LLAMA_CPP_VERSION",
+      "bytes": 7,
+      "sha256": "5b13bf6cbfbf31f3c0d52716c71261fde64615e45bc33353bda67795230d4968"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/MLX_VERSION",
+      "bytes": 40,
+      "sha256": "1b4d985e72f5bca37a4d92e3d23f8dd40848a46b16650bc635a5da4a047843dc"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/MLX_C_VERSION",
+      "bytes": 40,
+      "sha256": "fd1ce65583d401ec5fc83fbf00ae8ce46d3e5f0ae2664f73ff93640a4d42e1d6"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/LICENSE",
+      "bytes": 1058,
+      "sha256": "5934ed2ce0d15154bcdb9c85203210abac0da4314af34081e36df4599f90b226"
+    }
+  ],
+  "review": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/RUNTIME-REVIEW.md",
+    "bytes": 9856,
+    "sha256": "fc53ba2fcccedf75cbed275a3a7fe93a9327f4d0955e317ceaff4aaa0977a896"
+  },
+  "actions": {
+    "officialPublicSourceFetches": true,
+    "installedPublicPlistRead": true,
+    "installedExecutableHashedNotExecuted": true,
+    "processInspectionOrControl": false,
+    "localEndpointCalls": false,
+    "modelAssetReads": false,
+    "keyOrConfigContentReads": false,
+    "beingAccess": false,
+    "admission": false,
+    "launch": false,
+    "modelCalls": false
+  },
+  "limitations": [
+    "Targeted source review, not exhaustive dependency/security audit.",
+    "No source-to-installed-binary reproducibility proof.",
+    "No complete bundled runner/dylib identity proof.",
+    "llama.cpp b11521 to b11669 changed; no output/resource/context equivalence claim.",
+    "No OS-level network/filesystem sandbox claim.",
+    "Actual runtime/helper transport, admission and cleanup require separate evidence."
+  ]
+}

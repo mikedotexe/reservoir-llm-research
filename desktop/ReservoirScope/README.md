@@ -28,11 +28,13 @@ The two-hour synthetic run belongs to 0.12.0. Windows/Ubuntu's initial CI failur
 unqualified test-only correction are retained separately; they are not successful
 platform acceptance.
 
-Production v8 remains unchanged. The latest standalone source-role diagnostic
-[refused before service launch](validation/2026-10-15-context-sources-01/README.md)
-because installed Ollama 0.40.5 no longer matched the selected 0.40.4 identity.
-Its twelve slots remain unstarted. Separate runtime qualification comes before any
-new frozen comparison; no automatic retry or prose-quality save gate is introduced.
+Production v8 remains unchanged. The first standalone source-role diagnostic
+[refused the changed runtime before launch](validation/2026-10-15-context-sources-01/README.md).
+Separate 0.40.5 source/identity review and synthetic helper checks now pass, but the
+[new comparison window](validation/2026-10-15-context-sources-02/README.md) refused
+its one memory admission at 31% free against the unchanged 35% minimum. All twelve
+slots remain unstarted, with no service or provider request. Actual 0.40.5 execution
+and candidate writing effects remain unassessed; no automatic retry is queued.
 
 ## Use the preview
 
