@@ -1,0 +1,59 @@
+{
+  "schema": "reservoir-v8-tamper-execution-continuity-v1",
+  "capturedAtUtc": "2026-10-14T19:12:08.275280+00:00",
+  "status": "passed",
+  "sourceReceipt": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-reanchored-tamper-01/receipt.json",
+    "bytes": 57590,
+    "sha256": "41b4ffd155a455a96a180f885bec21e95c68dd336d69cf362b89d7ab54734460"
+  },
+  "retainedReceipt": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/reanchored-tamper-01.json",
+    "bytes": 57590,
+    "sha256": "41b4ffd155a455a96a180f885bec21e95c68dd336d69cf362b89d7ab54734460"
+  },
+  "copyByteExact": true,
+  "positiveReceipt": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/original-export-evidence-01.json",
+    "bytes": 17550,
+    "sha256": "624530f35a836d7ec30a1c0003229eca26bfb86b234c7d3481a3113d0fb578d8"
+  },
+  "helpersMatchProspectiveFreeze": true,
+  "helpers": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/check_reanchored_tamper.py",
+      "bytes": 13265,
+      "sha256": "01b3a371c1766a688624d69c1b376d4728f0833bb73b861f03423369cf088749"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/check_fixture_export.py",
+      "bytes": 31294,
+      "sha256": "53166ecd5549467b78814e9db5c2009860e48fce11e99602faef5a398dc95c67"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/test_reanchored_tamper.py",
+      "bytes": 10992,
+      "sha256": "531863a19529897124938660a5de13b0b9093f4382b1c69c46fe41bd063ccea2"
+    }
+  ],
+  "prospectiveFreeze": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/prospective-freeze-01.json",
+    "bytes": 26666,
+    "sha256": "0f666ba1d3b03a3ad48825e4e4ff0cd33b28cc38188d63c0bf6365344c885e54"
+  },
+  "negativeCases": 7,
+  "caseNames": [
+    "held-clock",
+    "recorded-return",
+    "authority",
+    "removed",
+    "relocated",
+    "manifest-version",
+    "measurement-caveat-removed"
+  ],
+  "allNegativesRejectedWithExpectedDiagnostic": true,
+  "positiveBeforeAndAfterPassed": true,
+  "originalFilesUnchanged": 28,
+  "executableUnchanged": true,
+  "scope": "Seven exclusive synthetic negative copies and two headless positive verifications. Prompt negatives repair journal/envelope/manifest byte anchors while typed core segment and checkpoint bytes remain untouched. No model/provider/UI/live-store action; core canonical typed-state mutation tests are separate."
+}

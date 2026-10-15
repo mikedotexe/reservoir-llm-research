@@ -25,7 +25,7 @@ describe('sustained owner and independent reading', () => {
     }
   });
   it('defaults only new sessions to open-ended writing and reads original unversioned journals', async () => {
-    expect(DEFAULT_SUSTAINED_CONFIG.promptVersion).toBe('reservoir-journal-v5');
+    expect(DEFAULT_SUSTAINED_CONFIG.promptVersion).toBe('reservoir-journal-v8');
     const { promptVersion: _version, ...legacy } = DEFAULT_SUSTAINED_CONFIG;
     expect(effectivePromptVersion(legacy)).toBe('reservoir-journal-v1');
     const { api, controller, push } = reservoirFixture();
@@ -39,7 +39,7 @@ describe('sustained owner and independent reading', () => {
   it('rejects unknown or changed prompt contracts without replacing the accepted session', async () => {
     const { controller, channel, nextSequence } = reservoirFixture();
     await controller.create(DEFAULT_SUSTAINED_CONFIG); await settle(); const accepted = controller.snapshot().summary, c = channel();
-    for (const promptVersion of ['reservoir-journal-v6', null, 'reservoir-journal-v4', 'reservoir-journal-v1']) {
+    for (const promptVersion of ['reservoir-journal-v9', null, 'reservoir-journal-v6', 'reservoir-journal-v5', 'reservoir-journal-v4', 'reservoir-journal-v1']) {
       const config = { ...DEFAULT_SUSTAINED_CONFIG, promptVersion } as SustainedConfig;
       c.listener({ requestId: c.id, snapshotSequence: nextSequence(), summary: reservoirSummary({ config, revision: '2' }), frame: null, closeRequested: false });
       expect(controller.snapshot().summary).toBe(accepted);
@@ -47,7 +47,7 @@ describe('sustained owner and independent reading', () => {
     }
   });
   it('preserves each explicit historical prompt version and refuses unknown Create contracts before backend mutation', async () => {
-    for (const promptVersion of ['reservoir-journal-v1', 'reservoir-journal-v2', 'reservoir-journal-v3', 'reservoir-journal-v4'] as const) {
+    for (const promptVersion of ['reservoir-journal-v1', 'reservoir-journal-v2', 'reservoir-journal-v3', 'reservoir-journal-v4', 'reservoir-journal-v5', 'reservoir-journal-v6', 'reservoir-journal-v7'] as const) {
       const { api, controller, push } = reservoirFixture();
       const config = { ...DEFAULT_SUSTAINED_CONFIG, promptVersion };
       expect(await controller.create(config)).toBe(true); await settle();
@@ -58,7 +58,7 @@ describe('sustained owner and independent reading', () => {
       expect(controller.snapshot().journal?.promptVersion).toBe(promptVersion);
     }
     const { api, controller } = reservoirFixture(), create = vi.spyOn(api, 'create');
-    for (const promptVersion of ['reservoir-journal-v6', null, ''] as unknown as SustainedPromptVersion[]) {
+    for (const promptVersion of ['reservoir-journal-v9', null, ''] as unknown as SustainedPromptVersion[]) {
       expect(await controller.create({ ...DEFAULT_SUSTAINED_CONFIG, promptVersion })).toBe(false);
     }
     expect(create).not.toHaveBeenCalled(); expect(controller.snapshot().summary).toBeNull();
@@ -67,7 +67,7 @@ describe('sustained owner and independent reading', () => {
     const { api, controller, push } = reservoirFixture();
     await controller.create(DEFAULT_SUSTAINED_CONFIG); await settle(); push({ revision: '7', step: 7, journalCount: 2, turnCount: 2 });
     await controller.selectJournal('journal-1'); const accepted = controller.snapshot().journal;
-    for (const promptVersion of ['reservoir-journal-v1', 'reservoir-journal-v2', 'reservoir-journal-v3', 'reservoir-journal-v4', 'reservoir-journal-v6'] as SustainedPromptVersion[]) {
+    for (const promptVersion of ['reservoir-journal-v1', 'reservoir-journal-v2', 'reservoir-journal-v3', 'reservoir-journal-v4', 'reservoir-journal-v5', 'reservoir-journal-v6', 'reservoir-journal-v7', 'reservoir-journal-v9'] as SustainedPromptVersion[]) {
       api.journal = async (requestId, sessionId, generation) => ({ requestId, sessionId, generation, revision: '7', journal: { ...journal(2), promptVersion } });
       await controller.selectJournal('journal-2');
       expect(controller.snapshot().journal).toBe(accepted);
@@ -165,7 +165,7 @@ describe('sustained owner and independent reading', () => {
 
 describe('sustained recovery, exports and close decisions', () => {
   it('restores explicit legacy prompt versions without upgrading them or starting, then reads matching journal evidence', async () => {
-    for (const promptVersion of ['reservoir-journal-v1', 'reservoir-journal-v2', 'reservoir-journal-v3', 'reservoir-journal-v4'] as const) {
+    for (const promptVersion of ['reservoir-journal-v1', 'reservoir-journal-v2', 'reservoir-journal-v3', 'reservoir-journal-v4', 'reservoir-journal-v5', 'reservoir-journal-v6', 'reservoir-journal-v7'] as const) {
       const { api, controller, push, update } = reservoirFixture();
       const config = { ...DEFAULT_SUSTAINED_CONFIG, promptVersion }, action = vi.spyOn(api, 'action');
       api.inspect = async (requestId, sessionId) => ({ requestId, manifest: { ...manifest(sessionId), config }, checkpoint: {}, report: bundle(sessionId) });
@@ -182,13 +182,15 @@ describe('sustained recovery, exports and close decisions', () => {
     }
   });
   it('rejects a restore that substitutes the new default for the inspected legacy prompt', async () => {
-    const { api, controller, push } = reservoirFixture();
-    await controller.create(DEFAULT_SUSTAINED_CONFIG); await settle(); push({ revision: '7', step: 7, journalCount: 2, turnCount: 2 });
-    await controller.selectJournal('journal-1'); const accepted = controller.snapshot();
-    api.inspect = async (requestId, sessionId) => ({ requestId, manifest: { ...manifest(sessionId), config: { ...DEFAULT_SUSTAINED_CONFIG, promptVersion: 'reservoir-journal-v4' } }, checkpoint: {}, report: bundle(sessionId) });
-    await controller.inspect('personal-1'); await controller.restore(); await settle();
-    expect(controller.snapshot().summary).toBe(accepted.summary); expect(controller.snapshot().journal).toBe(accepted.journal);
-    expect(controller.snapshot().recoveryError).toContain('changed the inspected journal prompt version');
+    for (const promptVersion of ['reservoir-journal-v4', 'reservoir-journal-v5', 'reservoir-journal-v6', 'reservoir-journal-v7'] as const) {
+      const { api, controller, push } = reservoirFixture();
+      await controller.create(DEFAULT_SUSTAINED_CONFIG); await settle(); push({ revision: '7', step: 7, journalCount: 2, turnCount: 2 });
+      await controller.selectJournal('journal-1'); const accepted = controller.snapshot();
+      api.inspect = async (requestId, sessionId) => ({ requestId, manifest: { ...manifest(sessionId), config: { ...DEFAULT_SUSTAINED_CONFIG, promptVersion } }, checkpoint: {}, report: bundle(sessionId) });
+      await controller.inspect('personal-1'); await controller.restore(); await settle();
+      expect(controller.snapshot().summary).toBe(accepted.summary); expect(controller.snapshot().journal).toBe(accepted.journal);
+      expect(controller.snapshot().recoveryError).toContain('changed the inspected journal prompt version');
+    }
   });
   it('catalog and inspection remain read-only; restoration is generation bound and never Starts', async () => {
     const { api, controller } = reservoirFixture(); const action = vi.spyOn(api, 'action'), restore = vi.spyOn(api, 'restore'); await controller.recovery(); await controller.inspect('personal-1'); expect(action).not.toHaveBeenCalled(); expect(restore).not.toHaveBeenCalled();

@@ -1,0 +1,141 @@
+{
+  "schema": "reservoir-v8-startup-evidence-v1",
+  "capturedAtUtc": "2026-10-14T19:58:30.287563+00:00",
+  "status": "passed",
+  "scope": "Bounded reads of the explicit owned startup log prefix and reads of owned launch/endpoint/process receipts plus parent native witnesses. No provider calls, prose, live-store discovery, process inventory, signals, model blobs or new sampler.",
+  "inputFiles": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-v8-writing-gemma3-4b-run01/launch-intent.json",
+      "bytes": 5854,
+      "sha256": "cee0f3e4574c4a34d73a63209340062da7fc1af5c62a92162cb08a5e4d9bd7d8"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-v8-writing-gemma3-4b-run01/owned-process.json",
+      "bytes": 3650,
+      "sha256": "25ab6815b382c448fb6b0337ff9c4e103db8f0b97346478c336aae6770b0db0e"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-v8-writing-gemma3-4b-run01/endpoint.json",
+      "bytes": 277,
+      "sha256": "3e2c7fce95c612d8eddb64b2734d12bf8eefe3178fd27b6f03c1ab2f5f06f718"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/run-plan.json",
+      "bytes": 5625,
+      "sha256": "88180d370ca60bfdb595a7d554d3581d3e5640b3fa22b2579c20a107dad91382"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/evaluation-freeze-01.json",
+      "bytes": 30380,
+      "sha256": "35df91256c807520c1934aad0b872f6c708852184222f71bccb302441b8cf3bd"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/host-admission-01.json",
+      "bytes": 1466,
+      "sha256": "bcb8066c5a12d222b5c310540f4500a1453295d2e95812d159aa1a17c4ecdc9e"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/native-start-01.json",
+      "bytes": 1488,
+      "sha256": "34edf450b9d8f2df6f70ccd72d334e90563d4c7c45788ae24e1a8c566ac3ef37"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/start-witness-before-01.json",
+      "bytes": 225,
+      "sha256": "bf5c78afdea40914d59ce836b9a3408bcdc27eff5e0b751c4369acf40754ba92"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/start-witness-after-01.json",
+      "bytes": 317,
+      "sha256": "56898ce74fdb0f236ce57208e0209b4bbf67e0a23a15920298524007216900f3"
+    }
+  ],
+  "inputsUnchangedDuringAudit": true,
+  "admission": {
+    "fromRetainedReceiptOnly": true,
+    "pressureLevel": 1,
+    "freePercent": 41,
+    "diskFreeBytes": 528339673088,
+    "freezeSha256Matches": true
+  },
+  "ownedProcess": {
+    "pid": 95685,
+    "pgid": 95685,
+    "sid": 95685,
+    "supervisorPid": 95674,
+    "spawnedAtUtc": "2026-10-14T19:56:15.884510+00:00",
+    "maximumLifetimeSeconds": 1200,
+    "identityProvenance": "Supervisor-retained startup receipt; no independent current process probe."
+  },
+  "runtime": {
+    "selectedVersion": "0.40.4",
+    "executableSha256": "61e3067857f23046338a3d1a14360ce749fbe0aa0b6168e728b7d11c1e219619",
+    "softwareSelectionSha256": "f86c9011ed33881ffae71679a3c96755c3d7d1cfbd434b0b9535a3493192a127",
+    "cacheDirectory": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-real-gemma3-4b",
+    "homePreservedReported": true,
+    "childOverrides": {
+      "OLLAMA_HOST": "127.0.0.1:0",
+      "OLLAMA_MODELS": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-real-gemma3-4b/models",
+      "OLLAMA_NO_CLOUD": "1",
+      "OLLAMA_NOPRUNE": "1",
+      "OLLAMA_NUM_PARALLEL": "1",
+      "OLLAMA_MAX_LOADED_MODELS": "1",
+      "OLLAMA_MAX_QUEUE": "1",
+      "OLLAMA_CONTEXT_LENGTH": "4096",
+      "OLLAMA_KEEP_ALIVE": "2m",
+      "OLLAMA_LOAD_TIMEOUT": "60s",
+      "OLLAMA_DEBUG": "0",
+      "OLLAMA_DEBUG_LOG_REQUESTS": "false",
+      "OLLAMA_NOHISTORY": "1"
+    },
+    "startupVersionAndListenerMatch": true,
+    "logEvidenceIsProviderSelfReport": true
+  },
+  "session": {
+    "sessionId": "sustained-1792007792954-1",
+    "generation": "1",
+    "endpoint": "http://127.0.0.1:53588",
+    "model": "gemma3:4b",
+    "manifestDigest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+    "oneReadinessCreateStartReported": true,
+    "acceptedConfigMatchesPlan": true,
+    "configuredContextTokens": 8192,
+    "serviceDefaultContextTokens": 4096,
+    "distinction": "4096 is the logged service default; the accepted app configuration explicitly requests8192. Neither is independent proof of complete prompt processing."
+  },
+  "startWitness": {
+    "beforeUtc": "2026-10-14T19:56:39.330142+00:00",
+    "afterUtc": "2026-10-14T19:56:50.294852+00:00",
+    "remainingBeforeSeconds": 1176.5295770410448,
+    "remainingAfterSeconds": 1165.5647994580213,
+    "minimumRequiredSeconds": 1140,
+    "bothMarginsPass": true,
+    "scope": "UTC witnesses bracket the parent-reported native Start action; no exact interior click timestamp is inferred."
+  },
+  "logPrefix": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-v8-writing-gemma3-4b-run01/service.log",
+    "maximumReadBytes": 131072,
+    "readBytes": 29182,
+    "sha256": "6557b016bd6229a9fb310e4c4bd360e3fadedcf156e251cbc60c53d7a36363ee",
+    "fileBytesBefore": 29182,
+    "fileBytesAfter": 29182,
+    "fileMayContinueGrowing": true,
+    "selectedStartupLines": [
+      "time=2026-10-14T12:56:15.904-07:00 level=INFO source=routes.go:2439 msg=\"server config\" env=\"map[HTTPS_PROXY: HTTP_PROXY: LLAMA_ARG_FIT: LLAMA_ARG_FIT_TARGET: NO_PROXY: OLLAMA_CONTEXT_LENGTH:4096 OLLAMA_CREATE_REMOTE:false OLLAMA_DEBUG:INFO OLLAMA_DEBUG_LOG_REQUESTS:false OLLAMA_EDITOR: OLLAMA_FLASH_ATTENTION:false OLLAMA_GO_TEMPLATE:true OLLAMA_GPU_OVERHEAD:0 OLLAMA_HOST:http://127.0.0.1:0 OLLAMA_IGPU_ENABLE: OLLAMA_KEEP_ALIVE:2m0s OLLAMA_KV_CACHE_TYPE: OLLAMA_LLM_LIBRARY: OLLAMA_LOAD_TIMEOUT:1m0s OLLAMA_MAX_LOADED_MODELS:1 OLLAMA_MAX_QUEUE:1 OLLAMA_MAX_TRANSFER_STREAMS:4 OLLAMA_MODELS:/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-real-gemma3-4b/models OLLAMA_NOHISTORY:true OLLAMA_NOPRUNE:true OLLAMA_NO_CLOUD:true OLLAMA_NUM_PARALLEL:1 OLLAMA_ORIGINS:[http://localhost https://localhost http://localhost:* https://localhost:* http://127.0.0.1 https://127.0.0.1 http://127.0.0.1:* https://127.0.0.1:* http://0.0.0.0 https://0.0.0.0 http://0.0.0.0:* https://0.0.0.0:* app://* file://* tauri://* vscode-webview://* vscode-file://*] OLLAMA_REMOTES:[ollama.com] OLLAMA_SCHED_SPREAD:false http_proxy: https_proxy: no_proxy:]\"",
+      "time=2026-10-14T12:56:15.904-07:00 level=INFO source=routes.go:2441 msg=\"Ollama cloud disabled: true\"",
+      "time=2026-10-14T12:56:15.904-07:00 level=INFO source=routes.go:2501 msg=\"Listening on 127.0.0.1:53588 (version 0.40.4)\""
+    ],
+    "limit": "Only selected startup/configuration lines are reproduced; no journal/prompt text is included. A live prefix hash is not a final log identity or proof that no later event occurred.",
+    "prefixReadsByThisTask": 2
+  },
+  "conventionalMetadata": {
+    "beforeReceiptRetained": true,
+    "contentReadByThisAudit": false,
+    "afterOutcomePending": true
+  },
+  "limitations": [
+    "Service is still active at this handoff; final request counts and cleanup remain unqualified until terminal receipts.",
+    "No fresh absence check, runtime resource measurement, full-context/attention proof, GPU/endurance or real-writing result.",
+    "No matching runner-path line is required at this startup snapshot; selected executable identity comes from the helper receipt."
+  ]
+}

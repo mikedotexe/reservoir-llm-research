@@ -101,15 +101,15 @@ fn actual_frozen_v1_segments_keep_prompt_state_and_serialized_bytes() {
 }
 
 #[test]
-fn fresh_defaults_v5_but_missing_serialized_version_is_v1_and_unknowns_fail_closed() {
+fn fresh_defaults_v8_but_missing_serialized_version_is_v1_and_unknowns_fail_closed() {
     let fresh = SustainedSpecification::default();
     assert_eq!(fresh.prompt_version, CURRENT_PROMPT_VERSION);
     assert_eq!(
         fresh.prompt_version,
-        SustainedPromptVersion::ContinuingJournalV5
+        SustainedPromptVersion::MeasurementMeaningJournalV8
     );
     let mut value = serde_json::to_value(&fresh).unwrap();
-    assert_eq!(value["promptVersion"], "reservoir-journal-v5");
+    assert_eq!(value["promptVersion"], "reservoir-journal-v8");
     value.as_object_mut().unwrap().remove("promptVersion");
     let legacy: SustainedSpecification = serde_json::from_value(value.clone()).unwrap();
     assert!(legacy.prompt_version.is_legacy());

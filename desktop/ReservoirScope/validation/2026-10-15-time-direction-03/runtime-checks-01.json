@@ -1,0 +1,169 @@
+{
+  "schema": "reservoir-time-direction-runtime-reuse-checks-v1",
+  "startedAtUtc": "2026-10-15T17:00:17.618699+00:00",
+  "endedAtUtc": "2026-10-15T17:00:17.784321+00:00",
+  "elapsedSeconds": 0.16547845816239715,
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_runtime_reuse",
+    "test_run_probe.IdentityTests",
+    "test_run_probe.MainFailureTests"
+  ],
+  "exitCode": 0,
+  "passed": true,
+  "sourceBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/prepare_reuse.py",
+      "bytes": 4882,
+      "sha256": "9666668bcac481518d8312d8266cad7acbdcac76492641245d5b03cfbfefdb90"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run_probe.py",
+      "bytes": 24558,
+      "sha256": "1814a70d50ee4d91a74823c1cb6121c5901155694cec2bd806aecbb5dbb8b443"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/test_run_probe.py",
+      "bytes": 19631,
+      "sha256": "5344058748b992c789a3bc7e440bf1cb8164404f1d08b19839ed3139bb6c820f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/test_runtime_reuse.py",
+      "bytes": 6325,
+      "sha256": "3dd6e6e59e95a9562631c34de61173d933069fa9d9364afca2ebd8f07191e82d"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run-plan.json",
+      "bytes": 5117,
+      "sha256": "3d6c19b7c36ecf8c17376e9d0e227f1639d5ac25561d24c546beb95a8bcb6fd6"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/frozen-inputs.json",
+      "bytes": 6709,
+      "sha256": "2c99ed010d2d84b72888b135c43125eae8bd17e6dd5cfeea3954f0fa90cfee39"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/freeze_inputs.py",
+      "bytes": 4832,
+      "sha256": "f75d7c1f43cd73eb3b5e24c665be940eafd2f0b0f2ab5fda3d3d071c64cc9ccb"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/admit_once.py",
+      "bytes": 2773,
+      "sha256": "920eb877e38870f8ab7163716251089e55addc8f115b0703993a8016af4bb852"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/runtime-copy-01.json",
+      "bytes": 176646,
+      "sha256": "43d7feda78a2c5cc445c63092d266b7ce5e26d2be52336b4b6dcefbf5c70b044"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/owned_model.py",
+      "bytes": 38692,
+      "sha256": "415a585dfa4502e555331b4472cf08b6afbd3207944e6d02d952e133175f8c1b"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/test_owned_model.py",
+      "bytes": 30996,
+      "sha256": "da68770ceed2999ef55d9a17149b244dde639bf21f0a5aa43e06aab73d57bb5d"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/render_blind_pack.py",
+      "bytes": 9780,
+      "sha256": "e04dfc95a8b2a49ae5df3b97e6dff7d07e76b35fb1db48e7a8421409d2cbefe0"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/test_render_blind_pack.py",
+      "bytes": 8703,
+      "sha256": "c8deb7ee79303b62a632abf34ca034b65b535031fe06c2724cbb1ae5465a110a"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/READING-PROTOCOL.md",
+      "bytes": 6577,
+      "sha256": "af2b0cde99213e023efb271ee033c3a0dfa64803c56f55edf4f97dfe781159e0"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/prepare_reuse.py",
+      "bytes": 4882,
+      "sha256": "9666668bcac481518d8312d8266cad7acbdcac76492641245d5b03cfbfefdb90"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run_probe.py",
+      "bytes": 24558,
+      "sha256": "1814a70d50ee4d91a74823c1cb6121c5901155694cec2bd806aecbb5dbb8b443"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/test_run_probe.py",
+      "bytes": 19631,
+      "sha256": "5344058748b992c789a3bc7e440bf1cb8164404f1d08b19839ed3139bb6c820f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/test_runtime_reuse.py",
+      "bytes": 6325,
+      "sha256": "3dd6e6e59e95a9562631c34de61173d933069fa9d9364afca2ebd8f07191e82d"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run-plan.json",
+      "bytes": 5117,
+      "sha256": "3d6c19b7c36ecf8c17376e9d0e227f1639d5ac25561d24c546beb95a8bcb6fd6"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/frozen-inputs.json",
+      "bytes": 6709,
+      "sha256": "2c99ed010d2d84b72888b135c43125eae8bd17e6dd5cfeea3954f0fa90cfee39"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/freeze_inputs.py",
+      "bytes": 4832,
+      "sha256": "f75d7c1f43cd73eb3b5e24c665be940eafd2f0b0f2ab5fda3d3d071c64cc9ccb"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/admit_once.py",
+      "bytes": 2773,
+      "sha256": "920eb877e38870f8ab7163716251089e55addc8f115b0703993a8016af4bb852"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/runtime-copy-01.json",
+      "bytes": 176646,
+      "sha256": "43d7feda78a2c5cc445c63092d266b7ce5e26d2be52336b4b6dcefbf5c70b044"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/owned_model.py",
+      "bytes": 38692,
+      "sha256": "415a585dfa4502e555331b4472cf08b6afbd3207944e6d02d952e133175f8c1b"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/test_owned_model.py",
+      "bytes": 30996,
+      "sha256": "da68770ceed2999ef55d9a17149b244dde639bf21f0a5aa43e06aab73d57bb5d"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/render_blind_pack.py",
+      "bytes": 9780,
+      "sha256": "e04dfc95a8b2a49ae5df3b97e6dff7d07e76b35fb1db48e7a8421409d2cbefe0"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/test_render_blind_pack.py",
+      "bytes": 8703,
+      "sha256": "c8deb7ee79303b62a632abf34ca034b65b535031fe06c2724cbb1ae5465a110a"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/READING-PROTOCOL.md",
+      "bytes": 6577,
+      "sha256": "af2b0cde99213e023efb271ee033c3a0dfa64803c56f55edf4f97dfe781159e0"
+    }
+  ],
+  "sourceUnchanged": true,
+  "testCount": 14,
+  "scope": "Fourteen focused file/temp-file tests only. Exact transport, supervisor, renderer and reading criteria reused via source equivalence. No sockets, host probes, processes inspected, model calls, admission or freeze execution; no prompt regeneration.",
+  "log": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/runtime-checks-01.log",
+    "bytes": 2045,
+    "sha256": "206d048c8ddba063668c9c90d73c67054b824660f0e008870b278eee272350b5"
+  }
+}

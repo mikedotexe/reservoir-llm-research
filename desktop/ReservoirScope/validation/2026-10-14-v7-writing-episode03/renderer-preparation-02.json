@@ -1,0 +1,79 @@
+{
+  "schema": "reservoir-renderer-preparation-v1",
+  "startedAtUtc": "2026-10-14T18:20:53.092535+00:00",
+  "endedAtUtc": "2026-10-14T18:20:53.100201+00:00",
+  "status": "passed",
+  "scope": "Eight pure synthetic in-memory/temp-file rendering checks. No actual episode response read, no production verifier, model/service/UI/process calls. Test receipt deliberately uses placeholder verification metadata; it is not evidence of a real replay.",
+  "priorFailure": "renderer-preparation-01.json preserves strict /var alias rejection before rendering; only synthetic test driver path resolved, no source change.",
+  "checks": [
+    {
+      "name": "all-full-text-unicode-fences-incomplete-and-twelve-slots",
+      "passed": true
+    },
+    {
+      "name": "receipt-failed",
+      "passed": true
+    },
+    {
+      "name": "original-changed",
+      "passed": true
+    },
+    {
+      "name": "wrong-pin",
+      "passed": true
+    },
+    {
+      "name": "truncated",
+      "passed": true
+    },
+    {
+      "name": "wrong-text-hash",
+      "passed": true
+    },
+    {
+      "name": "wrong-length",
+      "passed": true
+    },
+    {
+      "name": "wrong-slot-count",
+      "passed": true
+    }
+  ],
+  "sourceUnchanged": true,
+  "sourcesBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/render_received_journals.py",
+      "bytes": 10376,
+      "sha256": "96feb34be971042fc156ebed907e847f5da8ce9ec9f54e61b96c3ed892c31fd0"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/check_real_model_export.py",
+      "bytes": 47433,
+      "sha256": "b1b57dc2253769c8b5010187bb312ad219b774f4e8a8e76df67f2c9c5f3a5953"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/test_real_model_export.py",
+      "bytes": 31156,
+      "sha256": "401729aa25d9f5d86d84e466af119c05e27e13596986497adb50fd72ee2b2dc6"
+    }
+  ],
+  "sourcesAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/render_received_journals.py",
+      "bytes": 10376,
+      "sha256": "96feb34be971042fc156ebed907e847f5da8ce9ec9f54e61b96c3ed892c31fd0"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/check_real_model_export.py",
+      "bytes": 47433,
+      "sha256": "b1b57dc2253769c8b5010187bb312ad219b774f4e8a8e76df67f2c9c5f3a5953"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/test_real_model_export.py",
+      "bytes": 31156,
+      "sha256": "401729aa25d9f5d86d84e466af119c05e27e13596986497adb50fd72ee2b2dc6"
+    }
+  ],
+  "executionDeferredUntilImmutableHandoff": true,
+  "usage": "python3 -B render_received_journals.py --receipt ABS/real-model-export-01/receipt.json --expected-receipt-sha256 HANDOFF_SHA --output ABS/JOURNALS.md --audit ABS/journals-rendering-01.json"
+}

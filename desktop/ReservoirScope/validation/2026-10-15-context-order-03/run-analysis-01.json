@@ -1,0 +1,1478 @@
+{
+  "schema": "reservoir-context-order-closed-analysis-v1",
+  "atUtc": "2026-10-15T14:56:46.613968+00:00",
+  "status": "passed",
+  "errors": [],
+  "script": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/retain_and_analyze.py",
+    "bytes": 15537,
+    "sha256": "e7fa1cce37e6c600b9ae2b9e471c1247424db12f4d84af4fec240531bd3a8e87"
+  },
+  "scope": "File-only accounting of closed owned sources; no runtime/verifier/process/network invocation or prose interpretation.",
+  "runRetention": {
+    "sourceDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03",
+    "copyDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01",
+    "sourceBefore": [
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/input-identities.json",
+        "bytes": 4724,
+        "sha256": "5db11488a20160988bdc51720a872a5a65c0e7c82dd1553b9e9d5be8020b5667",
+        "relativePath": "input-identities.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/inventory-response.bin",
+        "bytes": 442,
+        "sha256": "923ce6d8bc4a4ec7db7c75e848b9a0d02a9e836aaf75913ce0ef7ac4a45b53b5",
+        "relativePath": "inventory-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/ledger.json",
+        "bytes": 22892,
+        "sha256": "fe49740ff34ecaba9cf38d484a134bcc81ae7fa60706a4917d09be00a231a851",
+        "relativePath": "ledger.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/ownership.json",
+        "bytes": 298,
+        "sha256": "3d7ca864130f69b1ad427e323ea569b77ef9c151686812c5784a57dd6b51c054",
+        "relativePath": "ownership.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-01-request.json",
+        "bytes": 3725,
+        "sha256": "f31d6c588a152a9e66008d2808c0aa52098d74db149b31debec3a2183e7937d8",
+        "relativePath": "slot-01-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-01-response.bin",
+        "bytes": 2091,
+        "sha256": "11b69d0a12dd79ce0c6cf268c2cf914911499c444c62e99a0ac699c5563248fb",
+        "relativePath": "slot-01-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-01-text.txt",
+        "bytes": 1758,
+        "sha256": "20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89",
+        "relativePath": "slot-01-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-02-request.json",
+        "bytes": 3725,
+        "sha256": "a6fc6a6781fcbd46140154e91097f13f2971afc0b66ec407182dee1946cda5bc",
+        "relativePath": "slot-02-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-02-response.bin",
+        "bytes": 1862,
+        "sha256": "a856bf9699a9064d4a754856169146c7598f3fa8dc2b1e95a2591f8673dc26b8",
+        "relativePath": "slot-02-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-02-text.txt",
+        "bytes": 1530,
+        "sha256": "d3250d1962ef3ef76f9dd90764fb83504d0302594cc32ecfeee0bf16b96577f8",
+        "relativePath": "slot-02-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-03-request.json",
+        "bytes": 3731,
+        "sha256": "6c7da968915c7236540a118ad9532fd4f43abfe40f6fbaab023ecd71dfbb2eca",
+        "relativePath": "slot-03-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-03-response.bin",
+        "bytes": 1687,
+        "sha256": "596547c4d4782745ed1b39406686185dbe6726002ebc4d628a0601e9f0e63b64",
+        "relativePath": "slot-03-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-03-text.txt",
+        "bytes": 1361,
+        "sha256": "0808f275395e74b23e60a09b5d48ef78168332e931c3220f6555127cb1fd799f",
+        "relativePath": "slot-03-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-04-request.json",
+        "bytes": 3731,
+        "sha256": "4a64482ff84920a1740f864c57ece4fb4ddf6dbb521ebd61fa2987b849635b30",
+        "relativePath": "slot-04-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-04-response.bin",
+        "bytes": 1650,
+        "sha256": "034724a4fb4546cada2f1c17814befeacf7802d67bc5a1fa9f44e866c918a055",
+        "relativePath": "slot-04-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-04-text.txt",
+        "bytes": 1324,
+        "sha256": "949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2",
+        "relativePath": "slot-04-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-05-request.json",
+        "bytes": 3665,
+        "sha256": "54706b3b93eb39addde7c9d5d7e17a79201b974d3d7720e7bb7342824178fed9",
+        "relativePath": "slot-05-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-05-response.bin",
+        "bytes": 1478,
+        "sha256": "971eb74af6b6ddca93000d63e6e97639f3bcee1b99505280a428c6d50ff8de3d",
+        "relativePath": "slot-05-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-05-text.txt",
+        "bytes": 1154,
+        "sha256": "e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03",
+        "relativePath": "slot-05-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-06-request.json",
+        "bytes": 3665,
+        "sha256": "08b4ed6f741a089ee446083980bb45d96aa44cdf1338f576e4e61617696c6c32",
+        "relativePath": "slot-06-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-06-response.bin",
+        "bytes": 1550,
+        "sha256": "b7d2a2e5822f80e9d5a26abf08a3a3bbc9570399c40895f9b506e3670af03684",
+        "relativePath": "slot-06-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-06-text.txt",
+        "bytes": 1227,
+        "sha256": "4e2cb7c50895c1ec0bf5794abf22e3ac23e395b1ea5904da99ee9203fa8120a2",
+        "relativePath": "slot-06-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-07-request.json",
+        "bytes": 3633,
+        "sha256": "eff53b783afe3a56ec613acaab411fcc6c67cc965b89e57cbb8df51b186617af",
+        "relativePath": "slot-07-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-07-response.bin",
+        "bytes": 1666,
+        "sha256": "00fa4cbd88883668805153bedab7513bda6cbbf1a195c85db1fcb5335a56e1ab",
+        "relativePath": "slot-07-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-07-text.txt",
+        "bytes": 1343,
+        "sha256": "3c76035ba02afa2fa8f227db913050fe5f74286d8071c95cb0309a01d7a528c9",
+        "relativePath": "slot-07-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-08-request.json",
+        "bytes": 3633,
+        "sha256": "8361faeb7191541a0cffd732dffb49d7c052851e267fb8cd5fea963f31d5424d",
+        "relativePath": "slot-08-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-08-response.bin",
+        "bytes": 1497,
+        "sha256": "a3d8e9aaa4aefb89c024051456adfbe660281c2bd235644c37fabb346e275d99",
+        "relativePath": "slot-08-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-08-text.txt",
+        "bytes": 1173,
+        "sha256": "fea8c58fe1f52802798f95428739dc815b9a57066fe468d2ef009412d1518507",
+        "relativePath": "slot-08-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-09-request.json",
+        "bytes": 3476,
+        "sha256": "21e6b22017d512dfd7a7182a4d4f1d7e4868452d9acf579bfb164ea18b547687",
+        "relativePath": "slot-09-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-09-response.bin",
+        "bytes": 1323,
+        "sha256": "e7f4722cbc8ad3aee6a9e6594049d09b8a6d2a32303ad24050b922d5f12ccf3c",
+        "relativePath": "slot-09-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-09-text.txt",
+        "bytes": 1000,
+        "sha256": "975b8e21b47662618916eaf606258d19c1f8539e6c0e7c4c802b56702a4366bc",
+        "relativePath": "slot-09-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-10-request.json",
+        "bytes": 3476,
+        "sha256": "3453dd21bf60b5ccf492dbbb27b78c9f3dce58f2a6909409de7cde1d06789f4a",
+        "relativePath": "slot-10-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-10-response.bin",
+        "bytes": 1291,
+        "sha256": "9ad485f83d8042bba35658b763307e9f2a6b357094d8b2c328fac34c303286fe",
+        "relativePath": "slot-10-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-10-text.txt",
+        "bytes": 967,
+        "sha256": "73cda9be4ccecdcae6f0c0a26af6ecf804b57469e552de3a4b362871d0610c97",
+        "relativePath": "slot-10-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-11-request.json",
+        "bytes": 3482,
+        "sha256": "def1ee1d0fd0a83f92bface181dfd62c7525cc3ccda51beefa0d3469bb1760cc",
+        "relativePath": "slot-11-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-11-response.bin",
+        "bytes": 1490,
+        "sha256": "20f20ea5bb82fd5fde758c418cb73262bb997521f3a1d59e4d3e04b168850c01",
+        "relativePath": "slot-11-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-11-text.txt",
+        "bytes": 1169,
+        "sha256": "6267d9b00c882a982dcbd91917a9941a5578e4772ce1518cbb60234cdb4501c4",
+        "relativePath": "slot-11-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-12-request.json",
+        "bytes": 3482,
+        "sha256": "e7d9b3ebb5012304b39d742dbb1e7154bbae00870e7575769d33e99bdb423f79",
+        "relativePath": "slot-12-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-12-response.bin",
+        "bytes": 1500,
+        "sha256": "f839a1039aa2b0865032437adf328bb6de9c3c4278d1c30bf19916d97d6a4a06",
+        "relativePath": "slot-12-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-12-text.txt",
+        "bytes": 1172,
+        "sha256": "269bea5577dd98eff28475f37e5f5f70efec83fd1233b34bf265887cfb9037f6",
+        "relativePath": "slot-12-text.txt"
+      }
+    ],
+    "sourceAfter": [
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/input-identities.json",
+        "bytes": 4724,
+        "sha256": "5db11488a20160988bdc51720a872a5a65c0e7c82dd1553b9e9d5be8020b5667",
+        "relativePath": "input-identities.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/inventory-response.bin",
+        "bytes": 442,
+        "sha256": "923ce6d8bc4a4ec7db7c75e848b9a0d02a9e836aaf75913ce0ef7ac4a45b53b5",
+        "relativePath": "inventory-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/ledger.json",
+        "bytes": 22892,
+        "sha256": "fe49740ff34ecaba9cf38d484a134bcc81ae7fa60706a4917d09be00a231a851",
+        "relativePath": "ledger.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/ownership.json",
+        "bytes": 298,
+        "sha256": "3d7ca864130f69b1ad427e323ea569b77ef9c151686812c5784a57dd6b51c054",
+        "relativePath": "ownership.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-01-request.json",
+        "bytes": 3725,
+        "sha256": "f31d6c588a152a9e66008d2808c0aa52098d74db149b31debec3a2183e7937d8",
+        "relativePath": "slot-01-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-01-response.bin",
+        "bytes": 2091,
+        "sha256": "11b69d0a12dd79ce0c6cf268c2cf914911499c444c62e99a0ac699c5563248fb",
+        "relativePath": "slot-01-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-01-text.txt",
+        "bytes": 1758,
+        "sha256": "20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89",
+        "relativePath": "slot-01-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-02-request.json",
+        "bytes": 3725,
+        "sha256": "a6fc6a6781fcbd46140154e91097f13f2971afc0b66ec407182dee1946cda5bc",
+        "relativePath": "slot-02-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-02-response.bin",
+        "bytes": 1862,
+        "sha256": "a856bf9699a9064d4a754856169146c7598f3fa8dc2b1e95a2591f8673dc26b8",
+        "relativePath": "slot-02-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-02-text.txt",
+        "bytes": 1530,
+        "sha256": "d3250d1962ef3ef76f9dd90764fb83504d0302594cc32ecfeee0bf16b96577f8",
+        "relativePath": "slot-02-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-03-request.json",
+        "bytes": 3731,
+        "sha256": "6c7da968915c7236540a118ad9532fd4f43abfe40f6fbaab023ecd71dfbb2eca",
+        "relativePath": "slot-03-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-03-response.bin",
+        "bytes": 1687,
+        "sha256": "596547c4d4782745ed1b39406686185dbe6726002ebc4d628a0601e9f0e63b64",
+        "relativePath": "slot-03-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-03-text.txt",
+        "bytes": 1361,
+        "sha256": "0808f275395e74b23e60a09b5d48ef78168332e931c3220f6555127cb1fd799f",
+        "relativePath": "slot-03-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-04-request.json",
+        "bytes": 3731,
+        "sha256": "4a64482ff84920a1740f864c57ece4fb4ddf6dbb521ebd61fa2987b849635b30",
+        "relativePath": "slot-04-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-04-response.bin",
+        "bytes": 1650,
+        "sha256": "034724a4fb4546cada2f1c17814befeacf7802d67bc5a1fa9f44e866c918a055",
+        "relativePath": "slot-04-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-04-text.txt",
+        "bytes": 1324,
+        "sha256": "949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2",
+        "relativePath": "slot-04-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-05-request.json",
+        "bytes": 3665,
+        "sha256": "54706b3b93eb39addde7c9d5d7e17a79201b974d3d7720e7bb7342824178fed9",
+        "relativePath": "slot-05-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-05-response.bin",
+        "bytes": 1478,
+        "sha256": "971eb74af6b6ddca93000d63e6e97639f3bcee1b99505280a428c6d50ff8de3d",
+        "relativePath": "slot-05-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-05-text.txt",
+        "bytes": 1154,
+        "sha256": "e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03",
+        "relativePath": "slot-05-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-06-request.json",
+        "bytes": 3665,
+        "sha256": "08b4ed6f741a089ee446083980bb45d96aa44cdf1338f576e4e61617696c6c32",
+        "relativePath": "slot-06-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-06-response.bin",
+        "bytes": 1550,
+        "sha256": "b7d2a2e5822f80e9d5a26abf08a3a3bbc9570399c40895f9b506e3670af03684",
+        "relativePath": "slot-06-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-06-text.txt",
+        "bytes": 1227,
+        "sha256": "4e2cb7c50895c1ec0bf5794abf22e3ac23e395b1ea5904da99ee9203fa8120a2",
+        "relativePath": "slot-06-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-07-request.json",
+        "bytes": 3633,
+        "sha256": "eff53b783afe3a56ec613acaab411fcc6c67cc965b89e57cbb8df51b186617af",
+        "relativePath": "slot-07-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-07-response.bin",
+        "bytes": 1666,
+        "sha256": "00fa4cbd88883668805153bedab7513bda6cbbf1a195c85db1fcb5335a56e1ab",
+        "relativePath": "slot-07-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-07-text.txt",
+        "bytes": 1343,
+        "sha256": "3c76035ba02afa2fa8f227db913050fe5f74286d8071c95cb0309a01d7a528c9",
+        "relativePath": "slot-07-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-08-request.json",
+        "bytes": 3633,
+        "sha256": "8361faeb7191541a0cffd732dffb49d7c052851e267fb8cd5fea963f31d5424d",
+        "relativePath": "slot-08-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-08-response.bin",
+        "bytes": 1497,
+        "sha256": "a3d8e9aaa4aefb89c024051456adfbe660281c2bd235644c37fabb346e275d99",
+        "relativePath": "slot-08-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-08-text.txt",
+        "bytes": 1173,
+        "sha256": "fea8c58fe1f52802798f95428739dc815b9a57066fe468d2ef009412d1518507",
+        "relativePath": "slot-08-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-09-request.json",
+        "bytes": 3476,
+        "sha256": "21e6b22017d512dfd7a7182a4d4f1d7e4868452d9acf579bfb164ea18b547687",
+        "relativePath": "slot-09-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-09-response.bin",
+        "bytes": 1323,
+        "sha256": "e7f4722cbc8ad3aee6a9e6594049d09b8a6d2a32303ad24050b922d5f12ccf3c",
+        "relativePath": "slot-09-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-09-text.txt",
+        "bytes": 1000,
+        "sha256": "975b8e21b47662618916eaf606258d19c1f8539e6c0e7c4c802b56702a4366bc",
+        "relativePath": "slot-09-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-10-request.json",
+        "bytes": 3476,
+        "sha256": "3453dd21bf60b5ccf492dbbb27b78c9f3dce58f2a6909409de7cde1d06789f4a",
+        "relativePath": "slot-10-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-10-response.bin",
+        "bytes": 1291,
+        "sha256": "9ad485f83d8042bba35658b763307e9f2a6b357094d8b2c328fac34c303286fe",
+        "relativePath": "slot-10-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-10-text.txt",
+        "bytes": 967,
+        "sha256": "73cda9be4ccecdcae6f0c0a26af6ecf804b57469e552de3a4b362871d0610c97",
+        "relativePath": "slot-10-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-11-request.json",
+        "bytes": 3482,
+        "sha256": "def1ee1d0fd0a83f92bface181dfd62c7525cc3ccda51beefa0d3469bb1760cc",
+        "relativePath": "slot-11-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-11-response.bin",
+        "bytes": 1490,
+        "sha256": "20f20ea5bb82fd5fde758c418cb73262bb997521f3a1d59e4d3e04b168850c01",
+        "relativePath": "slot-11-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-11-text.txt",
+        "bytes": 1169,
+        "sha256": "6267d9b00c882a982dcbd91917a9941a5578e4772ce1518cbb60234cdb4501c4",
+        "relativePath": "slot-11-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-12-request.json",
+        "bytes": 3482,
+        "sha256": "e7d9b3ebb5012304b39d742dbb1e7154bbae00870e7575769d33e99bdb423f79",
+        "relativePath": "slot-12-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-12-response.bin",
+        "bytes": 1500,
+        "sha256": "f839a1039aa2b0865032437adf328bb6de9c3c4278d1c30bf19916d97d6a4a06",
+        "relativePath": "slot-12-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-12-text.txt",
+        "bytes": 1172,
+        "sha256": "269bea5577dd98eff28475f37e5f5f70efec83fd1233b34bf265887cfb9037f6",
+        "relativePath": "slot-12-text.txt"
+      }
+    ],
+    "copies": [
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/input-identities.json",
+        "bytes": 4724,
+        "sha256": "5db11488a20160988bdc51720a872a5a65c0e7c82dd1553b9e9d5be8020b5667",
+        "relativePath": "input-identities.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/inventory-response.bin",
+        "bytes": 442,
+        "sha256": "923ce6d8bc4a4ec7db7c75e848b9a0d02a9e836aaf75913ce0ef7ac4a45b53b5",
+        "relativePath": "inventory-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/ledger.json",
+        "bytes": 22892,
+        "sha256": "fe49740ff34ecaba9cf38d484a134bcc81ae7fa60706a4917d09be00a231a851",
+        "relativePath": "ledger.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/ownership.json",
+        "bytes": 298,
+        "sha256": "3d7ca864130f69b1ad427e323ea569b77ef9c151686812c5784a57dd6b51c054",
+        "relativePath": "ownership.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-01-request.json",
+        "bytes": 3725,
+        "sha256": "f31d6c588a152a9e66008d2808c0aa52098d74db149b31debec3a2183e7937d8",
+        "relativePath": "slot-01-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-01-response.bin",
+        "bytes": 2091,
+        "sha256": "11b69d0a12dd79ce0c6cf268c2cf914911499c444c62e99a0ac699c5563248fb",
+        "relativePath": "slot-01-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-01-text.txt",
+        "bytes": 1758,
+        "sha256": "20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89",
+        "relativePath": "slot-01-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-02-request.json",
+        "bytes": 3725,
+        "sha256": "a6fc6a6781fcbd46140154e91097f13f2971afc0b66ec407182dee1946cda5bc",
+        "relativePath": "slot-02-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-02-response.bin",
+        "bytes": 1862,
+        "sha256": "a856bf9699a9064d4a754856169146c7598f3fa8dc2b1e95a2591f8673dc26b8",
+        "relativePath": "slot-02-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-02-text.txt",
+        "bytes": 1530,
+        "sha256": "d3250d1962ef3ef76f9dd90764fb83504d0302594cc32ecfeee0bf16b96577f8",
+        "relativePath": "slot-02-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-03-request.json",
+        "bytes": 3731,
+        "sha256": "6c7da968915c7236540a118ad9532fd4f43abfe40f6fbaab023ecd71dfbb2eca",
+        "relativePath": "slot-03-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-03-response.bin",
+        "bytes": 1687,
+        "sha256": "596547c4d4782745ed1b39406686185dbe6726002ebc4d628a0601e9f0e63b64",
+        "relativePath": "slot-03-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-03-text.txt",
+        "bytes": 1361,
+        "sha256": "0808f275395e74b23e60a09b5d48ef78168332e931c3220f6555127cb1fd799f",
+        "relativePath": "slot-03-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-04-request.json",
+        "bytes": 3731,
+        "sha256": "4a64482ff84920a1740f864c57ece4fb4ddf6dbb521ebd61fa2987b849635b30",
+        "relativePath": "slot-04-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-04-response.bin",
+        "bytes": 1650,
+        "sha256": "034724a4fb4546cada2f1c17814befeacf7802d67bc5a1fa9f44e866c918a055",
+        "relativePath": "slot-04-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-04-text.txt",
+        "bytes": 1324,
+        "sha256": "949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2",
+        "relativePath": "slot-04-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-05-request.json",
+        "bytes": 3665,
+        "sha256": "54706b3b93eb39addde7c9d5d7e17a79201b974d3d7720e7bb7342824178fed9",
+        "relativePath": "slot-05-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-05-response.bin",
+        "bytes": 1478,
+        "sha256": "971eb74af6b6ddca93000d63e6e97639f3bcee1b99505280a428c6d50ff8de3d",
+        "relativePath": "slot-05-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-05-text.txt",
+        "bytes": 1154,
+        "sha256": "e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03",
+        "relativePath": "slot-05-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-06-request.json",
+        "bytes": 3665,
+        "sha256": "08b4ed6f741a089ee446083980bb45d96aa44cdf1338f576e4e61617696c6c32",
+        "relativePath": "slot-06-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-06-response.bin",
+        "bytes": 1550,
+        "sha256": "b7d2a2e5822f80e9d5a26abf08a3a3bbc9570399c40895f9b506e3670af03684",
+        "relativePath": "slot-06-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-06-text.txt",
+        "bytes": 1227,
+        "sha256": "4e2cb7c50895c1ec0bf5794abf22e3ac23e395b1ea5904da99ee9203fa8120a2",
+        "relativePath": "slot-06-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-07-request.json",
+        "bytes": 3633,
+        "sha256": "eff53b783afe3a56ec613acaab411fcc6c67cc965b89e57cbb8df51b186617af",
+        "relativePath": "slot-07-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-07-response.bin",
+        "bytes": 1666,
+        "sha256": "00fa4cbd88883668805153bedab7513bda6cbbf1a195c85db1fcb5335a56e1ab",
+        "relativePath": "slot-07-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-07-text.txt",
+        "bytes": 1343,
+        "sha256": "3c76035ba02afa2fa8f227db913050fe5f74286d8071c95cb0309a01d7a528c9",
+        "relativePath": "slot-07-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-08-request.json",
+        "bytes": 3633,
+        "sha256": "8361faeb7191541a0cffd732dffb49d7c052851e267fb8cd5fea963f31d5424d",
+        "relativePath": "slot-08-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-08-response.bin",
+        "bytes": 1497,
+        "sha256": "a3d8e9aaa4aefb89c024051456adfbe660281c2bd235644c37fabb346e275d99",
+        "relativePath": "slot-08-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-08-text.txt",
+        "bytes": 1173,
+        "sha256": "fea8c58fe1f52802798f95428739dc815b9a57066fe468d2ef009412d1518507",
+        "relativePath": "slot-08-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-09-request.json",
+        "bytes": 3476,
+        "sha256": "21e6b22017d512dfd7a7182a4d4f1d7e4868452d9acf579bfb164ea18b547687",
+        "relativePath": "slot-09-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-09-response.bin",
+        "bytes": 1323,
+        "sha256": "e7f4722cbc8ad3aee6a9e6594049d09b8a6d2a32303ad24050b922d5f12ccf3c",
+        "relativePath": "slot-09-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-09-text.txt",
+        "bytes": 1000,
+        "sha256": "975b8e21b47662618916eaf606258d19c1f8539e6c0e7c4c802b56702a4366bc",
+        "relativePath": "slot-09-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-10-request.json",
+        "bytes": 3476,
+        "sha256": "3453dd21bf60b5ccf492dbbb27b78c9f3dce58f2a6909409de7cde1d06789f4a",
+        "relativePath": "slot-10-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-10-response.bin",
+        "bytes": 1291,
+        "sha256": "9ad485f83d8042bba35658b763307e9f2a6b357094d8b2c328fac34c303286fe",
+        "relativePath": "slot-10-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-10-text.txt",
+        "bytes": 967,
+        "sha256": "73cda9be4ccecdcae6f0c0a26af6ecf804b57469e552de3a4b362871d0610c97",
+        "relativePath": "slot-10-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-11-request.json",
+        "bytes": 3482,
+        "sha256": "def1ee1d0fd0a83f92bface181dfd62c7525cc3ccda51beefa0d3469bb1760cc",
+        "relativePath": "slot-11-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-11-response.bin",
+        "bytes": 1490,
+        "sha256": "20f20ea5bb82fd5fde758c418cb73262bb997521f3a1d59e4d3e04b168850c01",
+        "relativePath": "slot-11-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-11-text.txt",
+        "bytes": 1169,
+        "sha256": "6267d9b00c882a982dcbd91917a9941a5578e4772ce1518cbb60234cdb4501c4",
+        "relativePath": "slot-11-text.txt"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-12-request.json",
+        "bytes": 3482,
+        "sha256": "e7d9b3ebb5012304b39d742dbb1e7154bbae00870e7575769d33e99bdb423f79",
+        "relativePath": "slot-12-request.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-12-response.bin",
+        "bytes": 1500,
+        "sha256": "f839a1039aa2b0865032437adf328bb6de9c3c4278d1c30bf19916d97d6a4a06",
+        "relativePath": "slot-12-response.bin"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-12-text.txt",
+        "bytes": 1172,
+        "sha256": "269bea5577dd98eff28475f37e5f5f70efec83fd1233b34bf265887cfb9037f6",
+        "relativePath": "slot-12-text.txt"
+      }
+    ],
+    "sourceUnchanged": true,
+    "byteExact": true,
+    "fileCount": 40,
+    "logicalBytes": 106043
+  },
+  "serviceRetention": {
+    "sourceDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-gemma3-4b-run03",
+    "copyDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/service-output-01",
+    "sourceBefore": [
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-gemma3-4b-run03/endpoint.json",
+        "bytes": 277,
+        "sha256": "04e72f83fded635be8949913d069440bbdf33ae5bc04141121071e7e6b92e3a5",
+        "relativePath": "endpoint.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-gemma3-4b-run03/launch-intent.json",
+        "bytes": 5860,
+        "sha256": "e751ed2df4b030ca0124e39edfc111c2dad92bbfcda8e7211e08e2ccaf73f3fd",
+        "relativePath": "launch-intent.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-gemma3-4b-run03/owned-process.json",
+        "bytes": 3650,
+        "sha256": "45973d45e56c8fe5c9ce81b06a1e3b3edcfdf739d78f7474afb36563269007a5",
+        "relativePath": "owned-process.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-gemma3-4b-run03/service.log",
+        "bytes": 73757,
+        "sha256": "0149df2454558f1e56ff8c42db405a45b6e14e5c5251fb09583bcd21de5c5a18",
+        "relativePath": "service.log"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-gemma3-4b-run03/stop-request",
+        "bytes": 122,
+        "sha256": "932df9764bd330630f79ca6c6d22d3d0a50284ae150e4d74380e2d6d2aa8f456",
+        "relativePath": "stop-request"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-gemma3-4b-run03/supervision-result.json",
+        "bytes": 16162,
+        "sha256": "fd61d580467b642a852187b31acc820e5e4a639ad7ed20a35684dae976e8d101",
+        "relativePath": "supervision-result.json"
+      }
+    ],
+    "sourceAfter": [
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-gemma3-4b-run03/endpoint.json",
+        "bytes": 277,
+        "sha256": "04e72f83fded635be8949913d069440bbdf33ae5bc04141121071e7e6b92e3a5",
+        "relativePath": "endpoint.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-gemma3-4b-run03/launch-intent.json",
+        "bytes": 5860,
+        "sha256": "e751ed2df4b030ca0124e39edfc111c2dad92bbfcda8e7211e08e2ccaf73f3fd",
+        "relativePath": "launch-intent.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-gemma3-4b-run03/owned-process.json",
+        "bytes": 3650,
+        "sha256": "45973d45e56c8fe5c9ce81b06a1e3b3edcfdf739d78f7474afb36563269007a5",
+        "relativePath": "owned-process.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-gemma3-4b-run03/service.log",
+        "bytes": 73757,
+        "sha256": "0149df2454558f1e56ff8c42db405a45b6e14e5c5251fb09583bcd21de5c5a18",
+        "relativePath": "service.log"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-gemma3-4b-run03/stop-request",
+        "bytes": 122,
+        "sha256": "932df9764bd330630f79ca6c6d22d3d0a50284ae150e4d74380e2d6d2aa8f456",
+        "relativePath": "stop-request"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-gemma3-4b-run03/supervision-result.json",
+        "bytes": 16162,
+        "sha256": "fd61d580467b642a852187b31acc820e5e4a639ad7ed20a35684dae976e8d101",
+        "relativePath": "supervision-result.json"
+      }
+    ],
+    "copies": [
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/service-output-01/endpoint.json",
+        "bytes": 277,
+        "sha256": "04e72f83fded635be8949913d069440bbdf33ae5bc04141121071e7e6b92e3a5",
+        "relativePath": "endpoint.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/service-output-01/launch-intent.json",
+        "bytes": 5860,
+        "sha256": "e751ed2df4b030ca0124e39edfc111c2dad92bbfcda8e7211e08e2ccaf73f3fd",
+        "relativePath": "launch-intent.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/service-output-01/owned-process.json",
+        "bytes": 3650,
+        "sha256": "45973d45e56c8fe5c9ce81b06a1e3b3edcfdf739d78f7474afb36563269007a5",
+        "relativePath": "owned-process.json"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/service-output-01/service.log",
+        "bytes": 73757,
+        "sha256": "0149df2454558f1e56ff8c42db405a45b6e14e5c5251fb09583bcd21de5c5a18",
+        "relativePath": "service.log"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/service-output-01/stop-request",
+        "bytes": 122,
+        "sha256": "932df9764bd330630f79ca6c6d22d3d0a50284ae150e4d74380e2d6d2aa8f456",
+        "relativePath": "stop-request"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/service-output-01/supervision-result.json",
+        "bytes": 16162,
+        "sha256": "fd61d580467b642a852187b31acc820e5e4a639ad7ed20a35684dae976e8d101",
+        "relativePath": "supervision-result.json"
+      }
+    ],
+    "sourceUnchanged": true,
+    "byteExact": true,
+    "fileCount": 6,
+    "logicalBytes": 99828
+  },
+  "ledger": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/ledger.json",
+    "bytes": 22892,
+    "sha256": "fe49740ff34ecaba9cf38d484a134bcc81ae7fa60706a4917d09be00a231a851"
+  },
+  "metadataOnly": true,
+  "runner": {
+    "status": "completed",
+    "completeResponses": 12,
+    "completePairs": 6,
+    "unstarted": 0,
+    "probeElapsedSeconds": 150.22106199990958,
+    "serviceRemainingAtProbeStartSeconds": 1187.0777478329837,
+    "oneInventoryGet": true,
+    "generationPostCount": 12,
+    "retriesObserved": 0,
+    "requestBodiesAndFrozenPromptsExact": true,
+    "fullResponseTextCopiesExact": true,
+    "logicalRetainedBytes": 106043,
+    "storageBudgetBytes": 67108864,
+    "generationElapsedSeconds": {
+      "min": 4.351362582994625,
+      "max": 34.46332554100081,
+      "sum": 150.15718474704772
+    },
+    "providerOutputTokenCounts": [
+      405,
+      334,
+      322,
+      312,
+      285,
+      291,
+      309,
+      277,
+      240,
+      218,
+      264,
+      286
+    ],
+    "providerPromptEvaluationTokenCounts": [
+      841,
+      841,
+      877,
+      877,
+      855,
+      855,
+      844,
+      844,
+      812,
+      812,
+      816,
+      816
+    ],
+    "slots": [
+      {
+        "slot": 1,
+        "anchorStep": 60,
+        "condition": "A",
+        "status": "complete",
+        "prompt": {
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/prompts/step-060-A.txt",
+          "bytes": 3552,
+          "sha256": "25d3a8ff255e65a2310d9b34fbae939379fce97d7d74173ff0d296d6309b71ec"
+        },
+        "request": {
+          "bytes": 3725,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-01-request.json",
+          "sha256": "f31d6c588a152a9e66008d2808c0aa52098d74db149b31debec3a2183e7937d8"
+        },
+        "response": {
+          "bytes": 2091,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-01-response.bin",
+          "sha256": "11b69d0a12dd79ce0c6cf268c2cf914911499c444c62e99a0ac699c5563248fb"
+        },
+        "text": {
+          "bytes": 1758,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-01-text.txt",
+          "sha256": "20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89"
+        },
+        "elapsedSeconds": 34.46332554100081,
+        "providerOutputTokens": "405",
+        "providerPromptEvaluationTokens": "841",
+        "providerDoneReason": "stop",
+        "providerTotalDurationNanoseconds": "34461223541",
+        "providerLoadDurationNanoseconds": "1554895416",
+        "providerPromptEvalDurationNanoseconds": "1112963000",
+        "providerEvalDurationNanoseconds": "31786573000"
+      },
+      {
+        "slot": 2,
+        "anchorStep": 60,
+        "condition": "B",
+        "status": "complete",
+        "prompt": {
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/prompts/step-060-B.txt",
+          "bytes": 3552,
+          "sha256": "a3e64394d48da95c47dd35f99d15c016586908fec6f987f04ac7350eca8642ce"
+        },
+        "request": {
+          "bytes": 3725,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-02-request.json",
+          "sha256": "a6fc6a6781fcbd46140154e91097f13f2971afc0b66ec407182dee1946cda5bc"
+        },
+        "response": {
+          "bytes": 1862,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-02-response.bin",
+          "sha256": "a856bf9699a9064d4a754856169146c7598f3fa8dc2b1e95a2591f8673dc26b8"
+        },
+        "text": {
+          "bytes": 1530,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-02-text.txt",
+          "sha256": "d3250d1962ef3ef76f9dd90764fb83504d0302594cc32ecfeee0bf16b96577f8"
+        },
+        "elapsedSeconds": 12.130686708027497,
+        "providerOutputTokens": "334",
+        "providerPromptEvaluationTokens": "841",
+        "providerDoneReason": "stop",
+        "providerTotalDurationNanoseconds": "12129347042",
+        "providerLoadDurationNanoseconds": "1162042",
+        "providerPromptEvalDurationNanoseconds": "1174559000",
+        "providerEvalDurationNanoseconds": "10926415000"
+      },
+      {
+        "slot": 3,
+        "anchorStep": 120,
+        "condition": "B",
+        "status": "complete",
+        "prompt": {
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/prompts/step-120-B.txt",
+          "bytes": 3564,
+          "sha256": "890c8565204efe0213e402581669d6bc0f9bb22dbfb67e43f81acfcd890a1c1f"
+        },
+        "request": {
+          "bytes": 3731,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-03-request.json",
+          "sha256": "6c7da968915c7236540a118ad9532fd4f43abfe40f6fbaab023ecd71dfbb2eca"
+        },
+        "response": {
+          "bytes": 1687,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-03-response.bin",
+          "sha256": "596547c4d4782745ed1b39406686185dbe6726002ebc4d628a0601e9f0e63b64"
+        },
+        "text": {
+          "bytes": 1361,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-03-text.txt",
+          "sha256": "0808f275395e74b23e60a09b5d48ef78168332e931c3220f6555127cb1fd799f"
+        },
+        "elapsedSeconds": 11.322633666917682,
+        "providerOutputTokens": "322",
+        "providerPromptEvaluationTokens": "877",
+        "providerDoneReason": "stop",
+        "providerTotalDurationNanoseconds": "11321903458",
+        "providerLoadDurationNanoseconds": "1167417",
+        "providerPromptEvalDurationNanoseconds": "1271696000",
+        "providerEvalDurationNanoseconds": "10019793000"
+      },
+      {
+        "slot": 4,
+        "anchorStep": 120,
+        "condition": "A",
+        "status": "complete",
+        "prompt": {
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/prompts/step-120-A.txt",
+          "bytes": 3564,
+          "sha256": "abf66ae30e8ff6dc6beb1cd35bc6c9bdb41dcf77bcbe828edd3c7436bc06a334"
+        },
+        "request": {
+          "bytes": 3731,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-04-request.json",
+          "sha256": "4a64482ff84920a1740f864c57ece4fb4ddf6dbb521ebd61fa2987b849635b30"
+        },
+        "response": {
+          "bytes": 1650,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-04-response.bin",
+          "sha256": "034724a4fb4546cada2f1c17814befeacf7802d67bc5a1fa9f44e866c918a055"
+        },
+        "text": {
+          "bytes": 1324,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-04-text.txt",
+          "sha256": "949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2"
+        },
+        "elapsedSeconds": 15.659204124938697,
+        "providerOutputTokens": "312",
+        "providerPromptEvaluationTokens": "877",
+        "providerDoneReason": "stop",
+        "providerTotalDurationNanoseconds": "15658451250",
+        "providerLoadDurationNanoseconds": "1145292",
+        "providerPromptEvalDurationNanoseconds": "1327097000",
+        "providerEvalDurationNanoseconds": "14301788000"
+      },
+      {
+        "slot": 5,
+        "anchorStep": 180,
+        "condition": "A",
+        "status": "complete",
+        "prompt": {
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/prompts/step-180-A.txt",
+          "bytes": 3498,
+          "sha256": "aa63ea3c2f236a7097f9e3d4091294a831b10d903053dbbea694cc7213529130"
+        },
+        "request": {
+          "bytes": 3665,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-05-request.json",
+          "sha256": "54706b3b93eb39addde7c9d5d7e17a79201b974d3d7720e7bb7342824178fed9"
+        },
+        "response": {
+          "bytes": 1478,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-05-response.bin",
+          "sha256": "971eb74af6b6ddca93000d63e6e97639f3bcee1b99505280a428c6d50ff8de3d"
+        },
+        "text": {
+          "bytes": 1154,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-05-text.txt",
+          "sha256": "e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03"
+        },
+        "elapsedSeconds": 10.765184458112344,
+        "providerOutputTokens": "285",
+        "providerPromptEvaluationTokens": "855",
+        "providerDoneReason": "stop",
+        "providerTotalDurationNanoseconds": "10764389541",
+        "providerLoadDurationNanoseconds": "1248958",
+        "providerPromptEvalDurationNanoseconds": "1252306000",
+        "providerEvalDurationNanoseconds": "9482584000"
+      },
+      {
+        "slot": 6,
+        "anchorStep": 180,
+        "condition": "B",
+        "status": "complete",
+        "prompt": {
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/prompts/step-180-B.txt",
+          "bytes": 3498,
+          "sha256": "df9ce8da48c45aa3badbd77266b9fffd76e53834f481d2de5bf8f32a4036dfa2"
+        },
+        "request": {
+          "bytes": 3665,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-06-request.json",
+          "sha256": "08b4ed6f741a089ee446083980bb45d96aa44cdf1338f576e4e61617696c6c32"
+        },
+        "response": {
+          "bytes": 1550,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-06-response.bin",
+          "sha256": "b7d2a2e5822f80e9d5a26abf08a3a3bbc9570399c40895f9b506e3670af03684"
+        },
+        "text": {
+          "bytes": 1227,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-06-text.txt",
+          "sha256": "4e2cb7c50895c1ec0bf5794abf22e3ac23e395b1ea5904da99ee9203fa8120a2"
+        },
+        "elapsedSeconds": 9.42520466609858,
+        "providerOutputTokens": "291",
+        "providerPromptEvaluationTokens": "855",
+        "providerDoneReason": "stop",
+        "providerTotalDurationNanoseconds": "9424602625",
+        "providerLoadDurationNanoseconds": "898000",
+        "providerPromptEvalDurationNanoseconds": "1236772000",
+        "providerEvalDurationNanoseconds": "8153422000"
+      },
+      {
+        "slot": 7,
+        "anchorStep": 240,
+        "condition": "B",
+        "status": "complete",
+        "prompt": {
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/prompts/step-240-B.txt",
+          "bytes": 3466,
+          "sha256": "9cfc1a75f42093b1022e8fd6c71eb2929db0bd0e54bf8c5e6634bee4a1c9ef66"
+        },
+        "request": {
+          "bytes": 3633,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-07-request.json",
+          "sha256": "eff53b783afe3a56ec613acaab411fcc6c67cc965b89e57cbb8df51b186617af"
+        },
+        "response": {
+          "bytes": 1666,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-07-response.bin",
+          "sha256": "00fa4cbd88883668805153bedab7513bda6cbbf1a195c85db1fcb5335a56e1ab"
+        },
+        "text": {
+          "bytes": 1343,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-07-text.txt",
+          "sha256": "3c76035ba02afa2fa8f227db913050fe5f74286d8071c95cb0309a01d7a528c9"
+        },
+        "elapsedSeconds": 5.588464542059228,
+        "providerOutputTokens": "309",
+        "providerPromptEvaluationTokens": "844",
+        "providerDoneReason": "stop",
+        "providerTotalDurationNanoseconds": "5587750833",
+        "providerLoadDurationNanoseconds": "988625",
+        "providerPromptEvalDurationNanoseconds": "1064320999",
+        "providerEvalDurationNanoseconds": "4497538000"
+      },
+      {
+        "slot": 8,
+        "anchorStep": 240,
+        "condition": "A",
+        "status": "complete",
+        "prompt": {
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/prompts/step-240-A.txt",
+          "bytes": 3466,
+          "sha256": "5e258c908ed42d84d710a47e072d338f2f5b32825a2ee591b2199dc6551824ca"
+        },
+        "request": {
+          "bytes": 3633,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-08-request.json",
+          "sha256": "8361faeb7191541a0cffd732dffb49d7c052851e267fb8cd5fea963f31d5424d"
+        },
+        "response": {
+          "bytes": 1497,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-08-response.bin",
+          "sha256": "a3d8e9aaa4aefb89c024051456adfbe660281c2bd235644c37fabb346e275d99"
+        },
+        "text": {
+          "bytes": 1173,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-08-text.txt",
+          "sha256": "fea8c58fe1f52802798f95428739dc815b9a57066fe468d2ef009412d1518507"
+        },
+        "elapsedSeconds": 4.973894125083461,
+        "providerOutputTokens": "277",
+        "providerPromptEvaluationTokens": "844",
+        "providerDoneReason": "stop",
+        "providerTotalDurationNanoseconds": "4973227458",
+        "providerLoadDurationNanoseconds": "1033583",
+        "providerPromptEvalDurationNanoseconds": "1109709000",
+        "providerEvalDurationNanoseconds": "3836385000"
+      },
+      {
+        "slot": 9,
+        "anchorStep": 300,
+        "condition": "A",
+        "status": "complete",
+        "prompt": {
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/prompts/step-300-A.txt",
+          "bytes": 3309,
+          "sha256": "c40e46382c1f2568d4a71d47da893b0e78f19c11d67015005c1418e4d216b62f"
+        },
+        "request": {
+          "bytes": 3476,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-09-request.json",
+          "sha256": "21e6b22017d512dfd7a7182a4d4f1d7e4868452d9acf579bfb164ea18b547687"
+        },
+        "response": {
+          "bytes": 1323,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-09-response.bin",
+          "sha256": "e7f4722cbc8ad3aee6a9e6594049d09b8a6d2a32303ad24050b922d5f12ccf3c"
+        },
+        "text": {
+          "bytes": 1000,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-09-text.txt",
+          "sha256": "975b8e21b47662618916eaf606258d19c1f8539e6c0e7c4c802b56702a4366bc"
+        },
+        "elapsedSeconds": 4.351362582994625,
+        "providerOutputTokens": "240",
+        "providerPromptEvaluationTokens": "812",
+        "providerDoneReason": "stop",
+        "providerTotalDurationNanoseconds": "4350781834",
+        "providerLoadDurationNanoseconds": "860959",
+        "providerPromptEvalDurationNanoseconds": "1023903000",
+        "providerEvalDurationNanoseconds": "3295937000"
+      },
+      {
+        "slot": 10,
+        "anchorStep": 300,
+        "condition": "B",
+        "status": "complete",
+        "prompt": {
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/prompts/step-300-B.txt",
+          "bytes": 3309,
+          "sha256": "2643c2d3dac78c4cd112da775aaeb942e44ff5791f4f9533c5e4c3d573fb9724"
+        },
+        "request": {
+          "bytes": 3476,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-10-request.json",
+          "sha256": "3453dd21bf60b5ccf492dbbb27b78c9f3dce58f2a6909409de7cde1d06789f4a"
+        },
+        "response": {
+          "bytes": 1291,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-10-response.bin",
+          "sha256": "9ad485f83d8042bba35658b763307e9f2a6b357094d8b2c328fac34c303286fe"
+        },
+        "text": {
+          "bytes": 967,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-10-text.txt",
+          "sha256": "73cda9be4ccecdcae6f0c0a26af6ecf804b57469e552de3a4b362871d0610c97"
+        },
+        "elapsedSeconds": 4.4232821660116315,
+        "providerOutputTokens": "218",
+        "providerPromptEvaluationTokens": "812",
+        "providerDoneReason": "stop",
+        "providerTotalDurationNanoseconds": "4422619917",
+        "providerLoadDurationNanoseconds": "1014917",
+        "providerPromptEvalDurationNanoseconds": "1375242000",
+        "providerEvalDurationNanoseconds": "3001023000"
+      },
+      {
+        "slot": 11,
+        "anchorStep": 360,
+        "condition": "B",
+        "status": "complete",
+        "prompt": {
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/prompts/step-360-B.txt",
+          "bytes": 3315,
+          "sha256": "3a724ae6f3a3132b9787511b2c678f2a170078e8d11cf130519127ad290e525f"
+        },
+        "request": {
+          "bytes": 3482,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-11-request.json",
+          "sha256": "def1ee1d0fd0a83f92bface181dfd62c7525cc3ccda51beefa0d3469bb1760cc"
+        },
+        "response": {
+          "bytes": 1490,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-11-response.bin",
+          "sha256": "20f20ea5bb82fd5fde758c418cb73262bb997521f3a1d59e4d3e04b168850c01"
+        },
+        "text": {
+          "bytes": 1169,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-11-text.txt",
+          "sha256": "6267d9b00c882a982dcbd91917a9941a5578e4772ce1518cbb60234cdb4501c4"
+        },
+        "elapsedSeconds": 4.568178165936843,
+        "providerOutputTokens": "264",
+        "providerPromptEvaluationTokens": "816",
+        "providerDoneReason": "stop",
+        "providerTotalDurationNanoseconds": "4567582125",
+        "providerLoadDurationNanoseconds": "842416",
+        "providerPromptEvalDurationNanoseconds": "969774000",
+        "providerEvalDurationNanoseconds": "3578395000"
+      },
+      {
+        "slot": 12,
+        "anchorStep": 360,
+        "condition": "A",
+        "status": "complete",
+        "prompt": {
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/prompts/step-360-A.txt",
+          "bytes": 3315,
+          "sha256": "92f4477403855d9ba6396db38ab94c5cf4e2fe2fd416cccbed28012ebb3d96e4"
+        },
+        "request": {
+          "bytes": 3482,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-12-request.json",
+          "sha256": "e7d9b3ebb5012304b39d742dbb1e7154bbae00870e7575769d33e99bdb423f79"
+        },
+        "response": {
+          "bytes": 1500,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-12-response.bin",
+          "sha256": "f839a1039aa2b0865032437adf328bb6de9c3c4278d1c30bf19916d97d6a4a06"
+        },
+        "text": {
+          "bytes": 1172,
+          "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/slot-12-text.txt",
+          "sha256": "269bea5577dd98eff28475f37e5f5f70efec83fd1233b34bf265887cfb9037f6"
+        },
+        "elapsedSeconds": 32.48576399986632,
+        "providerOutputTokens": "286",
+        "providerPromptEvaluationTokens": "816",
+        "providerDoneReason": "stop",
+        "providerTotalDurationNanoseconds": "32485076500",
+        "providerLoadDurationNanoseconds": "1070750",
+        "providerPromptEvalDurationNanoseconds": "1010121000",
+        "providerEvalDurationNanoseconds": "31454191000"
+      }
+    ]
+  },
+  "ownedService": {
+    "pid": 82643,
+    "pgid": 82643,
+    "sid": 82643,
+    "supervisorPid": 82628,
+    "endpoint": "http://127.0.0.1:58278",
+    "softwareVersion": "0.40.4",
+    "software": {
+      "executable": {
+        "path": "/Applications/Ollama.app/Contents/Resources/ollama",
+        "exists": true,
+        "ordinaryFile": true,
+        "symlink": false,
+        "device": "16777234",
+        "inode": "388523775",
+        "sizeBytes": 52241008,
+        "mtimeNs": "1791991395642191977",
+        "ctimeNs": "1791991395642191977",
+        "mode": "0755",
+        "uid": 501,
+        "sha256": "61e3067857f23046338a3d1a14360ce749fbe0aa0b6168e728b7d11c1e219619",
+        "readBytes": 52241008
+      },
+      "plist": {
+        "path": "/Applications/Ollama.app/Contents/Info.plist",
+        "exists": true,
+        "ordinaryFile": true,
+        "symlink": false,
+        "device": "16777234",
+        "inode": "388523809",
+        "sizeBytes": 1377,
+        "mtimeNs": "1791991396125681974",
+        "ctimeNs": "1791991396125681974",
+        "mode": "0755",
+        "uid": 501,
+        "sha256": "b2c8889493ebe26566169a3ac379ff86ddfdfe7cc8bea443715e4f48262b8b91",
+        "readBytes": 1377
+      },
+      "versionFromPlist": "0.40.4"
+    },
+    "elapsedSeconds": 188.8356129170861,
+    "stopReason": "explicit stop",
+    "sigtermSent": true,
+    "sigkillSent": false,
+    "quiescentBeforeLeaderReap": true,
+    "unreadableLeaderExitProven": true,
+    "exitCode": 0,
+    "conventionalMetadataUnchanged": true,
+    "credentialCheckLimit": "lstat continuity only; no key/config content read or hash",
+    "cleanupLimit": "Original owned process group verified quiescent before leader reap. Escaped descendants were not inventoried.",
+    "httpLog": [
+      {
+        "status": 200,
+        "method": "GET",
+        "path": "/api/tags"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/api/chat"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/api/chat"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/api/chat"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/api/chat"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/api/chat"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/api/chat"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/api/chat"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/api/chat"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/api/chat"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/api/chat"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/api/chat"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/api/chat"
+      }
+    ],
+    "logBytes": 73757,
+    "discardedLogBytes": 0,
+    "errors": []
+  },
+  "preservation": {
+    "freeze": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/evaluation-freeze-01.json",
+      "bytes": 158806,
+      "sha256": "a3ac935f32dd103fb3d7452fcfed2e9ec0a812bf02aa9846162a332c7ed2567c"
+    },
+    "frozenFileCount": 572,
+    "frozenFilesUnchanged": true,
+    "priorCopyManifest": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/copy-manifest-01.json",
+      "bytes": 71045,
+      "sha256": "b4b6200985dbc54b8c589d4bafadd69b2745bafd8bffe751c879d117b13e8717"
+    },
+    "priorFileCount": 94,
+    "priorFilesUnchanged": true,
+    "sourceOutputFilesUnchanged": true
+  },
+  "limits": [
+    "No prose was interpreted or printed by this analysis.",
+    "Provider token/duration counts are bookkeeping claims, not proof of full context processing.",
+    "Transport-complete does not mean app journal eligibility, save, numerical application or writing quality.",
+    "Cleanup proof covers original owned group before leader reap; no fresh process inventory or escaped-descendant claim.",
+    "No GPU, platform, endurance, causal writing or stable model-effect qualification."
+  ],
+  "endedAtUtc": "2026-10-15T14:56:46.772935+00:00"
+}

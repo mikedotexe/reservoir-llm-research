@@ -46,7 +46,7 @@ describe('My reservoir explicit operation and evidence', () => {
   });
   it('keeps independent reading and labels new journals without moving current selection', async () => {
     const { controller, push } = reservoirFixture(); await controller.create(DEFAULT_SUSTAINED_CONFIG); await settle(); push({ revision: '7', step: 7, journalCount: 2, turnCount: 2 }); await controller.selectJournal('journal-1'); push({ revision: '10', step: 10, journalCount: 3, turnCount: 3 });
-    const html = renderToStaticMarkup(<MyReservoirJournals state={controller.snapshot()} controller={controller}/>); expect(html).toContain('1 new'); expect(html).toContain('Writing at step 3'); expect(html).toContain('reading position never moves the live clock');
+    const html = renderToStaticMarkup(<MyReservoirJournals state={controller.snapshot()} controller={controller}/>); expect(html).toContain('1 new'); expect(html).toContain('Observed at step 3'); expect(html).toContain('reading never moves the live clock');
   });
   it('labels pending save, explicit retry and skip without inventing successful durability', () => {
     const { controller } = reservoirFixture(), state = { ...controller.snapshot(), summary: reservoirSummary({ phase: 'storageBlocked', canStart: false, canRetrySave: true, canSkipFeedback: true, pendingSave: { entryId: 'pending-j', observedStep: 30, attemptId: 4 } }) };

@@ -1,0 +1,10 @@
+{
+  "schema": "reservoir-renderer-preparation-v1",
+  "recordedAtUtc": "2026-10-14T18:20:53.041034+00:00",
+  "status": "failed-before-render",
+  "scope": "Synthetic temporary-file smoke check only; no actual episode response, production verifier, provider/model/UI/process call.",
+  "failure": "ValueError: Nonordinary ancestor: /var",
+  "cause": "Test driver passed the macOS /var TemporaryDirectory alias to the existing strict immutable-input checker. It rejected the symlink ancestor before any render. The next test driver will resolve this temporary path; no renderer/checker source change.",
+  "rendererSha256": "96feb34be971042fc156ebed907e847f5da8ce9ec9f54e61b96c3ed892c31fd0",
+  "checksCompleted": 0
+}

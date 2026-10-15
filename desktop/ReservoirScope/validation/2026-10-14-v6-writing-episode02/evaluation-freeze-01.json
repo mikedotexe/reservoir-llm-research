@@ -1,0 +1,547 @@
+{
+  "schema": "reservoir-prospective-episode-freeze-v1",
+  "frozenAtUtc": "2026-10-14T16:09:30.990744+00:00",
+  "episodeId": "v6-writing-0.18.0-episode02",
+  "status": "prospective-before-admission",
+  "plannedOpportunities": 12,
+  "newModelCallsAtFreeze": 0,
+  "newSessionCreatedAtFreeze": false,
+  "files": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/PROTOCOL.md",
+      "bytes": 4385,
+      "sha256": "2c8d0ca44ab3924e33de0f005e9879d6b48b445b6ca6b45f3ab0cfbebb617094"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/run-plan.json",
+      "bytes": 4735,
+      "sha256": "9bbd287c239172a899e85d25ab6771aeef73ca5afd55391e3ac68951e7e4656f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/RUBRIC.md",
+      "bytes": 9262,
+      "sha256": "b1ddafd063da2f701e55000b1c09f66bf1679338c346814a11db3facfe74d1e3"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/EVALUATION.md",
+      "bytes": 8034,
+      "sha256": "caa5953a7fca25dd108ad9e89a39700c5d53516ce5d3cb36d30c830ed0b4fbbe"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/check_real_model_export.py",
+      "bytes": 45821,
+      "sha256": "842705171411997c5025f1cc162ec1cd4c29f0a43a85fb037ee9fd291b2db598"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/test_real_model_export.py",
+      "bytes": 28667,
+      "sha256": "bff7774aab843d5a44e10982d5058e2a43df50284fe0289584da703dd9ee97e3"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/review-helper-reuse-01.json",
+      "bytes": 1563,
+      "sha256": "81313b1d4c3c7f5b360f5ed07bddb9dd19b15170f3b9929998910163cd135d25"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/preparation-reuse-01.json",
+      "bytes": 2680,
+      "sha256": "d28b1ac89478e52cf1182dd52ae10d0891708e1eaabb94bffaf2539f43277ff9"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/admit_once.py",
+      "bytes": 2783,
+      "sha256": "f31209c60ff939ccc2fe5d0f1c9c7882d5b9c1bc90dd86ed866c5c7dab25a05b"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/freeze_episode.py",
+      "bytes": 2901,
+      "sha256": "1911ebb2a57ce4ef26d2cd7cd6d49b59a376ca3fa0de8b5afdf5e2ee4098226a"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/owned_model.py",
+      "bytes": 38692,
+      "sha256": "415a585dfa4502e555331b4472cf08b6afbd3207944e6d02d952e133175f8c1b"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/test_owned_model.py",
+      "bytes": 30996,
+      "sha256": "da68770ceed2999ef55d9a17149b244dde639bf21f0a5aa43e06aab73d57bb5d"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/software-selection.json",
+      "bytes": 1374,
+      "sha256": "f86c9011ed33881ffae71679a3c96755c3d7d1cfbd434b0b9535a3493192a127"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/helper-source-continuity-01.json",
+      "bytes": 2698,
+      "sha256": "8476b4c927cc305a9eb886b5ed84d4b23440babf0b32a93b519d22b84ce6cdb8"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/RUNTIME-REVIEW.md",
+      "bytes": 8606,
+      "sha256": "d364c73acd40f9e5f486f7e40c3a879456e81fe40562ba4989ed5a0ddd895e28"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-review-01.json",
+      "bytes": 5288,
+      "sha256": "bf0692ef37c38ff0d52b9ef27bad288f882aaedb1a88d305338fef98fe229166"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/HELPER-REVIEW.md",
+      "bytes": 3542,
+      "sha256": "50159ffe6e05b1482f16b3bdc548140b867eae7c14a55b4175a992c5f3a2004e"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/owned-helper-tests-02.json",
+      "bytes": 5078,
+      "sha256": "18b73a3b4c180025dbfe18d30f7a38781e45db856ef0924d7bd53df7997b208f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/journal_quality.py",
+      "bytes": 29054,
+      "sha256": "5b296e8c04af879202bead1a294a4bb22519cdc5a0cd42bd692f8830d360f4c4"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/test_journal_quality.py",
+      "bytes": 36561,
+      "sha256": "aa4e297a52e639973ab2431265ba8181e8125b606012c1b050bdf066132d7f7f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/compare-fetch.json",
+      "bytes": 444,
+      "sha256": "7e4eb0d7141a39af90c1a4611f721b55dc63fe8ab02601bcdb6192b9d8be270f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/compare.json",
+      "bytes": 694739,
+      "sha256": "4e0d2b0a2cd7a2c2e29b44c7d104a5046f463a569f251865c99e4c2a56769527"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/diffs/LICENSE.diff",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/diffs/LLAMA_CPP_VERSION.diff",
+      "bytes": 88,
+      "sha256": "5ab92b38db24b35f7d0ea6583160941745b357814681fd09ff9d71b52ddfdfae"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/diffs/MLX_C_VERSION.diff",
+      "bytes": 146,
+      "sha256": "514c6511bde812ae09218319cebb6569cd4d33665b96cdab417ac974547290d5"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/diffs/MLX_VERSION.diff",
+      "bytes": 142,
+      "sha256": "ea73cd67482decf47c3aad73c6081555c16b167837b2434393802d8fbf4c1027"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/diffs/cmd__cmd.go.diff",
+      "bytes": 4741,
+      "sha256": "6a0fece9357e7504b1c3aab7e37457f24184faae9c38ca54f2b885e17d85912a"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/diffs/envconfig__config.go.diff",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/diffs/llm__llama_binary.go.diff",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/diffs/llm__llama_server.go.diff",
+      "bytes": 7135,
+      "sha256": "9cfc56c696e00ce20cce48ea0733549ddd54b6863166d74c2b25d9b9d13191ba"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/diffs/llm__llm_darwin.go.diff",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/diffs/manifest__manifest.go.diff",
+      "bytes": 10116,
+      "sha256": "629e8857a662fefd6679adc61cf81d7468d931d11ffa7d988b3f6f4c3dd92945"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/diffs/server__images.go.diff",
+      "bytes": 3073,
+      "sha256": "4250bc79d731f61833bb200d69e5d4efa9b561818735919f0647b98b9eac1f50"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/diffs/server__inference_request_log.go.diff",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/diffs/server__model_recommendations.go.diff",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/diffs/server__model_show_cache.go.diff",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/diffs/server__routes.go.diff",
+      "bytes": 17763,
+      "sha256": "93c3f03f2b7bf54c631a125b9148e5082dfed375abf3774172ed5f80ec58ad7a"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/diffs/server__sched.go.diff",
+      "bytes": 3669,
+      "sha256": "2fcc8efb332ee0415a1430d8ee5f3ce06cae6ccba7322596584357d79b0a7510"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/source-capture.json",
+      "bytes": 26618,
+      "sha256": "a0e3067d5235ded4d17f9d18fa0490b41ad88a5b670e920968df2b7a6a9f2315"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.3/LICENSE",
+      "bytes": 1058,
+      "sha256": "5934ed2ce0d15154bcdb9c85203210abac0da4314af34081e36df4599f90b226"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.3/LLAMA_CPP_VERSION",
+      "bytes": 7,
+      "sha256": "be2946d00aea665ae90747eb7fa26e6cd699f4b0a3f8346f9650b6fe692170ec"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.3/MLX_C_VERSION",
+      "bytes": 40,
+      "sha256": "87d08d1d22ed8892bb9f13f4d35673435fef213e8fd81eea415a3b004b9d8431"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.3/MLX_VERSION",
+      "bytes": 40,
+      "sha256": "f45dc47bfc25b40c5decea8336b5635a814dfa645c91e5bdec1015a92e63c0e0"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.3/cmd/cmd.go",
+      "bytes": 75691,
+      "sha256": "a39506bdc7ace59a3b7896d59b01318ad4b086efed105c3b8daffc4c76c2baf2"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.3/envconfig/config.go",
+      "bytes": 16343,
+      "sha256": "0b0ea669b31cfe2b54313427257326a2b7a909bbc7bf8a671035efc446fb1895"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.3/llm/llama_binary.go",
+      "bytes": 4034,
+      "sha256": "0361397eaea1f50ecf6d2774124dcba10c9a26a66f4d25479bf424998d8c3847"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.3/llm/llama_server.go",
+      "bytes": 90061,
+      "sha256": "8ce37fcd02f921ebd90ab51244e5f0a7f3ec52e3db1f9902a7c5be4853c034c1"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.3/llm/llm_darwin.go",
+      "bytes": 88,
+      "sha256": "a12b3401f1dd322f61e23ff519c56f5b9e1f3d5c544d713a765b3f7761abcb72"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.3/manifest/manifest.go",
+      "bytes": 42368,
+      "sha256": "2b534fa50c385a71d7b6e4d4bb6664feb8e65df209f91af84562424d8858936e"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.3/server/images.go",
+      "bytes": 53880,
+      "sha256": "550d1c3f870cacec72f0484f543c53a8f442dd136499c89c30ba37d923d4eda7"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.3/server/inference_request_log.go",
+      "bytes": 3719,
+      "sha256": "fa5e49084ef74e34626e4c914e7d46bce69ae329689ca8866e490aba022ac5ec"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.3/server/model_recommendations.go",
+      "bytes": 10733,
+      "sha256": "7100f8d5e7d9354c535e2199d1a350b6f94bce126434111162b370f52255749f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.3/server/model_show_cache.go",
+      "bytes": 18193,
+      "sha256": "4cd00596aff8fdc9160ed262ecea50292fae264c824251cff4672a2eba903854"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.3/server/routes.go",
+      "bytes": 104940,
+      "sha256": "d4cfd09d850db6e1790a4bf35fe2bbcad5fca16da97641d2ea197c27ac937e82"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.3/server/sched.go",
+      "bytes": 59824,
+      "sha256": "660ad9b4b523ad3c349c42712fe93ace84ece742f617495fda75740f5948c1ee"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/LICENSE",
+      "bytes": 1058,
+      "sha256": "5934ed2ce0d15154bcdb9c85203210abac0da4314af34081e36df4599f90b226"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/LLAMA_CPP_VERSION",
+      "bytes": 7,
+      "sha256": "5b13bf6cbfbf31f3c0d52716c71261fde64615e45bc33353bda67795230d4968"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/MLX_C_VERSION",
+      "bytes": 40,
+      "sha256": "fd1ce65583d401ec5fc83fbf00ae8ce46d3e5f0ae2664f73ff93640a4d42e1d6"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/MLX_VERSION",
+      "bytes": 40,
+      "sha256": "1b4d985e72f5bca37a4d92e3d23f8dd40848a46b16650bc635a5da4a047843dc"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/cmd/cmd.go",
+      "bytes": 76224,
+      "sha256": "749cd910c303a7b7189e8a6c309dafd8d0aa55afe87620db3bac36410eaff56c"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/envconfig/config.go",
+      "bytes": 16343,
+      "sha256": "0b0ea669b31cfe2b54313427257326a2b7a909bbc7bf8a671035efc446fb1895"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/llm/llama_binary.go",
+      "bytes": 4034,
+      "sha256": "0361397eaea1f50ecf6d2774124dcba10c9a26a66f4d25479bf424998d8c3847"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/llm/llama_server.go",
+      "bytes": 91649,
+      "sha256": "be96301d662bf18527fe0d481c15a4631ff47055c6db7ce1400feb264315c6bf"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/llm/llm_darwin.go",
+      "bytes": 88,
+      "sha256": "a12b3401f1dd322f61e23ff519c56f5b9e1f3d5c544d713a765b3f7761abcb72"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/manifest/manifest.go",
+      "bytes": 46476,
+      "sha256": "2aa036f61cfffdff2f85fa3e0f29478c314c00c53aced8f9c6cb9103359f1bec"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/server/images.go",
+      "bytes": 54321,
+      "sha256": "41903a5408026cf30b4c07ce84c9365c8fa504d523e946d644131d095b22220f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/server/inference_request_log.go",
+      "bytes": 3719,
+      "sha256": "fa5e49084ef74e34626e4c914e7d46bce69ae329689ca8866e490aba022ac5ec"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/server/model_recommendations.go",
+      "bytes": 10733,
+      "sha256": "7100f8d5e7d9354c535e2199d1a350b6f94bce126434111162b370f52255749f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/server/model_show_cache.go",
+      "bytes": 18193,
+      "sha256": "4cd00596aff8fdc9160ed262ecea50292fae264c824251cff4672a2eba903854"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/server/routes.go",
+      "bytes": 107111,
+      "sha256": "23b3202e270e8f3dba0c716c128529432db02e8b1e40e6d73c94345abf6cfde4"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/v0.40.4/server/sched.go",
+      "bytes": 60875,
+      "sha256": "3383fad80c474ae352da2289ed6ecc5a22763be722433eda4ac9816775ff382d"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/package-provenance-01.json",
+      "bytes": 80831,
+      "sha256": "a4f4a4edb81ffe6b940653a8382a0330ce6514ac44cb62eec79b130edcc9c124"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/ui-prepared-01.json",
+      "bytes": 750,
+      "sha256": "ee1bde696f08e250fc78b942c6403d4a3b05d5ce53eb089af4d504698e4318f2"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/evaluation-freeze-01.json",
+      "bytes": 13402,
+      "sha256": "0ec48f0be2437074d2c621c2f065ce5c19f0230e6e661a3a86a12abea061bd01"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/checker-qualification-02.json",
+      "bytes": 5715,
+      "sha256": "1b3889d806437ab14e48ad69bbf4140aabd98bda9eb82b3e5ceaf0fe1684c172"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/checker-freeze-01.json",
+      "bytes": 3113,
+      "sha256": "8c323bcd8492247c0e12d51ded29720b45d1b86ac5d9fd0d3386351f0c80c46f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/quality-helper-tests-01.json",
+      "bytes": 1924,
+      "sha256": "d7a250bf3ac72be1be85a514b8eaf0a7b35aea2df2e167657dc7639c75fcb97c"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/launch-refusal-01.json",
+      "bytes": 947,
+      "sha256": "00d6f14647c47ff93bdc4ba54dc35c7bc0026571b91a7b96871df7f1bb2045ca"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/README.md",
+      "bytes": 1488,
+      "sha256": "c528c1b5564cb23eeb4d25cbae6b7bf4c7f54b9f086a89d77ea26e6c3a5998cd"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/PROTOCOL.md",
+      "bytes": 3766,
+      "sha256": "6b465f4476f3c66aeca5a90aef30dd3ed3a6b9688e6ecf60f9e8236377e32717"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/run-plan.json",
+      "bytes": 4433,
+      "sha256": "1cf95df33fb8c67883325fde548974155c7d497ae3855440b81700ace6456297"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/RUBRIC.md",
+      "bytes": 8402,
+      "sha256": "d52f0b17fb80c93fb1a1908d97f1b37960939740856e61dc0be6553ffdcd7443"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/EVALUATION.md",
+      "bytes": 6843,
+      "sha256": "827a1466ff9fc65d98ddabcabc297ab422be6432dd5724f79c8e43aeea484386"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/check_real_model_export.py",
+      "bytes": 45821,
+      "sha256": "842705171411997c5025f1cc162ec1cd4c29f0a43a85fb037ee9fd291b2db598"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/test_real_model_export.py",
+      "bytes": 28667,
+      "sha256": "bff7774aab843d5a44e10982d5058e2a43df50284fe0289584da703dd9ee97e3"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/checker-qualification-02.json",
+      "bytes": 5715,
+      "sha256": "1b3889d806437ab14e48ad69bbf4140aabd98bda9eb82b3e5ceaf0fe1684c172"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/checker-freeze-01.json",
+      "bytes": 3113,
+      "sha256": "8c323bcd8492247c0e12d51ded29720b45d1b86ac5d9fd0d3386351f0c80c46f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/PRE-RUN-REVIEW.md",
+      "bytes": 4317,
+      "sha256": "5672a22d3cc31729f4066625760cf1fc2fc08c4951e969b4bca3f1a2c22ce353"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/admit_once.py",
+      "bytes": 2783,
+      "sha256": "c2d51ee1ee222763f733710a3daa16b6bbbfced6c3fd6ac1c875c3a93e04515c"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/freeze_episode.py",
+      "bytes": 2270,
+      "sha256": "79d4319e17b82191c3d22d95be9908c80270170fff5f3ece4f2adc58e3243d46"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/owned_model.py",
+      "bytes": 32949,
+      "sha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/test_owned_model.py",
+      "bytes": 21837,
+      "sha256": "145d75ad5d1d8a090bb3c1a9830a59d1127d3424354b8b59db208d0006da9b87"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/helper-continuity-01.json",
+      "bytes": 5460,
+      "sha256": "d79d701f7ee0ff83b40b254a8b0d8efe21b8e5a3f068f97b027015f264ebe74f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/helper-copy-01.json",
+      "bytes": 8177,
+      "sha256": "129a4bb4988911ece0787077f056d7e4e758e0841e307f2d5f6003d38c3ae971"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/owned-helper-tests-01.json",
+      "bytes": 2330,
+      "sha256": "11e4d5223e97c5fb0db596f6687cb7a6151e697351a7a94f98a2c6f565f90cd8"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/ui-prepared-01.json",
+      "bytes": 750,
+      "sha256": "ee1bde696f08e250fc78b942c6403d4a3b05d5ce53eb089af4d504698e4318f2"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/package-provenance-01.json",
+      "bytes": 80831,
+      "sha256": "a4f4a4edb81ffe6b940653a8382a0330ce6514ac44cb62eec79b130edcc9c124"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/journal_quality.py",
+      "bytes": 29054,
+      "sha256": "5b296e8c04af879202bead1a294a4bb22519cdc5a0cd42bd692f8830d360f4c4"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/test_journal_quality.py",
+      "bytes": 36561,
+      "sha256": "aa4e297a52e639973ab2431265ba8181e8125b606012c1b050bdf066132d7f7f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/quality-helper-tests-01.json",
+      "bytes": 1924,
+      "sha256": "d7a250bf3ac72be1be85a514b8eaf0a7b35aea2df2e167657dc7639c75fcb97c"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-observation-10.txt",
+      "bytes": 1599,
+      "sha256": "648266e30c22980ea5eb3c589e78e79bf6217fbabe43f346cd68938dacafc16c"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-memory-20.txt",
+      "bytes": 1789,
+      "sha256": "a18a1d6a788b6ca47830770cbfb008da98960eae20ee8653b45440141581c971"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-provenance.json",
+      "bytes": 1752,
+      "sha256": "970fc8e876bea1b7811163a886f4298918ecc11a92f400e51fa0b9e7b48b5182"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-observation-10.txt",
+      "bytes": 1599,
+      "sha256": "648266e30c22980ea5eb3c589e78e79bf6217fbabe43f346cd68938dacafc16c"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-memory-20.txt",
+      "bytes": 1789,
+      "sha256": "a18a1d6a788b6ca47830770cbfb008da98960eae20ee8653b45440141581c971"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-provenance.json",
+      "bytes": 1752,
+      "sha256": "970fc8e876bea1b7811163a886f4298918ecc11a92f400e51fa0b9e7b48b5182"
+    }
+  ],
+  "checkerQualificationReusedFrom": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/checker-qualification-02.json",
+  "limits": [
+    "Prior app/helper tests are reused, not rerun claims.",
+    "No automatic accuracy, creative-quality or full-context verdict.",
+    "Later execution/results append without replacing this freeze."
+  ]
+}

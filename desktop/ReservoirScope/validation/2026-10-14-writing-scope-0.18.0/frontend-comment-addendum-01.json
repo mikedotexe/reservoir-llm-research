@@ -1,0 +1,20 @@
+{
+  "schema": "reservoir-scope-frontend-comment-addendum-v1",
+  "recordedAtUtc": "2026-10-14T15:28:02.778711Z",
+  "priorCheckReceipt": "frontend-checks-01.json",
+  "priorCheckReceiptSha256": "f006f700bdbf8e4bc27a88a45d52f3890c2aeb9e0edc8447c9dff6ef81937274",
+  "path": "src/myReservoirTypes.ts",
+  "beforeSha256": "548123704b31e6fa2bde5c2f9f6de56fe543ed31bbf2805eb37fc3213fc9455a",
+  "afterSha256": "163bf127ea767b618fa8f538b4d8a8040efb3fdb8e10b5a076fb71bcfe8c730a",
+  "exactChange": {
+    "before": "only fresh defaults select v5",
+    "after": "only fresh defaults select v6"
+  },
+  "commentOnly": true,
+  "runtimeChange": false,
+  "sourceChangesSincePriorChecks": [
+    "src/myReservoirTypes.ts"
+  ],
+  "testsRepeated": false,
+  "reason": "Corrected the retained config documentation comment after 362 frontend tests and TypeScript passed. The only changed checked input is this comment; no runtime or test expression changed."
+}

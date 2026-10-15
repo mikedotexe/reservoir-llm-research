@@ -1,0 +1,63 @@
+{
+  "startedAtUtc": "2026-10-14T17:07:39.021428+00:00",
+  "endedAtUtc": "2026-10-14T17:07:39.274235+00:00",
+  "scope": "Seven pure temporary-file helper tests. All production CLI subprocess calls mocked; no app, provider, numerical replay, model or UI calls. Constructed miniature is not a numerical session.",
+  "priorFailure": "tamper-helper-tests-01.json preserves two test-assertion failures from macOS /var versus resolved /private/var temporary-directory aliases. Only expected test path resolution changed afterward.",
+  "command": [
+    "python3",
+    "-B",
+    "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/test_reanchored_tamper.py",
+    "-v"
+  ],
+  "exitCode": 0,
+  "passed": true,
+  "sourceUnchanged": true,
+  "sourcesBefore": [
+    {
+      "path": "validation/2026-10-14-action-boundaries-0.19.0/check_reanchored_tamper.py",
+      "bytes": 12808,
+      "sha256": "94efebd0af946005e2cf18158b96ae9c0a875f5db220582c00bb8690a5955b2c"
+    },
+    {
+      "path": "validation/2026-10-14-action-boundaries-0.19.0/test_reanchored_tamper.py",
+      "bytes": 10001,
+      "sha256": "4a5fb33374155ae37363e855fb299c10aa6d8406a17737f551c93fb91d008f6c"
+    },
+    {
+      "path": "validation/2026-10-14-action-boundaries-0.19.0/check_fixture_export.py",
+      "bytes": 30541,
+      "sha256": "87a5a461e9ecbf6e1a229d1f1f586b54933cd3a9877e24803d8fc0ea21772e0b"
+    },
+    {
+      "path": "validation/2026-10-14-action-boundaries-0.19.0/test_check_fixture_export.py",
+      "bytes": 13854,
+      "sha256": "030c5a599048d86adeae087f8f79f8a28fe60f8ea523395d4d253576af8e9b38"
+    }
+  ],
+  "sourcesAfter": [
+    {
+      "path": "validation/2026-10-14-action-boundaries-0.19.0/check_reanchored_tamper.py",
+      "bytes": 12808,
+      "sha256": "94efebd0af946005e2cf18158b96ae9c0a875f5db220582c00bb8690a5955b2c"
+    },
+    {
+      "path": "validation/2026-10-14-action-boundaries-0.19.0/test_reanchored_tamper.py",
+      "bytes": 10001,
+      "sha256": "4a5fb33374155ae37363e855fb299c10aa6d8406a17737f551c93fb91d008f6c"
+    },
+    {
+      "path": "validation/2026-10-14-action-boundaries-0.19.0/check_fixture_export.py",
+      "bytes": 30541,
+      "sha256": "87a5a461e9ecbf6e1a229d1f1f586b54933cd3a9877e24803d8fc0ea21772e0b"
+    },
+    {
+      "path": "validation/2026-10-14-action-boundaries-0.19.0/test_check_fixture_export.py",
+      "bytes": 13854,
+      "sha256": "030c5a599048d86adeae087f8f79f8a28fe60f8ea523395d4d253576af8e9b38"
+    }
+  ],
+  "log": {
+    "path": "validation/2026-10-14-action-boundaries-0.19.0/tamper-helper-tests-02.log",
+    "sha256": "f1cfc60559d62ae429db12f1029c54e75819586d99b3544b14697527aa44ba42"
+  }
+}

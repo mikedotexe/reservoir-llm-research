@@ -1,0 +1,40 @@
+{
+  "capturedUtc": "2026-10-14T16:09:31.033975+00:00",
+  "episodeId": "v6-writing-0.18.0-episode02",
+  "scope": "One passive pre-launch admission. No service/Being inspection or process changes. No retry.",
+  "freezeSha256": "2b3eb5b66e4331faf2d9163ff8ba6ba50f515e357319e6dd6890ceae8f6092c7",
+  "results": [
+    {
+      "command": [
+        "/usr/sbin/sysctl",
+        "-n",
+        "hw.memsize"
+      ],
+      "exit": 0,
+      "stdout": "68719476736\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/sbin/sysctl",
+        "-n",
+        "kern.memorystatus_vm_pressure_level"
+      ],
+      "exit": 0,
+      "stdout": "1\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/memory_pressure"
+      ],
+      "exit": 0,
+      "stdout": "The system has 68719476736 (4194304 pages with a page size of 16384).\n\nStats: \nPages free: 155041 \nPages purgeable: 17791 \nPages purged: 43779097 \n\nSwap I/O:\nSwapins: 65928285 \nSwapouts: 75701708 \n\nPage Q counts:\nPages active: 940649 \nPages inactive: 940330 \nPages speculative: 647 \nPages throttled: 0 \nPages wired down: 1242305 \n\nCompressor Stats:\nPages used by compressor: 868693 \nPages decompressed: 1712702428 \nPages compressed: 2129507970 \n\nFile I/O:\nPageins: 1628602439 \nPageouts: 562207 \n\nSystem-wide memory free percentage: 49%\n",
+      "stderr": ""
+    }
+  ],
+  "pressureLevel": 1,
+  "freePercent": 49,
+  "diskFreeBytes": 382464638976,
+  "admitted": true
+}

@@ -1,0 +1,26 @@
+{
+  "atUtc": "2026-10-15T02:41:12.921074+00:00",
+  "scope": "Normal UI quit of idle DaisyDisk only. No file deletion, purge, service unload or process signal.",
+  "observedBefore": "Completed disk-usage visualization, empty file collection tray, no visible active scan or deletion.",
+  "actions": [
+    "Attempted Cmd-Q; bound AX observation retained window",
+    "Selected Quit DaisyDisk from application menu; original PID26394 absent",
+    "Subsequent bound AX read reopened app as PID74391; corrected with normal menu Quit",
+    "No bound-app observation after final quit; exact executable filtered process inventory confirms absence"
+  ],
+  "verificationCommand": [
+    "/bin/ps",
+    "-U",
+    "501",
+    "-o",
+    "pid=,ppid=,rss=,lstart=,comm="
+  ],
+  "matchingDaisyDiskProcessesAfter": [],
+  "confirmedExited": true,
+  "filesRemoved": 0,
+  "signalsSent": 0,
+  "otherApplicationsQuit": false,
+  "BeingOrSharedModelProcessesChanged": false,
+  "memoryReclaimedBytes": null,
+  "limit": "No causal memory-reclaimed amount measured. Global UI inventory may retain stale running flags."
+}

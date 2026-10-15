@@ -1,7 +1,7 @@
 import type { LanguageConfiguration, SessionFrame } from './freshTypes';
 
-export type SustainedPromptVersion = 'reservoir-journal-v1' | 'reservoir-journal-v2' | 'reservoir-journal-v3' | 'reservoir-journal-v4' | 'reservoir-journal-v5';
-export const isSustainedPromptVersion = (value: unknown): value is SustainedPromptVersion => value === 'reservoir-journal-v1' || value === 'reservoir-journal-v2' || value === 'reservoir-journal-v3' || value === 'reservoir-journal-v4' || value === 'reservoir-journal-v5';
+export type SustainedPromptVersion = 'reservoir-journal-v1' | 'reservoir-journal-v2' | 'reservoir-journal-v3' | 'reservoir-journal-v4' | 'reservoir-journal-v5' | 'reservoir-journal-v6' | 'reservoir-journal-v7' | 'reservoir-journal-v8';
+export const isSustainedPromptVersion = (value: unknown): value is SustainedPromptVersion => value === 'reservoir-journal-v1' || value === 'reservoir-journal-v2' || value === 'reservoir-journal-v3' || value === 'reservoir-journal-v4' || value === 'reservoir-journal-v5' || value === 'reservoir-journal-v6' || value === 'reservoir-journal-v7' || value === 'reservoir-journal-v8';
 export const effectivePromptVersion = (config: SustainedConfig): SustainedPromptVersion => config.promptVersion === undefined ? 'reservoir-journal-v1' : config.promptVersion;
 export const effectiveOutputTokens = (config: SustainedConfig): number => config.outputTokens === undefined ? 256 : config.outputTokens;
 export const effectiveRequestDeadline = (config: SustainedConfig): number => config.requestDeadlineSeconds === undefined ? 60 : config.requestDeadlineSeconds;
@@ -14,7 +14,7 @@ export function validWritingLimits(config: SustainedConfig): boolean {
 }
 
 export interface SustainedConfig {
-  /** Omitted historical configuration retains v1; only fresh defaults select v5. */
+  /** Omitted historical configuration retains v1; only fresh defaults select v8. */
   promptVersion?: SustainedPromptVersion;
   /** Omitted historical budgets retain 256 tokens / 60 seconds. */
   outputTokens?: number; requestDeadlineSeconds?: number;
@@ -23,7 +23,7 @@ export interface SustainedConfig {
   regulationEnabled: boolean; language: LanguageConfiguration;
 }
 export const DEFAULT_SUSTAINED_CONFIG: SustainedConfig = {
-  promptVersion: 'reservoir-journal-v5', seed: '20260909', turnEvery: 30, maximumSteps: 10800, maximumTurns: 360, maximumDurationSeconds: 21600,
+  promptVersion: 'reservoir-journal-v8', seed: '20260909', turnEvery: 30, maximumSteps: 10800, maximumTurns: 360, maximumDurationSeconds: 21600,
   storageBudgetBytes: 268435456, paceMs: 1000, leak: .65, noiseAmplitude: .02, initialRetention: .955,
   regulationEnabled: true, language: { backend: 'scripted' },
   outputTokens: 1024, requestDeadlineSeconds: 180,

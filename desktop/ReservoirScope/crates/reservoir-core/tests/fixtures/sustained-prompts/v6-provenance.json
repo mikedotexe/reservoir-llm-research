@@ -1,0 +1,32 @@
+{
+  "scope": "Independent expected fixtures assembled from previously qualified V5 fixture bytes and the parent-approved two-sentence action-scope addition before executing V6 tests. No runtime prompt generation, provider call, physical-storage or Being-data claim.",
+  "promptVersion": "reservoir-journal-v6",
+  "observationVersion": "reservoir-and-sensory-v2",
+  "changes": [
+    "Header version v5 to v6",
+    "Append the exact actionScope text after the final SESSION CONTEXT sentence, separated by one space; all other bytes unchanged."
+  ],
+  "actionScope": "Writing is the only action available here. Describing a control change or experiment does not execute it, and no new readout arrives while this entry is written.",
+  "runtimeTrailingNewline": false,
+  "seed": "18446744073709551615",
+  "turnEvery": 10,
+  "maximumSteps": 180,
+  "maximumTurns": 30,
+  "procedure": "Observe10; restore Language as interrupted and explicitly retry attempt2 with identical prompt; supply the same full prose as V5, confirm exact typed save/readback and authorize; apply11; observe20 and confirm exact eligible full-text memory.",
+  "fixtures": [
+    {
+      "file": "v6-observation-10.txt",
+      "bytes": 1599,
+      "sha256": "648266e30c22980ea5eb3c589e78e79bf6217fbabe43f346cd68938dacafc16c",
+      "frozenV5Reference": "v5-observation-10.txt",
+      "frozenV5ReferenceSha256": "5c9c1dbdb29e1058b59d23174cdab186c0aa60d76293f29bb99827b217025dd6"
+    },
+    {
+      "file": "v6-memory-20.txt",
+      "bytes": 1789,
+      "sha256": "a18a1d6a788b6ca47830770cbfb008da98960eae20ee8653b45440141581c971",
+      "frozenV5Reference": "v5-memory-20.txt",
+      "frozenV5ReferenceSha256": "a828b3390d049b22faf115f74644374f2c86f74a4ac47fd806a5e69920de99fd"
+    }
+  ]
+}

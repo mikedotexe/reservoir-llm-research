@@ -1,0 +1,10 @@
+{
+  "status": "failed",
+  "stage": "helper expected manifest types",
+  "recordedAtUtc": "2026-10-14T17:11:05.700880+00:00",
+  "script": "validation/2026-10-14-action-boundaries-0.19.0/compare_recovery_01.py",
+  "scriptSha256": "28e9ba0c6abc2c6c8633a79946baf51d4eeaf3501aaf96aca6736fadf86f5920",
+  "error": "Expected generation/revision as JSON numbers; portable manifest correctly retains exact decimal strings. Both exports already passed production and fixture checks, all27nonmanifestfiles matched before this assertion.",
+  "sourceApplicationChange": false,
+  "correction": "Use exact existing string encoding for generation1to2 and revision76to77; no acceptance value broadened."
+}

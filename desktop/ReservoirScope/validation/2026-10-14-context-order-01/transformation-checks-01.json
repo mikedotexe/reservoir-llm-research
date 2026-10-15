@@ -1,0 +1,569 @@
+{
+  "schema": "reservoir-context-order-transform-v1",
+  "status": "passed",
+  "sourceReceipt": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/real-model-export-01/receipt.json",
+    "bytes": 220343,
+    "sha256": "07aff62e23ee5c08e85e97c2ae93702d3b145473aa38d58c0c0345d85d1aa603"
+  },
+  "sourceMaterial": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/real-model-export-01/quality-review-material.json",
+    "bytes": 198349,
+    "sha256": "12d0a9f863f1471e5eeb08a11f941b34a486abbee3946f6383e337a3e6e260e0"
+  },
+  "anchors": [
+    {
+      "anchorStep": 60,
+      "sourceIdentity": {
+        "journalId": "journal-60-2-20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89",
+        "turnId": 2,
+        "attemptId": 2,
+        "observedStep": 60,
+        "status": "applied",
+        "application": {
+          "attemptId": 2,
+          "journalId": "journal-60-2-20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89",
+          "observedStep": 60,
+          "appliedStep": 61
+        },
+        "textSha256": "20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89",
+        "textBytes": 1758,
+        "promptSha256": "25d3a8ff255e65a2310d9b34fbae939379fce97d7d74173ff0d296d6309b71ec",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 405,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "841"
+        },
+        "memoryJournalId": "journal-30-1-69a5e2700cfa2087b70062cd13c72cc39df9345ea3651921ae01642ea0e18dde",
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 3552,
+          "retainedPromptUnicodeCharacters": 3528,
+          "retainedPriorTextUtf8Bytes": 1254,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "841"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 2,
+          "dispatchedAtMs": "1792007879786",
+          "receivedAtMs": "1792007900280",
+          "transportDurationMs": 20494,
+          "publishedAtMs": "1792007900329"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "memoryIdentity": {
+        "journalId": "journal-30-1-69a5e2700cfa2087b70062cd13c72cc39df9345ea3651921ae01642ea0e18dde",
+        "sha256": "69a5e2700cfa2087b70062cd13c72cc39df9345ea3651921ae01642ea0e18dde",
+        "bytes": 1254
+      },
+      "blocks": {
+        "prefix": {
+          "sha256": "320ef4596231a446290924ab097e3f12cc65fe8c4c333b2b5eed41f8d86b7d2c",
+          "bytes": 664
+        },
+        "readout": {
+          "sha256": "4f37bd1481d7b29724ba84583cab95173634ea29b8b32b7d681f3a83ffe91c39",
+          "bytes": 845
+        },
+        "memory": {
+          "sha256": "d29e98a090095fb29b5d5a379f2cf992cdfefa3dfd5b91e630d6054c911f27da",
+          "bytes": 1471
+        },
+        "suffix": {
+          "sha256": "48a49d187da25c9b438cb4db6c8d35ecf5d8afeb2c083cb9bfbb51cbb9afb957",
+          "bytes": 572
+        }
+      },
+      "aExactSource": true,
+      "bOnlyBlockSwap": true,
+      "equalUtf8Bytes": true
+    },
+    {
+      "anchorStep": 120,
+      "sourceIdentity": {
+        "journalId": "journal-120-4-949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2",
+        "turnId": 4,
+        "attemptId": 4,
+        "observedStep": 120,
+        "status": "applied",
+        "application": {
+          "attemptId": 4,
+          "journalId": "journal-120-4-949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2",
+          "observedStep": 120,
+          "appliedStep": 121
+        },
+        "textSha256": "949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2",
+        "textBytes": 1324,
+        "promptSha256": "abf66ae30e8ff6dc6beb1cd35bc6c9bdb41dcf77bcbe828edd3c7436bc06a334",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 312,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "877"
+        },
+        "memoryJournalId": "journal-90-3-e292f51d89b8500549845bf3f00611c383df5a1219f9c7131a2007f97ecb877e",
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 3564,
+          "retainedPromptUnicodeCharacters": 3518,
+          "retainedPriorTextUtf8Bytes": 1271,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "877"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 4,
+          "dispatchedAtMs": "1792007967892",
+          "receivedAtMs": "1792007979301",
+          "transportDurationMs": 11408,
+          "publishedAtMs": "1792007979347"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "memoryIdentity": {
+        "journalId": "journal-90-3-e292f51d89b8500549845bf3f00611c383df5a1219f9c7131a2007f97ecb877e",
+        "sha256": "e292f51d89b8500549845bf3f00611c383df5a1219f9c7131a2007f97ecb877e",
+        "bytes": 1271
+      },
+      "blocks": {
+        "prefix": {
+          "sha256": "320ef4596231a446290924ab097e3f12cc65fe8c4c333b2b5eed41f8d86b7d2c",
+          "bytes": 664
+        },
+        "readout": {
+          "sha256": "21ebe06e71e7885612108f5f7c2480158182f1ad0152e9294cf080204e51d433",
+          "bytes": 845
+        },
+        "memory": {
+          "sha256": "6998e439fc4969ede603d1cd77634533d00ddff3201b0e280617757bba830b17",
+          "bytes": 1482
+        },
+        "suffix": {
+          "sha256": "01e639895f90c64c287aef26e050c003c1b5f0c9922bc3b7c612ae572ecae40a",
+          "bytes": 573
+        }
+      },
+      "aExactSource": true,
+      "bOnlyBlockSwap": true,
+      "equalUtf8Bytes": true
+    },
+    {
+      "anchorStep": 180,
+      "sourceIdentity": {
+        "journalId": "journal-180-6-e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03",
+        "turnId": 6,
+        "attemptId": 6,
+        "observedStep": 180,
+        "status": "applied",
+        "application": {
+          "attemptId": 6,
+          "journalId": "journal-180-6-e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03",
+          "observedStep": 180,
+          "appliedStep": 181
+        },
+        "textSha256": "e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03",
+        "textBytes": 1154,
+        "promptSha256": "aa63ea3c2f236a7097f9e3d4091294a831b10d903053dbbea694cc7213529130",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 285,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "855"
+        },
+        "memoryJournalId": "journal-150-5-984908121a4b9f2b8ecec796b9679a6895e5323f9e08271029cce9302a43655c",
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 3498,
+          "retainedPromptUnicodeCharacters": 3474,
+          "retainedPriorTextUtf8Bytes": 1200,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "855"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 6,
+          "dispatchedAtMs": "1792008054138",
+          "receivedAtMs": "1792008059660",
+          "transportDurationMs": 5521,
+          "publishedAtMs": "1792008059702"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "memoryIdentity": {
+        "journalId": "journal-150-5-984908121a4b9f2b8ecec796b9679a6895e5323f9e08271029cce9302a43655c",
+        "sha256": "984908121a4b9f2b8ecec796b9679a6895e5323f9e08271029cce9302a43655c",
+        "bytes": 1200
+      },
+      "blocks": {
+        "prefix": {
+          "sha256": "320ef4596231a446290924ab097e3f12cc65fe8c4c333b2b5eed41f8d86b7d2c",
+          "bytes": 664
+        },
+        "readout": {
+          "sha256": "239f9cb613e7943bc72320ec8d22b4a68a7674b285d4f1e61afa0bff59ce5bfa",
+          "bytes": 846
+        },
+        "memory": {
+          "sha256": "404008ccc95106a8a0d5b35e14a586e8f982f38dce307c3dad6dcabace034a73",
+          "bytes": 1413
+        },
+        "suffix": {
+          "sha256": "a3bdce13fcb241f761fdbf2b83e607576c0d836487ccb9259f002b40c56f8205",
+          "bytes": 575
+        }
+      },
+      "aExactSource": true,
+      "bOnlyBlockSwap": true,
+      "equalUtf8Bytes": true
+    },
+    {
+      "anchorStep": 240,
+      "sourceIdentity": {
+        "journalId": "journal-240-8-fea8c58fe1f52802798f95428739dc815b9a57066fe468d2ef009412d1518507",
+        "turnId": 8,
+        "attemptId": 8,
+        "observedStep": 240,
+        "status": "applied",
+        "application": {
+          "attemptId": 8,
+          "journalId": "journal-240-8-fea8c58fe1f52802798f95428739dc815b9a57066fe468d2ef009412d1518507",
+          "observedStep": 240,
+          "appliedStep": 241
+        },
+        "textSha256": "fea8c58fe1f52802798f95428739dc815b9a57066fe468d2ef009412d1518507",
+        "textBytes": 1173,
+        "promptSha256": "5e258c908ed42d84d710a47e072d338f2f5b32825a2ee591b2199dc6551824ca",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 277,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "844"
+        },
+        "memoryJournalId": "journal-210-7-b660adc062ca93645b3bda7819ea5ae11e49f43dcfdd22b78b27461e270316c6",
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 3466,
+          "retainedPromptUnicodeCharacters": 3450,
+          "retainedPriorTextUtf8Bytes": 1168,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "844"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 8,
+          "dispatchedAtMs": "1792008149514",
+          "receivedAtMs": "1792008164470",
+          "transportDurationMs": 14956,
+          "publishedAtMs": "1792008164511"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "memoryIdentity": {
+        "journalId": "journal-210-7-b660adc062ca93645b3bda7819ea5ae11e49f43dcfdd22b78b27461e270316c6",
+        "sha256": "b660adc062ca93645b3bda7819ea5ae11e49f43dcfdd22b78b27461e270316c6",
+        "bytes": 1168
+      },
+      "blocks": {
+        "prefix": {
+          "sha256": "320ef4596231a446290924ab097e3f12cc65fe8c4c333b2b5eed41f8d86b7d2c",
+          "bytes": 664
+        },
+        "readout": {
+          "sha256": "90e76012e00012d4bfa35041e7c764ee80a5e595155ceff20ac8957943a98e1f",
+          "bytes": 846
+        },
+        "memory": {
+          "sha256": "2971bf748e279b2b0d223dbb6e35b9808428cc19dccaec91da099ebadf508095",
+          "bytes": 1381
+        },
+        "suffix": {
+          "sha256": "32277627ca34b1dc24d4f6c9adc701e581e63bbba0274c43a9f608387041e494",
+          "bytes": 575
+        }
+      },
+      "aExactSource": true,
+      "bOnlyBlockSwap": true,
+      "equalUtf8Bytes": true
+    },
+    {
+      "anchorStep": 300,
+      "sourceIdentity": {
+        "journalId": "journal-300-10-975b8e21b47662618916eaf606258d19c1f8539e6c0e7c4c802b56702a4366bc",
+        "turnId": 10,
+        "attemptId": 10,
+        "observedStep": 300,
+        "status": "applied",
+        "application": {
+          "attemptId": 10,
+          "journalId": "journal-300-10-975b8e21b47662618916eaf606258d19c1f8539e6c0e7c4c802b56702a4366bc",
+          "observedStep": 300,
+          "appliedStep": 301
+        },
+        "textSha256": "975b8e21b47662618916eaf606258d19c1f8539e6c0e7c4c802b56702a4366bc",
+        "textBytes": 1000,
+        "promptSha256": "c40e46382c1f2568d4a71d47da893b0e78f19c11d67015005c1418e4d216b62f",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 240,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "812"
+        },
+        "memoryJournalId": "journal-270-9-ad85f7f47a3a8fe3e65d66fa031c53c3cce4393d9a65c5d0c4812b07263a040d",
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 3309,
+          "retainedPromptUnicodeCharacters": 3299,
+          "retainedPriorTextUtf8Bytes": 1010,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "812"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 10,
+          "dispatchedAtMs": "1792008235741",
+          "receivedAtMs": "1792008250200",
+          "transportDurationMs": 14459,
+          "publishedAtMs": "1792008250243"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "memoryIdentity": {
+        "journalId": "journal-270-9-ad85f7f47a3a8fe3e65d66fa031c53c3cce4393d9a65c5d0c4812b07263a040d",
+        "sha256": "ad85f7f47a3a8fe3e65d66fa031c53c3cce4393d9a65c5d0c4812b07263a040d",
+        "bytes": 1010
+      },
+      "blocks": {
+        "prefix": {
+          "sha256": "320ef4596231a446290924ab097e3f12cc65fe8c4c333b2b5eed41f8d86b7d2c",
+          "bytes": 664
+        },
+        "readout": {
+          "sha256": "d5f5db64776475ce34ad4e98a5b187ac79677e3d84d6d0511bedef2231cab61d",
+          "bytes": 847
+        },
+        "memory": {
+          "sha256": "6583a477e8239b71e4f1fc8a563d463cec132a6e38282b085d380f867f8d862c",
+          "bytes": 1223
+        },
+        "suffix": {
+          "sha256": "a70eef2b1f12f29fc555c6265b961b6b69cd99ae17c756eca5ef7c28114ef037",
+          "bytes": 575
+        }
+      },
+      "aExactSource": true,
+      "bOnlyBlockSwap": true,
+      "equalUtf8Bytes": true
+    },
+    {
+      "anchorStep": 360,
+      "sourceIdentity": {
+        "journalId": "journal-360-12-269bea5577dd98eff28475f37e5f5f70efec83fd1233b34bf265887cfb9037f6",
+        "turnId": 12,
+        "attemptId": 12,
+        "observedStep": 360,
+        "status": "applied",
+        "application": {
+          "attemptId": 12,
+          "journalId": "journal-360-12-269bea5577dd98eff28475f37e5f5f70efec83fd1233b34bf265887cfb9037f6",
+          "observedStep": 360,
+          "appliedStep": 361
+        },
+        "textSha256": "269bea5577dd98eff28475f37e5f5f70efec83fd1233b34bf265887cfb9037f6",
+        "textBytes": 1172,
+        "promptSha256": "92f4477403855d9ba6396db38ab94c5cf4e2fe2fd416cccbed28012ebb3d96e4",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 286,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "816"
+        },
+        "memoryJournalId": "journal-330-11-3c3a033151b2f2fa196e993c6854a4565dc43d0d37f1ddcd0fbb83d06475635f",
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 3315,
+          "retainedPromptUnicodeCharacters": 3307,
+          "retainedPriorTextUtf8Bytes": 1016,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "816"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 12,
+          "dispatchedAtMs": "1792008316082",
+          "receivedAtMs": "1792008328128",
+          "transportDurationMs": 12046,
+          "publishedAtMs": "1792008328197"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "memoryIdentity": {
+        "journalId": "journal-330-11-3c3a033151b2f2fa196e993c6854a4565dc43d0d37f1ddcd0fbb83d06475635f",
+        "sha256": "3c3a033151b2f2fa196e993c6854a4565dc43d0d37f1ddcd0fbb83d06475635f",
+        "bytes": 1016
+      },
+      "blocks": {
+        "prefix": {
+          "sha256": "320ef4596231a446290924ab097e3f12cc65fe8c4c333b2b5eed41f8d86b7d2c",
+          "bytes": 664
+        },
+        "readout": {
+          "sha256": "da631b3bea6096b7c295fe3cb1fd1a34eb222f9d300255f6edbc6e9b69688e63",
+          "bytes": 847
+        },
+        "memory": {
+          "sha256": "a3d6b8e247bc9ff851d5470fbc6b5b1d0683d4fcbebecfc07e3eee142a6d9aa4",
+          "bytes": 1229
+        },
+        "suffix": {
+          "sha256": "e92ea91422e079f812b33772dd05a8241aa756cfdbe32ab0af80bb5b3034cd01",
+          "bytes": 575
+        }
+      },
+      "aExactSource": true,
+      "bOnlyBlockSwap": true,
+      "equalUtf8Bytes": true
+    }
+  ],
+  "scope": "Exact bytes and decoded prior writing; not proof of model tokenization or processing."
+}

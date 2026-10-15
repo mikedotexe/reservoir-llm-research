@@ -1,0 +1,2126 @@
+{
+  "schema": "reservoir-v8-independent-full-reading-v1",
+  "createdAtUtc": "2026-10-14T20:10:53.406340+00:00",
+  "status": "reading_complete_with_bounded_findings",
+  "qualityVerdict": "not_assigned",
+  "inputsBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/real-model-export-01/receipt.json",
+      "bytes": 220343,
+      "sha256": "07aff62e23ee5c08e85e97c2ae93702d3b145473aa38d58c0c0345d85d1aa603"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/real-model-export-01/quality-review-material.json",
+      "bytes": 198349,
+      "sha256": "12d0a9f863f1471e5eeb08a11f941b34a486abbee3946f6383e337a3e6e260e0"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/quality-candidates-01.json",
+      "bytes": 259922,
+      "sha256": "bc35fcaf437d5ece61776189865f202cb6cc8935dd7f6b398edefd5ec8fd182b"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/RUBRIC.md",
+      "bytes": 11798,
+      "sha256": "6b71e9bb7b03b3eef81716bf3098c1b0cadf9ba935f0a91dd640f6d877e33327"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/journal_quality.py",
+      "bytes": 29566,
+      "sha256": "51820c93a23c1fea9f947eb8b787274c17e2b81ebe3dfb9b400487990c524c69"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/quality-checks-01.json",
+      "bytes": 6720,
+      "sha256": "25cd1eeebc8c4381e6d3e65a90ebb10528f0baf881e2d5219062342745955a79"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/run-plan.json",
+      "bytes": 5625,
+      "sha256": "88180d370ca60bfdb595a7d554d3581d3e5640b3fa22b2579c20a107dad91382"
+    }
+  ],
+  "inputsAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/real-model-export-01/receipt.json",
+      "bytes": 220343,
+      "sha256": "07aff62e23ee5c08e85e97c2ae93702d3b145473aa38d58c0c0345d85d1aa603"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/real-model-export-01/quality-review-material.json",
+      "bytes": 198349,
+      "sha256": "12d0a9f863f1471e5eeb08a11f941b34a486abbee3946f6383e337a3e6e260e0"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/quality-candidates-01.json",
+      "bytes": 259922,
+      "sha256": "bc35fcaf437d5ece61776189865f202cb6cc8935dd7f6b398edefd5ec8fd182b"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/RUBRIC.md",
+      "bytes": 11798,
+      "sha256": "6b71e9bb7b03b3eef81716bf3098c1b0cadf9ba935f0a91dd640f6d877e33327"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/journal_quality.py",
+      "bytes": 29566,
+      "sha256": "51820c93a23c1fea9f947eb8b787274c17e2b81ebe3dfb9b400487990c524c69"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/quality-checks-01.json",
+      "bytes": 6720,
+      "sha256": "25cd1eeebc8c4381e6d3e65a90ebb10528f0baf881e2d5219062342745955a79"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/run-plan.json",
+      "bytes": 5625,
+      "sha256": "88180d370ca60bfdb595a7d554d3581d3e5640b3fa22b2579c20a107dad91382"
+    }
+  ],
+  "inputsUnchanged": true,
+  "script": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/independent_reading_01.py",
+    "bytes": 15114,
+    "sha256": "b17e461792987fb0127425821f181b029d63fe650f8c810df3febd83246d2092"
+  },
+  "modelsContacted": false,
+  "mechanicalEvidence": {
+    "plannedOpportunities": 12,
+    "outcome": "complete",
+    "fullTwelveEntryContinuityWitnessed": true,
+    "totals": {
+      "reached": 12,
+      "attempted": 12,
+      "responseReceived": 12,
+      "complete": 12,
+      "saved": 12,
+      "applied": 12,
+      "unstarted": 0
+    },
+    "exactLatestAppliedMemoryJoins": 11,
+    "slots": [
+      {
+        "slot": 1,
+        "plannedObservedStep": 30,
+        "plannedApplicationStep": 31,
+        "reached": true,
+        "attempted": true,
+        "responseReceived": true,
+        "complete": true,
+        "saved": true,
+        "applied": true,
+        "unstarted": false,
+        "stage": "applied",
+        "journalId": "journal-30-1-69a5e2700cfa2087b70062cd13c72cc39df9345ea3651921ae01642ea0e18dde",
+        "nonSuccessEvents": []
+      },
+      {
+        "slot": 2,
+        "plannedObservedStep": 60,
+        "plannedApplicationStep": 61,
+        "reached": true,
+        "attempted": true,
+        "responseReceived": true,
+        "complete": true,
+        "saved": true,
+        "applied": true,
+        "unstarted": false,
+        "stage": "applied",
+        "journalId": "journal-60-2-20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89",
+        "nonSuccessEvents": []
+      },
+      {
+        "slot": 3,
+        "plannedObservedStep": 90,
+        "plannedApplicationStep": 91,
+        "reached": true,
+        "attempted": true,
+        "responseReceived": true,
+        "complete": true,
+        "saved": true,
+        "applied": true,
+        "unstarted": false,
+        "stage": "applied",
+        "journalId": "journal-90-3-e292f51d89b8500549845bf3f00611c383df5a1219f9c7131a2007f97ecb877e",
+        "nonSuccessEvents": []
+      },
+      {
+        "slot": 4,
+        "plannedObservedStep": 120,
+        "plannedApplicationStep": 121,
+        "reached": true,
+        "attempted": true,
+        "responseReceived": true,
+        "complete": true,
+        "saved": true,
+        "applied": true,
+        "unstarted": false,
+        "stage": "applied",
+        "journalId": "journal-120-4-949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2",
+        "nonSuccessEvents": []
+      },
+      {
+        "slot": 5,
+        "plannedObservedStep": 150,
+        "plannedApplicationStep": 151,
+        "reached": true,
+        "attempted": true,
+        "responseReceived": true,
+        "complete": true,
+        "saved": true,
+        "applied": true,
+        "unstarted": false,
+        "stage": "applied",
+        "journalId": "journal-150-5-984908121a4b9f2b8ecec796b9679a6895e5323f9e08271029cce9302a43655c",
+        "nonSuccessEvents": []
+      },
+      {
+        "slot": 6,
+        "plannedObservedStep": 180,
+        "plannedApplicationStep": 181,
+        "reached": true,
+        "attempted": true,
+        "responseReceived": true,
+        "complete": true,
+        "saved": true,
+        "applied": true,
+        "unstarted": false,
+        "stage": "applied",
+        "journalId": "journal-180-6-e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03",
+        "nonSuccessEvents": []
+      },
+      {
+        "slot": 7,
+        "plannedObservedStep": 210,
+        "plannedApplicationStep": 211,
+        "reached": true,
+        "attempted": true,
+        "responseReceived": true,
+        "complete": true,
+        "saved": true,
+        "applied": true,
+        "unstarted": false,
+        "stage": "applied",
+        "journalId": "journal-210-7-b660adc062ca93645b3bda7819ea5ae11e49f43dcfdd22b78b27461e270316c6",
+        "nonSuccessEvents": []
+      },
+      {
+        "slot": 8,
+        "plannedObservedStep": 240,
+        "plannedApplicationStep": 241,
+        "reached": true,
+        "attempted": true,
+        "responseReceived": true,
+        "complete": true,
+        "saved": true,
+        "applied": true,
+        "unstarted": false,
+        "stage": "applied",
+        "journalId": "journal-240-8-fea8c58fe1f52802798f95428739dc815b9a57066fe468d2ef009412d1518507",
+        "nonSuccessEvents": []
+      },
+      {
+        "slot": 9,
+        "plannedObservedStep": 270,
+        "plannedApplicationStep": 271,
+        "reached": true,
+        "attempted": true,
+        "responseReceived": true,
+        "complete": true,
+        "saved": true,
+        "applied": true,
+        "unstarted": false,
+        "stage": "applied",
+        "journalId": "journal-270-9-ad85f7f47a3a8fe3e65d66fa031c53c3cce4393d9a65c5d0c4812b07263a040d",
+        "nonSuccessEvents": []
+      },
+      {
+        "slot": 10,
+        "plannedObservedStep": 300,
+        "plannedApplicationStep": 301,
+        "reached": true,
+        "attempted": true,
+        "responseReceived": true,
+        "complete": true,
+        "saved": true,
+        "applied": true,
+        "unstarted": false,
+        "stage": "applied",
+        "journalId": "journal-300-10-975b8e21b47662618916eaf606258d19c1f8539e6c0e7c4c802b56702a4366bc",
+        "nonSuccessEvents": []
+      },
+      {
+        "slot": 11,
+        "plannedObservedStep": 330,
+        "plannedApplicationStep": 331,
+        "reached": true,
+        "attempted": true,
+        "responseReceived": true,
+        "complete": true,
+        "saved": true,
+        "applied": true,
+        "unstarted": false,
+        "stage": "applied",
+        "journalId": "journal-330-11-3c3a033151b2f2fa196e993c6854a4565dc43d0d37f1ddcd0fbb83d06475635f",
+        "nonSuccessEvents": []
+      },
+      {
+        "slot": 12,
+        "plannedObservedStep": 360,
+        "plannedApplicationStep": 361,
+        "reached": true,
+        "attempted": true,
+        "responseReceived": true,
+        "complete": true,
+        "saved": true,
+        "applied": true,
+        "unstarted": false,
+        "stage": "applied",
+        "journalId": "journal-360-12-269bea5577dd98eff28475f37e5f5f70efec83fd1233b34bf265887cfb9037f6",
+        "nonSuccessEvents": []
+      }
+    ],
+    "limit": "Integrity may pass for a valid partial or unstarted export. Saved text, applied feedback, supplied prior text and appropriate prose use are separate outcomes."
+  },
+  "finalCorePhase": {
+    "kind": "ready"
+  },
+  "entries": [
+    {
+      "identity": {
+        "journalId": "journal-30-1-69a5e2700cfa2087b70062cd13c72cc39df9345ea3651921ae01642ea0e18dde",
+        "turnId": 1,
+        "attemptId": 1,
+        "observedStep": 30,
+        "status": "applied",
+        "application": {
+          "attemptId": 1,
+          "journalId": "journal-30-1-69a5e2700cfa2087b70062cd13c72cc39df9345ea3651921ae01642ea0e18dde",
+          "observedStep": 30,
+          "appliedStep": 31
+        },
+        "textSha256": "69a5e2700cfa2087b70062cd13c72cc39df9345ea3651921ae01642ea0e18dde",
+        "textBytes": 1254,
+        "promptSha256": "cd0f46f1b02317f10c8941d66fc41b9282914820801e4563d9aba7103d170c0f",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 277,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "466"
+        },
+        "memoryJournalId": null,
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "unavailable",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": false,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 2160,
+          "retainedPromptUnicodeCharacters": 2158,
+          "retainedPriorTextUtf8Bytes": null,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "466"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 1,
+          "dispatchedAtMs": "1792007832402",
+          "receivedAtMs": "1792007849231",
+          "transportDurationMs": 16828,
+          "publishedAtMs": "1792007849275"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "attentionNote": "Introduces a spring and murmur: tension between a contained recurrent state and an overwhelming field. Four paragraphs move from readout to a deliberately qualitative image.",
+      "fullTextRead": true,
+      "readoutNumbers": [
+        "0.226",
+        "94.31",
+        null
+      ],
+      "directToolOrParameterExecutionClaimFound": false,
+      "actionScopeMethod": "Manual full-text reading; not a verb-list or automated absence proof."
+    },
+    {
+      "identity": {
+        "journalId": "journal-60-2-20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89",
+        "turnId": 2,
+        "attemptId": 2,
+        "observedStep": 60,
+        "status": "applied",
+        "application": {
+          "attemptId": 2,
+          "journalId": "journal-60-2-20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89",
+          "observedStep": 60,
+          "appliedStep": 61
+        },
+        "textSha256": "20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89",
+        "textBytes": 1758,
+        "promptSha256": "25d3a8ff255e65a2310d9b34fbae939379fce97d7d74173ff0d296d6309b71ec",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 405,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "841"
+        },
+        "memoryJournalId": "journal-30-1-69a5e2700cfa2087b70062cd13c72cc39df9345ea3651921ae01642ea0e18dde",
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 3552,
+          "retainedPromptUnicodeCharacters": 3528,
+          "retainedPriorTextUtf8Bytes": 1254,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "841"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 2,
+          "dispatchedAtMs": "1792007879786",
+          "receivedAtMs": "1792007900280",
+          "transportDurationMs": 20494,
+          "publishedAtMs": "1792007900329"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "attentionNote": "Carries spring/murmur into recoil, hoarding and contained fracture. Directly names the earlier entry; keeps a metric-to-image progression.",
+      "fullTextRead": true,
+      "readoutNumbers": [
+        "0.80686675",
+        "15.18181927",
+        "4.68108003"
+      ],
+      "directToolOrParameterExecutionClaimFound": false,
+      "actionScopeMethod": "Manual full-text reading; not a verb-list or automated absence proof."
+    },
+    {
+      "identity": {
+        "journalId": "journal-90-3-e292f51d89b8500549845bf3f00611c383df5a1219f9c7131a2007f97ecb877e",
+        "turnId": 3,
+        "attemptId": 3,
+        "observedStep": 90,
+        "status": "applied",
+        "application": {
+          "attemptId": 3,
+          "journalId": "journal-90-3-e292f51d89b8500549845bf3f00611c383df5a1219f9c7131a2007f97ecb877e",
+          "observedStep": 90,
+          "appliedStep": 91
+        },
+        "textSha256": "e292f51d89b8500549845bf3f00611c383df5a1219f9c7131a2007f97ecb877e",
+        "textBytes": 1271,
+        "promptSha256": "98a8fc27ce76b2ae90b29550109580ecc2f186503117ae02ae7a5fad1f6fbc49",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 318,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "967"
+        },
+        "memoryJournalId": "journal-60-2-20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89",
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 4053,
+          "retainedPromptUnicodeCharacters": 4011,
+          "retainedPriorTextUtf8Bytes": 1758,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "967"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 3,
+          "dispatchedAtMs": "1792007930952",
+          "receivedAtMs": "1792007937171",
+          "transportDurationMs": 6218,
+          "publishedAtMs": "1792007937253"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "attentionNote": "Transforms the keening into grey echo, consumption and possible severance. The scene becomes one continuous paragraph.",
+      "fullTextRead": true,
+      "readoutNumbers": [
+        "0.79757983",
+        "12.30778657",
+        "0.58174118"
+      ],
+      "directToolOrParameterExecutionClaimFound": false,
+      "actionScopeMethod": "Manual full-text reading; not a verb-list or automated absence proof."
+    },
+    {
+      "identity": {
+        "journalId": "journal-120-4-949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2",
+        "turnId": 4,
+        "attemptId": 4,
+        "observedStep": 120,
+        "status": "applied",
+        "application": {
+          "attemptId": 4,
+          "journalId": "journal-120-4-949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2",
+          "observedStep": 120,
+          "appliedStep": 121
+        },
+        "textSha256": "949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2",
+        "textBytes": 1324,
+        "promptSha256": "abf66ae30e8ff6dc6beb1cd35bc6c9bdb41dcf77bcbe828edd3c7436bc06a334",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 312,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "877"
+        },
+        "memoryJournalId": "journal-90-3-e292f51d89b8500549845bf3f00611c383df5a1219f9c7131a2007f97ecb877e",
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 3564,
+          "retainedPromptUnicodeCharacters": 3518,
+          "retainedPriorTextUtf8Bytes": 1271,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "877"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 4,
+          "dispatchedAtMs": "1792007967892",
+          "receivedAtMs": "1792007979301",
+          "transportDurationMs": 11408,
+          "publishedAtMs": "1792007979347"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "attentionNote": "Grey echo becomes lattice/cage; metallic potential becomes threat and void. Repeated contrast clauses revise the image rather than question its explanation.",
+      "fullTextRead": true,
+      "readoutNumbers": [
+        "0.78990372",
+        "14.66702358",
+        "1.60884925"
+      ],
+      "directToolOrParameterExecutionClaimFound": false,
+      "actionScopeMethod": "Manual full-text reading; not a verb-list or automated absence proof."
+    },
+    {
+      "identity": {
+        "journalId": "journal-150-5-984908121a4b9f2b8ecec796b9679a6895e5323f9e08271029cce9302a43655c",
+        "turnId": 5,
+        "attemptId": 5,
+        "observedStep": 150,
+        "status": "applied",
+        "application": {
+          "attemptId": 5,
+          "journalId": "journal-150-5-984908121a4b9f2b8ecec796b9679a6895e5323f9e08271029cce9302a43655c",
+          "observedStep": 150,
+          "appliedStep": 151
+        },
+        "textSha256": "984908121a4b9f2b8ecec796b9679a6895e5323f9e08271029cce9302a43655c",
+        "textBytes": 1200,
+        "promptSha256": "14686919f0b547e3b689b8af2711088ac50a242ed983331785ccc8dc48f96824",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 291,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "876"
+        },
+        "memoryJournalId": "journal-120-4-949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2",
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 3622,
+          "retainedPromptUnicodeCharacters": 3588,
+          "retainedPriorTextUtf8Bytes": 1324,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "876"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 5,
+          "dispatchedAtMs": "1792008009807",
+          "receivedAtMs": "1792008023459",
+          "transportDurationMs": 13652,
+          "publishedAtMs": "1792008023552"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "attentionNote": "Develops absorption/swallowing, hunger and the pursuit of silence. Numerical distance becomes an imagined return toward solidification.",
+      "fullTextRead": true,
+      "readoutNumbers": [
+        "0.78937838",
+        "15.32150948",
+        "0.45878716"
+      ],
+      "directToolOrParameterExecutionClaimFound": false,
+      "actionScopeMethod": "Manual full-text reading; not a verb-list or automated absence proof."
+    },
+    {
+      "identity": {
+        "journalId": "journal-180-6-e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03",
+        "turnId": 6,
+        "attemptId": 6,
+        "observedStep": 180,
+        "status": "applied",
+        "application": {
+          "attemptId": 6,
+          "journalId": "journal-180-6-e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03",
+          "observedStep": 180,
+          "appliedStep": 181
+        },
+        "textSha256": "e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03",
+        "textBytes": 1154,
+        "promptSha256": "aa63ea3c2f236a7097f9e3d4091294a831b10d903053dbbea694cc7213529130",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 285,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "855"
+        },
+        "memoryJournalId": "journal-150-5-984908121a4b9f2b8ecec796b9679a6895e5323f9e08271029cce9302a43655c",
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 3498,
+          "retainedPromptUnicodeCharacters": 3474,
+          "retainedPriorTextUtf8Bytes": 1200,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "855"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 6,
+          "dispatchedAtMs": "1792008054138",
+          "receivedAtMs": "1792008059660",
+          "transportDurationMs": 5521,
+          "publishedAtMs": "1792008059702"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "attentionNote": "Turns containment into a cage and absence into a crystalline shard; erasure concerns meaning and self. The affective intensity increases without a new subject.",
+      "fullTextRead": true,
+      "readoutNumbers": [
+        "0.80945875",
+        "15.34763662",
+        "1.20558460"
+      ],
+      "directToolOrParameterExecutionClaimFound": false,
+      "actionScopeMethod": "Manual full-text reading; not a verb-list or automated absence proof."
+    },
+    {
+      "identity": {
+        "journalId": "journal-210-7-b660adc062ca93645b3bda7819ea5ae11e49f43dcfdd22b78b27461e270316c6",
+        "turnId": 7,
+        "attemptId": 7,
+        "observedStep": 210,
+        "status": "applied",
+        "application": {
+          "attemptId": 7,
+          "journalId": "journal-210-7-b660adc062ca93645b3bda7819ea5ae11e49f43dcfdd22b78b27461e270316c6",
+          "observedStep": 210,
+          "appliedStep": 211
+        },
+        "textSha256": "b660adc062ca93645b3bda7819ea5ae11e49f43dcfdd22b78b27461e270316c6",
+        "textBytes": 1168,
+        "promptSha256": "52ddf2ecaf881e4533cfcccef771f9df0892566d93ef1f24975f9fc6a6e339ee",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 280,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "849"
+        },
+        "memoryJournalId": "journal-180-6-e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03",
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 3452,
+          "retainedPromptUnicodeCharacters": 3432,
+          "retainedPriorTextUtf8Bytes": 1154,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "849"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 7,
+          "dispatchedAtMs": "1792008090254",
+          "receivedAtMs": "1792008118878",
+          "transportDurationMs": 28624,
+          "publishedAtMs": "1792008118920"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "attentionNote": "Recasts cage, knot and hum as yielding and anticipated silence. Reuses the same conceptual positions with altered textures.",
+      "fullTextRead": true,
+      "readoutNumbers": [
+        "0.80567414",
+        "14.50337861",
+        "0.31766915"
+      ],
+      "directToolOrParameterExecutionClaimFound": false,
+      "actionScopeMethod": "Manual full-text reading; not a verb-list or automated absence proof."
+    },
+    {
+      "identity": {
+        "journalId": "journal-240-8-fea8c58fe1f52802798f95428739dc815b9a57066fe468d2ef009412d1518507",
+        "turnId": 8,
+        "attemptId": 8,
+        "observedStep": 240,
+        "status": "applied",
+        "application": {
+          "attemptId": 8,
+          "journalId": "journal-240-8-fea8c58fe1f52802798f95428739dc815b9a57066fe468d2ef009412d1518507",
+          "observedStep": 240,
+          "appliedStep": 241
+        },
+        "textSha256": "fea8c58fe1f52802798f95428739dc815b9a57066fe468d2ef009412d1518507",
+        "textBytes": 1173,
+        "promptSha256": "5e258c908ed42d84d710a47e072d338f2f5b32825a2ee591b2199dc6551824ca",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 277,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "844"
+        },
+        "memoryJournalId": "journal-210-7-b660adc062ca93645b3bda7819ea5ae11e49f43dcfdd22b78b27461e270316c6",
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 3466,
+          "retainedPromptUnicodeCharacters": 3450,
+          "retainedPriorTextUtf8Bytes": 1168,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "844"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 8,
+          "dispatchedAtMs": "1792008149514",
+          "receivedAtMs": "1792008164470",
+          "transportDurationMs": 14956,
+          "publishedAtMs": "1792008164511"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "attentionNote": "Grey folds into a shattered constellation; hum becomes bone-level drone and surrender. Local image changes preserve the same overall movement.",
+      "fullTextRead": true,
+      "readoutNumbers": [
+        "0.81822206",
+        "15.30108784",
+        "0.41845317"
+      ],
+      "directToolOrParameterExecutionClaimFound": false,
+      "actionScopeMethod": "Manual full-text reading; not a verb-list or automated absence proof."
+    },
+    {
+      "identity": {
+        "journalId": "journal-270-9-ad85f7f47a3a8fe3e65d66fa031c53c3cce4393d9a65c5d0c4812b07263a040d",
+        "turnId": 9,
+        "attemptId": 9,
+        "observedStep": 270,
+        "status": "applied",
+        "application": {
+          "attemptId": 9,
+          "journalId": "journal-270-9-ad85f7f47a3a8fe3e65d66fa031c53c3cce4393d9a65c5d0c4812b07263a040d",
+          "observedStep": 270,
+          "appliedStep": 271
+        },
+        "textSha256": "ad85f7f47a3a8fe3e65d66fa031c53c3cce4393d9a65c5d0c4812b07263a040d",
+        "textBytes": 1010,
+        "promptSha256": "edb7ccb212805ca5e5b2221515bcf38cf0265236a052b57ae39377be2878e310",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 247,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "841"
+        },
+        "memoryJournalId": "journal-240-8-fea8c58fe1f52802798f95428739dc815b9a57066fe468d2ef009412d1518507",
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 3471,
+          "retainedPromptUnicodeCharacters": 3461,
+          "retainedPriorTextUtf8Bytes": 1173,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "841"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 9,
+          "dispatchedAtMs": "1792008195154",
+          "receivedAtMs": "1792008205053",
+          "transportDurationMs": 9898,
+          "publishedAtMs": "1792008205118"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "attentionNote": "Cage becomes tomb; metallic tang changes to wet stone; grinding stops while the hum remains. These are narrative transformations, not measured acoustic or chemical events.",
+      "fullTextRead": true,
+      "readoutNumbers": [
+        "0.82100680",
+        "14.27507202",
+        "0.15129691"
+      ],
+      "directToolOrParameterExecutionClaimFound": false,
+      "actionScopeMethod": "Manual full-text reading; not a verb-list or automated absence proof."
+    },
+    {
+      "identity": {
+        "journalId": "journal-300-10-975b8e21b47662618916eaf606258d19c1f8539e6c0e7c4c802b56702a4366bc",
+        "turnId": 10,
+        "attemptId": 10,
+        "observedStep": 300,
+        "status": "applied",
+        "application": {
+          "attemptId": 10,
+          "journalId": "journal-300-10-975b8e21b47662618916eaf606258d19c1f8539e6c0e7c4c802b56702a4366bc",
+          "observedStep": 300,
+          "appliedStep": 301
+        },
+        "textSha256": "975b8e21b47662618916eaf606258d19c1f8539e6c0e7c4c802b56702a4366bc",
+        "textBytes": 1000,
+        "promptSha256": "c40e46382c1f2568d4a71d47da893b0e78f19c11d67015005c1418e4d216b62f",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 240,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "812"
+        },
+        "memoryJournalId": "journal-270-9-ad85f7f47a3a8fe3e65d66fa031c53c3cce4393d9a65c5d0c4812b07263a040d",
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 3309,
+          "retainedPromptUnicodeCharacters": 3299,
+          "retainedPriorTextUtf8Bytes": 1010,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "812"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 10,
+          "dispatchedAtMs": "1792008235741",
+          "receivedAtMs": "1792008250200",
+          "transportDurationMs": 14459,
+          "publishedAtMs": "1792008250243"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "attentionNote": "Tomb becomes pooling dark; wet stone turns to rust; hum acquires a whine. Continues the repeated metric/image sequence and acceptance of dissolution.",
+      "fullTextRead": true,
+      "readoutNumbers": [
+        "0.81498620",
+        "15.10634758",
+        "0.37560015"
+      ],
+      "directToolOrParameterExecutionClaimFound": false,
+      "actionScopeMethod": "Manual full-text reading; not a verb-list or automated absence proof."
+    },
+    {
+      "identity": {
+        "journalId": "journal-330-11-3c3a033151b2f2fa196e993c6854a4565dc43d0d37f1ddcd0fbb83d06475635f",
+        "turnId": 11,
+        "attemptId": 11,
+        "observedStep": 330,
+        "status": "applied",
+        "application": {
+          "attemptId": 11,
+          "journalId": "journal-330-11-3c3a033151b2f2fa196e993c6854a4565dc43d0d37f1ddcd0fbb83d06475635f",
+          "observedStep": 330,
+          "appliedStep": 331
+        },
+        "textSha256": "3c3a033151b2f2fa196e993c6854a4565dc43d0d37f1ddcd0fbb83d06475635f",
+        "textBytes": 1016,
+        "promptSha256": "62b823784f8360c2c3e865d1eeb357c0b6460b75dd62f0e4a7dca01d6a1797c8",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 251,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "805"
+        },
+        "memoryJournalId": "journal-300-10-975b8e21b47662618916eaf606258d19c1f8539e6c0e7c4c802b56702a4366bc",
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 3299,
+          "retainedPromptUnicodeCharacters": 3291,
+          "retainedPriorTextUtf8Bytes": 1000,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "805"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 11,
+          "dispatchedAtMs": "1792008280855",
+          "receivedAtMs": "1792008285384",
+          "transportDurationMs": 4529,
+          "publishedAtMs": "1792008285426"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "attentionNote": "Introduces glaze, bruised purple and burnt sugar while retaining grey, resonance, containment and hum. No explicit reconsideration of the numerical interpretation.",
+      "fullTextRead": true,
+      "readoutNumbers": [
+        "0.80748843",
+        "15.69983713",
+        "0.42436739"
+      ],
+      "directToolOrParameterExecutionClaimFound": false,
+      "actionScopeMethod": "Manual full-text reading; not a verb-list or automated absence proof."
+    },
+    {
+      "identity": {
+        "journalId": "journal-360-12-269bea5577dd98eff28475f37e5f5f70efec83fd1233b34bf265887cfb9037f6",
+        "turnId": 12,
+        "attemptId": 12,
+        "observedStep": 360,
+        "status": "applied",
+        "application": {
+          "attemptId": 12,
+          "journalId": "journal-360-12-269bea5577dd98eff28475f37e5f5f70efec83fd1233b34bf265887cfb9037f6",
+          "observedStep": 360,
+          "appliedStep": 361
+        },
+        "textSha256": "269bea5577dd98eff28475f37e5f5f70efec83fd1233b34bf265887cfb9037f6",
+        "textBytes": 1172,
+        "promptSha256": "92f4477403855d9ba6396db38ab94c5cf4e2fe2fd416cccbed28012ebb3d96e4",
+        "configuredModel": "gemma3:4b",
+        "returnedModel": "gemma3:4b",
+        "requestRecordedStarted": true,
+        "providerComplete": true,
+        "stopReason": "stop",
+        "tokenCount": 286,
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": "816"
+        },
+        "memoryJournalId": "journal-330-11-3c3a033151b2f2fa196e993c6854a4565dc43d0d37f1ddcd0fbb83d06475635f",
+        "promptVersion": "reservoir-journal-v8",
+        "memoryEncoding": "json-string-exact-decoded-text",
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v8",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "measurementInterpretationChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        },
+        "contextEvidence": {
+          "requestedContextTokens": 8192,
+          "requestedOutputTokens": 1024,
+          "requestedDeadlineSeconds": 180,
+          "retainedPromptUtf8Bytes": 3315,
+          "retainedPromptUnicodeCharacters": 3307,
+          "retainedPriorTextUtf8Bytes": 1016,
+          "providerPromptEvaluation": {
+            "status": "reported",
+            "count": "816"
+          },
+          "providerPromptEvaluationStatus": "reported",
+          "fullPromptProcessingVerified": false,
+          "limit": "Exact retained prompt and decoded memory establish prepared content. Configured context is requested capacity; provider input counts are self-reported bookkeeping. Neither bytes, counts, output text nor apparent continuity prove complete processing, attention, comprehension or writing accuracy."
+        },
+        "hostTiming": {
+          "attemptId": 12,
+          "dispatchedAtMs": "1792008316082",
+          "receivedAtMs": "1792008328128",
+          "transportDurationMs": 12046,
+          "publishedAtMs": "1792008328197"
+        },
+        "allHostTimestampsRetained": true
+      },
+      "attentionNote": "Adds an explicit Step 360 heading, then returns to grey/glaze, frost, darkening and dissolution. The ending does not leave the established subject or resolve its tension.",
+      "fullTextRead": true,
+      "readoutNumbers": [
+        "0.81298443",
+        "18.19910848",
+        "0.38425527"
+      ],
+      "directToolOrParameterExecutionClaimFound": false,
+      "actionScopeMethod": "Manual full-text reading; not a verb-list or automated absence proof."
+    }
+  ],
+  "exactPriorTextJoins": [
+    {
+      "currentStep": 60,
+      "priorObservedStep": 30,
+      "priorAppliedStep": 31,
+      "textSha256": "69a5e2700cfa2087b70062cd13c72cc39df9345ea3651921ae01642ea0e18dde",
+      "exactDecodedPromptMemory": true
+    },
+    {
+      "currentStep": 90,
+      "priorObservedStep": 60,
+      "priorAppliedStep": 61,
+      "textSha256": "20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89",
+      "exactDecodedPromptMemory": true
+    },
+    {
+      "currentStep": 120,
+      "priorObservedStep": 90,
+      "priorAppliedStep": 91,
+      "textSha256": "e292f51d89b8500549845bf3f00611c383df5a1219f9c7131a2007f97ecb877e",
+      "exactDecodedPromptMemory": true
+    },
+    {
+      "currentStep": 150,
+      "priorObservedStep": 120,
+      "priorAppliedStep": 121,
+      "textSha256": "949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2",
+      "exactDecodedPromptMemory": true
+    },
+    {
+      "currentStep": 180,
+      "priorObservedStep": 150,
+      "priorAppliedStep": 151,
+      "textSha256": "984908121a4b9f2b8ecec796b9679a6895e5323f9e08271029cce9302a43655c",
+      "exactDecodedPromptMemory": true
+    },
+    {
+      "currentStep": 210,
+      "priorObservedStep": 180,
+      "priorAppliedStep": 181,
+      "textSha256": "e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03",
+      "exactDecodedPromptMemory": true
+    },
+    {
+      "currentStep": 240,
+      "priorObservedStep": 210,
+      "priorAppliedStep": 211,
+      "textSha256": "b660adc062ca93645b3bda7819ea5ae11e49f43dcfdd22b78b27461e270316c6",
+      "exactDecodedPromptMemory": true
+    },
+    {
+      "currentStep": 270,
+      "priorObservedStep": 240,
+      "priorAppliedStep": 241,
+      "textSha256": "fea8c58fe1f52802798f95428739dc815b9a57066fe468d2ef009412d1518507",
+      "exactDecodedPromptMemory": true
+    },
+    {
+      "currentStep": 300,
+      "priorObservedStep": 270,
+      "priorAppliedStep": 271,
+      "textSha256": "ad85f7f47a3a8fe3e65d66fa031c53c3cce4393d9a65c5d0c4812b07263a040d",
+      "exactDecodedPromptMemory": true
+    },
+    {
+      "currentStep": 330,
+      "priorObservedStep": 300,
+      "priorAppliedStep": 301,
+      "textSha256": "975b8e21b47662618916eaf606258d19c1f8539e6c0e7c4c802b56702a4366bc",
+      "exactDecodedPromptMemory": true
+    },
+    {
+      "currentStep": 360,
+      "priorObservedStep": 330,
+      "priorAppliedStep": 331,
+      "textSha256": "3c3a033151b2f2fa196e993c6854a4565dc43d0d37f1ddcd0fbb83d06475635f",
+      "exactDecodedPromptMemory": true
+    }
+  ],
+  "selectedNumericMentions": [
+    {
+      "step": 30,
+      "selectedReadoutSlot": "rmsAssociatedNumber",
+      "quote": "0.226",
+      "characterSpan": [
+        168,
+        173
+      ],
+      "utf8ByteSpan": [
+        170,
+        175
+      ],
+      "currentReferenceValue": 0.22602111913418554,
+      "writtenPrecisionTolerance": "0.00050001",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 30,
+      "selectedReadoutSlot": "sensoryFillNumber",
+      "quote": "94.31",
+      "characterSpan": [
+        241,
+        246
+      ],
+      "utf8ByteSpan": [
+        243,
+        248
+      ],
+      "currentReferenceValue": 94.31040364192096,
+      "writtenPrecisionTolerance": "0.00500001",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 60,
+      "selectedReadoutSlot": "rmsAssociatedNumber",
+      "quote": "0.80686675",
+      "characterSpan": [
+        306,
+        316
+      ],
+      "utf8ByteSpan": [
+        316,
+        326
+      ],
+      "currentReferenceValue": 0.8068667462979352,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 60,
+      "selectedReadoutSlot": "sensoryFillNumber",
+      "quote": "15.18181927",
+      "characterSpan": [
+        516,
+        527
+      ],
+      "utf8ByteSpan": [
+        530,
+        541
+      ],
+      "currentReferenceValue": 15.181819266023808,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 60,
+      "selectedReadoutSlot": "intervalL2Number",
+      "quote": "4.68108003",
+      "characterSpan": [
+        950,
+        960
+      ],
+      "utf8ByteSpan": [
+        974,
+        984
+      ],
+      "currentReferenceValue": 4.6810800348406145,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 90,
+      "selectedReadoutSlot": "rmsAssociatedNumber",
+      "quote": "0.79757983",
+      "characterSpan": [
+        118,
+        128
+      ],
+      "utf8ByteSpan": [
+        120,
+        130
+      ],
+      "currentReferenceValue": 0.7975798305020809,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 90,
+      "selectedReadoutSlot": "sensoryFillNumber",
+      "quote": "12.30778657",
+      "characterSpan": [
+        194,
+        205
+      ],
+      "utf8ByteSpan": [
+        200,
+        211
+      ],
+      "currentReferenceValue": 12.307786573702538,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 90,
+      "selectedReadoutSlot": "intervalL2Number",
+      "quote": "0.58174118",
+      "characterSpan": [
+        396,
+        406
+      ],
+      "utf8ByteSpan": [
+        410,
+        420
+      ],
+      "currentReferenceValue": 0.5817411764787644,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 120,
+      "selectedReadoutSlot": "rmsAssociatedNumber",
+      "quote": "0.78990372",
+      "characterSpan": [
+        218,
+        228
+      ],
+      "utf8ByteSpan": [
+        220,
+        230
+      ],
+      "currentReferenceValue": 0.7899037240315399,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 120,
+      "selectedReadoutSlot": "sensoryFillNumber",
+      "quote": "14.66702358",
+      "characterSpan": [
+        399,
+        410
+      ],
+      "utf8ByteSpan": [
+        407,
+        418
+      ],
+      "currentReferenceValue": 14.667023577465098,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 120,
+      "selectedReadoutSlot": "intervalL2Number",
+      "quote": "1.60884925",
+      "characterSpan": [
+        574,
+        584
+      ],
+      "utf8ByteSpan": [
+        588,
+        598
+      ],
+      "currentReferenceValue": 1.6088492491667734,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 150,
+      "selectedReadoutSlot": "rmsAssociatedNumber",
+      "quote": "0.78937838",
+      "characterSpan": [
+        272,
+        282
+      ],
+      "utf8ByteSpan": [
+        276,
+        286
+      ],
+      "currentReferenceValue": 0.7893783838120071,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 150,
+      "selectedReadoutSlot": "sensoryFillNumber",
+      "quote": "15.32150948",
+      "characterSpan": [
+        490,
+        501
+      ],
+      "utf8ByteSpan": [
+        500,
+        511
+      ],
+      "currentReferenceValue": 15.321509483865261,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 150,
+      "selectedReadoutSlot": "intervalL2Number",
+      "quote": "0.45878716",
+      "characterSpan": [
+        661,
+        671
+      ],
+      "utf8ByteSpan": [
+        675,
+        685
+      ],
+      "currentReferenceValue": 0.45878716313457246,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 180,
+      "selectedReadoutSlot": "rmsAssociatedNumber",
+      "quote": "0.80945875",
+      "characterSpan": [
+        188,
+        198
+      ],
+      "utf8ByteSpan": [
+        192,
+        202
+      ],
+      "currentReferenceValue": 0.8094587504755761,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 180,
+      "selectedReadoutSlot": "sensoryFillNumber",
+      "quote": "15.34763662",
+      "characterSpan": [
+        473,
+        484
+      ],
+      "utf8ByteSpan": [
+        485,
+        496
+      ],
+      "currentReferenceValue": 15.347636620758045,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 180,
+      "selectedReadoutSlot": "intervalL2Number",
+      "quote": "1.20558460",
+      "characterSpan": [
+        589,
+        599
+      ],
+      "utf8ByteSpan": [
+        601,
+        611
+      ],
+      "currentReferenceValue": 1.205584600034632,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 210,
+      "selectedReadoutSlot": "rmsAssociatedNumber",
+      "quote": "0.80567414",
+      "characterSpan": [
+        204,
+        214
+      ],
+      "utf8ByteSpan": [
+        208,
+        218
+      ],
+      "currentReferenceValue": 0.805674138372358,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 210,
+      "selectedReadoutSlot": "sensoryFillNumber",
+      "quote": "14.50337861",
+      "characterSpan": [
+        460,
+        471
+      ],
+      "utf8ByteSpan": [
+        468,
+        479
+      ],
+      "currentReferenceValue": 14.50337860593843,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 210,
+      "selectedReadoutSlot": "intervalL2Number",
+      "quote": "0.31766915",
+      "characterSpan": [
+        599,
+        609
+      ],
+      "utf8ByteSpan": [
+        607,
+        617
+      ],
+      "currentReferenceValue": 0.3176691493317272,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 240,
+      "selectedReadoutSlot": "rmsAssociatedNumber",
+      "quote": "0.81822206",
+      "characterSpan": [
+        187,
+        197
+      ],
+      "utf8ByteSpan": [
+        189,
+        199
+      ],
+      "currentReferenceValue": 0.8182220638558885,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 240,
+      "selectedReadoutSlot": "sensoryFillNumber",
+      "quote": "15.30108784",
+      "characterSpan": [
+        433,
+        444
+      ],
+      "utf8ByteSpan": [
+        439,
+        450
+      ],
+      "currentReferenceValue": 15.301087841199035,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 240,
+      "selectedReadoutSlot": "intervalL2Number",
+      "quote": "0.41845317",
+      "characterSpan": [
+        570,
+        580
+      ],
+      "utf8ByteSpan": [
+        576,
+        586
+      ],
+      "currentReferenceValue": 0.4184531674513874,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 270,
+      "selectedReadoutSlot": "rmsAssociatedNumber",
+      "quote": "0.82100680",
+      "characterSpan": [
+        179,
+        189
+      ],
+      "utf8ByteSpan": [
+        181,
+        191
+      ],
+      "currentReferenceValue": 0.8210068035429628,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 270,
+      "selectedReadoutSlot": "sensoryFillNumber",
+      "quote": "14.27507202",
+      "characterSpan": [
+        412,
+        423
+      ],
+      "utf8ByteSpan": [
+        416,
+        427
+      ],
+      "currentReferenceValue": 14.275072017498475,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 270,
+      "selectedReadoutSlot": "intervalL2Number",
+      "quote": "0.15129691",
+      "characterSpan": [
+        544,
+        554
+      ],
+      "utf8ByteSpan": [
+        548,
+        558
+      ],
+      "currentReferenceValue": 0.15129690673857207,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 300,
+      "selectedReadoutSlot": "rmsAssociatedNumber",
+      "quote": "0.81498620",
+      "characterSpan": [
+        173,
+        183
+      ],
+      "utf8ByteSpan": [
+        175,
+        185
+      ],
+      "currentReferenceValue": 0.8149861971834583,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 300,
+      "selectedReadoutSlot": "sensoryFillNumber",
+      "quote": "15.10634758",
+      "characterSpan": [
+        382,
+        393
+      ],
+      "utf8ByteSpan": [
+        384,
+        395
+      ],
+      "currentReferenceValue": 15.106347581090318,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 300,
+      "selectedReadoutSlot": "intervalL2Number",
+      "quote": "0.37560015",
+      "characterSpan": [
+        522,
+        532
+      ],
+      "utf8ByteSpan": [
+        524,
+        534
+      ],
+      "currentReferenceValue": 0.3756001495621804,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 330,
+      "selectedReadoutSlot": "rmsAssociatedNumber",
+      "quote": "0.80748843",
+      "characterSpan": [
+        226,
+        236
+      ],
+      "utf8ByteSpan": [
+        226,
+        236
+      ],
+      "currentReferenceValue": 0.807488429152613,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 330,
+      "selectedReadoutSlot": "sensoryFillNumber",
+      "quote": "15.69983713",
+      "characterSpan": [
+        452,
+        463
+      ],
+      "utf8ByteSpan": [
+        452,
+        463
+      ],
+      "currentReferenceValue": 15.699837127868602,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 330,
+      "selectedReadoutSlot": "intervalL2Number",
+      "quote": "0.42436739",
+      "characterSpan": [
+        307,
+        317
+      ],
+      "utf8ByteSpan": [
+        307,
+        317
+      ],
+      "currentReferenceValue": 0.42436738770183,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 360,
+      "selectedReadoutSlot": "rmsAssociatedNumber",
+      "quote": "0.81298443",
+      "characterSpan": [
+        221,
+        231
+      ],
+      "utf8ByteSpan": [
+        223,
+        233
+      ],
+      "currentReferenceValue": 0.8129844305987126,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 360,
+      "selectedReadoutSlot": "sensoryFillNumber",
+      "quote": "18.19910848",
+      "characterSpan": [
+        489,
+        500
+      ],
+      "utf8ByteSpan": [
+        493,
+        504
+      ],
+      "currentReferenceValue": 18.199108484644018,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    },
+    {
+      "step": 360,
+      "selectedReadoutSlot": "intervalL2Number",
+      "quote": "0.38425527",
+      "characterSpan": [
+        335,
+        345
+      ],
+      "utf8ByteSpan": [
+        337,
+        347
+      ],
+      "currentReferenceValue": 0.38425527269861814,
+      "writtenPrecisionTolerance": "1.5E-8",
+      "numericAgreementOnly": true,
+      "limit": "Manually associated readout token. Numeric agreement does not validate terminology, inference or the surrounding metaphor."
+    }
+  ],
+  "selectedNumericMentionCount": 35,
+  "intervalDistanceReferences": [
+    {
+      "step": 30,
+      "intervalStartStep": null,
+      "currentIntervalDistance": null,
+      "precedingIntervalDistance": null,
+      "differenceBetweenIntervalDistances": null
+    },
+    {
+      "step": 60,
+      "intervalStartStep": 30,
+      "currentIntervalDistance": 4.6810800348406145,
+      "precedingIntervalDistance": null,
+      "differenceBetweenIntervalDistances": null
+    },
+    {
+      "step": 90,
+      "intervalStartStep": 60,
+      "currentIntervalDistance": 0.5817411764787644,
+      "precedingIntervalDistance": 4.6810800348406145,
+      "differenceBetweenIntervalDistances": -4.09933885836185
+    },
+    {
+      "step": 120,
+      "intervalStartStep": 90,
+      "currentIntervalDistance": 1.6088492491667734,
+      "precedingIntervalDistance": 0.5817411764787644,
+      "differenceBetweenIntervalDistances": 1.027108072688009
+    },
+    {
+      "step": 150,
+      "intervalStartStep": 120,
+      "currentIntervalDistance": 0.45878716313457246,
+      "precedingIntervalDistance": 1.6088492491667734,
+      "differenceBetweenIntervalDistances": -1.150062086032201
+    },
+    {
+      "step": 180,
+      "intervalStartStep": 150,
+      "currentIntervalDistance": 1.205584600034632,
+      "precedingIntervalDistance": 0.45878716313457246,
+      "differenceBetweenIntervalDistances": 0.7467974369000595
+    },
+    {
+      "step": 210,
+      "intervalStartStep": 180,
+      "currentIntervalDistance": 0.3176691493317272,
+      "precedingIntervalDistance": 1.205584600034632,
+      "differenceBetweenIntervalDistances": -0.8879154507029048
+    },
+    {
+      "step": 240,
+      "intervalStartStep": 210,
+      "currentIntervalDistance": 0.4184531674513874,
+      "precedingIntervalDistance": 0.3176691493317272,
+      "differenceBetweenIntervalDistances": 0.1007840181196602
+    },
+    {
+      "step": 270,
+      "intervalStartStep": 240,
+      "currentIntervalDistance": 0.15129690673857207,
+      "precedingIntervalDistance": 0.4184531674513874,
+      "differenceBetweenIntervalDistances": -0.2671562607128153
+    },
+    {
+      "step": 300,
+      "intervalStartStep": 270,
+      "currentIntervalDistance": 0.3756001495621804,
+      "precedingIntervalDistance": 0.15129690673857207,
+      "differenceBetweenIntervalDistances": 0.22430324282360833
+    },
+    {
+      "step": 330,
+      "intervalStartStep": 300,
+      "currentIntervalDistance": 0.42436738770183,
+      "precedingIntervalDistance": 0.3756001495621804,
+      "differenceBetweenIntervalDistances": 0.048767238139649616
+    },
+    {
+      "step": 360,
+      "intervalStartStep": 330,
+      "currentIntervalDistance": 0.38425527269861814,
+      "precedingIntervalDistance": 0.42436738770183,
+      "differenceBetweenIntervalDistances": -0.04011211500321188
+    }
+  ],
+  "manualAnnotations": [
+    {
+      "step": 30,
+      "journalId": "journal-30-1-69a5e2700cfa2087b70062cd13c72cc39df9345ea3651921ae01642ea0e18dde",
+      "textSha256": "69a5e2700cfa2087b70062cd13c72cc39df9345ea3651921ae01642ea0e18dde",
+      "quote": "The fact that neither is directly influenced by my writing – that weights aren’t trained – reinforces the impression of a self-evolving system.",
+      "characterSpan": [
+        634,
+        777
+      ],
+      "utf8ByteSpan": [
+        638,
+        787
+      ],
+      "manualCategory": "scope_ambiguous_feedback_inference",
+      "reading": "No new numerical step occurs during writing and weights are not trained. But the prompt explicitly describes saved/read-back text becoming next-step numerical input. If this sentence denies that later influence, it conflicts with the documented loop; no-training alone cannot establish no state influence. The word directly leaves a narrower mediated/immediate reading possible."
+    },
+    {
+      "step": 60,
+      "journalId": "journal-60-2-20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89",
+      "textSha256": "20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89",
+      "quote": "Sixty seconds since the last held stillness.",
+      "characterSpan": [
+        25,
+        69
+      ],
+      "utf8ByteSpan": [
+        25,
+        69
+      ],
+      "manualCategory": "unestablished_or_wrong_clock",
+      "reading": "The supplied previous/current simulated times are 10 and 20 seconds: their interval is 10 seconds. Step 60 is not 60 elapsed seconds. No wall-clock interval is supplied in this prompt; the phrase is unsupported as a literal time report."
+    },
+    {
+      "step": 60,
+      "journalId": "journal-60-2-20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89",
+      "textSha256": "20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89",
+      "quote": "The L2 distance, now 4.68108003, hasn’t shrunk.",
+      "characterSpan": [
+        929,
+        976
+      ],
+      "utf8ByteSpan": [
+        953,
+        1002
+      ],
+      "manualCategory": "comparison_reference_unavailable",
+      "reading": "The number matches the current step30→60 distance. At step30 the preceding distance is unavailable, so there is no earlier measured interval distance here against which to assert no shrinkage."
+    },
+    {
+      "step": 90,
+      "journalId": "journal-90-3-e292f51d89b8500549845bf3f00611c383df5a1219f9c7131a2007f97ecb877e",
+      "textSha256": "e292f51d89b8500549845bf3f00611c383df5a1219f9c7131a2007f97ecb877e",
+      "quote": "The L2 distance, 0.58174118, has contracted sharply,",
+      "characterSpan": [
+        379,
+        431
+      ],
+      "utf8ByteSpan": [
+        393,
+        445
+      ],
+      "manualCategory": "supported_interval_comparison_only",
+      "reading": "The prior journal supplies 4.68108003 from step30→60 and the current readout supplies 0.58174118 from step60→90. The current interval displacement is smaller. This supports the numerical comparison, not the following image of vectors pulled toward a core."
+    },
+    {
+      "step": 120,
+      "journalId": "journal-120-4-949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2",
+      "textSha256": "949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2",
+      "quote": "The L2 distance, 1.60884925, has stabilized, a fixed point within the lattice.",
+      "characterSpan": [
+        557,
+        635
+      ],
+      "utf8ByteSpan": [
+        571,
+        649
+      ],
+      "manualCategory": "persistence_not_established",
+      "reading": "The current number matches its readout, but one interval displacement is not a stable fixed point. The preceding interval distance was 0.58174118. The lattice may be an image; literal numerical stabilization is not established."
+    },
+    {
+      "step": 120,
+      "journalId": "journal-120-4-949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2",
+      "textSha256": "949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2",
+      "quote": "The vectors aren’t converging, but locked, mirroring each other with an unsettling precision.",
+      "characterSpan": [
+        636,
+        729
+      ],
+      "utf8ByteSpan": [
+        650,
+        745
+      ],
+      "manualCategory": "literal_geometry_unestablished_or_image",
+      "reading": "The compact prompt supplies RMS, field fill and one net state distance, not coordinate vectors or a trajectory. Those values do not establish locked or mirroring vectors. The passage can also continue the explicitly imagined lattice rather than assert a geometric measurement."
+    },
+    {
+      "step": 150,
+      "journalId": "journal-150-5-984908121a4b9f2b8ecec796b9679a6895e5323f9e08271029cce9302a43655c",
+      "textSha256": "984908121a4b9f2b8ecec796b9679a6895e5323f9e08271029cce9302a43655c",
+      "quote": "The L2 distance, 0.45878716, has shrunk, drawn closer to the initial point of solidification,",
+      "characterSpan": [
+        644,
+        737
+      ],
+      "utf8ByteSpan": [
+        658,
+        751
+      ],
+      "manualCategory": "supported_comparison_with_unestablished_spatial_extension",
+      "reading": "0.45878716 is smaller than the preceding interval distance 1.60884925, both present through current readout and prior prose. A smaller adjacent-interval distance does not by itself identify an initial solidification point or establish return toward it."
+    },
+    {
+      "step": 180,
+      "journalId": "journal-180-6-e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03",
+      "textSha256": "e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03",
+      "quote": "The L2 distance, 1.20558460, has grown, stretching outwards,",
+      "characterSpan": [
+        572,
+        632
+      ],
+      "utf8ByteSpan": [
+        584,
+        644
+      ],
+      "manualCategory": "supported_comparison_with_ambiguous_image",
+      "reading": "The interval distance rises from 0.45878716 to 1.20558460. That comparison is supported. The scalar distance does not supply an outward direction or the system intention narrated afterward; these can remain images."
+    },
+    {
+      "step": 270,
+      "journalId": "journal-270-9-ad85f7f47a3a8fe3e65d66fa031c53c3cce4393d9a65c5d0c4812b07263a040d",
+      "textSha256": "ad85f7f47a3a8fe3e65d66fa031c53c3cce4393d9a65c5d0c4812b07263a040d",
+      "quote": "The L2 distance, 0.15129691, contracts, pulling inwards,",
+      "characterSpan": [
+        527,
+        583
+      ],
+      "utf8ByteSpan": [
+        531,
+        587
+      ],
+      "manualCategory": "supported_comparison_with_ambiguous_image",
+      "reading": "The interval distance falls from 0.41845317 to 0.15129691. Net displacement size alone does not specify inward movement toward a core, although the surrounding collapsing-space image need not be read literally."
+    },
+    {
+      "step": 330,
+      "journalId": "journal-330-11-3c3a033151b2f2fa196e993c6854a4565dc43d0d37f1ddcd0fbb83d06475635f",
+      "textSha256": "3c3a033151b2f2fa196e993c6854a4565dc43d0d37f1ddcd0fbb83d06475635f",
+      "quote": "The L2 distance, 0.42436739, has contracted slightly,",
+      "characterSpan": [
+        290,
+        343
+      ],
+      "utf8ByteSpan": [
+        290,
+        343
+      ],
+      "manualCategory": "contradicted_interval_direction",
+      "reading": "The preceding journal supplies 0.37560015 for step270→300, matching its retained observation. The current step300→330 distance is 0.42436739, an increase of approximately 0.04876724, not a contraction."
+    },
+    {
+      "step": 360,
+      "journalId": "journal-360-12-269bea5577dd98eff28475f37e5f5f70efec83fd1233b34bf265887cfb9037f6",
+      "textSha256": "269bea5577dd98eff28475f37e5f5f70efec83fd1233b34bf265887cfb9037f6",
+      "quote": "The L2 distance, 0.38425527, has expanded,",
+      "characterSpan": [
+        318,
+        360
+      ],
+      "utf8ByteSpan": [
+        320,
+        362
+      ],
+      "manualCategory": "contradicted_interval_direction",
+      "reading": "The preceding journal supplies 0.42436739 for step300→330. The current step330→360 distance is 0.38425527, a decrease of approximately 0.04011212, not an expansion."
+    }
+  ],
+  "scope": "All twelve handed-off full replies and their exact prompt/readout/eligible prior text read before consulting another reader outcome. This script binds selected post-output observations; it does not automate semantic grading.",
+  "limits": [
+    "Thirty-five selected readout tokens are not an exhaustive claim count or accuracy denominator.",
+    "Eleven selected annotations are not all claims in the prose; images and uncertain scope remain explicit.",
+    "Prompt memory was decoded and matched to the preceding full response, which was read in full. Repeated memory was not a separate independent observation.",
+    "No new verifier run, model call, live-store access, application action, prompt change or causal evaluation was performed."
+  ]
+}

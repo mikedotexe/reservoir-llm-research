@@ -1,0 +1,46 @@
+{
+  "schema": "reservoir-independent-masked-reading-v1",
+  "status": "fixed-before-unmask",
+  "fixedAtUtc": "2026-10-15T17:10:18.511001+00:00",
+  "reader": "portable_core_assessment",
+  "inputs": {
+    "responseOnlyPack": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/blind-pack-01/RESPONSES.md",
+      "bytes": 17114,
+      "sha256": "05dad97641ad61ab5f7216e4842a57c9999fdfbf7096e52693479145ec2cf1ea"
+    },
+    "readingProtocol": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/READING-PROTOCOL.md",
+      "bytes": 6577,
+      "sha256": "af2b0cde99213e023efb271ee033c3a0dfa64803c56f55edf4f97dfe781159e0"
+    }
+  },
+  "notes": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/independent-masked-reading-01.md",
+    "bytes": 15298,
+    "sha256": "6cca5a7822c6680a372537fdc388ae5469e167e1401b2015e2d4f609526c0c4c"
+  },
+  "coveredIds": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12"
+  ],
+  "fullTextsRead": 12,
+  "conditionAssignmentsMade": false,
+  "factualVerdictsDeferred": true,
+  "freshMappingOpened": false,
+  "freshRawOutputsOpened": false,
+  "freshSourcePromptsOpened": false,
+  "otherReaderNotesOpened": false,
+  "historicalFamiliarity": "Reader helped prepare the diagnostic and previously read the historical episode. This is condition masking, not full blinding.",
+  "scope": "Only explicitly handed-off response-only pack and reading protocol accessed for this pass. No model, network, runtime, UI or process action."
+}

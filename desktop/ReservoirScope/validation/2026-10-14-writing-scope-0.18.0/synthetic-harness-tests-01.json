@@ -1,0 +1,98 @@
+{
+  "schema": "reservoir-v6-synthetic-harness-tests-v1",
+  "startedAtUtc": "2026-10-14T15:30:58.250987+00:00",
+  "endedAtUtc": "2026-10-14T15:30:58.322894+00:00",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "test_owned_provider.py",
+    "test_check_fixture_export.py"
+  ],
+  "cwd": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0",
+  "exitCode": 0,
+  "passed": true,
+  "sourceUnchanged": true,
+  "sourceBefore": [
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/owned_provider.py",
+      "bytes": 9067,
+      "sha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/test_owned_provider.py",
+      "bytes": 2946,
+      "sha256": "734a3db118701c503a7ef0ab2b157ba0069a13c62e195d156df8947f039c319a"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/check_fixture_export.py",
+      "bytes": 28251,
+      "sha256": "08308e233d1c88654772e954d8a286a2863a8188b12f151894ed92bd71053b0a"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/test_check_fixture_export.py",
+      "bytes": 10901,
+      "sha256": "f56e0b851897e78cf938a09af20f3030cc4fab5179c6adee7c60ac7406970612"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-observation-10.txt",
+      "bytes": 1599,
+      "sha256": "648266e30c22980ea5eb3c589e78e79bf6217fbabe43f346cd68938dacafc16c"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-memory-20.txt",
+      "bytes": 1789,
+      "sha256": "a18a1d6a788b6ca47830770cbfb008da98960eae20ee8653b45440141581c971"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-provenance.json",
+      "bytes": 1752,
+      "sha256": "970fc8e876bea1b7811163a886f4298918ecc11a92f400e51fa0b9e7b48b5182"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/owned_provider.py",
+      "bytes": 9067,
+      "sha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/test_owned_provider.py",
+      "bytes": 2946,
+      "sha256": "734a3db118701c503a7ef0ab2b157ba0069a13c62e195d156df8947f039c319a"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/check_fixture_export.py",
+      "bytes": 28251,
+      "sha256": "08308e233d1c88654772e954d8a286a2863a8188b12f151894ed92bd71053b0a"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/test_check_fixture_export.py",
+      "bytes": 10901,
+      "sha256": "f56e0b851897e78cf938a09af20f3030cc4fab5179c6adee7c60ac7406970612"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-observation-10.txt",
+      "bytes": 1599,
+      "sha256": "648266e30c22980ea5eb3c589e78e79bf6217fbabe43f346cd68938dacafc16c"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-memory-20.txt",
+      "bytes": 1789,
+      "sha256": "a18a1d6a788b6ca47830770cbfb008da98960eae20ee8653b45440141581c971"
+    },
+    {
+      "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-provenance.json",
+      "bytes": 1752,
+      "sha256": "970fc8e876bea1b7811163a886f4298918ecc11a92f400e51fa0b9e7b48b5182"
+    }
+  ],
+  "log": {
+    "path": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/synthetic-harness-tests-01.log",
+    "bytes": 4024,
+    "sha256": "1ef5be6f2d15d1bc8936c1a6d17aa0d09f4a13bdf27c1fdaa12afae2ff1dacee"
+  },
+  "scope": "Pure Python helper tests only. No provider launch, socket, model, native app or production replay execution. Core fixture checks validate structural scaffold/memory compatibility, not numerical correctness."
+}

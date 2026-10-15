@@ -1,0 +1,36 @@
+$ rustc -vV
+rustc 1.94.1 (e408947bf 2026-03-25)
+binary: rustc
+commit-hash: e408947bfd200af42db322daf0fadfe7e26d3bd1
+commit-date: 2026-03-25
+host: aarch64-apple-darwin
+release: 1.94.1
+LLVM version: 21.1.8
+
+$ rustc --edition=2021 -C opt-level=0 /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/fixed8_wrapper.rs -o /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/formatter/fixed8-wrapper
+
+$ python3 -B -m unittest -v test_prepare_inputs.py
+test_adversarial_json_memory_remains_exact_and_cannot_supply_markers (test_prepare_inputs.PreparationTests.test_adversarial_json_memory_remains_exact_and_cannot_supply_markers) ... ok
+test_b_uses_displacement_not_norm_or_rms_difference (test_prepare_inputs.PreparationTests.test_b_uses_displacement_not_norm_or_rms_difference) ... ok
+test_changed_outer_meaning_or_invitation_rejected (test_prepare_inputs.PreparationTests.test_changed_outer_meaning_or_invitation_rejected) ... ok
+test_exact_a_and_unchanged_blocks_rms_fill_meaning (test_prepare_inputs.PreparationTests.test_exact_a_and_unchanged_blocks_rms_fill_meaning) ... ok
+test_first_observation_has_no_fabricated_zero_or_first_interval (test_prepare_inputs.PreparationTests.test_first_observation_has_no_fabricated_zero_or_first_interval) ... ok
+test_formatter_rejects_nonfinite_overflow_and_malformed_input (test_prepare_inputs.PreparationTests.test_formatter_rejects_nonfinite_overflow_and_malformed_input) ... ok
+test_mismatched_previous_snapshot_rejected (test_prepare_inputs.PreparationTests.test_mismatched_previous_snapshot_rejected) ... ok
+test_mismatched_reached_observation_step_rejected (test_prepare_inputs.PreparationTests.test_mismatched_reached_observation_step_rejected) ... ok
+test_missing_observation_and_mismatched_simulated_time_rejected (test_prepare_inputs.PreparationTests.test_missing_observation_and_mismatched_simulated_time_rejected) ... ok
+test_missing_source_prior_and_grandprior_rejected (test_prepare_inputs.PreparationTests.test_missing_source_prior_and_grandprior_rejected) ... ok
+test_norm_cannot_substitute_current_or_prior_displacement_in_source_join (test_prepare_inputs.PreparationTests.test_norm_cannot_substitute_current_or_prior_displacement_in_source_join) ... ok
+test_raw_subtraction_precedes_formatting_and_preserves_zero_sign (test_prepare_inputs.PreparationTests.test_raw_subtraction_precedes_formatting_and_preserves_zero_sign) ... ok
+test_rust_wrapper_matches_all_1173_retained_formatter_oracle_vectors (test_prepare_inputs.PreparationTests.test_rust_wrapper_matches_all_1173_retained_formatter_oracle_vectors) ... ok
+test_second_observation_has_current_interval_but_no_comparison (test_prepare_inputs.PreparationTests.test_second_observation_has_current_interval_but_no_comparison) ... ok
+test_six_anchors_have_expected_raw_difference_strings (test_prepare_inputs.PreparationTests.test_six_anchors_have_expected_raw_difference_strings) ... ok
+test_source_qualification_and_all_73_original_files_are_bound (test_prepare_inputs.PreparationTests.test_source_qualification_and_all_73_original_files_are_bound) ... ok
+test_third_observation_has_two_adjacent_intervals (test_prepare_inputs.PreparationTests.test_third_observation_has_two_adjacent_intervals) ... ok
+test_wrong_decoded_memory_rejected (test_prepare_inputs.PreparationTests.test_wrong_decoded_memory_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.456s
+
+OK
+

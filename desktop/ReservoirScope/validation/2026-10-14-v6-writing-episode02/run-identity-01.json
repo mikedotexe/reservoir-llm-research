@@ -1,0 +1,73 @@
+{
+  "capturedAtUtc": "2026-10-14T16:10:46.146642+00:00",
+  "episodeId": "v6-writing-0.18.0-episode02",
+  "sessionId": "sustained-1791994198871-1",
+  "manifestPath": "/Users/v/Library/Application Support/research.reservoir.scope.tauri/sustained-v1/sustained-1791994198871-1/manifest.json",
+  "manifestSha256": "328fe14f461545d6e3280ed6503bc04ba8fcc31fcf0b3431c5e19026906b21e5",
+  "acceptedConfig": {
+    "seed": "20261013",
+    "turnEvery": 30,
+    "maximumSteps": 361,
+    "maximumTurns": 12,
+    "maximumDurationSeconds": 900,
+    "storageBudgetBytes": 67108864,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true,
+    "language": {
+      "backend": "ollama",
+      "endpoint": "http://127.0.0.1:63371",
+      "model": "gemma3:4b",
+      "contextTokens": 8192
+    },
+    "promptVersion": "reservoir-journal-v6",
+    "outputTokens": 1024,
+    "requestDeadlineSeconds": 180
+  },
+  "ownedProcessPath": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.18-v6-writing-gemma3-4b-run02/owned-process.json",
+  "endpoint": "http://127.0.0.1:63371",
+  "readinessRequests": 1,
+  "startClicks": 1,
+  "newSupervisionDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.18-v6-writing-gemma3-4b-run02",
+  "initialManifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791994198871-1",
+    "generation": "1",
+    "revision": "32",
+    "config": {
+      "seed": "20261013",
+      "turnEvery": 30,
+      "maximumSteps": 361,
+      "maximumTurns": 12,
+      "maximumDurationSeconds": 900,
+      "storageBudgetBytes": 67108864,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:63371",
+        "model": "gemma3:4b",
+        "contextTokens": 8192
+      },
+      "promptVersion": "reservoir-journal-v6",
+      "outputTokens": 1024,
+      "requestDeadlineSeconds": 180
+    },
+    "phase": "running",
+    "step": 30,
+    "durableStep": 30,
+    "elapsedMillis": 30371,
+    "journalCount": 0,
+    "segmentCount": 1,
+    "lastSegmentSha256": "00477d4c92cfd160cc26b2409b180d9a20ef70c5104c8c1c2ed9ebf9074bb940",
+    "checkpointSha256": "08ec2521d189371f156cb854a4dc7f25fbd43f3662002426e2897d787746f5b9",
+    "previousCheckpointSha256": "cc84b0539014d31e26b0c0daa2e877f437477a10db01c88b5791bbb8f010e48b",
+    "diagnostics": [],
+    "attemptTiming": null
+  }
+}

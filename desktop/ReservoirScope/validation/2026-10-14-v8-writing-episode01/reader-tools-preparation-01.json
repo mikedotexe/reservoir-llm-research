@@ -1,0 +1,190 @@
+{
+  "schema": "reservoir-v8-reader-tools-preparation-v1",
+  "status": "passed",
+  "startedAtUtc": "2026-10-14T19:55:06.255611+00:00",
+  "endedAtUtc": "2026-10-14T19:55:06.352831+00:00",
+  "scope": "Pure synthetic in-memory and temporary-file checks only. No app/store, production verifier, sampler launch, model, service, network, process or Being access. Synthetic passing verifier metadata is not evidence of actual numerical replay.",
+  "checks": [
+    {
+      "name": "renderer-exact-utf8-complete",
+      "passed": true
+    },
+    {
+      "name": "renderer-exact-utf8-partial",
+      "passed": true
+    },
+    {
+      "name": "renderer-exact-utf8-unstarted",
+      "passed": true
+    },
+    {
+      "name": "renderer-old-version",
+      "passed": true
+    },
+    {
+      "name": "renderer-failed-receipt",
+      "passed": true
+    },
+    {
+      "name": "renderer-wrong-pin",
+      "passed": true
+    },
+    {
+      "name": "renderer-truncated-text",
+      "passed": true
+    },
+    {
+      "name": "renderer-wrong-text-hash",
+      "passed": true
+    },
+    {
+      "name": "renderer-wrong-text-length",
+      "passed": true
+    },
+    {
+      "name": "recovery-exact-partial-retained-with-paused-wrapper",
+      "passed": true
+    },
+    {
+      "name": "recovery-generation-jump",
+      "passed": true
+    },
+    {
+      "name": "recovery-budget-change",
+      "passed": true
+    },
+    {
+      "name": "recovery-new-response",
+      "passed": true
+    },
+    {
+      "name": "recovery-retained-byte-change",
+      "passed": true
+    },
+    {
+      "name": "sampler-exact-manifest-projection",
+      "passed": true
+    },
+    {
+      "name": "sampler-wrong-session",
+      "passed": true
+    },
+    {
+      "name": "sampler-wrong-generation",
+      "passed": true
+    },
+    {
+      "name": "sampler-symlink",
+      "passed": true
+    },
+    {
+      "name": "sampler-config-change",
+      "passed": true
+    },
+    {
+      "name": "sampler-revision-regression",
+      "passed": true
+    },
+    {
+      "name": "sampler-stops-at-held-phase-after-bounded-progress",
+      "passed": true
+    },
+    {
+      "name": "sampler-hard-900-seconds-no-real-wait",
+      "passed": true
+    },
+    {
+      "name": "sampler-reject-extension",
+      "passed": true
+    },
+    {
+      "name": "sampler-reject-long-interval",
+      "passed": true
+    }
+  ],
+  "error": null,
+  "sourcesBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/render_received_journals.py",
+      "bytes": 10321,
+      "sha256": "09a3cc6e8ad727ea8774ebd696e8452177b876935fc9abb43d67c8e15cb6bed5"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/compare_recovery_01.py",
+      "bytes": 9293,
+      "sha256": "d9a6f1a45ee3e52c13a0bce01841014a3b0425d9a4aca00b9601bb9db1eef1ed"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/sample_manifest.py",
+      "bytes": 10199,
+      "sha256": "ab5a0ede966fccee08eab07e1ebff610568f534f5208b56fbc04f16e33245481"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/check_real_model_export.py",
+      "bytes": 48186,
+      "sha256": "ffee0b2769fb71fc8452d1166b025a0a877422806b31388b1b3e5c238d46f0e7"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/test_real_model_export.py",
+      "bytes": 32988,
+      "sha256": "5a0266f253bd575b3266e7455ade22bfe8d81d071d2b40091aa54eff96a624e4"
+    }
+  ],
+  "sourcesAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/render_received_journals.py",
+      "bytes": 10321,
+      "sha256": "09a3cc6e8ad727ea8774ebd696e8452177b876935fc9abb43d67c8e15cb6bed5"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/compare_recovery_01.py",
+      "bytes": 9293,
+      "sha256": "d9a6f1a45ee3e52c13a0bce01841014a3b0425d9a4aca00b9601bb9db1eef1ed"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/sample_manifest.py",
+      "bytes": 10199,
+      "sha256": "ab5a0ede966fccee08eab07e1ebff610568f534f5208b56fbc04f16e33245481"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/check_real_model_export.py",
+      "bytes": 48186,
+      "sha256": "ffee0b2769fb71fc8452d1166b025a0a877422806b31388b1b3e5c238d46f0e7"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/test_real_model_export.py",
+      "bytes": 32988,
+      "sha256": "5a0266f253bd575b3266e7455ade22bfe8d81d071d2b40091aa54eff96a624e4"
+    }
+  ],
+  "sourceUnchanged": true,
+  "priorSources": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/render_received_journals.py",
+      "bytes": 10376,
+      "sha256": "96feb34be971042fc156ebed907e847f5da8ce9ec9f54e61b96c3ed892c31fd0"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/compare_recovery_01.py",
+      "bytes": 8267,
+      "sha256": "5a38599f71d567370744985a40c1edfe2d71111cb38ae3c9894c5d977a7dfe14"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/sample_manifest.py",
+      "bytes": 1032,
+      "sha256": "2d7b4efb982e1adf9e46c10a9e3b360ab84966af3ef8a7076c995e1b3efa6a82"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/sample_manifest_continuation.py",
+      "bytes": 1051,
+      "sha256": "414654abe84b28b7fcb3702cbd120f39f4232603f923977c3f62b6674d10ddd5"
+    }
+  ],
+  "adaptation": [
+    "Renderer preserves all full received UTF-8 spans and twelve slots, binds v8 and explicit qualified CLI hash; no actual response read.",
+    "Recovery uses explicit receipt/export/session/CLI arguments; exact nonmanifest bytes and all retained evidence unchanged; only single Restore wrapper increments/paused allowed; no complete-outcome requirement.",
+    "Sampler requires exact owned manifest/session/generation; at most900 seconds,15\u201345 second interval(default30),61 snapshots; terminates on held/terminal/error and controls nothing."
+  ],
+  "syntheticTestProgram": "\nimport copy, contextlib, io, tempfile\nimport render_received_journals as renderer\nimport compare_recovery_01 as recovery\nimport sample_manifest as sampler\nimport check_real_model_export as check\nfrom test_real_model_export import StructuralBundle\nchecks=[]\ndef good(name, call):\n call();checks.append({'name':name,'passed':True})\ndef bad(name, call):\n try:call()\n except (ValueError,FileExistsError):checks.append({'name':name,'passed':True});return\n raise AssertionError('Expected rejection: '+name)\ndef make_receipt(evidence):\n return {'schema':'reservoir-real-model-export-check-v8','status':'passed','originalUnchanged':True,'modelsContactedByChecker':False,'expectedPromptVersion':'reservoir-journal-v8','sourceExecutable':{'sha256':'a'*64},'pinnedExecutable':{'sha256':'a'*64},'verification':{'exitCode':0,'result':{'status':'passed','modelsContacted':False}},'evidence':evidence}\nwith tempfile.TemporaryDirectory() as temporary:\n root=Path(temporary).resolve()\n for name,count,incomplete in [('complete',12,False),('partial',1,True),('unstarted',0,False)]:\n  folder=root/name;folder.mkdir();e,_=StructuralBundle(folder,count,incomplete).inspect();receipt=make_receipt(e)\n  output,spans,continuity=renderer.render(receipt,'b'*64,'a'*64)\n  assert len(spans)==count+int(incomplete) and len(continuity['slots'])==12\n  for span,row in zip(spans,e['receivedResponses']):assert output[span['startByte']:span['endByteExclusive']]==row['response']['text'].encode()\n  assert continuity['outcome']==name\n  checks.append({'name':'renderer-exact-utf8-'+name,'passed':True})\n  if name=='partial':partial=receipt\n for name,mutate in [\n  ('old-version',lambda r:r.update(expectedPromptVersion='reservoir-journal-v7')),\n  ('failed-receipt',lambda r:r.update(status='failed')),\n  ('wrong-pin',lambda r:r['pinnedExecutable'].update(sha256='c'*64)),\n  ('truncated-text',lambda r:r['evidence']['receivedResponses'][1]['response'].update(textTruncated=True)),\n  ('wrong-text-hash',lambda r:r['evidence']['receivedResponses'][1]['response'].update(textSha256='0'*64)),\n  ('wrong-text-length',lambda r:r['evidence']['receivedResponses'][1]['response'].update(textByteCount=1))]:\n  value=copy.deepcopy(partial);mutate(value);bad('renderer-'+name,lambda:renderer.render(value,'b'*64,'a'*64))\n # Recovery comparison uses hand-built file records and mock verification metadata.\n # No production verifier is invoked; these are structural wrapper tests only.\n a=root/'original';b=root/'recovered';a.mkdir();b.mkdir()\n manifest={'sessionId':'sustained-1-1','generation':'1','revision':'7','phase':'attemptBlocked','step':60,'durableStep':60,'journalCount':1,'segmentCount':1,'elapsedMillis':42,'checkpointSha256':'d'*64,'config':{'promptVersion':'reservoir-journal-v8','maximumSteps':361}}\n restored=dict(manifest,generation='2',revision='8',phase='paused')\n for path,value in [(a,manifest),(b,restored)]:\n  (path/'manifest.json').write_text(json.dumps(value));(path/'retained.json').write_text('{\"retained\":\"exact\"}')\n original=copy.deepcopy(partial);recovered=copy.deepcopy(partial)\n original['evidence']['manifest']=manifest;recovered['evidence']['manifest']=restored\n first=check.inventory(a);second=check.inventory(b)\n result=recovery.compare(a,b,original,recovered,first,second)\n assert result['identicalNonManifestFiles']==1 and result['continuity']['outcome']=='partial'\n checks.append({'name':'recovery-exact-partial-retained-with-paused-wrapper','passed':True})\n for name,mutate in [('generation-jump',lambda r:r['evidence']['manifest'].update(generation='3')),('budget-change',lambda r:r['evidence']['manifest']['config'].update(maximumSteps=362)),('new-response',lambda r:r['evidence']['receivedResponses'].clear())]:\n  value=copy.deepcopy(recovered);mutate(value);bad('recovery-'+name,lambda:recovery.compare(a,b,original,value,first,second))\n (b/'retained.json').write_text('changed')\n bad('recovery-retained-byte-change',lambda:recovery.compare(a,b,original,recovered,first,second))\n # Sampler tests read only this temporary manifest and use fake time, never sleeps.\n live=root/'sample';live.mkdir();path=live/'manifest.json'\n m=dict(manifest,format='reservoir-sustained-bundle-v1',phase='running',lastSegmentSha256='e'*64)\n path.write_text(json.dumps(m))\n snapshot=sampler.read_snapshot(path,'sustained-1-1','1')\n assert snapshot['manifest']['step']==60\n checks.append({'name':'sampler-exact-manifest-projection','passed':True})\n bad('sampler-wrong-session',lambda:sampler.read_snapshot(path,'sustained-2-1','1'))\n bad('sampler-wrong-generation',lambda:sampler.read_snapshot(path,'sustained-1-1','2'))\n link=root/'linked.json';link.symlink_to(path)\n bad('sampler-symlink',lambda:sampler.read_snapshot(link,'sustained-1-1','1'))\n changed=copy.deepcopy(snapshot);changed['parsedConfigSha256']='f'*64\n bad('sampler-config-change',lambda:sampler.check_progress(snapshot,changed))\n changed=copy.deepcopy(snapshot);changed['manifest']['revision']='6'\n bad('sampler-revision-regression',lambda:sampler.check_progress(snapshot,changed))\n clock=[0.0]\n def advance(seconds):\n  assert 0<seconds<=45;clock[0]+=seconds\n  if clock[0]>=30:\n   m.update(phase='attemptBlocked',revision='8');path.write_text(json.dumps(m))\n out=root/'samples';out.mkdir()\n with contextlib.redirect_stdout(io.StringIO()):result=sampler.sample(path,'sustained-1-1','1',out,900,30,lambda:clock[0],advance)\n assert result['status']=='held_or_terminal_observed' and len(result['samples'])==2 and clock[0]==30\n checks.append({'name':'sampler-stops-at-held-phase-after-bounded-progress','passed':True})\n m.update(phase='running');path.write_text(json.dumps(m));clock[0]=0.0\n out=root/'bounded';out.mkdir()\n with contextlib.redirect_stdout(io.StringIO()):result=sampler.sample(path,'sustained-1-1','1',out,900,30,lambda:clock[0],lambda seconds:clock.__setitem__(0,clock[0]+seconds))\n assert result['status']=='duration_limit_reached' and clock[0]==900 and len(result['samples'])==31\n assert all(b['elapsedMonotonicSeconds']-a['elapsedMonotonicSeconds']<=45 for a,b in zip(result['samples'],result['samples'][1:]))\n checks.append({'name':'sampler-hard-900-seconds-no-real-wait','passed':True})\n bad('sampler-reject-extension',lambda:sampler.sample(path,'sustained-1-1','1',out,901,30))\n bad('sampler-reject-long-interval',lambda:sampler.sample(path,'sustained-1-1','1',out,900,46))\n",
+  "executionDeferredUntilExplicitHandoff": true
+}

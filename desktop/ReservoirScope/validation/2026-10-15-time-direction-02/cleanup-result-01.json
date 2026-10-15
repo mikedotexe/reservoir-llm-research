@@ -1,0 +1,56 @@
+{
+  "schema": "reservoir-time-direction-cleanup-v1",
+  "atUtc": "2026-10-15T16:29:59.708067+00:00",
+  "episodeId": "time-direction-02",
+  "userAuthorization": "Safely free memory then one fresh comparison with frozen inputs and same bounds; preserve refusal and leave Minime/Astrid untouched.",
+  "initialAppInventory": "Finder, Codex/ChatGPT, TextEdit, Terminal, iTerm2 and three native Reservoir Scope copies running; DaisyDisk, Claude, System Settings and Preview already stopped. No browser tabs.",
+  "initialTargetedProcessCommand": [
+    "/bin/ps",
+    "-axo",
+    "pid=,rss=,comm="
+  ],
+  "initialTargetedProcesses": [
+    {
+      "pid": 80746,
+      "rssKiB": 17664,
+      "executable": "/Users/v/.cache/reservoir-research/geometry-bookmarks-20261006-retained-view/current/Reservoir Scope.app/Contents/MacOS/ReservoirScope"
+    },
+    {
+      "pid": 5688,
+      "rssKiB": 17504,
+      "executable": "/Users/v/Library/Application Support/Reservoir Research/Acceptance/2026-10-06-reservoir-scope-015-isolated/Reservoir Scope.app/Contents/MacOS/ReservoirScope"
+    },
+    {
+      "pid": 71956,
+      "rssKiB": 18128,
+      "executable": "/Users/v/Library/Application Support/Reservoir Research/ProductChecks/2026-10-07-build21/Reservoir Scope.app/Contents/MacOS/ReservoirScope"
+    }
+  ],
+  "actions": [
+    {
+      "executable": "/Users/v/.cache/reservoir-research/geometry-bookmarks-20261006-retained-view/current/Reservoir Scope.app/Contents/MacOS/ReservoirScope",
+      "before": "Guided tour, verified saved example A, step1; Play enabled/Stop disabled; no running experiment or unsaved alert shown.",
+      "method": "CUA normal Quit menu first had no effect; Command-Q then returned App quit. No force quit or signal.",
+      "result": "exact executable absent"
+    },
+    {
+      "executable": "/Users/v/Library/Application Support/Reservoir Research/ProductChecks/2026-10-07-build21/Reservoir Scope.app/Contents/MacOS/ReservoirScope",
+      "before": "Guided tour E, verified scripted recording step31; playback controls closed; no running experiment or unsaved alert shown.",
+      "method": "CUA Command-Q returned App quit. No force quit or signal.",
+      "result": "exact executable absent"
+    }
+  ],
+  "afterTargetedProcesses": [
+    {
+      "pid": 5688,
+      "rssKiB": 19680,
+      "executable": "/Users/v/Library/Application Support/Reservoir Research/Acceptance/2026-10-06-reservoir-scope-015-isolated/Reservoir Scope.app/Contents/MacOS/ReservoirScope"
+    }
+  ],
+  "normalQuitCount": 2,
+  "preserved": "Pending isolated native acceptance copy; edited TextEdit document; terminals; Codex; Finder; all Being and shared services. No cache/evidence deletion, forced termination, model unload, credential read or memory purge.",
+  "qualification": "UI shows saved recordings only; quit not an app lifecycle qualification. RSS values are main-process observations, not reclaimed-memory estimates. No memory admission reading taken during cleanup.",
+  "status": "completed",
+  "memoryAdmissionPending": true,
+  "modelCalls": 0
+}

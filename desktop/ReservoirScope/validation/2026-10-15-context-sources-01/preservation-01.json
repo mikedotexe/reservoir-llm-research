@@ -1,0 +1,60 @@
+{
+  "schema": "reservoir-context-sources-preservation-v1",
+  "atUtc": "2026-10-15T20:19:25.402790+00:00",
+  "episodeId": "context-sources-01",
+  "status": "passed",
+  "errors": [],
+  "freeze": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/evaluation-freeze-01.json",
+    "bytes": 271929,
+    "sha256": "36c380e81a88418049d629df93af21134ff9bf4aca2a5d8502a52b49b21cfad2"
+  },
+  "inputs": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/frozen-inputs.json",
+    "bytes": 6182,
+    "sha256": "f5b945760556e3ec006d5e7f2f5cb870cb1767306dfae31371ba72059b82207d"
+  },
+  "priorInventory": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/runtime-copy-01.json",
+    "bytes": 230805,
+    "sha256": "345f6bf51d1b2a887775d94ec04f5f152c400cccbf3dbde016d1c227e6945a9c"
+  },
+  "sourceInventory": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/transformation-checks-01.json",
+    "bytes": 48997,
+    "sha256": "121a80d7f8d355e5fc0965e44d3ba7f6d408e462d8c3825e1b138997fedfa10c"
+  },
+  "frozenFilesChecked": 946,
+  "frozenFilesUnchanged": 946,
+  "priorFilesChecked": 385,
+  "priorFilesUnchanged": 385,
+  "sourceFilesChecked": 73,
+  "sourceFilesUnchanged": 73,
+  "sourceFileSetUnchanged": true,
+  "priorFileBreakdown": {
+    "timeDirection03": 100,
+    "earlier": 285
+  },
+  "runPathChecks": [
+    {
+      "label": "ownedServiceDirectory",
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-sources-gemma3-4b-run01",
+      "absent": true,
+      "method": "Exact path existence only, no discovery or process query"
+    },
+    {
+      "label": "resultsDirectory",
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-sources-results01",
+      "absent": true,
+      "method": "Exact path existence only, no discovery or process query"
+    }
+  ],
+  "executionOutcomeBasis": "Parent reports one launch refused before spawn because installed runtime differs from pinned0.40.4; no probe command executed and all12 slots unstarted. This receipt independently checks file preservation and proposed path absence only.",
+  "installedRuntimeInspected": false,
+  "newAdmission": false,
+  "serviceCalls": 0,
+  "processQueries": 0,
+  "retentionOrRenderingExecuted": false,
+  "oldOrFrozenFilesModified": false,
+  "scope": "File-only verification after pre-spawn identity refusal. Passed means evidence preserved, not successful launch or comparison. Root owns launch/outcome receipts."
+}

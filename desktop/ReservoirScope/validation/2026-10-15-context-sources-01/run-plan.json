@@ -1,0 +1,68 @@
+{
+  "schema": "reservoir-context-sources-plan-v1",
+  "episodeId": "context-sources-01",
+  "model": "gemma3:4b",
+  "modelManifestSha256": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+  "contextTokens": 8192,
+  "outputTokens": 1024,
+  "temperature": 0,
+  "requestDeadlineSeconds": 180,
+  "inventoryDeadlineSeconds": 5,
+  "probeBudgetSeconds": 900,
+  "storageBudgetBytes": 67108864,
+  "serviceLifetimeSeconds": 1200,
+  "minimumServiceRemainingAtStart": 1140,
+  "ownedServiceDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-sources-gemma3-4b-run01",
+  "softwareSelectionPath": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/software-selection.json",
+  "softwareSelectionSha256": "f86c9011ed33881ffae71679a3c96755c3d7d1cfbd434b0b9535a3493192a127",
+  "provenance": {
+    "scope": "Standalone source-label diagnostic; no application session, numerical advance or feedback. Retained v8 context refers to its original session.",
+    "anchors": [
+      30,
+      60,
+      90,
+      120,
+      330,
+      360
+    ],
+    "selection": "Early four and late two observations of the known completed twelve-entry v8 episode, selected before fresh outputs.",
+    "conditions": {
+      "A": "Exact original v8 prompt; control bytes reused from time-direction-03 A slots.",
+      "B": "Insert the approved source-distinction paragraph immediately before the final invitation; all original bytes otherwise unchanged. Diagnostic only, not a valid production-v8 record."
+    },
+    "candidateId": "context-sources-01",
+    "candidateParagraph": "The readout reports recorded observations; any quoted previous journal is remembered writing. You may imagine what follows, but an imagined continuation is not a new observation or an executed action.",
+    "productionPromptChanged": false,
+    "maxFreshRequests": 12,
+    "automaticRetries": 0,
+    "manualRetries": 0,
+    "replaceFailedSamples": false,
+    "hostAdmission": {
+      "requiredPressureLevel": 1,
+      "minimumFreePercent": 35,
+      "minimumFreeDiskBytes": 8589934592,
+      "attempts": 1
+    },
+    "authorization": "Fresh explicit user authorization for one source-label comparison under unchanged bounds; no automatic retry or threshold relaxation.",
+    "resultsDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-sources-results01",
+    "priorDiagnostic": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run-analysis-01.json",
+      "bytes": 59869,
+      "sha256": "6a78ced82585b398ee7874bfef54b7be8204ef66729b99fdbcb1e1d18bd7daa1"
+    },
+    "priorInputs": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/frozen-inputs.json",
+      "bytes": 6709,
+      "sha256": "2c99ed010d2d84b72888b135c43125eae8bd17e6dd5cfeea3954f0fa90cfee39"
+    },
+    "sourcePromptVersion": "reservoir-journal-v8",
+    "sourceEpisode": "v8-writing-episode01",
+    "otherApplicationsChangedDuringProbe": false,
+    "BeingsOrSharedServicesTouched": false,
+    "preAdmissionCleanupReceipt": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/cleanup-result-01.json",
+      "bytes": 455,
+      "sha256": "fd4aee16f8b1360757ee1c419fbb1f6d07c219a95e8d13c87ee79f5617121f7f"
+    }
+  }
+}

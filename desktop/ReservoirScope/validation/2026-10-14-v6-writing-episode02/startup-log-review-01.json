@@ -1,0 +1,56 @@
+{
+  "format": "reservoir-owned-startup-log-read-v1",
+  "readAtUtc": "2026-10-14T16:11:25.901500+00:00",
+  "source": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.18-v6-writing-gemma3-4b-run02/service.log",
+  "sourceIdentity": {
+    "device": 16777234,
+    "inode": 388723491,
+    "sizeAtReadStart": 28449,
+    "sizeAfterRead": 28449,
+    "mtimeNsAtStart": 1791994283946850009
+  },
+  "readPolicy": "One bounded prefix read of the explicit owned service log; no polling. Only selected startup diagnostics retained; no prompts, journal bodies or key values requested.",
+  "readBytes": 28449,
+  "maxReadBytes": 65536,
+  "prefixSha256": "2aafb0ae39e9b651ec3a1a54e733d0e3df0fe2673443213cad7915c2f2c3dcd6",
+  "wholeFileAtStartRead": true,
+  "newlineComplete": true,
+  "selectedDiagnostics": [
+    {
+      "kind": [
+        "cloud_status"
+      ],
+      "line": "time=2026-10-14T09:09:38.348-07:00 level=INFO source=routes.go:2441 msg=\"Ollama cloud disabled: true\"",
+      "truncated": false
+    },
+    {
+      "kind": [
+        "runtime_listener"
+      ],
+      "line": "time=2026-10-14T09:09:38.348-07:00 level=INFO source=routes.go:2501 msg=\"Listening on 127.0.0.1:63371 (version 0.40.4)\"",
+      "truncated": false
+    },
+    {
+      "kind": [
+        "runner_launch"
+      ],
+      "line": "time=2026-10-14T09:10:46.736-07:00 level=INFO source=llama_server.go:457 msg=\"starting llama-server\" cmd=\"/Applications/Ollama.app/Contents/Resources/llama-server --model /Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-real-gemma3-4b/models/blobs/sha256-aeda25e63ebd698fab8638ffb778e68bed908b960d39d0becc650fa981609d25 --port 63403 --host 127.0.0.1 --no-webui --offline -c 8192 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --mmproj /Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-real-gemma3-4b/models/blobs/sha256-aeda25e63ebd698fab8638ffb778e68bed908b960d39d0becc650fa981609d25 --flash-attn auto -b 1024 -ub 1024 --context-shift --keep 4\"",
+      "truncated": false
+    },
+    {
+      "kind": [
+        "runner_load"
+      ],
+      "line": "srv  llama_server: model loaded",
+      "truncated": false
+    }
+  ],
+  "selectedDiagnosticsTruncated": false,
+  "processOrEndpointQueries": false,
+  "lifecycleStatus": "service reported running by parent; no independent process observation",
+  "limits": [
+    "A live log read is a partial point-in-time source, not a complete run audit.",
+    "Log text is provider self-report, not independently authenticated binary/helper identity.",
+    "Absent matching diagnostics in this prefix do not prove no filesystem or network side effects."
+  ]
+}

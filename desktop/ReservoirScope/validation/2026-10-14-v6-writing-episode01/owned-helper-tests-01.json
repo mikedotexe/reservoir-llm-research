@@ -1,0 +1,57 @@
+{
+  "schema": "reservoir-v6-episode-helper-tests-v1",
+  "startedAtUtc": "2026-10-14T15:56:34.388248+00:00",
+  "endedAtUtc": "2026-10-14T15:56:34.546640+00:00",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "test_owned_model.py"
+  ],
+  "cwd": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01",
+  "exitCode": 0,
+  "passed": true,
+  "sourceUnchanged": true,
+  "sourceBefore": [
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/owned_model.py",
+      "bytes": 32949,
+      "sha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/test_owned_model.py",
+      "bytes": 21837,
+      "sha256": "145d75ad5d1d8a090bb3c1a9830a59d1127d3424354b8b59db208d0006da9b87"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/admit_once.py",
+      "bytes": 2783,
+      "sha256": "c2d51ee1ee222763f733710a3daa16b6bbbfced6c3fd6ac1c875c3a93e04515c"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/owned_model.py",
+      "bytes": 32949,
+      "sha256": "9c5351878ff5ee634f8f6c3afa49f0e9c6e5108224073a7b8ebda14d0d35ae9f"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/test_owned_model.py",
+      "bytes": 21837,
+      "sha256": "145d75ad5d1d8a090bb3c1a9830a59d1127d3424354b8b59db208d0006da9b87"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/admit_once.py",
+      "bytes": 2783,
+      "sha256": "c2d51ee1ee222763f733710a3daa16b6bbbfced6c3fd6ac1c875c3a93e04515c"
+    }
+  ],
+  "log": {
+    "path": "desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/owned-helper-tests-01.log",
+    "bytes": 4443,
+    "sha256": "d10284a290b01568d5f1f2401e2ccdb3d067dd429d1dede9adbc3051b2ef2d68"
+  },
+  "scope": "Synthetic files and mocked process operations, plus offline quality-helper subprocess tests. No admission, model, service, HTTP, real process inspection or signal, native UI, private model-file reads/copies, or product source edits."
+}

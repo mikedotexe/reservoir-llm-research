@@ -1,0 +1,229 @@
+{
+  "schema": "reservoir-writing-episode-slot-accounting-v1",
+  "recordedAtUtc": "2026-10-14T18:01:23.735126+00:00",
+  "episodeId": "v7-writing-0.19.0-episode01",
+  "status": "unexecuted_admission_refused",
+  "scope": "Post-admission accounting from preserved local receipts and the parent operator report; no live probes or runtime actions performed by this reviewer.",
+  "bindings": {
+    "host-admission-01.json": {
+      "sha256": "27868e1ef0a29139ff0f34b6e933b9e9ab0beb63eed328f07c7783ad66e93330",
+      "sizeBytes": 1468
+    },
+    "evaluation-freeze-01.json": {
+      "sha256": "10148c5f6244f3fe404d26f6fd798a9a89220c1bc5e25ab512e3d4b3f69778a0",
+      "sizeBytes": 28432
+    },
+    "run-plan.json": {
+      "sha256": "297a91d85e46ec7ffb942be491961ed478b281f86f1f7c884c9d605102928212",
+      "sizeBytes": 4848
+    },
+    "PROTOCOL.md": {
+      "sha256": "64a03130e67669a1af0d627f7e849d73ae8c6f61f7ba0ffe3fa0a0a013a4f5b0",
+      "sizeBytes": 3664
+    },
+    "RUBRIC.md": {
+      "sha256": "98dfaf72a45af2d3f602407eb6b739357eab532c2d39e0b2868c85fa23c3aef6",
+      "sizeBytes": 9546
+    },
+    "EVALUATION.md": {
+      "sha256": "91df1c746a900a50b6509ab233b94f41ad54158e7f235b111ed49da5db817704",
+      "sizeBytes": 8018
+    }
+  },
+  "admission": {
+    "capturedUtc": "2026-10-14T17:58:27.245973+00:00",
+    "admitted": false,
+    "pressureLevel": {
+      "actual": 2,
+      "required": 1,
+      "passed": false
+    },
+    "freePercent": {
+      "actual": 31,
+      "minimum": 35,
+      "passed": false
+    },
+    "diskFreeBytes": {
+      "actual": 529490833408,
+      "minimum": 8589934592,
+      "passed": true
+    }
+  },
+  "executionEvidence": {
+    "directlyReviewed": "Saved host-admission receipt and its frozen plan identity.",
+    "operatorReported": "Parent reports no new owned service, readiness request, model session creation, Start, generation or output after refusal.",
+    "noAdditionalProbe": true
+  },
+  "plannedSlots": 12,
+  "actualCounts": {
+    "startedSlots": 0,
+    "unstartedSlots": 12,
+    "modelRequests": 0,
+    "receivedResponses": 0,
+    "savedJournals": 0,
+    "feedbackApplications": 0
+  },
+  "actualIdentity": {
+    "service": null,
+    "endpoint": null,
+    "session": null,
+    "request": null
+  },
+  "evaluation": {
+    "mechanicalReplay": "not_executed_no_session_or_export",
+    "proseReading": "not_executed_no_received_text",
+    "qualitySignal": null,
+    "reason": "Host admission refused before any model attempt; this is not a model failure or writing-quality result."
+  },
+  "slots": [
+    {
+      "slot": 1,
+      "plannedObservationStepIfReached": 30,
+      "plannedApplicationStepIfSavedAndReached": 31,
+      "status": "unstarted",
+      "reason": "pre_launch_host_admission_refused",
+      "actualObservedStep": null,
+      "request": null,
+      "response": null,
+      "journal": null,
+      "application": null
+    },
+    {
+      "slot": 2,
+      "plannedObservationStepIfReached": 60,
+      "plannedApplicationStepIfSavedAndReached": 61,
+      "status": "unstarted",
+      "reason": "pre_launch_host_admission_refused",
+      "actualObservedStep": null,
+      "request": null,
+      "response": null,
+      "journal": null,
+      "application": null
+    },
+    {
+      "slot": 3,
+      "plannedObservationStepIfReached": 90,
+      "plannedApplicationStepIfSavedAndReached": 91,
+      "status": "unstarted",
+      "reason": "pre_launch_host_admission_refused",
+      "actualObservedStep": null,
+      "request": null,
+      "response": null,
+      "journal": null,
+      "application": null
+    },
+    {
+      "slot": 4,
+      "plannedObservationStepIfReached": 120,
+      "plannedApplicationStepIfSavedAndReached": 121,
+      "status": "unstarted",
+      "reason": "pre_launch_host_admission_refused",
+      "actualObservedStep": null,
+      "request": null,
+      "response": null,
+      "journal": null,
+      "application": null
+    },
+    {
+      "slot": 5,
+      "plannedObservationStepIfReached": 150,
+      "plannedApplicationStepIfSavedAndReached": 151,
+      "status": "unstarted",
+      "reason": "pre_launch_host_admission_refused",
+      "actualObservedStep": null,
+      "request": null,
+      "response": null,
+      "journal": null,
+      "application": null
+    },
+    {
+      "slot": 6,
+      "plannedObservationStepIfReached": 180,
+      "plannedApplicationStepIfSavedAndReached": 181,
+      "status": "unstarted",
+      "reason": "pre_launch_host_admission_refused",
+      "actualObservedStep": null,
+      "request": null,
+      "response": null,
+      "journal": null,
+      "application": null
+    },
+    {
+      "slot": 7,
+      "plannedObservationStepIfReached": 210,
+      "plannedApplicationStepIfSavedAndReached": 211,
+      "status": "unstarted",
+      "reason": "pre_launch_host_admission_refused",
+      "actualObservedStep": null,
+      "request": null,
+      "response": null,
+      "journal": null,
+      "application": null
+    },
+    {
+      "slot": 8,
+      "plannedObservationStepIfReached": 240,
+      "plannedApplicationStepIfSavedAndReached": 241,
+      "status": "unstarted",
+      "reason": "pre_launch_host_admission_refused",
+      "actualObservedStep": null,
+      "request": null,
+      "response": null,
+      "journal": null,
+      "application": null
+    },
+    {
+      "slot": 9,
+      "plannedObservationStepIfReached": 270,
+      "plannedApplicationStepIfSavedAndReached": 271,
+      "status": "unstarted",
+      "reason": "pre_launch_host_admission_refused",
+      "actualObservedStep": null,
+      "request": null,
+      "response": null,
+      "journal": null,
+      "application": null
+    },
+    {
+      "slot": 10,
+      "plannedObservationStepIfReached": 300,
+      "plannedApplicationStepIfSavedAndReached": 301,
+      "status": "unstarted",
+      "reason": "pre_launch_host_admission_refused",
+      "actualObservedStep": null,
+      "request": null,
+      "response": null,
+      "journal": null,
+      "application": null
+    },
+    {
+      "slot": 11,
+      "plannedObservationStepIfReached": 330,
+      "plannedApplicationStepIfSavedAndReached": 331,
+      "status": "unstarted",
+      "reason": "pre_launch_host_admission_refused",
+      "actualObservedStep": null,
+      "request": null,
+      "response": null,
+      "journal": null,
+      "application": null
+    },
+    {
+      "slot": 12,
+      "plannedObservationStepIfReached": 360,
+      "plannedApplicationStepIfSavedAndReached": 361,
+      "status": "unstarted",
+      "reason": "pre_launch_host_admission_refused",
+      "actualObservedStep": null,
+      "request": null,
+      "response": null,
+      "journal": null,
+      "application": null
+    }
+  ],
+  "limits": [
+    "Planned numerical steps are prospective only; none was reached in a new episode session.",
+    "Prior v5/v6 writing and synthetic v7 qualification are separate evidence, not substitute outputs.",
+    "No retry, admission polling, service extension or replacement episode was performed or requested by this accounting."
+  ]
+}

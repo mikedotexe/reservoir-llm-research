@@ -1,0 +1,156 @@
+{
+  "format": "reservoir-runtime-source-review-v1",
+  "reviewedAtUtc": "2026-10-14T16:09:07.522491+00:00",
+  "outcome": "no_concrete_startup_boundary_regression_found_conditional_prospective_use",
+  "executionQualification": false,
+  "oldCommit": "eab97e9f92b9a25c2d52d2cc6c1b1c99bd9fae21",
+  "newCommit": "45e6011815c74acde6a346512856b69dd79dd22b",
+  "compare": {
+    "url": "https://api.github.com/repos/ollama/ollama/compare/v0.40.3...v0.40.4",
+    "sha256": "4e0d2b0a2cd7a2c2e29b44c7d104a5046f463a569f251865c99e4c2a56769527",
+    "commits": 35,
+    "changedFiles": 114
+  },
+  "sourceCapture": {
+    "path": "desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/runtime-sources-01/source-capture.json",
+    "sha256": "a0e3067d5235ded4d17f9d18fa0490b41ad88a5b670e920968df2b7a6a9f2315",
+    "verifiedFiles": 32
+  },
+  "identicalFunctionChecks": [
+    {
+      "sourcePath": "cmd/cmd.go",
+      "function": "RunServer",
+      "identical": true,
+      "versions": [
+        {
+          "tag": "v0.40.3",
+          "startLine": 2223,
+          "bytes": 299,
+          "sha256": "0e229a25d8670adb436f2f56603f35f1364f11b2fa85eb24beb47223b16d5195"
+        },
+        {
+          "tag": "v0.40.4",
+          "startLine": 2223,
+          "bytes": 299,
+          "sha256": "0e229a25d8670adb436f2f56603f35f1364f11b2fa85eb24beb47223b16d5195"
+        }
+      ]
+    },
+    {
+      "sourcePath": "cmd/cmd.go",
+      "function": "initializeKeypair",
+      "identical": true,
+      "versions": [
+        {
+          "tag": "v0.40.3",
+          "startLine": 2241,
+          "bytes": 1159,
+          "sha256": "2423a3776059f1d2b05d20b339e5e26a4b419a1b1f20646ce03e7de2e641c799"
+        },
+        {
+          "tag": "v0.40.4",
+          "startLine": 2241,
+          "bytes": 1159,
+          "sha256": "2423a3776059f1d2b05d20b339e5e26a4b419a1b1f20646ce03e7de2e641c799"
+        }
+      ]
+    },
+    {
+      "sourcePath": "server/routes.go",
+      "function": "Serve",
+      "identical": true,
+      "versions": [
+        {
+          "tag": "v0.40.3",
+          "startLine": 2371,
+          "bytes": 3555,
+          "sha256": "322370c59e37c64eb6086400750dbac885e1320ceea4f33d8a55e86112f89120"
+        },
+        {
+          "tag": "v0.40.4",
+          "startLine": 2437,
+          "bytes": 3555,
+          "sha256": "322370c59e37c64eb6086400750dbac885e1320ceea4f33d8a55e86112f89120"
+        }
+      ]
+    },
+    {
+      "sourcePath": "llm/llama_server.go",
+      "function": "SetupLlamaServerCommandEnv",
+      "identical": true,
+      "versions": [
+        {
+          "tag": "v0.40.3",
+          "startLine": 448,
+          "bytes": 869,
+          "sha256": "25fbf03d4175ec8a0cfd8f1c9338dd098483aaf576b67903b7f678de3a8516e7"
+        },
+        {
+          "tag": "v0.40.4",
+          "startLine": 469,
+          "bytes": 869,
+          "sha256": "25fbf03d4175ec8a0cfd8f1c9338dd098483aaf576b67903b7f678de3a8516e7"
+        }
+      ]
+    },
+    {
+      "sourcePath": "llm/llama_server.go",
+      "function": "appendLlamaServerLogArgs",
+      "identical": true,
+      "versions": [
+        {
+          "tag": "v0.40.3",
+          "startLine": 575,
+          "bytes": 229,
+          "sha256": "9c80c48808f6b8482bd939dded2fa61469f4535665e6cec2ae1d15dce64b2ad9"
+        },
+        {
+          "tag": "v0.40.4",
+          "startLine": 596,
+          "bytes": 229,
+          "sha256": "9c80c48808f6b8482bd939dded2fa61469f4535665e6cec2ae1d15dce64b2ad9"
+        }
+      ]
+    }
+  ],
+  "softwareSelection": {
+    "path": "desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/software-selection.json",
+    "sha256": "f86c9011ed33881ffae71679a3c96755c3d7d1cfbd434b0b9535a3493192a127",
+    "installedSoftwareAsReported": {
+      "commandPath": "/usr/local/bin/ollama",
+      "resolvedExecutablePath": "/Applications/Ollama.app/Contents/Resources/ollama",
+      "versionSource": "Installed application public Info.plist; no binary execution or endpoint discovery.",
+      "plistPath": "/Applications/Ollama.app/Contents/Info.plist",
+      "plistSha256": "b2c8889493ebe26566169a3ac379ff86ddfdfe7cc8bea443715e4f48262b8b91",
+      "plistSizeBytes": 1377,
+      "CFBundleShortVersionString": "0.40.4",
+      "CFBundleVersion": "0.40.4",
+      "runtimeVersionVerified": false,
+      "executableSha256": "61e3067857f23046338a3d1a14360ce749fbe0aa0b6168e728b7d11c1e219619",
+      "executableSizeBytes": 52241008
+    },
+    "independentlyReadInstalledFiles": false
+  },
+  "review": {
+    "path": "desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/RUNTIME-REVIEW.md",
+    "bytes": 8606,
+    "sha256": "d364c73acd40f9e5f486f7e40c3a879456e81fe40562ba4989ed5a0ddd895e28"
+  },
+  "actions": {
+    "officialPublicSourceFetches": true,
+    "processActions": false,
+    "localEndpointCalls": false,
+    "modelAssetReads": false,
+    "keyOrConfigContentReads": false,
+    "admission": false,
+    "launch": false
+  },
+  "limitations": [
+    "Targeted source review, not exhaustive dependency/security audit",
+    "No source-to-installed-binary reproducibility proof",
+    "No full bundled runner/dylib identity proof",
+    "No output/resource equivalence to 0.40.3",
+    "No OS-level network/filesystem sandbox claim",
+    "Actual runtime/helper cleanup and admission remain separately required"
+  ]
+}

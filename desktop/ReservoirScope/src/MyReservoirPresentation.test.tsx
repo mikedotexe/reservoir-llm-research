@@ -17,7 +17,7 @@ describe('calm running view and visible recovery actions', () => {
     expect(failed).toContain('role="alert"');
     expect(failed).toContain('The journal could not be saved.');
     expect(failed).toContain('Retry durable save');
-    expect(failed).not.toContain('Saved and applied');
+    expect(failed).not.toContain('Saved · feedback applied');
   });
 
   it('exposes paused prepared feedback and interruption even without a provider retry', () => {

@@ -1117,7 +1117,7 @@ fn sustained_prompt_version_config_defaults_preserve_legacy_wire_omission() {
     assert_eq!(current.prompt_version, CURRENT_PROMPT_VERSION);
     assert_eq!(
         serde_json::to_value(&current).unwrap()["promptVersion"],
-        "reservoir-journal-v5"
+        "reservoir-journal-v8"
     );
 
     // A pre-version config has different semantics from a newly created default.
@@ -1136,7 +1136,7 @@ fn sustained_prompt_version_config_defaults_preserve_legacy_wire_omission() {
         .contains_key("promptVersion"));
 
     for invalid in [
-        serde_json::json!("reservoir-journal-v999"),
+        serde_json::json!("reservoir-journal-v9"),
         serde_json::Value::Null,
     ] {
         let mut changed = old_wire.clone();
@@ -1162,6 +1162,18 @@ fn sustained_prompt_version_saved_journal_export_and_paused_restore_keep_exact_p
         (
             SustainedPromptVersion::ContinuingJournalV5,
             "reservoir-journal-v5",
+        ),
+        (
+            SustainedPromptVersion::ActionScopeJournalV6,
+            "reservoir-journal-v6",
+        ),
+        (
+            SustainedPromptVersion::WritingBoundaryJournalV7,
+            "reservoir-journal-v7",
+        ),
+        (
+            SustainedPromptVersion::MeasurementMeaningJournalV8,
+            "reservoir-journal-v8",
         ),
     ] {
         let d = tempfile::tempdir().unwrap();
@@ -1288,6 +1300,9 @@ fn sustained_prompt_version_manifest_relabel_or_removal_cannot_reinterpret_chain
         SustainedPromptVersion::OpenJournalV3,
         SustainedPromptVersion::OpenJournalV4,
         SustainedPromptVersion::ContinuingJournalV5,
+        SustainedPromptVersion::ActionScopeJournalV6,
+        SustainedPromptVersion::WritingBoundaryJournalV7,
+        SustainedPromptVersion::MeasurementMeaningJournalV8,
     ] {
         let d = tempfile::tempdir().unwrap();
         let s = SustainedState::new(d.path().join("store"));
@@ -1320,18 +1335,66 @@ fn sustained_prompt_version_manifest_relabel_or_removal_cannot_reinterpret_chain
         assert!(crate::sustained_store::verify_bundle(path.parent().unwrap()).is_err());
         fs::write(&path, &original).unwrap();
         assert!(s.shared.store.verify(&accepted.session_id).is_ok());
+        // A supported neighboring version must not relabel a verified chain;
+        // an unknown future version must also fail rather than inherit defaults.
+        for replacement in [
+            if version == SustainedPromptVersion::ActionScopeJournalV6 {
+                "reservoir-journal-v5"
+            } else {
+                "reservoir-journal-v6"
+            },
+            "reservoir-journal-v9",
+        ] {
+            let mut changed: serde_json::Value = serde_json::from_slice(&original).unwrap();
+            changed["config"]["promptVersion"] = serde_json::json!(replacement);
+            fs::write(&path, serde_json::to_vec(&changed).unwrap()).unwrap();
+            assert!(s.shared.store.verify(&accepted.session_id).is_err());
+            assert!(crate::sustained_store::verify_bundle(path.parent().unwrap()).is_err());
+            fs::write(&path, &original).unwrap();
+        }
+        assert!(s.shared.store.verify(&accepted.session_id).is_ok());
     }
 }
 
 #[test]
 fn sustained_v5_compact_prompt_preserves_full_memory_and_separate_reader_evidence() {
-    let (_d, s, id, generation) = setup(7, 3);
+    compact_prompt_memory_and_reader_evidence(SustainedPromptVersion::ContinuingJournalV5);
+}
+
+#[test]
+fn sustained_v6_action_scope_preserves_full_memory_and_separate_reader_evidence() {
+    compact_prompt_memory_and_reader_evidence(SustainedPromptVersion::ActionScopeJournalV6);
+}
+
+#[test]
+fn sustained_v7_writing_boundary_preserves_full_memory_and_separate_reader_evidence() {
+    compact_prompt_memory_and_reader_evidence(SustainedPromptVersion::WritingBoundaryJournalV7);
+}
+
+#[test]
+fn sustained_v8_measurement_meanings_preserve_full_memory_and_reader_evidence() {
+    compact_prompt_memory_and_reader_evidence(SustainedPromptVersion::MeasurementMeaningJournalV8);
+}
+
+fn compact_prompt_memory_and_reader_evidence(version: SustainedPromptVersion) {
+    let d = tempfile::tempdir().unwrap();
+    let s = SustainedState::new(d.path().join("store"));
+    let mut cfg = config(7, 3);
+    cfg.prompt_version = version;
+    let accepted = s.create("create".into(), cfg).unwrap().summary.unwrap();
+    let id = accepted.session_id;
+    let generation = accepted.generation;
     let epoch = arm(&s);
     until(&s, epoch, |a| a.engine.pending_language().is_some());
     let Work::Provider(first) = s.worker_boundary(epoch).unwrap() else {
         panic!("expected first explicit scripted response boundary");
     };
-    assert!(first.prompt.contains("reservoir-journal-v5"));
+    assert!(first.prompt.contains(version.as_str()));
+    let action_scope = "Writing is the only action available here. Describing a control change or experiment does not execute it, and no new readout arrives while this entry is written.";
+    assert_eq!(
+        first.prompt.contains(action_scope),
+        version == SustainedPromptVersion::ActionScopeJournalV6
+    );
     assert!(first
         .prompt
         .contains("No earlier entry has been saved and applied in this session."));
@@ -1377,9 +1440,31 @@ fn sustained_v5_compact_prompt_preserves_full_memory_and_separate_reader_evidenc
         historical_text
     );
     assert_eq!(quoted, serde_json::to_string(historical_text).unwrap());
+    if matches!(
+        version,
+        SustainedPromptVersion::WritingBoundaryJournalV7
+            | SustainedPromptVersion::MeasurementMeaningJournalV8
+    ) {
+        assert!(invitation.starts_with("END PREVIOUS JOURNAL\n\nWRITING BOUNDARY\n"));
+        assert!(invitation.contains("The numerical clock is held at observation step 6; no new readout arrives while this entry is written."));
+        assert!(invitation.contains("Recorded text return: the entry observed at step 3 first entered numerical input at step 4."));
+        assert!(invitation
+            .ends_with("\n\nWrite the next entry in whatever direction seems worth pursuing."));
+    } else {
+        assert_eq!(
+            invitation,
+            "END PREVIOUS JOURNAL\n\nWrite the next entry in whatever direction seems worth pursuing."
+        );
+    }
     assert_eq!(
-        invitation,
-        "END PREVIOUS JOURNAL\n\nWrite the next entry in whatever direction seems worth pursuing."
+        scaffold.contains(
+            "Sensory fill is a separate field estimate, not the encoded text-input signal."
+        ),
+        version == SustainedPromptVersion::MeasurementMeaningJournalV8
+    );
+    assert_eq!(
+        scaffold.contains("Comparing two interval distances requires a recorded value for each."),
+        version == SustainedPromptVersion::MeasurementMeaningJournalV8
     );
     assert!(scaffold.contains("Recurrent state RMS: current "));
     assert!(scaffold.contains("Separate sensory fill (%): current "));
@@ -1416,7 +1501,7 @@ fn sustained_v5_compact_prompt_preserves_full_memory_and_separate_reader_evidenc
     let detail = s
         .journal("detail".into(), &id, &generation, &page.entries[0].entry_id)
         .unwrap();
-    assert_eq!(detail.journal["promptVersion"], "reservoir-journal-v5");
+    assert_eq!(detail.journal["promptVersion"], version.as_str());
     assert_eq!(detail.journal["prompt"], second.prompt);
     assert_eq!(detail.journal["memory"]["text"], historical_text);
     assert_eq!(
@@ -1450,7 +1535,40 @@ fn sustained_v5_compact_prompt_preserves_full_memory_and_separate_reader_evidenc
 
 #[test]
 fn sustained_v5_reanchored_prompt_mutation_cannot_reinterpret_saved_evidence() {
-    let (d, s, id, generation) = setup(7, 3);
+    reanchored_prompt_mutation_cannot_reinterpret_saved_evidence(
+        SustainedPromptVersion::ContinuingJournalV5,
+    );
+}
+
+#[test]
+fn sustained_v6_reanchored_prompt_mutation_cannot_reinterpret_saved_evidence() {
+    reanchored_prompt_mutation_cannot_reinterpret_saved_evidence(
+        SustainedPromptVersion::ActionScopeJournalV6,
+    );
+}
+
+#[test]
+fn sustained_v7_reanchored_prompt_mutation_cannot_reinterpret_saved_evidence() {
+    reanchored_prompt_mutation_cannot_reinterpret_saved_evidence(
+        SustainedPromptVersion::WritingBoundaryJournalV7,
+    );
+}
+
+#[test]
+fn sustained_v8_reanchored_prompt_mutation_cannot_reinterpret_saved_evidence() {
+    reanchored_prompt_mutation_cannot_reinterpret_saved_evidence(
+        SustainedPromptVersion::MeasurementMeaningJournalV8,
+    );
+}
+
+fn reanchored_prompt_mutation_cannot_reinterpret_saved_evidence(version: SustainedPromptVersion) {
+    let d = tempfile::tempdir().unwrap();
+    let s = SustainedState::new(d.path().join("store"));
+    let mut cfg = config(7, 3);
+    cfg.prompt_version = version;
+    let accepted = s.create("create".into(), cfg).unwrap().summary.unwrap();
+    let id = accepted.session_id;
+    let generation = accepted.generation;
     assert_eq!(
         s.get("config".into(), None)
             .unwrap()
@@ -1458,7 +1576,7 @@ fn sustained_v5_reanchored_prompt_mutation_cannot_reinterpret_saved_evidence() {
             .unwrap()
             .config
             .prompt_version,
-        SustainedPromptVersion::ContinuingJournalV5
+        version
     );
     let epoch = arm(&s);
     until(&s, epoch, |a| a.engine.pending_journal().is_some());
@@ -1608,7 +1726,7 @@ fn sustained_generation_budget_actual_worker_saves_long_text_memory_and_restore_
     cfg.language.context_tokens = Some(8192);
     assert_eq!(
         cfg.prompt_version,
-        SustainedPromptVersion::ContinuingJournalV5
+        SustainedPromptVersion::MeasurementMeaningJournalV8
     );
     let m = s.create("create".into(), cfg).unwrap().summary.unwrap();
     s.start("start".into(), &m.session_id, &m.generation)
@@ -1744,6 +1862,9 @@ fn sustained_paired_measurement_reference_is_bound_to_writing_step_and_survives_
         SustainedPromptVersion::OpenJournalV3,
         SustainedPromptVersion::OpenJournalV4,
         SustainedPromptVersion::ContinuingJournalV5,
+        SustainedPromptVersion::ActionScopeJournalV6,
+        SustainedPromptVersion::WritingBoundaryJournalV7,
+        SustainedPromptVersion::MeasurementMeaningJournalV8,
     ] {
         let d = tempfile::tempdir().unwrap();
         let s = SustainedState::new(d.path().join("store"));
@@ -1773,7 +1894,11 @@ fn sustained_paired_measurement_reference_is_bound_to_writing_step_and_survives_
         assert_eq!(reference["rows"].as_array().unwrap().len(), 8);
         let expected = matches!(
             version,
-            SustainedPromptVersion::OpenJournalV4 | SustainedPromptVersion::ContinuingJournalV5
+            SustainedPromptVersion::OpenJournalV4
+                | SustainedPromptVersion::ContinuingJournalV5
+                | SustainedPromptVersion::ActionScopeJournalV6
+                | SustainedPromptVersion::WritingBoundaryJournalV7
+                | SustainedPromptVersion::MeasurementMeaningJournalV8
         );
         assert_eq!(reference["comparisonAvailable"], expected);
         let pending = s

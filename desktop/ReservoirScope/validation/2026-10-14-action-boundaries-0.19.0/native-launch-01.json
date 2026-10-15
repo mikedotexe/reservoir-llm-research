@@ -1,0 +1,32 @@
+{
+  "observedUtc": "2026-10-14T17:07:00.222556+00:00",
+  "appVersion": "0.19.0",
+  "executableSha256": "65462e49b6301d89856e28496c3c51b25383935a46b1aa8b8832c7af68c83211",
+  "sessionId": "sustained-1791997601433-1",
+  "generation": 1,
+  "createdState": "Prepared \u00b7 not started; live step0; saved journals0; revision1",
+  "acceptedConfigMatchesPlan": true,
+  "observedPromptVersion": "reservoir-journal-v7",
+  "fixture": {
+    "endpoint": "http://127.0.0.1:65050",
+    "model": "reservoir-fixture:input-evidence-0.16",
+    "pid": 41702,
+    "synthetic": true,
+    "startedAtUtc": "2026-10-14T17:06:27.689705+00:00",
+    "lifetimeSeconds": 900,
+    "maximumChatRequests": 5,
+    "maximumHttpRequests": 32,
+    "scriptSha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb",
+    "scenario": [
+      "wide-reported",
+      "absent",
+      "malformed-string",
+      "maximum-u64",
+      "incomplete-reported"
+    ]
+  },
+  "endpointReceiptSha256": "96a02c020151e87dc577396ac9856e68ff231b3419d05c66706c167642857ace",
+  "observedReadiness": "Exact selected fixture identity found, synthetic-no-model-weights",
+  "generationAtCreation": false,
+  "method": "Agent-operated native CUA accessibility inspection, supplemented by owned fixture request log"
+}

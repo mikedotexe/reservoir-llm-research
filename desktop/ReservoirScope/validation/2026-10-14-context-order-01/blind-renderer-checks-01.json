@@ -1,0 +1,47 @@
+{
+  "schema": "reservoir-blind-renderer-synthetic-checks-v1",
+  "startedAtUtc": "2026-10-14T20:32:13.191116+00:00",
+  "endedAtUtc": "2026-10-14T20:32:13.274042+00:00",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-m",
+    "unittest",
+    "-v",
+    "test_render_blind_pack.py"
+  ],
+  "cwd": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-01",
+  "exitCode": 1,
+  "scope": "Synthetic temporary files only; no actual diagnostic outputs, app, provider, service, process control or network calls.",
+  "sourceBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-01/render_blind_pack.py",
+      "bytes": 9769,
+      "sha256": "5a443fc867e47dccb5297884df2ff0dc6749ea31f1a49cf12f7c2589e4e2ada2"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-01/test_render_blind_pack.py",
+      "bytes": 8691,
+      "sha256": "effeb6657c89999c7bdec248ce8c107b7ce8d593e77c10aa7aea1fa50bd9d2b4"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-01/render_blind_pack.py",
+      "bytes": 9769,
+      "sha256": "5a443fc867e47dccb5297884df2ff0dc6749ea31f1a49cf12f7c2589e4e2ada2"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-01/test_render_blind_pack.py",
+      "bytes": 8691,
+      "sha256": "effeb6657c89999c7bdec248ce8c107b7ce8d593e77c10aa7aea1fa50bd9d2b4"
+    }
+  ],
+  "sourceUnchanged": true,
+  "log": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-01/blind-renderer-checks-01.log",
+    "bytes": 3026,
+    "sha256": "abf86ee21574b26d55c550a16e19589c93287511365d0c2e719f8071b2ccdfcc"
+  },
+  "testCount": 12,
+  "status": "failed"
+}

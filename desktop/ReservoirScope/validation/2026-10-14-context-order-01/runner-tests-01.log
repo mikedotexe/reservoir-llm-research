@@ -1,0 +1,47 @@
+test_app_completeness_not_quality_gate (test_run_probe.DecodeTests.test_app_completeness_not_quality_gate) ... ok
+test_duplicate_detection_linear_many_keys (test_run_probe.DecodeTests.test_duplicate_detection_linear_many_keys) ... ok
+test_inventory_exact_digest_and_ambiguity (test_run_probe.DecodeTests.test_inventory_exact_digest_and_ambiguity) ... ok
+test_optional_prompt_evidence_never_gates (test_run_probe.DecodeTests.test_optional_prompt_evidence_never_gates) ... ok
+test_wrong_model_and_invalid_envelope_rejected (test_run_probe.DecodeTests.test_wrong_model_and_invalid_envelope_rejected) ... ok
+test_503_never_retried (test_run_probe.HttpTests.test_503_never_retried) ... ok
+test_cancel_interrupts_owned_socket_only (test_run_probe.HttpTests.test_cancel_interrupts_owned_socket_only) ... ok
+test_exact_body_and_no_proxy (test_run_probe.HttpTests.test_exact_body_and_no_proxy) ... ok
+test_oversize_prefix_retained (test_run_probe.HttpTests.test_oversize_prefix_retained) ... ok
+test_premature_eof_is_failure_even_parseable_prefix (test_run_probe.HttpTests.test_premature_eof_is_failure_even_parseable_prefix) ... ok
+test_redirect_never_followed (test_run_probe.HttpTests.test_redirect_never_followed) ... ok
+test_total_deadline_trickled_body_preserves_partial (test_run_probe.HttpTests.test_total_deadline_trickled_body_preserves_partial) ... ok
+test_total_deadline_trickled_headers (test_run_probe.HttpTests.test_total_deadline_trickled_headers) ... ok
+test_exact_owned_receipt_chain_and_margin (test_run_probe.IdentityTests.test_exact_owned_receipt_chain_and_margin) ... ok
+test_frozen_input_hash_refusal (test_run_probe.IdentityTests.test_frozen_input_hash_refusal) ... ok
+test_missing_mismatched_endpoint_software_or_terminal_refused (test_run_probe.IdentityTests.test_missing_mismatched_endpoint_software_or_terminal_refused) ... ok
+test_symlink_input_refused (test_run_probe.IdentityTests.test_symlink_input_refused) ... ok
+test_cancel_before_dispatch_no_requests (test_run_probe.RunTests.test_cancel_before_dispatch_no_requests) ... ok
+test_changed_input_stops_followup_and_marks_identity (test_run_probe.RunTests.test_changed_input_stops_followup_and_marks_identity) ... FAIL
+test_exclusive_output (test_run_probe.RunTests.test_exclusive_output) ... ok
+test_failure_and_interruption_stop_without_retry (test_run_probe.RunTests.test_failure_and_interruption_stop_without_retry) ... ok
+test_first_incomplete_retains_text_and_all_unstarted (test_run_probe.RunTests.test_first_incomplete_retains_text_and_all_unstarted) ... ok
+test_less_than_full_deadline_leaves_all_unstarted (test_run_probe.RunTests.test_less_than_full_deadline_leaves_all_unstarted) ... ok
+test_probe_start_margin_rechecked_before_inventory (test_run_probe.RunTests.test_probe_start_margin_rechecked_before_inventory) ... ok
+test_storage_admission_precedes_dispatch (test_run_probe.RunTests.test_storage_admission_precedes_dispatch) ... ok
+test_twelve_complete_order_and_ledgers (test_run_probe.RunTests.test_twelve_complete_order_and_ledgers) ... ok
+
+======================================================================
+FAIL: test_changed_input_stops_followup_and_marks_identity (test_run_probe.RunTests.test_changed_input_stops_followup_and_marks_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-01/test_run_probe.py", line 168, in test_changed_input_stops_followup_and_marks_identity
+    self.assertEqual(calls,['GET','POST']);self.assertEqual(result['status'],'failed_identity');self.assertEqual(result['unstartedCount'],11)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['GET', 'POST']
+
+Second list contains 2 additional elements.
+First extra element 0:
+'GET'
+
+- []
++ ['GET', 'POST']
+
+----------------------------------------------------------------------
+Ran 26 tests in 1.179s
+
+FAILED (failures=1)

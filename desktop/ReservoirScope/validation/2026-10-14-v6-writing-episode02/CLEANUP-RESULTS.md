@@ -1,0 +1,15 @@
+# Owned service cleanup and log results
+
+The closed owned service log contains **one `GET /api/tags` and eight `POST /api/chat` access rows, all HTTP 200**. No other access row was found. These are logged HTTP outcomes; they do not establish that all eight replies were complete, saved or applied. The lead's seven-complete/eighth-length-held application outcome is a separate export claim.
+
+[Retention and analysis receipt](owned-service-retention-01.json) preserves six exact source files (endpoint, launch intent, process identity, service log, stop request and supervision result) in [owned-service-evidence-01](owned-service-evidence-01/service.log). Copies matched their source bytes before and after retention. The supervision result also matches the lead's earlier [copy](supervision-result-01.json).
+
+The source receipt records server PID/PGID/SID **28299**, direct supervisor **28287**, spawn **2026-10-14 16:09:38.335185 UTC**, and end **16:16:46.801009 UTC**. Its measured monotonic elapsed time is **428.491337 seconds** under the 1,200-second supervisor ceiling. This is the owned service's wall lifetime, not the application's active numerical clock or a 900-second duration test.
+
+The explicit [stop request](owned-service-evidence-01/stop-request) precedes cleanup. The supervisor recorded two stable members before signaling: the owned server and child runner PID **28464**, both within the original PGID/SID and UID 501. One scoped group SIGTERM was accepted; no SIGKILL was sent. Final pre-reap observations recorded the runner gone and the direct leader exited but unreaped. Although leader identity lookup then returned ESRCH, the direct-child exit witness supplied the narrow unreadable-leader proof. The final original group was classified quiescent before leader reap; leader exit code was 0 and errors were empty. This is recorded supervisor evidence, not a new independent process-absence probe, and escaped descendants were not inventoried.
+
+The log confirms listener **127.0.0.1:63371**, version **0.40.4**, cloud disabled, and bundled `/Applications/Ollama.app/Contents/Resources/llama-server` using the selected private QA blob with loopback/offline, context 8192 and one parallel slot. The parent executable/plist identities agree with [software-selection.json](software-selection.json). The actual runner file was not independently hashed in this audit. Eight slot-release lines report `truncated = 0`; those are runner self-reports and do not prove complete context coverage or response completeness.
+
+The supervisor's conventional private/public-key and absent `server.json` metadata are identical before and after. No key/config contents were read or hashed for this check. HOME preservation and the child-only environment are retained in [launch-intent.json](owned-service-evidence-01/launch-intent.json).
+
+No process, endpoint, UI, service or runtime action was taken during this offline capture. No GPU, memory, energy, minimized-window, endurance or writing-quality result is inferred. The source audit and its limits remain in [RUNTIME-REVIEW.md](RUNTIME-REVIEW.md).

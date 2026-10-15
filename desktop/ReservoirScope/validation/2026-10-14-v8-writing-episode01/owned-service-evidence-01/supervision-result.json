@@ -1,0 +1,517 @@
+{
+  "format": "reservoir-owned-model-supervision-v1",
+  "endedAtUtc": "2026-10-14T20:05:36.572508+00:00",
+  "elapsedMonotonicSeconds": 560.7162063338328,
+  "reason": "explicit stop",
+  "selectionSha256": "7de0ae35b3d231201679b2242484cb24a9122a8f9ce866b8554dfe6384a2d86a",
+  "process": {
+    "pid": 95685,
+    "pgid": 95685,
+    "sid": 95685,
+    "directChildOfSupervisorPid": 95674,
+    "spawnedAtUtc": "2026-10-14T19:56:15.884510+00:00",
+    "spawnedAtMonotonicSeconds": 1204152.785871291,
+    "software": {
+      "executable": {
+        "path": "/Applications/Ollama.app/Contents/Resources/ollama",
+        "exists": true,
+        "ordinaryFile": true,
+        "symlink": false,
+        "device": "16777234",
+        "inode": "388523775",
+        "sizeBytes": 52241008,
+        "mtimeNs": "1791991395642191977",
+        "ctimeNs": "1791991395642191977",
+        "mode": "0755",
+        "uid": 501,
+        "sha256": "61e3067857f23046338a3d1a14360ce749fbe0aa0b6168e728b7d11c1e219619",
+        "readBytes": 52241008
+      },
+      "plist": {
+        "path": "/Applications/Ollama.app/Contents/Info.plist",
+        "exists": true,
+        "ordinaryFile": true,
+        "symlink": false,
+        "device": "16777234",
+        "inode": "388523809",
+        "sizeBytes": 1377,
+        "mtimeNs": "1791991396125681974",
+        "ctimeNs": "1791991396125681974",
+        "mode": "0755",
+        "uid": 501,
+        "sha256": "b2c8889493ebe26566169a3ac379ff86ddfdfe7cc8bea443715e4f48262b8b91",
+        "readBytes": 1377
+      },
+      "versionFromPlist": "0.40.4"
+    },
+    "softwareSelection": {
+      "receipt": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/software-selection.json",
+        "exists": true,
+        "ordinaryFile": true,
+        "symlink": false,
+        "device": "16777234",
+        "inode": "388714902",
+        "sizeBytes": 1374,
+        "mtimeNs": "1791993867400638942",
+        "ctimeNs": "1791993867400638942",
+        "mode": "0644",
+        "uid": 501,
+        "sha256": "f86c9011ed33881ffae71679a3c96755c3d7d1cfbd434b0b9535a3493192a127",
+        "readBytes": 1374
+      },
+      "stageReceipt": {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-real-gemma3-4b/stage-receipt.json",
+        "exists": true,
+        "ordinaryFile": true,
+        "symlink": false,
+        "device": "16777234",
+        "inode": "385704214",
+        "sizeBytes": 12823,
+        "mtimeNs": "1791917792945059032",
+        "ctimeNs": "1791917792945059032",
+        "mode": "0600",
+        "uid": 501,
+        "sha256": "76cf4002d95bffcf6ef2665f728739e15ffb9aff1726dd8270510b50beeca3dc",
+        "readBytes": 12823
+      },
+      "stagedSoftware": {
+        "executable": {
+          "path": "/Applications/Ollama.app/Contents/Resources/ollama",
+          "exists": true,
+          "ordinaryFile": true,
+          "symlink": false,
+          "device": "16777234",
+          "inode": "379069922",
+          "sizeBytes": 52076880,
+          "mtimeNs": "1791748632957886657",
+          "ctimeNs": "1791748632957886657",
+          "mode": "0755",
+          "uid": 501,
+          "sha256": "76535100c7aaf5aa94fe749b1bf0cfe3a702fa0743c7421fed059b783f4969de",
+          "readBytes": 52076880
+        },
+        "plist": {
+          "path": "/Applications/Ollama.app/Contents/Info.plist",
+          "exists": true,
+          "ordinaryFile": true,
+          "symlink": false,
+          "device": "16777234",
+          "inode": "379070259",
+          "sizeBytes": 1377,
+          "mtimeNs": "1791748633282462956",
+          "ctimeNs": "1791748633282462956",
+          "mode": "0755",
+          "uid": 501,
+          "sha256": "20b38700aaa5fff48b94832e05d812b658fd93fcdd1bf6b0be61dec57820d15a",
+          "readBytes": 1377
+        },
+        "versionFromPlist": "0.40.3"
+      },
+      "modelSelectionSha256": "7de0ae35b3d231201679b2242484cb24a9122a8f9ce866b8554dfe6384a2d86a",
+      "scope": "New software selection only; original cache selection, stage and conventional metadata remain unchanged."
+    },
+    "cleanup": {
+      "events": [
+        {
+          "atUtc": "2026-10-14T20:05:36.401613+00:00",
+          "operation": "killpg",
+          "pgid": 95685,
+          "signal": 15,
+          "before": {
+            "leaderExitedUnreaped": false,
+            "members": [
+              {
+                "pid": 95685,
+                "ppid": 95674,
+                "pgid": 95685,
+                "sid": 95685,
+                "uid": 501,
+                "realUid": 501,
+                "savedUid": 501,
+                "status": 2,
+                "startSeconds": "1792007775",
+                "startMicroseconds": "882097"
+              },
+              {
+                "pid": 95888,
+                "ppid": 95685,
+                "pgid": 95685,
+                "sid": 95685,
+                "uid": 501,
+                "realUid": 501,
+                "savedUid": 501,
+                "status": 2,
+                "startSeconds": "1792007832",
+                "startMicroseconds": "459454"
+              }
+            ],
+            "quiescent": false,
+            "unreadableLeaderExitProven": false
+          },
+          "sent": true,
+          "outcome": "syscall accepted; quiescence still requires verification"
+        }
+      ],
+      "groupObservations": [
+        {
+          "atUtc": "2026-10-14T20:05:36.401477+00:00",
+          "attempt": 1,
+          "operation": "observe-owned-group",
+          "pgid": 95685,
+          "before": [
+            {
+              "pid": 95685,
+              "ppid": 95674,
+              "pgid": 95685,
+              "sid": 95685,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1792007775",
+              "startMicroseconds": "882097"
+            },
+            {
+              "pid": 95888,
+              "ppid": 95685,
+              "pgid": 95685,
+              "sid": 95685,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1792007832",
+              "startMicroseconds": "459454"
+            }
+          ],
+          "leaderExitedBefore": false,
+          "after": [
+            {
+              "pid": 95685,
+              "ppid": 95674,
+              "pgid": 95685,
+              "sid": 95685,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1792007775",
+              "startMicroseconds": "882097"
+            },
+            {
+              "pid": 95888,
+              "ppid": 95685,
+              "pgid": 95685,
+              "sid": 95685,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1792007832",
+              "startMicroseconds": "459454"
+            }
+          ],
+          "leaderExitedAfter": false,
+          "outcome": "stable start identities; scheduler status may differ"
+        },
+        {
+          "atUtc": "2026-10-14T20:05:36.401739+00:00",
+          "attempt": 1,
+          "operation": "observe-owned-group",
+          "pgid": 95685,
+          "before": [
+            {
+              "pid": 95685,
+              "ppid": 95674,
+              "pgid": 95685,
+              "sid": 95685,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1792007775",
+              "startMicroseconds": "882097"
+            },
+            {
+              "pid": 95888,
+              "ppid": 95685,
+              "pgid": 95685,
+              "sid": 95685,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1792007832",
+              "startMicroseconds": "459454"
+            }
+          ],
+          "leaderExitedBefore": false,
+          "after": [
+            {
+              "pid": 95685,
+              "ppid": 95674,
+              "pgid": 95685,
+              "sid": 95685,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1792007775",
+              "startMicroseconds": "882097"
+            },
+            {
+              "pid": 95888,
+              "ppid": 95685,
+              "pgid": 95685,
+              "sid": 95685,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1792007832",
+              "startMicroseconds": "459454"
+            }
+          ],
+          "leaderExitedAfter": false,
+          "outcome": "stable start identities; scheduler status may differ"
+        },
+        {
+          "atUtc": "2026-10-14T20:05:36.511987+00:00",
+          "attempt": 1,
+          "operation": "observe-owned-group",
+          "pgid": 95685,
+          "before": [
+            {
+              "pid": 95685,
+              "ppid": 95674,
+              "pgid": 95685,
+              "sid": 95685,
+              "uid": 501,
+              "realUid": 501,
+              "savedUid": 501,
+              "status": 2,
+              "startSeconds": "1792007775",
+              "startMicroseconds": "882097"
+            },
+            {
+              "pid": 95888,
+              "identityUnavailable": true,
+              "errno": 3,
+              "operation": "proc_pidinfo"
+            }
+          ],
+          "leaderExitedBefore": false,
+          "error": "Selected member exited during identity read",
+          "errno": null,
+          "outcome": "transient read"
+        },
+        {
+          "atUtc": "2026-10-14T20:05:36.572276+00:00",
+          "attempt": 2,
+          "operation": "observe-owned-group",
+          "pgid": 95685,
+          "before": [
+            {
+              "pid": 95685,
+              "identityUnavailable": true,
+              "errno": 3,
+              "operation": "proc_pidinfo"
+            }
+          ],
+          "leaderExitedBefore": true,
+          "after": [
+            {
+              "pid": 95685,
+              "identityUnavailable": true,
+              "errno": 3,
+              "operation": "proc_pidinfo"
+            }
+          ],
+          "leaderExitedAfter": true,
+          "outcome": "stable start identities; scheduler status may differ"
+        },
+        {
+          "atUtc": "2026-10-14T20:05:36.572361+00:00",
+          "attempt": 1,
+          "operation": "observe-owned-group",
+          "pgid": 95685,
+          "before": [
+            {
+              "pid": 95685,
+              "identityUnavailable": true,
+              "errno": 3,
+              "operation": "proc_pidinfo"
+            }
+          ],
+          "leaderExitedBefore": true,
+          "after": [
+            {
+              "pid": 95685,
+              "identityUnavailable": true,
+              "errno": 3,
+              "operation": "proc_pidinfo"
+            }
+          ],
+          "leaderExitedAfter": true,
+          "outcome": "stable start identities; scheduler status may differ"
+        }
+      ],
+      "sigtermSentToOwnedGroup": true,
+      "sigkillSentToOwnedGroup": false,
+      "finalGroupBeforeReap": {
+        "leaderExitedUnreaped": true,
+        "members": [
+          {
+            "pid": 95685,
+            "identityUnavailable": true,
+            "errno": 3,
+            "operation": "proc_pidinfo"
+          }
+        ],
+        "quiescent": true,
+        "unreadableLeaderExitProven": true
+      },
+      "exitCode": 0,
+      "cleanupLimit": "Original owned process group verified quiescent before leader reap. Escaped descendants were not inventoried."
+    }
+  },
+  "endpointPort": 53588,
+  "softwareSelection": {
+    "receipt": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/software-selection.json",
+      "exists": true,
+      "ordinaryFile": true,
+      "symlink": false,
+      "device": "16777234",
+      "inode": "388714902",
+      "sizeBytes": 1374,
+      "mtimeNs": "1791993867400638942",
+      "ctimeNs": "1791993867400638942",
+      "mode": "0644",
+      "uid": 501,
+      "sha256": "f86c9011ed33881ffae71679a3c96755c3d7d1cfbd434b0b9535a3493192a127",
+      "readBytes": 1374
+    },
+    "stageReceipt": {
+      "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-real-gemma3-4b/stage-receipt.json",
+      "exists": true,
+      "ordinaryFile": true,
+      "symlink": false,
+      "device": "16777234",
+      "inode": "385704214",
+      "sizeBytes": 12823,
+      "mtimeNs": "1791917792945059032",
+      "ctimeNs": "1791917792945059032",
+      "mode": "0600",
+      "uid": 501,
+      "sha256": "76cf4002d95bffcf6ef2665f728739e15ffb9aff1726dd8270510b50beeca3dc",
+      "readBytes": 12823
+    },
+    "stagedSoftware": {
+      "executable": {
+        "path": "/Applications/Ollama.app/Contents/Resources/ollama",
+        "exists": true,
+        "ordinaryFile": true,
+        "symlink": false,
+        "device": "16777234",
+        "inode": "379069922",
+        "sizeBytes": 52076880,
+        "mtimeNs": "1791748632957886657",
+        "ctimeNs": "1791748632957886657",
+        "mode": "0755",
+        "uid": 501,
+        "sha256": "76535100c7aaf5aa94fe749b1bf0cfe3a702fa0743c7421fed059b783f4969de",
+        "readBytes": 52076880
+      },
+      "plist": {
+        "path": "/Applications/Ollama.app/Contents/Info.plist",
+        "exists": true,
+        "ordinaryFile": true,
+        "symlink": false,
+        "device": "16777234",
+        "inode": "379070259",
+        "sizeBytes": 1377,
+        "mtimeNs": "1791748633282462956",
+        "ctimeNs": "1791748633282462956",
+        "mode": "0755",
+        "uid": 501,
+        "sha256": "20b38700aaa5fff48b94832e05d812b658fd93fcdd1bf6b0be61dec57820d15a",
+        "readBytes": 1377
+      },
+      "versionFromPlist": "0.40.3"
+    },
+    "modelSelectionSha256": "7de0ae35b3d231201679b2242484cb24a9122a8f9ce866b8554dfe6384a2d86a",
+    "scope": "New software selection only; original cache selection, stage and conventional metadata remain unchanged."
+  },
+  "conventionalMetadataBefore": [
+    {
+      "path": "/Users/v/.ollama/id_ed25519",
+      "exists": true,
+      "ordinaryFile": true,
+      "symlink": false,
+      "device": "16777234",
+      "inode": "3076462",
+      "sizeBytes": 387,
+      "mtimeNs": "1772811118116572068",
+      "ctimeNs": "1772811118116572068",
+      "mode": "0600",
+      "uid": 501
+    },
+    {
+      "path": "/Users/v/.ollama/id_ed25519.pub",
+      "exists": true,
+      "ordinaryFile": true,
+      "symlink": false,
+      "device": "16777234",
+      "inode": "3076463",
+      "sizeBytes": 81,
+      "mtimeNs": "1772811118116677943",
+      "ctimeNs": "1772811118116677943",
+      "mode": "0644",
+      "uid": 501
+    },
+    {
+      "path": "/Users/v/.ollama/server.json",
+      "exists": false
+    }
+  ],
+  "conventionalMetadataAfter": [
+    {
+      "path": "/Users/v/.ollama/id_ed25519",
+      "exists": true,
+      "ordinaryFile": true,
+      "symlink": false,
+      "device": "16777234",
+      "inode": "3076462",
+      "sizeBytes": 387,
+      "mtimeNs": "1772811118116572068",
+      "ctimeNs": "1772811118116572068",
+      "mode": "0600",
+      "uid": 501
+    },
+    {
+      "path": "/Users/v/.ollama/id_ed25519.pub",
+      "exists": true,
+      "ordinaryFile": true,
+      "symlink": false,
+      "device": "16777234",
+      "inode": "3076463",
+      "sizeBytes": 81,
+      "mtimeNs": "1772811118116677943",
+      "ctimeNs": "1772811118116677943",
+      "mode": "0644",
+      "uid": 501
+    },
+    {
+      "path": "/Users/v/.ollama/server.json",
+      "exists": false
+    }
+  ],
+  "conventionalMetadataUnchanged": true,
+  "credentialCheckLimit": "lstat continuity only; no key/config content read or hash",
+  "retainedLogBytes": 73678,
+  "discardedLogBytes": 0,
+  "errors": [],
+  "runtimeQualityOrMemoryQualification": false
+}

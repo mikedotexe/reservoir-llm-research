@@ -1,0 +1,71 @@
+{
+  "capturedAtUtc": "2026-10-14T18:14:41.759222+00:00",
+  "episodeId": "v7-writing-0.19.0-episode03",
+  "sessionId": "sustained-1792001665258-1",
+  "manifestPath": "/Users/v/Library/Application Support/research.reservoir.scope.tauri/sustained-v1/sustained-1792001665258-1/manifest.json",
+  "manifestSha256": "55ca18e5cb221fec19eb70525aa01ab2c50155a747cb2f0c2ff3c70257fb6a4d",
+  "acceptedConfig": {
+    "seed": "20261013",
+    "turnEvery": 30,
+    "maximumSteps": 361,
+    "maximumTurns": 12,
+    "maximumDurationSeconds": 900,
+    "storageBudgetBytes": 67108864,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true,
+    "language": {
+      "backend": "ollama",
+      "endpoint": "http://127.0.0.1:50238",
+      "model": "gemma3:4b",
+      "contextTokens": 8192
+    },
+    "promptVersion": "reservoir-journal-v7",
+    "outputTokens": 1024,
+    "requestDeadlineSeconds": 180
+  },
+  "ownedProcessPath": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.19-v7-writing-gemma3-4b-run03/owned-process.json",
+  "endpoint": "http://127.0.0.1:50238",
+  "readinessRequests": 1,
+  "initialManifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1792001665258-1",
+    "generation": "1",
+    "revision": "1",
+    "config": {
+      "seed": "20261013",
+      "turnEvery": 30,
+      "maximumSteps": 361,
+      "maximumTurns": 12,
+      "maximumDurationSeconds": 900,
+      "storageBudgetBytes": 67108864,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:50238",
+        "model": "gemma3:4b",
+        "contextTokens": 8192
+      },
+      "promptVersion": "reservoir-journal-v7",
+      "outputTokens": 1024,
+      "requestDeadlineSeconds": 180
+    },
+    "phase": "ready",
+    "step": 0,
+    "durableStep": 0,
+    "elapsedMillis": 0,
+    "journalCount": 0,
+    "segmentCount": 0,
+    "lastSegmentSha256": null,
+    "checkpointSha256": "11b93ba67cc6034d394f4e2a67bd1cdbd193ad6e0b5bc63eecf247aa116cb74a",
+    "previousCheckpointSha256": null,
+    "diagnostics": [],
+    "attemptTiming": null
+  }
+}

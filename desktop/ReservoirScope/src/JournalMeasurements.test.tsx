@@ -20,19 +20,29 @@ function reference(step = 60): JournalMeasurementReference {
 }
 
 describe('optional recorded measurements', () => {
-  it('distinguishes the compact v5 prompt from full retained measurements without changing historical v4 presentation', () => {
+  it('distinguishes compact v5 through v8 prompts from full retained measurements without changing historical v4 presentation', () => {
     const entry = { ...journal(), observedStep: 60, text: 'An open entry with no required measurement claim.', measurementReference: reference() };
     const current = renderToStaticMarkup(<MyReservoirJournalDetail journal={entry} revision="8" config={DEFAULT_SUSTAINED_CONFIG}/>);
     const table = current.match(/<table[\s\S]*?<\/table>/)![0];
     expect(table.match(/scope="row"/g)).toHaveLength(8);
     expect(table).toContain('Largest sensory covariance eigenvalue');
     expect(current).toContain('prompt supplies only current and prior recurrent RMS and separate sensory fill with their differences, plus state-coordinate L2 distance');
+    expect(current).toContain('The v8 prompt');
     expect(current).toContain('it does not supply this full table');
+    for (const promptVersion of ['reservoir-journal-v5', 'reservoir-journal-v6', 'reservoir-journal-v7'] as const) {
+      const prior = renderToStaticMarkup(<MyReservoirJournalDetail journal={{ ...entry, promptVersion }} revision="8" config={DEFAULT_SUSTAINED_CONFIG}/>);
+      expect(prior).toContain(`The ${promptVersion.replace('reservoir-journal-', '')} prompt`);
+      expect(prior).not.toContain('The v8 prompt');
+      expect(prior.match(/<table[\s\S]*?<\/table>/)![0]).toBe(table);
+    }
     expect(current).toContain('values that were not supplied as part of that readout');
     expect(current).toContain('exact prompt records what was supplied, including prior prose');
     expect(current).toContain(entry.text); expect(current).not.toMatch(/<details[^>]*\bopen/);
     const historical = renderToStaticMarkup(<MyReservoirJournalDetail journal={{ ...entry, promptVersion: 'reservoir-journal-v4' }} revision="8" config={DEFAULT_SUSTAINED_CONFIG}/>);
     expect(historical).not.toContain('v5 prompt');
+    expect(historical).not.toContain('v6 prompt');
+    expect(historical).not.toContain('v7 prompt');
+    expect(historical).not.toContain('v8 prompt');
     expect(historical).not.toContain('it does not supply this full table');
     expect(historical.match(/<table[\s\S]*?<\/table>/)![0]).toBe(table);
     expect(historical).toContain('reservoir-journal-v4');

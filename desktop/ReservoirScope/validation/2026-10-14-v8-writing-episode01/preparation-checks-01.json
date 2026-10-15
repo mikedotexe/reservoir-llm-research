@@ -1,0 +1,127 @@
+{
+  "schema": "reservoir-v8-preparation-checks-v1",
+  "capturedAtUtc": "2026-10-14T19:55:02.352934+00:00",
+  "status": "passed",
+  "scope": "AST syntax parsing, existing source-bound pure-test receipt verification and Markdown target checks. No admission, process inventory, provider, app, model/blob access or endpoint action. Prospective freeze remains root-owned and unexecuted by this preparation.",
+  "syntaxParsed": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/owned_model.py",
+      "bytes": 38692,
+      "sha256": "415a585dfa4502e555331b4472cf08b6afbd3207944e6d02d952e133175f8c1b"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/test_owned_model.py",
+      "bytes": 30996,
+      "sha256": "da68770ceed2999ef55d9a17149b244dde639bf21f0a5aa43e06aab73d57bb5d"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/admit_once.py",
+      "bytes": 2783,
+      "sha256": "d4a4cbb2d5c52b661e5c6bcd6fe1533220652b19c8ff66f989b60738cdcbe8e6"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/freeze_episode.py",
+      "bytes": 10297,
+      "sha256": "a3b07cef4f29684889af489f38b62403ad60791178d515066a3d680907b978cb"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/check_real_model_export.py",
+      "bytes": 48186,
+      "sha256": "ffee0b2769fb71fc8452d1166b025a0a877422806b31388b1b3e5c238d46f0e7"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/test_real_model_export.py",
+      "bytes": 32988,
+      "sha256": "5a0266f253bd575b3266e7455ade22bfe8d81d071d2b40091aa54eff96a624e4"
+    }
+  ],
+  "documents": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/run-plan.json",
+      "bytes": 5625,
+      "sha256": "88180d370ca60bfdb595a7d554d3581d3e5640b3fa22b2579c20a107dad91382"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/PROTOCOL.md",
+      "bytes": 7674,
+      "sha256": "77a1dbb15cbeda1df77a868b88462620cc1dcb83338bfb26ce37f3a3e7aa88a1"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/EVALUATION.md",
+      "bytes": 8473,
+      "sha256": "4bc73ca752a08b86186c34da6973b883f769d94bfaa287b9beb742715361403f"
+    }
+  ],
+  "resolvedLocalLinks": [
+    {
+      "document": "PROTOCOL.md",
+      "target": "run-plan.json"
+    },
+    {
+      "document": "PROTOCOL.md",
+      "target": "../2026-10-14-reading-measurements-0.20.0/PROMPT-V8-TEMPLATE.txt"
+    },
+    {
+      "document": "PROTOCOL.md",
+      "target": "admit_once.py"
+    },
+    {
+      "document": "PROTOCOL.md",
+      "target": "owned_model.py"
+    },
+    {
+      "document": "PROTOCOL.md",
+      "target": "test_owned_model.py"
+    },
+    {
+      "document": "PROTOCOL.md",
+      "target": "../2026-10-14-v6-writing-episode02/software-selection.json"
+    },
+    {
+      "document": "PROTOCOL.md",
+      "target": "check_real_model_export.py"
+    },
+    {
+      "document": "PROTOCOL.md",
+      "target": "EVALUATION.md"
+    },
+    {
+      "document": "PROTOCOL.md",
+      "target": "RUBRIC.md"
+    },
+    {
+      "document": "EVALUATION.md",
+      "target": "run-plan.json"
+    },
+    {
+      "document": "EVALUATION.md",
+      "target": "PROTOCOL.md"
+    },
+    {
+      "document": "EVALUATION.md",
+      "target": "RUBRIC.md"
+    },
+    {
+      "document": "EVALUATION.md",
+      "target": "../2026-10-14-v6-writing-episode02/INDEPENDENT-READING.md"
+    },
+    {
+      "document": "EVALUATION.md",
+      "target": "../2026-10-14-reading-measurements-0.20.0/PROTOCOL.md"
+    },
+    {
+      "document": "EVALUATION.md",
+      "target": "RUBRIC.md"
+    }
+  ],
+  "checkerQualification": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/checker-tests-01.json",
+    "bytes": 3965,
+    "sha256": "daa922905cb7de65b581c5c403f01bfb4d129faf1098f5299c77cdca9d04776a"
+  },
+  "checkerTests": 40,
+  "supervisorByteExact": true,
+  "oldCopiedInputsUnchanged": true,
+  "admissionChange": "Only episode identity differs from v7episode03; thresholds and one-shot exclusivity unchanged.",
+  "readerToolsAndQuality": "Separately owned source-bound preparation/test receipts required by freeze_episode.py."
+}

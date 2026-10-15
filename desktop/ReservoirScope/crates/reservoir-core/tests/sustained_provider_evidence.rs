@@ -136,6 +136,9 @@ fn input_evidence_never_changes_prompts_save_gate_application_or_numerical_state
         SustainedPromptVersion::OpenJournalV3,
         SustainedPromptVersion::OpenJournalV4,
         SustainedPromptVersion::ContinuingJournalV5,
+        SustainedPromptVersion::ActionScopeJournalV6,
+        SustainedPromptVersion::WritingBoundaryJournalV7,
+        SustainedPromptVersion::MeasurementMeaningJournalV8,
     ] {
         let mut baseline = None;
         for evidence in variants() {

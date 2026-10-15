@@ -89,6 +89,7 @@ fn first_and_later_prompts_match_independently_assembled_fixtures_after_retry() 
         turn_every: 10,
         maximum_steps: 180,
         maximum_turns: 30,
+        prompt_version: V5,
         ..Default::default()
     })
     .unwrap();
@@ -395,7 +396,7 @@ fn changed_prompt_version_and_prior_evidence_fail_even_after_rehashing() {
         assert!(changed.validate().is_err(), "mutation {mutation}");
     }
     let mut unknown = serde_json::to_value(s.checkpoint()).unwrap();
-    unknown["state"]["specification"]["promptVersion"] = json!("reservoir-journal-v6");
+    unknown["state"]["specification"]["promptVersion"] = json!("reservoir-journal-v9");
     assert!(serde_json::from_value::<SustainedCheckpoint>(unknown).is_err());
     save(&mut s, "First entry.");
     s.authorize_application(1).unwrap();

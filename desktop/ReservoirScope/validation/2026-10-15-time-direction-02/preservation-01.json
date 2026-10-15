@@ -1,0 +1,73 @@
+{
+  "schema": "reservoir-time-direction-refusal-preservation-v1",
+  "atUtc": "2026-10-15T16:36:50.974628+00:00",
+  "episodeId": "time-direction-02",
+  "status": "passed",
+  "errors": [],
+  "admission": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-02/host-admission-01.json",
+    "bytes": 1458,
+    "sha256": "50290637ef05f5e5707344eb00778c17ad120c41f2e2a3ac50571e06f5faa145"
+  },
+  "freeze": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-02/evaluation-freeze-01.json",
+    "bytes": 203869,
+    "sha256": "18dea361e36de77f358bdb1d9a0f1e02de401d039c0f9fa61b4f3f87221b5126"
+  },
+  "inputs": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-02/frozen-inputs.json",
+    "bytes": 6708,
+    "sha256": "8f13350cd21823465b5efcbfc10f0b773bbdb119d5a53218019db88a31fb0597"
+  },
+  "plan": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-02/run-plan.json",
+    "bytes": 4794,
+    "sha256": "d8a3cfae12ef85cf651f98ea32a15ac3dca962bf3430c729fc3e3fe50b50a06c"
+  },
+  "cleanup": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-02/cleanup-result-01.json",
+    "bytes": 3048,
+    "sha256": "1202f3f4dadea6b2adcaa9d9a8d8f51c2628e79f0eeb975cb602b16e446bf0aa"
+  },
+  "outcome": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-02/outcome-01.json",
+    "bytes": 11907,
+    "sha256": "5a3cdcdcc2965099b0935728208febc67e06aab168efa67bad862397cbd4c908"
+  },
+  "frozenFilesChecked": 724,
+  "frozenFilesUnchanged": 724,
+  "priorFilesChecked": 244,
+  "priorFilesUnchanged": 244,
+  "priorFileBreakdown": {
+    "timeDirection01": 48,
+    "earlierContextEpisodes": 196
+  },
+  "priorInventorySource": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-02/runtime-copy-01.json",
+    "bytes": 152873,
+    "sha256": "56e3d93c2403fcff76efd0f8696826d974ff0350c4ccc307292e03b43eb5eb60"
+  },
+  "plannedSlots": 12,
+  "unstartedSlots": 12,
+  "runPathChecks": [
+    {
+      "label": "ownedServiceDirectory",
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-time-direction-gemma3-4b-run02",
+      "absent": true,
+      "method": "os.path.lexists exact proposed path only; no directory or process discovery"
+    },
+    {
+      "label": "resultsDirectory",
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-time-direction-results02",
+      "absent": true,
+      "method": "os.path.lexists exact proposed path only; no directory or process discovery"
+    }
+  ],
+  "ownedCleanupRequired": false,
+  "preAdmissionNormalQuits": 2,
+  "newHostQueries": 0,
+  "processQueries": 0,
+  "networkRequests": 0,
+  "freezeAndPriorInputsModified": false,
+  "scope": "File-only closeout binds existing two-app normal-quit receipt; no new cleanup, host/process/service inspection, admission retry or old-file edits."
+}

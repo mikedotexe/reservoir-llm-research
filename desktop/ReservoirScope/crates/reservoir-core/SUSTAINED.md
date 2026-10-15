@@ -27,17 +27,18 @@ cannot alter the prompt. These are synthetic lab measurements, not current claim
 about Minime or Astrid.
 
 Prompt wording has its own immutable version in `SustainedSpecification.prompt_version`:
-`reservoir-journal-v1` through `reservoir-journal-v5`
+`reservoir-journal-v1` through `reservoir-journal-v8`
 (`SustainedPromptVersion::LegacyV1`, `GroundedV2`, `OpenJournalV3`, `OpenJournalV4`
-and `ContinuingJournalV5`).
+`ContinuingJournalV5`, `ActionScopeJournalV6`, `WritingBoundaryJournalV7` and
+`MeasurementMeaningJournalV8`).
 Missing serialized versions mean **v1**. Legacy values are omitted
 when serialized, preserving old typed checkpoint hashes and exact prompt bytes.
-`SustainedSpecification::default()` explicitly chooses v5 for **new** sessions;
+`SustainedSpecification::default()` explicitly chooses v8 for **new** sessions;
 the enum's deserialization default remains v1. Unknown strings, numbers and null
 versions fail deserialization. Storage owners must retain a restored specification
 and must not replace a missing historical version with the current creation default.
 The existing segment/checkpoint format names do not change. Prompt v1–v3 use
-observation `reservoir-and-sensory-v1`; v4/v5 use `reservoir-and-sensory-v2`. New
+observation `reservoir-and-sensory-v1`; v4–v8 use `reservoir-and-sensory-v2`. New
 prompt versions carry their explicit version field. Earlier readers reject unknown
 fields or versions rather than falsely interpreting newer prompts as v1.
 
@@ -99,7 +100,7 @@ Two endpoints establish only their difference, not oscillation, sustained direct
 stability, convergence or causality. Naming the largest covariance eigenvalue does
 not supply a tone, frequency, eigenvector or spatial region.
 
-V4 and v5 require the optional prior snapshot exactly when a prior observation step exists.
+V4–v6 require the optional prior snapshot exactly when a prior observation step exists.
 Old observations omit that field on serialization, preserving their hashes and bytes.
 The same core `measurement_reference` helper supplies the prompt rows and the desktop's
 additive inert `journal.measurementReference` view. Historical v1–v3 entries can show
@@ -304,3 +305,50 @@ cargo test --locked -p reservoir-core --test sustained
 cargo run --locked -p reservoir-core --example sustained_session_fixtures -- NEW_DIRECTORY
 reservoir-core verify NEW_DIRECTORY/segment-00001.json --json
 ```
+
+## V6 action scope
+
+V6 keeps v5's compact optional readout, complete previous prose and open invitation.
+Only the version header and two SESSION CONTEXT sentences change: writing is the
+available action, describing an experiment does not execute it, and no new readout
+arrives within a reply. The codec, numerical controls and eligibility gates are
+unchanged. Saved v1–v5 prompts retain their exact bytes; unknown versions fail.
+See [the shared contract](../../../../shared/reservoir-scope/continuing-writing.md)
+and the independently retained v6 prompt fixtures and conformance tests.
+
+
+## V7 writing boundary
+
+The preserved `reservoir-journal-v7` uses the frozen v5 scaffold and replaces
+v6's early scope sentences with a WRITING BOUNDARY after the quoted previous entry,
+and ends with the unchanged open invitation. That block identifies text as the
+available output, the actual held observation step, and the observed/first-applied
+steps of the latest eligible text return (or its absence). Earlier prose is not an
+executed-control or measurement receipt. No tools, command parsing, mid-entry
+observation, factuality gate, or numerical mechanism is introduced. V1–v6 remain
+exact historical contracts. Tests cover exact first/later prompts, quoted hostile
+headings, unchanged same-reply dynamics and rehashed boundary-field alterations.
+
+## V8 measurement meaning
+
+New sessions explicitly select `reservoir-journal-v8`; existing v1–v7 sessions keep
+their original version and prompt bytes. V8 changes only the v7 header and the
+explanation immediately after the compact optional readout, before quoted memory:
+
+> Unavailable means no prior measurement, not zero. RMS describes the magnitude of the recurrent coordinates. Sensory fill is a separate field estimate, not the encoded text-input signal. L2 distance is the straight-line distance between the two recurrent state vectors, not path length, speed or a causal effect of writing. Comparing two interval distances requires a recorded value for each. Two observations do not establish the intervening path, a cause, or a felt state.
+
+The four numeric readout lines, complete v2 observation, prior-measurement snapshot,
+full quoted eligible prose, late WRITING BOUNDARY and open invitation are unchanged.
+No second interval-distance value is added. The explanation describes available
+measurements without prescribing a subject, form, metaphor, persona or telemetry
+report. It is not a factuality gate: incorrect or imaginative prose remains the
+actual retained response and follows the same completeness and exact save/readback
+requirements. Numerical recurrence, codec, provider budgets and next-step application
+are unchanged. Different replies may still change later numerical trajectories.
+
+The independently assembled v8 first/later fixtures and
+`tests/sustained_measurement_meaning_prompt.rs` cover exact rendering, adversarial
+quoted text, explicit retry and restore, historical replay, identical-reply numerical
+continuation, and meaning/version mutations after typed rehashing. Historical fixture
+checks remain in the earlier test modules. These tests qualify mechanics, not improved
+understanding, prose quality, provider behavior or physical storage durability.

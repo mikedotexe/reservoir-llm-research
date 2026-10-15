@@ -1,0 +1,121 @@
+{
+  "schema": "reservoir-context-sources-launch-failure-review-v1",
+  "status": "pre_spawn_refusal_confirmed",
+  "reviewedAtUtc": "2026-10-15T20:20:42.950979+00:00",
+  "review": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/FAILURE-REVIEW.md",
+    "bytes": 2403,
+    "sha256": "7c2220beaa5370671a37fe3f12e3a47278771f2febd687de6fbc0847dc4c9799"
+  },
+  "reviewedFiles": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/owned_model.py",
+      "bytes": 38692,
+      "sha256": "415a585dfa4502e555331b4472cf08b6afbd3207944e6d02d952e133175f8c1b"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/run-plan.json",
+      "bytes": 3649,
+      "sha256": "8a3a84dfd4a1a6165636cbb0cd07e1b53d70ecd1c20ac4771479d977bbc41166"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/launch-attempt-01.json",
+      "bytes": 2701,
+      "sha256": "ce853df04a88036d22d6cd1412755cddae8d41a1d2a7d803424690611aa52937"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/installed-software-observation-01.json",
+      "bytes": 2048,
+      "sha256": "45ceeea2b4df501b5460a90f8c18f4f63761a643ca38265132eb6566e1c104f5"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/outcome-01.json",
+      "bytes": 7535,
+      "sha256": "832d2a9459d3c8fefbd10636c03f89731af1caf0ea79adcfed90281214298b69"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/software-selection.json",
+      "bytes": 1374,
+      "sha256": "f86c9011ed33881ffae71679a3c96755c3d7d1cfbd434b0b9535a3493192a127"
+    }
+  ],
+  "sourceOrdering": {
+    "launchSoftwareOverlayLine": 606,
+    "softwareIdentityCallLine": 260,
+    "plistVerificationLine": 216,
+    "exceptionLine": 164,
+    "supervisionDirectoryCreationLine": 612,
+    "onlyPopenLine": 643,
+    "cleanupRequiresCreatedChildLine": 696
+  },
+  "independentFileObservation": {
+    "atUtc": "2026-10-15T20:20:42.951549+00:00",
+    "plist": {
+      "path": "/Applications/Ollama.app/Contents/Info.plist",
+      "bytes": 1377,
+      "sha256": "10d340acf299d8357c8f8c699bc1c7cb10ae0e16508f39795a31d023fe6ecbe8"
+    },
+    "plistMetadataBefore": {
+      "path": "/Applications/Ollama.app/Contents/Info.plist",
+      "ordinaryFile": true,
+      "device": "16777234",
+      "inode": "392159766",
+      "sizeBytes": 1377,
+      "mtimeNs": "1792095264774788547"
+    },
+    "plistMetadataAfter": {
+      "path": "/Applications/Ollama.app/Contents/Info.plist",
+      "ordinaryFile": true,
+      "device": "16777234",
+      "inode": "392159766",
+      "sizeBytes": 1377,
+      "mtimeNs": "1792095264774788547"
+    },
+    "versions": {
+      "CFBundleShortVersionString": "0.40.5",
+      "CFBundleVersion": "0.40.5"
+    },
+    "executableMetadata": {
+      "path": "/Applications/Ollama.app/Contents/Resources/ollama",
+      "ordinaryFile": true,
+      "device": "16777234",
+      "inode": "392159734",
+      "sizeBytes": 52290224,
+      "mtimeNs": "1792095264468122408"
+    },
+    "executableHashIndependentlyRecomputed": false,
+    "exactOwnedPaths": [
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-sources-gemma3-4b-run01",
+        "existsOrSymlink": false
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-sources-results01",
+        "existsOrSymlink": false
+      }
+    ]
+  },
+  "findings": {
+    "failureBeforePopen": true,
+    "failureBeforeSupervisionDirectoryCreation": true,
+    "ownedCleanupSignalAppropriate": false,
+    "unstartedSlots": 12,
+    "probeInvocations": 0,
+    "inventoryRequests": 0,
+    "generationRequests": 0,
+    "candidateEffects": "unassessed"
+  },
+  "executionScope": {
+    "binaryExecuted": false,
+    "testsRun": false,
+    "processQueries": false,
+    "signalsSent": false,
+    "serviceOrNetworkCalls": false,
+    "appOrBeingActions": false
+  },
+  "limits": [
+    "The original exit/error is root-transcribed tool evidence; the reviewer did not execute the failed command.",
+    "Path absence supports source ordering but is not a process inventory.",
+    "Executable content hash is retained from the root receipt; the independent check used file metadata only."
+  ]
+}

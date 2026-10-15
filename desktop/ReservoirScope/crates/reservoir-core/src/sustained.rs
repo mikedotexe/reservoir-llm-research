@@ -17,7 +17,7 @@ pub const CHECKPOINT_FORMAT: &str = "reservoir-sustained-checkpoint-v1";
 pub const OBSERVATION_VERSION: &str = "reservoir-and-sensory-v1";
 pub const PAIRED_OBSERVATION_VERSION: &str = "reservoir-and-sensory-v2";
 pub const CURRENT_PROMPT_VERSION: SustainedPromptVersion =
-    SustainedPromptVersion::ContinuingJournalV5;
+    SustainedPromptVersion::MeasurementMeaningJournalV8;
 pub const SCOPE: &str = "New sustained synthetic session: bounded event and numerical replay from a declared checkpoint, continuous SplitMix64/recurrence/covariance/fill/controller, exact observation/prompt/memory/save/application contracts; not Swift-format parity, provider/storage authentication, or whole-history verification without a checked segment chain";
 pub const MAX_EVENTS: usize = 128;
 pub const MAX_STEPS: u64 = 10_000_000;
@@ -76,7 +76,7 @@ fn valid_hash(s: &str) -> bool {
 }
 
 /// Prompt text is an immutable part of a session's scientific contract.
-/// Missing serialized versions are legacy; fresh Rust defaults explicitly use v5.
+/// Missing serialized versions are legacy; fresh Rust defaults explicitly use v8.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub enum SustainedPromptVersion {
     #[default]
@@ -90,6 +90,12 @@ pub enum SustainedPromptVersion {
     OpenJournalV4,
     #[serde(rename = "reservoir-journal-v5")]
     ContinuingJournalV5,
+    #[serde(rename = "reservoir-journal-v6")]
+    ActionScopeJournalV6,
+    #[serde(rename = "reservoir-journal-v7")]
+    WritingBoundaryJournalV7,
+    #[serde(rename = "reservoir-journal-v8")]
+    MeasurementMeaningJournalV8,
 }
 impl SustainedPromptVersion {
     pub fn is_legacy(&self) -> bool {
@@ -102,10 +108,20 @@ impl SustainedPromptVersion {
             Self::OpenJournalV3 => "reservoir-journal-v3",
             Self::OpenJournalV4 => "reservoir-journal-v4",
             Self::ContinuingJournalV5 => "reservoir-journal-v5",
+            Self::ActionScopeJournalV6 => "reservoir-journal-v6",
+            Self::WritingBoundaryJournalV7 => "reservoir-journal-v7",
+            Self::MeasurementMeaningJournalV8 => "reservoir-journal-v8",
         }
     }
     fn uses_paired_observation(self) -> bool {
-        matches!(self, Self::OpenJournalV4 | Self::ContinuingJournalV5)
+        matches!(
+            self,
+            Self::OpenJournalV4
+                | Self::ContinuingJournalV5
+                | Self::ActionScopeJournalV6
+                | Self::WritingBoundaryJournalV7
+                | Self::MeasurementMeaningJournalV8
+        )
     }
 }
 
@@ -1229,6 +1245,9 @@ fn prompt(
         SustainedPromptVersion::OpenJournalV3 => prompt_v3(observation, memory),
         SustainedPromptVersion::OpenJournalV4 => prompt_v4(observation, memory),
         SustainedPromptVersion::ContinuingJournalV5 => prompt_v5(observation, memory),
+        SustainedPromptVersion::ActionScopeJournalV6 => prompt_v6(observation, memory),
+        SustainedPromptVersion::WritingBoundaryJournalV7 => prompt_v7(observation, memory),
+        SustainedPromptVersion::MeasurementMeaningJournalV8 => prompt_v8(observation, memory),
     }
 }
 
@@ -1535,6 +1554,60 @@ fn prompt_v5(observation: &SustainedObservation, memory: Option<&SustainedMemory
         fill_delta = signed(previous.map(|p| observation.sensory.fill_percent - p.fill_percent)),
         state_distance = optional(observation.change_l2),
     )
+}
+fn prompt_v6(observation: &SustainedObservation, memory: Option<&SustainedMemory>) -> String {
+    // V6 changes only the frozen V5 scaffold's version header and action-scope
+    // clarification. Both first matches precede the JSON-quoted authored memory;
+    // identical words inside that memory must remain byte-for-byte historical data.
+    prompt_v5(observation, memory)
+        .replacen("reservoir-journal-v5\n", "reservoir-journal-v6\n", 1)
+        .replacen(
+            "writing trains no weights.\n\nOPTIONAL READOUT\n",
+            "writing trains no weights. Writing is the only action available here. Describing a control change or experiment does not execute it, and no new readout arrives while this entry is written.\n\nOPTIONAL READOUT\n",
+            1,
+        )
+}
+fn prompt_v7(observation: &SustainedObservation, memory: Option<&SustainedMemory>) -> String {
+    // Historical renderers remain unchanged. Append only at the exact final
+    // scaffold suffix; marker-like text inside JSON-quoted memory stays inert.
+    const INVITATION: &str = "Write the next entry in whatever direction seems worth pursuing.";
+    let prior = prompt_v5(observation, memory).replacen(
+        "reservoir-journal-v5\n",
+        "reservoir-journal-v7\n",
+        1,
+    );
+    let prefix = prior
+        .strip_suffix(INVITATION)
+        .expect("frozen V5 prompt ends with its open invitation");
+    let recorded_return = memory.map_or_else(
+        || "Recorded text return: no earlier saved entry has been applied.".into(),
+        |m| {
+            format!(
+                "Recorded text return: the entry observed at step {} first entered numerical input at step {}.",
+                m.entry.observed_step, m.applied_step
+            )
+        },
+    );
+    format!(
+        "{prefix}WRITING BOUNDARY\n\
+         Available output: the text of this entry. There are no tools or control commands in this turn.\n\
+         The numerical clock is held at observation step {}; no new readout arrives while this entry is written.\n\
+         {recorded_return}\n\
+         Earlier prose is not a record of executed controls or additional measurements. Describing a control change does not execute it; saved text returns through the automatic encoding described above.\n\n\
+         {INVITATION}",
+        observation.step
+    )
+}
+fn prompt_v8(observation: &SustainedObservation, memory: Option<&SustainedMemory>) -> String {
+    // Both first matches belong to the scaffold before the JSON-quoted memory.
+    // Earlier prose may contain the same text and must remain byte-for-byte intact.
+    prompt_v7(observation, memory)
+        .replacen("reservoir-journal-v7\n", "reservoir-journal-v8\n", 1)
+        .replacen(
+            "Unavailable means no prior measurement, not zero. Distance compares coordinate vectors and is nonnegative. Fill is a separate sensory estimator. Two observations do not establish the intervening path, a cause, or a felt state.",
+            "Unavailable means no prior measurement, not zero. RMS describes the magnitude of the recurrent coordinates. Sensory fill is a separate field estimate, not the encoded text-input signal. L2 distance is the straight-line distance between the two recurrent state vectors, not path length, speed or a causal effect of writing. Comparing two interval distances requires a recorded value for each. Two observations do not establish the intervening path, a cause, or a felt state.",
+            1,
+        )
 }
 fn prepare_language(
     state: &mut SustainedContinuation,

@@ -1,0 +1,50 @@
+{
+  "capturedAtUtc": "2026-10-14T16:12:30.438937+00:00",
+  "path": "/Users/v/Library/Application Support/research.reservoir.scope.tauri/sustained-v1/sustained-1791994198871-1/manifest.json",
+  "sha256": "6c54a01b39401ef5d732cb944139e0b1328bca8a7f1eb9152b6709bca349936e",
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791994198871-1",
+    "generation": "1",
+    "revision": "107",
+    "config": {
+      "seed": "20261013",
+      "turnEvery": 30,
+      "maximumSteps": 361,
+      "maximumTurns": 12,
+      "maximumDurationSeconds": 900,
+      "storageBudgetBytes": 67108864,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:63371",
+        "model": "gemma3:4b",
+        "contextTokens": 8192
+      },
+      "promptVersion": "reservoir-journal-v6",
+      "outputTokens": 1024,
+      "requestDeadlineSeconds": 180
+    },
+    "phase": "running",
+    "step": 91,
+    "durableStep": 91,
+    "elapsedMillis": 106191,
+    "journalCount": 3,
+    "segmentCount": 14,
+    "lastSegmentSha256": "5a4b10fed0e06328322369ded16ab404cefb777dcc8ee6cb5d36d5835d28a26b",
+    "checkpointSha256": "6104eeeb9cea61b40dad454c829e8b5f61b39fd1465110af745932aa44973975",
+    "previousCheckpointSha256": "ff0b7d6ac780a7d5b7ddbd52bac0a3e6896cb2959d52f64a497c51ebd0505300",
+    "diagnostics": [],
+    "attemptTiming": {
+      "attemptId": 3,
+      "dispatchedAtMs": "1791994315532",
+      "receivedAtMs": "1791994321368",
+      "transportDurationMs": 5836,
+      "publishedAtMs": null
+    }
+  }
+}

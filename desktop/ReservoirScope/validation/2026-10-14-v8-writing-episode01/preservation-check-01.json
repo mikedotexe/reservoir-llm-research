@@ -1,0 +1,3176 @@
+{
+  "schema": "reservoir-v8-final-preservation-check-v1",
+  "startedAtUtc": "2026-10-14T20:12:30.275432+00:00",
+  "endedAtUtc": "2026-10-14T20:12:30.996693+00:00",
+  "status": "passed",
+  "scope": "File hashes and qualified inventory functions only; no verifier, model, service, endpoint, process, UI or resource commands. No old receipts or current docs modified.",
+  "errors": [],
+  "basisReceipts": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/evaluation-freeze-01.json",
+      "bytes": 30380,
+      "sha256": "35df91256c807520c1934aad0b872f6c708852184222f71bccb302441b8cf3bd"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/source-before-build-01.json",
+      "bytes": 71143,
+      "sha256": "2231dd06c73671191c51152e9052fd7b1d055be5a62e9cc1554512fc57ecf658"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/closeout-01.json",
+      "bytes": 125681,
+      "sha256": "cf8b79a6351a78953bdd4eba62d2679dbbab9fc04ddbb9262215c86b6b80866b"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/archive-check-01.json",
+      "bytes": 21434,
+      "sha256": "b82bd39955be334cc809af5070ee6e7a43fcf7010f886142f645b4a8d75604ca"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/real-model-export-01/receipt.json",
+      "bytes": 220343,
+      "sha256": "07aff62e23ee5c08e85e97c2ae93702d3b145473aa38d58c0c0345d85d1aa603"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/recovered-export-01/receipt.json",
+      "bytes": 220333,
+      "sha256": "8946ceec4d7ab8160c3b6a818d2a35d45edb19ec16fabdb57ac315ee87470592"
+    }
+  ],
+  "frozenInputs": {
+    "expectedCount": 95,
+    "actualCount": 95,
+    "unchangedCount": 95,
+    "allUnchanged": true,
+    "currentIdentities": [
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v8-memory-20.txt",
+        "bytes": 2380,
+        "sha256": "39bec81c44418b3782bde976e224c749567a95a479222906c64d54aa70e5b8f6"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v8-observation-10.txt",
+        "bytes": 2159,
+        "sha256": "70f34bd2ebdd9c08bbc25525371ddc0463130b800c9329583b18d7397b2bb93a"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v8-provenance.json",
+        "bytes": 2981,
+        "sha256": "8a640ac1eedfaa8a283a6aa4f777e883aabc5bbc74ceec1525678f62541cdf04"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-pinned/reservoir-scope-desktop",
+        "bytes": 16984608,
+        "sha256": "cc5d3dce19076dbc1ff3b850cd99a72a410c8fa797d951cb11f4068ecaab1cfd"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Info.plist",
+        "bytes": 1120,
+        "sha256": "d7cb1c5929e77547b2de7237de83c23102cdda80fe39879f1e5147c75dc813c9"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop",
+        "bytes": 16984608,
+        "sha256": "cc5d3dce19076dbc1ff3b850cd99a72a410c8fa797d951cb11f4068ecaab1cfd"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/icon.icns",
+        "bytes": 122675,
+        "sha256": "7dca3ee6c3e79ebcb2c54bf44841d2f2b208c1fb727b16035341cd067a12e5ed"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/data.json",
+        "bytes": 186596,
+        "sha256": "03ebfb620c2371023a39de308eb16c292d31b313ead7dcb07db5df3dd0c6749d"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/essentials-stage-1.json",
+        "bytes": 355779,
+        "sha256": "dd536371d35d00d085508ffb02d348f335ff569b3bfe57c828403f7ce6da37d0"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/essentials-stage-2.json",
+        "bytes": 13351775,
+        "sha256": "21e7a6b8acb3be59efda3f3381f20ce1820d4927b22f7e42f56b2084c566cc78"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/essentials-stage-3.json",
+        "bytes": 13337799,
+        "sha256": "b1807f2593fffd36e87bd02d842539db6426b342b12b3fde81d0be7b7254389c"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/essentials-stage-4.json",
+        "bytes": 13387369,
+        "sha256": "2fe6156d2996d4b99eb9f365130913c47d82d6307be7efe879c0b295a1d41fdd"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-1.json",
+        "bytes": 492811,
+        "sha256": "a98fcbe631ed953d47ec8d9b8de4dfc58f94cb1f7d0dbed16491bc0348fcf6f6"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-2.json",
+        "bytes": 796610,
+        "sha256": "55981d377916c2b7d9fe7f02ea97b4883c5c728b5a9b36428b0b2b34fa726500"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-3.json",
+        "bytes": 5966130,
+        "sha256": "fc9f201630aaddad3b141adbbf16777eb8a76ee89ae1ea58c96058a9347164a7"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-4.json",
+        "bytes": 11144100,
+        "sha256": "72994239ab54496101d2790f9d5f97254ed7ef8019f2425fbbbaf2816aabb6a6"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-5.json",
+        "bytes": 11213594,
+        "sha256": "ba6a2ae9c1bd90ba9b1063ece1405aa39a6c299ebc60a99e96194d8713c3e1b3"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-6.json",
+        "bytes": 11276347,
+        "sha256": "eca61bbf63b06884d82d5cce17bb8aed7f7165e1a717966d344bed6b99c7e920"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-7.json",
+        "bytes": 11278830,
+        "sha256": "7e446a8c83efb64c461b76cbf34d02f808db8ece5bb58dd3dc8114f2a91399a5"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-component-8.json",
+        "bytes": 11296543,
+        "sha256": "2ce8f33362e403a665bfb9de02d3005d1412dd4f6959c36e4afa9c1baa5fed32"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-4.json",
+        "bytes": 5483223,
+        "sha256": "d46baa55b581a8406dc6e9380b0d3ab7f537396212a8e83c1c24feb5236fea76"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-5.json",
+        "bytes": 5541493,
+        "sha256": "ddb6765654c840d53f8d6d3226c5f7103621964a24f65e5422a2fb3e9878cb3b"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-6.json",
+        "bytes": 5544750,
+        "sha256": "8fefd365e757756280af8f0b3dd617ba62515f1f7c92c1e0365fb1abd20c0152"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-7.json",
+        "bytes": 5543533,
+        "sha256": "c61f35ab5499c249b3011d07067c0d1aa958af3e50446a11fc76339df991a0f1"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-8.json",
+        "bytes": 5568867,
+        "sha256": "aa8d304a1da4d10b0fe6200615b486bfaf98ec06277a70792d122fdc4075faf6"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-observation-active.json",
+        "bytes": 5635819,
+        "sha256": "b36b925fa8820feaf8108e54ff710eb5627e7273c5275a09a243850c4b2f0f24"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-model-observation.json",
+        "bytes": 10967761,
+        "sha256": "890de9d2c2253838827499903802b78c68ef0ac2abff0dfa29311c2588e5195f"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-observation-active-scripted.json",
+        "bytes": 11065365,
+        "sha256": "e6a3dc7958badd9fc2bd5078fcf831ad5cb628e257c634c75da8c3b8c33e9bad"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-observation-scripted.json",
+        "bytes": 10966410,
+        "sha256": "a184c1d52b8cb27aa02c4cbfac421b40baf268f706784f280b7c3d8144378142"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-preparation-1.json",
+        "bytes": 1446741,
+        "sha256": "371caa7d622944bd02effb4f70822d358ac68499e4d263449e8d3f389fbb6a7a"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-preparation-2.json",
+        "bytes": 1447658,
+        "sha256": "0881507fb413c6c05c166c83d388dc5bd14e1d18934794df60104e4f73edb12f"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-preparation-3.json",
+        "bytes": 1447682,
+        "sha256": "05368a4974a23e6235120b6941b247070b09032e4bbd7e013d8cbd47d3e67ffc"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-preparation-4.json",
+        "bytes": 1494246,
+        "sha256": "c164a873399f5af538b1fad9a1432ed46d66c73ca4195f008992d133bc5e0905"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/example-regulation-controller.json",
+        "bytes": 52776851,
+        "sha256": "a592bdfb35b925ad03ff8ad3a988d6a1b9bd01f7e8ac4e30109647b78e5583a4"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/examples-index.json",
+        "bytes": 7123,
+        "sha256": "d27ce889d05b32e99bac3f22ec5f4469d19dd0ac1093d15f25b4807bf19e3629"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/guided-lessons.json",
+        "bytes": 5812,
+        "sha256": "e3f398bd8a531834dee4afea0612f28c31a304a33f29eb6bd0b217704ca3ea84"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/guided-observation-amendment.json",
+        "bytes": 4291,
+        "sha256": "5618712f55d351768edee9ce54c5d4f7240ee2b2fd63735c92a671f2d8d84230"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/guided-observation-recording.json",
+        "bytes": 2388,
+        "sha256": "43af7942984d699c55a5a406bb3a49f070b520c20a9feb85f9b352b6162a3029"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/guided-observation-retry-20260916.json",
+        "bytes": 3486,
+        "sha256": "227c5f988dcce1d61d40ee0979185ff832f1a760317fa3994f55d27af0baf3bc"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/native-action-response.json",
+        "bytes": 173481,
+        "sha256": "15441269152bb282e2456d4d08fddae398879e4b0410cd08f71e80282f09e807"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/reference-manifest.json",
+        "bytes": 46438,
+        "sha256": "f3d7d2aeea4b991aeaa92403a52e736fa627e7ce9f3bc813311313ec9522e759"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/reference-scenes.json",
+        "bytes": 6013,
+        "sha256": "616726ee8ec30827fe08690288f1a176e09b9497d83a24368d16fd4585026c59"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/research-cases-v1.json",
+        "bytes": 65159,
+        "sha256": "3998951c6eaa4f414ff7ce0cef643f19078001e47c980be521255175743d0652"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/resource-index.json",
+        "bytes": 9575,
+        "sha256": "0d34bc83ebc05c6ea9cccba1a60496a834d4b368bf03ac6c92bf176f57041e52"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/state-geometry.json",
+        "bytes": 365219,
+        "sha256": "5e90207e7dfd1d395b249d3bb5d668afa0f86b6d3e0e6383eda7b9eb52514317"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/state-replay.bin",
+        "bytes": 524288,
+        "sha256": "09ea4db8212809085aa2e07a040975f3095d7ef79d06eb8ba7404cc2424e282f"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/state-replay.json",
+        "bytes": 1165,
+        "sha256": "9589a673e111df6d8643ab050fb6dc2112eb68c453e2c2e55f41699ac7940dd1"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/state-response.json",
+        "bytes": 656181,
+        "sha256": "fe97623dcccb4b089ce4e0a1b5cc99ec902793efed8fbfcf1041ce8c865e9100"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/Resources/resources/synthetic-geometry-example.json",
+        "bytes": 8222,
+        "sha256": "25ecc19605ee1bed307735f52668b817a854af98239018e74072c17ffbe92abc"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/_CodeSignature/CodeResources",
+        "bytes": 13986,
+        "sha256": "62d59d5b1d94d9dced11e9a3cf66409b112bd9f62208f7f4d732f9a7f9bc0906"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/ReservoirScopeTauriPreview-0.20.0-macos-arm64.tar.gz",
+        "bytes": 96686593,
+        "sha256": "23fe012b90bca660773c63f58bd1bc916c26c9b74a0081b7e59d0603ec117e25"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reading-0.12.1/model-selection.json",
+        "bytes": 13199,
+        "sha256": "7de0ae35b3d231201679b2242484cb24a9122a8f9ce866b8554dfe6384a2d86a"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/archive-check-01.json",
+        "bytes": 21434,
+        "sha256": "b82bd39955be334cc809af5070ee6e7a43fcf7010f886142f645b4a8d75604ca"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/closeout-01.json",
+        "bytes": 125681,
+        "sha256": "cf8b79a6351a78953bdd4eba62d2679dbbab9fc04ddbb9262215c86b6b80866b"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/package-build-01.json",
+        "bytes": 71981,
+        "sha256": "a5dd20222fff376627b3aaed7a8150676e478eaf6f17e67a57c6c9a8d4397c1d"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/prospective-freeze-01.json",
+        "bytes": 26666,
+        "sha256": "0f666ba1d3b03a3ad48825e4e4ff0cd33b28cc38188d63c0bf6365344c885e54"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/qualification-before-ui-01.json",
+        "bytes": 96330,
+        "sha256": "848f27027bde67e004ed6dfa005578d0aeaff1f2a2ca5b4dcca585bd22787fc3"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/owned-helper-tests-02.json",
+        "bytes": 5078,
+        "sha256": "18b73a3b4c180025dbfe18d30f7a38781e45db856ef0924d7bd53df7997b208f"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/software-selection.json",
+        "bytes": 1374,
+        "sha256": "f86c9011ed33881ffae71679a3c96755c3d7d1cfbd434b0b9535a3493192a127"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/PROTOCOL.md",
+        "bytes": 4312,
+        "sha256": "c0b75785747e057cdc684ac47e255a812b2836f949ab160f48b7fc13dd8a4e43"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/admit_once.py",
+        "bytes": 2783,
+        "sha256": "45a4684ff759ee8f74df49dae25d3a4e7a70d67452536d6cc5f6afd4909c74db"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/check_real_model_export.py",
+        "bytes": 47433,
+        "sha256": "b1b57dc2253769c8b5010187bb312ad219b774f4e8a8e76df67f2c9c5f3a5953"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/closeout-01.json",
+        "bytes": 25503,
+        "sha256": "e16d0ac56ddfe26341ea2e986f3046f4b5726d235388a726a6509acb00a6200a"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/evaluation-freeze-01.json",
+        "bytes": 41803,
+        "sha256": "9891ba2385179672b93aabb7ba737cc807b4bfd64f81b168fbbf84a3a9152e9f"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/owned_model.py",
+        "bytes": 38692,
+        "sha256": "415a585dfa4502e555331b4472cf08b6afbd3207944e6d02d952e133175f8c1b"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/real-model-export-01/receipt.json",
+        "bytes": 225394,
+        "sha256": "246e608dfb0c3140ee2831110567ae5522a102f4a1ff45b62576b21c7cd5aad8"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/recovered-export-01/receipt.json",
+        "bytes": 225384,
+        "sha256": "dcc0f6afbd4999fa371c96b5e5615fc7e6ea64e9abe4f3b1fef1564a4c43c8ac"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/run-plan.json",
+        "bytes": 5567,
+        "sha256": "933144d20edf61c6481babb95199b5894e0c76aa44a504489621db6e162af227"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/test_owned_model.py",
+        "bytes": 30996,
+        "sha256": "da68770ceed2999ef55d9a17149b244dde639bf21f0a5aa43e06aab73d57bb5d"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/test_real_model_export.py",
+        "bytes": 31156,
+        "sha256": "401729aa25d9f5d86d84e466af119c05e27e13596986497adb50fd72ee2b2dc6"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/EVALUATION.md",
+        "bytes": 8473,
+        "sha256": "4bc73ca752a08b86186c34da6973b883f769d94bfaa287b9beb742715361403f"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/PRE-RUN-REVIEW.md",
+        "bytes": 3250,
+        "sha256": "524d1e31d677e79c124efd6a2e79ff9ce1d29692cf35133751ca47f258a5c00d"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/PROTOCOL.md",
+        "bytes": 7674,
+        "sha256": "77a1dbb15cbeda1df77a868b88462620cc1dcb83338bfb26ce37f3a3e7aa88a1"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/RUBRIC.md",
+        "bytes": 11798,
+        "sha256": "6b71e9bb7b03b3eef81716bf3098c1b0cadf9ba935f0a91dd640f6d877e33327"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/admit_once.py",
+        "bytes": 2783,
+        "sha256": "d4a4cbb2d5c52b661e5c6bcd6fe1533220652b19c8ff66f989b60738cdcbe8e6"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/check_real_model_export.py",
+        "bytes": 48186,
+        "sha256": "ffee0b2769fb71fc8452d1166b025a0a877422806b31388b1b3e5c238d46f0e7"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/checker-tests-01.json",
+        "bytes": 3965,
+        "sha256": "daa922905cb7de65b581c5c403f01bfb4d129faf1098f5299c77cdca9d04776a"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/checker-tests-01.log",
+        "bytes": 6939,
+        "sha256": "17292807a70fbf8331e88d4826a16f78f1147eece3d55380b6be8e080623b072"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/compare_recovery_01.py",
+        "bytes": 9293,
+        "sha256": "d9a6f1a45ee3e52c13a0bce01841014a3b0425d9a4aca00b9601bb9db1eef1ed"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/form-prepared-01.json",
+        "bytes": 1389,
+        "sha256": "c6ef0837978e62dd586a96a444e892c742e96d3ed798e362a1668a51d19cd9ea"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/freeze_episode.py",
+        "bytes": 10297,
+        "sha256": "a3b07cef4f29684889af489f38b62403ad60791178d515066a3d680907b978cb"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/helper-copy-01.json",
+        "bytes": 4666,
+        "sha256": "166fd9c1e6b1a8def2fd3dc7259ae0e38a4dfdd410c78307b5b8a19585e6dd19"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/journal_quality.py",
+        "bytes": 29566,
+        "sha256": "51820c93a23c1fea9f947eb8b787274c17e2b81ebe3dfb9b400487990c524c69"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/owned_model.py",
+        "bytes": 38692,
+        "sha256": "415a585dfa4502e555331b4472cf08b6afbd3207944e6d02d952e133175f8c1b"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/preparation-checks-01.json",
+        "bytes": 5034,
+        "sha256": "4e418a23b11cd61f50676d2287d7f970535e555eed72cdf97159b22d76f8adcf"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/quality-checks-01.json",
+        "bytes": 6720,
+        "sha256": "25cd1eeebc8c4381e6d3e65a90ebb10528f0baf881e2d5219062342745955a79"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/quality-checks-01.log",
+        "bytes": 10357,
+        "sha256": "fc7d8992068be80978d5a8fbe48d913c96653f3aafb5b83d7900b8650d3c3cf2"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/reader-tools-preparation-01.json",
+        "bytes": 13617,
+        "sha256": "3d265a2b782df67dc859066f8abc3ad7220e6550f5b083075cee46094b85256b"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/render_received_journals.py",
+        "bytes": 10321,
+        "sha256": "09a3cc6e8ad727ea8774ebd696e8452177b876935fc9abb43d67c8e15cb6bed5"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/run-plan.json",
+        "bytes": 5625,
+        "sha256": "88180d370ca60bfdb595a7d554d3581d3e5640b3fa22b2579c20a107dad91382"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/sample_manifest.py",
+        "bytes": 10199,
+        "sha256": "ab5a0ede966fccee08eab07e1ebff610568f534f5208b56fbc04f16e33245481"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/test_journal_quality.py",
+        "bytes": 50430,
+        "sha256": "c1342d79c691b31441018767c8019c63018b3d41940e5822f0954f05c118edc4"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/test_owned_model.py",
+        "bytes": 30996,
+        "sha256": "da68770ceed2999ef55d9a17149b244dde639bf21f0a5aa43e06aab73d57bb5d"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/test_real_model_export.py",
+        "bytes": 32988,
+        "sha256": "5a0266f253bd575b3266e7455ade22bfe8d81d071d2b40091aa54eff96a624e4"
+      },
+      {
+        "path": "/Users/v/other/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.12.1-real-gemma3-4b/stage-receipt.json",
+        "bytes": 12823,
+        "sha256": "76cf4002d95bffcf6ef2665f728739e15ffb9aff1726dd8270510b50beeca3dc"
+      }
+    ]
+  },
+  "productSource": {
+    "buildBaseline": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/source-before-build-01.json",
+      "bytes": 71143,
+      "sha256": "2231dd06c73671191c51152e9052fd7b1d055be5a62e9cc1554512fc57ecf658"
+    },
+    "priorApprovedCloseout": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/closeout-01.json",
+      "bytes": 125681,
+      "sha256": "cf8b79a6351a78953bdd4eba62d2679dbbab9fc04ddbb9262215c86b6b80866b"
+    },
+    "inventoryHelper": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/scripts/qualification_receipt.py",
+      "bytes": 14472,
+      "sha256": "c371184ae82c1f34314b59fc333ae2fceb0959a4997a532ed63e0cbece00e1cb"
+    },
+    "fileCount": 325,
+    "sameFileSet": true,
+    "buildIdenticalFileCount": 323,
+    "exactPreviouslyQualifiedDocumentationChanges": [
+      {
+        "path": "desktop/ReservoirScope/README.md",
+        "build": {
+          "path": "desktop/ReservoirScope/README.md",
+          "kind": "file",
+          "bytes": 38216,
+          "sha256": "ec6db8667c655888fd7b575a69170d551aa6fc87815c05926f3a368000557481"
+        },
+        "current": {
+          "path": "desktop/ReservoirScope/README.md",
+          "kind": "file",
+          "bytes": 40294,
+          "sha256": "f916dc1635c9e4d16e9df5b9ed859852466da9b3b003e3e088a6bf4aebcf987b"
+        }
+      },
+      {
+        "path": "shared/reservoir-scope/PARITY.md",
+        "build": {
+          "path": "shared/reservoir-scope/PARITY.md",
+          "kind": "file",
+          "bytes": 53817,
+          "sha256": "0470261e3fd42f60c592594bc93d3d15cde3d0b41a437b21814d52ad49dc0f4f"
+        },
+        "current": {
+          "path": "shared/reservoir-scope/PARITY.md",
+          "kind": "file",
+          "bytes": 56098,
+          "sha256": "e0de631fd9679c5c095f66571a7040d89c79f3290be0f25e551047270bc3c393"
+        }
+      }
+    ],
+    "unexpectedChanges": [],
+    "productSourceUnchanged": true,
+    "sourceInventorySha256": "52de5827190d1d53bd04ff7ecf67edaafa0bf30d3022257c9a33a1677323ac6d",
+    "currentInventory": [
+      {
+        "path": ".github/workflows/tauri.yml",
+        "kind": "file",
+        "bytes": 5165,
+        "sha256": "95f318384a35bb782d2408c974df60b7a1dcefed443dc5691b74bf405c1e4c1c"
+      },
+      {
+        "path": "desktop/ReservoirScope/.gitignore",
+        "kind": "file",
+        "bytes": 97,
+        "sha256": "bd06a5ab27ecc3e080054c3b00a52b297bf3945b2df41fec6458e2c82ed4614b"
+      },
+      {
+        "path": "desktop/ReservoirScope/Cargo.lock",
+        "kind": "file",
+        "bytes": 124966,
+        "sha256": "49ea70d1c2187ae27adee89094217bc1c7b783e7d06b53946877d8dcf1a43117"
+      },
+      {
+        "path": "desktop/ReservoirScope/Cargo.toml",
+        "kind": "file",
+        "bytes": 171,
+        "sha256": "877e5cba91e1ecd94a928ebb4b98b8e5b3aa883ff39d8aa6098699527e72d341"
+      },
+      {
+        "path": "desktop/ReservoirScope/FRESH-EXPERIMENTS.md",
+        "kind": "file",
+        "bytes": 13745,
+        "sha256": "96b42971e33cfc59e815c833b1c504d6e067fd258a49d741d6a580297f63492a"
+      },
+      {
+        "path": "desktop/ReservoirScope/GEOMETRY.md",
+        "kind": "file",
+        "bytes": 7436,
+        "sha256": "258197905750b913b0e221641ed8596068df237ea77743e06b4bc11d2e12296e"
+      },
+      {
+        "path": "desktop/ReservoirScope/GUIDED-EVIDENCE.md",
+        "kind": "file",
+        "bytes": 8139,
+        "sha256": "92540abac446db366ae14e2c81753634428ba85e11807405dc1a7e037468f939"
+      },
+      {
+        "path": "desktop/ReservoirScope/GUIDED.md",
+        "kind": "file",
+        "bytes": 11074,
+        "sha256": "c14ade16b6fb3d7a5cf1a0fb665588b04730c3a6c8b6baa919f8a9116afc3cce"
+      },
+      {
+        "path": "desktop/ReservoirScope/LIBRARY.md",
+        "kind": "file",
+        "bytes": 12556,
+        "sha256": "fe3027d0fb57fd5353b5bd5b2bbdbb41b697b2e96d017539573815cae45ef414"
+      },
+      {
+        "path": "desktop/ReservoirScope/LOCAL-MODELS.md",
+        "kind": "file",
+        "bytes": 6133,
+        "sha256": "3faf3f895f7edd781e0fe85ba84e5de1ec6c726c90cdde11bbb824b4c516d017"
+      },
+      {
+        "path": "desktop/ReservoirScope/README.md",
+        "kind": "file",
+        "bytes": 40294,
+        "sha256": "f916dc1635c9e4d16e9df5b9ed859852466da9b3b003e3e088a6bf4aebcf987b"
+      },
+      {
+        "path": "desktop/ReservoirScope/RECORDED-FILL-SPHERE.md",
+        "kind": "file",
+        "bytes": 5698,
+        "sha256": "9f4e9200acb45bd13fe6ccc4c4e1c9a4e8ff34764b4eb2b96ac11087b9e85256"
+      },
+      {
+        "path": "desktop/ReservoirScope/RESPONSE-EVIDENCE.md",
+        "kind": "file",
+        "bytes": 5391,
+        "sha256": "f6cc72c54be303e4270973e486b927ecdbe0fb78b3c8fabc8e60c954f2884ab5"
+      },
+      {
+        "path": "desktop/ReservoirScope/SUSTAINED-SESSIONS.md",
+        "kind": "file",
+        "bytes": 16264,
+        "sha256": "159c7263a61c48a7adbb359803c2a0933fc6b3d8e48ef9b24678bc4e0a97ad3b"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/ACTIONS.md",
+        "kind": "file",
+        "bytes": 7244,
+        "sha256": "1fe7e00c96e9699b12cd330ff88eda6537f8a2412308e7d1dd287217ce77c347"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/CASES.md",
+        "kind": "file",
+        "bytes": 5042,
+        "sha256": "a56063968c97a04932afac46cf78c115be580166fd831efe4ce6c0c9092e6f6c"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/CODEC-UNICODE.md",
+        "kind": "file",
+        "bytes": 8299,
+        "sha256": "0d0ccc15469466b78ad711e7db68f40e6ed7937d583a67f7e2408fca9096853e"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/Cargo.toml",
+        "kind": "file",
+        "bytes": 443,
+        "sha256": "2ab5f629df38cfc10ca8bb3bbf294ca515c0b4c4687fc3dd2228ddb77eb6c1f9"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/EXPLORATION.md",
+        "kind": "file",
+        "bytes": 7237,
+        "sha256": "b5d95c17bbcab80aea90227d7ac72ca3a530be075e01237d93379e07652032f4"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/OBSERVATORY.md",
+        "kind": "file",
+        "bytes": 11550,
+        "sha256": "5bfc3a48d5d32c208be4c496d0a0ce0086454412d3a42afd6f52069829feee7c"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/README.md",
+        "kind": "file",
+        "bytes": 6600,
+        "sha256": "fec48c8d36b25d6819fb7d8b2d6c41cb583e1ab56762501fadf225910a5f1008"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/REGULATION.md",
+        "kind": "file",
+        "bytes": 12529,
+        "sha256": "dacb2b7ffdc72716caaf791fb7903d01f9a96f2b8bd63ce22213db2981fc510d"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/RESPONSE.md",
+        "kind": "file",
+        "bytes": 8366,
+        "sha256": "c1202a92c69dd051f37ecebf23af9000ed254045f6666c822654335cd50767a6"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/SESSIONS.md",
+        "kind": "file",
+        "bytes": 23405,
+        "sha256": "10320a2fe77e080176fa84fd22e49c987dc5b5cf4f61e59198e97410c583e730"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/SUSTAINED.md",
+        "kind": "file",
+        "bytes": 24628,
+        "sha256": "948d13e6ac9ee4d89d783f9ce86ed79fad360a227f1e0ccc47292261fc3f71d2"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/examples/action_session_fixtures.rs",
+        "kind": "file",
+        "bytes": 7504,
+        "sha256": "4112a938522f4a0dd68f76d90e401e4e815bb65c4f58374359ed00b29658f20e"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/examples/case_export_oracle.rs",
+        "kind": "file",
+        "bytes": 899,
+        "sha256": "16cbf150106a2d5d8adc7793d0960be5e0dc81ff47eabb092ae7416141fad79a"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/examples/comparison_session_fixtures.rs",
+        "kind": "file",
+        "bytes": 10670,
+        "sha256": "12e34ba1acee715ed83a0ace3400a15c524f7237c2903245bc901ac6b6a01c75"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/examples/emit_exploration_records.rs",
+        "kind": "file",
+        "bytes": 2585,
+        "sha256": "2eeba16c75327caa4a5ad95e6c2e94c71996c4802a02c07174be07f932facc7a"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/examples/emit_regulation_record.rs",
+        "kind": "file",
+        "bytes": 1079,
+        "sha256": "d99a812a65d9eb66044c2615e408912816cc34b5fe36a956ad276acec25d5f3a"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/examples/guided_evidence_oracle.rs",
+        "kind": "file",
+        "bytes": 1275,
+        "sha256": "2ab676c7de31b8f775447cc70e22f02291fc150445b8db6cbdf3c0046d9d5968"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/examples/language_session_fixtures.rs",
+        "kind": "file",
+        "bytes": 16824,
+        "sha256": "e593b280d445b6249c416f7933b0181521dfa4168f70581ae947cc80eb705f29"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/examples/observatory_oracle.rs",
+        "kind": "file",
+        "bytes": 3331,
+        "sha256": "76f0b62eb77ad77d9736b4c2b21d4c0fc07d38ae14abc2bc0d9c8f2df8c67c12"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/examples/regulation_session_fixtures.rs",
+        "kind": "file",
+        "bytes": 2616,
+        "sha256": "690d501976eb16eba6378bd2c096c16842906c4d7b4e5a8de4d11571e08541db"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/examples/response_oracle.rs",
+        "kind": "file",
+        "bytes": 3350,
+        "sha256": "41abe549deb345093b280dd058574faefb9f499d1b8f41d06d8f726238f27454"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/examples/session_fixtures.rs",
+        "kind": "file",
+        "bytes": 6718,
+        "sha256": "2d60437c83b2088bc7cc7ea1859c51df8c4dfa0f9b4360f5186435e7ba1e0585"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/examples/sustained_session_fixtures.rs",
+        "kind": "file",
+        "bytes": 6728,
+        "sha256": "4de2289a670ef73f6b3e2770f4598ed867b94fcda8b1225a4011f5c8667980e9"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/actions.rs",
+        "kind": "file",
+        "bytes": 50371,
+        "sha256": "2e5f3084fd273ed3d3cd412043238cdc68047684bd1bffd88a7afc99e9a2697c"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/cases.rs",
+        "kind": "file",
+        "bytes": 20315,
+        "sha256": "74f036a9785d7607478d2989da30ed128c2fb6ff7f7992bad40d46cbf17ed626"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/codec.rs",
+        "kind": "file",
+        "bytes": 11574,
+        "sha256": "6192482229710de6bf8a6377480ec891f940cf9ecd02da2f493b6e108db264ee"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/codec_unicode_data.rs",
+        "kind": "file",
+        "bytes": 44996,
+        "sha256": "dbfe035749c170abbd80982c1aa18b0d72140fcc9b4d04aa762124ef1f0d28c3"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/comparison.rs",
+        "kind": "file",
+        "bytes": 12608,
+        "sha256": "10a6dabf4aa92fa176fd77c8f28630c8772810055802daedfb413b0f5690c13b"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/exploration.rs",
+        "kind": "file",
+        "bytes": 14256,
+        "sha256": "f13e5936aa12fddaf740567ebd83027316b53204c31b634582617fe9691afc36"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/geometry.rs",
+        "kind": "file",
+        "bytes": 13466,
+        "sha256": "1af480c924d2118c38fe28dbc05cad6e7f9f958ddf5da64bf0d3832f3c141243"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/guided_evidence.rs",
+        "kind": "file",
+        "bytes": 15074,
+        "sha256": "158c61d9b3c6ba4a2895de599ce520608afab0acfa58b24fb0bc7eaf8bb64a6b"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/lib.rs",
+        "kind": "file",
+        "bytes": 9635,
+        "sha256": "ffd7f2b890ee153840b941fa7e8ce52695bab0160a46aaef04077d4be93090c3"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/main.rs",
+        "kind": "file",
+        "bytes": 3182,
+        "sha256": "85fdac3f55d5b6b0be3b8b29361f38d961b64aec2ecb1957b2d9f007510b04f0"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/math.rs",
+        "kind": "file",
+        "bytes": 15101,
+        "sha256": "845ed5f908d4b7c0765694f47b635be2b201693ce06a3ca25bcd70abe3259bc7"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/observatory.rs",
+        "kind": "file",
+        "bytes": 15925,
+        "sha256": "9b4a2d22a4f946583b750a6f0566cc029695cd75050985cbc0c6618b390e878e"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/preparation.rs",
+        "kind": "file",
+        "bytes": 22085,
+        "sha256": "ab3efa3f96819003d83ee1a886af62d565406691c0cb01c22378298e54d95c08"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/prompt_number.rs",
+        "kind": "file",
+        "bytes": 2481,
+        "sha256": "4ae00cd32460259ea4ac023e8fd5a7dfbf6034889ee02e3e524bb53a5ef7c6af"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/regulation.rs",
+        "kind": "file",
+        "bytes": 24984,
+        "sha256": "7f2d62130bcc4875fa300e72690f48b2d8522cf738349a7ac99d5aed96548fdc"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/response.rs",
+        "kind": "file",
+        "bytes": 31824,
+        "sha256": "363ec9c5004b8332c9ac8639d6706eefdd22cc1253bbebfc131100cb347f0581"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/session.rs",
+        "kind": "file",
+        "bytes": 51273,
+        "sha256": "d9f15552bbf605e11e9cb2d1ebbc35c4b73b48e97110a0f3ac7dc1768bf9b706"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/stage.rs",
+        "kind": "file",
+        "bytes": 36172,
+        "sha256": "4b2603b2920c5479703d5e4dc89a8fef3e178040bc21185d88b246494df53a03"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/src/sustained.rs",
+        "kind": "file",
+        "bytes": 90102,
+        "sha256": "7ec2c0780af574ceda251fa0be841b360d73cf0dbaa4ba90e0462fb933669976"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/actions_conformance.rs",
+        "kind": "file",
+        "bytes": 14565,
+        "sha256": "b024310c0faabaa660d77f9304b4af80d04be0f99eb033e69bc980752f5bc78f"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/conformance.rs",
+        "kind": "file",
+        "bytes": 13374,
+        "sha256": "c170adb921e4e611c462bad99f6b5c61e95f4a2af212c582360efef4d9a9681b"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/exploration.rs",
+        "kind": "file",
+        "bytes": 21003,
+        "sha256": "bb60fca8f5fab095cd2d13c9bb47245566a78202d3fb155da0921c1ea4f88868"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/ascii-codec-vectors.json",
+        "kind": "file",
+        "bytes": 8338,
+        "sha256": "b40c03fe500fec01280871b998fae0c5a2e08474a162e70e604c8ab9186bcdbd"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/control-transitions-u64-max.json",
+        "kind": "file",
+        "bytes": 492916,
+        "sha256": "a78e128640c7a14aaf7412d27b71688bb8b160b65eb3106168394733c9b6b3a1"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/empty-u64-max.json",
+        "kind": "file",
+        "bytes": 88772,
+        "sha256": "9a22d5f1b5ea3e2464639068fb37ab0ea15b1c0abc1a4264872f2e8391de3197"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/pulsed-forcing.json",
+        "kind": "file",
+        "bytes": 178083,
+        "sha256": "59f1701f1f7b88bd0e5e6fde761b98f3b6aa8ac7803c0f89cb2c24a7fee72798"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/quiet-defaults.json",
+        "kind": "file",
+        "bytes": 96426,
+        "sha256": "abf5639d7951c8105f71f8a21310695a12edc412d22736323423d161a6e2881f"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/exploration/sensory-restarts-u64-large.json",
+        "kind": "file",
+        "bytes": 281850,
+        "sha256": "b984d5ed76cbe058a2c6a50d4f8e711f50a80200a9530c90686779a263c33569"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/provenance.json",
+        "kind": "file",
+        "bytes": 3416,
+        "sha256": "a3527c4047d3617c2f537ab8ce4480b5573cf03452921a0838b5a1aca054f5e9"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v1-real-memory-60.json",
+        "kind": "file",
+        "bytes": 71168,
+        "sha256": "036f536ef3128060ddbc5615136416a2cd52dece7d159ce25887fe36a60c8b97"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v1-real-observation-30.json",
+        "kind": "file",
+        "bytes": 129658,
+        "sha256": "d47cb0fef4c8af7a650c11e4450745fba7516425e884c4f6fa3486360fccc80d"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v2-memory-20.txt",
+        "kind": "file",
+        "bytes": 3893,
+        "sha256": "ab2b102ffa3dddd2f2c8d15618a5abf283037d726efd08cb42161586c9ab3e81"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v2-observation-10.txt",
+        "kind": "file",
+        "bytes": 3625,
+        "sha256": "681d10cc8c9c0e4018654cc4e0a157f105b7a739bc1e39bb8663e60639c24b9a"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v3-legacy-budget-provenance.json",
+        "kind": "file",
+        "bytes": 413,
+        "sha256": "77456047a679db8f90049a154de3951d0ac5f957854ca5f9b51c27563ed60c1f"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v3-legacy-budget-segment.json",
+        "kind": "file",
+        "bytes": 71097,
+        "sha256": "eef2a09b2c1e4e150aac8560f210997742203b78aa709829078657e86af0c6b0"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v3-memory-20.txt",
+        "kind": "file",
+        "bytes": 3774,
+        "sha256": "1a705d99ce490bb7a3a1bffcc3a392a9d89275bc4e9dd8c7cfbc1edb6dfdf43c"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v3-observation-10.txt",
+        "kind": "file",
+        "bytes": 3506,
+        "sha256": "70165f72ba7bbc1997cb50a78503c489a32fc378c56c3ff2345ed276e0c31378"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v3-provenance.json",
+        "kind": "file",
+        "bytes": 1615,
+        "sha256": "f0c34f3b69766cc232753204c22628a4c0046f40f087f690aa6ac998bc766c44"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v4-memory-20.txt",
+        "kind": "file",
+        "bytes": 4829,
+        "sha256": "d51753e1eddd68fd193ba46da49e6f909aaebdef328471ddf79e3b134b10c2c0"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v4-observation-10.txt",
+        "kind": "file",
+        "bytes": 4445,
+        "sha256": "26bae96991e12bb591ba517c46345aeac167abbbdaf79858c514a35b8986f75f"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v4-provenance.json",
+        "kind": "file",
+        "bytes": 682,
+        "sha256": "aa8d4e2af9a04cd8455634364481d97ce8ecc9110fa9028fb6af20f1152b980f"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v5-memory-20.txt",
+        "kind": "file",
+        "bytes": 1627,
+        "sha256": "a828b3390d049b22faf115f74644374f2c86f74a4ac47fd806a5e69920de99fd"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v5-observation-10.txt",
+        "kind": "file",
+        "bytes": 1437,
+        "sha256": "5c9c1dbdb29e1058b59d23174cdab186c0aa60d76293f29bb99827b217025dd6"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v5-provenance.json",
+        "kind": "file",
+        "bytes": 1606,
+        "sha256": "6ce6828ed6552c65b2f2d81d5511cb1f02b431f05a00e933d8bb17b599158fba"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-memory-20.txt",
+        "kind": "file",
+        "bytes": 1789,
+        "sha256": "a18a1d6a788b6ca47830770cbfb008da98960eae20ee8653b45440141581c971"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-observation-10.txt",
+        "kind": "file",
+        "bytes": 1599,
+        "sha256": "648266e30c22980ea5eb3c589e78e79bf6217fbabe43f346cd68938dacafc16c"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-provenance.json",
+        "kind": "file",
+        "bytes": 1752,
+        "sha256": "970fc8e876bea1b7811163a886f4298918ecc11a92f400e51fa0b9e7b48b5182"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v7-memory-20.txt",
+        "kind": "file",
+        "bytes": 2133,
+        "sha256": "5b50a5f47f23143213cdbb5c16734c4114d5fe4d7de1b55ca7e190932fd4b14d"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v7-observation-10.txt",
+        "kind": "file",
+        "bytes": 1912,
+        "sha256": "c9c496cbff370681337416962c5cbf30238eb2fbb7f2d17233b7ef1c9fc6e892"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v7-provenance.json",
+        "kind": "file",
+        "bytes": 1557,
+        "sha256": "ec4af7aa3fe327b8350294521fceda1530b68bfecab8c3b24ccce406e6ca4708"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v8-memory-20.txt",
+        "kind": "file",
+        "bytes": 2380,
+        "sha256": "39bec81c44418b3782bde976e224c749567a95a479222906c64d54aa70e5b8f6"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v8-observation-10.txt",
+        "kind": "file",
+        "bytes": 2159,
+        "sha256": "70f34bd2ebdd9c08bbc25525371ddc0463130b800c9329583b18d7397b2bb93a"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v8-provenance.json",
+        "kind": "file",
+        "bytes": 2981,
+        "sha256": "8a640ac1eedfaa8a283a6aa4f777e883aabc5bbc74ceec1525678f62541cdf04"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/swift-prompt-fixed8-v1.json",
+        "kind": "file",
+        "bytes": 195403,
+        "sha256": "b9e9adf11f61d93183d06630a3bd122b6d8dca8e23c5d6d96ec36523c0d695bf"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/unicode-codec-v1.json",
+        "kind": "file",
+        "bytes": 1449608,
+        "sha256": "f05fb75b0a29c2d4c1e28474c7e3139c5aa8f85d884757a3269840af337cbe3e"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/geometry_conformance.rs",
+        "kind": "file",
+        "bytes": 11457,
+        "sha256": "e15aa03d5dece003e165ef0adf76159fc131c1326829c1b1ad124b516f8cab17"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/guided_evidence.rs",
+        "kind": "file",
+        "bytes": 12978,
+        "sha256": "df0a7864c15c4f9728989a969db9e2e7bb4d4c4f8902abad698bad2c0941087e"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/observatory.rs",
+        "kind": "file",
+        "bytes": 8193,
+        "sha256": "b1375fb9556a1c4d9699a4fcc116f96be5828b6b923192c50946a1753d646b65"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/regulation.rs",
+        "kind": "file",
+        "bytes": 9371,
+        "sha256": "02301b92f0046cdc8c47b4c83d40afd5abaa253eb025a007407722b3fc1d6604"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/response.rs",
+        "kind": "file",
+        "bytes": 10626,
+        "sha256": "919e4a727bd79c5315d232e71cbe010cffe86962977016bd3deee8224facab94"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/session.rs",
+        "kind": "file",
+        "bytes": 8969,
+        "sha256": "af1e7d5cd7d5f81a2077bcfe97c51ad42e0bfe632d36bf14ca7b727dc3081122"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/session_actions.rs",
+        "kind": "file",
+        "bytes": 12754,
+        "sha256": "943d20e69c4c0aa3643e43d06b92a81af0a5168cc566430f1233808655344976"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/session_comparisons.rs",
+        "kind": "file",
+        "bytes": 16292,
+        "sha256": "ad8a434b07a97cd7f62bd2194be5a11c8fb9e6b23be4734d1a9f954da00b1069"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/session_language.rs",
+        "kind": "file",
+        "bytes": 17114,
+        "sha256": "293a173c55b6e23297a0b321e37278634ec5f4a5b241e9b419bfdffc142e1dde"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/session_regulation.rs",
+        "kind": "file",
+        "bytes": 5528,
+        "sha256": "7919eda2999523d25fd49af1d919b8706a2c87388e1a53c420a0761306813603"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/check_exploration_oracles.py",
+        "kind": "file",
+        "bytes": 6483,
+        "sha256": "d74f099638792b284fb19f48a2306be85d9af3fd2e0bfba1cfb938de78bddb4e"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/check_observatory_oracles.py",
+        "kind": "file",
+        "bytes": 5885,
+        "sha256": "091b57b9ffba79368ca8a758cbf0aefbeadb9ca07c307bb5d8532d9f06c4e01e"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/check_regulation_oracles.py",
+        "kind": "file",
+        "bytes": 8917,
+        "sha256": "c7494e2a7317111df3089821f4cfc8a65e01149f3634426c3754956498c3157f"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/check_response_oracles.py",
+        "kind": "file",
+        "bytes": 10314,
+        "sha256": "d1e48267b9c92bc146f8ddee6785d2659c0bbc896e54dfba03400a3c16fcc087"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/check_swift_roundtrip.py",
+        "kind": "file",
+        "bytes": 3364,
+        "sha256": "a8828edd12ea81cc5b708de9c50038313f451863afb37948dc84d800e478901d"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/check_unicode_action_oracles.py",
+        "kind": "file",
+        "bytes": 5822,
+        "sha256": "bccd1a4c7c203b803934c2ea6f42346d058a7270cf2b54050123d38517ff5c86"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/derive_unicode_codec_tables.py",
+        "kind": "file",
+        "bytes": 1296,
+        "sha256": "e795218846fdb02c95ad93b500847b703dab0436338e956fb8d7e5303b46799e"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/emit_codec_vectors.swift",
+        "kind": "file",
+        "bytes": 1173,
+        "sha256": "0d7607288262241274c317cb5da8e422974018562cf68441c8347845609fd86d"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/emit_exploration_vectors.swift",
+        "kind": "file",
+        "bytes": 2149,
+        "sha256": "65ccb1c6501514b923ddaae47c1c59841dbc374a5e712c647d3639b5dd910ebd"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/emit_unicode_codec.swift",
+        "kind": "file",
+        "bytes": 2230,
+        "sha256": "5f03c1aabf8a95717bda93a08f10477338b883d7a0135b021087b40162662b59"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/generate_unicode_codec_oracle.py",
+        "kind": "file",
+        "bytes": 4974,
+        "sha256": "bb233823c11239cda5e242fdff8377dbace85f42ac14dd3cb6f68e78a15c6454"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/observatory_oracle.swift",
+        "kind": "file",
+        "bytes": 2939,
+        "sha256": "f040ef9fd005d89c1af8d5d7b3c1b0162cb59bcf7111b1feabdcf32bd6f6eeb9"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/regulation_window_oracle.swift",
+        "kind": "file",
+        "bytes": 1744,
+        "sha256": "53bcc42c6dfbc72617109fcbccb719b191b19ee511f15c1f859abacff67d4313"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/support/response_oracle.swift",
+        "kind": "file",
+        "bytes": 3796,
+        "sha256": "d2b47a641f10a0e0f80df953cadaeb21625597c925dab2889951143e49a4705e"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/sustained.rs",
+        "kind": "file",
+        "bytes": 18420,
+        "sha256": "894b2d89ba7cbab93da7aa871acb3948beea387fbb3c6924693c32fd49b63433"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/sustained_action_scope_prompt.rs",
+        "kind": "file",
+        "bytes": 19735,
+        "sha256": "91e2fd2a5c5564875734a020c10a0a9fb67748d2068a742fd17090fac94161c0"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/sustained_continuing_prompt.rs",
+        "kind": "file",
+        "bytes": 18143,
+        "sha256": "7ef86d0ece9b8c0a1883fd68fe87dbcfb5525ace648ef84a34f4bc91545a83b9"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/sustained_generation_budget.rs",
+        "kind": "file",
+        "bytes": 7831,
+        "sha256": "e5523e244ca9940d7d01c6fd16a6f0c7cc471a5bf01ea142f06df7a78b970b4f"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/sustained_measurement_meaning_prompt.rs",
+        "kind": "file",
+        "bytes": 16691,
+        "sha256": "74ebbcad58beafcceeb9b54eb4fa084a333ff49772a293be87c309300ae7db3e"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/sustained_measurement_reference.rs",
+        "kind": "file",
+        "bytes": 10268,
+        "sha256": "a6497e446bd74b18bbbbda4ff2f4ea016f1845cd8ef252871d0f62dd4ed31c78"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/sustained_prompts.rs",
+        "kind": "file",
+        "bytes": 21344,
+        "sha256": "7f767cc82ee3a996ed0b82d4bd90fbaf42384d942cb5616c098ca6eee8fe9467"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/sustained_provider_evidence.rs",
+        "kind": "file",
+        "bytes": 11176,
+        "sha256": "1ae603dc2109cf209ea7b7a9bc0bd737073f7e2bac3eebd0ec04452a3c158b03"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/sustained_writing_boundary_prompt.rs",
+        "kind": "file",
+        "bytes": 21086,
+        "sha256": "e8ecfbedd1b9c018b567a7884e29b1f6de943f8ac5f2f25614a26d59d1fd12d1"
+      },
+      {
+        "path": "desktop/ReservoirScope/crates/reservoir-core/tests/unicode_codec_conformance.rs",
+        "kind": "file",
+        "bytes": 3610,
+        "sha256": "f0978cac8a3d8131bc5733f71ad22cdfdacb80150b4f415b9429db0ca8f835ba"
+      },
+      {
+        "path": "desktop/ReservoirScope/index.html",
+        "kind": "file",
+        "bytes": 366,
+        "sha256": "2c0b40891c46c24838eebd32e58370bb4f12ab0c4a008ce35d210fcfbf0111cb"
+      },
+      {
+        "path": "desktop/ReservoirScope/package-lock.json",
+        "kind": "file",
+        "bytes": 85284,
+        "sha256": "cae166b23f68d35b8817f7edfd542bf03fa247a9abb96ca7e8852f56647dd6cf"
+      },
+      {
+        "path": "desktop/ReservoirScope/package.json",
+        "kind": "file",
+        "bytes": 844,
+        "sha256": "4b6d930eb27475d05467fbdc78aad1cd764877525c592e43dafd760815de450f"
+      },
+      {
+        "path": "desktop/ReservoirScope/rust-toolchain.toml",
+        "kind": "file",
+        "bytes": 87,
+        "sha256": "c07cdb6cac85a9e5a7d9b832145d791c04ffb58e8e45859942363f2bffed3ebc"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/check_action_session_conformance.py",
+        "kind": "file",
+        "bytes": 6555,
+        "sha256": "f169f878148fcf064fd9fffeda0f86626e459957814269f3c2cb6e6b17bb749c"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/check_case_conformance.py",
+        "kind": "file",
+        "bytes": 5977,
+        "sha256": "f8990ace2304901e2d7cd68168fa48e55ed4869b7be4ab4dc71e4b52266f2260"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/check_case_export_conformance.py",
+        "kind": "file",
+        "bytes": 7691,
+        "sha256": "02a8c87bf8960a841b453d372203061ff5da8e0ccda7dfa059250dd0878c168b"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/check_controller_export.py",
+        "kind": "file",
+        "bytes": 10020,
+        "sha256": "5f1bcc02dfbab9e8a68f507a3dfc3dddc851c7526e10b1887cdecfc2b6b023ae"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/check_fresh_conformance.py",
+        "kind": "file",
+        "bytes": 4908,
+        "sha256": "03f8a7138e2e1f06b98583f380e58b73f8a4954fb4a599a2cbc23e3c192ab3eb"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/check_guided_conformance.py",
+        "kind": "file",
+        "bytes": 12135,
+        "sha256": "07b870ce2df32a9a8d1a428edfe6d590f1eb60815befc3f463465eddf36d8559"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/check_language_session_conformance.py",
+        "kind": "file",
+        "bytes": 11990,
+        "sha256": "b0178316c6721befbbd0a54f04c457693e75cc49aadf40c93e5b969165aa1d36"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/check_pair_session_conformance.py",
+        "kind": "file",
+        "bytes": 7337,
+        "sha256": "f1099c4db605a25e6c81f41e3ca8b2818fab7a46e58258b057611e13d19d96f1"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/check_reference.py",
+        "kind": "file",
+        "bytes": 843,
+        "sha256": "d8ac52f13d7b09c0d725c59eb3327af0cd3e18273666bc246f49f7590dcb28f3"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/journal_quality.py",
+        "kind": "file",
+        "bytes": 28542,
+        "sha256": "49c13a0577829a9d7b7ebb2d7be60ff1f4139b2753f990d614dcf9332397d0ae"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/macos_reliability.py",
+        "kind": "file",
+        "bytes": 27247,
+        "sha256": "326fb72a668f1cac1f32585e0b61e791a56a959b1ac0ae32560fcebd0fba5215"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/prepare.mjs",
+        "kind": "file",
+        "bytes": 476,
+        "sha256": "99032a4f1423d29a68f50376730434feeba70d0cf34d0f764ea3e02cfba625ff"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/qualification_receipt.py",
+        "kind": "file",
+        "bytes": 14472,
+        "sha256": "c371184ae82c1f34314b59fc333ae2fceb0959a4997a532ed63e0cbece00e1cb"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/reference_support.py",
+        "kind": "file",
+        "bytes": 5454,
+        "sha256": "d90eefb67494c98bf7ae36bc8a4324d3ed11423babbc992ff7b8d973e2447181"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/stage_resources.py",
+        "kind": "file",
+        "bytes": 3522,
+        "sha256": "b5e5f23edc9e101d76f6d2813a9ec03c827b5e3e7284d82baf3b0e454a324b1a"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/test_controller_export.py",
+        "kind": "file",
+        "bytes": 2290,
+        "sha256": "ff48b76d4732a3b3f377eff7f4ccddd0fe2d8e85ed845920d622b87e2a84fec3"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/test_journal_quality.py",
+        "kind": "file",
+        "bytes": 27329,
+        "sha256": "12bdcea5ce7c6f2ada24e4fc4e4bb5282ce69ae25df755702c2ac6c9c3da3b2e"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/test_macos_reliability.py",
+        "kind": "file",
+        "bytes": 11065,
+        "sha256": "bafb63a559d64296cedee4e2b615750bd6f6ee66e33bb17dbe9ad274a71b7125"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/test_qualification_receipt.py",
+        "kind": "file",
+        "bytes": 3143,
+        "sha256": "771088956a8630640c76996e134b4b20355b258ddebf97cf6fa3ec0b19e9a46c"
+      },
+      {
+        "path": "desktop/ReservoirScope/scripts/test_reference.py",
+        "kind": "file",
+        "bytes": 3211,
+        "sha256": "ec819f702d5ab7633328193fd7e8ae2bb6da8f233e4572123d3d2afc1991ec2d"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/Cargo.toml",
+        "kind": "file",
+        "bytes": 1031,
+        "sha256": "0b8f8f889c6ef0fa1f07279468af74174ea7344ad5265c2739a687c2b6ef45c3"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/SESSION-BACKEND.md",
+        "kind": "file",
+        "bytes": 17704,
+        "sha256": "8619c84f778c6290a57c283adb47e6d6edada7cc192308a36f7a74ca47035bff"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/SUSTAINED-BACKEND.md",
+        "kind": "file",
+        "bytes": 16608,
+        "sha256": "55d8b717d57649b946e880444b392122c2f5f6dacabac0e4aefc8f435dae7b27"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/build.rs",
+        "kind": "file",
+        "bytes": 2678,
+        "sha256": "403e8e7d1db6c83ba24e7ffc5153e931511df291f5146c6eccdf98658c1fcbe9"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/capabilities/main.json",
+        "kind": "file",
+        "bytes": 2688,
+        "sha256": "30164d6d9d07d2614f3b830da4592e2fded65a2c81316a6dbda6d09b7fa0b417"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/icon.svg",
+        "kind": "file",
+        "bytes": 671,
+        "sha256": "99c8306011d25b3e6cc0eadaef2f3c76ba699134ad1ec7c9eb1e3a9bf669fb8a"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/icons/128x128.png",
+        "kind": "file",
+        "bytes": 5202,
+        "sha256": "328a6f62bb4ce55ed5dbdcfdb8a0d46c95739c49df3fa272b7efeadcc4eb6c6d"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/icons/128x128@2x.png",
+        "kind": "file",
+        "bytes": 10367,
+        "sha256": "f2a5f5611b4dbfa2776fcc28be25783506c10be207f88285f42151345d6b748e"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/icons/32x32.png",
+        "kind": "file",
+        "bytes": 1254,
+        "sha256": "36b5a3d8b3c4ed19646ef603ec74aab8edcf161c3439918eee95426d1b549d6d"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/icons/icon.icns",
+        "kind": "file",
+        "bytes": 122675,
+        "sha256": "7dca3ee6c3e79ebcb2c54bf44841d2f2b208c1fb727b16035341cd067a12e5ed"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/icons/icon.ico",
+        "kind": "file",
+        "bytes": 19748,
+        "sha256": "029f55ca149d9ac6abf29f06f29680f1692229e9e3fe6b3f8316425765b63d42"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/icons/icon.png",
+        "kind": "file",
+        "bytes": 21354,
+        "sha256": "585dabe7c3b2490d8371be560055be742aaac3b4ea6a671247fa5862279aedf1"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/cases.rs",
+        "kind": "file",
+        "bytes": 13082,
+        "sha256": "4dc2bf996dfcf8120c20f9d676decee9cb67d4bc6117cbf0ac21c7420b02a2aa"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/desktop_menu.rs",
+        "kind": "file",
+        "bytes": 2920,
+        "sha256": "120a16142ea9ddbe65cdf4b307cc7466ba8bacd19efdf96356c74c0105381f09"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/execution_admission.rs",
+        "kind": "file",
+        "bytes": 6908,
+        "sha256": "c5d07cafd8e56f32dd906fd27db947124b735e2f731e3b8f962fa1398f91bb59"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/files.rs",
+        "kind": "file",
+        "bytes": 7179,
+        "sha256": "79cb4f33647037631f74a22d0d7863a9cf9ab519702219935741f028cb1a4405"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/geometry.rs",
+        "kind": "file",
+        "bytes": 11281,
+        "sha256": "52c84cea8c759c0527a6f688fb698133351a705c24a2bcb731c13a5e7fac740c"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/guide.rs",
+        "kind": "file",
+        "bytes": 8320,
+        "sha256": "6289ace1632b6f1ed29fad26cccbfa80b778851ba0219463aee7d38162cb16ae"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/library.rs",
+        "kind": "file",
+        "bytes": 50232,
+        "sha256": "e95625efadf6bc8b1907eb9cb5a15fa0819e090b2487e9ba86fee11ae1f1f825"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/library_tests.rs",
+        "kind": "file",
+        "bytes": 23707,
+        "sha256": "b7ff34551e1ead9d5eaed52c824453b1cfc477eafe85be37962c3edbb0934fcb"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/macos_lifecycle.rs",
+        "kind": "file",
+        "bytes": 4964,
+        "sha256": "8cd13b1e935550f0a054cabd2e79f0dda301343434c3401e2145d4de52c7c9c6"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/macos_termination.rs",
+        "kind": "file",
+        "bytes": 7480,
+        "sha256": "e0de06bd278b0fa6628542cf34b2a38c0e3a3bf836851d051cedf90ca04b77a8"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/main.rs",
+        "kind": "file",
+        "bytes": 32416,
+        "sha256": "c302148eeb720415d7220f3246ac28b607e59e48230358bf7bb6e60677f1a0c1"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/model_readiness.rs",
+        "kind": "file",
+        "bytes": 8084,
+        "sha256": "290eac17069e1f922decd640d0037692fbcbf2be4e15777a7ac3efd682820cb3"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/model_transport.rs",
+        "kind": "file",
+        "bytes": 15786,
+        "sha256": "23af2733a02092fd22521b0e8fc10eee2901b83a632adc2d137b7bf4a4112e28"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/model_transport_tests.rs",
+        "kind": "file",
+        "bytes": 25546,
+        "sha256": "49e9ec1e07c871e1478934d3cc171e7354b40df8d0488240c2bac6ce7b34287a"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/observatory.rs",
+        "kind": "file",
+        "bytes": 21928,
+        "sha256": "04d279e730f52624ff28a575f1d1cdd82de79f7ce7e81c5bab8eb5f4082c3b74"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/observatory_tests.rs",
+        "kind": "file",
+        "bytes": 8013,
+        "sha256": "d7b6c9caadab7eacf0b27738fe303f3cae81ba7c71209fc20b06bff0278271ee"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/preparation.rs",
+        "kind": "file",
+        "bytes": 10245,
+        "sha256": "73a2309c6bd1bf64840a46f0bbbf48730ffeb583d63236dd97dca16586bdb9a9"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/records.rs",
+        "kind": "file",
+        "bytes": 36271,
+        "sha256": "83a6431137a718a3442f35c9e2636d2c8cd4fc06b321370e817b3ae2d7ef096f"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/resources.rs",
+        "kind": "file",
+        "bytes": 10259,
+        "sha256": "baff6405e42a8439d64e728fd97d2ae8642dec2d6715a9f402d5deebc1f78868"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/response.rs",
+        "kind": "file",
+        "bytes": 21163,
+        "sha256": "c686ace39c15bed3f4e3d8d3e6750f2fec608e1d33414593408496a8cc08d1eb"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/response_commands.rs",
+        "kind": "file",
+        "bytes": 4911,
+        "sha256": "2beecd570f2b8e4a8f4d9a11d3aac6437061d05cda918bf36667c0121ea3c693"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/response_tests.rs",
+        "kind": "file",
+        "bytes": 9723,
+        "sha256": "abc3d86ee9574c3ee55cc8dad70eb8d5a1513464285651ad78f3fd70a68b18c6"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/run_activity.rs",
+        "kind": "file",
+        "bytes": 3233,
+        "sha256": "4df9ec30f8019260ff06ade596ccb514ff9dc6c80efb176b9dd4088c2a44970a"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/session_commands.rs",
+        "kind": "file",
+        "bytes": 12699,
+        "sha256": "7fc31c92aa71132ea90002766144ec554047982af4e22d9abe9c3dc8a1a10f3e"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/session_store.rs",
+        "kind": "file",
+        "bytes": 45188,
+        "sha256": "a5ea1bf91fc3b45f32d9852db0206d53aabd2b39890800ed387e1be7a1c96c88"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/sessions.rs",
+        "kind": "file",
+        "bytes": 84881,
+        "sha256": "874be434fbfc6b7dc77681ff2d868d749557b6c72472420a5c55e9314423387b"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/sessions_tests.rs",
+        "kind": "file",
+        "bytes": 88420,
+        "sha256": "7bf63806b644aed18f61504213bbf54a9b21fec30fb3e960a24037cd4549014f"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/sustained.rs",
+        "kind": "file",
+        "bytes": 58956,
+        "sha256": "5399ac3d9faf9fcd291dcc6dd176f80c7cd712bc489e6969bfcf621a084223c8"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/sustained_commands.rs",
+        "kind": "file",
+        "bytes": 7984,
+        "sha256": "483e034cbfed12c4e88f430dcb8547c45130a8449681a4775c228a2bd571bfde"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/sustained_prompt_evidence_tests.rs",
+        "kind": "file",
+        "bytes": 9273,
+        "sha256": "983b3cacd436ae3689091e342c472fbe60c84023035529ad13fead873a5495ce"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/sustained_quota_tests.rs",
+        "kind": "file",
+        "bytes": 19370,
+        "sha256": "88d638b51067f2ac7f0ad38af7ecc14049749e04c174f03e55473f030c1a600c"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/sustained_store.rs",
+        "kind": "file",
+        "bytes": 56229,
+        "sha256": "cc3a18469733b975eb0aafc03d41270619e88f6b64eefbcb7a40a91df09b2ef4"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/src/sustained_tests.rs",
+        "kind": "file",
+        "bytes": 70643,
+        "sha256": "62b5cedd61bb22ea57429215ee5c58703656b25dbb51be5ee89cf7861c7ada8c"
+      },
+      {
+        "path": "desktop/ReservoirScope/src-tauri/tauri.conf.json",
+        "kind": "file",
+        "bytes": 1831,
+        "sha256": "f89101d1940c5e4aa63d92dbda5e482e15e281d5e084ef66e4e892d727ada03e"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/App.tsx",
+        "kind": "file",
+        "bytes": 4414,
+        "sha256": "4a10f76e0bf24b61ab9292c321a935691073271bb36cea4e164428a99fdff2ac"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/CasesWorkspace.test.tsx",
+        "kind": "file",
+        "bytes": 1773,
+        "sha256": "c69036d981b3e3ab8b8f82780b8734595c9df75f30d3aa10363526846f830420"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/CasesWorkspace.tsx",
+        "kind": "file",
+        "bytes": 6290,
+        "sha256": "8fdf3c31cd022dea010cfaab44b8595e89a823195e47e9e85dd49b4f2fe2230b"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/CoordinateInspector.tsx",
+        "kind": "file",
+        "bytes": 3227,
+        "sha256": "6379bb7d9ed02a6344f3b5b8e824d31d1f3bf0eb9568fff61e9ea6660a6885ab"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/DesktopDiagnostics.tsx",
+        "kind": "file",
+        "bytes": 6342,
+        "sha256": "43e4c1d24329b12224391b614792a0b3fb4a31b197cee516eec6d158a2095a8e"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/FreshActionEvidence.test.tsx",
+        "kind": "file",
+        "bytes": 9085,
+        "sha256": "a97ac70e71e2215a7413bae4e5386bc0f198cc6f038bdb48a38a740464e6f528"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/FreshActionEvidence.tsx",
+        "kind": "file",
+        "bytes": 8058,
+        "sha256": "0892798ec5af457ac49d9f30a7cd7d2e9f831e8e7c071558fc0c15422050ed07"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/FreshComparison.test.tsx",
+        "kind": "file",
+        "bytes": 8547,
+        "sha256": "f35228fa9771520ec95e6b26b8ee1c994fa7ecea95be2cd9dc5b84f274e7e2df"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/FreshExperiments.test.tsx",
+        "kind": "file",
+        "bytes": 4351,
+        "sha256": "b842c1db80e7185e161cbcdb27871c78338bd590c90048c4532a2f1dbb00c8d9"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/FreshExperiments.tsx",
+        "kind": "file",
+        "bytes": 43157,
+        "sha256": "70f7903fcc15ecf8e19f51e0b15e331f99a333b02e10c617d917f866368c9cb0"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/FreshFrameViews.tsx",
+        "kind": "file",
+        "bytes": 4232,
+        "sha256": "ce484a919ea56ffd943be89e07b8cd8d307d98355a4a33906249b1b835f10b67"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/FreshRecoveryLanguage.tsx",
+        "kind": "file",
+        "bytes": 2903,
+        "sha256": "91200be17238d4b186d5193dd204406234d8e9c75964ca3b0cd2ca3290e9e61d"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/FreshRegulation.test.tsx",
+        "kind": "file",
+        "bytes": 15746,
+        "sha256": "5d68b923319633a300242727da4281fea1a7ab3c924fc4bb09244f72fc0d50a1"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/FreshRegulation.tsx",
+        "kind": "file",
+        "bytes": 8611,
+        "sha256": "9cf6969ac8c1fa83a64b698b9bf2bd86392b1b3243f7723fc9f2c060f39f4bb1"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/GeometryWorkspace.tsx",
+        "kind": "file",
+        "bytes": 12118,
+        "sha256": "9c169bdf39dc0f7d466d581fc9bf867efdc0a230ea5d7b8fcb0ed507f0e8827e"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/GuidedTour.tsx",
+        "kind": "file",
+        "bytes": 12346,
+        "sha256": "82c508049d9e82e948da5311909fa141db44f9df9021ae4fa3923887b4321147"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/JournalMeasurements.test.tsx",
+        "kind": "file",
+        "bytes": 11006,
+        "sha256": "b6a82b3e54075235aeea7ca88d36b721a07fec2111a482b6008e21856aaee7ea"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/JournalMeasurements.tsx",
+        "kind": "file",
+        "bytes": 3319,
+        "sha256": "cec864d9368f5348df5ae838e9459b16b186d8526c73bb5a86e4cbe2e1ccb91b"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/LibraryView.tsx",
+        "kind": "file",
+        "bytes": 14308,
+        "sha256": "feef1132665e29f6ed6a92604d828ee0d0d81c98db38f132c4199cbd6e53a9d5"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/LocalModelReadiness.test.tsx",
+        "kind": "file",
+        "bytes": 9200,
+        "sha256": "555ae2e537d3d9b8fc2a3f7223486f1f2470d465422655061db393e502f40529"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/LocalModelReadiness.tsx",
+        "kind": "file",
+        "bytes": 2792,
+        "sha256": "8dad3507792b51f88119df986572678cad3f44736c50d60db25bdf949a72a6e2"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/MyReservoir.test.tsx",
+        "kind": "file",
+        "bytes": 10971,
+        "sha256": "da07bdb83cb224dfb4b010c79b9e39e6fab2f8a4e9d710fb8d9c26f35b2823b9"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/MyReservoir.tsx",
+        "kind": "file",
+        "bytes": 14897,
+        "sha256": "c766b2e85b2e0cd3a418b77d705a3f319e160c4a7b311106f6899b87bffade6c"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/MyReservoirConfig.tsx",
+        "kind": "file",
+        "bytes": 11518,
+        "sha256": "212da5ea268bcfb58ccb5b4d7e7263bac32ade85793571b9a93c50ea3c900f13"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/MyReservoirJournals.tsx",
+        "kind": "file",
+        "bytes": 11886,
+        "sha256": "672b126ff148a74dd9017286dfdb713e61003ccc4c186a029f280214b716f92e"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/MyReservoirPresentation.test.tsx",
+        "kind": "file",
+        "bytes": 7306,
+        "sha256": "c06218414f052c856d02e1b145a4028595e1bd856eba22efa2d85e0bb48539a0"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/MyReservoirReading.test.tsx",
+        "kind": "file",
+        "bytes": 10746,
+        "sha256": "2e70b250db8442c534ee5a46e14c6968472d3452f51e4730894ba1701188fd4a"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/MyReservoirRecovery.test.tsx",
+        "kind": "file",
+        "bytes": 1620,
+        "sha256": "c76e9c29a91c43f930fe4d6f33ed12673110df32d44366654ef908959cf34066"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/MyReservoirRecovery.tsx",
+        "kind": "file",
+        "bytes": 6246,
+        "sha256": "f2b3e69f47e9050856bc1127abdf98d3d8537f1b81d578717674f2ec70353337"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/MyReservoirSetup.test.tsx",
+        "kind": "file",
+        "bytes": 11935,
+        "sha256": "4ed41acf90778fb6afbcd0f46c721c5caa503c98470bbabf35f0799df494ebfd"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/MyReservoirVisuals.tsx",
+        "kind": "file",
+        "bytes": 3870,
+        "sha256": "eee94f36caed55836e40d2735c4eef0826456da2a9ab8ebc94f9d4dc7a120b5b"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/ObservatoryWorkspace.test.tsx",
+        "kind": "file",
+        "bytes": 2642,
+        "sha256": "49252c54c05ba58546217f0e2ec87ba5eb12b6debde73067f51fe57ea0502706"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/ObservatoryWorkspace.tsx",
+        "kind": "file",
+        "bytes": 2373,
+        "sha256": "98d40898a327b929de018223d4e7c39162c7fbdf392822f158b5d803ee4ef03e"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/PreparationHistory.test.tsx",
+        "kind": "file",
+        "bytes": 4186,
+        "sha256": "ae1686bdd79c4d7fd76034cce7489ed9b029bcc906c1806db31440d447ecb8a3"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/PreparationHistory.tsx",
+        "kind": "file",
+        "bytes": 7629,
+        "sha256": "08e2dcba1d3074174d13a1443ba685fb073ca0e77769c36e4fd7e5e7fc57a45b"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/ProviderPromptEvidence.test.tsx",
+        "kind": "file",
+        "bytes": 2872,
+        "sha256": "a504a46f093fb20acdf2fcda377a0fb95fb67320fbb4178be720d468175b66dd"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/ProviderPromptEvidence.tsx",
+        "kind": "file",
+        "bytes": 1683,
+        "sha256": "53bd6ccd93cfc34094e3407b62b4b174df27661ae8b67619bbed94855c2dc091"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/RecordEvidence.test.tsx",
+        "kind": "file",
+        "bytes": 3062,
+        "sha256": "6617ca1470ce47c2b8683d49f9e8fef1e2716faab82f70a609bbf5a48d701b8c"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/RecordEvidence.tsx",
+        "kind": "file",
+        "bytes": 2379,
+        "sha256": "c8bc514c61964be1fa9a2268fd55539915c2f2a0e9fa9f2ea6c1df5553849108"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/RecordedExperiments.tsx",
+        "kind": "file",
+        "bytes": 21016,
+        "sha256": "e2d8b2a1e017f616511992bcac8895fa51960eec411ff6ed61acc8ec50897005"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/RecordedFillSphere.test.tsx",
+        "kind": "file",
+        "bytes": 2425,
+        "sha256": "b6fc5f3491395805a38234df782e70a2d1dc64a8db0660985e657c87f3e509d6"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/RecordedFillSphere.tsx",
+        "kind": "file",
+        "bytes": 6814,
+        "sha256": "0807570a222bf82c647808fabc5c391045b197db760d061e552fcb95af7dbc6e"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/RecordedObservatory.tsx",
+        "kind": "file",
+        "bytes": 13806,
+        "sha256": "9e3316bfe01a33835f4939423d5e5555d17e4a94ad9a8217a880bf6ef8d24e05"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/ResponseWorkspace.test.tsx",
+        "kind": "file",
+        "bytes": 6314,
+        "sha256": "321add2261f62dcfdcd2905cae7eff3cfc84f774df70be6653f4020019d85546"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/ResponseWorkspace.tsx",
+        "kind": "file",
+        "bytes": 18592,
+        "sha256": "f0d6c6fe0bc93a86df99b7e16ed013b0d6bbd1de21354fa2cc29ef38b485c2ee"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/SurfaceView.tsx",
+        "kind": "file",
+        "bytes": 17627,
+        "sha256": "e33c0babfae0d5c57f18a8796bdfb4ae0144b7af592dd27f5d4531a9c96d2123"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/api.test.ts",
+        "kind": "file",
+        "bytes": 594,
+        "sha256": "61be099f6b652a83e92ec3cc052ddb414daef0036302fea576c0477903f11846"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/api.ts",
+        "kind": "file",
+        "bytes": 1892,
+        "sha256": "e99988d40e270fc301602abfa884a81738aed27f9b3dcdc72e8d29d670937532"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/cases.css",
+        "kind": "file",
+        "bytes": 2248,
+        "sha256": "1288a5468b3888aa65f12aa1a696e57358ba6029ca0450246ef7382d12280edd"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/casesApi.ts",
+        "kind": "file",
+        "bytes": 2334,
+        "sha256": "9c2219324625f71e8f8de84562c6e92d6d473837caeb7d5353dc7161560bdf91"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/casesController.test.ts",
+        "kind": "file",
+        "bytes": 7495,
+        "sha256": "14f3c899981fb3e3f99b535d5759813da3a2acbf59e44c385233d84c4070cf37"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/casesController.ts",
+        "kind": "file",
+        "bytes": 5300,
+        "sha256": "553bb4cea41dfa8c21c6683e649151b928ab284c5c13989a51a5b26599486322"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/fillSphere.css",
+        "kind": "file",
+        "bytes": 3754,
+        "sha256": "ea77d9cf311573d6a13c03d030879747ac1e6b095d404ded5bcb53b0727f49aa"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/fillSphereMath.test.ts",
+        "kind": "file",
+        "bytes": 2202,
+        "sha256": "bf7097d55d9c95a3b412d1ae694f1fd8d928a1cef863bcc859adb92989970a12"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/fillSphereMath.ts",
+        "kind": "file",
+        "bytes": 2264,
+        "sha256": "02a5519b0f8169d76f82dcff13577ecafdeac29c285867857c3769ab0de05c55"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/fillSpherePolicy.test.ts",
+        "kind": "file",
+        "bytes": 2581,
+        "sha256": "5afc80569b7ff88bcd6d3f3b3b52123be6ca99a93a247c4c67b684b482254512"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/fillSpherePolicy.ts",
+        "kind": "file",
+        "bytes": 1041,
+        "sha256": "bd6c117b2d27178383e20a281c832ca512dd5455ffadd64d073e3393f4fb25d1"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/fillSphereRenderer.ts",
+        "kind": "file",
+        "bytes": 10216,
+        "sha256": "cf40a6e698790b551b10e8549f5554dbadf6cd9f51ad22be4a00be894f04b29b"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/fresh.css",
+        "kind": "file",
+        "bytes": 12399,
+        "sha256": "77a448074b86a8fcd4ff9f34c1be33c595dfe692de7b937568da1162417e041f"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/freshApi.ts",
+        "kind": "file",
+        "bytes": 2726,
+        "sha256": "004b0b57f6b44447b1059302fbdb34ed61a071f840d2ca05a6bba55df310e581"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/freshController.test.ts",
+        "kind": "file",
+        "bytes": 31572,
+        "sha256": "c7685890c3088416627f45d7e45e3c04a728aad19285f0ae3fab818acb0ee4c6"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/freshController.ts",
+        "kind": "file",
+        "bytes": 31261,
+        "sha256": "927391ac2c1d268aa9197e40776230a6fe93be1f20dcb2749d50b0082c3f5f19"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/freshTypes.ts",
+        "kind": "file",
+        "bytes": 14250,
+        "sha256": "e78a7d538938101d73fe5d7478f95290ba5c7e7120a72d715dd55b9df72159d0"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/geometry.css",
+        "kind": "file",
+        "bytes": 3155,
+        "sha256": "114752d4b4ab4323a5489a9b1e8929a0aaefad547d67534ddc036f7ef0e9e21b"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/geometryApi.ts",
+        "kind": "file",
+        "bytes": 667,
+        "sha256": "5c7784c311087896106752b5ec3288d1dd12b35f74389cd02c860ec2404af893"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/geometryController.test.ts",
+        "kind": "file",
+        "bytes": 4953,
+        "sha256": "292391dc3ea186f668efd286de6863de15885b111d598e584596d718e8ced388"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/geometryController.ts",
+        "kind": "file",
+        "bytes": 3861,
+        "sha256": "35789e334f71a3d2e06f7aee72dd2ab7a9edb41b35cef985fd90bce36f8601e1"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/geometryFixtures.test-support.ts",
+        "kind": "file",
+        "bytes": 2535,
+        "sha256": "b5a0cdf42eb3c19e031c3d037af14d04c5cecec59c9ec4beca86224528161889"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/geometryTypes.ts",
+        "kind": "file",
+        "bytes": 1530,
+        "sha256": "54363594ec17b62ec73cd56038ee93ab9fcfbd908618292f7c34a7abcf121e76"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/geometryView.test.tsx",
+        "kind": "file",
+        "bytes": 3425,
+        "sha256": "bba228816f5624ee75c270e20decf8e9212f2562b11861f6d03492a5b7384db0"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/guide.css",
+        "kind": "file",
+        "bytes": 5055,
+        "sha256": "8dda446c53deb1145b8b57367d4383d2f7b06dce37177eb9b1e13bf37fbc6924"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/guideNavigation.test.ts",
+        "kind": "file",
+        "bytes": 4471,
+        "sha256": "54680801ed59c37c43fcaeff9c3cbe6fe984e4e6771367c493f69e88b07adf06"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/guideNavigation.ts",
+        "kind": "file",
+        "bytes": 3364,
+        "sha256": "4ece6d4244d322dacd68d8c22dcc281ffe4481fa74018f71670ae141067c04c6"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/journalMeasurementReference.ts",
+        "kind": "file",
+        "bytes": 2709,
+        "sha256": "93df93715c6ac22f4d35137fb3b238efcb8f8a1160e975a48a1e852e56ac0d0a"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/library.css",
+        "kind": "file",
+        "bytes": 3316,
+        "sha256": "389635d28a9632a7b4b7df2abeec20e160798f98c45d2471166e058c3233e01d"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/libraryApi.ts",
+        "kind": "file",
+        "bytes": 834,
+        "sha256": "e0c266897d24ede67ce38ddd769b592169739da80432740de2f9cc37fdbbeeb0"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/libraryTypes.ts",
+        "kind": "file",
+        "bytes": 1888,
+        "sha256": "31acbbab28f0e87707dbaac6e6b01dd0e07142f0774bac5399e5ba399ae3bfe1"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/libraryViewModel.test.ts",
+        "kind": "file",
+        "bytes": 3202,
+        "sha256": "6752d5d7f9c0e234e36fcf3ed2194b98dd89880794e8c0364489a6848451a066"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/libraryViewModel.ts",
+        "kind": "file",
+        "bytes": 1266,
+        "sha256": "579fe4962e8c4a10ed169f3d8607d7e080fdd43ab2d9e5a6929a0373910d6cc8"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/localModelController.test.ts",
+        "kind": "file",
+        "bytes": 6558,
+        "sha256": "e87e61d1f54671f9f62d9179114faee5fb802b3a393092f01a976c366fbfdaf1"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/localModelController.ts",
+        "kind": "file",
+        "bytes": 5041,
+        "sha256": "8453d72a31a23ee47a8a200b1608dd20824b72cbe01e34f336539fe586c2971e"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/main.tsx",
+        "kind": "file",
+        "bytes": 230,
+        "sha256": "a920ec27028d3f1997c93d79da61fa77c0ff613085a6fb2a8ea2dea92cab28a9"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/myReservoir.css",
+        "kind": "file",
+        "bytes": 10019,
+        "sha256": "54a36d1b4721ff90615103e1642a4daadf196c9585a2a6b90da57816a2a0480d"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/myReservoirApi.ts",
+        "kind": "file",
+        "bytes": 2138,
+        "sha256": "a46d2c275cc5cbaade151e7f5ff9b53d982b19e068a969848cb430b2ef048b4c"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/myReservoirController.test.ts",
+        "kind": "file",
+        "bytes": 25124,
+        "sha256": "9fba501c783e6734d4d7df95cf27a6666214e46a8d6d9ebffe0fbce20a5483f1"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/myReservoirController.ts",
+        "kind": "file",
+        "bytes": 26255,
+        "sha256": "b87c41c505451864b703f47761168017a7e82ccad89c597132e892e5ff7f9b43"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/myReservoirNavigation.test.ts",
+        "kind": "file",
+        "bytes": 8993,
+        "sha256": "47ba41f9a46b522c1bbfcf3fb307c6db0b780599cdf4a2adad118a9f38a994c6"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/myReservoirOrdering.test.ts",
+        "kind": "file",
+        "bytes": 7400,
+        "sha256": "ffc3e4b457fc1636ceac633a45808b7cd6a0d783146f6b5d9d33fd80591dac3f"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/myReservoirQuota.test.tsx",
+        "kind": "file",
+        "bytes": 8119,
+        "sha256": "dde5c3f3f7a929d74c8c7e69975114d155d20a576877fcbbe5596092288fbd8b"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/myReservoirReading.css",
+        "kind": "file",
+        "bytes": 1359,
+        "sha256": "5087cc91408fe29ac3d24189250dd7f9f8e691dbbe52758a8973101905c848f9"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/myReservoirTestFixtures.ts",
+        "kind": "file",
+        "bytes": 6274,
+        "sha256": "ebe25e80deffdf25a0ab881f5b09652208881f9aeddc4bd550c51086280352c1"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/myReservoirTypes.ts",
+        "kind": "file",
+        "bytes": 8466,
+        "sha256": "cfdb76348cd72ab44755f03c802ad004b84d9c01a076faa7918b8283e399926f"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/observatory.css",
+        "kind": "file",
+        "bytes": 4303,
+        "sha256": "402a9136d023265fa1771f99244797292bbe2c6142a4592be88b99908b8caf30"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/observatoryApi.ts",
+        "kind": "file",
+        "bytes": 1588,
+        "sha256": "445f83b72b361249b2cf2898e9f01ded0b94476c7ec142be21f7c4a2ff480f75"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/observatoryController.test.ts",
+        "kind": "file",
+        "bytes": 18413,
+        "sha256": "36513ad6e8f7d5ef612100937ed09b4fb5b18b6a6701f8cf882d804c5c5f3a82"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/observatoryController.ts",
+        "kind": "file",
+        "bytes": 7749,
+        "sha256": "ac78a026e888ff85bb4c805bb8bcb5c8f689714d63feccc7891d6940a284eaa4"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/observatoryTypes.ts",
+        "kind": "file",
+        "bytes": 2786,
+        "sha256": "59e0e60130c80571e8a7820dd18fecf7434b2bd5c777abf3cfb8bf67e234770f"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/preparation.css",
+        "kind": "file",
+        "bytes": 2361,
+        "sha256": "1f4d65cf450b2c83573308e8d537fb66aee92b46e012be9770511040acf89e5b"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/preparationApi.ts",
+        "kind": "file",
+        "bytes": 859,
+        "sha256": "de6620ad5138d81d042127f0e51414293aa3f8cb843d4adbaf1bbc466b5c227d"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/preparationController.test.ts",
+        "kind": "file",
+        "bytes": 8558,
+        "sha256": "ea95eb6f1b6a0742ecb698377e5f5b338cc340b43cc43c5a28d5325c08ecd8a6"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/preparationController.ts",
+        "kind": "file",
+        "bytes": 5305,
+        "sha256": "e84dec80b29f10ca538c9c11a17e7377e974625f147e3afabe8532351ca235a8"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/preparationTypes.ts",
+        "kind": "file",
+        "bytes": 1750,
+        "sha256": "601b4a7be7fb99311528fa7c76ea35941436746701e1e7f5c0b1147ee079ed8b"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/recordingChart.test.ts",
+        "kind": "file",
+        "bytes": 1102,
+        "sha256": "58d16b2a013bd294f25c4a1d2eee00206e4fa8f55f91cf7b0509d33721c2b053"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/recordingChart.ts",
+        "kind": "file",
+        "bytes": 1176,
+        "sha256": "ead149b361a2e341b5bf72338aaf941ce76705cfa25b0810a9bcef849dfe45d1"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/recordingController.test.ts",
+        "kind": "file",
+        "bytes": 10135,
+        "sha256": "b458328c5829f4e95ba33b798abeaa13d03e4e6f171d06b4794fa72ded01b774"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/recordingController.ts",
+        "kind": "file",
+        "bytes": 9477,
+        "sha256": "95b1045ad4aafa2689813272302ec2e5dfa1cbed68e03b149fee67ba41b91f6e"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/recordingView.test.ts",
+        "kind": "file",
+        "bytes": 4430,
+        "sha256": "89ef497215b0ddb3cd559134c0d51f21fc96f765dff141759dacbd96315feeac"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/recordings.css",
+        "kind": "file",
+        "bytes": 6895,
+        "sha256": "fa0c4bba92f2b6c12c7be0c8d608972b3b9c39c84f71567ebc0814d66e92125c"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/renderPolicy.test.ts",
+        "kind": "file",
+        "bytes": 4117,
+        "sha256": "875308e3d98b6b1d7f4ed2bc1cff27a6ad68dee7c504f1c4ff5ea49723db4e5f"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/renderPolicy.ts",
+        "kind": "file",
+        "bytes": 2169,
+        "sha256": "048ded4ad7d7d804c6f9132e0aa3f1357bc57343e24b738faf73f5a8480fb9c4"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/response.css",
+        "kind": "file",
+        "bytes": 4915,
+        "sha256": "4c22ea6f4f18f1b421e673fbde6cd4902a426b8d234fd63080d7d07fb6928d6f"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/responseApi.ts",
+        "kind": "file",
+        "bytes": 893,
+        "sha256": "c884070ccb2265b4154b937b2de982efd5bf740c4a3bac31ede1cd42897224ba"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/responseController.test.ts",
+        "kind": "file",
+        "bytes": 17627,
+        "sha256": "9e6ad259cb8eab15957df1c17fb52071015b01f93d3eeca9a94ea54f6cbde4a3"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/responseController.ts",
+        "kind": "file",
+        "bytes": 10491,
+        "sha256": "4daa3b41bc4e9ef571b2715a91d29a40df59b4f42108bcf3596e6f6778d85ffa"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/responseTypes.ts",
+        "kind": "file",
+        "bytes": 2319,
+        "sha256": "5623ee5eceaf6aa578da576e835b39a2ff9e32d8327bb10739b072462a0f4e1c"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/sessionDuration.ts",
+        "kind": "file",
+        "bytes": 1593,
+        "sha256": "3188acdac677a47a19772fd6f3bff836ea0f71b113410849ba9edd3a28d2db15"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/styles.css",
+        "kind": "file",
+        "bytes": 13785,
+        "sha256": "dd1ae1cc54cda15ddfb53521d1cfb1732d85713c773a5f3d0006f98d888a0cc2"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/surfaceMath.test.ts",
+        "kind": "file",
+        "bytes": 6106,
+        "sha256": "d72700c9300de360f5966335144c133ef05869213606211b0829751e68ef17b7"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/surfaceMath.ts",
+        "kind": "file",
+        "bytes": 5898,
+        "sha256": "d515684862f3f4d1eed672a8f0665cbc5d5148e53f5bca52b5cb78785f0d9bc2"
+      },
+      {
+        "path": "desktop/ReservoirScope/src/types.ts",
+        "kind": "file",
+        "bytes": 4517,
+        "sha256": "587f72b40f61842e77314f83213674bb69dba7e03a6996b7211f6050fc05a0e7"
+      },
+      {
+        "path": "desktop/ReservoirScope/tsconfig.json",
+        "kind": "file",
+        "bytes": 416,
+        "sha256": "64ecd12e2fe2cff778fe53252c08b37bc72cef27cad57b1edd5ce4c98de01b3c"
+      },
+      {
+        "path": "desktop/ReservoirScope/vite.config.ts",
+        "kind": "file",
+        "bytes": 283,
+        "sha256": "0eb2f5c51aa3e93fb74ed6dd0d3c4d7190ea1ff1f684612c0c8a81bf5121430b"
+      },
+      {
+        "path": "shared/reservoir-scope/PARITY.md",
+        "kind": "file",
+        "bytes": 56098,
+        "sha256": "e0de631fd9679c5c095f66571a7040d89c79f3290be0f25e551047270bc3c393"
+      },
+      {
+        "path": "shared/reservoir-scope/README.md",
+        "kind": "file",
+        "bytes": 3472,
+        "sha256": "d0be488181576824edcb854c5238795db11093a304bbae73ae8bc3af1723c707"
+      },
+      {
+        "path": "shared/reservoir-scope/continuing-writing.md",
+        "kind": "file",
+        "bytes": 9558,
+        "sha256": "5ca3cd10cf1642488b06476285adc24a3f96191db67854553f80bfae4deed227"
+      },
+      {
+        "path": "shared/reservoir-scope/fixtures/reference-scenes.json",
+        "kind": "file",
+        "bytes": 6013,
+        "sha256": "616726ee8ec30827fe08690288f1a176e09b9497d83a24368d16fd4585026c59"
+      },
+      {
+        "path": "shared/reservoir-scope/provider-prompt-evidence.md",
+        "kind": "file",
+        "bytes": 3650,
+        "sha256": "a112a7142d831a355811c958b4041cbde6000fd5868ba163b5ed0131ae26f2ea"
+      },
+      {
+        "path": "shared/reservoir-scope/record-reader-ipc.md",
+        "kind": "file",
+        "bytes": 3519,
+        "sha256": "552b2048fcb3e04db4fec837c16556a9932c74b394bd3b14269ba75dfed65759"
+      },
+      {
+        "path": "shared/reservoir-scope/reference-manifest.json",
+        "kind": "file",
+        "bytes": 46438,
+        "sha256": "f3d7d2aeea4b991aeaa92403a52e736fa627e7ce9f3bc813311313ec9522e759"
+      }
+    ],
+    "allowance": "Only exact after-identities of documented changes in the prior passed0.20closeout are accepted. There is no arbitrary documentation allowlist."
+  },
+  "package": {
+    "fileCount": 46,
+    "matchesQualifiedPackage": true,
+    "inventorySha256": "e34658c0135a152742395f9c0f9f2785c1207c2da6400240dfcb91e19a58d967",
+    "executableSha256": "cc5d3dce19076dbc1ff3b850cd99a72a410c8fa797d951cb11f4068ecaab1cfd",
+    "archiveSha256": "23fe012b90bca660773c63f58bd1bc916c26c9b74a0081b7e59d0603ec117e25",
+    "archiveAndPinBoundInUnchangedFrozenInputs": true
+  },
+  "exports": [
+    {
+      "name": "real-model-export-01",
+      "bundle": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-v8-writing-episode01/exports/sustained-1792007792954-1-1-423",
+      "passingReceipt": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/real-model-export-01/receipt.json",
+        "bytes": 220343,
+        "sha256": "07aff62e23ee5c08e85e97c2ae93702d3b145473aa38d58c0c0345d85d1aa603"
+      },
+      "fileCount": 73,
+      "logicalBytes": 5730855,
+      "matchesPassingInventory": true,
+      "inventory": {
+        "checkpoints/fbe933dca29acff75678f2af392b1d4a0e6f0a87afd09268367aee4c994896bc.json": {
+          "bytes": 30713,
+          "sha256": "fbe933dca29acff75678f2af392b1d4a0e6f0a87afd09268367aee4c994896bc"
+        },
+        "journals/journal-120-4-949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2.json": {
+          "bytes": 12095,
+          "sha256": "c5883a5c4747c09fd43e8491b6cc13d1446eae2e6d0e1565914744022b61eccb"
+        },
+        "journals/journal-150-5-984908121a4b9f2b8ecec796b9679a6895e5323f9e08271029cce9302a43655c.json": {
+          "bytes": 12026,
+          "sha256": "20660ce77a4316e7094dc8d1223d37ea8914f0a490d2d5b1d2cae572b5ab3c1a"
+        },
+        "journals/journal-180-6-e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03.json": {
+          "bytes": 11586,
+          "sha256": "3424801eba6b947ed0171aedd438c3efb8c29926c13360147623dff15f68f7fd"
+        },
+        "journals/journal-210-7-b660adc062ca93645b3bda7819ea5ae11e49f43dcfdd22b78b27461e270316c6.json": {
+          "bytes": 11547,
+          "sha256": "e9aeb6ce9470ce306a830c1684c86ce275b38874d6e5a989e2538a2dce7445d3"
+        },
+        "journals/journal-240-8-fea8c58fe1f52802798f95428739dc815b9a57066fe468d2ef009412d1518507.json": {
+          "bytes": 11585,
+          "sha256": "cd4a03f31b716de671770b3d4ef5680840d891a063561eebffbba3a92f223bfb"
+        },
+        "journals/journal-270-9-ad85f7f47a3a8fe3e65d66fa031c53c3cce4393d9a65c5d0c4812b07263a040d.json": {
+          "bytes": 11298,
+          "sha256": "5c2a95de3c28bb7a8660aa53b98dbe33942bc737dcf5a8941f1386a571101efd"
+        },
+        "journals/journal-30-1-69a5e2700cfa2087b70062cd13c72cc39df9345ea3651921ae01642ea0e18dde.json": {
+          "bytes": 8233,
+          "sha256": "5c01184ef3c26c26a2ce43441328178aa4a4915cea2c2a242d14a6c92ae19855"
+        },
+        "journals/journal-300-10-975b8e21b47662618916eaf606258d19c1f8539e6c0e7c4c802b56702a4366bc.json": {
+          "bytes": 10892,
+          "sha256": "73b5ecc07307ae074001184c7b197d58abff37135b335ceba9be9714547f64f6"
+        },
+        "journals/journal-330-11-3c3a033151b2f2fa196e993c6854a4565dc43d0d37f1ddcd0fbb83d06475635f.json": {
+          "bytes": 11032,
+          "sha256": "512d4a23d5ddd5aa88089f9f07f19510a71007338caac04f80139e40977f0ae7"
+        },
+        "journals/journal-360-12-269bea5577dd98eff28475f37e5f5f70efec83fd1233b34bf265887cfb9037f6.json": {
+          "bytes": 11380,
+          "sha256": "64c9607608cd66a2eb03f8b20cf468545e9965e5e8ca2d5b21c2f5594f38a577"
+        },
+        "journals/journal-60-2-20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89.json": {
+          "bytes": 13088,
+          "sha256": "18128d5dd8fe51a8a2771a7b6209daca4da93d1fb1dad0fe42f3cb5db52b5000"
+        },
+        "journals/journal-90-3-e292f51d89b8500549845bf3f00611c383df5a1219f9c7131a2007f97ecb877e.json": {
+          "bytes": 13006,
+          "sha256": "11784650c91f337525755b03d89849c1f031c8562185466a0d793b4e2faa287e"
+        },
+        "manifest.json": {
+          "bytes": 1093,
+          "sha256": "e81a38dd097736de75901abef73ae366de85df4a9375331b77ad99c9161e913e"
+        },
+        "segments/segment-00000001.json": {
+          "bytes": 129926,
+          "sha256": "17dcf5b695335350d67fedf528bd7eb77dd7729470f007b957aad2ef24ec2577"
+        },
+        "segments/segment-00000002.json": {
+          "bytes": 71004,
+          "sha256": "4bde88afebd1b95781e97e7652569c344744a5b81c6164a4bb3195e6122c272a"
+        },
+        "segments/segment-00000003.json": {
+          "bytes": 70012,
+          "sha256": "8018274088524deb0211f8635936b662dcbe5c4e2169d75d8779f707b37344ee"
+        },
+        "segments/segment-00000004.json": {
+          "bytes": 66275,
+          "sha256": "201cb26856dd40f59421dca8456ebace9f84be06570221d3c50595a2840f8dbf"
+        },
+        "segments/segment-00000005.json": {
+          "bytes": 173941,
+          "sha256": "931e9469c83e4d124da057e7032cc95ea8af402e41ba80aa2ddd456b53de3525"
+        },
+        "segments/segment-00000006.json": {
+          "bytes": 74886,
+          "sha256": "ae069fc7c3556b7f582cd2844297473a8fa0bfa048c889a6a3bce15f6384f565"
+        },
+        "segments/segment-00000007.json": {
+          "bytes": 84046,
+          "sha256": "d0e7fc4e13f26e6ec790a9a1437fc838155e35e6163e7ddab206a0d79e6d9c5c"
+        },
+        "segments/segment-00000008.json": {
+          "bytes": 79793,
+          "sha256": "6d4da80fcb498c15bfe5d45caf159a3c37c0ebd934def4b2e83b764461a0d407"
+        },
+        "segments/segment-00000009.json": {
+          "bytes": 69444,
+          "sha256": "a678f578ec3bc73ffbb5f4f3a771a99bea52565e7bc630a7c873e2e394c8c029"
+        },
+        "segments/segment-00000010.json": {
+          "bytes": 176618,
+          "sha256": "fd0482262ffaaa8d9f248b84c140fc101a74d904ffe02da92543150da5539959"
+        },
+        "segments/segment-00000011.json": {
+          "bytes": 77984,
+          "sha256": "bd6c38f85a9bd84138a49cc4b6facc9aa6cd4aa234905e41674ba8559eb99f78"
+        },
+        "segments/segment-00000012.json": {
+          "bytes": 85566,
+          "sha256": "1242b6a08391b1d4740b11306dec6f8280e8f04e76059c7270bb948d04aa5276"
+        },
+        "segments/segment-00000013.json": {
+          "bytes": 79714,
+          "sha256": "8eb478b1790b17bffc8910e507b8ba70a239f82b0fdd3823ec836804fd885577"
+        },
+        "segments/segment-00000014.json": {
+          "bytes": 68824,
+          "sha256": "66d5d67815d199ce42863f7a142adf97e468e9c2f322852aebed671fb2f9201c"
+        },
+        "segments/segment-00000015.json": {
+          "bytes": 173518,
+          "sha256": "3a9616d39b5de3a5a4b76a818aa02db93da95601f94821086fd436b01db4ff9b"
+        },
+        "segments/segment-00000016.json": {
+          "bytes": 75010,
+          "sha256": "611a82004db16ebcdbe76458048f0ef99c791b7958bfe0b1ec67c78b0de3c54f"
+        },
+        "segments/segment-00000017.json": {
+          "bytes": 82692,
+          "sha256": "658abffcf08f5c89bfc5fa8fb6cab8093cb6bb8a5bce1ffbaadc3999fedab231"
+        },
+        "segments/segment-00000018.json": {
+          "bytes": 77803,
+          "sha256": "ec16c3d753804c44201590d3641aed8a789ff3c63104c30635986265ad704585"
+        },
+        "segments/segment-00000019.json": {
+          "bytes": 68250,
+          "sha256": "9c118a5b9f3925a5055711d2e90a5d7a193ddc96e5e3454f3228c569e0da26a4"
+        },
+        "segments/segment-00000020.json": {
+          "bytes": 172967,
+          "sha256": "a156e2456ce47c364521da845933f5ac2ce0a93b3dda7982e5c85ea21f8eebe0"
+        },
+        "segments/segment-00000021.json": {
+          "bytes": 75194,
+          "sha256": "1077453c9aec3b278f86c9dc9688af3e9c44224f734ece28d667cab3403ec72f"
+        },
+        "segments/segment-00000022.json": {
+          "bytes": 82586,
+          "sha256": "2107cc14c25ad9978ce15ae770df608f03804c801c41690351d5069125079270"
+        },
+        "segments/segment-00000023.json": {
+          "bytes": 77550,
+          "sha256": "377eab8de0b878ceb60ef993191f73b788879f55af52deeb27366721dcb8504b"
+        },
+        "segments/segment-00000024.json": {
+          "bytes": 68110,
+          "sha256": "d77f0de1cce6313c34e5125314fb26b94ff13932ca9cc489c110f6c3c5c91a70"
+        },
+        "segments/segment-00000025.json": {
+          "bytes": 173844,
+          "sha256": "5a854df877d219ca4383747a44bfd31f6a8a8aeba059d6f89fbca1266cecdff7"
+        },
+        "segments/segment-00000026.json": {
+          "bytes": 74318,
+          "sha256": "a1916524f33aad3fcd28ba956c7b17ef2449b3641f3059f41a0c760f675f54b2"
+        },
+        "segments/segment-00000027.json": {
+          "bytes": 81497,
+          "sha256": "92c80b0b44d13abc64f2642f7d0feecd8154f796c962ef3716014c9f3176e355"
+        },
+        "segments/segment-00000028.json": {
+          "bytes": 76612,
+          "sha256": "cb1e52aae5b14ecac73181929d6ac0e27eed0f0c0d8a6ebc5229b08d6aa52e7d"
+        },
+        "segments/segment-00000029.json": {
+          "bytes": 67699,
+          "sha256": "c5d41dbc61b29d284563bdfb1722bb1e172ef885ea448d655c444ad6ed73ed07"
+        },
+        "segments/segment-00000030.json": {
+          "bytes": 172286,
+          "sha256": "12c4fd23c650ca64de021c499538c249de4c6e17fc211d9d3a5211a7815c4f28"
+        },
+        "segments/segment-00000031.json": {
+          "bytes": 74150,
+          "sha256": "5aed402c839fba5375fe190534d5ac913482395a894dd453d3509c8f10bcc711"
+        },
+        "segments/segment-00000032.json": {
+          "bytes": 81381,
+          "sha256": "432d186d84ad23fcc69c6211872a654b969dd68fac99c3eb49bfd6f6346df76e"
+        },
+        "segments/segment-00000033.json": {
+          "bytes": 76598,
+          "sha256": "ac46a98ec5f380cc6fcc37bc9cb2515520a5b1cfaa8c0113d66b4add9d6d9273"
+        },
+        "segments/segment-00000034.json": {
+          "bytes": 67846,
+          "sha256": "1fa24b90b392500458241d24faabe93f4bbfbe234ca7f7d13f8f6a796cb7e248"
+        },
+        "segments/segment-00000035.json": {
+          "bytes": 172750,
+          "sha256": "06804692460cb75a160fcb2be6396068860a0ae1d8ded8d7d44ec4a9332e702d"
+        },
+        "segments/segment-00000036.json": {
+          "bytes": 74318,
+          "sha256": "cebf01a6790aeddfcdad9c1b0898a1037bed19a651c9b13dbce0aa3760bd202f"
+        },
+        "segments/segment-00000037.json": {
+          "bytes": 81550,
+          "sha256": "392021ad43301b9bcea8b5a9fd9a1e61ed207f95f25488e3761ac09f7e6944e2"
+        },
+        "segments/segment-00000038.json": {
+          "bytes": 76716,
+          "sha256": "556112e3353e10f9dc80b950cb8ba5b17c9e4857c251d440b367c74c4571445a"
+        },
+        "segments/segment-00000039.json": {
+          "bytes": 67895,
+          "sha256": "6cdaf096aae7bebdf88cf9ec54b9199d766ad548858d9023855150bf3b32d165"
+        },
+        "segments/segment-00000040.json": {
+          "bytes": 172397,
+          "sha256": "3f16e63c2e7fcd0a1ff618866f2ebe03b3a5b6dd158a49764ac4b44de576e387"
+        },
+        "segments/segment-00000041.json": {
+          "bytes": 73960,
+          "sha256": "a8b30e17f33571bd4497d90b9e56c67a3d4abac5160f2c5de1f5fda5aa0f37c3"
+        },
+        "segments/segment-00000042.json": {
+          "bytes": 80778,
+          "sha256": "bbc8f23b633a8c3f0b0e929fccbcca67a4c99d3183ea299e16a48f053a73b329"
+        },
+        "segments/segment-00000043.json": {
+          "bytes": 75891,
+          "sha256": "835bed7e4ff8a175e530a88b2283afe5b03da970386bbba7f8e8f5e31ea9ba2c"
+        },
+        "segments/segment-00000044.json": {
+          "bytes": 67476,
+          "sha256": "04514ef18b6a3d7ff51cf9f15028d5a4b4bce6bd6e212a9bd2b86b6f1bf965f4"
+        },
+        "segments/segment-00000045.json": {
+          "bytes": 173185,
+          "sha256": "1201642e2914918b3ae393b858b55d5e6133d78f9f0efc52f7a673ca1f320835"
+        },
+        "segments/segment-00000046.json": {
+          "bytes": 73463,
+          "sha256": "aa1ecf598eca53a18926f18c795d714546a78025fd609a1b3f77b8a04ee174ee"
+        },
+        "segments/segment-00000047.json": {
+          "bytes": 80154,
+          "sha256": "b89988b0aec51b6d59eceb7109df889ffc0682960c0623b8a6fb6eaeeb439c29"
+        },
+        "segments/segment-00000048.json": {
+          "bytes": 75449,
+          "sha256": "6015c4680d326082fca1e46d60912382b7837101266af174df9cf81792657759"
+        },
+        "segments/segment-00000049.json": {
+          "bytes": 67436,
+          "sha256": "9335ecf0e5d48a01ede1513d7f111a9ec9057d1f15f1476eaddd5c0e633254ad"
+        },
+        "segments/segment-00000050.json": {
+          "bytes": 171823,
+          "sha256": "327f52f2509a410e4b48f4ea29d5713daed7fd1254f48165458af9457b06beea"
+        },
+        "segments/segment-00000051.json": {
+          "bytes": 73267,
+          "sha256": "c874883d298b8a4c77d8c6c5190b762ce9cd43c7695f46fabd3198b5f0320416"
+        },
+        "segments/segment-00000052.json": {
+          "bytes": 80115,
+          "sha256": "0ad3c17f7471ccd24f88d395fe76de21a0664a65eae0f46c2cb072d8ea9a35a0"
+        },
+        "segments/segment-00000053.json": {
+          "bytes": 75543,
+          "sha256": "0ae5d5acb5774135d1fa4846dd20076b63c49864135b34e6c8edd3f31ce7fa7d"
+        },
+        "segments/segment-00000054.json": {
+          "bytes": 67515,
+          "sha256": "ba7dbae41a1ee35b0532a8b1271dd2c1be959760452283e60793b74874804519"
+        },
+        "segments/segment-00000055.json": {
+          "bytes": 172961,
+          "sha256": "3ab39e0a005b495ac5002e0ca3fedd35e765fdfe9420559bfd7fb6a5bb2b017f"
+        },
+        "segments/segment-00000056.json": {
+          "bytes": 73477,
+          "sha256": "455170a155dba8889768b7b97d2b81785a42ab317063a19ad22ddccd74bba305"
+        },
+        "segments/segment-00000057.json": {
+          "bytes": 80821,
+          "sha256": "1c802a11363cebe7a583689195b3d833139fcab1a8530d7f8845e707bb9a2d2b"
+        },
+        "segments/segment-00000058.json": {
+          "bytes": 76420,
+          "sha256": "a245683d012f7099b2273a4fe84e20c3f2b61a6fd834c2ccc994edd7fc724ec3"
+        },
+        "segments/segment-00000059.json": {
+          "bytes": 67977,
+          "sha256": "3c5eccd333eca942e8468cc37331e8e1e39b0dd5b645dfc02728638002f64597"
+        }
+      },
+      "newVerifierInvocations": 0
+    },
+    {
+      "name": "recovered-export-01",
+      "bundle": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-v8-writing-episode01/exports/sustained-1792007792954-1-2-424",
+      "passingReceipt": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/recovered-export-01/receipt.json",
+        "bytes": 220333,
+        "sha256": "8946ceec4d7ab8160c3b6a818d2a35d45edb19ec16fabdb57ac315ee87470592"
+      },
+      "fileCount": 73,
+      "logicalBytes": 5730848,
+      "matchesPassingInventory": true,
+      "inventory": {
+        "checkpoints/fbe933dca29acff75678f2af392b1d4a0e6f0a87afd09268367aee4c994896bc.json": {
+          "bytes": 30713,
+          "sha256": "fbe933dca29acff75678f2af392b1d4a0e6f0a87afd09268367aee4c994896bc"
+        },
+        "journals/journal-120-4-949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2.json": {
+          "bytes": 12095,
+          "sha256": "c5883a5c4747c09fd43e8491b6cc13d1446eae2e6d0e1565914744022b61eccb"
+        },
+        "journals/journal-150-5-984908121a4b9f2b8ecec796b9679a6895e5323f9e08271029cce9302a43655c.json": {
+          "bytes": 12026,
+          "sha256": "20660ce77a4316e7094dc8d1223d37ea8914f0a490d2d5b1d2cae572b5ab3c1a"
+        },
+        "journals/journal-180-6-e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03.json": {
+          "bytes": 11586,
+          "sha256": "3424801eba6b947ed0171aedd438c3efb8c29926c13360147623dff15f68f7fd"
+        },
+        "journals/journal-210-7-b660adc062ca93645b3bda7819ea5ae11e49f43dcfdd22b78b27461e270316c6.json": {
+          "bytes": 11547,
+          "sha256": "e9aeb6ce9470ce306a830c1684c86ce275b38874d6e5a989e2538a2dce7445d3"
+        },
+        "journals/journal-240-8-fea8c58fe1f52802798f95428739dc815b9a57066fe468d2ef009412d1518507.json": {
+          "bytes": 11585,
+          "sha256": "cd4a03f31b716de671770b3d4ef5680840d891a063561eebffbba3a92f223bfb"
+        },
+        "journals/journal-270-9-ad85f7f47a3a8fe3e65d66fa031c53c3cce4393d9a65c5d0c4812b07263a040d.json": {
+          "bytes": 11298,
+          "sha256": "5c2a95de3c28bb7a8660aa53b98dbe33942bc737dcf5a8941f1386a571101efd"
+        },
+        "journals/journal-30-1-69a5e2700cfa2087b70062cd13c72cc39df9345ea3651921ae01642ea0e18dde.json": {
+          "bytes": 8233,
+          "sha256": "5c01184ef3c26c26a2ce43441328178aa4a4915cea2c2a242d14a6c92ae19855"
+        },
+        "journals/journal-300-10-975b8e21b47662618916eaf606258d19c1f8539e6c0e7c4c802b56702a4366bc.json": {
+          "bytes": 10892,
+          "sha256": "73b5ecc07307ae074001184c7b197d58abff37135b335ceba9be9714547f64f6"
+        },
+        "journals/journal-330-11-3c3a033151b2f2fa196e993c6854a4565dc43d0d37f1ddcd0fbb83d06475635f.json": {
+          "bytes": 11032,
+          "sha256": "512d4a23d5ddd5aa88089f9f07f19510a71007338caac04f80139e40977f0ae7"
+        },
+        "journals/journal-360-12-269bea5577dd98eff28475f37e5f5f70efec83fd1233b34bf265887cfb9037f6.json": {
+          "bytes": 11380,
+          "sha256": "64c9607608cd66a2eb03f8b20cf468545e9965e5e8ca2d5b21c2f5594f38a577"
+        },
+        "journals/journal-60-2-20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89.json": {
+          "bytes": 13088,
+          "sha256": "18128d5dd8fe51a8a2771a7b6209daca4da93d1fb1dad0fe42f3cb5db52b5000"
+        },
+        "journals/journal-90-3-e292f51d89b8500549845bf3f00611c383df5a1219f9c7131a2007f97ecb877e.json": {
+          "bytes": 13006,
+          "sha256": "11784650c91f337525755b03d89849c1f031c8562185466a0d793b4e2faa287e"
+        },
+        "manifest.json": {
+          "bytes": 1086,
+          "sha256": "d34387bfbeee3f1686dfe67f753caf026cba44a20884efbe63d7b876f4442635"
+        },
+        "segments/segment-00000001.json": {
+          "bytes": 129926,
+          "sha256": "17dcf5b695335350d67fedf528bd7eb77dd7729470f007b957aad2ef24ec2577"
+        },
+        "segments/segment-00000002.json": {
+          "bytes": 71004,
+          "sha256": "4bde88afebd1b95781e97e7652569c344744a5b81c6164a4bb3195e6122c272a"
+        },
+        "segments/segment-00000003.json": {
+          "bytes": 70012,
+          "sha256": "8018274088524deb0211f8635936b662dcbe5c4e2169d75d8779f707b37344ee"
+        },
+        "segments/segment-00000004.json": {
+          "bytes": 66275,
+          "sha256": "201cb26856dd40f59421dca8456ebace9f84be06570221d3c50595a2840f8dbf"
+        },
+        "segments/segment-00000005.json": {
+          "bytes": 173941,
+          "sha256": "931e9469c83e4d124da057e7032cc95ea8af402e41ba80aa2ddd456b53de3525"
+        },
+        "segments/segment-00000006.json": {
+          "bytes": 74886,
+          "sha256": "ae069fc7c3556b7f582cd2844297473a8fa0bfa048c889a6a3bce15f6384f565"
+        },
+        "segments/segment-00000007.json": {
+          "bytes": 84046,
+          "sha256": "d0e7fc4e13f26e6ec790a9a1437fc838155e35e6163e7ddab206a0d79e6d9c5c"
+        },
+        "segments/segment-00000008.json": {
+          "bytes": 79793,
+          "sha256": "6d4da80fcb498c15bfe5d45caf159a3c37c0ebd934def4b2e83b764461a0d407"
+        },
+        "segments/segment-00000009.json": {
+          "bytes": 69444,
+          "sha256": "a678f578ec3bc73ffbb5f4f3a771a99bea52565e7bc630a7c873e2e394c8c029"
+        },
+        "segments/segment-00000010.json": {
+          "bytes": 176618,
+          "sha256": "fd0482262ffaaa8d9f248b84c140fc101a74d904ffe02da92543150da5539959"
+        },
+        "segments/segment-00000011.json": {
+          "bytes": 77984,
+          "sha256": "bd6c38f85a9bd84138a49cc4b6facc9aa6cd4aa234905e41674ba8559eb99f78"
+        },
+        "segments/segment-00000012.json": {
+          "bytes": 85566,
+          "sha256": "1242b6a08391b1d4740b11306dec6f8280e8f04e76059c7270bb948d04aa5276"
+        },
+        "segments/segment-00000013.json": {
+          "bytes": 79714,
+          "sha256": "8eb478b1790b17bffc8910e507b8ba70a239f82b0fdd3823ec836804fd885577"
+        },
+        "segments/segment-00000014.json": {
+          "bytes": 68824,
+          "sha256": "66d5d67815d199ce42863f7a142adf97e468e9c2f322852aebed671fb2f9201c"
+        },
+        "segments/segment-00000015.json": {
+          "bytes": 173518,
+          "sha256": "3a9616d39b5de3a5a4b76a818aa02db93da95601f94821086fd436b01db4ff9b"
+        },
+        "segments/segment-00000016.json": {
+          "bytes": 75010,
+          "sha256": "611a82004db16ebcdbe76458048f0ef99c791b7958bfe0b1ec67c78b0de3c54f"
+        },
+        "segments/segment-00000017.json": {
+          "bytes": 82692,
+          "sha256": "658abffcf08f5c89bfc5fa8fb6cab8093cb6bb8a5bce1ffbaadc3999fedab231"
+        },
+        "segments/segment-00000018.json": {
+          "bytes": 77803,
+          "sha256": "ec16c3d753804c44201590d3641aed8a789ff3c63104c30635986265ad704585"
+        },
+        "segments/segment-00000019.json": {
+          "bytes": 68250,
+          "sha256": "9c118a5b9f3925a5055711d2e90a5d7a193ddc96e5e3454f3228c569e0da26a4"
+        },
+        "segments/segment-00000020.json": {
+          "bytes": 172967,
+          "sha256": "a156e2456ce47c364521da845933f5ac2ce0a93b3dda7982e5c85ea21f8eebe0"
+        },
+        "segments/segment-00000021.json": {
+          "bytes": 75194,
+          "sha256": "1077453c9aec3b278f86c9dc9688af3e9c44224f734ece28d667cab3403ec72f"
+        },
+        "segments/segment-00000022.json": {
+          "bytes": 82586,
+          "sha256": "2107cc14c25ad9978ce15ae770df608f03804c801c41690351d5069125079270"
+        },
+        "segments/segment-00000023.json": {
+          "bytes": 77550,
+          "sha256": "377eab8de0b878ceb60ef993191f73b788879f55af52deeb27366721dcb8504b"
+        },
+        "segments/segment-00000024.json": {
+          "bytes": 68110,
+          "sha256": "d77f0de1cce6313c34e5125314fb26b94ff13932ca9cc489c110f6c3c5c91a70"
+        },
+        "segments/segment-00000025.json": {
+          "bytes": 173844,
+          "sha256": "5a854df877d219ca4383747a44bfd31f6a8a8aeba059d6f89fbca1266cecdff7"
+        },
+        "segments/segment-00000026.json": {
+          "bytes": 74318,
+          "sha256": "a1916524f33aad3fcd28ba956c7b17ef2449b3641f3059f41a0c760f675f54b2"
+        },
+        "segments/segment-00000027.json": {
+          "bytes": 81497,
+          "sha256": "92c80b0b44d13abc64f2642f7d0feecd8154f796c962ef3716014c9f3176e355"
+        },
+        "segments/segment-00000028.json": {
+          "bytes": 76612,
+          "sha256": "cb1e52aae5b14ecac73181929d6ac0e27eed0f0c0d8a6ebc5229b08d6aa52e7d"
+        },
+        "segments/segment-00000029.json": {
+          "bytes": 67699,
+          "sha256": "c5d41dbc61b29d284563bdfb1722bb1e172ef885ea448d655c444ad6ed73ed07"
+        },
+        "segments/segment-00000030.json": {
+          "bytes": 172286,
+          "sha256": "12c4fd23c650ca64de021c499538c249de4c6e17fc211d9d3a5211a7815c4f28"
+        },
+        "segments/segment-00000031.json": {
+          "bytes": 74150,
+          "sha256": "5aed402c839fba5375fe190534d5ac913482395a894dd453d3509c8f10bcc711"
+        },
+        "segments/segment-00000032.json": {
+          "bytes": 81381,
+          "sha256": "432d186d84ad23fcc69c6211872a654b969dd68fac99c3eb49bfd6f6346df76e"
+        },
+        "segments/segment-00000033.json": {
+          "bytes": 76598,
+          "sha256": "ac46a98ec5f380cc6fcc37bc9cb2515520a5b1cfaa8c0113d66b4add9d6d9273"
+        },
+        "segments/segment-00000034.json": {
+          "bytes": 67846,
+          "sha256": "1fa24b90b392500458241d24faabe93f4bbfbe234ca7f7d13f8f6a796cb7e248"
+        },
+        "segments/segment-00000035.json": {
+          "bytes": 172750,
+          "sha256": "06804692460cb75a160fcb2be6396068860a0ae1d8ded8d7d44ec4a9332e702d"
+        },
+        "segments/segment-00000036.json": {
+          "bytes": 74318,
+          "sha256": "cebf01a6790aeddfcdad9c1b0898a1037bed19a651c9b13dbce0aa3760bd202f"
+        },
+        "segments/segment-00000037.json": {
+          "bytes": 81550,
+          "sha256": "392021ad43301b9bcea8b5a9fd9a1e61ed207f95f25488e3761ac09f7e6944e2"
+        },
+        "segments/segment-00000038.json": {
+          "bytes": 76716,
+          "sha256": "556112e3353e10f9dc80b950cb8ba5b17c9e4857c251d440b367c74c4571445a"
+        },
+        "segments/segment-00000039.json": {
+          "bytes": 67895,
+          "sha256": "6cdaf096aae7bebdf88cf9ec54b9199d766ad548858d9023855150bf3b32d165"
+        },
+        "segments/segment-00000040.json": {
+          "bytes": 172397,
+          "sha256": "3f16e63c2e7fcd0a1ff618866f2ebe03b3a5b6dd158a49764ac4b44de576e387"
+        },
+        "segments/segment-00000041.json": {
+          "bytes": 73960,
+          "sha256": "a8b30e17f33571bd4497d90b9e56c67a3d4abac5160f2c5de1f5fda5aa0f37c3"
+        },
+        "segments/segment-00000042.json": {
+          "bytes": 80778,
+          "sha256": "bbc8f23b633a8c3f0b0e929fccbcca67a4c99d3183ea299e16a48f053a73b329"
+        },
+        "segments/segment-00000043.json": {
+          "bytes": 75891,
+          "sha256": "835bed7e4ff8a175e530a88b2283afe5b03da970386bbba7f8e8f5e31ea9ba2c"
+        },
+        "segments/segment-00000044.json": {
+          "bytes": 67476,
+          "sha256": "04514ef18b6a3d7ff51cf9f15028d5a4b4bce6bd6e212a9bd2b86b6f1bf965f4"
+        },
+        "segments/segment-00000045.json": {
+          "bytes": 173185,
+          "sha256": "1201642e2914918b3ae393b858b55d5e6133d78f9f0efc52f7a673ca1f320835"
+        },
+        "segments/segment-00000046.json": {
+          "bytes": 73463,
+          "sha256": "aa1ecf598eca53a18926f18c795d714546a78025fd609a1b3f77b8a04ee174ee"
+        },
+        "segments/segment-00000047.json": {
+          "bytes": 80154,
+          "sha256": "b89988b0aec51b6d59eceb7109df889ffc0682960c0623b8a6fb6eaeeb439c29"
+        },
+        "segments/segment-00000048.json": {
+          "bytes": 75449,
+          "sha256": "6015c4680d326082fca1e46d60912382b7837101266af174df9cf81792657759"
+        },
+        "segments/segment-00000049.json": {
+          "bytes": 67436,
+          "sha256": "9335ecf0e5d48a01ede1513d7f111a9ec9057d1f15f1476eaddd5c0e633254ad"
+        },
+        "segments/segment-00000050.json": {
+          "bytes": 171823,
+          "sha256": "327f52f2509a410e4b48f4ea29d5713daed7fd1254f48165458af9457b06beea"
+        },
+        "segments/segment-00000051.json": {
+          "bytes": 73267,
+          "sha256": "c874883d298b8a4c77d8c6c5190b762ce9cd43c7695f46fabd3198b5f0320416"
+        },
+        "segments/segment-00000052.json": {
+          "bytes": 80115,
+          "sha256": "0ad3c17f7471ccd24f88d395fe76de21a0664a65eae0f46c2cb072d8ea9a35a0"
+        },
+        "segments/segment-00000053.json": {
+          "bytes": 75543,
+          "sha256": "0ae5d5acb5774135d1fa4846dd20076b63c49864135b34e6c8edd3f31ce7fa7d"
+        },
+        "segments/segment-00000054.json": {
+          "bytes": 67515,
+          "sha256": "ba7dbae41a1ee35b0532a8b1271dd2c1be959760452283e60793b74874804519"
+        },
+        "segments/segment-00000055.json": {
+          "bytes": 172961,
+          "sha256": "3ab39e0a005b495ac5002e0ca3fedd35e765fdfe9420559bfd7fb6a5bb2b017f"
+        },
+        "segments/segment-00000056.json": {
+          "bytes": 73477,
+          "sha256": "455170a155dba8889768b7b97d2b81785a42ab317063a19ad22ddccd74bba305"
+        },
+        "segments/segment-00000057.json": {
+          "bytes": 80821,
+          "sha256": "1c802a11363cebe7a583689195b3d833139fcab1a8530d7f8845e707bb9a2d2b"
+        },
+        "segments/segment-00000058.json": {
+          "bytes": 76420,
+          "sha256": "a245683d012f7099b2273a4fe84e20c3f2b61a6fd834c2ccc994edd7fc724ec3"
+        },
+        "segments/segment-00000059.json": {
+          "bytes": 67977,
+          "sha256": "3c5eccd333eca942e8468cc37331e8e1e39b0dd5b645dfc02728638002f64597"
+        }
+      },
+      "newVerifierInvocations": 0
+    }
+  ],
+  "rootRoadmapSeparate": {
+    "current": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/TAURI-ROADMAP.md",
+      "bytes": 207063,
+      "sha256": "bd3bc6584c3d9bb23a77222864308819be3c9aeb6a6c57dc6d8fbb501a08e606"
+    },
+    "priorQualifiedIdentity": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/TAURI-ROADMAP.md",
+      "bytes": 207063,
+      "sha256": "bd3bc6584c3d9bb23a77222864308819be3c9aeb6a6c57dc6d8fbb501a08e606"
+    },
+    "unchangedSincePriorCloseout": true,
+    "inProductBuildInventory": false,
+    "scope": "Separate documentation observation. Current tranche narrative updates may occur later and do not qualify a product-source change."
+  },
+  "newVerifierInvocations": 0,
+  "runtimeCommands": 0,
+  "limits": [
+    "This receipt checks exact files at the recorded interval, not subsequent documentation edits. Root final closeout owns later reports/link audits.",
+    "No new numerical replay or native recovery was performed here; each export is compared with its already-passing receipt."
+  ]
+}

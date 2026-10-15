@@ -55,7 +55,7 @@ contribute to change; pre/post observations do not isolate the effect of words.
 
 ## Open-ended writing and prompt history
 
-New sessions use `reservoir-journal-v5`: an ongoing journal invitation with no
+New sessions use `reservoir-journal-v8`: an ongoing journal invitation with no
 human question to answer. The model chooses its topic and form, may continue or
 revise prior writing, and need not name any metric. Current reservoir readings and
 prior writing are context, not a checklist. Questions, expressive imagery and
@@ -66,7 +66,30 @@ V5 places a compact optional readout before the full previous journal, then ends
 with an invitation to write in whatever direction seems worth pursuing. It includes
 RMS, separate sensory fill and coordinate distance; full vectors and all eight
 measurement rows remain in Evidence. This is a versioned context refinement, not
-evidence of better prose. See the [v5 contract](../../shared/reservoir-scope/continuing-writing.md).
+evidence of better prose. See the [versioned writing contract](../../shared/reservoir-scope/continuing-writing.md).
+
+V6 adds a brief action-scope clarification to the retained v5 context. Writing
+supplies numerical feedback and eligible prose memory; describing a control change
+or an experiment does not execute it or fetch a new reading during the reply.
+The invitation remains open, and authored claims never become a factuality gate
+for durable saving or feedback. Existing v1–v5 sessions retain their exact wording.
+
+V7 places a short WRITING BOUNDARY after the previous journal and before the open
+invitation. It states the held observation step and the actual previous entry's
+first input step, or that no entry has yet been applied. There are no tools or
+control commands in that turn. Describing a control change remains writing; saved
+text returns through the existing automatic encoding. This version changes context
+placement and clarity, not the available mechanism or a prose acceptance rule.
+Historical v1–v6 sessions keep their exact prompts. A separate real-model reading
+is required before claiming an effect on invented actions or writing quality.
+
+V8 keeps that invitation, prior-text memory and writing boundary. It replaces only
+the compact readout’s explanatory paragraph: RMS describes recurrent coordinate
+magnitude, sensory fill is distinct from encoded text input, and coordinate distance
+compares endpoints rather than path length, speed or the effect of writing. Comparing
+interval distances needs a recorded value for each. No new measurements, mandatory
+reporting format or prose-quality save gate are added; v1–v7 replay unchanged.
+Mechanical qualification and any later real-model reading remain separate.
 
 This supports the user's aim of leaving room for emergent behavior. It does not
 establish that emergence occurred, or replicate Minime or Astrid's richer systems.
@@ -82,7 +105,7 @@ the structured candidate prepared during the 0.13 tranche; it was superseded bef
 real-model run. Existing sessions keep their version when restored; new defaults
 never rewrite historical journals or prompts. Unknown versions are rejected.
 
-V3, v4 and v5 separate JSON-quoted prior prose from current numerical readings. The prior
+V3–v6 separate JSON-quoted prior prose from current numerical readings. The prior
 text remains fully recoverable, including newlines and Unicode. A repeated claim in
 memory is not a measurement. When an entry makes a factual claim, its source and
 precision can be reviewed; creative language, an unfinished thought, or omission of
@@ -94,7 +117,7 @@ closed Evidence section.
 
 ## Recorded measurement reference
 
-V4 and v5 use `reservoir-and-sensory-v2`. It retains the same current measurements and a
+V4–v6 use `reservoir-and-sensory-v2`. It retains the same current measurements and a
 fixed-size summary of the previous reached numerical observation: its step and
 simulated time, recurrent RMS/L2, largest sensory covariance eigenvalue, reduced
 sensory fill, top-eight head/shoulder/tail shares and normalized entropy. It does not

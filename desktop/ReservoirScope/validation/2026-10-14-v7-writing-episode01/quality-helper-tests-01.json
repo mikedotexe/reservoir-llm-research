@@ -1,0 +1,48 @@
+{
+  "schema": "reservoir-episode-quality-helper-tests-v1",
+  "startedAtUtc": "2026-10-14T17:56:33.398887+00:00",
+  "endedAtUtc": "2026-10-14T17:56:35.252904+00:00",
+  "elapsedSeconds": 1.8538267088588327,
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "test_journal_quality.py"
+  ],
+  "exitCode": 0,
+  "status": "passed",
+  "sourceBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode01/journal_quality.py",
+      "bytes": 29310,
+      "sha256": "4b04682e7b2396b33927473e1ee343c218f5cc8a6b99a54fc7323990ebdfe93f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode01/test_journal_quality.py",
+      "bytes": 41314,
+      "sha256": "3c85d06e464fe454d77b33acca9a5053aa5a660f44fe3da1f9e8dbec1cd58da2"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode01/journal_quality.py",
+      "bytes": 29310,
+      "sha256": "4b04682e7b2396b33927473e1ee343c218f5cc8a6b99a54fc7323990ebdfe93f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode01/test_journal_quality.py",
+      "bytes": 41314,
+      "sha256": "3c85d06e464fe454d77b33acca9a5053aa5a660f44fe3da1f9e8dbec1cd58da2"
+    }
+  ],
+  "sourceUnchanged": true,
+  "log": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode01/quality-helper-tests-01.log",
+    "bytes": 8580,
+    "sha256": "b89413236207bf117c72ed2a5685b2b210ed97b6be5339a99b215d476902e306"
+  },
+  "scope": "Pure evaluation/file-only tests, including subprocess invocation of this offline Python checker on temporary synthetic material. No service, model, provider, native app, admission or runtime inspection.",
+  "testCount": 55
+}

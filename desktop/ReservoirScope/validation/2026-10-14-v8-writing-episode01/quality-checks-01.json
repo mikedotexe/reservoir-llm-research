@@ -1,0 +1,131 @@
+{
+  "schema": "reservoir-v8-quality-helper-qualification-v1",
+  "status": "passed",
+  "startedAtUtc": "2026-10-14T19:52:09.016845+00:00",
+  "scope": "Offline local quality helper unit/CLI tests only; no model/service/UI/runtime access or new prose assessment.",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-m",
+    "unittest",
+    "-v",
+    "test_journal_quality.py"
+  ],
+  "cwd": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "sourceBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/RUBRIC.md",
+      "bytes": 11798,
+      "sha256": "6b71e9bb7b03b3eef81716bf3098c1b0cadf9ba935f0a91dd640f6d877e33327"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/journal_quality.py",
+      "bytes": 29566,
+      "sha256": "51820c93a23c1fea9f947eb8b787274c17e2b81ebe3dfb9b400487990c524c69"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/test_journal_quality.py",
+      "bytes": 50430,
+      "sha256": "c1342d79c691b31441018767c8019c63018b3d41940e5822f0954f05c118edc4"
+    }
+  ],
+  "legacyBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/RUBRIC.md",
+      "bytes": 9546,
+      "sha256": "7cddedfb5b01bd11a1e45b47a65df77ba06cc36d3cec0c32aa1d4bcce48317eb"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/journal_quality.py",
+      "bytes": 29310,
+      "sha256": "4b04682e7b2396b33927473e1ee343c218f5cc8a6b99a54fc7323990ebdfe93f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/test_journal_quality.py",
+      "bytes": 41314,
+      "sha256": "3c85d06e464fe454d77b33acca9a5053aa5a660f44fe3da1f9e8dbec1cd58da2"
+    }
+  ],
+  "dependencyBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/synthetic-fixtures.json",
+      "bytes": 2056,
+      "sha256": "6d62f4b83a05ce6ca6abcec7a74356243dcfd5d1d63388a513390bc108b78780"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/real-model-export-01/quality-review-material.json",
+      "bytes": 68929,
+      "sha256": "92135509309b9bc56740473740ad55af8497e62253f08e16e4a91b8b9b367934"
+    }
+  ],
+  "exitCode": 0,
+  "sourceAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/RUBRIC.md",
+      "bytes": 11798,
+      "sha256": "6b71e9bb7b03b3eef81716bf3098c1b0cadf9ba935f0a91dd640f6d877e33327"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/journal_quality.py",
+      "bytes": 29566,
+      "sha256": "51820c93a23c1fea9f947eb8b787274c17e2b81ebe3dfb9b400487990c524c69"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/test_journal_quality.py",
+      "bytes": 50430,
+      "sha256": "c1342d79c691b31441018767c8019c63018b3d41940e5822f0954f05c118edc4"
+    }
+  ],
+  "legacyAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/RUBRIC.md",
+      "bytes": 9546,
+      "sha256": "7cddedfb5b01bd11a1e45b47a65df77ba06cc36d3cec0c32aa1d4bcce48317eb"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/journal_quality.py",
+      "bytes": 29310,
+      "sha256": "4b04682e7b2396b33927473e1ee343c218f5cc8a6b99a54fc7323990ebdfe93f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode03/test_journal_quality.py",
+      "bytes": 41314,
+      "sha256": "3c85d06e464fe454d77b33acca9a5053aa5a660f44fe3da1f9e8dbec1cd58da2"
+    }
+  ],
+  "dependencyAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-grounding-0.13.0/synthetic-fixtures.json",
+      "bytes": 2056,
+      "sha256": "6d62f4b83a05ce6ca6abcec7a74356243dcfd5d1d63388a513390bc108b78780"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-writing-room-0.14.0/real-model-export-01/quality-review-material.json",
+      "bytes": 68929,
+      "sha256": "92135509309b9bc56740473740ad55af8497e62253f08e16e4a91b8b9b367934"
+    }
+  ],
+  "sourceUnchanged": true,
+  "legacyUnchanged": true,
+  "dependenciesUnchanged": true,
+  "log": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/quality-checks-01.log",
+    "bytes": 10357,
+    "sha256": "fc7d8992068be80978d5a8fbe48d913c96653f3aafb5b83d7900b8650d3c3cf2"
+  },
+  "testCount": 66,
+  "changes": [
+    "Accept and bind reservoir-journal-v8 with no required metric, heading, length, topic or form.",
+    "Keep prior partial extraction rules and ruleset; no semantic or global quality verdict added.",
+    "Add prospective manual measurement-meaning distinctions to rubric and tests demonstrating limits of numeric matches.",
+    "Historical v1-v7 evaluate_journal outputs checked byte-equivalent as Python values on fixed synthetic input."
+  ],
+  "limitations": [
+    "Only saved journal rows enter automatic lexical extraction; received incomplete/unsaved text remains copied into mechanicalOutcome for mandatory full manual reading.",
+    "A numerical candidate match is not a claim-meaning verdict. Metaphor, continuity and variety require full reading.",
+    "Known historical fixture use is regression coverage, not an unseen control or this episode output."
+  ],
+  "finishedAtUtc": "2026-10-14T19:52:10.074043+00:00"
+}

@@ -1,0 +1,17 @@
+{
+  "schema": "reservoir-v8-post-output-audit-correction-v1",
+  "capturedAtUtc": "2026-10-14T20:10:53.318258+00:00",
+  "status": "first_invocation_failed_before_output",
+  "command": [
+    "python3",
+    "independent_reading_01.py"
+  ],
+  "exitCode": 1,
+  "scriptBefore": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/independent_reading_01.py",
+    "bytes": 15027,
+    "sha256": "9f3814ce448338fe526b1a25e887c61a89fbbd4848ab98901222b80cdbbc1ec4"
+  },
+  "failure": "AssertionError: expected a standalone JSON-string line when actual v5\u2013v8 memory line begins Full previous text as one JSON string: .",
+  "correction": "Parse the exact retained prefix before JSON decoding; no source evidence, frozen checker or criteria changes. Original inputs and independent-reading-01.json were not written by the failed invocation."
+}

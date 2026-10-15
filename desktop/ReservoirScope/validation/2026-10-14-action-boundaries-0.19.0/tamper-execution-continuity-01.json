@@ -1,0 +1,68 @@
+{
+  "checkedAtUtc": "2026-10-14T17:09:58.022068+00:00",
+  "status": "passed",
+  "modelsContacted": false,
+  "sourceUnchanged": true,
+  "sourcesBefore": [
+    {
+      "path": "validation/2026-10-14-action-boundaries-0.19.0/check_reanchored_tamper.py",
+      "bytes": 12808,
+      "sha256": "94efebd0af946005e2cf18158b96ae9c0a875f5db220582c00bb8690a5955b2c"
+    },
+    {
+      "path": "validation/2026-10-14-action-boundaries-0.19.0/test_reanchored_tamper.py",
+      "bytes": 10001,
+      "sha256": "4a5fb33374155ae37363e855fb299c10aa6d8406a17737f551c93fb91d008f6c"
+    },
+    {
+      "path": "validation/2026-10-14-action-boundaries-0.19.0/check_fixture_export.py",
+      "bytes": 30541,
+      "sha256": "87a5a461e9ecbf6e1a229d1f1f586b54933cd3a9877e24803d8fc0ea21772e0b"
+    },
+    {
+      "path": "validation/2026-10-14-action-boundaries-0.19.0/test_check_fixture_export.py",
+      "bytes": 13854,
+      "sha256": "030c5a599048d86adeae087f8f79f8a28fe60f8ea523395d4d253576af8e9b38"
+    }
+  ],
+  "sourcesAfter": [
+    {
+      "path": "validation/2026-10-14-action-boundaries-0.19.0/check_reanchored_tamper.py",
+      "bytes": 12808,
+      "sha256": "94efebd0af946005e2cf18158b96ae9c0a875f5db220582c00bb8690a5955b2c"
+    },
+    {
+      "path": "validation/2026-10-14-action-boundaries-0.19.0/test_reanchored_tamper.py",
+      "bytes": 10001,
+      "sha256": "4a5fb33374155ae37363e855fb299c10aa6d8406a17737f551c93fb91d008f6c"
+    },
+    {
+      "path": "validation/2026-10-14-action-boundaries-0.19.0/check_fixture_export.py",
+      "bytes": 30541,
+      "sha256": "87a5a461e9ecbf6e1a229d1f1f586b54933cd3a9877e24803d8fc0ea21772e0b"
+    },
+    {
+      "path": "validation/2026-10-14-action-boundaries-0.19.0/test_check_fixture_export.py",
+      "bytes": 13854,
+      "sha256": "030c5a599048d86adeae087f8f79f8a28fe60f8ea523395d4d253576af8e9b38"
+    }
+  ],
+  "originalPositiveEvidenceUnchanged": {
+    "path": "validation/2026-10-14-action-boundaries-0.19.0/original-export-evidence-01.json",
+    "bytes": 17271,
+    "sha256": "81cc5985ac3e0800e3eb727688dbfb6ea7cb339c61498c84d4e948eb5eadb356"
+  },
+  "positiveReportsExactlyEqual": true,
+  "originalFileCount": 28,
+  "originalUnchanged": true,
+  "executableUnchanged": true,
+  "negativeCount": 6,
+  "allExpectedRejections": true,
+  "receiptCopy": {
+    "path": "validation/2026-10-14-action-boundaries-0.19.0/reanchored-tamper-01.json",
+    "bytes": 50647,
+    "sha256": "b4840453a164b6e79dfd07a303bd19cfaed06c645ae24275e2d41ba78908aa19"
+  },
+  "scratch": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.19-reanchored-tamper-01",
+  "scope": "Production CLI offline numerical/event replay only. Original, pin and helpers checked unchanged. Python modifies only saved-journal prompt bytes and outer byte anchors; core payload/checkpoint bytes unchanged. This does not establish provider execution, writing quality or durability under power loss."
+}

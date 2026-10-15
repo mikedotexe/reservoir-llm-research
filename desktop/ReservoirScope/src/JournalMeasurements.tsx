@@ -5,7 +5,7 @@ export default function JournalMeasurements({ value, observedStep, promptVersion
   const { reference, reason } = readMeasurementReference(value, observedStep);
   return <details className="my-reservoir-journal-measurements">
     <summary>Recorded measurements</summary>
-    {promptVersion === 'reservoir-journal-v5' && <p>This table shows retained measurements for your inspection. The v5 prompt supplies only current and prior recurrent RMS and separate sensory fill with their differences, plus state-coordinate L2 distance since the previous observation; it does not supply this full table.</p>}
+    {(promptVersion === 'reservoir-journal-v5' || promptVersion === 'reservoir-journal-v6' || promptVersion === 'reservoir-journal-v7' || promptVersion === 'reservoir-journal-v8') && <p>This table shows retained measurements for your inspection. The {promptVersion.replace('reservoir-journal-', '')} prompt supplies only current and prior recurrent RMS and separate sensory fill with their differences, plus state-coordinate L2 distance since the previous observation; it does not supply this full table.</p>}
     {reference ? <>
       <p>Observed at this entry’s writing step {reference.currentStep}. These are retained numerical readings, separate from the prose and the current live state.</p>
       {!reference.comparisonAvailable && <p>{reference.previousStep === null

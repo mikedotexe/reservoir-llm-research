@@ -1,0 +1,62 @@
+{
+  "scope": "Focused frontend journal reading/navigation/version checks and TypeScript; no package, UI, model or provider execution",
+  "startedAt": "2026-10-14T18:59:40.387676+00:00",
+  "sourcesBefore": {
+    "src/MyReservoirJournals.tsx": "672b126ff148a74dd9017286dfdb713e61003ccc4c186a029f280214b716f92e",
+    "src/JournalMeasurements.tsx": "cec864d9368f5348df5ae838e9459b16b186d8526c73bb5a86e4cbe2e1ccb91b",
+    "src/myReservoirController.ts": "b87c41c505451864b703f47761168017a7e82ccad89c597132e892e5ff7f9b43",
+    "src/myReservoirReading.css": "5087cc91408fe29ac3d24189250dd7f9f8e691dbbe52758a8973101905c848f9",
+    "src/MyReservoirReading.test.tsx": "2e70b250db8442c534ee5a46e14c6968472d3452f51e4730894ba1701188fd4a",
+    "src/JournalMeasurements.test.tsx": "b6a82b3e54075235aeea7ca88d36b721a07fec2111a482b6008e21856aaee7ea",
+    "src/myReservoirNavigation.test.ts": "47ba41f9a46b522c1bbfcf3fb307c6db0b780599cdf4a2adad118a9f38a994c6",
+    "src/myReservoirController.test.ts": "9fba501c783e6734d4d7df95cf27a6666214e46a8d6d9ebffe0fbce20a5483f1",
+    "src/myReservoirTypes.ts": "cfdb76348cd72ab44755f03c802ad004b84d9c01a076faa7918b8283e399926f",
+    "src/myReservoirTestFixtures.ts": "ebe25e80deffdf25a0ab881f5b09652208881f9aeddc4bd550c51086280352c1"
+  },
+  "checks": [
+    {
+      "name": "tests",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "src/MyReservoirReading.test.tsx",
+        "src/JournalMeasurements.test.tsx",
+        "src/myReservoirNavigation.test.ts",
+        "src/myReservoirController.test.ts"
+      ],
+      "startedAt": "2026-10-14T18:59:40.389148+00:00",
+      "finishedAt": "2026-10-14T18:59:41.076165+00:00",
+      "exitCode": 0,
+      "log": "desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/frontend-focused-01-tests.log",
+      "logSha256": "1bbcf6ec3810e661d6c13feb561c778858828c92696297899007358c0aec87e2"
+    },
+    {
+      "name": "tsc",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "startedAt": "2026-10-14T18:59:41.076431+00:00",
+      "finishedAt": "2026-10-14T18:59:43.848880+00:00",
+      "exitCode": 0,
+      "log": "desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/frontend-focused-01-tsc.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "finishedAt": "2026-10-14T18:59:43.849082+00:00",
+  "sourcesAfter": {
+    "src/MyReservoirJournals.tsx": "672b126ff148a74dd9017286dfdb713e61003ccc4c186a029f280214b716f92e",
+    "src/JournalMeasurements.tsx": "cec864d9368f5348df5ae838e9459b16b186d8526c73bb5a86e4cbe2e1ccb91b",
+    "src/myReservoirController.ts": "b87c41c505451864b703f47761168017a7e82ccad89c597132e892e5ff7f9b43",
+    "src/myReservoirReading.css": "5087cc91408fe29ac3d24189250dd7f9f8e691dbbe52758a8973101905c848f9",
+    "src/MyReservoirReading.test.tsx": "2e70b250db8442c534ee5a46e14c6968472d3452f51e4730894ba1701188fd4a",
+    "src/JournalMeasurements.test.tsx": "b6a82b3e54075235aeea7ca88d36b721a07fec2111a482b6008e21856aaee7ea",
+    "src/myReservoirNavigation.test.ts": "47ba41f9a46b522c1bbfcf3fb307c6db0b780599cdf4a2adad118a9f38a994c6",
+    "src/myReservoirController.test.ts": "9fba501c783e6734d4d7df95cf27a6666214e46a8d6d9ebffe0fbce20a5483f1",
+    "src/myReservoirTypes.ts": "cfdb76348cd72ab44755f03c802ad004b84d9c01a076faa7918b8283e399926f",
+    "src/myReservoirTestFixtures.ts": "ebe25e80deffdf25a0ab881f5b09652208881f9aeddc4bd550c51086280352c1"
+  },
+  "sourcesUnchanged": true
+}

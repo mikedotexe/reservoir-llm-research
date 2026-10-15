@@ -1,0 +1,3024 @@
+{
+  "atUtc": "2026-10-15T14:43:21.114981+00:00",
+  "scope": "One passive process executable/RSS inventory for cleanup; no command arguments or env. Known Being/model executables omitted. No signals, model connections or memory admission. RSS is not reclaimable-memory estimate.",
+  "command": [
+    "/bin/ps",
+    "-U",
+    "501",
+    "-o",
+    "pid=,ppid=,rss=,lstart=,comm="
+  ],
+  "candidateInventory": [
+    {
+      "pid": 48507,
+      "parentPid": 7089,
+      "rssKiB": 1611904,
+      "start": "Mon Oct 12 14:10:33 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+    },
+    {
+      "pid": 96802,
+      "parentPid": 1,
+      "rssKiB": 1053072,
+      "start": "Tue Oct 13 18:02:54 2026",
+      "executable": "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 3895,
+      "parentPid": 1,
+      "rssKiB": 956256,
+      "start": "Wed Sep 30 14:29:07 2026",
+      "executable": "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 7510,
+      "parentPid": 7089,
+      "rssKiB": 556128,
+      "start": "Sun Oct 11 12:57:10 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+    },
+    {
+      "pid": 7089,
+      "parentPid": 1,
+      "rssKiB": 428768,
+      "start": "Sun Oct 11 12:57:04 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT"
+    },
+    {
+      "pid": 7512,
+      "parentPid": 7089,
+      "rssKiB": 385424,
+      "start": "Sun Oct 11 12:57:10 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
+    },
+    {
+      "pid": 3905,
+      "parentPid": 1,
+      "rssKiB": 377408,
+      "start": "Wed Sep 30 14:29:07 2026",
+      "executable": "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 89187,
+      "parentPid": 1,
+      "rssKiB": 279360,
+      "start": "Wed Oct 14 12:21:53 2026",
+      "executable": "/Users/v/other/worktrees/writing-recovery-context-20261014/bridge-stage-01/spectral-bridge-server"
+    },
+    {
+      "pid": 95879,
+      "parentPid": 1,
+      "rssKiB": 233232,
+      "start": "Wed Oct 14 21:37:52 2026",
+      "executable": "/System/Library/PrivateFrameworks/MediaAnalysis.framework/Versions/A/mediaanalysisd"
+    },
+    {
+      "pid": 3893,
+      "parentPid": 1,
+      "rssKiB": 224976,
+      "start": "Wed Sep 30 14:29:07 2026",
+      "executable": "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 1287,
+      "parentPid": 1,
+      "rssKiB": 201456,
+      "start": "Wed Sep 30 14:29:00 2026",
+      "executable": "/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder"
+    },
+    {
+      "pid": 7687,
+      "parentPid": 7089,
+      "rssKiB": 190320,
+      "start": "Sun Oct 11 12:57:14 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+    },
+    {
+      "pid": 60537,
+      "parentPid": 1,
+      "rssKiB": 144672,
+      "start": "Tue Oct 13 10:44:15 2026",
+      "executable": "/Applications/Claude.app/Contents/MacOS/Claude"
+    },
+    {
+      "pid": 78479,
+      "parentPid": 78403,
+      "rssKiB": 144160,
+      "start": "Thu Oct 15 07:36:51 2026",
+      "executable": "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 60603,
+      "parentPid": 60537,
+      "rssKiB": 137952,
+      "start": "Tue Oct 13 10:44:17 2026",
+      "executable": "/Applications/Claude.app/Contents/Frameworks/Claude Helper (Renderer).app/Contents/MacOS/Claude Helper (Renderer)"
+    },
+    {
+      "pid": 8458,
+      "parentPid": 7089,
+      "rssKiB": 133344,
+      "start": "Sun Oct 11 12:57:23 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+    },
+    {
+      "pid": 1271,
+      "parentPid": 1,
+      "rssKiB": 128688,
+      "start": "Wed Sep 30 14:29:00 2026",
+      "executable": "/Applications/iTerm.app/Contents/MacOS/iTerm2"
+    },
+    {
+      "pid": 79178,
+      "parentPid": 7512,
+      "rssKiB": 98048,
+      "start": "Thu Oct 15 07:41:33 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 7142,
+      "parentPid": 7089,
+      "rssKiB": 85488,
+      "start": "Sun Oct 11 12:57:07 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)"
+    },
+    {
+      "pid": 39035,
+      "parentPid": 7089,
+      "rssKiB": 85472,
+      "start": "Sun Oct 11 16:38:59 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+    },
+    {
+      "pid": 78768,
+      "parentPid": 7089,
+      "rssKiB": 82448,
+      "start": "Thu Oct 15 07:39:19 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+    },
+    {
+      "pid": 8970,
+      "parentPid": 7089,
+      "rssKiB": 78096,
+      "start": "Sun Oct 11 12:58:50 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+    },
+    {
+      "pid": 48639,
+      "parentPid": 7089,
+      "rssKiB": 75056,
+      "start": "Mon Oct 12 14:10:44 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+    },
+    {
+      "pid": 7144,
+      "parentPid": 7089,
+      "rssKiB": 71280,
+      "start": "Sun Oct 11 12:57:07 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)"
+    },
+    {
+      "pid": 3914,
+      "parentPid": 1,
+      "rssKiB": 69168,
+      "start": "Wed Sep 30 14:29:07 2026",
+      "executable": "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 3888,
+      "parentPid": 1,
+      "rssKiB": 63056,
+      "start": "Wed Sep 30 14:29:07 2026",
+      "executable": "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 1279,
+      "parentPid": 1,
+      "rssKiB": 61440,
+      "start": "Wed Sep 30 14:29:00 2026",
+      "executable": "/System/Applications/TextEdit.app/Contents/MacOS/TextEdit"
+    },
+    {
+      "pid": 79179,
+      "parentPid": 7512,
+      "rssKiB": 58240,
+      "start": "Thu Oct 15 07:41:33 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 1283,
+      "parentPid": 1,
+      "rssKiB": 57872,
+      "start": "Wed Sep 30 14:29:00 2026",
+      "executable": "/System/Applications/Preview.app/Contents/MacOS/Preview"
+    },
+    {
+      "pid": 7664,
+      "parentPid": 7089,
+      "rssKiB": 54912,
+      "start": "Sun Oct 11 12:57:13 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+    },
+    {
+      "pid": 73679,
+      "parentPid": 72315,
+      "rssKiB": 52448,
+      "start": "Wed Oct 14 19:39:16 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
+    },
+    {
+      "pid": 60561,
+      "parentPid": 60537,
+      "rssKiB": 46688,
+      "start": "Tue Oct 13 10:44:17 2026",
+      "executable": "/Applications/Claude.app/Contents/Frameworks/Claude Helper.app/Contents/MacOS/Claude Helper"
+    },
+    {
+      "pid": 71956,
+      "parentPid": 71599,
+      "rssKiB": 45856,
+      "start": "Wed Oct  7 13:05:13 2026",
+      "executable": "/Users/v/Library/Application Support/Reservoir Research/ProductChecks/2026-10-07-build21/Reservoir Scope.app/Contents/MacOS/ReservoirScope"
+    },
+    {
+      "pid": 80746,
+      "parentPid": 1,
+      "rssKiB": 45744,
+      "start": "Tue Oct  6 10:13:08 2026",
+      "executable": "/Users/v/.cache/reservoir-research/geometry-bookmarks-20261006-retained-view/current/Reservoir Scope.app/Contents/MacOS/ReservoirScope"
+    },
+    {
+      "pid": 79176,
+      "parentPid": 7512,
+      "rssKiB": 43296,
+      "start": "Thu Oct 15 07:41:33 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 73676,
+      "parentPid": 72315,
+      "rssKiB": 41264,
+      "start": "Wed Oct 14 19:39:16 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 5688,
+      "parentPid": 5339,
+      "rssKiB": 40448,
+      "start": "Wed Oct  7 07:26:08 2026",
+      "executable": "/Users/v/Library/Application Support/Reservoir Research/Acceptance/2026-10-06-reservoir-scope-015-isolated/Reservoir Scope.app/Contents/MacOS/ReservoirScope"
+    },
+    {
+      "pid": 66951,
+      "parentPid": 7089,
+      "rssKiB": 35984,
+      "start": "Wed Oct 14 18:59:41 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
+    },
+    {
+      "pid": 1093,
+      "parentPid": 1,
+      "rssKiB": 35968,
+      "start": "Wed Sep 30 14:28:48 2026",
+      "executable": "/System/Library/CoreServices/ControlCenter.app/Contents/MacOS/ControlCenter"
+    },
+    {
+      "pid": 80249,
+      "parentPid": 1,
+      "rssKiB": 35488,
+      "start": "Thu Oct 15 07:42:44 2026",
+      "executable": "/System/Library/CoreServices/RemoteManagement/SSMenuAgent.app/Contents/MacOS/SSMenuAgent"
+    },
+    {
+      "pid": 60593,
+      "parentPid": 60537,
+      "rssKiB": 34336,
+      "start": "Tue Oct 13 10:44:17 2026",
+      "executable": "/Applications/Claude.app/Contents/Frameworks/Claude Helper (Renderer).app/Contents/MacOS/Claude Helper (Renderer)"
+    },
+    {
+      "pid": 96452,
+      "parentPid": 96436,
+      "rssKiB": 33600,
+      "start": "Sun Oct 11 19:36:41 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
+    },
+    {
+      "pid": 1156,
+      "parentPid": 1,
+      "rssKiB": 33328,
+      "start": "Wed Sep 30 14:28:56 2026",
+      "executable": "/System/Library/CoreServices/NotificationCenter.app/Contents/MacOS/NotificationCenter"
+    },
+    {
+      "pid": 73675,
+      "parentPid": 72315,
+      "rssKiB": 32688,
+      "start": "Wed Oct 14 19:39:16 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 60559,
+      "parentPid": 60537,
+      "rssKiB": 32448,
+      "start": "Tue Oct 13 10:44:17 2026",
+      "executable": "/Applications/Claude.app/Contents/Frameworks/Claude Helper.app/Contents/MacOS/Claude Helper"
+    },
+    {
+      "pid": 72273,
+      "parentPid": 7512,
+      "rssKiB": 30096,
+      "start": "Wed Oct 14 19:37:22 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 29563,
+      "parentPid": 7512,
+      "rssKiB": 29904,
+      "start": "Wed Oct 14 14:37:14 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 972,
+      "parentPid": 1,
+      "rssKiB": 29680,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/usr/libexec/sharingd"
+    },
+    {
+      "pid": 7657,
+      "parentPid": 7089,
+      "rssKiB": 28896,
+      "start": "Sun Oct 11 12:57:13 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+    },
+    {
+      "pid": 72272,
+      "parentPid": 7512,
+      "rssKiB": 26400,
+      "start": "Wed Oct 14 19:37:22 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 29564,
+      "parentPid": 7512,
+      "rssKiB": 26304,
+      "start": "Wed Oct 14 14:37:14 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 99502,
+      "parentPid": 1,
+      "rssKiB": 25952,
+      "start": "Sun Oct 11 19:45:45 2026",
+      "executable": "/System/Library/Frameworks/AppKit.framework/Versions/C/XPCServices/DocumentPopoverViewService.xpc/Contents/MacOS/DocumentPopoverViewService"
+    },
+    {
+      "pid": 76859,
+      "parentPid": 1,
+      "rssKiB": 25712,
+      "start": "Thu Oct 15 07:26:00 2026",
+      "executable": "/System/Library/CoreServices/CoreLocationAgent.app/Contents/MacOS/CoreLocationAgent"
+    },
+    {
+      "pid": 1177,
+      "parentPid": 1,
+      "rssKiB": 25616,
+      "start": "Wed Sep 30 14:28:57 2026",
+      "executable": "/usr/libexec/duetexpertd"
+    },
+    {
+      "pid": 60961,
+      "parentPid": 60537,
+      "rssKiB": 25232,
+      "start": "Tue Oct 13 10:44:20 2026",
+      "executable": "/Applications/Claude.app/Contents/Frameworks/Claude Helper.app/Contents/MacOS/Claude Helper"
+    },
+    {
+      "pid": 8494,
+      "parentPid": 7089,
+      "rssKiB": 24880,
+      "start": "Sun Oct 11 12:57:27 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+    },
+    {
+      "pid": 73644,
+      "parentPid": 1,
+      "rssKiB": 24752,
+      "start": "Thu Oct 15 07:02:48 2026",
+      "executable": "/System/Library/Frameworks/CoreSpotlight.framework/spotlightknowledged"
+    },
+    {
+      "pid": 72271,
+      "parentPid": 7512,
+      "rssKiB": 24480,
+      "start": "Wed Oct 14 19:37:22 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 1296,
+      "parentPid": 1,
+      "rssKiB": 24272,
+      "start": "Wed Sep 30 14:29:00 2026",
+      "executable": "/System/Applications/Siri AI.app/Contents/MacOS/Siri AI"
+    },
+    {
+      "pid": 7149,
+      "parentPid": 7089,
+      "rssKiB": 24160,
+      "start": "Sun Oct 11 12:57:07 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)"
+    },
+    {
+      "pid": 79920,
+      "parentPid": 1,
+      "rssKiB": 23744,
+      "start": "Thu Oct 15 07:41:52 2026",
+      "executable": "/System/Library/PrivateFrameworks/IntelligenceFlowRuntime.framework/Versions/A/intelligenceflowd"
+    },
+    {
+      "pid": 14303,
+      "parentPid": 1,
+      "rssKiB": 23392,
+      "start": "Wed Oct 14 08:23:01 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/corespotlightd"
+    },
+    {
+      "pid": 80229,
+      "parentPid": 1,
+      "rssKiB": 23376,
+      "start": "Thu Oct 15 07:42:37 2026",
+      "executable": "/System/Library/PrivateFrameworks/UniversalAccess.framework/Versions/A/Resources/AXVisualSupportAgent.app/Contents/MacOS/AXVisualSupportAgent"
+    },
+    {
+      "pid": 8459,
+      "parentPid": 7512,
+      "rssKiB": 23040,
+      "start": "Sun Oct 11 12:57:23 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex-code-mode-host"
+    },
+    {
+      "pid": 77938,
+      "parentPid": 1,
+      "rssKiB": 23040,
+      "start": "Thu Oct 15 07:33:02 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    },
+    {
+      "pid": 8455,
+      "parentPid": 7089,
+      "rssKiB": 22560,
+      "start": "Sun Oct 11 12:57:23 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+    },
+    {
+      "pid": 48640,
+      "parentPid": 7089,
+      "rssKiB": 22496,
+      "start": "Mon Oct 12 14:10:45 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+    },
+    {
+      "pid": 80355,
+      "parentPid": 1,
+      "rssKiB": 22288,
+      "start": "Thu Oct 15 07:42:54 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    },
+    {
+      "pid": 80352,
+      "parentPid": 1,
+      "rssKiB": 22160,
+      "start": "Thu Oct 15 07:42:54 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    },
+    {
+      "pid": 78599,
+      "parentPid": 1,
+      "rssKiB": 21984,
+      "start": "Thu Oct 15 07:37:49 2026",
+      "executable": "/System/Library/CoreServices/CoreServicesUIAgent.app/Contents/MacOS/CoreServicesUIAgent"
+    },
+    {
+      "pid": 1129,
+      "parentPid": 1,
+      "rssKiB": 21920,
+      "start": "Wed Sep 30 14:28:54 2026",
+      "executable": "/System/Library/CoreServices/MenuBarAgent.app/Contents/MacOS/MenuBarAgent"
+    },
+    {
+      "pid": 80519,
+      "parentPid": 1,
+      "rssKiB": 21840,
+      "start": "Thu Oct 15 07:43:16 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    },
+    {
+      "pid": 5331,
+      "parentPid": 1,
+      "rssKiB": 20832,
+      "start": "Wed Oct  7 07:26:07 2026",
+      "executable": "/System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal"
+    },
+    {
+      "pid": 1132,
+      "parentPid": 1,
+      "rssKiB": 20224,
+      "start": "Wed Sep 30 14:28:55 2026",
+      "executable": "/System/Library/CoreServices/WindowManager.app/Contents/MacOS/WindowManager"
+    },
+    {
+      "pid": 3913,
+      "parentPid": 1,
+      "rssKiB": 20096,
+      "start": "Wed Sep 30 14:29:07 2026",
+      "executable": "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 60940,
+      "parentPid": 60537,
+      "rssKiB": 20000,
+      "start": "Tue Oct 13 10:44:19 2026",
+      "executable": "/Applications/Claude.app/Contents/Frameworks/Claude Helper.app/Contents/MacOS/Claude Helper"
+    },
+    {
+      "pid": 7564,
+      "parentPid": 7089,
+      "rssKiB": 19840,
+      "start": "Sun Oct 11 12:57:11 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)"
+    },
+    {
+      "pid": 80273,
+      "parentPid": 1,
+      "rssKiB": 19392,
+      "start": "Thu Oct 15 07:42:48 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    },
+    {
+      "pid": 78906,
+      "parentPid": 1,
+      "rssKiB": 19296,
+      "start": "Thu Oct 15 07:40:26 2026",
+      "executable": "/System/Library/CoreServices/Siri.app/Contents/MacOS/Siri"
+    },
+    {
+      "pid": 60941,
+      "parentPid": 60537,
+      "rssKiB": 19280,
+      "start": "Tue Oct 13 10:44:19 2026",
+      "executable": "/Applications/Claude.app/Contents/Frameworks/Claude Helper.app/Contents/MacOS/Claude Helper"
+    },
+    {
+      "pid": 1097,
+      "parentPid": 1,
+      "rssKiB": 19264,
+      "start": "Wed Sep 30 14:28:48 2026",
+      "executable": "/System/Library/PrivateFrameworks/AssistantServices.framework/Versions/A/Support/assistantd"
+    },
+    {
+      "pid": 79854,
+      "parentPid": 1,
+      "rssKiB": 19184,
+      "start": "Thu Oct 15 07:41:44 2026",
+      "executable": "/System/Library/PrivateFrameworks/WorkflowKit.framework/XPCServices/ShortcutsViewService.xpc/Contents/MacOS/ShortcutsViewService"
+    },
+    {
+      "pid": 96095,
+      "parentPid": 1,
+      "rssKiB": 19184,
+      "start": "Wed Oct 14 12:57:46 2026",
+      "executable": "/Users/v/Library/Caches/com.openai.codex/org.sparkle-project.Sparkle/Launcher/fa1Kw8a8Y/Updater.app/Contents/MacOS/Updater"
+    },
+    {
+      "pid": 39206,
+      "parentPid": 1,
+      "rssKiB": 19152,
+      "start": "Sun Oct 11 16:39:49 2026",
+      "executable": "/System/Library/Frameworks/AppKit.framework/Versions/C/XPCServices/com.apple.appkit.xpc.openAndSavePanelService.xpc/Contents/MacOS/com.apple.appkit.xpc.openAndSavePanelService"
+    },
+    {
+      "pid": 3879,
+      "parentPid": 1,
+      "rssKiB": 18848,
+      "start": "Wed Sep 30 14:29:07 2026",
+      "executable": "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 73179,
+      "parentPid": 1,
+      "rssKiB": 18592,
+      "start": "Thu Oct  1 23:50:29 2026",
+      "executable": "/System/Library/PrivateFrameworks/AppStoreDaemon.framework/Support/appstoreagent"
+    },
+    {
+      "pid": 97576,
+      "parentPid": 1,
+      "rssKiB": 18496,
+      "start": "Sun Oct 11 19:39:28 2026",
+      "executable": "/System/Library/Services/AppleSpell.service/Contents/MacOS/AppleSpell"
+    },
+    {
+      "pid": 1285,
+      "parentPid": 1,
+      "rssKiB": 18384,
+      "start": "Wed Sep 30 14:29:00 2026",
+      "executable": "/System/Library/CoreServices/Dock.app/Contents/MacOS/Dock"
+    },
+    {
+      "pid": 54141,
+      "parentPid": 7512,
+      "rssKiB": 18288,
+      "start": "Wed Oct 14 11:06:26 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 50039,
+      "parentPid": 7512,
+      "rssKiB": 18272,
+      "start": "Wed Oct 14 10:52:46 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 79231,
+      "parentPid": 79176,
+      "rssKiB": 17792,
+      "start": "Thu Oct 15 07:41:33 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 3894,
+      "parentPid": 1,
+      "rssKiB": 17712,
+      "start": "Wed Sep 30 14:29:07 2026",
+      "executable": "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 60960,
+      "parentPid": 60537,
+      "rssKiB": 17520,
+      "start": "Tue Oct 13 10:44:20 2026",
+      "executable": "/Applications/Claude.app/Contents/Frameworks/Claude Helper.app/Contents/MacOS/Claude Helper"
+    },
+    {
+      "pid": 78997,
+      "parentPid": 1,
+      "rssKiB": 17216,
+      "start": "Thu Oct 15 07:40:48 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    },
+    {
+      "pid": 3948,
+      "parentPid": 1,
+      "rssKiB": 17200,
+      "start": "Wed Sep 30 14:29:08 2026",
+      "executable": "/System/Library/PrivateFrameworks/TextInputUIMacHelper.framework/Versions/A/XPCServices/CursorUIViewService.xpc/Contents/MacOS/CursorUIViewService"
+    },
+    {
+      "pid": 7497,
+      "parentPid": 7089,
+      "rssKiB": 17120,
+      "start": "Sun Oct 11 12:57:09 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/native/bare-modifier-monitor"
+    },
+    {
+      "pid": 85091,
+      "parentPid": 1,
+      "rssKiB": 16960,
+      "start": "Tue Oct  6 17:42:21 2026",
+      "executable": "/System/Library/PrivateFrameworks/PhotoAnalysis.framework/Versions/A/Support/photoanalysisd"
+    },
+    {
+      "pid": 80555,
+      "parentPid": 7512,
+      "rssKiB": 16912,
+      "start": "Thu Oct 15 07:43:21 2026",
+      "executable": "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 78934,
+      "parentPid": 1,
+      "rssKiB": 16896,
+      "start": "Thu Oct 15 07:40:30 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    },
+    {
+      "pid": 79177,
+      "parentPid": 7512,
+      "rssKiB": 16768,
+      "start": "Thu Oct 15 07:41:33 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 954,
+      "parentPid": 1,
+      "rssKiB": 16432,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/System/Library/PrivateFrameworks/IDS.framework/identityservicesd.app/Contents/MacOS/identityservicesd"
+    },
+    {
+      "pid": 96447,
+      "parentPid": 96436,
+      "rssKiB": 16128,
+      "start": "Sun Oct 11 19:36:41 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 79091,
+      "parentPid": 1,
+      "rssKiB": 15984,
+      "start": "Thu Oct 15 07:41:29 2026",
+      "executable": "/System/Library/CoreServices/Siri.app/Contents/XPCServices/SiriNCService.xpc/Contents/MacOS/SiriNCService"
+    },
+    {
+      "pid": 948,
+      "parentPid": 1,
+      "rssKiB": 15952,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/System/Library/PrivateFrameworks/TCC.framework/Support/tccd"
+    },
+    {
+      "pid": 54139,
+      "parentPid": 7512,
+      "rssKiB": 15808,
+      "start": "Wed Oct 14 11:06:26 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 78844,
+      "parentPid": 1,
+      "rssKiB": 15760,
+      "start": "Thu Oct 15 07:39:46 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    },
+    {
+      "pid": 216,
+      "parentPid": 1,
+      "rssKiB": 15728,
+      "start": "Sun Oct 11 19:46:31 2026",
+      "executable": "/System/Library/Frameworks/AppKit.framework/Versions/C/XPCServices/com.apple.appkit.xpc.openAndSavePanelService.xpc/Contents/MacOS/com.apple.appkit.xpc.openAndSavePanelService"
+    },
+    {
+      "pid": 50040,
+      "parentPid": 7512,
+      "rssKiB": 15712,
+      "start": "Wed Oct 14 10:52:46 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 80274,
+      "parentPid": 1,
+      "rssKiB": 15520,
+      "start": "Thu Oct 15 07:42:48 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    },
+    {
+      "pid": 72260,
+      "parentPid": 1,
+      "rssKiB": 15488,
+      "start": "Wed Oct  7 13:07:27 2026",
+      "executable": "/System/Library/Frameworks/AppKit.framework/Versions/C/XPCServices/com.apple.appkit.xpc.openAndSavePanelService.xpc/Contents/MacOS/com.apple.appkit.xpc.openAndSavePanelService"
+    },
+    {
+      "pid": 78275,
+      "parentPid": 1,
+      "rssKiB": 15472,
+      "start": "Thu Oct 15 07:35:19 2026",
+      "executable": "/usr/libexec/replayd"
+    },
+    {
+      "pid": 32416,
+      "parentPid": 1,
+      "rssKiB": 15328,
+      "start": "Fri Oct  9 17:37:12 2026",
+      "executable": "/System/Library/PrivateFrameworks/CloudKitDaemon.framework/Support/cloudd"
+    },
+    {
+      "pid": 80885,
+      "parentPid": 1,
+      "rssKiB": 15296,
+      "start": "Tue Oct  6 10:13:40 2026",
+      "executable": "/System/Library/Frameworks/AppKit.framework/Versions/C/XPCServices/com.apple.appkit.xpc.openAndSavePanelService.xpc/Contents/MacOS/com.apple.appkit.xpc.openAndSavePanelService"
+    },
+    {
+      "pid": 80348,
+      "parentPid": 1,
+      "rssKiB": 15264,
+      "start": "Thu Oct 15 07:42:52 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    },
+    {
+      "pid": 80520,
+      "parentPid": 1,
+      "rssKiB": 15248,
+      "start": "Thu Oct 15 07:43:16 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    },
+    {
+      "pid": 78985,
+      "parentPid": 1,
+      "rssKiB": 15024,
+      "start": "Thu Oct 15 07:40:43 2026",
+      "executable": "/System/Library/Frameworks/CoreTelephony.framework/Support/CommCenter"
+    },
+    {
+      "pid": 77821,
+      "parentPid": 1,
+      "rssKiB": 14864,
+      "start": "Thu Oct 15 07:32:10 2026",
+      "executable": "/usr/libexec/pkd"
+    },
+    {
+      "pid": 78112,
+      "parentPid": 1,
+      "rssKiB": 14640,
+      "start": "Thu Oct 15 07:34:24 2026",
+      "executable": "/System/Library/CoreServices/talagentd"
+    },
+    {
+      "pid": 3878,
+      "parentPid": 1,
+      "rssKiB": 14544,
+      "start": "Wed Sep 30 14:29:07 2026",
+      "executable": "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 54140,
+      "parentPid": 7512,
+      "rssKiB": 14224,
+      "start": "Wed Oct 14 11:06:26 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 79094,
+      "parentPid": 1,
+      "rssKiB": 14016,
+      "start": "Thu Oct 15 07:41:29 2026",
+      "executable": "/usr/libexec/siriknowledged"
+    },
+    {
+      "pid": 1328,
+      "parentPid": 1,
+      "rssKiB": 13968,
+      "start": "Wed Sep 30 14:29:01 2026",
+      "executable": "/System/Library/CoreServices/Dock.app/Contents/XPCServices/com.apple.dock.external.extra.arm64.xpc/Contents/MacOS/com.apple.dock.external.extra.arm64"
+    },
+    {
+      "pid": 72416,
+      "parentPid": 1,
+      "rssKiB": 13824,
+      "start": "Fri Oct  2 10:28:54 2026",
+      "executable": "/System/Library/PrivateFrameworks/CoreSuggestions.framework/Versions/A/Support/suggestd"
+    },
+    {
+      "pid": 72315,
+      "parentPid": 72271,
+      "rssKiB": 13728,
+      "start": "Wed Oct 14 19:37:22 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 955,
+      "parentPid": 1,
+      "rssKiB": 13504,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/usr/libexec/linkd"
+    },
+    {
+      "pid": 961,
+      "parentPid": 1,
+      "rssKiB": 13232,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/usr/sbin/usernoted"
+    },
+    {
+      "pid": 78592,
+      "parentPid": 1,
+      "rssKiB": 13216,
+      "start": "Thu Oct 15 07:37:48 2026",
+      "executable": "/System/Library/PrivateFrameworks/iTunesCloud.framework/Support/itunescloudd"
+    },
+    {
+      "pid": 1269,
+      "parentPid": 1,
+      "rssKiB": 13184,
+      "start": "Wed Sep 30 14:28:59 2026",
+      "executable": "/System/Library/CoreServices/UniversalControl.app/Contents/MacOS/UniversalControl"
+    },
+    {
+      "pid": 958,
+      "parentPid": 1,
+      "rssKiB": 13040,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/usr/libexec/rapportd"
+    },
+    {
+      "pid": 960,
+      "parentPid": 1,
+      "rssKiB": 13040,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/System/Library/PrivateFrameworks/CoreDuetContext.framework/Resources/ContextStoreAgent"
+    },
+    {
+      "pid": 12508,
+      "parentPid": 1,
+      "rssKiB": 12960,
+      "start": "Fri Oct  2 04:51:12 2026",
+      "executable": "/System/Library/PrivateFrameworks/AuthKit.framework/Versions/A/Support/akd"
+    },
+    {
+      "pid": 902,
+      "parentPid": 1,
+      "rssKiB": 12848,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/usr/libexec/secd"
+    },
+    {
+      "pid": 1008,
+      "parentPid": 1,
+      "rssKiB": 12816,
+      "start": "Wed Sep 30 14:28:43 2026",
+      "executable": "/System/Library/CoreServices/sharedfilelistd"
+    },
+    {
+      "pid": 3898,
+      "parentPid": 1,
+      "rssKiB": 12704,
+      "start": "Wed Sep 30 14:29:07 2026",
+      "executable": "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 79921,
+      "parentPid": 1,
+      "rssKiB": 12320,
+      "start": "Thu Oct 15 07:41:52 2026",
+      "executable": "/System/Library/PrivateFrameworks/IntelligenceFlowContextRuntime.framework/Versions/A/intelligencecontextd"
+    },
+    {
+      "pid": 949,
+      "parentPid": 1,
+      "rssKiB": 12288,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/usr/libexec/trustd"
+    },
+    {
+      "pid": 74835,
+      "parentPid": 1,
+      "rssKiB": 12240,
+      "start": "Fri Oct  2 00:01:02 2026",
+      "executable": "/usr/libexec/routined"
+    },
+    {
+      "pid": 36074,
+      "parentPid": 1,
+      "rssKiB": 12224,
+      "start": "Thu Oct  1 00:09:38 2026",
+      "executable": "/System/Library/PrivateFrameworks/TelephonyUtilities.framework/callservicesd"
+    },
+    {
+      "pid": 3278,
+      "parentPid": 1,
+      "rssKiB": 12080,
+      "start": "Mon Oct  5 23:31:53 2026",
+      "executable": "/System/Library/PrivateFrameworks/VoiceShortcuts.framework/Versions/A/Support/siriactionsd"
+    },
+    {
+      "pid": 1207,
+      "parentPid": 1,
+      "rssKiB": 11904,
+      "start": "Wed Sep 30 14:28:57 2026",
+      "executable": "/System/Applications/Shortcuts.app/Contents/PlugIns/ShortcutsWidgetExtension.appex/Contents/MacOS/ShortcutsWidgetExtension"
+    },
+    {
+      "pid": 77407,
+      "parentPid": 1,
+      "rssKiB": 11744,
+      "start": "Thu Oct 15 07:29:20 2026",
+      "executable": "/System/Library/PrivateFrameworks/BiomeStreams.framework/Support/BiomeAgent"
+    },
+    {
+      "pid": 80525,
+      "parentPid": 1,
+      "rssKiB": 11680,
+      "start": "Thu Oct 15 07:43:17 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    },
+    {
+      "pid": 80518,
+      "parentPid": 1,
+      "rssKiB": 11584,
+      "start": "Thu Oct 15 07:43:16 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    },
+    {
+      "pid": 80516,
+      "parentPid": 1,
+      "rssKiB": 11568,
+      "start": "Thu Oct 15 07:43:16 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    },
+    {
+      "pid": 80517,
+      "parentPid": 1,
+      "rssKiB": 11472,
+      "start": "Thu Oct 15 07:43:16 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    },
+    {
+      "pid": 80522,
+      "parentPid": 1,
+      "rssKiB": 11456,
+      "start": "Thu Oct 15 07:43:16 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    },
+    {
+      "pid": 79037,
+      "parentPid": 1,
+      "rssKiB": 11440,
+      "start": "Thu Oct 15 07:41:07 2026",
+      "executable": "/usr/libexec/spotlightknowledged.updater"
+    },
+    {
+      "pid": 7708,
+      "parentPid": 1,
+      "rssKiB": 11344,
+      "start": "Sun Oct 11 12:57:15 2026",
+      "executable": "/System/Library/PrivateFrameworks/SafariPlatformSupport.framework/Versions/A/XPCServices/com.apple.SafariPlatformSupport.Helper.xpc/Contents/MacOS/com.apple.SafariPlatformSupport.Helper"
+    },
+    {
+      "pid": 22906,
+      "parentPid": 1,
+      "rssKiB": 11344,
+      "start": "Wed Sep 30 15:00:07 2026",
+      "executable": "/usr/libexec/spotlightknowledged.importer"
+    },
+    {
+      "pid": 78589,
+      "parentPid": 1,
+      "rssKiB": 11344,
+      "start": "Thu Oct 15 07:37:48 2026",
+      "executable": "/usr/libexec/promotedcontentd"
+    },
+    {
+      "pid": 78262,
+      "parentPid": 1,
+      "rssKiB": 11216,
+      "start": "Thu Oct 15 07:35:13 2026",
+      "executable": "/System/Library/CoreServices/Keychain Circle Notification.app/Contents/MacOS/Keychain Circle Notification"
+    },
+    {
+      "pid": 1249,
+      "parentPid": 1,
+      "rssKiB": 11200,
+      "start": "Wed Sep 30 14:28:59 2026",
+      "executable": "/System/Applications/Weather.app/Contents/PlugIns/WeatherWidget.appex/Contents/MacOS/WeatherWidget"
+    },
+    {
+      "pid": 40321,
+      "parentPid": 1,
+      "rssKiB": 11168,
+      "start": "Thu Oct  1 11:30:49 2026",
+      "executable": "/System/Library/PrivateFrameworks/SafariPlatformSupport.framework/Versions/A/XPCServices/com.apple.SafariPlatformSupport.Helper.xpc/Contents/MacOS/com.apple.SafariPlatformSupport.Helper"
+    },
+    {
+      "pid": 80521,
+      "parentPid": 1,
+      "rssKiB": 11104,
+      "start": "Thu Oct 15 07:43:16 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    },
+    {
+      "pid": 3892,
+      "parentPid": 1,
+      "rssKiB": 11072,
+      "start": "Wed Sep 30 14:29:07 2026",
+      "executable": "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 80550,
+      "parentPid": 1,
+      "rssKiB": 11072,
+      "start": "Thu Oct 15 07:43:18 2026",
+      "executable": "/System/Library/PrivateFrameworks/CoreAnalytics.framework/Support/analyticsagent"
+    },
+    {
+      "pid": 79750,
+      "parentPid": 1,
+      "rssKiB": 11056,
+      "start": "Thu Oct 15 07:41:35 2026",
+      "executable": "/System/Library/PrivateFrameworks/IntelligencePlatformCompute.framework/Versions/A/XPCServices/IntelligencePlatformComputeService.xpc/Contents/MacOS/IntelligencePlatformComputeService"
+    },
+    {
+      "pid": 79942,
+      "parentPid": 1,
+      "rssKiB": 10912,
+      "start": "Thu Oct 15 07:41:58 2026",
+      "executable": "/System/Library/PrivateFrameworks/CascadeSets.framework/Versions/A/XPCServices/SetStoreUpdateService.xpc/Contents/MacOS/SetStoreUpdateService"
+    },
+    {
+      "pid": 942,
+      "parentPid": 1,
+      "rssKiB": 10768,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/usr/libexec/lsd"
+    },
+    {
+      "pid": 72274,
+      "parentPid": 7512,
+      "rssKiB": 10640,
+      "start": "Wed Oct 14 19:37:22 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 966,
+      "parentPid": 1,
+      "rssKiB": 10528,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/System/Library/CoreServices/WiFiAgent.app/Contents/MacOS/WiFiAgent"
+    },
+    {
+      "pid": 1061,
+      "parentPid": 1,
+      "rssKiB": 10480,
+      "start": "Wed Sep 30 14:28:46 2026",
+      "executable": "/System/Library/CoreServices/AccessibilityUIServer.app/Contents/MacOS/AccessibilityUIServer"
+    },
+    {
+      "pid": 57318,
+      "parentPid": 1,
+      "rssKiB": 10448,
+      "start": "Thu Oct  1 02:49:57 2026",
+      "executable": "/System/Library/PrivateFrameworks/AppleMediaServices.framework/Resources/amsaccountsd"
+    },
+    {
+      "pid": 96094,
+      "parentPid": 1,
+      "rssKiB": 10416,
+      "start": "Wed Oct 14 12:57:46 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Sparkle.framework/Versions/B/Autoupdate"
+    },
+    {
+      "pid": 1139,
+      "parentPid": 1,
+      "rssKiB": 10368,
+      "start": "Wed Sep 30 14:28:55 2026",
+      "executable": "/System/Library/PrivateFrameworks/UserActivity.framework/Agents/useractivityd"
+    },
+    {
+      "pid": 83396,
+      "parentPid": 1,
+      "rssKiB": 10128,
+      "start": "Fri Oct  2 19:39:42 2026",
+      "executable": "/System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService"
+    },
+    {
+      "pid": 36083,
+      "parentPid": 1,
+      "rssKiB": 9888,
+      "start": "Thu Oct  1 00:09:39 2026",
+      "executable": "/System/Library/Frameworks/Contacts.framework/Support/contactsd"
+    },
+    {
+      "pid": 74740,
+      "parentPid": 1,
+      "rssKiB": 9824,
+      "start": "Fri Oct  2 00:00:25 2026",
+      "executable": "/System/Library/PrivateFrameworks/iCloudDriveCore.framework/Versions/A/Support/bird"
+    },
+    {
+      "pid": 4064,
+      "parentPid": 3879,
+      "rssKiB": 9712,
+      "start": "Wed Sep 30 14:29:09 2026",
+      "executable": "rec"
+    },
+    {
+      "pid": 46556,
+      "parentPid": 1,
+      "rssKiB": 9680,
+      "start": "Thu Oct  1 01:28:47 2026",
+      "executable": "/System/Library/PrivateFrameworks/HomeKitDaemon.framework/Support/homed"
+    },
+    {
+      "pid": 921,
+      "parentPid": 1,
+      "rssKiB": 9600,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/System/Library/CoreServices/audioaccessoryd"
+    },
+    {
+      "pid": 74226,
+      "parentPid": 1,
+      "rssKiB": 9520,
+      "start": "Thu Oct  1 23:57:45 2026",
+      "executable": "/usr/libexec/networkserviceproxy"
+    },
+    {
+      "pid": 1146,
+      "parentPid": 1,
+      "rssKiB": 9440,
+      "start": "Wed Sep 30 14:28:55 2026",
+      "executable": "/System/Library/PrivateFrameworks/ChronoCore.framework/Support/chronod"
+    },
+    {
+      "pid": 78591,
+      "parentPid": 1,
+      "rssKiB": 9168,
+      "start": "Thu Oct 15 07:37:48 2026",
+      "executable": "/System/Library/PrivateFrameworks/CoreParsec.framework/parsecd"
+    },
+    {
+      "pid": 3910,
+      "parentPid": 1,
+      "rssKiB": 9056,
+      "start": "Wed Sep 30 14:29:07 2026",
+      "executable": "/System/Library/CoreServices/TextInputMenuAgent.app/Contents/MacOS/TextInputMenuAgent"
+    },
+    {
+      "pid": 1212,
+      "parentPid": 1,
+      "rssKiB": 8848,
+      "start": "Wed Sep 30 14:28:58 2026",
+      "executable": "/System/Applications/Shortcuts.app/Contents/PlugIns/ShortcutLiveActivityWidgetExtension.appex/Contents/MacOS/ShortcutLiveActivityWidgetExtension"
+    },
+    {
+      "pid": 1215,
+      "parentPid": 1,
+      "rssKiB": 8800,
+      "start": "Wed Sep 30 14:28:58 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension"
+    },
+    {
+      "pid": 915,
+      "parentPid": 1,
+      "rssKiB": 8640,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/usr/libexec/UserEventAgent"
+    },
+    {
+      "pid": 4260,
+      "parentPid": 1,
+      "rssKiB": 8640,
+      "start": "Wed Sep 30 20:20:14 2026",
+      "executable": "/usr/libexec/nsurlsessiond"
+    },
+    {
+      "pid": 77627,
+      "parentPid": 1,
+      "rssKiB": 8624,
+      "start": "Thu Oct 15 07:30:49 2026",
+      "executable": "/usr/libexec/secinitd"
+    },
+    {
+      "pid": 1286,
+      "parentPid": 1,
+      "rssKiB": 8560,
+      "start": "Wed Sep 30 14:29:00 2026",
+      "executable": "/System/Library/CoreServices/SystemUIServer.app/Contents/MacOS/SystemUIServer"
+    },
+    {
+      "pid": 1350,
+      "parentPid": 1,
+      "rssKiB": 8416,
+      "start": "Wed Sep 30 14:29:02 2026",
+      "executable": "/System/Library/CoreServices/UserNotificationCenter.app/Contents/MacOS/UserNotificationCenter"
+    },
+    {
+      "pid": 78980,
+      "parentPid": 1,
+      "rssKiB": 8400,
+      "start": "Thu Oct 15 07:40:41 2026",
+      "executable": "/System/Library/Frameworks/CryptoTokenKit.framework/ctkd"
+    },
+    {
+      "pid": 29133,
+      "parentPid": 1,
+      "rssKiB": 8272,
+      "start": "Mon Oct 12 12:30:34 2026",
+      "executable": "/System/Library/PrivateFrameworks/GenerativeExperiencesRuntime.framework/Versions/A/generativeexperiencesd"
+    },
+    {
+      "pid": 3880,
+      "parentPid": 1,
+      "rssKiB": 8256,
+      "start": "Wed Sep 30 14:29:07 2026",
+      "executable": "/System/Library/PrivateFrameworks/HearingCore.framework/heard"
+    },
+    {
+      "pid": 97272,
+      "parentPid": 1,
+      "rssKiB": 8160,
+      "start": "Fri Oct  9 12:51:42 2026",
+      "executable": "/System/Library/PrivateFrameworks/Categories.framework/Versions/A/XPCServices/CategoriesService.xpc/Contents/MacOS/CategoriesService"
+    },
+    {
+      "pid": 41068,
+      "parentPid": 1,
+      "rssKiB": 8144,
+      "start": "Thu Oct  1 00:46:11 2026",
+      "executable": "/usr/libexec/knowledge-agent"
+    },
+    {
+      "pid": 953,
+      "parentPid": 1,
+      "rssKiB": 8080,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/System/Library/Frameworks/Accounts.framework/Versions/A/Support/accountsd"
+    },
+    {
+      "pid": 30601,
+      "parentPid": 30599,
+      "rssKiB": 8016,
+      "start": "Wed Oct 14 09:21:25 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 74270,
+      "parentPid": 1,
+      "rssKiB": 7984,
+      "start": "Thu Oct  1 15:05:56 2026",
+      "executable": "/System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/XPCServices/com.apple.geod.xpc/Contents/MacOS/com.apple.geod"
+    },
+    {
+      "pid": 79855,
+      "parentPid": 1,
+      "rssKiB": 7968,
+      "start": "Thu Oct 15 07:41:45 2026",
+      "executable": "/System/Library/PrivateFrameworks/CascadeSets.framework/Versions/A/XPCServices/SetStoreUpdateService.xpc/Contents/MacOS/SetStoreUpdateService"
+    },
+    {
+      "pid": 30600,
+      "parentPid": 7512,
+      "rssKiB": 7904,
+      "start": "Wed Oct 14 09:21:25 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 79792,
+      "parentPid": 1,
+      "rssKiB": 7904,
+      "start": "Thu Oct 15 07:41:38 2026",
+      "executable": "/Applications/iTerm.app/Contents/XPCServices/pidinfo.xpc/Contents/MacOS/pidinfo"
+    },
+    {
+      "pid": 14224,
+      "parentPid": 7512,
+      "rssKiB": 7824,
+      "start": "Wed Oct 14 08:23:01 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 14304,
+      "parentPid": 14225,
+      "rssKiB": 7808,
+      "start": "Wed Oct 14 08:23:01 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 4393,
+      "parentPid": 1,
+      "rssKiB": 7792,
+      "start": "Wed Sep 30 14:29:47 2026",
+      "executable": "/usr/libexec/tipsd"
+    },
+    {
+      "pid": 1006,
+      "parentPid": 1,
+      "rssKiB": 7584,
+      "start": "Wed Sep 30 14:28:43 2026",
+      "executable": "/System/Library/PrivateFrameworks/IMCore.framework/imagent.app/Contents/MacOS/imagent"
+    },
+    {
+      "pid": 48379,
+      "parentPid": 1,
+      "rssKiB": 7584,
+      "start": "Thu Oct  8 16:01:04 2026",
+      "executable": "/usr/libexec/transparencyd"
+    },
+    {
+      "pid": 994,
+      "parentPid": 1,
+      "rssKiB": 7536,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/System/Library/PrivateFrameworks/CoreSpeech.framework/corespeechd"
+    },
+    {
+      "pid": 59809,
+      "parentPid": 7512,
+      "rssKiB": 7504,
+      "start": "Mon Oct 12 14:37:25 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 79600,
+      "parentPid": 1,
+      "rssKiB": 7424,
+      "start": "Thu Oct 15 07:41:34 2026",
+      "executable": "/System/Library/PrivateFrameworks/CascadeSets.framework/Versions/A/XPCServices/SetStoreUpdateService.xpc/Contents/MacOS/SetStoreUpdateService"
+    },
+    {
+      "pid": 951,
+      "parentPid": 1,
+      "rssKiB": 7344,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/System/Library/PrivateFrameworks/UserNotificationsCore.framework/Support/usernotificationsd"
+    },
+    {
+      "pid": 11369,
+      "parentPid": 11355,
+      "rssKiB": 7312,
+      "start": "Mon Oct 12 09:59:02 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 21829,
+      "parentPid": 1,
+      "rssKiB": 7264,
+      "start": "Sun Oct 11 14:39:39 2026",
+      "executable": "/System/Library/PrivateFrameworks/AppleMediaServicesUI.framework/amsengagementd"
+    },
+    {
+      "pid": 79467,
+      "parentPid": 1,
+      "rssKiB": 7264,
+      "start": "Thu Oct 15 07:41:34 2026",
+      "executable": "/System/Library/PrivateFrameworks/Synapse.framework/Support/contentlinkingd"
+    },
+    {
+      "pid": 79486,
+      "parentPid": 1,
+      "rssKiB": 7248,
+      "start": "Thu Oct 15 07:41:34 2026",
+      "executable": "/System/Library/PrivateFrameworks/DeviceCheckInternal.framework/devicecheckd"
+    },
+    {
+      "pid": 54163,
+      "parentPid": 54140,
+      "rssKiB": 7200,
+      "start": "Wed Oct 14 11:06:26 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 89624,
+      "parentPid": 7512,
+      "rssKiB": 7200,
+      "start": "Tue Oct 13 07:26:56 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 54142,
+      "parentPid": 7512,
+      "rssKiB": 7152,
+      "start": "Wed Oct 14 11:06:26 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 78955,
+      "parentPid": 1,
+      "rssKiB": 7088,
+      "start": "Thu Oct 15 07:40:35 2026",
+      "executable": "/System/Library/PrivateFrameworks/CloudSubscriptionFeatures.framework/FeatureAccessAgent"
+    },
+    {
+      "pid": 96436,
+      "parentPid": 96435,
+      "rssKiB": 7072,
+      "start": "Sun Oct 11 19:36:40 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 967,
+      "parentPid": 1,
+      "rssKiB": 7056,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/MacOS/ARDAgent"
+    },
+    {
+      "pid": 971,
+      "parentPid": 1,
+      "rssKiB": 6992,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/usr/libexec/ContinuityCaptureAgent"
+    },
+    {
+      "pid": 67821,
+      "parentPid": 7512,
+      "rssKiB": 6992,
+      "start": "Mon Oct 12 19:47:15 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 14225,
+      "parentPid": 7512,
+      "rssKiB": 6896,
+      "start": "Wed Oct 14 08:23:01 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 30599,
+      "parentPid": 7512,
+      "rssKiB": 6896,
+      "start": "Wed Oct 14 09:21:25 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 14509,
+      "parentPid": 1,
+      "rssKiB": 6864,
+      "start": "Mon Oct 12 10:16:32 2026",
+      "executable": "/System/Library/PrivateFrameworks/DoNotDisturbServer.framework/Support/donotdisturbd"
+    },
+    {
+      "pid": 1138,
+      "parentPid": 1,
+      "rssKiB": 6848,
+      "start": "Wed Sep 30 14:28:55 2026",
+      "executable": "/System/Library/CoreServices/WallpaperAgent.app/Contents/MacOS/WallpaperAgent"
+    },
+    {
+      "pid": 61690,
+      "parentPid": 1,
+      "rssKiB": 6848,
+      "start": "Fri Oct  9 22:15:20 2026",
+      "executable": "/usr/libexec/searchpartyuseragent"
+    },
+    {
+      "pid": 94241,
+      "parentPid": 7512,
+      "rssKiB": 6848,
+      "start": "Mon Oct 12 16:24:27 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 31816,
+      "parentPid": 7512,
+      "rssKiB": 6832,
+      "start": "Mon Oct 12 17:29:40 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 1245,
+      "parentPid": 1,
+      "rssKiB": 6816,
+      "start": "Wed Sep 30 14:28:59 2026",
+      "executable": "/System/Applications/FindMy.app/Contents/PlugIns/FindMyWidgetPeople.appex/Contents/MacOS/FindMyWidgetPeople"
+    },
+    {
+      "pid": 1250,
+      "parentPid": 1,
+      "rssKiB": 6704,
+      "start": "Wed Sep 30 14:28:59 2026",
+      "executable": "/System/Applications/Stocks.app/Contents/PlugIns/StocksWidget.appex/Contents/MacOS/StocksWidget"
+    },
+    {
+      "pid": 80254,
+      "parentPid": 1,
+      "rssKiB": 6624,
+      "start": "Thu Oct 15 07:42:45 2026",
+      "executable": "/System/Library/PrivateFrameworks/CascadeSets.framework/Versions/A/XPCServices/SetStoreUpdateService.xpc/Contents/MacOS/SetStoreUpdateService"
+    },
+    {
+      "pid": 22737,
+      "parentPid": 7512,
+      "rssKiB": 6608,
+      "start": "Sun Oct 11 14:46:29 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 77822,
+      "parentPid": 1,
+      "rssKiB": 6608,
+      "start": "Thu Oct 15 07:32:10 2026",
+      "executable": "/System/Library/Frameworks/LocalAuthentication.framework/Support/coreauthd"
+    },
+    {
+      "pid": 1213,
+      "parentPid": 1,
+      "rssKiB": 6576,
+      "start": "Wed Sep 30 14:28:58 2026",
+      "executable": "/System/Applications/Home.app/Contents/PlugIns/HomeEnergyWidgetsExtension.appex/Contents/MacOS/HomeEnergyWidgetsExtension"
+    },
+    {
+      "pid": 937,
+      "parentPid": 1,
+      "rssKiB": 6560,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/usr/libexec/pboard"
+    },
+    {
+      "pid": 1348,
+      "parentPid": 1,
+      "rssKiB": 6512,
+      "start": "Wed Sep 30 14:29:02 2026",
+      "executable": "/System/Applications/Home.app/Contents/PlugIns/HomeWidget.appex/Contents/MacOS/HomeWidget"
+    },
+    {
+      "pid": 41106,
+      "parentPid": 1,
+      "rssKiB": 6496,
+      "start": "Thu Oct  1 00:46:16 2026",
+      "executable": "/System/Library/Frameworks/QuickLookThumbnailing.framework/Support/com.apple.quicklook.ThumbnailsAgent"
+    },
+    {
+      "pid": 73481,
+      "parentPid": 1,
+      "rssKiB": 6400,
+      "start": "Thu Oct  1 04:52:59 2026",
+      "executable": "/System/Library/PrivateFrameworks/SyncedDefaults.framework/Support/syncdefaultsd"
+    },
+    {
+      "pid": 1327,
+      "parentPid": 1,
+      "rssKiB": 6368,
+      "start": "Wed Sep 30 14:29:01 2026",
+      "executable": "/System/Library/CoreServices/Dock.app/Contents/XPCServices/com.apple.dock.extra.xpc/Contents/MacOS/com.apple.dock.extra"
+    },
+    {
+      "pid": 42967,
+      "parentPid": 1359,
+      "rssKiB": 6192,
+      "start": "Mon Oct 12 13:54:40 2026",
+      "executable": "/usr/bin/login"
+    },
+    {
+      "pid": 78950,
+      "parentPid": 1,
+      "rssKiB": 6096,
+      "start": "Thu Oct  1 05:33:36 2026",
+      "executable": "/usr/libexec/triald"
+    },
+    {
+      "pid": 1181,
+      "parentPid": 1,
+      "rssKiB": 6080,
+      "start": "Wed Sep 30 14:28:57 2026",
+      "executable": "/usr/libexec/avconferenced"
+    },
+    {
+      "pid": 3907,
+      "parentPid": 1,
+      "rssKiB": 6080,
+      "start": "Wed Sep 30 14:29:07 2026",
+      "executable": "/System/Library/CoreServices/AirPlayUIAgent.app/Contents/MacOS/AirPlayUIAgent"
+    },
+    {
+      "pid": 1256,
+      "parentPid": 1,
+      "rssKiB": 6032,
+      "start": "Wed Sep 30 14:28:59 2026",
+      "executable": "/System/Library/CoreServices/diagnostics_agent"
+    },
+    {
+      "pid": 929,
+      "parentPid": 1,
+      "rssKiB": 5984,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/usr/sbin/universalaccessd"
+    },
+    {
+      "pid": 1070,
+      "parentPid": 1,
+      "rssKiB": 5968,
+      "start": "Wed Sep 30 14:28:46 2026",
+      "executable": "/System/Library/Frameworks/AudioToolbox.framework/AudioComponentRegistrar"
+    },
+    {
+      "pid": 79911,
+      "parentPid": 1,
+      "rssKiB": 5968,
+      "start": "Thu Oct 15 07:41:50 2026",
+      "executable": "/usr/libexec/feedbackd"
+    },
+    {
+      "pid": 95468,
+      "parentPid": 95411,
+      "rssKiB": 5920,
+      "start": "Mon Oct 12 16:28:37 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 7129,
+      "parentPid": 1,
+      "rssKiB": 5888,
+      "start": "Sun Oct 11 12:57:06 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/browser_crashpad_handler"
+    },
+    {
+      "pid": 77123,
+      "parentPid": 1,
+      "rssKiB": 5872,
+      "start": "Thu Oct 15 07:27:26 2026",
+      "executable": "/usr/libexec/neagent"
+    },
+    {
+      "pid": 79922,
+      "parentPid": 1,
+      "rssKiB": 5872,
+      "start": "Thu Oct 15 07:41:52 2026",
+      "executable": "/System/Library/PrivateFrameworks/SiriAppIntentsRuntime.framework/siriappintentsd"
+    },
+    {
+      "pid": 1198,
+      "parentPid": 1,
+      "rssKiB": 5856,
+      "start": "Wed Sep 30 14:28:57 2026",
+      "executable": "/System/Library/CoreServices/Screen Time.app/Contents/PlugIns/ScreenTimeWidgetExtension.appex/Contents/MacOS/ScreenTimeWidgetExtension"
+    },
+    {
+      "pid": 1314,
+      "parentPid": 1,
+      "rssKiB": 5856,
+      "start": "Wed Sep 30 14:29:00 2026",
+      "executable": "/System/Applications/Podcasts.app/Contents/PlugIns/PodcastsWidget.appex/Contents/MacOS/PodcastsWidget"
+    },
+    {
+      "pid": 1262,
+      "parentPid": 1,
+      "rssKiB": 5824,
+      "start": "Wed Sep 30 14:28:59 2026",
+      "executable": "/System/Applications/Journal.app/Contents/PlugIns/JournalWidgets.appex/Contents/MacOS/JournalWidgets"
+    },
+    {
+      "pid": 1247,
+      "parentPid": 1,
+      "rssKiB": 5808,
+      "start": "Wed Sep 30 14:28:59 2026",
+      "executable": "/System/Applications/Journal.app/Contents/PlugIns/JournalWidgetsSecure.appex/Contents/MacOS/JournalWidgetsSecure"
+    },
+    {
+      "pid": 1255,
+      "parentPid": 1,
+      "rssKiB": 5808,
+      "start": "Wed Sep 30 14:28:59 2026",
+      "executable": "/System/Applications/Clock.app/Contents/PlugIns/WorldClockWidget.appex/Contents/MacOS/WorldClockWidget"
+    },
+    {
+      "pid": 60557,
+      "parentPid": 1,
+      "rssKiB": 5808,
+      "start": "Tue Oct 13 10:44:17 2026",
+      "executable": "/Applications/Claude.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler"
+    },
+    {
+      "pid": 1280,
+      "parentPid": 1,
+      "rssKiB": 5792,
+      "start": "Wed Sep 30 14:29:00 2026",
+      "executable": "/System/Applications/FindMy.app/Contents/PlugIns/FindMyWidgetItems.appex/Contents/MacOS/FindMyWidgetItems"
+    },
+    {
+      "pid": 24430,
+      "parentPid": 1,
+      "rssKiB": 5792,
+      "start": "Wed Oct  7 16:28:23 2026",
+      "executable": "cloudphotod"
+    },
+    {
+      "pid": 85286,
+      "parentPid": 1,
+      "rssKiB": 5792,
+      "start": "Mon Oct 12 15:23:31 2026",
+      "executable": "/usr/libexec/appleaccountd"
+    },
+    {
+      "pid": 94957,
+      "parentPid": 7512,
+      "rssKiB": 5792,
+      "start": "Mon Oct 12 22:27:19 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 95054,
+      "parentPid": 94958,
+      "rssKiB": 5792,
+      "start": "Mon Oct 12 22:27:19 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 1076,
+      "parentPid": 1,
+      "rssKiB": 5776,
+      "start": "Wed Sep 30 14:28:47 2026",
+      "executable": "/System/Library/PrivateFrameworks/PassKitCore.framework/passd"
+    },
+    {
+      "pid": 95410,
+      "parentPid": 7512,
+      "rssKiB": 5776,
+      "start": "Mon Oct 12 16:28:37 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 1274,
+      "parentPid": 1,
+      "rssKiB": 5760,
+      "start": "Wed Sep 30 14:29:00 2026",
+      "executable": "/System/Library/CoreServices/Batteries.app/Contents/PlugIns/BatteriesAvocadoWidgetExtension.appex/Contents/MacOS/BatteriesAvocadoWidgetExtension"
+    },
+    {
+      "pid": 79910,
+      "parentPid": 1,
+      "rssKiB": 5760,
+      "start": "Thu Oct 15 07:41:48 2026",
+      "executable": "/usr/libexec/assessmentagent"
+    },
+    {
+      "pid": 1162,
+      "parentPid": 1,
+      "rssKiB": 5680,
+      "start": "Wed Sep 30 14:28:57 2026",
+      "executable": "/System/Library/PrivateFrameworks/ViewBridge.framework/Versions/A/XPCServices/ViewBridgeAuxiliary.xpc/Contents/MacOS/ViewBridgeAuxiliary"
+    },
+    {
+      "pid": 67823,
+      "parentPid": 7512,
+      "rssKiB": 5680,
+      "start": "Mon Oct 12 19:47:15 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 950,
+      "parentPid": 1,
+      "rssKiB": 5664,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/System/Library/PrivateFrameworks/BackgroundTaskManagement.framework/Support/BackgroundTaskManagementAgent.app/Contents/MacOS/BackgroundTaskManagementAgent"
+    },
+    {
+      "pid": 74915,
+      "parentPid": 7512,
+      "rssKiB": 5648,
+      "start": "Tue Oct 13 17:20:35 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 61332,
+      "parentPid": 1,
+      "rssKiB": 5584,
+      "start": "Sat Oct 10 13:40:17 2026",
+      "executable": "/System/Library/PrivateFrameworks/PhotoLibraryServices.framework/Versions/A/Support/photolibraryd"
+    },
+    {
+      "pid": 941,
+      "parentPid": 1,
+      "rssKiB": 5472,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/usr/libexec/containermanagerd"
+    },
+    {
+      "pid": 22753,
+      "parentPid": 22738,
+      "rssKiB": 5408,
+      "start": "Sun Oct 11 14:46:29 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 1126,
+      "parentPid": 1,
+      "rssKiB": 5392,
+      "start": "Wed Sep 30 14:28:53 2026",
+      "executable": "/System/Library/PrivateFrameworks/CommunicationsFilter.framework/CMFSyncAgent"
+    },
+    {
+      "pid": 22735,
+      "parentPid": 7512,
+      "rssKiB": 5360,
+      "start": "Sun Oct 11 14:46:29 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+    },
+    {
+      "pid": 1356,
+      "parentPid": 1,
+      "rssKiB": 5344,
+      "start": "Wed Sep 30 14:29:03 2026",
+      "executable": "/System/iOSSupport/System/Library/ExtensionKit/Extensions/HomeWidgetIntentsExtension.appex/Contents/MacOS/HomeWidgetIntentsExtension"
+    },
+    {
+      "pid": 78977,
+      "parentPid": 1,
+      "rssKiB": 5328,
+      "start": "Thu Oct 15 07:40:41 2026",
+      "executable": "/System/Library/PrivateFrameworks/DeviceConfiguration.framework/Versions/A/DeviceConfigurationAgent"
+    },
+    {
+      "pid": 79856,
+      "parentPid": 1,
+      "rssKiB": 5248,
+      "start": "Thu Oct 15 07:41:45 2026",
+      "executable": "/System/Library/PrivateFrameworks/AppPredictionFoundation.framework/Versions/A/XPCServices/AppPredictionIntentsHelperService.xpc/Contents/MacOS/AppPredictionIntentsHelperService"
+    },
+    {
+      "pid": 82468,
+      "parentPid": 1,
+      "rssKiB": 5120,
+      "start": "Fri Oct  9 10:59:40 2026",
+      "executable": "/System/Library/PrivateFrameworks/SessionCore.framework/Support/liveactivitiesd"
+    },
+    {
+      "pid": 78979,
+      "parentPid": 1,
+      "rssKiB": 5088,
+      "start": "Thu Oct 15 07:40:41 2026",
+      "executable": "/System/Library/PrivateFrameworks/FamilyCircle.framework/Versions/A/Resources/familycircled"
+    },
+    {
+      "pid": 4327,
+      "parentPid": 1,
+      "rssKiB": 5056,
+      "start": "Wed Sep 30 14:29:30 2026",
+      "executable": "/System/Applications/Messages.app/Contents/Extensions/MessagesActionExtension.appex/Contents/MacOS/MessagesActionExtension"
+    },
+    {
+      "pid": 59221,
+      "parentPid": 1,
+      "rssKiB": 5056,
+      "start": "Thu Oct  1 03:03:00 2026",
+      "executable": "/System/Library/PrivateFrameworks/ScreenTimeCore.framework/Versions/A/ScreenTimeAgent"
+    },
+    {
+      "pid": 80250,
+      "parentPid": 1,
+      "rssKiB": 5040,
+      "start": "Thu Oct 15 07:42:45 2026",
+      "executable": "/System/Library/CoreServices/iconservicesagent"
+    },
+    {
+      "pid": 71596,
+      "parentPid": 5331,
+      "rssKiB": 5040,
+      "start": "Wed Oct  7 13:05:12 2026",
+      "executable": "login"
+    },
+    {
+      "pid": 1284,
+      "parentPid": 1,
+      "rssKiB": 5024,
+      "start": "Wed Sep 30 14:29:00 2026",
+      "executable": "/System/Applications/VoiceMemos.app/Contents/PlugIns/VoiceMemosSettingsWidgetExtension.appex/Contents/MacOS/VoiceMemosSettingsWidgetExtension"
+    },
+    {
+      "pid": 7131,
+      "parentPid": 1,
+      "rssKiB": 5024,
+      "start": "Sun Oct 11 12:57:07 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.40/Helpers/browser_crashpad_handler"
+    },
+    {
+      "pid": 1335,
+      "parentPid": 1,
+      "rssKiB": 5008,
+      "start": "Wed Sep 30 14:29:02 2026",
+      "executable": "/System/Applications/VoiceMemos.app/Contents/PlugIns/RecordWidgetExtension.appex/Contents/MacOS/RecordWidgetExtension"
+    },
+    {
+      "pid": 72542,
+      "parentPid": 1,
+      "rssKiB": 4944,
+      "start": "Fri Oct  2 10:29:55 2026",
+      "executable": "/System/Library/PrivateFrameworks/UsageTracking.framework/Versions/A/UsageTrackingAgent"
+    },
+    {
+      "pid": 1007,
+      "parentPid": 1,
+      "rssKiB": 4912,
+      "start": "Wed Sep 30 14:28:43 2026",
+      "executable": "/System/Library/PrivateFrameworks/FileProvider.framework/Support/fileproviderd"
+    },
+    {
+      "pid": 5337,
+      "parentPid": 5331,
+      "rssKiB": 4896,
+      "start": "Wed Oct  7 07:26:07 2026",
+      "executable": "login"
+    },
+    {
+      "pid": 1295,
+      "parentPid": 1,
+      "rssKiB": 4800,
+      "start": "Wed Sep 30 14:29:00 2026",
+      "executable": "/System/Applications/Weather.app/Contents/PlugIns/WeatherIntents.appex/Contents/MacOS/WeatherIntents"
+    },
+    {
+      "pid": 60675,
+      "parentPid": 1,
+      "rssKiB": 4784,
+      "start": "Sun Oct 11 18:08:19 2026",
+      "executable": "/usr/libexec/dmd"
+    },
+    {
+      "pid": 79867,
+      "parentPid": 1,
+      "rssKiB": 4768,
+      "start": "Thu Oct 15 07:41:46 2026",
+      "executable": "/System/Library/PrivateFrameworks/CommerceKit.framework/Versions/A/Resources/commerce"
+    },
+    {
+      "pid": 867,
+      "parentPid": 1,
+      "rssKiB": 4752,
+      "start": "Wed Sep 30 14:28:41 2026",
+      "executable": "/usr/sbin/cfprefsd"
+    },
+    {
+      "pid": 71892,
+      "parentPid": 1359,
+      "rssKiB": 4704,
+      "start": "Mon Oct  5 21:35:56 2026",
+      "executable": "/usr/bin/login"
+    },
+    {
+      "pid": 1135,
+      "parentPid": 1,
+      "rssKiB": 4624,
+      "start": "Wed Sep 30 14:28:55 2026",
+      "executable": "/System/Library/Frameworks/ApplicationServices.framework/Frameworks/ATS.framework/Support/fontd"
+    },
+    {
+      "pid": 1361,
+      "parentPid": 1359,
+      "rssKiB": 4544,
+      "start": "Wed Sep 30 14:29:03 2026",
+      "executable": "/usr/bin/login"
+    },
+    {
+      "pid": 1364,
+      "parentPid": 1359,
+      "rssKiB": 4544,
+      "start": "Wed Sep 30 14:29:03 2026",
+      "executable": "/usr/bin/login"
+    },
+    {
+      "pid": 1366,
+      "parentPid": 1359,
+      "rssKiB": 4544,
+      "start": "Wed Sep 30 14:29:03 2026",
+      "executable": "/usr/bin/login"
+    },
+    {
+      "pid": 1369,
+      "parentPid": 1359,
+      "rssKiB": 4544,
+      "start": "Wed Sep 30 14:29:03 2026",
+      "executable": "/usr/bin/login"
+    },
+    {
+      "pid": 1373,
+      "parentPid": 1359,
+      "rssKiB": 4544,
+      "start": "Wed Sep 30 14:29:03 2026",
+      "executable": "/usr/bin/login"
+    },
+    {
+      "pid": 59074,
+      "parentPid": 1,
+      "rssKiB": 4528,
+      "start": "Thu Oct  1 03:01:57 2026",
+      "executable": "/usr/libexec/textunderstandingd"
+    },
+    {
+      "pid": 78012,
+      "parentPid": 1,
+      "rssKiB": 4464,
+      "start": "Thu Oct 15 07:33:29 2026",
+      "executable": "/usr/libexec/companiond"
+    },
+    {
+      "pid": 78986,
+      "parentPid": 1,
+      "rssKiB": 4464,
+      "start": "Thu Oct 15 07:40:44 2026",
+      "executable": "/System/Library/PrivateFrameworks/AssetCacheServices.framework/Versions/A/XPCServices/AssetCacheLocatorService.xpc/Contents/MacOS/AssetCacheLocatorService"
+    },
+    {
+      "pid": 38318,
+      "parentPid": 1,
+      "rssKiB": 4416,
+      "start": "Thu Oct  8 06:12:27 2026",
+      "executable": "/System/Library/PrivateFrameworks/IMDPersistence.framework/XPCServices/IMDPersistenceAgent.xpc/Contents/MacOS/IMDPersistenceAgent"
+    },
+    {
+      "pid": 4122,
+      "parentPid": 1,
+      "rssKiB": 4400,
+      "start": "Wed Oct  7 07:23:42 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/TextThumbnailExtension.appex/Contents/MacOS/TextThumbnailExtension"
+    },
+    {
+      "pid": 964,
+      "parentPid": 1,
+      "rssKiB": 4320,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/System/Library/CoreServices/lockoutagent"
+    },
+    {
+      "pid": 1170,
+      "parentPid": 1,
+      "rssKiB": 4240,
+      "start": "Wed Sep 30 14:28:57 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdbulkimport"
+    },
+    {
+      "pid": 866,
+      "parentPid": 1,
+      "rssKiB": 4208,
+      "start": "Wed Sep 30 14:28:41 2026",
+      "executable": "/usr/sbin/distnoted"
+    },
+    {
+      "pid": 262,
+      "parentPid": 1,
+      "rssKiB": 4176,
+      "start": "Fri Oct  9 13:17:42 2026",
+      "executable": "/System/Library/PrivateFrameworks/AXAssetLoader.framework/Support/axassetsd"
+    },
+    {
+      "pid": 94610,
+      "parentPid": 1,
+      "rssKiB": 4176,
+      "start": "Mon Oct  5 22:26:08 2026",
+      "executable": "/System/Library/Frameworks/Security.framework/Versions/A/XPCServices/TrustedPeersHelper.xpc/Contents/MacOS/TrustedPeersHelper"
+    },
+    {
+      "pid": 79848,
+      "parentPid": 1,
+      "rssKiB": 4128,
+      "start": "Thu Oct 15 07:41:44 2026",
+      "executable": "/System/Library/PrivateFrameworks/iCloudDriveService.framework/XPCServices/ContainerMetadataExtractor.xpc/Contents/MacOS/ContainerMetadataExtractor"
+    },
+    {
+      "pid": 91350,
+      "parentPid": 1,
+      "rssKiB": 4112,
+      "start": "Mon Oct 12 16:06:45 2026",
+      "executable": "/System/Library/PrivateFrameworks/MobileTimer.framework/Executables/mobiletimerd"
+    },
+    {
+      "pid": 15521,
+      "parentPid": 1,
+      "rssKiB": 3840,
+      "start": "Fri Oct  2 05:10:33 2026",
+      "executable": "/System/Library/PrivateFrameworks/MapsSync.framework/mapssyncd"
+    },
+    {
+      "pid": 993,
+      "parentPid": 1,
+      "rssKiB": 3760,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/usr/libexec/languageassetd"
+    },
+    {
+      "pid": 94958,
+      "parentPid": 7512,
+      "rssKiB": 3744,
+      "start": "Mon Oct 12 22:27:19 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 80565,
+      "parentPid": 3892,
+      "rssKiB": 3728,
+      "start": "Thu Oct 15 07:43:21 2026",
+      "executable": "/usr/sbin/system_profiler"
+    },
+    {
+      "pid": 31817,
+      "parentPid": 7512,
+      "rssKiB": 3712,
+      "start": "Mon Oct 12 17:29:40 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 67822,
+      "parentPid": 7512,
+      "rssKiB": 3712,
+      "start": "Mon Oct 12 19:47:15 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 1385,
+      "parentPid": 1373,
+      "rssKiB": 3712,
+      "start": "Wed Sep 30 14:29:03 2026",
+      "executable": "-zsh"
+    },
+    {
+      "pid": 94242,
+      "parentPid": 7512,
+      "rssKiB": 3696,
+      "start": "Mon Oct 12 16:24:27 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 95411,
+      "parentPid": 7512,
+      "rssKiB": 3696,
+      "start": "Mon Oct 12 16:28:37 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 11355,
+      "parentPid": 7512,
+      "rssKiB": 3680,
+      "start": "Mon Oct 12 09:59:01 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 3908,
+      "parentPid": 1,
+      "rssKiB": 3664,
+      "start": "Wed Sep 30 14:29:07 2026",
+      "executable": "/opt/homebrew/opt/postgresql@17/bin/postgres"
+    },
+    {
+      "pid": 11651,
+      "parentPid": 1,
+      "rssKiB": 3664,
+      "start": "Fri Oct  2 04:44:54 2026",
+      "executable": "/usr/libexec/findmylocateagent"
+    },
+    {
+      "pid": 1248,
+      "parentPid": 1,
+      "rssKiB": 3648,
+      "start": "Wed Sep 30 14:28:59 2026",
+      "executable": "/System/Applications/Calendar.app/Contents/PlugIns/CalendarWidgetExtension.appex/Contents/MacOS/CalendarWidgetExtension"
+    },
+    {
+      "pid": 96446,
+      "parentPid": 96436,
+      "rssKiB": 3616,
+      "start": "Sun Oct 11 19:36:41 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 51702,
+      "parentPid": 1,
+      "rssKiB": 3600,
+      "start": "Sun Oct 11 17:37:19 2026",
+      "executable": "/System/Library/PrivateFrameworks/SuggestedImage.framework/Support/imageplaygroundd"
+    },
+    {
+      "pid": 96435,
+      "parentPid": 7512,
+      "rssKiB": 3600,
+      "start": "Sun Oct 11 19:36:40 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 1359,
+      "parentPid": 1271,
+      "rssKiB": 3584,
+      "start": "Wed Sep 30 14:29:03 2026",
+      "executable": "/Users/v/Library/Application Support/iTerm2/iTermServer-3.7.3"
+    },
+    {
+      "pid": 22736,
+      "parentPid": 7512,
+      "rssKiB": 3584,
+      "start": "Sun Oct 11 14:46:29 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 22738,
+      "parentPid": 7512,
+      "rssKiB": 3584,
+      "start": "Sun Oct 11 14:46:29 2026",
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+    },
+    {
+      "pid": 43003,
+      "parentPid": 1,
+      "rssKiB": 3584,
+      "start": "Tue Oct  6 05:11:33 2026",
+      "executable": "/usr/libexec/milod"
+    },
+    {
+      "pid": 58401,
+      "parentPid": 1,
+      "rssKiB": 3584,
+      "start": "Thu Oct  1 02:57:27 2026",
+      "executable": "/usr/libexec/findmydevice-user-agent"
+    },
+    {
+      "pid": 35662,
+      "parentPid": 1,
+      "rssKiB": 3488,
+      "start": "Thu Oct  1 00:06:53 2026",
+      "executable": "/System/Library/PrivateFrameworks/ScreenTimeSettingsFoundation.framework/Versions/A/ScreenTimeSettingsAgent"
+    },
+    {
+      "pid": 14439,
+      "parentPid": 1,
+      "rssKiB": 3472,
+      "start": "Thu Oct  8 12:59:37 2026",
+      "executable": "/System/Library/PrivateFrameworks/IntelligencePlatformCore.framework/Versions/A/intelligenceplatformd"
+    },
+    {
+      "pid": 36479,
+      "parentPid": 1,
+      "rssKiB": 3472,
+      "start": "Thu Oct  1 20:55:36 2026",
+      "executable": "/usr/libexec/keyboardservicesd"
+    },
+    {
+      "pid": 77033,
+      "parentPid": 1,
+      "rssKiB": 3376,
+      "start": "Thu Oct 15 07:27:09 2026",
+      "executable": "/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/XPCServices/com.apple.hiservices-xpcservice.xpc/Contents/MacOS/com.apple.hiservices-xpcservice"
+    },
+    {
+      "pid": 19465,
+      "parentPid": 1,
+      "rssKiB": 3328,
+      "start": "Fri Oct  2 05:37:40 2026",
+      "executable": "/System/Library/PrivateFrameworks/Stickers.framework/Support/stickersd"
+    },
+    {
+      "pid": 89390,
+      "parentPid": 1,
+      "rssKiB": 3296,
+      "start": "Sun Oct 11 19:21:06 2026",
+      "executable": "/usr/libexec/inputanalyticsd"
+    },
+    {
+      "pid": 4259,
+      "parentPid": 3893,
+      "rssKiB": 3280,
+      "start": "Wed Sep 30 14:29:18 2026",
+      "executable": "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 4379,
+      "parentPid": 1,
+      "rssKiB": 3280,
+      "start": "Wed Sep 30 14:29:46 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/NotificationsSettingsIntents.appex/Contents/MacOS/NotificationsSettingsIntents"
+    },
+    {
+      "pid": 4452,
+      "parentPid": 1,
+      "rssKiB": 3232,
+      "start": "Wed Sep 30 14:29:59 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/WallpaperImageExtension.appex/Contents/MacOS/WallpaperImageExtension"
+    },
+    {
+      "pid": 3889,
+      "parentPid": 1,
+      "rssKiB": 3184,
+      "start": "Wed Sep 30 14:29:07 2026",
+      "executable": "/System/Library/Frameworks/InputMethodKit.framework/Resources/imklaunchagent"
+    },
+    {
+      "pid": 4408,
+      "parentPid": 1,
+      "rssKiB": 3184,
+      "start": "Wed Sep 30 14:29:50 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/SiriSetupSettingsIntents.appex/Contents/MacOS/SiriSetupSettingsIntents"
+    },
+    {
+      "pid": 4419,
+      "parentPid": 1,
+      "rssKiB": 3168,
+      "start": "Wed Sep 30 14:29:52 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/BluetoothSettingsAppIntentsWidgetExtension.appex/Contents/MacOS/BluetoothSettingsAppIntentsWidgetExtension"
+    },
+    {
+      "pid": 1310,
+      "parentPid": 1,
+      "rssKiB": 3152,
+      "start": "Wed Sep 30 14:29:00 2026",
+      "executable": "/System/Library/PrivateFrameworks/AgentSessionKitRuntime.framework/Versions/A/agentstored"
+    },
+    {
+      "pid": 4451,
+      "parentPid": 1,
+      "rssKiB": 3152,
+      "start": "Wed Sep 30 14:29:59 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/WallpaperLegacyExtension.appex/Contents/MacOS/WallpaperLegacyExtension"
+    },
+    {
+      "pid": 1298,
+      "parentPid": 1,
+      "rssKiB": 3120,
+      "start": "Wed Sep 30 14:29:00 2026",
+      "executable": "/System/Library/PrivateFrameworks/AMPDevices.framework/Versions/A/Support/AMPDeviceDiscoveryAgent"
+    },
+    {
+      "pid": 1155,
+      "parentPid": 1,
+      "rssKiB": 3072,
+      "start": "Wed Sep 30 14:28:56 2026",
+      "executable": "/System/Library/PrivateFrameworks/CloudDocs.framework/PlugIns/com.apple.CloudDocs.iCloudDriveFileProvider.appex/Contents/MacOS/com.apple.CloudDocs.iCloudDriveFileProvider"
+    },
+    {
+      "pid": 4410,
+      "parentPid": 1,
+      "rssKiB": 3072,
+      "start": "Wed Sep 30 14:29:50 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/DateTimeIntentsExtension.appex/Contents/MacOS/DateTimeIntentsExtension"
+    },
+    {
+      "pid": 4437,
+      "parentPid": 1,
+      "rssKiB": 3040,
+      "start": "Wed Sep 30 14:29:55 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/WallpaperSettingsIntents.appex/Contents/MacOS/WallpaperSettingsIntents"
+    },
+    {
+      "pid": 4406,
+      "parentPid": 1,
+      "rssKiB": 3024,
+      "start": "Wed Sep 30 14:29:50 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/ControlCenterSettingsIntents.appex/Contents/MacOS/ControlCenterSettingsIntents"
+    },
+    {
+      "pid": 4418,
+      "parentPid": 1,
+      "rssKiB": 3024,
+      "start": "Wed Sep 30 14:29:52 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/AccountsUISettingsAppIntents.appex/Contents/MacOS/AccountsUISettingsAppIntents"
+    },
+    {
+      "pid": 4475,
+      "parentPid": 1,
+      "rssKiB": 3008,
+      "start": "Wed Sep 30 14:30:08 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/BatterySettingsIntentsExtension.appex/Contents/MacOS/BatterySettingsIntentsExtension"
+    },
+    {
+      "pid": 25105,
+      "parentPid": 1,
+      "rssKiB": 2976,
+      "start": "Sun Oct 11 21:29:44 2026",
+      "executable": "/System/Library/PrivateFrameworks/CoreRecents.framework/Versions/A/Support/recentsd"
+    },
+    {
+      "pid": 4397,
+      "parentPid": 1,
+      "rssKiB": 2944,
+      "start": "Wed Sep 30 14:29:47 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/FamilyIntents.appex/Contents/MacOS/FamilyIntents"
+    },
+    {
+      "pid": 71361,
+      "parentPid": 1,
+      "rssKiB": 2944,
+      "start": "Thu Oct  8 09:12:09 2026",
+      "executable": "/System/Library/PrivateFrameworks/ProtectedCloudStorage.framework/Helpers/ProtectedCloudKeySyncing"
+    },
+    {
+      "pid": 4428,
+      "parentPid": 1,
+      "rssKiB": 2928,
+      "start": "Wed Sep 30 14:29:54 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/ScreenTimeAppIntentsExtension.appex/Contents/MacOS/ScreenTimeAppIntentsExtension"
+    },
+    {
+      "pid": 4403,
+      "parentPid": 1,
+      "rssKiB": 2912,
+      "start": "Wed Sep 30 14:29:49 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/DesktopSettingsIntents.appex/Contents/MacOS/DesktopSettingsIntents"
+    },
+    {
+      "pid": 4422,
+      "parentPid": 1,
+      "rssKiB": 2912,
+      "start": "Wed Sep 30 14:29:53 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/TrackpadIntentsExtension.appex/Contents/MacOS/TrackpadIntentsExtension"
+    },
+    {
+      "pid": 1452,
+      "parentPid": 1,
+      "rssKiB": 2880,
+      "start": "Wed Sep 30 14:29:04 2026",
+      "executable": "/System/Applications/Notes.app/Contents/PlugIns/com.apple.Notes.WidgetExtension.appex/Contents/MacOS/com.apple.Notes.WidgetExtension"
+    },
+    {
+      "pid": 1509,
+      "parentPid": 1,
+      "rssKiB": 2880,
+      "start": "Wed Sep 30 14:29:05 2026",
+      "executable": "/System/Applications/Reminders.app/Contents/PlugIns/RemindersWidgetExtension.appex/Contents/MacOS/RemindersWidgetExtension"
+    },
+    {
+      "pid": 4415,
+      "parentPid": 1,
+      "rssKiB": 2880,
+      "start": "Wed Sep 30 14:29:51 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/TimeMachineSettingsIntents.appex/Contents/MacOS/TimeMachineSettingsIntents"
+    },
+    {
+      "pid": 4471,
+      "parentPid": 1,
+      "rssKiB": 2864,
+      "start": "Wed Sep 30 14:30:06 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/MouseIntentsExtension.appex/Contents/MacOS/MouseIntentsExtension"
+    },
+    {
+      "pid": 1142,
+      "parentPid": 1,
+      "rssKiB": 2848,
+      "start": "Wed Sep 30 14:28:55 2026",
+      "executable": "/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/Support/fontworker"
+    },
+    {
+      "pid": 1358,
+      "parentPid": 1,
+      "rssKiB": 2848,
+      "start": "Wed Sep 30 14:29:03 2026",
+      "executable": "/System/Applications/Tips.app/Contents/PlugIns/TipsWidgetExtension.appex/Contents/MacOS/TipsWidgetExtension"
+    },
+    {
+      "pid": 4417,
+      "parentPid": 1,
+      "rssKiB": 2848,
+      "start": "Wed Sep 30 14:29:51 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/BiometricsAndPasswordSettingsAppIntentsExtension.appex/Contents/MacOS/BiometricsAndPasswordSettingsAppIntentsExtension"
+    },
+    {
+      "pid": 4466,
+      "parentPid": 1,
+      "rssKiB": 2816,
+      "start": "Wed Sep 30 14:30:05 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/DoNotDisturbAppIntents.appex/Contents/MacOS/DoNotDisturbAppIntents"
+    },
+    {
+      "pid": 1365,
+      "parentPid": 1,
+      "rssKiB": 2800,
+      "start": "Wed Sep 30 14:29:03 2026",
+      "executable": "/System/Applications/Photos.app/Contents/PlugIns/PhotosReliveWidget.appex/Contents/MacOS/PhotosReliveWidget"
+    },
+    {
+      "pid": 1379,
+      "parentPid": 1,
+      "rssKiB": 2800,
+      "start": "Wed Sep 30 14:29:03 2026",
+      "executable": "/System/Library/CoreServices/PeopleViewService.app/Contents/PlugIns/PeopleWidget_macOSExtension.appex/Contents/MacOS/PeopleWidget_macOSExtension"
+    },
+    {
+      "pid": 4438,
+      "parentPid": 1,
+      "rssKiB": 2800,
+      "start": "Wed Sep 30 14:29:55 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/AccessibilitySettingsSearchExtension.appex/Contents/MacOS/AccessibilitySettingsSearchExtension"
+    },
+    {
+      "pid": 4357,
+      "parentPid": 1,
+      "rssKiB": 2768,
+      "start": "Wed Sep 30 14:29:40 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/PlaceholderSettingsSearchTermsIntents.appex/Contents/MacOS/PlaceholderSettingsSearchTermsIntents"
+    },
+    {
+      "pid": 4402,
+      "parentPid": 1,
+      "rssKiB": 2752,
+      "start": "Wed Sep 30 14:29:48 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/WiFiMacSettingsIntents.appex/Contents/MacOS/WiFiMacSettingsIntents"
+    },
+    {
+      "pid": 4405,
+      "parentPid": 1,
+      "rssKiB": 2752,
+      "start": "Wed Sep 30 14:29:50 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/PasswordSettingsAppIntentsExtension.appex/Contents/MacOS/PasswordSettingsAppIntentsExtension"
+    },
+    {
+      "pid": 4383,
+      "parentPid": 1,
+      "rssKiB": 2736,
+      "start": "Wed Sep 30 14:29:46 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/KeyboardSettingsIntents.appex/Contents/MacOS/KeyboardSettingsIntents"
+    },
+    {
+      "pid": 4389,
+      "parentPid": 1,
+      "rssKiB": 2736,
+      "start": "Wed Sep 30 14:29:47 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/SpotlightSettingsIntentsExtension.appex/Contents/MacOS/SpotlightSettingsIntentsExtension"
+    },
+    {
+      "pid": 4394,
+      "parentPid": 1,
+      "rssKiB": 2736,
+      "start": "Wed Sep 30 14:29:47 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/SoftwareUpdateSettingsExtensionIntents.appex/Contents/MacOS/SoftwareUpdateSettingsExtensionIntents"
+    },
+    {
+      "pid": 4399,
+      "parentPid": 1,
+      "rssKiB": 2736,
+      "start": "Wed Sep 30 14:29:48 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/ClassroomDeviceExpert.appex/Contents/MacOS/ClassroomDeviceExpert"
+    },
+    {
+      "pid": 4412,
+      "parentPid": 1,
+      "rssKiB": 2736,
+      "start": "Wed Sep 30 14:29:51 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/GameCenterSettingsSearchExtension.appex/Contents/MacOS/GameCenterSettingsSearchExtension"
+    },
+    {
+      "pid": 4433,
+      "parentPid": 1,
+      "rssKiB": 2736,
+      "start": "Wed Sep 30 14:29:54 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/ProfilesSettingsIntents.appex/Contents/MacOS/ProfilesSettingsIntents"
+    },
+    {
+      "pid": 4436,
+      "parentPid": 1,
+      "rssKiB": 2736,
+      "start": "Wed Sep 30 14:29:54 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/VpnSettingsIntents.appex/Contents/MacOS/VpnSettingsIntents"
+    },
+    {
+      "pid": 4470,
+      "parentPid": 1,
+      "rssKiB": 2736,
+      "start": "Wed Sep 30 14:30:05 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/StartupDiskWidgetExtension.appex/Contents/MacOS/StartupDiskWidgetExtension"
+    },
+    {
+      "pid": 4473,
+      "parentPid": 1,
+      "rssKiB": 2736,
+      "start": "Wed Sep 30 14:30:07 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/InternationalSettingsExtension.appex/Contents/MacOS/InternationalSettingsExtension"
+    },
+    {
+      "pid": 4427,
+      "parentPid": 1,
+      "rssKiB": 2720,
+      "start": "Wed Sep 30 14:29:54 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/AppleAccountIntents_macOS.appex/Contents/MacOS/AppleAccountIntents_macOS"
+    },
+    {
+      "pid": 4472,
+      "parentPid": 1,
+      "rssKiB": 2720,
+      "start": "Wed Sep 30 14:30:07 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/StorageSettingsIntentsExtension.appex/Contents/MacOS/StorageSettingsIntentsExtension"
+    },
+    {
+      "pid": 4392,
+      "parentPid": 1,
+      "rssKiB": 2688,
+      "start": "Wed Sep 30 14:29:47 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/GameControllerSettingsIntents.appex/Contents/MacOS/GameControllerSettingsIntents"
+    },
+    {
+      "pid": 4424,
+      "parentPid": 1,
+      "rssKiB": 2688,
+      "start": "Wed Sep 30 14:29:53 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/ClassKitAppIntents.appex/Contents/MacOS/ClassKitAppIntents"
+    },
+    {
+      "pid": 4400,
+      "parentPid": 1,
+      "rssKiB": 2672,
+      "start": "Wed Sep 30 14:29:48 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/PrefPaneSearchIntent.appex/Contents/MacOS/PrefPaneSearchIntent"
+    },
+    {
+      "pid": 79791,
+      "parentPid": 1,
+      "rssKiB": 2672,
+      "start": "Thu Oct 15 07:41:38 2026",
+      "executable": "/System/Library/CoreServices/pbs"
+    },
+    {
+      "pid": 4325,
+      "parentPid": 1,
+      "rssKiB": 2656,
+      "start": "Wed Sep 30 14:29:30 2026",
+      "executable": "/System/Applications/Calendar.app/Contents/Extensions/CalendarIntentsExtension.appex/Contents/MacOS/CalendarIntentsExtension"
+    },
+    {
+      "pid": 4404,
+      "parentPid": 1,
+      "rssKiB": 2624,
+      "start": "Wed Sep 30 14:29:49 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/CDsAndDvDsSettingsIntents.appex/Contents/MacOS/CDsAndDvDsSettingsIntents"
+    },
+    {
+      "pid": 15461,
+      "parentPid": 1,
+      "rssKiB": 2592,
+      "start": "Fri Oct  2 05:10:31 2026",
+      "executable": "/System/Library/PrivateFrameworks/AppleAccountTransparency.framework/Versions/A/Resources/appleaccounttransparencyd"
+    },
+    {
+      "pid": 1502,
+      "parentPid": 1,
+      "rssKiB": 2544,
+      "start": "Wed Sep 30 14:29:05 2026",
+      "executable": "/System/Library/Image Capture/Support/icdd"
+    },
+    {
+      "pid": 20282,
+      "parentPid": 1,
+      "rssKiB": 2544,
+      "start": "Tue Oct  6 01:42:05 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/ImageThumbnailExtension.appex/Contents/MacOS/ImageThumbnailExtension"
+    },
+    {
+      "pid": 4450,
+      "parentPid": 1,
+      "rssKiB": 2512,
+      "start": "Wed Sep 30 14:29:59 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/WallpaperDynamicExtension.appex/Contents/MacOS/WallpaperDynamicExtension"
+    },
+    {
+      "pid": 72990,
+      "parentPid": 1,
+      "rssKiB": 2512,
+      "start": "Thu Oct  1 04:49:39 2026",
+      "executable": "/System/Library/PrivateFrameworks/CoreFollowUp.framework/Versions/A/Support/followupd"
+    },
+    {
+      "pid": 4447,
+      "parentPid": 1,
+      "rssKiB": 2368,
+      "start": "Wed Sep 30 14:29:58 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/WallpaperSequoiaExtension.appex/Contents/MacOS/WallpaperSequoiaExtension"
+    },
+    {
+      "pid": 53036,
+      "parentPid": 1,
+      "rssKiB": 2368,
+      "start": "Wed Oct  7 12:05:11 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/PackageThumbnailExtension.appex/Contents/MacOS/PackageThumbnailExtension"
+    },
+    {
+      "pid": 4449,
+      "parentPid": 1,
+      "rssKiB": 2352,
+      "start": "Wed Sep 30 14:29:59 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/WallpaperMacintoshExtension.appex/Contents/MacOS/WallpaperMacintoshExtension"
+    },
+    {
+      "pid": 4448,
+      "parentPid": 1,
+      "rssKiB": 2336,
+      "start": "Wed Sep 30 14:29:59 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/NeptuneOneWallpaper.appex/Contents/MacOS/NeptuneOneWallpaper"
+    },
+    {
+      "pid": 4454,
+      "parentPid": 1,
+      "rssKiB": 2336,
+      "start": "Wed Sep 30 14:29:59 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/WallpaperGradientExtension.appex/Contents/MacOS/WallpaperGradientExtension"
+    },
+    {
+      "pid": 4453,
+      "parentPid": 1,
+      "rssKiB": 2320,
+      "start": "Wed Sep 30 14:29:59 2026",
+      "executable": "/System/Library/ExtensionKit/Extensions/WallpaperSonomaExtension.appex/Contents/MacOS/WallpaperSonomaExtension"
+    },
+    {
+      "pid": 1282,
+      "parentPid": 1,
+      "rssKiB": 2272,
+      "start": "Wed Sep 30 14:29:00 2026",
+      "executable": "/System/Library/PrivateFrameworks/MobileTimer.framework/PlugIns/MobileTimerIntents.appex/Contents/MacOS/MobileTimerIntents"
+    },
+    {
+      "pid": 3917,
+      "parentPid": 1,
+      "rssKiB": 2192,
+      "start": "Wed Sep 30 14:29:07 2026",
+      "executable": "/System/Library/Frameworks/CryptoTokenKit.framework/ctkahp.bundle/Contents/MacOS/ctkahp"
+    },
+    {
+      "pid": 1179,
+      "parentPid": 1,
+      "rssKiB": 2144,
+      "start": "Wed Sep 30 14:28:57 2026",
+      "executable": "/System/Library/PrivateFrameworks/MediaRemote.framework/Support/mediaremoteagent"
+    },
+    {
+      "pid": 1505,
+      "parentPid": 1,
+      "rssKiB": 2128,
+      "start": "Wed Sep 30 14:29:05 2026",
+      "executable": "/usr/libexec/spatialpreviewd"
+    },
+    {
+      "pid": 80564,
+      "parentPid": 80555,
+      "rssKiB": 2080,
+      "start": "Thu Oct 15 07:43:21 2026",
+      "executable": "/bin/ps"
+    },
+    {
+      "pid": 1503,
+      "parentPid": 1,
+      "rssKiB": 2064,
+      "start": "Wed Sep 30 14:29:05 2026",
+      "executable": "/System/Library/Frameworks/ImageCaptureCore.framework/Versions/A/XPCServices/mscamerad-xpc.xpc/Contents/MacOS/mscamerad-xpc"
+    },
+    {
+      "pid": 3997,
+      "parentPid": 3908,
+      "rssKiB": 1984,
+      "start": "Wed Sep 30 14:29:09 2026",
+      "executable": "postgres: autovacuum launcher "
+    },
+    {
+      "pid": 1367,
+      "parentPid": 1,
+      "rssKiB": 1728,
+      "start": "Wed Sep 30 14:29:03 2026",
+      "executable": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdwrite"
+    },
+    {
+      "pid": 1504,
+      "parentPid": 1,
+      "rssKiB": 1552,
+      "start": "Wed Sep 30 14:29:05 2026",
+      "executable": "/usr/libexec/ptpcamerad"
+    },
+    {
+      "pid": 73112,
+      "parentPid": 1,
+      "rssKiB": 1520,
+      "start": "Sun Oct  4 02:30:25 2026",
+      "executable": "/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/mbuseragent"
+    },
+    {
+      "pid": 1386,
+      "parentPid": 1369,
+      "rssKiB": 1504,
+      "start": "Wed Sep 30 14:29:03 2026",
+      "executable": "-zsh"
+    },
+    {
+      "pid": 79030,
+      "parentPid": 1,
+      "rssKiB": 1440,
+      "start": "Thu Oct 15 07:41:07 2026",
+      "executable": "/System/Library/CoreServices/ReportCrash"
+    },
+    {
+      "pid": 3998,
+      "parentPid": 3908,
+      "rssKiB": 1344,
+      "start": "Wed Sep 30 14:29:09 2026",
+      "executable": "postgres: logical replication launcher "
+    },
+    {
+      "pid": 78403,
+      "parentPid": 1,
+      "rssKiB": 1296,
+      "start": "Thu Oct 15 07:36:41 2026",
+      "executable": "/bin/bash"
+    },
+    {
+      "pid": 12923,
+      "parentPid": 1,
+      "rssKiB": 1280,
+      "start": "Sat Oct 10 21:59:45 2026",
+      "executable": "/System/Cryptexes/App/usr/libexec/AuthenticationServicesAgent"
+    },
+    {
+      "pid": 26236,
+      "parentPid": 1,
+      "rssKiB": 1232,
+      "start": "Wed Oct 14 09:01:26 2026",
+      "executable": "/System/Library/PrivateFrameworks/KerberosHelper/Helpers/DiskUnmountWatcher"
+    },
+    {
+      "pid": 39208,
+      "parentPid": 1,
+      "rssKiB": 1216,
+      "start": "Wed Sep 30 15:57:23 2026",
+      "executable": "/usr/bin/ssh-agent"
+    },
+    {
+      "pid": 6608,
+      "parentPid": 1,
+      "rssKiB": 976,
+      "start": "Wed Sep 30 14:34:18 2026",
+      "executable": "/System/Cryptexes/App/usr/libexec/PasswordBreachAgent"
+    },
+    {
+      "pid": 987,
+      "parentPid": 1,
+      "rssKiB": 816,
+      "start": "Wed Sep 30 14:28:42 2026",
+      "executable": "/System/Library/PrivateFrameworks/SystemMigrationNetwork.framework/Resources/migrationhelper"
+    },
+    {
+      "pid": 3993,
+      "parentPid": 3908,
+      "rssKiB": 704,
+      "start": "Wed Sep 30 14:29:09 2026",
+      "executable": "postgres: background writer "
+    },
+    {
+      "pid": 78480,
+      "parentPid": 78403,
+      "rssKiB": 704,
+      "start": "Thu Oct 15 07:36:51 2026",
+      "executable": "/bin/bash"
+    },
+    {
+      "pid": 42968,
+      "parentPid": 42967,
+      "rssKiB": 672,
+      "start": "Mon Oct 12 13:54:40 2026",
+      "executable": "-zsh"
+    },
+    {
+      "pid": 5339,
+      "parentPid": 5337,
+      "rssKiB": 624,
+      "start": "Wed Oct  7 07:26:07 2026",
+      "executable": "-zsh"
+    },
+    {
+      "pid": 71599,
+      "parentPid": 71596,
+      "rssKiB": 624,
+      "start": "Wed Oct  7 13:05:12 2026",
+      "executable": "-zsh"
+    },
+    {
+      "pid": 3988,
+      "parentPid": 3908,
+      "rssKiB": 608,
+      "start": "Wed Sep 30 14:29:09 2026",
+      "executable": "postgres: checkpointer "
+    },
+    {
+      "pid": 1382,
+      "parentPid": 1361,
+      "rssKiB": 608,
+      "start": "Wed Sep 30 14:29:03 2026",
+      "executable": "-zsh"
+    },
+    {
+      "pid": 1383,
+      "parentPid": 1364,
+      "rssKiB": 608,
+      "start": "Wed Sep 30 14:29:03 2026",
+      "executable": "-zsh"
+    },
+    {
+      "pid": 1384,
+      "parentPid": 1366,
+      "rssKiB": 608,
+      "start": "Wed Sep 30 14:29:03 2026",
+      "executable": "-zsh"
+    },
+    {
+      "pid": 71893,
+      "parentPid": 71892,
+      "rssKiB": 608,
+      "start": "Mon Oct  5 21:35:56 2026",
+      "executable": "-zsh"
+    },
+    {
+      "pid": 3996,
+      "parentPid": 3908,
+      "rssKiB": 576,
+      "start": "Wed Sep 30 14:29:09 2026",
+      "executable": "postgres: walwriter "
+    },
+    {
+      "pid": 78481,
+      "parentPid": 78480,
+      "rssKiB": 480,
+      "start": "Thu Oct 15 07:36:51 2026",
+      "executable": "sleep"
+    },
+    {
+      "pid": 7655,
+      "parentPid": 7089,
+      "rssKiB": 0,
+      "start": "Sun Oct 11 12:57:13 2026",
+      "executable": "<defunct>"
+    },
+    {
+      "pid": 22603,
+      "parentPid": 7089,
+      "rssKiB": 0,
+      "start": "Tue Oct 13 09:35:39 2026",
+      "executable": "<defunct>"
+    },
+    {
+      "pid": 92015,
+      "parentPid": 7089,
+      "rssKiB": 0,
+      "start": "Sun Oct 11 19:28:26 2026",
+      "executable": "<defunct>"
+    }
+  ],
+  "actions": []
+}

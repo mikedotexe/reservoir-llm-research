@@ -1,0 +1,31 @@
+{
+  "scope": "Independent expected fixtures assembled from frozen V5 fixture bytes and the parent-approved V7 block before executing V7 tests. No runtime prompt generation, provider call, physical-storage or Being-data claim.",
+  "promptVersion": "reservoir-journal-v7",
+  "observationVersion": "reservoir-and-sensory-v2",
+  "changes": [
+    "Header version V5 to V7 only at its first occurrence.",
+    "Insert exact WRITING BOUNDARY after END PREVIOUS JOURNAL and before unchanged final open invitation; no early V6 scope text."
+  ],
+  "runtimeTrailingNewline": false,
+  "seed": "18446744073709551615",
+  "turnEvery": 10,
+  "maximumSteps": 180,
+  "maximumTurns": 30,
+  "procedure": "Observe10; restore Language as interrupted and explicitly retry attempt2 with identical prompt; supply same full prose as V5/V6, confirm exact typed save/readback and authorize; apply11; observe20 and confirm exact eligible full-text memory.",
+  "fixtures": [
+    {
+      "file": "v7-observation-10.txt",
+      "bytes": 1912,
+      "sha256": "c9c496cbff370681337416962c5cbf30238eb2fbb7f2d17233b7ef1c9fc6e892",
+      "frozenV5Reference": "v5-observation-10.txt",
+      "frozenV5ReferenceSha256": "5c9c1dbdb29e1058b59d23174cdab186c0aa60d76293f29bb99827b217025dd6"
+    },
+    {
+      "file": "v7-memory-20.txt",
+      "bytes": 2133,
+      "sha256": "5b50a5f47f23143213cdbb5c16734c4114d5fe4d7de1b55ca7e190932fd4b14d",
+      "frozenV5Reference": "v5-memory-20.txt",
+      "frozenV5ReferenceSha256": "a828b3390d049b22faf115f74644374f2c86f74a4ac47fd806a5e69920de99fd"
+    }
+  ]
+}

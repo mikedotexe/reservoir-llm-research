@@ -1,0 +1,51 @@
+{
+  "recordedAtUtc": "2026-10-14T17:09:19.209902+00:00",
+  "processExitCode": 0,
+  "fixtureDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.19-action-boundaries-provider-01",
+  "terminal": {
+    "atUtc": "2026-10-14T17:09:07.952211+00:00",
+    "monotonicNs": "1194124813219875",
+    "lifecycle": "stopped",
+    "reason": "explicit-stop-file",
+    "elapsedSeconds": 160.26902975002304,
+    "chatRequests": 5,
+    "httpRequests": 6,
+    "responsesWritten": 5
+  },
+  "files": {
+    "endpoint.json": {
+      "bytes": 480,
+      "sha256": "96a02c020151e87dc577396ac9856e68ff231b3419d05c66706c167642857ace"
+    },
+    "requests.jsonl": {
+      "bytes": 5254,
+      "sha256": "6d4c05fdf173c524da5941257eafd3b020eb0e6fda0d338e5ed9c4e74bef7573"
+    },
+    "response-01-wide-reported.json": {
+      "bytes": 368,
+      "sha256": "b5bdf0fd98e9ed79fa27e099277af8fc27ee727a59d1c7b92a2eb640bb596e35"
+    },
+    "response-02-absent.json": {
+      "bytes": 331,
+      "sha256": "3597b8a370ccbb1ed3b8eefe682154527d56fcfc89fd74af9837d8fbaee3bc4c"
+    },
+    "response-03-malformed-string.json": {
+      "bytes": 358,
+      "sha256": "5703f189c8be1981d266b6bc633d4b2b9376bc4f8bbb79d352951baeef89c876"
+    },
+    "response-04-maximum-u64.json": {
+      "bytes": 372,
+      "sha256": "b3f014a748328a9cdf6b01cdf9533173361cea6c265c767987790f2b51cd71a3"
+    },
+    "response-05-incomplete-reported.json": {
+      "bytes": 358,
+      "sha256": "b2726c736fe3f33fc2afd064c0b27b37566c16f6f7f7664f484738be253f8b42"
+    },
+    "stop-request": {
+      "bytes": 55,
+      "sha256": "3404475959f1ae00427cf2bd536728016b24b6ae71aaf55f8cea7c600080d6ee"
+    }
+  },
+  "realModelsUsed": false,
+  "scope": "Owned synthetic provider completed explicit stop; no real-model service or Being process used"
+}

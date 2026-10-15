@@ -1,0 +1,374 @@
+{
+  "schema": "reservoir-v6-fixture-retention-v1",
+  "capturedAtUtc": "2026-10-14T15:46:27.803396+00:00",
+  "sourceDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.18-writing-scope-provider-01",
+  "retainedDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/fixture-run-01",
+  "sourceBefore": {
+    "endpoint.json": {
+      "bytes": 480,
+      "sha256": "19d8368fb39531ebfa11d9830a5e7338b9ca64ece176f8fddcaa349595ce6070"
+    },
+    "requests.jsonl": {
+      "bytes": 5254,
+      "sha256": "07564f1a89f9d9918e154e1d1e5f0ab7442d305f373a471dfa306cf76da6492b"
+    },
+    "response-01-wide-reported.json": {
+      "bytes": 368,
+      "sha256": "b5bdf0fd98e9ed79fa27e099277af8fc27ee727a59d1c7b92a2eb640bb596e35"
+    },
+    "response-02-absent.json": {
+      "bytes": 331,
+      "sha256": "3597b8a370ccbb1ed3b8eefe682154527d56fcfc89fd74af9837d8fbaee3bc4c"
+    },
+    "response-03-malformed-string.json": {
+      "bytes": 358,
+      "sha256": "5703f189c8be1981d266b6bc633d4b2b9376bc4f8bbb79d352951baeef89c876"
+    },
+    "response-04-maximum-u64.json": {
+      "bytes": 372,
+      "sha256": "b3f014a748328a9cdf6b01cdf9533173361cea6c265c767987790f2b51cd71a3"
+    },
+    "response-05-incomplete-reported.json": {
+      "bytes": 358,
+      "sha256": "b2726c736fe3f33fc2afd064c0b27b37566c16f6f7f7664f484738be253f8b42"
+    },
+    "stop-request": {
+      "bytes": 64,
+      "sha256": "0357e3de524041a1133913cbe4f4f42a579b380ac78496f12036fd154ebf1675"
+    }
+  },
+  "sourceAfter": {
+    "endpoint.json": {
+      "bytes": 480,
+      "sha256": "19d8368fb39531ebfa11d9830a5e7338b9ca64ece176f8fddcaa349595ce6070"
+    },
+    "requests.jsonl": {
+      "bytes": 5254,
+      "sha256": "07564f1a89f9d9918e154e1d1e5f0ab7442d305f373a471dfa306cf76da6492b"
+    },
+    "response-01-wide-reported.json": {
+      "bytes": 368,
+      "sha256": "b5bdf0fd98e9ed79fa27e099277af8fc27ee727a59d1c7b92a2eb640bb596e35"
+    },
+    "response-02-absent.json": {
+      "bytes": 331,
+      "sha256": "3597b8a370ccbb1ed3b8eefe682154527d56fcfc89fd74af9837d8fbaee3bc4c"
+    },
+    "response-03-malformed-string.json": {
+      "bytes": 358,
+      "sha256": "5703f189c8be1981d266b6bc633d4b2b9376bc4f8bbb79d352951baeef89c876"
+    },
+    "response-04-maximum-u64.json": {
+      "bytes": 372,
+      "sha256": "b3f014a748328a9cdf6b01cdf9533173361cea6c265c767987790f2b51cd71a3"
+    },
+    "response-05-incomplete-reported.json": {
+      "bytes": 358,
+      "sha256": "b2726c736fe3f33fc2afd064c0b27b37566c16f6f7f7664f484738be253f8b42"
+    },
+    "stop-request": {
+      "bytes": 64,
+      "sha256": "0357e3de524041a1133913cbe4f4f42a579b380ac78496f12036fd154ebf1675"
+    }
+  },
+  "retained": {
+    "endpoint.json": {
+      "bytes": 480,
+      "sha256": "19d8368fb39531ebfa11d9830a5e7338b9ca64ece176f8fddcaa349595ce6070"
+    },
+    "requests.jsonl": {
+      "bytes": 5254,
+      "sha256": "07564f1a89f9d9918e154e1d1e5f0ab7442d305f373a471dfa306cf76da6492b"
+    },
+    "response-01-wide-reported.json": {
+      "bytes": 368,
+      "sha256": "b5bdf0fd98e9ed79fa27e099277af8fc27ee727a59d1c7b92a2eb640bb596e35"
+    },
+    "response-02-absent.json": {
+      "bytes": 331,
+      "sha256": "3597b8a370ccbb1ed3b8eefe682154527d56fcfc89fd74af9837d8fbaee3bc4c"
+    },
+    "response-03-malformed-string.json": {
+      "bytes": 358,
+      "sha256": "5703f189c8be1981d266b6bc633d4b2b9376bc4f8bbb79d352951baeef89c876"
+    },
+    "response-04-maximum-u64.json": {
+      "bytes": 372,
+      "sha256": "b3f014a748328a9cdf6b01cdf9533173361cea6c265c767987790f2b51cd71a3"
+    },
+    "response-05-incomplete-reported.json": {
+      "bytes": 358,
+      "sha256": "b2726c736fe3f33fc2afd064c0b27b37566c16f6f7f7664f484738be253f8b42"
+    },
+    "stop-request": {
+      "bytes": 64,
+      "sha256": "0357e3de524041a1133913cbe4f4f42a579b380ac78496f12036fd154ebf1675"
+    }
+  },
+  "allEightFilesExact": true,
+  "totalBytes": 7585,
+  "sourceUnchanged": true,
+  "fixtureIdentity": {
+    "endpoint": "http://127.0.0.1:62291",
+    "model": "reservoir-fixture:input-evidence-0.16",
+    "pid": 20578,
+    "synthetic": true,
+    "startedAtUtc": "2026-10-14T15:42:53.435613+00:00",
+    "lifetimeSeconds": 900,
+    "maximumChatRequests": 5,
+    "maximumHttpRequests": 32,
+    "scriptSha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb",
+    "scenario": [
+      "wide-reported",
+      "absent",
+      "malformed-string",
+      "maximum-u64",
+      "incomplete-reported"
+    ]
+  },
+  "frozenInputs": [
+    {
+      "path": "PROTOCOL.md",
+      "expected": {
+        "path": "PROTOCOL.md",
+        "bytes": 3780,
+        "sha256": "5010ba82e92e326276728e8eee5df963945febe8564383f8cdd60d168fce6f9f"
+      },
+      "actual": {
+        "path": "validation/2026-10-14-writing-scope-0.18.0/PROTOCOL.md",
+        "bytes": 3780,
+        "sha256": "5010ba82e92e326276728e8eee5df963945febe8564383f8cdd60d168fce6f9f"
+      },
+      "matches": true
+    },
+    {
+      "path": "PROMPT-V6-TEMPLATE.txt",
+      "expected": {
+        "path": "PROMPT-V6-TEMPLATE.txt",
+        "bytes": 1771,
+        "sha256": "759300e61cb8070be67bc087f11efab6f525f1a7faf71921b6afe2ca3b741c2c"
+      },
+      "actual": {
+        "path": "validation/2026-10-14-writing-scope-0.18.0/PROMPT-V6-TEMPLATE.txt",
+        "bytes": 1771,
+        "sha256": "759300e61cb8070be67bc087f11efab6f525f1a7faf71921b6afe2ca3b741c2c"
+      },
+      "matches": true
+    },
+    {
+      "path": "NATIVE-QUALIFICATION-PLAN.md",
+      "expected": {
+        "path": "NATIVE-QUALIFICATION-PLAN.md",
+        "bytes": 5040,
+        "sha256": "4c58192f345cf4ce13971a94113dcbdb68efa8cc6480a16247d37151aa37f1ec"
+      },
+      "actual": {
+        "path": "validation/2026-10-14-writing-scope-0.18.0/NATIVE-QUALIFICATION-PLAN.md",
+        "bytes": 5040,
+        "sha256": "4c58192f345cf4ce13971a94113dcbdb68efa8cc6480a16247d37151aa37f1ec"
+      },
+      "matches": true
+    },
+    {
+      "path": "packaged-ui-plan-01.json",
+      "expected": {
+        "path": "packaged-ui-plan-01.json",
+        "bytes": 3401,
+        "sha256": "71f0332afa8886de26486f16848b8b4df2132801f59b671f2ccd1a816236c279"
+      },
+      "actual": {
+        "path": "validation/2026-10-14-writing-scope-0.18.0/packaged-ui-plan-01.json",
+        "bytes": 3401,
+        "sha256": "71f0332afa8886de26486f16848b8b4df2132801f59b671f2ccd1a816236c279"
+      },
+      "matches": true
+    },
+    {
+      "path": "owned_provider.py",
+      "expected": {
+        "path": "owned_provider.py",
+        "bytes": 9067,
+        "sha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb"
+      },
+      "actual": {
+        "path": "validation/2026-10-14-writing-scope-0.18.0/owned_provider.py",
+        "bytes": 9067,
+        "sha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb"
+      },
+      "matches": true
+    },
+    {
+      "path": "test_owned_provider.py",
+      "expected": {
+        "path": "test_owned_provider.py",
+        "bytes": 2946,
+        "sha256": "734a3db118701c503a7ef0ab2b157ba0069a13c62e195d156df8947f039c319a"
+      },
+      "actual": {
+        "path": "validation/2026-10-14-writing-scope-0.18.0/test_owned_provider.py",
+        "bytes": 2946,
+        "sha256": "734a3db118701c503a7ef0ab2b157ba0069a13c62e195d156df8947f039c319a"
+      },
+      "matches": true
+    },
+    {
+      "path": "check_fixture_export.py",
+      "expected": {
+        "path": "check_fixture_export.py",
+        "bytes": 28251,
+        "sha256": "08308e233d1c88654772e954d8a286a2863a8188b12f151894ed92bd71053b0a"
+      },
+      "actual": {
+        "path": "validation/2026-10-14-writing-scope-0.18.0/check_fixture_export.py",
+        "bytes": 28251,
+        "sha256": "08308e233d1c88654772e954d8a286a2863a8188b12f151894ed92bd71053b0a"
+      },
+      "matches": true
+    },
+    {
+      "path": "test_check_fixture_export.py",
+      "expected": {
+        "path": "test_check_fixture_export.py",
+        "bytes": 10901,
+        "sha256": "f56e0b851897e78cf938a09af20f3030cc4fab5179c6adee7c60ac7406970612"
+      },
+      "actual": {
+        "path": "validation/2026-10-14-writing-scope-0.18.0/test_check_fixture_export.py",
+        "bytes": 10901,
+        "sha256": "f56e0b851897e78cf938a09af20f3030cc4fab5179c6adee7c60ac7406970612"
+      },
+      "matches": true
+    }
+  ],
+  "allEightFrozenInputsUnchanged": true,
+  "prospectiveFreeze": {
+    "path": "validation/2026-10-14-writing-scope-0.18.0/prospective-freeze-01.json",
+    "bytes": 1432,
+    "sha256": "79e322aa97d69d23f6b5ef8d9b193d72de92d74beb2f4721262c464199eed8d0"
+  },
+  "plan": {
+    "path": "validation/2026-10-14-writing-scope-0.18.0/packaged-ui-plan-01.json",
+    "bytes": 3401,
+    "sha256": "71f0332afa8886de26486f16848b8b4df2132801f59b671f2ccd1a816236c279"
+  },
+  "actualManifest": {
+    "path": "target/qa/0.18-writing-scope/exports/sustained-1791992604115-1-1-76/manifest.json",
+    "bytes": 1179,
+    "sha256": "bb6131128f382f230a78c7af4b85ffc956bdf59c7c625d9b91189c3b0b22168a"
+  },
+  "acceptedConfig": {
+    "seed": "20261013",
+    "turnEvery": 10,
+    "maximumSteps": 51,
+    "maximumTurns": 5,
+    "maximumDurationSeconds": 180,
+    "storageBudgetBytes": 33554432,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true,
+    "language": {
+      "backend": "ollama",
+      "endpoint": "http://127.0.0.1:62291",
+      "model": "reservoir-fixture:input-evidence-0.16",
+      "contextTokens": 8192
+    },
+    "promptVersion": "reservoir-journal-v6",
+    "outputTokens": 1024,
+    "requestDeadlineSeconds": 180
+  },
+  "plannedConfigWithActualOwnedEndpoint": {
+    "seed": "20261013",
+    "promptVersion": "reservoir-journal-v6",
+    "outputTokens": 1024,
+    "requestDeadlineSeconds": 180,
+    "turnEvery": 10,
+    "maximumSteps": 51,
+    "maximumTurns": 5,
+    "maximumDurationSeconds": 180,
+    "storageBudgetBytes": 33554432,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true,
+    "language": {
+      "backend": "ollama",
+      "model": "reservoir-fixture:input-evidence-0.16",
+      "contextTokens": 8192,
+      "endpoint": "http://127.0.0.1:62291"
+    }
+  },
+  "configMatchesFrozenPlan": true,
+  "originalExportVerification": {
+    "path": "validation/2026-10-14-writing-scope-0.18.0/original-export-evidence-01.json",
+    "bytes": 16811,
+    "sha256": "03122c2cbf7cea5514b3c1d7404a4919373064479b353046cc5b3e21e0345a29"
+  },
+  "lifecycle": {
+    "started": {
+      "atUtc": "2026-10-14T15:42:53.435938+00:00",
+      "monotonicNs": "1188950270679083",
+      "lifecycle": "started",
+      "endpoint": "http://127.0.0.1:62291",
+      "model": "reservoir-fixture:input-evidence-0.16",
+      "pid": 20578,
+      "synthetic": true,
+      "startedAtUtc": "2026-10-14T15:42:53.435613+00:00",
+      "lifetimeSeconds": 900,
+      "maximumChatRequests": 5,
+      "maximumHttpRequests": 32,
+      "scriptSha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb",
+      "scenario": [
+        "wide-reported",
+        "absent",
+        "malformed-string",
+        "maximum-u64",
+        "incomplete-reported"
+      ]
+    },
+    "stopped": {
+      "atUtc": "2026-10-14T15:45:15.312969+00:00",
+      "monotonicNs": "1189092148095875",
+      "lifecycle": "stopped",
+      "reason": "explicit-stop-file",
+      "elapsedSeconds": 141.88226079102606,
+      "chatRequests": 5,
+      "httpRequests": 6,
+      "responsesWritten": 5
+    },
+    "logMonotonicSeconds": 141.877416792,
+    "reportedProcessElapsedSeconds": 141.88226079102606,
+    "httpCounts": [
+      {
+        "method": "GET",
+        "path": "/api/tags",
+        "count": 1
+      },
+      {
+        "method": "POST",
+        "path": "/api/chat",
+        "count": 5
+      }
+    ],
+    "successfulChatSocketWrites": 5,
+    "rejectedRequests": 0,
+    "stopFile": {
+      "path": "target/qa/0.18-writing-scope-provider-01/stop-request",
+      "bytes": 64,
+      "sha256": "0357e3de524041a1133913cbe4f4f42a579b380ac78496f12036fd154ebf1675"
+    },
+    "parentReportedExecution": {
+      "sessionId": 65243,
+      "exitCode": 0,
+      "source": "Parent task handoff; not independently re-polled."
+    }
+  },
+  "limits": [
+    "This audit read explicit stopped fixture files and an immutable export; no HTTP, signal, process inventory or UI action was performed.",
+    "Socket-write completion is the fixture-reported outcome; matching received-response events and bytes are independently joined by the production/static export verifier.",
+    "Lifecycle and parent-reported exit establish scoped fixture completion; no fresh operating-system PID absence query was performed.",
+    "Synthetic responses do not establish real-model writing quality, context processing, GPU/minimized operation, endurance or physical crash durability."
+  ]
+}

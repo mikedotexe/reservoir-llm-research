@@ -1,0 +1,32 @@
+/* Reader-only additions: the live controls and renderer keep their own layout. */
+.my-reservoir-journals .my-reservoir-history-order {
+  margin: 0 0 10px;
+  color: #9eb9c4;
+  font-size: 12px;
+}
+.my-reservoir-journals .my-reservoir-history-status { color: #b9decd; }
+.my-reservoir-reading-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-bottom: 12px;
+  padding: 12px 16px;
+  border: 1px solid #38565d;
+  border-radius: 9px;
+  background: #10202a;
+}
+.my-reservoir-reading-navigation > div { min-width: 0; }
+.my-reservoir-reading-navigation strong { font-size: 14px; font-variant-numeric: tabular-nums; }
+.my-reservoir-reading-navigation p { margin: 5px 0 0; max-width: 55ch; font-size: 12px; }
+.my-reservoir-reading-navigation .my-reservoir-actions { margin: 0; }
+.my-reservoir-journal-evidence > button { margin-top: 14px; font-size: 12px; }
+@media (max-width: 760px) {
+  .my-reservoir-reading-navigation { padding: 12px; }
+  .my-reservoir-reading-navigation .my-reservoir-actions { width: 100%; }
+  .my-reservoir-reading-navigation button { flex: 1; }
+}
+
+.my-reservoir-journals .my-reservoir-journal-detail { padding: clamp(16px, 2.2vw, 30px); }
+.my-reservoir-journals .my-reservoir-journal-prose { max-width: 70ch; font-size: clamp(15px, 1.1vw, 17px); line-height: 1.8; }

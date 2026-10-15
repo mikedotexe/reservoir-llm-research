@@ -1,0 +1,52 @@
+{
+  "capturedAtUtc": "2026-10-14T16:15:54.458879+00:00",
+  "path": "/Users/v/Library/Application Support/research.reservoir.scope.tauri/sustained-v1/sustained-1791994198871-1/manifest.json",
+  "sha256": "7293fb6697030eee5c37ebfaed4df695c935024772ea786ea87720b48882d477",
+  "manifest": {
+    "format": "reservoir-sustained-bundle-v1",
+    "sessionId": "sustained-1791994198871-1",
+    "generation": "1",
+    "revision": "281",
+    "config": {
+      "seed": "20261013",
+      "turnEvery": 30,
+      "maximumSteps": 361,
+      "maximumTurns": 12,
+      "maximumDurationSeconds": 900,
+      "storageBudgetBytes": 67108864,
+      "paceMs": 1000,
+      "leak": 0.65,
+      "noiseAmplitude": 0.02,
+      "initialRetention": 0.955,
+      "regulationEnabled": true,
+      "language": {
+        "backend": "ollama",
+        "endpoint": "http://127.0.0.1:63371",
+        "model": "gemma3:4b",
+        "contextTokens": 8192
+      },
+      "promptVersion": "reservoir-journal-v6",
+      "outputTokens": 1024,
+      "requestDeadlineSeconds": 180
+    },
+    "phase": "attemptBlocked",
+    "step": 240,
+    "durableStep": 240,
+    "elapsedMillis": 324322,
+    "journalCount": 7,
+    "segmentCount": 37,
+    "lastSegmentSha256": "a17a0a6a122a4dc3c94c28e347a0e572c61f08f6f1cea82cad8b2c6dfee4304c",
+    "checkpointSha256": "a6b690a1141cafbee0d92dea4ccbb90630d4a3732b09403a1226d4518d691ac7",
+    "previousCheckpointSha256": "a6b690a1141cafbee0d92dea4ccbb90630d4a3732b09403a1226d4518d691ac7",
+    "diagnostics": [
+      "Incomplete or token-limited response cannot become journal feedback"
+    ],
+    "attemptTiming": {
+      "attemptId": 8,
+      "dispatchedAtMs": "1791994523984",
+      "receivedAtMs": "1791994539529",
+      "transportDurationMs": 15544,
+      "publishedAtMs": null
+    }
+  }
+}

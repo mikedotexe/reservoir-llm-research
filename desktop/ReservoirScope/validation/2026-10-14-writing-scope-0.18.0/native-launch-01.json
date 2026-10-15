@@ -1,0 +1,31 @@
+{
+  "observedUtc": "2026-10-14T15:43:38.380816+00:00",
+  "appVersion": "0.18.0",
+  "executableSha256": "fe14eeb2f921a541644a900d3397d973d81a6f70de66347f485cc0851fecafb0",
+  "sessionId": "sustained-1791992604115-1",
+  "generation": 1,
+  "createdState": "Prepared \u00b7 not started; step 0; 0 saved journals; revision1",
+  "acceptedConfigMatchesPlan": true,
+  "observedPromptVersion": "reservoir-journal-v6",
+  "fixture": {
+    "endpoint": "http://127.0.0.1:62291",
+    "model": "reservoir-fixture:input-evidence-0.16",
+    "pid": 20578,
+    "synthetic": true,
+    "startedAtUtc": "2026-10-14T15:42:53.435613+00:00",
+    "lifetimeSeconds": 900,
+    "maximumChatRequests": 5,
+    "maximumHttpRequests": 32,
+    "scriptSha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb",
+    "scenario": [
+      "wide-reported",
+      "absent",
+      "malformed-string",
+      "maximum-u64",
+      "incomplete-reported"
+    ]
+  },
+  "endpointReceiptSha256": "19d8368fb39531ebfa11d9830a5e7338b9ca64ece176f8fddcaa349595ce6070",
+  "observedReadiness": "exact fixture model found; synthetic-no-model-weights",
+  "generationAtCreation": false
+}

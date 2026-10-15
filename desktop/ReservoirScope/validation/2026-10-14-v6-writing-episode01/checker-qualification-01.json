@@ -1,0 +1,99 @@
+{
+  "schema": "reservoir-offline-checker-qualification-v1",
+  "startedAtUtc": "2026-10-14T15:59:10.427218+00:00",
+  "endedAtUtc": "2026-10-14T15:59:10.612562+00:00",
+  "wallNanoseconds": 185831667,
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "test_real_model_export.py"
+  ],
+  "cwd": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01",
+  "exitCode": 0,
+  "testCount": 35,
+  "status": "passed",
+  "sourceUnchanged": true,
+  "sourcesBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/check_real_model_export.py",
+      "bytes": 45821,
+      "sha256": "e5589e85279312567020688350db1d5df0c9202babbc2291ead029233b91b99b"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/test_real_model_export.py",
+      "bytes": 28667,
+      "sha256": "bff7774aab843d5a44e10982d5058e2a43df50284fe0289584da703dd9ee97e3"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/run-plan.json",
+      "bytes": 4433,
+      "sha256": "1cf95df33fb8c67883325fde548974155c7d497ae3855440b81700ace6456297"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/check_real_model_export.py",
+      "bytes": 44756,
+      "sha256": "954a08bff12c79a1b81fe3c81d690dc76be172c6be3340512655905020821ec9"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/test_real_model_export.py",
+      "bytes": 25300,
+      "sha256": "290c56def25029a51aaafe37b7e3edc02966e12c9b351233f112eca34f955a28"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-observation-10.txt",
+      "bytes": 1599,
+      "sha256": "648266e30c22980ea5eb3c589e78e79bf6217fbabe43f346cd68938dacafc16c"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-memory-20.txt",
+      "bytes": 1789,
+      "sha256": "a18a1d6a788b6ca47830770cbfb008da98960eae20ee8653b45440141581c971"
+    }
+  ],
+  "sourcesAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/check_real_model_export.py",
+      "bytes": 45821,
+      "sha256": "e5589e85279312567020688350db1d5df0c9202babbc2291ead029233b91b99b"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/test_real_model_export.py",
+      "bytes": 28667,
+      "sha256": "bff7774aab843d5a44e10982d5058e2a43df50284fe0289584da703dd9ee97e3"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/run-plan.json",
+      "bytes": 4433,
+      "sha256": "1cf95df33fb8c67883325fde548974155c7d497ae3855440b81700ace6456297"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/check_real_model_export.py",
+      "bytes": 44756,
+      "sha256": "954a08bff12c79a1b81fe3c81d690dc76be172c6be3340512655905020821ec9"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-v5-writing-episode01/test_real_model_export.py",
+      "bytes": 25300,
+      "sha256": "290c56def25029a51aaafe37b7e3edc02966e12c9b351233f112eca34f955a28"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-observation-10.txt",
+      "bytes": 1599,
+      "sha256": "648266e30c22980ea5eb3c589e78e79bf6217fbabe43f346cd68938dacafc16c"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v6-memory-20.txt",
+      "bytes": 1789,
+      "sha256": "a18a1d6a788b6ca47830770cbfb008da98960eae20ee8653b45440141581c971"
+    }
+  ],
+  "log": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/checker-tests-01.log",
+    "bytes": 5928,
+    "sha256": "3d3c6599bfebf3095bd85fdd3ee69fd90e6a32542e15d8ee2907be1430f52876"
+  },
+  "scope": "Pure offline synthetic joins, prompt structure and version binding. No app CLI, GUI, service, provider, network or actual episode output execution. Numerical rendering remains the explicitly pinned production verifier responsibility."
+}

@@ -1,0 +1,56 @@
+{
+  "schema": "reservoir-blind-renderer-execution-v1",
+  "startedAtUtc": "2026-10-15T14:53:59.976065+00:00",
+  "endedAtUtc": "2026-10-15T14:54:00.033504+00:00",
+  "wallSeconds": 0.057275707833468914,
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/render_blind_pack.py",
+    "--result",
+    "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/ledger.json",
+    "--expected-result-sha256",
+    "fe49740ff34ecaba9cf38d484a134bcc81ae7fa60706a4917d09be00a231a851",
+    "--output-directory",
+    "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/blind-pack-01",
+    "--mapping-output",
+    "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/sealed-map-01.json"
+  ],
+  "exitCode": 0,
+  "renderer": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/render_blind_pack.py",
+    "sha256": "5a443fc867e47dccb5297884df2ff0dc6749ea31f1a49cf12f7c2589e4e2ada2"
+  },
+  "terminalLedger": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-results03/ledger.json",
+    "sha256": "fe49740ff34ecaba9cf38d484a134bcc81ae7fa60706a4917d09be00a231a851"
+  },
+  "terminalLedgerUnchanged": true,
+  "stdout": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/blind-renderer-execution-01.stdout.json",
+    "bytes": 723,
+    "sha256": "28a8374773d6d87aa30e8e8543451de9a4f206d1bbada5a69b55449ca5a5c9d1"
+  },
+  "stderr": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/blind-renderer-execution-01.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "outputs": {
+    "mapping": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/sealed-map-01.json",
+      "sha256": "6574b1dcf7083ef630cd97090b89850da6ed80560910986f9975c4e09ea1d919"
+    },
+    "blindDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/blind-pack-01",
+    "blindFiles": {
+      "RESPONSES.md": {
+        "bytes": 15605,
+        "sha256": "c2819726e5f62ab83f0309dae550fe388cd10c2917d4bfdc288112a016c594b8"
+      },
+      "RESPONSES.json": {
+        "bytes": 15933,
+        "sha256": "bad76c794c07a34e6ed248b2a835c4437196ba2846719c4c5d74ec145dbcf1e0"
+      }
+    }
+  },
+  "scope": "Offline rendering from explicit terminal handoff; no app, model, provider, process control, prompt changes or original evidence edits. Mapping remains sealed for independent first-pass readers."
+}

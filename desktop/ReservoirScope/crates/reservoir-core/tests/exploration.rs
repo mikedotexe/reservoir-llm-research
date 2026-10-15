@@ -282,11 +282,34 @@ fn field_restarts_and_valid_degenerate_bases_remain_valid_evidence() {
     );
     let mut fresh = ExplorationEngine::new(record.seed);
     let reset = fresh
-        .advance(record.frames[4].controls.clone(), true)
+        .advance(record.frames[4].controls.clone(), record.frames[4].pulse)
         .unwrap();
+    let reset_covariance = reset.spectral.unwrap().covariance;
+    let retained_covariance = &record.frames[4].spectral.as_ref().unwrap().covariance;
+    // This retained Swift fixture is cross-language evidence, not a bitwise
+    // oracle for platform libm operations. Use the existing test tolerance;
+    // production verifier tolerances and original fixture bytes are unchanged.
+    assert_eq!(retained_covariance.len(), reset_covariance.len());
+    for (&retained, &computed) in retained_covariance.iter().zip(&reset_covariance) {
+        near(retained, computed);
+    }
+
+    // Keep a stricter reset invariant within one runtime: once an off step has
+    // cleared the sensory field, its next pulse must match a fresh field exactly.
+    let mut restarted = ExplorationEngine::new(record.seed);
+    for frame in &record.frames[..4] {
+        restarted
+            .advance(frame.controls.clone(), frame.pulse)
+            .unwrap();
+    }
+    assert!(restarted.frames().last().unwrap().spectral.is_none());
+    let restarted_frame = restarted
+        .advance(record.frames[4].controls.clone(), record.frames[4].pulse)
+        .unwrap();
+    assert_eq!(restarted_frame.input, reset.input);
     assert_eq!(
-        record.frames[4].spectral.as_ref().unwrap().covariance,
-        reset.spectral.unwrap().covariance
+        restarted_frame.spectral.unwrap().covariance,
+        reset_covariance
     );
     // Arbitrary sign changes are valid even without a repeated eigenvalue.
     let vector = &mut record.frames[4].spectral.as_mut().unwrap().eigenvectors;

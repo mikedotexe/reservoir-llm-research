@@ -1,0 +1,679 @@
+{
+  "schema": "reservoir-checkpoint-readiness-review-v1",
+  "capturedAtUtc": "2026-10-15T20:41:10.142977+00:00",
+  "status": "no_product_source_blocker_found",
+  "baseCommit": "b42b6e18d03726ca26edb3b75c8e63c4acf3a321",
+  "worktree": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research",
+  "scope": "Read-only Git/file review; this new receipt is the only file created by reviewer. Concurrent documentation consolidation remains parent-owned. Not a final staged/publication manifest.",
+  "basis": [
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-15-housekeeping-0.20.0/before-inventory.json",
+      "bytes": 630600,
+      "sha256": "979f705aa937a6e960f12e755d98db6237f58ac90f88631d1eb51684f79d291d"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/source-before-build-01.json",
+      "bytes": 71143,
+      "sha256": "2231dd06c73671191c51152e9052fd7b1d055be5a62e9cc1554512fc57ecf658"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/closeout-01.json",
+      "bytes": 125681,
+      "sha256": "cf8b79a6351a78953bdd4eba62d2679dbbab9fc04ddbb9262215c86b6b80866b"
+    }
+  ],
+  "housekeepingBeforeComparison": {
+    "count": 2849,
+    "matched": 2847,
+    "changes": [
+      {
+        "before": {
+          "path": "TAURI-ROADMAP.md",
+          "bytes": 221966,
+          "sha256": "2fc90eba5960e897bfae5c4f22a32c45ce77c4768a58311ac641907d5b914b76"
+        },
+        "after": {
+          "path": "TAURI-ROADMAP.md",
+          "bytes": 60403,
+          "sha256": "e9d4a6b055260ef099801297f1359fe2289e064cc233814b50f50a2da3314f03"
+        }
+      },
+      {
+        "before": {
+          "path": "desktop/ReservoirScope/.gitignore",
+          "bytes": 97,
+          "sha256": "bd06a5ab27ecc3e080054c3b00a52b297bf3945b2df41fec6458e2c82ed4614b"
+        },
+        "after": {
+          "path": "desktop/ReservoirScope/.gitignore",
+          "bytes": 252,
+          "sha256": "3ff3e6ac3be002ba3a1972e721f09c7072242b9fcca6f6b4f48a48a023d81a7f"
+        }
+      }
+    ]
+  },
+  "qualifiedBuildSourceComparison": {
+    "count": 325,
+    "matched": 322,
+    "changes": [
+      {
+        "before": {
+          "path": "desktop/ReservoirScope/.gitignore",
+          "kind": "file",
+          "bytes": 97,
+          "sha256": "bd06a5ab27ecc3e080054c3b00a52b297bf3945b2df41fec6458e2c82ed4614b"
+        },
+        "after": {
+          "path": "desktop/ReservoirScope/.gitignore",
+          "bytes": 252,
+          "sha256": "3ff3e6ac3be002ba3a1972e721f09c7072242b9fcca6f6b4f48a48a023d81a7f"
+        }
+      },
+      {
+        "before": {
+          "path": "desktop/ReservoirScope/README.md",
+          "kind": "file",
+          "bytes": 38216,
+          "sha256": "ec6db8667c655888fd7b575a69170d551aa6fc87815c05926f3a368000557481"
+        },
+        "after": {
+          "path": "desktop/ReservoirScope/README.md",
+          "bytes": 40294,
+          "sha256": "f916dc1635c9e4d16e9df5b9ed859852466da9b3b003e3e088a6bf4aebcf987b"
+        }
+      },
+      {
+        "before": {
+          "path": "shared/reservoir-scope/PARITY.md",
+          "kind": "file",
+          "bytes": 53817,
+          "sha256": "0470261e3fd42f60c592594bc93d3d15cde3d0b41a437b21814d52ad49dc0f4f"
+        },
+        "after": {
+          "path": "shared/reservoir-scope/PARITY.md",
+          "bytes": 67491,
+          "sha256": "cfa8b00421bd7b3c7a337f22add44fc2d4ebf6f6e73dc26c3a861e44ee038e12"
+        }
+      }
+    ]
+  },
+  "unexpectedProductChanges": [],
+  "gitEligibleNewFiles": {
+    "count": 1086,
+    "bytes": 22138802,
+    "extensionCounts": {
+      ".md": 115,
+      ".txt": 130,
+      ".json": 441,
+      ".rs": 4,
+      ".ts": 1,
+      ".css": 1,
+      ".py": 192,
+      ".log": 66,
+      ".jsonl": 2,
+      "": 29,
+      ".diff": 23,
+      ".go": 56,
+      ".bin": 26
+    },
+    "nativeBinaryMagicCandidates": [],
+    "symlinks": [],
+    "notebooks": [],
+    "credentialPatternCandidates": [],
+    "credentialScanLimit": "Limited literal patterns; no comprehensive secret or private-information guarantee. No candidate values printed.",
+    "ownedRawResponseJson": [
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/inventory-response.bin",
+        "bytes": 442,
+        "sha256": "923ce6d8bc4a4ec7db7c75e848b9a0d02a9e836aaf75913ce0ef7ac4a45b53b5",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "models"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-01-response.bin",
+        "bytes": 2091,
+        "sha256": "11b69d0a12dd79ce0c6cf268c2cf914911499c444c62e99a0ac699c5563248fb",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-02-response.bin",
+        "bytes": 1862,
+        "sha256": "a856bf9699a9064d4a754856169146c7598f3fa8dc2b1e95a2591f8673dc26b8",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-03-response.bin",
+        "bytes": 1687,
+        "sha256": "596547c4d4782745ed1b39406686185dbe6726002ebc4d628a0601e9f0e63b64",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-04-response.bin",
+        "bytes": 1650,
+        "sha256": "034724a4fb4546cada2f1c17814befeacf7802d67bc5a1fa9f44e866c918a055",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-05-response.bin",
+        "bytes": 1478,
+        "sha256": "971eb74af6b6ddca93000d63e6e97639f3bcee1b99505280a428c6d50ff8de3d",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-06-response.bin",
+        "bytes": 1550,
+        "sha256": "b7d2a2e5822f80e9d5a26abf08a3a3bbc9570399c40895f9b506e3670af03684",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-07-response.bin",
+        "bytes": 1666,
+        "sha256": "00fa4cbd88883668805153bedab7513bda6cbbf1a195c85db1fcb5335a56e1ab",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-08-response.bin",
+        "bytes": 1497,
+        "sha256": "a3d8e9aaa4aefb89c024051456adfbe660281c2bd235644c37fabb346e275d99",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-09-response.bin",
+        "bytes": 1323,
+        "sha256": "e7f4722cbc8ad3aee6a9e6594049d09b8a6d2a32303ad24050b922d5f12ccf3c",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-10-response.bin",
+        "bytes": 1291,
+        "sha256": "9ad485f83d8042bba35658b763307e9f2a6b357094d8b2c328fac34c303286fe",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-11-response.bin",
+        "bytes": 1490,
+        "sha256": "20f20ea5bb82fd5fde758c418cb73262bb997521f3a1d59e4d3e04b168850c01",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-12-response.bin",
+        "bytes": 1500,
+        "sha256": "f839a1039aa2b0865032437adf328bb6de9c3c4278d1c30bf19916d97d6a4a06",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run-output-01/inventory-response.bin",
+        "bytes": 442,
+        "sha256": "923ce6d8bc4a4ec7db7c75e848b9a0d02a9e836aaf75913ce0ef7ac4a45b53b5",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "models"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run-output-01/slot-01-response.bin",
+        "bytes": 1586,
+        "sha256": "1d93e19ed74ff04dba0db43bc67d964ef92b7a6075a76d6345eb2dc6188f5e6d",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run-output-01/slot-02-response.bin",
+        "bytes": 1137,
+        "sha256": "479b6983e1d21566f9b30335afdcbb577804f976de0d03932dff8e808dd137b6",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run-output-01/slot-03-response.bin",
+        "bytes": 2003,
+        "sha256": "c3243e8968d71e5ddbfb99a893d789b75f50916cf021bd04a0c8b52f19fb0afa",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run-output-01/slot-04-response.bin",
+        "bytes": 2086,
+        "sha256": "9aa2cd60ab6d46b6e9b887cd2ef8111069a135071e80b8bdda930e223338606a",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run-output-01/slot-05-response.bin",
+        "bytes": 1596,
+        "sha256": "e6b7555574291d1ef7bd81e092cb7a68cec83b38e53ed40e8b6944f03ee082d1",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run-output-01/slot-06-response.bin",
+        "bytes": 2294,
+        "sha256": "bd814c24e7761b42f5a67fa1837da2e32e71283eb486bf2510a54ff5f941186f",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run-output-01/slot-07-response.bin",
+        "bytes": 2153,
+        "sha256": "625eefcb8f98468a5e731d470f4e70b8ed71bf954e04c28127ebabfd9d9624ea",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run-output-01/slot-08-response.bin",
+        "bytes": 1650,
+        "sha256": "e5b86837cf0003b06fb17fded1432b91dc9ac1b7b8b1c82b830168aadc6cd771",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run-output-01/slot-09-response.bin",
+        "bytes": 1343,
+        "sha256": "11997db2c97bb7ac1cd2bfe94b816ecb59808894b236ae57ca3c011344cdd9c8",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run-output-01/slot-10-response.bin",
+        "bytes": 1401,
+        "sha256": "6d274f2996ea1d873a8de59f44906b222b3f5bc82cb3ed0a223a0f21027b2685",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run-output-01/slot-11-response.bin",
+        "bytes": 1885,
+        "sha256": "c43ec975e7d367849c5e977ab4ee0cbbc5693812b7dbb4b5b2543ef4f142f888",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      },
+      {
+        "path": "desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run-output-01/slot-12-response.bin",
+        "bytes": 1498,
+        "sha256": "a372cbfef969032b5d26892fbf74533c7a505f3b51ca958447e2bac29fbf6cef",
+        "kind": "owned-provider JSON response",
+        "topLevelKeys": [
+          "model",
+          "created_at",
+          "message",
+          "done",
+          "done_reason",
+          "total_duration",
+          "load_duration",
+          "prompt_eval_count",
+          "prompt_eval_cached_count",
+          "prompt_eval_duration",
+          "eval_count",
+          "eval_duration"
+        ]
+      }
+    ]
+  },
+  "publicationFindings": [
+    {
+      "item": "Generated formatter executable",
+      "status": "addressed_by_parent_ignore_rule",
+      "path": "desktop/ReservoirScope/validation/2026-10-15-time-direction-01/formatter/fixed8-wrapper",
+      "retainedLocally": true,
+      "comment": "Previously Git-eligible 561136-byte Mach-O; now exact path ignored. Source/build receipts remain publication candidates."
+    },
+    {
+      "item": "Minime trace",
+      "status": "source-only scoped report and hash metadata",
+      "paths": [
+        "desktop/ReservoirScope/validation/2026-10-15-context-sources-01/MINIME-TRACE.md",
+        "desktop/ReservoirScope/validation/2026-10-15-context-sources-01/minime-trace-01.json"
+      ],
+      "comment": "Retained receipt reports zero journal/generation/database/live-snapshot reads and no raw journal captures. Local source path references are intentionally nonportable; no external source access performed during this review."
+    },
+    {
+      "item": "Official runtime source captures",
+      "status": "identified_and_attributed",
+      "comment": "Twenty-four upstream .go files plus other selected public sources/diffs have immutable URL/hash provenance and both version LICENSE files."
+    },
+    {
+      "item": "Owned model evidence",
+      "status": "requires deliberate checkpoint scope inclusion",
+      "comment": "26 small .bin files are JSON inventory/generation responses from two isolated diagnostic runs. Other text/JSON review material is retained owned-run evidence, not model weight blobs or live Being journals."
+    },
+    {
+      "item": "Historical helper portability",
+      "status": "scoped limitation",
+      "comment": "Many dated qualification scripts bind absolute local cache/export/executable paths, and some receipts bind the locally retained ignored formatter executable. They are historical evidence tools rather than fresh-clone CI dependencies; do not claim their full archival rerun works on a fresh clone."
+    }
+  ],
+  "whitespaceCheck": {
+    "command": "git diff --check b42b6e1",
+    "exitCode": 0,
+    "output": ""
+  },
+  "suggestedChecks": [
+    "After documentation settles, inspect the explicit staged path list and rerun git diff --check.",
+    "For documentation/ignore-only final changes, reuse source-bound 0.20 qualification instead of repeating builds.",
+    "Run the existing .github/workflows/tauri.yml on the actual checkpoint for independent Windows/Linux/macOS evidence; earlier Windows/Linux failure correction remains remotely unqualified.",
+    "If test rerun is needed, use python -m unittest discover -s desktop/ReservoirScope/scripts -p test_*.py; do not recursively execute historical validation helpers, which may require owned local evidence or runtime authorization."
+  ],
+  "actions": {
+    "tests": false,
+    "builds": false,
+    "servicesOrModels": false,
+    "network": false,
+    "processQueriesOrSignals": false,
+    "gitMutations": false,
+    "credentialContentsRead": false,
+    "externalBeingFilesRead": false
+  }
+}

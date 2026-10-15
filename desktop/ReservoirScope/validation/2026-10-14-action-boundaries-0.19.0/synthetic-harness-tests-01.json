@@ -1,0 +1,125 @@
+{
+  "schema": "reservoir-synthetic-harness-tests-v1",
+  "status": "passed",
+  "startedAtUtc": "2026-10-14T17:05:23.260942+00:00",
+  "endedAtUtc": "2026-10-14T17:05:23.348466+00:00",
+  "elapsedSeconds": 0.08741383301094174,
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-B",
+    "-m",
+    "unittest",
+    "test_check_fixture_export",
+    "test_owned_provider",
+    "-v"
+  ],
+  "exitCode": 0,
+  "tests": {
+    "checker": 23,
+    "unchangedProvider": 7,
+    "total": 30
+  },
+  "sourceBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/owned_provider.py",
+      "bytes": 9067,
+      "sha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/test_owned_provider.py",
+      "bytes": 2946,
+      "sha256": "734a3db118701c503a7ef0ab2b157ba0069a13c62e195d156df8947f039c319a"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/check_fixture_export.py",
+      "bytes": 30541,
+      "sha256": "87a5a461e9ecbf6e1a229d1f1f586b54933cd3a9877e24803d8fc0ea21772e0b"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/test_check_fixture_export.py",
+      "bytes": 13854,
+      "sha256": "030c5a599048d86adeae087f8f79f8a28fe60f8ea523395d4d253576af8e9b38"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v7-observation-10.txt",
+      "bytes": 1912,
+      "sha256": "c9c496cbff370681337416962c5cbf30238eb2fbb7f2d17233b7ef1c9fc6e892"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v7-memory-20.txt",
+      "bytes": 2133,
+      "sha256": "5b50a5f47f23143213cdbb5c16734c4114d5fe4d7de1b55ca7e190932fd4b14d"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v7-provenance.json",
+      "bytes": 1557,
+      "sha256": "ec4af7aa3fe327b8350294521fceda1530b68bfecab8c3b24ccce406e6ca4708"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/owned_provider.py",
+      "bytes": 9067,
+      "sha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/test_owned_provider.py",
+      "bytes": 2946,
+      "sha256": "734a3db118701c503a7ef0ab2b157ba0069a13c62e195d156df8947f039c319a"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/check_fixture_export.py",
+      "bytes": 30541,
+      "sha256": "87a5a461e9ecbf6e1a229d1f1f586b54933cd3a9877e24803d8fc0ea21772e0b"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/test_check_fixture_export.py",
+      "bytes": 13854,
+      "sha256": "030c5a599048d86adeae087f8f79f8a28fe60f8ea523395d4d253576af8e9b38"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v7-observation-10.txt",
+      "bytes": 1912,
+      "sha256": "c9c496cbff370681337416962c5cbf30238eb2fbb7f2d17233b7ef1c9fc6e892"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v7-memory-20.txt",
+      "bytes": 2133,
+      "sha256": "5b50a5f47f23143213cdbb5c16734c4114d5fe4d7de1b55ca7e190932fd4b14d"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/sustained-prompts/v7-provenance.json",
+      "bytes": 1557,
+      "sha256": "ec4af7aa3fe327b8350294521fceda1530b68bfecab8c3b24ccce406e6ca4708"
+    }
+  ],
+  "sourceUnchanged": true,
+  "log": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/synthetic-harness-tests-01.log",
+    "bytes": 4626,
+    "sha256": "96c4ef50d2921ad47dc6686fd5c93ebd163589f8ce760e052114d6f50d2bd368"
+  },
+  "syntaxOnlyHelpers": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/build_package.py",
+      "bytes": 7062,
+      "sha256": "c7135b10f4912cc2b7d75e08b7cefb597af2422f8a03ba82f03e0e3aceed08cf"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/protect_prior_package.py",
+      "bytes": 3717,
+      "sha256": "753d89b66494ad330708fdb6ac4eb2feda8acecc93cd929aa3513bfe82665034"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/prepare_historical_replay_01.py",
+      "bytes": 6153,
+      "sha256": "4a170308163dc3d64a257984ced66f65ef7a36629f6bdc298618eb26e6840c00"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/replay_historical.py",
+      "bytes": 11056,
+      "sha256": "b08358f343832d10227a4450e13900797083c680ca749aa1bac431b76cc8ae5d"
+    }
+  ],
+  "scope": "Pure fixture validation and file-only tests. No provider socket, app, production verifier, model, or build was started. Helper syntax parsing is not executed build qualification."
+}

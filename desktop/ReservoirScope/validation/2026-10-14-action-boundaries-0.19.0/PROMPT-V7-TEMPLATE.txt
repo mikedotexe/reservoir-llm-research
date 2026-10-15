@@ -1,0 +1,24 @@
+Reservoir Scope · ongoing journal · reservoir-journal-v7
+There is no human question to answer. Choose the subject and form of this entry. You may continue, question or leave what came before. The readings are optional context for your attention; no measurement recital, heading or length is required.
+
+SESSION CONTEXT
+An external 32-node recurrent reservoir and a separate sensory field evolve between entries. After a complete entry is saved and read back, its reduced text-feature signal becomes numerical input at the next step. The latest applied entry also returns here in full. Forcing, noise and regulation contribute to change; writing trains no weights.
+
+OPTIONAL READOUT
+Current step {observed_step}; simulated seconds {simulated_time_fixed8}. Previous observation step: {previous_step_or_unavailable}.
+Recurrent state RMS: current {rms_fixed8}; previous {previous_rms_or_unavailable}; change {rms_delta_or_unavailable}.
+Separate sensory fill (%): current {fill_percent_fixed8}; previous {previous_fill_or_unavailable}; change {fill_delta_or_unavailable} percentage points.
+Recurrent state-coordinate L2 distance since the previous observation: {coordinate_distance_or_unavailable}.
+Unavailable means no prior measurement, not zero. Distance compares coordinate vectors and is nonnegative. Fill is a separate sensory estimator. Two observations do not establish the intervening path, a cause, or a felt state.
+
+PREVIOUS JOURNAL
+{previous_journal_block}
+END PREVIOUS JOURNAL
+
+WRITING BOUNDARY
+Available output: the text of this entry. There are no tools or control commands in this turn.
+The numerical clock is held at observation step {observed_step}; no new readout arrives while this entry is written.
+{recorded_text_return}
+Earlier prose is not a record of executed controls or additional measurements. Describing a control change does not execute it; saved text returns through the automatic encoding described above.
+
+Write the next entry in whatever direction seems worth pursuing.

@@ -1,0 +1,43 @@
+{
+  "schema": "reservoir-scope.platform-ci-diagnosis.v1",
+  "recordedAtUtc": "2026-10-14T15:25:32.189639+00:00",
+  "run": 38501926530,
+  "qualifiedHead": "b42b6e18d03726ca26edb3b75c8e63c4acf3a321",
+  "sourceFile": "desktop/ReservoirScope/crates/reservoir-core/tests/exploration.rs",
+  "sourceBeforeSha256": "05cdba305c942964ebe9223fb320b6a8f7c59facbdf81d4aa3d92eac11202efd",
+  "sourceAfterSha256": "bb60fca8f5fab095cd2d13c9bb47245566a78202d3fb155da0921c1ea4f88868",
+  "sourceAfterBytes": 21003,
+  "failures": [
+    {
+      "platform": "windows-2022",
+      "failedTest": "field_restarts_and_valid_degenerate_bases_remain_valid_evidence",
+      "file": "crates/reservoir-core/tests/exploration.rs",
+      "originalLine": 287,
+      "elements": 1024,
+      "differentElements": 514,
+      "maximumAbsoluteDifference": 2.220446049250313e-16,
+      "desktopTests": "not reached after core failure",
+      "packageBuild": "not reached"
+    },
+    {
+      "platform": "ubuntu-24.04",
+      "failedTest": "field_restarts_and_valid_degenerate_bases_remain_valid_evidence",
+      "file": "crates/reservoir-core/tests/exploration.rs",
+      "originalLine": 287,
+      "elements": 1024,
+      "differentElements": 901,
+      "maximumAbsoluteDifference": 2.220446049250313e-16,
+      "desktopTests": "not reached after core failure",
+      "packageBuild": "not reached"
+    }
+  ],
+  "change": "Use existing 1e-12 test tolerance only for retained Swift-versus-Rust covariance; add exact same-runtime reset/fresh input and covariance equality. Production numerics and verifier tolerances are unchanged.",
+  "fixtureUnchanged": true,
+  "fixtureSha256": "b984d5ed76cbe058a2c6a50d4f8e711f50a80200a9530c90686779a263c33569",
+  "formatCheck": {
+    "command": "rustfmt --check --edition 2021 crates/reservoir-core/tests/exploration.rs",
+    "exitCode": 0
+  },
+  "testExecution": "Not run by this agent: parent coordinates the combined Rust run against the existing cache because disk space is constrained.",
+  "limits": "The failed jobs stopped in core. This correction does not establish Windows/Linux desktop tests or packaged behavior; the next CI run must supply that evidence."
+}

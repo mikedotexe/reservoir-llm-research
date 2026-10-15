@@ -1,0 +1,94 @@
+{
+  "schema": "reservoir-offline-checker-qualification-v1",
+  "startedAtUtc": "2026-10-14T17:56:42.435437+00:00",
+  "endedAtUtc": "2026-10-14T17:56:42.883606+00:00",
+  "scope": "Pure synthetic temporary-file inspection tests; no GUI, provider, model, production verifier or live-store calls. Synthetic bundles exercise joins, not numerical replay.",
+  "command": [
+    "python3",
+    "-B",
+    "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode01/test_real_model_export.py",
+    "-v"
+  ],
+  "workingDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope",
+  "exitCode": 0,
+  "passed": true,
+  "sourceUnchanged": true,
+  "sourcesBefore": [
+    {
+      "path": "validation/2026-10-14-v7-writing-episode01/check_real_model_export.py",
+      "bytes": 47433,
+      "sha256": "b1b57dc2253769c8b5010187bb312ad219b774f4e8a8e76df67f2c9c5f3a5953"
+    },
+    {
+      "path": "validation/2026-10-14-v7-writing-episode01/test_real_model_export.py",
+      "bytes": 31156,
+      "sha256": "401729aa25d9f5d86d84e466af119c05e27e13596986497adb50fd72ee2b2dc6"
+    },
+    {
+      "path": "validation/2026-10-14-v7-writing-episode01/run-plan.json",
+      "bytes": 4848,
+      "sha256": "297a91d85e46ec7ffb942be491961ed478b281f86f1f7c884c9d605102928212"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-observation-10.txt",
+      "bytes": 1912,
+      "sha256": "c9c496cbff370681337416962c5cbf30238eb2fbb7f2d17233b7ef1c9fc6e892"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-memory-20.txt",
+      "bytes": 2133,
+      "sha256": "5b50a5f47f23143213cdbb5c16734c4114d5fe4d7de1b55ca7e190932fd4b14d"
+    },
+    {
+      "path": "validation/2026-10-14-v6-writing-episode02/check_real_model_export.py",
+      "bytes": 45821,
+      "sha256": "842705171411997c5025f1cc162ec1cd4c29f0a43a85fb037ee9fd291b2db598"
+    },
+    {
+      "path": "validation/2026-10-14-v6-writing-episode02/test_real_model_export.py",
+      "bytes": 28667,
+      "sha256": "bff7774aab843d5a44e10982d5058e2a43df50284fe0289584da703dd9ee97e3"
+    }
+  ],
+  "sourcesAfter": [
+    {
+      "path": "validation/2026-10-14-v7-writing-episode01/check_real_model_export.py",
+      "bytes": 47433,
+      "sha256": "b1b57dc2253769c8b5010187bb312ad219b774f4e8a8e76df67f2c9c5f3a5953"
+    },
+    {
+      "path": "validation/2026-10-14-v7-writing-episode01/test_real_model_export.py",
+      "bytes": 31156,
+      "sha256": "401729aa25d9f5d86d84e466af119c05e27e13596986497adb50fd72ee2b2dc6"
+    },
+    {
+      "path": "validation/2026-10-14-v7-writing-episode01/run-plan.json",
+      "bytes": 4848,
+      "sha256": "297a91d85e46ec7ffb942be491961ed478b281f86f1f7c884c9d605102928212"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-observation-10.txt",
+      "bytes": 1912,
+      "sha256": "c9c496cbff370681337416962c5cbf30238eb2fbb7f2d17233b7ef1c9fc6e892"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-memory-20.txt",
+      "bytes": 2133,
+      "sha256": "5b50a5f47f23143213cdbb5c16734c4114d5fe4d7de1b55ca7e190932fd4b14d"
+    },
+    {
+      "path": "validation/2026-10-14-v6-writing-episode02/check_real_model_export.py",
+      "bytes": 45821,
+      "sha256": "842705171411997c5025f1cc162ec1cd4c29f0a43a85fb037ee9fd291b2db598"
+    },
+    {
+      "path": "validation/2026-10-14-v6-writing-episode02/test_real_model_export.py",
+      "bytes": 28667,
+      "sha256": "bff7774aab843d5a44e10982d5058e2a43df50284fe0289584da703dd9ee97e3"
+    }
+  ],
+  "log": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v7-writing-episode01/checker-tests-01.log",
+    "sha256": "800abaf9869e82c96fe97af8a4df999193099c8e005797e27bbf17bec5e0ed85"
+  }
+}

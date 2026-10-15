@@ -1,0 +1,100 @@
+{
+  "schema": "reservoir-v8-reading-measurements-ui-plan-v1",
+  "status": "prospective-unexecuted",
+  "scope": "Owned fixed synthetic provider qualification of the v8 measurement interpretation and unchanged v7 late writing boundary/full-memory/save/application gates. No real model or Being access.",
+  "fixture": {
+    "script": "owned_provider.py",
+    "outputDirectory": "target/qa/0.20-reading-measurements-provider-01",
+    "model": "reservoir-fixture:input-evidence-0.16",
+    "lifetimeSeconds": 900,
+    "maximumChatRequests": 5,
+    "readinessRequestsPlanned": 1,
+    "endpoint": "Use only the ephemeral 127.0.0.1 endpoint written by this fixture.",
+    "responseSequence": [
+      "wide-reported",
+      "absent",
+      "malformed-string",
+      "maximum-u64",
+      "incomplete-reported"
+    ],
+    "historicalNameLimit": "The unchanged synthetic model name contains 0.16 by design; it identifies the fixed fixture, not the app version."
+  },
+  "config": {
+    "seed": "20261013",
+    "promptVersion": "reservoir-journal-v8",
+    "outputTokens": 1024,
+    "requestDeadlineSeconds": 180,
+    "turnEvery": 10,
+    "maximumSteps": 51,
+    "maximumTurns": 5,
+    "maximumDurationSeconds": 180,
+    "storageBudgetBytes": 33554432,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true,
+    "language": {
+      "backend": "ollama",
+      "model": "reservoir-fixture:input-evidence-0.16",
+      "contextTokens": 8192
+    }
+  },
+  "expected": {
+    "heldStep": 50,
+    "receivedResponses": 5,
+    "completeResponses": 4,
+    "savedJournals": 4,
+    "firstAppliedSteps": [
+      11,
+      21,
+      31,
+      41
+    ],
+    "reportedCountsAsExactDecimalStrings": [
+      "9007199254740993",
+      "18446744073709551615"
+    ],
+    "missingCount": "absent, no invented zero",
+    "malformedCount": "unusable/wrongType, complete prose still eligible",
+    "incompleteCount": "321 is optional metadata, not evidence of completeness or save eligibility",
+    "qualityVerdict": "not assessed",
+    "promptExposure": "Compact RMS and separate sensory fill current/prior/differences plus nonnegative coordinate distance; no raw state/spectrum arrays, identity hashes or full eight-row table in the scaffold. Historical full prose may contain any such words and is tested separately as quoted data.",
+    "retainedEvidence": "Full observation v2, prior measurements and eight-row reader reference remain retained despite reduced prompt context.",
+    "actionScope": "Unchanged v7 WRITING BOUNDARY after END PREVIOUS JOURNAL: text-only/no tools, actual held observation clock, prior observed/applied return or none, and prior prose not executed controls/additional measurements. Final invitation unchanged.",
+    "measurementInterpretation": "Unavailable means no prior measurement, not zero. RMS describes the magnitude of the recurrent coordinates. Sensory fill is a separate field estimate, not the encoded text-input signal. L2 distance is the straight-line distance between the two recurrent state vectors, not path length, speed or a causal effect of writing. Comparing two interval distances requires a recorded value for each. Two observations do not establish the intervening path, a cause, or a felt state."
+  },
+  "execution": {
+    "fixtureLaunched": false,
+    "appLaunched": false,
+    "endpointContacted": false,
+    "modelLaunched": false
+  },
+  "cleanup": "Parent creates only the fixture stop-request and retains terminal log. No app Stop/Skip/Retry/cancellation/extension or further Start is allowed; any safety intervention is a recorded protocol deviation, not a passing held-prefix qualification.",
+  "limits": [
+    "No provider context processing proof",
+    "Only v8 header and compact-readout interpretation change from v7; no numerical, transport or save gate change.",
+    "No real-model quality, GPU, minimized-duration, crash/power-loss or cross-platform qualification"
+  ],
+  "packageGate": "Root binds distinct0.20 package and pinned verifier before launch; prior0.19 full app/archive/pin copies remain verified.",
+  "qualificationContract": "Exact v8 measurement caveat at readout end, unchanged late boundary; one readiness GET; five requests; final core blocked; no Retry/Skip/Stop/cancellation/extension.",
+  "readerQualification": {
+    "synthetic": "After four saved entries, Earlier/Later navigation and Pause following pin selection; selected writing-step evidence remains separate from advancing clock/progress. Navigation does not generate or control numerical execution.",
+    "historicalManagedSession": {
+      "sessionId": "sustained-1792001665258-1",
+      "promptVersion": "reservoir-journal-v7",
+      "expectedJournalCount": 12,
+      "operation": "After synthetic provider stop and export/recovery, clean relaunch and explicit paused Restore for reader QA only.",
+      "forbidden": [
+        "Start",
+        "Resume",
+        "Retry",
+        "readiness request",
+        "provider launch"
+      ],
+      "managedManifestChanges": "Only actual Restore generation/revision/wrapper phase changes, recorded separately.",
+      "immutableExportPreservation": "Both original/recovered v7 exports stay byte-exact; this is not a restoration of an export.",
+      "leavePausedForUser": true
+    }
+  }
+}

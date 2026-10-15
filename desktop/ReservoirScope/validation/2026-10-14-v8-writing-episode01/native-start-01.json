@@ -1,0 +1,43 @@
+{
+  "capturedAtUtc": "2026-10-14T19:57:20.017780+00:00",
+  "kind": "agent-native-AX-witness",
+  "endpoint": "http://127.0.0.1:53588",
+  "requestedModel": "gemma3:4b",
+  "matchedModel": "gemma3:4b",
+  "retainedDigest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+  "readinessCheckTimeEpochMillis": "1792007789404",
+  "readinessOperation": "model-check-93902-1",
+  "readinessCheckCount": 1,
+  "createCount": 1,
+  "startCount": 1,
+  "sessionId": "sustained-1792007792954-1",
+  "generation": "1",
+  "acceptedConfiguration": {
+    "seed": "20261013",
+    "promptVersion": "reservoir-journal-v8",
+    "outputTokens": 1024,
+    "requestDeadlineSeconds": 180,
+    "turnEvery": 30,
+    "maximumSteps": 361,
+    "maximumTurns": 12,
+    "maximumDurationSeconds": 900,
+    "storageBudgetBytes": 67108864,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true,
+    "language": {
+      "backend": "ollama",
+      "endpoint": "http://127.0.0.1:53588",
+      "model": "gemma3:4b",
+      "contextTokens": 8192
+    }
+  },
+  "beforeStart": "Prepared;step0;zerojournals;15minutes;64MiB",
+  "afterStart": "Running;step1;zerojournals",
+  "identityDisclosure": "Running;step13;revision15;full accepted configuration observed",
+  "passiveSamplerExecSessionId": 3797,
+  "supervisorExecSessionId": 98571,
+  "scope": "Actual native actions via CUA; no independent provider authentication or resource qualification."
+}

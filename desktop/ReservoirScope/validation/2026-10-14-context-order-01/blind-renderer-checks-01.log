@@ -1,0 +1,26 @@
+test_active_result_and_inflight_slot_are_rejected (test_render_blind_pack.BlindPackTests.test_active_result_and_inflight_slot_are_rejected) ... ok
+test_ambiguous_content_is_not_guessed_optional_duplicates_do_not_hide_text (test_render_blind_pack.BlindPackTests.test_ambiguous_content_is_not_guessed_optional_duplicates_do_not_hide_text) ... ok
+test_evidence_must_stay_beside_ledger_and_not_follow_symlinks (test_render_blind_pack.BlindPackTests.test_evidence_must_stay_beside_ledger_and_not_follow_symlinks) ... ok
+test_exact_decoded_text_copy_is_checked (test_render_blind_pack.BlindPackTests.test_exact_decoded_text_copy_is_checked) ... ok
+test_exact_unicode_newlines_fences_and_incomplete_content (test_render_blind_pack.BlindPackTests.test_exact_unicode_newlines_fences_and_incomplete_content) ... ok
+test_mapping_is_sealed_before_reader_files_and_secure_shuffle_used (test_render_blind_pack.BlindPackTests.test_mapping_is_sealed_before_reader_files_and_secure_shuffle_used) ... ok
+test_mapping_preserves_empty_invalid_and_all_unstarted_slots (test_render_blind_pack.BlindPackTests.test_mapping_preserves_empty_invalid_and_all_unstarted_slots) ... ok
+test_masked_files_have_only_ids_and_prose_not_conditions_or_paths (test_render_blind_pack.BlindPackTests.test_masked_files_have_only_ids_and_prose_not_conditions_or_paths) ... FAIL
+test_no_overwrite_or_mapping_inside_reader_folder (test_render_blind_pack.BlindPackTests.test_no_overwrite_or_mapping_inside_reader_folder) ... ok
+test_result_hash_and_raw_response_hash_are_required (test_render_blind_pack.BlindPackTests.test_result_hash_and_raw_response_hash_are_required) ... ok
+test_slot_omission_reorder_and_false_unstarted_response_fail (test_render_blind_pack.BlindPackTests.test_slot_omission_reorder_and_false_unstarted_response_fail) ... ok
+test_whitespace_is_retained_as_received_text (test_render_blind_pack.BlindPackTests.test_whitespace_is_retained_as_received_text) ... ok
+
+======================================================================
+FAIL: test_masked_files_have_only_ids_and_prose_not_conditions_or_paths (test_render_blind_pack.BlindPackTests.test_masked_files_have_only_ids_and_prose_not_conditions_or_paths)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-01/test_render_blind_pack.py", line 77, in test_masked_files_have_only_ids_and_prose_not_conditions_or_paths
+    self.assertNotIn(forbidden, data)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+AssertionError: 'condition' unexpectedly found in '# Response-only reading pack\n\nTexts are unchanged, including any incomplete ending. Source and condition information is withheld until first-pass notes are fixed.\n\n## R01\n\n```text\nA literal step 60 in the writing is not redacted.\n```\n'
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.013s
+
+FAILED (failures=1)

@@ -76,9 +76,19 @@ describe('calmer sustained setup without automatic execution', () => {
     expect(invalid).toContain('role="alert"'); expect(invalid).toContain('from 1 second to 24 hours');
     expect(invalid).not.toContain('exactly NaN seconds');
   });
-  it('describes fresh compact v5 context separately from every retained earlier contract', () => {
+  it('describes fresh v8 measurement meanings separately from every retained earlier contract', () => {
     const render = (config: typeof DEFAULT_SUSTAINED_CONFIG) => renderToStaticMarkup(<MyReservoirConfig config={config} setConfig={() => {}} disabled={false}/>);
-    expect(render(DEFAULT_SUSTAINED_CONFIG)).toContain('compact optional readout and the complete previous journal near the invitation');
+    expect(render(DEFAULT_SUSTAINED_CONFIG)).toContain('clearer measurement meanings and the held writing boundary');
+    const v7 = render({ ...DEFAULT_SUSTAINED_CONFIG, promptVersion: 'reservoir-journal-v7' });
+    expect(v7).toContain('held writing boundary and the recorded prior feedback application');
+    expect(v7).not.toContain('clearer measurement meanings');
+    const v6 = render({ ...DEFAULT_SUSTAINED_CONFIG, promptVersion: 'reservoir-journal-v6' });
+    expect(v6).toContain('compact optional readout and explicit limits on what writing can change');
+    expect(v6).not.toContain('held writing boundary');
+    const v5 = render({ ...DEFAULT_SUSTAINED_CONFIG, promptVersion: 'reservoir-journal-v5' });
+    expect(v5).toContain('compact optional readout and the complete previous journal near the invitation');
+    expect(v5).toContain('prompt supplies only current and prior recurrent RMS');
+    expect(v5).not.toContain('explicit limits on what writing can change');
     expect(render(DEFAULT_SUSTAINED_CONFIG)).toContain('retains the full numerical observation for Evidence');
     expect(render(DEFAULT_SUSTAINED_CONFIG)).toContain('prompt supplies only current and prior recurrent RMS');
     expect(render(DEFAULT_SUSTAINED_CONFIG)).not.toContain('Each writing opportunity includes all 32 reservoir coordinates');
@@ -88,6 +98,18 @@ describe('calmer sustained setup without automatic execution', () => {
     expect(render({ ...DEFAULT_SUSTAINED_CONFIG, promptVersion: 'reservoir-journal-v2' })).toContain('structured grounded observations');
     const { promptVersion: _version, ...legacy } = DEFAULT_SUSTAINED_CONFIG;
     expect(render(legacy)).toContain('original observation and memory contract');
+  });
+  it('explains actual text feedback without prescribing prose or implying that setup executes it', () => {
+    const setConfig = vi.fn(), html = renderToStaticMarkup(<MyReservoirConfig config={DEFAULT_SUSTAINED_CONFIG} setConfig={setConfig} disabled={false}/>);
+    const visibleAfterAdvanced = html.split('</details>')[1];
+    expect(visibleAfterAdvanced).toContain('The topic and form stay open');
+    expect(visibleAfterAdvanced).toContain('Once saved and checked, writing can contribute a numerical signal at the next step');
+    expect(visibleAfterAdvanced).toContain('Only after application can its full text return in a later prompt');
+    expect(visibleAfterAdvanced).toContain('Describing a control change does not execute it');
+    expect(visibleAfterAdvanced).toContain('Create prepares local state; Start is a separate action');
+    expect(visibleAfterAdvanced).not.toContain('Seed · unsigned integer');
+    expect(html).not.toMatch(/<details[^>]*\bopen/);
+    expect(setConfig).not.toHaveBeenCalled(); expect(invoke).not.toHaveBeenCalled();
   });
   it('changing source prepares explicit blank local settings without changing numerical defaults or contacting anything', () => {
     const setConfig = vi.fn();

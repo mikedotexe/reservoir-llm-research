@@ -1,0 +1,32 @@
+test_all_six_mutations_reanchor_and_preserve_original_and_core_bytes (__main__.TamperHelpers.test_all_six_mutations_reanchor_and_preserve_original_and_core_bytes) ... ok
+test_existing_output_or_linked_bundle_member_rejected (__main__.TamperHelpers.test_existing_output_or_linked_bundle_member_rejected) ... ok
+test_hash_replacement_requires_unique_anchor (__main__.TamperHelpers.test_hash_replacement_requires_unique_anchor) ... ok
+test_main_mocked_replay_runs_positive_before_and_after_and_preserves_failure (__main__.TamperHelpers.test_main_mocked_replay_runs_positive_before_and_after_and_preserves_failure) ... 
+  test_main_mocked_replay_runs_positive_before_and_after_and_preserves_failure (__main__.TamperHelpers.test_main_mocked_replay_runs_positive_before_and_after_and_preserves_failure) (wrong_diagnostic=False) ... FAIL
+  test_main_mocked_replay_runs_positive_before_and_after_and_preserves_failure (__main__.TamperHelpers.test_main_mocked_replay_runs_positive_before_and_after_and_preserves_failure) (wrong_diagnostic=True) ... FAIL
+test_recorded_return_changes_later_saved_receipt_not_prior_prose (__main__.TamperHelpers.test_recorded_return_changes_later_saved_receipt_not_prior_prose) ... ok
+test_string_replacement_preserves_unrelated_bytes_and_exact_unicode (__main__.TamperHelpers.test_string_replacement_preserves_unrelated_bytes_and_exact_unicode) ... ok
+test_wrong_anchor_and_noncontiguous_segment_filename_rejected (__main__.TamperHelpers.test_wrong_anchor_and_noncontiguous_segment_filename_rejected) ... ok
+
+======================================================================
+FAIL: test_main_mocked_replay_runs_positive_before_and_after_and_preserves_failure (__main__.TamperHelpers.test_main_mocked_replay_runs_positive_before_and_after_and_preserves_failure) (wrong_diagnostic=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/test_reanchored_tamper.py", line 174, in test_main_mocked_replay_runs_positive_before_and_after_and_preserves_failure
+    self.assertEqual(Path(calls[0][-1]), original)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: PosixPath('/private/var/folders/98/rh9s2vt50c90b6f910[32 chars]nal') != PosixPath('/var/folders/98/rh9s2vt50c90b6f910bcnf3m00[24 chars]nal')
+
+======================================================================
+FAIL: test_main_mocked_replay_runs_positive_before_and_after_and_preserves_failure (__main__.TamperHelpers.test_main_mocked_replay_runs_positive_before_and_after_and_preserves_failure) (wrong_diagnostic=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/test_reanchored_tamper.py", line 174, in test_main_mocked_replay_runs_positive_before_and_after_and_preserves_failure
+    self.assertEqual(Path(calls[0][-1]), original)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: PosixPath('/private/var/folders/98/rh9s2vt50c90b6f910[32 chars]nal') != PosixPath('/var/folders/98/rh9s2vt50c90b6f910bcnf3m00[24 chars]nal')
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.084s
+
+FAILED (failures=2)

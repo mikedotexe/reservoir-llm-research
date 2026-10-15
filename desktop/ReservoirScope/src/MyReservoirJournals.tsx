@@ -1,22 +1,25 @@
+import './myReservoirReading.css';
 import ProviderPromptEvidence from './ProviderPromptEvidence';
 import JournalMeasurements from './JournalMeasurements';
 import type { MyReservoirController, MyReservoirState } from './myReservoirController';
 import { effectiveOutputTokens, effectiveRequestDeadline, type SustainedConfig, type SustainedJournal } from './myReservoirTypes';
 
-const status = (value: SustainedJournal['status']) => value === 'applied' ? 'Saved and applied' : value === 'skipped' ? 'Saved · feedback explicitly skipped' : 'Saved · waiting for first application';
+const status = (value: SustainedJournal['status']) => value === 'applied' ? 'Saved · feedback applied' : value === 'skipped' ? 'Saved · feedback explicitly skipped' : 'Saved · waiting for first application';
 const json = (value: unknown) => value == null ? 'Not retained.' : JSON.stringify(value, null, 2);
-export function MyReservoirJournalDetail({ journal, revision, config }: { journal: SustainedJournal; revision: string | null; config?: SustainedConfig }) {
+export function MyReservoirJournalDetail({ journal, revision, config, onRefreshEvidence, refreshing = false }: { journal: SustainedJournal; revision: string | null; config?: SustainedConfig; onRefreshEvidence?: () => void; refreshing?: boolean }) {
   return <article className="my-reservoir-journal-detail">
     <span className="eyebrow">RETAINED JOURNAL</span>
-    <h3>Writing at step {journal.observedStep}</h3>
+    <h3>Observed at step {journal.observedStep}</h3>
     <p className="my-reservoir-journal-status"><strong>{status(journal.status)}</strong>{journal.firstAppliedStep !== null ? ` · first applied at step ${journal.firstAppliedStep}` : ' · no first application recorded'}</p>
     <div className="my-reservoir-journal-prose" style={{ whiteSpace: 'pre-wrap' }}>{journal.text}</div>
-    {journal.status === 'savedPendingApplication' && <p className="my-reservoir-journal-return">Saved safely. This entry is waiting for its first application, so it is not yet eligible to return as memory in a later prompt.</p>}
-    {journal.status === 'skipped' && <p className="my-reservoir-journal-return">This journal remains readable. Its feedback and automatic prompt-memory exposure were explicitly skipped.</p>}
-    {journal.status === 'applied' && <p className="my-reservoir-journal-return">After a saved entry is applied, its text can enter later prompts and its encoded vector contributes to numerical input. This does not train the model.</p>}
+    {journal.status !== 'applied' && <p className="my-reservoir-journal-return">
+      {journal.status === 'savedPendingApplication' ? 'Saved and checked. This entry is waiting for its first application, so it is not yet eligible to return as memory in a later prompt.' : 'This journal remains readable. Its feedback and automatic prompt-memory exposure were explicitly skipped.'}
+    </p>}
     <JournalMeasurements value={journal.measurementReference} observedStep={journal.observedStep} promptVersion={journal.promptVersion}/>
     <details className="my-reservoir-journal-evidence">
       <summary>Evidence</summary>
+      <p className="my-reservoir-journal-return">{journal.status === 'applied' && <>This entry’s feedback was first applied at step {journal.firstAppliedStep}. Its full text is eligible for later prompts. </>}Describing a control change does not execute it.</p>
+      {onRefreshEvidence && <button disabled={refreshing} onClick={onRefreshEvidence}>Refresh selected application evidence</button>}
       <h4>Journal and request identity</h4>
       <dl className="my-reservoir-data">
         <dt>Journal prompt version</dt><dd>{journal.promptVersion}</dd>
@@ -45,7 +48,7 @@ export function MyReservoirJournalDetail({ journal, revision, config }: { journa
       </section>}
       <section>
         <h4>Exact prompt and observation</h4>
-        {journal.promptVersion === 'reservoir-journal-v5' && <p>The v5 prompt uses a compact measurement subset. The full retained observation below also includes coordinates, spectra and other values that were not supplied as part of that readout. The exact prompt records what was supplied, including prior prose.</p>}
+        {(journal.promptVersion === 'reservoir-journal-v5' || journal.promptVersion === 'reservoir-journal-v6' || journal.promptVersion === 'reservoir-journal-v7' || journal.promptVersion === 'reservoir-journal-v8') && <p>The {journal.promptVersion.replace('reservoir-journal-', '')} prompt uses a compact measurement subset. The full retained observation below also includes coordinates, spectra and other values that were not supplied as part of that readout. The exact prompt records what was supplied, including prior prose.</p>}
         <p>Recurrent coordinates and summaries are separate from sensory measurements. Reading or selecting a coordinate in this app does not edit this retained prompt.</p>
         <h5>Exact prompt</h5><pre>{journal.prompt}</pre>
         <h5>Versioned numerical observation</h5><pre>{json(journal.observation)}</pre>
@@ -78,8 +81,61 @@ export function MyReservoirJournalDetail({ journal, revision, config }: { journa
 export default function MyReservoirJournals({ state, controller }: { state: MyReservoirState; controller: MyReservoirController }) {
   const summary = state.summary; if (!summary) return null;
   const newCount = Math.max(0, summary.journalCount - state.seenJournalCount), page = state.page;
-  return <section className="my-reservoir-journals" aria-label="Independent journal reading"><header className="my-reservoir-journal-header"><div><span className="eyebrow">YOUR WRITING HISTORY</span><h2>Journals and their return</h2><p className="my-reservoir-small">{summary.journalCount} saved journals · {summary.turnCount} retained attempts. Your reading position never moves the live clock.</p></div><div className="my-reservoir-actions"><button aria-pressed={state.followLatest} disabled={state.readingPage} onClick={() => void controller.followLatest()}>Follow latest{!state.followLatest && newCount > 0 ? ` · ${newCount} new` : ''}</button><button disabled={state.readingPage} onClick={() => void controller.journals(page?.offset ?? 0)}>Refresh this page</button></div></header>
+  const selectedIndex = page?.entries.findIndex(entry => entry.entryId === state.journal?.entryId) ?? -1;
+  const position = page && selectedIndex >= 0 ? page.total - page.offset - selectedIndex : null;
+  const total = Math.max(summary.journalCount, page?.total ?? 0);
+  const reading = state.readingPage || state.readingJournal;
+  return <section className="my-reservoir-journals" aria-label="Independent journal reading">
+    <header className="my-reservoir-journal-header">
+      <div>
+        <span className="eyebrow">YOUR WRITING HISTORY</span>
+        <h2>Journals and their return</h2>
+        <p className="my-reservoir-small">{summary.journalCount} saved journals · reading never moves the live clock.</p>
+      </div>
+      <div className="my-reservoir-actions">
+        <button aria-pressed={state.followLatest} disabled={!state.followLatest && state.readingPage} onClick={() => state.followLatest ? controller.pinJournal() : void controller.followLatest()}>{state.followLatest ? 'Pause following' : 'Follow latest'}{!state.followLatest && newCount > 0 ? ` · ${newCount} new` : ''}</button>
+        <button disabled={state.readingPage} onClick={() => void controller.journals(page?.offset ?? 0)}>Refresh this page</button>
+      </div>
+    </header>
     {state.journalError && <p role="alert" className="my-reservoir-error">{state.journalError}</p>}
-    <div className="my-reservoir-journal-grid"><div>{state.readingPage && <p role="status">Reading journal history…</p>}<ul className="my-reservoir-journal-list">{page?.entries.map(entry => <li key={entry.entryId}><button aria-pressed={state.journal?.entryId === entry.entryId} onClick={() => void controller.selectJournal(entry.entryId)}><strong>Step {entry.observedStep} · {status(entry.status)}</strong><span>{entry.textPreview}</span><span>{entry.firstAppliedStep === null ? 'No first application recorded' : `First applied ${entry.firstAppliedStep}`}</span></button></li>)}</ul>{page && <div className="my-reservoir-actions"><button disabled={state.readingPage || page.offset === 0} onClick={() => void controller.journals(Math.max(0, page.offset - 20))}>Newer</button><span className="my-reservoir-small">{page.total === 0 ? '0 journals' : `${page.offset + 1}–${page.offset + page.entries.length} of ${page.total}`}</span><button disabled={state.readingPage || !page.hasMore} onClick={() => void controller.journals(page.offset + 20)}>Older</button></div>}</div><div>{state.readingJournal && <p role="status">Reading selected journal…</p>}{state.journal ? <><MyReservoirJournalDetail journal={state.journal} revision={state.journalRevision} config={summary.config}/><button disabled={state.readingJournal} onClick={() => void controller.refreshJournal()}>Refresh selected application evidence</button></> : <div className="my-reservoir-empty"><h3>{summary.journalCount ? 'Choose a journal to read' : 'No saved journal yet'}</h3><p>Writing appears here after actual durable save and readback. Failed and pending outcomes remain distinct in session diagnostics.</p></div>}</div></div>
+    <div className="my-reservoir-journal-grid">
+      <div>
+        <p className="my-reservoir-history-order">Newest first</p>
+        {state.readingPage && <p role="status">Reading journal history…</p>}
+        <ul className="my-reservoir-journal-list">{page?.entries.map(entry => <li key={entry.entryId}>
+          <button aria-pressed={state.journal?.entryId === entry.entryId} onClick={() => void controller.selectJournal(entry.entryId)}>
+            <strong>Step {entry.observedStep}</strong>
+            <span className="my-reservoir-history-status">{status(entry.status)} · {entry.firstAppliedStep === null ? 'No first application recorded' : `First applied ${entry.firstAppliedStep}`}</span>
+            <span>{entry.textPreview}</span>
+          </button>
+        </li>)}</ul>
+        {page && <div className="my-reservoir-actions">
+          <button disabled={state.readingPage || page.offset === 0} onClick={() => void controller.journals(Math.max(0, page.offset - 20))}>Newer history</button>
+          <span className="my-reservoir-small">{page.total === 0 ? '0 journals' : `${page.offset + 1}–${page.offset + page.entries.length} of ${page.total}`}</span>
+          <button disabled={state.readingPage || !page.hasMore} onClick={() => void controller.journals(page.offset + 20)}>Older history</button>
+        </div>}
+      </div>
+      <div>
+        {state.journal && <nav className="my-reservoir-reading-navigation" aria-label="Journal reading position">
+          <div>
+            <strong aria-live="polite" aria-atomic="true">{position === null ? 'Selected journal' : `Journal ${position} of ${total}`}</strong>
+            <p>{position === null ? 'This entry is outside the displayed history page. Choose an entry from that page to read in order.' : state.followLatest ? 'Following latest: new entries open automatically.' : 'Your selection stays here as new writing arrives.'}</p>
+          </div>
+          <div className="my-reservoir-actions">
+            <button disabled={reading || position === null || position <= 1} onClick={() => void controller.adjacentJournal('earlier')}>Earlier entry</button>
+            <button disabled={reading || position === null || position >= total} onClick={() => void controller.adjacentJournal('later')}>Later entry</button>
+          </div>
+        </nav>}
+        {state.readingJournal && <p role="status">Reading selected journal…</p>}
+        {state.journal ? <MyReservoirJournalDetail
+          key={`${summary.sessionId}:${summary.generation}:${state.journal.entryId}`}
+          journal={state.journal} revision={state.journalRevision} config={summary.config}
+          onRefreshEvidence={() => void controller.refreshJournal()} refreshing={state.readingJournal}
+        /> : <div className="my-reservoir-empty">
+          <h3>{summary.journalCount ? 'Choose a journal to read' : 'No saved journal yet'}</h3>
+          <p>Writing appears here after actual durable save and readback. Failed and pending outcomes remain distinct in session diagnostics.</p>
+        </div>}
+      </div>
+    </div>
   </section>;
 }

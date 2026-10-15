@@ -1,0 +1,49 @@
+{
+  "schema": "reservoir-blind-renderer-synthetic-checks-v1",
+  "startedAtUtc": "2026-10-14T20:33:01.369464+00:00",
+  "endedAtUtc": "2026-10-14T20:33:01.464472+00:00",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-m",
+    "unittest",
+    "-v",
+    "test_render_blind_pack.py"
+  ],
+  "cwd": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-01",
+  "exitCode": 0,
+  "scope": "Synthetic temporary files only; no actual diagnostic outputs, app, provider, service, process control or network calls.",
+  "sourceBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-01/render_blind_pack.py",
+      "bytes": 9769,
+      "sha256": "5a443fc867e47dccb5297884df2ff0dc6749ea31f1a49cf12f7c2589e4e2ada2"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-01/test_render_blind_pack.py",
+      "bytes": 8693,
+      "sha256": "910f9dd2129d48a30ca0725c6a644875a7452c82d2fef1aa0ac64d0aaf20f4a3"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-01/render_blind_pack.py",
+      "bytes": 9769,
+      "sha256": "5a443fc867e47dccb5297884df2ff0dc6749ea31f1a49cf12f7c2589e4e2ada2"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-01/test_render_blind_pack.py",
+      "bytes": 8693,
+      "sha256": "910f9dd2129d48a30ca0725c6a644875a7452c82d2fef1aa0ac64d0aaf20f4a3"
+    }
+  ],
+  "sourceUnchanged": true,
+  "log": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-01/blind-renderer-checks-02.log",
+    "bytes": 2037,
+    "sha256": "99585a159510657a21a6b6cb1e11df208c9296d5f27a228d0344f54df957acf8"
+  },
+  "testCount": 12,
+  "status": "passed",
+  "priorRun": "blind-renderer-checks-01.json",
+  "correction": "Test-only metadata assertion now matches the quoted condition key; the generic word in the neutral masking notice does not reveal a condition. Renderer source unchanged."
+}

@@ -1,0 +1,92 @@
+{
+  "format": "reservoir-action-boundaries-qualification-preparation-v1",
+  "createdAtUtc": "2026-10-14T16:53:06.635413+00:00",
+  "status": "prospective_not_executed",
+  "copies": [
+    {
+      "source": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/owned_provider.py",
+      "copy": "desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/owned_provider.py",
+      "bytes": 9067,
+      "sha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb",
+      "byteIdentical": true
+    },
+    {
+      "source": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/test_owned_provider.py",
+      "copy": "desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/test_owned_provider.py",
+      "bytes": 2946,
+      "sha256": "734a3db118701c503a7ef0ab2b157ba0069a13c62e195d156df8947f039c319a",
+      "byteIdentical": true
+    },
+    {
+      "source": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/replay_historical.py",
+      "copy": "desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/replay_historical.py",
+      "sourceSha256": "621e2864685ca99486e62f7cd2fa6a3a58c487bd8aefd5d77061339a11c4f265",
+      "sha256": "b08358f343832d10227a4450e13900797083c680ca749aa1bac431b76cc8ae5d",
+      "byteIdentical": false,
+      "change": "Fixed twelve-case selection: retain prior eight, append explicit v6 synthetic and real partial original/recovery, allow only primary/current owned QA roots."
+    }
+  ],
+  "reusableInputs": [
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/build_package.py",
+      "bytes": 4333,
+      "sha256": "cd6631330c5830162ff3c5b730ffbde758883bf8a6e43e1a5e2c02336a81ff85",
+      "role": "Source-bound build/archive/pin basis; dated receipt names and version require adaptation."
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/run_rust_checks_02.py",
+      "bytes": 3943,
+      "sha256": "6675bfd30a0b67229cb5882b3bda89f96ce522a515fa01ab363b4aa96d4794f8",
+      "role": "Rust qualification basis; do not reuse old core success for changed v7 code."
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/check_fixture_export.py",
+      "bytes": 28251,
+      "sha256": "08308e233d1c88654772e954d8a286a2863a8188b12f151894ed92bd71053b0a",
+      "role": "Five-response exact wire/save/application checker basis; v7 contract adaptation pending."
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/test_check_fixture_export.py",
+      "bytes": 10901,
+      "sha256": "f56e0b851897e78cf938a09af20f3030cc4fab5179c6adee7c60ac7406970612",
+      "role": "Pure structural/evidence tests basis; adapt after v7 fixtures exist."
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/prepare_historical_replay_01.py",
+      "bytes": 6836,
+      "sha256": "2ea766546607f97a93190ffe38079a3faa96ce5516883c1bef973704acfb1fec",
+      "role": "Historical inventory preparation basis."
+    },
+    {
+      "path": "desktop/ReservoirScope/scripts/qualification_receipt.py",
+      "bytes": 14472,
+      "sha256": "c371184ae82c1f34314b59fc333ae2fceb0959a4997a532ed63e0cbece00e1cb",
+      "role": "Reusable read-only source/package/signing inventory CLI."
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/archive-check-01.json",
+      "bytes": 21358,
+      "sha256": "0d98c7ec0dcb12fd7cb41c3a37209f2450073eb4b397d15a2ac4a858c00f286a",
+      "role": "Prior package/archive/pin authoritative identity basis."
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-writing-scope-0.18.0/historical-replay-cases-01.json",
+      "bytes": 72539,
+      "sha256": "374b0d320954ef6dac965b9e5420e3595e537b3df4c27f81d10835b261f9f373",
+      "role": "Prior eight-case explicit selection; v2 historical absence preserved."
+    }
+  ],
+  "qualificationActionsExecuted": {
+    "tests": false,
+    "build": false,
+    "provider": false,
+    "model": false,
+    "app": false,
+    "historicalVerifier": false
+  },
+  "limits": [
+    "Only explicitly named repository tool/receipt files were read.",
+    "Old package/archive/pin identities are referenced from prior receipts, not freshly verified in this preparation.",
+    "V7 checker/fixtures remain pending exact approved contract; no v7 pass claimed."
+  ]
+}

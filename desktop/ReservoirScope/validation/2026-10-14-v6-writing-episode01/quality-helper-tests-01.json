@@ -1,0 +1,47 @@
+{
+  "schema": "reservoir-v6-episode-helper-tests-v1",
+  "startedAtUtc": "2026-10-14T15:56:34.547124+00:00",
+  "endedAtUtc": "2026-10-14T15:56:35.236902+00:00",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "test_journal_quality.py"
+  ],
+  "cwd": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01",
+  "exitCode": 0,
+  "passed": true,
+  "sourceUnchanged": true,
+  "sourceBefore": [
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/journal_quality.py",
+      "bytes": 29054,
+      "sha256": "5b296e8c04af879202bead1a294a4bb22519cdc5a0cd42bd692f8830d360f4c4"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/test_journal_quality.py",
+      "bytes": 36561,
+      "sha256": "aa4e297a52e639973ab2431265ba8181e8125b606012c1b050bdf066132d7f7f"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/journal_quality.py",
+      "bytes": 29054,
+      "sha256": "5b296e8c04af879202bead1a294a4bb22519cdc5a0cd42bd692f8830d360f4c4"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/test_journal_quality.py",
+      "bytes": 36561,
+      "sha256": "aa4e297a52e639973ab2431265ba8181e8125b606012c1b050bdf066132d7f7f"
+    }
+  ],
+  "log": {
+    "path": "desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode01/quality-helper-tests-01.log",
+    "bytes": 7950,
+    "sha256": "3346efe6f5c2e1f055c35b9eb3a15ae60726291e0577964ca05032b8b359394e"
+  },
+  "scope": "Synthetic files and mocked process operations, plus offline quality-helper subprocess tests. No admission, model, service, HTTP, real process inspection or signal, native UI, private model-file reads/copies, or product source edits."
+}

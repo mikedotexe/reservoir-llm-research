@@ -1,0 +1,119 @@
+{
+  "schema": "reservoir-real-model-checker-preparation-v1",
+  "frozenAtUtc": "2026-10-14T17:57:06.015990+00:00",
+  "status": "qualified-not-executed-on-new-export",
+  "promptVersion": "reservoir-journal-v7",
+  "expectedExecutableSha256": "65462e49b6301d89856e28496c3c51b25383935a46b1aa8b8832c7af68c83211",
+  "pureTestCount": 37,
+  "sourceUnchangedDuringTests": true,
+  "qualification": {
+    "path": "validation/2026-10-14-v7-writing-episode01/checker-tests-01.json",
+    "bytes": 3912,
+    "sha256": "5436ae8f83d9d5ca415c5ec3a15ec0f957d050b7ae07edd3ba7490d2ab75886e"
+  },
+  "sources": [
+    {
+      "path": "validation/2026-10-14-v7-writing-episode01/check_real_model_export.py",
+      "bytes": 47433,
+      "sha256": "b1b57dc2253769c8b5010187bb312ad219b774f4e8a8e76df67f2c9c5f3a5953"
+    },
+    {
+      "path": "validation/2026-10-14-v7-writing-episode01/test_real_model_export.py",
+      "bytes": 31156,
+      "sha256": "401729aa25d9f5d86d84e466af119c05e27e13596986497adb50fd72ee2b2dc6"
+    }
+  ],
+  "testInputIdentities": [
+    {
+      "path": "validation/2026-10-14-v7-writing-episode01/run-plan.json",
+      "bytes": 4848,
+      "sha256": "297a91d85e46ec7ffb942be491961ed478b281f86f1f7c884c9d605102928212"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-observation-10.txt",
+      "bytes": 1912,
+      "sha256": "c9c496cbff370681337416962c5cbf30238eb2fbb7f2d17233b7ef1c9fc6e892"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-memory-20.txt",
+      "bytes": 2133,
+      "sha256": "5b50a5f47f23143213cdbb5c16734c4114d5fe4d7de1b55ca7e190932fd4b14d"
+    },
+    {
+      "path": "validation/2026-10-14-v6-writing-episode02/check_real_model_export.py",
+      "bytes": 45821,
+      "sha256": "842705171411997c5025f1cc162ec1cd4c29f0a43a85fb037ee9fd291b2db598"
+    },
+    {
+      "path": "validation/2026-10-14-v6-writing-episode02/test_real_model_export.py",
+      "bytes": 28667,
+      "sha256": "bff7774aab843d5a44e10982d5058e2a43df50284fe0289584da703dd9ee97e3"
+    }
+  ],
+  "dependencies": {
+    "runtime": "Python standard library only; optional execution subprocess is the explicitly pinned production CLI --verify-sustained path. No HTTP/client or live-store discovery.",
+    "pureTests": [
+      "local check_real_model_export.py",
+      "local run-plan.json",
+      "two repository v7 golden prompt fixtures"
+    ],
+    "laterExecution": [
+      "explicit immutable native export",
+      "explicit expected model, prompt version, owned endpoint and executable SHA",
+      "exclusive output directory"
+    ]
+  },
+  "priorCheckerFunctionAstComparison": {
+    "unchanged": [
+      "prompt_version",
+      "utc",
+      "require",
+      "ordinary_path",
+      "data",
+      "digest",
+      "identity",
+      "read",
+      "unique_pairs",
+      "exact",
+      "provider_evidence",
+      "write_new",
+      "inventory",
+      "context_evidence",
+      "validate_rehearsal",
+      "collect_history",
+      "continuity_summary",
+      "scalar_snapshot"
+    ],
+    "changed": [
+      "inspect_prompt_memory",
+      "inspect_compact_prompt",
+      "inspect_evidence",
+      "main"
+    ],
+    "added": [
+      "writing_boundary"
+    ],
+    "scope": "AST identity establishes retained implementations, not equivalence after changing the explicit prompt-version constant."
+  },
+  "bounds": {
+    "plannedSlots": 12,
+    "maximumSteps": 361,
+    "cadence": 30,
+    "maximumDurationSeconds": 900,
+    "outputTokens": 1024,
+    "requestDeadlineSeconds": 180,
+    "contextTokens": 8192
+  },
+  "changes": [
+    "Explicit v7 header/version only; rejected earlier/missing/future versions.",
+    "Exact V5-derived early context without V6 scope.",
+    "Exact late boundary outside full JSON-quoted memory, bound to current held observation and actual prior observed/applied entry.",
+    "Existing12-slot/event/save/application/provider/prior-measurement joins remain; incomplete and unstarted outcomes stay separate."
+  ],
+  "claimsNotMade": [
+    "No new model/service/UI execution",
+    "No numerical validation of hand-built structural test bundles",
+    "No writing-quality or adherence verdict",
+    "No independent authentication of provider statements or full-context processing"
+  ]
+}

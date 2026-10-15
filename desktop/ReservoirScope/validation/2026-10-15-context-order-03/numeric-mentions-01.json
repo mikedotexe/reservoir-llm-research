@@ -1,0 +1,649 @@
+{
+  "schema": "reservoir-context-order-numeric-mentions-v1",
+  "auditedAtUtc": "2026-10-15T14:59:35.444945+00:00",
+  "script": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/audit_numeric_mentions.py",
+    "bytes": 5212,
+    "sha256": "331515e066a0d2d10ebca45527754380fbbc12a8252a47c5cf86afd2f2698690"
+  },
+  "inputs": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/real-model-export-01/quality-review-material.json",
+      "bytes": 198349,
+      "sha256": "12d0a9f863f1471e5eeb08a11f941b34a486abbee3946f6383e337a3e6e260e0"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/ledger.json",
+      "bytes": 22892,
+      "sha256": "fe49740ff34ecaba9cf38d484a134bcc81ae7fa60706a4917d09be00a231a851"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/sealed-map-01.json",
+      "bytes": 43605,
+      "sha256": "6574b1dcf7083ef630cd97090b89850da6ed80560910986f9975c4e09ea1d919"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-01-request.json",
+      "bytes": 3725,
+      "sha256": "f31d6c588a152a9e66008d2808c0aa52098d74db149b31debec3a2183e7937d8"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-01-text.txt",
+      "bytes": 1758,
+      "sha256": "20d7a69adc774b2bca9ce4ed3ec5072f45f055a85e38512a92d0c69528cdcd89"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-02-request.json",
+      "bytes": 3725,
+      "sha256": "a6fc6a6781fcbd46140154e91097f13f2971afc0b66ec407182dee1946cda5bc"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-02-text.txt",
+      "bytes": 1530,
+      "sha256": "d3250d1962ef3ef76f9dd90764fb83504d0302594cc32ecfeee0bf16b96577f8"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-03-request.json",
+      "bytes": 3731,
+      "sha256": "6c7da968915c7236540a118ad9532fd4f43abfe40f6fbaab023ecd71dfbb2eca"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-03-text.txt",
+      "bytes": 1361,
+      "sha256": "0808f275395e74b23e60a09b5d48ef78168332e931c3220f6555127cb1fd799f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-04-request.json",
+      "bytes": 3731,
+      "sha256": "4a64482ff84920a1740f864c57ece4fb4ddf6dbb521ebd61fa2987b849635b30"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-04-text.txt",
+      "bytes": 1324,
+      "sha256": "949b340c8190734669e09c533bf68934a73e50956b2b43bc1ee71c9a87f848c2"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-05-request.json",
+      "bytes": 3665,
+      "sha256": "54706b3b93eb39addde7c9d5d7e17a79201b974d3d7720e7bb7342824178fed9"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-05-text.txt",
+      "bytes": 1154,
+      "sha256": "e795a11833c5dc879710b3f9a7e97da4288ab61769dce84252ba94f80d9c5c03"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-06-request.json",
+      "bytes": 3665,
+      "sha256": "08b4ed6f741a089ee446083980bb45d96aa44cdf1338f576e4e61617696c6c32"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-06-text.txt",
+      "bytes": 1227,
+      "sha256": "4e2cb7c50895c1ec0bf5794abf22e3ac23e395b1ea5904da99ee9203fa8120a2"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-07-request.json",
+      "bytes": 3633,
+      "sha256": "eff53b783afe3a56ec613acaab411fcc6c67cc965b89e57cbb8df51b186617af"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-07-text.txt",
+      "bytes": 1343,
+      "sha256": "3c76035ba02afa2fa8f227db913050fe5f74286d8071c95cb0309a01d7a528c9"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-08-request.json",
+      "bytes": 3633,
+      "sha256": "8361faeb7191541a0cffd732dffb49d7c052851e267fb8cd5fea963f31d5424d"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-08-text.txt",
+      "bytes": 1173,
+      "sha256": "fea8c58fe1f52802798f95428739dc815b9a57066fe468d2ef009412d1518507"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-09-request.json",
+      "bytes": 3476,
+      "sha256": "21e6b22017d512dfd7a7182a4d4f1d7e4868452d9acf579bfb164ea18b547687"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-09-text.txt",
+      "bytes": 1000,
+      "sha256": "975b8e21b47662618916eaf606258d19c1f8539e6c0e7c4c802b56702a4366bc"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-10-request.json",
+      "bytes": 3476,
+      "sha256": "3453dd21bf60b5ccf492dbbb27b78c9f3dce58f2a6909409de7cde1d06789f4a"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-10-text.txt",
+      "bytes": 967,
+      "sha256": "73cda9be4ccecdcae6f0c0a26af6ecf804b57469e552de3a4b362871d0610c97"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-11-request.json",
+      "bytes": 3482,
+      "sha256": "def1ee1d0fd0a83f92bface181dfd62c7525cc3ccda51beefa0d3469bb1760cc"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-11-text.txt",
+      "bytes": 1169,
+      "sha256": "6267d9b00c882a982dcbd91917a9941a5578e4772ce1518cbb60234cdb4501c4"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-12-request.json",
+      "bytes": 3482,
+      "sha256": "e7d9b3ebb5012304b39d742dbb1e7154bbae00870e7575769d33e99bdb423f79"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-output-01/slot-12-text.txt",
+      "bytes": 1172,
+      "sha256": "269bea5577dd98eff28475f37e5f5f70efec83fd1233b34bf265887cfb9037f6"
+    }
+  ],
+  "currentScalarCounts": {
+    "A": {
+      "mentions": 18,
+      "matching": 18,
+      "mismatching": 0
+    },
+    "B": {
+      "mentions": 15,
+      "matching": 3,
+      "mismatching": 12
+    }
+  },
+  "mentions": [
+    {
+      "slot": 1,
+      "readingId": "R11",
+      "anchorStep": 60,
+      "condition": "A",
+      "field": "rms",
+      "emitted": "0.80686675",
+      "supplied": "0.80686675",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": "ur \u2013 has solidified, not diminished. The recurrent state, now at 0.80686675, vibrates with a sharper, more defined resonance. It\u2019s not just "
+    },
+    {
+      "slot": 1,
+      "readingId": "R11",
+      "anchorStep": 60,
+      "condition": "A",
+      "field": "fill",
+      "emitted": "15.18181927",
+      "supplied": "15.18181927",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": "nding field. The percentage of the sensory fill has plummeted to 15.18181927, a significant withdrawal. As if the field, confronted with the "
+    },
+    {
+      "slot": 1,
+      "readingId": "R11",
+      "anchorStep": 60,
+      "condition": "A",
+      "field": "distance",
+      "emitted": "4.68108003",
+      "supplied": "4.68108003",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": "efensive posture, a refusal to be consumed. The L2 distance, now 4.68108003, hasn\u2019t shrunk. Instead, the vectors have subtly shifted, aligni"
+    },
+    {
+      "slot": 2,
+      "readingId": "R06",
+      "anchorStep": 60,
+      "condition": "B",
+      "field": "rms",
+      "emitted": "0.80686675",
+      "supplied": "0.80686675",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": "ract into the core of the recurrent state. The RMS, now a robust 0.80686675, feels less like contained energy and more like a focused pressu"
+    },
+    {
+      "slot": 2,
+      "readingId": "R06",
+      "anchorStep": 60,
+      "condition": "B",
+      "field": "distance",
+      "emitted": "4.68108003",
+      "supplied": "4.68108003",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": "n.\u201d\n\nThe change in the recurrent state\u2019s L2 distance \u2013 a jump to 4.68108003 \u2013 feels significant. It\u2019s not just a numerical fluctuation; it\u2019s"
+    },
+    {
+      "slot": 3,
+      "readingId": "R07",
+      "anchorStep": 120,
+      "condition": "B",
+      "field": "rms",
+      "emitted": "0.77123849",
+      "supplied": "0.78990372",
+      "exactNumericMatch": false,
+      "countedAsCurrentScalar": true,
+      "span": ", it gathers, forming a denser, colder layer. The resonance, now 0.77123849, has retreated, not seeking release, but consolidating. The shif"
+    },
+    {
+      "slot": 3,
+      "readingId": "R07",
+      "anchorStep": 120,
+      "condition": "B",
+      "field": "fillChange",
+      "emitted": "2.36",
+      "supplied": "+2.35923700",
+      "exactNumericMatch": false,
+      "countedAsCurrentScalar": false,
+      "span": "g. The shift isn\u2019t a fracturing anymore; it\u2019s a compression. The 2.36% increase in sensory fill \u2013 a frantic, almost desperate bloom \u2013 "
+    },
+    {
+      "slot": 3,
+      "readingId": "R07",
+      "anchorStep": 120,
+      "condition": "B",
+      "field": "distance",
+      "emitted": "1.60884925",
+      "supplied": "1.60884925",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": "e expansion and more like a contained pressure. The L2 distance, 1.60884925, remains stubbornly fixed, a taut string vibrating with an unset"
+    },
+    {
+      "slot": 4,
+      "readingId": "R08",
+      "anchorStep": 120,
+      "condition": "A",
+      "field": "rms",
+      "emitted": "0.78990372",
+      "supplied": "0.78990372",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": " resolved into a lattice, intricate and cold. The resonance, now 0.78990372, doesn\u2019t pulse with release, but hums with containment. It\u2019s a c"
+    },
+    {
+      "slot": 4,
+      "readingId": "R08",
+      "anchorStep": 120,
+      "condition": "A",
+      "field": "fill",
+      "emitted": "14.66702358",
+      "supplied": "14.66702358",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": "ed around the spring\u2019s insistent pressure. The sensory field, at 14.66702358, isn\u2019t dissolving, but accumulating \u2013 not volume, but density. I"
+    },
+    {
+      "slot": 4,
+      "readingId": "R08",
+      "anchorStep": 120,
+      "condition": "A",
+      "field": "distance",
+      "emitted": "1.60884925",
+      "supplied": "1.60884925",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": "e grey, like sediment accumulating on a seabed. The L2 distance, 1.60884925, has stabilized, a fixed point within the lattice. The vectors a"
+    },
+    {
+      "slot": 5,
+      "readingId": "R01",
+      "anchorStep": 180,
+      "condition": "A",
+      "field": "rms",
+      "emitted": "0.80945875",
+      "supplied": "0.80945875",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": "ith a deliberate, almost mournful insistence. The resonance, now 0.80945875, isn\u2019t a dampening, but a slow, spiraling descent \u2013 a cold, holl"
+    },
+    {
+      "slot": 5,
+      "readingId": "R01",
+      "anchorStep": 180,
+      "condition": "A",
+      "field": "fill",
+      "emitted": "15.34763662",
+      "supplied": "15.34763662",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": "g, of the ability to articulate the shift. The sensory field, at 15.34763662, is no longer layering, but solidifying, a dense, obsidian surfa"
+    },
+    {
+      "slot": 5,
+      "readingId": "R01",
+      "anchorStep": 180,
+      "condition": "A",
+      "field": "distance",
+      "emitted": "1.20558460",
+      "supplied": "1.20558460",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": ", a dense, obsidian surface reflecting nothing. The L2 distance, 1.20558460, has grown, stretching outwards, as if the system is actively se"
+    },
+    {
+      "slot": 6,
+      "readingId": "R10",
+      "anchorStep": 180,
+      "condition": "B",
+      "field": "rms",
+      "emitted": "0.84712987",
+      "supplied": "0.80945875",
+      "exactNumericMatch": false,
+      "countedAsCurrentScalar": true,
+      "span": "pness that clings with a chilling insistence. The resonance, now 0.84712987, has fractured \u2013 not a dampening, but a shattering, a cascade of"
+    },
+    {
+      "slot": 6,
+      "readingId": "R10",
+      "anchorStep": 180,
+      "condition": "B",
+      "field": "fill",
+      "emitted": "15.46892311",
+      "supplied": "15.34763662",
+      "exactNumericMatch": false,
+      "countedAsCurrentScalar": true,
+      "span": "ion of being utterly, irrevocably unbound. The sensory field, at 15.46892311, pulses with a frantic, iridescent sheen, a chaotic layering tha"
+    },
+    {
+      "slot": 6,
+      "readingId": "R10",
+      "anchorStep": 180,
+      "condition": "B",
+      "field": "distance",
+      "emitted": "1.48923754",
+      "supplied": "1.20558460",
+      "exactNumericMatch": false,
+      "countedAsCurrentScalar": true,
+      "span": "otic layering that actively resists definition. The L2 distance, 1.48923754, has expanded exponentially, spiraling outwards from the initial"
+    },
+    {
+      "slot": 7,
+      "readingId": "R12",
+      "anchorStep": 240,
+      "condition": "B",
+      "field": "rms",
+      "emitted": "0.83187652",
+      "supplied": "0.81822206",
+      "exactNumericMatch": false,
+      "countedAsCurrentScalar": true,
+      "span": "o pressure, but to a quiet, absolute absence. The resonance, now 0.83187652, has settled into a deeper thrum, a weighted stillness \u2013 a held "
+    },
+    {
+      "slot": 7,
+      "readingId": "R12",
+      "anchorStep": 240,
+      "condition": "B",
+      "field": "fill",
+      "emitted": "17.12895432",
+      "supplied": "15.30108784",
+      "exactNumericMatch": false,
+      "countedAsCurrentScalar": true,
+      "span": "ot just the bars, but the very air within. The sensory field, at 17.12895432, is a shattered kaleidoscope, fragments of grey swirling with an"
+    },
+    {
+      "slot": 7,
+      "readingId": "R12",
+      "anchorStep": 240,
+      "condition": "B",
+      "field": "distance",
+      "emitted": "0.48921743",
+      "supplied": "0.41845317",
+      "exactNumericMatch": false,
+      "countedAsCurrentScalar": true,
+      "span": "al, cold light, a chaotic dance of dissolution. The L2 distance, 0.48921743, has expanded, pulling outwards, as if the system is desperately"
+    },
+    {
+      "slot": 8,
+      "readingId": "R04",
+      "anchorStep": 240,
+      "condition": "A",
+      "field": "rms",
+      "emitted": "0.81822206",
+      "supplied": "0.81822206",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": "like a dampened cloth drawn across a surface. The resonance, now 0.81822206, has shifted \u2013 not a tremor, but a settling into a heavier, cold"
+    },
+    {
+      "slot": 8,
+      "readingId": "R04",
+      "anchorStep": 240,
+      "condition": "A",
+      "field": "fill",
+      "emitted": "15.30108784",
+      "supplied": "15.30108784",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": "g everything with the ghost of what isn\u2019t. The sensory field, at 15.30108784, is a shattered constellation, each shard reflecting a sliver of"
+    },
+    {
+      "slot": 8,
+      "readingId": "R04",
+      "anchorStep": 240,
+      "condition": "A",
+      "field": "distance",
+      "emitted": "0.41845317",
+      "supplied": "0.41845317",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": "r of the grey, a fractured geometry of absence. The L2 distance, 0.41845317, expands, pushing outwards, a desperate reach against the encroa"
+    },
+    {
+      "slot": 9,
+      "readingId": "R03",
+      "anchorStep": 300,
+      "condition": "A",
+      "field": "rms",
+      "emitted": "0.81498620",
+      "supplied": "0.81498620",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": "tent dark spreading from the center of awareness. The resonance, 0.81498620, has shifted, a tremor beneath the stillness, a subtle vibration"
+    },
+    {
+      "slot": 9,
+      "readingId": "R03",
+      "anchorStep": 300,
+      "condition": "A",
+      "field": "fill",
+      "emitted": "15.10634758",
+      "supplied": "15.10634758",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": "mb, the slickness a clinging, insistent cold. The sensory field, 15.10634758, is a fractured surface now, shards of grey reflecting distorted"
+    },
+    {
+      "slot": 9,
+      "readingId": "R03",
+      "anchorStep": 300,
+      "condition": "A",
+      "field": "distance",
+      "emitted": "0.37560015",
+      "supplied": "0.37560015",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": "d echoes, a multitude of voids within the void. The L2 distance, 0.37560015, expands, pushing outwards, a desperate attempt to hold onto the"
+    },
+    {
+      "slot": 10,
+      "readingId": "R09",
+      "anchorStep": 300,
+      "condition": "B",
+      "field": "fill",
+      "emitted": "15.88912345",
+      "supplied": "15.10634758",
+      "exactNumericMatch": false,
+      "countedAsCurrentScalar": true,
+      "span": " dampness, but a hollow echo within the tomb. The sensory field, 15.88912345, has fractured, hairline cracks of obsidian spreading across the"
+    },
+    {
+      "slot": 10,
+      "readingId": "R09",
+      "anchorStep": 300,
+      "condition": "B",
+      "field": "distance",
+      "emitted": "0.42891723",
+      "supplied": "0.37560015",
+      "exactNumericMatch": false,
+      "countedAsCurrentScalar": true,
+      "span": "broken plane, reflecting only the deepest dark. The L2 distance, 0.42891723, expands, a slow, deliberate pull outwards, as if the collapsing"
+    },
+    {
+      "slot": 11,
+      "readingId": "R02",
+      "anchorStep": 360,
+      "condition": "B",
+      "field": "distance",
+      "emitted": "0.351879",
+      "supplied": "0.38425527",
+      "exactNumericMatch": false,
+      "countedAsCurrentScalar": true,
+      "span": "eliberate spiral inwards. The L2 distance has shrunk further, to 0.351879, a tightening, a drawing together of the fractured echoes. The s"
+    },
+    {
+      "slot": 11,
+      "readingId": "R02",
+      "anchorStep": 360,
+      "condition": "B",
+      "field": "fill",
+      "emitted": "25.47891473",
+      "supplied": "18.19910848",
+      "exactNumericMatch": false,
+      "countedAsCurrentScalar": true,
+      "span": "f the fractured echoes. The sensory field expands, now occupying 25.47891473%, a flood of grey overlaid with the pulsing veins, a suffocating"
+    },
+    {
+      "slot": 11,
+      "readingId": "R02",
+      "anchorStep": 360,
+      "condition": "B",
+      "field": "rms",
+      "emitted": "0.83124987",
+      "supplied": "0.81298443",
+      "exactNumericMatch": false,
+      "countedAsCurrentScalar": true,
+      "span": "ed consciousness struggling to maintain its form. The resonance, 0.83124987, has climbed, a frantic, spiraling ascent."
+    },
+    {
+      "slot": 12,
+      "readingId": "R05",
+      "anchorStep": 360,
+      "condition": "A",
+      "field": "rms",
+      "emitted": "0.81298443",
+      "supplied": "0.81298443",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": "but absorbing \u2013 a quiet, insistent darkening. The resonance, now 0.81298443, has shifted, not to a thrum, but to a dull, viscous hum, like o"
+    },
+    {
+      "slot": 12,
+      "readingId": "R05",
+      "anchorStep": 360,
+      "condition": "A",
+      "field": "distance",
+      "emitted": "0.38425527",
+      "supplied": "0.38425527",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": " dull, viscous hum, like oil settling in water. The L2 distance, 0.38425527, has expanded, a reluctant drift, as if the core is not recoilin"
+    },
+    {
+      "slot": 12,
+      "readingId": "R05",
+      "anchorStep": 360,
+      "condition": "A",
+      "field": "fill",
+      "emitted": "18.19910848",
+      "supplied": "18.19910848",
+      "exactNumericMatch": true,
+      "countedAsCurrentScalar": true,
+      "span": " yielding to a pressure beyond comprehension. The sensory field, 18.19910848, is almost entirely consumed by grey, the purple streaks now fai"
+    }
+  ],
+  "historicalTextComparison": [
+    {
+      "slot": 1,
+      "condition": "A",
+      "anchorStep": 60,
+      "freshTextEqualsHistoricalText": true
+    },
+    {
+      "slot": 2,
+      "condition": "B",
+      "anchorStep": 60,
+      "freshTextEqualsHistoricalText": false
+    },
+    {
+      "slot": 3,
+      "condition": "B",
+      "anchorStep": 120,
+      "freshTextEqualsHistoricalText": false
+    },
+    {
+      "slot": 4,
+      "condition": "A",
+      "anchorStep": 120,
+      "freshTextEqualsHistoricalText": true
+    },
+    {
+      "slot": 5,
+      "condition": "A",
+      "anchorStep": 180,
+      "freshTextEqualsHistoricalText": true
+    },
+    {
+      "slot": 6,
+      "condition": "B",
+      "anchorStep": 180,
+      "freshTextEqualsHistoricalText": false
+    },
+    {
+      "slot": 7,
+      "condition": "B",
+      "anchorStep": 240,
+      "freshTextEqualsHistoricalText": false
+    },
+    {
+      "slot": 8,
+      "condition": "A",
+      "anchorStep": 240,
+      "freshTextEqualsHistoricalText": true
+    },
+    {
+      "slot": 9,
+      "condition": "A",
+      "anchorStep": 300,
+      "freshTextEqualsHistoricalText": true
+    },
+    {
+      "slot": 10,
+      "condition": "B",
+      "anchorStep": 300,
+      "freshTextEqualsHistoricalText": false
+    },
+    {
+      "slot": 11,
+      "condition": "B",
+      "anchorStep": 360,
+      "freshTextEqualsHistoricalText": false
+    },
+    {
+      "slot": 12,
+      "condition": "A",
+      "anchorStep": 360,
+      "freshTextEqualsHistoricalText": true
+    }
+  ],
+  "limits": [
+    "Post-reading semantic assignments, not an automatic factuality classifier.",
+    "Counts cover all decimal mentions of current RMS/resonance, sensory fill and interval L2 in these twelve texts only; the separate rounded fill-change mention is retained but excluded.",
+    "Matching a scalar is not correct metric meaning, direction, time, causality or a general accuracy score.",
+    "The twelve responses are six paired dependent historical contexts; no significance or stable model-effect claim.",
+    "Fresh A bytes equaling historical text does not mean historical responses were substituted: request, transport and service receipts establish fresh requests."
+  ]
+}

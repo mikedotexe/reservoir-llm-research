@@ -1,0 +1,57 @@
+{
+  "schema": "reservoir-time-direction-refusal-preservation-v1",
+  "atUtc": "2026-10-15T16:09:47.541994+00:00",
+  "status": "passed",
+  "errors": [],
+  "admission": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/host-admission-01.json",
+    "bytes": 1458,
+    "sha256": "842c888278bd5e29d6da50047c2198a0ad915bc2c13e816031db41fd4eefd40f"
+  },
+  "freeze": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/evaluation-freeze-01.json",
+    "bytes": 193123,
+    "sha256": "2f28f054e4d1b94484f273c8273f4813fd148b8722b7891caf48f046f929840a"
+  },
+  "inputs": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/frozen-inputs.json",
+    "bytes": 6082,
+    "sha256": "c4b86ac9b2342ba2e7bf517b04ab1101b74c47d9baa198a2f0134f949948e1d6"
+  },
+  "outcome": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/outcome-01.json",
+    "bytes": 8926,
+    "sha256": "e6646bc845596fce8d174b3739ff46d042bd18ab732fc7115a628ead69e41cf8"
+  },
+  "frozenFilesChecked": 683,
+  "frozenFilesUnchanged": 683,
+  "priorFilesChecked": 196,
+  "priorFilesUnchanged": 196,
+  "priorInventorySource": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/runtime-copy-01.json",
+    "bytes": 120049,
+    "sha256": "9954510a8cf6349dadc42bc4296cb6aad388ff6cb32ec6db4075b2f073d348ab"
+  },
+  "plannedSlots": 12,
+  "unstartedSlots": 12,
+  "runPathChecks": [
+    {
+      "label": "ownedServiceDirectory",
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-time-direction-gemma3-4b-run01",
+      "absent": true,
+      "method": "os.path.lexists exact proposed path only; no directory or process discovery"
+    },
+    {
+      "label": "resultsDirectory",
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-time-direction-results01",
+      "absent": true,
+      "method": "os.path.lexists exact proposed path only; no directory or process discovery"
+    }
+  ],
+  "cleanupRequired": false,
+  "newHostQueries": 0,
+  "processQueries": 0,
+  "networkRequests": 0,
+  "freezeAndPriorInputsModified": false,
+  "scope": "File-only closeout; no freeze rewrite, admission retry, host/process/service inspection or cleanup."
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "reservoir-context-order-cleanup-v1",
+  "observedAtUtc": "2026-10-15T14:49:18.557450+00:00",
+  "purpose": "Safe normal application cleanup before exactly one unchanged attempt03 admission",
+  "actions": [
+    {
+      "application": "Preview",
+      "basis": "Saved screenshot viewing window; no Edited marker or active operation observed",
+      "action": "Quit Preview through its native application menu",
+      "remainingExactApplicationProcesses": []
+    },
+    {
+      "application": "Claude",
+      "basis": "Idle new-session view with empty composer; no active generation or unsent text observed",
+      "action": "Quit Claude through its native application menu",
+      "remainingExactApplicationProcesses": []
+    }
+  ],
+  "preserved": [
+    "TextEdit: Edited document observed; no save, discard, close, or modification",
+    "All Being/model processes, workspaces, services and shared model caches: untouched",
+    "Current Codex and other unowned workers, terminal sessions and possible native acceptance review state: untouched",
+    "Both prior context-order refusals and all previous evidence: retained"
+  ],
+  "notes": [
+    "Verification used current executable paths, not historical PIDs or a bound app read that could relaunch an app.",
+    "No file deletion, purge, signals, service stop, model unload, restart, endpoint contact or host-admission sample performed during cleanup.",
+    "Process RSS is not a measurement of memory reclaimed; admission will measure host state separately."
+  ]
+}

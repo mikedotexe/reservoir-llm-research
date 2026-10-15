@@ -1,0 +1,198 @@
+{
+  "schema": "reservoir-context-order-admission-outcome-v1",
+  "episodeId": "context-order-02",
+  "closedAtUtc": "2026-10-15T02:44:27.081098+00:00",
+  "status": "closed_admission_refused",
+  "admission": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/host-admission-01.json",
+    "bytes": 1457,
+    "sha256": "5f8b998a574e7a60599d279217b1d6b5ab78bfe7ae4d4086e0506c35b93fc838"
+  },
+  "priorRefusal": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-01/outcome-01.json",
+    "bytes": 7327,
+    "sha256": "2e226fe3cb4e62e7359a89e4f72de818cc5560faaa3de66a079a67b80e7b392c"
+  },
+  "cleanup": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/cleanup-result-01.json",
+    "bytes": 1091,
+    "sha256": "516300f64cc6dd97ab6c4c6f1d41e7d901eee68f7b6b00224000de05fad68ee5"
+  },
+  "freeze": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/evaluation-freeze-01.json",
+    "bytes": 146840,
+    "sha256": "4cd821604ed681b37b81abe00d65378da26764f9098708ea4e07b143f87f3d4b"
+  },
+  "inputs": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/frozen-inputs.json",
+    "bytes": 6349,
+    "sha256": "25f2c2b1756f77067cc3906529bf7594294cb7b2bfb58e243c5ad649ea48c275"
+  },
+  "actualPressureLevel": 1,
+  "actualMemoryFreePercent": 30,
+  "actualDiskFreeBytes": 514503671808,
+  "supervisorLaunched": false,
+  "runnerExecuted": false,
+  "realInventoryRequests": 0,
+  "realGenerationRequests": 0,
+  "newResponses": 0,
+  "newJournals": 0,
+  "newFeedbackApplications": 0,
+  "realPairsAvailable": 0,
+  "slots": [
+    {
+      "slot": 1,
+      "anchorStep": 60,
+      "condition": "A",
+      "prompt": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/prompts/step-060-A.txt",
+        "bytes": 3552,
+        "sha256": "25d3a8ff255e65a2310d9b34fbae939379fce97d7d74173ff0d296d6309b71ec"
+      },
+      "status": "unstarted",
+      "reason": "Fresh host admission below unchanged free-memory threshold"
+    },
+    {
+      "slot": 2,
+      "anchorStep": 60,
+      "condition": "B",
+      "prompt": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/prompts/step-060-B.txt",
+        "bytes": 3552,
+        "sha256": "a3e64394d48da95c47dd35f99d15c016586908fec6f987f04ac7350eca8642ce"
+      },
+      "status": "unstarted",
+      "reason": "Fresh host admission below unchanged free-memory threshold"
+    },
+    {
+      "slot": 3,
+      "anchorStep": 120,
+      "condition": "B",
+      "prompt": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/prompts/step-120-B.txt",
+        "bytes": 3564,
+        "sha256": "890c8565204efe0213e402581669d6bc0f9bb22dbfb67e43f81acfcd890a1c1f"
+      },
+      "status": "unstarted",
+      "reason": "Fresh host admission below unchanged free-memory threshold"
+    },
+    {
+      "slot": 4,
+      "anchorStep": 120,
+      "condition": "A",
+      "prompt": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/prompts/step-120-A.txt",
+        "bytes": 3564,
+        "sha256": "abf66ae30e8ff6dc6beb1cd35bc6c9bdb41dcf77bcbe828edd3c7436bc06a334"
+      },
+      "status": "unstarted",
+      "reason": "Fresh host admission below unchanged free-memory threshold"
+    },
+    {
+      "slot": 5,
+      "anchorStep": 180,
+      "condition": "A",
+      "prompt": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/prompts/step-180-A.txt",
+        "bytes": 3498,
+        "sha256": "aa63ea3c2f236a7097f9e3d4091294a831b10d903053dbbea694cc7213529130"
+      },
+      "status": "unstarted",
+      "reason": "Fresh host admission below unchanged free-memory threshold"
+    },
+    {
+      "slot": 6,
+      "anchorStep": 180,
+      "condition": "B",
+      "prompt": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/prompts/step-180-B.txt",
+        "bytes": 3498,
+        "sha256": "df9ce8da48c45aa3badbd77266b9fffd76e53834f481d2de5bf8f32a4036dfa2"
+      },
+      "status": "unstarted",
+      "reason": "Fresh host admission below unchanged free-memory threshold"
+    },
+    {
+      "slot": 7,
+      "anchorStep": 240,
+      "condition": "B",
+      "prompt": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/prompts/step-240-B.txt",
+        "bytes": 3466,
+        "sha256": "9cfc1a75f42093b1022e8fd6c71eb2929db0bd0e54bf8c5e6634bee4a1c9ef66"
+      },
+      "status": "unstarted",
+      "reason": "Fresh host admission below unchanged free-memory threshold"
+    },
+    {
+      "slot": 8,
+      "anchorStep": 240,
+      "condition": "A",
+      "prompt": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/prompts/step-240-A.txt",
+        "bytes": 3466,
+        "sha256": "5e258c908ed42d84d710a47e072d338f2f5b32825a2ee591b2199dc6551824ca"
+      },
+      "status": "unstarted",
+      "reason": "Fresh host admission below unchanged free-memory threshold"
+    },
+    {
+      "slot": 9,
+      "anchorStep": 300,
+      "condition": "A",
+      "prompt": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/prompts/step-300-A.txt",
+        "bytes": 3309,
+        "sha256": "c40e46382c1f2568d4a71d47da893b0e78f19c11d67015005c1418e4d216b62f"
+      },
+      "status": "unstarted",
+      "reason": "Fresh host admission below unchanged free-memory threshold"
+    },
+    {
+      "slot": 10,
+      "anchorStep": 300,
+      "condition": "B",
+      "prompt": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/prompts/step-300-B.txt",
+        "bytes": 3309,
+        "sha256": "2643c2d3dac78c4cd112da775aaeb942e44ff5791f4f9533c5e4c3d573fb9724"
+      },
+      "status": "unstarted",
+      "reason": "Fresh host admission below unchanged free-memory threshold"
+    },
+    {
+      "slot": 11,
+      "anchorStep": 360,
+      "condition": "B",
+      "prompt": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/prompts/step-360-B.txt",
+        "bytes": 3315,
+        "sha256": "3a724ae6f3a3132b9787511b2c678f2a170078e8d11cf130519127ad290e525f"
+      },
+      "status": "unstarted",
+      "reason": "Fresh host admission below unchanged free-memory threshold"
+    },
+    {
+      "slot": 12,
+      "anchorStep": 360,
+      "condition": "A",
+      "prompt": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/prompts/step-360-A.txt",
+        "bytes": 3315,
+        "sha256": "92f4477403855d9ba6396db38ab94c5cf4e2fe2fd416cccbed28012ebb3d96e4"
+      },
+      "status": "unstarted",
+      "reason": "Fresh host admission below unchanged free-memory threshold"
+    }
+  ],
+  "modelProcessCleanupRequired": false,
+  "applicationsQuitNormally": [
+    "DaisyDisk"
+  ],
+  "BeingOrSharedModelProcessesChanged": false,
+  "filesDeleted": 0,
+  "processSignalsSent": 0,
+  "memoryReclaimedBytes": null,
+  "retryOrExtensionWithinAttempt": false,
+  "scope": "User-authorized safe cleanup and one fresh admission; no new model comparison result."
+}

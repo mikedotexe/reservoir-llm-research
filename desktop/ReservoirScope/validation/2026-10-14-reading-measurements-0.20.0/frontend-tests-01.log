@@ -1,0 +1,170 @@
+
+> reservoir-scope-desktop@0.20.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope
+
+ ❯ src/MyReservoir.test.tsx (12 tests | 1 failed) 75ms
+     × keeps independent reading and labels new journals without moving current selection 12ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MyReservoir.test.tsx > My reservoir explicit operation and evidence > keeps independent reading and labels new journals without moving current selection
+AssertionError: expected '<section class="my-reservoir-journals…' to contain 'reading position never moves the live…'
+
+- Expected
++ Received
+
+- reading position never moves the live clock
++ <section class="my-reservoir-journals" aria-label="Independent journal reading"><header class="my-reservoir-journal-header"><div><span class="eyebrow">YOUR WRITING HISTORY</span><h2>Journals and their return</h2><p class="my-reservoir-small">3 saved journals · reading never moves the live clock.</p></div><div class="my-reservoir-actions"><button aria-pressed="false">Follow latest · 1 new</button><button>Refresh this page</button></div></header><div class="my-reservoir-journal-grid"><div><p class="my-reservoir-history-order">Newest first</p><ul class="my-reservoir-journal-list"></ul></div><div><nav class="my-reservoir-reading-navigation" aria-label="Journal reading position"><div><strong aria-live="polite" aria-atomic="true">Selected journal</strong><p>This entry is outside the displayed history page. Choose an entry from that page to read in order.</p></div><div class="my-reservoir-actions"><button disabled="">Earlier entry</button><button disabled="">Later entry</button></div></nav><article class="my-reservoir-journal-detail"><span class="eyebrow">RETAINED JOURNAL</span><h3>Observed at step 3</h3><p class="my-reservoir-journal-status"><strong>Saved · feedback applied</strong> · first applied at step 4</p><div class="my-reservoir-journal-prose" style="white-space:pre-wrap">Journal 1</div><details class="my-reservoir-journal-measurements"><summary>Recorded measurements</summary><p>This table shows retained measurements for your inspection. The v8 prompt supplies only current and prior recurrent RMS and separate sensory fill with their differences, plus state-coordinate L2 distance since the previous observation; it does not supply this full table.</p><p>Structured measurements were not supplied for this entry. The exact retained observation remains available in Evidence.</p></details><details class="my-reservoir-journal-evidence"><summary>Evidence</summary><p class="my-reservoir-journal-return">This entry’s feedback was first applied at step 4. Its full text is eligible for later prompts. Describing a control change does not execute it.</p><button>Refresh selected application evidence</button><h4>Journal and request identity</h4><dl class="my-reservoir-data"><dt>Journal prompt version</dt><dd>reservoir-journal-v8</dd><dt>Retained output ceiling</dt><dd>1024 tokens</dd><dt>Retained request deadline</dt><dd>180 seconds</dd><dt>Entry identity</dt><dd class="my-reservoir-hash">journal-1</dd><dt>Turn / attempt</dt><dd>1 / 1</dd><dt>Journal SHA-256</dt><dd class="my-reservoir-hash">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</dd><dt>Configured model</dt><dd>No model configured</dd><dt>Returned model identity</dt><dd>Not retained</dd><dt>Request recorded started</dt><dd>false</dd><dt>Provider completeness</dt><dd>true</dd><dt>Stop reason / tokens</dt><dd>stop / Not retained</dd><dt>Captured session revision</dt><dd>7</dd></dl><section class="my-reservoir-prompt-evidence"><h4>Provider prompt evidence</h4><dl class="my-reservoir-data"><dt>Reported prompt tokens</dt><dd>Not retained</dd><dt>Requested context capacity</dt><dd>No explicit capacity retained</dd></dl><p>The count is reported by the provider. It does not establish that the complete supplied prompt was processed, that every part influenced the writing, or that the journal’s measurement claims are accurate. Requested capacity is a separate setting.</p></section><section><h4>Exact prompt and observation</h4><p>The v8 prompt uses a compact measurement subset. The full retained observation below also includes coordinates, spectra and other values that were not supplied as part of that readout. The exact prompt records what was supplied, including prior prose.</p><p>Recurrent coordinates and summaries are separate from sensory measurements. Reading or selecting a coordinate in this app does not edit this retained prompt.</p><h5>Exact prompt</h5><pre>&lt;script&gt;inert exact prompt&lt;/script&gt;</pre><h5>Versioned numerical observation</h5><pre>{
++   &quot;contract&quot;: &quot;test-observation&quot;,
++   &quot;reservoirState&quot;: [
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1,
++     0.1
++   ],
++   &quot;seed&quot;: &quot;18446744073709551615&quot;
++ }</pre><p>Retained prompt context alone does not prove provider receipt. Request-start and response evidence remain separately recorded.</p></section><section><h4>Retained full-text memory</h4><p>No prior journal text was retained as memory for this opportunity.</p></section><section><h4>Save and feedback provenance</h4><dl class="my-reservoir-data"><dt>Saved entry</dt><dd>journal-1</dd><dt>Readback SHA-256</dt><dd class="my-reservoir-hash">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</dd><dt>Owned path label</dt><dd>journals/journal-1.json · never followed from this view</dd></dl><h5>Encoded features</h5><pre>[
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0,
++   0
++ ]</pre><h5>Prepared semantic vector</h5><pre>[
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1,
++   0.1
++ ]</pre><h5>Application evidence</h5><pre>{
++   &quot;observedStep&quot;: 3,
++   &quot;appliedStep&quot;: 4
++ }</pre><p>The encoded vector changes input to the reservoir and separate sensory field; it does not train the model or recurrent weights. State differences also depend on the retained forcing, noise and controls.</p></section><section><h4>Raw received reply</h4><pre>Journal 1</pre></section></details></article></div></div></section>
+
+ ❯ src/MyReservoir.test.tsx:49:210
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 39 passed (40)
+      Tests  1 failed | 374 passed (375)
+   Start at  12:00:02
+   Duration  1.00s (transform 2.71s, setup 0ms, import 5.07s, tests 2.44s, environment 2ms)
+

@@ -1,0 +1,102 @@
+{
+  "schema": "reservoir-unstarted-episode-outcome-v1",
+  "closedAtUtc": "2026-10-14T16:05:21.620983+00:00",
+  "episodeId": "v6-writing-0.18.0-episode01",
+  "outcome": "launchRefusedBeforeSpawn",
+  "plannedSlots": 12,
+  "reached": 0,
+  "dispatched": 0,
+  "received": 0,
+  "saved": 0,
+  "applied": 0,
+  "unstarted": 12,
+  "slots": [
+    {
+      "ordinal": 1,
+      "plannedObservationStep": 30,
+      "plannedApplicationStep": 31,
+      "status": "unstarted"
+    },
+    {
+      "ordinal": 2,
+      "plannedObservationStep": 60,
+      "plannedApplicationStep": 61,
+      "status": "unstarted"
+    },
+    {
+      "ordinal": 3,
+      "plannedObservationStep": 90,
+      "plannedApplicationStep": 91,
+      "status": "unstarted"
+    },
+    {
+      "ordinal": 4,
+      "plannedObservationStep": 120,
+      "plannedApplicationStep": 121,
+      "status": "unstarted"
+    },
+    {
+      "ordinal": 5,
+      "plannedObservationStep": 150,
+      "plannedApplicationStep": 151,
+      "status": "unstarted"
+    },
+    {
+      "ordinal": 6,
+      "plannedObservationStep": 180,
+      "plannedApplicationStep": 181,
+      "status": "unstarted"
+    },
+    {
+      "ordinal": 7,
+      "plannedObservationStep": 210,
+      "plannedApplicationStep": 211,
+      "status": "unstarted"
+    },
+    {
+      "ordinal": 8,
+      "plannedObservationStep": 240,
+      "plannedApplicationStep": 241,
+      "status": "unstarted"
+    },
+    {
+      "ordinal": 9,
+      "plannedObservationStep": 270,
+      "plannedApplicationStep": 271,
+      "status": "unstarted"
+    },
+    {
+      "ordinal": 10,
+      "plannedObservationStep": 300,
+      "plannedApplicationStep": 301,
+      "status": "unstarted"
+    },
+    {
+      "ordinal": 11,
+      "plannedObservationStep": 330,
+      "plannedApplicationStep": 331,
+      "status": "unstarted"
+    },
+    {
+      "ordinal": 12,
+      "plannedObservationStep": 360,
+      "plannedApplicationStep": 361,
+      "status": "unstarted"
+    }
+  ],
+  "reason": "Installed software identity differs from frozen0.40.3 selection. No requests or session existed.",
+  "inputs": [
+    {
+      "name": "evaluation-freeze-01.json",
+      "sha256": "0ec48f0be2437074d2c621c2f065ce5c19f0230e6e661a3a86a12abea061bd01"
+    },
+    {
+      "name": "host-admission-01.json",
+      "sha256": "5b0f6dded9f39ae9715d4e0c08c8f4e41a4f132eb544cc5d73977efd6790879d"
+    },
+    {
+      "name": "launch-refusal-01.json",
+      "sha256": "00d6f14647c47ff93bdc4ba54dc35c7bc0026571b91a7b96871df7f1bb2045ca"
+    }
+  ]
+}

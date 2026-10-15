@@ -1,0 +1,380 @@
+{
+  "schema": "reservoir-fixed-provider-export-review-v1",
+  "startedAtUtc": "2026-10-14T17:08:48.095182+00:00",
+  "script": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/check_fixture_export.py",
+    "bytes": 30541,
+    "sha256": "87a5a461e9ecbf6e1a229d1f1f586b54933cd3a9877e24803d8fc0ea21772e0b"
+  },
+  "servicesContacted": false,
+  "realModelsUsed": false,
+  "writingQualityAssessed": false,
+  "executable": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.19-pinned/reservoir-scope-desktop",
+    "bytes": 16984608,
+    "sha256": "65462e49b6301d89856e28496c3c51b25383935a46b1aa8b8832c7af68c83211"
+  },
+  "productionReplay": {
+    "command": [
+      "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.19-pinned/reservoir-scope-desktop",
+      "--verify-sustained",
+      "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.19-action-boundaries/exports/sustained-1791997601433-1-1-76"
+    ],
+    "returncode": 0,
+    "stdout": "{\n  \"modelsContacted\": false,\n  \"report\": {\n    \"checkpointSha256\": \"ebf8c95d3f4fee6081a1bbc0d437e70574d1c4a6c11a1f18fc2f0143c310f74c\",\n    \"diagnostics\": [\n      \"Incomplete or token-limited response cannot become journal feedback\"\n    ],\n    \"format\": \"reservoir-sustained-bundle-v1\",\n    \"journalCount\": 4,\n    \"manifestSha256\": \"4b9211a8576638a681d3dfa8f670d040ba0a7da0a00391fe1eb3afd7bb6430f3\",\n    \"segmentCount\": 22,\n    \"sessionId\": \"sustained-1791997601433-1\",\n    \"sizeBytes\": 1678982,\n    \"step\": 50,\n    \"verification\": \"Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability.\"\n  },\n  \"status\": \"passed\"\n}\n",
+    "stderr": ""
+  },
+  "staticJoins": {
+    "status": "passed",
+    "bundle": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.19-action-boundaries/exports/sustained-1791997601433-1-1-76",
+    "originalUnchanged": true,
+    "inventory": {
+      "checkpoints/ebf8c95d3f4fee6081a1bbc0d437e70574d1c4a6c11a1f18fc2f0143c310f74c.json": {
+        "bytes": 35055,
+        "sha256": "ebf8c95d3f4fee6081a1bbc0d437e70574d1c4a6c11a1f18fc2f0143c310f74c"
+      },
+      "journals/journal-10-1-65be3f5a5e7ee6ad2daf748e3d965456044a6b2716eb4f45c2233db2af855faf.json": {
+        "bytes": 6209,
+        "sha256": "fc164e543607e3de50574b78455fc5215391accc9dffb0c45b9aa20d093da153"
+      },
+      "journals/journal-20-2-a6692e76647de384e9b1d732431b3e3e2c0b9885b01d72d5a7230cf072d76206.json": {
+        "bytes": 7323,
+        "sha256": "ebf19622f9af8ee18b6af3cd32bc273de42d0b4c6ccebf0ecf01cbf424cbbc62"
+      },
+      "journals/journal-30-3-d64587a9ca66989058c939cf0f13f723f98c425ebd2eabaabc0fc293922ec906.json": {
+        "bytes": 7380,
+        "sha256": "917b1dc1d83a63f81bbda95d3e042d477eac57744381a5dde535f4657ff0ba86"
+      },
+      "journals/journal-40-4-8b38b154bb568861cb53935a22933ef9bab0b1986ba8532c10f4cdc723581847.json": {
+        "bytes": 7410,
+        "sha256": "ad37ad145a876b72e46ec1fd06772248decf5ea1f8c4665c8c2326c66e2087d4"
+      },
+      "manifest.json": {
+        "bytes": 1179,
+        "sha256": "4b9211a8576638a681d3dfa8f670d040ba0a7da0a00391fe1eb3afd7bb6430f3"
+      },
+      "segments/segment-00000001.json": {
+        "bytes": 73720,
+        "sha256": "130f10104443ba37c1a3b810320a719cda0c6ced533474932622885153595e07"
+      },
+      "segments/segment-00000002.json": {
+        "bytes": 68923,
+        "sha256": "59d7ed95abc71f1efd7be4877cb0c2de63c4f5918f8606a1f02143a334abe976"
+      },
+      "segments/segment-00000003.json": {
+        "bytes": 66402,
+        "sha256": "103479d8ff8561464b857e87f3d1668a3f75e04d38b4152f131fbc462cc95ead"
+      },
+      "segments/segment-00000004.json": {
+        "bytes": 64786,
+        "sha256": "cf59eb762837745eabf8532ba1ebbccaf14d8c653aa1a3810dcaf4f488584128"
+      },
+      "segments/segment-00000005.json": {
+        "bytes": 95103,
+        "sha256": "2dfdeaecbf78856c4edeb4e31d4f05a1d438dd8798a309d653adfe4262e3f237"
+      },
+      "segments/segment-00000006.json": {
+        "bytes": 68332,
+        "sha256": "91b4643938dc0066499752ab904f6a2234d6c0ed07b02421a39fc63b39b23cc7"
+      },
+      "segments/segment-00000007.json": {
+        "bytes": 72241,
+        "sha256": "33bd097dcc0c8e247d924c7aed40a2138decd595c611aadc33743db8a349222d"
+      },
+      "segments/segment-00000008.json": {
+        "bytes": 68610,
+        "sha256": "e564c784c9d79297bb3b40dacc1d30416cc118f86f4af4911aefc57c0e9fa570"
+      },
+      "segments/segment-00000009.json": {
+        "bytes": 64356,
+        "sha256": "2dd33a765e2606fedc25bc8b794bb876156bc70079d0ec1af652b94116638706"
+      },
+      "segments/segment-00000010.json": {
+        "bytes": 93874,
+        "sha256": "6fe77554ed9011e66bdfee285ab456076e3882d6605d45f7a3ab561647178719"
+      },
+      "segments/segment-00000011.json": {
+        "bytes": 67667,
+        "sha256": "6d41d6e5b734f491664f9f3f19db4450851e37704dc71481690600437c96e5a5"
+      },
+      "segments/segment-00000012.json": {
+        "bytes": 71718,
+        "sha256": "a87b9e90ffe93320cc092f20a5c3f1845e2dc54698056ed29d405b1c1cdc148b"
+      },
+      "segments/segment-00000013.json": {
+        "bytes": 68034,
+        "sha256": "6bfe2d334aed251f34c9535654287a2b58f0edcb5abfc1cb9339fbecfef659fe"
+      },
+      "segments/segment-00000014.json": {
+        "bytes": 64490,
+        "sha256": "7ad5bffc6221b3b940201ba39e55b58a1716c6a1c481d03cf4eb31f83e9283a9"
+      },
+      "segments/segment-00000015.json": {
+        "bytes": 96813,
+        "sha256": "44d91113a515958eb2f6ef64e7e9d2116de52d518bc64bffc4142a2c8e36d7cc"
+      },
+      "segments/segment-00000016.json": {
+        "bytes": 68664,
+        "sha256": "1d3d206027b4ca29048bac4fef0303a7accc3d39fb39605e0deb458ac6e55bb3"
+      },
+      "segments/segment-00000017.json": {
+        "bytes": 72729,
+        "sha256": "00e2d2c30f6ded3c52c8c14db929ad59aa6c3bc1ea5345446992529771321d28"
+      },
+      "segments/segment-00000018.json": {
+        "bytes": 69009,
+        "sha256": "d6e81849750488e2d4d109030acf4dc69dc50c2623030b9045bca50a606e8db6"
+      },
+      "segments/segment-00000019.json": {
+        "bytes": 65060,
+        "sha256": "94eca46f0edf728599c1df612116799e719063c9cd2a8af391b92910eb4970c0"
+      },
+      "segments/segment-00000020.json": {
+        "bytes": 94928,
+        "sha256": "ae849711a25aa0042fe4ee7588b17fcca184940807e8ce62ce6afec04af870e1"
+      },
+      "segments/segment-00000021.json": {
+        "bytes": 68136,
+        "sha256": "1ea5407a2ccd4cadc499210a0ac02794dcd82040f37ff861840530b770eccff9"
+      },
+      "segments/segment-00000022.json": {
+        "bytes": 70831,
+        "sha256": "25fd705bf77ff766aca0b9db013b1d4362048e70cf5124aba5cda7fa5b7d6836"
+      }
+    },
+    "manifest": {
+      "sessionId": "sustained-1791997601433-1",
+      "generation": "1",
+      "revision": "76",
+      "phase": "attemptBlocked",
+      "step": 50,
+      "durableStep": 50,
+      "journalCount": 4,
+      "segmentCount": 22
+    },
+    "finalCorePhase": "blocked",
+    "eventCounts": {
+      "advanced": 50,
+      "languageStarted": 5,
+      "languageReceived": 5,
+      "journalSaved": 4,
+      "memoryConfirmed": 4
+    },
+    "cleanupEvents": [],
+    "fixtureEndpoint": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.19-action-boundaries-provider-01/endpoint.json",
+      "sha256": "96a02c020151e87dc577396ac9856e68ff231b3419d05c66706c167642857ace",
+      "endpoint": "http://127.0.0.1:65050",
+      "model": "reservoir-fixture:input-evidence-0.16",
+      "pid": 41702,
+      "synthetic": true,
+      "startedAtUtc": "2026-10-14T17:06:27.689705+00:00",
+      "lifetimeSeconds": 900,
+      "maximumChatRequests": 5,
+      "maximumHttpRequests": 32,
+      "scriptSha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb",
+      "scenario": [
+        "wide-reported",
+        "absent",
+        "malformed-string",
+        "maximum-u64",
+        "incomplete-reported"
+      ]
+    },
+    "prospectiveFreeze": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-action-boundaries-0.19.0/prospective-freeze-01.json",
+      "bytes": 2609,
+      "sha256": "db6a614f9c34dd3bd3d5230dbc2fd7a6184e18262d539868b8c957bc66bd7642"
+    },
+    "fixtureLog": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.19-action-boundaries-provider-01/requests.jsonl",
+      "inspectedBytes": 5018,
+      "inspectedPrefixSha256": "a062ef04d91f1b9ce329cf883dcf093f750d4d0993ac5583786652ba2e3b50c2",
+      "prefixUnchanged": true,
+      "laterAppendedBytes": 0,
+      "readinessRequests": 1,
+      "lifecycleStoppedPresent": false
+    },
+    "responseFiles": {
+      "response-01-wide-reported.json": {
+        "bytes": 368,
+        "sha256": "b5bdf0fd98e9ed79fa27e099277af8fc27ee727a59d1c7b92a2eb640bb596e35"
+      },
+      "response-02-absent.json": {
+        "bytes": 331,
+        "sha256": "3597b8a370ccbb1ed3b8eefe682154527d56fcfc89fd74af9837d8fbaee3bc4c"
+      },
+      "response-03-malformed-string.json": {
+        "bytes": 358,
+        "sha256": "5703f189c8be1981d266b6bc633d4b2b9376bc4f8bbb79d352951baeef89c876"
+      },
+      "response-04-maximum-u64.json": {
+        "bytes": 372,
+        "sha256": "b3f014a748328a9cdf6b01cdf9533173361cea6c265c767987790f2b51cd71a3"
+      },
+      "response-05-incomplete-reported.json": {
+        "bytes": 358,
+        "sha256": "b2726c736fe3f33fc2afd064c0b27b37566c16f6f7f7664f484738be253f8b42"
+      }
+    },
+    "attempts": [
+      {
+        "attemptId": 1,
+        "observedStep": 10,
+        "fixtureCase": "wide-reported",
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": 9007199254740993
+        },
+        "countAsExactDecimal": "9007199254740993",
+        "complete": true,
+        "stopReason": "stop",
+        "responseTextSha256": "65be3f5a5e7ee6ad2daf748e3d965456044a6b2716eb4f45c2233db2af855faf",
+        "promptSha256": "cfe3fa3db72db5f2ed80bd104e43f7429686e7546c4c77dbf86b124fd715970b",
+        "requestSha256": "3c1e0fe3a0e88a42e61ea5a8f12d96f39b9482b32ee8cbda13e2109908dc4d5a",
+        "fixtureResponseSha256": "b5bdf0fd98e9ed79fa27e099277af8fc27ee727a59d1c7b92a2eb640bb596e35",
+        "saved": true,
+        "firstAppliedStep": 11,
+        "memoryJournalId": null,
+        "exactPromptRequestResponseAndMemoryJoins": true,
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v7",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": false,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        }
+      },
+      {
+        "attemptId": 2,
+        "observedStep": 20,
+        "fixtureCase": "absent",
+        "providerPromptEvaluation": null,
+        "countAsExactDecimal": null,
+        "complete": true,
+        "stopReason": "stop",
+        "responseTextSha256": "a6692e76647de384e9b1d732431b3e3e2c0b9885b01d72d5a7230cf072d76206",
+        "promptSha256": "13647331194d1a04bbdd458e6149997b9a8514ed4713b41033b135298b47b340",
+        "requestSha256": "ba1084bf78158ad6c8c8e71d651856b6b0e1febf40f0759e71a04d8a64b2be17",
+        "fixtureResponseSha256": "3597b8a370ccbb1ed3b8eefe682154527d56fcfc89fd74af9837d8fbaee3bc4c",
+        "saved": true,
+        "firstAppliedStep": 21,
+        "memoryJournalId": "journal-10-1-65be3f5a5e7ee6ad2daf748e3d965456044a6b2716eb4f45c2233db2af855faf",
+        "exactPromptRequestResponseAndMemoryJoins": true,
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v7",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        }
+      },
+      {
+        "attemptId": 3,
+        "observedStep": 30,
+        "fixtureCase": "malformed-string",
+        "providerPromptEvaluation": {
+          "status": "unusable",
+          "reason": "wrongType"
+        },
+        "countAsExactDecimal": null,
+        "complete": true,
+        "stopReason": "stop",
+        "responseTextSha256": "d64587a9ca66989058c939cf0f13f723f98c425ebd2eabaabc0fc293922ec906",
+        "promptSha256": "ea54d1929126f82cf2a189247e503d74eb354a2e62d17522c8c6da541ade9e92",
+        "requestSha256": "4a7f7f5ef76c7ff831fd34db5d2885ceba64a2720ef17c3aec379da20c218e75",
+        "fixtureResponseSha256": "5703f189c8be1981d266b6bc633d4b2b9376bc4f8bbb79d352951baeef89c876",
+        "saved": true,
+        "firstAppliedStep": 31,
+        "memoryJournalId": "journal-20-2-a6692e76647de384e9b1d732431b3e3e2c0b9885b01d72d5a7230cf072d76206",
+        "exactPromptRequestResponseAndMemoryJoins": true,
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v7",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        }
+      },
+      {
+        "attemptId": 4,
+        "observedStep": 40,
+        "fixtureCase": "maximum-u64",
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": 18446744073709551615
+        },
+        "countAsExactDecimal": "18446744073709551615",
+        "complete": true,
+        "stopReason": "stop",
+        "responseTextSha256": "8b38b154bb568861cb53935a22933ef9bab0b1986ba8532c10f4cdc723581847",
+        "promptSha256": "6f786e603c24b5fe4a33791f4befd9c2910ce427eb5f6f9fa1cf653dd13b0451",
+        "requestSha256": "35f52fcdd4da474e2dab28c8ba87584554434e65a9fdcc064f8b9e905bfd1ddb",
+        "fixtureResponseSha256": "b3f014a748328a9cdf6b01cdf9533173361cea6c265c767987790f2b51cd71a3",
+        "saved": true,
+        "firstAppliedStep": 41,
+        "memoryJournalId": "journal-30-3-d64587a9ca66989058c939cf0f13f723f98c425ebd2eabaabc0fc293922ec906",
+        "exactPromptRequestResponseAndMemoryJoins": true,
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v7",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        }
+      },
+      {
+        "attemptId": 5,
+        "observedStep": 50,
+        "fixtureCase": "incomplete-reported",
+        "providerPromptEvaluation": {
+          "status": "reported",
+          "count": 321
+        },
+        "countAsExactDecimal": "321",
+        "complete": false,
+        "stopReason": "length",
+        "responseTextSha256": "89b6a3a48bd37d23e601811423056830769ef5e28cc1d4105e203a7c88bf6024",
+        "promptSha256": "df8894d1e211e5712ee655dac11527b12e5bfd52c5f589e723fa6d8149bca7c5",
+        "requestSha256": "fe38472f1f12eef6ce4c67107dea1822e8f856b8346fa9ac06d84c3f2cc7208c",
+        "fixtureResponseSha256": "b2726c736fe3f33fc2afd064c0b27b37566c16f6f7f7664f484738be253f8b42",
+        "saved": false,
+        "firstAppliedStep": null,
+        "memoryJournalId": "journal-40-4-8b38b154bb568861cb53935a22933ef9bab0b1986ba8532c10f4cdc723581847",
+        "exactPromptRequestResponseAndMemoryJoins": true,
+        "compactContext": {
+          "promptVersion": "reservoir-journal-v7",
+          "fullObservationRetained": true,
+          "actionScopeChecked": true,
+          "lateWritingBoundaryChecked": true,
+          "recordedReturnChecked": true,
+          "compactScaffoldChecked": true,
+          "exactPriorTextChecked": true,
+          "numericalFormattingAuthority": "Pinned production replay; this check is structural."
+        }
+      }
+    ],
+    "fifthIncompleteHasNoJournalOrApplication": true,
+    "lastSavedFeedbackHeldThroughStep50": true,
+    "scope": "Fixed synthetic reply evidence and internal joins; production numerical replay is separately recorded below. No writing-quality or provider-context-coverage verdict."
+  },
+  "executableAfter": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.19-pinned/reservoir-scope-desktop",
+    "bytes": 16984608,
+    "sha256": "65462e49b6301d89856e28496c3c51b25383935a46b1aa8b8832c7af68c83211"
+  },
+  "status": "passed",
+  "endedAtUtc": "2026-10-14T17:08:48.209999+00:00"
+}

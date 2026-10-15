@@ -1,0 +1,72 @@
+{
+  "schema": "reservoir-time-direction-plan-v1",
+  "episodeId": "time-direction-01",
+  "model": "gemma3:4b",
+  "modelManifestSha256": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+  "contextTokens": 8192,
+  "outputTokens": 1024,
+  "temperature": 0,
+  "requestDeadlineSeconds": 180,
+  "inventoryDeadlineSeconds": 5,
+  "probeBudgetSeconds": 900,
+  "storageBudgetBytes": 67108864,
+  "serviceLifetimeSeconds": 1200,
+  "minimumServiceRemainingAtStart": 1140,
+  "ownedServiceDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-time-direction-gemma3-4b-run01",
+  "softwareSelectionPath": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/software-selection.json",
+  "softwareSelectionSha256": "f86c9011ed33881ffae71679a3c96755c3d7d1cfbd434b0b9535a3493192a127",
+  "provenance": {
+    "scope": "Standalone diagnostic; no application session, numerical advance or feedback. Copied v8 context describes its original session.",
+    "anchors": [
+      30,
+      60,
+      90,
+      120,
+      330,
+      360
+    ],
+    "selection": "Early four and late two observations of the known completed twelve-entry v8 episode, selected before fresh outputs.",
+    "conditions": {
+      "A": "Exact original v8 prompt",
+      "B": "Only replace optional-readout time and distance lines and append factual time/comparison clarification; existing v8 meaning paragraph and all other blocks remain unchanged; diagnostic, not production v8"
+    },
+    "productionPromptChanged": false,
+    "maxFreshRequests": 12,
+    "automaticRetries": 0,
+    "manualRetries": 0,
+    "replaceFailedSamples": false,
+    "hostAdmission": {
+      "requiredPressureLevel": 1,
+      "minimumFreePercent": 35,
+      "minimumFreeDiskBytes": 8589934592,
+      "attempts": 1
+    },
+    "otherApplicationsOrBeingsTouched": false,
+    "priorRefusal": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/outcome-01.json",
+      "bytes": 8199,
+      "sha256": "bd89d9790ea5bca6f9e6a53af340a451a1a4263dc6a9a04fec58f54c24cccf69"
+    },
+    "authorization": "New user-authorized time-direction diagnostic; same bounds, no automatic retry or threshold relaxation. No cleanup is authorized or performed in this window.",
+    "resultsDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-time-direction-results01",
+    "priorRefusals": [
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-01/outcome-01.json",
+        "bytes": 7327,
+        "sha256": "2e226fe3cb4e62e7359a89e4f72de818cc5560faaa3de66a079a67b80e7b392c"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-context-order-02/outcome-01.json",
+        "bytes": 8199,
+        "sha256": "bd89d9790ea5bca6f9e6a53af340a451a1a4263dc6a9a04fec58f54c24cccf69"
+      }
+    ],
+    "priorDiagnostic": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/run-analysis-01.json",
+      "bytes": 75873,
+      "sha256": "abd2e7e732ec108bf5bcbbbf6b30d5879e7a4e6070fdc9ece82d05a3fdcadfdf"
+    },
+    "sourcePromptVersion": "reservoir-journal-v8",
+    "sourceEpisode": "v8-writing-episode01"
+  }
+}

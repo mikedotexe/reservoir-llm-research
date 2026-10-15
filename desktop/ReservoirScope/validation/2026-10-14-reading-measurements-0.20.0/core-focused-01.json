@@ -1,0 +1,1152 @@
+{
+  "schema": "reservoir-v8-core-focused-check-v1",
+  "startedAtUtc": "2026-10-14T18:54:22.036390+00:00",
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "-p",
+    "reservoir-core",
+    "--test",
+    "sustained_measurement_meaning_prompt",
+    "--test",
+    "sustained_prompts",
+    "--test",
+    "sustained_continuing_prompt",
+    "--test",
+    "sustained_action_scope_prompt",
+    "--test",
+    "sustained_writing_boundary_prompt",
+    "--test",
+    "sustained_generation_budget",
+    "--test",
+    "sustained_provider_evidence"
+  ],
+  "cwd": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope",
+  "environmentOverrides": {
+    "CARGO_INCREMENTAL": "0",
+    "CARGO_BUILD_JOBS": "2",
+    "CARGO_TARGET_DIR": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target",
+    "DEVELOPER_DIR": "/Applications/Xcode.app/Contents/Developer",
+    "SDKROOT": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+  },
+  "sourceBefore": [
+    {
+      "path": "crates/reservoir-core/ACTIONS.md",
+      "bytes": 7244,
+      "sha256": "1fe7e00c96e9699b12cd330ff88eda6537f8a2412308e7d1dd287217ce77c347"
+    },
+    {
+      "path": "crates/reservoir-core/CASES.md",
+      "bytes": 5042,
+      "sha256": "a56063968c97a04932afac46cf78c115be580166fd831efe4ce6c0c9092e6f6c"
+    },
+    {
+      "path": "crates/reservoir-core/CODEC-UNICODE.md",
+      "bytes": 8299,
+      "sha256": "0d0ccc15469466b78ad711e7db68f40e6ed7937d583a67f7e2408fca9096853e"
+    },
+    {
+      "path": "crates/reservoir-core/Cargo.toml",
+      "bytes": 443,
+      "sha256": "2ab5f629df38cfc10ca8bb3bbf294ca515c0b4c4687fc3dd2228ddb77eb6c1f9"
+    },
+    {
+      "path": "crates/reservoir-core/EXPLORATION.md",
+      "bytes": 7237,
+      "sha256": "b5d95c17bbcab80aea90227d7ac72ca3a530be075e01237d93379e07652032f4"
+    },
+    {
+      "path": "crates/reservoir-core/OBSERVATORY.md",
+      "bytes": 11550,
+      "sha256": "5bfc3a48d5d32c208be4c496d0a0ce0086454412d3a42afd6f52069829feee7c"
+    },
+    {
+      "path": "crates/reservoir-core/README.md",
+      "bytes": 6600,
+      "sha256": "fec48c8d36b25d6819fb7d8b2d6c41cb583e1ab56762501fadf225910a5f1008"
+    },
+    {
+      "path": "crates/reservoir-core/REGULATION.md",
+      "bytes": 12529,
+      "sha256": "dacb2b7ffdc72716caaf791fb7903d01f9a96f2b8bd63ce22213db2981fc510d"
+    },
+    {
+      "path": "crates/reservoir-core/RESPONSE.md",
+      "bytes": 8366,
+      "sha256": "c1202a92c69dd051f37ecebf23af9000ed254045f6666c822654335cd50767a6"
+    },
+    {
+      "path": "crates/reservoir-core/SESSIONS.md",
+      "bytes": 23405,
+      "sha256": "10320a2fe77e080176fa84fd22e49c987dc5b5cf4f61e59198e97410c583e730"
+    },
+    {
+      "path": "crates/reservoir-core/SUSTAINED.md",
+      "bytes": 24628,
+      "sha256": "948d13e6ac9ee4d89d783f9ce86ed79fad360a227f1e0ccc47292261fc3f71d2"
+    },
+    {
+      "path": "crates/reservoir-core/examples/action_session_fixtures.rs",
+      "bytes": 7504,
+      "sha256": "4112a938522f4a0dd68f76d90e401e4e815bb65c4f58374359ed00b29658f20e"
+    },
+    {
+      "path": "crates/reservoir-core/examples/case_export_oracle.rs",
+      "bytes": 899,
+      "sha256": "16cbf150106a2d5d8adc7793d0960be5e0dc81ff47eabb092ae7416141fad79a"
+    },
+    {
+      "path": "crates/reservoir-core/examples/comparison_session_fixtures.rs",
+      "bytes": 10670,
+      "sha256": "12e34ba1acee715ed83a0ace3400a15c524f7237c2903245bc901ac6b6a01c75"
+    },
+    {
+      "path": "crates/reservoir-core/examples/emit_exploration_records.rs",
+      "bytes": 2585,
+      "sha256": "2eeba16c75327caa4a5ad95e6c2e94c71996c4802a02c07174be07f932facc7a"
+    },
+    {
+      "path": "crates/reservoir-core/examples/emit_regulation_record.rs",
+      "bytes": 1079,
+      "sha256": "d99a812a65d9eb66044c2615e408912816cc34b5fe36a956ad276acec25d5f3a"
+    },
+    {
+      "path": "crates/reservoir-core/examples/guided_evidence_oracle.rs",
+      "bytes": 1275,
+      "sha256": "2ab676c7de31b8f775447cc70e22f02291fc150445b8db6cbdf3c0046d9d5968"
+    },
+    {
+      "path": "crates/reservoir-core/examples/language_session_fixtures.rs",
+      "bytes": 16824,
+      "sha256": "e593b280d445b6249c416f7933b0181521dfa4168f70581ae947cc80eb705f29"
+    },
+    {
+      "path": "crates/reservoir-core/examples/observatory_oracle.rs",
+      "bytes": 3331,
+      "sha256": "76f0b62eb77ad77d9736b4c2b21d4c0fc07d38ae14abc2bc0d9c8f2df8c67c12"
+    },
+    {
+      "path": "crates/reservoir-core/examples/regulation_session_fixtures.rs",
+      "bytes": 2616,
+      "sha256": "690d501976eb16eba6378bd2c096c16842906c4d7b4e5a8de4d11571e08541db"
+    },
+    {
+      "path": "crates/reservoir-core/examples/response_oracle.rs",
+      "bytes": 3350,
+      "sha256": "41abe549deb345093b280dd058574faefb9f499d1b8f41d06d8f726238f27454"
+    },
+    {
+      "path": "crates/reservoir-core/examples/session_fixtures.rs",
+      "bytes": 6718,
+      "sha256": "2d60437c83b2088bc7cc7ea1859c51df8c4dfa0f9b4360f5186435e7ba1e0585"
+    },
+    {
+      "path": "crates/reservoir-core/examples/sustained_session_fixtures.rs",
+      "bytes": 6728,
+      "sha256": "4de2289a670ef73f6b3e2770f4598ed867b94fcda8b1225a4011f5c8667980e9"
+    },
+    {
+      "path": "crates/reservoir-core/src/actions.rs",
+      "bytes": 50371,
+      "sha256": "2e5f3084fd273ed3d3cd412043238cdc68047684bd1bffd88a7afc99e9a2697c"
+    },
+    {
+      "path": "crates/reservoir-core/src/cases.rs",
+      "bytes": 20315,
+      "sha256": "74f036a9785d7607478d2989da30ed128c2fb6ff7f7992bad40d46cbf17ed626"
+    },
+    {
+      "path": "crates/reservoir-core/src/codec.rs",
+      "bytes": 11574,
+      "sha256": "6192482229710de6bf8a6377480ec891f940cf9ecd02da2f493b6e108db264ee"
+    },
+    {
+      "path": "crates/reservoir-core/src/codec_unicode_data.rs",
+      "bytes": 44996,
+      "sha256": "dbfe035749c170abbd80982c1aa18b0d72140fcc9b4d04aa762124ef1f0d28c3"
+    },
+    {
+      "path": "crates/reservoir-core/src/comparison.rs",
+      "bytes": 12608,
+      "sha256": "10a6dabf4aa92fa176fd77c8f28630c8772810055802daedfb413b0f5690c13b"
+    },
+    {
+      "path": "crates/reservoir-core/src/exploration.rs",
+      "bytes": 14256,
+      "sha256": "f13e5936aa12fddaf740567ebd83027316b53204c31b634582617fe9691afc36"
+    },
+    {
+      "path": "crates/reservoir-core/src/geometry.rs",
+      "bytes": 13466,
+      "sha256": "1af480c924d2118c38fe28dbc05cad6e7f9f958ddf5da64bf0d3832f3c141243"
+    },
+    {
+      "path": "crates/reservoir-core/src/guided_evidence.rs",
+      "bytes": 15074,
+      "sha256": "158c61d9b3c6ba4a2895de599ce520608afab0acfa58b24fb0bc7eaf8bb64a6b"
+    },
+    {
+      "path": "crates/reservoir-core/src/lib.rs",
+      "bytes": 9635,
+      "sha256": "ffd7f2b890ee153840b941fa7e8ce52695bab0160a46aaef04077d4be93090c3"
+    },
+    {
+      "path": "crates/reservoir-core/src/main.rs",
+      "bytes": 3182,
+      "sha256": "85fdac3f55d5b6b0be3b8b29361f38d961b64aec2ecb1957b2d9f007510b04f0"
+    },
+    {
+      "path": "crates/reservoir-core/src/math.rs",
+      "bytes": 15101,
+      "sha256": "845ed5f908d4b7c0765694f47b635be2b201693ce06a3ca25bcd70abe3259bc7"
+    },
+    {
+      "path": "crates/reservoir-core/src/observatory.rs",
+      "bytes": 15925,
+      "sha256": "9b4a2d22a4f946583b750a6f0566cc029695cd75050985cbc0c6618b390e878e"
+    },
+    {
+      "path": "crates/reservoir-core/src/preparation.rs",
+      "bytes": 22085,
+      "sha256": "ab3efa3f96819003d83ee1a886af62d565406691c0cb01c22378298e54d95c08"
+    },
+    {
+      "path": "crates/reservoir-core/src/prompt_number.rs",
+      "bytes": 2481,
+      "sha256": "4ae00cd32460259ea4ac023e8fd5a7dfbf6034889ee02e3e524bb53a5ef7c6af"
+    },
+    {
+      "path": "crates/reservoir-core/src/regulation.rs",
+      "bytes": 24984,
+      "sha256": "7f2d62130bcc4875fa300e72690f48b2d8522cf738349a7ac99d5aed96548fdc"
+    },
+    {
+      "path": "crates/reservoir-core/src/response.rs",
+      "bytes": 31824,
+      "sha256": "363ec9c5004b8332c9ac8639d6706eefdd22cc1253bbebfc131100cb347f0581"
+    },
+    {
+      "path": "crates/reservoir-core/src/session.rs",
+      "bytes": 51273,
+      "sha256": "d9f15552bbf605e11e9cb2d1ebbc35c4b73b48e97110a0f3ac7dc1768bf9b706"
+    },
+    {
+      "path": "crates/reservoir-core/src/stage.rs",
+      "bytes": 36172,
+      "sha256": "4b2603b2920c5479703d5e4dc89a8fef3e178040bc21185d88b246494df53a03"
+    },
+    {
+      "path": "crates/reservoir-core/src/sustained.rs",
+      "bytes": 90102,
+      "sha256": "7ec2c0780af574ceda251fa0be841b360d73cf0dbaa4ba90e0462fb933669976"
+    },
+    {
+      "path": "crates/reservoir-core/tests/actions_conformance.rs",
+      "bytes": 14565,
+      "sha256": "b024310c0faabaa660d77f9304b4af80d04be0f99eb033e69bc980752f5bc78f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/conformance.rs",
+      "bytes": 13374,
+      "sha256": "c170adb921e4e611c462bad99f6b5c61e95f4a2af212c582360efef4d9a9681b"
+    },
+    {
+      "path": "crates/reservoir-core/tests/exploration.rs",
+      "bytes": 21003,
+      "sha256": "bb60fca8f5fab095cd2d13c9bb47245566a78202d3fb155da0921c1ea4f88868"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/ascii-codec-vectors.json",
+      "bytes": 8338,
+      "sha256": "b40c03fe500fec01280871b998fae0c5a2e08474a162e70e604c8ab9186bcdbd"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/control-transitions-u64-max.json",
+      "bytes": 492916,
+      "sha256": "a78e128640c7a14aaf7412d27b71688bb8b160b65eb3106168394733c9b6b3a1"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/empty-u64-max.json",
+      "bytes": 88772,
+      "sha256": "9a22d5f1b5ea3e2464639068fb37ab0ea15b1c0abc1a4264872f2e8391de3197"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/pulsed-forcing.json",
+      "bytes": 178083,
+      "sha256": "59f1701f1f7b88bd0e5e6fde761b98f3b6aa8ac7803c0f89cb2c24a7fee72798"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/quiet-defaults.json",
+      "bytes": 96426,
+      "sha256": "abf5639d7951c8105f71f8a21310695a12edc412d22736323423d161a6e2881f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/sensory-restarts-u64-large.json",
+      "bytes": 281850,
+      "sha256": "b984d5ed76cbe058a2c6a50d4f8e711f50a80200a9530c90686779a263c33569"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/provenance.json",
+      "bytes": 3416,
+      "sha256": "a3527c4047d3617c2f537ab8ce4480b5573cf03452921a0838b5a1aca054f5e9"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v1-real-memory-60.json",
+      "bytes": 71168,
+      "sha256": "036f536ef3128060ddbc5615136416a2cd52dece7d159ce25887fe36a60c8b97"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v1-real-observation-30.json",
+      "bytes": 129658,
+      "sha256": "d47cb0fef4c8af7a650c11e4450745fba7516425e884c4f6fa3486360fccc80d"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v2-memory-20.txt",
+      "bytes": 3893,
+      "sha256": "ab2b102ffa3dddd2f2c8d15618a5abf283037d726efd08cb42161586c9ab3e81"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v2-observation-10.txt",
+      "bytes": 3625,
+      "sha256": "681d10cc8c9c0e4018654cc4e0a157f105b7a739bc1e39bb8663e60639c24b9a"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-legacy-budget-provenance.json",
+      "bytes": 413,
+      "sha256": "77456047a679db8f90049a154de3951d0ac5f957854ca5f9b51c27563ed60c1f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-legacy-budget-segment.json",
+      "bytes": 71097,
+      "sha256": "eef2a09b2c1e4e150aac8560f210997742203b78aa709829078657e86af0c6b0"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-memory-20.txt",
+      "bytes": 3774,
+      "sha256": "1a705d99ce490bb7a3a1bffcc3a392a9d89275bc4e9dd8c7cfbc1edb6dfdf43c"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-observation-10.txt",
+      "bytes": 3506,
+      "sha256": "70165f72ba7bbc1997cb50a78503c489a32fc378c56c3ff2345ed276e0c31378"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-provenance.json",
+      "bytes": 1615,
+      "sha256": "f0c34f3b69766cc232753204c22628a4c0046f40f087f690aa6ac998bc766c44"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v4-memory-20.txt",
+      "bytes": 4829,
+      "sha256": "d51753e1eddd68fd193ba46da49e6f909aaebdef328471ddf79e3b134b10c2c0"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v4-observation-10.txt",
+      "bytes": 4445,
+      "sha256": "26bae96991e12bb591ba517c46345aeac167abbbdaf79858c514a35b8986f75f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v4-provenance.json",
+      "bytes": 682,
+      "sha256": "aa8d4e2af9a04cd8455634364481d97ce8ecc9110fa9028fb6af20f1152b980f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v5-memory-20.txt",
+      "bytes": 1627,
+      "sha256": "a828b3390d049b22faf115f74644374f2c86f74a4ac47fd806a5e69920de99fd"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v5-observation-10.txt",
+      "bytes": 1437,
+      "sha256": "5c9c1dbdb29e1058b59d23174cdab186c0aa60d76293f29bb99827b217025dd6"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v5-provenance.json",
+      "bytes": 1606,
+      "sha256": "6ce6828ed6552c65b2f2d81d5511cb1f02b431f05a00e933d8bb17b599158fba"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v6-memory-20.txt",
+      "bytes": 1789,
+      "sha256": "a18a1d6a788b6ca47830770cbfb008da98960eae20ee8653b45440141581c971"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v6-observation-10.txt",
+      "bytes": 1599,
+      "sha256": "648266e30c22980ea5eb3c589e78e79bf6217fbabe43f346cd68938dacafc16c"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v6-provenance.json",
+      "bytes": 1752,
+      "sha256": "970fc8e876bea1b7811163a886f4298918ecc11a92f400e51fa0b9e7b48b5182"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-memory-20.txt",
+      "bytes": 2133,
+      "sha256": "5b50a5f47f23143213cdbb5c16734c4114d5fe4d7de1b55ca7e190932fd4b14d"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-observation-10.txt",
+      "bytes": 1912,
+      "sha256": "c9c496cbff370681337416962c5cbf30238eb2fbb7f2d17233b7ef1c9fc6e892"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-provenance.json",
+      "bytes": 1557,
+      "sha256": "ec4af7aa3fe327b8350294521fceda1530b68bfecab8c3b24ccce406e6ca4708"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v8-memory-20.txt",
+      "bytes": 2380,
+      "sha256": "39bec81c44418b3782bde976e224c749567a95a479222906c64d54aa70e5b8f6"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v8-observation-10.txt",
+      "bytes": 2159,
+      "sha256": "70f34bd2ebdd9c08bbc25525371ddc0463130b800c9329583b18d7397b2bb93a"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v8-provenance.json",
+      "bytes": 2981,
+      "sha256": "8a640ac1eedfaa8a283a6aa4f777e883aabc5bbc74ceec1525678f62541cdf04"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/swift-prompt-fixed8-v1.json",
+      "bytes": 195403,
+      "sha256": "b9e9adf11f61d93183d06630a3bd122b6d8dca8e23c5d6d96ec36523c0d695bf"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/unicode-codec-v1.json",
+      "bytes": 1449608,
+      "sha256": "f05fb75b0a29c2d4c1e28474c7e3139c5aa8f85d884757a3269840af337cbe3e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/geometry_conformance.rs",
+      "bytes": 11457,
+      "sha256": "e15aa03d5dece003e165ef0adf76159fc131c1326829c1b1ad124b516f8cab17"
+    },
+    {
+      "path": "crates/reservoir-core/tests/guided_evidence.rs",
+      "bytes": 12978,
+      "sha256": "df0a7864c15c4f9728989a969db9e2e7bb4d4c4f8902abad698bad2c0941087e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/observatory.rs",
+      "bytes": 8193,
+      "sha256": "b1375fb9556a1c4d9699a4fcc116f96be5828b6b923192c50946a1753d646b65"
+    },
+    {
+      "path": "crates/reservoir-core/tests/regulation.rs",
+      "bytes": 9371,
+      "sha256": "02301b92f0046cdc8c47b4c83d40afd5abaa253eb025a007407722b3fc1d6604"
+    },
+    {
+      "path": "crates/reservoir-core/tests/response.rs",
+      "bytes": 10626,
+      "sha256": "919e4a727bd79c5315d232e71cbe010cffe86962977016bd3deee8224facab94"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session.rs",
+      "bytes": 8969,
+      "sha256": "af1e7d5cd7d5f81a2077bcfe97c51ad42e0bfe632d36bf14ca7b727dc3081122"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session_actions.rs",
+      "bytes": 12754,
+      "sha256": "943d20e69c4c0aa3643e43d06b92a81af0a5168cc566430f1233808655344976"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session_comparisons.rs",
+      "bytes": 16292,
+      "sha256": "ad8a434b07a97cd7f62bd2194be5a11c8fb9e6b23be4734d1a9f954da00b1069"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session_language.rs",
+      "bytes": 17114,
+      "sha256": "293a173c55b6e23297a0b321e37278634ec5f4a5b241e9b419bfdffc142e1dde"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session_regulation.rs",
+      "bytes": 5528,
+      "sha256": "7919eda2999523d25fd49af1d919b8706a2c87388e1a53c420a0761306813603"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained.rs",
+      "bytes": 18420,
+      "sha256": "894b2d89ba7cbab93da7aa871acb3948beea387fbb3c6924693c32fd49b63433"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_action_scope_prompt.rs",
+      "bytes": 19735,
+      "sha256": "91e2fd2a5c5564875734a020c10a0a9fb67748d2068a742fd17090fac94161c0"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_continuing_prompt.rs",
+      "bytes": 18143,
+      "sha256": "7ef86d0ece9b8c0a1883fd68fe87dbcfb5525ace648ef84a34f4bc91545a83b9"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_generation_budget.rs",
+      "bytes": 7831,
+      "sha256": "e5523e244ca9940d7d01c6fd16a6f0c7cc471a5bf01ea142f06df7a78b970b4f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_measurement_meaning_prompt.rs",
+      "bytes": 16691,
+      "sha256": "74ebbcad58beafcceeb9b54eb4fa084a333ff49772a293be87c309300ae7db3e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_measurement_reference.rs",
+      "bytes": 10268,
+      "sha256": "a6497e446bd74b18bbbbda4ff2f4ea016f1845cd8ef252871d0f62dd4ed31c78"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_prompts.rs",
+      "bytes": 21344,
+      "sha256": "7f767cc82ee3a996ed0b82d4bd90fbaf42384d942cb5616c098ca6eee8fe9467"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_provider_evidence.rs",
+      "bytes": 11176,
+      "sha256": "1ae603dc2109cf209ea7b7a9bc0bd737073f7e2bac3eebd0ec04452a3c158b03"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_writing_boundary_prompt.rs",
+      "bytes": 21086,
+      "sha256": "e8ecfbedd1b9c018b567a7884e29b1f6de943f8ac5f2f25614a26d59d1fd12d1"
+    },
+    {
+      "path": "crates/reservoir-core/tests/unicode_codec_conformance.rs",
+      "bytes": 3610,
+      "sha256": "f0978cac8a3d8131bc5733f71ad22cdfdacb80150b4f415b9429db0ca8f835ba"
+    },
+    {
+      "path": "crates/reservoir-core/validation/2026-10-11-exploration-oracles.json",
+      "bytes": 37009,
+      "sha256": "836e47478c0db4688cb2d5eb06cb8f38605adc59c9e0a5b2f216396ad1782eec"
+    },
+    {
+      "path": "crates/reservoir-core/validation/2026-10-11-swift-stage-roundtrip.json",
+      "bytes": 2281,
+      "sha256": "4b167b788eb4cadeb0b9f7b2cf8a426749541c35149a021634413bae36207a49"
+    },
+    {
+      "path": "crates/reservoir-core/validation/2026-10-11-unicode-actions-v1.json",
+      "bytes": 24354,
+      "sha256": "5ccbe3af41dc8319676a754eca3a15a7cbf9c821620990a6dfc0d5dca043c9c9"
+    },
+    {
+      "path": "crates/reservoir-core/validation/2026-10-11-unicode-actions-v2.json",
+      "bytes": 39125,
+      "sha256": "5740e20cd2e4746d1c26c3b582fb51ff3eb633ee03df77a4fda9c5e61def848a"
+    },
+    {
+      "path": "Cargo.toml",
+      "bytes": 171,
+      "sha256": "877e5cba91e1ecd94a928ebb4b98b8e5b3aa883ff39d8aa6098699527e72d341"
+    },
+    {
+      "path": "Cargo.lock",
+      "bytes": 124966,
+      "sha256": "49ea70d1c2187ae27adee89094217bc1c7b783e7d06b53946877d8dcf1a43117"
+    },
+    {
+      "path": "rust-toolchain.toml",
+      "bytes": 87,
+      "sha256": "c07cdb6cac85a9e5a7d9b832145d791c04ffb58e8e45859942363f2bffed3ebc"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/shared/reservoir-scope/continuing-writing.md",
+      "bytes": 9558,
+      "sha256": "5ca3cd10cf1642488b06476285adc24a3f96191db67854553f80bfae4deed227"
+    }
+  ],
+  "scope": "Focused pure-core prompt, historical byte/hash, replay, provider metadata and generation-budget tests. No app build, UI, model, service, or Being access.",
+  "exitCode": 0,
+  "endedAtUtc": "2026-10-14T18:54:41.772369+00:00",
+  "sourceAfter": [
+    {
+      "path": "crates/reservoir-core/ACTIONS.md",
+      "bytes": 7244,
+      "sha256": "1fe7e00c96e9699b12cd330ff88eda6537f8a2412308e7d1dd287217ce77c347"
+    },
+    {
+      "path": "crates/reservoir-core/CASES.md",
+      "bytes": 5042,
+      "sha256": "a56063968c97a04932afac46cf78c115be580166fd831efe4ce6c0c9092e6f6c"
+    },
+    {
+      "path": "crates/reservoir-core/CODEC-UNICODE.md",
+      "bytes": 8299,
+      "sha256": "0d0ccc15469466b78ad711e7db68f40e6ed7937d583a67f7e2408fca9096853e"
+    },
+    {
+      "path": "crates/reservoir-core/Cargo.toml",
+      "bytes": 443,
+      "sha256": "2ab5f629df38cfc10ca8bb3bbf294ca515c0b4c4687fc3dd2228ddb77eb6c1f9"
+    },
+    {
+      "path": "crates/reservoir-core/EXPLORATION.md",
+      "bytes": 7237,
+      "sha256": "b5d95c17bbcab80aea90227d7ac72ca3a530be075e01237d93379e07652032f4"
+    },
+    {
+      "path": "crates/reservoir-core/OBSERVATORY.md",
+      "bytes": 11550,
+      "sha256": "5bfc3a48d5d32c208be4c496d0a0ce0086454412d3a42afd6f52069829feee7c"
+    },
+    {
+      "path": "crates/reservoir-core/README.md",
+      "bytes": 6600,
+      "sha256": "fec48c8d36b25d6819fb7d8b2d6c41cb583e1ab56762501fadf225910a5f1008"
+    },
+    {
+      "path": "crates/reservoir-core/REGULATION.md",
+      "bytes": 12529,
+      "sha256": "dacb2b7ffdc72716caaf791fb7903d01f9a96f2b8bd63ce22213db2981fc510d"
+    },
+    {
+      "path": "crates/reservoir-core/RESPONSE.md",
+      "bytes": 8366,
+      "sha256": "c1202a92c69dd051f37ecebf23af9000ed254045f6666c822654335cd50767a6"
+    },
+    {
+      "path": "crates/reservoir-core/SESSIONS.md",
+      "bytes": 23405,
+      "sha256": "10320a2fe77e080176fa84fd22e49c987dc5b5cf4f61e59198e97410c583e730"
+    },
+    {
+      "path": "crates/reservoir-core/SUSTAINED.md",
+      "bytes": 24628,
+      "sha256": "948d13e6ac9ee4d89d783f9ce86ed79fad360a227f1e0ccc47292261fc3f71d2"
+    },
+    {
+      "path": "crates/reservoir-core/examples/action_session_fixtures.rs",
+      "bytes": 7504,
+      "sha256": "4112a938522f4a0dd68f76d90e401e4e815bb65c4f58374359ed00b29658f20e"
+    },
+    {
+      "path": "crates/reservoir-core/examples/case_export_oracle.rs",
+      "bytes": 899,
+      "sha256": "16cbf150106a2d5d8adc7793d0960be5e0dc81ff47eabb092ae7416141fad79a"
+    },
+    {
+      "path": "crates/reservoir-core/examples/comparison_session_fixtures.rs",
+      "bytes": 10670,
+      "sha256": "12e34ba1acee715ed83a0ace3400a15c524f7237c2903245bc901ac6b6a01c75"
+    },
+    {
+      "path": "crates/reservoir-core/examples/emit_exploration_records.rs",
+      "bytes": 2585,
+      "sha256": "2eeba16c75327caa4a5ad95e6c2e94c71996c4802a02c07174be07f932facc7a"
+    },
+    {
+      "path": "crates/reservoir-core/examples/emit_regulation_record.rs",
+      "bytes": 1079,
+      "sha256": "d99a812a65d9eb66044c2615e408912816cc34b5fe36a956ad276acec25d5f3a"
+    },
+    {
+      "path": "crates/reservoir-core/examples/guided_evidence_oracle.rs",
+      "bytes": 1275,
+      "sha256": "2ab676c7de31b8f775447cc70e22f02291fc150445b8db6cbdf3c0046d9d5968"
+    },
+    {
+      "path": "crates/reservoir-core/examples/language_session_fixtures.rs",
+      "bytes": 16824,
+      "sha256": "e593b280d445b6249c416f7933b0181521dfa4168f70581ae947cc80eb705f29"
+    },
+    {
+      "path": "crates/reservoir-core/examples/observatory_oracle.rs",
+      "bytes": 3331,
+      "sha256": "76f0b62eb77ad77d9736b4c2b21d4c0fc07d38ae14abc2bc0d9c8f2df8c67c12"
+    },
+    {
+      "path": "crates/reservoir-core/examples/regulation_session_fixtures.rs",
+      "bytes": 2616,
+      "sha256": "690d501976eb16eba6378bd2c096c16842906c4d7b4e5a8de4d11571e08541db"
+    },
+    {
+      "path": "crates/reservoir-core/examples/response_oracle.rs",
+      "bytes": 3350,
+      "sha256": "41abe549deb345093b280dd058574faefb9f499d1b8f41d06d8f726238f27454"
+    },
+    {
+      "path": "crates/reservoir-core/examples/session_fixtures.rs",
+      "bytes": 6718,
+      "sha256": "2d60437c83b2088bc7cc7ea1859c51df8c4dfa0f9b4360f5186435e7ba1e0585"
+    },
+    {
+      "path": "crates/reservoir-core/examples/sustained_session_fixtures.rs",
+      "bytes": 6728,
+      "sha256": "4de2289a670ef73f6b3e2770f4598ed867b94fcda8b1225a4011f5c8667980e9"
+    },
+    {
+      "path": "crates/reservoir-core/src/actions.rs",
+      "bytes": 50371,
+      "sha256": "2e5f3084fd273ed3d3cd412043238cdc68047684bd1bffd88a7afc99e9a2697c"
+    },
+    {
+      "path": "crates/reservoir-core/src/cases.rs",
+      "bytes": 20315,
+      "sha256": "74f036a9785d7607478d2989da30ed128c2fb6ff7f7992bad40d46cbf17ed626"
+    },
+    {
+      "path": "crates/reservoir-core/src/codec.rs",
+      "bytes": 11574,
+      "sha256": "6192482229710de6bf8a6377480ec891f940cf9ecd02da2f493b6e108db264ee"
+    },
+    {
+      "path": "crates/reservoir-core/src/codec_unicode_data.rs",
+      "bytes": 44996,
+      "sha256": "dbfe035749c170abbd80982c1aa18b0d72140fcc9b4d04aa762124ef1f0d28c3"
+    },
+    {
+      "path": "crates/reservoir-core/src/comparison.rs",
+      "bytes": 12608,
+      "sha256": "10a6dabf4aa92fa176fd77c8f28630c8772810055802daedfb413b0f5690c13b"
+    },
+    {
+      "path": "crates/reservoir-core/src/exploration.rs",
+      "bytes": 14256,
+      "sha256": "f13e5936aa12fddaf740567ebd83027316b53204c31b634582617fe9691afc36"
+    },
+    {
+      "path": "crates/reservoir-core/src/geometry.rs",
+      "bytes": 13466,
+      "sha256": "1af480c924d2118c38fe28dbc05cad6e7f9f958ddf5da64bf0d3832f3c141243"
+    },
+    {
+      "path": "crates/reservoir-core/src/guided_evidence.rs",
+      "bytes": 15074,
+      "sha256": "158c61d9b3c6ba4a2895de599ce520608afab0acfa58b24fb0bc7eaf8bb64a6b"
+    },
+    {
+      "path": "crates/reservoir-core/src/lib.rs",
+      "bytes": 9635,
+      "sha256": "ffd7f2b890ee153840b941fa7e8ce52695bab0160a46aaef04077d4be93090c3"
+    },
+    {
+      "path": "crates/reservoir-core/src/main.rs",
+      "bytes": 3182,
+      "sha256": "85fdac3f55d5b6b0be3b8b29361f38d961b64aec2ecb1957b2d9f007510b04f0"
+    },
+    {
+      "path": "crates/reservoir-core/src/math.rs",
+      "bytes": 15101,
+      "sha256": "845ed5f908d4b7c0765694f47b635be2b201693ce06a3ca25bcd70abe3259bc7"
+    },
+    {
+      "path": "crates/reservoir-core/src/observatory.rs",
+      "bytes": 15925,
+      "sha256": "9b4a2d22a4f946583b750a6f0566cc029695cd75050985cbc0c6618b390e878e"
+    },
+    {
+      "path": "crates/reservoir-core/src/preparation.rs",
+      "bytes": 22085,
+      "sha256": "ab3efa3f96819003d83ee1a886af62d565406691c0cb01c22378298e54d95c08"
+    },
+    {
+      "path": "crates/reservoir-core/src/prompt_number.rs",
+      "bytes": 2481,
+      "sha256": "4ae00cd32460259ea4ac023e8fd5a7dfbf6034889ee02e3e524bb53a5ef7c6af"
+    },
+    {
+      "path": "crates/reservoir-core/src/regulation.rs",
+      "bytes": 24984,
+      "sha256": "7f2d62130bcc4875fa300e72690f48b2d8522cf738349a7ac99d5aed96548fdc"
+    },
+    {
+      "path": "crates/reservoir-core/src/response.rs",
+      "bytes": 31824,
+      "sha256": "363ec9c5004b8332c9ac8639d6706eefdd22cc1253bbebfc131100cb347f0581"
+    },
+    {
+      "path": "crates/reservoir-core/src/session.rs",
+      "bytes": 51273,
+      "sha256": "d9f15552bbf605e11e9cb2d1ebbc35c4b73b48e97110a0f3ac7dc1768bf9b706"
+    },
+    {
+      "path": "crates/reservoir-core/src/stage.rs",
+      "bytes": 36172,
+      "sha256": "4b2603b2920c5479703d5e4dc89a8fef3e178040bc21185d88b246494df53a03"
+    },
+    {
+      "path": "crates/reservoir-core/src/sustained.rs",
+      "bytes": 90102,
+      "sha256": "7ec2c0780af574ceda251fa0be841b360d73cf0dbaa4ba90e0462fb933669976"
+    },
+    {
+      "path": "crates/reservoir-core/tests/actions_conformance.rs",
+      "bytes": 14565,
+      "sha256": "b024310c0faabaa660d77f9304b4af80d04be0f99eb033e69bc980752f5bc78f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/conformance.rs",
+      "bytes": 13374,
+      "sha256": "c170adb921e4e611c462bad99f6b5c61e95f4a2af212c582360efef4d9a9681b"
+    },
+    {
+      "path": "crates/reservoir-core/tests/exploration.rs",
+      "bytes": 21003,
+      "sha256": "bb60fca8f5fab095cd2d13c9bb47245566a78202d3fb155da0921c1ea4f88868"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/ascii-codec-vectors.json",
+      "bytes": 8338,
+      "sha256": "b40c03fe500fec01280871b998fae0c5a2e08474a162e70e604c8ab9186bcdbd"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/control-transitions-u64-max.json",
+      "bytes": 492916,
+      "sha256": "a78e128640c7a14aaf7412d27b71688bb8b160b65eb3106168394733c9b6b3a1"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/empty-u64-max.json",
+      "bytes": 88772,
+      "sha256": "9a22d5f1b5ea3e2464639068fb37ab0ea15b1c0abc1a4264872f2e8391de3197"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/pulsed-forcing.json",
+      "bytes": 178083,
+      "sha256": "59f1701f1f7b88bd0e5e6fde761b98f3b6aa8ac7803c0f89cb2c24a7fee72798"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/quiet-defaults.json",
+      "bytes": 96426,
+      "sha256": "abf5639d7951c8105f71f8a21310695a12edc412d22736323423d161a6e2881f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/sensory-restarts-u64-large.json",
+      "bytes": 281850,
+      "sha256": "b984d5ed76cbe058a2c6a50d4f8e711f50a80200a9530c90686779a263c33569"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/provenance.json",
+      "bytes": 3416,
+      "sha256": "a3527c4047d3617c2f537ab8ce4480b5573cf03452921a0838b5a1aca054f5e9"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v1-real-memory-60.json",
+      "bytes": 71168,
+      "sha256": "036f536ef3128060ddbc5615136416a2cd52dece7d159ce25887fe36a60c8b97"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v1-real-observation-30.json",
+      "bytes": 129658,
+      "sha256": "d47cb0fef4c8af7a650c11e4450745fba7516425e884c4f6fa3486360fccc80d"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v2-memory-20.txt",
+      "bytes": 3893,
+      "sha256": "ab2b102ffa3dddd2f2c8d15618a5abf283037d726efd08cb42161586c9ab3e81"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v2-observation-10.txt",
+      "bytes": 3625,
+      "sha256": "681d10cc8c9c0e4018654cc4e0a157f105b7a739bc1e39bb8663e60639c24b9a"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-legacy-budget-provenance.json",
+      "bytes": 413,
+      "sha256": "77456047a679db8f90049a154de3951d0ac5f957854ca5f9b51c27563ed60c1f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-legacy-budget-segment.json",
+      "bytes": 71097,
+      "sha256": "eef2a09b2c1e4e150aac8560f210997742203b78aa709829078657e86af0c6b0"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-memory-20.txt",
+      "bytes": 3774,
+      "sha256": "1a705d99ce490bb7a3a1bffcc3a392a9d89275bc4e9dd8c7cfbc1edb6dfdf43c"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-observation-10.txt",
+      "bytes": 3506,
+      "sha256": "70165f72ba7bbc1997cb50a78503c489a32fc378c56c3ff2345ed276e0c31378"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-provenance.json",
+      "bytes": 1615,
+      "sha256": "f0c34f3b69766cc232753204c22628a4c0046f40f087f690aa6ac998bc766c44"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v4-memory-20.txt",
+      "bytes": 4829,
+      "sha256": "d51753e1eddd68fd193ba46da49e6f909aaebdef328471ddf79e3b134b10c2c0"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v4-observation-10.txt",
+      "bytes": 4445,
+      "sha256": "26bae96991e12bb591ba517c46345aeac167abbbdaf79858c514a35b8986f75f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v4-provenance.json",
+      "bytes": 682,
+      "sha256": "aa8d4e2af9a04cd8455634364481d97ce8ecc9110fa9028fb6af20f1152b980f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v5-memory-20.txt",
+      "bytes": 1627,
+      "sha256": "a828b3390d049b22faf115f74644374f2c86f74a4ac47fd806a5e69920de99fd"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v5-observation-10.txt",
+      "bytes": 1437,
+      "sha256": "5c9c1dbdb29e1058b59d23174cdab186c0aa60d76293f29bb99827b217025dd6"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v5-provenance.json",
+      "bytes": 1606,
+      "sha256": "6ce6828ed6552c65b2f2d81d5511cb1f02b431f05a00e933d8bb17b599158fba"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v6-memory-20.txt",
+      "bytes": 1789,
+      "sha256": "a18a1d6a788b6ca47830770cbfb008da98960eae20ee8653b45440141581c971"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v6-observation-10.txt",
+      "bytes": 1599,
+      "sha256": "648266e30c22980ea5eb3c589e78e79bf6217fbabe43f346cd68938dacafc16c"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v6-provenance.json",
+      "bytes": 1752,
+      "sha256": "970fc8e876bea1b7811163a886f4298918ecc11a92f400e51fa0b9e7b48b5182"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-memory-20.txt",
+      "bytes": 2133,
+      "sha256": "5b50a5f47f23143213cdbb5c16734c4114d5fe4d7de1b55ca7e190932fd4b14d"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-observation-10.txt",
+      "bytes": 1912,
+      "sha256": "c9c496cbff370681337416962c5cbf30238eb2fbb7f2d17233b7ef1c9fc6e892"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-provenance.json",
+      "bytes": 1557,
+      "sha256": "ec4af7aa3fe327b8350294521fceda1530b68bfecab8c3b24ccce406e6ca4708"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v8-memory-20.txt",
+      "bytes": 2380,
+      "sha256": "39bec81c44418b3782bde976e224c749567a95a479222906c64d54aa70e5b8f6"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v8-observation-10.txt",
+      "bytes": 2159,
+      "sha256": "70f34bd2ebdd9c08bbc25525371ddc0463130b800c9329583b18d7397b2bb93a"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v8-provenance.json",
+      "bytes": 2981,
+      "sha256": "8a640ac1eedfaa8a283a6aa4f777e883aabc5bbc74ceec1525678f62541cdf04"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/swift-prompt-fixed8-v1.json",
+      "bytes": 195403,
+      "sha256": "b9e9adf11f61d93183d06630a3bd122b6d8dca8e23c5d6d96ec36523c0d695bf"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/unicode-codec-v1.json",
+      "bytes": 1449608,
+      "sha256": "f05fb75b0a29c2d4c1e28474c7e3139c5aa8f85d884757a3269840af337cbe3e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/geometry_conformance.rs",
+      "bytes": 11457,
+      "sha256": "e15aa03d5dece003e165ef0adf76159fc131c1326829c1b1ad124b516f8cab17"
+    },
+    {
+      "path": "crates/reservoir-core/tests/guided_evidence.rs",
+      "bytes": 12978,
+      "sha256": "df0a7864c15c4f9728989a969db9e2e7bb4d4c4f8902abad698bad2c0941087e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/observatory.rs",
+      "bytes": 8193,
+      "sha256": "b1375fb9556a1c4d9699a4fcc116f96be5828b6b923192c50946a1753d646b65"
+    },
+    {
+      "path": "crates/reservoir-core/tests/regulation.rs",
+      "bytes": 9371,
+      "sha256": "02301b92f0046cdc8c47b4c83d40afd5abaa253eb025a007407722b3fc1d6604"
+    },
+    {
+      "path": "crates/reservoir-core/tests/response.rs",
+      "bytes": 10626,
+      "sha256": "919e4a727bd79c5315d232e71cbe010cffe86962977016bd3deee8224facab94"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session.rs",
+      "bytes": 8969,
+      "sha256": "af1e7d5cd7d5f81a2077bcfe97c51ad42e0bfe632d36bf14ca7b727dc3081122"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session_actions.rs",
+      "bytes": 12754,
+      "sha256": "943d20e69c4c0aa3643e43d06b92a81af0a5168cc566430f1233808655344976"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session_comparisons.rs",
+      "bytes": 16292,
+      "sha256": "ad8a434b07a97cd7f62bd2194be5a11c8fb9e6b23be4734d1a9f954da00b1069"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session_language.rs",
+      "bytes": 17114,
+      "sha256": "293a173c55b6e23297a0b321e37278634ec5f4a5b241e9b419bfdffc142e1dde"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session_regulation.rs",
+      "bytes": 5528,
+      "sha256": "7919eda2999523d25fd49af1d919b8706a2c87388e1a53c420a0761306813603"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained.rs",
+      "bytes": 18420,
+      "sha256": "894b2d89ba7cbab93da7aa871acb3948beea387fbb3c6924693c32fd49b63433"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_action_scope_prompt.rs",
+      "bytes": 19735,
+      "sha256": "91e2fd2a5c5564875734a020c10a0a9fb67748d2068a742fd17090fac94161c0"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_continuing_prompt.rs",
+      "bytes": 18143,
+      "sha256": "7ef86d0ece9b8c0a1883fd68fe87dbcfb5525ace648ef84a34f4bc91545a83b9"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_generation_budget.rs",
+      "bytes": 7831,
+      "sha256": "e5523e244ca9940d7d01c6fd16a6f0c7cc471a5bf01ea142f06df7a78b970b4f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_measurement_meaning_prompt.rs",
+      "bytes": 16691,
+      "sha256": "74ebbcad58beafcceeb9b54eb4fa084a333ff49772a293be87c309300ae7db3e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_measurement_reference.rs",
+      "bytes": 10268,
+      "sha256": "a6497e446bd74b18bbbbda4ff2f4ea016f1845cd8ef252871d0f62dd4ed31c78"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_prompts.rs",
+      "bytes": 21344,
+      "sha256": "7f767cc82ee3a996ed0b82d4bd90fbaf42384d942cb5616c098ca6eee8fe9467"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_provider_evidence.rs",
+      "bytes": 11176,
+      "sha256": "1ae603dc2109cf209ea7b7a9bc0bd737073f7e2bac3eebd0ec04452a3c158b03"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_writing_boundary_prompt.rs",
+      "bytes": 21086,
+      "sha256": "e8ecfbedd1b9c018b567a7884e29b1f6de943f8ac5f2f25614a26d59d1fd12d1"
+    },
+    {
+      "path": "crates/reservoir-core/tests/unicode_codec_conformance.rs",
+      "bytes": 3610,
+      "sha256": "f0978cac8a3d8131bc5733f71ad22cdfdacb80150b4f415b9429db0ca8f835ba"
+    },
+    {
+      "path": "crates/reservoir-core/validation/2026-10-11-exploration-oracles.json",
+      "bytes": 37009,
+      "sha256": "836e47478c0db4688cb2d5eb06cb8f38605adc59c9e0a5b2f216396ad1782eec"
+    },
+    {
+      "path": "crates/reservoir-core/validation/2026-10-11-swift-stage-roundtrip.json",
+      "bytes": 2281,
+      "sha256": "4b167b788eb4cadeb0b9f7b2cf8a426749541c35149a021634413bae36207a49"
+    },
+    {
+      "path": "crates/reservoir-core/validation/2026-10-11-unicode-actions-v1.json",
+      "bytes": 24354,
+      "sha256": "5ccbe3af41dc8319676a754eca3a15a7cbf9c821620990a6dfc0d5dca043c9c9"
+    },
+    {
+      "path": "crates/reservoir-core/validation/2026-10-11-unicode-actions-v2.json",
+      "bytes": 39125,
+      "sha256": "5740e20cd2e4746d1c26c3b582fb51ff3eb633ee03df77a4fda9c5e61def848a"
+    },
+    {
+      "path": "Cargo.toml",
+      "bytes": 171,
+      "sha256": "877e5cba91e1ecd94a928ebb4b98b8e5b3aa883ff39d8aa6098699527e72d341"
+    },
+    {
+      "path": "Cargo.lock",
+      "bytes": 124966,
+      "sha256": "49ea70d1c2187ae27adee89094217bc1c7b783e7d06b53946877d8dcf1a43117"
+    },
+    {
+      "path": "rust-toolchain.toml",
+      "bytes": 87,
+      "sha256": "c07cdb6cac85a9e5a7d9b832145d791c04ffb58e8e45859942363f2bffed3ebc"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/shared/reservoir-scope/continuing-writing.md",
+      "bytes": 9558,
+      "sha256": "5ca3cd10cf1642488b06476285adc24a3f96191db67854553f80bfae4deed227"
+    }
+  ],
+  "sourceUnchanged": true,
+  "status": "passed",
+  "testSummaries": [
+    {
+      "result": "ok",
+      "passed": 10,
+      "failed": 0,
+      "ignored": 0
+    },
+    {
+      "result": "ok",
+      "passed": 9,
+      "failed": 0,
+      "ignored": 0
+    },
+    {
+      "result": "ok",
+      "passed": 5,
+      "failed": 0,
+      "ignored": 0
+    },
+    {
+      "result": "ok",
+      "passed": 9,
+      "failed": 0,
+      "ignored": 0
+    },
+    {
+      "result": "ok",
+      "passed": 12,
+      "failed": 0,
+      "ignored": 0
+    },
+    {
+      "result": "ok",
+      "passed": 7,
+      "failed": 0,
+      "ignored": 0
+    },
+    {
+      "result": "ok",
+      "passed": 10,
+      "failed": 0,
+      "ignored": 0
+    }
+  ],
+  "passedTests": 62,
+  "log": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/core-focused-01.log",
+    "bytes": 7083,
+    "sha256": "d03ebb5961d174b89e82c3f3661555cd2ccb390cd90f4361d1d17943f677dc11"
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "schema": "reservoir-v8-fixed-provider-cleanup-v1",
+  "capturedAtUtc": "2026-10-14T19:13:54.528910+00:00",
+  "status": "passed",
+  "fixtureDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-reading-measurements-provider-01",
+  "retainedDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/fixture-run-01",
+  "files": {
+    "endpoint.json": {
+      "bytes": 480,
+      "sha256": "c19e426fc2df493167d8d0434d7b269922059917495e5cd3081146c3c1374d9e"
+    },
+    "requests.jsonl": {
+      "bytes": 5254,
+      "sha256": "a18db2b93091872b2142f767d8158385091ef0b4927f65ff1accffd8d7522e2f"
+    },
+    "response-01-wide-reported.json": {
+      "bytes": 368,
+      "sha256": "b5bdf0fd98e9ed79fa27e099277af8fc27ee727a59d1c7b92a2eb640bb596e35"
+    },
+    "response-02-absent.json": {
+      "bytes": 331,
+      "sha256": "3597b8a370ccbb1ed3b8eefe682154527d56fcfc89fd74af9837d8fbaee3bc4c"
+    },
+    "response-03-malformed-string.json": {
+      "bytes": 358,
+      "sha256": "5703f189c8be1981d266b6bc633d4b2b9376bc4f8bbb79d352951baeef89c876"
+    },
+    "response-04-maximum-u64.json": {
+      "bytes": 372,
+      "sha256": "b3f014a748328a9cdf6b01cdf9533173361cea6c265c767987790f2b51cd71a3"
+    },
+    "response-05-incomplete-reported.json": {
+      "bytes": 358,
+      "sha256": "b2726c736fe3f33fc2afd064c0b27b37566c16f6f7f7664f484738be253f8b42"
+    },
+    "stop-request": {
+      "bytes": 33,
+      "sha256": "66ef0ff3d7f5c3d9e7922c07e3a9b02251de41b89af77a441ac9dfd757165072"
+    }
+  },
+  "fileCount": 8,
+  "logicalBytes": 7554,
+  "originalsUnchanged": true,
+  "copiesByteExact": true,
+  "endpoint": {
+    "endpoint": "http://127.0.0.1:52199",
+    "model": "reservoir-fixture:input-evidence-0.16",
+    "pid": 82244,
+    "synthetic": true,
+    "startedAtUtc": "2026-10-14T19:08:12.222795+00:00",
+    "lifetimeSeconds": 900,
+    "maximumChatRequests": 5,
+    "maximumHttpRequests": 32,
+    "scriptSha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb",
+    "scenario": [
+      "wide-reported",
+      "absent",
+      "malformed-string",
+      "maximum-u64",
+      "incomplete-reported"
+    ]
+  },
+  "lifecycleStarted": {
+    "atUtc": "2026-10-14T19:08:12.223330+00:00",
+    "monotonicNs": "1201269130905875",
+    "lifecycle": "started",
+    "endpoint": "http://127.0.0.1:52199",
+    "model": "reservoir-fixture:input-evidence-0.16",
+    "pid": 82244,
+    "synthetic": true,
+    "startedAtUtc": "2026-10-14T19:08:12.222795+00:00",
+    "lifetimeSeconds": 900,
+    "maximumChatRequests": 5,
+    "maximumHttpRequests": 32,
+    "scriptSha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb",
+    "scenario": [
+      "wide-reported",
+      "absent",
+      "malformed-string",
+      "maximum-u64",
+      "incomplete-reported"
+    ]
+  },
+  "lifecycleStopped": {
+    "atUtc": "2026-10-14T19:11:38.466274+00:00",
+    "monotonicNs": "1201475375209916",
+    "lifecycle": "stopped",
+    "reason": "explicit-stop-file",
+    "elapsedSeconds": 206.25019841687754,
+    "chatRequests": 5,
+    "httpRequests": 6,
+    "responsesWritten": 5
+  },
+  "logRowCount": 13,
+  "readinessGETs": 1,
+  "chatPOSTs": 5,
+  "successfulResponseWrites": 5,
+  "unplannedRequests": 0,
+  "stopRequestSha256": "66ef0ff3d7f5c3d9e7922c07e3a9b02251de41b89af77a441ac9dfd757165072",
+  "fixtureSource": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/owned_provider.py",
+    "bytes": 9067,
+    "sha256": "a4ea70f115fe569455cf8d9ae34e70eb3a79d63d187fc431ec8cae9a0ddd7fdb"
+  },
+  "prospectiveFreeze": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/prospective-freeze-01.json",
+    "bytes": 26666,
+    "sha256": "0f666ba1d3b03a3ad48825e4e4ff0cd33b28cc38188d63c0bf6365344c885e54"
+  },
+  "parentReportedToolCompletion": {
+    "sessionId": 72776,
+    "exitCode": 0,
+    "origin": "Parent task handoff; not a new process probe by this audit."
+  },
+  "processScope": {
+    "retainedPid": 82244,
+    "identitySource": "Exact owned endpoint and started lifecycle rows; no separate process-identity file exists in this fixture format.",
+    "newProcessInspection": false,
+    "newNetworkRequest": false,
+    "newSignal": false,
+    "independentPostExitAbsenceVerified": false
+  },
+  "limits": [
+    "The stopped lifecycle row is written after the HTTPServer context exits; closed-listener inference follows the frozen fixture source, not a new endpoint probe.",
+    "Five HTTP200 response writes are synthetic transport outcomes. The application/export checker separately establishes four complete saved/applied replies and one incomplete held response.",
+    "206.250198 seconds is the fixture lifetime, not an endurance, GPU, model-quality or power-loss qualification."
+  ]
+}

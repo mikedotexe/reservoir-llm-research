@@ -1,0 +1,39 @@
+{
+  "atUtc": "2026-10-14T18:07:57.177444+00:00",
+  "scope": "User-authorized cleanup inventory only: user process metadata filtered for this repository or app. No model request, signal, service/workspace changes or memory admission.",
+  "repositoryMatchedProcesses": [
+    {
+      "pid": 91612,
+      "parentPid": 88651,
+      "rssKiB": 96688,
+      "start": "Mon Oct 12 22:20:33 2026",
+      "command": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node --experimental-vm-modules /var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/.tmpsMcmAL/kernel.js --session-id e9182e34909548c18b5164d03a19575b --working-dir /Users/v/other/reservoir-llm-research"
+    },
+    {
+      "pid": 91613,
+      "parentPid": 88651,
+      "rssKiB": 35888,
+      "start": "Mon Oct 12 22:20:33 2026",
+      "command": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node /var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/.tmpsMcmAL/trusted-worker.js /Users/v/other/reservoir-llm-research"
+    },
+    {
+      "pid": 96446,
+      "parentPid": 96436,
+      "rssKiB": 3680,
+      "start": "Sun Oct 11 19:36:41 2026",
+      "command": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node --experimental-vm-modules /var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/.tmp80ZdRl/kernel.js --session-id cbb70144664d4a58961d963f38463fa5 --working-dir /Users/v/other/reservoir-llm-research"
+    },
+    {
+      "pid": 96447,
+      "parentPid": 96436,
+      "rssKiB": 17312,
+      "start": "Sun Oct 11 19:36:41 2026",
+      "command": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node /var/folders/98/rh9s2vt50c90b6f910bcnf3m0000gn/T/.tmp80ZdRl/trusted-worker.js /Users/v/other/reservoir-llm-research"
+    }
+  ],
+  "processSignalsSent": 0,
+  "filesRemoved": 0,
+  "memoryReclaimedBytes": null,
+  "reason": "Prior owned app/service already closed; no currently identified safe owned runtime target. No disk cleanup: previous admission had ample disk.",
+  "initialInventoryLimit": "One broader user-executable RSS inventory was inspected for candidates; high-memory shared/unknown model and development processes were left untouched. RSS is not total-app memory."
+}

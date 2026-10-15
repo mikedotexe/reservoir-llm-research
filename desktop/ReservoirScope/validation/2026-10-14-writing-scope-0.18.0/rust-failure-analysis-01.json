@@ -1,0 +1,25 @@
+{
+  "observedAt": "2026-10-14T15:34:57.235283+00:00",
+  "receipt": "rust-checks-01.json",
+  "core": {
+    "passed": 200,
+    "failed": 0
+  },
+  "desktop": {
+    "passed": 191,
+    "failed": 2,
+    "ignored": 2
+  },
+  "failures": [
+    {
+      "test": "sustained_v5_reanchored_prompt_mutation_cannot_reinterpret_saved_evidence",
+      "cause": "Test setup inherited new v6 default while asserting old v5."
+    },
+    {
+      "test": "sustained_generation_budget_actual_worker_saves_long_text_memory_and_restore_exactly",
+      "cause": "Current-default worker accepted v6 while a stale assertion expected v5."
+    }
+  ],
+  "treatment": "Pin and preserve v5 tamper coverage, add v6 tamper coverage, update current-default worker assertion; rerun desktop suite and strict checks. No production change is indicated by these failures.",
+  "qualification": "Failed original run remains preserved; no package built from a failed gate."
+}

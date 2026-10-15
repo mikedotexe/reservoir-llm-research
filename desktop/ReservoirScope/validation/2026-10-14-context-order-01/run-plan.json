@@ -1,0 +1,46 @@
+{
+  "schema": "reservoir-context-order-plan-v1",
+  "episodeId": "context-order-01",
+  "model": "gemma3:4b",
+  "modelManifestSha256": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+  "contextTokens": 8192,
+  "outputTokens": 1024,
+  "temperature": 0,
+  "requestDeadlineSeconds": 180,
+  "inventoryDeadlineSeconds": 5,
+  "probeBudgetSeconds": 900,
+  "storageBudgetBytes": 67108864,
+  "serviceLifetimeSeconds": 1200,
+  "minimumServiceRemainingAtStart": 1140,
+  "ownedServiceDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-order-gemma3-4b-run01",
+  "softwareSelectionPath": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v6-writing-episode02/software-selection.json",
+  "softwareSelectionSha256": "f86c9011ed33881ffae71679a3c96755c3d7d1cfbd434b0b9535a3493192a127",
+  "provenance": {
+    "scope": "Standalone diagnostic; no application session, numerical advance or feedback. Copied v8 context describes its original session.",
+    "anchors": [
+      60,
+      120,
+      180,
+      240,
+      300,
+      360
+    ],
+    "selection": "Every second observation in one known twelve-entry v8 episode; selected before fresh outputs.",
+    "conditions": {
+      "A": "Exact original v8 prompt",
+      "B": "Only exchange complete OPTIONAL READOUT and PREVIOUS JOURNAL outer blocks; diagnostic, not production v8"
+    },
+    "productionPromptChanged": false,
+    "maxFreshRequests": 12,
+    "automaticRetries": 0,
+    "manualRetries": 0,
+    "replaceFailedSamples": false,
+    "hostAdmission": {
+      "requiredPressureLevel": 1,
+      "minimumFreePercent": 35,
+      "minimumFreeDiskBytes": 8589934592,
+      "attempts": 1
+    },
+    "otherApplicationsOrBeingsTouched": false
+  }
+}

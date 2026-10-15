@@ -1,0 +1,57 @@
+{
+  "schema": "reservoir-context-sources-preparation-checks-v1",
+  "startedAtUtc": "2026-10-15T20:13:07.798350+00:00",
+  "endedAtUtc": "2026-10-15T20:13:07.886026+00:00",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_prepare_inputs"
+  ],
+  "exitCode": 0,
+  "elapsedSeconds": 0.08758016698993742,
+  "passed": true,
+  "testCount": 14,
+  "sourceBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/prepare_inputs.py",
+      "bytes": 10903,
+      "sha256": "17e98c33f6b985f07c571fbcacd49cbccc3f06ae004297514b049777a4daa8cf"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/test_prepare_inputs.py",
+      "bytes": 6522,
+      "sha256": "ea65f4434a6d36372cc73c38b7a8fe7f79465ddeaa1bdec4b95c97152c75e8a2"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/run-plan.json",
+      "bytes": 3649,
+      "sha256": "8a3a84dfd4a1a6165636cbb0cd07e1b53d70ecd1c20ac4771479d977bbc41166"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/prepare_inputs.py",
+      "bytes": 10903,
+      "sha256": "17e98c33f6b985f07c571fbcacd49cbccc3f06ae004297514b049777a4daa8cf"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/test_prepare_inputs.py",
+      "bytes": 6522,
+      "sha256": "ea65f4434a6d36372cc73c38b7a8fe7f79465ddeaa1bdec4b95c97152c75e8a2"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/run-plan.json",
+      "bytes": 3649,
+      "sha256": "8a3a84dfd4a1a6165636cbb0cd07e1b53d70ecd1c20ac4771479d977bbc41166"
+    }
+  ],
+  "sourceUnchanged": true,
+  "log": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/preparation-checks-01.log",
+    "bytes": 2315,
+    "sha256": "32007b5eb70d020238d702e2166e71ed8fab249cb8ad55e2304936dae596a7f6"
+  },
+  "scope": "File-only structural insertion/source equality tests. No numerical recomputation, model/host/runtime calls or new production verifier execution; original passed replay is inherited."
+}

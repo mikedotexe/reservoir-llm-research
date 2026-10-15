@@ -1,0 +1,72 @@
+{
+  "schema": "reservoir-time-direction-freeze-integration-v1",
+  "status": "passed",
+  "atUtc": "2026-10-15T16:07:46.338835+00:00",
+  "freezeHelper": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/freeze_inputs.py",
+    "bytes": 5659,
+    "sha256": "121c779032873d869e421ebf33f89565ffe83d437f36d02e488df403e749e717"
+  },
+  "freezeHelperUnchanged": true,
+  "preparation": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/preparation-checks-01.json",
+    "bytes": 7308,
+    "sha256": "e4a5cc539af893a332e3f670193176f64315738a92136ea7e37fa350dac97c9b"
+  },
+  "runtime": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/runtime-checks-02.json",
+    "bytes": 7306,
+    "sha256": "652ad740fd87d98b0ac5515b6c63d907b1057ff87a5a84628587f1d07b5e2eb0"
+  },
+  "transformation": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/transformation-checks-01.json",
+    "bytes": 138119,
+    "sha256": "109de587bf2fb7d959ee2723a664ef7df0f3dcc6dbb2938cdfb3323aa8e59fda"
+  },
+  "inputGeneration": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/input-generation-01.json",
+    "bytes": 4137,
+    "sha256": "31e0f808cd400e7284b9409e48b7c74271f945f89a77c39aa721dbfbb29cfec5"
+  },
+  "inputs": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/frozen-inputs.json",
+    "bytes": 6082,
+    "sha256": "c4b86ac9b2342ba2e7bf517b04ab1101b74c47d9baa198a2f0134f949948e1d6"
+  },
+  "plan": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/run-plan.json",
+    "bytes": 3589,
+    "sha256": "93a831c67fde930dc2122216c6c3e172e108602683cd34e5203721b06fc151d1"
+  },
+  "formatter": {
+    "source": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/prompt_number.rs",
+      "bytes": 2481,
+      "sha256": "4ae00cd32460259ea4ac023e8fd5a7dfbf6034889ee02e3e524bb53a5ef7c6af"
+    },
+    "wrapper": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/fixed8_wrapper.rs",
+      "bytes": 1657,
+      "sha256": "af841aac45611319ab0ee5cfdd7c63761b8756e311ca7533d03a6181dff50270"
+    },
+    "binary": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/formatter/fixed8-wrapper",
+      "bytes": 561136,
+      "sha256": "0d85644c0b855ff4cfffdbdb0787e76e4f0c213c2ad4696e05e6ad2bcfe69411"
+    },
+    "compileCommand": [
+      "rustc",
+      "--edition=2021",
+      "-C",
+      "opt-level=0",
+      "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/fixed8_wrapper.rs",
+      "-o",
+      "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-01/formatter/fixed8-wrapper"
+    ]
+  },
+  "slotsChecked": 12,
+  "priorFilesChecked": 196,
+  "originalInventoryBeforeAfterEqual": true,
+  "originalInventoryEntries": 73,
+  "scope": "File-only direct qualification()/checked() calls and exact receipt schema/formatter/plan/slot joins. freeze main(), formatter binary, admission and runtime not executed; no source edits."
+}
