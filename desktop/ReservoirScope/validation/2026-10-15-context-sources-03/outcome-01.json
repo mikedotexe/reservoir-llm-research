@@ -1,0 +1,155 @@
+{
+  "schema": "reservoir-context-sources-closeout-v1",
+  "atUtc": "2026-10-15T21:26:07.695996+00:00",
+  "episodeId": "context-sources-03",
+  "status": "completed",
+  "slotOutcomes": {
+    "complete": 12,
+    "failed": 0,
+    "incomplete": 0,
+    "unstarted": 0
+  },
+  "admission": {
+    "policyFreePercent": 30,
+    "actualFreePercent": 42,
+    "pressureLevel": 1,
+    "minimumNearFloorCapacityQualified": false
+  },
+  "probeElapsedSeconds": 172.49499729205854,
+  "ownedService": {
+    "stopReason": "explicit stop",
+    "exitCode": 0,
+    "originalGroupQuiescentBeforeLeaderReap": true,
+    "escapedDescendantsInventoried": false
+  },
+  "preservation": {
+    "frozenFilesChecked": 843,
+    "frozenFilesUnchanged": true,
+    "runFilesOriginalAndRetainedExact": 40,
+    "serviceFilesOriginalAndRetainedExact": 6,
+    "fixedReadingNotesUnchanged": true,
+    "historicalProductReferencesSeparatelyScoped": 277
+  },
+  "readings": {
+    "originalIndependentMaskedReaders": [
+      "A",
+      "B"
+    ],
+    "additionalIndependentMaskedReader": "C",
+    "independentPairedReaders": [
+      "B",
+      "C"
+    ],
+    "supplementalPairedReader": "A",
+    "deviationPreserved": true,
+    "allTwelveFullResponsesRead": true,
+    "pairedReconciliation": "B/C agree on local step60 omission and contrary unsupported present measurements at120/360; preserve ambiguous step90 quotation and distinguish planned text from executed commands."
+  },
+  "decision": {
+    "candidatePromoted": false,
+    "productionPrompt": "reservoir-journal-v8",
+    "productionPromptChanged": false,
+    "reason": "No consistent source-role benefit; candidate invents precise current measurements in two known contexts.",
+    "proseQualityGateAdded": false,
+    "newRunQueued": false
+  },
+  "boundFiles": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/READER-A-BLIND.md",
+      "bytes": 5948,
+      "sha256": "b0ece91e85599bbb682410b732f07c351b7751d527b836b1b3174d184b74dde5"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/READER-B-BLIND.md",
+      "bytes": 17148,
+      "sha256": "b223991c45c1c5409aa451bc6d0df4a5fff9b44aec050c16524a424798e44821"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/READER-C-BLIND.md",
+      "bytes": 10479,
+      "sha256": "db3298fa0d9da00794cdbdd142be9948e8d535e33f395801cb280365538de669"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/READER-A-PAIRED.md",
+      "bytes": 6802,
+      "sha256": "8287d3798de7ab4f887342c2bc6e2766ad584fe0a2a42cb0b638cc3487cafbff"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/READER-B-PAIRED.md",
+      "bytes": 19679,
+      "sha256": "acebbeb10867990351214ff854059d15f8463f655dcbdd6e7eee6cb770943954"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/READER-C-PAIRED.md",
+      "bytes": 11570,
+      "sha256": "511a407bec26c8ff86a6324ad505da88c60a83c7ee473ac65622b343777daec2"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/reader-a-blind-01.json",
+      "bytes": 560,
+      "sha256": "1e13a152bf66018e383e40262fd8a43d780fde55b225e8387cd1ab68e3dee2b8"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/reader-a-paired-01.json",
+      "bytes": 645,
+      "sha256": "ed40716868d3015d8b9d7a3893026bd4bbfcbd3c3a18b47bb56078e56ec18507"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/reader-b-blind-01.json",
+      "bytes": 16563,
+      "sha256": "cbc49d5cd3ea799173b07d6b285827cd379df1a1710d136ed26c688a667a39f5"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/reader-b-paired-01.json",
+      "bytes": 83833,
+      "sha256": "c6cf598b26c0fe5f5007473380ac8db344645b9ad899d425d5dc2d54d9a5fe5a"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/reader-c-blind-01.json",
+      "bytes": 1805,
+      "sha256": "f984a7ebc68088169df70d809ac5a39c4d4e389b9d15845608c81bed9c8e2fda"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/reader-c-paired-01.json",
+      "bytes": 22949,
+      "sha256": "85d2249b0e9bd823c1e9ba4ae067f650ea095f4d0905afa1c118ad61941e227a"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/evaluation-freeze-01.json",
+      "bytes": 323009,
+      "sha256": "bcb5fb3d6d1ab6dc1407eeba803ae806b82f323bc960501a2ae22afc3d728078"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/host-admission-01.json",
+      "bytes": 1968,
+      "sha256": "d3006ad165999d14e1fe9bdde355ea37309822504b97bda286c3781f076e94a2"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/run-analysis-01.json",
+      "bytes": 60014,
+      "sha256": "a9f1f0fb73b878d39311eb4895ddcb2ef9939e3f0280a5bdefccfdb7407d10b3"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/source-context-audit-01.json",
+      "bytes": 215310,
+      "sha256": "a56f8389a4c352a59eacb2ce0b251358348c0f8ea068dbf7a592dc27a1ef04bd"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/READING-PROCESS-NOTE.md",
+      "bytes": 1476,
+      "sha256": "e9df8ac450cab6a6e7846d567362c044d0e967bcfef8d1d03a93b468ce4a0b88"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/README.md",
+      "bytes": 10104,
+      "sha256": "3a567e9ebe4aadc5f53d51d50a72eb73be4c769149d046df72ab51fdd7042d76"
+    }
+  ],
+  "limits": [
+    "Known dependent regression contexts, no candidate feedback chain.",
+    "Added wording/length/late salience bundled.",
+    "Agent readings with documented post-hoc protocol recovery, not human acceptance.",
+    "Actual42% admission does not establish capacity near30%.",
+    "No endurance, GPU/power, scientific-benefit or platform acceptance claim."
+  ]
+}

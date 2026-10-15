@@ -1,6 +1,6 @@
 # Reservoir Scope parity ledger
 
-**Current baseline: 0.20.0 / `reservoir-journal-v8` · Reviewed October 15, 2026**
+**Current baseline: 0.21.0 / `reservoir-journal-v8` · Reviewed October 15, 2026**
 
 This matrix separates implemented behavior, executed qualification and remaining
 work. A verifier pass does not establish complete workflow parity, scientific benefit
@@ -11,7 +11,14 @@ or live Being interoperability.
 [Desktop preview](../../desktop/ReservoirScope/README.md) ·
 [Exact pre-housekeeping history](PARITY-HISTORY-2026-10-15.md)
 
-## Current position: 0.20.0 measurement meanings and journal reading
+## Current position: 0.21.0 retained trajectory inspection
+
+[0.21 qualification](../../desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/README.md)
+adds a selectable retained PCA trajectory linked to the accepted state row and surface.
+All 219 core, 198 desktop and 393 frontend tests, TypeScript and both strict Clippy
+checks pass. The distinct macOS package passed scoped native pointer/keyboard selection,
+exact-value, fallback/context-recovery and navigation checks. Two opt-in desktop tests
+remain ignored. This is one workflow, not complete M3, GPU or platform acceptance.
 
 V8 changes only the prompt version and compact readout explanation. Topic/form,
 full eligible prior prose, writing boundary and numerical/save/application mechanisms
@@ -36,11 +43,21 @@ These are bounded writing observations, not an accuracy or prompt-benefit guaran
 Standalone order and time/distance diagnostics did not change production. The
 [first source-role window](../../desktop/ReservoirScope/validation/2026-10-15-context-sources-01/README.md)
 refused the changed installed runtime before spawn. Separate 0.40.5 source/identity
-review and 84 synthetic helper checks now pass, with actual execution unqualified.
+review and 84 synthetic helper checks passed before the second window; neither of
+the first two windows executed the model.
 The [new window](../../desktop/ReservoirScope/validation/2026-10-15-context-sources-02/README.md)
 retained exact prompts and bounds, then refused its one admission at 31% free memory
 against the unchanged 35% threshold. All twelve slots are unstarted; no model service
 or provider request began. Both refusals and source evidence remain exact.
+A separately identified third source-role window adopts the user-approved provisional
+30% reported-free floor and passed admission at 42%. It completed all twelve replies
+within 172.5 seconds and stopped the owned service cleanly. Its final 14 preparation
+and 97 synthetic runtime/admission checks passed. Full readings found a local benefit
+but also invented present measurements; the candidate was not promoted. The
+[separate report](../../desktop/ReservoirScope/validation/2026-10-15-context-sources-03/README.md)
+retains the reading-order deviation and additional independent assessment. These
+standalone outputs did not enter app journals or feedback, and success at 42% does
+not qualify operation near the relaxed floor. Production v8 remains unchanged.
 See [STATUS.md](../../desktop/ReservoirScope/STATUS.md) for the active backlog.
 
 ## Capability matrix
@@ -61,7 +78,7 @@ See [STATUS.md](../../desktop/ReservoirScope/STATUS.md) for the active backlog.
 | Geometry | Packet/chain hashes, ordered references, 128 vectors, unsigned clocks/gaps, RMS checks, explicit synthetic example and reading retention | Platform visual/accessibility review; live interoperability is not claimed |
 | Text/integer contract | Retained Swift ASCII and bounded Unicode corpus; decimal-string wide integers at IPC; response integer-token and canonical-Unicode comparison checks | Unqualified Unicode clusters/scalars, ambiguous provider parser forms and canonically duplicate response source-hash keys |
 | Desktop coexistence | Separate identity/store path, one window/instance configuration, scoped commands | All-target close/quit/relaunch, accessibility, installation and upgrades |
-| Observatory recordings | Independent 507-sample clocked fill history and 1,024-row ordinal state replay; radial-volume fill sphere/reference zones, exact coordinates, retained direction estimates and projection metrics | Further trajectory/topography/spectrum inspection and visual qualification; no claim of complete M3 |
+| Observatory recordings | Independent 507-sample clocked fill history and 1,024-row ordinal state replay; radial-volume fill sphere/reference zones, exact coordinates, retained direction estimates and projection metrics; 0.21 linked PCA trajectory with fixed capture-wide axes and exact selection | Reference-field and full-capture state-spectrum inspection; preserve projection choice on workspace return; compact-window and broader visual qualification; no claim of complete M3 |
 | Response evidence | Native immediate boundaries with exact Float32 differences, all receipt events, explicit external opening, immutable replacement checks and original exports; separate 65-boundary esn-divide result with paired surfaces and return-threshold inspection | All-target workflow/visual qualification; selected-file observation belongs to the later read-only feed tranche |
 | Preparation history | Separate original unavailable attempt, unexecuted correction, failed partial retry and four earlier preparation examples; exact report exports and current-verifier example opening | All-target dialogs, accessibility and collaborator review |
 | GPU workload | Event-driven surfaces/fill sphere, bounded pixels, invisible suspension, buffer reuse, exact fallback | Current-build measured interaction, GPU/power/memory contention and context recovery on each target |
@@ -79,7 +96,7 @@ checks, not desktop/workflow parity, scientific benefit or live Being interopera
 
 | Target | Build evidence | Packaged behavior | Human acceptance |
 | --- | --- | --- | --- |
-| macOS 14+ Apple silicon | Distinct 0.20.0 executable/archive; source-bound checks and fourteen unchanged historical export replays | Native synthetic save/held-response/export/recovery and historical reader checks; separate twelve-journal real v8 episode with exact paused recovery. Minimum OS, full workflows, accessibility and broader current-build duration/resource checks remain open | Pending |
+| macOS 14+ Apple silicon | Distinct 0.21.0 executable/archive and passing source-bound suites; 0.20 archive/pin/full app preserved | 0.21 scoped native trajectory picking, exact row selection, fallback/context recovery and navigation. Historical 0.20 save/export/recovery and separate real v8 episode remain tied to their builds. Minimum OS, full workflows, accessibility and broader current-build duration/resource checks remain open | Pending |
 | Windows 11 x64 | Initial CI passed reference/Python/frontend checks, then stopped at a core covariance assertion; a test-only correction is present but subsequent remote execution remains unqualified | Pending | Pending |
 | Ubuntu 24.04 x64 | Initial CI passed reference/Python/frontend checks, then stopped at a core covariance assertion; a test-only correction is present but subsequent remote execution remains unqualified | Pending | Pending |
 

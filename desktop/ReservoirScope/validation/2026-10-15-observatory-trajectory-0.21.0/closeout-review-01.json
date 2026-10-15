@@ -1,0 +1,125 @@
+{
+  "schema": "reservoir-trajectory-closeout-review-v1",
+  "status": "passed",
+  "capturedUtc": "2026-10-15T21:25:39.689014+00:00",
+  "scope": "File-only final source/package/preservation and documentation link check. No model responses or reader-note contents read or interpreted; no tests/build/runtime/UI/network actions.",
+  "qualification": {
+    "frontendInputsExact": 128,
+    "rustInputsExact": 162,
+    "buildInventoryFiles": 333,
+    "codeConfigAddedRemovedOrChanged": false,
+    "postBuildChanges": [
+      "desktop/ReservoirScope/README.md",
+      "desktop/ReservoirScope/STATUS.md",
+      "shared/reservoir-scope/PARITY.md"
+    ],
+    "currentAppFilesExact": 46,
+    "preserved020AppFilesExact": 46
+  },
+  "artifactIdentities": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/ReservoirScopeTauriPreview-0.21.0-macos-arm64.tar.gz",
+      "sha256": "33409bd66ed9e059097038d8dc8cb36c560607ce2141e5c9dcc344565b5ccd0f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.21-pinned/reservoir-scope-desktop",
+      "sha256": "c4b51f576063eebb11ac0e754ebfe16e6b92cde4849cf0fa5e94412221130128"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/ReservoirScopeTauriPreview-0.20.0-macos-arm64.tar.gz",
+      "sha256": "23fe012b90bca660773c63f58bd1bc916c26c9b74a0081b7e59d0603ec117e25"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-pinned/reservoir-scope-desktop",
+      "sha256": "cc5d3dce19076dbc1ff3b850cd99a72a410c8fa797d951cb11f4068ecaab1cfd"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.21-prior-0.20-preserved/ReservoirScopeTauriPreview-0.20.0-macos-arm64.tar.gz",
+      "sha256": "23fe012b90bca660773c63f58bd1bc916c26c9b74a0081b7e59d0603ec117e25"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.21-prior-0.20-preserved/reservoir-scope-desktop-0.20.0-pinned",
+      "sha256": "cc5d3dce19076dbc1ff3b850cd99a72a410c8fa797d951cb11f4068ecaab1cfd"
+    }
+  ],
+  "originalReviewReceiptsUnchanged": {
+    "FINAL-REVIEW.md": "2877f33bc618c6f954f583e9a0a9b864a769cead3ed5f95890f266abe71dceb5",
+    "postbuild-source-review-01.json": "72bd6911fdae949790838beca25bbbb50bba80d79ecf63956b7de51c0a4aca98"
+  },
+  "diagnosticPreservation": {
+    "frozenFilesExact": 843,
+    "priorValidationFilesExact": 492,
+    "freezeSha256": "bcb5fb3d6d1ab6dc1407eeba803ae806b82f323bc960501a2ae22afc3d728078",
+    "runAnalysisSha256": "a9f1f0fb73b878d39311eb4895ddcb2ef9939e3f0280a5bdefccfdb7407d10b3"
+  },
+  "mechanicalClaimsChecked": {
+    "completedResponses": 12,
+    "completePairs": 6,
+    "admissionFreePercent": 42,
+    "pressureLevel": 1,
+    "probeElapsedSeconds": 172.49499729205854,
+    "inventoryGetCount": 1,
+    "generationPostCount": 12,
+    "retriesObserved": 0,
+    "ownedServiceExitCode": 0,
+    "quiescentBeforeLeaderReap": true
+  },
+  "documentation": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/README.md",
+      "kind": "file",
+      "bytes": 5741,
+      "sha256": "b629b8a73ae4a07b70e2e032ae5938ed90fb77d79d1613236761ff72c804365a"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/MACOS-UI.md",
+      "kind": "file",
+      "bytes": 2613,
+      "sha256": "fe973d723e06f22b27a71655d263fbe99d1346d101da40040153e0b00150df14"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/STATUS.md",
+      "kind": "file",
+      "bytes": 9008,
+      "sha256": "6e3f8c88f30f5c9c6b4ba53906cc9395414ffa76145fe226b99133bdb70b2c9a"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/README.md",
+      "kind": "file",
+      "bytes": 13405,
+      "sha256": "e3f65f3bcd3acee7aca53db60fb59733535552f8b8fe11eb319f366683382b5a"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/TAURI-ROADMAP.md",
+      "kind": "file",
+      "bytes": 61147,
+      "sha256": "1277c9f42a636331f4bac728c352e55a294d31603cccca2e0f0c385d9f0a1739"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/shared/reservoir-scope/PARITY.md",
+      "kind": "file",
+      "bytes": 13800,
+      "sha256": "079fb4714c234810d33d77dc377511a383d0f59cc072c1f5437c82703b9608b8"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/RECORDED-TRAJECTORY.md",
+      "kind": "file",
+      "bytes": 2747,
+      "sha256": "91504146742a14a7e33d55fe88cc2894bc28b4fc0415e363441800cba3aba643"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/README.md",
+      "kind": "file",
+      "bytes": 9554,
+      "sha256": "644af9b2174c25edd30f2c35b3ff2311342b0b9c776c7cb9647345bd4d1a0f3d"
+    }
+  ],
+  "links": {
+    "relativeTargetsChecked": 121,
+    "missingAtCapture": [],
+    "readerNotesCheckedForExistenceOnly": true,
+    "anchorValidation": "Not rerun; relative file/directory targets checked"
+  },
+  "findings": [],
+  "interpretation": "Current documents keep production v8 unchanged, identify the diagnostic as not promoted and preserve old refusals. Semantic conclusions are attributed to the separate readers, not independently reassessed here."
+}

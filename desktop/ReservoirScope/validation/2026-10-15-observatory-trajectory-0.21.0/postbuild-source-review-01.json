@@ -1,0 +1,281 @@
+{
+  "schema": "reservoir-trajectory-postbuild-file-review-v1",
+  "status": "passed",
+  "capturedUtc": "2026-10-15T21:16:59.075737+00:00",
+  "scope": "File-only source/package/hash and documentation review. No tests, build, host probes, processes, app activation, model or network actions.",
+  "basis": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/frontend-checks-01.json",
+      "kind": "file",
+      "bytes": 14493,
+      "sha256": "8f9f702aba48da3e9beaa8d768d494db977428854a6a8730a478fc46f1b58a96"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/rust-checks-01.json",
+      "kind": "file",
+      "bytes": 56583,
+      "sha256": "622f4208b83a3c660347fc890aa35850389957b95a5db6b0d68e0c99f9e0d6a7"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/package-build-01.json",
+      "kind": "file",
+      "bytes": 73715,
+      "sha256": "a87162baa40670f5fe172740ddfc68d6bf5423ce6e23258964d9e833897e07a3"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/archive-check-01.json",
+      "kind": "file",
+      "bytes": 21434,
+      "sha256": "68da5c3372fb2d86c5a0c0066cc8fcaa8ad0ad8fe52df8c70e88dd10f6e23f1e"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/prior-package-preserved-01.json",
+      "kind": "file",
+      "bytes": 14410,
+      "sha256": "f54502d5f9969c3bb60ec4f1676189a1ca38f3fdab37509d3e4f0709d255ffe9"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/native-ui-01.json",
+      "kind": "file",
+      "bytes": 1758,
+      "sha256": "9abe95d3d27a810c4b78f11c831fc81e20c2dbea1a9400501e8c5de25deb53f5"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/ui-reference-values.json",
+      "kind": "file",
+      "bytes": 1754,
+      "sha256": "705f694ec0b294d7acfcca455f564285691f020fb873dff3bde90ad40369ad5f"
+    }
+  ],
+  "frontendInputsExact": 128,
+  "rustInputsExact": 162,
+  "buildInventoryCount": 333,
+  "sourceFilesAddedOrRemoved": [],
+  "postBuildChanges": [
+    {
+      "path": "desktop/ReservoirScope/README.md",
+      "before": {
+        "path": "desktop/ReservoirScope/README.md",
+        "kind": "file",
+        "bytes": 12630,
+        "sha256": "4caf3c2a087ed992e675e6946fb4b46743a740cd8258e535dad46fe03918e2bd"
+      },
+      "after": {
+        "path": "desktop/ReservoirScope/README.md",
+        "kind": "file",
+        "bytes": 13145,
+        "sha256": "e31dc91688197d772a51f7ad4a06fcbd2404fd349d7d3f13fd0975f45a51e55a"
+      }
+    },
+    {
+      "path": "desktop/ReservoirScope/STATUS.md",
+      "before": {
+        "path": "desktop/ReservoirScope/STATUS.md",
+        "kind": "file",
+        "bytes": 8003,
+        "sha256": "41ee7c604de0b18b6f7e9b0cd597e3df5e2f5eb94b55a9ff6261e2a92be9e635"
+      },
+      "after": {
+        "path": "desktop/ReservoirScope/STATUS.md",
+        "kind": "file",
+        "bytes": 8800,
+        "sha256": "9b4c733b20a005e891cc85fd3ebc6ae1a59c5e94f92e6110fa62eb3060dbc0e2"
+      }
+    },
+    {
+      "path": "shared/reservoir-scope/PARITY.md",
+      "before": {
+        "path": "shared/reservoir-scope/PARITY.md",
+        "kind": "file",
+        "bytes": 12260,
+        "sha256": "fc9e3d8743a8dd06271e5f1a231c9df23a9ad3b838ad1dd98362e8257150b9f8"
+      },
+      "after": {
+        "path": "shared/reservoir-scope/PARITY.md",
+        "kind": "file",
+        "bytes": 13268,
+        "sha256": "5e7c7a19a3ad188aed3da6d14c9aead7d1144b35c4b9ee1e4adae15c9d3c641f"
+      }
+    }
+  ],
+  "allowedPostBuildChanges": [
+    "desktop/ReservoirScope/README.md",
+    "desktop/ReservoirScope/STATUS.md",
+    "shared/reservoir-scope/PARITY.md"
+  ],
+  "numericalAndDesktopRustProductionFilesExactAgainst020": 52,
+  "testLogsExact": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/frontend-tests-01.log",
+      "kind": "file",
+      "bytes": 334,
+      "sha256": "99b9357a077c7d693f6bf3f0ad35db494c889e0f129af5709cdbbe8daacc4079"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/frontend-typescript-01.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/reference-01.log",
+      "kind": "file",
+      "bytes": 133,
+      "sha256": "e84ce451bbba9c3e7d8977919cd5f2ccfb976ea173385e2e6fdf6166c8915e47"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/resource-staging-01.log",
+      "kind": "file",
+      "bytes": 305,
+      "sha256": "8ccbea2ebf6cbc5aa76e018f98cd0df5b1ff4aad11cbbdbfe764a4e877d7dbb4"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/rust-format-01.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/core-tests-01.log",
+      "kind": "file",
+      "bytes": 25832,
+      "sha256": "e03cca207b675c3be3cc9b864b82078d9274415afcb6dfc5c296d7cbcdbc685e"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/desktop-tests-01.log",
+      "kind": "file",
+      "bytes": 20857,
+      "sha256": "21f5fc46d79b9afdd5137473ac485d542ed286c9d4589322b9545dc2c600cee2"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/core-clippy-01.log",
+      "kind": "file",
+      "bytes": 220,
+      "sha256": "8f1d7044e2834436311556684795bf964dcf648346575025ea167f75ce181c75"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/desktop-clippy-01.log",
+      "kind": "file",
+      "bytes": 218,
+      "sha256": "c64b34aab1606e053dc0e6ac3483ba49557f02728481d6d5ec3959d483e0ff19"
+    }
+  ],
+  "currentPackageFilesExact": 46,
+  "preserved020PackageFilesExact": 46,
+  "artifactIdentities": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/ReservoirScopeTauriPreview-0.21.0-macos-arm64.tar.gz",
+      "kind": "file",
+      "bytes": 96693395,
+      "sha256": "33409bd66ed9e059097038d8dc8cb36c560607ce2141e5c9dcc344565b5ccd0f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.21-pinned/reservoir-scope-desktop",
+      "kind": "file",
+      "bytes": 17001216,
+      "sha256": "c4b51f576063eebb11ac0e754ebfe16e6b92cde4849cf0fa5e94412221130128"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/ReservoirScopeTauriPreview-0.20.0-macos-arm64.tar.gz",
+      "kind": "file",
+      "bytes": 96686593,
+      "sha256": "23fe012b90bca660773c63f58bd1bc916c26c9b74a0081b7e59d0603ec117e25"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-pinned/reservoir-scope-desktop",
+      "kind": "file",
+      "bytes": 16984608,
+      "sha256": "cc5d3dce19076dbc1ff3b850cd99a72a410c8fa797d951cb11f4068ecaab1cfd"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.21-prior-0.20-preserved/ReservoirScopeTauriPreview-0.20.0-macos-arm64.tar.gz",
+      "kind": "file",
+      "bytes": 96686593,
+      "sha256": "23fe012b90bca660773c63f58bd1bc916c26c9b74a0081b7e59d0603ec117e25"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.21-prior-0.20-preserved/reservoir-scope-desktop-0.20.0-pinned",
+      "kind": "file",
+      "bytes": 16984608,
+      "sha256": "cc5d3dce19076dbc1ff3b850cd99a72a410c8fa797d951cb11f4068ecaab1cfd"
+    }
+  ],
+  "sourceBeforeBuildSha256": "ef9b1fc6f32b11bfcd4ca28f30e5afcae67ad6fa356be10456aa337a25fe3976",
+  "currentSourceInventorySha256": "d05ef2e3cec9fb9066a7da0a37c1c64b12ecff89ab28b620869fab44ad71a21e",
+  "documentationAtReview": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/README.md",
+      "kind": "file",
+      "bytes": 3435,
+      "sha256": "4902508352fda18742e70528078e7c966ae6744af86c6698c448bdc7437cf659"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/MACOS-UI.md",
+      "kind": "file",
+      "bytes": 2613,
+      "sha256": "fe973d723e06f22b27a71655d263fbe99d1346d101da40040153e0b00150df14"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/TAURI-ROADMAP.md",
+      "kind": "file",
+      "bytes": 60767,
+      "sha256": "34c2bbf3f263863231faf68fcbe99a10f96757163bba816c6ca917f7ec185d6a"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/shared/reservoir-scope/PARITY.md",
+      "kind": "file",
+      "bytes": 13268,
+      "sha256": "5e7c7a19a3ad188aed3da6d14c9aead7d1144b35c4b9ee1e4adae15c9d3c641f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/STATUS.md",
+      "kind": "file",
+      "bytes": 8800,
+      "sha256": "9b4c733b20a005e891cc85fd3ebc6ae1a59c5e94f92e6110fa62eb3060dbc0e2"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/README.md",
+      "kind": "file",
+      "bytes": 13145,
+      "sha256": "e31dc91688197d772a51f7ad4a06fcbd2404fd349d7d3f13fd0975f45a51e55a"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/RECORDED-TRAJECTORY.md",
+      "kind": "file",
+      "bytes": 2747,
+      "sha256": "91504146742a14a7e33d55fe88cc2894bc28b4fc0415e363441800cba3aba643"
+    }
+  ],
+  "links": {
+    "localTargetsChecked": 95,
+    "missing": [
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/README.md",
+        "target": "../2026-10-15-context-sources-03/README.md"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/validation/2026-10-15-context-sources-03/README.md"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-15-context-sources-03/README.md"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "validation/2026-10-15-context-sources-03/README.md"
+      }
+    ],
+    "scope": "Relative file/directory existence; anchor acceptance not evaluated here"
+  },
+  "documentationCloseoutNotes": [
+    "0.21 qualification README still says qualification is in progress and leaves final Rust/native closeout pending.",
+    "Four current-document links point to the not-yet-written context-sources-03 README; parent owns the active diagnostic closeout."
+  ],
+  "nativeEvidenceScope": "Operator observations read from native-ui-01; no independent GUI repetition. Known resize, PC1/PC3, overlap, accessibility and resource limits retained.",
+  "limitations": [
+    "Historical 0.20 replay/export tests were not rerun here",
+    "No GPU/power or long-duration benchmark",
+    "Known postbuild documentation changes do not qualify a new binary"
+  ]
+}

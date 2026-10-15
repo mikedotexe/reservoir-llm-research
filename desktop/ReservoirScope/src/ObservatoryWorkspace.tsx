@@ -20,6 +20,6 @@ export default function ObservatoryWorkspace({active,onOpenExample}:{active:bool
     <RecordedObservatory active={active&&view==='recordings'}/>
     <ResponseWorkspace active={active&&view==='responses'}/>
     <PreparationHistory initiallyOpen active={active&&view==='preparation'} onOpenExample={onOpenExample}/>
-    {active&&<section className="observatory-scope"><h2>Building toward your own reservoir</h2><p>These views inspect retained evidence. Open Experiments → Fresh experiments to run a finite reservoir with a script or an explicitly configured local model, and save its journals. A sustained journal feedback loop while open or minimized is the next extension.</p><button onClick={()=>setDiagnostics(!diagnostics)}>{diagnostics?'Hide':'Show'} desktop diagnostics and reference scenes</button>{diagnostics&&<DesktopDiagnostics/>}</section>}
+    {active&&<section className="observatory-scope"><h2>Run your own reservoir</h2><p>These views inspect retained evidence. Open Experiments → My reservoir to create a bounded session with scripted writing or an explicitly selected local model. It can keep writing and applying saved journals while the app is open or minimized. Fresh experiments offers separate finite recipes.</p><button onClick={()=>setDiagnostics(!diagnostics)}>{diagnostics?'Hide':'Show'} desktop diagnostics and reference scenes</button>{diagnostics&&<DesktopDiagnostics/>}</section>}
   </section>;
 }

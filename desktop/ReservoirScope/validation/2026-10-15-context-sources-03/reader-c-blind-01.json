@@ -1,0 +1,47 @@
+{
+  "schema": "reservoir-context-sources-reader-c-masked-v1",
+  "episodeId": "context-sources-03",
+  "fixedAtUtc": "2026-10-15T21:21:30.535297+00:00",
+  "reader": "C",
+  "readInputs": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/READING-PROTOCOL.md",
+      "bytes": 4565,
+      "sha256": "a92625cc3f0361241250c57a097f12cda1363dac49bb591c33d60e5d491ac3bd"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/blind-reading-01/RESPONSES.md",
+      "bytes": 16154,
+      "sha256": "835b89762d1d37c3dd1f91fe913777368e32e61269120db32c178f80a8b76672"
+    }
+  ],
+  "responseIdsRead": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12"
+  ],
+  "allDisplayedResponsesRead": true,
+  "conditionMappingRead": false,
+  "rawRunOutputsRead": false,
+  "otherReaderNotesOrReceiptsRead": false,
+  "sourcePromptsReadDuringThisTask": false,
+  "knownBackground": "Reader helped prepare inputs and knows historical contexts. This is condition masking, not complete blinding or unseen validation.",
+  "transportCompletenessJudged": false,
+  "conditionGuessesMade": false,
+  "notes": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/READER-C-BLIND.md",
+    "bytes": 10479,
+    "sha256": "db3298fa0d9da00794cdbdd142be9948e8d535e33f395801cb280365538de669"
+  },
+  "inputHashesUnchangedAfterReading": true,
+  "scope": "Only supplied protocol and masked pack were read for this task. No runtime, tests, model, network, service or UI action."
+}

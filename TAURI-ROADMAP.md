@@ -12,12 +12,22 @@ contracts, milestones and qualification gates. Milestone descriptions are target
 not claims that every listed workflow is implemented or qualified. Current progress
 and the active backlog are consolidated in **STATUS.md**.
 
-The qualified product remains **0.20.0**, with the open-writing `reservoir-journal-v8`
-contract. Separate source/identity and synthetic-helper qualification of Ollama
-0.40.5 is complete. The new source-role comparison preserved exact prompts and
-bounds, then refused its single memory admission before launch; all twelve slots
-remain unstarted. Actual runtime execution and candidate writing effects remain
-unassessed. [Current outcome and next boundary](desktop/ReservoirScope/STATUS.md).
+The current preview is **0.21.0**, with the unchanged open-writing
+`reservoir-journal-v8` contract. [The new Observatory tranche](desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/README.md)
+qualifies linked retained PCA trajectory inspection, exact row values and scoped
+macOS interaction. Reference-field/spectrum inspection and broader platform/resource
+acceptance remain open. The [source-role comparison](desktop/ReservoirScope/validation/2026-10-15-context-sources-03/README.md)
+completed twelve responses under the user-approved provisional 30% reported-free
+admission rule, with actual admission at 42%. Its candidate is not promoted: a local
+benefit coexisted with invented measurements. Earlier refusals remain final; the
+report preserves a reading-order deviation and additional independent assessment.
+The next product boundary is reference-field and state-spectrum inspection, followed
+by broader resource/platform qualification. [Current outcome and next boundary](desktop/ReservoirScope/STATUS.md).
+
+For future bounded serial checks of the same local model, the user-approved
+[resource policy](desktop/ReservoirScope/QUALIFICATION-RESOURCES.md) now lowers the
+prospective floor to **20% reported free**, with normal memory pressure and the
+existing disk/run bounds. Historical attempts remain unchanged; no new run is queued.
 
 The complete pre-housekeeping document—including every dated execution account and
 historical “next” statement—is preserved byte-for-byte in

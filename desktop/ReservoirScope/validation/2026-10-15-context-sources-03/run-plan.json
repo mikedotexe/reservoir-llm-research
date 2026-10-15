@@ -1,0 +1,94 @@
+{
+  "schema": "reservoir-context-sources-plan-v1",
+  "episodeId": "context-sources-03",
+  "model": "gemma3:4b",
+  "modelManifestSha256": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+  "contextTokens": 8192,
+  "outputTokens": 1024,
+  "temperature": 0,
+  "requestDeadlineSeconds": 180,
+  "inventoryDeadlineSeconds": 5,
+  "probeBudgetSeconds": 900,
+  "storageBudgetBytes": 67108864,
+  "serviceLifetimeSeconds": 1200,
+  "minimumServiceRemainingAtStart": 1140,
+  "ownedServiceDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-sources-gemma3-4b-run03",
+  "softwareSelectionPath": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/software-selection.json",
+  "softwareSelectionSha256": "b055ddd7c91e67c75fae0df183b234836ef11eb3a96574b9da458b06576196fa",
+  "provenance": {
+    "scope": "Standalone source-label diagnostic; no application session, numerical advance or feedback. Retained v8 context refers to its original session.",
+    "anchors": [
+      30,
+      60,
+      90,
+      120,
+      330,
+      360
+    ],
+    "selection": "Early four and late two observations of the known completed twelve-entry v8 episode, selected before fresh outputs.",
+    "conditions": {
+      "A": "Exact original v8 prompt; control bytes reused from time-direction-03 A slots.",
+      "B": "Insert the approved source-distinction paragraph immediately before the final invitation; all original bytes otherwise unchanged. Diagnostic only, not a valid production-v8 record."
+    },
+    "candidateId": "context-sources-01",
+    "candidateParagraph": "The readout reports recorded observations; any quoted previous journal is remembered writing. You may imagine what follows, but an imagined continuation is not a new observation or an executed action.",
+    "productionPromptChanged": false,
+    "maxFreshRequests": 12,
+    "automaticRetries": 0,
+    "manualRetries": 0,
+    "replaceFailedSamples": false,
+    "hostAdmission": {
+      "requiredPressureLevel": 1,
+      "minimumFreePercent": 30,
+      "minimumFreeDiskBytes": 8589934592,
+      "attempts": 1
+    },
+    "authorization": "October 15: the user explicitly authorized relaxing the conservative 35% memory guard on the dedicated Mac and one fresh comparison window. Parent selected a provisional 30% reported-free floor; all other request/runtime/resource limits are unchanged. Admission and launch wait for explicit parent release after product checks.",
+    "resultsDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.20-context-sources-results03",
+    "priorDiagnostic": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/run-analysis-01.json",
+      "bytes": 59869,
+      "sha256": "6a78ced82585b398ee7874bfef54b7be8204ef66729b99fdbcb1e1d18bd7daa1"
+    },
+    "priorInputs": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/frozen-inputs.json",
+      "bytes": 6709,
+      "sha256": "2c99ed010d2d84b72888b135c43125eae8bd17e6dd5cfeea3954f0fa90cfee39"
+    },
+    "sourcePromptVersion": "reservoir-journal-v8",
+    "sourceEpisode": "v8-writing-episode01",
+    "otherApplicationsChangedDuringProbe": false,
+    "BeingsOrSharedServicesTouched": false,
+    "preAdmissionCleanupReceipt": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/cleanup-result-01.json",
+      "bytes": 260,
+      "sha256": "60c57e6f321089241b7c33516d44b9c29a739dcd70626b3296437caeeeae841d"
+    },
+    "priorAttempt": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-02/outcome-01.json",
+      "bytes": 2747,
+      "sha256": "db3e6e7272ad7e17206268a7429f06c03fbf98cafb9db70b82ade8f7a349e20f"
+    },
+    "priorFrozenInputs": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-02/frozen-inputs.json",
+      "bytes": 6182,
+      "sha256": "82b26c97f7099fc4ba6b7aa38deca3a902db00f4c399792ac2f7a1b4391d66dd"
+    },
+    "runtimeQualificationDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5",
+    "runtimeInterpretation": "Same explicit 0.40.5 software selection as refused window02. Source/synthetic preflight remains conditional; no actual owned startup/inventory/generation has been qualified by windows01/02. This distinct window is limited to its frozen bounds.",
+    "admissionPolicyId": "normal-pressure-reported-free-30-v1",
+    "admissionRationale": "35% was an inherited operational margin, not a measured model minimum. On this 64-GiB M4 Pro host, use 30% reported free provisionally with normal pressure level 1 and 8 GiB free disk. The percentage is not literal unused RAM or a guaranteed allocatable budget; neither a single admission nor source/synthetic runtime qualification proves continued capacity or successful execution. Historical refusals remain valid under their frozen 35% rule.",
+    "priorAttempts": [
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/outcome-01.json",
+        "bytes": 7535,
+        "sha256": "832d2a9459d3c8fefbd10636c03f89731af1caf0ea79adcfed90281214298b69"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-02/outcome-01.json",
+        "bytes": 2747,
+        "sha256": "db3e6e7272ad7e17206268a7429f06c03fbf98cafb9db70b82ade8f7a349e20f"
+      }
+    ]
+  }
+}

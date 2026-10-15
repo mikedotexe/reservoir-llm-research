@@ -1,0 +1,53 @@
+{
+  "capturedUtc": "2026-10-15T21:11:52.475416+00:00",
+  "episodeId": "context-sources-03",
+  "scope": "One passive pre-launch admission. No service/Being inspection or process changes. No retry.",
+  "freezeSha256": "bcb5fb3d6d1ab6dc1407eeba803ae806b82f323bc960501a2ae22afc3d728078",
+  "runPlan": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/run-plan.json",
+    "bytes": 6026,
+    "sha256": "cdbb6a728144bc346eac8cc1c75e415a6634d505c57a3a4a8af118802a82d374"
+  },
+  "policyId": "normal-pressure-reported-free-30-v1",
+  "thresholds": {
+    "requiredPressureLevel": 1,
+    "minimumFreePercent": 30,
+    "minimumFreeDiskBytes": 8589934592,
+    "attempts": 1
+  },
+  "results": [
+    {
+      "command": [
+        "/usr/sbin/sysctl",
+        "-n",
+        "hw.memsize"
+      ],
+      "exit": 0,
+      "stdout": "68719476736\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/sbin/sysctl",
+        "-n",
+        "kern.memorystatus_vm_pressure_level"
+      ],
+      "exit": 0,
+      "stdout": "1\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/memory_pressure"
+      ],
+      "exit": 0,
+      "stdout": "The system has 68719476736 (4194304 pages with a page size of 16384).\n\nStats: \nPages free: 290560 \nPages purgeable: 4864 \nPages purged: 47271354 \n\nSwap I/O:\nSwapins: 77777097 \nSwapouts: 88868082 \n\nPage Q counts:\nPages active: 728145 \nPages inactive: 745134 \nPages speculative: 17452 \nPages throttled: 0 \nPages wired down: 1899327 \n\nCompressor Stats:\nPages used by compressor: 467047 \nPages decompressed: 1977255013 \nPages compressed: 2452797892 \n\nFile I/O:\nPageins: 1787890095 \nPageouts: 708350 \n\nSystem-wide memory free percentage: 42%\n",
+      "stderr": ""
+    }
+  ],
+  "totalMemoryBytes": 68719476736,
+  "pressureLevel": 1,
+  "freePercent": 42,
+  "diskFreeBytes": 509671108608,
+  "admitted": true
+}

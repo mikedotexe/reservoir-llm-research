@@ -1,0 +1,54 @@
+{
+  "schema": "reservoir-observatory-agent-ui-v1",
+  "completedUtc": "2026-10-15T21:13:08.755442+00:00",
+  "launchReceiptSha256": "49e016bccd04afd074e60835a9e370133b1a8db3470ef85b8cbac6ef9b263c7a",
+  "executableSha256": "c4b51f576063eebb11ac0e754ebfe16e6b92cde4849cf0fa5e94412221130128",
+  "method": "Native cua_repl accessibility and screenshots; operator observations, not WebDriver automation or collaborator acceptance.",
+  "openedTracks": {
+    "historyRows": 507,
+    "stateRows": 1024
+  },
+  "pointerSelectedRow": 389,
+  "rightArrowSelectedRow": 390,
+  "endSelectedRow": 1023,
+  "exactCoordinates": {
+    "512": [
+      -0.05310689034211043,
+      0.036865687315584476,
+      0.01722597604138544
+    ],
+    "1023": [
+      -0.03936080713669933,
+      -0.015297014149997148,
+      0.02666590119417534
+    ]
+  },
+  "axisExtent": 3.1404299643228146,
+  "inspectedPairs": [
+    "PC1 / PC2",
+    "PC2 / PC3"
+  ],
+  "contextLoss": {
+    "selectedRow": 512,
+    "beforeFrames": 6,
+    "restoredFrames": 7,
+    "exactValuesRetained": true
+  },
+  "fallbackPlayback": {
+    "startedRow": 512,
+    "pausedOnNavigationAtRow": 548,
+    "returnedRow": 548,
+    "projectionChoiceReset": "PC1 / PC2"
+  },
+  "quit": {
+    "pid": 58204,
+    "absentAfterCommandQ": true
+  },
+  "limitations": [
+    "PC1/PC3 option present; not selected in native check",
+    "Resize drag did not visibly change window geometry; smaller-window qualification remains open",
+    "Minimize/Raise commands retained row; no measured minimized interval or GPU suppression claim",
+    "Projection selector resets on workspace remount; row and exact evidence remain retained",
+    "No GPU/power/interaction benchmark, broader accessibility, new-arrival journal or other-platform acceptance"
+  ]
+}

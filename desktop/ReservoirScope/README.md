@@ -1,6 +1,6 @@
 # Reservoir Scope Tauri Preview
 
-**0.20.0 · `reservoir-journal-v8` · Local preview**
+**0.21.0 · `reservoir-journal-v8` · Local preview**
 
 Reservoir Scope combines a personal reservoir and journal with offline experiments,
 recordings and evidence readers. The native macOS app remains separate at
@@ -21,7 +21,9 @@ This demonstrates the recorded mechanics, not reliable prose claims or scientifi
 benefit. The wider Observatory, cross-platform delivery, current-build endurance,
 measured GPU behavior and collaborator acceptance remain incomplete.
 
-The [0.20 source/package/native account](validation/2026-10-14-reading-measurements-0.20.0/README.md)
+The [0.21 trajectory package](validation/2026-10-15-observatory-trajectory-0.21.0/README.md)
+adds linked retained PCA inspection with scoped native interaction checks. The
+[0.20 source/package/native account](validation/2026-10-14-reading-measurements-0.20.0/README.md)
 and [separate real v8 episode](validation/2026-10-14-v8-writing-episode01/README.md)
 identify executed checks and limits. Historical evidence belongs to its exact build.
 The two-hour synthetic run belongs to 0.12.0. Windows/Ubuntu's initial CI failure and
@@ -33,8 +35,12 @@ Production v8 remains unchanged. The first standalone source-role diagnostic
 Separate 0.40.5 source/identity review and synthetic helper checks now pass, but the
 [new comparison window](validation/2026-10-15-context-sources-02/README.md) refused
 its one memory admission at 31% free against the unchanged 35% minimum. All twelve
-slots remain unstarted, with no service or provider request. Actual 0.40.5 execution
-and candidate writing effects remain unassessed; no automatic retry is queued.
+slots remain unstarted, with no service or provider request. A separately identified [third window](validation/2026-10-15-context-sources-03/README.md)
+uses the user-approved provisional 30% admission floor. It passed at 42% and completed
+all twelve responses within bounds; the owned service stopped cleanly. The candidate
+was not promoted: a local improvement coexisted with invented present measurements.
+Prior refusals and original journals remain unchanged. The report separates full
+readings, the review-order recovery and numerical evidence from writing style.
 
 ## Use the preview
 
@@ -43,7 +49,7 @@ and candidate writing effects remain unassessed; no automatic retry is queued.
 | Experiments → My reservoir | Explicitly create/start a bounded scripted or local-model session; watch recurrent state and separate sensory fill; read complete journals independently of the live cursor; export and restore paused | [Sustained sessions](SUSTAINED-SESSIONS.md) |
 | Experiments → Fresh experiments | Explore, stages 1–4, standalone A–H, matched B–H and D/D observation pairs, plus a separate fixed field-only controller study | [Fresh experiments](FRESH-EXPERIMENTS.md) |
 | Experiments → Recording reader / Library | Verify recorded experiments, inspect exact prompt/save/application evidence, import immutable bytes, search/filter metadata, export originals and recover the index | [Library](LIBRARY.md), [guided evidence](GUIDED-EVIDENCE.md) |
-| Observatory | Independent clocked fill and ordinal state recordings; response evidence, preparation histories and exact exports | [Recorded fill](RECORDED-FILL-SPHERE.md), [responses](RESPONSE-EVIDENCE.md) |
+| Observatory | Independent clocked fill and ordinal state recordings; linked retained PCA trajectory/surface inspection; responses, preparation histories and exact exports | [Recorded fill](RECORDED-FILL-SPHERE.md), [responses](RESPONSE-EVIDENCE.md) |
 | Guided tour / Research cases / Geometry | Authored A–H questions and limits, reviewed evidence, checked catalog derivatives and 128-coordinate geometry packets | [Cases](crates/reservoir-core/CASES.md), [geometry](GEOMETRY.md) |
 
 ### My reservoir and sustained journals
@@ -86,7 +92,9 @@ Selected read-only feeds are a separate future workflow.
 Fill history has 507 clocked samples; state replay has 1,024 ordinal rows × 128
 coordinates. They are independent recordings, not synchronized signals. The fill
 sphere and signed surface preserve their distinct quantities and exact-value fallback.
-Remaining trajectory/topography/spectrum workflows and visual acceptance are tracked
+The [retained trajectory](RECORDED-TRAJECTORY.md) adds selectable PC-axis pairs linked
+to the state row, with fixed full-capture scales and exact values. Remaining reference-field
+and spectrum workflows and broader visual acceptance are tracked
 in the [parity matrix](../../shared/reservoir-scope/PARITY.md#capability-matrix).
 
 ### Recorded visual and writing experience

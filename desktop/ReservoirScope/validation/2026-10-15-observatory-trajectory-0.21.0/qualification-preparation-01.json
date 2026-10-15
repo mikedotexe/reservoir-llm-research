@@ -1,0 +1,63 @@
+{
+  "schema": "observatory-trajectory-qualification-preparation-v1",
+  "createdAtUtc": "2026-10-15T20:59:38.461174+00:00",
+  "status": "prepared_not_executed",
+  "files": [
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/protect_prior_package.py",
+      "bytes": 5090,
+      "sha256": "d5a1b3d3793f7c96e091863363ce7490705aea461685d33775c5cfd451522433"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/inspect_prior_process.py",
+      "bytes": 3228,
+      "sha256": "fc59c72f226451454c218c4c2925be9a5fd756e20078eed0702f07ce3ec2e0d5"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/checks_common.py",
+      "bytes": 3586,
+      "sha256": "1d4adab8cdc5a75030cc4ba67ee349438970f4ee68211fcff7cb840e86b4af80"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/run_frontend_checks.py",
+      "bytes": 2175,
+      "sha256": "0c4686f31e67694209fbca782a401251d621a9d317ba2e67e660b07e66039a63"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/run_rust_checks.py",
+      "bytes": 2237,
+      "sha256": "e8b293c6317ea98dadec829c7052f3b89850b544097db6bc2521891bf22176d2"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/build_package.py",
+      "bytes": 7715,
+      "sha256": "237299ce510dcfa2bca5650a1d93c1c55264e1f67ac468cc0d9ea3d55fd9469a"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/QUALIFICATION-PLAN.md",
+      "bytes": 3731,
+      "sha256": "b1a9f41783fa76dcc7ade825a066ee46249075a0aeb8e3ec5d43fbf59cb272e4"
+    }
+  ],
+  "scriptSyntax": "All six Python helpers parsed without importing or running test/build wrappers.",
+  "preservation": {
+    "path": "desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/prior-package-preserved-01.json",
+    "sha256": "f54502d5f9969c3bb60ec4f1676189a1ca38f3fdab37509d3e4f0709d255ffe9",
+    "passed": true
+  },
+  "processObservation": {
+    "path": "desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/prior-process-identity-01.json",
+    "sha256": "2140fce8a6b4fdebaa491bb11a04a84f004e6d7a4618d4b0e8404a319ebd8d73"
+  },
+  "environmentPathsPresent": {
+    "/Users/v/.nvm/versions/node/v20.20.1/bin/node": true,
+    "/Users/v/.nvm/versions/node/v20.20.1/bin/npm": true,
+    "/Users/v/.cargo/bin/cargo": true,
+    "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk": true
+  },
+  "testsRun": false,
+  "buildsRun": false,
+  "applicationActions": false,
+  "serviceActions": false,
+  "scope": "Only new validation helpers/docs/receipts and exclusive old-package copies in target/qa; no production, version, prior evidence or runtime mutations."
+}
