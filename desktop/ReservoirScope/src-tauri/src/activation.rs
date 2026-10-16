@@ -1253,13 +1253,14 @@ impl ActivationState {
             }
             entries.insert(name, String::from_utf8(raw).map_err(io)?);
         }
-        publish(
+        files::selected_file_export(
             destination,
             &encode(&Export {
                 format: "activation-export-v1".into(),
                 files: entries,
             })?,
         )
+        .map(|_| ())
     }
     pub fn import(&self, source: &Path) -> Result<Snapshot> {
         let _lifecycle = self.0.lifecycle.lock().unwrap();

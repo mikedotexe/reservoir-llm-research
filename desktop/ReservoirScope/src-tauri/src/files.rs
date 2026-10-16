@@ -2,7 +2,7 @@ use serde::Serialize;
 use sha2::{Digest, Sha256};
 use std::{
     fs,
-    io::{Read, Write},
+    io::{Read, Seek, SeekFrom, Write},
     path::{Path, PathBuf},
 };
 
@@ -126,6 +126,81 @@ pub fn inspect_file(path: &Path) -> Result<FileProof, AppError> {
     Ok(proof(path, &bytes))
 }
 
+fn verify_export_handle(file: &mut fs::File, expected: &[u8]) -> Result<(), AppError> {
+    let error = |e: std::io::Error| AppError::new("save-file", "verify", e.to_string());
+    file.seek(SeekFrom::Start(0)).map_err(error)?;
+    let mut buffer = [0u8; 65536];
+    for chunk in expected.chunks(buffer.len()) {
+        file.read_exact(&mut buffer[..chunk.len()]).map_err(error)?;
+        if &buffer[..chunk.len()] != chunk {
+            return Err(AppError::new(
+                "save-file",
+                "verify",
+                "The selected export differs from its source bytes. The file was retained for inspection.",
+            ));
+        }
+    }
+    if file.read(&mut buffer[..1]).map_err(error)? != 0 {
+        return Err(AppError::new(
+            "save-file",
+            "verify",
+            "The selected export has unexpected trailing bytes. The file was retained for inspection.",
+        ));
+    }
+    Ok(())
+}
+
+fn write_selected_export(file: &mut fs::File, bytes: &[u8]) -> Result<(), AppError> {
+    file.write_all(bytes)
+        .and_then(|_| file.sync_all())
+        .map_err(|e| AppError::new("save-file", "write", e.to_string()))?;
+    verify_export_handle(file, bytes)
+}
+
+/// Publish immutable external evidence using only the file selected in the save
+/// panel. Opening its parent directory can request a broader macOS permission and
+/// block after the chosen file was saved. Internal evidence publication retains
+/// its separate directory-sync contract.
+pub fn selected_file_export(path: &Path, bytes: &[u8]) -> Result<FileProof, AppError> {
+    if !path.is_absolute() || path.file_name().is_none() {
+        return Err(AppError::new(
+            "save-file",
+            "destination",
+            "Choose an absolute local destination with a filename.",
+        ));
+    }
+    if bytes.len() as u64 > MAX_PROOF_BYTES {
+        return Err(AppError::new(
+            "save-file",
+            "file-bound",
+            "The activation export exceeds its 256 MiB file bound.",
+        ));
+    }
+    let mut options = fs::OpenOptions::new();
+    options.read(true).write(true).create_new(true);
+    #[cfg(unix)]
+    {
+        use std::os::unix::fs::OpenOptionsExt;
+        options.custom_flags(libc::O_NOFOLLOW | libc::O_NONBLOCK);
+    }
+    match options.open(path) {
+        Ok(mut file) => write_selected_export(&mut file, bytes)?,
+        Err(e) if e.kind() == std::io::ErrorKind::AlreadyExists => {
+            // Keep the existing immutable-export behavior: identical bytes are
+            // idempotent; a different file is never truncated or replaced.
+            if read_bounded(path, MAX_PROOF_BYTES, "save-file")? != bytes {
+                return Err(AppError::new(
+                    "save-file",
+                    "collision",
+                    "The selected file already contains different bytes. Choose a new export filename.",
+                ));
+            }
+        }
+        Err(e) => return Err(AppError::new("save-file", "create", e.to_string())),
+    }
+    Ok(proof(path, bytes))
+}
+
 pub fn atomic_export(
     path: &Path,
     bytes: &[u8],
@@ -194,6 +269,67 @@ mod tests {
     }
 
     #[test]
+    fn selected_export_verifies_exact_bytes_and_preserves_existing_files() {
+        let dir = tempfile::tempdir().unwrap();
+        let target = dir.path().join("activation.json");
+        let bytes = b"{\"text\":\"Complete retained writing.\\n\"}\n";
+        let proof = selected_file_export(&target, bytes).unwrap();
+        assert_eq!(proof.sha256, digest(bytes));
+        assert_eq!(proof.size_bytes, bytes.len() as u64);
+        assert_eq!(fs::read(&target).unwrap(), bytes);
+        assert!(selected_file_export(&target, bytes).is_ok());
+        assert_eq!(
+            selected_file_export(&target, b"different")
+                .unwrap_err()
+                .category,
+            "collision"
+        );
+        assert_eq!(fs::read(&target).unwrap(), bytes);
+        assert!(selected_file_export(Path::new("relative.json"), bytes).is_err());
+        assert!(selected_file_export(dir.path(), bytes).is_err());
+    }
+
+    #[test]
+    fn export_readback_rejects_changed_truncated_and_extended_bytes() {
+        let dir = tempfile::tempdir().unwrap();
+        let target = dir.path().join("readback.json");
+        for actual in [b"wrong".as_slice(), b"ex", b"exact plus extra"] {
+            fs::write(&target, actual).unwrap();
+            let mut file = fs::File::open(&target).unwrap();
+            assert_eq!(
+                verify_export_handle(&mut file, b"exact")
+                    .unwrap_err()
+                    .category,
+                "verify"
+            );
+            assert_eq!(fs::read(&target).unwrap(), actual);
+        }
+    }
+
+    #[cfg(unix)]
+    #[test]
+    fn selected_export_write_and_readback_need_no_parent_path_access() {
+        let dir = tempfile::tempdir().unwrap();
+        let parent = dir.path().join("chosen-parent");
+        fs::create_dir(&parent).unwrap();
+        let path = parent.join("selected.json");
+        let mut file = fs::OpenOptions::new()
+            .read(true)
+            .write(true)
+            .create_new(true)
+            .open(&path)
+            .unwrap();
+        let moved = dir.path().join("moved-parent");
+        fs::rename(&parent, &moved).unwrap();
+        assert!(!parent.exists());
+        let bytes = b"Selected file remains usable after its parent pathname disappears.\n";
+        // This helper receives only the selected handle, so it cannot reopen the
+        // original file or parent path for sync or readback.
+        write_selected_export(&mut file, bytes).unwrap();
+        assert_eq!(fs::read(moved.join("selected.json")).unwrap(), bytes);
+    }
+
+    #[test]
     fn cannot_overwrite_resources_or_accept_relative_override() {
         let dir = tempfile::tempdir().unwrap();
         assert!(atomic_export(&dir.path().join("scene.json"), b"[]", dir.path()).is_err());
@@ -212,6 +348,7 @@ mod tests {
         std::os::unix::fs::symlink(&source, &link).unwrap();
         assert!(inspect_file(&link).is_err());
         assert!(atomic_export(&link, b"replacement", &dir.path().join("resources")).is_err());
+        assert!(selected_file_export(&link, b"original").is_err());
         assert_eq!(fs::read(source).unwrap(), b"original");
     }
 }
