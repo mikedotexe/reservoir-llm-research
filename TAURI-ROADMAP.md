@@ -12,7 +12,13 @@ contracts, milestones and qualification gates. Milestone descriptions are target
 not claims that every listed workflow is implemented or qualified. Current progress
 and the active backlog are consolidated in **STATUS.md**.
 
-The current preview is **0.25.0**, with unchanged production v8 and numerical/save
+The current candidate is **0.26.0**, adding the separately versioned
+[activation experiment](shared/reservoir-scope/activation-experiment.md).
+The [qualification account](desktop/ReservoirScope/validation/2026-10-15-activation-0.26.0/README.md)
+owns its tested scope and pilot outcome. This is an isolated research apparatus;
+action selection and continuous wall-clock ticking remain later tranches.
+
+The published **0.25.0 source checkpoint** retains production v8 and numerical/save
 contracts. [Journal-first reading](desktop/ReservoirScope/validation/2026-10-15-journal-first-0.25.0/README.md)
 puts complete selected prose and Earlier/Later before history, with live visuals
 alongside on wide screens and below reading on narrow screens. Current sensory fill

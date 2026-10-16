@@ -1,12 +1,20 @@
 # Reservoir Scope: current status and next work
 
-**October 15, 2026 · Product 0.25.0 · Open-writing prompt v8**
+**October 15, 2026 · Candidate 0.26.0 · Separate activation journal v1**
 
 The personal reservoir loop works: a bounded run can generate writing, save and read
 it back, apply its encoded signal at the next numerical step, and carry the exact
 latest eligible journal into later context. It has a readable journal history and
 explicit paused recovery. The wider cross-platform Observatory and everyday-use
 qualification are still incomplete.
+
+The new optional [Activation experiment](ACTIVATION-EXPERIMENT.md) is implemented
+after the published 0.25.0 checkpoint. It has an owned Python MLX worker, quiet
+activation capture, frozen projection/calibration, controlled recurrent and trace
+states, durable feedback, and a comparison reader. Its
+[qualification account](validation/2026-10-15-activation-0.26.0/README.md) records
+checks and actual model/pilot status separately. Existing Ollama sessions retain
+their recorded prompt and session contracts.
 
 [Build, choose a local model and start writing](GETTING-STARTED.md) ·
 [Preview and build reference](README.md) ·
@@ -15,7 +23,7 @@ qualification are still incomplete.
 
 ## What is established
 
-- **Current interface:** [0.25 journal-first reading](validation/2026-10-15-journal-first-0.25.0/README.md)
+- **Previous interface qualification:** [0.25 journal-first reading](validation/2026-10-15-journal-first-0.25.0/README.md)
   puts the complete selected journal and Earlier/Later controls before history.
   Current state and sensory fill sit alongside on wide screens and follow reading
   on narrow screens. A prominent current sensory fill percentage stays separate

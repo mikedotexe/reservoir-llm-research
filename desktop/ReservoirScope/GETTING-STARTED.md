@@ -4,6 +4,11 @@ Build the desktop app, select an installed local model, and watch its saved writ
 return as input to a reservoir. Journal prose leads the running view; current
 sensory fill and the reservoir surface remain available alongside it.
 
+The separate **Activation experiment** is an optional Apple-silicon research mode.
+Its setup and controlled comparison are described in
+[Activation experiment](ACTIVATION-EXPERIMENT.md). Ordinary Ollama sessions below
+retain their existing behavior.
+
 This preview currently connects to **Ollama's local API**. An arbitrary model file
 or a different provider's server is not a supported endpoint. The offline example
 lets you try the same save-and-feedback workflow without a model.

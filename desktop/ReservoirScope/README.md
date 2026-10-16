@@ -1,6 +1,6 @@
 # Reservoir Scope Tauri Preview
 
-**0.25.0 · `reservoir-journal-v8` · Local preview**
+**0.26.0 · Local preview · Optional activation experiment**
 
 Reservoir Scope combines a personal reservoir and journal with offline experiments,
 recordings and evidence readers. The native macOS app remains separate at
@@ -11,6 +11,14 @@ own storage. Opening a workspace starts no experiment, model connection or live 
 [Current status and next work](STATUS.md) ·
 [Capability/platform matrix](../../shared/reservoir-scope/PARITY.md) ·
 [Accepted roadmap](../../TAURI-ROADMAP.md)
+
+The new [Activation experiment](ACTIVATION-EXPERIMENT.md) connects quiet Qwen3
+prefills to a persistent 32-unit state and a fixed residual intervention during
+journal writing. It has a separate session format, worker, calibration and reader.
+The [computational contract](../../shared/reservoir-scope/activation-experiment.md)
+defines the three conditions and bounded exploratory pilot. Actual qualification
+is recorded in the [0.26 account](validation/2026-10-15-activation-0.26.0/README.md).
+Historical Ollama sessions continue to use their recorded prompt contracts.
 
 ## Start your journal
 

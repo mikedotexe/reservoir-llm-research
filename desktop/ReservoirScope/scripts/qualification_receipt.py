@@ -20,7 +20,8 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[3]
 DESKTOP = ROOT / "desktop/ReservoirScope"
-EXCLUDED_PARTS = {"node_modules", "target", "dist", "__pycache__", ".pytest_cache", "validation"}
+EXCLUDED_PARTS = {"node_modules", "target", "dist", "__pycache__", ".pytest_cache", "validation",
+                  ".venv-activation", ".activation-models"}
 EXCLUDED_PREFIXES = (
     "desktop/ReservoirScope/src-tauri/gen/",
     "desktop/ReservoirScope/src-tauri/resources/",

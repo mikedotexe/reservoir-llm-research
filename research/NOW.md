@@ -3,7 +3,17 @@
 [Research findings](../RESEARCH.md) · [Current app candidate](CURRENT-RELEASE.md) ·
 [Earlier focus history](NOW-history-through-20260917.md)
 
-**October 7: make the research easier to enter and continue.** Mike selected the
+**October 15: build the isolated activation experiment.** Mike selected quiet input
+→ persistent recurrent state → fixed residual intervention → journal writing,
+with controlled numerical steps and a dedicated pinned Qwen3 model. The completed
+Tauri 0.25.0 apparatus is committed, tagged and published. The
+[activation contract](../shared/reservoir-scope/activation-experiment.md) and
+[frozen pilot](../shared/reservoir-scope/activation-pilot.json) define this work;
+the [qualification account](../desktop/ReservoirScope/validation/2026-10-15-activation-0.26.0/README.md)
+separates implementation, observed mechanics and journal interpretation. No live
+Being system is changed or contacted. Earlier parked studies remain parked.
+
+**Earlier October 7 focus: make the research easier to enter and continue.** Mike selected the
 product-review priorities in tranches. No new discovery study is selected.
 
 1. **Clear entry points and findings — completed in this pass.** The front pages

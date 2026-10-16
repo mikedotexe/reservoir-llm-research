@@ -31,7 +31,7 @@ class QualificationReceiptChecks(unittest.TestCase):
         self.assertIn("sha256", source)
 
     def test_implementation_inventory_excludes_outputs(self):
-        for relative in ("desktop/ReservoirScope/src/main.tsx", "shared/reservoir-scope/reference-manifest.json", ".github/workflows/tauri.yml", "desktop/ReservoirScope/target/app", "desktop/ReservoirScope/node_modules/lib/index.js", "desktop/ReservoirScope/src-tauri/resources/fixture.json", "desktop/ReservoirScope/validation/receipt.json"):
+        for relative in ("desktop/ReservoirScope/src/main.tsx", "shared/reservoir-scope/reference-manifest.json", ".github/workflows/tauri.yml", "desktop/ReservoirScope/target/app", "desktop/ReservoirScope/node_modules/lib/index.js", "desktop/ReservoirScope/src-tauri/resources/fixture.json", "desktop/ReservoirScope/validation/receipt.json", "desktop/ReservoirScope/.venv-activation/lib/runtime.py", "desktop/ReservoirScope/.activation-models/qwen3-4b/model.safetensors"):
             path = self.root / relative
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text("input")
