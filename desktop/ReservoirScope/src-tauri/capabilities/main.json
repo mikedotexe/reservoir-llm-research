@@ -1,12 +1,22 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "main",
-  "description": "The bundled main window may inspect evidence, control owned finite and sustained sessions, explicitly contact a configured loopback model, recover verified owned storage and use native file dialogs.",
+  "description": "The bundled main window may inspect evidence, control owned finite, sustained and activation sessions, explicitly contact a configured loopback model or owned activation worker, recover verified owned storage and use native file dialogs.",
   "windows": [
     "main"
   ],
   "permissions": [
     "core:default",
+    "allow-activation-inspect",
+    "allow-activation-create",
+    "allow-activation-start",
+    "allow-activation-stop",
+    "allow-activation-get",
+    "allow-activation-list",
+    "allow-activation-restore",
+    "allow-activation-annotate",
+    "allow-activation-export",
+    "allow-activation-import",
     "allow-check-local-model",
     "allow-cancel-local-model-check",
     "allow-get-build-info",

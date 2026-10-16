@@ -149,3 +149,42 @@ pub async fn activation_import(
     .await
     .map_err(join)?
 }
+
+#[cfg(test)]
+mod tests {
+    use serde_json::{json, Value};
+
+    #[test]
+    fn activation_commands_are_granted_to_the_bundled_main_window() {
+        // Inspect Tauri's generated permission resolution, not a second hardcoded
+        // command list: invoke handlers alone do not make commands callable.
+        let manifests: Value =
+            serde_json::from_str(include_str!("../gen/schemas/acl-manifests.json")).unwrap();
+        let capabilities: Value =
+            serde_json::from_str(include_str!("../gen/schemas/capabilities.json")).unwrap();
+        let capability = &capabilities["main"];
+        assert_eq!(capability["windows"], json!(["main"]));
+        assert_eq!(capability["local"], json!(true));
+        assert!(capability["remote"].is_null());
+        let grants = capability["permissions"].as_array().unwrap();
+        let handlers = include_str!("main.rs");
+        let mut command_count = 0;
+        for declaration in include_str!("activation_commands.rs").lines() {
+            let Some(declaration) = declaration.strip_prefix("pub async fn ") else {
+                continue;
+            };
+            let command = declaration.split('(').next().unwrap();
+            let permission = format!("allow-{}", command.replace('_', "-"));
+            assert!(handlers.contains(&format!("activation_commands::{command},")));
+            assert!(
+                grants.contains(&json!(permission)),
+                "Missing grant: {command}"
+            );
+            let definition = &manifests["__app-acl__"]["permissions"][&permission];
+            assert_eq!(definition["commands"]["allow"], json!([command]));
+            assert_eq!(definition["commands"]["deny"], json!([]));
+            command_count += 1;
+        }
+        assert!(command_count > 0, "No activation commands were inspected");
+    }
+}

@@ -1,6 +1,16 @@
 fn main() {
     tauri_build::try_build(tauri_build::Attributes::new().app_manifest(
         tauri_build::AppManifest::new().commands(&[
+            "activation_inspect",
+            "activation_create",
+            "activation_start",
+            "activation_stop",
+            "activation_get",
+            "activation_list",
+            "activation_restore",
+            "activation_annotate",
+            "activation_export",
+            "activation_import",
             "create_sustained",
             "get_sustained",
             "start_sustained",
