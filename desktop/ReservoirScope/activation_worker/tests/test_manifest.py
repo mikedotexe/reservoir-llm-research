@@ -9,7 +9,7 @@ from unittest.mock import patch
 from activation_worker import MODEL_ID, MODEL_REVISION
 from activation_worker.manifest import inspect_model
 from activation_worker.math_core import sha256_file
-from activation_worker.qualify import dtype_rounding_allowance
+from activation_worker.qualify import bounded_capture, dtype_rounding_allowance, save
 
 
 class ManifestTests(unittest.TestCase):
@@ -68,6 +68,23 @@ class ManifestTests(unittest.TestCase):
 
 
 class QualificationContractTests(unittest.TestCase):
+    def test_capture_result_is_a_native_json_boolean_and_saves(self):
+        capture = {"activation": [0.5] * 2560, "projection": [0.1] * 32}
+        outcome = bounded_capture(capture)
+        self.assertIs(type(outcome), bool)
+        self.assertIs(outcome, True)
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "result.json"
+            save(path, {"checks": {"boundedCaptures": outcome}, "passed": outcome})
+            self.assertEqual(json.loads(path.read_text()),
+                             {"checks": {"boundedCaptures": True}, "passed": True})
+        for bad_capture in ({**capture, "activation": [0.0] * 2559},
+                            {**capture, "activation": [float("nan")] * 2560},
+                            {**capture, "projection": [1.1] * 32}):
+            outcome = bounded_capture(bad_capture)
+            self.assertIs(type(outcome), bool)
+            self.assertIs(outcome, False)
+
     def test_bfloat_rounding_bound_is_predeclared_and_below_half_percent(self):
         bound = dtype_rounding_allowance("mlx.core.bfloat16")
         self.assertLess(bound, .005)

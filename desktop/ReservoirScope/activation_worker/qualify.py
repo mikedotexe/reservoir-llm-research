@@ -56,6 +56,15 @@ def dtype_rounding_allowance(dtype: str) -> float:
     return u * GAIN + u * (1 + GAIN + u * GAIN)
 
 
+def bounded_capture(capture: dict) -> bool:
+    # NumPy reductions return numpy.bool_, which the evidence JSON encoder rejects.
+    # Normalize this outcome at the measurement boundary, without changing it.
+    return bool(len(capture["activation"]) == HIDDEN_DIM
+                and np.isfinite(capture["activation"]).all()
+                and len(capture["projection"]) == STATE_DIM
+                and np.all(np.abs(capture["projection"]) <= 1))
+
+
 def qualify(model_path: str, output: Path) -> dict:
     output.mkdir(parents=True, exist_ok=False)
     inspected = inspect_model(model_path)
@@ -180,9 +189,7 @@ def qualify(model_path: str, output: Path) -> dict:
         result["checks"]["independentProbeIsolation"] = (
             second["complete"] and first["generatedTokenIds"] == second["generatedTokenIds"]
             and first["receipt"]["activationSha256"] == second["receipt"]["activationSha256"])
-        result["checks"]["boundedCaptures"] = (
-            len(quiet["activation"]) == HIDDEN_DIM and np.isfinite(quiet["activation"]).all()
-            and len(quiet["projection"]) == STATE_DIM and np.all(np.abs(quiet["projection"]) <= 1))
+        result["checks"]["boundedCaptures"] = bounded_capture(quiet)
 
         steered = engine.generate_journal({**probe, "gain": GAIN,
                                            "arm": "mechanical-steered",
