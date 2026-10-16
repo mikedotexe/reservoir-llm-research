@@ -1,0 +1,97 @@
+{
+  "schema": "activation-qualification-admission-v1",
+  "attempt": 2,
+  "reasonForNewQualification": "27f05ac corrects NumPy boolean report serialization; fixed probes and tolerances unchanged; pilot has not started",
+  "at": "2026-10-16T03:00:49.142399+00:00",
+  "sourceCommit": "27f05acda7ce324125d98850b1b6d3a6ad974e3b",
+  "pressureLevel": 1,
+  "freePercent": 29,
+  "criteria": {
+    "pressureLevel": 1,
+    "minimumFreePercent": 25
+  },
+  "admitted": true,
+  "pressureProbe": {
+    "exitCode": 0,
+    "stdout": "1\n",
+    "stderr": ""
+  },
+  "freeProbe": {
+    "exitCode": 0,
+    "stdout": "The system has 68719476736 (4194304 pages with a page size of 16384).\nSystem-wide memory free percentage: 29%\n",
+    "stderr": ""
+  },
+  "automaticRetries": 0,
+  "status": "passed",
+  "command": [
+    "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/.venv-activation/bin/python",
+    "-B",
+    "-m",
+    "activation_worker.qualify",
+    "--model",
+    "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/.activation-models/qwen3-4b",
+    "--output",
+    "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/research/outputs/activation-0.26.0-20261015/model-qualification-02"
+  ],
+  "exitCode": 0,
+  "outputDirectory": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/research/outputs/activation-0.26.0-20261015/model-qualification-02",
+  "modelLoadAttempted": true,
+  "qualification": {
+    "calibrationFileSha256": "1c62c9976ecb5fb5b22125c0b4196f345810c6c2396a16dbde6c9b4fb5413f04",
+    "calibrationPath": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/research/outputs/activation-0.26.0-20261015/model-qualification-02/calibration.json",
+    "calibrationSha256": "0c1fc7c3e2868813643d629e1200c5188ee5007fa1c1ccef1e614b52c32dbe9c",
+    "checks": {
+      "boundedCaptures": true,
+      "cacheOffsetParity": true,
+      "clearedSteering": true,
+      "independentProbeIsolation": true,
+      "logitParity": true,
+      "noStaleSteering": true,
+      "perPositionNorms": true,
+      "quietZeroSamples": true,
+      "samePassContentToken": true,
+      "zeroAdditionBitwiseParity": true
+    },
+    "elapsedSeconds": 6.943768541095778,
+    "modelManifestSha256": "82b39f39ce5ec7722be9c967149a18a1ac8ed1cc8f2691e1485e101f7e542513",
+    "passed": true,
+    "planFileSha256": "db6795449f03cc704d3e59baedcdc3c3c17a005fbe2752ffc8676e75f51e9ec6",
+    "planPath": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/research/outputs/activation-0.26.0-20261015/model-qualification-02/plan.json",
+    "planSha256": "6da14a1f7cc4c54ea3e5277fc24b7ae8aade305aad1ec687b83b59d7712e897e",
+    "status": "passed",
+    "workerSources": [
+      {
+        "path": "__init__.py",
+        "sha256": "e8b547250d88935b69f39b35463f45e5c0f07a7283e7d8e7f7f3b33d34a46282"
+      },
+      {
+        "path": "__main__.py",
+        "sha256": "37f3e028fc732cecd53c69b5c6ff3bf85278294c49c40dbca86e46fd5b758077"
+      },
+      {
+        "path": "backend.py",
+        "sha256": "5f96c582f202572035ad56ebfe49668797eea33a2ef91a2f3696d1fa7d6d8866"
+      },
+      {
+        "path": "engine.py",
+        "sha256": "64a92f33fd26cf0d99a015d18c37c2f94ee6fe4d7ccfe39d2ab230cec2764e40"
+      },
+      {
+        "path": "manifest.py",
+        "sha256": "10c18350a211683f7b876095a6d776f4c9b42d2343db039acca9f9fb1431cc1c"
+      },
+      {
+        "path": "math_core.py",
+        "sha256": "05e25f5bc05aea242946e96374fd90c6e5dbcf49f06a6b502d109240cdd15276"
+      },
+      {
+        "path": "qualify.py",
+        "sha256": "2320271750f725df67192bc8f4a542187b4dd99f74c78367abbb533060497e01"
+      },
+      {
+        "path": "worker.py",
+        "sha256": "9c2f638c181596d019bd8c8624c4bf409771796154d802d9eeb9f761f2b38cc1"
+      }
+    ]
+  }
+}

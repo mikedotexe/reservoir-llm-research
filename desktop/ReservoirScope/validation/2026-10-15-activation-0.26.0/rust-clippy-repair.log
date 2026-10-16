@@ -1,0 +1,15 @@
+   Compiling reservoir-scope-desktop v0.26.0 (/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+    Checking reservoir-core v0.1.0 (/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core)
+error[E0424]: expected value, found module `self`
+   --> src-tauri/src/activation.rs:832:8
+    |
+812 | fn save(p: &Path, m: &mut Manifest, r: &Record) -> Result<()> {
+    |    ---- this function can't have a `self` parameter
+...
+832 |     if self.0.cancel.load(Ordering::SeqCst) {
+    |        ^^^^ `self` value is a keyword only available in methods with a `self` parameter
+
+For more information about this error, try `rustc --explain E0424`.
+error: could not compile `reservoir-scope-desktop` (bin "reservoir-scope-desktop") due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `reservoir-scope-desktop` (bin "reservoir-scope-desktop" test) due to 1 previous error

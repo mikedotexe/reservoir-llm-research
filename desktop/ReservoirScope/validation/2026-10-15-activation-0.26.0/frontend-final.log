@@ -1,0 +1,31 @@
+
+> reservoir-scope-desktop@0.26.0 test
+> vitest run src/ActivationExperiment.test.tsx src/activationController.test.ts src/MyReservoir.test.tsx
+
+
+ RUN  v4.1.11 /Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope
+
+
+ Test Files  3 passed (3)
+      Tests  33 passed (33)
+   Start at  19:33:19
+   Duration  393ms (transform 353ms, setup 0ms, import 509ms, tests 91ms, environment 0ms)
+
+
+> reservoir-scope-desktop@0.26.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 117 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.45 kB │ gzip:   0.28 kB
+dist/assets/index-qLYm8Kxu.css     80.38 kB │ gzip:  16.13 kB
+dist/assets/index-CH-GqbNl.js   1,119.04 kB │ gzip: 305.16 kB │ map: 4,823.08 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.23s

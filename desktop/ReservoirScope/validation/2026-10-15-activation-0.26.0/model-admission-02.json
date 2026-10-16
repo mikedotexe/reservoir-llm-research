@@ -1,0 +1,25 @@
+{
+  "schema": "activation-qualification-admission-v1",
+  "attempt": 2,
+  "reasonForNewQualification": "27f05ac corrects NumPy boolean report serialization; fixed probes and tolerances unchanged; pilot has not started",
+  "at": "2026-10-16T03:00:49.142399+00:00",
+  "sourceCommit": "27f05acda7ce324125d98850b1b6d3a6ad974e3b",
+  "pressureLevel": 1,
+  "freePercent": 29,
+  "criteria": {
+    "pressureLevel": 1,
+    "minimumFreePercent": 25
+  },
+  "admitted": true,
+  "pressureProbe": {
+    "exitCode": 0,
+    "stdout": "1\n",
+    "stderr": ""
+  },
+  "freeProbe": {
+    "exitCode": 0,
+    "stdout": "The system has 68719476736 (4194304 pages with a page size of 16384).\nSystem-wide memory free percentage: 29%\n",
+    "stderr": ""
+  },
+  "automaticRetries": 0
+}

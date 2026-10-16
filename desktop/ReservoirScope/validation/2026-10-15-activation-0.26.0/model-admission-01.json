@@ -1,0 +1,23 @@
+{
+  "schema": "activation-qualification-admission-v1",
+  "at": "2026-10-16T02:58:11.939283+00:00",
+  "sourceCommit": "0447c161dc4eaf6fa557bc6c10961166cfed195b",
+  "pressureLevel": 1,
+  "freePercent": 33,
+  "criteria": {
+    "pressureLevel": 1,
+    "minimumFreePercent": 25
+  },
+  "admitted": true,
+  "pressureProbe": {
+    "exitCode": 0,
+    "stdout": "1\n",
+    "stderr": ""
+  },
+  "freeProbe": {
+    "exitCode": 0,
+    "stdout": "The system has 68719476736 (4194304 pages with a page size of 16384).\nSystem-wide memory free percentage: 33%\n",
+    "stderr": ""
+  },
+  "automaticRetries": 0
+}

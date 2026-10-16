@@ -1,0 +1,17 @@
+   Compiling reservoir-scope-desktop v0.26.0 (/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.78s
+     Running unittests src/main.rs (target/debug/deps/reservoir_scope_desktop-e983474cad9580c2)
+
+running 9 tests
+test activation::tests::optional_synthetic_reader_export ... ok
+test activation::tests::worker_deadline_covers_large_request_when_child_never_reads_stdin ... ok
+test activation::tests::worker_cancel_joins_writer_and_reaps_child_that_never_reads_stdin ... ok
+test activation::tests::cancellation_kills_owned_worker_without_late_application_or_resend ... ok
+test activation::tests::changed_saved_text_or_projection_evidence_is_rejected ... ok
+test activation::tests::calibration_mutation_cannot_resume_or_pass_replay ... ok
+test activation::tests::close_stops_and_blocks_new_starts_until_cancelled ... ok
+test activation::tests::retained_response_projection_must_match_ledger_even_when_rehashed ... ok
+test activation::tests::fake_worker_full_save_apply_export_import_and_offline_replay ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 206 filtered out; finished in 2.63s
+

@@ -1,0 +1,55 @@
+[
+  {
+    "id": "reference-integrity",
+    "status": "passed",
+    "command": "python3 scripts/check_reference.py",
+    "evidence": "frozen-reference.json"
+  },
+  {
+    "id": "resource-staging-tests",
+    "status": "passed",
+    "command": "Recorded Python unittest run; exact historical argv not retained",
+    "evidence": "script-tests-final.log",
+    "scope": "11 script tests across reference/mutation checks, qualification inventory and pilot stopping; later pilot guard checks in pilot-tests-final.log"
+  },
+  {
+    "id": "frontend-tests",
+    "status": "passed",
+    "command": "npm test; npm test -- src/ActivationExperiment.test.tsx src/activationTimeline.test.ts src/activationController.test.ts src/MyReservoir.test.tsx",
+    "evidence": "frontend-tests-final.log, frontend-final.log, frontend-timeline-final.log",
+    "scope": "452 full tests before UI-only timeline refinement;39 affected tests afterward"
+  },
+  {
+    "id": "frontend-build",
+    "status": "passed",
+    "command": "npm run tauri -- build --target aarch64-apple-darwin --bundles app -- --locked (beforeBuildCommand invokes npm run build)",
+    "evidence": "macos-build-reader-final.log"
+  },
+  {
+    "id": "desktop-boundary-tests",
+    "status": "passed",
+    "command": "cargo test --workspace --locked; subsequent filtered activation tests",
+    "evidence": "rust-tests.log, rust-activation-acl-test.log, rust-activation-pipe-tests.log",
+    "scope": "Full suite before targeted ACL/pipe fixes; affected tests rerun after fixes"
+  },
+  {
+    "id": "core-conformance-tests",
+    "status": "passed",
+    "command": "cargo test --workspace --locked",
+    "evidence": "rust-tests.log",
+    "scope": "Core unchanged by later ACL, supervisor write ownership, worker report and UI corrections"
+  },
+  {
+    "id": "core-clippy",
+    "status": "passed",
+    "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+    "evidence": "rust-activation-pipe-clippy.log"
+  },
+  {
+    "id": "macos-package-build",
+    "status": "passed",
+    "command": "npm run tauri -- build --target aarch64-apple-darwin --bundles app -- --locked",
+    "evidence": "macos-build-reader-final.log",
+    "scope": "Apple silicon macOS app only; separate native walkthrough in MACOS-UI.md"
+  }
+]

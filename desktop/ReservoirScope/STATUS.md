@@ -16,6 +16,13 @@ states, durable feedback, and a comparison reader. Its
 checks and actual model/pilot status separately. Existing Ollama sessions retain
 their recorded prompt and session contracts.
 
+The pinned model adapter passed real-model mechanical qualification. The frozen
+pilot retained six complete decaying-trace journals, then stopped when memory
+pressure refused the second condition before model load. No retry was made;
+the three-condition writing comparison remains incomplete. The
+[complete-sequence reading](validation/2026-10-15-activation-0.26.0/PILOT-READING.md)
+preserves tentative textual patterns alongside prompt and memory alternatives.
+
 [Build, choose a local model and start writing](GETTING-STARTED.md) ·
 [Preview and build reference](README.md) ·
 [Capability/platform matrix](../../shared/reservoir-scope/PARITY.md) ·

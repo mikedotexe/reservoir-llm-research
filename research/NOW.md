@@ -13,6 +13,13 @@ the [qualification account](../desktop/ReservoirScope/validation/2026-10-15-acti
 separates implementation, observed mechanics and journal interpretation. No live
 Being system is changed or contacted. Earlier parked studies remain parked.
 
+The isolated implementation and real-model mechanical qualification are complete.
+The first frozen pilot stopped at its first resource refusal: one complete
+six-journal trace sequence, no unsteered or recurrent sequence. Its
+[initially blinded reading](../desktop/ReservoirScope/validation/2026-10-15-activation-0.26.0/PILOT-READING.md)
+is retained with prompt/memory alternatives. No retry or extension is selected;
+the comparison remains incomplete rather than becoming a null writing result.
+
 **Earlier October 7 focus: make the research easier to enter and continue.** Mike selected the
 product-review priorities in tranches. No new discovery study is selected.
 

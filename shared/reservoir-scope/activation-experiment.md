@@ -47,6 +47,11 @@ recurrent-state steering. Capture, calibration, text-memory policy, event schedu
 and nonzero intervention norm are matched. Each arm generates its own subsequent
 journals: those evolving texts are outcomes and later inputs, not identical replay
 material. Equal random seeds do not promise identical generated tokens.
+The first writing opportunity shares the same prompt across arms. Later differences
+may travel through both residual steering and the exact prior-journal memory path;
+this pilot studies their coupled trajectories and does not isolate every later
+sentence's cause. The recurrent/trace contrast also includes their different update
+functions, so a difference alone is not proof that recurrence is the useful feature.
 
 Only a complete saved-and-read-back journal becomes eligible for next-step
 activation feedback and later exact-text memory. The final processed content-token

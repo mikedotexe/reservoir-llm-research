@@ -1,0 +1,37 @@
+test_asset_tampering_rejected (test_manifest.ManifestTests.test_asset_tampering_rejected) ... ok
+test_local_actual_assets_are_bound_without_loading_model (test_manifest.ManifestTests.test_local_actual_assets_are_bound_without_loading_model) ... ok
+test_manifest_path_escape_rejected (test_manifest.ManifestTests.test_manifest_path_escape_rejected) ... ok
+test_new_unmanifested_tokenizer_asset_rejected (test_manifest.ManifestTests.test_new_unmanifested_tokenizer_asset_rejected) ... ok
+test_revision_and_architecture_checked (test_manifest.ManifestTests.test_revision_and_architecture_checked) ... ok
+test_bfloat_rounding_bound_is_predeclared_and_below_half_percent (test_manifest.QualificationContractTests.test_bfloat_rounding_bound_is_predeclared_and_below_half_percent) ... ok
+test_capture_result_is_a_native_json_boolean_and_saves (test_manifest.QualificationContractTests.test_capture_result_is_a_native_json_boolean_and_saves) ... ok
+test_cancel_after_content_preserves_incomplete_output_only (test_worker.EngineTests.test_cancel_after_content_preserves_incomplete_output_only) ... ok
+test_deadline_after_forward_cannot_publish_feedback (test_worker.EngineTests.test_deadline_after_forward_cannot_publish_feedback) ... ok
+test_decode_failure_retains_tokens_norms_and_no_feedback (test_worker.EngineTests.test_decode_failure_retains_tokens_norms_and_no_feedback) ... ok
+test_empty_eos_cannot_feed_prompt_activation_back_as_journal (test_worker.EngineTests.test_empty_eos_cannot_feed_prompt_activation_back_as_journal) ... ok
+test_final_generated_content_capture_is_same_pass_and_excludes_eos (test_worker.EngineTests.test_final_generated_content_capture_is_same_pass_and_excludes_eos) ... ok
+test_fresh_calibration_uses_exactly_32_separate_unsampled_caches (test_worker.EngineTests.test_fresh_calibration_uses_exactly_32_separate_unsampled_caches) ... ok
+test_initialize_restored_does_not_capture_or_sample (test_worker.EngineTests.test_initialize_restored_does_not_capture_or_sample) ... ok
+test_invalid_generation_values_rejected_before_forward (test_worker.EngineTests.test_invalid_generation_values_rejected_before_forward) ... ok
+test_maximum_token_stop_retains_prose_but_no_feedback (test_worker.EngineTests.test_maximum_token_stop_retains_prose_but_no_feedback) ... ok
+test_native_failure_preserves_partial_sample_and_releases_cache (test_worker.EngineTests.test_native_failure_preserves_partial_sample_and_releases_cache) ... ok
+test_non_eos_special_is_not_a_completed_journal (test_worker.EngineTests.test_non_eos_special_is_not_a_completed_journal) ... ok
+test_quiet_capture_has_zero_sampling_and_fresh_cache (test_worker.EngineTests.test_quiet_capture_has_zero_sampling_and_fresh_cache) ... ok
+test_quiet_does_not_leave_steering_or_change_independent_probe (test_worker.EngineTests.test_quiet_does_not_leave_steering_or_change_independent_probe) ... ok
+test_bad_shapes_nonfinite_and_unbounded_state_rejected (test_worker.MathTests.test_bad_shapes_nonfinite_and_unbounded_state_rejected) ... ok
+test_calibration_restore_binds_bytes_not_just_outer_hash (test_worker.MathTests.test_calibration_restore_binds_bytes_not_just_outer_hash) ... ok
+test_committed_projection_and_text_count (test_worker.MathTests.test_committed_projection_and_text_count) ... ok
+test_position_norm_relative_steering (test_worker.MathTests.test_position_norm_relative_steering) ... ok
+test_projected_center_scale_matches_independent_formula (test_worker.MathTests.test_projected_center_scale_matches_independent_formula) ... ok
+test_steering_zero_path_is_exact_identity (test_worker.MathTests.test_steering_zero_path_is_exact_identity) ... ok
+test_tampered_mean_without_rehash_is_rejected (test_worker.MathTests.test_tampered_mean_without_rehash_is_rejected) ... ok
+test_absolute_script_entrypoint_is_importable_and_stdout_is_only_json (test_worker.ProtocolTests.test_absolute_script_entrypoint_is_importable_and_stdout_is_only_json) ... ok
+test_inspect_repeated_id_and_shutdown_have_one_terminal_response_each (test_worker.ProtocolTests.test_inspect_repeated_id_and_shutdown_have_one_terminal_response_each) ... ok
+test_invalid_request_preserves_valid_id_and_emits_runtime_identity (test_worker.ProtocolTests.test_invalid_request_preserves_valid_id_and_emits_runtime_identity) ... ok
+test_reader_cancels_queued_or_running_work_without_inference_thread_access (test_worker.ProtocolTests.test_reader_cancels_queued_or_running_work_without_inference_thread_access) ... ok
+test_strict_json_ids_fields_and_finiteness (test_worker.ProtocolTests.test_strict_json_ids_fields_and_finiteness) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 1.022s
+
+OK
