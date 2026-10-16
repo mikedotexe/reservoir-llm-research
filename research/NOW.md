@@ -3,17 +3,19 @@
 [Research findings](../RESEARCH.md) · [Current app candidate](CURRENT-RELEASE.md) ·
 [Earlier focus history](NOW-history-through-20260917.md)
 
-**October 16 current focus: prepare the Tauri 0.27.0 private preview.** Mike
+**October 16 current focus: Tauri 0.27.0 is ready for a first invited tester.** Mike
 selected app-guided standalone setup, portable historical writing, exact-package
 qualification and an uncoached newcomer workflow. Candidate 04 includes the
 packaged export repair. Source checks, fourteen standalone real-model checks,
 fresh local setup, the bounded journal walkthrough, controlled failure cases,
 export/import and paused recovery are recorded in the
 [current release account](../desktop/ReservoirScope/RELEASE-0.27.0.md).
-Exact compact content sizes and the transferred app's completed macOS opening
-flow remain qualification gates; actual newcomer acceptance also remains pending.
-The local handoff is a candidate, not yet labeled ready for first tester. No new
-refs are pushed and no invitees are contacted. The unfinished condition comparison
+The scoped technical gates are complete: the exact quarantined transfer opened,
+prepared its standalone runtime and reopened normally; measured compact content
+sizes passed for the named activation setup, reading and recovery screens. Actual
+uncoached newcomer acceptance remains pending. An optional synthetic arrival check
+was refused at memory admission and was not retried; its packaged UI behavior
+remains unobserved. No new refs are pushed and no invitees are contacted. The unfinished condition comparison
 below remains an open research question, separate from release acceptance.
 
 **October 16 follow-up: address activation headroom on this Mac.** Mike selected

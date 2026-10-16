@@ -1,6 +1,6 @@
 # Reservoir Scope · current candidates
 
-## Tauri 0.27.0 · candidate 04, three qualification gates open
+## Tauri 0.27.0 · candidate 04, ready for a first invited tester
 
 The current sharing tranche is **Reservoir Scope Tauri Preview 0.27.0 candidate 04**,
 built from `c4a3ba17f1e8ade9f9cf2c1edcf6cd944356c7a0`. The identified archive and
@@ -11,15 +11,20 @@ attempt retained one saved/read-back journal applied at step 21, then stopped at
 import, normal quit and paused review; all 104 original payload files across two
 cases were preserved, including the complete synthetic unfinished response.
 
-Three gates remain open: exact compact content dimensions, normal quarantined
-opening and helper/extracted-Python behavior, and actual uncoached newcomer
-acceptance. Candidate 04's transferred copy retains quarantine and passed 87-input
-verification; Finder opening was blocked and its Open Anyway confirmation remains
-pending. No first-tester readiness, human acceptance or recipient delivery is claimed.
+The exact quarantined transfer opened through the authorized macOS exception and
+local authentication, completed standalone Prepare and Check, and reopened normally
+with the runtime ready. Measured 900×700 and 720×600 content viewports passed for
+the named activation setup, reading and recovery screens, with scoped keyboard and
+zoom checks. The technical preview gates are complete; actual uncoached newcomer
+acceptance remains pending. No recipient delivery or human acceptance is claimed.
+An optional new synthetic arrival-navigation attempt was refused before initialization
+by the unchanged memory guard; its packaged behavior remains unobserved, with source
+tests retained. Minimum-OS, second-Mac, broad accessibility and endurance checks
+remain outside the completed scope.
 
 Begin with the [install-first guide](../desktop/ReservoirScope/PREVIEW-START.md).
 The [0.27 release record](../desktop/ReservoirScope/RELEASE-0.27.0.md) owns the exact
-Tauri package identity and pending gates; [desktop status](../desktop/ReservoirScope/STATUS.md)
+Tauri package identity and qualification scope; [desktop status](../desktop/ReservoirScope/STATUS.md)
 separates current work from earlier qualification. New activation writing requires
 Apple Silicon and macOS 26 or later. Offline reading needs no runtime download.
 The example sequences are separate historical attempts with incomplete controls,

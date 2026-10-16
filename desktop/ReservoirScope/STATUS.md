@@ -1,6 +1,6 @@
 # Reservoir Scope: current status and next work
 
-**October 16, 2026 · 0.27.0 candidate 04 · Scoped checks passed; three gates remain open**
+**October 16, 2026 · 0.27.0 candidate 04 · Ready for a first invited tester; human acceptance pending**
 
 Candidate 04 is built from `c4a3ba17f1e8ade9f9cf2c1edcf6cd944356c7a0`. Its
 [release record](RELEASE-0.27.0.md) binds the archive and separates source checks,
@@ -25,12 +25,24 @@ unfinished response remained readable to its final marker. Three synthetic GUI
 failure cases passed on candidate 03; their scope remains explicit. Candidate 04
 also shows complete final timeline markers 43–48 after keyboard scrolling.
 
-Three gates remain open: exact compact content dimensions (resize-helper
-authorization pending); normal opening of the quarantined candidate-04 transfer
-and its helper/extracted-Python path (fresh Open Anyway confirmation and local
-authentication pending); and an actual uncoached newcomer session. The downloaded
-candidate-04 copy retains quarantine, verifies all 87 inputs, and was blocked on
-Finder opening. No exception or first-tester readiness is claimed.
+The exact quarantined candidate-04 transfer opened after the authorized macOS
+Open Anyway flow and the user's local authentication. Explicit Prepare completed,
+Check enabled Create, and normal quit/reopen rediscovered the ready runtime without
+starting the model. The extracted Python's 34 dependency versions and all nine model
+asset hashes were independently verified. No global protection change or quarantine
+removal was used.
+
+Measured 900×700 and 720×600 content viewports now pass for the named activation
+setup, portable reading, retained journal/evidence and paused recovery screens,
+including scoped keyboard and 125%/200% zoom checks. At enlarged zoom, workspace
+navigation can require horizontal scrolling. These observations do not cover all
+workspaces or a full accessibility audit. An optional synthetic arrival-navigation
+attempt was refused before initialization at memory pressure level 2 and 31% free;
+no retry or threshold change occurred. Stable selection during new activation
+arrivals retains source-test coverage, without a corresponding packaged UI pass.
+
+The scoped technical gates are complete. Actual uncoached newcomer acceptance is
+the remaining preview gate; no participant session or acceptance result is claimed.
 
 The [install-first guide](PREVIEW-START.md), [newcomer task card](NEWCOMER-TASK-CARD.md)
 and private handoff receipt describe this limited scope. The package is staged
@@ -236,24 +248,26 @@ remain bounded, known-context diagnostics. Neither candidate was promoted.
 
 ## Earlier usability and resource work carried forward
 
-The named compact-window and keyboard checks below belong in the new package
-walkthrough. Broader GPU/resource research remains separate from the four-item
-private-preview finishing tranche.
+Candidate 04 now qualifies the named activation setup, reading, evidence and
+recovery screens at measured 900×700 and 720×600 content sizes. The earlier checks
+below retain their original scope; other destinations, broad accessibility and
+GPU/resource research remain separate from the private-preview finishing tranche.
 
 The 0.25 layout leads with prose and preserves the 0.24 named multi-page reading
 routes and keyboard access. Its scoped native three-entry reading and zoom checks
 pass at 1280 × 860; arrival races remain qualified by the separate 0.24 run, not
-repeated in 0.25. Actual compact geometry and broader attributed resource
-measurements remain the next bounded work; collaborator acceptance is separate.
+repeated in 0.25. That earlier package did not establish compact geometry. Current
+activation geometry does not extend its historical scope; broader resource
+measurements and collaborator acceptance remain separate.
 
 | Priority | Evidence already available | Next completion boundary |
 | --- | --- | --- |
-| Compact windows and keyboard access | Initial 1830 × 1050 and retry 1280 × 860 outer screenshots support visible 125%/200% zoom/reset and the named reading/scrolling controls. The retry reads an exhausted restored scripted copy without resuming. Resize gestures still did not establish the content targets. | Verify actual 900 × 700 and configured-minimum 720 × 600 logical content areas, distinguishing titlebar/outer screenshot dimensions and zoom. Complete remaining keyboard/reading checks and retain broader accessibility acceptance as open. |
+| Compact windows and keyboard access | Initial 1830 × 1050 and retry 1280 × 860 outer screenshots support visible 125%/200% zoom/reset and the named reading/scrolling controls. The retry reads an exhausted restored scripted copy without resuming. Those resize gestures did not establish the content targets. Candidate 04 separately passes measured 900 × 700 and 720 × 600 content checks for its named activation screens. | Extend compact and keyboard observations to other destinations only as separately scoped work; broader accessibility and human acceptance remain open. |
 | Journal navigation during new arrivals | The 0.24 native scripted run reaches 361 steps and 36 journals, with cadence 10, 1,000 ms requested pace, 600-second / 64 MiB / 40-attempt bounds. Pinning/refresh, Older/Newer, crossing a full twenty-row boundary, outside-window Earlier, workspace return and explicit Follow latest pass; the run naturally holds and quits normally. | The named scripted routes are qualified. Broader collaborator reading, actual compact geometry and other-platform behavior remain open; no real-model or endurance claim follows. |
 | Broader GPU and resource measurements | 0.22 has a short main-process CPU/RSS sample and context-recovery checks. WebKit helpers, GPU, power and total-app memory were excluded. | Bind measurements to the exact package and attributable app/WebKit processes; record frame pacing, interaction response and memory during visible, playback/interaction, minimized and restored phases. Measure GPU/power only where the host supports reliable attribution; retain unavailable metrics explicitly. Distinguish workload changes, including paused playback, from rendering savings. |
 
-Carry the unmet compact geometry checks forward; use the qualified reading candidate
-for broader resource measurement. This is sequencing, not a new result
+Carry the other-destination compact checks forward; use the qualified reading candidate
+for broader resource measurement. This is sequencing, not a new measurement
 or a queued model run. Production writing v8 and the Beings remain outside this
 usability/measurement tranche. Other-platform and collaborator acceptance are separate.
 

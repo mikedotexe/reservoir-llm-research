@@ -1,6 +1,6 @@
 # Reservoir Scope Tauri Preview
 
-**0.27.0 candidate 04 · Scoped checks passed · Three qualification gates remain open**
+**0.27.0 candidate 04 · Ready for a first invited tester · Human acceptance pending**
 
 Reservoir Scope combines a personal reservoir and journal with offline experiments,
 recordings and evidence readers. The native macOS app remains separate at
@@ -19,11 +19,15 @@ bounded writing path have retained evidence. The repaired package completed two
 exports/imports and normal quit/reopen, preserving all 104 original payload files
 and paused review without model work.
 
-Exact compact dimensions, normal quarantined opening with helper/extracted-Python
-behavior, and an actual uncoached newcomer session remain open. The private handoff
-records those limits; it does not claim first-tester readiness. Read the bundled
-historical writing offline, then explicitly prepare the runtime for new writing.
+The exact quarantined transfer opened through macOS's app-specific exception and
+completed standalone Prepare, Check and normal quit/reopen. Named activation setup,
+reading and recovery screens passed at measured 900×700 and 720×600 content sizes,
+including scoped keyboard and enlarged-text checks. Read the bundled historical
+writing offline, then explicitly prepare the runtime for new writing.
 The [newcomer task card](NEWCOMER-TASK-CARD.md) is still awaiting a human session.
+An optional new synthetic arrival-navigation check was refused at memory admission;
+that packaged behavior remains unobserved, with source-test coverage retained.
+Minimum-OS, second-Mac, broad accessibility and endurance qualification remain open.
 
 The optional [Activation experiment](ACTIVATION-EXPERIMENT.md) connects quiet Qwen3
 prefills to a persistent 32-unit state and a fixed residual intervention during

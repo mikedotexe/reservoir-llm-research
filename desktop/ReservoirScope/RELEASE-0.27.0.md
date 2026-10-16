@@ -1,12 +1,13 @@
 # Reservoir Scope 0.27.0 · candidate 04
 
-**October 16, 2026 · scoped checks passed; three preview gates remain open.**
-Candidate 04 is built and identified. The local setup, bounded writing, retained
-failure paths and repaired export/recovery have scoped evidence. The package is
-not labeled fully qualified or ready for a first tester.
+**October 16, 2026 · ready for a first invited tester; actual human acceptance pending.**
+Candidate 04 has completed the scoped technical preview checks on Apple Silicon
+with macOS 27.0.1, including its normal transferred opening and the named compact
+activation screens. The exact archive is ready for an invited first-use session.
+An actual uncoached newcomer pass remains the acceptance gate.
 
 [Install and first reading](PREVIEW-START.md) · [Newcomer task card](NEWCOMER-TASK-CARD.md) ·
-[Current status](STATUS.md) · [Qualification receipt](validation/2026-10-16-private-preview-0.27.0/qualification-status-candidate-04-pending.json)
+[Current status](STATUS.md) · [Qualification receipt](validation/2026-10-16-private-preview-0.27.0/qualification-status-candidate-04.json)
 
 ## What this preview adds
 
@@ -63,20 +64,45 @@ and zero journals. Its full **108,922-byte** response was labeled not a journal 
 ineligible for feedback. Candidate 04 preserved that text through export/import,
 and Tab/End reached its final marker. Candidate 04 also visibly retained complete
 ordered timeline markers **43–48** after Tab/End, at an observed 1280×860 screenshot
-size. That screenshot does not establish the requested content dimensions.
+size. Separate measured compact checks below establish the named content dimensions.
 
-## Three remaining gates
+## Transferred installation and compact reading
 
-1. **Exact compact content dimensions:** 900×700 and 720×600 remain unqualified.
-   Authorization for the resize helper and the actual observations remain pending.
-2. **Normal transferred opening and runtime flow:** candidate 04 was downloaded
-   through Safari and moved through Finder with quarantine intact; all 87 package
-   inputs verified. Finder opening was blocked, and its app-specific Open Anyway
-   control is available. Fresh confirmation for this changed executable, any local
-   administrator authentication, and observation of its helper/extracted-Python
-   path remain pending. No exception or quarantine removal is claimed.
-3. **Actual uncoached newcomer acceptance:** no participant session has occurred.
-   Agent checks, source isolation and the prepared task card do not substitute.
+The exact candidate-04 app downloaded through Safari and moved through Finder
+retained quarantine and all 87 verified package inputs. After the initial block,
+the user authorized its app-specific Open Anyway flow and completed local macOS
+authentication. The app opened normally and explicit Prepare completed through its
+owned helper. Its extracted Python's 34 dependency versions and all nine model
+asset hashes were independently verified. Explicit Check enabled Create. Normal
+quit and reopen rediscovered the ready runtime without another Gatekeeper prompt;
+Create remained disabled until a new explicit settings check. No Create, Start or
+model generation was requested in this transferred-installation check. Quarantine
+was preserved and global protections were unchanged.
+
+User-authorized resizing established **900×700 and 720×600 logical content
+viewports**, measured from the native top-level AXScrollArea. Their outer windows
+were 900×732 and 720×632; the document's AXWebArea height was not mistaken for the
+viewport. The named setup controls, portable sequences, retained real journal,
+timeline/evidence and paused recovery remained reachable. Keyboard checks reached
+complete final prose and unfinished-writing boundaries, preserved independent A/B
+positions, and showed the full two-digit event markers. Scoped 125% and 200% zoom
+checks passed at the smaller size, followed by Actual Size. Workspace navigation
+can require horizontal scrolling at enlarged zoom. These results qualify the
+observed activation screens, not every workspace or a full accessibility audit.
+
+An **optional synthetic arrival-navigation attempt was refused before
+initialization**: memory pressure was level 2, despite 31% free memory exceeding
+the 25% free-memory threshold. The unchanged guard requires normal pressure.
+The record held at step 0 with no quiet calls, writing calls or journals; the
+attempt was retained without retry or changed limits. Stable selection during
+new activation arrivals has source-controller tests, but this attempt adds no
+packaged arrival-navigation pass and was not a real-model generation attempt.
+
+## Remaining acceptance and limits
+
+**Actual uncoached newcomer acceptance remains pending.** No participant session
+has occurred. Agent checks, source isolation and the prepared task card support
+readiness for that session; they do not establish its result.
 
 The current host is Apple Silicon on macOS 27.0.1. Minimum macOS 26, a second Mac,
 broad accessibility acceptance, endurance and Windows/Linux behavior remain
@@ -95,14 +121,16 @@ separate. Live Being systems are untouched.
 | Original artifact provenance SHA-256 | `dc63cf7508f0556f60c655912ab0daa813891beaaeeaa4e1953634c54e73f8ba` |
 | Package verification | 87 resource inputs and 138 archive/app files verified; local ad hoc deep/strict signing verification passed; no notarization claim |
 | Portable collection | 81,190 bytes · SHA-256 `7a75ac80838859c0a069ae27a5e61685caa331caa7a9c3a8f92b272622bd06e1` |
-| Qualification receipt | `qualification-status-candidate-04-pending.json` · SHA-256 `a78baaa357fe4dac656b3a8a93738cf13a4ee254315c7fae74ae3b70c4c03e0d` · 30 evidence bindings |
-| Overall status | Three named gates open; `fullyQualified: false`; no first-tester-ready claim |
+| Qualification receipt | `qualification-status-candidate-04.json` · SHA-256 `0c11fd0534a7022aa6078599e7e0456d96e9ce11079fd36674bbb14440cf44e0` · 36 evidence bindings |
+| Overall status | Scoped technical checks complete; ready for first tester; actual human acceptance pending; `fullyQualified: false` |
 | Delivery/publication | Private local handoff only; no recipient contact or archive publication claimed |
 
-The private provenance permits five living-document differences while requiring
-all app build inputs to match the source commit. Current documentation is not
-silently treated as packaged source. Earlier candidates and failure receipts are
-preserved separately; the current handoff contains candidate 04 only.
+The original private build provenance recorded five permitted living-document
+differences while requiring all app build inputs to match the source commit.
+Those recorded differences describe the build-time snapshot; current documentation
+and its root pointers have their own later source hashes. They are not treated as
+packaged source. Earlier candidates and failure receipts are preserved separately;
+the current handoff contains candidate 04 only.
 
 ## Research limits
 

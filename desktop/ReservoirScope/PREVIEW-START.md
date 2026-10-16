@@ -1,12 +1,11 @@
 # Start with the writing
 
-**0.27.0 private-preview guide · candidate 04; three qualification gates remain open.**
+**0.27.0 private-preview guide · candidate 04 is ready for a first invited tester.**
 The handoff is a Mac app and this guide, with no source build or Terminal setup
 required. The [release record](RELEASE-0.27.0.md#candidate-identity-and-acceptance)
-identifies the exact archive and its scoped checks. Exact compact content sizes,
-normal quarantined opening with helper/extracted-Python behavior, and actual
-uncoached newcomer acceptance remain open. The package is not labeled ready for a
-first tester.
+identifies the exact archive and its scoped checks on Apple Silicon with macOS
+27.0.1. Normal transferred opening, standalone preparation and the named compact
+reading screens have passed. Actual uncoached newcomer acceptance remains pending.
 
 ## Install the private preview
 
@@ -25,7 +24,8 @@ minimum operating system. Intel Macs, Windows and Linux are outside this deliver
 3. If macOS says the developer cannot be verified or Apple cannot check the app,
    and you trust the supplied copy, first attempt to open it, then go to
    **System Settings → Privacy & Security → Open Anyway**. Confirm **Open** when
-   prompted. Apple documents this app-specific route in
+   prompted. macOS may also ask for a local administrator password; enter it only
+   in the macOS system prompt. Apple documents this app-specific route in
    [Safely open apps on your Mac](https://support.apple.com/en-us/102445).
 4. If the alert instead says the app is damaged or will damage your computer, or
    the expected control is unavailable, retain the exact message and ask for help
@@ -66,8 +66,8 @@ dependencies and Qwen3 model. The app installs its own versioned Python runtime 
 assets under its Application Support directory. You do not need a system Python,
 Ollama server, developer checkout or access to another running system.
 
-Preparation makes network requests for the frozen Python dependencies and model
-assets. It shows the current phase, downloaded bytes where available, and required
+Preparation downloads approximately **2.23 GiB** of frozen Python dependencies and
+model assets. It shows the current phase, downloaded bytes where available, and required
 storage. Its **8 GiB disk check is separate from memory admission** before model
 loading. Preparation verifies files; it does not run inference or write journals.
 
