@@ -3,6 +3,13 @@
 [Research findings](../RESEARCH.md) · [Current app candidate](CURRENT-RELEASE.md) ·
 [Earlier focus history](NOW-history-through-20260917.md)
 
+**October 16 follow-up: address activation headroom on this Mac.** Mike selected
+apparatus changes while leaving the live systems untouched. The
+[headroom study](studies/2026-10-16-activation-headroom.md) tests bounded MLX cache
+retention and one admitted model shared by three fresh serial condition records.
+The startup admission threshold stays fixed. New mechanical qualification must
+pass before the separately frozen cohort can collect writing.
+
 **October 16: compare the isolated activation conditions.** Mike approved a
 resource audit, a new frozen comparison and complete-sequence blinded reading.
 The [prospective study](studies/2026-10-16-activation-comparison.md) holds the

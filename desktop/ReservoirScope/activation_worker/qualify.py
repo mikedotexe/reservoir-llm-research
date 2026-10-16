@@ -21,6 +21,7 @@ from threading import Event
 import numpy as np
 
 from activation_worker import GAIN, HIDDEN_DIM, STATE_DIM, TAP_BLOCK_INDEX
+from activation_worker.backend import FREE_CACHE_LIMIT_BYTES, memory_policy
 from activation_worker.engine import Engine
 from activation_worker.manifest import inspect_model
 from activation_worker.math_core import array_hash, canonical_hash, sha256_file, steering_direction
@@ -65,6 +66,35 @@ def bounded_capture(capture: dict) -> bool:
                 and np.all(np.abs(capture["projection"]) <= 1))
 
 
+def clean_memory_receipt(receipt: dict) -> bool:
+    snapshots = receipt.get("snapshots", [])
+    return bool(receipt.get("policy") == memory_policy() and receipt.get("operationReleased")
+                and [row["phase"] for row in snapshots] ==
+                ["operation-start", "prefill-complete", "operation-end", "cleanup-complete"]
+                and snapshots[-1]["freeCacheBytes"] == 0)
+
+
+def fixed_order_probe(backend, ids, continuation, direction, gain) -> dict:
+    """Same fixed inputs as parity, including sampled next-token and capture IDs."""
+    stages = []
+    logits = None
+    backend.prepare_operation()
+    try:
+        logits = backend.begin(ids, direction, gain, 0, 0.0)
+        for stage, tokens in enumerate([ids] + [[token] for token in continuation]):
+            if stage:
+                logits = backend.advance(tokens[0])
+            array = np.asarray(logits.astype(backend.mx.float32)).copy()
+            stages.append({"inputTokenIds": tokens, "logitsSha256": array_hash(array),
+                           "activationSha256": array_hash(backend.last_activation),
+                           "sampledNextTokenId": backend.sample(logits),
+                           "cacheOffsets": [int(c.offset) for c in backend.cache]})
+    finally:
+        logits = None
+        backend.release_cache()
+    return {"gain": gain, "stages": stages, "memory": backend.memory_receipt()}
+
+
 def qualify(model_path: str, output: Path) -> dict:
     output.mkdir(parents=True, exist_ok=False)
     inspected = inspect_model(model_path)
@@ -77,10 +107,15 @@ def qualify(model_path: str, output: Path) -> dict:
         "fixedContinuation": FIXED_CONTINUATION, "fixedContinuationTokenLimit": 3,
         "journalProbe": JOURNAL_PROBE, "maxProbeTokens": MAX_PROBE_TOKENS,
         "seed": 0, "temperature": 0.0, "retry": False,
+        "memoryPolicy": memory_policy(),
+        "crossArmOrder": ["unsteered", "steered", "unsteered", "steered"],
         "checks": ["tap/no-tap/zero-gain/zero-state logits and cache-offset parity",
                    "unsteered calibration and bounded projection", "quiet zero samples",
                    "fresh-cache independent-probe isolation", "per-position intervention norm",
-                   "same-pass final content/EOS association", "cleared steering after generation"],
+                   "same-pass final content/EOS association", "cleared steering after generation",
+                   "configured free-cache limit and per-operation cache cleanup",
+                   "cross-arm fixed-input logit/token/capture/cache-offset identity",
+                   "unsteered generation identity after intervening steered generation"],
     }
     save(output / "plan.json", plan)
     result = {"planSha256": canonical_hash(plan), "planPath": str(output / "plan.json"),
@@ -100,6 +135,13 @@ def qualify(model_path: str, output: Path) -> dict:
         result["calibrationSha256"] = initialized["calibration"]["sha256"]
         backend = engine.backend
         mx = backend.mx
+        # MLX exposes the previous configured limit through the setter, allowing
+        # a readback without changing this qualified policy.
+        configured_cache_limit = int(mx.set_cache_limit(FREE_CACHE_LIMIT_BYTES))
+        result["configuredFreeCacheLimitBytes"] = configured_cache_limit
+        result["memoryPolicy"] = memory_policy()
+        result["checks"]["configuredFreeCacheLimit"] = configured_cache_limit == FREE_CACHE_LIMIT_BYTES
+        memory_receipts = [item["receipt"]["memory"] for item in initialized["calibrationObservations"]]
         ids = backend.encode_raw(FIXED_TEXT)
         continuation = backend.encode_raw(FIXED_CONTINUATION)[:3]
         if len(continuation) != 3 or any(token in backend.special_ids for token in continuation):
@@ -142,7 +184,10 @@ def qualify(model_path: str, output: Path) -> dict:
                       "cacheOffsetsEqual": all(x["cacheOffsetsEqual"] for x in stages),
                       "norms": engine._norms(backend)}
             parity_records.append(record)
+            logits = None
             backend.release_cache()
+            record["memory"] = backend.memory_receipt()
+            memory_receipts.append(record["memory"])
         save(output / "parity.json", {"promptTokenIds": ids, "continuationTokenIds": continuation,
                                       "baseline": [{"stage": x["stage"], "inputTokenIds": x["inputTokenIds"],
                                                     "logitsSha256": array_hash(x["array"]),
@@ -171,6 +216,7 @@ def qualify(model_path: str, output: Path) -> dict:
                                             "checks": norm_records})
         result["checks"]["perPositionNorms"] = all(x["finite"] and x["intendedPass"] and x["roundedPass"] for x in norm_records)
         backend.release_cache()
+        memory_receipts.append(backend.memory_receipt())
         if not result["checks"]["perPositionNorms"]:
             raise RuntimeError("intervention norm failed the declared dtype-aware bound")
 
@@ -207,6 +253,30 @@ def qualify(model_path: str, output: Path) -> dict:
         save(output / "quiet-after-steered.json", after_steered)
         result["checks"]["noStaleSteering"] = (after_steered["norms"]["maxActualDeltaRatio"] == 0 and
             after_steered["receipt"]["activationSha256"] == quiet["receipt"]["activationSha256"])
+        third = engine.generate_journal(probe, Event())
+        save(output / "probe-after-steered.json", third)
+        result["checks"]["crossArmGenerationIsolation"] = bool(third["complete"]
+            and first["promptTokenIds"] == third["promptTokenIds"]
+            and first["generatedTokenIds"] == third["generatedTokenIds"]
+            and first["sampledTokenIds"] == third["sampledTokenIds"]
+            and first["receipt"]["activationSha256"] == third["receipt"]["activationSha256"]
+            and first["receipt"]["processedTokenIdsSha256"] == third["receipt"]["processedTokenIdsSha256"])
+        order_records = [fixed_order_probe(backend, ids, continuation, vector, gain)
+                         for vector, gain in ((np.zeros(HIDDEN_DIM), 0.0), (direction, GAIN),
+                                              (np.zeros(HIDDEN_DIM), 0.0), (direction, GAIN))]
+        order_equal = (order_records[0]["stages"] == order_records[2]["stages"]
+                       and order_records[1]["stages"] == order_records[3]["stages"])
+        save(output / "cross-arm-order.json", {"order": plan["crossArmOrder"],
+            "records": order_records, "repeatedSameArmStagesBitwiseEqual": order_equal})
+        result["checks"]["crossArmLogitTokenCaptureIsolation"] = order_equal
+        memory_receipts.extend(item["receipt"]["memory"] for item in
+                               (first, quiet, second, steered, third, after_steered))
+        memory_receipts.extend(item["memory"] for item in order_records)
+        result["checks"]["perOperationMemoryCleanup"] = all(clean_memory_receipt(item) for item in memory_receipts)
+        save(output / "memory.json", {"policy": memory_policy(),
+            "modelLoad": initialized["memory"]["modelLoad"], "operations": memory_receipts,
+            "operationCount": len(memory_receipts),
+            "allCleanupFreeCacheBytesZero": result["checks"]["perOperationMemoryCleanup"]})
         result["passed"] = all(result["checks"].values())
         result["status"] = "passed" if result["passed"] else "failed"
     except Exception as exc:

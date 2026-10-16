@@ -5,6 +5,19 @@ import numpy as np
 
 from . import HIDDEN_DIM, LAYER_COUNT, TAP_BLOCK_INDEX
 
+FREE_CACHE_LIMIT_BYTES = 64 * 1024 * 1024
+CLEAR_CACHE_EVERY_GENERATED_TOKENS = 64
+
+
+def memory_policy() -> dict:
+    return {"schemaVersion": "activation-mlx-memory-policy/1",
+            "freeCacheLimitBytes": FREE_CACHE_LIMIT_BYTES,
+            "clearEveryGeneratedContentTokens": CLEAR_CACHE_EVERY_GENERATED_TOKENS,
+            "scope": "owned-worker-MLX-allocator-only",
+            "limitSemantics": "free-cache excess is reclaimed on the next allocation; not an active-memory, process-RAM or host-RAM cap",
+            "peakSemantics": "MLX peak active allocation since the named reset; excludes free cache and non-MLX memory",
+            "memoryLimitChanged": False, "wiredLimitChanged": False}
+
 
 class MLXBackend:
     def __init__(self, model_path: str):
@@ -16,7 +29,18 @@ class MLXBackend:
         from mlx_lm.sample_utils import make_sampler
 
         self.mx, self.make_prompt_cache, self.make_sampler = mx, make_prompt_cache, make_sampler
+        self.previous_cache_limit = int(mx.set_cache_limit(FREE_CACHE_LIMIT_BYTES))
+        self.memory_rows = []
+        self.periodic_cache_clears = 0
+        self._operation_active = False
+        mx.synchronize()
+        mx.reset_peak_memory()
+        self.load_memory = {"policy": memory_policy(), "peakResetBoundary": "before-model-load",
+                            "snapshots": [self._memory_snapshot("before-model-load")]}
         self.model, self.tokenizer = load(model_path, tokenizer_config={"trust_remote_code": False})
+        self.load_memory["snapshots"].append(self._memory_snapshot("model-loaded"))
+        mx.clear_cache()
+        self.load_memory["snapshots"].append(self._memory_snapshot("load-cache-cleared"))
         if len(self.model.model.layers) != LAYER_COUNT or self.model.args.hidden_size != HIDDEN_DIM:
             raise ValueError("loaded architecture differs from the inspected manifest")
         self.eos_ids = set(self.tokenizer.eos_token_ids)
@@ -29,6 +53,7 @@ class MLXBackend:
         self.captured = None
         self.norm_rows = []
         self.processed_ids = []
+        self.before = self.after = self.actual_delta = self.intended_delta = None
         owner = self
 
         class Tap(nn.Module):
@@ -68,13 +93,23 @@ class MLXBackend:
             add_generation_prompt=True, enable_thinking=False))
 
     def begin(self, ids: list[int], direction: np.ndarray, gain: float, seed: int, temperature: float):
+        if self._operation_active or self.cache is not None:
+            raise RuntimeError("previous operation must release its cache before begin")
+        self.mx.synchronize()
+        self.mx.reset_peak_memory()
+        self.memory_rows = [self._memory_snapshot("operation-start")]
+        self.periodic_cache_clears = 0
+        self.generated_processed = 0
+        self._operation_active = True
         self.cache = self.make_prompt_cache(self.model)
         self.gain = gain
         self.direction = self.mx.array(direction.astype(np.float32)) if gain != 0 and np.any(direction) else None
         self.norm_rows, self.processed_ids = [], []
         self.mx.random.seed(seed)
         self.sampler = self.make_sampler(temp=temperature)
-        return self._forward(ids)
+        logits = self._forward(ids)
+        self.memory_rows.append(self._memory_snapshot("prefill-complete"))
+        return logits
 
     def _forward(self, ids: list[int]):
         mx = self.mx
@@ -92,10 +127,19 @@ class MLXBackend:
                                "actualDeltaRatio": float(d / b) if b else 0.0}
                               for token, b, a, d, i in zip(ids, before, after, delta, intended))
         self.processed_ids.extend(ids)
+        # Norms and the captured activation now have independent host copies.
+        # Do not retain their diagnostic device arrays between forward calls.
+        self._release_diagnostics()
         return logits
 
     def advance(self, token: int):
-        return self._forward([token])
+        logits = self._forward([token])
+        self.generated_processed += 1
+        if self.generated_processed % CLEAR_CACHE_EVERY_GENERATED_TOKENS == 0:
+            self.mx.synchronize()
+            self.mx.clear_cache()
+            self.periodic_cache_clears += 1
+        return logits
 
     def sample(self, logits) -> int:
         probabilities = logits - self.mx.logsumexp(logits, axis=-1, keepdims=True)
@@ -106,9 +150,36 @@ class MLXBackend:
     def decode(self, ids: list[int]) -> str:
         return self.tokenizer.decode(ids, skip_special_tokens=False)
 
+    def _memory_snapshot(self, phase: str) -> dict:
+        self.mx.synchronize()
+        return {"phase": phase, "activeBytes": int(self.mx.get_active_memory()),
+                "freeCacheBytes": int(self.mx.get_cache_memory()),
+                "peakActiveBytesSinceReset": int(self.mx.get_peak_memory())}
+
+    def memory_receipt(self) -> dict:
+        return {"policy": memory_policy(), "peakResetBoundary": "operation-start" if self.memory_rows else None,
+                "snapshots": [dict(row) for row in self.memory_rows],
+                "periodicCacheClears": self.periodic_cache_clears,
+                "operationReleased": not self._operation_active}
+
+    def prepare_operation(self):
+        if self._operation_active:
+            raise RuntimeError("previous operation is still active")
+        self.memory_rows, self.periodic_cache_clears = [], 0
+
+    def _release_diagnostics(self):
+        self.captured = self.before = self.after = self.actual_delta = self.intended_delta = None
+
     def release_cache(self):
+        if self._operation_active:
+            self.memory_rows.append(self._memory_snapshot("operation-end"))
         self.cache = None
-        self.captured = None
+        self._release_diagnostics()
         self.direction = None
         self.gain = 0.0
+        self.sampler = None
+        self.mx.synchronize()
         self.mx.clear_cache()
+        if self._operation_active:
+            self.memory_rows.append(self._memory_snapshot("cleanup-complete"))
+        self._operation_active = False

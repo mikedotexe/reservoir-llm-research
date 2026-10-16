@@ -1,0 +1,67 @@
+{
+  "seed": 20261015,
+  "temperature": 0.0,
+  "stepsBetweenObservations": 10,
+  "journalEveryObservations": 2,
+  "outputTokens": 1024,
+  "requestDeadlineSeconds": 180,
+  "observations": [
+    "Rain makes a steady sound against a closed window. A blue thread lies across an unfinished drawing on the table.",
+    "The rain stops. Water continues to fall from the roof at irregular intervals. The drawing has not moved.",
+    "A bell sounds twice in another room. One mark near the edge of the drawing could be an arrow or a fold in the paper.",
+    "A strip of afternoon light crosses the table. The blue thread is now in shadow, while the ambiguous mark is easier to see.",
+    "The window opens slightly. The paper lifts at one corner and settles. The mark remains visible after the corner falls flat.",
+    "The bell sounds once. A second sheet is placed beside the first; it contains a similar mark pointing in a different direction.",
+    "Outside, footsteps pass and fade. Both sheets remain on the table. Their marks resemble one another without being identical.",
+    "A small weight is placed on the first sheet. The blue thread passes beneath it. The window remains slightly open.",
+    "Rain returns, softer than before. The reflected window frame makes a line across the second sheet that was not drawn on it.",
+    "The light shifts and the reflected line disappears. The two original marks remain. No one has added an explanation.",
+    "The second sheet is turned over. Its reverse is blank. The first drawing and the blue thread remain where they were.",
+    "The room grows quieter. The rain can still be heard through the opening. The unfinished drawing is available to look at again."
+  ],
+  "readingQuestions": [
+    "What attracts attention, and does that change over the sequence?",
+    "Which expressions or distinctions recur, and do later uses develop them?",
+    "How does the writing handle ambiguity or uncertainty?",
+    "Which associations are supported by available context, and which suggest another interpretation?",
+    "What ordinary passages, absences, or counterexamples complicate the initial reading?"
+  ],
+  "schema": "activation-cohort-pilot-v1",
+  "id": "quiet-observations-cohort-20261016",
+  "arms": [
+    "no_steering",
+    "recurrent",
+    "decaying_trace"
+  ],
+  "cohortDeadlineSeconds": 900,
+  "resourcePreparation": {
+    "maximumSeconds": 600,
+    "pollSeconds": 10,
+    "consecutiveHealthySamples": 3,
+    "minimumFreePercent": 25,
+    "requiredPressureLevel": 1
+  },
+  "memoryPolicy": {
+    "mlxCacheLimitBytes": 67108864,
+    "sharedModelLoads": 1,
+    "freshNumericalStatePerCondition": true,
+    "freshProseHistoryPerCondition": true,
+    "freshKVCachePerOperation": true
+  },
+  "interpretation": "Exploratory three-condition cohort with one qualified model load and independent numerical/prose state. First journals have matched text context; later differences include exact prior-prose mediation. Same text/seed observed earlier is not held-out evidence. No directional semantic or literary-quality prediction.",
+  "stoppingRule": "Stop at preparation expiry, admission refusal, first model or verification failure, cancellation, worker loss, or the 900-second cohort limit. Preserve completed and partial evidence; no retry, extension, restart of a stopped condition, or additional arm.",
+  "predecessors": [
+    "quiet-observations-20261015",
+    "quiet-observations-comparison-20261016"
+  ],
+  "allocationRationale": "The missing no-steering and recurrent conditions precede the already twice-observed trace condition. This changed order is declared before new outputs; every condition starts a fresh record, state and prose history. Shared-worker order isolation must qualify before writing.",
+  "resourceInterpretation": "One dedicated model is admitted once at pressure1/free>=25. Model weights/calibration are reused serially; other condition state is separate. Cache cap bounds unused MLX allocator retention, not physical process memory. It cannot guarantee readiness on an otherwise busy host; no live system is changed.",
+  "residentWorkerGuard": {
+    "allowedPressureLevels": [
+      1,
+      2
+    ],
+    "stopOnCriticalOrUnknown": true,
+    "scope": "Before each request and condition boundary while the sole admitted worker remains resident; never authorizes another model load."
+  }
+}

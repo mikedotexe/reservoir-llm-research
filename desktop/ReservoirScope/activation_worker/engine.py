@@ -8,7 +8,7 @@ import numpy as np
 
 from . import (DEADLINE_SECONDS, GAIN, HIDDEN_DIM, MAX_TOKENS, MODEL_ID,
                MODEL_REVISION, PROTOCOL_VERSION, STATE_DIM, TAP_BLOCK_INDEX)
-from .backend import MLXBackend
+from .backend import MLXBackend, memory_policy
 from .manifest import inspect_model
 from .math_core import (array_hash, calibration_texts, canonical_hash, finite_array,
                         load_projection, make_calibration, project,
@@ -81,6 +81,9 @@ class Engine:
                 "calibration": self.calibration,
                 "calibrationSource": "restored" if saved is not None else "captured",
                 "calibrationObservations": observations,
+                "memoryPolicy": memory_policy(),
+                "memory": {"modelLoad": self.backend.load_memory,
+                           "lastOperation": self.backend.memory_receipt()},
                 "eosTokenIds": sorted(self.backend.eos_ids),
                 "specialTokenIds": sorted(self.backend.special_ids)}
 
@@ -96,6 +99,7 @@ class Engine:
         if ids[-1] in backend.special_ids:
             raise WorkerError("non_content_boundary", "quiet observation ends with a special token")
         start = self.clock()
+        backend.prepare_operation()
         try:
             if cancel.is_set():
                 raise WorkerError("cancelled", "quiet capture was cancelled")
@@ -115,11 +119,13 @@ class Engine:
                        "activationSha256": array_hash(activation),
                        "modelManifestSha256": self.manifest["sha256"],
                        "elapsedSeconds": self.clock() - start}
-            return {"activation": activation.tolist(), "promptTokenIds": ids,
-                    "generatedTokenIds": [], "sampledTokenIds": [],
-                    "norms": norms, "receipt": receipt}
+            result = {"activation": activation.tolist(), "promptTokenIds": ids,
+                      "generatedTokenIds": [], "sampledTokenIds": [],
+                      "norms": norms, "receipt": receipt}
         finally:
             backend.release_cache()
+        result["receipt"]["memory"] = backend.memory_receipt()
+        return result
 
     def quiet_capture(self, request: dict, cancel: Event) -> dict:
         self._require_initialized()
@@ -172,6 +178,8 @@ class Engine:
         stop_reason, stop_token, error = "max_tokens", None, None
         activation = None
         backend.norm_rows, backend.processed_ids = [], []
+        backend.prepare_operation()
+        logits = None
 
         def interrupted():
             if cancel.is_set():
@@ -212,6 +220,9 @@ class Engine:
         finally:
             norms = self._norms(backend)
             processed = list(backend.processed_ids)
+            # The final logits may retain a device buffer; release them before
+            # recording cleanup, just as the backend releases KV/diagnostic arrays.
+            logits = None
             backend.release_cache()
         try:
             text = backend.decode(generated)
@@ -240,6 +251,7 @@ class Engine:
             "arm": arm, "modelManifestSha256": self.manifest["sha256"],
             "calibrationSha256": self.calibration["sha256"],
             "activationSha256": array_hash(activation) if complete else None,
+            "memory": backend.memory_receipt(),
         }
         result = {"text": text, "complete": complete, "stopReason": stop_reason,
                   "promptTokenIds": ids, "generatedTokenIds": generated,

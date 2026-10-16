@@ -32,6 +32,9 @@ class FakeBackend:
         self.processed_ids = []
         self.after_advance = None
         self.raise_on_advance = False
+        self.load_memory = {"synthetic": True}
+        self.memory_operations = 0
+        self.operation_released = True
 
     def encode_raw(self, text):
         return [7, 10 + sum(map(ord, text)) % 70]
@@ -40,6 +43,8 @@ class FakeBackend:
         return [1, 2, 3]
 
     def begin(self, ids, direction, gain, seed, temperature):
+        self.memory_operations += 1
+        self.operation_released = False
         self.cache_count += 1
         self.cache = object()
         self.direction, self.gain = direction, gain
@@ -84,6 +89,14 @@ class FakeBackend:
         self.cache = None
         self.direction = None
         self.gain = 0
+        self.operation_released = True
+
+    def prepare_operation(self):
+        self.memory_operations = 0
+
+    def memory_receipt(self):
+        return {"synthetic": True, "operationStarted": bool(self.memory_operations),
+                "operationReleased": self.operation_released}
 
 
 def fake_inspector(path):
@@ -186,6 +199,8 @@ class EngineTests(unittest.TestCase):
         self.assertEqual(len(result["activation"]), HIDDEN_DIM)
         self.assertEqual(len(result["projection"]), STATE_DIM)
         self.assertIsNone(self.backend.cache)
+        self.assertEqual(result["receipt"]["memory"],
+                         {"synthetic": True, "operationStarted": True, "operationReleased": True})
 
     def test_final_generated_content_capture_is_same_pass_and_excludes_eos(self):
         result = self.engine.generate_journal(self.request(), threading.Event())
@@ -231,6 +246,16 @@ class EngineTests(unittest.TestCase):
         self.assertEqual(result["stopReason"], "cancelled")
         self.assertEqual(result["generatedTokenIds"], [41])
         self.assertIsNone(result["projection"])
+        self.assertTrue(result["receipt"]["memory"]["operationReleased"])
+
+    def test_cancel_before_begin_does_not_reuse_previous_memory_receipt(self):
+        self.engine.generate_journal(self.request(), threading.Event())
+        cancel = threading.Event()
+        cancel.set()
+        result = self.engine.generate_journal(self.request(), cancel)
+        self.assertEqual(result["stopReason"], "cancelled")
+        self.assertFalse(result["receipt"]["memory"]["operationStarted"])
+        self.assertTrue(result["receipt"]["memory"]["operationReleased"])
 
     def test_deadline_after_forward_cannot_publish_feedback(self):
         current = [0.0]
