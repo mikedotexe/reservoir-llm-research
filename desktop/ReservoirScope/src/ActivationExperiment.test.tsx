@@ -6,6 +6,16 @@ import { activationFixture, activationJournal, activationSession } from './activ
 import pilot from '../../../shared/reservoir-scope/activation-pilot.json';
 
 describe('Activation experiment interface', () => {
+  it('reads an entire unfinished response separately from completed journals and feedback', () => {
+    const { controller } = activationFixture();
+    const text = 'Retained repetition. '.repeat(45) + '<unfinished tail>';
+    const session = activationSession({ incompleteAttempts: [{ requestId: 'request-21', text, observedStep: 60, stopReason: 'max_tokens', responseSha256: 'f'.repeat(64), feedbackEligible: false }] });
+    controller.compare(session, true);
+    const html = renderToStaticMarkup(<ActivationReader session={session} index={0} state={controller.snapshot()} controller={controller}/>);
+    expect(html).toContain('0 journal entries'); expect(html).toContain('Unfinished writing at step 60');
+    expect(html).toContain('not a saved journal and never entered feedback');
+    expect(html).toContain('Retained repetition. '.repeat(45)); expect(html).toContain('&lt;unfinished tail&gt;');
+  });
   it('renders an opt-in setup without invoking model work', () => {
     const { controller, api } = activationFixture(); const html = renderToStaticMarkup(<ActivationExperiment active controller={controller}/>);
     expect(html).toContain('Check activation setup'); expect(html).toContain('Create activation experiment'); expect(html).toContain('model loads only after Start');

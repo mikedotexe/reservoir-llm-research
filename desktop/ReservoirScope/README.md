@@ -1,6 +1,6 @@
 # Reservoir Scope Tauri Preview
 
-**0.26.0 · Local preview · Optional activation experiment**
+**0.27.0 source candidate · Private preview preparation · Qualification pending**
 
 Reservoir Scope combines a personal reservoir and journal with offline experiments,
 recordings and evidence readers. The native macOS app remains separate at
@@ -12,15 +12,28 @@ own storage. Opening a workspace starts no experiment, model connection or live 
 [Capability/platform matrix](../../shared/reservoir-scope/PARITY.md) ·
 [Accepted roadmap](../../TAURI-ROADMAP.md)
 
-The new [Activation experiment](ACTIVATION-EXPERIMENT.md) connects quiet Qwen3
+For the forthcoming private Mac package, begin with
+[Install and first reading](PREVIEW-START.md). Read the bundled historical writing
+offline, then explicitly prepare the runtime if you want new writing. The
+[0.27 release record](RELEASE-0.27.0.md) owns the candidate identity and qualification
+status; its pending fields are not a delivery claim. The
+[newcomer task card](NEWCOMER-TASK-CARD.md) requires an actual human session.
+
+The optional [Activation experiment](ACTIVATION-EXPERIMENT.md) connects quiet Qwen3
 prefills to a persistent 32-unit state and a fixed residual intervention during
 journal writing. It has a separate session format, worker, calibration and reader.
 The [computational contract](../../shared/reservoir-scope/activation-experiment.md)
 defines the three conditions and bounded exploratory pilot. Actual qualification
-is recorded in the [0.26 account](validation/2026-10-15-activation-0.26.0/README.md).
+for 0.26 is recorded in its [dated account](validation/2026-10-15-activation-0.26.0/README.md).
+The [October 16 headroom work](validation/2026-10-16-activation-headroom/README.md)
+qualified a bounded worker/CLI path; it does not qualify the new package. The
+historical examples contain six trace journals and a separate unsteered prefix
+with an unfinished response, not a completed three-condition comparison.
 Historical Ollama sessions continue to use their recorded prompt contracts.
 
-## Start your journal
+<a id="start-your-journal"></a>
+
+## Build from source and start an Ollama journal
 
 With the [build prerequisites](#build-prerequisites) installed, run from the repository root:
 

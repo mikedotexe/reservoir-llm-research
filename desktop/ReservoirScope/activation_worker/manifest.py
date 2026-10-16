@@ -10,6 +10,24 @@ from . import HIDDEN_DIM, LAYER_COUNT, MODEL_ID, MODEL_REVISION, TAP_BLOCK_INDEX
 from .math_core import canonical_hash, sha256_file
 
 
+def inspect_dependencies() -> dict:
+    """Check the whole qualified lock using metadata only, without loading MLX."""
+    lock = Path(__file__).resolve().parent.parent / "activation-requirements.lock"
+    versions = {}
+    for line in lock.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        name, expected = line.split("==", 1)
+        actual = importlib.metadata.version(name)
+        if actual != expected:
+            raise ValueError(f"Activation dependency mismatch: {name} requires {expected}, found {actual}")
+        versions[name] = actual
+    if len(versions) != 34:
+        raise ValueError("Activation dependency lock does not contain the qualified 34 packages")
+    return versions
+
+
 def inspect_model(model_path: str) -> dict:
     root = Path(model_path).expanduser().resolve(strict=True)
     if not root.is_dir():
@@ -50,9 +68,7 @@ def inspect_model(model_path: str) -> dict:
     quant = config.get("quantization", config.get("quantization_config", {}))
     if quant.get("bits") != 4:
         raise ValueError("model quantization must be 4-bit")
-    versions = {}
-    for package in ("mlx", "mlx-lm", "numpy", "transformers", "huggingface-hub"):
-        versions[package] = importlib.metadata.version(package)
+    versions = inspect_dependencies()
     runtime_sources = []
     distribution = importlib.metadata.distribution("mlx-lm")
     for relative in ("mlx_lm/models/qwen3.py", "mlx_lm/models/cache.py", "mlx_lm/sample_utils.py", "mlx_lm/tokenizer_utils.py", "mlx_lm/utils.py"):

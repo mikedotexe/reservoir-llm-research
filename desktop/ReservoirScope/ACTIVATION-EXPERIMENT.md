@@ -7,7 +7,19 @@ dedicated local Qwen3 model. The ordinary Ollama journal loop remains available.
 
 ## Prepare the local runtime
 
-The first adapter requires Apple silicon and Python 3.12. From this directory:
+For the 0.27 private-preview candidate, use the app's **Prepare activation runtime**
+flow. Start with [the offline writing and installation guide](PREVIEW-START.md).
+Activation requires Apple Silicon and macOS 26 or later; setup checks 8 GiB free
+disk and uses its own pinned Python 3.12 runtime. Explicit Prepare permits network
+downloads, with a 30-minute deadline. Cancel retains recognized partial downloads;
+returning later does not automatically resume preparation. No inference occurs
+during preparation. The exact new package remains subject to
+[candidate qualification](RELEASE-0.27.0.md).
+
+### Developer-only manual environment
+
+The existing source workflow remains available for developers with Python 3.12
+and `uv` installed. From this directory:
 
 ```sh
 uv venv --python python3.12 .venv-activation
@@ -22,11 +34,12 @@ dependency lock and preparation source are versioned.
 
 ## Create and read a session
 
-Open **My reservoir → Activation experiment**. Select the absolute paths to the
-prepared Python interpreter, worker `activation_worker/__main__.py`, and model
-directory. The packaged app includes its own worker source; a source checkout can
-use the worker beside this guide. Check the runtime and assets, then create the
-session and choose Start explicitly. Opening the mode starts no model work.
+Open **My reservoir → Activation experiment · optional**. The private package's
+offline examples can be read immediately. Once in-app preparation reports ready,
+it supplies local runtime/model paths and the packaged worker. Check the activation
+setup, create the session, then choose Start explicitly. Opening the mode starts no
+model work. Developers can inspect or supply absolute paths in the advanced setup;
+the packaged app includes `activation_worker/__main__.py`.
 
 Each session selects one immutable condition: no steering, a decaying trace, or
 a recurrent reservoir. Use the same observation list and seed when comparing

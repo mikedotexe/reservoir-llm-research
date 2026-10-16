@@ -1,0 +1,40 @@
+{
+  "schema": "activation-setup-manifest-v1",
+  "runtimeId": "cpython-3.12.13-20260510-mlx0.32.4-v1",
+  "platform": {
+    "system": "Darwin",
+    "architecture": "arm64",
+    "minimumMacOSMajor": 26
+  },
+  "python": {
+    "version": "3.12.13",
+    "archivePath": "assets/cpython-3.12.13+20260510-aarch64-apple-darwin-install_only.tar.gz",
+    "archiveSha256": "5a30271f8d345a5b02b0c9e4e31e0f1e1455a8e4a04fba95cd9762472abc3b17",
+    "archiveBytes": 25102827,
+    "executableRelativePath": "python/bin/python3.12",
+    "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20260510/cpython-3.12.13%2B20260510-aarch64-apple-darwin-install_only.tar.gz"
+  },
+  "uv": {
+    "version": "0.10.8",
+    "path": "assets/uv",
+    "sha256": "247baf3b455e2304e111a41c0e633c71f7296f0c0131df93c9375fbf54ea03f1",
+    "bytes": 44400912,
+    "archiveSha256": "c3a6fff5b6b4abddff863117878194e35dbc6b0267d61ad259ab9896f9b8dcbb",
+    "url": "https://github.com/astral-sh/uv/releases/download/0.10.8/uv-aarch64-apple-darwin.tar.gz"
+  },
+  "locks": {
+    "wheels": {
+      "path": "activation-wheels.lock",
+      "sha256": "d24c92e6b3d4c0fb43166f90c9ab25d20124355fb8a662bac9c05c4b9fbf62f1"
+    },
+    "wheelInventory": {
+      "path": "wheels.json",
+      "sha256": "b46c5072906fc6bbd6b823fa79f5e328489c778490dfdcb49d07ccf6b2a14218"
+    },
+    "model": {
+      "path": "model-files.json",
+      "sha256": "7319b46738b77ee27cf7de9700b5bfdaa66dafe39cf0e3b9f64238cb5ddb4cac"
+    }
+  },
+  "minimumFreeBytes": 8589934592
+}

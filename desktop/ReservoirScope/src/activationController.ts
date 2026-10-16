@@ -11,6 +11,9 @@ export interface ActivationState {
 const empty = (): ActivationState => ({ current: null, saved: [], comparisons: [], capability: null, checkedConfig: null, busy: null, error: '', message: '', revealed: false, selected: {}, following: {} });
 const integer = (value: unknown) => typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
 export function validateActivationSnapshot(value: ActivationSnapshot) {
+  if (value?.incompleteAttempts !== undefined && (!Array.isArray(value.incompleteAttempts) || value.incompleteAttempts.length > 100
+    || value.incompleteAttempts.some(a => !a.requestId || typeof a.text !== 'string' || a.text.length > 8 * 1024 * 1024 || !integer(a.observedStep)
+      || typeof a.stopReason !== 'string' || !/^[a-f0-9]{64}$/.test(a.responseSha256) || a.feedbackEligible !== false))) throw new Error('The retained incomplete writing is invalid.');
   if (!value || !value.sessionId || !integer(value.revision) || !integer(value.step) || !integer(value.observationIndex) || !integer(value.journalCount)
     || typeof value.status !== 'string' || value.activeOperation !== null && typeof value.activeOperation !== 'string'
     || !value.config || !['no_steering', 'decaying_trace', 'recurrent'].includes(value.config.arm)

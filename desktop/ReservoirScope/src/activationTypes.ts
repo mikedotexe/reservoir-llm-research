@@ -7,6 +7,7 @@ export interface ActivationJournal {
   id: string; text: string; observedStep: number; firstAppliedStep: number | null; sha256: string; status: string;
 }
 export interface ActivationEvent { id: string; kind: string; step: number; detail: string }
+export interface ActivationIncompleteAttempt { requestId: string; text: string; observedStep: number; stopReason: string; responseSha256: string; feedbackEligible: false }
 export interface ActivationAnnotation {
   excerpt: string; interpretation: string; alternative: string; sourceEventIds: string[]; journalId?: string;
 }
@@ -16,6 +17,7 @@ export interface ActivationSnapshot {
   diagnostic: string | null; activeOperation: string | null; directory: string;
   modelManifestSha256?: string | null; calibrationSha256?: string | null;
   canStart?: boolean; annotations?: ActivationAnnotation[];
+  incompleteAttempts?: ActivationIncompleteAttempt[];
 }
 export interface ActivationCapability { ready?: boolean; diagnostic?: string; config?: ActivationConfig; [key: string]: unknown }
 export interface ActivationExport { path: string | null; verified: boolean }

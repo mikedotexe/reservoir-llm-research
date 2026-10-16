@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "Reservoir Scope Tauri Preview",
-  "version": "0.26.0",
+  "version": "0.27.0",
   "identifier": "research.reservoir.scope.tauri",
   "build": {
     "beforeDevCommand": "npm run prepare:resources && npm run dev",
@@ -45,7 +45,17 @@
     "resources": {
       "resources/": "resources/",
       "../activation_worker/": "activation_worker/",
-      "../activation-requirements.lock": "activation-requirements.lock"
+      "../activation-requirements.lock": "activation-requirements.lock",
+      "../activation_setup_bundle/setup-manifest.json": "activation_setup_bundle/setup-manifest.json",
+      "../activation_setup_bundle/activation-wheels.lock": "activation_setup_bundle/activation-wheels.lock",
+      "../activation_setup_bundle/wheels.json": "activation_setup_bundle/wheels.json",
+      "../activation_setup_bundle/model-files.json": "activation_setup_bundle/model-files.json",
+      "../activation_setup_bundle/licenses/": "activation_setup_bundle/licenses/",
+      "../activation_setup_bundle/assets/uv": "activation_setup_bundle/assets/uv",
+      "../activation_setup_bundle/assets/cpython-3.12.13+20260510-aarch64-apple-darwin-install_only.tar.gz": "activation_setup_bundle/assets/cpython-3.12.13+20260510-aarch64-apple-darwin-install_only.tar.gz",
+      "../activation_setup/__main__.py": "activation_setup/__main__.py",
+      "../activation_setup/__init__.py": "activation_setup/__init__.py",
+      "../activation_setup/driver.py": "activation_setup/driver.py"
     },
     "macOS": {
       "minimumSystemVersion": "14.0",

@@ -1,0 +1,20 @@
+.activation-collection { border: 1px solid var(--border, #334454); border-radius: 12px; padding: 1.1rem; margin: 1rem 0 1.5rem; }
+.activation-collection h3, .activation-collection h4 { margin-top: .4rem; }
+.activation-collection-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin: .8rem 0; }
+.activation-collection-readers { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr)); gap: 1rem; margin-top: 1rem; }
+.activation-collection-reading { min-width: 0; border: 1px solid var(--border, #334454); border-radius: 8px; padding: 1rem; }
+.activation-collection-prose { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 1rem; line-height: 1.7; max-height: 38rem; overflow: auto; padding: .6rem; background: rgba(0,0,0,.12); border-radius: 6px; }
+.activation-collection-prose:focus-visible { outline: 2px solid #8bbdeb; outline-offset: 3px; }
+.activation-collection-small { font-size: .85rem; line-height: 1.5; opacity: .85; }
+.activation-collection-incomplete { border-left: 3px solid #e2b66e; padding-left: .8rem; }
+.activation-collection details { margin: .8rem 0; }
+.activation-collection summary { cursor: pointer; line-height: 1.5; }
+.activation-collection pre, .activation-collection-note, .activation-collection blockquote { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.6; }
+.activation-collection pre { max-height: 28rem; overflow: auto; padding: .7rem; background: rgba(0,0,0,.15); }
+.activation-collection dl { display: grid; grid-template-columns: minmax(6rem, 1fr) minmax(0, 2fr); gap: .5rem; font-size: .85rem; }
+.activation-collection dd { margin: 0; overflow-wrap: anywhere; }
+.activation-collection-timeline { padding-left: 1.3rem; max-height: 28rem; overflow: auto; }
+.activation-collection-timeline li { margin-bottom: .8rem; }
+.activation-collection-timeline span { display: block; }
+.activation-collection code { overflow-wrap: anywhere; }
+@media (max-width: 760px) { .activation-collection { padding: .7rem; } .activation-collection-reading { padding: .7rem; } .activation-collection dl { grid-template-columns: 1fr; } }

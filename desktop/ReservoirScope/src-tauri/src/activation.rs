@@ -208,6 +208,16 @@ pub struct EventView {
 }
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
+pub struct IncompleteAttempt {
+    request_id: String,
+    text: String,
+    observed_step: u64,
+    stop_reason: String,
+    response_sha256: String,
+    feedback_eligible: bool,
+}
+#[derive(Clone, Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct Snapshot {
     pub session_id: String,
     pub revision: u64,
@@ -217,6 +227,7 @@ pub struct Snapshot {
     pub observation_index: usize,
     pub journal_count: usize,
     pub journals: Vec<JournalView>,
+    pub incomplete_attempts: Vec<IncompleteAttempt>,
     pub events: Vec<EventView>,
     pub diagnostic: Option<String>,
     pub active_operation: Option<String>,
@@ -923,6 +934,7 @@ fn verify_cohort_membership(p: &Path, m: &Manifest, r: &Record) -> Result<()> {
 struct Shared {
     root: PathBuf,
     default_worker: PathBuf,
+    setup: Mutex<Option<crate::activation_setup::SetupState>>,
     busy: AtomicBool,
     cancel: AtomicBool,
     active: Mutex<Option<String>>,
@@ -937,6 +949,7 @@ impl ActivationState {
         Self(Arc::new(Shared {
             root,
             default_worker,
+            setup: Mutex::new(None),
             busy: AtomicBool::new(false),
             cancel: AtomicBool::new(false),
             active: Mutex::new(None),
@@ -948,6 +961,10 @@ impl ActivationState {
     pub fn is_busy(&self) -> bool {
         self.0.busy.load(Ordering::SeqCst)
     }
+    pub fn with_setup(self, setup: crate::activation_setup::SetupState) -> Self {
+        *self.0.setup.lock().unwrap() = Some(setup);
+        self
+    }
     fn path(&self, id: &str) -> Result<PathBuf> {
         if !id_ok(id) {
             return Err(err("identity", "Invalid activation session identity"));
@@ -957,21 +974,18 @@ impl ActivationState {
         Ok(p)
     }
     pub fn resolve(&self, mut c: Config) -> Config {
-        let repo = Path::new(env!("CARGO_MANIFEST_DIR")).parent().unwrap();
         if c.worker_path.is_empty() {
             c.worker_path = self.0.default_worker.to_string_lossy().into();
         }
-        if c.python_path.is_empty() {
-            c.python_path = repo
-                .join(".venv-activation/bin/python")
-                .to_string_lossy()
-                .into();
-        }
-        if c.model_path.is_empty() {
-            c.model_path = repo
-                .join(".activation-models/qwen3-4b")
-                .to_string_lossy()
-                .into();
+        if let Some(setup) = self.0.setup.lock().unwrap().as_ref() {
+            if let Ok(Some((python, model))) = setup.ready_paths() {
+                if c.python_path.is_empty() {
+                    c.python_path = python;
+                }
+                if c.model_path.is_empty() {
+                    c.model_path = model;
+                }
+            }
         }
         c
     }
@@ -1595,8 +1609,33 @@ fn snapshot(p: &Path, m: &Manifest, r: &Record) -> Result<Snapshot> {
         .collect();
     let mut replay = Record::new(r.specification.clone()).map_err(io)?;
     let mut events = vec![];
+    let mut incomplete_attempts = vec![];
     for (i, e) in r.events.iter().enumerate() {
         replay.append(e.clone()).map_err(io)?;
+        if let Event::RequestStarted { request } = e {
+            if request.kind == "generate_journal" && id_ok(&request.id) {
+                let path = p.join(format!("{}-response.json", request.id));
+                if path.exists() {
+                    let bytes = files::read_bounded(&path, RESPONSE_LIMIT, "activation-reading")?;
+                    let response: Value = serde_json::from_slice(&bytes).map_err(io)?;
+                    if response["complete"] == false {
+                        if let Some(text) = response["text"].as_str() {
+                            incomplete_attempts.push(IncompleteAttempt {
+                                request_id: request.id.clone(),
+                                text: text.into(),
+                                observed_step: replay.state.step,
+                                stop_reason: response["stopReason"]
+                                    .as_str()
+                                    .unwrap_or("incomplete")
+                                    .into(),
+                                response_sha256: core::digest(&bytes),
+                                feedback_eligible: false,
+                            });
+                        }
+                    }
+                }
+            }
+        }
         let (kind, detail) = match e {
             Event::RequestStarted { request } => ("requestStarted", request.kind.clone()),
             Event::QuietReceived { .. } => (
@@ -1639,6 +1678,7 @@ fn snapshot(p: &Path, m: &Manifest, r: &Record) -> Result<Snapshot> {
         observation_index: r.state.observation_index,
         journal_count: r.state.journals.len(),
         journals,
+        incomplete_attempts,
         events,
         diagnostic: m.diagnostic.clone(),
         active_operation: m.active_operation.clone(),

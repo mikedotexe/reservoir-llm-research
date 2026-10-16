@@ -7,12 +7,20 @@ from pathlib import Path
 from unittest.mock import patch
 
 from activation_worker import MODEL_ID, MODEL_REVISION
-from activation_worker.manifest import inspect_model
+from activation_worker.manifest import inspect_dependencies, inspect_model
 from activation_worker.math_core import sha256_file
 from activation_worker.qualify import bounded_capture, dtype_rounding_allowance, save
 
 
 class ManifestTests(unittest.TestCase):
+    def test_full_dependency_lock_is_checked_without_model_loading(self):
+        import importlib.metadata
+        original = importlib.metadata.version
+        self.assertEqual(len(inspect_dependencies()), 34)
+        with patch("activation_worker.manifest.importlib.metadata.version", side_effect=lambda name: "wrong" if name == "filelock" else original(name)):
+            with self.assertRaisesRegex(ValueError, "filelock"):
+                inspect_dependencies()
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

@@ -70,6 +70,11 @@ pub fn start_finite<T>(
         .0
         .lock()
         .map_err(|_| blocked("Execution admission is unavailable."))?;
+    if app.state::<crate::activation_setup::SetupState>().is_busy() {
+        return Err(blocked(
+            "Finish or cancel runtime preparation before starting an experiment.",
+        ));
+    }
     if app.state::<crate::activation::ActivationState>().is_busy() {
         return Err(blocked(
             "Stop the activation experiment before starting another experiment.",
@@ -92,6 +97,11 @@ pub fn start_sustained<T>(
         .0
         .lock()
         .map_err(|_| blocked("Execution admission is unavailable."))?;
+    if app.state::<crate::activation_setup::SetupState>().is_busy() {
+        return Err(blocked(
+            "Finish or cancel runtime preparation before starting an experiment.",
+        ));
+    }
     if app.state::<crate::activation::ActivationState>().is_busy() {
         return Err(blocked(
             "Stop the activation experiment before starting another experiment.",

@@ -69,4 +69,14 @@ describe('Activation experiment ownership and reading', () => {
     expect(() => validateActivationSnapshot(activationSession({ journalCount: 1, journals: [{ ...activationJournal(), firstAppliedStep: 20 }] }))).toThrow('application steps');
     expect(() => validateActivationSnapshot(activationSession({ journalCount: 2, journals: [activationJournal(), activationJournal()] }))).toThrow();
   });
+  it('preserves incomplete writing beyond 64 KiB within the existing response bound', () => {
+    const { controller } = activationFixture();
+    const text = 'Retained unfinished response. '.repeat(3000);
+    expect(text.length).toBeGreaterThan(65536);
+    const attempt = { requestId: 'request-21', text, observedStep: 60, stopReason: 'max_tokens', responseSha256: 'f'.repeat(64), feedbackEligible: false as const };
+    controller.compare(activationSession({ incompleteAttempts: [attempt] }), true);
+    expect(controller.snapshot().comparisons[0].incompleteAttempts?.[0].text).toBe(text);
+    expect(controller.snapshot().comparisons[0].journalCount).toBe(0);
+    expect(() => validateActivationSnapshot(activationSession({ incompleteAttempts: [{ ...attempt, text: 'x'.repeat(8 * 1024 * 1024 + 1) }] }))).toThrow('incomplete writing');
+  });
 });

@@ -1,6 +1,20 @@
 # Reservoir Scope: current status and next work
 
-**October 15, 2026 · Candidate 0.26.0 · Separate activation journal v1**
+**October 16, 2026 · Source candidate 0.27.0 · Private preview tranche in progress**
+
+The active finishing tranche is portable in-app setup, qualification of the exact
+Mac package, coherent offline journal examples, and an uncoached newcomer session.
+[Install-first guidance](PREVIEW-START.md), the [release record](RELEASE-0.27.0.md)
+and [newcomer task card](NEWCOMER-TASK-CARD.md) define that handoff. Source
+implementation is underway; final candidate tests, package identity, actual-app
+qualification and human acceptance remain pending. No new private archive or
+recipient delivery is claimed here.
+
+Activation preparation targets Apple Silicon and macOS 26 or later, checks for
+8 GiB free disk, and starts downloads only on Prepare. Its 30-minute setup deadline
+is separate from unchanged inference bounds. Offline examples need no setup.
+The development/qualification host is macOS 27.0.1; minimum-version and second-Mac
+qualification remain open.
 
 The personal reservoir loop works: a bounded run can generate writing, save and read
 it back, apply its encoded signal at the next numerical step, and carry the exact
@@ -18,8 +32,13 @@ their recorded prompt and session contracts.
 
 The pinned model adapter passed real-model mechanical qualification. The frozen
 pilot retained six complete decaying-trace journals, then stopped when memory
-pressure refused the second condition before model load. No retry was made;
-the three-condition writing comparison remains incomplete. The
+pressure refused the second condition before model load. That attempt was not
+retried. A later separately declared
+[headroom cohort](validation/2026-10-16-activation-headroom/README.md) passed memory
+admission and retained two unsteered journals before its third response reached
+the frozen token ceiling; the other conditions remained unstarted. Fourteen
+real-model mechanical checks passed for that worker/runtime. These results do not
+qualify the new packaged UI or complete the three-condition writing comparison. The
 [complete-sequence reading](validation/2026-10-15-activation-0.26.0/PILOT-READING.md)
 preserves tentative textual patterns alongside prompt and memory alternatives.
 
@@ -187,7 +206,13 @@ The earlier [block-order comparison](validation/2026-10-15-context-order-03/READ
 and [time/distance comparison](validation/2026-10-15-time-direction-03/README.md)
 remain bounded, known-context diagnostics. Neither candidate was promoted.
 
-## Next usability and resource tranche
+<a id="next-usability-and-resource-tranche"></a>
+
+## Earlier usability and resource work carried forward
+
+The named compact-window and keyboard checks below belong in the new package
+walkthrough. Broader GPU/resource research remains separate from the four-item
+private-preview finishing tranche.
 
 The 0.25 layout leads with prose and preserves the 0.24 named multi-page reading
 routes and keyboard access. Its scoped native three-entry reading and zoom checks
@@ -206,7 +231,7 @@ for broader resource measurement. This is sequencing, not a new result
 or a queued model run. Production writing v8 and the Beings remain outside this
 usability/measurement tranche. Other-platform and collaborator acceptance are separate.
 
-## Six bounded areas remaining
+## Broader work beyond the private-preview finish
 
 | Area | Next useful completion boundary |
 | --- | --- |
@@ -232,11 +257,12 @@ sleep/wake checks remain open. Whole provider-context processing is not proved b
 requested capacity or reported input-token counts.
 
 The [0.20 housekeeping/source checkpoint](validation/2026-10-15-housekeeping-0.20.0/README.md)
-remains at `1552bbccb7089ff46641ad102f5644b44d9223ca`. The later 0.21 source checkpoint
-is saved locally at `0001b7a`; it has not been pushed. Current work through 0.25 is subsequent
-to that checkpoint. Source checks, packages, agent UI observations and collaborator
-acceptance remain separate evidence. This status update changes no product source,
-prompt or prior receipt.
+remains at `1552bbccb7089ff46641ad102f5644b44d9223ca`. The subsequent completed
+0.25.0 apparatus was published at `3cfbf1b7fba9ceacba2c5ad84bd9636c04496909`
+with annotated tag `reservoir-scope-tauri-v0.25.0-checkpoint`, including the three
+preceding apparatus commits. Activation work follows in `codex/activation-loop`.
+Source checks, packages, agent UI observations and collaborator acceptance remain
+separate evidence; historical receipts retain their exact original scope.
 
 The [full prior roadmap](../../TAURI-ROADMAP-HISTORY-2026-10-15.md),
 [parity chronology](../../shared/reservoir-scope/PARITY-HISTORY-2026-10-15.md) and

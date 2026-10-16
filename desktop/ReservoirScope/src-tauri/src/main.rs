@@ -2,6 +2,8 @@
 
 mod activation;
 mod activation_commands;
+mod activation_reading;
+mod activation_setup;
 mod cases;
 mod desktop_menu;
 mod execution_admission;
@@ -598,6 +600,7 @@ fn library_cancel_scan(state: tauri::State<'_, library::LibraryState>) -> librar
 // OS close/quit only requests review; no UI timer or frontend claim can approve
 // dropping evidence. The backend atomically authorizes the eventual exit.
 fn reopen_close_gates(app: &tauri::AppHandle) {
+    app.state::<activation_setup::SetupState>().cancel_close();
     app.state::<activation::ActivationState>().cancel_close();
     app.state::<sessions::SessionState>().cancel_close();
     app.state::<sustained::SustainedState>().cancel_close();
@@ -634,6 +637,7 @@ fn settle_close_finish(app: &tauri::AppHandle, epoch: u64) -> bool {
 }
 
 fn request_session_close(app: &tauri::AppHandle) -> bool {
+    app.state::<activation_setup::SetupState>().request_close();
     app.state::<activation::ActivationState>().request_close();
     request_session_close_at(app, close_epoch(app), false)
 }
@@ -923,6 +927,7 @@ fn main() {
         .manage(response::ResponseState::default())
         .manage(cases::CaseState::default())
         .manage(geometry::GeometryState::default())
+        .manage(activation_reading::ReadingCollectionState::default())
         .setup(|app| {
             let data = files::app_data_path(app.path().app_data_dir()?)
                 .map_err(|e| std::io::Error::other(e.message))?;
@@ -941,7 +946,7 @@ fn main() {
                 .path()
                 .resource_dir()?
                 .join("activation_worker/__main__.py");
-            let worker = if packaged_worker.exists() {
+            let worker = if packaged_worker.exists() || !cfg!(debug_assertions) {
                 packaged_worker
             } else {
                 std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
@@ -949,10 +954,29 @@ fn main() {
                     .unwrap()
                     .join("activation_worker/__main__.py")
             };
-            app.manage(activation::ActivationState::new(
-                data.join("activation-v1"),
-                worker,
-            ));
+            let resource_root = app.path().resource_dir()?;
+            let setup_resources = if resource_root
+                .join("activation_setup_bundle/setup-manifest.json")
+                .exists()
+                || !cfg!(debug_assertions)
+            {
+                resource_root.clone()
+            } else {
+                std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+                    .parent()
+                    .unwrap()
+                    .to_path_buf()
+            };
+            let setup = activation_setup::SetupState::new(
+                data.join("activation-setup-v1"),
+                setup_resources.join("activation_setup_bundle"),
+                setup_resources.join("activation_setup/__main__.py"),
+            );
+            app.manage(setup.clone());
+            app.manage(
+                activation::ActivationState::new(data.join("activation-v1"), worker)
+                    .with_setup(setup),
+            );
             #[cfg(target_os = "macos")]
             {
                 macos_termination::install(app.handle())?;
@@ -988,6 +1012,12 @@ fn main() {
             }
         })
         .invoke_handler(tauri::generate_handler![
+            activation_setup::activation_setup_status,
+            activation_setup::activation_setup_prepare,
+            activation_setup::activation_setup_cancel,
+            activation_reading::activation_reading_open,
+            activation_reading::activation_reading_export,
+            activation_reading::activation_reading_close,
             activation_commands::activation_inspect,
             activation_commands::activation_create,
             activation_commands::activation_start,

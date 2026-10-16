@@ -38,6 +38,11 @@ pub async fn activation_start(
     tauri::async_runtime::spawn_blocking(move || {
         let admission = app.state::<crate::execution_admission::ExecutionAdmission>();
         let _guard = admission.0.lock().map_err(join)?;
+        if app.state::<crate::activation_setup::SetupState>().is_busy() {
+            return Err(join(
+                "Finish or cancel runtime preparation before starting activation work",
+            ));
+        }
         if app
             .state::<crate::sessions::SessionState>()
             .execution_busy()
@@ -169,21 +174,36 @@ mod tests {
         let grants = capability["permissions"].as_array().unwrap();
         let handlers = include_str!("main.rs");
         let mut command_count = 0;
-        for declaration in include_str!("activation_commands.rs").lines() {
-            let Some(declaration) = declaration.strip_prefix("pub async fn ") else {
-                continue;
-            };
-            let command = declaration.split('(').next().unwrap();
-            let permission = format!("allow-{}", command.replace('_', "-"));
-            assert!(handlers.contains(&format!("activation_commands::{command},")));
-            assert!(
-                grants.contains(&json!(permission)),
-                "Missing grant: {command}"
-            );
-            let definition = &manifests["__app-acl__"]["permissions"][&permission];
-            assert_eq!(definition["commands"]["allow"], json!([command]));
-            assert_eq!(definition["commands"]["deny"], json!([]));
-            command_count += 1;
+        for (module, source) in [
+            (
+                "activation_commands",
+                include_str!("activation_commands.rs"),
+            ),
+            ("activation_setup", include_str!("activation_setup.rs")),
+            ("activation_reading", include_str!("activation_reading.rs")),
+        ] {
+            for declaration in source.lines() {
+                let Some(declaration) = declaration
+                    .strip_prefix("pub async fn ")
+                    .or_else(|| declaration.strip_prefix("pub fn "))
+                else {
+                    continue;
+                };
+                let command = declaration.split('(').next().unwrap();
+                if !command.starts_with("activation_") {
+                    continue;
+                }
+                let permission = format!("allow-{}", command.replace('_', "-"));
+                assert!(handlers.contains(&format!("{module}::{command},")));
+                assert!(
+                    grants.contains(&json!(permission)),
+                    "Missing grant: {command}"
+                );
+                let definition = &manifests["__app-acl__"]["permissions"][&permission];
+                assert_eq!(definition["commands"]["allow"], json!([command]));
+                assert_eq!(definition["commands"]["deny"], json!([]));
+                command_count += 1;
+            }
         }
         assert!(command_count > 0, "No activation commands were inspected");
     }

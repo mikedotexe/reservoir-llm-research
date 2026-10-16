@@ -1,12 +1,35 @@
-# Reservoir Scope · current release
+# Reservoir Scope · current candidates
+
+## Tauri 0.27.0 · private preview in preparation
+
+The current sharing tranche is the **Reservoir Scope Tauri Preview 0.27.0 source
+candidate**: in-app runtime preparation, an offline activation-journal reading
+collection, qualification of an exact Mac package, and first-time newcomer review.
+Implementation is in progress; final package identity, qualification and human
+acceptance are pending. There is no new qualified archive or recipient delivery
+claimed by this page.
+
+Begin with the [install-first guide](../desktop/ReservoirScope/PREVIEW-START.md).
+The [0.27 release record](../desktop/ReservoirScope/RELEASE-0.27.0.md) owns the exact
+Tauri package fields and acceptance state; [desktop status](../desktop/ReservoirScope/STATUS.md)
+separates current work from earlier qualification. New activation writing requires
+Apple Silicon and macOS 26 or later. Offline reading needs no runtime download.
+The example sequences are separate historical attempts with incomplete controls,
+not a positive intervention result or journals from the live Beings.
+
+The Tauri app uses `research.reservoir.scope.tauri` and separate storage. It does
+not replace the native app, its version history or its unfinished human review.
+
+## Native macOS 0.15.0 build 21 · preserved candidate
 
 **0.15.0, build 21 — qualified unreleased local candidate with direct lab navigation.**
 Human acceptance remains pending. Build 20 and Mike’s unfinished review copy,
 along with the frozen 0.14.0 delivery and tag, remain preserved separately.
-This page is authoritative for the current version, installation, verification and
-acceptance status. Earlier accounts describe their own releases, not this build.
+This section retains the native candidate's installation, verification and
+acceptance status. Its evidence does not qualify the Tauri candidate above.
+Earlier accounts describe their own releases, not this native build.
 
-## Try the offline lab
+## Try the native offline lab
 
 On an Apple silicon Mac running macOS 14 or later, follow the
 [source build instructions](../native/ReservoirScope/README.md#build-from-source)

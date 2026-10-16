@@ -44,6 +44,30 @@ fn finish(state: &ActivationState) {
     }
 }
 
+#[test]
+fn incomplete_response_over_64k_is_readable_without_becoming_a_journal_or_feedback() {
+    let (_root, state, config) = setup(false);
+    let source = fs::read_to_string(&config.worker_path).unwrap();
+    let source = source.replace("if c=='generate_journal':", "if c=='generate_journal':\n   x['complete']=False; x['stopReason']='max_tokens'; x['text']='Retained unfinished response. ' * 3000");
+    fs::write(&config.worker_path, source).unwrap();
+    let prepared = state.create(config.clone()).unwrap();
+    state.start(&prepared.session_id).unwrap();
+    finish(&state);
+    let snapshot = state.get(Some(&prepared.session_id)).unwrap().unwrap();
+    assert_eq!(snapshot.journal_count, 0);
+    assert_eq!(snapshot.incomplete_attempts.len(), 1);
+    assert!(snapshot.incomplete_attempts[0].text.len() > 65536);
+    assert_eq!(
+        snapshot.incomplete_attempts[0].text,
+        "Retained unfinished response. ".repeat(3000)
+    );
+    assert!(!snapshot.incomplete_attempts[0].feedback_eligible);
+    assert_eq!(snapshot.incomplete_attempts[0].stop_reason, "max_tokens");
+    assert!(!snapshot.can_start);
+    let verified = verify(Path::new(&snapshot.directory)).unwrap();
+    assert_eq!(verified["journals"], 0);
+}
+
 fn cohort_configs(config: &Config) -> Vec<Config> {
     [Arm::NoSteering, Arm::Recurrent, Arm::DecayingTrace]
         .into_iter()

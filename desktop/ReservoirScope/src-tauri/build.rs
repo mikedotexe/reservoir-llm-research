@@ -1,6 +1,12 @@
 fn main() {
     tauri_build::try_build(tauri_build::Attributes::new().app_manifest(
         tauri_build::AppManifest::new().commands(&[
+            "activation_setup_status",
+            "activation_setup_prepare",
+            "activation_setup_cancel",
+            "activation_reading_open",
+            "activation_reading_export",
+            "activation_reading_close",
             "activation_inspect",
             "activation_create",
             "activation_start",
