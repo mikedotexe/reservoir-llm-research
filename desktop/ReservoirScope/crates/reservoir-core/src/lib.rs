@@ -1,6 +1,7 @@
 //! Offline, explicitly scoped record verification. This crate never contacts a
 //! model, follows embedded source paths, or modifies imported record bytes.
 pub mod actions;
+pub mod activation;
 pub mod cases;
 pub mod codec;
 pub mod comparison;

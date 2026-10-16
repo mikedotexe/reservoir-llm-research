@@ -70,6 +70,11 @@ pub fn start_finite<T>(
         .0
         .lock()
         .map_err(|_| blocked("Execution admission is unavailable."))?;
+    if app.state::<crate::activation::ActivationState>().is_busy() {
+        return Err(blocked(
+            "Stop the activation experiment before starting another experiment.",
+        ));
+    }
     if app.state::<SustainedState>().is_busy() {
         return Err(blocked(
             "Stop or settle My reservoir before starting a finite experiment.",
@@ -87,6 +92,11 @@ pub fn start_sustained<T>(
         .0
         .lock()
         .map_err(|_| blocked("Execution admission is unavailable."))?;
+    if app.state::<crate::activation::ActivationState>().is_busy() {
+        return Err(blocked(
+            "Stop the activation experiment before starting another experiment.",
+        ));
+    }
     if app.state::<SessionState>().execution_busy() {
         return Err(blocked("Pause and retain or explicitly reset the finite experiment before starting My reservoir."));
     }

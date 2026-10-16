@@ -1,5 +1,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+mod activation;
+mod activation_commands;
 mod cases;
 mod desktop_menu;
 mod execution_admission;
@@ -596,6 +598,7 @@ fn library_cancel_scan(state: tauri::State<'_, library::LibraryState>) -> librar
 // OS close/quit only requests review; no UI timer or frontend claim can approve
 // dropping evidence. The backend atomically authorizes the eventual exit.
 fn reopen_close_gates(app: &tauri::AppHandle) {
+    app.state::<activation::ActivationState>().cancel_close();
     app.state::<sessions::SessionState>().cancel_close();
     app.state::<sustained::SustainedState>().cancel_close();
 }
@@ -631,6 +634,7 @@ fn settle_close_finish(app: &tauri::AppHandle, epoch: u64) -> bool {
 }
 
 fn request_session_close(app: &tauri::AppHandle) -> bool {
+    app.state::<activation::ActivationState>().request_close();
     request_session_close_at(app, close_epoch(app), false)
 }
 
@@ -757,6 +761,85 @@ fn cancel_sustained_close(app: tauri::AppHandle) {
 }
 
 fn main() {
+    let activation_args: Vec<String> = std::env::args().skip(1).collect();
+    if activation_args
+        .first()
+        .is_some_and(|s| s == "--verify-activation")
+    {
+        let result = activation_args
+            .get(1)
+            .ok_or_else(|| AppError::new("activation", "usage", "--verify-activation DIRECTORY"))
+            .and_then(|p| activation::verify(std::path::Path::new(p)));
+        match result {
+            Ok(v) => {
+                println!("{v}");
+                std::process::exit(0)
+            }
+            Err(e) => {
+                println!(
+                    "{}",
+                    serde_json::json!({"status":"failed","message":e.message,"modelsContacted":false})
+                );
+                std::process::exit(1)
+            }
+        }
+    }
+    if activation_args
+        .first()
+        .is_some_and(|s| s == "--activation-run")
+    {
+        let result = (|| -> Result<serde_json::Value, AppError> {
+            if !matches!(activation_args.len(), 4 | 6)
+                || activation_args[2] != "--output"
+                || (activation_args.len() == 6 && activation_args[4] != "--activation-calibration")
+            {
+                return Err(AppError::new("activation","usage","--activation-run CONFIG.json --output NEW_DIRECTORY [--activation-calibration FILE]"));
+            }
+            let config: activation::Config = serde_json::from_slice(&files::read_bounded(
+                std::path::Path::new(&activation_args[1]),
+                1024 * 1024,
+                "activation",
+            )?)
+            .map_err(|e| AppError::new("activation", "configuration", e.to_string()))?;
+            let root = std::path::PathBuf::from(&activation_args[3]);
+            if root.exists() {
+                return Err(AppError::new(
+                    "activation",
+                    "output",
+                    "Choose a new output directory",
+                ));
+            }
+            let state = activation::ActivationState::new(
+                root,
+                std::path::PathBuf::from(&config.worker_path),
+            );
+            let session = state.create(config)?;
+            if let Some(path) = activation_args.get(5) {
+                state.seed_calibration(&session.session_id, std::path::Path::new(path))?;
+            }
+            state.start(&session.session_id)?;
+            while state.is_busy() {
+                std::thread::sleep(std::time::Duration::from_millis(50));
+            }
+            let snapshot = state.get(Some(&session.session_id))?.unwrap();
+            serde_json::to_value(snapshot)
+                .map_err(|e| AppError::new("activation", "serialization", e.to_string()))
+        })();
+        match result {
+            Ok(v) => {
+                let success = v["status"] == "completed";
+                println!("{v}");
+                std::process::exit(if success { 0 } else { 1 })
+            }
+            Err(e) => {
+                println!(
+                    "{}",
+                    serde_json::json!({"status":"failed","message":e.message})
+                );
+                std::process::exit(1)
+            }
+        }
+    }
     // Explicit read-only CLI: no WebView, model transport, restoration or run.
     let mut arguments = std::env::args_os().skip(1);
     if arguments.next().as_deref() == Some(std::ffi::OsStr::new("--verify-sustained")) {
@@ -801,6 +884,22 @@ fn main() {
             app.manage(library);
             let sustained = sustained::SustainedState::new(data.join("sustained-v1"));
             app.manage(sustained.clone());
+            let packaged_worker = app
+                .path()
+                .resource_dir()?
+                .join("activation_worker/__main__.py");
+            let worker = if packaged_worker.exists() {
+                packaged_worker
+            } else {
+                std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+                    .parent()
+                    .unwrap()
+                    .join("activation_worker/__main__.py")
+            };
+            app.manage(activation::ActivationState::new(
+                data.join("activation-v1"),
+                worker,
+            ));
             #[cfg(target_os = "macos")]
             {
                 macos_termination::install(app.handle())?;
@@ -836,6 +935,16 @@ fn main() {
             }
         })
         .invoke_handler(tauri::generate_handler![
+            activation_commands::activation_inspect,
+            activation_commands::activation_create,
+            activation_commands::activation_start,
+            activation_commands::activation_stop,
+            activation_commands::activation_get,
+            activation_commands::activation_list,
+            activation_commands::activation_restore,
+            activation_commands::activation_export,
+            activation_commands::activation_import,
+            activation_commands::activation_annotate,
             sustained_commands::create_sustained,
             sustained_commands::get_sustained,
             sustained_commands::start_sustained,
