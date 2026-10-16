@@ -1,7 +1,8 @@
 # Activation comparison after the resource-limited pilot
 
 Started: October 16, 2026 · Subject: isolated Qwen3 research apparatus · Question
-families: [distinctions and continuity](../QUESTIONS.md) · Status: prospective
+families: [distinctions and continuity](../QUESTIONS.md) · Status: attempt stopped;
+comparison incomplete. The prospective design below was committed before execution.
 
 ## Question and scope
 
@@ -102,3 +103,17 @@ Raw observations, the new freeze, complete responses, packets and analysis remai
 under ignored `research/outputs/activation-comparison-20261016/`. Public methods,
 aggregate results and selected contextual excerpts will be retained here and in
 the dated qualification account.
+
+## Retained outcome
+
+The prospective design was committed as `ed8731c`, following runner `7d3c930`.
+The new attempt completed the trace condition and passed offline replay, then
+stopped before dispatching the unsteered condition: its 120-second preparation
+window expired. The recurrent condition was not started. No retry or model call
+followed the stop. This is incomplete collection, not a null comparison result.
+
+See the [dated account](../../desktop/ReservoirScope/validation/2026-10-16-activation-comparison-0.26.0/README.md)
+for resource observations, mechanical checks, same-condition repeat analysis and
+the completed sequence's reading. The missing comparison requires stable resource
+headroom and a separately declared future attempt; title and prose-memory
+contrasts remain subsequent work.

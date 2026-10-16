@@ -10,6 +10,12 @@ model, observations, invitation and memory policy fixed, while adding a bounded
 resource-preparation window before each condition. The earlier stopped pilot is
 preserved. Title and prose-memory contrasts follow as separately specified work.
 
+The [new attempt](../desktop/ReservoirScope/validation/2026-10-16-activation-comparison-0.26.0/README.md)
+completed and verified six trace journals, then stopped when the unsteered
+condition's two-minute preparation window expired. No unsteered or recurrent
+model request started. The comparative question remains open; stable headroom
+is the next execution prerequisite. No automatic retry or extension is running.
+
 **October 15: build the isolated activation experiment.** Mike selected quiet input
 → persistent recurrent state → fixed residual intervention → journal writing,
 with controlled numerical steps and a dedicated pinned Qwen3 model. The completed
