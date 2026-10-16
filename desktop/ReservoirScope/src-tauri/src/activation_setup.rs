@@ -583,6 +583,7 @@ impl SetupState {
             ));
         }
         command
+            .current_dir(&self.0.root)
             .stdin(Stdio::null())
             .stdout(Stdio::piped())
             .stderr(Stdio::from(

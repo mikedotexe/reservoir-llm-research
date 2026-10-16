@@ -56,6 +56,10 @@ and reaps its direct uv/metadata child after parent disappearance. SIGINT/SIGTER
 mark cancellation; subprocess escalation terminates then kills after five seconds.
 Network reads use 30-second timeouts and bounded chunks. No inference operation or
 service is started. No global process-name termination is used.
+Rust launches setup children with the owned setup root as their working directory;
+the Python supervisor explicitly uses that same root for uv and metadata probes.
+Setup therefore does not depend on the app's launch directory, which may be removed
+or unavailable after relocation or source isolation.
 
 Stdout contains JSON-lines with schema `activation-setup-progress-v1`. Phases are
 `environment`, `model`, `verification`, `ready`, `failed`, and `cancelled`. Running

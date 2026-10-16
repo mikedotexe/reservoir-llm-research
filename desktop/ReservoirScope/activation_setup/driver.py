@@ -137,7 +137,7 @@ class Supervisor:
         self.check()
         with self.child_lock:
             self.child = subprocess.Popen(command, stdin=subprocess.PIPE if input_data is not None else subprocess.DEVNULL,
-                                          stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=clean_environment(root))
+                                          stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=root, env=clean_environment(root))
             child = self.child
         try:
             self.check()

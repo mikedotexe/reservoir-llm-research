@@ -1,0 +1,70 @@
+{
+  "schema": "reservoir-private-preview-source-checks-v1",
+  "sourceCommit": "3bd6a4feab7282d63670a894e9238c7fff2661c4",
+  "execution": "Heavyweight suites ran serially. Real-model qualification and packaged UI are separate gates.",
+  "checks": [
+    {
+      "file": "research/outputs/private-preview-0.27.0-20261016/checks/rust-01.log",
+      "sha256": "4f7f2cacdc9ed3b8faa92d3fcdfa8facc8d1fc840e354108a906fc546fca1d9d",
+      "bytes": 49073,
+      "status": "passed",
+      "scope": "473 passed, 2 existing opt-in tests ignored; full workspace before final activation-only repairs"
+    },
+    {
+      "file": "research/outputs/private-preview-0.27.0-20261016/checks/rust-activation-final.log",
+      "sha256": "24794c7b6e4788b79a9c6b88ce0adc383dfc354a29b738074511310702a11df5",
+      "bytes": 4891,
+      "status": "passed",
+      "scope": "46 activation tests after the final Rust repairs"
+    },
+    {
+      "file": "research/outputs/private-preview-0.27.0-20261016/checks/clippy-final.log",
+      "sha256": "d43a8ad250d0800019f6cc04a4003cce4d6b9ac1052c91a6c3048ba7446f4fd1",
+      "bytes": 218,
+      "status": "passed",
+      "scope": "Strict workspace/all-targets Clippy"
+    },
+    {
+      "file": "research/outputs/private-preview-0.27.0-20261016/checks/frontend-final.log",
+      "sha256": "d133cffe10cf4d70746e98ad87f49aa4443b567a14d72fe453ed29f75e61e8d3",
+      "bytes": 346,
+      "status": "passed",
+      "scope": "487 tests in 53 files"
+    },
+    {
+      "file": "research/outputs/private-preview-0.27.0-20261016/checks/frontend-build-final.log",
+      "sha256": "038ada2477d73bfda2680a9b479eb7f1df7747c182b8778de89c422eab8190e1",
+      "bytes": 780,
+      "status": "passed",
+      "scope": "TypeScript and production build; existing >500kB chunk advisory"
+    },
+    {
+      "file": "research/outputs/private-preview-0.27.0-20261016/checks/worker-01.log",
+      "sha256": "a6682dd6ddf954bdd00b70343e315e1c9adf4faa90f3d027947a297335223d1f",
+      "bytes": 5891,
+      "status": "passed",
+      "scope": "39 synthetic worker checks; no real model"
+    },
+    {
+      "file": "research/outputs/private-preview-0.27.0-20261016/checks/setup-final-02.log",
+      "sha256": "a80e0725e47d3995a841be87ce7f916731e4d40a5c88165048d8c4678258de3d",
+      "bytes": 3357,
+      "status": "passed",
+      "scope": "24 setup checks including credential isolation and damaged completed installation preservation"
+    },
+    {
+      "file": "research/outputs/private-preview-0.27.0-20261016/checks/reading-01.log",
+      "sha256": "d03ced09637d72697e8d93edcbda9768ca6451d0323c22a2c4d9392eefa36d80",
+      "bytes": 1612,
+      "status": "passed",
+      "scope": "9 derivative checks, including exact retained text and prior-receipt source authentication"
+    },
+    {
+      "file": "research/outputs/private-preview-0.27.0-20261016/checks/frozen-reference.json",
+      "sha256": "e84ce451bbba9c3e7d8977919cd5f2ccfb976ea173385e2e6fdf6166c8915e47",
+      "bytes": 133,
+      "status": "passed",
+      "scope": "180 sources, 43 resources, 1 fixture verified"
+    }
+  ]
+}

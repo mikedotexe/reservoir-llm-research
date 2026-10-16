@@ -479,6 +479,29 @@ fn readiness_rejects_an_interpreter_symlink_outside_its_owned_root() {
 
 #[cfg(unix)]
 #[test]
+fn setup_children_use_the_owned_root_instead_of_an_unavailable_launch_directory() {
+    let fixture = Fixture::new();
+    let mut command = fixture.command(
+        r#"import os, pathlib, sys
+root = pathlib.Path(sys.argv[1])
+(root / 'observed-cwd.txt').write_text(os.getcwd())
+"#,
+    );
+    // Do not change the test process's global cwd: other tests may run in parallel.
+    // An unavailable inherited/selected launch directory must not reach a child.
+    command.current_dir(fixture.state.0.root.join("unavailable-launch-directory"));
+    fixture
+        .state
+        .process(command, Instant::now() + Duration::from_secs(5), false)
+        .unwrap();
+    assert_eq!(
+        fs::read_to_string(fixture.state.0.root.join("observed-cwd.txt")).unwrap(),
+        fixture.state.0.root.to_string_lossy()
+    );
+}
+
+#[cfg(unix)]
+#[test]
 fn cancellation_kills_the_owned_group_and_reaps_its_leader() {
     let fixture = Fixture::new();
     let command = fixture.command(

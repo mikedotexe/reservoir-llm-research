@@ -136,6 +136,15 @@ class SetupTests(unittest.TestCase):
                 f.setup.prepare()
         self.assertFalse(f.setup.ready.exists())
 
+    def test_setup_subprocess_uses_owned_root_as_its_working_directory(self):
+        f = self.fixture
+        supervisor = Supervisor()
+        try:
+            result = supervisor.run([sys.executable, "-I", "-B", "-c", "import os; print(os.getcwd())"], f.root)
+        finally:
+            supervisor.close()
+        self.assertEqual(result.decode().strip(), str(f.root))
+
     def test_damaged_prepared_installation_is_preserved_without_repair(self):
         f = self.fixture
         f.prepare()
