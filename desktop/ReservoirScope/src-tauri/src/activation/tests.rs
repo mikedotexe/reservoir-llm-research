@@ -182,3 +182,77 @@ fn retained_response_projection_must_match_ledger_even_when_rehashed() {
     save(p, &mut m, &r).unwrap();
     assert!(verify(p).is_err());
 }
+
+fn unread_large_request_is_bounded(cancel_request: bool) {
+    let (_root, _state, config) = setup(false);
+    fs::write(&config.worker_path, "import time\ntime.sleep(30)\n").unwrap();
+    let mut worker = Worker::spawn(&config).unwrap();
+    let pid = worker.child.id();
+    let cancelled = Arc::new(AtomicBool::new(false));
+    let cancel_join = cancel_request.then(|| {
+        let cancelled = cancelled.clone();
+        thread::spawn(move || {
+            thread::sleep(Duration::from_millis(150));
+            cancelled.store(true, Ordering::SeqCst);
+        })
+    });
+    let payload = json!({"existingCalibration":{"padding":"x".repeat(2 * 1024 * 1024)}});
+    let start = Instant::now();
+    let failure = worker
+        .call(
+            "initialize",
+            payload,
+            &cancelled,
+            if cancel_request {
+                Duration::from_secs(10)
+            } else {
+                Duration::from_millis(150)
+            },
+        )
+        .unwrap_err();
+    assert_eq!(
+        failure.category,
+        if cancel_request {
+            "cancelled"
+        } else {
+            "timeout"
+        }
+    );
+    assert!(start.elapsed() < Duration::from_secs(2));
+    assert!(worker.input.is_none());
+    assert!(worker.input_join.is_none(), "Blocked writer was not joined");
+    #[cfg(unix)]
+    {
+        // ECHILD proves call() already reaped the process, rather than leaving
+        // that cleanup for the assertion's own wait or for Worker::drop.
+        let mut status = 0;
+        assert_eq!(
+            unsafe { libc::waitpid(pid as i32, &mut status, libc::WNOHANG) },
+            -1
+        );
+        assert_eq!(
+            std::io::Error::last_os_error().raw_os_error(),
+            Some(libc::ECHILD)
+        );
+    }
+    #[cfg(not(unix))]
+    assert!(
+        worker.child.try_wait().unwrap().is_some(),
+        "Child {pid} is alive"
+    );
+    if let Some(join) = cancel_join {
+        join.join().unwrap();
+    }
+    drop(worker);
+    assert!(start.elapsed() < Duration::from_secs(2));
+}
+
+#[test]
+fn worker_deadline_covers_large_request_when_child_never_reads_stdin() {
+    unread_large_request_is_bounded(false);
+}
+
+#[test]
+fn worker_cancel_joins_writer_and_reaps_child_that_never_reads_stdin() {
+    unread_large_request_is_bounded(true);
+}

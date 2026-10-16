@@ -1094,7 +1094,8 @@ pub fn verify(p: &Path) -> Result<Value> {
 
 struct Worker {
     child: Child,
-    input: ChildStdin,
+    input: Option<ChildStdin>,
+    input_join: Option<JoinHandle<(ChildStdin, std::io::Result<()>)>>,
     output: Receiver<std::result::Result<String, String>>,
     sequence: u64,
     stderr: Arc<Mutex<Vec<u8>>>,
@@ -1154,7 +1155,8 @@ impl Worker {
         });
         Ok(Self {
             child,
-            input,
+            input: Some(input),
+            input_join: None,
             output,
             sequence: 0,
             stderr,
@@ -1170,6 +1172,8 @@ impl Worker {
         cancel: &AtomicBool,
         timeout: Duration,
     ) -> Result<Value> {
+        let start = Instant::now();
+        self.check_request_budget(cancel, start, timeout)?;
         self.sequence += 1;
         let id = format!("worker-{}", self.sequence);
         payload["id"] = json!(id);
@@ -1185,25 +1189,37 @@ impl Worker {
                 &bytes,
             )?;
         }
-        self.input
-            .write_all(&bytes)
-            .and_then(|_| self.input.write_all(b"\n"))
-            .and_then(|_| self.input.flush())
-            .map_err(|e| err("worker-write", e.to_string()))?;
-        let start = Instant::now();
+        let mut input = self
+            .input
+            .take()
+            .ok_or_else(|| err("worker-write", "Owned worker input is closed"))?;
+        // A calibration request is larger than a pipe buffer. Keep its write
+        // owned but off this control thread so a child that never reads cannot
+        // prevent cancellation or consume time outside the request deadline.
+        self.input_join = Some(thread::spawn(move || {
+            let result = input
+                .write_all(&bytes)
+                .and_then(|_| input.write_all(b"\n"))
+                .and_then(|_| input.flush());
+            (input, result)
+        }));
         loop {
-            if cancel.load(Ordering::SeqCst) {
-                return Err(err(
-                    "cancelled",
-                    "Owned activation worker was cancelled; no late result is accepted",
-                ));
+            self.check_request_budget(cancel, start, timeout)?;
+            if self.input_join.as_ref().unwrap().is_finished() {
+                let (input, written) = self
+                    .input_join
+                    .take()
+                    .unwrap()
+                    .join()
+                    .map_err(|_| err("worker-write", "Owned worker input writer panicked"))?;
+                self.input = Some(input);
+                written.map_err(|e| err("worker-write", e.to_string()))?;
+                break;
             }
-            if start.elapsed() >= timeout {
-                return Err(err(
-                    "timeout",
-                    "Activation operation exceeded its 180-second deadline",
-                ));
-            }
+            thread::sleep(Duration::from_millis(20));
+        }
+        loop {
+            self.check_request_budget(cancel, start, timeout)?;
             match self.output.recv_timeout(Duration::from_millis(20)) {
                 Ok(Ok(line)) => {
                     let v: Value =
@@ -1246,11 +1262,48 @@ impl Worker {
             }
         }
     }
+    fn check_request_budget(
+        &mut self,
+        cancel: &AtomicBool,
+        start: Instant,
+        timeout: Duration,
+    ) -> Result<()> {
+        let failure = if cancel.load(Ordering::SeqCst) {
+            Some(err(
+                "cancelled",
+                "Owned activation worker was cancelled; no late result is accepted",
+            ))
+        } else if start.elapsed() >= timeout {
+            Some(err(
+                "timeout",
+                format!(
+                    "Activation operation exceeded its {}-second deadline",
+                    timeout.as_secs_f64()
+                ),
+            ))
+        } else {
+            None
+        };
+        if let Some(failure) = failure {
+            self.terminate_owned();
+            return Err(failure);
+        }
+        Ok(())
+    }
+    fn terminate_owned(&mut self) {
+        // Killing and reaping the owned reader closes the pipe before joining
+        // a writer which may currently be blocked in write_all.
+        let _ = self.child.kill();
+        let _ = self.child.wait();
+        if let Some(writer) = self.input_join.take() {
+            let _ = writer.join();
+        }
+        self.input.take();
+    }
 }
 impl Drop for Worker {
     fn drop(&mut self) {
-        let _ = self.child.kill();
-        let _ = self.child.wait();
+        self.terminate_owned();
         if let Some(h) = self.stderr_join.take() {
             let _ = h.join();
         }
