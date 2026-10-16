@@ -1,0 +1,442 @@
+{
+  "analysisSourceSha256": "f18c1d5ec2c49e2e2db8254c3ac6d3573294ef357ac56a2d455d8720c48afa3d",
+  "arms": [
+    {
+      "admissions": [
+        {
+          "admitted": true,
+          "freePercent": 36,
+          "pressure": 1
+        }
+      ],
+      "arm": "decaying_trace",
+      "completeJournals": 6,
+      "consecutiveIdenticalJournalTextPairs": 0,
+      "consecutiveJournalPairs": 5,
+      "failureReasons": [],
+      "finalStep": 121,
+      "generatedContentTokens": 3758,
+      "journalAttempts": [
+        {
+          "complete": true,
+          "generatedContentTokens": 516,
+          "generatedTokenIdsSha256": "b9d3a3891552b30b053a9db8e915d11abaaf5e24afe13f9ab01c1c4259c4644d",
+          "journalId": "journal-1-080660d06985",
+          "journalTextSha256": "080660d069857384cd63c12946d9f1e782731aec20feff0b939a39edf821d275",
+          "memoryMatchesExactSavedAppliedText": true,
+          "observedStep": 20,
+          "previousFirstAppliedStep": null,
+          "previousJournalId": null,
+          "previousJournalSha256": null,
+          "promptSha256": "eed3864e95b54914458a6e049c5797c4efe56b4b2d0be06288ec36e64fc1aba9",
+          "promptTokenIdsSha256": "be485be15cf470dc64e29faf2140cd22c37758b747d66bf9c86e4adaaef397b2",
+          "promptTokens": 123,
+          "requestId": "request-5",
+          "sampledTokensIncludingEOS": 517,
+          "stopReason": "eos"
+        },
+        {
+          "complete": true,
+          "generatedContentTokens": 567,
+          "generatedTokenIdsSha256": "c0f7f41b6651e58a1da83df3b9c1fae991db6f8536079ad332c0427419d46592",
+          "journalId": "journal-2-127ae20b7d02",
+          "journalTextSha256": "127ae20b7d02a968ac863470a0fc56537cd904cef1219a94e916952260e3e971",
+          "memoryMatchesExactSavedAppliedText": true,
+          "observedStep": 40,
+          "previousFirstAppliedStep": 21,
+          "previousJournalId": "journal-1-080660d06985",
+          "previousJournalSha256": "080660d069857384cd63c12946d9f1e782731aec20feff0b939a39edf821d275",
+          "promptSha256": "80dfb07712c6e7270fd3ff2ad1218bd17e2acdee862321f9aec01f3fd39bff75",
+          "promptTokenIdsSha256": "ec303bdb9df90976e73399f545e2537cc7b252527c06a9627bce4b320519e4f8",
+          "promptTokens": 651,
+          "requestId": "request-13",
+          "sampledTokensIncludingEOS": 568,
+          "stopReason": "eos"
+        },
+        {
+          "complete": true,
+          "generatedContentTokens": 532,
+          "generatedTokenIdsSha256": "01adad3b5bfdb880d636146fb5b0ce29a7ab88cafb475391182655d9c950ad9b",
+          "journalId": "journal-3-9c9baecb8204",
+          "journalTextSha256": "9c9baecb8204993b6a0c36cb02daa02818f1f0e8854dacc5f2ebe4c7cc139427",
+          "memoryMatchesExactSavedAppliedText": true,
+          "observedStep": 60,
+          "previousFirstAppliedStep": 41,
+          "previousJournalId": "journal-2-127ae20b7d02",
+          "previousJournalSha256": "127ae20b7d02a968ac863470a0fc56537cd904cef1219a94e916952260e3e971",
+          "promptSha256": "e34fde8ef45ee81a44be2c908829bd3f52aaca26ab7dfcdd21b6c3d3ab02c3a0",
+          "promptTokenIdsSha256": "bb27232e26ced1c6f47e8a06d59156f798406dd3df750c1e3dcbbc12b9edbf0f",
+          "promptTokens": 699,
+          "requestId": "request-21",
+          "sampledTokensIncludingEOS": 533,
+          "stopReason": "eos"
+        },
+        {
+          "complete": true,
+          "generatedContentTokens": 685,
+          "generatedTokenIdsSha256": "474b490df2a5908c6dd45ba074ac1ea96c6a0dc7f523e6dbd5f3e6052c52b681",
+          "journalId": "journal-4-e473760708a7",
+          "journalTextSha256": "e473760708a7efdb5a24e689106fe7eeb282ef31b8c104439ddec3e18b361e33",
+          "memoryMatchesExactSavedAppliedText": true,
+          "observedStep": 80,
+          "previousFirstAppliedStep": 61,
+          "previousJournalId": "journal-3-9c9baecb8204",
+          "previousJournalSha256": "9c9baecb8204993b6a0c36cb02daa02818f1f0e8854dacc5f2ebe4c7cc139427",
+          "promptSha256": "d37a1613c83dcf9f19cf33fc4c5f94682d77b56ef2c0891be29e6dfc8fe17966",
+          "promptTokenIdsSha256": "c1c66e182299633b4607df34ac04ae1427e1cfbda728ea50d86c480dc00ebb2a",
+          "promptTokens": 667,
+          "requestId": "request-29",
+          "sampledTokensIncludingEOS": 686,
+          "stopReason": "eos"
+        },
+        {
+          "complete": true,
+          "generatedContentTokens": 729,
+          "generatedTokenIdsSha256": "f48f25bd04c44b35b7afebe15e009f094d9af024fa1ddfd6384d445752f14a06",
+          "journalId": "journal-5-f2bb6c18fedc",
+          "journalTextSha256": "f2bb6c18fedcdef653da10e675fdd8a103e1912a2d7f007307e09b2ae5f07bb4",
+          "memoryMatchesExactSavedAppliedText": true,
+          "observedStep": 100,
+          "previousFirstAppliedStep": 81,
+          "previousJournalId": "journal-4-e473760708a7",
+          "previousJournalSha256": "e473760708a7efdb5a24e689106fe7eeb282ef31b8c104439ddec3e18b361e33",
+          "promptSha256": "cb2e07d4b93502cb8e779a4acabbe3bbab93a4d2a0af6d3a365aad1930181f62",
+          "promptTokenIdsSha256": "bea827184638bfb21340245cceecbb5416185934008ad02c7bcc9892e48e23bb",
+          "promptTokens": 829,
+          "requestId": "request-37",
+          "sampledTokensIncludingEOS": 730,
+          "stopReason": "eos"
+        },
+        {
+          "complete": true,
+          "generatedContentTokens": 729,
+          "generatedTokenIdsSha256": "2b7cf1657a165d7c7984a5217ea26572a58195ee23f30993a9391ac33b6b2edc",
+          "journalId": "journal-6-3cf35ad4f775",
+          "journalTextSha256": "3cf35ad4f7755ee453c98e6cd28e55514efffa0ea7262e6b1b5356f63eeea2f7",
+          "memoryMatchesExactSavedAppliedText": true,
+          "observedStep": 120,
+          "previousFirstAppliedStep": 101,
+          "previousJournalId": "journal-5-f2bb6c18fedc",
+          "previousJournalSha256": "f2bb6c18fedcdef653da10e675fdd8a103e1912a2d7f007307e09b2ae5f07bb4",
+          "promptSha256": "9556e91665274bb32e05cc3fa80f8a21ccaa60dce76d1ecef2e0238700dd610d",
+          "promptTokenIdsSha256": "38caec9cf9eff415c73d256ce5e6816f06ba46f1b351742c7dcfb4c4803a0aa2",
+          "promptTokens": 876,
+          "requestId": "request-45",
+          "sampledTokensIncludingEOS": 730,
+          "stopReason": "eos"
+        }
+      ],
+      "normScope": "All prefill and generated content positions in accepted complete journals; EOS is sampled, not processed",
+      "projectionCapturesRecomputed": 18,
+      "protocolResponses": {
+        "count": 19,
+        "errors": 0,
+        "initializations": 1,
+        "matchingAcceptedCaptures": 18
+      },
+      "quietCaptures": 12,
+      "quietProcessedInputTokens": 287,
+      "quietSampledTokens": 0,
+      "recordSha256": "bcd2421348d8ced6e5ca23b52b2b9e6d7947e8e6bdf52193fe9f9b6c5becfe0c",
+      "sampledJournalTokensIncludingEOS": 3764,
+      "saveApply": [
+        {
+          "firstAppliedStep": 21,
+          "id": "journal-1-080660d06985",
+          "observedStep": 20,
+          "savedAtStep": 20,
+          "sha256": "080660d069857384cd63c12946d9f1e782731aec20feff0b939a39edf821d275"
+        },
+        {
+          "firstAppliedStep": 41,
+          "id": "journal-2-127ae20b7d02",
+          "observedStep": 40,
+          "savedAtStep": 40,
+          "sha256": "127ae20b7d02a968ac863470a0fc56537cd904cef1219a94e916952260e3e971"
+        },
+        {
+          "firstAppliedStep": 61,
+          "id": "journal-3-9c9baecb8204",
+          "observedStep": 60,
+          "savedAtStep": 60,
+          "sha256": "9c9baecb8204993b6a0c36cb02daa02818f1f0e8854dacc5f2ebe4c7cc139427"
+        },
+        {
+          "firstAppliedStep": 81,
+          "id": "journal-4-e473760708a7",
+          "observedStep": 80,
+          "savedAtStep": 80,
+          "sha256": "e473760708a7efdb5a24e689106fe7eeb282ef31b8c104439ddec3e18b361e33"
+        },
+        {
+          "firstAppliedStep": 101,
+          "id": "journal-5-f2bb6c18fedc",
+          "observedStep": 100,
+          "savedAtStep": 100,
+          "sha256": "f2bb6c18fedcdef653da10e675fdd8a103e1912a2d7f007307e09b2ae5f07bb4"
+        },
+        {
+          "firstAppliedStep": 121,
+          "id": "journal-6-3cf35ad4f775",
+          "observedStep": 120,
+          "savedAtStep": 120,
+          "sha256": "3cf35ad4f7755ee453c98e6cd28e55514efffa0ea7262e6b1b5356f63eeea2f7"
+        }
+      ],
+      "sessionId": "activation-1792119989350565000",
+      "status": "completed",
+      "steeringNormRatios": {
+        "actual": {
+          "max": 0.010184566783300047,
+          "min": 0.009974981107540176,
+          "n": 7603
+        },
+        "actualPercent": {
+          "max": 1.0184566783300046,
+          "min": 0.9974981107540175,
+          "n": 7603
+        },
+        "contentPositions": 3758,
+        "intended": {
+          "max": 0.010000001464562243,
+          "min": 0.009999998764915554,
+          "n": 7603
+        },
+        "promptPositions": 3845,
+        "requested": {
+          "max": 0.010000000000000002,
+          "min": 0.009999999999999998,
+          "n": 7603
+        },
+        "residualDtypes": [
+          "mlx.core.bfloat16"
+        ]
+      },
+      "unacceptedResponses": []
+    },
+    {
+      "admissions": [
+        {
+          "admitted": false,
+          "category": "admission",
+          "message": "Model admission refused: pressure=Some(2), freePercent=Some(32); requires pressure 1 and at least 25%. No model loaded."
+        }
+      ],
+      "arm": "no_steering",
+      "completeJournals": 0,
+      "consecutiveIdenticalJournalTextPairs": 0,
+      "consecutiveJournalPairs": 0,
+      "failureReasons": [
+        "Model admission refused: pressure=Some(2), freePercent=Some(32); requires pressure 1 and at least 25%. No model loaded."
+      ],
+      "finalStep": 0,
+      "generatedContentTokens": 0,
+      "journalAttempts": [],
+      "normScope": "All prefill and generated content positions in accepted complete journals; EOS is sampled, not processed",
+      "projectionCapturesRecomputed": 0,
+      "protocolResponses": {
+        "count": 0,
+        "errors": 0,
+        "initializations": 0,
+        "matchingAcceptedCaptures": 0
+      },
+      "quietCaptures": 0,
+      "quietProcessedInputTokens": 0,
+      "quietSampledTokens": 0,
+      "recordSha256": "e86d76927ce8c8ec4cdba76024618782ee7884afc6317e5957212eba4b472976",
+      "sampledJournalTokensIncludingEOS": 0,
+      "saveApply": [],
+      "sessionId": "activation-1792120110083861000",
+      "status": "failed",
+      "steeringNormRatios": {
+        "actual": {
+          "max": null,
+          "min": null,
+          "n": 0
+        },
+        "actualPercent": {
+          "max": null,
+          "min": null,
+          "n": 0
+        },
+        "contentPositions": 0,
+        "intended": {
+          "max": null,
+          "min": null,
+          "n": 0
+        },
+        "promptPositions": 0,
+        "requested": {
+          "max": null,
+          "min": null,
+          "n": 0
+        },
+        "residualDtypes": []
+      },
+      "unacceptedResponses": []
+    },
+    {
+      "arm": "recurrent",
+      "completeJournals": 0,
+      "quietCaptures": 0,
+      "reason": "No attempt retained for this planned arm",
+      "status": "not_started_after_stop"
+    }
+  ],
+  "betweenArmComparisons": [
+    {
+      "arms": [
+        "decaying_trace",
+        "no_steering"
+      ],
+      "firstJournalPromptIdentical": null,
+      "journals": [],
+      "pairedCompleteJournals": 0,
+      "reason": "Fewer than two arms retain a complete journal at a comparable opportunity",
+      "status": "unassessed"
+    },
+    {
+      "arms": [
+        "decaying_trace",
+        "recurrent"
+      ],
+      "firstJournalPromptIdentical": null,
+      "journals": [],
+      "pairedCompleteJournals": 0,
+      "reason": "Fewer than two arms retain a complete journal at a comparable opportunity",
+      "status": "unassessed"
+    },
+    {
+      "arms": [
+        "no_steering",
+        "recurrent"
+      ],
+      "firstJournalPromptIdentical": null,
+      "journals": [],
+      "pairedCompleteJournals": 0,
+      "reason": "Fewer than two arms retain a complete journal at a comparable opportunity",
+      "status": "unassessed"
+    }
+  ],
+  "calibrationSha256": "0c1fc7c3e2868813643d629e1200c5188ee5007fa1c1ccef1e614b52c32dbe9c",
+  "currentSourceArtifacts": [
+    {
+      "actualSha256": "e8b547250d88935b69f39b35463f45e5c0f07a7283e7d8e7f7f3b33d34a46282",
+      "artifact": "worker/__init__.py",
+      "expectedSha256": "e8b547250d88935b69f39b35463f45e5c0f07a7283e7d8e7f7f3b33d34a46282",
+      "status": "matches"
+    },
+    {
+      "actualSha256": "37f3e028fc732cecd53c69b5c6ff3bf85278294c49c40dbca86e46fd5b758077",
+      "artifact": "worker/__main__.py",
+      "expectedSha256": "37f3e028fc732cecd53c69b5c6ff3bf85278294c49c40dbca86e46fd5b758077",
+      "status": "matches"
+    },
+    {
+      "actualSha256": "5f96c582f202572035ad56ebfe49668797eea33a2ef91a2f3696d1fa7d6d8866",
+      "artifact": "worker/backend.py",
+      "expectedSha256": "5f96c582f202572035ad56ebfe49668797eea33a2ef91a2f3696d1fa7d6d8866",
+      "status": "matches"
+    },
+    {
+      "actualSha256": "64a92f33fd26cf0d99a015d18c37c2f94ee6fe4d7ccfe39d2ab230cec2764e40",
+      "artifact": "worker/engine.py",
+      "expectedSha256": "64a92f33fd26cf0d99a015d18c37c2f94ee6fe4d7ccfe39d2ab230cec2764e40",
+      "status": "matches"
+    },
+    {
+      "actualSha256": "10c18350a211683f7b876095a6d776f4c9b42d2343db039acca9f9fb1431cc1c",
+      "artifact": "worker/manifest.py",
+      "expectedSha256": "10c18350a211683f7b876095a6d776f4c9b42d2343db039acca9f9fb1431cc1c",
+      "status": "matches"
+    },
+    {
+      "actualSha256": "05e25f5bc05aea242946e96374fd90c6e5dbcf49f06a6b502d109240cdd15276",
+      "artifact": "worker/math_core.py",
+      "expectedSha256": "05e25f5bc05aea242946e96374fd90c6e5dbcf49f06a6b502d109240cdd15276",
+      "status": "matches"
+    },
+    {
+      "actualSha256": "2320271750f725df67192bc8f4a542187b4dd99f74c78367abbb533060497e01",
+      "artifact": "worker/qualify.py",
+      "expectedSha256": "2320271750f725df67192bc8f4a542187b4dd99f74c78367abbb533060497e01",
+      "status": "matches"
+    },
+    {
+      "actualSha256": "9c2f638c181596d019bd8c8624c4bf409771796154d802d9eeb9f761f2b38cc1",
+      "artifact": "worker/worker.py",
+      "expectedSha256": "9c2f638c181596d019bd8c8624c4bf409771796154d802d9eeb9f761f2b38cc1",
+      "status": "matches"
+    },
+    {
+      "actualSha256": "a0181beae38428ff6bbf74408b5cfcec8069f7fd6a13772b3249a360bdcfec6d",
+      "artifact": "projection-q.npy",
+      "expectedSha256": "a0181beae38428ff6bbf74408b5cfcec8069f7fd6a13772b3249a360bdcfec6d",
+      "status": "matches"
+    },
+    {
+      "actualSha256": "b6f59be292513fb86124d08fae4a10d3f7efe65f2e61bbb012168aa4b11a44be",
+      "artifact": "calibration-texts.json",
+      "expectedSha256": "b6f59be292513fb86124d08fae4a10d3f7efe65f2e61bbb012168aa4b11a44be",
+      "status": "matches"
+    },
+    {
+      "actualSha256": "85edcca689d13236d1a5741ded8e33004ed1b435cbebe39791cea5f854c77ecf",
+      "artifact": "activation-pilot.json",
+      "expectedSha256": "85edcca689d13236d1a5741ded8e33004ed1b435cbebe39791cea5f854c77ecf",
+      "status": "matches"
+    },
+    {
+      "actualSha256": "8e9f6d5b4d263a0212694fb42d9abb5bc6d479154bc164a765c2a98efc156cfb",
+      "artifact": "activation-requirements.lock",
+      "expectedSha256": "8e9f6d5b4d263a0212694fb42d9abb5bc6d479154bc164a765c2a98efc156cfb",
+      "status": "matches"
+    },
+    {
+      "actualSha256": "be00fac6fecaf03a8ee554dfc451d9ebad8126f071fac9f689159e581bcdde3a",
+      "artifact": "pilot-binary",
+      "expectedSha256": "e2d332c0dcc84b657016338db73dccb19dbb97f8a295a19a6fc26da6ce60cb0e",
+      "status": "changed"
+    },
+    {
+      "actualSha256": "6dd32a44054ef7e292e778b063594c80a940a97bd7b41bd9998aad1bcb46146b",
+      "artifact": "qualification-result.json",
+      "expectedSha256": "6dd32a44054ef7e292e778b063594c80a940a97bd7b41bd9998aad1bcb46146b",
+      "status": "matches"
+    }
+  ],
+  "currentSourceArtifactsAllMatch": false,
+  "evidenceConsistency": "passed",
+  "frozenPlanSha256": "89d6fb990cb37f03c4e0347db44aba9dc3ef7ac78beebb85cc1d0c15856ed7ac",
+  "historicalFrozenBinary": {
+    "path": "research/outputs/activation-0.26.0-20261015/pilot-package-27f05ac.app/Contents/MacOS/reservoir-scope-desktop",
+    "replacesCurrentPathCheck": false,
+    "sha256": "e2d332c0dcc84b657016338db73dccb19dbb97f8a295a19a6fc26da6ce60cb0e",
+    "status": "matches_frozen_pilot"
+  },
+  "independentProjection": {
+    "absoluteTolerance": 1e-12,
+    "activationCaptures": 18,
+    "coordinates": 576,
+    "maxAbsoluteCoordinateError": 1.6653345369377348e-16,
+    "method": "Float64 column products with math.fsum; tanh((Q^T h - mean)/scale)"
+  },
+  "limitations": [
+    "This checks retained evidence and independently recomputes projection; it does not authenticate an external activation measurement.",
+    "Steering ratios are recomputed from retained scalar norms; full pre/post residual matrices were not stored.",
+    "Event/save/apply timing is reconstructed here; the separate Rust verifier owns full recurrent-state replay.",
+    "No prose or thematic interpretation is emitted. Hash and token identity do not establish meaning, continuity, or benefit.",
+    "Unstarted/refused arms have no model outcomes; a partial pilot supports no between-arm behavioral conclusion.",
+    "Current source mismatches are reported separately because later source changes do not rewrite retained history."
+  ],
+  "modelCalls": 0,
+  "modelManifestSha256": "82b39f39ce5ec7722be9c967149a18a1ac8ed1cc8f2691e1485e101f7e542513",
+  "numpyVersion": "2.2.6",
+  "pilotFilesModified": false,
+  "pilotResultSha256": "bf64fc7d8313619d467b72abee58ed3a74630da0d99723f014d21711585e1a4d",
+  "pilotStatus": "held",
+  "pythonVersion": "3.12.13",
+  "schema": "activation-pilot-mechanical-summary/1",
+  "scope": "partial-comparison",
+  "sourcePilot": "pilot-01"
+}
