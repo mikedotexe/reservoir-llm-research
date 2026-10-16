@@ -114,8 +114,15 @@ macOS qualification is local and scoped. The app is ad-hoc signed, not notarized
 Human acceptance, Windows/Linux package/UI qualification, and live Being rollout
 remain unclaimed. Earlier Ollama session contracts keep their existing meaning.
 
-`qualification-receipt.json` binds the final reader source inventory, package,
+`qualification-receipt-final.json` binds the final reader source inventory, package,
 local archive, signing observation and supplied check records. It records the
 final reader package rather than replacing the separately preserved inference
 package identity above. Raw command logs retain original output, including the
 repaired Clippy failure and a corrected worker-test discovery invocation.
+The earlier `qualification-receipt.json` remains as captured. A final whitespace
+check removed one extra blank line from a type-only frontend file. Rebuilding
+TypeScript/Vite produced byte-identical HTML, executable JavaScript and CSS;
+the source map changed (`frontend-whitespace-equivalence.json`). The retained
+package therefore includes the pre-whitespace source map. Its executable frontend,
+Rust and worker are unchanged. The final receipt updates source identity without
+implying a package rebuild, another model request or another pilot run.

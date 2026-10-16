@@ -46,4 +46,3 @@ export function activationCanStart(session: ActivationSnapshot) {
   return session.canStart ?? session.status === 'ready';
 }
 import pilot from '../../../shared/reservoir-scope/activation-pilot.json';
-
