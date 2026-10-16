@@ -1,0 +1,96 @@
+{
+  "schema": "native-state-field-oracle-v1",
+  "startedAtUtc": "2026-10-15T21:36:15.646436+00:00",
+  "sourceBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/native/ReservoirScope/Sources/ReservoirScope/StateSurface.swift",
+      "bytes": 21652,
+      "sha256": "d270de8d520b7a4fb39f56196dc96536cfc134c1e4f897b379c8dea92ca79a6d"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/visualizations/reservoir-3d/state-geometry.json",
+      "bytes": 365219,
+      "sha256": "5e90207e7dfd1d395b249d3bb5d668afa0f86b6d3e0e6383eda7b9eb52514317"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/native/ReservoirScope/Sources/ReservoirScope/Resources/state-replay.bin",
+      "bytes": 524288,
+      "sha256": "09ea4db8212809085aa2e07a040975f3095d7ef79d06eb8ba7404cc2424e282f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/StateFieldsOracle.swift",
+      "bytes": 3121,
+      "sha256": "3f40d53cac3349cc674e4099ee27c4cbb35d8872834e95c33cec445e7aa6f4bf"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/generate_state_field_oracle.py",
+      "bytes": 3702,
+      "sha256": "9f016e16d627ac97bfa93e195f827ada19e881281403cf679f23b316e6bdaa4d"
+    }
+  ],
+  "compile": {
+    "command": [
+      "/usr/bin/xcrun",
+      "swiftc",
+      "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/native/ReservoirScope/Sources/ReservoirScope/StateSurface.swift",
+      "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/StateFieldsOracle.swift",
+      "-o",
+      "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.22-field-oracle/state-fields-oracle"
+    ],
+    "exitCode": 0
+  },
+  "passed": true,
+  "run": {
+    "command": [
+      "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.22-field-oracle/state-fields-oracle",
+      "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/native-field-inputs-01.json"
+    ],
+    "exitCode": 0
+  },
+  "cases": 7,
+  "selections": 56,
+  "fixture": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/swift-state-fields-v1.json",
+    "bytes": 252775,
+    "sha256": "5a9916c0071c50dc74be147a71790121b5f01d59d35f68558762147993252a01"
+  },
+  "binary": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.22-field-oracle/state-fields-oracle",
+    "bytes": 307424,
+    "sha256": "e53eb01d9b9922e4ccc796b4d78de59b490e66eb20788b3474d651ab9c4ae84a"
+  },
+  "inputs": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/native-field-inputs-01.json",
+    "bytes": 82933,
+    "sha256": "7215255987d57333dd264cb26a2e0baee1c825f2170e03501d4bc09f35600d84"
+  },
+  "endedAtUtc": "2026-10-15T21:36:18.812463+00:00",
+  "sourceAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/native/ReservoirScope/Sources/ReservoirScope/StateSurface.swift",
+      "bytes": 21652,
+      "sha256": "d270de8d520b7a4fb39f56196dc96536cfc134c1e4f897b379c8dea92ca79a6d"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/visualizations/reservoir-3d/state-geometry.json",
+      "bytes": 365219,
+      "sha256": "5e90207e7dfd1d395b249d3bb5d668afa0f86b6d3e0e6383eda7b9eb52514317"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/native/ReservoirScope/Sources/ReservoirScope/Resources/state-replay.bin",
+      "bytes": 524288,
+      "sha256": "09ea4db8212809085aa2e07a040975f3095d7ef79d06eb8ba7404cc2424e282f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/StateFieldsOracle.swift",
+      "bytes": 3121,
+      "sha256": "3f40d53cac3349cc674e4099ee27c4cbb35d8872834e95c33cec445e7aa6f4bf"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/generate_state_field_oracle.py",
+      "bytes": 3702,
+      "sha256": "9f016e16d627ac97bfa93e195f827ada19e881281403cf679f23b316e6bdaa4d"
+    }
+  ],
+  "sourceUnchanged": true
+}

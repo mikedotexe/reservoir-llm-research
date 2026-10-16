@@ -31,7 +31,7 @@ describe('Library presentation and bounded IPC',()=>{
     await expect(libraryApi.importRecord('import')).rejects.toThrow('desktop app');
     expect(ipc.invoke).not.toHaveBeenCalled();
     const html=renderToStaticMarkup(createElement(LibraryView,{active:true,onOpen:()=>{}}));
-    expect(html).toContain('No completed query');expect(html).toContain('Coverage incomplete');
+    expect(html).toContain('No results loaded');expect(html).toContain('Library scan incomplete');
     expect(html).not.toContain('Last scan complete');
   });
   it('routes opaque identities and explicit imports without exposing path authority',async()=>{

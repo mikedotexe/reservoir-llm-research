@@ -1,0 +1,71 @@
+{
+  "schema": "reservoir-compact-reading-full-rust-preparation-v1",
+  "createdUtc": "2026-10-16T00:23:55.353733+00:00",
+  "scopeChange": "Native View zoom changes desktop_menu.rs/main.rs. Replace prior Rust inheritance with current full tests/strict Clippy and exact actual source/log/helper receipts.",
+  "supersedes": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/helper-preparation-01.json",
+    "bytes": 5578,
+    "sha256": "501829bd758e309cf5541899b8d5503e61d8ee52f3ee850cdf438333c773fc2f"
+  },
+  "preservedDrafts": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/superseded-helper-draft-01/checks_common.py",
+      "bytes": 6624,
+      "sha256": "6bd1f37ef1f84bc85d8d33b61310c2d0cc3be06aaf416f587f07a1427b1c336c"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/superseded-helper-draft-01/run_frontend_checks.py",
+      "bytes": 2502,
+      "sha256": "034f8e1c5fea4c401f99bebb4e5013360b60a37291d067abfb30a49c37dbcbbd"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/superseded-helper-draft-01/build_package.py",
+      "bytes": 9641,
+      "sha256": "cab1d0ad92e2beb718ba5e94f54f6fa2ce916f565ba33a8e966de3d833ac2795"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/superseded-helper-draft-01/postbuild_review.py",
+      "bytes": 15590,
+      "sha256": "b45532eee180d4a42c6644ffb46dcc9a8fc6700d90422990e68fdc9c0fc79f9d"
+    }
+  ],
+  "helpers": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/checks_common.py",
+      "bytes": 6590,
+      "sha256": "6fa02d0bbe5a49580924eda928a65d9a21fbfddf37c6f4149c9f23802ae43a4f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/run_frontend_checks.py",
+      "bytes": 2510,
+      "sha256": "7de28d49b910bf286f10c12e8db136c165ff2b8a5de701f8411d2361dbc01ca7"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/build_package.py",
+      "bytes": 9660,
+      "sha256": "dbd5f980696e4f9dba49608668a0629471a357c97cba9218334b9d2503ff3c18"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/postbuild_review.py",
+      "bytes": 13637,
+      "sha256": "e205e1b0b1c754732303093662a137409e22cb4f514c1c0d6535a27835f0467f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/run_rust_checks.py",
+      "bytes": 2230,
+      "sha256": "a527d9e59675286dc238472c35fad8b9bd7b5baa4eb9744b74318f4b1c9f136f"
+    }
+  ],
+  "rustHelperBasis": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/run_rust_checks.py",
+    "bytes": 2233,
+    "sha256": "3d3ff3a97e16889239d3f9502d5dbfbdc3e7dbd9af4f521bace29250be3a6da5"
+  },
+  "metadataPolicy": "Consistent current0.24 package/NPMlock/desktopCargo/lock/Tauri versions; current dependency declarations agree with NPMlock. No normalization to0.22 for Rust qualification.",
+  "commandsAfterLeadFreeze": [
+    "python3 validation/2026-10-15-compact-reading-0.24.0/run_frontend_checks.py --attempt 01",
+    "python3 validation/2026-10-15-compact-reading-0.24.0/run_rust_checks.py --attempt 01",
+    "python3 validation/2026-10-15-compact-reading-0.24.0/build_package.py --frontend-receipt validation/2026-10-15-compact-reading-0.24.0/frontend-checks-01.json --rust-receipt validation/2026-10-15-compact-reading-0.24.0/rust-checks-01.json --attempt 01"
+  ],
+  "execution": "Syntax parsing only; no tests/build/UI/model/service execution. Root controls freeze, baseline app quit and compiler schedule. Prior0.23 source/package receipts remain untouched."
+}

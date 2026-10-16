@@ -7,11 +7,15 @@ interface Props {
   total: number;
   selectedIndex: number | null;
   onSelect: (index: number) => void;
+  projectionIndex?: number;
+  onProjectionChange?: (index: number) => void;
 }
 
-export default function RecordedTrajectory({ points, total, selectedIndex, onSelect }: Props) {
+export default function RecordedTrajectory({ points, total, selectedIndex, onSelect, projectionIndex, onProjectionChange }: Props) {
   const id = useId();
-  const [pair, setPair] = useState(0);
+  const [localPair, setLocalPair] = useState(0);
+  const pair = Number.isInteger(projectionIndex) && projectionIndex! >= 0 && projectionIndex! < 3 ? projectionIndex! : localPair;
+  const setPair = (value: number) => { setLocalPair(value); onProjectionChange?.(value); };
   const geometryKey = useMemo(() => trajectoryGeometryKey(points, total), [points, total]);
   // The key contains all geometry/validation inputs. Node-history refreshes may
   // replace the point objects without changing this retained PCA geometry.

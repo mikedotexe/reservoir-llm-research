@@ -42,9 +42,10 @@ interface Props {
   tableOnly: boolean;
   evidenceLabel?: string;
   fixedScale?: number;
+  nonnegative?: boolean;
 }
 
-export default function SurfaceView({ reference, selected, pose, onPose, onSelect, tableOnly, evidenceLabel = 'Reference scene', fixedScale = 1 }: Props) {
+export default function SurfaceView({ reference, selected, pose, onPose, onSelect, tableOnly, evidenceLabel = 'Reference scene', fixedScale = 1, nonnegative = false }: Props) {
   const hostRef = useRef<HTMLDivElement>(null);
   const runtimeRef = useRef<{ render: () => void; select: (index: number) => void; camera: (pose: CameraPose) => void; values: (values: number[], selected: number) => void } | null>(null);
   const callbacks = useRef({ onPose, onSelect, pose });
@@ -271,16 +272,19 @@ export default function SurfaceView({ reference, selected, pose, onPose, onSelec
 
   useEffect(() => { runtimeRef.current?.camera(pose); }, [pose]);
   useEffect(() => { runtimeRef.current?.values(reference.values, selected); }, [reference.values, selected]);
+  useEffect(() => {
+    hostRef.current?.querySelector('canvas')?.setAttribute('aria-label', `${reference.title}. ${nonnegative ? 'Nonnegative magnitude' : 'Signed field'} topography on a fixed coordinate-index atlas, not network connectivity. Drag or use arrow keys to orbit. Plus and minus zoom. Space resets. Select exact coordinates in the table below.`);
+  }, [reference.title, nonnegative, tableOnly, fixedScale]);
 
   return <section className="scene-card" aria-label={reference.title}>
     <div className="scene-heading"><div><span className="eyebrow">{reference.nodeCount} COORDINATES</span><h3>{reference.title}</h3></div><span className="subtle-tag">{evidenceLabel}</span></div>
     <div className="scene-canvas" ref={hostRef}>
       {status !== 'ready' && <div className="graphics-fallback" role="status"><span className="fallback-icon">◇</span><strong>{status === 'loading' ? 'Preparing the surface' : 'Exact values remain available'}</strong><p>{detail}</p></div>}
-      {status === 'ready' && <div className="scene-corner">SIGNED COORDINATES<br /><span>Fixed scale −{fixedScale} to +{fixedScale}</span></div>}
+      {status === 'ready' && <div className="scene-corner">{nonnegative ? 'ACTIVATION MAGNITUDE' : 'SIGNED COORDINATES'}<br /><span>Fixed scale {nonnegative ? '0' : `−${fixedScale}`} to +{fixedScale}</span></div>}
     </div>
-    <div className="scene-controls"><span className={status === 'ready' ? 'status-ready' : 'status-warning'}>{status === 'ready' ? '●' : '○'} {status === 'ready' ? 'WebGL2 ready' : status === 'lost' ? 'Context lost' : status === 'loading' ? 'Loading' : 'Table fallback'}</span><span className="render-count">{renderCount} frames drawn</span><button className="text-button" onClick={() => onPose({ ...DEFAULT_CAMERA })}>Reset camera</button></div>
-    <div className="legend"><span>−{fixedScale}</span><div /><span>0</span><div /><span>+{fixedScale}</span></div>
+    <div className="scene-controls"><span className={status === 'ready' ? 'status-ready' : 'status-warning'}>{status === 'ready' ? '●' : '○'} {status === 'ready' ? '3D ready' : status === 'lost' ? 'Context lost' : status === 'loading' ? 'Loading' : 'Table fallback'}</span><button className="text-button" onClick={() => onPose({ ...DEFAULT_CAMERA })}>Reset camera</button></div>
+    {nonnegative ? <div className="legend legend-nonnegative"><span>0</span><div style={{ background: 'linear-gradient(to right,#192b3b,#24bf9f)' }}/><span>+{fixedScale}</span></div> : <div className="legend"><span>−{fixedScale}</span><div /><span>0</span><div /><span>+{fixedScale}</span></div>}
     <p className="scene-note">Drag to orbit · click to inspect · arrow keys to orbit · +/− to zoom. Contours every {Number((fixedScale / 5).toPrecision(6))}; the bright line marks zero. Display relief and color saturate at the fixed scale; exact values remain unchanged.</p>
-    <details className="qualification-tools"><summary>Graphics recovery check</summary><p>This explicit test temporarily removes the graphics context. Values and selection stay available.</p><div className="button-row"><button disabled={!supportsLossTest || status !== 'ready'} onClick={() => contextExtension.current?.loseContext()}>Lose graphics context</button><button disabled={status !== 'lost'} onClick={() => contextExtension.current?.restoreContext()}>Restore context</button></div>{!supportsLossTest && <p>This webview does not expose the context-loss testing extension.</p>}</details>
+    <details className="qualification-tools"><summary>Graphics diagnostics</summary><p>WebGL2 · {renderCount} frames drawn</p><p>This explicit test temporarily removes the graphics context. Values and selection stay available.</p><div className="button-row"><button disabled={!supportsLossTest || status !== 'ready'} onClick={() => contextExtension.current?.loseContext()}>Lose graphics context</button><button disabled={status !== 'lost'} onClick={() => contextExtension.current?.restoreContext()}>Restore context</button></div>{!supportsLossTest && <p>This webview does not expose the context-loss testing extension.</p>}</details>
   </section>;
 }

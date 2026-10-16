@@ -1,0 +1,73 @@
+   Compiling reservoir-core v0.1.0 (/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core)
+error[E0277]: can't compare `{float}` with `&f64`
+   --> crates/reservoir-core/src/observatory.rs:349:89
+    |
+349 |     let out_of_range = |values: &[f64]| values.iter().filter(|v| !(-2.0..=2.0).contains(v)).count();
+    |                                                                                -------- ^ the trait `PartialOrd<&f64>` is not implemented for `{float}`
+    |                                                                                |
+    |                                                                                required by a bound introduced by this call
+    |
+    = note: the trait bound `{float}: PartialOrd<&f64>` is not satisfied
+note: required by a bound in `std::ops::RangeInclusive::<Idx>::contains`
+   --> /rustc/e408947bfd200af42db322daf0fadfe7e26d3bd1/library/core/src/ops/range.rs:522:4
+help: consider borrowing here
+    |
+349 |     let out_of_range = |values: &[f64]| values.iter().filter(|v| !(-2.0..=2.0).contains(&v)).count();
+    |                                                                                         +
+
+error[E0277]: can't compare `&f64` with `{float}`
+   --> crates/reservoir-core/src/observatory.rs:349:89
+    |
+349 |     let out_of_range = |values: &[f64]| values.iter().filter(|v| !(-2.0..=2.0).contains(v)).count();
+    |                                                                                -------- ^ no implementation for `&f64 < {float}` and `&f64 > {float}`
+    |                                                                                |
+    |                                                                                required by a bound introduced by this call
+    |
+help: the trait `PartialOrd<{float}>` is not implemented for `&_`
+      but trait `PartialOrd<f64>` is implemented for `_`
+   --> /rustc/e408947bfd200af42db322daf0fadfe7e26d3bd1/library/core/src/cmp.rs:1947:12
+   ::: /rustc/e408947bfd200af42db322daf0fadfe7e26d3bd1/library/core/src/cmp.rs:1983:4
+    |
+    = note: in this macro invocation
+    = help: for that trait implementation, expected `f64`, found `&f64`
+note: required by a bound in `std::ops::RangeInclusive::<Idx>::contains`
+   --> /rustc/e408947bfd200af42db322daf0fadfe7e26d3bd1/library/core/src/ops/range.rs:522:4
+    = note: this error originates in the macro `partial_ord_impl` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: can't compare `{float}` with `&f64`
+   --> crates/reservoir-core/src/observatory.rs:406:47
+    |
+406 |             .filter(|v| !(0.0..=1.0).contains(v))
+    |                                      -------- ^ the trait `PartialOrd<&f64>` is not implemented for `{float}`
+    |                                      |
+    |                                      required by a bound introduced by this call
+    |
+    = note: the trait bound `{float}: PartialOrd<&f64>` is not satisfied
+note: required by a bound in `std::ops::RangeInclusive::<Idx>::contains`
+   --> /rustc/e408947bfd200af42db322daf0fadfe7e26d3bd1/library/core/src/ops/range.rs:522:4
+help: consider borrowing here
+    |
+406 |             .filter(|v| !(0.0..=1.0).contains(&v))
+    |                                               +
+
+error[E0277]: can't compare `&f64` with `{float}`
+   --> crates/reservoir-core/src/observatory.rs:406:47
+    |
+406 |             .filter(|v| !(0.0..=1.0).contains(v))
+    |                                      -------- ^ no implementation for `&f64 < {float}` and `&f64 > {float}`
+    |                                      |
+    |                                      required by a bound introduced by this call
+    |
+help: the trait `PartialOrd<{float}>` is not implemented for `&_`
+      but trait `PartialOrd<f64>` is implemented for `_`
+   --> /rustc/e408947bfd200af42db322daf0fadfe7e26d3bd1/library/core/src/cmp.rs:1947:12
+   ::: /rustc/e408947bfd200af42db322daf0fadfe7e26d3bd1/library/core/src/cmp.rs:1983:4
+    |
+    = note: in this macro invocation
+    = help: for that trait implementation, expected `f64`, found `&f64`
+note: required by a bound in `std::ops::RangeInclusive::<Idx>::contains`
+   --> /rustc/e408947bfd200af42db322daf0fadfe7e26d3bd1/library/core/src/ops/range.rs:522:4
+    = note: this error originates in the macro `partial_ord_impl` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `reservoir-core` (lib) due to 4 previous errors

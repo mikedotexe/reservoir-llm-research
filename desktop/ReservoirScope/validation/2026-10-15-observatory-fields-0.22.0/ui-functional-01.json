@@ -1,0 +1,84 @@
+{
+  "schema": "reservoir-observatory-agent-ui-v2",
+  "createdUtc": "2026-10-15T21:58:47.635192+00:00",
+  "phase": "functional checks before passive measurement; app still running",
+  "method": "Native cua_repl AX and screenshots, operator observations; not WebDriver or human acceptance",
+  "launchReceiptSha256": "ecb18574e332f48cc2ba628e8ba7dbd01fbe0708e4f65b76980ce01103d01e1a",
+  "executableSha256": "788b636ec898f9863e146e7dfe67c380910ae38943b0b178f6e22b8e8d794051",
+  "windowPixels": [
+    1280,
+    860
+  ],
+  "tracksOpened": {
+    "fillRows": 507,
+    "stateRows": 1024
+  },
+  "exactObservedValues": [
+    {
+      "row": 0,
+      "coordinate": 0,
+      "raw": 0.35750484466552734,
+      "magnitude": 0.35750484466552734,
+      "deviation": -0.049541508036782034,
+      "allThreeReconstruction": 0.0001884109447200179,
+      "pc1Reconstruction": 0.0004799905194345602,
+      "pc1Residual": -0.05002149855621659
+    },
+    {
+      "row": 511,
+      "coordinate": 0,
+      "raw": 0.4354925751686096,
+      "pc1Residual": 0.00958445446473713,
+      "rowReconstructedShareDisplay": "3.22%"
+    }
+  ],
+  "comparison": "All listed fields equal ui-reference-values-01.json selected unchanged Swift outputs; rounding of display percent is separate from exact energies.",
+  "scalesObserved": {
+    "magnitude": "0 to +1",
+    "derived": "-2 to +2"
+  },
+  "spectrum": {
+    "displayedModes": 128,
+    "nativeInspectedTableMode": 1,
+    "nativeTableScope": "Metadata and first row inspected; all128table rows covered by frontend checks, not individually native-inspected",
+    "largestEigenvalue": 0.03630658790610803,
+    "firstModeFraction": 0.08938417884784722,
+    "retainedFraction": 0.14352396081891017,
+    "omittedFraction": 0.8564760391810897,
+    "totalSampleVariance": 0.40618584154484805,
+    "covarianceDenominator": 1023,
+    "fitScope": "entire_captured_window_retrospective",
+    "sourceIdentity": "5e90207e7dfd1d395b249d3bb5d668afa0f86b6d3e0e6383eda7b9eb52514317"
+  },
+  "contextLoss": {
+    "row": 511,
+    "field": "residual",
+    "mode": "PC1",
+    "projection": "PC2 / PC3",
+    "beforeDraws": 5,
+    "lostDraws": 5,
+    "restoredDraws": 6,
+    "exactEvidenceRetained": true
+  },
+  "navigation": {
+    "away": "Guided tour",
+    "returnedRow": 511,
+    "returnedField": "residual",
+    "returnedMode": "PC1",
+    "returnedProjection": "PC2 / PC3",
+    "returnedExactResidual": 0.00958445446473713,
+    "drawCounterResetOnRemount": true
+  },
+  "fallback": {
+    "explicitTableMode": true,
+    "sameFieldRowAndSpectrumRetained": true
+  },
+  "limitations": [
+    "Resize drag did not visibly alter1280x860window; compactlayout not qualified",
+    "Native menus sometimes needed a refreshedAXtree after selection; one input-interruption/requery occurred",
+    "PC2/PC3chosen, PC1/PC3not exercised this nativepass",
+    "No new-arrival journal, screenreader, allplatform or endurancetest",
+    "No model/feed/liveBeing contacts"
+  ],
+  "resourceMeasurement": "separate prospective frozen600secondmainPIDcapture in progress"
+}

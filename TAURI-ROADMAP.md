@@ -12,17 +12,86 @@ contracts, milestones and qualification gates. Milestone descriptions are target
 not claims that every listed workflow is implemented or qualified. Current progress
 and the active backlog are consolidated in **STATUS.md**.
 
-The current preview is **0.21.0**, with the unchanged open-writing
-`reservoir-journal-v8` contract. [The new Observatory tranche](desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/README.md)
-qualifies linked retained PCA trajectory inspection, exact row values and scoped
-macOS interaction. Reference-field/spectrum inspection and broader platform/resource
-acceptance remain open. The [source-role comparison](desktop/ReservoirScope/validation/2026-10-15-context-sources-03/README.md)
+The current preview is **0.25.0**, with unchanged production v8 and numerical/save
+contracts. [Journal-first reading](desktop/ReservoirScope/validation/2026-10-15-journal-first-0.25.0/README.md)
+puts complete selected prose and Earlier/Later before history, with live visuals
+alongside on wide screens and below reading on narrow screens. Current sensory fill
+is prominent and separate from the selected entry. Setup and
+[Getting started](desktop/ReservoirScope/GETTING-STARTED.md) explain compile → local
+model → Create → Start and the included save/readback/next-step/eligible-memory loop.
+The offline script remains the default; no new automatic service or model action
+is introduced. The personal controller’s 68% target and 64–72% error deadband are
+reference settings, not a proven special state or a fill-rate measurement.
+
+Fresh qualification passes 431 frontend tests in 46 files, TypeScript/Vite,
+reference checks and the distinct macOS package build. Rust tests and Clippy reuse
+0.24’s results by exact comparison of 164 inputs with five validated application-
+version-only substitutions; they were not rerun. The [native walkthrough](desktop/ReservoirScope/validation/2026-10-15-journal-first-0.25.0/MACOS-UI.md)
+passes at 1280 × 860: three scripted journals at 30/60/90 apply at 31/61/91,
+then hold naturally at step 91. Earlier/Later/Follow latest, distinct current and
+selected-entry fill, 125%/200% zoom and reset pass. Normal quit and same-build
+offline replay leave all 19 recorded files unchanged. Native compact resizing,
+pinned selection during new arrivals and export/recovery were not repeated; prior
+qualification remains build-specific. Broader platform, GPU/energy and current-build
+endurance qualification remain separate. No new real-model writing result is claimed.
+
+The prior preview **0.24.0** retained the same open-writing
+`reservoir-journal-v8` contract. [Compact reading](desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md)
+keeps selected journal positions and anchored history windows stable during new
+arrivals, adds keyboard access to evidence and provides native View-menu zoom.
+All 427 frontend tests in 46 files, 224 core and 203 desktop tests, TypeScript/Vite,
+reference checks and both strict Clippy checks pass; two opt-in desktop tests remain
+ignored. The distinct 46-file macOS package is archived and ad hoc signed.
+The [native walkthrough](desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/MACOS-UI.md)
+confirms zoom/reset, skip-link focus and evidence-panel scrolling, plus a 36-journal
+scripted run naturally held at live/saved step 361. Pinning/refresh, Older/Newer,
+the full twenty-row boundary, outside-window Earlier, workspace return and explicit
+Follow latest pass during arrivals, followed by normal quit. The observed window
+is 1830 × 1050 with 100%/125%/200% zoom; unsuccessful resize gestures leave
+900 × 700 and 720 × 600 unqualified. Same-build post-quit replay passes all 36
+journals with 217 files unchanged; its initial wrapper refusal is preserved separately.
+Native export/recovery were not rerun.
+
+An [additive native retry](desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/MACOS-COMPACT-RETRY.md)
+kept the unchanged package at an observed 1280 × 860 outer window. Edge and native
+menu attempts still did not establish the 900 × 700 or 720 × 600 content targets.
+At 200% zoom, setup, Library metadata, Observatory controls and journal reading
+remained reachable. A copied exhausted 36-journal session verified and restored
+paused with Resume disabled. Normal quit preserved all original evidence; only
+the copied manifest's generation, revision and phase changed. This is scoped
+paused-restoration and enlarged-text evidence, not compact-window acceptance.
+
+The prior [0.23 direct navigation and retained reading](desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/README.md)
+make My reservoir the initial sixth destination while preserving the native five,
+and give Preparation history one home in Observatory with a Library shortcut.
+All 417 frontend tests, TypeScript/Vite, reference checks and the distinct 46-file
+macOS package pass; Rust checks are reused by exact input comparison, not rerun.
+Scoped native checks pass for preparation-report/disclosure and Library-position
+retention, plus a 61-step scripted run whose pinned first journal survives a new
+arrival and workspace changes. The two-journal stored bundle passes the same-build
+verifier; native export/recovery were not rerun.
+
+The prior [0.22.1 research-language pass](desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/README.md)
+uses plain workspace names and controls, moves build/platform details to About, and
+keeps technical IDs and graphics counters in optional disclosures. Scientific
+limits, active failures and save/application distinctions remain visible.
+[Copy and navigation conventions](desktop/ReservoirScope/RESEARCH-LANGUAGE.md).
+
+[The 0.22 Observatory tranche](desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/README.md)
+adds native-equivalent reference fields and the full 128-mode state capture spectrum
+to retained trajectory inspection. Its source suites, distinct macOS package and
+scoped native exact-value/navigation/graphics checks pass. A short main-PID CPU/RSS
+sample does not measure WebKit, GPU, power or endurance. Broader resource, compact-window,
+accessibility and platform acceptance remain open. The [source-role comparison](desktop/ReservoirScope/validation/2026-10-15-context-sources-03/README.md)
 completed twelve responses under the user-approved provisional 30% reported-free
 admission rule, with actual admission at 42%. Its candidate is not promoted: a local
 benefit coexisted with invented measurements. Earlier refusals remain final; the
 report preserves a reading-order deviation and additional independent assessment.
-The next product boundary is reference-field and state-spectrum inspection, followed
-by broader resource/platform qualification. [Current outcome and next boundary](desktop/ReservoirScope/STATUS.md).
+The 0.24 tranche qualifies its named native journal routes across pages while new
+entries arrive. Actual compact geometry carries forward, followed by broader
+attributed GPU/resource measurements on the qualified candidate. The earlier
+main-process sample does not measure GPU or whole-app resource use. [Evidence and completion boundaries](desktop/ReservoirScope/STATUS.md#next-usability-and-resource-tranche)
+keep all three priorities explicit. No new prompt experiment is implied.
 
 For future bounded serial checks of the same local model, the user-approved
 [resource policy](desktop/ReservoirScope/QUALIFICATION-RESOURCES.md) now lowers the
@@ -34,8 +103,9 @@ historical “next” statement—is preserved byte-for-byte in
 [the October 15 roadmap history](TAURI-ROADMAP-HISTORY-2026-10-15.md).
 Its historical priorities do not override the current backlog. The
 [housekeeping/source checkpoint](desktop/ReservoirScope/validation/2026-10-15-housekeeping-0.20.0/README.md)
-is saved locally at `1552bbc` and has not been pushed. Source checkpointing adds no
-new package, runtime or collaborator acceptance.
+remains at `1552bbc`; the later 0.21 source checkpoint `0001b7a` is local and
+unpushed. Current work through 0.25 is subsequent to it. Source checkpointing adds no new
+package, runtime or collaborator acceptance.
 
 ## 1. Goal, decisions, and definition of success
 
@@ -81,16 +151,18 @@ does not require importing the Beings' journal corpus or extending the Python in
 
 ### The central experience
 
-Within Experiments, a prominent **My reservoir** view will bring together a large
-state surface, a separately labeled fill/spectrum view, a journal reader and a shared
-event timeline. Opening it starts nothing. The user chooses a recipe, seed, model,
-observation channel, writing cadence and run limits, then explicitly starts.
+As of 0.23, **My reservoir** is the initial, direct sixth destination: an intentional
+extension alongside the native five, rather than a replacement for them. It combines
+recurrent state, separate sensory fill and independent journal reading. Opening it
+starts nothing; the user chooses a writing source, seed, cadence and run limits,
+then creates and explicitly starts a session. A shared event timeline remains a
+longer-term goal.
 
 Selecting a journal entry should reveal what the model was shown, the exact text it
 returned, whether that text was saved, the vector actually applied, its application
 step and the subsequent observations. Reading an older entry must not move the live
-session cursor; **Follow latest** returns the viewer to it. The renderer and timeline
-are shared with the Observatory while the five existing destinations remain familiar.
+session cursor; **Follow latest** returns the viewer to it. Visualization components are shared with the Observatory; the five original
+research destinations remain available.
 
 Use **fill level** for the estimator's value and **rate of change** only for a measured
 derivative with declared time units. A deformed surface displays an activation field
@@ -620,7 +692,7 @@ scheduling and HTTP generation are not required yet.
 
 **Deliverables**
 
-- Familiar five-destination navigation.
+- Familiar native five-destination baseline, retained alongside the later My reservoir destination.
 - Complete guided A–H recorded journey.
 - Make the observation → writing → saved journal → applied input → next observation
   chain easy to inspect, with each recipe's actual observation channel labeled.
@@ -770,7 +842,7 @@ Track these areas individually rather than reporting one opaque completion perce
 
 | Area | Required behavior | Target |
 |---|---|---|
-| Navigation | Five destinations; entering starts no experiment | M2 |
+| Navigation | Native five-destination baseline; later My reservoir adds a direct sixth; entering starts no experiment | M2 |
 | Guided tour | A–H, sources, checkpoints, cursor, pause semantics | M2 |
 | Research cases | Authored accounts, evidence, limits, rejected-replacement retention | M2 |
 | Geometry | Hashes, references, 128 coordinates, clocks, RMS, reading-state retention | M2 |

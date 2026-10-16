@@ -1,0 +1,71 @@
+{
+  "schema": "observatory-resource-ui-witnesses-v1",
+  "createdUtc": "2026-10-15T22:06:46.763325+00:00",
+  "method": "Native cua_repl accessibility and screenshots, observations outside settled windows only",
+  "markersSha256": "ffe0be393f82af2f639d7b0cc5c1022c7e76136c4e789e8c198057cc09c7f9e4",
+  "windowPixels": [
+    1280,
+    860
+  ],
+  "scrollBarValue": 0.3862661,
+  "field": "PC1 residual",
+  "projection": "PC2 / PC3",
+  "graphics": "WebGL2",
+  "witnesses": [
+    {
+      "boundary": "before capture and visible-idle",
+      "row": 0,
+      "framesDrawn": 1
+    },
+    {
+      "boundary": "after visible-idle closed",
+      "row": 0,
+      "framesDrawn": 1,
+      "playback": "paused"
+    },
+    {
+      "boundary": "playback pre-settle AX after returning scroll position",
+      "row": 25,
+      "framesDrawn": 26,
+      "playback": "playing4rows/s"
+    },
+    {
+      "boundary": "subsequent pre-settle screenshot, not simultaneous with AX",
+      "framesDrawn": 49
+    },
+    {
+      "boundary": "after playback window closed, before minimize",
+      "row": 586,
+      "framesDrawn": 587,
+      "playback": "playing4rows/s"
+    },
+    {
+      "boundary": "after minimized window closed, during restore inspection",
+      "row": 603,
+      "framesDrawn": 605,
+      "playback": "paused"
+    },
+    {
+      "boundary": "after Raise, before restored-idle settling",
+      "framesDrawn": 605,
+      "playback": "paused"
+    },
+    {
+      "boundary": "after restored-idle closed",
+      "row": 603,
+      "framesDrawn": 605,
+      "playback": "paused"
+    }
+  ],
+  "minimizedUiQueries": 0,
+  "sameSizeAndScrollAcrossNamedWindows": true,
+  "limits": [
+    "Exact settled playback start/end row was not sampled synchronously with process markers; report before/after witnesses rather than infer exact rows",
+    "Some rows advanced between playback-end witness and minimize action; restore can cause additional draws",
+    "Counters count draw submissions, notFPS/presentation/GPUtime",
+    "Counter difference across minimize/restore cannot isolate hidden-interval draws",
+    "Partial surface/trajectory and upper spectrum visible; not full-window graphicsbenchmark",
+    "Window states are operator-declared; sampler doesnotdetectwindowstate",
+    "No builds, tests or real-model work during capture; small receipt/document work only"
+  ]
+}

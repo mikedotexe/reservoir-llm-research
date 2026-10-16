@@ -1,0 +1,104 @@
+{
+  "schema": "focused-reference-field-tests-v1",
+  "startedAtUtc": "2026-10-15T21:38:11.851314+00:00",
+  "sourceBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/observatory.rs",
+      "bytes": 23820,
+      "sha256": "801f334c773c2b04dc19063a34979d16bc713ada44046b52608ab16b8f46d711"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/observatory.rs",
+      "bytes": 16341,
+      "sha256": "eb3f38101bd464f8194e2c095a0ad12e2bd410b4b55ea529cf20864a66ed2598"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/src-tauri/src/observatory.rs",
+      "bytes": 24452,
+      "sha256": "c51f98ef686c8efbedd6f62e37f06e3e21abd8bbcf645479c00eb88184b577c8"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/src-tauri/src/observatory_tests.rs",
+      "bytes": 10286,
+      "sha256": "fae548add7d8bc5f07afbbcd09ab61d38a77beb84747022f1090e1c72bdf144f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/swift-state-fields-v1.json",
+      "bytes": 252775,
+      "sha256": "5a9916c0071c50dc74be147a71790121b5f01d59d35f68558762147993252a01"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/swift-state-fields-v1.provenance.json",
+      "bytes": 1654,
+      "sha256": "0e62cc37d5c27445e3b02bac3adc5fa1df91e98d5126fd4df180c1ed4f732e62"
+    }
+  ],
+  "environment": {
+    "DEVELOPER_DIR": "/Applications/Xcode.app/Contents/Developer",
+    "SDKROOT": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+    "CARGO_INCREMENTAL": "0",
+    "CARGO_BUILD_JOBS": "2",
+    "CARGO_TARGET_DIR": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target"
+  },
+  "helper": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/run_field_checks.py",
+    "bytes": 2809,
+    "sha256": "9af826831da40144e6cb32073b00f46d17bdcbda373c625ab9106fc6d06e4755"
+  },
+  "commands": [
+    {
+      "name": "core",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "crates/reservoir-core/Cargo.toml",
+        "--test",
+        "observatory"
+      ],
+      "startedAtUtc": "2026-10-15T21:38:11.852835+00:00",
+      "endedAtUtc": "2026-10-15T21:38:15.203696+00:00",
+      "exitCode": 101,
+      "log": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/field-core-01.log",
+        "bytes": 4596,
+        "sha256": "65dc655794b8d31d5558d0ab0f21629a5effd35c72713ad93e61597b19493fab"
+      }
+    }
+  ],
+  "passed": false,
+  "endedAtUtc": "2026-10-15T21:38:15.204132+00:00",
+  "sourceAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/src/observatory.rs",
+      "bytes": 23820,
+      "sha256": "801f334c773c2b04dc19063a34979d16bc713ada44046b52608ab16b8f46d711"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/observatory.rs",
+      "bytes": 16341,
+      "sha256": "eb3f38101bd464f8194e2c095a0ad12e2bd410b4b55ea529cf20864a66ed2598"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/src-tauri/src/observatory.rs",
+      "bytes": 24452,
+      "sha256": "c51f98ef686c8efbedd6f62e37f06e3e21abd8bbcf645479c00eb88184b577c8"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/src-tauri/src/observatory_tests.rs",
+      "bytes": 10286,
+      "sha256": "fae548add7d8bc5f07afbbcd09ab61d38a77beb84747022f1090e1c72bdf144f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/swift-state-fields-v1.json",
+      "bytes": 252775,
+      "sha256": "5a9916c0071c50dc74be147a71790121b5f01d59d35f68558762147993252a01"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/tests/fixtures/swift-state-fields-v1.provenance.json",
+      "bytes": 1654,
+      "sha256": "0e62cc37d5c27445e3b02bac3adc5fa1df91e98d5126fd4df180c1ed4f732e62"
+    }
+  ],
+  "sourceUnchanged": true
+}

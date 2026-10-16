@@ -67,6 +67,36 @@ nor claims that it was available at each historical row. The source's bracketed
 read consistency limitation remains disclosed; no transactional dump-generation
 pairing is inferred.
 
+### Reference fields and the full-capture spectrum (0.22)
+
+For each retained state row, Rust computes magnitude `abs(x)`, deviation `x − mean`,
+and ordered Float64 dot-product scores against the three retained frozen
+components. For a selected set of components, reconstruction is the sum of
+`score × component`; the reference mean is **not** added back. Residual is deviation
+minus that selected contribution. Their energies are sums of squared coordinates,
+not sensory fill, prediction error or a causal attribution. Reversing a component
+and its score leaves its reconstructed contribution unchanged.
+
+Signed activation uses the fixed display range −1…1, magnitude 0…1, and deviation,
+reconstruction and residual −2…2. Out-of-range counts describe those drawing
+limits; the exact returned values are never clipped or rescaled. The IPC frame
+contains the four selections PC1, PC2, PC3 and all three (zero-based mode indexes
+in the contract). The pure core helper supports all eight subsets, including none.
+It does not infer spatial adjacency, a clock, fill or live reference compatibility.
+
+These recomputed `scores` and energies remain distinct from the existing `pc`,
+RMS and distance fields retained in the geometry JSON. Both are tied to the exact
+activation bytes and frozen reference, but one is a current reader calculation
+and the other is saved metadata.
+
+The state track summary exposes all 128 retained eigenvalues and their variance
+fractions once, with the retained/omitted fractions, total sample variance,
+`rows − 1` covariance denominator, frozen fit scope and geometry SHA-256. This is
+the centered sample covariance fitted retrospectively to all 1,024 saved rows.
+It is constant across the replay and separate from the three sensory-direction
+estimates in history. Only three component vectors were retained; the other 125
+eigenvalues do not provide corresponding reconstruction vectors.
+
 ## Validation and supported bounds
 
 - Historical and geometry JSON: nonempty, at most 2 MiB each. Replay manifest:
@@ -87,6 +117,11 @@ pairing is inferred.
   coordinates, norms and numeric basis values are finite. Distances are
   nonnegative. This validates the retained shape; it is not a reconstruction of
   the numerical fit.
+- Reference components must be orthonormal within the native field routine's
+  absolute 1e-5 bound. State spectrum values must be nonnegative and descending;
+  variance shares, total variance, retained/omitted fractions and sample
+  denominator must agree within absolute 1e-10 (total variance additionally scales
+  that bound by `max(total, 1)`). These checks do not refit the covariance matrix.
 
 The bounded reader rejects unsupported shapes explicitly. It does not silently
 truncate larger captures or treat unfamiliar clock metadata as known. Optional
@@ -111,7 +146,9 @@ renderer generation/request guards prevent late responses from becoming current.
   one coordinate to each state point; history rejects node requests.
 - `get_observatory_frame(requestId, observatoryId, trackId, index)` returns one
   history observation or exactly 128 retained activations with its geometry.
-  It never attaches history fill or UTC to a state row.
+  State frames also carry bounded magnitude/deviation arrays and four selected
+  reconstruction/residual pairs; static basis matrices and the full capture are
+  not repeated per frame. It never attaches history fill or UTC to a state row.
 - `seek_observatory(requestId, observatoryId, trackId, position, mode)` supports
   `floor` (hold-last) and `nearest` (earlier observation wins a midpoint).
   Positions clamp to endpoints; nonfinite positions and unknown modes fail.
@@ -164,3 +201,14 @@ including a nonfinite activation whose raw and geometry hashes are rebound so
 that the value check itself is exercised. The receipt retains source, resource
 and executable identities. This is reader conformance, not full M3 qualification,
 Windows/Linux execution evidence or evidence about a current live being.
+
+The 0.22 field oracle separately compiles unchanged `StateSurface.swift` with
+`validation/2026-10-15-observatory-fields-0.22.0/StateFieldsOracle.swift`. Its saved
+core fixture contains three synthetic cases and captured rows 0, 1, 511 and 1023,
+each evaluated with all eight mode subsets (56 selections). Core tests compare
+every vector, score, energy and out-of-range count against that independent native
+output within 1e-12; invariants cover reconstruction/residual addition, sign
+invariance, empty selections, exact unclipped values and invalid references.
+`native-field-oracle-01.json` retains source, inputs, binary and fixture identities.
+The first focused Rust attempt is preserved as a compile failure from two iterator
+reference mismatches; the corrected focused attempt has its own receipt.

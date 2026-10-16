@@ -1,0 +1,75 @@
+{
+  "schema": "reservoir-journal-first-focused-check-v1",
+  "startedAtUtc": "2026-10-16T01:12:49.497919+00:00",
+  "command": [
+    "/Users/v/.nvm/versions/node/v20.20.1/bin/npm",
+    "test",
+    "--",
+    "src/MyReservoirPresentation.test.tsx",
+    "src/MyReservoirReading.test.tsx",
+    "src/MyReservoir.test.tsx",
+    "src/myReservoirNavigation.test.ts"
+  ],
+  "sourceBefore": [
+    {
+      "path": "src/MyReservoir.tsx",
+      "sha256": "357cbf91921e35a55826da2d227f2ca942121c8d873f4bb859f0df30417c8dd6"
+    },
+    {
+      "path": "src/MyReservoirJournals.tsx",
+      "sha256": "5b8c095e4967147e14b4dcbb85f3921130158fc57bb9d1642931049e9637071d"
+    },
+    {
+      "path": "src/MyReservoirVisuals.tsx",
+      "sha256": "8b786a23a46478b9619e0aea7492a2c0399bf58ab192edb89360904e505d5c22"
+    },
+    {
+      "path": "src/myReservoir.css",
+      "sha256": "5172cc5d51280901a9362f8c10d93df3459622970b7192fba46a4d1a03ff819f"
+    },
+    {
+      "path": "src/MyReservoirPresentation.test.tsx",
+      "sha256": "0abf49174fa9a9caea0bbd4a74aad3cad65b065833d9f38ae628496f188bdde7"
+    },
+    {
+      "path": "src/MyReservoirReading.test.tsx",
+      "sha256": "ebefc914ed0e9808997fb9c6b8fb5e15e0d5a838f1635bd136a91dba7e1b791e"
+    }
+  ],
+  "scope": "Presentation/reading regressions plus unchanged navigation behavior. No native app, provider, or model execution.",
+  "endedAtUtc": "2026-10-16T01:12:50.334285+00:00",
+  "elapsedSeconds": 0.8350587501190603,
+  "exitCode": 0,
+  "sourceAfter": [
+    {
+      "path": "src/MyReservoir.tsx",
+      "sha256": "357cbf91921e35a55826da2d227f2ca942121c8d873f4bb859f0df30417c8dd6"
+    },
+    {
+      "path": "src/MyReservoirJournals.tsx",
+      "sha256": "5b8c095e4967147e14b4dcbb85f3921130158fc57bb9d1642931049e9637071d"
+    },
+    {
+      "path": "src/MyReservoirVisuals.tsx",
+      "sha256": "8b786a23a46478b9619e0aea7492a2c0399bf58ab192edb89360904e505d5c22"
+    },
+    {
+      "path": "src/myReservoir.css",
+      "sha256": "5172cc5d51280901a9362f8c10d93df3459622970b7192fba46a4d1a03ff819f"
+    },
+    {
+      "path": "src/MyReservoirPresentation.test.tsx",
+      "sha256": "0abf49174fa9a9caea0bbd4a74aad3cad65b065833d9f38ae628496f188bdde7"
+    },
+    {
+      "path": "src/MyReservoirReading.test.tsx",
+      "sha256": "ebefc914ed0e9808997fb9c6b8fb5e15e0d5a838f1635bd136a91dba7e1b791e"
+    }
+  ],
+  "log": {
+    "path": "journal-reading-focused-01.log",
+    "sha256": "44484cb18aefec47257e014d91f9bfa1026c5611ceb9f56172c2e869d135e017"
+  },
+  "sourceUnchanged": true,
+  "passed": true
+}

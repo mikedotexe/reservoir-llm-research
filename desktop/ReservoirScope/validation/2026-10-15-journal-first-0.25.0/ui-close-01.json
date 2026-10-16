@@ -1,0 +1,23 @@
+{
+  "schema": "reservoir-journal-first-ui-close-v1",
+  "recordedAtUtc": "2026-10-16T01:23:25.963228+00:00",
+  "version": "0.25.0",
+  "pid": 26529,
+  "action": "normal macOS Command-Q through native desktop automation",
+  "witness": "Sent after run limit at step91, 3 saved journals with feedback applied31/61/91, Earlier/Later and zoom checks. No desktop observation was requested after Quit.",
+  "processCheck": {
+    "checkedAtUtc": "2026-10-16T01:23:25.963228+00:00",
+    "command": [
+      "/bin/ps",
+      "-p",
+      "26529",
+      "-o",
+      "pid=,comm="
+    ],
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "",
+    "absent": true
+  },
+  "scope": "Owned QA app only. No provider service started or stopped. Quit causation is native UI witness; PID absence is independently checked."
+}

@@ -64,7 +64,12 @@ export default function PreparationHistory({ active, onOpenExample, controller: 
   const [owned] = useState(() => new PreparationController());
   const controller = supplied ?? owned;
   const state = useSyncExternalStore(controller.subscribe, controller.snapshot, controller.snapshot);
-  useEffect(() => { controller.activate(active); return () => controller.activate(false); }, [active, controller]);
-  if (!active) return null;
-  return <PreparationHistoryView state={state} refresh={() => { void controller.refresh(); }} select={summary => controller.select(summary)} exportReport={() => { void controller.export(); }} onOpenExample={onOpenExample} initiallyOpen={initiallyOpen}/>;
+  const [visited, setVisited] = useState(false);
+  useEffect(() => {
+    if (active) setVisited(true);
+    controller.activate(active); return () => controller.activate(false);
+  }, [active, controller]);
+  if (!active && !visited) return null;
+  // Retain the reader's disclosures when navigating away, without keeping reads active.
+  return <div hidden={!active}><PreparationHistoryView state={state} refresh={() => { void controller.refresh(); }} select={summary => controller.select(summary)} exportReport={() => { void controller.export(); }} onOpenExample={onOpenExample} initiallyOpen={initiallyOpen}/></div>;
 }

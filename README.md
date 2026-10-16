@@ -6,6 +6,7 @@ writing, supplied evidence, actions and changing environments to that question.
 
 | Start here | What you can do |
 |---|---|
+| **[Start a personal reservoir journal](desktop/ReservoirScope/GETTING-STARTED.md)** | Build the Tauri preview, choose your installed local Ollama model, and read saved writing as it returns input to the reservoir. macOS preview; other-platform qualification remains open. |
 | **[Read what we’ve learned](RESEARCH.md)** | Start with four bounded findings and a worked episode; follow each into its evidence and open questions. |
 | **[Explore the offline lab](research/CURRENT-RELEASE.md)** | Use Reservoir Scope’s guided examples, recorded writing and reviewed cases. Apple silicon, macOS 14+; the current 0.15 candidate is unreleased. |
 | **[Reproduce or continue the work](research/QUICKSTART.md)** | Run the research CLI on two included synthetic entries using Python 3.12+, then choose the tools and evidence your task needs. |

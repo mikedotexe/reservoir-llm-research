@@ -1,0 +1,68 @@
+{
+  "schema": "reservoir-compact-reading-ui-session-check-v1",
+  "startedAtUtc": "2026-10-16T00:43:09.260458+00:00",
+  "helper": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/verify_ui_session.py",
+    "bytes": 14465,
+    "sha256": "91d2a0e3885e534ebf7c0c4e3d9514d0979b5ebde448e8e0cab0c1739438c590"
+  },
+  "verificationPassed": false,
+  "plannedOutcomeComplete": false,
+  "status": "failed",
+  "errors": [
+    "ValueError: Expected exactly one session in the exclusive QA Library"
+  ],
+  "scope": "Offline same-build replay and file preservation after exact owned PID absence. Native interactions and normal-quit causation require the separate UI witness. No model, provider, export, restore, GPU or endurance qualification.",
+  "inputs": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-launch-01.json",
+      "bytes": 1010,
+      "sha256": "ca992db45f64f80f6bc22ee4ef04b5fa5a5ff438d83c7cad0788aa38de73a6ed"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-plan-01.json",
+      "bytes": 1745,
+      "sha256": "ae0533fca6807876f2220a757cea6ad90d7f4c1f4b02f4aaba6dd24b7badf781"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/archive-check-01.json",
+      "bytes": 21436,
+      "sha256": "00d708fddd1368cb36541363767dd02fcd6d03bff9b6efa7ad92847745b5dd47"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-close-01.json",
+      "bytes": 337,
+      "sha256": "c4711bd960faa740bc70160649038426f61d489f6bbd990233316aeddf66a350"
+    }
+  ],
+  "closeWitness": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-close-01.json",
+    "bytes": 337,
+    "sha256": "c4711bd960faa740bc70160649038426f61d489f6bbd990233316aeddf66a350"
+  },
+  "pinnedExecutable": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.24.0-pinned/reservoir-scope-desktop",
+    "bytes": 17055648,
+    "sha256": "9546aa02c101016d50cc20363bae7721549a93257808bb0020e19f0563f59a38"
+  },
+  "qualifiedPackageMatched": true,
+  "ownedProcessCheck": {
+    "checkedAtUtc": "2026-10-16T00:43:09.479519+00:00",
+    "command": [
+      "/bin/ps",
+      "-p",
+      "9390",
+      "-o",
+      "pid=,comm="
+    ],
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "",
+    "absent": true
+  },
+  "sessionDirectoryNames": [
+    "owner",
+    "sustained-1792110972477-1"
+  ],
+  "endedAtUtc": "2026-10-16T00:43:09.488214+00:00"
+}

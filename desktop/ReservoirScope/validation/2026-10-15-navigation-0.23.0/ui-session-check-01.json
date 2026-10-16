@@ -1,0 +1,77 @@
+{
+  "schema": "reservoir-scope-navigation-ui-session-check-v1",
+  "checkedAtUtc": "2026-10-16T00:11:28.650175+00:00",
+  "launchReceiptSha256": "b232f5974414ab31dd2996b1917b3baf766b464af2ae1c8c08e83703d6ce8849",
+  "ownedPid": 99245,
+  "ownedPidAbsent": true,
+  "normalQuit": "CUA Command-Q returned App quit; exact PID absent",
+  "sessionId": "sustained-1792109310197-1",
+  "phase": "budgetReached",
+  "step": 61,
+  "durableStep": 61,
+  "elapsedMillis": 62179,
+  "config": {
+    "seed": "20260909",
+    "turnEvery": 30,
+    "maximumSteps": 61,
+    "maximumTurns": 360,
+    "maximumDurationSeconds": 21600,
+    "storageBudgetBytes": 268435456,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true,
+    "language": {
+      "backend": "scripted"
+    },
+    "promptVersion": "reservoir-journal-v8",
+    "outputTokens": 1024,
+    "requestDeadlineSeconds": 180
+  },
+  "journalCount": 2,
+  "journals": [
+    {
+      "entryId": "journal-30-1-7ae2e7ab9eddfc3e7fa0693cd9c63854d88a20677716dd72423b196ec451db6b",
+      "observedStep": 30,
+      "textSha256": "7ae2e7ab9eddfc3e7fa0693cd9c63854d88a20677716dd72423b196ec451db6b",
+      "requestStarted": false
+    },
+    {
+      "entryId": "journal-60-2-4b3292ed3bd920b75322007cb654f77491e8bdf8883c56083c7da47aeee70c7b",
+      "observedStep": 60,
+      "textSha256": "4b3292ed3bd920b75322007cb654f77491e8bdf8883c56083c7da47aeee70c7b",
+      "requestStarted": false
+    }
+  ],
+  "verification": {
+    "command": [
+      "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.23.0-pinned/reservoir-scope-desktop",
+      "--verify-sustained",
+      "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.23-navigation-ui01/library/sustained-v1/sustained-1792109310197-1"
+    ],
+    "executableSha256": "7b8245932cae928b069fe4ca6609597f94ad3a54dbd8a0082c30a505c26a024b",
+    "exitCode": 0,
+    "stdout": "{\n  \"modelsContacted\": false,\n  \"report\": {\n    \"checkpointSha256\": \"935ed0ae545e7ad0fc5ef683aaecc1cc3061d9e94b0abfbf1f3cf2978085b3b1\",\n    \"diagnostics\": [],\n    \"format\": \"reservoir-sustained-bundle-v1\",\n    \"journalCount\": 2,\n    \"manifestSha256\": \"88bbd774a380185d52c979f357d245c0d9992f3f849d19c5462fdedd87db8a59\",\n    \"segmentCount\": 9,\n    \"sessionId\": \"sustained-1792109310197-1\",\n    \"sizeBytes\": 805343,\n    \"step\": 61,\n    \"verification\": \"Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability.\"\n  },\n  \"status\": \"passed\"\n}\n",
+    "stderr": ""
+  },
+  "allFilesUnchangedByVerification": true,
+  "filesSha256": {
+    "checkpoints/935ed0ae545e7ad0fc5ef683aaecc1cc3061d9e94b0abfbf1f3cf2978085b3b1.json": "935ed0ae545e7ad0fc5ef683aaecc1cc3061d9e94b0abfbf1f3cf2978085b3b1",
+    "journals/journal-30-1-7ae2e7ab9eddfc3e7fa0693cd9c63854d88a20677716dd72423b196ec451db6b.json": "929c2d48ef774f0a8511a643e0cff107a77ded162928e5b25ba02307b2aeaedf",
+    "journals/journal-60-2-4b3292ed3bd920b75322007cb654f77491e8bdf8883c56083c7da47aeee70c7b.json": "4e3e003259ef7e6c0a4c06460cbb7e08adb08e19530e4abefa9d98a0fadc67ae",
+    "manifest.json": "88bbd774a380185d52c979f357d245c0d9992f3f849d19c5462fdedd87db8a59",
+    "segments/segment-00000001.json": "37b9eab89deac13aff1a2505544bceb0410ee258dd3d49fce5e61b69a7d6f105",
+    "segments/segment-00000002.json": "5bf23095dc19facdda552b68ba8e821e51c9eca1a157707421f4df933f8c099d",
+    "segments/segment-00000003.json": "a8112d0b4330adb55c3f4a85445637d1428e4937c3fbf568f995fe96c4c0e553",
+    "segments/segment-00000004.json": "ee4d683157e559f1426d7b5b86635eb7f1156b908a8b427552a8b11e32d473e9",
+    "segments/segment-00000005.json": "50001ec04a54ba7f6ef1342ea6c3b0530dd544dc4cb01db5a7ec6972514d5d47",
+    "segments/segment-00000006.json": "562d1e40abfbb0c12d81e56ce31b5e01958b8089c03a72cbd228be19da3350b2",
+    "segments/segment-00000007.json": "b01bd449efae7aba9e2c425c9bf64edff99de1c82a63176907da64fe10e76833",
+    "segments/segment-00000008.json": "c3d796a68c5c68f616bc8ce365dfb02aa8bbbf2861bdceae16570dee73fd457a",
+    "segments/segment-00000009.json": "fb3c9b12506cb2d3342eb6341b0fa0424817fa9bf39af085e4ad7a38095d83d9"
+  },
+  "stdoutBytes": 0,
+  "stderrBytes": 0,
+  "scope": "Short synthetic UI/navigation check and same-build independent-process replay; no real model, endurance, export or recovery execution in this tranche"
+}

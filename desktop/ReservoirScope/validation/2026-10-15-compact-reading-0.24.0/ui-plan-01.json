@@ -1,0 +1,42 @@
+{
+  "schema": "reservoir-compact-reading-ui-plan-v1",
+  "recordedUtc": "2026-10-16T00:25:02.100348+00:00",
+  "version": "0.24.0",
+  "scope": "Actual shipping macOS package in exclusive QA Library; compact widths, native zoom, keyboard, and live multi-page journal reading. No real-model, feed, endurance, GPU or collaborator acceptance.",
+  "session": {
+    "backend": "scripted",
+    "promptVersion": "reservoir-journal-v8",
+    "seed": "20260909",
+    "turnEvery": 10,
+    "maximumSteps": 361,
+    "maximumTurns": 40,
+    "maximumDurationSeconds": 600,
+    "storageBudgetBytes": 67108864,
+    "paceMs": 1000,
+    "otherValues": "Unchanged UI defaults"
+  },
+  "intendedWindows": [
+    [
+      900,
+      700
+    ],
+    [
+      720,
+      600
+    ]
+  ],
+  "actualDimensionsRequired": true,
+  "boundedFallback": "If native height resizing remains unavailable, record actual geometry and zoom separately; do not claim intended dimensions.",
+  "checks": [
+    "Create remains Ready until explicit Start",
+    "At least21 entries before multi-page traversal",
+    "Pin older entry; Older/Newer history and Refresh preserve selected text during arrivals",
+    "Earlier/Later across20-row boundary; explicit Follow latest",
+    "Workspace return, reachable actions, closed evidence, keyboard evidence scrolling",
+    "View zoom and Actual Size; source and retained prose unchanged",
+    "Natural step361 hold, then normal quit",
+    "Same-build read-only sustained verification and all-file hash equality"
+  ],
+  "stopRule": "No retries, silent budget extensions or provider switching; retain partial outcome if any bound prevents complete native coverage.",
+  "cleanup": "Quit only the owned QA app; preserve package, source and session evidence."
+}

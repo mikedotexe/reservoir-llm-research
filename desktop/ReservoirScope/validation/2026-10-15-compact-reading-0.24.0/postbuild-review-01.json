@@ -1,0 +1,1331 @@
+{
+  "schema": "reservoir-compact-reading-postbuild-review-v1",
+  "startedAtUtc": "2026-10-16T00:47:28.331631+00:00",
+  "status": "passed",
+  "errors": [],
+  "helper": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/postbuild_review.py",
+    "kind": "file",
+    "bytes": 17855,
+    "sha256": "12765a763ff4ec34b9d818c82d1dcb41c25e78e30312bdefc0e2e643202f8f87"
+  },
+  "scope": "File/hash/link closeout only; optional one exact owned-PID ps observation. No test/build/UI/model/service execution.",
+  "frontend": {
+    "inputCount": 136,
+    "counts": {
+      "testFiles": 46,
+      "tests": 427
+    },
+    "currentMatchesQualified": true,
+    "vite": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/vite.config.ts",
+      "kind": "file",
+      "bytes": 456,
+      "sha256": "8bbde723203c3cbd19ca0974cb370abcf4262e31b09e0db351376ab58435da6a"
+    },
+    "testTargetExcluded": true,
+    "reason": "The ignored target tree contains copied historical source/tests; it is excluded from current Vitest discovery, while configDefaults.exclude is retained."
+  },
+  "rustQualification": {
+    "receipt": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/rust-checks-01.json",
+      "kind": "file",
+      "bytes": 57311,
+      "sha256": "e8c813e2849bbf24b51335b511deae9a389b73480a7ebb0114eed7b59fa61c5c"
+    },
+    "inputCount": 164,
+    "checks": [
+      {
+        "name": "reference",
+        "exitCode": 0,
+        "passedTests": null,
+        "ignoredTests": null
+      },
+      {
+        "name": "resource-staging",
+        "exitCode": 0,
+        "passedTests": null,
+        "ignoredTests": null
+      },
+      {
+        "name": "rust-format",
+        "exitCode": 0,
+        "passedTests": null,
+        "ignoredTests": null
+      },
+      {
+        "name": "core-tests",
+        "exitCode": 0,
+        "passedTests": 224,
+        "ignoredTests": 0
+      },
+      {
+        "name": "desktop-tests",
+        "exitCode": 0,
+        "passedTests": 203,
+        "ignoredTests": 2
+      },
+      {
+        "name": "core-clippy",
+        "exitCode": 0,
+        "passedTests": null,
+        "ignoredTests": null
+      },
+      {
+        "name": "desktop-clippy",
+        "exitCode": 0,
+        "passedTests": null,
+        "ignoredTests": null
+      }
+    ],
+    "inheritedResults": false
+  },
+  "package": {
+    "fileCount": 46,
+    "app": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app",
+    "inventorySha256": "7bd0077915f5ebf51ab8446e55458e08f1cd8ed8ba7988281d9aef2f2b70494d",
+    "archive": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/ReservoirScopeTauriPreview-0.24.0-macos-arm64.tar.gz",
+      "kind": "file",
+      "bytes": 96717280,
+      "sha256": "192e43d83e6b114c02cb6f0cc8a2a9dbc2997f4424337836e4497c6ec8297cad"
+    },
+    "pin": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.24.0-pinned/reservoir-scope-desktop",
+      "kind": "file",
+      "bytes": 17055648,
+      "sha256": "9546aa02c101016d50cc20363bae7721549a93257808bb0020e19f0563f59a38"
+    },
+    "executableSha256": "9546aa02c101016d50cc20363bae7721549a93257808bb0020e19f0563f59a38",
+    "signing": "Prior local ad-hoc signature verification with unchanged package bytes; not rerun and no notarization claim."
+  },
+  "priorPreservation": {
+    "app": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.24-prior-0.23-preserved/Reservoir Scope Tauri Preview.app",
+    "appFileCount": 46,
+    "sourceSnapshot": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.24-prior-0.23-preserved/source",
+    "sourceFileCount": 346,
+    "sourceBytes": 7178104,
+    "sourceCopiesExact": true,
+    "files": [
+      {
+        "role": "basis",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/archive-check-01.json",
+        "kind": "file",
+        "bytes": 21436,
+        "sha256": "ff34d710332fc8892a65151ddd4e834eb371529802ef3af2a99c5aaeaa05cc97",
+        "mode": "0o644"
+      },
+      {
+        "role": "archiveBefore",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/ReservoirScopeTauriPreview-0.23.0-macos-arm64.tar.gz",
+        "kind": "file",
+        "bytes": 96714891,
+        "sha256": "9862d89a0901cd86e6dc734afc6346a5164e09aef8a93edbfdc180afaed39c7c",
+        "mode": "0o644"
+      },
+      {
+        "role": "pinBefore",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.23.0-pinned/reservoir-scope-desktop",
+        "kind": "file",
+        "bytes": 17035760,
+        "sha256": "7b8245932cae928b069fe4ca6609597f94ad3a54dbd8a0082c30a505c26a024b",
+        "mode": "0o755"
+      },
+      {
+        "role": "preservedArchive",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.24-prior-0.23-preserved/ReservoirScopeTauriPreview-0.23.0-macos-arm64.tar.gz",
+        "kind": "file",
+        "bytes": 96714891,
+        "sha256": "9862d89a0901cd86e6dc734afc6346a5164e09aef8a93edbfdc180afaed39c7c",
+        "mode": "0o644"
+      },
+      {
+        "role": "preservedPin",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.24-prior-0.23-preserved/reservoir-scope-desktop-0.23.0-pinned",
+        "kind": "file",
+        "bytes": 17035760,
+        "sha256": "7b8245932cae928b069fe4ca6609597f94ad3a54dbd8a0082c30a505c26a024b",
+        "mode": "0o755"
+      }
+    ],
+    "scope": "Old original archive/pin and independently copied app/archive/pin/source remain unchanged; shared app build path intentionally now holds0.24.0."
+  },
+  "sourceInventory": {
+    "buildCount": 345,
+    "currentCount": 345,
+    "changes": [
+      {
+        "path": "desktop/ReservoirScope/README.md",
+        "build": {
+          "path": "desktop/ReservoirScope/README.md",
+          "kind": "file",
+          "bytes": 16028,
+          "sha256": "2912ca1138108c72a8693f886aa7f93fbb933da2cf0e39aba6ff1790077489d9"
+        },
+        "current": {
+          "path": "desktop/ReservoirScope/README.md",
+          "kind": "file",
+          "bytes": 18133,
+          "sha256": "290daf47252800331bdad108a831bd0373c7747f66d5d2a4c47463d7d837cdb5"
+        }
+      },
+      {
+        "path": "desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+        "build": {
+          "path": "desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+          "kind": "file",
+          "bytes": 4535,
+          "sha256": "2a18295082e4250be1b52b6ee9ee1bc726992645a6c7251de17aabb8b1f953f3"
+        },
+        "current": {
+          "path": "desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+          "kind": "file",
+          "bytes": 6332,
+          "sha256": "69055559554ca6a89518af0a1b28d53394b42daa1841f33d68ed4049e85ace12"
+        }
+      },
+      {
+        "path": "desktop/ReservoirScope/STATUS.md",
+        "build": {
+          "path": "desktop/ReservoirScope/STATUS.md",
+          "kind": "file",
+          "bytes": 14219,
+          "sha256": "4ab79602967f6aa13c38a5e944137da3d04ef2ced27e7e737c8fd64f761f7009"
+        },
+        "current": {
+          "path": "desktop/ReservoirScope/STATUS.md",
+          "kind": "file",
+          "bytes": 16549,
+          "sha256": "01650595477e1fdac4f4bc91bf04cb32e49357b0de11ab0ac7e7eace169762c0"
+        }
+      },
+      {
+        "path": "shared/reservoir-scope/PARITY.md",
+        "build": {
+          "path": "shared/reservoir-scope/PARITY.md",
+          "kind": "file",
+          "bytes": 17579,
+          "sha256": "7aeb94d00835e201e5ad2e3c7bf88273076e0622d7825ae6638271cb5feae1ba"
+        },
+        "current": {
+          "path": "shared/reservoir-scope/PARITY.md",
+          "kind": "file",
+          "bytes": 19391,
+          "sha256": "d96d822fb2c553a33afb7e79d1b4f085e17c1bed96c5e80ae874588bd563f379"
+        }
+      }
+    ],
+    "allowedDocumentationPaths": [
+      "desktop/ReservoirScope/README.md",
+      "desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+      "desktop/ReservoirScope/STATUS.md",
+      "shared/reservoir-scope/PARITY.md"
+    ],
+    "currentSha256": "da084b854a1d5744c0880be804d9a27c56312fb83fcb312f7451d75cbd44ec9b",
+    "unchangedCount": 341,
+    "rootRoadmapSeparate": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/TAURI-ROADMAP.md",
+      "kind": "file",
+      "bytes": 64675,
+      "sha256": "3e14ced616a507002ccdd3aa016de1e6d3be564f6c26c812998f0962ca041c5e"
+    }
+  },
+  "markdownLinks": {
+    "documents": [
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+        "kind": "file",
+        "bytes": 6332,
+        "sha256": "69055559554ca6a89518af0a1b28d53394b42daa1841f33d68ed4049e85ace12"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "kind": "file",
+        "bytes": 4692,
+        "sha256": "da9fc78cc1ecce6da459623157b68ccb636aee6a3740da1aa874d7691efa3160"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/MACOS-UI.md",
+        "kind": "file",
+        "bytes": 4846,
+        "sha256": "2da4a3e87b6b4b7f57acd8581f586c04f5e143b4cbe8166e578881dc91096708"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/STATUS.md",
+        "kind": "file",
+        "bytes": 16549,
+        "sha256": "01650595477e1fdac4f4bc91bf04cb32e49357b0de11ab0ac7e7eace169762c0"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/README.md",
+        "kind": "file",
+        "bytes": 18133,
+        "sha256": "290daf47252800331bdad108a831bd0373c7747f66d5d2a4c47463d7d837cdb5"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/shared/reservoir-scope/PARITY.md",
+        "kind": "file",
+        "bytes": 19391,
+        "sha256": "d96d822fb2c553a33afb7e79d1b4f085e17c1bed96c5e80ae874588bd563f379"
+      },
+      {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/TAURI-ROADMAP.md",
+        "kind": "file",
+        "bytes": 64675,
+        "sha256": "3e14ced616a507002ccdd3aa016de1e6d3be564f6c26c812998f0962ca041c5e"
+      }
+    ],
+    "links": [
+      {
+        "source": "desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+        "target": "validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+        "target": "validation/2026-10-15-compact-reading-0.24.0/MACOS-UI.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/MACOS-UI.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+        "target": "validation/2026-10-15-navigation-0.23.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+        "target": "validation/2026-10-15-research-language-0.22.1/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+        "target": "validation/2026-10-15-navigation-0.23.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+        "target": "validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "target": "frontend-checks-01.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/frontend-checks-01.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "target": "rust-checks-01.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/rust-checks-01.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "target": "package-build-01.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/package-build-01.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "target": "archive-check-01.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/archive-check-01.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "target": "qualification-before-ui-01.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/qualification-before-ui-01.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "target": "MACOS-UI.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/MACOS-UI.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "target": "prior-package-preserved-01.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/prior-package-preserved-01.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "target": "baseline-ui-close-01.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/baseline-ui-close-01.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "target": "ui-plan-01.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-plan-01.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "target": "ui-launch-01.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-launch-01.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "target": "ui-close-01.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-close-01.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "target": "ui-session-check-01.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-session-check-01.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "target": "ui-session-check-02.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-session-check-02.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "target": "ui-session-helper-tests-01.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-session-helper-tests-01.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/MACOS-UI.md",
+        "target": "ui-launch-01.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-launch-01.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/MACOS-UI.md",
+        "target": "ui-plan-01.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-plan-01.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/MACOS-UI.md",
+        "target": "ui-session-check-02.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-session-check-02.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "../../shared/reservoir-scope/PARITY.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/shared/reservoir-scope/PARITY.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "../../TAURI-ROADMAP.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/TAURI-ROADMAP.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-15-compact-reading-0.24.0/MACOS-UI.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/MACOS-UI.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-15-compact-reading-0.24.0/ui-session-check-02.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-session-check-02.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-15-navigation-0.23.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-15-research-language-0.22.1/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "RESEARCH-LANGUAGE.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-15-observatory-fields-0.22.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-15-observatory-fields-0.22.0/main-process-analysis-01.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/main-process-analysis-01.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-14-reading-measurements-0.20.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-14-v8-writing-episode01/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-15-context-sources-01/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-15-runtime-0.40.5/RUNTIME-REVIEW.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/RUNTIME-REVIEW.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-15-context-sources-02/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-02/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-15-context-sources-03/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "QUALIFICATION-RESOURCES.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/QUALIFICATION-RESOURCES.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-15-context-order-03/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-order-03/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-15-time-direction-03/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-time-direction-03/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "#next-usability-and-resource-tranche",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/STATUS.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-13-reliability-0.12.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "validation/2026-10-15-housekeeping-0.20.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-housekeeping-0.20.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "../../TAURI-ROADMAP-HISTORY-2026-10-15.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/TAURI-ROADMAP-HISTORY-2026-10-15.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "../../shared/reservoir-scope/PARITY-HISTORY-2026-10-15.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/shared/reservoir-scope/PARITY-HISTORY-2026-10-15.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/STATUS.md",
+        "target": "README-HISTORY-2026-10-15.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/README-HISTORY-2026-10-15.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "../../native/ReservoirScope/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/native/ReservoirScope/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "STATUS.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/STATUS.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "../../shared/reservoir-scope/PARITY.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/shared/reservoir-scope/PARITY.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "../../TAURI-ROADMAP.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/TAURI-ROADMAP.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "validation/2026-10-15-compact-reading-0.24.0/MACOS-UI.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/MACOS-UI.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "validation/2026-10-15-compact-reading-0.24.0/ui-session-check-02.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-session-check-02.json",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "validation/2026-10-15-navigation-0.23.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "validation/2026-10-15-research-language-0.22.1/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "RESEARCH-LANGUAGE.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "validation/2026-10-15-observatory-fields-0.22.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "validation/2026-10-14-reading-measurements-0.20.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "validation/2026-10-14-v8-writing-episode01/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "validation/2026-10-15-context-sources-01/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "validation/2026-10-15-context-sources-02/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-02/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "validation/2026-10-15-context-sources-03/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "SUSTAINED-SESSIONS.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/SUSTAINED-SESSIONS.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "FRESH-EXPERIMENTS.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/FRESH-EXPERIMENTS.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "LIBRARY.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/LIBRARY.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "GUIDED-EVIDENCE.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/GUIDED-EVIDENCE.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "RECORDED-STATE-FIELDS.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/RECORDED-STATE-FIELDS.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "RECORDED-FILL-SPHERE.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/RECORDED-FILL-SPHERE.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "RESPONSE-EVIDENCE.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/RESPONSE-EVIDENCE.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "crates/reservoir-core/CASES.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core/CASES.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "GEOMETRY.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/GEOMETRY.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "LOCAL-MODELS.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/LOCAL-MODELS.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "RECORDED-TRAJECTORY.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/RECORDED-TRAJECTORY.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "RECORDED-STATE-FIELDS.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/RECORDED-STATE-FIELDS.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "../../shared/reservoir-scope/PARITY.md#capability-matrix",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/shared/reservoir-scope/PARITY.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "rust-toolchain.toml",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/rust-toolchain.toml",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "../../shared/reservoir-scope/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/shared/reservoir-scope/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "../../TAURI-ROADMAP.md#5-validation-release-practice-and-program-management",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/TAURI-ROADMAP.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "validation/",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "README-HISTORY-2026-10-15.md#what-to-verify-in-the-packaged-app",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/README-HISTORY-2026-10-15.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "../../.github/workflows/tauri.yml",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/.github/workflows/tauri.yml",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "../../shared/reservoir-scope/PARITY.md#platform-acceptance",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/shared/reservoir-scope/PARITY.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "scripts/qualification_receipt.py",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/scripts/qualification_receipt.py",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "README-HISTORY-2026-10-15.md#capture-a-local-qualification-receipt",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/README-HISTORY-2026-10-15.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "validation/2026-10-13-public-checkpoint/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-public-checkpoint/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "desktop/ReservoirScope/README.md",
+        "target": "README-HISTORY-2026-10-15.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/README-HISTORY-2026-10-15.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/STATUS.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/STATUS.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../TAURI-ROADMAP.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/TAURI-ROADMAP.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "PARITY-HISTORY-2026-10-15.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/shared/reservoir-scope/PARITY-HISTORY-2026-10-15.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/MACOS-UI.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/MACOS-UI.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-session-check-02.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-session-check-02.json",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/RECORDED-STATE-FIELDS.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/RECORDED-STATE-FIELDS.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-reading-measurements-0.20.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-v8-writing-episode01/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/validation/2026-10-15-context-sources-01/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-01/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/validation/2026-10-15-context-sources-02/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-02/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/validation/2026-10-15-context-sources-03/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/STATUS.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/STATUS.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/STATUS.md#next-usability-and-resource-tranche",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/STATUS.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/validation/2026-10-14-platform-ci-0.17.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-14-platform-ci-0.17.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "../../desktop/ReservoirScope/STATUS.md#six-bounded-areas-remaining",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/STATUS.md",
+        "status": "passed"
+      },
+      {
+        "source": "shared/reservoir-scope/PARITY.md",
+        "target": "PARITY-HISTORY-2026-10-15.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/shared/reservoir-scope/PARITY-HISTORY-2026-10-15.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "desktop/ReservoirScope/STATUS.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/STATUS.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "desktop/ReservoirScope/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "shared/reservoir-scope/PARITY.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/shared/reservoir-scope/PARITY.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "shared/reservoir-scope/reference-manifest.json",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/shared/reservoir-scope/reference-manifest.json",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/MACOS-UI.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/MACOS-UI.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "desktop/ReservoirScope/validation/2026-10-15-context-sources-03/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "desktop/ReservoirScope/STATUS.md#next-usability-and-resource-tranche",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/STATUS.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "desktop/ReservoirScope/QUALIFICATION-RESOURCES.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/QUALIFICATION-RESOURCES.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "TAURI-ROADMAP-HISTORY-2026-10-15.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/TAURI-ROADMAP-HISTORY-2026-10-15.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "desktop/ReservoirScope/validation/2026-10-15-housekeeping-0.20.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-housekeeping-0.20.0/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "research/CURRENT-RELEASE.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/research/CURRENT-RELEASE.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "essentials/actions/ActionMechanisms.swift",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/essentials/actions/ActionMechanisms.swift",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "essentials/ACTIONS.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/essentials/ACTIONS.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "essentials/actions/ActionTypes.swift",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/essentials/actions/ActionTypes.swift",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "essentials/spectral_bridge/TextCodec.swift",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/essentials/spectral_bridge/TextCodec.swift",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "essentials/reservoir/Reservoir.swift",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/essentials/reservoir/Reservoir.swift",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "essentials/spectral_bridge/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/essentials/spectral_bridge/README.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "essentials/actions/ActionComparisonSession.swift",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/essentials/actions/ActionComparisonSession.swift",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "essentials/llm/Language.swift",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/essentials/llm/Language.swift",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "native/ReservoirScope/Sources/ReservoirScope/ExperimentStore.swift",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/native/ReservoirScope/Sources/ReservoirScope/ExperimentStore.swift",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "desktop/ReservoirScope/STATUS.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/STATUS.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "shared/reservoir-scope/PARITY.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/shared/reservoir-scope/PARITY.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "TAURI-ROADMAP-HISTORY-2026-10-15.md#6-execution-ledger",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/TAURI-ROADMAP-HISTORY-2026-10-15.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "desktop/ReservoirScope/STATUS.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/STATUS.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "TAURI-ROADMAP-HISTORY-2026-10-15.md#october-13-completed-two-hour-measurement-and-recovery-evidence",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/TAURI-ROADMAP-HISTORY-2026-10-15.md",
+        "status": "passed"
+      },
+      {
+        "source": "TAURI-ROADMAP.md",
+        "target": "desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0/README.md",
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0/README.md",
+        "status": "passed"
+      }
+    ],
+    "checkedLocalCount": 141,
+    "externalReferencesNotFetched": 15,
+    "scope": "Local Markdown link target existence only; no network fetch or heading-fragment validation."
+  },
+  "ownedClose": {
+    "launch": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-launch-01.json",
+      "kind": "file",
+      "bytes": 1010,
+      "sha256": "ca992db45f64f80f6bc22ee4ef04b5fa5a5ff438d83c7cad0788aa38de73a6ed"
+    },
+    "close": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-close-01.json",
+      "kind": "file",
+      "bytes": 337,
+      "sha256": "c4711bd960faa740bc70160649038426f61d489f6bbd990233316aeddf66a350"
+    },
+    "pid": 9390,
+    "freshProcessQuery": true,
+    "command": [
+      "ps",
+      "-p",
+      "9390",
+      "-o",
+      "pid=,comm="
+    ],
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "",
+    "absenceConfirmed": true,
+    "checkedAtUtc": "2026-10-16T00:47:29.008428+00:00"
+  },
+  "uiSessionVerification": {
+    "receipt": {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-session-check-02.json",
+      "kind": "file",
+      "bytes": 109111,
+      "sha256": "e7c8132a116d69510cc75a087d09a6c40ddbe205c32b76849454ec31a0bf7ae1"
+    },
+    "status": "verified_complete",
+    "plannedOutcomeComplete": true,
+    "plannedChecks": {
+      "specifiedConfiguration": {
+        "promptVersion": true,
+        "seed": true,
+        "turnEvery": true,
+        "maximumSteps": true,
+        "maximumTurns": true,
+        "maximumDurationSeconds": true,
+        "storageBudgetBytes": true,
+        "paceMs": true,
+        "backend": true
+      },
+      "naturalStepBound": true,
+      "durableStepAtBound": true,
+      "budgetReached": true,
+      "expectedJournalCount": 36,
+      "journalCountAtExpectedBound": true,
+      "atLeast21Journals": true,
+      "journalFilesMatchCommittedCount": true,
+      "noRecordedProviderDispatch": true,
+      "noConfiguredProviderModel": true
+    },
+    "sessionId": "sustained-1792110972477-1",
+    "step": 361,
+    "journalCount": 36,
+    "fileCount": 217,
+    "logicalBytes": 13391013,
+    "currentFilesMatch": true,
+    "scope": "Verified complete or partial retained session; native navigation and normal quit are separate UI witnesses. No new verifier/process execution here."
+  },
+  "reviewedInputs": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/frontend-checks-01.json",
+      "kind": "file",
+      "bytes": 17396,
+      "sha256": "9b5c563d2b0da9b2b9811d9e754935fb9e74614ecbe5fd2e745b2d699458b68f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/package-build-01.json",
+      "kind": "file",
+      "bytes": 196375,
+      "sha256": "4de5a9084060a7e98b9d6d1bf85c6b9b199a0a17ca3587c4134b415f3fc13ea1"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/archive-check-01.json",
+      "kind": "file",
+      "bytes": 21436,
+      "sha256": "00d708fddd1368cb36541363767dd02fcd6d03bff9b6efa7ad92847745b5dd47"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/qualification-before-ui-01.json",
+      "kind": "file",
+      "bytes": 100934,
+      "sha256": "1d43bdf5bbef2ac1bdfd9c994c36c30e116be3a44f52d9a0da3e6262a2adb168"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/prior-package-preserved-01.json",
+      "kind": "file",
+      "bytes": 89331,
+      "sha256": "131d9d5ba42e5246078c3f76bc5654565bc2748c6da699dde0454c0e042619aa"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-launch-01.json",
+      "kind": "file",
+      "bytes": 1010,
+      "sha256": "ca992db45f64f80f6bc22ee4ef04b5fa5a5ff438d83c7cad0788aa38de73a6ed"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-close-01.json",
+      "kind": "file",
+      "bytes": 337,
+      "sha256": "c4711bd960faa740bc70160649038426f61d489f6bbd990233316aeddf66a350"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-session-check-02.json",
+      "kind": "file",
+      "bytes": 109111,
+      "sha256": "e7c8132a116d69510cc75a087d09a6c40ddbe205c32b76849454ec31a0bf7ae1"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-plan-01.json",
+      "kind": "file",
+      "bytes": 1745,
+      "sha256": "ae0533fca6807876f2220a757cea6ad90d7f4c1f4b02f4aaba6dd24b7badf781"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/verify_ui_session.py",
+      "kind": "file",
+      "bytes": 15677,
+      "sha256": "a4de7af06cfbdb6c7326f23c0d3c7e5e6c4ccf69512ad7e825a746772f62f2a5"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+      "kind": "file",
+      "bytes": 6332,
+      "sha256": "69055559554ca6a89518af0a1b28d53394b42daa1841f33d68ed4049e85ace12"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/README.md",
+      "kind": "file",
+      "bytes": 4692,
+      "sha256": "da9fc78cc1ecce6da459623157b68ccb636aee6a3740da1aa874d7691efa3160"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/MACOS-UI.md",
+      "kind": "file",
+      "bytes": 4846,
+      "sha256": "2da4a3e87b6b4b7f57acd8581f586c04f5e143b4cbe8166e578881dc91096708"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/STATUS.md",
+      "kind": "file",
+      "bytes": 16549,
+      "sha256": "01650595477e1fdac4f4bc91bf04cb32e49357b0de11ab0ac7e7eace169762c0"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/README.md",
+      "kind": "file",
+      "bytes": 18133,
+      "sha256": "290daf47252800331bdad108a831bd0373c7747f66d5d2a4c47463d7d837cdb5"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/shared/reservoir-scope/PARITY.md",
+      "kind": "file",
+      "bytes": 19391,
+      "sha256": "d96d822fb2c553a33afb7e79d1b4f085e17c1bed96c5e80ae874588bd563f379"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/TAURI-ROADMAP.md",
+      "kind": "file",
+      "bytes": 64675,
+      "sha256": "3e14ced616a507002ccdd3aa016de1e6d3be564f6c26c812998f0962ca041c5e"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/verify_ui_session.py",
+      "kind": "file",
+      "bytes": 15677,
+      "sha256": "a4de7af06cfbdb6c7326f23c0d3c7e5e6c4ccf69512ad7e825a746772f62f2a5"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.24.0-pinned/reservoir-scope-desktop",
+      "kind": "file",
+      "bytes": 17055648,
+      "sha256": "9546aa02c101016d50cc20363bae7721549a93257808bb0020e19f0563f59a38"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-session-verify-02.log",
+      "kind": "file",
+      "bytes": 657,
+      "sha256": "0a8b1d86b33820d889fd557e1dc3aa320af6ab406af0156d4b396bac1db4af29"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/ui-session-verify-02.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "limits": [
+    "Automated identity/link existence check, not semantic Markdown review or native UI re-execution.",
+    "Full current Rust/check results are source-bound here; this review does not rerun them.",
+    "No new performance, model-writing, endurance, accessibility, distribution or other-platform qualification."
+  ],
+  "endedAtUtc": "2026-10-16T00:47:29.145905+00:00"
+}

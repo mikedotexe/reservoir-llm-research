@@ -43,5 +43,8 @@ available without a graphics context. Hiding 3D leaves the trajectory usable; it
 requires no WebGL. Screen-reader and broader platform acceptance remain separate
 from source tests and scoped native checks.
 
-This tranche does not add full-capture state-spectrum inspection, reference-field
-reconstruction/residual controls, live feeds or synchronization with the fill history.
+The original 0.21 trajectory tranche did not add reference-field or spectrum
+inspection. The subsequent [recorded state fields and spectrum](RECORDED-STATE-FIELDS.md)
+guide describes the 0.22 field controls and full-capture spectrum, including the
+distinction between per-row energy and capture-wide variance. Live feeds and
+synchronization with the separate fill history remain outside these views.

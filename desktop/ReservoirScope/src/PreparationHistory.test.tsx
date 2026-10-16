@@ -22,7 +22,7 @@ describe('preparation history evidence presentation', () => {
   it('emits no UI or fixed DOM ids while inactive', () => {
     expect(renderToStaticMarkup(<PreparationHistory active={false}/>)).toBe(''); expect(render()).not.toMatch(/\sid=/);
   });
-  it('allows an expanded Observatory presentation while Library starts collapsed', () => {
+  it('allows the canonical Observatory reader to start expanded', () => {
     expect(render()).not.toContain('class="preparation-history" open=""');
     const html = renderToStaticMarkup(<PreparationHistoryView state={state()} refresh={() => {}} select={async () => {}} exportReport={() => {}} initiallyOpen/>);
     expect(html).toContain('class="preparation-history" open=""');

@@ -13,12 +13,12 @@ export default function GeometryWorkspace({ active, controller = windowReading }
   const { packet } = state;
   const entry = packet?.records[state.selected];
   return <section className="geometry-workspace" aria-labelledby="geometry-heading">
-    <header className="geometry-heading"><div><span className="eyebrow">GEOMETRY · FROZEN COORDINATES</span><h1 id="geometry-heading">Geometry bookmarks</h1><p>{packet ? `${packet.owner} · ${packet.questionId} · ${packet.filename}` : 'No question packet selected.'}</p></div><div className="button-row"><button disabled={state.busy} onClick={() => void controller.open(true)}>Load synthetic example</button><button className="primary-button" disabled={state.busy} onClick={() => void controller.open()}>Open packet…</button></div></header>
-    <p>Kept in this window’s memory. Reopen the file or load the example next launch. No copy is added to your Library.</p>
-    <p className="reader-message" role="status">{state.message || 'Choose an explicit local question-geometry-v1 export. No live workspace is read automatically.'}</p>
+    <header className="geometry-heading"><div><h1 id="geometry-heading">Geometry bookmarks</h1><p>{packet ? `${packet.owner} · ${packet.questionId} · ${packet.filename}` : 'Explore recorded state captures, predictions and comparisons.'}</p></div><div className="button-row"><button disabled={state.busy} onClick={() => void controller.open(true)}>Open synthetic example</button><button className="primary-button" disabled={state.busy} onClick={() => void controller.open()}>Open history file…</button></div></header>
+    <p>Your reading stays in this window. Reopen the file next launch; opening does not add it to the Library.</p>
+    <p className="reader-message" role="status">{state.message || 'Choose a local geometry history file. No live workspace is read automatically.'}</p>
     {packet ? <>
       {packet.origin === 'syntheticExample' && <div className="geometry-synthetic"><strong>Synthetic example · invented coordinates and text</strong><p>The Minime owner and source fields demonstrate the schema. This is not a Being’s observation or producer-interoperability evidence.</p></div>}
-      <div className="geometry-heading"><h2>{packet.question || 'Question text is empty in this packet.'}</h2><button disabled={state.busy} onClick={() => void controller.export()}>Export original bytes…</button></div>
+      <div className="geometry-heading"><h2>{packet.question || 'No question text recorded.'}</h2><button disabled={state.busy} onClick={() => void controller.export()}>Export original file…</button></div>
       <div className="geometry-layout"><nav aria-label="Geometry history"><ol className="geometry-history">{packet.records.map((item, index) => <li key={item.id}><button aria-current={index === state.selected ? 'step' : undefined} onClick={() => controller.select(index)}><strong>{index + 1}. {item.kind}</strong><span>{item.authoredText ?? (item.thresholdMet ? 'Numerical threshold met' : 'Numerical threshold not met')}</span></button></li>)}</ol>{packet.records.length === 0 && <p>No geometry records are retained.</p>}</nav>
       <div className="geometry-detail">{entry ? <>
         <GeometryAccount entry={entry} />
@@ -35,12 +35,12 @@ export default function GeometryWorkspace({ active, controller = windowReading }
       </> : <p>No geometry record selected.</p>}</div></div>
       <GeometryProvenance packet={packet} />
       {state.exported && <p className="hash">Exported {state.exported.name} · {state.exported.sizeBytes} bytes · SHA-256 {state.exported.sha256}</p>}
-    </> : <div className="geometry-empty"><h2>Read a frozen question history.</h2><p>Load the synthetic example to inspect capture → prediction → capture → comparison → revision, or open an exported packet. Failed opens and cancelled dialogs preserve an accepted packet and its reading position.</p></div>}
+    </> : <div className="geometry-empty"><h2>Choose a history to explore</h2><p>The synthetic example follows capture → prediction → capture → comparison → revision. You can also open an exported geometry history. If opening fails or is cancelled, your current reading stays in place.</p></div>}
   </section>;
 }
 
 export function GeometryAccount({ entry }: { entry: GeometryEntry }) {
-  return <><h3>{entry.kind}</h3>{entry.authoredText !== null && <section aria-label="Authored account"><h4>Authored account · retained text</h4><pre className="geometry-authored">{entry.authoredText}</pre></section>}</>;
+  return <><h3>{entry.kind}</h3>{entry.authoredText !== null && <section aria-label="Authored account"><h4>Recorded account</h4><pre className="geometry-authored">{entry.authoredText}</pre></section>}</>;
 }
 function GeometryReference({ label, id, packet, onSelect }: { label: string; id: string | null; packet: GeometryPacket; onSelect: (index: number) => void }) {
   if (!id) return null;
@@ -69,7 +69,7 @@ export function GeometryCapture({ snapshot, frameIndex, coordinate, expanded, on
   </section>;
 }
 export function GeometryProvenance({ packet }: { packet: GeometryPacket }) {
-  return <footer className="geometry-provenance"><p>Observational coordinates only · boot and node-layout identity unverified · not a causal or felt-state test.</p><p>Integrity checked; producer authenticity and historical novelty are not established.</p><details><summary>Packet identity, verification scope and authored limits</summary><dl><dt>Origin</dt><dd>{packet.origin === 'syntheticExample' ? 'Explicitly loaded bundled synthetic example' : 'Explicitly opened local file; producer origin unverified'}</dd><dt>Original file SHA-256</dt><dd className="hash">{packet.sha256}</dd><dt>Nested body SHA-256</dt><dd className="hash">{packet.bodySha256}</dd><dt>Original size</dt><dd>{packet.sizeBytes} bytes</dd></dl><p>{packet.verificationScope}</p><h4>Packet-authored limits · retained text</h4><pre className="geometry-authored">{packet.limits}</pre><p>Export retains the original file bytes. No model is contacted and no source workspace is changed.</p></details></footer>;
+  return <footer className="geometry-provenance"><p>Observational coordinates only · boot and node-layout identity unverified · not a causal or felt-state test.</p><p>Integrity checked; producer authenticity and historical novelty are not established.</p><details><summary>File identity, verification and recorded limits</summary><dl><dt>Origin</dt><dd>{packet.origin === 'syntheticExample' ? 'Included synthetic example' : 'Opened local file; producer origin unverified'}</dd><dt>Format</dt><dd>question-geometry-v1</dd><dt>Original file SHA-256</dt><dd className="hash">{packet.sha256}</dd><dt>Nested body SHA-256</dt><dd className="hash">{packet.bodySha256}</dd><dt>Original size</dt><dd>{packet.sizeBytes} bytes</dd></dl><p>{packet.verificationScope}</p><h4>Recorded limits</h4><pre className="geometry-authored">{packet.limits}</pre><p>Export preserves the original file bytes. No model is contacted or source workspace changed.</p></details></footer>;
 }
 export function geometryUtc(value: string): string {
   try {

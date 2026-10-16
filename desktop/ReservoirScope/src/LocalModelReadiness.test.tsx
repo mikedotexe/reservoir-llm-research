@@ -16,12 +16,12 @@ function state(): FreshState {
 describe('explicit readiness and pending model presentation', () => {
   it('shows explicit contact controls and fixed request bounds without claiming automatic readiness', () => {
     const html = renderToStaticMarkup(<ConfigEditor config={{ ...DEFAULT_FRESH_CONFIG, recipe: 'actionG', language }} disabled={false} setConfig={() => {}}/>);
-    expect(html).toContain('Check local model'); expect(html).toContain('60-second'); expect(html).toContain('256-token'); expect(html).toContain('JSON action reply'); expect(html).not.toContain('Model identity found');
+    expect(html).toContain('Check local model'); expect(html).toContain('60-second'); expect(html).toContain('256-token'); expect(html).toContain('JSON action reply'); expect(html).not.toContain('Model available');
     expect(renderToStaticMarkup(<LocalModelReadiness configuration={language} disabled={false}/>)).not.toContain('readiness receipt');
   });
   it('availability receipts expose exact identity and explicitly do not qualify generation or capacity', () => {
     const html = renderToStaticMarkup(<ModelReadinessEvidence state={{ key: languageKey(language), checking: false, error: '', message: '', result: { requestId: 'r', operationId: 'op', endpoint: language.endpoint, requestedModel: language.model, status: 'found', matchedModel: 'exact:tag', digest: 'sha256:test', checkedAtMs: '123', diagnostic: '<script>inert</script>' } }}/>);
-    expect(html).toContain('sha256:test'); expect(html).toContain('not a memory-capacity or generation-success qualification'); expect(html).toContain('&lt;script&gt;'); expect(html).not.toContain('<script>');
+    expect(html).toContain('sha256:test'); expect(html).toContain('does not guarantee enough memory or a successful response'); expect(html).toContain('&lt;script&gt;'); expect(html).not.toContain('<script>');
   });
   it('names pending arm and held clock while separating Pause from explicit cancellation', () => {
     const html = renderToStaticMarkup(<FreshLanguageBoundary state={state()} controller={new FreshController()}/>);

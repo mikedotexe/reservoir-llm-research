@@ -1,0 +1,20 @@
+   Compiling reservoir-core v0.1.0 (/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.24s
+     Running tests/observatory.rs (target/debug/deps/observatory-ddf47840d3ae4bb3)
+
+running 12 tests
+test invalid_field_reference_selection_and_overflow_fail_before_presentation ... ok
+test reference_fields_preserve_centering_sign_invariance_and_out_of_scale_values ... ok
+test history_seek_holds_previous_observation_and_nearest_ties_choose_earlier ... ok
+test canonical_history_preserves_all_samples_and_distinct_measurements ... ok
+test history_missingness_and_signed_identifiers_are_preserved ... ok
+test derived_fields_match_unchanged_native_swift_for_all_eight_subsets ... ok
+test capture_fields_are_bounded_and_reference_spectrum_is_independent_of_cursor ... ok
+test canonical_state_decodes_every_retained_coordinate_without_a_clock_or_fill_join ... ok
+test history_rejects_schema_shape_time_and_bounds_without_sorting_spectral_slots ... ok
+test state_rejects_byte_and_hash_corruption_before_presentation ... ok
+test spectrum_and_reference_semantics_reject_reanchored_malformed_metadata ... ok
+test rebound_state_mutations_reject_finite_range_dimension_order_and_identity_claim_errors ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.42s
+

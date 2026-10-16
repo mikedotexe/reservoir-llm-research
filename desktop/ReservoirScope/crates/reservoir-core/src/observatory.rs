@@ -234,6 +234,9 @@ pub struct PrincipalComponents {
     pub components: Vec<Vec<f64>>,
     pub explained_variance_ratio: Vec<f64>,
     pub retained_fraction: f64,
+    pub omitted_fraction: f64,
+    pub total_sample_variance: f64,
+    pub covariance_denominator: usize,
     pub normalization: GeometryNormalization,
     pub fit_scope: Option<String>,
     pub frozen: Option<bool>,
@@ -260,6 +263,158 @@ pub struct StateReplay {
     pub geometry: StateGeometry,
     raw: Vec<u8>,
 }
+
+/// Exact coordinate fields, not a mesh or a spatial interpretation. Display
+/// scales are fixed: activations -1..1, magnitude 0..1, all deviations -2..2.
+/// Values outside those scales remain unchanged; counts describe display limits.
+#[derive(Clone, Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct StateFields {
+    pub magnitude: Vec<f64>,
+    pub deviation: Vec<f64>,
+    pub magnitude_out_of_range_count: usize,
+    pub deviation_out_of_range_count: usize,
+    pub scores: Vec<f64>,
+    pub centered_energy: f64,
+    pub selections: Vec<StateFieldSelection>,
+}
+
+#[derive(Clone, Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct StateFieldSelection {
+    pub selected_modes: Vec<usize>,
+    /// The centered selected-mode contribution, without adding the mean.
+    pub reconstruction: Vec<f64>,
+    pub residual: Vec<f64>,
+    pub reconstructed_energy: f64,
+    pub residual_energy: f64,
+    pub reconstruction_out_of_range_count: usize,
+    pub residual_out_of_range_count: usize,
+}
+
+fn validate_reference(mean: &[f64], components: &[Vec<f64>], dimensions: usize) -> Result<()> {
+    ensure(
+        mean.len() == dimensions && mean.iter().all(|v| v.is_finite())
+            && (1..=3).contains(&components.len())
+            && components.iter().all(|c| c.len() == dimensions && c.iter().all(|v| v.is_finite())),
+        "State fields require a finite coordinate-compatible mean and one to three frozen components.",
+    )?;
+    for (a, component) in components.iter().enumerate() {
+        for (b, other) in components.iter().enumerate().take(a + 1) {
+            let dot = component
+                .iter()
+                .zip(other)
+                .fold(0.0, |sum, (x, y)| sum + x * y);
+            ensure(
+                (dot - if a == b { 1.0 } else { 0.0 }).abs() <= 1e-5,
+                "State field components must be orthonormal within the native 1e-5 bound.",
+            )?;
+        }
+    }
+    Ok(())
+}
+
+/// Native StateSurfaceMath.field arithmetic: subtract the mean, take ordered
+/// Double dot products, sum selected components, then subtract that contribution.
+/// This does not refit PCA, normalize rows or infer any clock, fill or layout.
+pub fn derive_state_fields(
+    activations: &[f64],
+    mean: &[f64],
+    components: &[Vec<f64>],
+    selections: &[Vec<usize>],
+) -> Result<StateFields> {
+    ensure(
+        (1..=STATE_DIMENSIONS).contains(&activations.len())
+            && activations
+                .iter()
+                .all(|v| v.is_finite() && (*v as f32).is_finite()),
+        "State fields require one to 128 finite Float32-representable activations.",
+    )?;
+    ensure(
+        selections.len() <= 8,
+        "At most eight subsets of the three frozen modes may be requested.",
+    )?;
+    validate_reference(mean, components, activations.len())?;
+    let magnitude: Vec<f64> = activations.iter().map(|v| v.abs()).collect();
+    let deviation: Vec<f64> = activations.iter().zip(mean).map(|(x, m)| x - m).collect();
+    let scores: Vec<f64> = components
+        .iter()
+        .map(|c| {
+            c.iter()
+                .zip(&deviation)
+                .fold(0.0, |sum, (loading, value)| sum + loading * value)
+        })
+        .collect();
+    let energy = |values: &[f64]| values.iter().fold(0.0, |sum, v| sum + v * v);
+    let out_of_range =
+        |values: &[f64]| values.iter().filter(|v| !(-2.0..=2.0).contains(*v)).count();
+    let centered_energy = energy(&deviation);
+    ensure(
+        deviation.iter().chain(&scores).all(|v| v.is_finite()) && centered_energy.is_finite(),
+        "State field subtraction or scores are nonfinite.",
+    )?;
+    let selections = selections
+        .iter()
+        .map(|requested| {
+            let mut selected_modes = requested.clone();
+            selected_modes.sort_unstable();
+            selected_modes.dedup();
+            ensure(
+                selected_modes.iter().all(|i| *i < components.len()),
+                "Selected state modes are outside the frozen components.",
+            )?;
+            let reconstruction: Vec<f64> = (0..activations.len())
+                .map(|node| {
+                    selected_modes.iter().fold(0.0, |sum, mode| {
+                        sum + scores[*mode] * components[*mode][node]
+                    })
+                })
+                .collect();
+            let residual: Vec<f64> = deviation
+                .iter()
+                .zip(&reconstruction)
+                .map(|(x, projected)| x - projected)
+                .collect();
+            let reconstructed_energy = energy(&reconstruction);
+            let residual_energy = energy(&residual);
+            ensure(
+                reconstruction
+                    .iter()
+                    .chain(&residual)
+                    .all(|v| v.is_finite() && (*v as f32).is_finite())
+                    && reconstructed_energy.is_finite()
+                    && residual_energy.is_finite(),
+                "State field reconstruction or residual is not representable.",
+            )?;
+            Ok(StateFieldSelection {
+                selected_modes,
+                reconstructed_energy,
+                residual_energy,
+                reconstruction_out_of_range_count: out_of_range(&reconstruction),
+                residual_out_of_range_count: out_of_range(&residual),
+                reconstruction,
+                residual,
+            })
+        })
+        .collect::<Result<Vec<_>>>()?;
+    ensure(
+        deviation.iter().all(|v| (*v as f32).is_finite()),
+        "State deviation is not Float32-representable.",
+    )?;
+    Ok(StateFields {
+        magnitude_out_of_range_count: magnitude
+            .iter()
+            .filter(|v| !(0.0..=1.0).contains(*v))
+            .count(),
+        deviation_out_of_range_count: out_of_range(&deviation),
+        magnitude,
+        deviation,
+        scores,
+        centered_energy,
+        selections,
+    })
+}
+
 impl StateReplay {
     pub fn from_bytes(manifest_bytes: &[u8], raw: Vec<u8>, geometry_bytes: &[u8]) -> Result<Self> {
         let m: StateReplayManifest = decode(manifest_bytes, 16 * 1024)?;
@@ -296,6 +451,36 @@ impl StateReplay {
                 && g.pca.normalization.reference_radius.is_finite()
                 && g.pca.normalization.reference_radius > 0.0,
             "Frozen PCA dimensions or numeric metadata are invalid.",
+        )?;
+        validate_reference(&g.pca.mean, &g.pca.components, m.dimensions)?;
+        let pca = &g.pca;
+        let total: f64 = pca.eigenvalues.iter().sum();
+        let variance_sum: f64 = pca.explained_variance_ratio.iter().sum();
+        let retained_sum: f64 = pca.explained_variance_ratio.iter().take(3).sum();
+        ensure(
+            pca.covariance_denominator == m.rows - 1
+                && pca.eigenvalues.iter().all(|v| *v >= 0.0)
+                && pca.eigenvalues.windows(2).all(|w| w[0] >= w[1])
+                && pca
+                    .explained_variance_ratio
+                    .iter()
+                    .all(|v| (0.0..=1.0).contains(v))
+                && pca.total_sample_variance.is_finite()
+                && pca.total_sample_variance > 0.0
+                && (total - pca.total_sample_variance).abs() <= 1e-10 * total.max(1.0)
+                && (variance_sum - 1.0).abs() <= 1e-10
+                && (retained_sum - pca.retained_fraction).abs() <= 1e-10
+                && pca.omitted_fraction.is_finite()
+                && (0.0..=1.0).contains(&pca.omitted_fraction)
+                && (pca.omitted_fraction + pca.retained_fraction - 1.0).abs() <= 1e-10
+                && pca
+                    .eigenvalues
+                    .iter()
+                    .zip(&pca.explained_variance_ratio)
+                    .all(|(value, ratio)| {
+                        (value / pca.total_sample_variance - ratio).abs() <= 1e-10
+                    }),
+            "Frozen sample-covariance spectrum, variance shares or denominator are inconsistent.",
         )?;
         for (index, s) in g.samples.iter().enumerate() {
             ensure(
@@ -356,6 +541,14 @@ impl StateReplay {
                 .chunks_exact(4)
                 .map(|b| f64::from(f32::from_le_bytes(b.try_into().unwrap())))
                 .collect(),
+        )
+    }
+    pub fn fields(&self, index: usize) -> Result<StateFields> {
+        derive_state_fields(
+            &self.activations(index)?,
+            &self.geometry.pca.mean,
+            &self.geometry.pca.components,
+            &[vec![0], vec![1], vec![2], vec![0, 1, 2]],
         )
     }
     pub fn node(&self, index: usize, coordinate: usize) -> Result<f64> {

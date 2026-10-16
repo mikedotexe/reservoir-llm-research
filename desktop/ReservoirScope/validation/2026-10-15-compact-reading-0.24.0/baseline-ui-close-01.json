@@ -1,0 +1,19 @@
+{
+  "recordedUtc": "2026-10-16T00:25:02.100001+00:00",
+  "originalPid": 3655,
+  "originalPidAbsent": true,
+  "normalQuit": "Cmd+Q through native app",
+  "observationToolRelaunch": {
+    "pid": 5759,
+    "scope": "A getAXState call after the first quit reopened the same preserved app. No session or provider action was started. That window was also quit using Cmd+Q, without a subsequent app observation.",
+    "pidAbsent": true
+  },
+  "baselineObservedDimensions": [
+    900,
+    860
+  ],
+  "heightResize": "Bottom/top/corner gestures did not achieve a smaller height. No compact-height qualification claimed.",
+  "textZoom": "Cmd+plus showed no observed enlargement; old View menu contains only fullscreen.",
+  "sessionCreated": false,
+  "realProviderContact": false
+}

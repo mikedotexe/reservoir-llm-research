@@ -1,0 +1,48 @@
+{
+  "schema": "reservoir-native-zoom-focused-check-v1",
+  "startedAtUtc": "2026-10-16T00:25:31.360246+00:00",
+  "sourceBefore": [
+    {
+      "path": "src-tauri/src/desktop_menu.rs",
+      "bytes": 8512,
+      "sha256": "52044b38c6455d0919f32a76f17c5822dde6b85e6eacf022eef9dbcb4d2ef24b"
+    },
+    {
+      "path": "src-tauri/src/main.rs",
+      "bytes": 32603,
+      "sha256": "8d9b6dc5c9f4a0d67fe06b3c0eacdb0ba3a03357e338c6e399ccd86904f78b15"
+    }
+  ],
+  "command": [
+    "/Users/v/.cargo/bin/cargo",
+    "test",
+    "--locked",
+    "-p",
+    "reservoir-scope-desktop",
+    "desktop_menu::tests",
+    "--",
+    "--nocapture"
+  ],
+  "scope": "Four pure zoom bound, reset, dispatch-failure and command-routing tests; no app window or native visual/shortcut check.",
+  "endedAtUtc": "2026-10-16T00:25:45.467798+00:00",
+  "elapsedSeconds": 14.107391083147377,
+  "exitCode": 0,
+  "sourceAfter": [
+    {
+      "path": "src-tauri/src/desktop_menu.rs",
+      "bytes": 8512,
+      "sha256": "52044b38c6455d0919f32a76f17c5822dde6b85e6eacf022eef9dbcb4d2ef24b"
+    },
+    {
+      "path": "src-tauri/src/main.rs",
+      "bytes": 32603,
+      "sha256": "8d9b6dc5c9f4a0d67fe06b3c0eacdb0ba3a03357e338c6e399ccd86904f78b15"
+    }
+  ],
+  "log": {
+    "path": "validation/2026-10-15-compact-reading-0.24.0/native-zoom-focused-01.log",
+    "sha256": "95912b9cb1cc6d44c2ab731faf34cedd091c5b49a22dd948435d544791c0553d"
+  },
+  "sourceUnchanged": true,
+  "passed": true
+}

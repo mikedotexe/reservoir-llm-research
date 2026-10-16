@@ -127,6 +127,29 @@ describe('sustained owner and independent reading', () => {
     expect(controller.snapshot().frame?.step).toBe('10'); expect(controller.snapshot().journal?.entryId).toBe('journal-1'); expect(controller.snapshot().summary!.journalCount - controller.snapshot().seenJournalCount).toBe(1);
     await controller.followLatest(); await settle(); expect(controller.snapshot().journal?.entryId).toBe('journal-3');
   });
+  it('keeps a pinned journal across inactive updates and reattachment without restarting the session', async () => {
+    const { controller, push, api } = reservoirFixture();
+    await controller.create(DEFAULT_SUSTAINED_CONFIG); await settle(); controller.setActive(true);
+    push({ revision: '7', phase: 'running', step: 7, durableStep: 7, journalCount: 2, turnCount: 2, canStart: false, canPause: true });
+    await settle(); await controller.selectJournal('journal-1');
+    const pinned = controller.snapshot().journal, owner = controller.snapshot().summary!;
+    const pages = vi.spyOn(api, 'journals'), details = vi.spyOn(api, 'journal');
+    const create = vi.spyOn(api, 'create'), action = vi.spyOn(api, 'action');
+    controller.setActive(false);
+    push({ revision: '11', step: 10, durableStep: 10, journalCount: 3, turnCount: 3 });
+    push({ revision: '15', step: 13, durableStep: 13, journalCount: 4, turnCount: 4 });
+    await settle();
+    controller.setActive(true); await controller.connect(); await settle();
+    const returned = controller.snapshot();
+    expect(returned.summary?.sessionId).toBe(owner.sessionId);
+    expect(returned.summary?.generation).toBe(owner.generation);
+    expect(returned.summary?.phase).toBe('running');
+    expect(returned.frame?.step).toBe('13');
+    expect(returned.journal).toBe(pinned); expect(returned.followLatest).toBe(false);
+    expect(returned.summary!.journalCount - returned.seenJournalCount).toBe(2);
+    expect(pages).not.toHaveBeenCalled(); expect(details).not.toHaveBeenCalled();
+    expect(create).not.toHaveBeenCalled(); expect(action).not.toHaveBeenCalled();
+  });
   it('late journal selection and automatic page reads cannot move the chosen reading', async () => {
     const { api, controller, push } = reservoirFixture(); await controller.create(DEFAULT_SUSTAINED_CONFIG); await settle(); push({ revision: '7', step: 7, journalCount: 2, turnCount: 2 });
     let finish!: () => void; api.journal = (requestId, sessionId, generation) => new Promise(resolve => { finish = () => resolve({ requestId, sessionId, generation, revision: '7', journal: journal(1) }); });

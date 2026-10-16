@@ -7,12 +7,12 @@ import type { MyReservoirApi, SustainedAction, SustainedConfig, SustainedJournal
 export interface MyReservoirState {
   summary: SustainedSummary | null; frame: SessionFrame | null; connected: boolean; busy: string | null;
   error: string; message: string; closeRequested: boolean;
-  page: SustainedJournalPage | null; journal: SustainedJournal | null; journalRevision: string | null;
+  page: SustainedJournalPage | null; journal: SustainedJournal | null; journalRevision: string | null; journalPosition: number | null;
   readingPage: boolean; readingJournal: boolean; journalError: string; followLatest: boolean; seenJournalCount: number;
   exported: SustainedBundleReport | null; exportRevision: string | null;
   recovery: SustainedRecoveryPage | null; recovered: SustainedRecoveryDetail | null; recoveryBusy: boolean; recoveryError: string; recoveryMessage: string;
 }
-const empty = (): MyReservoirState => ({ summary: null, frame: null, connected: false, busy: null, error: '', message: '', closeRequested: false, page: null, journal: null, journalRevision: null, readingPage: false, readingJournal: false, journalError: '', followLatest: true, seenJournalCount: 0, exported: null, exportRevision: null, recovery: null, recovered: null, recoveryBusy: false, recoveryError: '', recoveryMessage: '' });
+const empty = (): MyReservoirState => ({ summary: null, frame: null, connected: false, busy: null, error: '', message: '', closeRequested: false, page: null, journal: null, journalRevision: null, journalPosition: null, readingPage: false, readingJournal: false, journalError: '', followLatest: true, seenJournalCount: 0, exported: null, exportRevision: null, recovery: null, recovered: null, recoveryBusy: false, recoveryError: '', recoveryMessage: '' });
 const ordinal = (value: string) => typeof value === 'string' && /^[0-9]{1,20}$/.test(value);
 const snapshotOrdinal = (value: string) => typeof value === 'string' && /^[1-9][0-9]{0,19}$/.test(value) && BigInt(value) <= 18446744073709551615n;
 const bounded = (value: number, maximum = 1_000_000) => Number.isSafeInteger(value) && value >= 0 && value <= maximum;
@@ -70,7 +70,7 @@ export class MyReservoirController {
     const priorFrame = this.state.frame;
     const frame = matched && update.frame && priorFrame?.step === update.frame.step ? priorFrame : update.frame;
     this.set({ summary, frame, connected: true, closeRequested: update.closeRequested,
-      ...(changed ? { busy: null, page: null, journal: null, journalRevision: null, readingPage: false, readingJournal: false, journalError: '', followLatest: true, seenJournalCount: 0, exported: null, exportRevision: null } : {}) });
+      ...(changed ? { busy: null, page: null, journal: null, journalRevision: null, journalPosition: null, readingPage: false, readingJournal: false, journalError: '', followLatest: true, seenJournalCount: 0, exported: null, exportRevision: null } : {}) });
     if (!this.active) return true;
     if ((changed || grew) && summary.journalCount && this.state.followLatest) {
       if (this.state.readingPage) this.followRefreshNeeded = true;
@@ -123,9 +123,9 @@ export class MyReservoirController {
   }
   async journals(offset = 0, follow = false) {
     const summary = this.state.summary; if (!summary || !bounded(offset, 10000)) return;
+    if (!follow) this.pinJournal();
     const epoch = ++this.pageEpoch, identity = this.identityEpoch, requestId = this.id();
     let accepted = false; this.followRefreshNeeded = false;
-    if (!follow) this.set({ followLatest: false, seenJournalCount: summary.journalCount });
     this.set({ readingPage: true, journalError: '' });
     try {
       const result = await this.api.journals(requestId, summary.sessionId, summary.generation, offset, 20);
@@ -134,61 +134,97 @@ export class MyReservoirController {
       this.set({ page: result }); accepted = true;
       if (follow && this.state.followLatest) {
         this.set({ seenJournalCount: result.total });
-        const latest = result.entries[0]; if (latest && (this.selectedId !== latest.entryId || this.state.journal?.status !== latest.status)) void this.readJournal(latest.entryId);
+        const latest = result.entries[0]; if (latest && (this.state.journal?.entryId !== latest.entryId || this.state.journal.status !== latest.status)) void this.readJournal(latest.entryId);
       }
     } catch (error) { if (epoch === this.pageEpoch && identity === this.identityEpoch) this.set({ journalError: errorText(error) }); }
     finally { if (epoch === this.pageEpoch && identity === this.identityEpoch) { this.set({ readingPage: false }); const refresh = this.followRefreshNeeded; this.followRefreshNeeded = false; if (accepted && refresh && this.active && this.state.followLatest) void this.journals(0, true); } }
   }
   selectJournal(entryId: string) { this.pageEpoch++; this.followRefreshNeeded = false; this.set({ followLatest: false, readingPage: false, seenJournalCount: this.state.summary?.journalCount ?? 0 }); return this.readJournal(entryId); }
+  refreshJournals() {
+    const page = this.state.page, anchor = page?.entries[0];
+    if (!page || !anchor) return this.journals(0);
+    const position = page.total - page.offset;
+    return this.anchoredHistory(anchor, position, position, page);
+  }
+  pageJournals(direction: 'older' | 'newer') {
+    const { page, summary } = this.state;
+    if (!page || !summary || !page.entries.length || this.state.readingPage) return;
+    const top = page.total - page.offset, total = Math.max(summary.journalCount, page.total);
+    if (direction === 'older') {
+      const last = page.entries.length - 1, position = top - last;
+      if (position <= 1) return;
+      // One visible boundary entry overlaps, so the new window has an exact
+      // identity anchor even as newly saved journals shift newest-first offsets.
+      return this.anchoredHistory(page.entries[last], position, position, page);
+    }
+    if (top >= total) return;
+    return this.anchoredHistory(page.entries[0], top, Math.min(total, top + 19), page);
+  }
   async adjacentJournal(direction: 'earlier' | 'later') {
-    const { summary, page, journal, readingPage, readingJournal } = this.state;
+    const { summary, page, journal, journalPosition, readingPage, readingJournal } = this.state;
     if (!summary || !page || !journal || readingPage || readingJournal) return;
     const index = page.entries.findIndex(entry => entry.entryId === journal.entryId);
-    if (index < 0) { this.set({ journalError: 'Choose an entry on this history page to continue reading in order.' }); return; }
-    // A saved journal's ordinal is stable when new entries are appended. Turn
-    // and attempt IDs cannot substitute for it: failed attempts create gaps.
-    const position = page.total - page.offset - index;
+    // The saved ordinal belongs to the selected identity, not the list window
+    // or turn/attempt IDs (failed attempts can create gaps in those IDs).
+    const position = journalPosition ?? (index >= 0 ? page.total - page.offset - index : null);
+    if (position === null) { this.set({ journalError: 'Choose an entry on a history page to establish its reading position.' }); return; }
     const targetPosition = position + (direction === 'earlier' ? -1 : 1);
     const total = Math.max(summary.journalCount, page.total);
     if (targetPosition < 1 || targetPosition > total) return;
-    const neighbor = page.entries[index + (direction === 'earlier' ? 1 : -1)];
+    const neighbor = index >= 0 ? page.entries[index + (direction === 'earlier' ? 1 : -1)] : undefined;
     if (neighbor) { await this.selectJournal(neighbor.entryId); return; }
-
-    const epoch = ++this.pageEpoch, identity = this.identityEpoch, requestId = this.id();
-    // Fetch a bounded overlapping page, retaining the selected entry as an
-    // identity anchor. Never pick by offset alone while the writer is active.
-    const offset = Math.max(0, total - position - 1);
-    this.followRefreshNeeded = false;
-    this.set({ followLatest: false, readingPage: true, seenJournalCount: summary.journalCount, journalError: '' });
+    await this.anchoredHistory(journal, position, Math.min(total, position + 1), page, targetPosition);
+  }
+  private async anchoredHistory(anchor: { entryId: string; sha256: string }, position: number, top: number, prior: SustainedJournalPage, targetPosition?: number) {
+    const summary = this.state.summary; if (!summary) return;
+    this.pinJournal();
+    const epoch = ++this.pageEpoch, identity = this.identityEpoch;
+    let total = Math.max(summary.journalCount, prior.total);
+    this.set({ readingPage: true, journalError: '' });
     try {
-      const result = await this.api.journals(requestId, summary.sessionId, summary.generation, offset, 20);
-      if (epoch !== this.pageEpoch || identity !== this.identityEpoch || this.state.journal?.entryId !== journal.entryId) return;
-      if (result.requestId !== requestId || !same(summary, result) || !ordinal(result.revision) || BigInt(result.revision) < BigInt(page.revision) || result.offset !== offset || !bounded(result.total, 10000) || result.total < page.total || result.entries.length > 20 || result.offset + result.entries.length > result.total || new Set(result.entries.map(entry => entry.entryId)).size !== result.entries.length || result.entries.some(entry => !validRow(entry))) throw new Error('The adjacent history page did not match this session. Your selected journal is unchanged.');
-      const anchor = result.entries.findIndex(entry => entry.entryId === journal.entryId && entry.sha256 === journal.sha256);
-      const target = result.entries[anchor + (direction === 'earlier' ? 1 : -1)];
-      if (anchor < 0 || result.total - result.offset - anchor !== position || !target) throw new Error('History changed while finding the neighboring entry. Your selected journal is unchanged; try the reading control again.');
-      this.set({ page: result });
-      await this.readJournal(target.entryId);
+      for (let attempt = 0; attempt < 2; attempt++) {
+        const offset = Math.max(0, total - top), requestId = this.id();
+        const result = await this.api.journals(requestId, summary.sessionId, summary.generation, offset, 20);
+        if (epoch !== this.pageEpoch || identity !== this.identityEpoch) return;
+        if (result.requestId !== requestId || !same(summary, result) || !ordinal(result.revision) || BigInt(result.revision) < BigInt(prior.revision) || result.offset !== offset || !bounded(result.total, 10000) || result.total < prior.total || result.entries.length > 20 || result.offset + result.entries.length > result.total || new Set(result.entries.map(entry => entry.entryId)).size !== result.entries.length || result.entries.some(entry => !validRow(entry))) throw new Error('The history window did not match this session. Your page and selected journal are unchanged.');
+        const index = result.entries.findIndex(entry => entry.entryId === anchor.entryId);
+        if (index >= 0 && (result.entries[index].sha256 !== anchor.sha256 || result.total - result.offset - index !== position)) throw new Error('The history anchor did not match its saved identity and position. Your page and selected journal are unchanged.');
+        if (result.total - result.offset !== top) {
+          // At most one offset correction; a busy writer never causes an
+          // unbounded page scan or silently changes the requested window.
+          if (attempt === 0 && result.total > total) { total = result.total; continue; }
+          throw new Error('New writing shifted the history window again. Your page and selected journal are unchanged; try again.');
+        }
+        const target = targetPosition === undefined ? undefined : result.entries[top - targetPosition];
+        if (index < 0 || targetPosition !== undefined && !target) throw new Error('The history anchor or neighboring entry is unavailable. Your page and selected journal are unchanged; try again.');
+        if (target) await this.readJournal(target.entryId, result);
+        else this.set({ page: result });
+        return;
+      }
     } catch (error) {
       if (epoch === this.pageEpoch && identity === this.identityEpoch) this.set({ journalError: errorText(error) });
     } finally {
       if (epoch === this.pageEpoch && identity === this.identityEpoch) this.set({ readingPage: false });
     }
   }
-  private async readJournal(entryId: string) {
+  private async readJournal(entryId: string, acceptedPage?: SustainedJournalPage) {
     const summary = this.state.summary; if (!summary) return;
+    const page = acceptedPage ?? this.state.page, index = page?.entries.findIndex(entry => entry.entryId === entryId) ?? -1;
+    const row = page && index >= 0 ? page.entries[index] : null;
+    const position = row && page ? page.total - page.offset - index : this.state.journal?.entryId === entryId ? this.state.journalPosition : null;
+    const expectedHash = row?.sha256 ?? (this.state.journal?.entryId === entryId ? this.state.journal.sha256 : null);
     const epoch = ++this.journalEpoch, identity = this.identityEpoch, requestId = this.id(); this.selectedId = entryId;
     this.set({ readingJournal: true, journalError: '' });
     try {
       const result = await this.api.journal(requestId, summary.sessionId, summary.generation, entryId);
       if (epoch !== this.journalEpoch || identity !== this.identityEpoch || this.selectedId !== entryId) return;
       const j = result.journal;
-      if (result.requestId !== requestId || !same(summary, result) || !ordinal(result.revision) || j.entryId !== entryId || !isSustainedPromptVersion(j.promptVersion) || j.promptVersion !== effectivePromptVersion(summary.config) || !validRow(j) || !finite(j.encodedFeatures) || !finite(j.semanticVector) || j.saveReceipt.entryId !== entryId || j.saveReceipt.sha256 !== j.sha256) throw new Error('Journal detail did not match its identity and saved evidence.');
-      this.set({ journal: j, journalRevision: result.revision });
+      if (result.requestId !== requestId || !same(summary, result) || !ordinal(result.revision) || j.entryId !== entryId || !isSustainedPromptVersion(j.promptVersion) || j.promptVersion !== effectivePromptVersion(summary.config) || !validRow(j) || !finite(j.encodedFeatures) || !finite(j.semanticVector) || j.saveReceipt.entryId !== entryId || j.saveReceipt.sha256 !== j.sha256 || expectedHash !== null && j.sha256 !== expectedHash) throw new Error('Journal detail did not match its identity and saved evidence.');
+      this.set({ journal: j, journalRevision: result.revision, journalPosition: position, ...(acceptedPage ? { page: acceptedPage } : {}) });
     } catch (error) { if (epoch === this.journalEpoch && identity === this.identityEpoch) this.set({ journalError: errorText(error) }); }
     finally { if (epoch === this.journalEpoch && identity === this.identityEpoch) this.set({ readingJournal: false }); }
   }
-  followLatest() { this.set({ followLatest: true, seenJournalCount: this.state.summary?.journalCount ?? 0 }); return this.journals(0, true); }
+  followLatest() { this.pinJournal(); this.set({ followLatest: true }); return this.journals(0, true); }
   pinJournal() {
     // Pin the visible entry, including while an automatic latest read is in
     // flight. This stops reading-follow behavior, never the numerical worker.

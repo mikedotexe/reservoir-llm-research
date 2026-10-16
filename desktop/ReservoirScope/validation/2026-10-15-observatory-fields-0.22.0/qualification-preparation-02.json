@@ -1,0 +1,91 @@
+{
+  "schema": "reservoir-observatory-fields-preparation-status-v1",
+  "createdAtUtc": "2026-10-15T21:39:36.482811+00:00",
+  "status": "helper_preparation_corrected",
+  "sourceCheckpoint": "0001b7a8967c44c80201ed9ada035eaaf5695d63",
+  "files": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/checks_common.py",
+      "bytes": 3586,
+      "sha256": "b562a06394ec771851d379b379129d4e2c391fe556b91a436f93f0cdae6738c8"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/run_frontend_checks.py",
+      "bytes": 2175,
+      "sha256": "11e98a9275c31b3c82bb1c245851d401bb75fe1400bc68cb1c3292971302e368"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/run_rust_checks.py",
+      "bytes": 2233,
+      "sha256": "3d3ff3a97e16889239d3f9502d5dbfbdc3e7dbd9af4f521bace29250be3a6da5"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/build_package.py",
+      "bytes": 7711,
+      "sha256": "77c65e3499f74460f6d7a41e6d4271999208cfe39430e079ab644a59e0282b46"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/protect_prior_package.py",
+      "bytes": 5092,
+      "sha256": "fea1345dc94bdbd31df767d39e1d4994f844ed4afc8cfb0bb409877541c6c391"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/launch_ui.py",
+      "bytes": 1602,
+      "sha256": "c4998f8124f2e88468cac63b367e00247c12ec32a9520d2e57723a1715dd9208"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/sample_owned_app.py",
+      "bytes": 14685,
+      "sha256": "bf1a6092a30f5a23334f663c56c875d2dd6d317eaed540778fb3fa766cb1d314"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/test_sample_owned_app.py",
+      "bytes": 5730,
+      "sha256": "2c3dc19545dc5eb3f03e590bac4106d9db52bc624bb2b69fbee7ce788927e825"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/run_sampler_checks.py",
+      "bytes": 2861,
+      "sha256": "68104695b4e248a4c4f3c1588f17527b071145e96b480585284e968512f2b7bd"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/QUALIFICATION-PLAN.md",
+      "bytes": 4806,
+      "sha256": "1aaa6d8f948513f318ae2ba8262d91b79b6d3d816e463b0e323183a878eb5075"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/RESOURCE-PROTOCOL.md",
+      "bytes": 5595,
+      "sha256": "6ef40eeb6d61817df984d0cba1fd7472227a7e8b58dbaf40f88e522681809136"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/helper-copy-preparation-01.json",
+      "bytes": 5624,
+      "sha256": "8cda4756ebfe9c139ed1594088861a4228531a84a4f471767ff0ec1bee560627"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/helper-copy-correction-01.json",
+      "bytes": 18762,
+      "sha256": "b5cbf1c94120b5c565a12473b911f9887789f3c9e63635790bff8c441ffad6a6"
+    }
+  ],
+  "supersedesPreparationSnapshot": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/qualification-preparation-01.json",
+    "bytes": 4658,
+    "sha256": "00a1b4e749debc6c11bf0ce885b8bb5c31c53a68bcf3ae806b1ea6410b0d6f36"
+  },
+  "testStatus": "Root owns actual source-suite executions. Frontend attempt 01 failed before executing tests due to corrected Node path. Synthetic sampler tests are prepared, not run by this agent.",
+  "preservationStatus": "Root must invoke successful exact full-app/archive/pin preservation before build; helper refuses an unqualified prior package.",
+  "samplerContract": {
+    "windows": 4,
+    "minimumSettleSeconds": 15,
+    "minimumWindowSeconds": 60,
+    "sampleEverySeconds": 5,
+    "hardCaptureSeconds": 600,
+    "maximumBytes": 2097152,
+    "onlyExplicitMainPid": true
+  },
+  "noHostProcessUiNetworkOrModelQueriesByThisAgent": true,
+  "noProductSourceEditsByThisAgent": true
+}

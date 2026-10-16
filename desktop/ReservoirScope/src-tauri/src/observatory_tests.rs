@@ -223,3 +223,56 @@ fn integer_identities_cross_ipc_as_strings_and_optional_values_remain_null() {
     assert!(json["frame"]["history"]["sourceIds"][1].is_null());
     assert!(json["frame"]["history"]["geomRadius"].is_null());
 }
+
+#[test]
+fn reference_summary_is_static_and_fields_are_bounded_authoritative_vectors() {
+    let state = ObservatoryState::default();
+    let summary = open(&state);
+    assert!(summary.tracks[0].state_reference.is_none());
+    let reference = summary.tracks[1].state_reference.as_ref().unwrap();
+    assert_eq!(reference.rows, 1024);
+    assert_eq!(reference.dimensions, 128);
+    assert_eq!(reference.retained_mode_count, 3);
+    assert_eq!(reference.covariance_denominator, 1023);
+    assert_eq!(reference.eigenvalues.len(), 128);
+    assert_eq!(reference.explained_variance_ratio.len(), 128);
+    assert_eq!(
+        reference.fit_scope.as_deref(),
+        Some("entire_captured_window_retrospective")
+    );
+    assert_eq!(reference.frozen, Some(true));
+    assert_eq!(
+        reference.source_identity,
+        summary.tracks[1].identities[2].sha256
+    );
+    let static_json = serde_json::to_value(reference).unwrap();
+    let capture = state.capture(&summary.observatory_id).unwrap();
+    for row in [0, 511, 1023] {
+        let result = state
+            .frame("fields".into(), &summary.observatory_id, "states", row)
+            .unwrap();
+        let payload = serde_json::to_vec(&result).unwrap();
+        assert!(payload.len() < 40 * 1024); // No basis or full matrix crosses per-frame IPC.
+        let frame = result.frame.state.unwrap();
+        let expected = states(&capture).unwrap().fields(row).unwrap();
+        assert_eq!(
+            serde_json::to_value(&frame.fields).unwrap(),
+            serde_json::to_value(expected).unwrap()
+        );
+        assert_eq!(frame.fields.magnitude.len(), 128);
+        assert_eq!(frame.fields.selections.len(), 4);
+        let json = serde_json::to_value(&frame).unwrap();
+        assert!(json.get("components").is_none());
+        assert!(json.get("eigenvalues").is_none());
+        assert_eq!(
+            json["fields"]["selections"][3]["selectedModes"],
+            serde_json::json!([0, 1, 2])
+        );
+        assert!(json["fields"]["centeredEnergy"].is_number());
+    }
+    assert_eq!(serde_json::to_value(reference).unwrap(), static_json);
+    state.close(&summary.observatory_id).unwrap();
+    assert!(state
+        .frame("closed".into(), &summary.observatory_id, "states", 0)
+        .is_err());
+}

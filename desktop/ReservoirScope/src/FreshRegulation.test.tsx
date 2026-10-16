@@ -56,7 +56,7 @@ describe('fixed fresh field-only study', () => {
     const { api, controller } = fixture(3), create = vi.spyOn(api, 'create'), read = vi.spyOn(api, 'regulationDetails');
     await controller.connect(); expect(create).not.toHaveBeenCalled(); expect(read).not.toHaveBeenCalled(); expect(controller.snapshot().frame).toBeNull(); expect(controller.snapshot().frames).toBeNull();
     const html = renderToStaticMarkup(<FreshExperiments controller={controller} active/>);
-    expect(html).toContain('Fresh field-only controller study'); expect(html).not.toContain('scene-canvas'); expect(html).not.toContain('Journal and action evidence');
+    expect(html).toContain('Fresh field-only controller study'); expect(html).not.toContain('scene-canvas'); expect(html).not.toContain('Writing and outcomes');
     expect(renderToStaticMarkup(<FreshExperiments controller={controller} active={false}/>)).toBe('');
   });
   it('rejects misaligned field pairs and future evaluation evidence without replacing accepted data', async () => {

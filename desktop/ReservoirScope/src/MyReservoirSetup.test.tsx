@@ -54,7 +54,7 @@ describe('calmer sustained setup without automatic execution', () => {
     const html = renderToStaticMarkup(<MyReservoirConfig config={DEFAULT_SUSTAINED_CONFIG} setConfig={setConfig} disabled={false}/>);
     const advanced = html.indexOf('<details class="my-reservoir-advanced">');
     expect(advanced).toBeGreaterThan(0);
-    expect(html.indexOf('Reply source')).toBeLessThan(advanced);
+    expect(html.indexOf('Writing source')).toBeLessThan(advanced);
     expect(html.indexOf('Selected session limits')).toBeLessThan(advanced);
     expect(html.indexOf('Seed · unsigned integer')).toBeGreaterThan(advanced);
     expect(html.indexOf('Maximum numerical steps')).toBeGreaterThan(advanced);
@@ -63,8 +63,8 @@ describe('calmer sustained setup without automatic execution', () => {
     expect(html).toContain('Every 30 steps'); expect(html).toContain('1 second per step');
     expect(html).toContain('6 hours'); expect(html).toContain('256 MiB');
     expect(html.indexOf('Up to 10800 numerical steps or 360 writing attempts, including retries')).toBeLessThan(advanced);
-    expect(html).toContain('first run or storage limit reached holds execution');
-    expect(html).toContain('Synthetic writing from a deterministic script');
+    expect(html).toContain('first run or storage limit holds the session');
+    expect(html).toContain('Example writing follows a deterministic script');
     expect(html).not.toContain('Check local model');
     expect(setConfig).not.toHaveBeenCalled(); expect(invoke).not.toHaveBeenCalled();
   });
@@ -78,17 +78,17 @@ describe('calmer sustained setup without automatic execution', () => {
   });
   it('describes fresh v8 measurement meanings separately from every retained earlier contract', () => {
     const render = (config: typeof DEFAULT_SUSTAINED_CONFIG) => renderToStaticMarkup(<MyReservoirConfig config={config} setConfig={() => {}} disabled={false}/>);
-    expect(render(DEFAULT_SUSTAINED_CONFIG)).toContain('clearer measurement meanings and the held writing boundary');
+    expect(render(DEFAULT_SUSTAINED_CONFIG)).toContain('compact optional readout and its measurement meanings explained');
     const v7 = render({ ...DEFAULT_SUSTAINED_CONFIG, promptVersion: 'reservoir-journal-v7' });
-    expect(v7).toContain('held writing boundary and the recorded prior feedback application');
-    expect(v7).not.toContain('clearer measurement meanings');
+    expect(v7).toContain('compact optional readout and the prior entry’s recorded application');
+    expect(v7).not.toContain('measurement meanings explained');
     const v6 = render({ ...DEFAULT_SUSTAINED_CONFIG, promptVersion: 'reservoir-journal-v6' });
-    expect(v6).toContain('compact optional readout and explicit limits on what writing can change');
-    expect(v6).not.toContain('held writing boundary');
+    expect(v6).toContain('compact optional readout and limits of writing explained');
+    expect(v6).not.toContain('prior entry’s recorded application');
     const v5 = render({ ...DEFAULT_SUSTAINED_CONFIG, promptVersion: 'reservoir-journal-v5' });
-    expect(v5).toContain('compact optional readout and the complete previous journal near the invitation');
+    expect(v5).toContain('compact optional readout and the complete previous journal');
     expect(v5).toContain('prompt supplies only current and prior recurrent RMS');
-    expect(v5).not.toContain('explicit limits on what writing can change');
+    expect(v5).not.toContain('limits of writing explained');
     expect(render(DEFAULT_SUSTAINED_CONFIG)).toContain('retains the full numerical observation for Evidence');
     expect(render(DEFAULT_SUSTAINED_CONFIG)).toContain('prompt supplies only current and prior recurrent RMS');
     expect(render(DEFAULT_SUSTAINED_CONFIG)).not.toContain('Each writing opportunity includes all 32 reservoir coordinates');
@@ -102,11 +102,12 @@ describe('calmer sustained setup without automatic execution', () => {
   it('explains actual text feedback without prescribing prose or implying that setup executes it', () => {
     const setConfig = vi.fn(), html = renderToStaticMarkup(<MyReservoirConfig config={DEFAULT_SUSTAINED_CONFIG} setConfig={setConfig} disabled={false}/>);
     const visibleAfterAdvanced = html.split('</details>')[1];
-    expect(visibleAfterAdvanced).toContain('The topic and form stay open');
-    expect(visibleAfterAdvanced).toContain('Once saved and checked, writing can contribute a numerical signal at the next step');
+    expect(visibleAfterAdvanced).toContain('Feedback is included');
+    expect(visibleAfterAdvanced).toContain('Topic and form stay open');
+    expect(visibleAfterAdvanced).toContain('saved to disk and read back before its encoded signal can enter the next numerical step');
+    expect(visibleAfterAdvanced).toContain('contribute to later observations');
     expect(visibleAfterAdvanced).toContain('Only after application can its full text return in a later prompt');
-    expect(visibleAfterAdvanced).toContain('Describing a control change does not execute it');
-    expect(visibleAfterAdvanced).toContain('Create prepares local state; Start is a separate action');
+    expect(visibleAfterAdvanced).toContain('describing a control change does not execute it');
     expect(visibleAfterAdvanced).not.toContain('Seed · unsigned integer');
     expect(html).not.toMatch(/<details[^>]*\bopen/);
     expect(setConfig).not.toHaveBeenCalled(); expect(invoke).not.toHaveBeenCalled();
@@ -118,6 +119,12 @@ describe('calmer sustained setup without automatic execution', () => {
     (source.props.onChange as (event: { target: { value: string } }) => void)({ target: { value: 'ollama' } });
     const configured = setConfig.mock.calls[0][0];
     expect(configured).toEqual({ ...DEFAULT_SUSTAINED_CONFIG, language: { backend: 'ollama', endpoint: '', model: '', contextTokens: 8192, responseFormat: null } });
+    const localTree = MyReservoirConfig({ config: configured, setConfig, disabled: false });
+    const endpoint = elements(localTree).find(element => element.type === 'input' && element.props.placeholder === 'http://127.0.0.1:11434')!;
+    const model = elements(localTree).find(element => element.type === 'input' && element.props.placeholder === 'gemma3:4b')!;
+    expect(endpoint.props.value).toBe(''); expect(model.props.value).toBe('');
+    const localHtml = renderToStaticMarkup(<MyReservoirConfig config={configured} setConfig={setConfig} disabled={false}/>);
+    expect(localHtml).toMatch(/<button type="button" disabled="">Check local model<\/button>/);
     new LocalModelController().select(configured.language);
     expect(invoke).not.toHaveBeenCalled();
   });
@@ -126,7 +133,7 @@ describe('calmer sustained setup without automatic execution', () => {
     const setConfig = vi.fn(), html = renderToStaticMarkup(<MyReservoirConfig config={config} setConfig={setConfig} disabled/>);
     const advanced = html.indexOf('<details class="my-reservoir-advanced">');
     expect(html).toContain('<fieldset disabled="">');
-    expect(html.indexOf('HTTP loopback endpoint')).toBeLessThan(advanced);
+    expect(html.indexOf('Local server address')).toBeLessThan(advanced);
     expect(html.indexOf('chosen:exact')).toBeLessThan(advanced);
     expect(html.indexOf('Check local model')).toBeLessThan(advanced);
     expect(html.indexOf('Maximum output tokens per entry')).toBeGreaterThan(advanced);
@@ -135,8 +142,7 @@ describe('calmer sustained setup without automatic execution', () => {
     expect(html).toContain('1,024 output tokens per entry, within 3 minutes');
     expect(html).toContain('ceilings, not a requested length');
     expect(html).toMatch(/<button type="button" disabled="">Check local model<\/button>/);
-    expect(html).toContain('Create saves local configuration only');
-    expect(html).toContain('Start explicitly begins the session');
+    expect(html).toContain('After checking availability, choose Create my reservoir, then Start');
     expect(setConfig).not.toHaveBeenCalled(); expect(invoke).not.toHaveBeenCalled();
   });
   it('keeps a cleared output limit invalid and displays historical ceilings without upgrading them', () => {

@@ -1,0 +1,25 @@
+{
+  "schema": "reservoir-navigation-postbuild-helper-preparation-v1",
+  "createdUtc": "2026-10-16T00:06:19.122491+00:00",
+  "helper": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/postbuild_review.py",
+    "bytes": 15487,
+    "sha256": "7e794b1c35931b0d4891d11f31821fcc44b93817555953b6599816dfec82ab52"
+  },
+  "basis": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/postbuild-review-02.json",
+    "bytes": 49556,
+    "sha256": "0cf5d63680a8e7e40be8d7aeb8479becdb39d802ab5ab13c2445062317188bdb"
+  },
+  "frontendReceipt": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/frontend-checks-01.json",
+    "bytes": 19067,
+    "sha256": "ef0920da66eb99ba7374549cc0111bcc49584cda0235b40454ce66f4a01549d1"
+  },
+  "scope": "Prepared and syntax-parsed only; not executed. Wait for root docs closeout. Data counts come from final receipts; Rust and oldsource snapshot expected164/345. Cargo.lock normalization targets only desktop package. Vite target/** exclusion is explicitly checked.",
+  "commands": [
+    "python3 validation/2026-10-15-navigation-0.23.0/postbuild_review.py --attempt 01",
+    "Add --check-owned-pid only when lead authorizes one exact PID query."
+  ],
+  "noRuntimeActions": true
+}

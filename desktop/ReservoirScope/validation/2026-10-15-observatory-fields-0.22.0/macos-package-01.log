@@ -1,0 +1,45 @@
+
+> reservoir-scope-desktop@0.22.0 tauri
+> tauri build --bundles app -- --locked
+
+        Info Looking up installed tauri packages to check mismatched versions...
+     Running beforeBuildCommand `npm run prepare:resources && npm run build`
+
+> reservoir-scope-desktop@0.22.0 prepare:resources
+> node scripts/prepare.mjs
+
+{"baselineCommit": "96b60ed1d1fe9bdd3a5f50dec3a66a4754ad7f95", "destination": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/src-tauri/resources", "files": 42, "status": "verified"}
+
+> reservoir-scope-desktop@0.22.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 111 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.46 kB │ gzip:   0.30 kB
+dist/assets/index-CRadW4ot.css     75.01 kB │ gzip:  15.09 kB
+dist/assets/index-FPSGe1XJ.js   1,091.45 kB │ gzip: 297.46 kB │ map: 4,755.25 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.15s
+   Compiling reservoir-scope-desktop v0.22.0 (/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/src-tauri)
+   Compiling reservoir-core v0.1.0 (/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/crates/reservoir-core)
+    Finished `release` profile [optimized] target(s) in 2m 05s
+       Built application at: /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/reservoir-scope-desktop
+    Bundling Reservoir Scope Tauri Preview.app (/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app)
+     Signing with identity "-"
+Signing with identity "-"
+Signing /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop
+/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app/Contents/MacOS/reservoir-scope-desktop: replacing existing signature
+Signing with identity "-"
+Signing /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app
+/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app: replacing existing signature
+        Warn skipping app notarization, no APPLE_ID & APPLE_PASSWORD & APPLE_TEAM_ID or APPLE_API_KEY & APPLE_API_ISSUER & APPLE_API_KEY_PATH environment variables found
+    Finished 1 bundle at:
+        /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/release/bundle/macos/Reservoir Scope Tauri Preview.app (236.58 MiB)
+

@@ -24,6 +24,23 @@ describe('retained preparation history lifecycle', () => {
     await activate(controller); expect(list).toHaveBeenCalledOnce(); expect(controller.snapshot().selected?.report.status).toBe('unavailable');
     controller.activate(false); await activate(controller); expect(list).toHaveBeenCalledOnce();
   });
+  it('keeps the selected retry across navigation without rereading or reopening history', async () => {
+    const { api, controller } = fixture();
+    const list = vi.spyOn(api, 'list'), get = vi.spyOn(api, 'get'), exported = vi.spyOn(api, 'export');
+    await activate(controller); await controller.select(retry);
+    const accepted = controller.snapshot().selected;
+    expect(accepted?.summary.id).toBe('retry');
+    expect(accepted?.retainedExampleId).toBe('example-model-observation-active');
+    list.mockClear(); get.mockClear();
+    controller.activate(false);
+    await controller.refresh(); await controller.select(original);
+    await activate(controller); controller.activate(true);
+    expect(controller.snapshot().selected).toBe(accepted);
+    expect(controller.snapshot().selected?.report.status).toBe('failed');
+    expect(controller.snapshot().pendingId).toBeNull();
+    expect(list).not.toHaveBeenCalled(); expect(get).not.toHaveBeenCalled();
+    expect(exported).not.toHaveBeenCalled();
+  });
   it('retains accepted reading when refresh or a new detail request fails', async () => {
     const { api, controller } = fixture(); await activate(controller); const selected = controller.snapshot().selected;
     api.list = async () => { throw new Error('Package hash changed'); }; await controller.refresh();

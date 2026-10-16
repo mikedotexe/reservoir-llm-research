@@ -1,0 +1,97 @@
+{
+  "schema": "reservoir-observatory-fields-preparation-status-v1",
+  "createdAtUtc": "2026-10-15T21:38:19.744810+00:00",
+  "status": "prepared_not_executed",
+  "sourceCheckpoint": "0001b7a8967c44c80201ed9ada035eaaf5695d63",
+  "files": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/checks_common.py",
+      "bytes": 3586,
+      "sha256": "2a87f76804033764b5d5be0ab15d33ef20c28946b8b0c55f1172d081bb3cd5f9"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/run_frontend_checks.py",
+      "bytes": 2175,
+      "sha256": "11e98a9275c31b3c82bb1c245851d401bb75fe1400bc68cb1c3292971302e368"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/run_rust_checks.py",
+      "bytes": 2233,
+      "sha256": "3d3ff3a97e16889239d3f9502d5dbfbdc3e7dbd9af4f521bace29250be3a6da5"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/build_package.py",
+      "bytes": 7711,
+      "sha256": "36bdcb7b0fc3abf4545fcb11d72355ef86dfc4f99d651d2780b489db3b0767a8"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/protect_prior_package.py",
+      "bytes": 5092,
+      "sha256": "fea1345dc94bdbd31df767d39e1d4994f844ed4afc8cfb0bb409877541c6c391"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/launch_ui.py",
+      "bytes": 1602,
+      "sha256": "c4998f8124f2e88468cac63b367e00247c12ec32a9520d2e57723a1715dd9208"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/sample_owned_app.py",
+      "bytes": 14685,
+      "sha256": "bf1a6092a30f5a23334f663c56c875d2dd6d317eaed540778fb3fa766cb1d314"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/test_sample_owned_app.py",
+      "bytes": 5730,
+      "sha256": "2c3dc19545dc5eb3f03e590bac4106d9db52bc624bb2b69fbee7ce788927e825"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/run_sampler_checks.py",
+      "bytes": 2861,
+      "sha256": "68104695b4e248a4c4f3c1588f17527b071145e96b480585284e968512f2b7bd"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/QUALIFICATION-PLAN.md",
+      "bytes": 4806,
+      "sha256": "1aaa6d8f948513f318ae2ba8262d91b79b6d3d816e463b0e323183a878eb5075"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/RESOURCE-PROTOCOL.md",
+      "bytes": 5595,
+      "sha256": "6ef40eeb6d61817df984d0cba1fd7472227a7e8b58dbaf40f88e522681809136"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/helper-copy-preparation-01.json",
+      "bytes": 5624,
+      "sha256": "8cda4756ebfe9c139ed1594088861a4228531a84a4f471767ff0ec1bee560627"
+    }
+  ],
+  "preservationStatus": "Helper prepared; actual 0.21 full-app/archive/pin copy and disk headroom measurement await root authorization.",
+  "checksStatus": "Ten synthetic sampler checks written, not run. Full frontend/Rust/package commands prepared, not run.",
+  "measurementPlan": {
+    "phases": [
+      "visible-idle",
+      "playback",
+      "minimized",
+      "restored-idle"
+    ],
+    "settleSecondsMinimum": 15,
+    "phaseSecondsMinimum": 60,
+    "sampleSeconds": 5,
+    "hardDurationSeconds": 600,
+    "maxOutputBytes": 2097152,
+    "target": "Exact launched main PID only",
+    "playbackRowsPerSecond": 4
+  },
+  "excludedClaims": [
+    "GPU utilization",
+    "WebKit helper footprint",
+    "total app footprint",
+    "energy",
+    "frame latency",
+    "endurance",
+    "new model quality",
+    "other platforms"
+  ],
+  "noHostProcessUiNetworkOrModelCalls": true,
+  "oldArtifactsModified": false
+}

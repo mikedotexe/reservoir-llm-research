@@ -18,7 +18,7 @@ describe('sustained quota: volatile work and committed-prefix export', () => {
   it('identifies the exact live tail and loss risk without claiming a final checkpoint', async () => {
     const { controller } = await blockedFixture();
     const status = renderToStaticMarkup(<MyReservoirStatus state={controller.snapshot()}/>);
-    expect(status).toContain('Live step 3240; retained through step 3210');
+    expect(status).toContain('Live step 3240; saved through step 3210');
     const close = renderToStaticMarkup(<MyReservoirClosePanel controller={controller}/>);
     expect(close).toContain('Discarding may lose unsaved numerical steps 3211–3240');
     expect(close).toContain('Pending writing may also be lost');
@@ -30,9 +30,9 @@ describe('sustained quota: volatile work and committed-prefix export', () => {
     const { controller } = reservoirFixture();
     const render = (step: number, durableStep: number) => renderToStaticMarkup(<MyReservoirStatus state={{ ...controller.snapshot(), summary: reservoirSummary({ phase: 'running', canPause: true, step, durableStep }) }}/>);
     const before = render(59, 30), flushed = render(60, 60), next = render(61, 60);
-    expect(before).toContain('Live step 59; retained through step 30.');
-    expect(flushed).toContain('Live step 60; retained through step 60.');
-    expect(next).toContain('Live step 61; retained through step 60.');
+    expect(before).toContain('Live step 59; saved through step 30.');
+    expect(flushed).toContain('Live step 60; saved through step 60.');
+    expect(next).toContain('Live step 61; saved through step 60.');
     // A checkpoint changes only the values; it must not insert/remove status
     // blocks and move the visualizations under an independent journal reader.
     const tags = (html: string) => html.match(/<\/?[a-z][^>]*>/g);
@@ -51,13 +51,13 @@ describe('sustained quota: volatile work and committed-prefix export', () => {
   it('keeps inspected-prefix export available during a pending save and labels its narrower coverage', async () => {
     const { controller } = await blockedFixture(); await controller.inspect('personal-1');
     const recovery = renderToStaticMarkup(<MyReservoirRecovery state={controller.snapshot()} controller={controller}/>);
-    expect(recovery).toMatch(/<button>Inspect current committed history<\/button>/);
+    expect(recovery).toMatch(/<button>Inspect current saved history<\/button>/);
     expect(recovery).toMatch(/<button>Export inspected bundle…<\/button>/);
     expect(recovery).toContain('This inspected bundle ends at step 3210; the current live step is 3240');
     expect(recovery).toContain('Unsaved numerical steps and writing are excluded');
     expect(recovery).toContain('historical metadata, not current execution status');
     const workspace = renderToStaticMarkup(<MyReservoir active controller={controller}/>);
-    expect(workspace).toContain('To export earlier retained history while work is unsaved');
+    expect(workspace).toContain('To copy earlier saved history while work is unsaved');
   });
 
   it('binds prefix export to inspected revision/hash while preserving live state and journal selection', async () => {

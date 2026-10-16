@@ -779,6 +779,7 @@ fn main() {
         }
     }
     tauri::Builder::default()
+        .manage(desktop_menu::MainWindowZoom::default())
         .manage(RecordState::default())
         .manage(execution_admission::ExecutionAdmission::default())
         .manage(model_readiness::ModelReadinessState::default())
@@ -817,8 +818,12 @@ fn main() {
         .plugin(tauri_plugin_dialog::init())
         .menu(desktop_menu::build)
         .on_menu_event(|app, event| {
-            if event.id().as_ref() == desktop_menu::QUIT && !request_session_close(app) {
-                app.exit(0);
+            if event.id().as_ref() == desktop_menu::QUIT {
+                if !request_session_close(app) {
+                    app.exit(0);
+                }
+            } else {
+                desktop_menu::handle_zoom(app, event.id().as_ref());
             }
         })
         .on_window_event(|window, event| {

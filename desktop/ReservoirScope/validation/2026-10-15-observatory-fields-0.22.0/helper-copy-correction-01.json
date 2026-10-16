@@ -1,0 +1,106 @@
+{
+  "schema": "reservoir-observatory-helper-copy-correction-v1",
+  "createdAtUtc": "2026-10-15T21:39:36.482211+00:00",
+  "status": "corrected_not_retested_by_this_agent",
+  "reason": "A broad release-label substitution accidentally changed the qualified Node v20.20.1 path to nonexistent v20.21.1 in checks_common.py and build_package.py. Restored only those two toolchain paths. Root reported the failed frontend attempt before tests began; retry uses attempt 02.",
+  "preservedOriginalCopyReceipt": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/helper-copy-preparation-01.json",
+    "bytes": 5624,
+    "sha256": "8cda4756ebfe9c139ed1594088861a4228531a84a4f471767ff0ec1bee560627"
+  },
+  "preservedOriginalPreparationReceipt": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/qualification-preparation-01.json",
+    "bytes": 4658,
+    "sha256": "00a1b4e749debc6c11bf0ce885b8bb5c31c53a68bcf3ae806b1ea6410b0d6f36"
+  },
+  "preservedFailedFrontendReceipt": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/frontend-checks-01.json",
+    "bytes": 14192,
+    "sha256": "348bd1dfc1670d061d5a833063fcfe67f42f47bfb4fc592f283726dda2ffeead"
+  },
+  "failedFrontendStatus": "failed",
+  "failedFrontendError": "FileNotFoundError: [Errno 2] No such file or directory: '/Users/v/.nvm/versions/node/v20.21.1/bin/npm'",
+  "copiesWithExactDiff": [
+    {
+      "source": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/checks_common.py",
+        "bytes": 3586,
+        "sha256": "1d4adab8cdc5a75030cc4ba67ee349438970f4ee68211fcff7cb840e86b4af80"
+      },
+      "current": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/checks_common.py",
+        "bytes": 3586,
+        "sha256": "b562a06394ec771851d379b379129d4e2c391fe556b91a436f93f0cdae6738c8"
+      },
+      "diff": "--- /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/checks_common.py\n+++ /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/checks_common.py\n@@ -1,4 +1,4 @@\n-\"\"\"Receipt helpers for explicitly invoked 0.21 checks. Import has no runtime action.\"\"\"\n+\"\"\"Receipt helpers for explicitly invoked 0.22 checks. Import has no runtime action.\"\"\"\n from pathlib import Path\n from datetime import datetime, timezone\n import hashlib\n"
+    },
+    {
+      "source": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/run_frontend_checks.py",
+        "bytes": 2175,
+        "sha256": "0c4686f31e67694209fbca782a401251d621a9d317ba2e67e660b07e66039a63"
+      },
+      "current": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/run_frontend_checks.py",
+        "bytes": 2175,
+        "sha256": "11e98a9275c31b3c82bb1c245851d401bb75fe1400bc68cb1c3292971302e368"
+      },
+      "diff": "--- /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/run_frontend_checks.py\n+++ /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/run_frontend_checks.py\n@@ -9,7 +9,7 @@\n     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--attempt',default='01');a=p.parse_args();number=attempt(a.attempt)\n     jobs=commands('frontend');out=OUT/f'frontend-checks-{number}.json'\n     if any((OUT/f'{n}-{number}.log').exists() for n,_ in jobs):raise ValueError('Check logs must be new; use a new attempt')\n-    before=inputs('frontend');report={'schema':'reservoir-scope-frontend-source-checks-v1','startedAtUtc':utc(),'scope':'Full frontend suite and TypeScript on final 0.21 code/config; no app, provider, service or package build.','sourceInputsSha256':before,'helperInputsSha256':{p.name:sha(p) for p in [Path(__file__),OUT/'checks_common.py']},'commands':[],'status':'running'}\n+    before=inputs('frontend');report={'schema':'reservoir-scope-frontend-source-checks-v1','startedAtUtc':utc(),'scope':'Full frontend suite and TypeScript on final 0.22 code/config; no app, provider, service or package build.','sourceInputsSha256':before,'helperInputsSha256':{p.name:sha(p) for p in [Path(__file__),OUT/'checks_common.py']},'commands':[],'status':'running'}\n     with out.open('x') as f:\n         json.dump(report,f,indent=2);f.flush();os.fsync(f.fileno())\n         try:\n"
+    },
+    {
+      "source": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/run_rust_checks.py",
+        "bytes": 2237,
+        "sha256": "e8b293c6317ea98dadec829c7052f3b89850b544097db6bc2521891bf22176d2"
+      },
+      "current": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/run_rust_checks.py",
+        "bytes": 2233,
+        "sha256": "3d3ff3a97e16889239d3f9502d5dbfbdc3e7dbd9af4f521bace29250be3a6da5"
+      },
+      "diff": "--- /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/run_rust_checks.py\n+++ /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/run_rust_checks.py\n@@ -14,7 +14,7 @@\n     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--attempt',default='01');a=p.parse_args();number=attempt(a.attempt)\n     jobs=commands('rust');out=OUT/f'rust-checks-{number}.json'\n     if any((OUT/f'{n}-{number}.log').exists() for n,_ in jobs):raise ValueError('Check logs must be new; use a new attempt')\n-    before=inputs('rust');env=environment();report={'schema':'observatory-trajectory-rust-checks-v1','startedAtUtc':utc(),'scope':__doc__,'sourceBefore':rows(before),'helperInputsSha256':{p.name:sha(p) for p in [Path(__file__),OUT/'checks_common.py']},'environment':{k:env[k] for k in ['DEVELOPER_DIR','SDKROOT','CARGO_INCREMENTAL','CARGO_BUILD_JOBS']},'checks':[],'passed':False}\n+    before=inputs('rust');env=environment();report={'schema':'observatory-fields-rust-checks-v1','startedAtUtc':utc(),'scope':__doc__,'sourceBefore':rows(before),'helperInputsSha256':{p.name:sha(p) for p in [Path(__file__),OUT/'checks_common.py']},'environment':{k:env[k] for k in ['DEVELOPER_DIR','SDKROOT','CARGO_INCREMENTAL','CARGO_BUILD_JOBS']},'checks':[],'passed':False}\n     with out.open('x') as f:\n         json.dump(report,f,indent=2);f.flush();os.fsync(f.fileno())\n         try:\n"
+    },
+    {
+      "source": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/build_package.py",
+        "bytes": 7715,
+        "sha256": "f1915de7fdc5be3ca3f36179638853db222c4d37851f0a4b47473837a3e3b6e4"
+      },
+      "current": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/build_package.py",
+        "bytes": 7711,
+        "sha256": "77c65e3499f74460f6d7a41e6d4271999208cfe39430e079ab644a59e0282b46"
+      },
+      "diff": "--- /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/build_package.py\n+++ /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/build_package.py\n@@ -1,7 +1,7 @@\n #!/usr/bin/env python3\n-\"\"\"Prospective 0.21 build/archive wrapper adapted from qualified 0.20 tooling.\n+\"\"\"Prospective 0.22 build/archive wrapper adapted from qualified 0.21 tooling.\n \n-Do not run until the lead freezes final Rust/frontend receipts, preserves 0.20,\n+Do not run until the lead freezes final Rust/frontend receipts, preserves 0.21,\n confirms GUI shutdown and coordinates disk/compiler use. Invocation performs a\n build but never launches the GUI or a provider. No qualification has been run by\n merely creating this preparation script.\n@@ -70,9 +70,9 @@\n     validate_preserved(previous)\n     app = ROOT / 'target/release/bundle/macos/Reservoir Scope Tauri Preview.app'\n     assert package_inventory(app) == previous['package'], 'Prior installed app changed'\n-    assert json.loads((ROOT / 'package.json').read_text())['version'] == '0.21.0'\n-    archive = app.parent / 'ReservoirScopeTauriPreview-0.21.0-macos-arm64.tar.gz'\n-    pinned = ROOT / 'target/qa/0.21-pinned'\n+    assert json.loads((ROOT / 'package.json').read_text())['version'] == '0.22.0'\n+    archive = app.parent / 'ReservoirScopeTauriPreview-0.22.0-macos-arm64.tar.gz'\n+    pinned = ROOT / 'target/qa/0.22-pinned'\n     assert not archive.exists() and not pinned.exists(), 'New archive/pin must be exclusive'\n     env = os.environ.copy()\n     env.update(DEVELOPER_DIR='/Applications/Xcode.app/Contents/Developer',\n@@ -110,7 +110,7 @@\n         stream.write('\\n')\n     assert report['sourceUnchanged'] and len(report['checks']) == 2 and all(x['exitCode'] == 0 for x in report['checks'])\n     built = package_inventory(app)\n-    assert built['version'] == '0.21.0' and built['build'] == '0.21.0'\n+    assert built['version'] == '0.22.0' and built['build'] == '0.22.0'\n     assert built['bundleIdentifier'] == 'research.reservoir.scope.tauri'\n     with tarfile.open(archive, 'x:gz') as stream:\n         stream.add(app, arcname=app.name)\n@@ -141,7 +141,7 @@\n         stream.write('\\n')\n     command = ['python3', 'scripts/qualification_receipt.py', '--app', str(app),\n                '--archive', str(archive), '--output', str(OUT / f'qualification-before-ui-{number}.json'),\n-               '--note', '0.21 Observatory trajectory source checks/build/archive evidence are retained separately. Native UI remains unexecuted at capture; this tranche does not invoke a model or provider.']\n+               '--note', '0.22 Observatory fields source checks/build/archive evidence are retained separately. Native UI remains unexecuted at capture; this tranche does not invoke a model or provider.']\n     return subprocess.run(command, cwd=ROOT, env=env).returncode\n \n \n"
+    },
+    {
+      "source": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/protect_prior_package.py",
+        "bytes": 5090,
+        "sha256": "d5a1b3d3793f7c96e091863363ce7490705aea461685d33775c5cfd451522433"
+      },
+      "current": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/protect_prior_package.py",
+        "bytes": 5092,
+        "sha256": "fea1345dc94bdbd31df767d39e1d4994f844ed4afc8cfb0bb409877541c6c391"
+      },
+      "diff": "--- /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/protect_prior_package.py\n+++ /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/protect_prior_package.py\n@@ -1,8 +1,8 @@\n #!/usr/bin/env python3\n-\"\"\"Preserve qualified 0.20 artifacts before 0.21 build; no app/build/service calls.\n+\"\"\"Preserve qualified 0.21 artifacts before 0.22 build; no app/build/service calls.\n \n Creates one exclusive ignored QA directory, with independent full app/archive/pin\n-copies. Originals and the 0.20 archive qualification are verified before and after.\n+copies. Originals and the 0.21 archive qualification are verified before and after.\n No deletion, hard links, code signing, or process inspection is performed.\n \"\"\"\n from datetime import datetime, timezone\n@@ -19,8 +19,8 @@\n sys.path.insert(0, str(DESKTOP / \"scripts\"))\n from qualification_receipt import file_entry, package_inventory\n \n-BINARY_SHA = \"cc5d3dce19076dbc1ff3b850cd99a72a410c8fa797d951cb11f4068ecaab1cfd\"\n-ARCHIVE_SHA = \"23fe012b90bca660773c63f58bd1bc916c26c9b74a0081b7e59d0603ec117e25\"\n+BINARY_SHA = \"c4b51f576063eebb11ac0e754ebfe16e6b92cde4849cf0fa5e94412221130128\"\n+ARCHIVE_SHA = \"33409bd66ed9e059097038d8dc8cb36c560607ce2141e5c9dcc344565b5ccd0f\"\n \n def info(path):\n     value = file_entry(path, str(path), include_mode=True)\n@@ -36,34 +36,34 @@\n     receipt = HERE / \"prior-package-preserved-01.json\"\n     report = {\"schema\": \"reservoir-prior-package-preservation-v2\",\n               \"startedAtUtc\": datetime.now(timezone.utc).isoformat(),\n-              \"scope\": \"Read/hash/copy exact qualified 0.20 app/archive/pin only; no build/test/application/provider/process invocation.\"}\n+              \"scope\": \"Read/hash/copy exact qualified 0.21 app/archive/pin only; no build/test/application/provider/process invocation.\"}\n     with receipt.open(\"x\") as stream:\n         try:\n-            basis = HERE.parent / \"2026-10-14-reading-measurements-0.20.0/archive-check-01.json\"\n+            basis = HERE.parent / \"2026-10-15-observatory-trajectory-0.21.0/archive-check-01.json\"\n             basis_before = info(basis)\n             old = json.loads(basis.read_text())\n             app = DESKTOP / \"target/release/bundle/macos/Reservoir Scope Tauri Preview.app\"\n-            archive = DESKTOP / \"target/release/bundle/macos/ReservoirScopeTauriPreview-0.20.0-macos-arm64.tar.gz\"\n-            pin = DESKTOP / \"target/qa/0.20-pinned/reservoir-scope-desktop\"\n+            archive = DESKTOP / \"target/release/bundle/macos/ReservoirScopeTauriPreview-0.21.0-macos-arm64.tar.gz\"\n+            pin = DESKTOP / \"target/qa/0.21-pinned/reservoir-scope-desktop\"\n             assert str(app) == old[\"app\"] and str(archive) == old[\"archive\"] and str(pin) == old[\"pinnedExecutable\"]\n             assert old[\"executableSha256\"] == BINARY_SHA and old[\"archiveSha256\"] == ARCHIVE_SHA\n             package = package_inventory(app)\n-            assert package == old[\"package\"] and package[\"version\"] == \"0.20.0\"\n+            assert package == old[\"package\"] and package[\"version\"] == \"0.21.0\"\n             assert all(f[\"kind\"] == \"file\" for f in package[\"files\"]), \"Qualified package has an unexpected symlink\"\n             archive_before, pin_before = info(archive), info(pin)\n             assert archive_before[\"sha256\"] == ARCHIVE_SHA and pin_before[\"sha256\"] == BINARY_SHA\n             needed = sum(f[\"bytes\"] for f in package[\"files\"]) + archive_before[\"bytes\"] + pin_before[\"bytes\"]\n             free_before = available()\n             assert free_before > needed + 1024**3, \"Insufficient preservation headroom\"\n-            destination = DESKTOP / \"target/qa/0.21-prior-0.20-preserved\"\n+            destination = DESKTOP / \"target/qa/0.22-prior-0.21-preserved\"\n             destination.mkdir(mode=0o700)  # Exclusive. Leave partial output on failure.\n             preserved_app = destination / app.name\n             shutil.copytree(app, preserved_app, symlinks=True)\n             shutil.copy2(archive, destination / archive.name)\n-            shutil.copy2(pin, destination / \"reservoir-scope-desktop-0.20.0-pinned\")\n+            shutil.copy2(pin, destination / \"reservoir-scope-desktop-0.21.0-pinned\")\n             preserved_package = package_inventory(preserved_app)\n             archive_copy = info(destination / archive.name)\n-            pin_copy = info(destination / \"reservoir-scope-desktop-0.20.0-pinned\")\n+            pin_copy = info(destination / \"reservoir-scope-desktop-0.21.0-pinned\")\n             assert preserved_package == package\n             assert archive_copy[\"sha256\"] == ARCHIVE_SHA and archive_copy[\"bytes\"] == archive_before[\"bytes\"]\n             assert pin_copy[\"sha256\"] == BINARY_SHA and pin_copy[\"bytes\"] == pin_before[\"bytes\"]\n"
+    },
+    {
+      "source": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/launch_ui.py",
+        "bytes": 1602,
+        "sha256": "99ccc0e13d6b282ef31561470d372e96a6f22d1b2ad043b7e6981b9166da8155"
+      },
+      "current": {
+        "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/launch_ui.py",
+        "bytes": 1602,
+        "sha256": "c4998f8124f2e88468cac63b367e00247c12ec32a9520d2e57723a1715dd9208"
+      },
+      "diff": "--- /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-trajectory-0.21.0/launch_ui.py\n+++ /Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/launch_ui.py\n@@ -1,5 +1,5 @@\n #!/usr/bin/env python3\n-\"\"\"Launch the exact 0.21 package once into an isolated writable Library.\"\"\"\n+\"\"\"Launch the exact 0.22 package once into an isolated writable Library.\"\"\"\n import datetime as dt\n import hashlib\n import json\n@@ -19,7 +19,7 @@\n     build=json.loads((HERE/'archive-check-01.json').read_text())\n     app=Path(build['app']);assert package_inventory(app)==build['package']\n     exe=app/'Contents/MacOS/reservoir-scope-desktop'\n-    run=ROOT/'target/qa/0.21-observatory-ui01';run.mkdir()\n+    run=ROOT/'target/qa/0.22-observatory-ui01';run.mkdir()\n     library=run/'library';library.mkdir()\n     env=os.environ.copy();env['RESERVOIR_SCOPE_TAURI_LIBRARY']=str(library)\n     with (run/'stdout.log').open('x') as out,(run/'stderr.log').open('x') as err:\n"
+    }
+  ],
+  "versionPathScan": "All new Python files checked for erroneous v20.21.1; no remaining occurrence. Release outputs remain 0.22, preservation basis 0.21, original Node/SDK paths unchanged.",
+  "productSourceChanged": false,
+  "oldArtifactsChanged": false
+}

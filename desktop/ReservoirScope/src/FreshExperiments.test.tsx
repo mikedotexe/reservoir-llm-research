@@ -10,18 +10,18 @@ function state(): FreshState {
 const controller = new FreshController();
 describe('fresh experiment scientific presentation', () => {
   it('does not render inactive graphics or imply a run exists before explicit creation', () => {
-    expect(renderToStaticMarkup(<FreshExperiments active={false}/>)).toBe(''); const html = renderToStaticMarkup(<FreshExperiments active/>); expect(html).toContain('Choose a recipe, then create.'); expect(html).toContain('Navigation creates no experiment'); expect(html).not.toContain('scene-canvas');
+    expect(renderToStaticMarkup(<FreshExperiments active={false}/>)).toBe(''); const html = renderToStaticMarkup(<FreshExperiments active/>); expect(html).toContain('Choose an experiment, then create it.'); expect(html).toContain('After creating it, choose Step once or Run to begin'); expect(html).not.toContain('scene-canvas');
   });
   it('keeps failed candidate text ineligible and exposes explicit retry or terminal failure choice', () => {
     const html = renderToStaticMarkup(<FreshJournal state={state()} controller={controller}/>);
-    expect(html).toContain('Retry right journal save'); expect(html).toContain('Stop and retain failed save'); expect(html).toContain('not earned a durable save receipt'); expect(html).toContain('clock is blocked'); expect(html).toContain('&lt;script&gt;'); expect(html).not.toContain('<script>'); expect(html).not.toContain('href='); expect(html).toContain('../../inert-label.txt');
+    expect(html).toContain('Retry right journal save'); expect(html).toContain('Stop and retain failed save'); expect(html).toContain('Save not yet confirmed'); expect(html).toContain('clock is paused'); expect(html).toContain('&lt;script&gt;'); expect(html).not.toContain('<script>'); expect(html).not.toContain('href='); expect(html).toContain('../../inert-label.txt');
   });
   it('separates stage prepared/scripted turns from journal save receipts', () => {
     const s = state(); s.summary!.config.recipe = 'stage2'; s.pendingJournal = null; const html = renderToStaticMarkup(<FreshJournal state={s} controller={controller}/>);
-    expect(html).toContain('not durable journal save receipts'); expect(html).not.toContain('Save right journal durably'); expect(html).not.toContain('Request manual WRITE at this boundary');
+    expect(html).toContain('not durable journal save receipts'); expect(html).not.toContain('Save right journal'); expect(html).not.toContain('Request manual WRITE at this boundary');
   });
   it('shows durable checkpoint step separately from current step and preserves a save error', () => {
-    const html = renderToStaticMarkup(<FreshSaveStatus state={state()} controller={controller}/>); expect(html).toContain('Current step 30 · durable checkpoint step 29'); expect(html).toContain('Current record has unsaved changes'); expect(html).toContain('No pending write'); expect(html).toContain('role="alert"'); expect(html).toContain('Disk full'); expect(html).toContain('disabled=""');
+    const html = renderToStaticMarkup(<FreshSaveStatus state={state()} controller={controller}/>); expect(html).toContain('Current step 30 · checkpoint saved through step 29'); expect(html).toContain('Current record has unsaved changes'); expect(html).toContain('No pending write'); expect(html).toContain('role="alert"'); expect(html).toContain('Disk full'); expect(html).toContain('disabled=""');
   });
   it('recovery inspection states partial coverage and prior portable boundary without offering resume', () => {
     const s = state(); s.recovery = { requestId: 'r', entries: [], incompleteWrites: ['incomplete'], examined: 5, truncated: true }; s.recovered = { schema: 'checkpoint', sessionId: 'old', generation: '1', revision: '4', config: {}, phase: 'storageBlocked', step: 30, durableStep: 29, recordSha256: 'a'.repeat(64), pendingJournal: { observedStep: 30, entry: { text: '<img src=x onerror=unsafe()>' } }, attempts: [], updatedAtMs: '100', discarded: false };

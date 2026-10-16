@@ -1,0 +1,1456 @@
+{
+  "schema": "observatory-fields-rust-checks-v1",
+  "startedAtUtc": "2026-10-15T21:42:18.599253+00:00",
+  "scope": "Explicit full Rust suites/Clippy and resource/format gates; no GUI/provider launch.\n\nUnit tests may create their own ephemeral loopback fixtures, never model services.\nNo previous test execution is reused. Do not run concurrently with another cargo job.\n",
+  "sourceBefore": [
+    {
+      "path": "Cargo.lock",
+      "sha256": "e82d33904d640b1794a56c34129b5550c0593ab248baccc5d7db449d0dab37a4"
+    },
+    {
+      "path": "Cargo.toml",
+      "sha256": "877e5cba91e1ecd94a928ebb4b98b8e5b3aa883ff39d8aa6098699527e72d341"
+    },
+    {
+      "path": "crates/reservoir-core/Cargo.toml",
+      "sha256": "2ab5f629df38cfc10ca8bb3bbf294ca515c0b4c4687fc3dd2228ddb77eb6c1f9"
+    },
+    {
+      "path": "crates/reservoir-core/examples/action_session_fixtures.rs",
+      "sha256": "4112a938522f4a0dd68f76d90e401e4e815bb65c4f58374359ed00b29658f20e"
+    },
+    {
+      "path": "crates/reservoir-core/examples/case_export_oracle.rs",
+      "sha256": "16cbf150106a2d5d8adc7793d0960be5e0dc81ff47eabb092ae7416141fad79a"
+    },
+    {
+      "path": "crates/reservoir-core/examples/comparison_session_fixtures.rs",
+      "sha256": "12e34ba1acee715ed83a0ace3400a15c524f7237c2903245bc901ac6b6a01c75"
+    },
+    {
+      "path": "crates/reservoir-core/examples/emit_exploration_records.rs",
+      "sha256": "2eeba16c75327caa4a5ad95e6c2e94c71996c4802a02c07174be07f932facc7a"
+    },
+    {
+      "path": "crates/reservoir-core/examples/emit_regulation_record.rs",
+      "sha256": "d99a812a65d9eb66044c2615e408912816cc34b5fe36a956ad276acec25d5f3a"
+    },
+    {
+      "path": "crates/reservoir-core/examples/guided_evidence_oracle.rs",
+      "sha256": "2ab676c7de31b8f775447cc70e22f02291fc150445b8db6cbdf3c0046d9d5968"
+    },
+    {
+      "path": "crates/reservoir-core/examples/language_session_fixtures.rs",
+      "sha256": "e593b280d445b6249c416f7933b0181521dfa4168f70581ae947cc80eb705f29"
+    },
+    {
+      "path": "crates/reservoir-core/examples/observatory_oracle.rs",
+      "sha256": "76f0b62eb77ad77d9736b4c2b21d4c0fc07d38ae14abc2bc0d9c8f2df8c67c12"
+    },
+    {
+      "path": "crates/reservoir-core/examples/regulation_session_fixtures.rs",
+      "sha256": "690d501976eb16eba6378bd2c096c16842906c4d7b4e5a8de4d11571e08541db"
+    },
+    {
+      "path": "crates/reservoir-core/examples/response_oracle.rs",
+      "sha256": "41abe549deb345093b280dd058574faefb9f499d1b8f41d06d8f726238f27454"
+    },
+    {
+      "path": "crates/reservoir-core/examples/session_fixtures.rs",
+      "sha256": "2d60437c83b2088bc7cc7ea1859c51df8c4dfa0f9b4360f5186435e7ba1e0585"
+    },
+    {
+      "path": "crates/reservoir-core/examples/sustained_session_fixtures.rs",
+      "sha256": "4de2289a670ef73f6b3e2770f4598ed867b94fcda8b1225a4011f5c8667980e9"
+    },
+    {
+      "path": "crates/reservoir-core/src/actions.rs",
+      "sha256": "2e5f3084fd273ed3d3cd412043238cdc68047684bd1bffd88a7afc99e9a2697c"
+    },
+    {
+      "path": "crates/reservoir-core/src/cases.rs",
+      "sha256": "74f036a9785d7607478d2989da30ed128c2fb6ff7f7992bad40d46cbf17ed626"
+    },
+    {
+      "path": "crates/reservoir-core/src/codec.rs",
+      "sha256": "6192482229710de6bf8a6377480ec891f940cf9ecd02da2f493b6e108db264ee"
+    },
+    {
+      "path": "crates/reservoir-core/src/codec_unicode_data.rs",
+      "sha256": "dbfe035749c170abbd80982c1aa18b0d72140fcc9b4d04aa762124ef1f0d28c3"
+    },
+    {
+      "path": "crates/reservoir-core/src/comparison.rs",
+      "sha256": "10a6dabf4aa92fa176fd77c8f28630c8772810055802daedfb413b0f5690c13b"
+    },
+    {
+      "path": "crates/reservoir-core/src/exploration.rs",
+      "sha256": "f13e5936aa12fddaf740567ebd83027316b53204c31b634582617fe9691afc36"
+    },
+    {
+      "path": "crates/reservoir-core/src/geometry.rs",
+      "sha256": "1af480c924d2118c38fe28dbc05cad6e7f9f958ddf5da64bf0d3832f3c141243"
+    },
+    {
+      "path": "crates/reservoir-core/src/guided_evidence.rs",
+      "sha256": "158c61d9b3c6ba4a2895de599ce520608afab0acfa58b24fb0bc7eaf8bb64a6b"
+    },
+    {
+      "path": "crates/reservoir-core/src/lib.rs",
+      "sha256": "ffd7f2b890ee153840b941fa7e8ce52695bab0160a46aaef04077d4be93090c3"
+    },
+    {
+      "path": "crates/reservoir-core/src/main.rs",
+      "sha256": "85fdac3f55d5b6b0be3b8b29361f38d961b64aec2ecb1957b2d9f007510b04f0"
+    },
+    {
+      "path": "crates/reservoir-core/src/math.rs",
+      "sha256": "845ed5f908d4b7c0765694f47b635be2b201693ce06a3ca25bcd70abe3259bc7"
+    },
+    {
+      "path": "crates/reservoir-core/src/observatory.rs",
+      "sha256": "283edad54adc2f6b01c07f8291795ca1171530e88eeac076dc1fbb1a9c9414af"
+    },
+    {
+      "path": "crates/reservoir-core/src/preparation.rs",
+      "sha256": "ab3efa3f96819003d83ee1a886af62d565406691c0cb01c22378298e54d95c08"
+    },
+    {
+      "path": "crates/reservoir-core/src/prompt_number.rs",
+      "sha256": "4ae00cd32460259ea4ac023e8fd5a7dfbf6034889ee02e3e524bb53a5ef7c6af"
+    },
+    {
+      "path": "crates/reservoir-core/src/regulation.rs",
+      "sha256": "7f2d62130bcc4875fa300e72690f48b2d8522cf738349a7ac99d5aed96548fdc"
+    },
+    {
+      "path": "crates/reservoir-core/src/response.rs",
+      "sha256": "363ec9c5004b8332c9ac8639d6706eefdd22cc1253bbebfc131100cb347f0581"
+    },
+    {
+      "path": "crates/reservoir-core/src/session.rs",
+      "sha256": "d9f15552bbf605e11e9cb2d1ebbc35c4b73b48e97110a0f3ac7dc1768bf9b706"
+    },
+    {
+      "path": "crates/reservoir-core/src/stage.rs",
+      "sha256": "4b2603b2920c5479703d5e4dc89a8fef3e178040bc21185d88b246494df53a03"
+    },
+    {
+      "path": "crates/reservoir-core/src/sustained.rs",
+      "sha256": "7ec2c0780af574ceda251fa0be841b360d73cf0dbaa4ba90e0462fb933669976"
+    },
+    {
+      "path": "crates/reservoir-core/tests/actions_conformance.rs",
+      "sha256": "b024310c0faabaa660d77f9304b4af80d04be0f99eb033e69bc980752f5bc78f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/conformance.rs",
+      "sha256": "c170adb921e4e611c462bad99f6b5c61e95f4a2af212c582360efef4d9a9681b"
+    },
+    {
+      "path": "crates/reservoir-core/tests/exploration.rs",
+      "sha256": "bb60fca8f5fab095cd2d13c9bb47245566a78202d3fb155da0921c1ea4f88868"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/ascii-codec-vectors.json",
+      "sha256": "b40c03fe500fec01280871b998fae0c5a2e08474a162e70e604c8ab9186bcdbd"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/control-transitions-u64-max.json",
+      "sha256": "a78e128640c7a14aaf7412d27b71688bb8b160b65eb3106168394733c9b6b3a1"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/empty-u64-max.json",
+      "sha256": "9a22d5f1b5ea3e2464639068fb37ab0ea15b1c0abc1a4264872f2e8391de3197"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/pulsed-forcing.json",
+      "sha256": "59f1701f1f7b88bd0e5e6fde761b98f3b6aa8ac7803c0f89cb2c24a7fee72798"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/quiet-defaults.json",
+      "sha256": "abf5639d7951c8105f71f8a21310695a12edc412d22736323423d161a6e2881f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/sensory-restarts-u64-large.json",
+      "sha256": "b984d5ed76cbe058a2c6a50d4f8e711f50a80200a9530c90686779a263c33569"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/provenance.json",
+      "sha256": "a3527c4047d3617c2f537ab8ce4480b5573cf03452921a0838b5a1aca054f5e9"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v1-real-memory-60.json",
+      "sha256": "036f536ef3128060ddbc5615136416a2cd52dece7d159ce25887fe36a60c8b97"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v1-real-observation-30.json",
+      "sha256": "d47cb0fef4c8af7a650c11e4450745fba7516425e884c4f6fa3486360fccc80d"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v2-memory-20.txt",
+      "sha256": "ab2b102ffa3dddd2f2c8d15618a5abf283037d726efd08cb42161586c9ab3e81"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v2-observation-10.txt",
+      "sha256": "681d10cc8c9c0e4018654cc4e0a157f105b7a739bc1e39bb8663e60639c24b9a"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-legacy-budget-provenance.json",
+      "sha256": "77456047a679db8f90049a154de3951d0ac5f957854ca5f9b51c27563ed60c1f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-legacy-budget-segment.json",
+      "sha256": "eef2a09b2c1e4e150aac8560f210997742203b78aa709829078657e86af0c6b0"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-memory-20.txt",
+      "sha256": "1a705d99ce490bb7a3a1bffcc3a392a9d89275bc4e9dd8c7cfbc1edb6dfdf43c"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-observation-10.txt",
+      "sha256": "70165f72ba7bbc1997cb50a78503c489a32fc378c56c3ff2345ed276e0c31378"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-provenance.json",
+      "sha256": "f0c34f3b69766cc232753204c22628a4c0046f40f087f690aa6ac998bc766c44"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v4-memory-20.txt",
+      "sha256": "d51753e1eddd68fd193ba46da49e6f909aaebdef328471ddf79e3b134b10c2c0"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v4-observation-10.txt",
+      "sha256": "26bae96991e12bb591ba517c46345aeac167abbbdaf79858c514a35b8986f75f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v4-provenance.json",
+      "sha256": "aa8d4e2af9a04cd8455634364481d97ce8ecc9110fa9028fb6af20f1152b980f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v5-memory-20.txt",
+      "sha256": "a828b3390d049b22faf115f74644374f2c86f74a4ac47fd806a5e69920de99fd"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v5-observation-10.txt",
+      "sha256": "5c9c1dbdb29e1058b59d23174cdab186c0aa60d76293f29bb99827b217025dd6"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v5-provenance.json",
+      "sha256": "6ce6828ed6552c65b2f2d81d5511cb1f02b431f05a00e933d8bb17b599158fba"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v6-memory-20.txt",
+      "sha256": "a18a1d6a788b6ca47830770cbfb008da98960eae20ee8653b45440141581c971"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v6-observation-10.txt",
+      "sha256": "648266e30c22980ea5eb3c589e78e79bf6217fbabe43f346cd68938dacafc16c"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v6-provenance.json",
+      "sha256": "970fc8e876bea1b7811163a886f4298918ecc11a92f400e51fa0b9e7b48b5182"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-memory-20.txt",
+      "sha256": "5b50a5f47f23143213cdbb5c16734c4114d5fe4d7de1b55ca7e190932fd4b14d"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-observation-10.txt",
+      "sha256": "c9c496cbff370681337416962c5cbf30238eb2fbb7f2d17233b7ef1c9fc6e892"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-provenance.json",
+      "sha256": "ec4af7aa3fe327b8350294521fceda1530b68bfecab8c3b24ccce406e6ca4708"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v8-memory-20.txt",
+      "sha256": "39bec81c44418b3782bde976e224c749567a95a479222906c64d54aa70e5b8f6"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v8-observation-10.txt",
+      "sha256": "70f34bd2ebdd9c08bbc25525371ddc0463130b800c9329583b18d7397b2bb93a"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v8-provenance.json",
+      "sha256": "8a640ac1eedfaa8a283a6aa4f777e883aabc5bbc74ceec1525678f62541cdf04"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/swift-prompt-fixed8-v1.json",
+      "sha256": "b9e9adf11f61d93183d06630a3bd122b6d8dca8e23c5d6d96ec36523c0d695bf"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/swift-state-fields-v1.json",
+      "sha256": "5a9916c0071c50dc74be147a71790121b5f01d59d35f68558762147993252a01"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/swift-state-fields-v1.provenance.json",
+      "sha256": "0e62cc37d5c27445e3b02bac3adc5fa1df91e98d5126fd4df180c1ed4f732e62"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/unicode-codec-v1.json",
+      "sha256": "f05fb75b0a29c2d4c1e28474c7e3139c5aa8f85d884757a3269840af337cbe3e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/geometry_conformance.rs",
+      "sha256": "e15aa03d5dece003e165ef0adf76159fc131c1326829c1b1ad124b516f8cab17"
+    },
+    {
+      "path": "crates/reservoir-core/tests/guided_evidence.rs",
+      "sha256": "df0a7864c15c4f9728989a969db9e2e7bb4d4c4f8902abad698bad2c0941087e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/observatory.rs",
+      "sha256": "eb3f38101bd464f8194e2c095a0ad12e2bd410b4b55ea529cf20864a66ed2598"
+    },
+    {
+      "path": "crates/reservoir-core/tests/regulation.rs",
+      "sha256": "02301b92f0046cdc8c47b4c83d40afd5abaa253eb025a007407722b3fc1d6604"
+    },
+    {
+      "path": "crates/reservoir-core/tests/response.rs",
+      "sha256": "919e4a727bd79c5315d232e71cbe010cffe86962977016bd3deee8224facab94"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session.rs",
+      "sha256": "af1e7d5cd7d5f81a2077bcfe97c51ad42e0bfe632d36bf14ca7b727dc3081122"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session_actions.rs",
+      "sha256": "943d20e69c4c0aa3643e43d06b92a81af0a5168cc566430f1233808655344976"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session_comparisons.rs",
+      "sha256": "ad8a434b07a97cd7f62bd2194be5a11c8fb9e6b23be4734d1a9f954da00b1069"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session_language.rs",
+      "sha256": "293a173c55b6e23297a0b321e37278634ec5f4a5b241e9b419bfdffc142e1dde"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session_regulation.rs",
+      "sha256": "7919eda2999523d25fd49af1d919b8706a2c87388e1a53c420a0761306813603"
+    },
+    {
+      "path": "crates/reservoir-core/tests/support/check_exploration_oracles.py",
+      "sha256": "d74f099638792b284fb19f48a2306be85d9af3fd2e0bfba1cfb938de78bddb4e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/support/check_observatory_oracles.py",
+      "sha256": "091b57b9ffba79368ca8a758cbf0aefbeadb9ca07c307bb5d8532d9f06c4e01e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/support/check_regulation_oracles.py",
+      "sha256": "c7494e2a7317111df3089821f4cfc8a65e01149f3634426c3754956498c3157f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/support/check_response_oracles.py",
+      "sha256": "d1e48267b9c92bc146f8ddee6785d2659c0bbc896e54dfba03400a3c16fcc087"
+    },
+    {
+      "path": "crates/reservoir-core/tests/support/check_swift_roundtrip.py",
+      "sha256": "a8828edd12ea81cc5b708de9c50038313f451863afb37948dc84d800e478901d"
+    },
+    {
+      "path": "crates/reservoir-core/tests/support/check_unicode_action_oracles.py",
+      "sha256": "bccd1a4c7c203b803934c2ea6f42346d058a7270cf2b54050123d38517ff5c86"
+    },
+    {
+      "path": "crates/reservoir-core/tests/support/derive_unicode_codec_tables.py",
+      "sha256": "e795218846fdb02c95ad93b500847b703dab0436338e956fb8d7e5303b46799e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/support/generate_unicode_codec_oracle.py",
+      "sha256": "bb233823c11239cda5e242fdff8377dbace85f42ac14dd3cb6f68e78a15c6454"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained.rs",
+      "sha256": "894b2d89ba7cbab93da7aa871acb3948beea387fbb3c6924693c32fd49b63433"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_action_scope_prompt.rs",
+      "sha256": "91e2fd2a5c5564875734a020c10a0a9fb67748d2068a742fd17090fac94161c0"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_continuing_prompt.rs",
+      "sha256": "7ef86d0ece9b8c0a1883fd68fe87dbcfb5525ace648ef84a34f4bc91545a83b9"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_generation_budget.rs",
+      "sha256": "e5523e244ca9940d7d01c6fd16a6f0c7cc471a5bf01ea142f06df7a78b970b4f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_measurement_meaning_prompt.rs",
+      "sha256": "74ebbcad58beafcceeb9b54eb4fa084a333ff49772a293be87c309300ae7db3e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_measurement_reference.rs",
+      "sha256": "a6497e446bd74b18bbbbda4ff2f4ea016f1845cd8ef252871d0f62dd4ed31c78"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_prompts.rs",
+      "sha256": "7f767cc82ee3a996ed0b82d4bd90fbaf42384d942cb5616c098ca6eee8fe9467"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_provider_evidence.rs",
+      "sha256": "1ae603dc2109cf209ea7b7a9bc0bd737073f7e2bac3eebd0ec04452a3c158b03"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_writing_boundary_prompt.rs",
+      "sha256": "e8ecfbedd1b9c018b567a7884e29b1f6de943f8ac5f2f25614a26d59d1fd12d1"
+    },
+    {
+      "path": "crates/reservoir-core/tests/unicode_codec_conformance.rs",
+      "sha256": "f0978cac8a3d8131bc5733f71ad22cdfdacb80150b4f415b9429db0ca8f835ba"
+    },
+    {
+      "path": "crates/reservoir-core/validation/2026-10-11-exploration-oracles.json",
+      "sha256": "836e47478c0db4688cb2d5eb06cb8f38605adc59c9e0a5b2f216396ad1782eec"
+    },
+    {
+      "path": "crates/reservoir-core/validation/2026-10-11-swift-stage-roundtrip.json",
+      "sha256": "4b167b788eb4cadeb0b9f7b2cf8a426749541c35149a021634413bae36207a49"
+    },
+    {
+      "path": "crates/reservoir-core/validation/2026-10-11-unicode-actions-v1.json",
+      "sha256": "5ccbe3af41dc8319676a754eca3a15a7cbf9c821620990a6dfc0d5dca043c9c9"
+    },
+    {
+      "path": "crates/reservoir-core/validation/2026-10-11-unicode-actions-v2.json",
+      "sha256": "5740e20cd2e4746d1c26c3b582fb51ff3eb633ee03df77a4fda9c5e61def848a"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "0fa1f4e253baec5e70b157dbaed0c55a345867fb2805899b8a9add1c1f8a4a4e"
+    },
+    {
+      "path": "package.json",
+      "sha256": "321b7399c623493290e32a57c495048b18855147ac11029e1b20f68636282cc2"
+    },
+    {
+      "path": "rust-toolchain.toml",
+      "sha256": "c07cdb6cac85a9e5a7d9b832145d791c04ffb58e8e45859942363f2bffed3ebc"
+    },
+    {
+      "path": "scripts/check_action_session_conformance.py",
+      "sha256": "f169f878148fcf064fd9fffeda0f86626e459957814269f3c2cb6e6b17bb749c"
+    },
+    {
+      "path": "scripts/check_case_conformance.py",
+      "sha256": "f8990ace2304901e2d7cd68168fa48e55ed4869b7be4ab4dc71e4b52266f2260"
+    },
+    {
+      "path": "scripts/check_case_export_conformance.py",
+      "sha256": "02a8c87bf8960a841b453d372203061ff5da8e0ccda7dfa059250dd0878c168b"
+    },
+    {
+      "path": "scripts/check_controller_export.py",
+      "sha256": "5f1bcc02dfbab9e8a68f507a3dfc3dddc851c7526e10b1887cdecfc2b6b023ae"
+    },
+    {
+      "path": "scripts/check_fresh_conformance.py",
+      "sha256": "03f8a7138e2e1f06b98583f380e58b73f8a4954fb4a599a2cbc23e3c192ab3eb"
+    },
+    {
+      "path": "scripts/check_guided_conformance.py",
+      "sha256": "07b870ce2df32a9a8d1a428edfe6d590f1eb60815befc3f463465eddf36d8559"
+    },
+    {
+      "path": "scripts/check_language_session_conformance.py",
+      "sha256": "b0178316c6721befbbd0a54f04c457693e75cc49aadf40c93e5b969165aa1d36"
+    },
+    {
+      "path": "scripts/check_pair_session_conformance.py",
+      "sha256": "f1099c4db605a25e6c81f41e3ca8b2818fab7a46e58258b057611e13d19d96f1"
+    },
+    {
+      "path": "scripts/check_reference.py",
+      "sha256": "d8ac52f13d7b09c0d725c59eb3327af0cd3e18273666bc246f49f7590dcb28f3"
+    },
+    {
+      "path": "scripts/journal_quality.py",
+      "sha256": "49c13a0577829a9d7b7ebb2d7be60ff1f4139b2753f990d614dcf9332397d0ae"
+    },
+    {
+      "path": "scripts/macos_reliability.py",
+      "sha256": "326fb72a668f1cac1f32585e0b61e791a56a959b1ac0ae32560fcebd0fba5215"
+    },
+    {
+      "path": "scripts/prepare.mjs",
+      "sha256": "99032a4f1423d29a68f50376730434feeba70d0cf34d0f764ea3e02cfba625ff"
+    },
+    {
+      "path": "scripts/qualification_receipt.py",
+      "sha256": "c371184ae82c1f34314b59fc333ae2fceb0959a4997a532ed63e0cbece00e1cb"
+    },
+    {
+      "path": "scripts/reference_support.py",
+      "sha256": "d90eefb67494c98bf7ae36bc8a4324d3ed11423babbc992ff7b8d973e2447181"
+    },
+    {
+      "path": "scripts/stage_resources.py",
+      "sha256": "b5e5f23edc9e101d76f6d2813a9ec03c827b5e3e7284d82baf3b0e454a324b1a"
+    },
+    {
+      "path": "scripts/test_controller_export.py",
+      "sha256": "ff48b76d4732a3b3f377eff7f4ccddd0fe2d8e85ed845920d622b87e2a84fec3"
+    },
+    {
+      "path": "scripts/test_journal_quality.py",
+      "sha256": "12bdcea5ce7c6f2ada24e4fc4e4bb5282ce69ae25df755702c2ac6c9c3da3b2e"
+    },
+    {
+      "path": "scripts/test_macos_reliability.py",
+      "sha256": "bafb63a559d64296cedee4e2b615750bd6f6ee66e33bb17dbe9ad274a71b7125"
+    },
+    {
+      "path": "scripts/test_qualification_receipt.py",
+      "sha256": "771088956a8630640c76996e134b4b20355b258ddebf97cf6fa3ec0b19e9a46c"
+    },
+    {
+      "path": "scripts/test_reference.py",
+      "sha256": "ec819f702d5ab7633328193fd7e8ae2bb6da8f233e4572123d3d2afc1991ec2d"
+    },
+    {
+      "path": "src-tauri/Cargo.toml",
+      "sha256": "f2eff0a7f09e987d0721dad7676bb65e7ac540cd0e561e7888097f3695c1ae43"
+    },
+    {
+      "path": "src-tauri/build.rs",
+      "sha256": "403e8e7d1db6c83ba24e7ffc5153e931511df291f5146c6eccdf98658c1fcbe9"
+    },
+    {
+      "path": "src-tauri/capabilities/main.json",
+      "sha256": "30164d6d9d07d2614f3b830da4592e2fded65a2c81316a6dbda6d09b7fa0b417"
+    },
+    {
+      "path": "src-tauri/src/cases.rs",
+      "sha256": "4dc2bf996dfcf8120c20f9d676decee9cb67d4bc6117cbf0ac21c7420b02a2aa"
+    },
+    {
+      "path": "src-tauri/src/desktop_menu.rs",
+      "sha256": "120a16142ea9ddbe65cdf4b307cc7466ba8bacd19efdf96356c74c0105381f09"
+    },
+    {
+      "path": "src-tauri/src/execution_admission.rs",
+      "sha256": "c5d07cafd8e56f32dd906fd27db947124b735e2f731e3b8f962fa1398f91bb59"
+    },
+    {
+      "path": "src-tauri/src/files.rs",
+      "sha256": "79cb4f33647037631f74a22d0d7863a9cf9ab519702219935741f028cb1a4405"
+    },
+    {
+      "path": "src-tauri/src/geometry.rs",
+      "sha256": "52c84cea8c759c0527a6f688fb698133351a705c24a2bcb731c13a5e7fac740c"
+    },
+    {
+      "path": "src-tauri/src/guide.rs",
+      "sha256": "6289ace1632b6f1ed29fad26cccbfa80b778851ba0219463aee7d38162cb16ae"
+    },
+    {
+      "path": "src-tauri/src/library.rs",
+      "sha256": "e95625efadf6bc8b1907eb9cb5a15fa0819e090b2487e9ba86fee11ae1f1f825"
+    },
+    {
+      "path": "src-tauri/src/library_tests.rs",
+      "sha256": "b7ff34551e1ead9d5eaed52c824453b1cfc477eafe85be37962c3edbb0934fcb"
+    },
+    {
+      "path": "src-tauri/src/macos_lifecycle.rs",
+      "sha256": "8cd13b1e935550f0a054cabd2e79f0dda301343434c3401e2145d4de52c7c9c6"
+    },
+    {
+      "path": "src-tauri/src/macos_termination.rs",
+      "sha256": "e0de06bd278b0fa6628542cf34b2a38c0e3a3bf836851d051cedf90ca04b77a8"
+    },
+    {
+      "path": "src-tauri/src/main.rs",
+      "sha256": "c302148eeb720415d7220f3246ac28b607e59e48230358bf7bb6e60677f1a0c1"
+    },
+    {
+      "path": "src-tauri/src/model_readiness.rs",
+      "sha256": "290eac17069e1f922decd640d0037692fbcbf2be4e15777a7ac3efd682820cb3"
+    },
+    {
+      "path": "src-tauri/src/model_transport.rs",
+      "sha256": "23af2733a02092fd22521b0e8fc10eee2901b83a632adc2d137b7bf4a4112e28"
+    },
+    {
+      "path": "src-tauri/src/model_transport_tests.rs",
+      "sha256": "49e9ec1e07c871e1478934d3cc171e7354b40df8d0488240c2bac6ce7b34287a"
+    },
+    {
+      "path": "src-tauri/src/observatory.rs",
+      "sha256": "c51f98ef686c8efbedd6f62e37f06e3e21abd8bbcf645479c00eb88184b577c8"
+    },
+    {
+      "path": "src-tauri/src/observatory_tests.rs",
+      "sha256": "fae548add7d8bc5f07afbbcd09ab61d38a77beb84747022f1090e1c72bdf144f"
+    },
+    {
+      "path": "src-tauri/src/preparation.rs",
+      "sha256": "73a2309c6bd1bf64840a46f0bbbf48730ffeb583d63236dd97dca16586bdb9a9"
+    },
+    {
+      "path": "src-tauri/src/records.rs",
+      "sha256": "83a6431137a718a3442f35c9e2636d2c8cd4fc06b321370e817b3ae2d7ef096f"
+    },
+    {
+      "path": "src-tauri/src/resources.rs",
+      "sha256": "baff6405e42a8439d64e728fd97d2ae8642dec2d6715a9f402d5deebc1f78868"
+    },
+    {
+      "path": "src-tauri/src/response.rs",
+      "sha256": "c686ace39c15bed3f4e3d8d3e6750f2fec608e1d33414593408496a8cc08d1eb"
+    },
+    {
+      "path": "src-tauri/src/response_commands.rs",
+      "sha256": "2beecd570f2b8e4a8f4d9a11d3aac6437061d05cda918bf36667c0121ea3c693"
+    },
+    {
+      "path": "src-tauri/src/response_tests.rs",
+      "sha256": "abc3d86ee9574c3ee55cc8dad70eb8d5a1513464285651ad78f3fd70a68b18c6"
+    },
+    {
+      "path": "src-tauri/src/run_activity.rs",
+      "sha256": "4df9ec30f8019260ff06ade596ccb514ff9dc6c80efb176b9dd4088c2a44970a"
+    },
+    {
+      "path": "src-tauri/src/session_commands.rs",
+      "sha256": "7fc31c92aa71132ea90002766144ec554047982af4e22d9abe9c3dc8a1a10f3e"
+    },
+    {
+      "path": "src-tauri/src/session_store.rs",
+      "sha256": "a5ea1bf91fc3b45f32d9852db0206d53aabd2b39890800ed387e1be7a1c96c88"
+    },
+    {
+      "path": "src-tauri/src/sessions.rs",
+      "sha256": "874be434fbfc6b7dc77681ff2d868d749557b6c72472420a5c55e9314423387b"
+    },
+    {
+      "path": "src-tauri/src/sessions_tests.rs",
+      "sha256": "7bf63806b644aed18f61504213bbf54a9b21fec30fb3e960a24037cd4549014f"
+    },
+    {
+      "path": "src-tauri/src/sustained.rs",
+      "sha256": "5399ac3d9faf9fcd291dcc6dd176f80c7cd712bc489e6969bfcf621a084223c8"
+    },
+    {
+      "path": "src-tauri/src/sustained_commands.rs",
+      "sha256": "483e034cbfed12c4e88f430dcb8547c45130a8449681a4775c228a2bd571bfde"
+    },
+    {
+      "path": "src-tauri/src/sustained_prompt_evidence_tests.rs",
+      "sha256": "983b3cacd436ae3689091e342c472fbe60c84023035529ad13fead873a5495ce"
+    },
+    {
+      "path": "src-tauri/src/sustained_quota_tests.rs",
+      "sha256": "88d638b51067f2ac7f0ad38af7ecc14049749e04c174f03e55473f030c1a600c"
+    },
+    {
+      "path": "src-tauri/src/sustained_store.rs",
+      "sha256": "cc3a18469733b975eb0aafc03d41270619e88f6b64eefbcb7a40a91df09b2ef4"
+    },
+    {
+      "path": "src-tauri/src/sustained_tests.rs",
+      "sha256": "62b5cedd61bb22ea57429215ee5c58703656b25dbb51be5ee89cf7861c7ada8c"
+    },
+    {
+      "path": "src-tauri/tauri.conf.json",
+      "sha256": "b54ecc5df8cd96f8999794d5d400e22e96d62d1e5b4563b06fe6bfb3b88a9805"
+    }
+  ],
+  "helperInputsSha256": {
+    "run_rust_checks.py": "3d3ff3a97e16889239d3f9502d5dbfbdc3e7dbd9af4f521bace29250be3a6da5",
+    "checks_common.py": "b562a06394ec771851d379b379129d4e2c391fe556b91a436f93f0cdae6738c8"
+  },
+  "environment": {
+    "DEVELOPER_DIR": "/Applications/Xcode.app/Contents/Developer",
+    "SDKROOT": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+    "CARGO_INCREMENTAL": "0",
+    "CARGO_BUILD_JOBS": "2"
+  },
+  "checks": [
+    {
+      "name": "reference",
+      "command": [
+        "python3",
+        "scripts/check_reference.py"
+      ],
+      "startedAtUtc": "2026-10-15T21:42:18.600166+00:00",
+      "log": "reference-01.log",
+      "endedAtUtc": "2026-10-15T21:42:18.858544+00:00",
+      "elapsedSeconds": 0.258434833958745,
+      "exitCode": 0,
+      "sha256": "e84ce451bbba9c3e7d8977919cd5f2ccfb976ea173385e2e6fdf6166c8915e47"
+    },
+    {
+      "name": "resource-staging",
+      "command": [
+        "/Users/v/.nvm/versions/node/v20.20.1/bin/npm",
+        "run",
+        "prepare:resources"
+      ],
+      "startedAtUtc": "2026-10-15T21:42:18.859029+00:00",
+      "log": "resource-staging-01.log",
+      "endedAtUtc": "2026-10-15T21:42:19.466010+00:00",
+      "elapsedSeconds": 0.6070251250639558,
+      "exitCode": 0,
+      "sha256": "c01706d38c6b9a49dd2a3cc34df80dad2e7fdff4757e437c18cb6f1f30ea64fd"
+    },
+    {
+      "name": "rust-format",
+      "command": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "startedAtUtc": "2026-10-15T21:42:19.466435+00:00",
+      "log": "rust-format-01.log",
+      "endedAtUtc": "2026-10-15T21:42:20.037309+00:00",
+      "elapsedSeconds": 0.5709415830206126,
+      "exitCode": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "core-tests",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "reservoir-core",
+        "--all-targets"
+      ],
+      "startedAtUtc": "2026-10-15T21:42:20.037770+00:00",
+      "log": "core-tests-01.log",
+      "endedAtUtc": "2026-10-15T21:44:42.698678+00:00",
+      "elapsedSeconds": 142.66187900002114,
+      "exitCode": 0,
+      "sha256": "b35781814ad030e382062d02b551ad44a978966a8e07a9d7074d84362163eaa2",
+      "passedTests": 224,
+      "ignoredTests": 0
+    },
+    {
+      "name": "desktop-tests",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "reservoir-scope-desktop"
+      ],
+      "startedAtUtc": "2026-10-15T21:44:42.699600+00:00",
+      "log": "desktop-tests-01.log",
+      "endedAtUtc": "2026-10-15T21:47:39.352406+00:00",
+      "elapsedSeconds": 176.6539685409516,
+      "exitCode": 0,
+      "sha256": "26d9cfd9de86fa0302b950c6dffc73e892f510ff4a205b25d1cf1265fa57127b",
+      "passedTests": 199,
+      "ignoredTests": 2
+    },
+    {
+      "name": "core-clippy",
+      "command": [
+        "cargo",
+        "clippy",
+        "--locked",
+        "-p",
+        "reservoir-core",
+        "--all-targets",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "startedAtUtc": "2026-10-15T21:47:39.353114+00:00",
+      "log": "core-clippy-01.log",
+      "endedAtUtc": "2026-10-15T21:47:46.428099+00:00",
+      "elapsedSeconds": 7.075048333965242,
+      "exitCode": 0,
+      "sha256": "a29701267491b9b314a4e6d41c011568ccb0da93129ce0ac7619d8b07318cea6"
+    },
+    {
+      "name": "desktop-clippy",
+      "command": [
+        "cargo",
+        "clippy",
+        "--locked",
+        "-p",
+        "reservoir-scope-desktop",
+        "--all-targets",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "startedAtUtc": "2026-10-15T21:47:46.428303+00:00",
+      "log": "desktop-clippy-01.log",
+      "endedAtUtc": "2026-10-15T21:47:54.557421+00:00",
+      "elapsedSeconds": 8.129197249887511,
+      "exitCode": 0,
+      "sha256": "702098374966ddf0e53e516b88a05ef4e4e0cf24ec5fcd5ac593171ef2f43867"
+    }
+  ],
+  "passed": true,
+  "sourceAfter": [
+    {
+      "path": "Cargo.lock",
+      "sha256": "e82d33904d640b1794a56c34129b5550c0593ab248baccc5d7db449d0dab37a4"
+    },
+    {
+      "path": "Cargo.toml",
+      "sha256": "877e5cba91e1ecd94a928ebb4b98b8e5b3aa883ff39d8aa6098699527e72d341"
+    },
+    {
+      "path": "crates/reservoir-core/Cargo.toml",
+      "sha256": "2ab5f629df38cfc10ca8bb3bbf294ca515c0b4c4687fc3dd2228ddb77eb6c1f9"
+    },
+    {
+      "path": "crates/reservoir-core/examples/action_session_fixtures.rs",
+      "sha256": "4112a938522f4a0dd68f76d90e401e4e815bb65c4f58374359ed00b29658f20e"
+    },
+    {
+      "path": "crates/reservoir-core/examples/case_export_oracle.rs",
+      "sha256": "16cbf150106a2d5d8adc7793d0960be5e0dc81ff47eabb092ae7416141fad79a"
+    },
+    {
+      "path": "crates/reservoir-core/examples/comparison_session_fixtures.rs",
+      "sha256": "12e34ba1acee715ed83a0ace3400a15c524f7237c2903245bc901ac6b6a01c75"
+    },
+    {
+      "path": "crates/reservoir-core/examples/emit_exploration_records.rs",
+      "sha256": "2eeba16c75327caa4a5ad95e6c2e94c71996c4802a02c07174be07f932facc7a"
+    },
+    {
+      "path": "crates/reservoir-core/examples/emit_regulation_record.rs",
+      "sha256": "d99a812a65d9eb66044c2615e408912816cc34b5fe36a956ad276acec25d5f3a"
+    },
+    {
+      "path": "crates/reservoir-core/examples/guided_evidence_oracle.rs",
+      "sha256": "2ab676c7de31b8f775447cc70e22f02291fc150445b8db6cbdf3c0046d9d5968"
+    },
+    {
+      "path": "crates/reservoir-core/examples/language_session_fixtures.rs",
+      "sha256": "e593b280d445b6249c416f7933b0181521dfa4168f70581ae947cc80eb705f29"
+    },
+    {
+      "path": "crates/reservoir-core/examples/observatory_oracle.rs",
+      "sha256": "76f0b62eb77ad77d9736b4c2b21d4c0fc07d38ae14abc2bc0d9c8f2df8c67c12"
+    },
+    {
+      "path": "crates/reservoir-core/examples/regulation_session_fixtures.rs",
+      "sha256": "690d501976eb16eba6378bd2c096c16842906c4d7b4e5a8de4d11571e08541db"
+    },
+    {
+      "path": "crates/reservoir-core/examples/response_oracle.rs",
+      "sha256": "41abe549deb345093b280dd058574faefb9f499d1b8f41d06d8f726238f27454"
+    },
+    {
+      "path": "crates/reservoir-core/examples/session_fixtures.rs",
+      "sha256": "2d60437c83b2088bc7cc7ea1859c51df8c4dfa0f9b4360f5186435e7ba1e0585"
+    },
+    {
+      "path": "crates/reservoir-core/examples/sustained_session_fixtures.rs",
+      "sha256": "4de2289a670ef73f6b3e2770f4598ed867b94fcda8b1225a4011f5c8667980e9"
+    },
+    {
+      "path": "crates/reservoir-core/src/actions.rs",
+      "sha256": "2e5f3084fd273ed3d3cd412043238cdc68047684bd1bffd88a7afc99e9a2697c"
+    },
+    {
+      "path": "crates/reservoir-core/src/cases.rs",
+      "sha256": "74f036a9785d7607478d2989da30ed128c2fb6ff7f7992bad40d46cbf17ed626"
+    },
+    {
+      "path": "crates/reservoir-core/src/codec.rs",
+      "sha256": "6192482229710de6bf8a6377480ec891f940cf9ecd02da2f493b6e108db264ee"
+    },
+    {
+      "path": "crates/reservoir-core/src/codec_unicode_data.rs",
+      "sha256": "dbfe035749c170abbd80982c1aa18b0d72140fcc9b4d04aa762124ef1f0d28c3"
+    },
+    {
+      "path": "crates/reservoir-core/src/comparison.rs",
+      "sha256": "10a6dabf4aa92fa176fd77c8f28630c8772810055802daedfb413b0f5690c13b"
+    },
+    {
+      "path": "crates/reservoir-core/src/exploration.rs",
+      "sha256": "f13e5936aa12fddaf740567ebd83027316b53204c31b634582617fe9691afc36"
+    },
+    {
+      "path": "crates/reservoir-core/src/geometry.rs",
+      "sha256": "1af480c924d2118c38fe28dbc05cad6e7f9f958ddf5da64bf0d3832f3c141243"
+    },
+    {
+      "path": "crates/reservoir-core/src/guided_evidence.rs",
+      "sha256": "158c61d9b3c6ba4a2895de599ce520608afab0acfa58b24fb0bc7eaf8bb64a6b"
+    },
+    {
+      "path": "crates/reservoir-core/src/lib.rs",
+      "sha256": "ffd7f2b890ee153840b941fa7e8ce52695bab0160a46aaef04077d4be93090c3"
+    },
+    {
+      "path": "crates/reservoir-core/src/main.rs",
+      "sha256": "85fdac3f55d5b6b0be3b8b29361f38d961b64aec2ecb1957b2d9f007510b04f0"
+    },
+    {
+      "path": "crates/reservoir-core/src/math.rs",
+      "sha256": "845ed5f908d4b7c0765694f47b635be2b201693ce06a3ca25bcd70abe3259bc7"
+    },
+    {
+      "path": "crates/reservoir-core/src/observatory.rs",
+      "sha256": "283edad54adc2f6b01c07f8291795ca1171530e88eeac076dc1fbb1a9c9414af"
+    },
+    {
+      "path": "crates/reservoir-core/src/preparation.rs",
+      "sha256": "ab3efa3f96819003d83ee1a886af62d565406691c0cb01c22378298e54d95c08"
+    },
+    {
+      "path": "crates/reservoir-core/src/prompt_number.rs",
+      "sha256": "4ae00cd32460259ea4ac023e8fd5a7dfbf6034889ee02e3e524bb53a5ef7c6af"
+    },
+    {
+      "path": "crates/reservoir-core/src/regulation.rs",
+      "sha256": "7f2d62130bcc4875fa300e72690f48b2d8522cf738349a7ac99d5aed96548fdc"
+    },
+    {
+      "path": "crates/reservoir-core/src/response.rs",
+      "sha256": "363ec9c5004b8332c9ac8639d6706eefdd22cc1253bbebfc131100cb347f0581"
+    },
+    {
+      "path": "crates/reservoir-core/src/session.rs",
+      "sha256": "d9f15552bbf605e11e9cb2d1ebbc35c4b73b48e97110a0f3ac7dc1768bf9b706"
+    },
+    {
+      "path": "crates/reservoir-core/src/stage.rs",
+      "sha256": "4b2603b2920c5479703d5e4dc89a8fef3e178040bc21185d88b246494df53a03"
+    },
+    {
+      "path": "crates/reservoir-core/src/sustained.rs",
+      "sha256": "7ec2c0780af574ceda251fa0be841b360d73cf0dbaa4ba90e0462fb933669976"
+    },
+    {
+      "path": "crates/reservoir-core/tests/actions_conformance.rs",
+      "sha256": "b024310c0faabaa660d77f9304b4af80d04be0f99eb033e69bc980752f5bc78f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/conformance.rs",
+      "sha256": "c170adb921e4e611c462bad99f6b5c61e95f4a2af212c582360efef4d9a9681b"
+    },
+    {
+      "path": "crates/reservoir-core/tests/exploration.rs",
+      "sha256": "bb60fca8f5fab095cd2d13c9bb47245566a78202d3fb155da0921c1ea4f88868"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/ascii-codec-vectors.json",
+      "sha256": "b40c03fe500fec01280871b998fae0c5a2e08474a162e70e604c8ab9186bcdbd"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/control-transitions-u64-max.json",
+      "sha256": "a78e128640c7a14aaf7412d27b71688bb8b160b65eb3106168394733c9b6b3a1"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/empty-u64-max.json",
+      "sha256": "9a22d5f1b5ea3e2464639068fb37ab0ea15b1c0abc1a4264872f2e8391de3197"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/pulsed-forcing.json",
+      "sha256": "59f1701f1f7b88bd0e5e6fde761b98f3b6aa8ac7803c0f89cb2c24a7fee72798"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/quiet-defaults.json",
+      "sha256": "abf5639d7951c8105f71f8a21310695a12edc412d22736323423d161a6e2881f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/exploration/sensory-restarts-u64-large.json",
+      "sha256": "b984d5ed76cbe058a2c6a50d4f8e711f50a80200a9530c90686779a263c33569"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/provenance.json",
+      "sha256": "a3527c4047d3617c2f537ab8ce4480b5573cf03452921a0838b5a1aca054f5e9"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v1-real-memory-60.json",
+      "sha256": "036f536ef3128060ddbc5615136416a2cd52dece7d159ce25887fe36a60c8b97"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v1-real-observation-30.json",
+      "sha256": "d47cb0fef4c8af7a650c11e4450745fba7516425e884c4f6fa3486360fccc80d"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v2-memory-20.txt",
+      "sha256": "ab2b102ffa3dddd2f2c8d15618a5abf283037d726efd08cb42161586c9ab3e81"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v2-observation-10.txt",
+      "sha256": "681d10cc8c9c0e4018654cc4e0a157f105b7a739bc1e39bb8663e60639c24b9a"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-legacy-budget-provenance.json",
+      "sha256": "77456047a679db8f90049a154de3951d0ac5f957854ca5f9b51c27563ed60c1f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-legacy-budget-segment.json",
+      "sha256": "eef2a09b2c1e4e150aac8560f210997742203b78aa709829078657e86af0c6b0"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-memory-20.txt",
+      "sha256": "1a705d99ce490bb7a3a1bffcc3a392a9d89275bc4e9dd8c7cfbc1edb6dfdf43c"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-observation-10.txt",
+      "sha256": "70165f72ba7bbc1997cb50a78503c489a32fc378c56c3ff2345ed276e0c31378"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v3-provenance.json",
+      "sha256": "f0c34f3b69766cc232753204c22628a4c0046f40f087f690aa6ac998bc766c44"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v4-memory-20.txt",
+      "sha256": "d51753e1eddd68fd193ba46da49e6f909aaebdef328471ddf79e3b134b10c2c0"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v4-observation-10.txt",
+      "sha256": "26bae96991e12bb591ba517c46345aeac167abbbdaf79858c514a35b8986f75f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v4-provenance.json",
+      "sha256": "aa8d4e2af9a04cd8455634364481d97ce8ecc9110fa9028fb6af20f1152b980f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v5-memory-20.txt",
+      "sha256": "a828b3390d049b22faf115f74644374f2c86f74a4ac47fd806a5e69920de99fd"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v5-observation-10.txt",
+      "sha256": "5c9c1dbdb29e1058b59d23174cdab186c0aa60d76293f29bb99827b217025dd6"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v5-provenance.json",
+      "sha256": "6ce6828ed6552c65b2f2d81d5511cb1f02b431f05a00e933d8bb17b599158fba"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v6-memory-20.txt",
+      "sha256": "a18a1d6a788b6ca47830770cbfb008da98960eae20ee8653b45440141581c971"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v6-observation-10.txt",
+      "sha256": "648266e30c22980ea5eb3c589e78e79bf6217fbabe43f346cd68938dacafc16c"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v6-provenance.json",
+      "sha256": "970fc8e876bea1b7811163a886f4298918ecc11a92f400e51fa0b9e7b48b5182"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-memory-20.txt",
+      "sha256": "5b50a5f47f23143213cdbb5c16734c4114d5fe4d7de1b55ca7e190932fd4b14d"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-observation-10.txt",
+      "sha256": "c9c496cbff370681337416962c5cbf30238eb2fbb7f2d17233b7ef1c9fc6e892"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v7-provenance.json",
+      "sha256": "ec4af7aa3fe327b8350294521fceda1530b68bfecab8c3b24ccce406e6ca4708"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v8-memory-20.txt",
+      "sha256": "39bec81c44418b3782bde976e224c749567a95a479222906c64d54aa70e5b8f6"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v8-observation-10.txt",
+      "sha256": "70f34bd2ebdd9c08bbc25525371ddc0463130b800c9329583b18d7397b2bb93a"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/sustained-prompts/v8-provenance.json",
+      "sha256": "8a640ac1eedfaa8a283a6aa4f777e883aabc5bbc74ceec1525678f62541cdf04"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/swift-prompt-fixed8-v1.json",
+      "sha256": "b9e9adf11f61d93183d06630a3bd122b6d8dca8e23c5d6d96ec36523c0d695bf"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/swift-state-fields-v1.json",
+      "sha256": "5a9916c0071c50dc74be147a71790121b5f01d59d35f68558762147993252a01"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/swift-state-fields-v1.provenance.json",
+      "sha256": "0e62cc37d5c27445e3b02bac3adc5fa1df91e98d5126fd4df180c1ed4f732e62"
+    },
+    {
+      "path": "crates/reservoir-core/tests/fixtures/unicode-codec-v1.json",
+      "sha256": "f05fb75b0a29c2d4c1e28474c7e3139c5aa8f85d884757a3269840af337cbe3e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/geometry_conformance.rs",
+      "sha256": "e15aa03d5dece003e165ef0adf76159fc131c1326829c1b1ad124b516f8cab17"
+    },
+    {
+      "path": "crates/reservoir-core/tests/guided_evidence.rs",
+      "sha256": "df0a7864c15c4f9728989a969db9e2e7bb4d4c4f8902abad698bad2c0941087e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/observatory.rs",
+      "sha256": "eb3f38101bd464f8194e2c095a0ad12e2bd410b4b55ea529cf20864a66ed2598"
+    },
+    {
+      "path": "crates/reservoir-core/tests/regulation.rs",
+      "sha256": "02301b92f0046cdc8c47b4c83d40afd5abaa253eb025a007407722b3fc1d6604"
+    },
+    {
+      "path": "crates/reservoir-core/tests/response.rs",
+      "sha256": "919e4a727bd79c5315d232e71cbe010cffe86962977016bd3deee8224facab94"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session.rs",
+      "sha256": "af1e7d5cd7d5f81a2077bcfe97c51ad42e0bfe632d36bf14ca7b727dc3081122"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session_actions.rs",
+      "sha256": "943d20e69c4c0aa3643e43d06b92a81af0a5168cc566430f1233808655344976"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session_comparisons.rs",
+      "sha256": "ad8a434b07a97cd7f62bd2194be5a11c8fb9e6b23be4734d1a9f954da00b1069"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session_language.rs",
+      "sha256": "293a173c55b6e23297a0b321e37278634ec5f4a5b241e9b419bfdffc142e1dde"
+    },
+    {
+      "path": "crates/reservoir-core/tests/session_regulation.rs",
+      "sha256": "7919eda2999523d25fd49af1d919b8706a2c87388e1a53c420a0761306813603"
+    },
+    {
+      "path": "crates/reservoir-core/tests/support/check_exploration_oracles.py",
+      "sha256": "d74f099638792b284fb19f48a2306be85d9af3fd2e0bfba1cfb938de78bddb4e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/support/check_observatory_oracles.py",
+      "sha256": "091b57b9ffba79368ca8a758cbf0aefbeadb9ca07c307bb5d8532d9f06c4e01e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/support/check_regulation_oracles.py",
+      "sha256": "c7494e2a7317111df3089821f4cfc8a65e01149f3634426c3754956498c3157f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/support/check_response_oracles.py",
+      "sha256": "d1e48267b9c92bc146f8ddee6785d2659c0bbc896e54dfba03400a3c16fcc087"
+    },
+    {
+      "path": "crates/reservoir-core/tests/support/check_swift_roundtrip.py",
+      "sha256": "a8828edd12ea81cc5b708de9c50038313f451863afb37948dc84d800e478901d"
+    },
+    {
+      "path": "crates/reservoir-core/tests/support/check_unicode_action_oracles.py",
+      "sha256": "bccd1a4c7c203b803934c2ea6f42346d058a7270cf2b54050123d38517ff5c86"
+    },
+    {
+      "path": "crates/reservoir-core/tests/support/derive_unicode_codec_tables.py",
+      "sha256": "e795218846fdb02c95ad93b500847b703dab0436338e956fb8d7e5303b46799e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/support/generate_unicode_codec_oracle.py",
+      "sha256": "bb233823c11239cda5e242fdff8377dbace85f42ac14dd3cb6f68e78a15c6454"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained.rs",
+      "sha256": "894b2d89ba7cbab93da7aa871acb3948beea387fbb3c6924693c32fd49b63433"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_action_scope_prompt.rs",
+      "sha256": "91e2fd2a5c5564875734a020c10a0a9fb67748d2068a742fd17090fac94161c0"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_continuing_prompt.rs",
+      "sha256": "7ef86d0ece9b8c0a1883fd68fe87dbcfb5525ace648ef84a34f4bc91545a83b9"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_generation_budget.rs",
+      "sha256": "e5523e244ca9940d7d01c6fd16a6f0c7cc471a5bf01ea142f06df7a78b970b4f"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_measurement_meaning_prompt.rs",
+      "sha256": "74ebbcad58beafcceeb9b54eb4fa084a333ff49772a293be87c309300ae7db3e"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_measurement_reference.rs",
+      "sha256": "a6497e446bd74b18bbbbda4ff2f4ea016f1845cd8ef252871d0f62dd4ed31c78"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_prompts.rs",
+      "sha256": "7f767cc82ee3a996ed0b82d4bd90fbaf42384d942cb5616c098ca6eee8fe9467"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_provider_evidence.rs",
+      "sha256": "1ae603dc2109cf209ea7b7a9bc0bd737073f7e2bac3eebd0ec04452a3c158b03"
+    },
+    {
+      "path": "crates/reservoir-core/tests/sustained_writing_boundary_prompt.rs",
+      "sha256": "e8ecfbedd1b9c018b567a7884e29b1f6de943f8ac5f2f25614a26d59d1fd12d1"
+    },
+    {
+      "path": "crates/reservoir-core/tests/unicode_codec_conformance.rs",
+      "sha256": "f0978cac8a3d8131bc5733f71ad22cdfdacb80150b4f415b9429db0ca8f835ba"
+    },
+    {
+      "path": "crates/reservoir-core/validation/2026-10-11-exploration-oracles.json",
+      "sha256": "836e47478c0db4688cb2d5eb06cb8f38605adc59c9e0a5b2f216396ad1782eec"
+    },
+    {
+      "path": "crates/reservoir-core/validation/2026-10-11-swift-stage-roundtrip.json",
+      "sha256": "4b167b788eb4cadeb0b9f7b2cf8a426749541c35149a021634413bae36207a49"
+    },
+    {
+      "path": "crates/reservoir-core/validation/2026-10-11-unicode-actions-v1.json",
+      "sha256": "5ccbe3af41dc8319676a754eca3a15a7cbf9c821620990a6dfc0d5dca043c9c9"
+    },
+    {
+      "path": "crates/reservoir-core/validation/2026-10-11-unicode-actions-v2.json",
+      "sha256": "5740e20cd2e4746d1c26c3b582fb51ff3eb633ee03df77a4fda9c5e61def848a"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "0fa1f4e253baec5e70b157dbaed0c55a345867fb2805899b8a9add1c1f8a4a4e"
+    },
+    {
+      "path": "package.json",
+      "sha256": "321b7399c623493290e32a57c495048b18855147ac11029e1b20f68636282cc2"
+    },
+    {
+      "path": "rust-toolchain.toml",
+      "sha256": "c07cdb6cac85a9e5a7d9b832145d791c04ffb58e8e45859942363f2bffed3ebc"
+    },
+    {
+      "path": "scripts/check_action_session_conformance.py",
+      "sha256": "f169f878148fcf064fd9fffeda0f86626e459957814269f3c2cb6e6b17bb749c"
+    },
+    {
+      "path": "scripts/check_case_conformance.py",
+      "sha256": "f8990ace2304901e2d7cd68168fa48e55ed4869b7be4ab4dc71e4b52266f2260"
+    },
+    {
+      "path": "scripts/check_case_export_conformance.py",
+      "sha256": "02a8c87bf8960a841b453d372203061ff5da8e0ccda7dfa059250dd0878c168b"
+    },
+    {
+      "path": "scripts/check_controller_export.py",
+      "sha256": "5f1bcc02dfbab9e8a68f507a3dfc3dddc851c7526e10b1887cdecfc2b6b023ae"
+    },
+    {
+      "path": "scripts/check_fresh_conformance.py",
+      "sha256": "03f8a7138e2e1f06b98583f380e58b73f8a4954fb4a599a2cbc23e3c192ab3eb"
+    },
+    {
+      "path": "scripts/check_guided_conformance.py",
+      "sha256": "07b870ce2df32a9a8d1a428edfe6d590f1eb60815befc3f463465eddf36d8559"
+    },
+    {
+      "path": "scripts/check_language_session_conformance.py",
+      "sha256": "b0178316c6721befbbd0a54f04c457693e75cc49aadf40c93e5b969165aa1d36"
+    },
+    {
+      "path": "scripts/check_pair_session_conformance.py",
+      "sha256": "f1099c4db605a25e6c81f41e3ca8b2818fab7a46e58258b057611e13d19d96f1"
+    },
+    {
+      "path": "scripts/check_reference.py",
+      "sha256": "d8ac52f13d7b09c0d725c59eb3327af0cd3e18273666bc246f49f7590dcb28f3"
+    },
+    {
+      "path": "scripts/journal_quality.py",
+      "sha256": "49c13a0577829a9d7b7ebb2d7be60ff1f4139b2753f990d614dcf9332397d0ae"
+    },
+    {
+      "path": "scripts/macos_reliability.py",
+      "sha256": "326fb72a668f1cac1f32585e0b61e791a56a959b1ac0ae32560fcebd0fba5215"
+    },
+    {
+      "path": "scripts/prepare.mjs",
+      "sha256": "99032a4f1423d29a68f50376730434feeba70d0cf34d0f764ea3e02cfba625ff"
+    },
+    {
+      "path": "scripts/qualification_receipt.py",
+      "sha256": "c371184ae82c1f34314b59fc333ae2fceb0959a4997a532ed63e0cbece00e1cb"
+    },
+    {
+      "path": "scripts/reference_support.py",
+      "sha256": "d90eefb67494c98bf7ae36bc8a4324d3ed11423babbc992ff7b8d973e2447181"
+    },
+    {
+      "path": "scripts/stage_resources.py",
+      "sha256": "b5e5f23edc9e101d76f6d2813a9ec03c827b5e3e7284d82baf3b0e454a324b1a"
+    },
+    {
+      "path": "scripts/test_controller_export.py",
+      "sha256": "ff48b76d4732a3b3f377eff7f4ccddd0fe2d8e85ed845920d622b87e2a84fec3"
+    },
+    {
+      "path": "scripts/test_journal_quality.py",
+      "sha256": "12bdcea5ce7c6f2ada24e4fc4e4bb5282ce69ae25df755702c2ac6c9c3da3b2e"
+    },
+    {
+      "path": "scripts/test_macos_reliability.py",
+      "sha256": "bafb63a559d64296cedee4e2b615750bd6f6ee66e33bb17dbe9ad274a71b7125"
+    },
+    {
+      "path": "scripts/test_qualification_receipt.py",
+      "sha256": "771088956a8630640c76996e134b4b20355b258ddebf97cf6fa3ec0b19e9a46c"
+    },
+    {
+      "path": "scripts/test_reference.py",
+      "sha256": "ec819f702d5ab7633328193fd7e8ae2bb6da8f233e4572123d3d2afc1991ec2d"
+    },
+    {
+      "path": "src-tauri/Cargo.toml",
+      "sha256": "f2eff0a7f09e987d0721dad7676bb65e7ac540cd0e561e7888097f3695c1ae43"
+    },
+    {
+      "path": "src-tauri/build.rs",
+      "sha256": "403e8e7d1db6c83ba24e7ffc5153e931511df291f5146c6eccdf98658c1fcbe9"
+    },
+    {
+      "path": "src-tauri/capabilities/main.json",
+      "sha256": "30164d6d9d07d2614f3b830da4592e2fded65a2c81316a6dbda6d09b7fa0b417"
+    },
+    {
+      "path": "src-tauri/src/cases.rs",
+      "sha256": "4dc2bf996dfcf8120c20f9d676decee9cb67d4bc6117cbf0ac21c7420b02a2aa"
+    },
+    {
+      "path": "src-tauri/src/desktop_menu.rs",
+      "sha256": "120a16142ea9ddbe65cdf4b307cc7466ba8bacd19efdf96356c74c0105381f09"
+    },
+    {
+      "path": "src-tauri/src/execution_admission.rs",
+      "sha256": "c5d07cafd8e56f32dd906fd27db947124b735e2f731e3b8f962fa1398f91bb59"
+    },
+    {
+      "path": "src-tauri/src/files.rs",
+      "sha256": "79cb4f33647037631f74a22d0d7863a9cf9ab519702219935741f028cb1a4405"
+    },
+    {
+      "path": "src-tauri/src/geometry.rs",
+      "sha256": "52c84cea8c759c0527a6f688fb698133351a705c24a2bcb731c13a5e7fac740c"
+    },
+    {
+      "path": "src-tauri/src/guide.rs",
+      "sha256": "6289ace1632b6f1ed29fad26cccbfa80b778851ba0219463aee7d38162cb16ae"
+    },
+    {
+      "path": "src-tauri/src/library.rs",
+      "sha256": "e95625efadf6bc8b1907eb9cb5a15fa0819e090b2487e9ba86fee11ae1f1f825"
+    },
+    {
+      "path": "src-tauri/src/library_tests.rs",
+      "sha256": "b7ff34551e1ead9d5eaed52c824453b1cfc477eafe85be37962c3edbb0934fcb"
+    },
+    {
+      "path": "src-tauri/src/macos_lifecycle.rs",
+      "sha256": "8cd13b1e935550f0a054cabd2e79f0dda301343434c3401e2145d4de52c7c9c6"
+    },
+    {
+      "path": "src-tauri/src/macos_termination.rs",
+      "sha256": "e0de06bd278b0fa6628542cf34b2a38c0e3a3bf836851d051cedf90ca04b77a8"
+    },
+    {
+      "path": "src-tauri/src/main.rs",
+      "sha256": "c302148eeb720415d7220f3246ac28b607e59e48230358bf7bb6e60677f1a0c1"
+    },
+    {
+      "path": "src-tauri/src/model_readiness.rs",
+      "sha256": "290eac17069e1f922decd640d0037692fbcbf2be4e15777a7ac3efd682820cb3"
+    },
+    {
+      "path": "src-tauri/src/model_transport.rs",
+      "sha256": "23af2733a02092fd22521b0e8fc10eee2901b83a632adc2d137b7bf4a4112e28"
+    },
+    {
+      "path": "src-tauri/src/model_transport_tests.rs",
+      "sha256": "49e9ec1e07c871e1478934d3cc171e7354b40df8d0488240c2bac6ce7b34287a"
+    },
+    {
+      "path": "src-tauri/src/observatory.rs",
+      "sha256": "c51f98ef686c8efbedd6f62e37f06e3e21abd8bbcf645479c00eb88184b577c8"
+    },
+    {
+      "path": "src-tauri/src/observatory_tests.rs",
+      "sha256": "fae548add7d8bc5f07afbbcd09ab61d38a77beb84747022f1090e1c72bdf144f"
+    },
+    {
+      "path": "src-tauri/src/preparation.rs",
+      "sha256": "73a2309c6bd1bf64840a46f0bbbf48730ffeb583d63236dd97dca16586bdb9a9"
+    },
+    {
+      "path": "src-tauri/src/records.rs",
+      "sha256": "83a6431137a718a3442f35c9e2636d2c8cd4fc06b321370e817b3ae2d7ef096f"
+    },
+    {
+      "path": "src-tauri/src/resources.rs",
+      "sha256": "baff6405e42a8439d64e728fd97d2ae8642dec2d6715a9f402d5deebc1f78868"
+    },
+    {
+      "path": "src-tauri/src/response.rs",
+      "sha256": "c686ace39c15bed3f4e3d8d3e6750f2fec608e1d33414593408496a8cc08d1eb"
+    },
+    {
+      "path": "src-tauri/src/response_commands.rs",
+      "sha256": "2beecd570f2b8e4a8f4d9a11d3aac6437061d05cda918bf36667c0121ea3c693"
+    },
+    {
+      "path": "src-tauri/src/response_tests.rs",
+      "sha256": "abc3d86ee9574c3ee55cc8dad70eb8d5a1513464285651ad78f3fd70a68b18c6"
+    },
+    {
+      "path": "src-tauri/src/run_activity.rs",
+      "sha256": "4df9ec30f8019260ff06ade596ccb514ff9dc6c80efb176b9dd4088c2a44970a"
+    },
+    {
+      "path": "src-tauri/src/session_commands.rs",
+      "sha256": "7fc31c92aa71132ea90002766144ec554047982af4e22d9abe9c3dc8a1a10f3e"
+    },
+    {
+      "path": "src-tauri/src/session_store.rs",
+      "sha256": "a5ea1bf91fc3b45f32d9852db0206d53aabd2b39890800ed387e1be7a1c96c88"
+    },
+    {
+      "path": "src-tauri/src/sessions.rs",
+      "sha256": "874be434fbfc6b7dc77681ff2d868d749557b6c72472420a5c55e9314423387b"
+    },
+    {
+      "path": "src-tauri/src/sessions_tests.rs",
+      "sha256": "7bf63806b644aed18f61504213bbf54a9b21fec30fb3e960a24037cd4549014f"
+    },
+    {
+      "path": "src-tauri/src/sustained.rs",
+      "sha256": "5399ac3d9faf9fcd291dcc6dd176f80c7cd712bc489e6969bfcf621a084223c8"
+    },
+    {
+      "path": "src-tauri/src/sustained_commands.rs",
+      "sha256": "483e034cbfed12c4e88f430dcb8547c45130a8449681a4775c228a2bd571bfde"
+    },
+    {
+      "path": "src-tauri/src/sustained_prompt_evidence_tests.rs",
+      "sha256": "983b3cacd436ae3689091e342c472fbe60c84023035529ad13fead873a5495ce"
+    },
+    {
+      "path": "src-tauri/src/sustained_quota_tests.rs",
+      "sha256": "88d638b51067f2ac7f0ad38af7ecc14049749e04c174f03e55473f030c1a600c"
+    },
+    {
+      "path": "src-tauri/src/sustained_store.rs",
+      "sha256": "cc3a18469733b975eb0aafc03d41270619e88f6b64eefbcb7a40a91df09b2ef4"
+    },
+    {
+      "path": "src-tauri/src/sustained_tests.rs",
+      "sha256": "62b5cedd61bb22ea57429215ee5c58703656b25dbb51be5ee89cf7861c7ada8c"
+    },
+    {
+      "path": "src-tauri/tauri.conf.json",
+      "sha256": "b54ecc5df8cd96f8999794d5d400e22e96d62d1e5b4563b06fe6bfb3b88a9805"
+    }
+  ],
+  "sourceUnchanged": true,
+  "endedAtUtc": "2026-10-15T21:47:54.577291+00:00"
+}

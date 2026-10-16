@@ -1,0 +1,170 @@
+{
+  "schema": "reservoir-observatory-main-process-v1-analysis",
+  "measurementOnly": true,
+  "windows": [
+    {
+      "phase": "visible-idle",
+      "source": "operator-declared",
+      "fromMonotonicNs": "1297880602037291",
+      "toMonotonicNs": "1297965095612791",
+      "closed": true,
+      "declaredSeconds": 84.4935755,
+      "sampleCount": 17,
+      "metrics": {
+        "rssBytes": {
+          "count": 17,
+          "minimum": 124551168,
+          "median": 125157376,
+          "maximum": 125190144
+        },
+        "threadCount": {
+          "count": 17,
+          "minimum": 20,
+          "median": 21,
+          "maximum": 22
+        },
+        "fdCount": {
+          "count": 17,
+          "minimum": 13,
+          "median": 13,
+          "maximum": 13
+        }
+      },
+      "cpuIntervalCount": 16,
+      "cpuCoveredSeconds": 80.066608208,
+      "cpuWeightedPercent": 0.004507028686197598
+    },
+    {
+      "phase": "playback",
+      "source": "operator-declared",
+      "fromMonotonicNs": "1298042963210833",
+      "toMonotonicNs": "1298112498447125",
+      "closed": true,
+      "declaredSeconds": 69.535236292,
+      "sampleCount": 13,
+      "metrics": {
+        "rssBytes": {
+          "count": 13,
+          "minimum": 125222912,
+          "median": 125288448,
+          "maximum": 125370368
+        },
+        "threadCount": {
+          "count": 13,
+          "minimum": 22,
+          "median": 22,
+          "maximum": 22
+        },
+        "fdCount": {
+          "count": 13,
+          "minimum": 13,
+          "median": 13,
+          "maximum": 13
+        }
+      },
+      "cpuIntervalCount": 12,
+      "cpuCoveredSeconds": 60.044864291,
+      "cpuWeightedPercent": 3.040868726342809
+    },
+    {
+      "phase": "minimized",
+      "source": "operator-declared",
+      "fromMonotonicNs": "1298157918262416",
+      "toMonotonicNs": "1298229081093250",
+      "closed": true,
+      "declaredSeconds": 71.162830834,
+      "sampleCount": 14,
+      "metrics": {
+        "rssBytes": {
+          "count": 14,
+          "minimum": 99172352,
+          "median": 110886912.0,
+          "maximum": 111722496
+        },
+        "threadCount": {
+          "count": 14,
+          "minimum": 20,
+          "median": 21.0,
+          "maximum": 21
+        },
+        "fdCount": {
+          "count": 14,
+          "minimum": 13,
+          "median": 13.0,
+          "maximum": 13
+        }
+      },
+      "cpuIntervalCount": 13,
+      "cpuCoveredSeconds": 65.047329292,
+      "cpuWeightedPercent": 0.0024651926796281478
+    },
+    {
+      "phase": "restored-idle",
+      "source": "operator-declared",
+      "fromMonotonicNs": "1298289272793708",
+      "toMonotonicNs": "1298353968592333",
+      "closed": true,
+      "declaredSeconds": 64.695798625,
+      "sampleCount": 13,
+      "metrics": {
+        "rssBytes": {
+          "count": 13,
+          "minimum": 99844096,
+          "median": 102662144,
+          "maximum": 103153664
+        },
+        "threadCount": {
+          "count": 13,
+          "minimum": 20,
+          "median": 21,
+          "maximum": 21
+        },
+        "fdCount": {
+          "count": 13,
+          "minimum": 13,
+          "median": 13,
+          "maximum": 13
+        }
+      },
+      "cpuIntervalCount": 12,
+      "cpuCoveredSeconds": 60.0445305,
+      "cpuWeightedPercent": 0.0028528143791548173
+    }
+  ],
+  "sampleCount": 121,
+  "footer": {
+    "type": "footer",
+    "status": "completed",
+    "wallUtc": "2026-10-15T22:07:54.889205+00:00",
+    "monotonicNs": "1298452374072583",
+    "sampleCount": 121,
+    "finalExecutableSha256": "788b636ec898f9863e146e7dfe67c380910ae38943b0b178f6e22b8e8d794051",
+    "errors": []
+  },
+  "issues": [],
+  "allSampleErrors": [],
+  "limitations": [
+    "Only the explicit main PID; WebKit/render helpers, model processes and GPU are excluded.",
+    "No GPU utilization, energy, thermals, frame latency or total application footprint is measured.",
+    "CPU is task time / monotonic interval; 100 percent means one CPU core. RSS is not a leak diagnosis.",
+    "Window states and draw counters are separate operator observations, not inferred by this sampler.",
+    "Minimizing intentionally pauses recorded playback; minimized and playback phases are different workloads.",
+    "Short descriptive samples do not qualify endurance, other operating systems or minimum hardware.",
+    "CPU excludes crossing intervals, unclosed phases and intervals over 7.5 s. Missing samples are not zero CPU."
+  ],
+  "input": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/main-process-samples-01.jsonl",
+    "bytes": 58494,
+    "sha256": "ed313736f1dd8c538d3d8c0361f4a3435b5fd33854e4dde4acbecf5a6e208c1b"
+  },
+  "markers": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/resource-markers-01.jsonl",
+    "bytes": 2153,
+    "sha256": "ffe0be393f82af2f639d7b0cc5c1022c7e76136c4e789e8c198057cc09c7f9e4"
+  },
+  "analyzer": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/sample_owned_app.py",
+    "bytes": 14685,
+    "sha256": "bf1a6092a30f5a23334f663c56c875d2dd6d317eaed540778fb3fa766cb1d314"
+  }
+}

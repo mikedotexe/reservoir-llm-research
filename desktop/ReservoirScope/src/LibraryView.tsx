@@ -1,16 +1,15 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { errorText } from './api';
 import { libraryApi } from './libraryApi';
 import { DEFAULT_LIBRARY_QUERY, type LibraryCoverage, type LibraryEntry, type LibraryPage, type LibraryQuery } from './libraryTypes';
 import { entryCanOpen, LIBRARY_ROW_HEIGHT, libraryDate, libraryHealth, visibleLibraryRows } from './libraryViewModel';
 import type { OpenRecordResult } from './types';
 import './library.css';
-import PreparationHistory from './PreparationHistory';
 
 let sequence = 0;
 const requestId = () => `library-${++sequence}`;
 
-export default function LibraryView({ active, onOpen, onOpenExample }: { active: boolean; onOpenExample?: (id:string)=>void; onOpen: (result: OpenRecordResult) => void }) {
+export default function LibraryView({ active, onOpen, onPreparationHistory }: { active: boolean; onPreparationHistory?: () => void; onOpen: (result: OpenRecordResult) => void }) {
   const [query, setQuery] = useState<LibraryQuery>({ ...DEFAULT_LIBRARY_QUERY });
   const [page, setPage] = useState<LibraryPage | null>(null);
   const [coverage, setCoverage] = useState<LibraryCoverage | null>(null);
@@ -24,6 +23,7 @@ export default function LibraryView({ active, onOpen, onOpenExample }: { active:
   const [selected, setSelected] = useState<LibraryEntry | null>(null);
   const [scrollTop, setScrollTop] = useState(0);
   const viewport = useRef<HTMLDivElement>(null);
+  const lastLoadedQuery = useRef<LibraryQuery | null>(null);
   const requestGeneration = useRef(0);
   const openGeneration = useRef(0);
   const alive = useRef(true);
@@ -39,7 +39,8 @@ export default function LibraryView({ active, onOpen, onOpenExample }: { active:
       void libraryApi.query(query).then(result => {
         if (!alive.current || generation !== requestGeneration.current) return;
         setPage(result); setCoverage(result.coverage); setQueryProblem(''); setLoading(false);
-        setScrollTop(0); if (viewport.current) viewport.current.scrollTop = 0;
+        if (lastLoadedQuery.current !== query) setScrollTop(0);
+        lastLoadedQuery.current = query;
       }).catch(error => {
         if (!alive.current || generation !== requestGeneration.current) return;
         setQueryProblem(errorText(error)); setLoading(false);
@@ -47,6 +48,10 @@ export default function LibraryView({ active, onOpen, onOpenExample }: { active:
     }, 180);
     return () => { window.clearTimeout(timer); requestGeneration.current++; };
   }, [active, query, revision]);
+
+  useLayoutEffect(() => {
+    if (active && viewport.current) viewport.current.scrollTop = scrollTop;
+  }, [active, page, scrollTop]);
 
   useEffect(() => {
     if (!scanning) return;
@@ -108,19 +113,20 @@ export default function LibraryView({ active, onOpen, onOpenExample }: { active:
   const visible = visibleLibraryRows(entries.length, scrollTop, 570);
   const shown = entries.slice(visible.first, visible.last);
   return <section className="library-workspace" aria-labelledby="library-title">
-    <div className="library-heading"><div><span className="eyebrow">LIBRARY · LOCAL RECORDINGS</span><h1 id="library-title">A place for your experiments.</h1><p>Read bundled examples or explicitly import a verified copy. Opening an entry never runs a model.</p></div><button className="primary-button" disabled={working || scanning} onClick={() => void importRecord()}>Import recording…</button></div>
-    <div className="library-tools"><button disabled={working || scanning} onClick={() => void refresh(false)}>Refresh</button><button disabled={working || scanning} onClick={() => void refresh(true)}>Rebuild index</button>{scanning && <button onClick={() => void libraryApi.cancel().then(setCoverage).catch(error => setProblem(errorText(error)))}>Stop scan</button>}<label className="library-search">Search metadata<input type="search" value={query.text} maxLength={4096} placeholder="Title, file, stage, model, seed or identity" onChange={event => filter({ text: event.target.value })} /></label></div>
+    <div className="library-heading"><div><h1 id="library-title">Library</h1><p>Included examples and your saved recordings. Import adds a verified copy; opening a recording never runs a model.</p></div><button className="primary-button" disabled={working || scanning} onClick={() => void importRecord()}>Import recording…</button></div>
+    <div className="library-tools"><button disabled={working || scanning} onClick={() => void refresh(false)}>Refresh</button><button disabled={working || scanning} onClick={() => void refresh(true)}>Rebuild index</button>{scanning && <button onClick={() => void libraryApi.cancel().then(setCoverage).catch(error => setProblem(errorText(error)))}>Stop scan</button>}<label className="library-search">Search recordings<input type="search" value={query.text} maxLength={4096} placeholder="Title, file, stage, model, seed or ID" aria-describedby="library-search-scope" onChange={event => filter({ text: event.target.value })} /></label></div>
+    <p id="library-search-scope" className="library-order">Search covers recording details, not journal text.</p>
     <div className="library-filters">
       <Filter label="Origin" value={query.origin} values={['all', 'bundled', 'managed', 'created']} onChange={origin => filter({ origin })} />
-      <Filter label="Family" value={query.family} values={['all', 'stage', 'actions', 'exploration', 'regulation', 'unknown']} onChange={family => filter({ family })} />
-      <Filter label="Recorded route" value={query.source} values={['all', 'scripted', 'model', 'fixedReplay', 'numerical', 'unknown']} onChange={source => filter({ source })} />
+      <Filter label="Experiment type" value={query.family} values={['all', 'stage', 'actions', 'exploration', 'regulation', 'unknown']} onChange={family => filter({ family })} />
+      <Filter label="Recorded source" value={query.source} values={['all', 'scripted', 'model', 'fixedReplay', 'numerical', 'unknown']} onChange={source => filter({ source })} />
       <Filter label="Outcome" value={query.outcome} values={['all', 'completed', 'stopped', 'failed', 'snapshot', 'unknown']} onChange={outcome => filter({ outcome })} />
       <label><input type="checkbox" checked={query.recentOnly} onChange={event => filter({ recentOnly: event.target.checked })} />Recently opened</label>
       <label><input type="checkbox" checked={query.diagnosticsOnly} onChange={event => filter({ diagnosticsOnly: event.target.checked })} />Needs attention</label>
     </div>
-    <div className={`library-coverage ${coverage?.complete ? 'complete' : ''}`} role="status"><strong>{scanning ? 'Scan in progress' : coverage?.complete ? 'Last scan complete' : 'Coverage incomplete'}</strong><span>{coverage?.message ?? 'Waiting for the desktop Library.'}</span>{coverage && <small>{coverage.examined.toLocaleString()} directory entries examined · {coverage.indexed.toLocaleString()} indexed · {coverage.diagnosticCount.toLocaleString()} diagnostics{coverage.finishedAtMs !== null ? ` · ${libraryDate(coverage.finishedAtMs)}` : ''}</small>}</div>
+    <div className={`library-coverage ${coverage?.complete ? 'complete' : ''}`} role="status"><strong>{scanning ? 'Scanning the Library…' : coverage?.complete ? 'Last scan complete' : 'Library scan incomplete'}</strong><span>{coverage?.message ?? 'Waiting for the Library.'}</span>{coverage && <small>{coverage.examined.toLocaleString()} directory entries examined · {coverage.indexed.toLocaleString()} indexed · {coverage.diagnosticCount.toLocaleString()} diagnostics{coverage.finishedAtMs !== null ? ` · ${libraryDate(coverage.finishedAtMs)}` : ''}</small>}</div>
     {message && <p role="status">{message}</p>}{(problem || queryProblem) && <div className="library-error" role="alert">{[problem,queryProblem].filter(Boolean).join("\n")}<p>Previous results remain visible. An index error does not erase saved recordings.</p></div>}
-    <div className="library-results-heading"><h2>{query.recentOnly ? 'Recently opened' : 'Recordings'}</h2><span>{loading ? 'Loading metadata…' : page ? `${page.total.toLocaleString()} matching entries` : 'No completed query'}</span></div>
+    <div className="library-results-heading"><h2>{query.recentOnly ? 'Recently opened' : 'Recordings'}</h2><span>{loading ? 'Loading recordings…' : page ? `${page.total.toLocaleString()} matching entries` : 'No results loaded'}</span></div>
     <p className="library-order">Bundled examples follow the authored catalog order. Managed recordings use local save/import time, then stable identity. Dates here are local bookkeeping, not authenticated experiment time.</p>
     {entries.length > 0 ? <div className="library-viewport" ref={viewport} tabIndex={0} role="region" aria-label="Recording results. Scroll for more rows; use next page for more results." onScroll={event => setScrollTop(event.currentTarget.scrollTop)}>
       <div style={{ height: entries.length * LIBRARY_ROW_HEIGHT, position: 'relative' }}>
@@ -133,9 +139,9 @@ export default function LibraryView({ active, onOpen, onOpenExample }: { active:
       </div>
     </div> : <div className="library-no-results">{page ? page.coverage.complete ? 'No entries match these filters.' : 'No indexed entries match yet. Coverage is incomplete; refresh before treating this as an empty Library.' : 'The Library has not returned a usable index. Check the diagnostic above.'}</div>}
     <nav className="library-pagination" aria-label="Library pages"><button disabled={loading || query.offset === 0} onClick={() => setQuery(current => ({ ...current, offset: Math.max(0, current.offset - current.limit) }))}>Previous page</button><span>{page ? `${page.total === 0 ? 0 : page.offset + 1}–${Math.min(page.offset + page.entries.length, page.total)} of ${page.total}` : 'Not loaded'}</span><button disabled={loading || !page?.hasMore} onClick={() => setQuery(current => ({ ...current, offset: current.offset + current.limit }))}>Next page</button></nav>
-    {selected && <section className="library-detail" aria-label="Selected recording metadata"><button onClick={() => setSelected(null)}>Close details</button><h2>{selected.title}</h2><p>{libraryHealth(selected)}</p>{selected.diagnostic && <p className="library-error">{selected.diagnostic}</p>}<dl>{Object.entries({ Filename: selected.filename, Format: selected.format, 'Library identity': selected.id, 'SHA-256': selected.sha256 ?? 'Unknown', 'Embedded ID': selected.embeddedId ?? 'Not recorded', Seed: selected.seed ?? 'Unknown', 'Recorded route': selected.source, 'Configured backend': selected.backend, 'Configured model': selected.model, Outcome: selected.outcome, 'Local save/import': libraryDate(selected.savedAtMs), 'Last opened': libraryDate(selected.lastOpenedAtMs) }).map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></section>}
-    <details className="library-storage"><summary>Storage and recovery</summary><p>Original recordings are separate from the rebuildable SQLite index. Import verifies a bounded snapshot and preserves exact bytes. Search covers metadata; journal-body search is not included. Recorded route describes retained turn/request metadata, not authenticated provider activity. Fixed replay is separate from a configured model; records without turn/request evidence have an unknown route.</p><p>Refresh inspects only this application’s managed files and immutable bundled catalog. Unsupported, missing or unreadable entries stay visible with diagnostics. Rebuild preserves scientific files and archives the old index.</p><code>{page?.storagePath ?? 'App-specific local Library path unavailable'}</code></details>
-    <PreparationHistory active={active} onOpenExample={onOpenExample}/>
+    {selected && <section className="library-detail" aria-label="Selected recording metadata"><button onClick={() => setSelected(null)}>Close details</button><h2>{selected.title}</h2><p>{libraryHealth(selected)}</p>{selected.diagnostic && <p className="library-error">{selected.diagnostic}</p>}<dl>{Object.entries({ Filename: selected.filename, Format: selected.format, 'Library identity': selected.id, 'SHA-256': selected.sha256 ?? 'Unknown', 'Embedded ID': selected.embeddedId ?? 'Not recorded', Seed: selected.seed ?? 'Unknown', 'Recorded source': selected.source, 'Configured backend': selected.backend, 'Configured model': selected.model, Outcome: selected.outcome, 'Local save/import': libraryDate(selected.savedAtMs), 'Last opened': libraryDate(selected.lastOpenedAtMs) }).map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></section>}
+    <details className="library-storage"><summary>Storage and recovery</summary><p>Original recordings are separate from the rebuildable SQLite index. Import verifies a bounded snapshot and preserves exact bytes. Search covers metadata; journal-body search is not included. Recorded source describes retained turn/request metadata, not authenticated provider activity. Fixed replay is separate from a configured model; records without turn/request evidence have an unknown source.</p><p>Refresh inspects only this application’s managed files and immutable bundled catalog. Unsupported, missing or unreadable entries stay visible with diagnostics. Rebuild preserves scientific files and archives the old index.</p><code>{page?.storagePath ?? 'App-specific local Library path unavailable'}</code></details>
+    {onPreparationHistory && <section className="library-history"><h2>Preparation history</h2><p>Read the original attempts, correction and later retry together.</p><button onClick={onPreparationHistory}>Open preparation history in Observatory</button></section>}
   </section>;
 }
 function Filter({ label, value, values, onChange }: { label: string; value: string; values: string[]; onChange: (value: string) => void }) {

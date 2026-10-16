@@ -32,6 +32,13 @@ describe('Observatory workspace boundaries',()=>{
     expect(html).toContain('per-row timestamps and paired fill are unavailable');expect(html).toContain('Exact values without 3D');
     expect(html).not.toContain('<svg');expect(html).not.toContain('<canvas');
   });
+  it('routes directly to preparation without opening recordings or response graphics',()=>{
+    const html=renderToStaticMarkup(createElement(ObservatoryWorkspace,{active:true,view:'preparation'}));
+    expect(html).toContain('<button aria-current="page">Preparation history</button>');
+    expect(html.match(/class="preparation-history"/g)).toHaveLength(1);
+    expect(html).not.toContain('per-row timestamps and paired fill are unavailable');
+    expect(html).not.toContain('<canvas'); expect(html).not.toContain('<svg');
+  });
   it('renders no hidden workspace graphics',()=>{
     const html=renderToStaticMarkup(createElement(ObservatoryWorkspace,{active:false}));
     expect(html).toContain('hidden');expect(html).not.toContain('<canvas');expect(html).not.toContain('<svg');expect(html).not.toContain('<button');

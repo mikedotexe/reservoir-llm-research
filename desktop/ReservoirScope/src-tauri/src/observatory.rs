@@ -47,6 +47,24 @@ pub struct TrackSummary {
     pub missingness: Vec<String>,
     pub definitions: BTreeMap<String, String>,
     pub bands: Option<ReferenceBands>,
+    pub state_reference: Option<StateReference>,
+}
+/// Static full-capture statistics; never a per-row or sensory spectrum.
+#[derive(Clone, Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct StateReference {
+    pub rows: usize,
+    pub dimensions: usize,
+    pub retained_mode_count: usize,
+    pub covariance_denominator: usize,
+    pub eigenvalues: Vec<f64>,
+    pub explained_variance_ratio: Vec<f64>,
+    pub retained_fraction: f64,
+    pub omitted_fraction: f64,
+    pub total_sample_variance: f64,
+    pub fit_scope: Option<String>,
+    pub frozen: Option<bool>,
+    pub source_identity: String,
 }
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -90,6 +108,7 @@ pub struct StateFrame {
     pub projected_rms: f64,
     pub reconstruction_rmse: f64,
     pub source_identity: String,
+    pub fields: evidence::StateFields,
 }
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -467,6 +486,7 @@ fn frame(capture: &Capture, track: &str, index: usize) -> Result<ObservatoryFram
                     projected_rms: s.projected_rms,
                     reconstruction_rmse: s.reconstruction_rmse,
                     source_identity: format!("capture:{}:row:{index}", r.manifest.source_sha256),
+                    fields: r.fields(index).map_err(core_error)?,
                 }),
             })
         }
@@ -513,6 +533,7 @@ fn load_history(root: &Path) -> Result<(HistoricalEvidence, TrackSummary), AppEr
         missingness,
         definitions: h.definitions.clone().unwrap_or_default(),
         bands: Some(h.bands.clone()),
+        state_reference: None,
     };
     Ok((h, summary))
 }
@@ -531,6 +552,8 @@ fn load_states(root: &Path) -> Result<(StateReplay, TrackSummary), AppError> {
         "1024-row capture limit; oldest-to-newest retained row order. Capture time observes the file and is not a timestamp for any row.".into(),
         "Coordinate indices preserve recorded order. Any drawn node positions are a display arrangement, not authenticated neuron locations.".into(),
         "PCA coordinates and distances are retained derived geometry bound to these exact activation bytes. The frozen basis was fitted retrospectively to the full capture; this reader does not refit it or infer online availability.".into(),
+        "Reference fields are recomputed in Float64 from exact decoded Float32 activations and the frozen mean/basis. Existing pc/RMS values remain retained geometry metadata; recomputed scores/energies are separately named.".into(),
+        "The 128-value state spectrum is the full-capture centered sample covariance spectrum (denominator rows minus one), constant across replay. It is not a sensory spectrum, an instantaneous state spectrum or recurrent-weight eigenvalues; only three component vectors are retained.".into(),
         "Validation checks resource identity, binary/schema bounds, finite values and internal hash bindings. It does not regenerate the live recurrent engine or establish causal effects.".into(),
     ];
     if let Some(limitation) = r
@@ -555,6 +578,9 @@ fn load_states(root: &Path) -> Result<(StateReplay, TrackSummary), AppError> {
         ("activation".into(),"Retained native ESN state coordinate in −1…1; no language-model activation or neuron location is inferred.".into()),
         ("pc".into(),"Three retained projection coordinates in the retrospective frozen PCA basis, not three observed physical axes.".into()),
         ("state_rms".into(),"Retained RMS of the original 128-coordinate row; distinct from sensory fill.".into()),
+        ("deviation".into(),"Activation minus the full-capture reference mean; fixed display scale −2…2.".into()),
+        ("reconstruction".into(),"Selected frozen-mode contribution to mean-centered activation, without adding the mean; fixed display scale −2…2.".into()),
+        ("residual".into(),"Mean-centered activation minus the selected contribution; omitted by that selection, not a causal or prediction error.".into()),
     ]);
     let summary = TrackSummary {
         id: "states".into(),
@@ -572,6 +598,20 @@ fn load_states(root: &Path) -> Result<(StateReplay, TrackSummary), AppError> {
         missingness,
         definitions,
         bands: None,
+        state_reference: Some(StateReference {
+            rows: r.geometry.pca.rows,
+            dimensions: r.geometry.pca.dimensions,
+            retained_mode_count: r.geometry.pca.components.len(),
+            covariance_denominator: r.geometry.pca.covariance_denominator,
+            eigenvalues: r.geometry.pca.eigenvalues.clone(),
+            explained_variance_ratio: r.geometry.pca.explained_variance_ratio.clone(),
+            retained_fraction: r.geometry.pca.retained_fraction,
+            omitted_fraction: r.geometry.pca.omitted_fraction,
+            total_sample_variance: r.geometry.pca.total_sample_variance,
+            fit_scope: r.geometry.pca.fit_scope.clone(),
+            frozen: r.geometry.pca.frozen,
+            source_identity: r.manifest.geometry_sha256.clone(),
+        }),
     };
     Ok((r, summary))
 }

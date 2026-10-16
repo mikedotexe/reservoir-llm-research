@@ -1,0 +1,148 @@
+{
+  "schema": "reservoir-journal-first-closeout-v1",
+  "capturedAtUtc": "2026-10-16T01:27:55.003486+00:00",
+  "passed": true,
+  "version": "0.25.0",
+  "promptVersion": "reservoir-journal-v8",
+  "checks": {
+    "frontendInputAndLogIdentitiesUnchanged": true,
+    "rust164InputReuseStillExact": true,
+    "rustChecksRerun": false,
+    "currentPackageArchiveAndPinExact": true,
+    "prior024SourcePackageArchiveAndPinPreserved": true,
+    "uiSessionAndBoundReceiptsStillExact": true,
+    "ownedPidAbsent": true,
+    "gitDiffCheckPassed": true
+  },
+  "onlyPostBuildInventoryChanges": [
+    "desktop/ReservoirScope/README.md",
+    "desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+    "desktop/ReservoirScope/STATUS.md",
+    "shared/reservoir-scope/PARITY.md"
+  ],
+  "documents": [
+    {
+      "path": "README.md",
+      "kind": "file",
+      "bytes": 2110,
+      "sha256": "488fc6a4d03e8d8345a05beee479a4497365c048fa10dd39a6c7ff5406cec0d6"
+    },
+    {
+      "path": "TAURI-ROADMAP.md",
+      "kind": "file",
+      "bytes": 67159,
+      "sha256": "f5c1e216791fb1912ccc6804f25efcb67755ab72fe7a6c3071282347f6b5d060"
+    },
+    {
+      "path": "shared/reservoir-scope/PARITY.md",
+      "kind": "file",
+      "bytes": 21981,
+      "sha256": "002d455ce31db060d4181f42376adb8f387384406ddba4f2a276bbd841a7be75"
+    },
+    {
+      "path": "desktop/ReservoirScope/README.md",
+      "kind": "file",
+      "bytes": 19909,
+      "sha256": "71a96d38bfc16aa899fc03ea6965c26ff088d6cb77991d37e66f8890c5a68ebd"
+    },
+    {
+      "path": "desktop/ReservoirScope/STATUS.md",
+      "kind": "file",
+      "bytes": 19620,
+      "sha256": "eb69c68821672c5f36e567d9f6a7126e85f3ecaeb37d06563ccf4f87fa36c9e9"
+    },
+    {
+      "path": "desktop/ReservoirScope/RESEARCH-LANGUAGE.md",
+      "kind": "file",
+      "bytes": 8431,
+      "sha256": "09e3bab931fc22ad696b3a8d33076c01cbf8862b4282a021411ae499cde8ff1a"
+    },
+    {
+      "path": "desktop/ReservoirScope/GETTING-STARTED.md",
+      "kind": "file",
+      "bytes": 7240,
+      "sha256": "9d590681264499a7a37fe34bda59f4216dd7b84aa7cf014cc5f0cf7fb30b605f"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-15-journal-first-0.25.0/README.md",
+      "kind": "file",
+      "bytes": 4835,
+      "sha256": "c7e3e32baf0d279788b9558297e4bed626f43c8b5c27078f39b66f218672b7ef"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-15-journal-first-0.25.0/MACOS-UI.md",
+      "kind": "file",
+      "bytes": 4643,
+      "sha256": "59f5db17f8f40b47630a2ea5dc8622e104dd11c595852c7a26626a988ad657ae"
+    }
+  ],
+  "receipts": [
+    {
+      "path": "prior-preservation-01.json",
+      "kind": "file",
+      "bytes": 87845,
+      "sha256": "533b516ffc16f5f6819fef78a3b3f3a43a453034ff30fefb35a8b855b3216c1c"
+    },
+    {
+      "path": "frontend-checks-01.json",
+      "kind": "file",
+      "bytes": 17395,
+      "sha256": "4a552d85606b797c23648277f800303b8dc616cb36842f46fae1419629245f12"
+    },
+    {
+      "path": "package-build-01.json",
+      "kind": "file",
+      "bytes": 175746,
+      "sha256": "69195db7aba96d482cba5366380bc2dd3d3e013804bf3f49ac51b955422daa96"
+    },
+    {
+      "path": "archive-check-01.json",
+      "kind": "file",
+      "bytes": 12695,
+      "sha256": "59daf049e87b3c8cb50fc76c39f8f20627317926ebcf29bcb58ceb5f2c58a5ef"
+    },
+    {
+      "path": "qualification-before-ui-01.json",
+      "kind": "file",
+      "bytes": 100808,
+      "sha256": "02fe22ee991c24cc0015ee495872cb1badd7eb1d9a265fb5acdb934cb01bf521"
+    },
+    {
+      "path": "ui-plan-01.json",
+      "kind": "file",
+      "bytes": 1447,
+      "sha256": "55582bb8edfedf8e0e139491e5530d744c010cb7cf7103ac52a3ca50dfdf0f06"
+    },
+    {
+      "path": "ui-launch-01.json",
+      "kind": "file",
+      "bytes": 1009,
+      "sha256": "a30669528bdaf39149cf57552f631a60e3075799caad3c65054d8acd49d28008"
+    },
+    {
+      "path": "ui-close-01.json",
+      "kind": "file",
+      "bytes": 798,
+      "sha256": "10ae0df0bbd390ffe6c7231ef0bee7e8ee7de440dc7fd201a7a9c65cab3a28fa"
+    },
+    {
+      "path": "ui-session-check-01.json",
+      "kind": "file",
+      "bytes": 16909,
+      "sha256": "b8c2f85f814b6a453a843b49b918e646e6a345bbabcaecc33b4d7b7a706152bc"
+    },
+    {
+      "path": "package-failure-01.json",
+      "kind": "file",
+      "bytes": 95,
+      "sha256": "02867378e3a3d9933c5b3192774b734b861656ff496ef942eb22bb0deaf064e6"
+    },
+    {
+      "path": "package-failure-02.json",
+      "kind": "file",
+      "bytes": 350,
+      "sha256": "f6e55e3319e1fd537ecf811ea6e8a663a75b80a6ef4daeb8b23e7fd9a1662e51"
+    }
+  ],
+  "scope": "Fresh frontend/build/scoped native UI and same-build scripted replay. Reused exact-input Rust evidence. No real model, export/restore, compact native geometry, GPU/resource/endurance, other-platform or human-acceptance claim."
+}

@@ -1,0 +1,88 @@
+{
+  "schema": "reservoir-compact-reading-preparation-v1",
+  "createdUtc": "2026-10-16T00:17:52.771257+00:00",
+  "scope": "Authorized old-package/current-source preservation plus helper copies and syntax inspection only. No frontend/Rust tests, build, app launch, process probe, provider or model calls.",
+  "priorHelpers": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/checks_common.py",
+      "bytes": 6619,
+      "sha256": "c8381ca0a9a614f08dc2e2d553c17481f3f2be27d55fc109c2f87d4e48689f92"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/run_frontend_checks.py",
+      "bytes": 2502,
+      "sha256": "753b5480c4efd455e1c92e731539e291da4c521bfe54a13471e8d1b725bda43b"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/build_package.py",
+      "bytes": 9627,
+      "sha256": "bc958f9ae3f41071d889700f7b9c0e935d8e8f0f38cfce4d04add2523c708c9f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/launch_ui.py",
+      "bytes": 2533,
+      "sha256": "a472284da8282d6ba1c6cd0d77901f2578335ae408c0569d7cc03fd63eb18edd"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/postbuild_review.py",
+      "bytes": 15487,
+      "sha256": "7e794b1c35931b0d4891d11f31821fcc44b93817555953b6599816dfec82ab52"
+    }
+  ],
+  "helpers": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/protect_prior_package.py",
+      "bytes": 6997,
+      "sha256": "d4f1fbe7dea7501088e2eb7022726a2ea9eaec97ad53ffed81333fb4988b9d97"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/checks_common.py",
+      "bytes": 6624,
+      "sha256": "6bd1f37ef1f84bc85d8d33b61310c2d0cc3be06aaf416f587f07a1427b1c336c"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/run_frontend_checks.py",
+      "bytes": 2502,
+      "sha256": "034f8e1c5fea4c401f99bebb4e5013360b60a37291d067abfb30a49c37dbcbbd"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/build_package.py",
+      "bytes": 9641,
+      "sha256": "cab1d0ad92e2beb718ba5e94f54f6fa2ce916f565ba33a8e966de3d833ac2795"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/launch_ui.py",
+      "bytes": 2554,
+      "sha256": "ff5babf2484736818896b91dcade3d9c01e73b6d0d7a056f3920d753ca3d4cd2"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/postbuild_review.py",
+      "bytes": 15590,
+      "sha256": "b45532eee180d4a42c6644ffb46dcc9a8fc6700d90422990e68fdc9c0fc79f9d"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/launch_baseline_ui.py",
+      "bytes": 2737,
+      "sha256": "2d3bccf833fc968da9163bfc62b5bdda11343c2df61b0a79ee04f5a4a4f3931b"
+    }
+  ],
+  "preservation": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-compact-reading-0.24.0/prior-package-preserved-01.json",
+    "bytes": 89331,
+    "sha256": "131d9d5ba42e5246078c3f76bc5654565bc2748c6da699dde0454c0e042619aa"
+  },
+  "sourcePreservation": "Current345 inventory files + rootroadmap346total include current reminder-turn docs; snapshot was captured and rechecked unchanged before source edits. No demand for historical documentation hashes.",
+  "rustReuse": "Same exact164-input qualified0.22 baseline, normalizing only five identified app-version fields0.24.0\u21920.22.0. Cargo.lock only desktop package block; no globalversion substitution. No repeated Rust tests for unchanged backend.",
+  "frontendChecks": "Suite + TypeScript/Vite + reference check; includes index.html and full membership equality; target/** remains excluded so copied historical tests are not rediscovered.",
+  "packageOutputs": [
+    "target/release/bundle/macos/ReservoirScopeTauriPreview-0.24.0-macos-arm64.tar.gz",
+    "target/qa/0.24.0-pinned/reservoir-scope-desktop"
+  ],
+  "qaLibraries": [
+    "target/qa/0.24-baseline-ui01/library",
+    "target/qa/0.24-compact-reading-ui01/library"
+  ],
+  "baseline": "Explicit --expected-preservation-sha256 required. Launches exact preserved0.23app, never overwrites original/currentpackage or activates usernativeapp by name. Lead must coordinate any existingTauriinstance first; helper performs no process inventory or stop.",
+  "executionAuthority": "Root freezes edits before checks/build, controls any optional baseline/native launch and all subsequent UI actions. No helper execution beyond completed preservation in this preparation.",
+  "nodeBin": "/Users/v/.nvm/versions/node/v20.20.1/bin"
+}

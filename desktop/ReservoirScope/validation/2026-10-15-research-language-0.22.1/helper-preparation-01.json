@@ -1,0 +1,125 @@
+{
+  "schema": "reservoir-wording-qualification-preparation-v1",
+  "createdUtc": "2026-10-15T22:19:28.150187+00:00",
+  "scope": "Preparation and authorized old-package preservation only. No frontend test, TypeScript/Vite, Rust test, Clippy, build, app, model or service run in this preparation.",
+  "helpers": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/protect_prior_package.py",
+      "bytes": 5241,
+      "sha256": "8b40d64a73c9876e65ec4395ba56a81a42c462f9e9c2853aa048934695ec8e7c"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/checks_common.py",
+      "bytes": 6603,
+      "sha256": "7ad2c6be9745603b549a2dfa32138526ddc24c6286d51ddeaf92c1ee67d624e3"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/run_frontend_checks.py",
+      "bytes": 2502,
+      "sha256": "03c89312156d23cd14fefde94963ee842752258cccf879e8196f8b594ede4c45"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/build_package.py",
+      "bytes": 9149,
+      "sha256": "f64049ce8b9f1d615de72ca035363b17a5972ed33800f50520f75cbfe60ee810"
+    }
+  ],
+  "priorHelpers": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/protect_prior_package.py",
+      "bytes": 5092,
+      "sha256": "fea1345dc94bdbd31df767d39e1d4994f844ed4afc8cfb0bb409877541c6c391"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/checks_common.py",
+      "bytes": 3586,
+      "sha256": "b562a06394ec771851d379b379129d4e2c391fe556b91a436f93f0cdae6738c8"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/run_frontend_checks.py",
+      "bytes": 2175,
+      "sha256": "11e98a9275c31b3c82bb1c245851d401bb75fe1400bc68cb1c3292971302e368"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/build_package.py",
+      "bytes": 7711,
+      "sha256": "77c65e3499f74460f6d7a41e6d4271999208cfe39430e079ab644a59e0282b46"
+    }
+  ],
+  "priorPackagePreservation": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/prior-package-preserved-01.json",
+    "bytes": 14414,
+    "sha256": "cad67dd059e670eee83d602fc9a60ff18c349a699a4e62d4ce75e9f78ca25f77"
+  },
+  "priorRustQualification": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/rust-checks-01.json",
+    "bytes": 57309,
+    "sha256": "4b531d15dcabcf4097225e809019d54f6405d66ba6e091103f68baddb481a039"
+  },
+  "priorRustCounts": [
+    {
+      "name": "reference",
+      "passedTests": null,
+      "ignoredTests": null,
+      "exitCode": 0
+    },
+    {
+      "name": "resource-staging",
+      "passedTests": null,
+      "ignoredTests": null,
+      "exitCode": 0
+    },
+    {
+      "name": "rust-format",
+      "passedTests": null,
+      "ignoredTests": null,
+      "exitCode": 0
+    },
+    {
+      "name": "core-tests",
+      "passedTests": 224,
+      "ignoredTests": 0,
+      "exitCode": 0
+    },
+    {
+      "name": "desktop-tests",
+      "passedTests": 199,
+      "ignoredTests": 2,
+      "exitCode": 0
+    },
+    {
+      "name": "core-clippy",
+      "passedTests": null,
+      "ignoredTests": null,
+      "exitCode": 0
+    },
+    {
+      "name": "desktop-clippy",
+      "passedTests": null,
+      "ignoredTests": null,
+      "exitCode": 0
+    }
+  ],
+  "reuseGate": "All164 qualified Rust/input hashes and membership must match. Only exact app0.22.0\u21920.22.1 version substitutions allowed in package.json, package-lock.json, Cargo.lock, src-tauri/Cargo.toml, src-tauri/tauri.conf.json. Current metadata is normalized back and compared to qualified original hashes; other edits fail closed.",
+  "frontendCommands": [
+    "npm test",
+    "npm run build (tsc --noEmit && vite build)",
+    "python3 scripts/check_reference.py"
+  ],
+  "buildCommands": [
+    "python3 scripts/check_reference.py",
+    "npm run tauri -- build --bundles app -- --locked"
+  ],
+  "nodeBin": "/Users/v/.nvm/versions/node/v20.20.1/bin",
+  "outputPaths": [
+    "target/release/bundle/macos/ReservoirScopeTauriPreview-0.22.1-macos-arm64.tar.gz",
+    "target/qa/0.22.1-pinned/reservoir-scope-desktop"
+  ],
+  "checksPerformed": [
+    "Parsed four new Python helpers as syntax only",
+    "Read helper changes and disjoint frontend-reference/package-reference log names",
+    "Executed prior-package preservation exactly once (passed)"
+  ],
+  "executionAuthority": "Lead must confirm final edits frozen and coordinate GUI shutdown/compiler use before any test/build invocation.",
+  "archiveSemantics": "Exclusive new archive/pin; source inventories before/after; old independent fullapp/archive/pin rechecked; ad-hoc signing via existing app config and qualified receipt tool. No new native UI or resource performance claim."
+}

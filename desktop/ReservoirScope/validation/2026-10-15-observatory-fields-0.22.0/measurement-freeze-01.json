@@ -1,0 +1,92 @@
+{
+  "schema": "observatory-short-measurement-freeze-v1",
+  "createdUtc": "2026-10-15T21:57:43.371179+00:00",
+  "durationSeconds": 600,
+  "sampleIntervalSeconds": 5,
+  "maxBytes": 2097152,
+  "minimumSettleSeconds": 15,
+  "minimumNamedWindowSeconds": 60,
+  "inputs": [
+    {
+      "path": "RESOURCE-PROTOCOL.md",
+      "sha256": "f760bd963ec4b279dca735a54bfba64b32b9fde94ccac041ae4b333679410294"
+    },
+    {
+      "path": "QUALIFICATION-PLAN.md",
+      "sha256": "1aaa6d8f948513f318ae2ba8262d91b79b6d3d816e463b0e323183a878eb5075"
+    },
+    {
+      "path": "sample_owned_app.py",
+      "sha256": "bf1a6092a30f5a23334f663c56c875d2dd6d317eaed540778fb3fa766cb1d314"
+    },
+    {
+      "path": "test_sample_owned_app.py",
+      "sha256": "2c3dc19545dc5eb3f03e590bac4106d9db52bc624bb2b69fbee7ce788927e825"
+    },
+    {
+      "path": "run_sampler_checks.py",
+      "sha256": "68104695b4e248a4c4f3c1588f17527b071145e96b480585284e968512f2b7bd"
+    },
+    {
+      "path": "sampler-checks-01.json",
+      "sha256": "de64edb75c5384d36c6ab89e6aaefc10ebaa2e273fcfc34273beb080dcd1a33f"
+    },
+    {
+      "path": "rust-checks-01.json",
+      "sha256": "4b531d15dcabcf4097225e809019d54f6405d66ba6e091103f68baddb481a039"
+    },
+    {
+      "path": "frontend-checks-02.json",
+      "sha256": "b28eb64f2306a1162184199d4907759840e282f192cdb904de2a6a7dba371b05"
+    },
+    {
+      "path": "package-build-01.json",
+      "sha256": "f83101c74f9d4100ca3bd5ca1d603769aa3cc174bf076b87625e053a4c446eba"
+    },
+    {
+      "path": "archive-check-01.json",
+      "sha256": "4200ed7a6de46a26f78f83d80e783a67fb24a487dc872a69388882bb52966eef"
+    },
+    {
+      "path": "qualification-before-ui-01.json",
+      "sha256": "0787d95f39356afd8d527b9cd952d9b3e440eb55c011fc674fde881f81027048"
+    },
+    {
+      "path": "ui-launch-01.json",
+      "sha256": "ecb18574e332f48cc2ba628e8ba7dbd01fbe0708e4f65b76980ce01103d01e1a"
+    }
+  ],
+  "pid": 74000,
+  "executableSha256": "788b636ec898f9863e146e7dfe67c380910ae38943b0b178f6e22b8e8d794051",
+  "viewport": {
+    "windowPixels": [
+      1280,
+      860
+    ],
+    "field": "residual",
+    "modes": [
+      0
+    ],
+    "axes": "PC2 / PC3",
+    "row": 0,
+    "speedRowsPerSecond": 4,
+    "graphics": "WebGL2",
+    "framesDrawnBeforeCapture": 1,
+    "scrollBarValue": 0.3862661,
+    "visible": "Partial surface and trajectory above selected-coordinate evidence; spectrum heading and upper plot below. Same window size throughout; view will be returned after playback control interaction."
+  },
+  "phaseOrder": [
+    "visible-idle",
+    "playback",
+    "minimized",
+    "restored-idle"
+  ],
+  "boundaryRule": "Close settled phase before any UI witness/action; mark settling again after transition; no UI during minimized phase. Named phase starts after at least15s untouched.",
+  "limits": [
+    "Only owned main PID; separate WebKit/GPU processes excluded",
+    "No model/feed/service contacts; no builds/tests during capture",
+    "No retrospective CPU/RSS pass threshold; retain errors/gaps",
+    "Minimize pauses recorded playback; workload differs from playing",
+    "Draw counters are submissions and may reset on remount; transition delta not exact hidden GPU activity"
+  ]
+}

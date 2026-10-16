@@ -8,13 +8,13 @@ function summary(id: string, maxTimelinePage = 2): ObservatorySummary {
   return { observatoryId:id,maxTimelinePage,diagnostics:[],tracks:(['history','states'] as const).map(track=>({
     id:track,title:track,axis:track==='history'?'elapsedSeconds':'ordinal',frameCount:5,nodeCount:track==='states'?128:null,
     firstPosition:track==='history'?10:0,lastPosition:track==='history'?50:4,firstUtc:null,lastUtc:null,capturedAtUtc:null,
-    identities:[{name:`${track}.json`,sha256:'retained-test-identity'}],provenance:['Synthetic protocol fixture'],missingness:[],definitions:{},bands:null,
+    identities:[{name:`${track}.json`,sha256:'retained-test-identity'}],provenance:['Synthetic protocol fixture'],missingness:[],definitions:{},bands:null,stateReference:null,
   })) };
 }
 function frame(trackId: ObservatoryTrackId,index:number): ObservatoryFrame {
   return {trackId,index,position:trackId==='history'?historyPositions[index]:index,
     history:trackId==='history'?{tUtc:`retained-utc-${index}`,tSeconds:historyPositions[index],sessionId:'original-session',fillPct:60+index,fillRatePctPerS:null,cascade:[4,2,1],esnCovLambda1:null,geomRadius:null,geomRel:null,esnLeak:null,esnLambda:null,sourceIds:null,intervalSeconds:index?historyPositions[index]-historyPositions[index-1]:null,breakBefore:index===3}:null,
-    state:trackId==='states'?{activations:Array(128).fill(0),pc:[0,0,0],stateRms:0,centeredRms:0,projectedRms:0,reconstructionRmse:0,sourceIdentity:'original-state-capture'}:null};
+    state:trackId==='states'?{activations:Array(128).fill(0),pc:[0,0,0],stateRms:0,centeredRms:0,projectedRms:0,reconstructionRmse:0,sourceIdentity:'original-state-capture',fields:{magnitude:Array(128).fill(0),deviation:Array(128).fill(0),magnitudeOutOfRangeCount:0,deviationOutOfRangeCount:0,scores:[0,0,0],centeredEnergy:0,selections:[]}}:null};
 }
 function point(trackId:ObservatoryTrackId,index:number,nodeIndex:number|null):ObservatoryTimelinePoint {
   return {index,position:frame(trackId,index).position,tUtc:trackId==='history'?`retained-utc-${index}`:null,sessionId:trackId==='history'?'original-session':null,

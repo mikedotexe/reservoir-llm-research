@@ -1,0 +1,70 @@
+{
+  "schema": "reservoir-observatory-sampler-checks-v1",
+  "startedAtUtc": "2026-10-15T21:40:07.628093+00:00",
+  "status": "passed",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0",
+    "-p",
+    "test_sample_owned_app.py",
+    "-v"
+  ],
+  "sourceBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/run_sampler_checks.py",
+      "bytes": 2861,
+      "sha256": "68104695b4e248a4c4f3c1588f17527b071145e96b480585284e968512f2b7bd"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/sample_owned_app.py",
+      "bytes": 14685,
+      "sha256": "bf1a6092a30f5a23334f663c56c875d2dd6d317eaed540778fb3fa766cb1d314"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/test_sample_owned_app.py",
+      "bytes": 5730,
+      "sha256": "2c3dc19545dc5eb3f03e590bac4106d9db52bc624bb2b69fbee7ce788927e825"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/scripts/macos_reliability.py",
+      "bytes": 27247,
+      "sha256": "326fb72a668f1cac1f32585e0b61e791a56a959b1ac0ae32560fcebd0fba5215"
+    }
+  ],
+  "scope": "Explicit synthetic sampler checks; no app, process query or capture execution.",
+  "exitCode": 0,
+  "sourceAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/run_sampler_checks.py",
+      "bytes": 2861,
+      "sha256": "68104695b4e248a4c4f3c1588f17527b071145e96b480585284e968512f2b7bd"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/sample_owned_app.py",
+      "bytes": 14685,
+      "sha256": "bf1a6092a30f5a23334f663c56c875d2dd6d317eaed540778fb3fa766cb1d314"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/test_sample_owned_app.py",
+      "bytes": 5730,
+      "sha256": "2c3dc19545dc5eb3f03e590bac4106d9db52bc624bb2b69fbee7ce788927e825"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/scripts/macos_reliability.py",
+      "bytes": 27247,
+      "sha256": "326fb72a668f1cac1f32585e0b61e791a56a959b1ac0ae32560fcebd0fba5215"
+    }
+  ],
+  "sourceUnchanged": true,
+  "testsRun": 10,
+  "log": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-observatory-fields-0.22.0/sampler-checks-01.log",
+    "sha256": "6e9f31305b69ffa3ce12d74a9cee3bbc64f82f40b25514046fa8eae66b87d323"
+  },
+  "endedAtUtc": "2026-10-15T21:40:07.723086+00:00"
+}

@@ -14,6 +14,24 @@ export interface ObservatoryTrack {
   firstUtc: string | null; lastUtc: string | null; capturedAtUtc: string | null;
   identities: ObservatoryIdentity[]; provenance: string[]; missingness: string[];
   definitions: Record<string, string>; bands: ObservatoryBands | null;
+  stateReference: ObservatoryStateReference | null;
+}
+/** Frozen full-capture centered sample covariance; independent of sensory history. */
+export interface ObservatoryStateReference {
+  rows: number; dimensions: number; retainedModeCount: number; covarianceDenominator: number;
+  eigenvalues: number[]; explainedVarianceRatio: number[]; retainedFraction: number;
+  omittedFraction: number; totalSampleVariance: number; fitScope: string | null;
+  frozen: boolean | null; sourceIdentity: string;
+}
+export interface ObservatoryStateFieldSelection {
+  selectedModes: number[]; reconstruction: number[]; residual: number[];
+  reconstructedEnergy: number; residualEnergy: number;
+  reconstructionOutOfRangeCount: number; residualOutOfRangeCount: number;
+}
+export interface ObservatoryStateFields {
+  magnitude: number[]; deviation: number[]; magnitudeOutOfRangeCount: number;
+  deviationOutOfRangeCount: number; scores: number[]; centeredEnergy: number;
+  selections: ObservatoryStateFieldSelection[];
 }
 export interface ObservatorySummary {
   observatoryId: string; tracks: ObservatoryTrack[]; diagnostics: ObservatoryDiagnostic[];
@@ -31,6 +49,7 @@ export interface ObservatoryStateFrame {
   activations: number[]; pc: number[]; stateRms: number; centeredRms: number;
   projectedRms: number; reconstructionRmse: number;
   sourceIdentity: string;
+  fields: ObservatoryStateFields;
 }
 export interface ObservatoryFrame {
   trackId: ObservatoryTrackId; index: number; position: number;

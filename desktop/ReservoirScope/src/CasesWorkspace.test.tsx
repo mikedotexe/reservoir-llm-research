@@ -8,7 +8,7 @@ it('renders supplied text inertly and preserves authored uncertainty and ownersh
 });
 it('distinguishes the selected derivative from exact original export and disables both during an operation',()=>{
   const html=renderToStaticMarkup(<CaseExportControls disabled onExport={()=>{}}/>);
-  expect(html).toContain('Export selected case…');expect(html).toContain('Export original case catalog…');
-  expect(html).toContain('all its embedded evidence and recorded source references');expect(html).toContain('exact file bytes');
+  expect(html).toContain('Export selected case…');expect(html).toContain('Export original catalog…');
+  expect(html).toContain('one-case catalog with all its embedded evidence and source references');expect(html).toContain('exact file bytes');
   expect(html.match(/disabled=""/g)).toHaveLength(2);
 });

@@ -2,7 +2,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
 import MyReservoirJournals, { MyReservoirJournalDetail } from './MyReservoirJournals';
 import { DEFAULT_SUSTAINED_CONFIG } from './myReservoirTypes';
-import { journal, reservoirFixture, settle } from './myReservoirTestFixtures';
+import { journal, reservoirFixture, reservoirSummary, settle } from './myReservoirTestFixtures';
 
 const disclosure = '<details class="my-reservoir-journal-evidence">';
 
@@ -48,9 +48,20 @@ describe('journal prose and optional evidence', () => {
     expect(evidence).not.toContain('<script>');
   });
 
+  it('makes every scrollable evidence block keyboard reachable with a distinct accessible name', () => {
+    const html = renderToStaticMarkup(<MyReservoirJournalDetail journal={journal(2)} revision="9"/>);
+    const evidence = html.split(disclosure)[1];
+    const blocks = [...evidence.matchAll(/<pre tabindex="0" role="region" aria-label="([^"]+)">/g)];
+    expect(blocks).toHaveLength(7);
+    expect(new Set(blocks.map(block => block[1])).size).toBe(7);
+    expect(evidence.match(/<pre\b/g)).toHaveLength(7);
+    expect(html).not.toMatch(/<details[^>]*\bopen/);
+    expect(evidence).toContain('&lt;script&gt;inert exact prompt&lt;/script&gt;');
+  });
+
   it('keeps saved, applied and skipped boundaries visible without opening evidence', () => {
     const applied = renderToStaticMarkup(<MyReservoirJournalDetail journal={journal()} revision="1"/>).split(disclosure)[0];
-    expect(applied).toContain('Observed at step 3');
+    expect(applied).toContain('Entry at step 3');
     expect(applied).toContain('Saved · feedback applied');
     expect(applied).toContain('first applied at step 4');
     expect(applied).not.toContain('Its full text is eligible for later prompts');
@@ -60,7 +71,7 @@ describe('journal prose and optional evidence', () => {
     expect(applied).not.toContain('Encoded features');
     for (const status of ['savedPendingApplication', 'skipped'] as const) {
       const html = renderToStaticMarkup(<MyReservoirJournalDetail journal={{ ...journal(), status, firstAppliedStep: null, application: null }} revision="2"/>).split(disclosure)[0];
-      expect(html).toContain('Observed at step 3');
+      expect(html).toContain('Entry at step 3');
       expect(html).toContain('no first application recorded');
       expect(html).not.toContain('first applied at step 4');
       expect(html).not.toContain('Its full text is eligible');
@@ -82,7 +93,7 @@ describe('journal prose and optional evidence', () => {
     const before = controller.snapshot(), html = renderToStaticMarkup(<MyReservoirJournals state={before} controller={controller}/>);
     const prose = html.match(/<div class="my-reservoir-journal-prose"[^>]*>([\s\S]*?)<\/div>/)![1];
     expect(prose).toBe('I set noise to 0.01 and applied feedback at step 999.\n&lt;button&gt;Start&lt;/button&gt;');
-    expect(html).toContain('Observed at step 3'); expect(html).toContain('first applied at step 4');
+    expect(html).toContain('Entry at step 3'); expect(html).toContain('first applied at step 4');
     expect(html).not.toMatch(/<button[^>]*>Start<\/button>/);
     expect(html).not.toContain('model-authored'); // The same reader also presents deterministic scripted writing.
     expect(action).not.toHaveBeenCalled();
@@ -112,9 +123,9 @@ describe('journal prose and optional evidence', () => {
     expect(html).toContain('<button disabled="">Earlier entry</button>');
     expect(html).toContain('<button>Later entry</button>');
     expect(html).toContain('Refresh this page');
-    expect(html).toContain('Refresh selected application evidence');
+    expect(html).toContain('Refresh save and feedback details');
     expect(html).toContain('Newer'); expect(html).toContain('Older');
-    expect(html).toContain('Observed at step 3'); expect(html).not.toContain('Observed at step 10');
+    expect(html).toContain('Entry at step 3'); expect(html).not.toContain('Entry at step 10');
     expect(html).toContain('first applied at step 4'); expect(html).not.toContain('first applied at step 11');
     expect(controller.snapshot().summary?.step).toBe(10);
     expect(controller.snapshot().journal?.entryId).toBe('journal-1');
@@ -150,10 +161,44 @@ describe('journal prose and optional evidence', () => {
     const [reading, evidence] = html.split(disclosure);
     expect(reading).toContain('role="alert"');
     expect(reading).toContain('Retained entry could not be verified.');
-    expect(reading).toContain('Observed at step 3');
-    expect(reading).not.toContain('Refresh selected application evidence');
-    expect(evidence).toContain('Refresh selected application evidence');
+    expect(reading).toContain('Entry at step 3');
+    expect(reading).not.toContain('Refresh save and feedback details');
+    expect(evidence).toContain('Refresh save and feedback details');
     expect(html).not.toMatch(/<details[^>]*\bopen/);
     expect(controller.snapshot().journal).toBe(accepted);
   });
+  it('labels the history window separately while a pinned entry outside it keeps adjacent reading controls', async () => {
+    const { controller, push, api } = reservoirFixture();
+    await controller.create(DEFAULT_SUSTAINED_CONFIG); await settle();
+    push({ revision: '100', step: 136, journalCount: 45, turnCount: 45 });
+    await controller.journals(); await controller.selectJournal('journal-26');
+    await controller.pageJournals('older'); await controller.pageJournals('older');
+    const action = vi.spyOn(api, 'action');
+    const html = renderToStaticMarkup(<MyReservoirJournals state={controller.snapshot()} controller={controller}/>);
+    expect(html).toContain('History window · newest first');
+    expect(html).toContain('Journal 26 of 45');
+    expect(html).toContain('Your selected entry is outside this history window');
+    expect(html).toContain('<button>Earlier entry</button>');
+    expect(html).toContain('<button>Later entry</button>');
+    expect(html).toContain('Entry at step 78');
+    expect(controller.snapshot().journal?.entryId).toBe('journal-26');
+    expect(action).not.toHaveBeenCalled();
+  });
+
+  it('shows pending save and pending application separately from the complete selected entry', () => {
+    const { controller } = reservoirFixture();
+    const base = { ...controller.snapshot(), journal: journal(), journalPosition: 1 };
+    for (const [pending, expected] of [
+      [{ pendingSave: { entryId: 'waiting', observedStep: 30, attemptId: 2 } }, 'Writing at step 30 · save not yet confirmed.'],
+      [{ pendingApplication: { entryId: 'saved', observedStep: 30, intendedStep: 31, attemptId: 2 } }, 'Saved writing at step 30 · waiting for application at step 31.'],
+    ] as const) {
+      const html = renderToStaticMarkup(<MyReservoirJournals controller={controller} state={{ ...base, summary: reservoirSummary({ step: 30, journalCount: 1, turnCount: 2, ...pending }) }}/>);
+      expect(html).toContain(`<p class="my-reservoir-journal-progress" role="status">${expected}</p>`);
+      expect(html).toContain('Entry at step 3');
+      expect(html).toContain('first applied at step 4');
+      expect(html).not.toContain('first applied at step 31');
+      expect(html.indexOf('class="my-reservoir-journal-prose"')).toBeLessThan(html.indexOf('aria-label="Journal history"'));
+    }
+  });
+
 });

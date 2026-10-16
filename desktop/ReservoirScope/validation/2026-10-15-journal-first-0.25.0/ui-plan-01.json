@@ -1,0 +1,29 @@
+{
+  "schema": "reservoir-journal-first-ui-plan-v1",
+  "recordedUtc": "2026-10-16T01:16:53.564832+00:00",
+  "version": "0.25.0",
+  "scope": "Scoped native journal prominence, local-source setup without requests, current sensory fill, follow and earlier/later at actual geometry; offline script only.",
+  "session": {
+    "backend": "scripted",
+    "promptVersion": "reservoir-journal-v8",
+    "seed": "20260909",
+    "turnEvery": 30,
+    "maximumSteps": 91,
+    "maximumTurns": 4,
+    "maximumDurationSeconds": 180,
+    "storageBudgetBytes": 67108864,
+    "paceMs": 1000,
+    "otherValues": "Unchanged UI defaults"
+  },
+  "checks": [
+    "Defaultoffline source; local option exposes blank actual endpoint/model with examples and disabledreadiness; no provider check",
+    "Create Ready beforeStart; currentfillUnavailable beforefirstobservation",
+    "Threejournals at30/60/90 applied31/61/91; visibleprose beforehistory",
+    "EarlierLater andFollowlatest withcurrentfillseparate fromselectedjournal",
+    "Regulation reference68deadband64\u201372 inspectable; nextstepinputevidence retained",
+    "125/200zoom andreset scoped toactualgeometry",
+    "Naturalstep91hold; normalquit; read-onlypinnedverifier preserves allfiles"
+  ],
+  "stopRule": "One bounded scripted session; preservepartial ifbounds orUI failure. No modelservice, providerrequest, retry or silentextension.",
+  "cleanup": "QuitonlyownedQAapp; preserve package/source/session."
+}

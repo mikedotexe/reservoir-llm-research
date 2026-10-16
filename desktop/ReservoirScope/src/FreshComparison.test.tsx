@@ -38,7 +38,7 @@ describe('fresh comparison presentation', () => {
   it('names a right pending journal even when the selected left component has no text channel', () => {
     const controller = new FreshController(), state = { ...controller.snapshot(), selectedTrack: 'left' as const, summary: { ...summary, config: { ...summary.config, recipe: 'actionD' as const }, action: action(4), tracks: [{ ...track('left', 3), label: 'Previous C', turnCount: 0, journalCount: 0 }, { ...track('right', 4), label: 'Current D' }] }, pendingJournal: { arm: 'right' as const, id: 'same-entry', actionId: 1, observedStep: 2, prompt: 'right context', text: 'right candidate', sha256: 'a'.repeat(64), relativePath: 'right/same-entry.json' } };
     const html = renderToStaticMarkup(<FreshJournal state={state} controller={controller}/>);
-    expect(html).toContain('No text channel on this component'); expect(html).toContain('Pending right journal'); expect(html).toContain('Save right journal durably'); expect(html).toContain('Selected track has no text opportunities'); expect(html).not.toContain('Stage turns retain');
+    expect(html).toContain('No text channel on this component'); expect(html).toContain('Pending right journal'); expect(html).toContain('Save right journal'); expect(html).toContain('Selected track has no text opportunities'); expect(html).not.toContain('Stage turns retain');
   });
   it('keeps half-resolved recovery receipts distinct from portable pair verification and distinguishes equal IDs by arm', () => {
     const controller = new FreshController();

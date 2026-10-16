@@ -11,6 +11,12 @@ const rows = [point(0, [-1, 0, .12345678901234566]), point(1, [1, 2, 3]), point(
 const html = (points = rows, total = points.length, selectedIndex: number | null = 0) => renderToStaticMarkup(<RecordedTrajectory points={points} total={total} selectedIndex={selectedIndex} onSelect={() => { throw new Error('Rendering must not select a row'); }}/>);
 
 describe('recorded trajectory inspection', () => {
+  it('restores the owner-retained projection when this view remounts', () => {
+    const view = renderToStaticMarkup(<RecordedTrajectory points={rows} total={3} selectedIndex={1} onSelect={() => {}} projectionIndex={2} onProjectionChange={() => {}}/>);
+    expect(view).toContain('PC2 / PC3 retained trajectory');
+    expect(view).toContain('value="2" selected=""');
+    expect(view).toContain('Selected row 1 of 2');
+  });
   it('mounts one large SVG while making all three axis pairs selectable', () => {
     const view = html();
     expect(view.match(/<svg\b/g)).toHaveLength(1);

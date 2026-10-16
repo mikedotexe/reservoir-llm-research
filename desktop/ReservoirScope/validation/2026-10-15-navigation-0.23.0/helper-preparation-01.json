@@ -1,0 +1,74 @@
+{
+  "schema": "reservoir-navigation-qualification-preparation-v1",
+  "createdUtc": "2026-10-15T23:59:01.478266+00:00",
+  "scope": "Source/package preservation and helper preparation only. No frontend/Rust tests, TypeScript/Vite build, package build, UI, service or model actions.",
+  "previousHelpers": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/checks_common.py",
+      "bytes": 6616,
+      "sha256": "0998290ed0f5d3bbe7e4ce53d11db0553a00910c4be3721cca09706e8ccbeda9"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/run_frontend_checks.py",
+      "bytes": 2502,
+      "sha256": "03c89312156d23cd14fefde94963ee842752258cccf879e8196f8b594ede4c45"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/build_package.py",
+      "bytes": 9278,
+      "sha256": "6599f13a752d35acceadb8bcc9841cc04b52620f1179774bcdc0cb49506f9f05"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-research-language-0.22.1/launch_ui.py",
+      "bytes": 2560,
+      "sha256": "a8d5f69e522d8ec46ef05324f95dce32a87a8e6bb8bc993923d5e93fe50253a4"
+    }
+  ],
+  "currentHelpers": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/protect_prior_package.py",
+      "bytes": 7006,
+      "sha256": "832bbcc742e5e0d94d38f5b0df80b6b3efda9ada00b18ad9a72cff73af2f1ba8"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/checks_common.py",
+      "bytes": 6619,
+      "sha256": "c8381ca0a9a614f08dc2e2d553c17481f3f2be27d55fc109c2f87d4e48689f92"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/run_frontend_checks.py",
+      "bytes": 2502,
+      "sha256": "753b5480c4efd455e1c92e731539e291da4c521bfe54a13471e8d1b725bda43b"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/build_package.py",
+      "bytes": 9627,
+      "sha256": "bc958f9ae3f41071d889700f7b9c0e935d8e8f0f38cfce4d04add2523c708c9f"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/launch_ui.py",
+      "bytes": 2533,
+      "sha256": "a472284da8282d6ba1c6cd0d77901f2578335ae408c0569d7cc03fd63eb18edd"
+    }
+  ],
+  "preservation": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-navigation-0.23.0/prior-package-preserved-01.json",
+    "bytes": 89150,
+    "sha256": "408a1f888427260a14d3b5f2e70316bccbeabf74e9375dafb8020933c36d6dc5"
+  },
+  "rustReuse": "Keep exact0.22 qualified164-input baseline; only five metadata app versions normalize0.23.0 back to0.22.0. No other Rust/source or dependency changes allowed. No repeated Rust suite solely for frontend/navigation/version changes.",
+  "sourceSnapshot": "344 product source inventory files plus rootTAURI-ROADMAP345total preserved byte-exact before product edits; build rechecks preserved copies, not deliberately edited live sources.",
+  "frontendGate": "Full frontend test suite, TypeScript/Vite build, frozen reference check, version-only package/lock guards, input membership/hashes including index.html.",
+  "buildGate": "Qualified source/helper receipts, old package/source snapshot copies, before/after live source inventory, locked macOSSDKbound build, exclusive0.23.0 archive/pin, actual plist version/build and bundleID, archive/package byte comparison, qualified signature receipt.",
+  "nodeBin": "/Users/v/.nvm/versions/node/v20.20.1/bin",
+  "checksPerformed": [
+    "Python AST parsing of four new helper copies; no test invocation",
+    "Authorized preservation helper executed once and passed"
+  ],
+  "exclusiveQaPaths": [
+    "target/qa/0.23-prior-0.22.1-preserved",
+    "target/qa/0.23.0-pinned",
+    "target/qa/0.23-navigation-ui01"
+  ],
+  "nextAuthority": "Lead confirms final source freeze and package/compiler coordination before checks/build; separate exact archive-check hash required for native launch."
+}
