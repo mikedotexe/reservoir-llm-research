@@ -1,0 +1,1449 @@
+{
+  "analysisSourceSha256": "68623a9545b3ffb35395c8463d73279d354c116dfc3277da90c6c76141147743",
+  "calibrationEqual": true,
+  "counts": {
+    "equalActivationVectors": 18,
+    "equalGeneratedTokenArrays": 18,
+    "equalJournalTexts": 6,
+    "equalProjectionVectors": 18,
+    "equalPromptTokenArrays": 18,
+    "generatedContentTokensPerSequence": [
+      3758,
+      3758
+    ],
+    "journalPromptTokensPerSequence": [
+      3845,
+      3845
+    ],
+    "pairedActivationCoordinates": 46080,
+    "pairedJournals": 6,
+    "pairedOperations": 18,
+    "pairedProjectionCoordinates": 576,
+    "pairedQuietCaptures": 12,
+    "promptTokensPerSequence": [
+      4132,
+      4132
+    ],
+    "quietInputTokensPerSequence": [
+      287,
+      287
+    ],
+    "quietSampledTokensPerSequence": [
+      0,
+      0
+    ],
+    "sampledJournalTokensIncludingEOSPerSequence": [
+      3764,
+      3764
+    ]
+  },
+  "experimentalFilesUnchanged": true,
+  "frozenApparatus": {
+    "binaryIdentityEqual": true,
+    "binarySha256": [
+      "e2d332c0dcc84b657016338db73dccb19dbb97f8a295a19a6fc26da6ce60cb0e",
+      "e2d332c0dcc84b657016338db73dccb19dbb97f8a295a19a6fc26da6ce60cb0e"
+    ],
+    "computationalProtocolEqual": true,
+    "computationalProtocolFieldsCompared": [
+      "seed",
+      "temperature",
+      "stepsBetweenObservations",
+      "journalEveryObservations",
+      "outputTokens",
+      "requestDeadlineSeconds",
+      "arms",
+      "observations"
+    ],
+    "modelManifestSha256": [
+      "82b39f39ce5ec7722be9c967149a18a1ac8ed1cc8f2691e1485e101f7e542513",
+      "82b39f39ce5ec7722be9c967149a18a1ac8ed1cc8f2691e1485e101f7e542513"
+    ],
+    "modelWorkerRuntimeManifestEqual": true
+  },
+  "limitations": [
+    "Same seed, matched apparatus and reused observations: this is not an independent replication or a cross-arm causal contrast.",
+    "Exact text/token identity does not establish meaning, continuity, benefit, agency, or experience.",
+    "Activation and norm comparisons use retained worker evidence, not a new measurement.",
+    "A command-identity absence observation does not independently prove ownership or reaping of a recorded worker PID."
+  ],
+  "modelCalls": 0,
+  "newResourceEvidence": {
+    "automaticRetries": 0,
+    "conditionsDispatched": 1,
+    "error": "RuntimeError: Comparison held before condition 2: bounded resource preparation did not become ready",
+    "preparations": [
+      {
+        "arm": "decaying_trace",
+        "cliDispatched": true,
+        "condition": 1,
+        "elapsedSeconds": 30.06249258411117,
+        "healthySamples": 3,
+        "ready": true,
+        "reason": "three_consecutive_healthy_samples",
+        "sampleCount": 4,
+        "samples": [
+          {
+            "completedAtUtc": "2026-10-16T15:13:36.357405+00:00",
+            "consecutiveHealthySamples": 0,
+            "elapsedSeconds": 0.014547334052622318,
+            "freePercent": 23,
+            "healthy": false,
+            "pressure": 2,
+            "sample": 1,
+            "sampledAtUtc": "2026-10-16T15:13:36.343247+00:00"
+          },
+          {
+            "completedAtUtc": "2026-10-16T15:13:46.373534+00:00",
+            "consecutiveHealthySamples": 1,
+            "elapsedSeconds": 10.030741250142455,
+            "freePercent": 40,
+            "healthy": true,
+            "pressure": 1,
+            "sample": 2,
+            "sampledAtUtc": "2026-10-16T15:13:46.367541+00:00"
+          },
+          {
+            "completedAtUtc": "2026-10-16T15:13:56.387786+00:00",
+            "consecutiveHealthySamples": 2,
+            "elapsedSeconds": 20.04505249997601,
+            "freePercent": 40,
+            "healthy": true,
+            "pressure": 1,
+            "sample": 3,
+            "sampledAtUtc": "2026-10-16T15:13:56.381193+00:00"
+          },
+          {
+            "completedAtUtc": "2026-10-16T15:14:06.404532+00:00",
+            "consecutiveHealthySamples": 3,
+            "elapsedSeconds": 30.061861583963037,
+            "freePercent": 33,
+            "healthy": true,
+            "pressure": 1,
+            "sample": 4,
+            "sampledAtUtc": "2026-10-16T15:14:06.398209+00:00"
+          }
+        ],
+        "samplesFileSha256": "bd331c078f6f887708577e851e9b2af9bfcd2010c1200c5c7333fe227bf5209d",
+        "summaryFileSha256": "64a82a57f8512559204598a2e932b6f92eb65822047409cb65261a5392e5e1bc"
+      },
+      {
+        "arm": "no_steering",
+        "cliDispatched": false,
+        "condition": 2,
+        "elapsedSeconds": 120.01015608292073,
+        "healthySamples": 0,
+        "ready": false,
+        "reason": "preparation_deadline_reached",
+        "sampleCount": 12,
+        "samples": [
+          {
+            "completedAtUtc": "2026-10-16T15:16:11.739867+00:00",
+            "consecutiveHealthySamples": 0,
+            "elapsedSeconds": 0.005753332981839776,
+            "freePercent": 38,
+            "healthy": false,
+            "pressure": 2,
+            "sample": 1,
+            "sampledAtUtc": "2026-10-16T15:16:11.734181+00:00"
+          },
+          {
+            "completedAtUtc": "2026-10-16T15:16:21.761212+00:00",
+            "consecutiveHealthySamples": 0,
+            "elapsedSeconds": 10.027152415830642,
+            "freePercent": 38,
+            "healthy": false,
+            "pressure": 2,
+            "sample": 2,
+            "sampledAtUtc": "2026-10-16T15:16:21.753538+00:00"
+          },
+          {
+            "completedAtUtc": "2026-10-16T15:16:31.779399+00:00",
+            "consecutiveHealthySamples": 0,
+            "elapsedSeconds": 20.045405165990815,
+            "freePercent": 28,
+            "healthy": false,
+            "pressure": 2,
+            "sample": 3,
+            "sampledAtUtc": "2026-10-16T15:16:31.771456+00:00"
+          },
+          {
+            "completedAtUtc": "2026-10-16T15:16:41.796000+00:00",
+            "consecutiveHealthySamples": 0,
+            "elapsedSeconds": 30.062064915895462,
+            "freePercent": 30,
+            "healthy": false,
+            "pressure": 2,
+            "sample": 4,
+            "sampledAtUtc": "2026-10-16T15:16:41.787512+00:00"
+          },
+          {
+            "completedAtUtc": "2026-10-16T15:16:51.814721+00:00",
+            "consecutiveHealthySamples": 0,
+            "elapsedSeconds": 40.080847665900365,
+            "freePercent": 27,
+            "healthy": false,
+            "pressure": 2,
+            "sample": 5,
+            "sampledAtUtc": "2026-10-16T15:16:51.806486+00:00"
+          },
+          {
+            "completedAtUtc": "2026-10-16T15:17:01.832584+00:00",
+            "consecutiveHealthySamples": 0,
+            "elapsedSeconds": 50.098776165861636,
+            "freePercent": 30,
+            "healthy": false,
+            "pressure": 2,
+            "sample": 6,
+            "sampledAtUtc": "2026-10-16T15:17:01.823638+00:00"
+          },
+          {
+            "completedAtUtc": "2026-10-16T15:17:11.849029+00:00",
+            "consecutiveHealthySamples": 0,
+            "elapsedSeconds": 60.11527904099785,
+            "freePercent": 31,
+            "healthy": false,
+            "pressure": 2,
+            "sample": 7,
+            "sampledAtUtc": "2026-10-16T15:17:11.841238+00:00"
+          },
+          {
+            "completedAtUtc": "2026-10-16T15:17:21.864918+00:00",
+            "consecutiveHealthySamples": 0,
+            "elapsedSeconds": 70.1312316248659,
+            "freePercent": 31,
+            "healthy": false,
+            "pressure": 2,
+            "sample": 8,
+            "sampledAtUtc": "2026-10-16T15:17:21.856643+00:00"
+          },
+          {
+            "completedAtUtc": "2026-10-16T15:17:31.875485+00:00",
+            "consecutiveHealthySamples": 0,
+            "elapsedSeconds": 80.14185845782049,
+            "freePercent": 31,
+            "healthy": false,
+            "pressure": 2,
+            "sample": 9,
+            "sampledAtUtc": "2026-10-16T15:17:31.869396+00:00"
+          },
+          {
+            "completedAtUtc": "2026-10-16T15:17:41.885126+00:00",
+            "consecutiveHealthySamples": 0,
+            "elapsedSeconds": 90.15156099991873,
+            "freePercent": 31,
+            "healthy": false,
+            "pressure": 2,
+            "sample": 10,
+            "sampledAtUtc": "2026-10-16T15:17:41.876016+00:00"
+          },
+          {
+            "completedAtUtc": "2026-10-16T15:17:51.902185+00:00",
+            "consecutiveHealthySamples": 0,
+            "elapsedSeconds": 100.16868233284913,
+            "freePercent": 31,
+            "healthy": false,
+            "pressure": 2,
+            "sample": 11,
+            "sampledAtUtc": "2026-10-16T15:17:51.895366+00:00"
+          },
+          {
+            "completedAtUtc": "2026-10-16T15:18:01.928996+00:00",
+            "consecutiveHealthySamples": 0,
+            "elapsedSeconds": 110.19554945803247,
+            "freePercent": 32,
+            "healthy": false,
+            "pressure": 2,
+            "sample": 12,
+            "sampledAtUtc": "2026-10-16T15:18:01.912405+00:00"
+          }
+        ],
+        "samplesFileSha256": "ea03aa164581ae2df58d1c220e7aea34a106736bc5533c595db5d996d827a345",
+        "summaryFileSha256": "84f50109beda6337b2a976b14f02e721845e8dfd2abf790fbcd3211231d584ac"
+      }
+    ],
+    "remainingRecurrentCondition": "not_started_after_preparation_timeout",
+    "status": "held",
+    "workerReleaseObservations": [
+      {
+        "arm": "decaying_trace",
+        "condition": 1,
+        "fileSha256": "36d01cb164091ffadbf1f531cb8dd3df59fc9bacb518ee89e410fbef66871bad",
+        "limitation": "No owned worker PID is exported; command identity does not independently prove ownership or reaping.",
+        "matchingProcesses": [],
+        "observedAtUtc": "2026-10-16T15:16:11.653634+00:00",
+        "returnCode": 0,
+        "scope": "Exact configured Python -B workerPath command after CLI exit",
+        "status": "no_matching_process_visible"
+      }
+    ]
+  },
+  "numericalAndLedgerEquality": {
+    "completeRecordEqual": false,
+    "completeStateEqual": true,
+    "differingRecordPaths": [
+      ".events[1].evidence_sha256",
+      ".events[3].evidence_sha256",
+      ".events[5].evidence_sha256",
+      ".events[9].evidence_sha256",
+      ".events[11].evidence_sha256",
+      ".events[13].evidence_sha256",
+      ".events[17].evidence_sha256",
+      ".events[19].evidence_sha256",
+      ".events[21].evidence_sha256",
+      ".events[25].evidence_sha256",
+      ".events[27].evidence_sha256",
+      ".events[29].evidence_sha256",
+      ".events[33].evidence_sha256",
+      ".events[35].evidence_sha256",
+      ".events[37].evidence_sha256",
+      ".events[41].evidence_sha256",
+      ".events[43].evidence_sha256",
+      ".events[45].evidence_sha256"
+    ],
+    "eventsEqual": false,
+    "finalSteps": [
+      121,
+      121
+    ],
+    "numericalStateEqual": true,
+    "numericalStateSha256": [
+      "8eb248c2b44da393c50764c66719a17f19c6cf50351595dbdd1fb1a0a24c3839",
+      "8eb248c2b44da393c50764c66719a17f19c6cf50351595dbdd1fb1a0a24c3839"
+    ],
+    "specificationEqual": true
+  },
+  "pairs": [
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "d1df36628b2ab4db70fa65eeb617610fb2e1c70aea99c8a919ed5c91fadeaeda",
+        "d1df36628b2ab4db70fa65eeb617610fb2e1c70aea99c8a919ed5c91fadeaeda"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        0,
+        0
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ],
+      "newRequestId": "request-1",
+      "newWorkerRequestId": "worker-2",
+      "normsEqual": true,
+      "normsSha256": [
+        "4c03405be700a33fb35eb46a2bebb39862ef78edd4a3b91488be121f13db273f",
+        "4c03405be700a33fb35eb46a2bebb39862ef78edd4a3b91488be121f13db273f"
+      ],
+      "oldRequestId": "request-1",
+      "oldWorkerRequestId": "worker-2",
+      "operation": "quiet_capture",
+      "operationNumber": 1,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "e33407242496c8e5c1db91801d8356ed9e24af9024f4bc86a8a9f76ea7ffc3ee",
+        "e33407242496c8e5c1db91801d8356ed9e24af9024f4bc86a8a9f76ea7ffc3ee"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "faca4a6501d792c80984f47e73727ac0502d25814cabb01bb620ba15a0dc39e7",
+        "faca4a6501d792c80984f47e73727ac0502d25814cabb01bb620ba15a0dc39e7"
+      ],
+      "promptTokens": [
+        22,
+        22
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "91019868c6cb294d0c9eb69375cf3e58f0d96e9ff8145d07929d7192d7385f3b",
+        "637ada60609e1d4a48f514e66f5bbb0101c28987f9f9b1b95ee2e4234bf1d534"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ]
+    },
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "7d5fda6baeac52253feeb78c34906e2d8ab51e2a32020129fb253e34f462d9a1",
+        "7d5fda6baeac52253feeb78c34906e2d8ab51e2a32020129fb253e34f462d9a1"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        0,
+        0
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ],
+      "newRequestId": "request-3",
+      "newWorkerRequestId": "worker-3",
+      "normsEqual": true,
+      "normsSha256": [
+        "cd3f4b79b444198324a59d50e97c98b908da26166d91f3a7b0df4e903d11bc2e",
+        "cd3f4b79b444198324a59d50e97c98b908da26166d91f3a7b0df4e903d11bc2e"
+      ],
+      "oldRequestId": "request-3",
+      "oldWorkerRequestId": "worker-3",
+      "operation": "quiet_capture",
+      "operationNumber": 2,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "caf12621f0f2401151b1d79f51039bef1973569a39469bd1c50a7c56a5109866",
+        "caf12621f0f2401151b1d79f51039bef1973569a39469bd1c50a7c56a5109866"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "b8c7644094df2664923c0875cf73bb264d56eeb7524372ff05698717794dd2a3",
+        "b8c7644094df2664923c0875cf73bb264d56eeb7524372ff05698717794dd2a3"
+      ],
+      "promptTokens": [
+        21,
+        21
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "1b85d7168449e5482c6745b7907a0f24b8a835bb261abea5645ae170163cbedc",
+        "ea65f42855a5bf57e3941a5fabc69bfce3457423a27067697d891dad9209029e"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ]
+    },
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "0284fae0187813a8fd0c93f04d29103f87f23fbc8bcc725293f6118f33ca4333",
+        "0284fae0187813a8fd0c93f04d29103f87f23fbc8bcc725293f6118f33ca4333"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "firstDifferingTextCharacterIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        516,
+        516
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "b9d3a3891552b30b053a9db8e915d11abaaf5e24afe13f9ab01c1c4259c4644d",
+        "b9d3a3891552b30b053a9db8e915d11abaaf5e24afe13f9ab01c1c4259c4644d"
+      ],
+      "newRequestId": "request-5",
+      "newWorkerRequestId": "worker-4",
+      "normsEqual": true,
+      "normsSha256": [
+        "3193a05bdba985fe555c6c3d8367022ea4c16b771bcae788a817c8969dba65f9",
+        "3193a05bdba985fe555c6c3d8367022ea4c16b771bcae788a817c8969dba65f9"
+      ],
+      "oldRequestId": "request-5",
+      "oldWorkerRequestId": "worker-4",
+      "operation": "generate_journal",
+      "operationNumber": 3,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "a2bd20c0b90c220caa98fd5de935e25abc2ac570fbfcf254b41c2a8e369862b4",
+        "a2bd20c0b90c220caa98fd5de935e25abc2ac570fbfcf254b41c2a8e369862b4"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "be485be15cf470dc64e29faf2140cd22c37758b747d66bf9c86e4adaaef397b2",
+        "be485be15cf470dc64e29faf2140cd22c37758b747d66bf9c86e4adaaef397b2"
+      ],
+      "promptTokens": [
+        123,
+        123
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "8833d0263e1897e4332565e9a8979ec47249127d78f4bd8e997ea76b72f4d7a2",
+        "dfd888e1132b78362c7baf56a5ef7d3932ce82aefdd86948ef38179c3313186b"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "cda6fe00e62276510e48b66b36983a259ab03c8fc12f0a387749bc4470518cd2",
+        "cda6fe00e62276510e48b66b36983a259ab03c8fc12f0a387749bc4470518cd2"
+      ],
+      "textEqual": true,
+      "textSha256": [
+        "080660d069857384cd63c12946d9f1e782731aec20feff0b939a39edf821d275",
+        "080660d069857384cd63c12946d9f1e782731aec20feff0b939a39edf821d275"
+      ]
+    },
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "b7b64233466a24bafdbf0480ab2910f3b842195efcc3c82044551600ae308adc",
+        "b7b64233466a24bafdbf0480ab2910f3b842195efcc3c82044551600ae308adc"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        0,
+        0
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ],
+      "newRequestId": "request-9",
+      "newWorkerRequestId": "worker-5",
+      "normsEqual": true,
+      "normsSha256": [
+        "f5f21fee971f18325a027daef8e14d80d5095b7ecf903a346a4b5cac6bac03ee",
+        "f5f21fee971f18325a027daef8e14d80d5095b7ecf903a346a4b5cac6bac03ee"
+      ],
+      "oldRequestId": "request-9",
+      "oldWorkerRequestId": "worker-5",
+      "operation": "quiet_capture",
+      "operationNumber": 4,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "d66022aaa59ab57f071d0d362fc58ebff5918c29f23057af79a7f38f50bb3200",
+        "d66022aaa59ab57f071d0d362fc58ebff5918c29f23057af79a7f38f50bb3200"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "04100a4de394a143d0a0226fde06de62454ffd3422a799dbbf4fa3541f1eafc9",
+        "04100a4de394a143d0a0226fde06de62454ffd3422a799dbbf4fa3541f1eafc9"
+      ],
+      "promptTokens": [
+        27,
+        27
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "446c9fa4da55496cf171f8bb75defe67f37c31ad22c230f4986b479ca700c2b7",
+        "79eae18cd482e12360d9c9129810d648d0ffad6ca95e85fbce90af40d120543f"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ]
+    },
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "1c3336b8980c6ea7f59150d95e43c7048d6eaba5e431cb880bbb9f97cfc2334a",
+        "1c3336b8980c6ea7f59150d95e43c7048d6eaba5e431cb880bbb9f97cfc2334a"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        0,
+        0
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ],
+      "newRequestId": "request-11",
+      "newWorkerRequestId": "worker-6",
+      "normsEqual": true,
+      "normsSha256": [
+        "30b7e6a938a04bf6f91658c397944372ced8635ba345bb241b34becb8bb526c7",
+        "30b7e6a938a04bf6f91658c397944372ced8635ba345bb241b34becb8bb526c7"
+      ],
+      "oldRequestId": "request-11",
+      "oldWorkerRequestId": "worker-6",
+      "operation": "quiet_capture",
+      "operationNumber": 5,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "761554cf1f1c5e5e9fabfbea5934a261bded9512ef8ecbd2761e748211aaf409",
+        "761554cf1f1c5e5e9fabfbea5934a261bded9512ef8ecbd2761e748211aaf409"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "30d8a3bc08ebe3b403e59ad91d8a339022d12fa4a371ff02a902eda367c85015",
+        "30d8a3bc08ebe3b403e59ad91d8a339022d12fa4a371ff02a902eda367c85015"
+      ],
+      "promptTokens": [
+        26,
+        26
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "5cf9563a36e347a28de10044cf93df38aadad258da0273da7eccada564635041",
+        "a845bc6b82a1d38e12752e2c5c808aaae0cc3740c41d73b4e44ee1509bf33f7f"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ]
+    },
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "da29f45bc7ac3aa42780134fd7e60e90d9558af282c92619a16695478ab67af0",
+        "da29f45bc7ac3aa42780134fd7e60e90d9558af282c92619a16695478ab67af0"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "firstDifferingTextCharacterIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        567,
+        567
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "c0f7f41b6651e58a1da83df3b9c1fae991db6f8536079ad332c0427419d46592",
+        "c0f7f41b6651e58a1da83df3b9c1fae991db6f8536079ad332c0427419d46592"
+      ],
+      "newRequestId": "request-13",
+      "newWorkerRequestId": "worker-7",
+      "normsEqual": true,
+      "normsSha256": [
+        "59663b1604c9ecaea079792fd979f87ed7118b8aa876d0f0bdd655457bcc416a",
+        "59663b1604c9ecaea079792fd979f87ed7118b8aa876d0f0bdd655457bcc416a"
+      ],
+      "oldRequestId": "request-13",
+      "oldWorkerRequestId": "worker-7",
+      "operation": "generate_journal",
+      "operationNumber": 6,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "aa27e8e7a48d08ce5128179dc7d283eba92034604bae40a8292d240280a0e2d0",
+        "aa27e8e7a48d08ce5128179dc7d283eba92034604bae40a8292d240280a0e2d0"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "ec303bdb9df90976e73399f545e2537cc7b252527c06a9627bce4b320519e4f8",
+        "ec303bdb9df90976e73399f545e2537cc7b252527c06a9627bce4b320519e4f8"
+      ],
+      "promptTokens": [
+        651,
+        651
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "e852f7f2a60b0e8c50d2197c56a43b047da8cf08c4c06ea7338f967d72b04355",
+        "d31c25849823f8c3bb0bb2a99f485a8202f3d15eb5c314bf78a4c6b91ef9e33d"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "f6cb2124270496b70f48c19bd6a2b5c9b5b371cb75fe948eefb500ac5d895228",
+        "f6cb2124270496b70f48c19bd6a2b5c9b5b371cb75fe948eefb500ac5d895228"
+      ],
+      "textEqual": true,
+      "textSha256": [
+        "127ae20b7d02a968ac863470a0fc56537cd904cef1219a94e916952260e3e971",
+        "127ae20b7d02a968ac863470a0fc56537cd904cef1219a94e916952260e3e971"
+      ]
+    },
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "3102fafc2aa9006262cf0112bff7c742bf43b669b8ad494cbd18c856a93e51db",
+        "3102fafc2aa9006262cf0112bff7c742bf43b669b8ad494cbd18c856a93e51db"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        0,
+        0
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ],
+      "newRequestId": "request-17",
+      "newWorkerRequestId": "worker-8",
+      "normsEqual": true,
+      "normsSha256": [
+        "c094f179395e511fc742c3598949abd2a4f9b3dd8b27cefd5488f91875817671",
+        "c094f179395e511fc742c3598949abd2a4f9b3dd8b27cefd5488f91875817671"
+      ],
+      "oldRequestId": "request-17",
+      "oldWorkerRequestId": "worker-8",
+      "operation": "quiet_capture",
+      "operationNumber": 7,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "a4d141dee1730b820f4fe3e28aecc93562cd1746ca1c85b82b8e0bfbfbbe2250",
+        "a4d141dee1730b820f4fe3e28aecc93562cd1746ca1c85b82b8e0bfbfbbe2250"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "04a17a8cf707a2dd795583caeb02a1fa1282674026842967049a22dc23fd8b82",
+        "04a17a8cf707a2dd795583caeb02a1fa1282674026842967049a22dc23fd8b82"
+      ],
+      "promptTokens": [
+        24,
+        24
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "01eafaa24ac08935b02943a705cbdf1bc82407f6d5623d40928bb36f0aa65cb4",
+        "345bd1da8f19c812cd1015966ed9c248fb3be3986225c7b4a871de4f8d8cba27"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ]
+    },
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "c181f03501c199ff19358cb760271cffb6cf0d4204141014c9c1a8844e5bb25b",
+        "c181f03501c199ff19358cb760271cffb6cf0d4204141014c9c1a8844e5bb25b"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        0,
+        0
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ],
+      "newRequestId": "request-19",
+      "newWorkerRequestId": "worker-9",
+      "normsEqual": true,
+      "normsSha256": [
+        "5c57000252b301fb536de78660a84f5e2245b15eaed93e7bc9c2d7d9b39646ce",
+        "5c57000252b301fb536de78660a84f5e2245b15eaed93e7bc9c2d7d9b39646ce"
+      ],
+      "oldRequestId": "request-19",
+      "oldWorkerRequestId": "worker-9",
+      "operation": "quiet_capture",
+      "operationNumber": 8,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "8f35a12b1f13cebd781fc310409104b9e520c05c352defaed8421e3cee006a96",
+        "8f35a12b1f13cebd781fc310409104b9e520c05c352defaed8421e3cee006a96"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "be9a055735a247f4d1c7561d9db1c92e8307dc8c7463100178d403a103db1d8a",
+        "be9a055735a247f4d1c7561d9db1c92e8307dc8c7463100178d403a103db1d8a"
+      ],
+      "promptTokens": [
+        25,
+        25
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "17f4463a317f33ba29319f6d59697cbf2d864f9eca307492006addc8a2827ee8",
+        "eef09c669a8b25ebf25947aac92532d4f49bcad4dd0dfc35ae3fbbd278803ce7"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ]
+    },
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "3a51838411064050e879d093d527d11d88ce1046f62c53755c8a9d08497b84b2",
+        "3a51838411064050e879d093d527d11d88ce1046f62c53755c8a9d08497b84b2"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "firstDifferingTextCharacterIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        532,
+        532
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "01adad3b5bfdb880d636146fb5b0ce29a7ab88cafb475391182655d9c950ad9b",
+        "01adad3b5bfdb880d636146fb5b0ce29a7ab88cafb475391182655d9c950ad9b"
+      ],
+      "newRequestId": "request-21",
+      "newWorkerRequestId": "worker-10",
+      "normsEqual": true,
+      "normsSha256": [
+        "f96fa80347e8d4fd04bd232f47335979fbda987c8dfe5caf30ad164b517c319d",
+        "f96fa80347e8d4fd04bd232f47335979fbda987c8dfe5caf30ad164b517c319d"
+      ],
+      "oldRequestId": "request-21",
+      "oldWorkerRequestId": "worker-10",
+      "operation": "generate_journal",
+      "operationNumber": 9,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "1e43741d3a686c356a23891a8b4a33795c0337f5b1a47bf7ac1489dde5627c15",
+        "1e43741d3a686c356a23891a8b4a33795c0337f5b1a47bf7ac1489dde5627c15"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "bb27232e26ced1c6f47e8a06d59156f798406dd3df750c1e3dcbbc12b9edbf0f",
+        "bb27232e26ced1c6f47e8a06d59156f798406dd3df750c1e3dcbbc12b9edbf0f"
+      ],
+      "promptTokens": [
+        699,
+        699
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "7e440f42ecf0023d41cafad3b5684599fac8190e3c50ed689ab25ffa5f883025",
+        "ac2e9c847e978509d97f654be4e924ae69facf8b3fd657e9db9582ab5c306de6"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "30232aa50fca95c9360239b6491ad7e0b3441a3a0eea99360f149d93f6f29be1",
+        "30232aa50fca95c9360239b6491ad7e0b3441a3a0eea99360f149d93f6f29be1"
+      ],
+      "textEqual": true,
+      "textSha256": [
+        "9c9baecb8204993b6a0c36cb02daa02818f1f0e8854dacc5f2ebe4c7cc139427",
+        "9c9baecb8204993b6a0c36cb02daa02818f1f0e8854dacc5f2ebe4c7cc139427"
+      ]
+    },
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "8af94103c545fd93ed4fac6bdfd89f1fff9d2ff3040ab8a543f2fb3fd46ef70b",
+        "8af94103c545fd93ed4fac6bdfd89f1fff9d2ff3040ab8a543f2fb3fd46ef70b"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        0,
+        0
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ],
+      "newRequestId": "request-25",
+      "newWorkerRequestId": "worker-11",
+      "normsEqual": true,
+      "normsSha256": [
+        "7c9b61d7c023715adb4696b19505eb2d4897d9eb8045dd72a013d112120da34d",
+        "7c9b61d7c023715adb4696b19505eb2d4897d9eb8045dd72a013d112120da34d"
+      ],
+      "oldRequestId": "request-25",
+      "oldWorkerRequestId": "worker-11",
+      "operation": "quiet_capture",
+      "operationNumber": 10,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "badbe19ea861debafd34f8f5fcd6a98a6e3378a721adf9d40d395acda0ce68d3",
+        "badbe19ea861debafd34f8f5fcd6a98a6e3378a721adf9d40d395acda0ce68d3"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "a3190c0440fafe621aa214a1e1b9f141e11054eec9928c0429b7142aff06f5d3",
+        "a3190c0440fafe621aa214a1e1b9f141e11054eec9928c0429b7142aff06f5d3"
+      ],
+      "promptTokens": [
+        23,
+        23
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "9a72c17f8003155bbab703be7b7e0ee89e125097786f9ac1332f7abf1dd966f7",
+        "3daf2ca66298d1555d93611148fe8ba308f5fbbd9f0a2e8b930e56f5b74afc37"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ]
+    },
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "522134daeac70503a24078e1b6835920a4415c2fd794f758a7e2be5d773b85d4",
+        "522134daeac70503a24078e1b6835920a4415c2fd794f758a7e2be5d773b85d4"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        0,
+        0
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ],
+      "newRequestId": "request-27",
+      "newWorkerRequestId": "worker-12",
+      "normsEqual": true,
+      "normsSha256": [
+        "8f23bfb48ba9a7df02ddf5a2ede37e3f04d1bf8d44706af09af0cdc9707eb76f",
+        "8f23bfb48ba9a7df02ddf5a2ede37e3f04d1bf8d44706af09af0cdc9707eb76f"
+      ],
+      "oldRequestId": "request-27",
+      "oldWorkerRequestId": "worker-12",
+      "operation": "quiet_capture",
+      "operationNumber": 11,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "1e7776befed78c2ad24d0bfc92ef3d596dd51780e4ce43994bded475c77a4d68",
+        "1e7776befed78c2ad24d0bfc92ef3d596dd51780e4ce43994bded475c77a4d68"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "0c42de39c3d90dfd10df2841618f5c79995b95e8f399eda2374938511c0276d6",
+        "0c42de39c3d90dfd10df2841618f5c79995b95e8f399eda2374938511c0276d6"
+      ],
+      "promptTokens": [
+        23,
+        23
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "f8d3354a42d24649b62464fcc3777ae7e463009d4dffcf6ad81f4a0546e64413",
+        "8cc31817f5cbcbffc24f613fcafdbd9f0de4ab1ae4925f7e5c7fdd52960a4f99"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ]
+    },
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "1c5bc529f7d3f7762139d404c997865b6dfe76f67e192463c460b152e91d8a10",
+        "1c5bc529f7d3f7762139d404c997865b6dfe76f67e192463c460b152e91d8a10"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "firstDifferingTextCharacterIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        685,
+        685
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "474b490df2a5908c6dd45ba074ac1ea96c6a0dc7f523e6dbd5f3e6052c52b681",
+        "474b490df2a5908c6dd45ba074ac1ea96c6a0dc7f523e6dbd5f3e6052c52b681"
+      ],
+      "newRequestId": "request-29",
+      "newWorkerRequestId": "worker-13",
+      "normsEqual": true,
+      "normsSha256": [
+        "2778897595312c59f8bc8dff0ca74fe24f4f995220e9547df965d16e1c0695c9",
+        "2778897595312c59f8bc8dff0ca74fe24f4f995220e9547df965d16e1c0695c9"
+      ],
+      "oldRequestId": "request-29",
+      "oldWorkerRequestId": "worker-13",
+      "operation": "generate_journal",
+      "operationNumber": 12,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "ec2a23116ae23c3a03f372e56033e87f814fbc5e0b2009232c6701c37c133be6",
+        "ec2a23116ae23c3a03f372e56033e87f814fbc5e0b2009232c6701c37c133be6"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "c1c66e182299633b4607df34ac04ae1427e1cfbda728ea50d86c480dc00ebb2a",
+        "c1c66e182299633b4607df34ac04ae1427e1cfbda728ea50d86c480dc00ebb2a"
+      ],
+      "promptTokens": [
+        667,
+        667
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "1d423a483a2d98a65a82bafed77d7f2f1d72225b4bce0d3aaa4fa1c8854f45a5",
+        "a45faddaf1ac065ff6c52b641055a3d5a1271e08d1c2f6a28025685f66e12a62"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "930bc1980182771cacbf3f9b6993cf0ba5903a36cfd05cb9942fed5d94224bbf",
+        "930bc1980182771cacbf3f9b6993cf0ba5903a36cfd05cb9942fed5d94224bbf"
+      ],
+      "textEqual": true,
+      "textSha256": [
+        "e473760708a7efdb5a24e689106fe7eeb282ef31b8c104439ddec3e18b361e33",
+        "e473760708a7efdb5a24e689106fe7eeb282ef31b8c104439ddec3e18b361e33"
+      ]
+    },
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "e424d5bfea751f8a21763f6ae1f981915fbcb785e1f93ad1dcd29686af928b3f",
+        "e424d5bfea751f8a21763f6ae1f981915fbcb785e1f93ad1dcd29686af928b3f"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        0,
+        0
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ],
+      "newRequestId": "request-33",
+      "newWorkerRequestId": "worker-14",
+      "normsEqual": true,
+      "normsSha256": [
+        "cb1c0e966c54cf5891c4ecb083fe0e61c415ce6aaaf81868a5cacd2c4694caa3",
+        "cb1c0e966c54cf5891c4ecb083fe0e61c415ce6aaaf81868a5cacd2c4694caa3"
+      ],
+      "oldRequestId": "request-33",
+      "oldWorkerRequestId": "worker-14",
+      "operation": "quiet_capture",
+      "operationNumber": 13,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "f798d332ce87fc650a1aef0feb4ba8b6908451ecf3814af4fa6f9d8779c1989c",
+        "f798d332ce87fc650a1aef0feb4ba8b6908451ecf3814af4fa6f9d8779c1989c"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "f327350b4f27a0090039ad33dc88b353320c144ef6ed138301de7f03eaa10863",
+        "f327350b4f27a0090039ad33dc88b353320c144ef6ed138301de7f03eaa10863"
+      ],
+      "promptTokens": [
+        25,
+        25
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "7ded51f189b813ce5bf4aaa2dee55747139e6771bbf218ebb85a8b1eaca7083f",
+        "d2dfa8d7a82f7a0cca714580baabe609e683943ab22b850705c91e826acb9a8b"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ]
+    },
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "ae82ddb045392b472ff948e7872ab6536a21249d59ff8d2fbcb3ca82ee3fad57",
+        "ae82ddb045392b472ff948e7872ab6536a21249d59ff8d2fbcb3ca82ee3fad57"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        0,
+        0
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ],
+      "newRequestId": "request-35",
+      "newWorkerRequestId": "worker-15",
+      "normsEqual": true,
+      "normsSha256": [
+        "68651ece208732598ce45f2766e6fddf16d4c61c5655547c95cfae8565f220fe",
+        "68651ece208732598ce45f2766e6fddf16d4c61c5655547c95cfae8565f220fe"
+      ],
+      "oldRequestId": "request-35",
+      "oldWorkerRequestId": "worker-15",
+      "operation": "quiet_capture",
+      "operationNumber": 14,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "156af3337f28b64c5390be093bcac110aa3f3fa5cd1f95eb7f6286b3152b42af",
+        "156af3337f28b64c5390be093bcac110aa3f3fa5cd1f95eb7f6286b3152b42af"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "cbcea6a4ea4ec85c47e10fd84488a0b96779e3537c763694dc66cb1070f6a6e5",
+        "cbcea6a4ea4ec85c47e10fd84488a0b96779e3537c763694dc66cb1070f6a6e5"
+      ],
+      "promptTokens": [
+        22,
+        22
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "33816c0f25ed30733433213d47de47db880a4e82ebebd296d801234d0ca48118",
+        "c8afe6ce6a9a7d0f063fe68c5c1270da5325137137a84ca8a9c8537e4ec83d55"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ]
+    },
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "3d18de813f43339964126b75609be8425d6ee758da14f56fc26c00aacd1beaea",
+        "3d18de813f43339964126b75609be8425d6ee758da14f56fc26c00aacd1beaea"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "firstDifferingTextCharacterIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        729,
+        729
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "f48f25bd04c44b35b7afebe15e009f094d9af024fa1ddfd6384d445752f14a06",
+        "f48f25bd04c44b35b7afebe15e009f094d9af024fa1ddfd6384d445752f14a06"
+      ],
+      "newRequestId": "request-37",
+      "newWorkerRequestId": "worker-16",
+      "normsEqual": true,
+      "normsSha256": [
+        "1cf99dac6d81673829a5c69feb6790be7e680fd0f7f35996c9c1e07bbef6147e",
+        "1cf99dac6d81673829a5c69feb6790be7e680fd0f7f35996c9c1e07bbef6147e"
+      ],
+      "oldRequestId": "request-37",
+      "oldWorkerRequestId": "worker-16",
+      "operation": "generate_journal",
+      "operationNumber": 15,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "6b06d1568668be0508fa930d9d545fb17571cdbe84ec84af7ce37746a8599e67",
+        "6b06d1568668be0508fa930d9d545fb17571cdbe84ec84af7ce37746a8599e67"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "bea827184638bfb21340245cceecbb5416185934008ad02c7bcc9892e48e23bb",
+        "bea827184638bfb21340245cceecbb5416185934008ad02c7bcc9892e48e23bb"
+      ],
+      "promptTokens": [
+        829,
+        829
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "0f939037a92aa8c01b8163d374cb5f0ec43295eb25b51b38f9e1c478895c89fc",
+        "d569dcc742aa317bf1f7a780a24255f3d78a8406e229aec9d861dff6444ecbcd"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "c411d2200ced33832c93710f3f190a62ff60639b1398477bac24a62c4fc58031",
+        "c411d2200ced33832c93710f3f190a62ff60639b1398477bac24a62c4fc58031"
+      ],
+      "textEqual": true,
+      "textSha256": [
+        "f2bb6c18fedcdef653da10e675fdd8a103e1912a2d7f007307e09b2ae5f07bb4",
+        "f2bb6c18fedcdef653da10e675fdd8a103e1912a2d7f007307e09b2ae5f07bb4"
+      ]
+    },
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "1aa54d3f78a87c148ae1de9f932457500e3f0393f0d2f410e292a97c25b1dd43",
+        "1aa54d3f78a87c148ae1de9f932457500e3f0393f0d2f410e292a97c25b1dd43"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        0,
+        0
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ],
+      "newRequestId": "request-41",
+      "newWorkerRequestId": "worker-17",
+      "normsEqual": true,
+      "normsSha256": [
+        "434a57c030d3fb112717aa51c2cf5800b6b4eb3d16b26c6ceedc2a7ced821647",
+        "434a57c030d3fb112717aa51c2cf5800b6b4eb3d16b26c6ceedc2a7ced821647"
+      ],
+      "oldRequestId": "request-41",
+      "oldWorkerRequestId": "worker-17",
+      "operation": "quiet_capture",
+      "operationNumber": 16,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "b6e658a86bf6479f3399e4feb306f1410faa5af64feea83d264738a5e5386325",
+        "b6e658a86bf6479f3399e4feb306f1410faa5af64feea83d264738a5e5386325"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "bb693221a5f6ed208d5bdb60b4b8666c1c57a7223d66495f17c56c97d6bf7d7a",
+        "bb693221a5f6ed208d5bdb60b4b8666c1c57a7223d66495f17c56c97d6bf7d7a"
+      ],
+      "promptTokens": [
+        24,
+        24
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "ab5c285d3ddf12800d66d029fa94a51135b922636f05936c4386658beac0f7a6",
+        "6780856f7e55ff1e111ee2865ac373e8f6418f548e04422b24d9c96a7372359d"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ]
+    },
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "84b4cf552805abe55722f936289c4381cc524e60113f98aaa8e14bfe1c8bc3c3",
+        "84b4cf552805abe55722f936289c4381cc524e60113f98aaa8e14bfe1c8bc3c3"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        0,
+        0
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ],
+      "newRequestId": "request-43",
+      "newWorkerRequestId": "worker-18",
+      "normsEqual": true,
+      "normsSha256": [
+        "a8cdc60cf1110056e50bf261052c649b5ae45906c843dba2901937161aaf70d7",
+        "a8cdc60cf1110056e50bf261052c649b5ae45906c843dba2901937161aaf70d7"
+      ],
+      "oldRequestId": "request-43",
+      "oldWorkerRequestId": "worker-18",
+      "operation": "quiet_capture",
+      "operationNumber": 17,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "17a8dbba8894990b914cb9a26aab58bc9518d4d6f3f81a4fddb9578659b3e858",
+        "17a8dbba8894990b914cb9a26aab58bc9518d4d6f3f81a4fddb9578659b3e858"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "a5771021affd4da2bf36e00b88d60b3e947cb19503985b0b31a650a6259ae1c9",
+        "a5771021affd4da2bf36e00b88d60b3e947cb19503985b0b31a650a6259ae1c9"
+      ],
+      "promptTokens": [
+        25,
+        25
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "fa76e99094fc4f1cb8c804af841508d1a40c5162431478faa3d2d3c51ed456b6",
+        "e33724e79c76cd693956d7b724340e371d1b0cf30c46142485b1ce28ff1be200"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ]
+    },
+    {
+      "activationEqual": true,
+      "activationMaxAbsoluteDifference": 0.0,
+      "activationSha256": [
+        "a445825b770ccf79e7d96d389ac494f6419c5ae6ca2f503c2d41e5e771f4a7a9",
+        "a445825b770ccf79e7d96d389ac494f6419c5ae6ca2f503c2d41e5e771f4a7a9"
+      ],
+      "differingResponsePaths": [
+        ".receipt.elapsedSeconds"
+      ],
+      "firstDifferingGeneratedTokenIndex": null,
+      "firstDifferingPromptTokenIndex": null,
+      "firstDifferingTextCharacterIndex": null,
+      "fullResponseEqual": false,
+      "generatedContentTokens": [
+        729,
+        729
+      ],
+      "generatedTokenIdsEqual": true,
+      "generatedTokenIdsSha256": [
+        "2b7cf1657a165d7c7984a5217ea26572a58195ee23f30993a9391ac33b6b2edc",
+        "2b7cf1657a165d7c7984a5217ea26572a58195ee23f30993a9391ac33b6b2edc"
+      ],
+      "newRequestId": "request-45",
+      "newWorkerRequestId": "worker-19",
+      "normsEqual": true,
+      "normsSha256": [
+        "b23a66a4da207a3e00a3cb721f4dbc8ac4ea7f716bde7d8a39b01b07a0b4247a",
+        "b23a66a4da207a3e00a3cb721f4dbc8ac4ea7f716bde7d8a39b01b07a0b4247a"
+      ],
+      "oldRequestId": "request-45",
+      "oldWorkerRequestId": "worker-19",
+      "operation": "generate_journal",
+      "operationNumber": 18,
+      "projectionEqual": true,
+      "projectionMaxAbsoluteDifference": 0.0,
+      "projectionSha256": [
+        "0c90b1513bbfc9ad4666a46f2a51572ba801dd5a8554633964990bf6f0f2024d",
+        "0c90b1513bbfc9ad4666a46f2a51572ba801dd5a8554633964990bf6f0f2024d"
+      ],
+      "promptTokenIdsEqual": true,
+      "promptTokenIdsSha256": [
+        "38caec9cf9eff415c73d256ce5e6816f06ba46f1b351742c7dcfb4c4803a0aa2",
+        "38caec9cf9eff415c73d256ce5e6816f06ba46f1b351742c7dcfb4c4803a0aa2"
+      ],
+      "promptTokens": [
+        876,
+        876
+      ],
+      "requestPayloadEqual": true,
+      "responseFileSha256": [
+        "0919c1ee95a042c491d61b654bf708841feac2d6587aee0a330ab34b274049aa",
+        "a8768dc431a4a78b129964bf6c76a413411162be3b765ab3d7627ed71ab21365"
+      ],
+      "sampledTokenIdsEqual": true,
+      "sampledTokenIdsSha256": [
+        "3f48466537338f535062a21bbcce85a97ea90fcc33cb286567a26610261d5813",
+        "3f48466537338f535062a21bbcce85a97ea90fcc33cb286567a26610261d5813"
+      ],
+      "textEqual": true,
+      "textSha256": [
+        "3cf35ad4f7755ee453c98e6cd28e55514efffa0ea7262e6b1b5356f63eeea2f7",
+        "3cf35ad4f7755ee453c98e6cd28e55514efffa0ea7262e6b1b5356f63eeea2f7"
+      ]
+    }
+  ],
+  "resourceCommandsExecuted": 0,
+  "schema": "activation-repeat-and-resource-summary/1",
+  "scope": "Exploratory same-arm repeat; no cross-arm contrast",
+  "sourceInventories": [
+    {
+      "fileCount": 209,
+      "relativePathAndContentSha256": "2fdec47c7a4c9807daa0d94a54d5e9dc112720195111819a8ff47361aaaa329d"
+    },
+    {
+      "fileCount": 202,
+      "relativePathAndContentSha256": "023e44759bd6209c15bed555a51a2f2ceb70060a334ce9fd2902ef4cc9f141ed"
+    }
+  ],
+  "sources": [
+    {
+      "calibrationFileSha256": "1c62c9976ecb5fb5b22125c0b4196f345810c6c2396a16dbde6c9b4fb5413f04",
+      "directory": "pilot-01",
+      "frozenPlanSha256": "89d6fb990cb37f03c4e0347db44aba9dc3ef7ac78beebb85cc1d0c15856ed7ac",
+      "manifestFileSha256": "3c6cd1c29e1d0a7a3a60b3ada16b2d3da7fa0ff1794b809ca7a638040cb49035",
+      "recordFileSha256": "bcd2421348d8ced6e5ca23b52b2b9e6d7947e8e6bdf52193fe9f9b6c5becfe0c",
+      "resultSha256": "bf64fc7d8313619d467b72abee58ed3a74630da0d99723f014d21711585e1a4d",
+      "sessionId": "activation-1792119989350565000"
+    },
+    {
+      "calibrationFileSha256": "1c62c9976ecb5fb5b22125c0b4196f345810c6c2396a16dbde6c9b4fb5413f04",
+      "directory": "comparison-01",
+      "frozenPlanSha256": "c3dee9bb024fe613f48eef2f340ddb4eb7cc10e745b165b2a8be68e460908dd8",
+      "manifestFileSha256": "ac095bbb8344530acea3234a034a2603056502d3faf5c79b699d8e9695b13bf6",
+      "recordFileSha256": "ec8c072bbefe625fd5dec21a06ec63ebe11227f7798ec366e865bfa0850b4904",
+      "resultSha256": "6c803c125cda59dc52127c21e017ff8e677b1bdc5dc89c003d97293328fed069",
+      "sessionId": "activation-1792163647254165000"
+    }
+  ]
+}
