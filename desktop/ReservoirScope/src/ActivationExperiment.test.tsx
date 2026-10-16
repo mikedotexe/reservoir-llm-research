@@ -46,4 +46,16 @@ describe('Activation experiment interface', () => {
     const { controller } = activationFixture(); const s = activationSession({ journalCount: 1, journals: [{ ...activationJournal(), text: '<script>inert full journal</script>\nFinal paragraph.', firstAppliedStep: null }], events: [{ id: 'event-1', kind: 'quiet_failed', step: 10, detail: 'worker error' }] }); controller.compare(s, true);
     const html = renderToStaticMarkup(<ActivationReader session={s} index={0} state={controller.snapshot()} controller={controller}/>); expect(html).toContain('&lt;script&gt;inert full journal&lt;/script&gt;'); expect(html).toContain('Final paragraph.'); expect(html).not.toContain('<script>'); expect(html).toContain('No first feedback application is recorded'); expect(html).toContain('Attempt failed'); expect(html).toContain('never determine feedback eligibility'); expect(html).toContain('Another possible reading');
   });
+  it('shows exact quiet input, request and application boundaries, and cancellation before revealing condition evidence', () => {
+    const { controller } = activationFixture();
+    const s = activationSession({ config: { ...DEFAULT_ACTIVATION_CONFIG, arm: 'recurrent', observations: ['<script>inert observation</script>\nSecond line.', 'The next observation never applies.'] }, events: [
+      { id: 'event-1', kind: 'requestStarted', step: 9, detail: 'quiet_capture' }, { id: 'event-2', kind: 'quietReceived', step: 10, detail: 'Observation registered without sampled output' },
+      { id: 'event-3', kind: 'requestStarted', step: 19, detail: 'quiet_capture' }, { id: 'event-4', kind: 'failed', step: 19, detail: 'Cancelled recurrent secret condition' },
+    ] }); controller.compare(s, true);
+    const html = renderToStaticMarkup(<ActivationReader session={s} index={0} state={controller.snapshot()} controller={controller}/>);
+    expect(html).toContain('&lt;script&gt;inert observation&lt;/script&gt;\nSecond line.'); expect(html).not.toContain('<script>');
+    expect(html).toContain('Quiet observation 1 requested'); expect(html).toContain('Scheduled application at step 10'); expect(html).toContain('Quiet observation 1 applied'); expect(html).toContain('Received and applied at step 10 without sampled output');
+    expect(html).toContain('The next observation never applies.'); expect(html).toContain('Quiet observation 2 cancelled'); expect(html).toContain('Requested at step 19; held at step 19. No application is recorded');
+    expect(html).not.toContain('Recurrent reservoir'); expect(html).not.toContain('recurrent secret condition');
+  });
 });

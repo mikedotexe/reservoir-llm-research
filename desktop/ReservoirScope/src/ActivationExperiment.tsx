@@ -1,23 +1,11 @@
 import { useEffect, useId, useState, useSyncExternalStore } from 'react';
 import { activationController, type ActivationController, type ActivationState } from './activationController';
 import { ACTIVATION_ARM_NAMES, DEFAULT_ACTIVATION_CONFIG, activationCanStart, activationRunning, type ActivationConfig, type ActivationJournal, type ActivationSnapshot } from './activationTypes';
+import { activationTimeline } from './activationTimeline';
 import './activation.css';
 
 const statusLabel = (status: string) => ({ ready: 'Ready · not started', running: 'Running', initializing: 'Preparing model', stopped: 'Stopped', completed: 'Complete', complete: 'Complete', failed: 'Held after a failure', held: 'Held for review', interrupted: 'Interrupted · review needed', paused: 'Paused for review' })[status] ?? status;
 const seriesLabel = (index: number) => `Reading ${String.fromCharCode(65 + index)}`;
-const eventLabel = (kind: string) => {
-  kind = kind.toLowerCase();
-  if (/fail|error|reject/.test(kind)) return 'Attempt failed';
-  if (/cancel|stop/.test(kind)) return 'Stopped';
-  if (/quiet|observation|capture/.test(kind)) return /appl/.test(kind) ? 'Observation applied' : /complete|success|captur|receiv/.test(kind) ? 'Quiet observation received' : 'Quiet observation';
-  if (/journal/.test(kind)) return /appl/.test(kind) ? 'Journal feedback applied' : /sav/.test(kind) ? 'Journal saved and read back' : /receiv/.test(kind) ? 'Writing received · save pending' : 'Writing opportunity';
-  if (kind === 'requeststarted') return 'Model request started';
-  if (/annotat/.test(kind)) return 'Reading note saved';
-  if (/creat|ready/.test(kind)) return 'Prepared';
-  if (/start|initial/.test(kind)) return 'Started';
-  if (/complete/.test(kind)) return 'Run complete';
-  return 'Recorded event';
-};
 function comparisonStatus(sessions: ActivationSnapshot[]) {
   if (sessions.length < 2) return 'single';
   if (sessions.some(s => !s.modelManifestSha256 || !s.calibrationSha256)) return 'unconfirmed';
@@ -59,7 +47,7 @@ export function ActivationReadingNote({ session, journal, controller, disabled }
     <label htmlFor={`${id}-excerpt`}>Exact journal excerpt</label><textarea id={`${id}-excerpt`} value={excerpt} onChange={e => setExcerpt(e.target.value)} rows={3}/>
     <label htmlFor={`${id}-interpretation`}>Interpretation</label><textarea id={`${id}-interpretation`} value={interpretation} onChange={e => setInterpretation(e.target.value)} rows={3}/>
     <label htmlFor={`${id}-alternative`}>Another possible reading</label><textarea id={`${id}-alternative`} value={alternative} onChange={e => setAlternative(e.target.value)} rows={3}/>
-    <fieldset><legend>Source events</legend><div className="activation-source-events">{session.events.map((event, index) => <label key={event.id}><input type="checkbox" checked={sources.includes(event.id)} onChange={e => setSources(e.target.checked ? [...sources, event.id] : sources.filter(id => id !== event.id))}/><span>Event {index + 1} · step {event.step} · {eventLabel(event.kind)}</span></label>)}</div></fieldset>
+    <fieldset><legend>Source events</legend><div className="activation-source-events">{activationTimeline(session).map(({ event, label }, index) => <label key={event.id}><input type="checkbox" checked={sources.includes(event.id)} onChange={e => setSources(e.target.checked ? [...sources, event.id] : sources.filter(id => id !== event.id))}/><span>Event {index + 1} · step {event.step} · {label}</span></label>)}</div></fieldset>
     <button disabled={disabled || !interpretation.trim() || !alternative.trim() || !sources.length} onClick={() => void save()}>Save reading note</button>
     {(session.annotations ?? []).filter(note => note.journalId === journal.id).map((note, index) => <blockquote key={index}><p>{note.excerpt}</p><p><strong>Interpretation:</strong> {note.interpretation}</p><p><strong>Another reading:</strong> {note.alternative}</p><p>{note.sourceEventIds.length} source events linked.</p></blockquote>)}
   </details>;
@@ -72,7 +60,7 @@ export function ActivationReader({ session, index, state, controller }: { sessio
     <div className="activation-actions"><button disabled={position <= 0} onClick={() => controller.adjacent(session.sessionId, -1)}>Earlier</button><button disabled={position < 0 || position >= session.journals.length - 1} onClick={() => controller.adjacent(session.sessionId, 1)}>Later</button><button aria-pressed={following} onClick={() => controller.follow(session.sessionId)}>Follow latest</button><span>{journal ? `Entry ${position + 1} of ${session.journals.length}` : 'No completed journal yet'}</span></div>
     {!following && position >= 0 && position < session.journals.length - 1 && <p className="activation-new">{session.journals.length - position - 1} later {session.journals.length - position - 1 === 1 ? 'entry' : 'entries'} available. Your selected text stays in place.</p>}
     {journal ? <><div className="activation-prose" tabIndex={0} aria-label={`${seriesLabel(index)} selected journal`}>{journal.text}</div>{journal.status === 'receivedPendingSave' && <p>Writing received; durable save and readback are pending. This text is not yet eligible for feedback.</p>}<p className="activation-small">Observed at step {journal.observedStep}. {journal.firstAppliedStep === null ? 'No first feedback application is recorded.' : `Feedback first applied at step ${journal.firstAppliedStep}.`} Reading never moves the experiment clock.</p><ActivationReadingNote key={journal.id} session={session} journal={journal} controller={controller} disabled={!!state.busy}/></> : <p>Quiet observations and incomplete attempts remain visible in the timeline even when no journal is saved.</p>}
-    <details className="activation-timeline"><summary>Observation and feedback timeline · {session.events.length} events</summary><ol>{session.events.map((event, i) => <li key={event.id} className={/fail|error|reject|cancel/.test(event.kind) ? 'activation-event-failed' : ''}><strong>Event {i + 1} · step {event.step}</strong><span>{eventLabel(event.kind)}</span>{state.revealed && <><code>{event.id} · {event.kind}</code><p>{event.detail}</p></>}</li>)}</ol></details>
+    <details className="activation-timeline"><summary>Observation and feedback timeline · {session.events.length} events</summary><ol>{activationTimeline(session).map(({ event, label: eventLabel, observation, failed }, i) => <li key={event.id} className={failed ? 'activation-event-failed' : ''}><strong>Event {i + 1} · step {event.step}</strong><span>{eventLabel}</span>{observation && <><blockquote style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', margin: '.5rem 0' }}>{observation.text}</blockquote><p className="activation-small">{observation.outcome === 'applied' ? `Received and applied at step ${observation.applicationStep} without sampled output.` : observation.outcome === 'requested' ? `Requested at step ${observation.requestedStep}. Scheduled application at step ${observation.scheduledStep}.` : `Requested at step ${observation.requestedStep}; held at step ${event.step}. No application is recorded for this observation.`}</p></>}{state.revealed && <><code>{event.id} · {event.kind}</code><p>{event.detail}</p></>}</li>)}</ol></details>
     <details className="activation-evidence"><summary>Evidence and condition labels</summary>{!state.revealed ? <><p>Read the prose before revealing which feedback condition produced it.</p><button onClick={() => controller.reveal()}>Reveal condition labels and exact evidence</button></> : <><dl className="activation-data"><dt>Condition</dt><dd>{ACTIVATION_ARM_NAMES[session.config.arm]}</dd><dt>Session</dt><dd>{session.sessionId}</dd><dt>Revision</dt><dd>{session.revision}</dd><dt>Model and runtime hash</dt><dd>{session.modelManifestSha256 ?? 'Unconfirmed · initialization has no retained identity'}</dd><dt>Calibration hash</dt><dd>{session.calibrationSha256 ?? 'Unconfirmed · initialization has no retained identity'}</dd><dt>Journal identity</dt><dd>{journal?.id ?? 'None selected'}</dd><dt>Journal hash</dt><dd>{journal?.sha256 ?? 'Unavailable'}</dd></dl><pre tabIndex={0}>{JSON.stringify({ config: session.config, diagnostic: session.diagnostic, annotations: session.annotations ?? [] }, null, 2)}</pre></>}</details>
     <button disabled={!!state.busy || activationRunning(state.current)} onClick={() => void controller.export(session.sessionId)}>Export this run…</button>
   </article>;
