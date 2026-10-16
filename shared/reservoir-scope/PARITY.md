@@ -1,6 +1,6 @@
 # Reservoir Scope parity ledger
 
-**Current baseline: 0.25.0 / `reservoir-journal-v8` · Reviewed October 15, 2026**
+**Current candidate: 0.27.0 candidate 04 · Current pointer reviewed October 16, 2026**
 
 This matrix separates implemented behavior, executed qualification and remaining
 work. A verifier pass does not establish complete workflow parity, scientific benefit
@@ -11,7 +11,22 @@ or live Being interoperability.
 [Desktop preview](../../desktop/ReservoirScope/README.md) ·
 [Exact pre-housekeeping history](PARITY-HISTORY-2026-10-15.md)
 
-## Current position: 0.25 journal-first reading
+## Current position: 0.27 private preview
+
+Candidate 04 is ready for a first invited tester on the observed Apple Silicon
+macOS 27.0.1 path; actual uncoached human acceptance remains pending. The
+[0.27 release account](../../desktop/ReservoirScope/RELEASE-0.27.0.md) and its
+qualification receipt own the standalone setup, portable historical reading,
+transferred opening, export/recovery and measured compact activation-screen scope.
+They retain the optional arrival-navigation refusal and all other qualification
+limits. Historical `reservoir-journal-v8` sessions keep their recorded contract;
+activation has a separate format and does not complete the three-condition study.
+
+The capability and platform tables below retain their recorded pre-activation
+baseline. They do not replace the newer route-specific release account or extend
+its checks to all workspaces, platforms, minimum OS versions or human acceptance.
+
+### Prior 0.25 journal-first reading
 
 [0.25 qualification](../../desktop/ReservoirScope/validation/2026-10-15-journal-first-0.25.0/README.md)
 pass 431 frontend tests in 46 files, TypeScript/Vite, reference checks and the
@@ -187,10 +202,11 @@ is started. Existing ASCII records may still be incomplete when they exercise
 an unqualified response-parser edge. A passed verifier result certifies its named
 checks, not desktop/workflow parity, scientific benefit or live Being interoperability.
 
-The [next usability/resource tranche](../../desktop/ReservoirScope/STATUS.md#next-usability-and-resource-tranche)
-records the 0.24 multi-page native pass and keeps actual compact dimensions and
-broader GPU/resource attribution open with separate completion boundaries. Observed
-zoom and keyboard access at larger geometry do not establish compact-window acceptance.
+The [current usability/resource account](../../desktop/ReservoirScope/STATUS.md#next-usability-and-resource-tranche)
+preserves the 0.24 multi-page native pass and separately records candidate 04's
+measured compact activation screens. Other-destination compact checks and broader
+GPU/resource attribution remain open. Historical larger-window zoom evidence is
+not substituted for measured content dimensions.
 
 ## Platform acceptance
 
@@ -207,7 +223,7 @@ source/package; no percentage substitutes for these gates.
 
 ## Next tranches
 
-Use the [six current work areas](../../desktop/ReservoirScope/STATUS.md#six-bounded-areas-remaining):
+Use the [current work areas](../../desktop/ReservoirScope/STATUS.md#broader-work-beyond-the-private-preview-finish):
 writing-context investigation; Observatory/reading/rendering; sustained lifecycle and
 endurance; conformance and optional selected feeds; platform packages; collaborator
 acceptance. Selected feeds are optional. Explicit budget extension still needs a

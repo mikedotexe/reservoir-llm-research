@@ -1,6 +1,6 @@
 # Reservoir Scope: Tauri parity and evolution roadmap
 
-**Accepted planning baseline:** October 11, 2026. **Status reviewed:** October 15, 2026.
+**Accepted planning baseline:** October 11, 2026. **Current pointer reviewed:** October 16, 2026.
 
 [Current status and next tranches](desktop/ReservoirScope/STATUS.md) ·
 [Desktop preview](desktop/ReservoirScope/README.md) ·
@@ -12,11 +12,15 @@ contracts, milestones and qualification gates. Milestone descriptions are target
 not claims that every listed workflow is implemented or qualified. Current progress
 and the active backlog are consolidated in **STATUS.md**.
 
-The current candidate is **0.26.0**, adding the separately versioned
-[activation experiment](shared/reservoir-scope/activation-experiment.md).
-The [qualification account](desktop/ReservoirScope/validation/2026-10-15-activation-0.26.0/README.md)
-owns its tested scope and pilot outcome. This is an isolated research apparatus;
-action selection and continuous wall-clock ticking remain later tranches.
+The current candidate is **0.27.0 candidate 04**, ready for a first invited tester
+on its scoped Apple Silicon macOS path; actual uncoached human acceptance remains
+pending. The [release account](desktop/ReservoirScope/RELEASE-0.27.0.md) owns its
+exact package identity and qualification scope, including standalone preparation,
+portable historical writing and the named compact activation screens. The separately
+versioned [activation experiment](shared/reservoir-scope/activation-experiment.md)
+remains an isolated research apparatus. Its incomplete condition comparison is
+separate from preview readiness; action selection and continuous wall-clock ticking
+remain later tranches.
 
 The published **0.25.0 source checkpoint** retains production v8 and numerical/save
 contracts. [Journal-first reading](desktop/ReservoirScope/validation/2026-10-15-journal-first-0.25.0/README.md)
@@ -29,7 +33,7 @@ The offline script remains the default; no new automatic service or model action
 is introduced. The personal controller’s 68% target and 64–72% error deadband are
 reference settings, not a proven special state or a fill-rate measurement.
 
-Fresh qualification passes 431 frontend tests in 46 files, TypeScript/Vite,
+That 0.25 qualification passes 431 frontend tests in 46 files, TypeScript/Vite,
 reference checks and the distinct macOS package build. Rust tests and Clippy reuse
 0.24’s results by exact comparison of 164 inputs with five validated application-
 version-only substitutions; they were not rerun. The [native walkthrough](desktop/ReservoirScope/validation/2026-10-15-journal-first-0.25.0/MACOS-UI.md)
@@ -99,10 +103,13 @@ attributed GPU/resource measurements on the qualified candidate. The earlier
 main-process sample does not measure GPU or whole-app resource use. [Evidence and completion boundaries](desktop/ReservoirScope/STATUS.md#next-usability-and-resource-tranche)
 keep all three priorities explicit. No new prompt experiment is implied.
 
-For future bounded serial checks of the same local model, the user-approved
-[resource policy](desktop/ReservoirScope/QUALIFICATION-RESOURCES.md) now lowers the
-prospective floor to **20% reported free**, with normal memory pressure and the
-existing disk/run bounds. Historical attempts remain unchanged; no new run is queued.
+For future bounded serial `gemma3:4b` checks, the user-approved
+[resource policy](desktop/ReservoirScope/QUALIFICATION-RESOURCES.md) specifies a
+prospective **20% reported-free** floor with normal memory pressure and the existing
+disk/run bounds. It does not change the separate activation startup guard, which
+requires **25% reported free and pressure level 1**, as retained in the
+[activation qualification](desktop/ReservoirScope/RELEASE-0.27.0.md#transferred-installation-and-compact-reading).
+Historical attempts retain their frozen rules; this pointer schedules no new run.
 
 The complete pre-housekeeping document—including every dated execution account and
 historical “next” statement—is preserved byte-for-byte in

@@ -40,5 +40,8 @@ schedules no run and changes no production prompt or package.
 The completed [source-role comparison](validation/2026-10-15-context-sources-03/README.md)
 retains its 30% policy and actual 42% admission; it does not establish performance
 near 20%. Earlier refusals likewise retain their original policies and results.
-The next product tranche remains Observatory reference-field and spectrum inspection
-in [STATUS.md](STATUS.md).
+The later Observatory reference-field and spectrum tranche is recorded as delivered
+in [STATUS.md](STATUS.md#broader-work-beyond-the-private-preview-finish), which owns
+the current backlog. This dated Gemma policy does not set activation admission:
+the separate Qwen3 preview retains its 25% reported-free startup floor and normal
+pressure requirement, as recorded in the [0.27 release account](RELEASE-0.27.0.md#transferred-installation-and-compact-reading).

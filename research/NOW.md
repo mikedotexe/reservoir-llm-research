@@ -15,7 +15,8 @@ prepared its standalone runtime and reopened normally; measured compact content
 sizes passed for the named activation setup, reading and recovery screens. Actual
 uncoached newcomer acceptance remains pending. An optional synthetic arrival check
 was refused at memory admission and was not retried; its packaged UI behavior
-remains unobserved. No new refs are pushed and no invitees are contacted. The unfinished condition comparison
+remains unobserved. Source checkpoint publication is separate from the private app
+handoff; no invitees have been contacted. The unfinished condition comparison
 below remains an open research question, separate from release acceptance.
 
 **October 16 follow-up: address activation headroom on this Mac.** Mike selected
