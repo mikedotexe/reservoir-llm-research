@@ -1,0 +1,163 @@
+{
+  "schema": "activation-headroom-closure-v1",
+  "closedAtUtc": "2026-10-16T17:39:08.293592+00:00",
+  "implementationCommit": "d928d2d1f4593708fa8db9b30c2063ff4b713617",
+  "qualifiedWorkerCommit": "8723f40",
+  "mechanicalQualification": "passed",
+  "mechanicalQualificationCheckCount": 14,
+  "cohortStatus": "held",
+  "comparisonComplete": false,
+  "completedJournals": 2,
+  "retainedIncompleteResponses": 1,
+  "unstartedConditions": [
+    "recurrent",
+    "decaying_trace"
+  ],
+  "firstStop": "Third no_steering response reached max_tokens1024 without EOS; no eligible feedback",
+  "automaticRetries": 0,
+  "cohortDispatches": 1,
+  "worker": {
+    "modelsLoaded": 1,
+    "workerStarts": 1,
+    "workerPid": 11249,
+    "workerReleased": true,
+    "workerExitStatus": "signal: 9 (SIGKILL)",
+    "elapsedSeconds": 76.553391333,
+    "lifetimeSeconds": 900.0
+  },
+  "releaseEvidenceInterpretation": "Rust exports the owned worker PID and successful Child.wait outcome. The reused command-only observer independently saw no matching process; its legacy limitation text describes its own command-only scope, not the separate Rust receipt.",
+  "reading": {
+    "complete": true,
+    "initialScope": "All2 completed entries and entire unfinished third response, allocation concealed with general guidance exposure disclosed",
+    "initialSha256": "71f4c654bf772fce3a915e6888a4e497ede2674d4d41d24487a8e49de637bbf2",
+    "afterDisclosureScope": "New prefix, exact first invitation and all6 historical trace entries, with identified mechanical receipts",
+    "postDisclosureSha256": "6692ca7fc954eecb8e8e9f2dc0365cb8014b872a0782d9b979938c67c8e80ec5",
+    "initialNoteUnchanged": true
+  },
+  "frozenSourceHashesRechecked": 20,
+  "allFrozenSourceHashesMatch": true,
+  "previousEvidence": [
+    {
+      "directory": "research/outputs/activation-0.26.0-20261015/pilot-01",
+      "files": 209,
+      "unchanged": true
+    },
+    {
+      "directory": "research/outputs/activation-comparison-20261016/comparison-01",
+      "files": 202,
+      "unchanged": true
+    }
+  ],
+  "previousInferenceBinarySha256": "e2d332c0dcc84b657016338db73dccb19dbb97f8a295a19a6fc26da6ce60cb0e",
+  "cohortEvidenceFiles": 155,
+  "cohortEvidenceBytes": 35723309,
+  "publication": "Local commits only in this tranche",
+  "liveSystems": "No mutation, restart, model unload or research delivery performed",
+  "scope": "Qualified bounded worker/serial CLI and one incomplete unsteered prefix; no full three-arm result, no recurrent benefit claim, no new packaged UI qualification",
+  "artifacts": [
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-16-activation-headroom/README.md",
+      "sha256": "ab6b4bc859b9d9fd93bfd7b13a617fbcb7f3c42fb09507663b068e70ee79480e"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-16-activation-headroom/COHORT-MECHANICS.md",
+      "sha256": "7baf59d41b2d7f31ce3671ec6c3ba8dbd67363fd3252c2c05f2f114520c895fc"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-16-activation-headroom/cohort-summary.json",
+      "sha256": "dfaf7fa15aca3fba5e4839c0926c47ec25455b79f14f2635c2da6ba9dddfce84"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-16-activation-headroom/qualification-summary.json",
+      "sha256": "12c902b39aff61fc66d040c7feeff51e3efd41f8bd4e08d6b7a40bad4e90837a"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-16-activation-headroom/software-checks.json",
+      "sha256": "3c3c91571fac766e506c1c7816a2f311f6c7e794be04f8ec59286de876edc65f"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-16-activation-headroom/historical-contrast-summary.json",
+      "sha256": "627486ff3a17aa9b681a6659898d49f0b3bd42a506632a566269fb2087539692"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-16-activation-headroom/READING-BLIND.md",
+      "sha256": "71f4c654bf772fce3a915e6888a4e497ede2674d4d41d24487a8e49de637bbf2"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-16-activation-headroom/READING-POST-DISCLOSURE.md",
+      "sha256": "6692ca7fc954eecb8e8e9f2dc0365cb8014b872a0782d9b979938c67c8e80ec5"
+    },
+    {
+      "path": "desktop/ReservoirScope/validation/2026-10-16-activation-headroom/RESOURCE-INTERPRETATION.md",
+      "sha256": "7256948afadab7429d0cd32a84a9658134c1b5319c7075e232e492d7696d0486"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/cohort-binary-d928d2d/build-receipt.json",
+      "sha256": "36250610949b1ca649dd282efe712aa12310d68865d99a18a72ff55d6ca55d52"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/qualification-01/result.json",
+      "sha256": "0de81b7c31c909714a48d3f471c8530f46338f1a2f5f3795d7fd02bf2a13d8d0"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/qualification-01/qualification/result.json",
+      "sha256": "6066653f49886f71006989de7f2ea76523bb1ef0cadf1d19db86ee0e2f80869e"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/cohort-01/result.json",
+      "sha256": "2bcc83e6bb041a20c7988b77d53d0f2b768462258d648e169b948cf76373d180"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/cohort-01/frozen-plan.json",
+      "sha256": "3e6346f7fbfab671f5b3a31749922b49ca62f3db183b7ac2c0d0287b233c2d12"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/cohort-01/cohort/cohort-result.json",
+      "sha256": "c8f48b0f529cad726d90830f4b0890c65245806cecb9ef6e808e06096f99f71d"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/cohort-01/worker-release-observation.json",
+      "sha256": "f42a8c98ef97bf424a1b33286ae0ebd4a054a902d17327c6b399c9644e68a102"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/cohort-01/process-lifecycle.json",
+      "sha256": "ba2653679e1cab424e0ed3c506d505fcba7f179c8f5f6fbe1c3fc9b15e1c5eca"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/cohort-mechanics-01.json",
+      "sha256": "0a86d99dbb0be8b630f198da8b3c503cbf2aca05ab950251ccbf9121a8289238"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/historical-contrast-01.json",
+      "sha256": "627486ff3a17aa9b681a6659898d49f0b3bd42a506632a566269fb2087539692"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/reading-prefix-A.json",
+      "sha256": "6b9cc619142c9d98a56fbd35e4d2528264b566e3bf17747db7966b2c0e5e47ce"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/reading-prefix-receipt.json",
+      "sha256": "754e3fe29aa164e0d66a32c60a3f83effc8ce27cbe53b7601b1f88b37f056bab"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/cohort-offline-verification-1.json",
+      "sha256": "b154ff78017dc0bf49bf94f8373608253a0fcdd2f19328cdd23d3b3c27c3f14a"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/cohort-offline-verification-2.json",
+      "sha256": "e7cba962b80028cdd3caa0beab05d2d9a69b4b7f188f10002a46f0086b7c5cc2"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/cohort-offline-verification-3.json",
+      "sha256": "0989219693e938f9892e8e37599c77b8ad51e63cb3abc48a7647e21a067e33b1"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/previous-attempt-inventories.json",
+      "sha256": "75fa700084343ba10aa9441af73602e358b1d8ce8934a3ea915380579b0ad5de"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/cohort-inventory-after-analysis.json",
+      "sha256": "6168a0abac0c0464f3f049a03f9f677156856f9cbdef5d01e76a35e3ea8c51c4"
+    }
+  ]
+}

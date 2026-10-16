@@ -7,8 +7,15 @@
 apparatus changes while leaving the live systems untouched. The
 [headroom study](studies/2026-10-16-activation-headroom.md) tests bounded MLX cache
 retention and one admitted model shared by three fresh serial condition records.
-The startup admission threshold stays fixed. New mechanical qualification must
-pass before the separately frozen cohort can collect writing.
+The startup admission threshold stayed fixed. Fourteen real-model qualification
+checks passed; the new cohort then loaded one model and retained two unsteered
+journals. Its third response repeated a sentence until the frozen 1,024-token
+ceiling, so the attempt stopped and released the worker. All nine operations
+cleared unused cache and returned to the same active allocation; peak MLX active
+allocation was about 2.974 GiB. Memory admission succeeded, but the recurrent and
+trace conditions remain unstarted in this cohort. The
+[dated outcome](../desktop/ReservoirScope/validation/2026-10-16-activation-headroom/README.md)
+preserves this partial result and its reading. No retry or extension is running.
 
 **October 16: compare the isolated activation conditions.** Mike approved a
 resource audit, a new frozen comparison and complete-sequence blinded reading.

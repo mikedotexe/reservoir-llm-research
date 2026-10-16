@@ -1,0 +1,69 @@
+{
+  "schema": "activation-headroom-software-checks-v1",
+  "sourceCommit": "d928d2d1f4593708fa8db9b30c2063ff4b713617",
+  "checks": [
+    {
+      "label": "Worker synthetic tests",
+      "command": ".venv-activation/bin/python -B -m unittest discover -s activation_worker/tests -v",
+      "status": "passed",
+      "note": "38 tests; no model inference",
+      "path": "research/outputs/activation-headroom-20261016/checks/python-final-01.log",
+      "sha256": "7f0be337a3696cce7baab53bea1aad46914d6e6420fd936438b15e9e9f908eb2",
+      "cwd": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope"
+    },
+    {
+      "label": "Qualification launcher",
+      "command": ".venv-activation/bin/python -B -m unittest discover -s scripts -p test_activation_qualification.py -v",
+      "status": "passed",
+      "note": "4 fake-only tests",
+      "path": "research/outputs/activation-headroom-20261016/checks/qualification-launcher-final-01.log",
+      "sha256": "7a2920577ad8e2f7a55f9455760bb36fdcc9529e80f78ae14218537acf3344e4",
+      "cwd": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope"
+    },
+    {
+      "label": "Cohort runner",
+      "status": "passed",
+      "note": "22 fake-only tests; includes owned process-group cleanup",
+      "path": "research/outputs/activation-headroom-20261016/checks/cohort-runner-tests-01.txt",
+      "sha256": "175985666f997176f3ce7869cb9797c31b4a71f22ecd352d76108c7dd236f0f4",
+      "reproductionCommand": ".venv-activation/bin/python -B -m unittest discover -s scripts -p test_activation_cohort.py -v",
+      "cwd": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope"
+    },
+    {
+      "label": "Workspace regression",
+      "command": "cargo test --workspace --locked --manifest-path desktop/ReservoirScope/Cargo.toml",
+      "status": "one_superseded_test_assertion_failed",
+      "note": "451 passed, 1 failed, 2 ignored. The only failure measured whole-fixture/receipt wall time against5s while duplicate test suites overlapped. Those duplicate owned test processes were stopped. The test was changed to assert cancellation after observed dispatch, no resend/later arms and reaping. Production900s/180s bounds were not widened. Historical tests passed. This is not relabeled as a passing full run.",
+      "path": "research/outputs/activation-headroom-20261016/checks/rust-cohort-workspace-final-02.log",
+      "sha256": "e6dc5c4b16eb3b652517ba80dfed4f8949e49bf930618aac12a58569a446e86c",
+      "cwd": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research"
+    },
+    {
+      "label": "Final activation supervisor",
+      "command": "cargo test -p reservoir-scope-desktop activation::tests --locked --manifest-path desktop/ReservoirScope/Cargo.toml -- --test-threads=1",
+      "status": "passed",
+      "note": "19 tests on final source, including terminal-boundary and late-response review fixes. Direct blocked-write cancellation/deadline tests retain elapsed assertions.",
+      "path": "research/outputs/activation-headroom-20261016/checks/rust-cohort-focused-final-02.log",
+      "sha256": "bb64fe7c869b37997ddf0fbf97a8e5def8bafc9601a69b0c867474d7489887f8",
+      "cwd": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research"
+    },
+    {
+      "label": "Strict Clippy",
+      "command": "cargo clippy --workspace --all-targets --locked --manifest-path desktop/ReservoirScope/Cargo.toml -- -D warnings",
+      "status": "passed",
+      "note": "Final source",
+      "path": "research/outputs/activation-headroom-20261016/checks/rust-cohort-clippy-final-01.log",
+      "sha256": "81cd9d666644b9d8876d844e0aa4bbf3b7ee8915cb89f29a779cde1bded83fea",
+      "cwd": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research"
+    }
+  ],
+  "scope": "Local macOS CLI/worker qualification. Frontend unchanged; no new packaged-UI or other-platform qualification claimed. Interrupted workspace logs01/03 and failed focused log01 retained privately.",
+  "frozenReference": {
+    "status": "verified",
+    "baselineCommit": "96b60ed1d1fe9bdd3a5f50dec3a66a4754ad7f95",
+    "sources": 180,
+    "resources": 43,
+    "fixtures": 1
+  },
+  "whitespace": "git diff --check passed before integration commit"
+}

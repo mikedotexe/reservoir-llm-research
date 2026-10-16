@@ -2,7 +2,8 @@
 
 October 16, 2026. Selected by Mike after the second incomplete comparison.
 Constraint confirmed: use this Mac and leave the live systems untouched.
-Status: implementation and prospective qualification; no new writing collected.
+Status: worker and serial cohort path qualified; the first new attempt retained
+two unsteered journals, then stopped at its third response's token ceiling.
 
 ## Question and current evidence
 
@@ -13,7 +14,7 @@ and text-context isolation between conditions?
 The previous two attempts remain stopped. Both completed the trace condition;
 the first then received a Rust admission refusal, and the second exhausted a
 resource-preparation window without dispatching another condition. All six trace
-journals and retained activations reproduced exactly. The controls remain absent.
+journals and retained activations reproduced exactly. At protocol freeze, the controls remained absent.
 This work does not resume either attempt or reinterpret missing writing as a
 null result.
 
@@ -92,7 +93,7 @@ First journals provide the matched text-context comparison. Later trajectories
 also include the effect of preceding prose. There is no predicted direction of
 literary quality, semantic benefit or recurrent advantage.
 
-## Finish line
+## Prospective finish line
 
 The intended result is a qualified bounded-memory worker and serial cohort path,
 plus a complete three-condition comparison if current host admission allows it.
@@ -100,3 +101,44 @@ An exhausted preparation or first execution failure ends the new attempt without
 retry or extension. If host pressure remains unsuitable despite lower own-process
 cost, report that remaining boundary rather than claiming headroom is solved.
 Title and previous-prose contrasts remain separate later inquiries.
+
+## Observed result
+
+All fourteen real-model qualification checks passed, including exact alternating
+unsteered/steered probe isolation. The calibration's numerical contents equal
+the earlier calibration; its identity changed with the worker source. The
+cohort source was committed at `d928d2d` and a separate release CLI was preserved
+before dispatch. Final focused supervisor checks and strict Clippy passed;
+the [software check account](../../desktop/ReservoirScope/validation/2026-10-16-activation-headroom/software-checks.json)
+retains the earlier test-timing failure and its correction.
+
+The single new attempt became ready after approximately 120 seconds, with
+pressure 1 and reported free percentage 30 at admission. It loaded one model.
+The already resident worker continued through warning-pressure readings under
+the frozen rule. Six quiet observations and two journals completed. The third
+response repeated a sentence until reaching 1,024 tokens without EOS. The cohort
+then stopped after approximately 76.55 seconds of execution, reaped its worker,
+and left the recurrent and trace conditions unstarted. No retry or extension
+occurred. The partial response has no eligible activation or feedback.
+
+All nine operations cleared unused allocator cache and returned to the same
+2,264,693,768 active MLX bytes. The largest operation peak was 3,193,685,232 bytes
+(about 2.974 GiB). This measures the owned MLX allocator for the observed prefix,
+not total process/host RAM or a guarantee for the missing conditions. All three
+retained records verified offline; the two completed journals were saved and
+applied at steps 20→21 and 40→41. The attempt passed memory admission and stopped
+on writing completion, while the full three-condition comparison remains absent.
+
+The unsteered writing also begins “The reservoir hums” and develops memory,
+silence and presence. Those motifs therefore do not distinguish steering in
+these observations. A separately labeled historical contrast finds identical
+first-journal prompt tokens, identical numerical calibration and six identical
+quiet captures, but different first-journal output beginning at content token
+40. Worker manifests and attempts differ, and later prompts carry different
+previous prose. This is a useful limited contrast, not a completed controlled
+cohort or evidence of recurrent advantage.
+
+The [dated account](../../desktop/ReservoirScope/validation/2026-10-16-activation-headroom/README.md)
+links the complete-prefix reading, unfinished response, mechanical checks and
+remaining question. A future protocol can specify how an incomplete writing
+outcome affects later condition collection. This stopped attempt is preserved.

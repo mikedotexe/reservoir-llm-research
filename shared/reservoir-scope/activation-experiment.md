@@ -118,3 +118,50 @@ with their source and asset identities.
 Action selection, learned return mappings, continuous wall-clock ticking,
 within-generation state changes, pink-noise drive and full spectral signatures are
 later experiments, not hidden behavior of this first mode.
+
+## Separate serial cohort contract
+
+The October 16 headroom tranche adds a headless `--activation-cohort` path and
+the distinct `activation-cohort-session-v1` format. It does not change the
+interpretation of historical `activation-session-v1` records. The
+[cohort protocol](activation-cohort-20261016.json) and
+[dated outcome](../../desktop/ReservoirScope/validation/2026-10-16-activation-headroom/README.md)
+record the first bounded attempt, including its incomplete result.
+
+One dedicated Python worker owns one model initialization for exactly three
+serial conditions. Configurations differ only in arm. Each condition owns a new
+record, numerical state and prose history; each inference operation has a fresh
+KV cache and fixed request seed. The shared initialization's actual request and
+response are retained once, then copied as explicitly borrowed provenance into
+each session. A cohort plan, global worker sequence boundaries, model/runtime
+identity and record hashes bind those copies to the actual operations. Export,
+import and offline verification retain these bindings. Recovered or imported
+cohort sessions cannot launch an individual replacement worker or resume the
+stopped cohort.
+
+The changed worker sets a 64 MiB unused-buffer cache policy, clears unused
+buffers every 64 generated content tokens and at operation cleanup, and records
+MLX active/cache/peak counters. These are allocator counters, not a process or
+host memory ceiling. Arithmetic, precision, capture and steering semantics stay
+fixed and require new real-model qualification when worker identity changes.
+
+The sole load requires pressure 1 and reported free percentage at least 25.
+The launcher permits a single 600-second preparation window with three healthy
+samples separated by ten-second delays. A resident worker may continue at
+pressure 1 or 2; critical or unknown pressure stops it before another request.
+This does not authorize a new model load at pressure 2. The cohort has a
+900-second work budget, and requests use at most 180 seconds or the remaining
+cohort budget. Completed output is checked against cancellation/deadline before
+acceptance. Completed records remain verifiable at a terminal stop boundary.
+
+The supervisor terminates and reaps only its owned worker, with an explicit
+release receipt. The launcher uses a new process group and a separate 930-second
+outer watchdog to handle a stuck supervisor, with bounded termination grace.
+That grace does not extend model work or retry a request. First failure stops
+the entire cohort; incomplete output never enters journal memory or feedback.
+If no condition completes all six entries, completed earlier journals still
+remain in their verified partial record. Derived reading packets for such a
+prefix are stored outside the immutable run and label unfinished output separately.
+
+This tranche is qualified as a local macOS CLI/worker path. It does not claim a
+new packaged-UI walkthrough or extend another platform's qualification.

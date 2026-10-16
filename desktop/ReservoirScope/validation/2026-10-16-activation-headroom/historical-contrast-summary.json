@@ -1,0 +1,118 @@
+{
+  "schema": "activation-headroom-historical-contrast-v1",
+  "analysisSourceSha256": "0c1953b0ea658044c8eef7dd6fb74266cb0cd67b28ce63bb6b95008b941d7567",
+  "modelCalls": 0,
+  "evidenceFilesModified": false,
+  "scope": "partial-cross-attempt-contrast",
+  "currentSession": "activation-1792171510521169000",
+  "previousSession": "activation-1792119989350565000",
+  "currentRecordSha256": "5b0e06113ad7d61f05ac3e241d20452db041841093b0da6f687f65a43b338ab6",
+  "previousRecordSha256": "bcd2421348d8ced6e5ca23b52b2b9e6d7947e8e6bdf52193fe9f9b6c5becfe0c",
+  "currentModelManifestSha256": "62a04cec74f4938abbcda3714e365c20204c2bb24358e099b4ccc17103f85415",
+  "previousModelManifestSha256": "82b39f39ce5ec7722be9c967149a18a1ac8ed1cc8f2691e1485e101f7e542513",
+  "numericalCalibrationIdentical": true,
+  "completedJournals": [
+    2,
+    6
+  ],
+  "quietComparisons": [
+    {
+      "observation": 1,
+      "textIdentical": true,
+      "promptTokenIdsIdentical": true,
+      "activationIdentical": true,
+      "projectionIdentical": true
+    },
+    {
+      "observation": 2,
+      "textIdentical": true,
+      "promptTokenIdsIdentical": true,
+      "activationIdentical": true,
+      "projectionIdentical": true
+    },
+    {
+      "observation": 3,
+      "textIdentical": true,
+      "promptTokenIdsIdentical": true,
+      "activationIdentical": true,
+      "projectionIdentical": true
+    },
+    {
+      "observation": 4,
+      "textIdentical": true,
+      "promptTokenIdsIdentical": true,
+      "activationIdentical": true,
+      "projectionIdentical": true
+    },
+    {
+      "observation": 5,
+      "textIdentical": true,
+      "promptTokenIdsIdentical": true,
+      "activationIdentical": true,
+      "projectionIdentical": true
+    },
+    {
+      "observation": 6,
+      "textIdentical": true,
+      "promptTokenIdsIdentical": true,
+      "activationIdentical": true,
+      "projectionIdentical": true
+    }
+  ],
+  "journalOpportunityComparisons": [
+    {
+      "opportunity": 1,
+      "promptIdentical": true,
+      "promptTokenIdsIdentical": true,
+      "currentComplete": true,
+      "previousComplete": true,
+      "currentStopReason": "eos",
+      "previousStopReason": "eos",
+      "currentContentTokens": 399,
+      "previousContentTokens": 516,
+      "textIdentical": false,
+      "firstDifferingContentTokenIndex": 39,
+      "firstDifferingTextCharacterIndex": 193,
+      "currentResponseSha256": "a2abab5034d00dfaf718702a8dec065a3b9302e1c1c5bb9825b49d2abac8becc",
+      "previousResponseSha256": "8833d0263e1897e4332565e9a8979ec47249127d78f4bd8e997ea76b72f4d7a2"
+    },
+    {
+      "opportunity": 2,
+      "promptIdentical": false,
+      "promptTokenIdsIdentical": false,
+      "currentComplete": true,
+      "previousComplete": true,
+      "currentStopReason": "eos",
+      "previousStopReason": "eos",
+      "currentContentTokens": 453,
+      "previousContentTokens": 567,
+      "textIdentical": false,
+      "firstDifferingContentTokenIndex": 2,
+      "firstDifferingTextCharacterIndex": 10,
+      "currentResponseSha256": "6499fe2258666f65e67d8621a85406dcd71f16f8b9c64b9ddc01eeba27c9d59d",
+      "previousResponseSha256": "e852f7f2a60b0e8c50d2197c56a43b047da8cf08c4c06ea7338f967d72b04355"
+    },
+    {
+      "opportunity": 3,
+      "promptIdentical": false,
+      "promptTokenIdsIdentical": false,
+      "currentComplete": false,
+      "previousComplete": true,
+      "currentStopReason": "max_tokens",
+      "previousStopReason": "eos",
+      "currentContentTokens": 1024,
+      "previousContentTokens": 532,
+      "textIdentical": false,
+      "firstDifferingContentTokenIndex": 4,
+      "firstDifferingTextCharacterIndex": 19,
+      "currentResponseSha256": "e45f574c1eb6d6fb12e2b9cb272530825a6f8657356dd406cf70a5c4adbdbeb3",
+      "previousResponseSha256": "7e440f42ecf0023d41cafad3b5684599fac8190e3c50ed689ab25ffa5f883025"
+    }
+  ],
+  "limitations": [
+    "Different attempts and worker manifests; this does not complete the frozen three-condition cohort.",
+    "Only the first journal has matched text context; later opportunities include different exact previous prose.",
+    "The current third response is incomplete and was never saved as a journal or applied as feedback.",
+    "Token differences do not establish semantic benefit, recurrence benefit, or experiential claims."
+  ]
+}

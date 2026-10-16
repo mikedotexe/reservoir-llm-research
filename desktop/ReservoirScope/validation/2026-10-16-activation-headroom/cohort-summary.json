@@ -1,0 +1,114 @@
+{
+  "allocator": {
+    "operationCount": 9,
+    "peakActiveBytes": {
+      "max": 3193685232,
+      "min": 2452618524,
+      "n": 9
+    },
+    "policyFreeCacheBytes": 67108864,
+    "postOperationActiveBytes": [
+      2264693768
+    ],
+    "postOperationFreeCacheBytes": [
+      0
+    ],
+    "scope": "Owned MLX allocator only; does not measure process or host RAM"
+  },
+  "analysisModelCalls": 0,
+  "automaticRetries": 0,
+  "binarySha256": "7119c77df34eb6954a9263a3f8810e1b00af3ac0622c65e27c124afaedbc34d7",
+  "borrowedInitializationCopies": 3,
+  "calibrationSha256": "5e1027a04537bd013f4c81d540eacbb1c58839414638223aef37fc90ac415daf",
+  "completeJournalContentTokens": 852,
+  "completedJournals": 2,
+  "frozenPlanSha256": "3e6346f7fbfab671f5b3a31749922b49ca62f3db183b7ac2c0d0287b233c2d12",
+  "incompleteJournal": {
+    "activation": null,
+    "feedbackEligible": false,
+    "generatedContentTokens": 1024,
+    "processedTokens": 1609,
+    "projection": null,
+    "promptTokens": 585,
+    "stopReason": "max_tokens"
+  },
+  "independentProjection": {
+    "absoluteTolerance": 1e-12,
+    "activationCaptures": 8,
+    "coordinates": 256,
+    "maxAbsoluteCoordinateError": 1.6653345369377348e-16,
+    "method": "Float64 column products with math.fsum; tanh((Q^T h - mean)/scale)"
+  },
+  "mechanicalProbe": "probes/2026-10-16-activation-cohort.py",
+  "mechanicalProbeSourceSha256": "3a22269e3cf15730c8fe71314d3c74f7b9122f1552dc9c76f7c8267fd4fe7d07",
+  "modelManifestSha256": "62a04cec74f4938abbcda3714e365c20204c2bb24358e099b4ccc17103f85415",
+  "modelsLoaded": 1,
+  "normChecks": {
+    "actualRatioMaximum": 0.0,
+    "actualRatioMinimum": 0.0,
+    "positions": 3257
+  },
+  "offlineVerification": [
+    {
+      "arm": "no_steering",
+      "events": 22,
+      "evidenceSha256": "b154ff78017dc0bf49bf94f8373608253a0fcdd2f19328cdd23d3b3c27c3f14a",
+      "journals": 2,
+      "modelsContacted": false,
+      "status": "passed",
+      "steps": 60
+    },
+    {
+      "arm": "recurrent",
+      "events": 0,
+      "evidenceSha256": "e7cba962b80028cdd3caa0beab05d2d9a69b4b7f188f10002a46f0086b7c5cc2",
+      "journals": 0,
+      "modelsContacted": false,
+      "status": "passed",
+      "steps": 0
+    },
+    {
+      "arm": "decaying_trace",
+      "events": 0,
+      "evidenceSha256": "0989219693e938f9892e8e37599c77b8ad51e63cb3abc48a7647e21a067e33b1",
+      "journals": 0,
+      "modelsContacted": false,
+      "status": "passed",
+      "steps": 0
+    }
+  ],
+  "operations": 9,
+  "previousCalibration": {
+    "allFieldsExceptModelIdentityAndOuterHashEqual": true,
+    "changedFields": [
+      "modelManifestSha256",
+      "sha256"
+    ],
+    "previousFileSha256": "1c62c9976ecb5fb5b22125c0b4196f345810c6c2396a16dbde6c9b4fb5413f04"
+  },
+  "privateMechanicalResult": "research/outputs/activation-headroom-20261016/cohort-mechanics-01.json",
+  "privateMechanicalResultSha256": "0a86d99dbb0be8b630f198da8b3c503cbf2aca05ab950251ccbf9121a8289238",
+  "quietCaptures": 6,
+  "quietSampledTokens": 0,
+  "rawOutputsModified": false,
+  "saveApply": [
+    {
+      "firstAppliedStep": 21,
+      "id": "journal-1-199e0a57a9c7",
+      "observedStep": 20,
+      "savedAtStep": 20,
+      "sha256": "199e0a57a9c7df1aabd4cdd428778435dce84dc8f936a2655b94c88f420d2d54"
+    },
+    {
+      "firstAppliedStep": 41,
+      "id": "journal-2-b3dbda9e969e",
+      "observedStep": 40,
+      "savedAtStep": 40,
+      "sha256": "b3dbda9e969eed29fe06bf5390a6dc1500eb6f3cfceb84fede15ef1bcfd3ad01"
+    }
+  ],
+  "schema": "activation-cohort-public-mechanics/1",
+  "scope": "one-unsteered-prefix-no-complete-comparison",
+  "status": "held-after-incomplete-third-journal",
+  "workerStarts": 1
+}
