@@ -14,6 +14,7 @@ export interface ActivationSnapshot {
   sessionId: string; revision: number; status: string; config: ActivationConfig; step: number;
   observationIndex: number; journalCount: number; journals: ActivationJournal[]; events: ActivationEvent[];
   diagnostic: string | null; activeOperation: string | null; directory: string;
+  modelManifestSha256?: string | null; calibrationSha256?: string | null;
   canStart?: boolean; annotations?: ActivationAnnotation[];
 }
 export interface ActivationCapability { ready?: boolean; diagnostic?: string; config?: ActivationConfig; [key: string]: unknown }

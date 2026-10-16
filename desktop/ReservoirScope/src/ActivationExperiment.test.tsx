@@ -21,10 +21,26 @@ describe('Activation experiment interface', () => {
     const setup = renderToStaticMarkup(<ActivationSetup state={controller.snapshot()} config={DEFAULT_ACTIVATION_CONFIG} setConfig={() => {}} controller={controller}/>); expect(setup).toContain('without inference'); expect(setup).toContain('1,024');
   });
   it('conceals condition and raw event details until explicitly revealed', () => {
-    const { controller } = activationFixture(); const s = activationSession({ config: { ...DEFAULT_ACTIVATION_CONFIG, arm: 'recurrent' }, journalCount: 1, journals: [activationJournal()], events: [{ id: 'event-1', kind: 'quiet_capture', step: 10, detail: 'recurrent secret condition' }] }); controller.compare(s, true);
+    const { controller } = activationFixture(); const s = activationSession({ modelManifestSha256: 'b'.repeat(64), calibrationSha256: 'c'.repeat(64), config: { ...DEFAULT_ACTIVATION_CONFIG, arm: 'recurrent' }, journalCount: 1, journals: [activationJournal()], events: [{ id: 'event-1', kind: 'quiet_capture', step: 10, detail: 'recurrent secret condition' }] }); controller.compare(s, true);
     const html = renderToStaticMarkup(<ActivationReader session={s} index={0} state={controller.snapshot()} controller={controller}/>);
     expect(html).toContain('Reading A'); expect(html).toContain('Complete journal 1'); expect(html).not.toContain('Recurrent reservoir'); expect(html).not.toContain('recurrent secret condition'); expect(html).toContain('Reveal condition labels and exact evidence');
-    controller.reveal(); const revealed = renderToStaticMarkup(<ActivationReader session={s} index={0} state={controller.snapshot()} controller={controller}/>); expect(revealed).toContain('Recurrent reservoir'); expect(revealed).toContain('recurrent secret condition');
+    expect(html).not.toContain(s.modelManifestSha256); expect(html).not.toContain(s.calibrationSha256);
+    controller.reveal(); const revealed = renderToStaticMarkup(<ActivationReader session={s} index={0} state={controller.snapshot()} controller={controller}/>); expect(revealed).toContain('Recurrent reservoir'); expect(revealed).toContain('recurrent secret condition'); expect(revealed).toContain(s.modelManifestSha256); expect(revealed).toContain(s.calibrationSha256);
+  });
+  it('does not suggest a matched comparison from paths and settings without initialized identities', () => {
+    const { controller } = activationFixture(); controller.compare(activationSession(), true); controller.compare(activationSession({ sessionId: 'session-2' }), true);
+    const html = renderToStaticMarkup(<ActivationExperiment active controller={controller}/>);
+    expect(html).toContain('Calibration or model/runtime identity is unconfirmed'); expect(html).not.toContain('settings match across these runs');
+  });
+  it.each(['calibrationSha256', 'modelManifestSha256'] as const)('rejects a comparison with different %s even at the same local paths', field => {
+    const { controller } = activationFixture(); const identity = { modelManifestSha256: 'b'.repeat(64), calibrationSha256: 'c'.repeat(64) };
+    controller.compare(activationSession(identity), true); controller.compare(activationSession({ ...identity, sessionId: 'session-2', [field]: 'd'.repeat(64) }), true);
+    const html = renderToStaticMarkup(<ActivationExperiment active controller={controller}/>); expect(html).toContain('Read them as separate experiments'); expect(html).not.toContain('settings match across these runs');
+  });
+  it('matches retained identities and settings even when local asset paths differ', () => {
+    const { controller } = activationFixture(); const identity = { modelManifestSha256: 'b'.repeat(64), calibrationSha256: 'c'.repeat(64) };
+    controller.compare(activationSession(identity), true); controller.compare(activationSession({ ...identity, sessionId: 'session-2', config: { ...DEFAULT_ACTIVATION_CONFIG, arm: 'recurrent', modelPath: '/another/local/model' } }), true);
+    const html = renderToStaticMarkup(<ActivationExperiment active controller={controller}/>); expect(html).toContain('settings match across these runs'); expect(html).not.toContain('Read them as separate experiments');
   });
   it('renders full inert text, incomplete application and failed observations honestly', () => {
     const { controller } = activationFixture(); const s = activationSession({ journalCount: 1, journals: [{ ...activationJournal(), text: '<script>inert full journal</script>\nFinal paragraph.', firstAppliedStep: null }], events: [{ id: 'event-1', kind: 'quiet_failed', step: 10, detail: 'worker error' }] }); controller.compare(s, true);
