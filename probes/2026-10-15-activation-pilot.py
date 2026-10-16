@@ -173,14 +173,17 @@ def current_artifacts(frozen, calibration):
     return rows
 
 
-def arm_analysis(pilot, index, arm, outcome, calibration, checker):
+def arm_analysis(pilot, index, arm, outcome, calibration, checker, *,
+                 session_override=None, frozen_config=None,
+                 wire_prefix="worker-protocol-", ignored_response_files=()):
     condition = pilot / f"condition-{index + 1}"
-    if not condition.exists():
+    if session_override is None and not condition.exists():
         attempted = any(x["arm"] == arm for x in outcome.get("arms", []))
         require(not attempted, f"Attempted arm {arm} has no retained directory")
         return {"arm": arm, "status": "not_started_after_stop" if outcome.get("status") == "held" else "not_started",
                 "quietCaptures": 0, "completeJournals": 0, "reason": "No attempt retained for this planned arm"}, None
-    sessions = [p for p in condition.iterdir() if p.is_dir() and (p / "latest.json").is_file()]
+    sessions = ([session_override] if session_override is not None else
+                [p for p in condition.iterdir() if p.is_dir() and (p / "latest.json").is_file()])
     require(len(sessions) == 1, f"{arm}: expected exactly one retained session")
     session = sessions[0]
     manifest = load(session / "latest.json")
@@ -189,7 +192,8 @@ def arm_analysis(pilot, index, arm, outcome, calibration, checker):
     record_path = session / manifest["recordFile"]
     require(sha_file(record_path) == manifest["recordSha256"], f"{arm}: record hash differs")
     record = load(record_path)
-    require(manifest["config"] == load(pilot / f"condition-{index+1}.json"), f"{arm}: frozen configuration differs")
+    expected_config = frozen_config if frozen_config is not None else load(pilot / f"condition-{index+1}.json")
+    require(manifest["config"] == expected_config, f"{arm}: frozen configuration differs")
     config = manifest["config"]
     require(config["arm"] == arm and record["specification"] ==
             {key: config[key] for key in ("arm", "seed", "observations", "stepsBetween", "journalEvery", "gain")},
@@ -301,11 +305,13 @@ def arm_analysis(pilot, index, arm, outcome, calibration, checker):
         require(all(retained[key] == journal[key] for key in ("id", "text", "sha256", "observedStep", "saved", "firstAppliedStep")), f"{arm}: retained journal state differs")
     extra_responses, wire_responses, wire_matches = [], [], set()
     for path in sorted(session.glob("*-response.json")):
+        if path.name in ignored_response_files:
+            continue
         request_id = path.name.removesuffix("-response.json")
         if request_id in accepted_ids:
             continue
         response = load(path)
-        if path.name.startswith("worker-protocol-"):
+        if path.name.startswith(wire_prefix):
             request = load(path.with_name(path.name.removesuffix("-response.json") + "-request.json"))
             require(response["id"] == request["id"] and response["command"] == request["command"],
                     f"{arm}: protocol request/response association differs")

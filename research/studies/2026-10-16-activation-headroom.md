@@ -26,7 +26,7 @@ the [resource interpretation](../../desktop/ReservoirScope/validation/2026-10-16
 explains why reported free percentage is not unused RAM.
 
 No system-wide purge, process-name kill, service unload, live-model reconfiguration,
-or pressure-threshold relaxation is selected. Removing memory that our process
+or load-admission threshold relaxation is selected. Removing memory that our process
 does not own would not be an apparatus fix. There is no evidence of a lingering
 activation worker or a persistent duplicate full model in its loading path.
 

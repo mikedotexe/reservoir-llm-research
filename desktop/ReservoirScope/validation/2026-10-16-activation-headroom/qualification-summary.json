@@ -1,0 +1,100 @@
+{
+  "schema": "activation-headroom-qualification-summary-v1",
+  "workerCommit": "8723f40",
+  "status": "passed",
+  "checks": {
+    "boundedCaptures": true,
+    "cacheOffsetParity": true,
+    "clearedSteering": true,
+    "configuredFreeCacheLimit": true,
+    "crossArmGenerationIsolation": true,
+    "crossArmLogitTokenCaptureIsolation": true,
+    "independentProbeIsolation": true,
+    "logitParity": true,
+    "noStaleSteering": true,
+    "perOperationMemoryCleanup": true,
+    "perPositionNorms": true,
+    "quietZeroSamples": true,
+    "samePassContentToken": true,
+    "zeroAdditionBitwiseParity": true
+  },
+  "modelManifestSha256": "62a04cec74f4938abbcda3714e365c20204c2bb24358e099b4ccc17103f85415",
+  "calibrationSha256": "5e1027a04537bd013f4c81d540eacbb1c58839414638223aef37fc90ac415daf",
+  "numericalCalibrationExactlyEqualsPrevious": true,
+  "previousCalibrationSha256": "0c1fc7c3e2868813643d629e1200c5188ee5007fa1c1ccef1e614b52c32dbe9c",
+  "memoryPolicy": {
+    "clearEveryGeneratedContentTokens": 64,
+    "freeCacheLimitBytes": 67108864,
+    "limitSemantics": "free-cache excess is reclaimed on the next allocation; not an active-memory, process-RAM or host-RAM cap",
+    "memoryLimitChanged": false,
+    "peakSemantics": "MLX peak active allocation since the named reset; excludes free cache and non-MLX memory",
+    "schemaVersion": "activation-mlx-memory-policy/1",
+    "scope": "owned-worker-MLX-allocator-only",
+    "wiredLimitChanged": false
+  },
+  "operationCount": 46,
+  "allCleanupFreeCacheBytesZero": true,
+  "maximumPeakActiveBytes": 2459008284,
+  "maximumObservedFreeCacheBytes": 67352928,
+  "scope": "MLX allocator measurements for short mechanical qualification probes; excludes non-MLX and host memory. Full-journal comparison separately measured.",
+  "receipts": [
+    {
+      "path": "research/outputs/activation-headroom-20261016/qualification-01/qualification/result.json",
+      "sha256": "6066653f49886f71006989de7f2ea76523bb1ef0cadf1d19db86ee0e2f80869e"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/qualification-01/qualification/plan.json",
+      "sha256": "907910989d5c1b31a67bc113fa50eb87e79bca4e086bdad88900d4a2b00d44be"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/qualification-01/qualification/calibration.json",
+      "sha256": "eefa58cab42ae2b2e9ebc11d5b3fbe658479af03dbb30f65693af34a9ee1cbbe"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/qualification-01/qualification/initialization.json",
+      "sha256": "945375a5bc08ee8e3677c893d167c17d00c6405e86c3b8f8c122bb4bbafd909b"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/qualification-01/qualification/memory.json",
+      "sha256": "772a11251e7d470d0bc222f6c9f95ba9f9c2800325a13c6fa054891b790f9029"
+    },
+    {
+      "path": "research/outputs/activation-headroom-20261016/qualification-01/qualification/cross-arm-order.json",
+      "sha256": "4a4c1f1013a7cad0eab6db2820c614e721c5ac1a33c65de4188b91db23682d3a"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "__init__.py",
+      "sha256": "e8b547250d88935b69f39b35463f45e5c0f07a7283e7d8e7f7f3b33d34a46282"
+    },
+    {
+      "path": "__main__.py",
+      "sha256": "37f3e028fc732cecd53c69b5c6ff3bf85278294c49c40dbca86e46fd5b758077"
+    },
+    {
+      "path": "backend.py",
+      "sha256": "1caf73ffca14c0d0145ed5b5c391c8839dca37e82fed72d0f8f330b673f24f53"
+    },
+    {
+      "path": "engine.py",
+      "sha256": "5012e6f05c08ea84c816c2dc722b7506ad4cca428dda07a476abc6cf4e76103a"
+    },
+    {
+      "path": "manifest.py",
+      "sha256": "10c18350a211683f7b876095a6d776f4c9b42d2343db039acca9f9fb1431cc1c"
+    },
+    {
+      "path": "math_core.py",
+      "sha256": "05e25f5bc05aea242946e96374fd90c6e5dbcf49f06a6b502d109240cdd15276"
+    },
+    {
+      "path": "qualify.py",
+      "sha256": "6762fb715bf7c5a89b994c071948d311d5d459f60176526a7b2799206aeaf700"
+    },
+    {
+      "path": "worker.py",
+      "sha256": "9c2f638c181596d019bd8c8624c4bf409771796154d802d9eeb9f761f2b38cc1"
+    }
+  ]
+}

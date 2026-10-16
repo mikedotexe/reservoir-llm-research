@@ -760,8 +760,61 @@ fn cancel_sustained_close(app: tauri::AppHandle) {
     cancel_all_close(&app);
 }
 
+static COHORT_CANCEL: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+#[cfg(unix)]
+extern "C" fn cancel_headless_cohort(_signal: libc::c_int) {
+    COHORT_CANCEL.store(true, std::sync::atomic::Ordering::SeqCst);
+}
+
 fn main() {
     let activation_args: Vec<String> = std::env::args().skip(1).collect();
+    if activation_args
+        .first()
+        .is_some_and(|s| s == "--activation-cohort")
+    {
+        #[cfg(unix)]
+        unsafe {
+            // The handler only sets a lock-free flag. The ordinary control
+            // thread performs cancellation, durable closeout, and child reaping.
+            libc::signal(
+                libc::SIGINT,
+                cancel_headless_cohort as *const () as libc::sighandler_t,
+            );
+            libc::signal(
+                libc::SIGTERM,
+                cancel_headless_cohort as *const () as libc::sighandler_t,
+            );
+        }
+        let result = (|| -> Result<serde_json::Value, AppError> {
+            if activation_args.len() != 6
+                || activation_args[2] != "--output"
+                || activation_args[4] != "--activation-calibration"
+            {
+                return Err(AppError::new("activation", "usage", "--activation-cohort CONFIGS.json --output NEW_DIRECTORY --activation-calibration FILE"));
+            }
+            let configs: Vec<activation::Config> = serde_json::from_slice(&files::read_bounded(
+                std::path::Path::new(&activation_args[1]),
+                1024 * 1024,
+                "activation",
+            )?)
+            .map_err(|e| AppError::new("activation", "configuration", e.to_string()))?;
+            activation::run_cohort(
+                configs,
+                std::path::Path::new(&activation_args[3]),
+                std::path::Path::new(&activation_args[5]),
+                &COHORT_CANCEL,
+            )
+        })();
+        let value = match result {
+            Ok(value) => value,
+            Err(error) => {
+                serde_json::json!({"schema":"activation-cohort-result-v1","status":"failed","diagnostic":error.message,"sessions":[],"modelsLoaded":0})
+            }
+        };
+        let success = value["status"] == "completed";
+        println!("{value}");
+        std::process::exit(if success { 0 } else { 1 });
+    }
     if activation_args
         .first()
         .is_some_and(|s| s == "--verify-activation")
