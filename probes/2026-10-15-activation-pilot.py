@@ -151,17 +151,21 @@ def norm_summary(response, label):
 
 def current_artifacts(frozen, calibration):
     rows = []
+    protocol_path = Path(frozen.get("protocolPath", ROOT / "shared/reservoir-scope/activation-pilot.json"))
+    protocol_sha256 = frozen.get("protocolSha256", frozen["fixtureSha256"])
     sources = [(APP / "activation_worker" / item["path"], item["sha256"],
                 "worker/" + item["path"]) for item in frozen["modelManifest"]["workerSources"]]
     sources += [
         (APP / "activation_worker/fixtures/projection-q.npy", calibration["projectionSha256"], "projection-q.npy"),
         (APP / "activation_worker/fixtures/calibration-texts.json", calibration["textsSha256"], "calibration-texts.json"),
-        (ROOT / "shared/reservoir-scope/activation-pilot.json", frozen["fixtureSha256"], "activation-pilot.json"),
+        (protocol_path, protocol_sha256, protocol_path.name),
         (APP / "activation-requirements.lock", frozen["lockSha256"], "activation-requirements.lock"),
         (Path(frozen["binary"]), frozen["binarySha256"], "pilot-binary"),
         (Path(frozen["qualificationDirectory"]) / "result.json", frozen["qualificationResultSha256"],
          "qualification-result.json"),
     ]
+    if "runnerPath" in frozen:
+        sources.append((Path(frozen["runnerPath"]), frozen["runnerSha256"], "pilot-runner"))
     for path, expected, label in sources:
         actual = sha_file(path) if path.is_file() else None
         rows.append({"artifact": label, "expectedSha256": expected, "actualSha256": actual,
@@ -384,11 +388,14 @@ def analyze(pilot: Path, historical_binary: Path | None = None):
                           "tokensIdentical": a["generatedTokenIds"] == b["generatedTokenIds"],
                           "firstDifferingContentTokenIndex": first_difference(a["generatedTokenIds"], b["generatedTokenIds"]),
                           "firstDifferingTextCharacterIndex": first_difference(a["text"], b["text"])})
-        first_prompt = None
+        first_prompt = first_prompt_tokens = None
         if left["attempts"] and right["attempts"]:
             first_prompt = left["attempts"][0]["promptSha256"] == right["attempts"][0]["promptSha256"]
+            first_prompt_tokens = (left["attempts"][0]["promptTokenIdsSha256"] ==
+                                   right["attempts"][0]["promptTokenIdsSha256"])
         comparisons.append({"arms": [left_arm, right_arm], "pairedCompleteJournals": len(pairs),
-                            "firstJournalPromptIdentical": first_prompt, "journals": pairs,
+                            "firstJournalPromptIdentical": first_prompt,
+                            "firstJournalPromptTokensIdentical": first_prompt_tokens, "journals": pairs,
                             "status": "assessed" if pairs else "unassessed",
                             "reason": None if pairs else "Fewer than two arms retain a complete journal at a comparable opportunity"})
     artifacts = current_artifacts(frozen, calibration)

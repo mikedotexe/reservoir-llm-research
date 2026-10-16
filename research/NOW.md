@@ -3,6 +3,13 @@
 [Research findings](../RESEARCH.md) · [Current app candidate](CURRENT-RELEASE.md) ·
 [Earlier focus history](NOW-history-through-20260917.md)
 
+**October 16: compare the isolated activation conditions.** Mike approved a
+resource audit, a new frozen comparison and complete-sequence blinded reading.
+The [prospective study](studies/2026-10-16-activation-comparison.md) holds the
+model, observations, invitation and memory policy fixed, while adding a bounded
+resource-preparation window before each condition. The earlier stopped pilot is
+preserved. Title and prose-memory contrasts follow as separately specified work.
+
 **October 15: build the isolated activation experiment.** Mike selected quiet input
 → persistent recurrent state → fixed residual intervention → journal writing,
 with controlled numerical steps and a dedicated pinned Qwen3 model. The completed

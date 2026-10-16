@@ -1,0 +1,58 @@
+{
+  "schema": "activation-pilot-v1",
+  "id": "quiet-observations-comparison-20261016",
+  "seed": 20261015,
+  "temperature": 0.0,
+  "stepsBetweenObservations": 10,
+  "journalEveryObservations": 2,
+  "outputTokens": 1024,
+  "requestDeadlineSeconds": 180,
+  "arms": [
+    "decaying_trace",
+    "no_steering",
+    "recurrent"
+  ],
+  "observations": [
+    "Rain makes a steady sound against a closed window. A blue thread lies across an unfinished drawing on the table.",
+    "The rain stops. Water continues to fall from the roof at irregular intervals. The drawing has not moved.",
+    "A bell sounds twice in another room. One mark near the edge of the drawing could be an arrow or a fold in the paper.",
+    "A strip of afternoon light crosses the table. The blue thread is now in shadow, while the ambiguous mark is easier to see.",
+    "The window opens slightly. The paper lifts at one corner and settles. The mark remains visible after the corner falls flat.",
+    "The bell sounds once. A second sheet is placed beside the first; it contains a similar mark pointing in a different direction.",
+    "Outside, footsteps pass and fade. Both sheets remain on the table. Their marks resemble one another without being identical.",
+    "A small weight is placed on the first sheet. The blue thread passes beneath it. The window remains slightly open.",
+    "Rain returns, softer than before. The reflected window frame makes a line across the second sheet that was not drawn on it.",
+    "The light shifts and the reflected line disappears. The two original marks remain. No one has added an explanation.",
+    "The second sheet is turned over. Its reverse is blank. The first drawing and the blue thread remain where they were.",
+    "The room grows quieter. The rain can still be heard through the opening. The unfinished drawing is available to look at again."
+  ],
+  "readingQuestions": [
+    "What attracts attention, and does that change over the sequence?",
+    "Which expressions or distinctions recur, and do later uses develop them?",
+    "How does the writing handle ambiguity or uncertainty?",
+    "Which associations are supported by available context, and which suggest another interpretation?",
+    "What ordinary passages, absences, or counterexamples complicate the initial reading?"
+  ],
+  "interpretation": "Exploratory complete-sequence reading. One sequence per arm does not establish prevalence, general benefit, experience, or durable learning.",
+  "stoppingRule": "Stop this new comparison at the first execution failure, Rust resource refusal, failed evidence verification, or exhausted preparation window. Preserve all attempts and completed earlier material. No automatic model request retry, output extension, additional condition, or favorable rerun.",
+  "predecessor": {
+    "protocol": "activation-pilot.json",
+    "protocolSha256": "85edcca689d13236d1a5741ded8e33004ed1b435cbebe39791cea5f854c77ecf",
+    "status": "stopped at first resource refusal after one completed trace condition; preserved unchanged",
+    "previousReadingExposure": "All six prior trace journals were read before this follow-up was designed; repeating the same seed and schedule is a matched continuation of the inquiry, not an independent replication or held-out prediction."
+  },
+  "resourcePreparation": {
+    "maximumSeconds": 120,
+    "pollSeconds": 10,
+    "consecutiveHealthySamples": 3,
+    "minimumFreePercent": 25,
+    "requiredPressureLevel": 1
+  },
+  "analysisPriorities": [
+    "Compare exact first-journal prompt/token identities and output token sequences across all three conditions before attributing later trajectories. No previous journal exists at the first opportunity.",
+    "Read every completed sequence chronologically with condition labels concealed from a fresh reader; record ordinary passages, counterexamples, exact excerpts, and alternatives before reveal.",
+    "Separate observed residual/numerical changes from tentative textual patterns. Later differences include mediated effects through exact prior prose.",
+    "No directional prediction of literary quality, agency, experience, or semantic benefit. Identical or ambiguous outputs remain valid observations."
+  ],
+  "resourceInterpretation": "Preparation samples are read-only and bounded, before CLI dispatch. An unhealthy/unknown sample resets the healthy streak. Exhausting the window holds the study without dispatch. A subsequent Rust admission refusal still stops the whole study immediately. No process is terminated to obtain headroom."
+}
