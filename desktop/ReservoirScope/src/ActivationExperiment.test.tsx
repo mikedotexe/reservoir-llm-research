@@ -15,6 +15,7 @@ describe('Activation experiment interface', () => {
     expect(html).toContain('0 journal entries'); expect(html).toContain('Unfinished writing at step 60');
     expect(html).toContain('not a saved journal and never entered feedback');
     expect(html).toContain('Retained repetition. '.repeat(45)); expect(html).toContain('&lt;unfinished tail&gt;');
+    expect(html).toContain('class="activation-prose" tabindex="0" aria-label="Complete retained unfinished response"');
   });
   it('renders an opt-in setup without invoking model work', () => {
     const { controller, api } = activationFixture(); const html = renderToStaticMarkup(<ActivationExperiment active controller={controller}/>);
@@ -55,6 +56,15 @@ describe('Activation experiment interface', () => {
   it('renders full inert text, incomplete application and failed observations honestly', () => {
     const { controller } = activationFixture(); const s = activationSession({ journalCount: 1, journals: [{ ...activationJournal(), text: '<script>inert full journal</script>\nFinal paragraph.', firstAppliedStep: null }], events: [{ id: 'event-1', kind: 'quiet_failed', step: 10, detail: 'worker error' }] }); controller.compare(s, true);
     const html = renderToStaticMarkup(<ActivationReader session={s} index={0} state={controller.snapshot()} controller={controller}/>); expect(html).toContain('&lt;script&gt;inert full journal&lt;/script&gt;'); expect(html).toContain('Final paragraph.'); expect(html).not.toContain('<script>'); expect(html).toContain('No first feedback application is recorded'); expect(html).toContain('Attempt failed'); expect(html).toContain('never determine feedback eligibility'); expect(html).toContain('Another possible reading');
+  });
+  it('provides named keyboard-focusable regions for timeline and reading-note source events', () => {
+    const { controller } = activationFixture();
+    const session = activationSession({ journalCount: 1, journals: [activationJournal()], events: [{ id: 'event-final', kind: 'journalApplied', step: 21, detail: 'Feedback applied' }] });
+    controller.compare(session, true);
+    const html = renderToStaticMarkup(<ActivationReader session={session} index={1} state={controller.snapshot()} controller={controller}/>);
+    expect(html).toContain('class="activation-timeline-scroll" role="region" aria-label="Reading B observation and feedback timeline" tabindex="0"><ol>');
+    expect(html).toContain('class="activation-source-events" role="region" aria-label="Source events for this reading note" tabindex="0">');
+    expect(html).toContain('Event 1 · step 21');
   });
   it('shows exact quiet input, request and application boundaries, and cancellation before revealing condition evidence', () => {
     const { controller } = activationFixture();

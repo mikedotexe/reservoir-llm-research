@@ -39,6 +39,14 @@ describe('Portable activation reading collection', () => {
     expect(html).toContain(reading.disclosure.notes[0].text); expect(html).toContain(reading.disclosure.modelManifestSha256);
     expect(html).toContain('do not establish an intervention effect');
   });
+  it('makes the complete event timeline a named keyboard-focusable scrolling region', () => {
+    const reading = fixture();
+    reading.events.push({ id: 'event-final', kind: 'journalApplied', step: 21, observation: null });
+    const html = renderToStaticMarkup(<ActivationCollectionReader reading={reading} index={1} position={0} revealed={false} select={() => {}}/>);
+    expect(html).toContain('class="activation-collection-timeline" role="region" aria-label="Reading B quiet observations and writing boundaries" tabindex="0"><ol>');
+    expect(html).toContain('Step 21 · Journal feedback applied');
+    expect(html).toContain('&lt;script&gt;inert quiet observation&lt;/script&gt;');
+  });
   it('retains the entire unfinished response separately from completed journals', () => {
     const reading = fixture();
     const repeated = 'A deliberately repeated synthetic sentence.\n'.repeat(150) + 'Unfinished final fragment';
