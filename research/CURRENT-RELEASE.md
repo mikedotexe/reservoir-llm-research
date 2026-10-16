@@ -1,17 +1,25 @@
 # Reservoir Scope · current candidates
 
-## Tauri 0.27.0 · private preview in preparation
+## Tauri 0.27.0 · candidate 04, three qualification gates open
 
-The current sharing tranche is the **Reservoir Scope Tauri Preview 0.27.0 source
-candidate**: in-app runtime preparation, an offline activation-journal reading
-collection, qualification of an exact Mac package, and first-time newcomer review.
-Implementation is in progress; final package identity, qualification and human
-acceptance are pending. There is no new qualified archive or recipient delivery
-claimed by this page.
+The current sharing tranche is **Reservoir Scope Tauri Preview 0.27.0 candidate 04**,
+built from `c4a3ba17f1e8ade9f9cf2c1edcf6cd944356c7a0`. The identified archive and
+private handoff have scoped source, runtime and actual-app evidence. Fresh in-app
+setup completed without a source checkout or developer PATH. The bounded writing
+attempt retained one saved/read-back journal applied at step 21, then stopped at
+40 with four quiet observations. The repaired package completed native export,
+import, normal quit and paused review; all 104 original payload files across two
+cases were preserved, including the complete synthetic unfinished response.
+
+Three gates remain open: exact compact content dimensions, normal quarantined
+opening and helper/extracted-Python behavior, and actual uncoached newcomer
+acceptance. Candidate 04's transferred copy retains quarantine and passed 87-input
+verification; Finder opening was blocked and its Open Anyway confirmation remains
+pending. No first-tester readiness, human acceptance or recipient delivery is claimed.
 
 Begin with the [install-first guide](../desktop/ReservoirScope/PREVIEW-START.md).
 The [0.27 release record](../desktop/ReservoirScope/RELEASE-0.27.0.md) owns the exact
-Tauri package fields and acceptance state; [desktop status](../desktop/ReservoirScope/STATUS.md)
+Tauri package identity and pending gates; [desktop status](../desktop/ReservoirScope/STATUS.md)
 separates current work from earlier qualification. New activation writing requires
 Apple Silicon and macOS 26 or later. Offline reading needs no runtime download.
 The example sequences are separate historical attempts with incomplete controls,

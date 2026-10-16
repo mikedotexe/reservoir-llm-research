@@ -1,24 +1,27 @@
 # Start with the writing
 
-**0.27.0 private-preview guide · package qualification pending.** The intended
-delivery is a Mac app and this guide, with no source build or Terminal setup
-required. Use the [release receipt](RELEASE-0.27.0.md#candidate-identity-and-acceptance)
-to identify the exact copy when it is ready; the pending fields are not a release.
+**0.27.0 private-preview guide · candidate 04; three qualification gates remain open.**
+The handoff is a Mac app and this guide, with no source build or Terminal setup
+required. The [release record](RELEASE-0.27.0.md#candidate-identity-and-acceptance)
+identifies the exact archive and its scoped checks. Exact compact content sizes,
+normal quarantined opening with helper/extracted-Python behavior, and actual
+uncoached newcomer acceptance remain open. The package is not labeled ready for a
+first tester.
 
 ## Install the private preview
 
 This delivery targets **Apple Silicon Macs**. New activation writing requires
 **macOS 26 or later** and at least **8 GiB of free disk space** before preparation.
-The development/qualification host runs macOS 27.0.1; qualification of the exact
-0.27.0 package is still pending. The broader app retains its macOS 14 deployment
+The development/qualification host runs macOS 27.0.1; the
+release record distinguishes passed local checks from the remaining gates. The broader app retains its macOS 14 deployment
 target, but that does not qualify activation on older systems or establish a tested
 minimum operating system. Intel Macs, Windows and Linux are outside this delivery.
 
 1. Obtain the named private archive and its matching release receipt from Mike.
    Expand the archive in Finder and move **Reservoir Scope Tauri Preview.app** to
    Applications, or another folder you use for applications.
-2. Open the app. This private candidate is intended to use local ad hoc signing,
-   without Apple notarization. macOS may require an exception for this exact app.
+2. Open the app. Candidate 04 has verified local ad hoc signing,
+   without an Apple notarization claim. macOS may require an exception for this exact app.
 3. If macOS says the developer cannot be verified or Apple cannot check the app,
    and you trust the supplied copy, first attempt to open it, then go to
    **System Settings → Privacy & Security → Open Anyway**. Confirm **Open** when

@@ -1,0 +1,454 @@
+{
+  "admission": {
+    "admitted": true,
+    "capturedAtUtc": "2026-10-16T19:04:36.267734+00:00",
+    "consecutiveHealthySamples": 3,
+    "criteria": {
+      "consecutiveHealthySamples": 3,
+      "maximumSeconds": 600,
+      "minimumFreePercent": 25,
+      "pollSeconds": 10,
+      "requiredPressureLevel": 1
+    },
+    "observedFreePercent": 34,
+    "observedPressureLevel": 1,
+    "preparationSamples": 3,
+    "reason": "three_consecutive_healthy_samples"
+  },
+  "attemptId": "standalone-mechanical-01",
+  "calibration": {
+    "canonicalSha256": "5503220a5022e929dd9bfa391332130df35fb1db76b7d8f40f83da2e3e9c1501",
+    "fileSha256": "ea72230b68762e39f09f1881d48ed6a7b47dc32c3b7fa780ef57ff11100248df",
+    "modelManifestSha256": "e8aacc5799145a8e2e0a8acf6a7843f8990f82772a22e182ae8eb8cf61a860eb",
+    "observationCount": 32,
+    "observationsSha256": "d96c181fafc6dab75b9106470de8f25f14ffa2133baef825adcf2954475800ea",
+    "projectionSeed": 20261015,
+    "projectionSha256": "a0181beae38428ff6bbf74408b5cfcec8069f7fd6a13772b3249a360bdcfec6d",
+    "scaleFloor": 1e-06,
+    "schemaVersion": "activation-calibration/1",
+    "textsSha256": "b6f59be292513fb86124d08fae4a10d3f7efe65f2e61bbb012168aa4b11a44be"
+  },
+  "checks": {
+    "boundedCaptures": true,
+    "cacheOffsetParity": true,
+    "clearedSteering": true,
+    "configuredFreeCacheLimit": true,
+    "crossArmGenerationIsolation": true,
+    "crossArmLogitTokenCaptureIsolation": true,
+    "independentProbeIsolation": true,
+    "logitParity": true,
+    "noStaleSteering": true,
+    "perOperationMemoryCleanup": true,
+    "perPositionNorms": true,
+    "quietZeroSamples": true,
+    "samePassContentToken": true,
+    "zeroAdditionBitwiseParity": true
+  },
+  "configuredFreeCacheLimitBytes": 67108864,
+  "evidenceHandling": {
+    "includedHere": "Allowlisted outcomes, bounded settings, relative artifact names, identities and hashes only.",
+    "retainedPrivately": "The complete qualification artifacts, launch command, absolute runtime paths and raw probe content remain in the private attempt directory.",
+    "validationPerformedForThisReceipt": "Verified all retained attempt file hashes, canonical plan/calibration/model identities, ready-receipt binding, installed runtime source hashes, frozen locks and packaged worker/fixture equivalence. Model-file hashes are the qualification initialization observations, matched to the frozen model inventory; this receipt did not rerun inference."
+  },
+  "execution": {
+    "automaticRetries": 0,
+    "dispatched": true,
+    "entryPoint": "activation_worker.qualify",
+    "finishedAtUtc": "2026-10-16T19:04:49.903655+00:00",
+    "mechanicalElapsedSeconds": 12.239955875091255,
+    "plannedRetry": false,
+    "qualificationDeadlineSeconds": 900,
+    "returnCode": 0,
+    "runtime": "App-prepared standalone interpreter",
+    "startedAtUtc": "2026-10-16T19:04:16.227063+00:00",
+    "workerSource": "Repository worker bytes independently matched to candidate-01 and candidate-02 packaged workers"
+  },
+  "launchSourceSha256": {
+    "activation-requirements.lock": "8e9f6d5b4d263a0212694fb42d9abb5bc6d479154bc164a765c2a98efc156cfb",
+    "activation_worker/__init__.py": "e8b547250d88935b69f39b35463f45e5c0f07a7283e7d8e7f7f3b33d34a46282",
+    "activation_worker/__main__.py": "37f3e028fc732cecd53c69b5c6ff3bf85278294c49c40dbca86e46fd5b758077",
+    "activation_worker/backend.py": "1caf73ffca14c0d0145ed5b5c391c8839dca37e82fed72d0f8f330b673f24f53",
+    "activation_worker/engine.py": "5012e6f05c08ea84c816c2dc722b7506ad4cca428dda07a476abc6cf4e76103a",
+    "activation_worker/manifest.py": "99d4761ba8696f953fa31bea33812e35f6af3fbac85e0acc2a4f58b336775dce",
+    "activation_worker/math_core.py": "05e25f5bc05aea242946e96374fd90c6e5dbcf49f06a6b502d109240cdd15276",
+    "activation_worker/qualify.py": "6762fb715bf7c5a89b994c071948d311d5d459f60176526a7b2799206aeaf700",
+    "activation_worker/worker.py": "9c2f638c181596d019bd8c8624c4bf409771796154d802d9eeb9f761f2b38cc1",
+    "scripts/run_activation_pilot.py": "aecf4da3fc48853a9cdd29525ceffd01924386d0c49439ed12a598fc597c0f45",
+    "scripts/run_activation_qualification.py": "8ceea7b87fda404c15af096871b04f9ad43ac990334994373f2575566ba2cca8"
+  },
+  "limits": [
+    "Mechanical checks qualify these exact worker, model and standalone runtime identities.",
+    "This receipt does not qualify packaged UI, setup cancellation or the final candidate-03 build.",
+    "A later frontend-only candidate may reuse this mechanical evidence only after exact worker, fixture, model, runtime and bound-setting equivalence is retained.",
+    "No new journal comparison, recurrent-condition advantage, minimum macOS 26, second-Mac or human newcomer result is established."
+  ],
+  "memoryPolicy": {
+    "clearEveryGeneratedContentTokens": 64,
+    "freeCacheLimitBytes": 67108864,
+    "limitSemantics": "free-cache excess is reclaimed on the next allocation; not an active-memory, process-RAM or host-RAM cap",
+    "memoryLimitChanged": false,
+    "peakSemantics": "MLX peak active allocation since the named reset; excludes free cache and non-MLX memory",
+    "schemaVersion": "activation-mlx-memory-policy/1",
+    "scope": "owned-worker-MLX-allocator-only",
+    "wiredLimitChanged": false
+  },
+  "model": {
+    "captureDtype": "float32",
+    "files": [
+      {
+        "bytes": 707,
+        "path": "added_tokens.json",
+        "sha256": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680"
+      },
+      {
+        "bytes": 937,
+        "path": "config.json",
+        "sha256": "b5efdcf3b0035a3638e7228dad4d85f5c4a23f156eb7cdb0b44c8366a5d34d9b"
+      },
+      {
+        "bytes": 1671853,
+        "path": "merges.txt",
+        "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+      },
+      {
+        "bytes": 2263022529,
+        "path": "model.safetensors",
+        "sha256": "e240c0bdc0ebb0681bf0da0f98d9719fd6ebe269a3633f81542c13e81345651d"
+      },
+      {
+        "bytes": 63924,
+        "path": "model.safetensors.index.json",
+        "sha256": "f7825defe5865d179c3b593173d37056be5f202dcb7153985cf74e75ecf1628b"
+      },
+      {
+        "bytes": 613,
+        "path": "special_tokens_map.json",
+        "sha256": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd"
+      },
+      {
+        "bytes": 11422654,
+        "path": "tokenizer.json",
+        "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+      },
+      {
+        "bytes": 9706,
+        "path": "tokenizer_config.json",
+        "sha256": "253153d0738ceb4c668d2eff957714dd2bea0b56de772a9fdccd96cbf517e6a0"
+      },
+      {
+        "bytes": 2776833,
+        "path": "vocab.json",
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+      }
+    ],
+    "hiddenDim": 2560,
+    "layerCount": 36,
+    "modelId": "mlx-community/Qwen3-4B-4bit",
+    "provenanceSha256": "829d059cf989e67c5774e8c1aea013e74b3727d750238f50572049abe5953a73",
+    "quantization": {
+      "bits": 4,
+      "group_size": 64
+    },
+    "revision": "4dcb3d101c2a062e5c1d4bb173588c54ea6c4d25",
+    "schemaVersion": "activation-model-manifest/1",
+    "sha256": "e8aacc5799145a8e2e0a8acf6a7843f8990f82772a22e182ae8eb8cf61a860eb",
+    "tapBlockIndex": 17,
+    "tapBoundary": "after-block-before-steering"
+  },
+  "packages": [
+    {
+      "archiveBytes": 143142552,
+      "archiveFilename": "ReservoirScope-0.27.0-private-preview-macos-arm64.zip",
+      "archiveSha256": "3dccad83ebd9fa4381a4c0f807fc00b05b8a6f14bbf48596c20a9d018126a34c",
+      "candidate": "candidate-01",
+      "executableSha256": "69097fdd8d9e55b35d5a01fc93aa8cfc2f4a3887c6b3ab08ed772fb31cf4b5a0",
+      "packageInputsReceiptSha256": "399334ef9f4d4b8ce9c2a8c2ef1fa21ef96427fd3dc68852e5d735ff61384807",
+      "qualifiedWorkerAndFixtureBytesMatch": true,
+      "setupManifestSha256": "72ebc59a5c76cc3f8f956e4c32a8cc92ba6b829c4c81aa123c30f40a0c352a25",
+      "sourceAndArtifactReceiptSha256": "716fabfc29ce313dec23ea1900470b9c483c1b759dafd5d600f09cf3743d528d",
+      "sourceCommit": "3bd6a4feab7282d63670a894e9238c7fff2661c4",
+      "version": "0.27.0"
+    },
+    {
+      "archiveBytes": 143143054,
+      "archiveFilename": "ReservoirScope-0.27.0-private-preview-macos-arm64.zip",
+      "archiveSha256": "512ede25d2a0093f6382fdc17479119641beb1f493fa76b741fe27adff1f4fca",
+      "candidate": "candidate-02",
+      "executableSha256": "41ba9ab12cc03409d3ef4d14c0181fba7bd91efc5d2db6ff1d095f1b2abfade4",
+      "packageInputsReceiptSha256": "51cd15d3b12c8a07565d856e01fac64c09b63bda2d05b7b7a0755ff6f65acd54",
+      "qualifiedWorkerAndFixtureBytesMatch": true,
+      "setupManifestSha256": "72ebc59a5c76cc3f8f956e4c32a8cc92ba6b829c4c81aa123c30f40a0c352a25",
+      "sourceAndArtifactReceiptSha256": "1019a8cb2bf10a9f71532100cea1d0c5ceb7e61d900af788340ed9de65e4239c",
+      "sourceCommit": "10345ea9c691ecd63fb2721e68bb65891ae9cb4a",
+      "version": "0.27.0"
+    }
+  ],
+  "passedCheckCount": 14,
+  "plan": {
+    "canonicalSha256": "eb2bea283ae54a6bd4cb7e7d82d56949d045de498aa37dac905e20e4767fc9b0",
+    "fileSha256": "6d9d57c7153cf3c6c7540a2bd99eca11ac0e1bb4c660f137ba240fcc53d7ec59",
+    "settings": {
+      "actualRatioAllowance": "u*gain+u*(1+gain+u*gain), u=2^-8(bf16),2^-11(fp16),2^-24(fp32)",
+      "crossArmOrder": [
+        "unsteered",
+        "steered",
+        "unsteered",
+        "steered"
+      ],
+      "fixedContinuationTokenLimit": 3,
+      "intendedGain": 0.01,
+      "intendedRatioAtol": 1e-07,
+      "maxProbeTokens": 64,
+      "parityAtol": 1e-05,
+      "parityRtol": 1e-05,
+      "retry": false,
+      "schemaVersion": "activation-mechanical-qualification/1",
+      "seed": 0,
+      "temperature": 0.0
+    }
+  },
+  "qualificationArtifactInventory": [
+    {
+      "bytes": 660,
+      "file": "admission.json",
+      "sha256": "d59acea91e9b84b3d8ff00e74ba4ed3a05f7348c0a4225b4180972f3e39f3b98"
+    },
+    {
+      "bytes": 535,
+      "file": "condition-1-resource-preparation.json",
+      "sha256": "da91f8981fce2c1d3dcd135772e73d94b54d5b887af8d80edeefd898dfed99f6"
+    },
+    {
+      "bytes": 1810,
+      "file": "condition-1-resource-samples.jsonl",
+      "sha256": "6cfd65ab45f43d7674abf2557af0fafa94363f95297fcac7fd450fe29fce446f"
+    },
+    {
+      "bytes": 2095,
+      "file": "launch-plan.json",
+      "sha256": "b2b9d42775cad7627b9c198048b6f257e123047e953da994d4b1ef0079227243"
+    },
+    {
+      "bytes": 2356103,
+      "file": "qualification/calibration.json",
+      "sha256": "ea72230b68762e39f09f1881d48ed6a7b47dc32c3b7fa780ef57ff11100248df"
+    },
+    {
+      "bytes": 21898,
+      "file": "qualification/cross-arm-order.json",
+      "sha256": "e748c9c0c1191916ed148fe72017bef8dfd0851d96a99e752734a37d2cb87757"
+    },
+    {
+      "bytes": 4383465,
+      "file": "qualification/initialization.json",
+      "sha256": "464124d3204ad89af0cdc4f8cd7f6272370f46ca2aa487765519c10e82a9d30f"
+    },
+    {
+      "bytes": 6219,
+      "file": "qualification/intervention.json",
+      "sha256": "23e53c74d1ad7a27ea5980f5afdc5c3845232461e172be20b678c50601589f1e"
+    },
+    {
+      "bytes": 66800,
+      "file": "qualification/memory.json",
+      "sha256": "a99b1991949c4f1a9abb4131dec685ad67279c01d02c264c4044d8eb967e4695"
+    },
+    {
+      "bytes": 33515,
+      "file": "qualification/parity.json",
+      "sha256": "f3610f4d2e3f4d0661f6af2a04518e75a75e9d28164a8dd83a8b3fd7132f5b53"
+    },
+    {
+      "bytes": 6863,
+      "file": "qualification/plan.json",
+      "sha256": "6d9d57c7153cf3c6c7540a2bd99eca11ac0e1bb4c660f137ba240fcc53d7ec59"
+    },
+    {
+      "bytes": 52146,
+      "file": "qualification/probe-after-steered.json",
+      "sha256": "55f185bdf5a89761ecacd58f12b15790b0b16f24364bcc0a7ab7b3181b2a01db"
+    },
+    {
+      "bytes": 52147,
+      "file": "qualification/probe-after.json",
+      "sha256": "1d4e21275d41c5b7546a7b51d6ec73899553b502e03f91ac31af36ccd02ea2b9"
+    },
+    {
+      "bytes": 52147,
+      "file": "qualification/probe-before.json",
+      "sha256": "14bb4da005ee91a18325c959a58babe8154e37bbf93249c99f887720c23d51a6"
+    },
+    {
+      "bytes": 54188,
+      "file": "qualification/probe-steered.json",
+      "sha256": "8134e17bfa529d4fadbedf8ad345b9156cd8154b24816fa9e46cd5226100245d"
+    },
+    {
+      "bytes": 47375,
+      "file": "qualification/quiet-after-steered.json",
+      "sha256": "bb130aed2212436eb892587e4db093bc007f6c7ac0d43dbeea00bdd8a5308224"
+    },
+    {
+      "bytes": 47375,
+      "file": "qualification/quiet.json",
+      "sha256": "1916dda131bd895911ba1d917243da2c91bf306e717abe00cccfc2043dfa6568"
+    },
+    {
+      "bytes": 2988,
+      "file": "qualification/result.json",
+      "sha256": "0a2196628ae1694aa241f86d7c40266494ea48fc054945e75b534aa739da236e"
+    },
+    {
+      "bytes": 934,
+      "file": "result.json",
+      "sha256": "3a41f5092a0f9f81aef608fe2f7f35dbc138a266690bb94346c542d2ff537f5e"
+    },
+    {
+      "bytes": 0,
+      "file": "stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2682,
+      "file": "stdout.json",
+      "sha256": "93a9bc64e7f6c4d7cafb4ebece5496c66ff6ce15f2afd50395476c639c884922"
+    }
+  ],
+  "recordedAtUtc": "2026-10-16T19:08:55.963742+00:00",
+  "runtime": {
+    "architecture": "arm64",
+    "bootstrapPython": {
+      "archiveBytes": 25102827,
+      "archiveSha256": "5a30271f8d345a5b02b0c9e4e31e0f1e1455a8e4a04fba95cd9762472abc3b17",
+      "version": "3.12.13"
+    },
+    "bootstrapUv": {
+      "archiveSha256": "c3a6fff5b6b4abddff863117878194e35dbc6b0267d61ad259ab9896f9b8dcbb",
+      "bytes": 44400912,
+      "sha256": "247baf3b455e2304e111a41c0e633c71f7296f0c0131df93c9375fbf54ea03f1",
+      "version": "0.10.8"
+    },
+    "completedAtUtc": "2026-10-16T19:02:04.540346+00:00",
+    "frozenLocks": {
+      "model": {
+        "path": "model-files.json",
+        "sha256": "7319b46738b77ee27cf7de9700b5bfdaa66dafe39cf0e3b9f64238cb5ddb4cac"
+      },
+      "wheelInventory": {
+        "path": "wheels.json",
+        "sha256": "b46c5072906fc6bbd6b823fa79f5e328489c778490dfdcb49d07ccf6b2a14218"
+      },
+      "wheels": {
+        "path": "activation-wheels.lock",
+        "sha256": "d24c92e6b3d4c0fb43166f90c9ab25d20124355fb8a662bac9c05c4b9fbf62f1"
+      }
+    },
+    "interpreterFileSha256": "14b79bc842a2c806fc8dc6ab16b3b13fabb6b3043a6868ccee1b1170a19388b3",
+    "packageCount": 34,
+    "packageVersions": {
+      "annotated-doc": "0.0.5",
+      "anyio": "4.15.1",
+      "certifi": "2026.7.22",
+      "filelock": "4.2.0",
+      "fsspec": "2026.9.0",
+      "h11": "0.16.0",
+      "hf-xet": "1.7.0",
+      "httpcore": "1.0.9",
+      "httpx": "0.28.1",
+      "huggingface-hub": "1.3.0",
+      "idna": "3.20",
+      "jinja2": "3.1.6",
+      "markdown-it-py": "4.2.0",
+      "markupsafe": "3.0.4",
+      "mdurl": "0.1.2",
+      "mlx": "0.32.4",
+      "mlx-lm": "0.31.3",
+      "mlx-metal": "0.32.4",
+      "numpy": "2.2.6",
+      "packaging": "26.3",
+      "protobuf": "7.36.2",
+      "pygments": "2.21.0",
+      "pyyaml": "6.0.3",
+      "regex": "2026.9.29",
+      "rich": "15.0.0",
+      "safetensors": "0.8.0",
+      "sentencepiece": "0.2.2",
+      "shellingham": "1.5.4",
+      "tokenizers": "0.22.2",
+      "tqdm": "4.70.1",
+      "transformers": "5.3.0",
+      "typer": "0.27.3",
+      "typer-slim": "0.24.0",
+      "typing-extensions": "4.16.0"
+    },
+    "pythonVersion": "3.12.13",
+    "readyReceipt": {
+      "bytes": 1806,
+      "file": "ready.json",
+      "sha256": "93e627fdf4a718ab1052e38f40bc02632fabe07ee422159d473156763831302e"
+    },
+    "readyReceiptSchema": "activation-setup-ready-v1",
+    "runtimeId": "cpython-3.12.13-20260510-mlx0.32.4-v1",
+    "runtimeSources": [
+      {
+        "path": "mlx_lm/models/qwen3.py",
+        "sha256": "2284df96ecb669109b281df4534470b18f285aa9a5e41735ad682f601f93c639"
+      },
+      {
+        "path": "mlx_lm/models/cache.py",
+        "sha256": "819ed95dcbf755652363cfdb15a639890447abb534a06dcefd52c7fff5055750"
+      },
+      {
+        "path": "mlx_lm/sample_utils.py",
+        "sha256": "c0ce439f8dbf0d4e6d0f37f728a324f3f72878e6a9123df41be520804c596d67"
+      },
+      {
+        "path": "mlx_lm/tokenizer_utils.py",
+        "sha256": "25784bb03c922d0d7832ce6c66a6cd4eb3a4820b6c5a8e583dedb63a018fb56a"
+      },
+      {
+        "path": "mlx_lm/utils.py",
+        "sha256": "ba0371e9c88d52b34d71271945c2394005fbcb2bfb2ee9f6f82d627a33b72422"
+      }
+    ],
+    "setupManifestSha256": "72ebc59a5c76cc3f8f956e4c32a8cc92ba6b829c4c81aa123c30f40a0c352a25",
+    "wheelLockSha256": "d24c92e6b3d4c0fb43166f90c9ab25d20124355fb8a662bac9c05c4b9fbf62f1"
+  },
+  "schema": "reservoir-private-preview-standalone-mechanical-v1",
+  "sourceCommitForWorkerBinding": "10345ea9c691ecd63fb2721e68bb65891ae9cb4a",
+  "status": "passed",
+  "workerSources": [
+    {
+      "path": "__init__.py",
+      "sha256": "e8b547250d88935b69f39b35463f45e5c0f07a7283e7d8e7f7f3b33d34a46282"
+    },
+    {
+      "path": "__main__.py",
+      "sha256": "37f3e028fc732cecd53c69b5c6ff3bf85278294c49c40dbca86e46fd5b758077"
+    },
+    {
+      "path": "backend.py",
+      "sha256": "1caf73ffca14c0d0145ed5b5c391c8839dca37e82fed72d0f8f330b673f24f53"
+    },
+    {
+      "path": "engine.py",
+      "sha256": "5012e6f05c08ea84c816c2dc722b7506ad4cca428dda07a476abc6cf4e76103a"
+    },
+    {
+      "path": "manifest.py",
+      "sha256": "99d4761ba8696f953fa31bea33812e35f6af3fbac85e0acc2a4f58b336775dce"
+    },
+    {
+      "path": "math_core.py",
+      "sha256": "05e25f5bc05aea242946e96374fd90c6e5dbcf49f06a6b502d109240cdd15276"
+    },
+    {
+      "path": "qualify.py",
+      "sha256": "6762fb715bf7c5a89b994c071948d311d5d459f60176526a7b2799206aeaf700"
+    },
+    {
+      "path": "worker.py",
+      "sha256": "9c2f638c181596d019bd8c8624c4bf409771796154d802d9eeb9f761f2b38cc1"
+    }
+  ]
+}

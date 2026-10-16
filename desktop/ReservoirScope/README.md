@@ -1,6 +1,6 @@
 # Reservoir Scope Tauri Preview
 
-**0.27.0 source candidate · Private preview preparation · Qualification pending**
+**0.27.0 candidate 04 · Scoped checks passed · Three qualification gates remain open**
 
 Reservoir Scope combines a personal reservoir and journal with offline experiments,
 recordings and evidence readers. The native macOS app remains separate at
@@ -12,12 +12,18 @@ own storage. Opening a workspace starts no experiment, model connection or live 
 [Capability/platform matrix](../../shared/reservoir-scope/PARITY.md) ·
 [Accepted roadmap](../../TAURI-ROADMAP.md)
 
-For the forthcoming private Mac package, begin with
-[Install and first reading](PREVIEW-START.md). Read the bundled historical writing
-offline, then explicitly prepare the runtime if you want new writing. The
-[0.27 release record](RELEASE-0.27.0.md) owns the candidate identity and qualification
-status; its pending fields are not a delivery claim. The
-[newcomer task card](NEWCOMER-TASK-CARD.md) requires an actual human session.
+For the private Mac preview, begin with [Install and first reading](PREVIEW-START.md).
+The [0.27 release record](RELEASE-0.27.0.md) identifies candidate 04 and its exact
+archive. Source checks, fourteen standalone runtime checks, fresh setup and the
+bounded writing path have retained evidence. The repaired package completed two
+exports/imports and normal quit/reopen, preserving all 104 original payload files
+and paused review without model work.
+
+Exact compact dimensions, normal quarantined opening with helper/extracted-Python
+behavior, and an actual uncoached newcomer session remain open. The private handoff
+records those limits; it does not claim first-tester readiness. Read the bundled
+historical writing offline, then explicitly prepare the runtime for new writing.
+The [newcomer task card](NEWCOMER-TASK-CARD.md) is still awaiting a human session.
 
 The optional [Activation experiment](ACTIVATION-EXPERIMENT.md) connects quiet Qwen3
 prefills to a persistent 32-unit state and a fixed residual intervention during

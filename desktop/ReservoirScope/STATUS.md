@@ -1,14 +1,40 @@
 # Reservoir Scope: current status and next work
 
-**October 16, 2026 · Source candidate 0.27.0 · Private preview tranche in progress**
+**October 16, 2026 · 0.27.0 candidate 04 · Scoped checks passed; three gates remain open**
 
-The active finishing tranche is portable in-app setup, qualification of the exact
-Mac package, coherent offline journal examples, and an uncoached newcomer session.
-[Install-first guidance](PREVIEW-START.md), the [release record](RELEASE-0.27.0.md)
-and [newcomer task card](NEWCOMER-TASK-CARD.md) define that handoff. Source
-implementation is underway; final candidate tests, package identity, actual-app
-qualification and human acceptance remain pending. No new private archive or
-recipient delivery is claimed here.
+Candidate 04 is built from `c4a3ba17f1e8ade9f9cf2c1edcf6cd944356c7a0`. Its
+[release record](RELEASE-0.27.0.md) binds the archive and separates source checks,
+standalone mechanics, actual-app observations and human acceptance. All 87 package
+inputs and 138 archive/app files verify. The fourteen standalone runtime checks
+remain bound through exact candidate-04 equivalence; no extra inference run is
+claimed by that reuse.
+
+Fresh in-app preparation and explicit setup checking completed with a clean
+profile, no developer tools on PATH, source access denied and an inaccessible
+inherited directory. That candidate-03 check binds unchanged bootstrap inputs in
+candidate 04. The real writing walkthrough retained one journal saved/read back at
+step 20 and applied at 21, then stopped at 40 with four quiet observations.
+Candidate 03's export hung during a parent-directory open after file sync; the
+broader permission/TCC explanation remains suspected. Its failure is preserved.
+
+Candidate 04's selected-file repair completed two exports and two native imports,
+re-enabled controls, quit normally and reopened for paused review without model
+requests. All 104 original payload files across the real-writing and synthetic
+unfinished cases were verified through the imports. The entire 108,922-byte
+unfinished response remained readable to its final marker. Three synthetic GUI
+failure cases passed on candidate 03; their scope remains explicit. Candidate 04
+also shows complete final timeline markers 43–48 after keyboard scrolling.
+
+Three gates remain open: exact compact content dimensions (resize-helper
+authorization pending); normal opening of the quarantined candidate-04 transfer
+and its helper/extracted-Python path (fresh Open Anyway confirmation and local
+authentication pending); and an actual uncoached newcomer session. The downloaded
+candidate-04 copy retains quarantine, verifies all 87 inputs, and was blocked on
+Finder opening. No exception or first-tester readiness is claimed.
+
+The [install-first guide](PREVIEW-START.md), [newcomer task card](NEWCOMER-TASK-CARD.md)
+and private handoff receipt describe this limited scope. The package is staged
+locally; no recipient delivery or public archive publication is claimed.
 
 Activation preparation targets Apple Silicon and macOS 26 or later, checks for
 8 GiB free disk, and starts downloads only on Prepare. Its 30-minute setup deadline

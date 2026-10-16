@@ -3,6 +3,19 @@
 [Research findings](../RESEARCH.md) · [Current app candidate](CURRENT-RELEASE.md) ·
 [Earlier focus history](NOW-history-through-20260917.md)
 
+**October 16 current focus: prepare the Tauri 0.27.0 private preview.** Mike
+selected app-guided standalone setup, portable historical writing, exact-package
+qualification and an uncoached newcomer workflow. Candidate 04 includes the
+packaged export repair. Source checks, fourteen standalone real-model checks,
+fresh local setup, the bounded journal walkthrough, controlled failure cases,
+export/import and paused recovery are recorded in the
+[current release account](../desktop/ReservoirScope/RELEASE-0.27.0.md).
+Exact compact content sizes and the transferred app's completed macOS opening
+flow remain qualification gates; actual newcomer acceptance also remains pending.
+The local handoff is a candidate, not yet labeled ready for first tester. No new
+refs are pushed and no invitees are contacted. The unfinished condition comparison
+below remains an open research question, separate from release acceptance.
+
 **October 16 follow-up: address activation headroom on this Mac.** Mike selected
 apparatus changes while leaving the live systems untouched. The
 [headroom study](studies/2026-10-16-activation-headroom.md) tests bounded MLX cache
