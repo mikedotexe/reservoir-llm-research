@@ -7,6 +7,7 @@ import { myReservoirController, type MyReservoirController, type MyReservoirStat
 import { DEFAULT_SUSTAINED_CONFIG, validWritingLimits, type SustainedConfig } from './myReservoirTypes';
 import { DEFAULT_CAMERA } from './types';
 import { formatSessionDuration } from './sessionDuration';
+import ActivationExperiment from './ActivationExperiment';
 import './myReservoir.css';
 
 const phase = (value: string) => ({ ready: 'Ready · not started', running: 'Running', awaitingLanguage: 'Waiting for writing', savingJournal: 'Saving journal', paused: 'Paused', stopped: 'Stopped', budgetReached: 'Run limit reached', storageBlocked: 'Storage needs attention', attemptBlocked: 'Writing needs attention', interrupted: 'Interrupted · review needed' })[value] ?? value;
@@ -42,6 +43,7 @@ export default function MyReservoir({ active, controller = myReservoirController
   const state = useSyncExternalStore(controller.subscribe, controller.snapshot, controller.snapshot);
   const [config, setConfig] = useState<SustainedConfig>({ ...DEFAULT_SUSTAINED_CONFIG, language: { backend: 'scripted' } });
   const [pose, setPose] = useState(DEFAULT_CAMERA), [node, setNode] = useState(0), [tableOnly, setTableOnly] = useState(false);
+  const [activationOpen, setActivationOpen] = useState(false);
   useEffect(() => { controller.setActive(active); if (active) void controller.connect(); return () => controller.setActive(false); }, [controller, active]);
   if (!active) return null;
   const s = state.summary, busy = !!state.busy, durationValid = Number.isInteger(config.maximumDurationSeconds) && config.maximumDurationSeconds >= 1 && config.maximumDurationSeconds <= 86400, writingValid = validWritingLimits(config), createDisabled = busy || !durationValid || !writingValid || !!s && s.phase !== 'stopped';
@@ -59,6 +61,7 @@ export default function MyReservoir({ active, controller = myReservoirController
       {state.exported && <details className="my-reservoir-details"><summary>Export details · revision {state.exportRevision}</summary><SustainedVerification report={state.exported}/><p>Later session changes are not included in this export.</p></details>}
       <details className="my-reservoir-details"><summary>Session settings and details</summary><dl className="my-reservoir-data"><dt>Session / generation</dt><dd>{s.sessionId} / {s.generation}</dd><dt>Revision</dt><dd>{s.revision}</dd><dt>Exact simulated seconds</dt><dd>{s.simulatedTime}</dd><dt>Exact storage bytes</dt><dd>{s.usedBytes} / {s.config.storageBudgetBytes}</dd></dl><pre>{JSON.stringify(s.config, null, 2)}</pre><p>These accepted settings belong to this session. Editing the next-session form cannot change an existing run.</p></details><details className="my-reservoir-details"><summary>Prepare another session</summary>{editor}</details>
     </> : editor}<MyReservoirRecovery state={state} controller={controller}/>
+    <details className="activation-entry" onToggle={event => setActivationOpen(event.currentTarget.open)}><summary>Activation experiment · optional</summary>{activationOpen && <ActivationExperiment active={active}/>}</details>
   </section>;
 }
 export function MyReservoirClosePanel({ controller = myReservoirController }: { controller?: MyReservoirController }) {
