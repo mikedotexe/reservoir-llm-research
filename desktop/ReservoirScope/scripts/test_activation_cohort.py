@@ -119,6 +119,7 @@ class PreparationTests(unittest.TestCase):
         self.assertEqual(result["sampleCount"], 3)
 
 
+@unittest.skipUnless(hasattr(signal, "SIGKILL"), "POSIX process-group escalation for the macOS cohort")
 class OwnedProcessTests(unittest.TestCase):
     def run_process(self, waits, signal_error=None):
         process = Mock(pid=424242)
