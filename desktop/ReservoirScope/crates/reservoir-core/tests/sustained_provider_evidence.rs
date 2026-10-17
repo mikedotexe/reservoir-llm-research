@@ -82,7 +82,8 @@ fn absent_or_null_evidence_keeps_historical_response_bytes() {
     );
     let old_segment: SustainedSegment = serde_json::from_slice(frozen).unwrap();
     assert_eq!(serde_json::to_vec(&old_segment).unwrap(), frozen);
-    old_segment.verify().unwrap();
+    // Exact historical replay has a separate host qualification boundary in
+    // sustained_generation_budget::historical_macos_arm64_v3_budget_segment_replays_exactly.
 }
 
 #[test]

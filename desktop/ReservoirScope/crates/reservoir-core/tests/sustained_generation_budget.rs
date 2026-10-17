@@ -26,7 +26,7 @@ fn rehash(c: &mut SustainedCheckpoint) {
     );
 }
 #[test]
-fn historical_v3_budget_omission_preserves_exact_segment_bytes_hashes_and_replay() {
+fn historical_v3_budget_omission_preserves_exact_segment_bytes_and_hashes() {
     let raw = include_bytes!("fixtures/sustained-prompts/v3-legacy-budget-segment.json");
     assert_eq!(
         format!("{:x}", Sha256::digest(raw)),
@@ -34,8 +34,73 @@ fn historical_v3_budget_omission_preserves_exact_segment_bytes_hashes_and_replay
     );
     let segment: SustainedSegment = serde_json::from_slice(raw).unwrap();
     assert_eq!(serde_json::to_vec(&segment).unwrap(), raw);
+    for c in [&segment.initial_checkpoint, &segment.final_checkpoint] {
+        assert_eq!(c.state.specification.output_tokens, 256);
+        assert_eq!(c.state.specification.request_deadline_seconds, 60);
+        assert_eq!(
+            c.sha256,
+            format!(
+                "{:x}",
+                Sha256::digest(serde_json::to_vec(&c.state).unwrap())
+            )
+        );
+    }
+}
+#[test]
+#[cfg_attr(
+    not(all(target_os = "macos", target_arch = "aarch64")),
+    ignore = "Historical macOS arm64 numerical replay is unqualified on this host; frozen bytes and same-host replay remain tested"
+)]
+fn historical_macos_arm64_v3_budget_segment_replays_exactly() {
+    let raw = include_bytes!("fixtures/sustained-prompts/v3-legacy-budget-segment.json");
+    let segment: SustainedSegment = serde_json::from_slice(raw).unwrap();
     segment.verify().unwrap();
     for c in [&segment.initial_checkpoint, &segment.final_checkpoint] {
+        c.validate().unwrap();
+    }
+}
+#[test]
+fn same_host_v3_legacy_budget_segment_serializes_and_replays_exactly() {
+    let mut s = SustainedSession::new(SustainedSpecification {
+        prompt_version: SustainedPromptVersion::OpenJournalV3,
+        output_tokens: 256,
+        request_deadline_seconds: 60,
+        ..spec()
+    })
+    .unwrap();
+    let initial = s.checkpoint();
+    for _ in 0..3 {
+        s.advance().unwrap();
+    }
+    let request = s.pending_language().unwrap();
+    assert_eq!(
+        (request.output_tokens, request.request_deadline_seconds),
+        (256, 60)
+    );
+    s.start_language(1).unwrap();
+    s.confirm_language(1, &LanguageResponse {
+        text: "I notice the retained pattern at observation 1 and will watch how the next state changes.".into(),
+        provider_model: None,
+        stop_reason: Some("stop".into()),
+        token_count: Some(18),
+        complete: true,
+        provider_prompt_evaluation: None,
+    }).unwrap();
+    assert!(s.pending_journal().is_some());
+    let segment = SustainedSegment {
+        format: FORMAT.into(),
+        initial_checkpoint: initial,
+        events: s.events().iter().cloned().collect(),
+        final_checkpoint: s.checkpoint(),
+    };
+    let raw = serde_json::to_vec(&segment).unwrap();
+    let json = std::str::from_utf8(&raw).unwrap();
+    assert!(!json.contains("\"outputTokens\""));
+    assert!(!json.contains("\"requestDeadlineSeconds\""));
+    let restored: SustainedSegment = serde_json::from_slice(&raw).unwrap();
+    assert_eq!(serde_json::to_vec(&restored).unwrap(), raw);
+    restored.verify().unwrap();
+    for c in [&restored.initial_checkpoint, &restored.final_checkpoint] {
         assert_eq!(c.state.specification.output_tokens, 256);
         assert_eq!(c.state.specification.request_deadline_seconds, 60);
         c.validate().unwrap();

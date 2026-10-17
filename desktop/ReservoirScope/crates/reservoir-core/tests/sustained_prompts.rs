@@ -88,15 +88,32 @@ fn actual_frozen_v1_segments_keep_prompt_state_and_serialized_bytes() {
                 .prompt_version,
             SustainedPromptVersion::LegacyV1
         );
-        segment.initial_checkpoint.validate().unwrap();
-        segment.final_checkpoint.validate().unwrap();
-        segment.verify().unwrap();
+        for checkpoint in [&segment.initial_checkpoint, &segment.final_checkpoint] {
+            assert_eq!(
+                checkpoint.sha256,
+                hash(&serde_json::to_vec(&checkpoint.state).unwrap())
+            );
+        }
         assert_eq!(serde_json::to_string(&segment).unwrap(), raw);
         assert_eq!(
             hash(language(&segment.final_checkpoint).prompt.as_bytes()),
             prompt_hash
         );
         assert!(!raw.contains("promptVersion"));
+    }
+}
+
+#[test]
+#[cfg_attr(
+    not(all(target_os = "macos", target_arch = "aarch64")),
+    ignore = "Historical macOS arm64 numerical replay is unqualified on this host; frozen bytes and same-host replay remain tested"
+)]
+fn historical_macos_arm64_v1_segments_replay_exactly() {
+    for bytes in [V1_FIRST, V1_MEMORY] {
+        let (segment, _) = envelope(bytes);
+        segment.initial_checkpoint.validate().unwrap();
+        segment.final_checkpoint.validate().unwrap();
+        segment.verify().unwrap();
     }
 }
 

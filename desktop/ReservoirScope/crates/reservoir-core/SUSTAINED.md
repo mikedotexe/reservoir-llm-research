@@ -15,6 +15,20 @@ JavaScript integer precision would be inadequate. Each step is one third of a
 simulated second; backend wall-clock pace, elapsed duration and OS sleep remain
 separate concerns.
 
+Exact numerical replay is qualified within a numerical host/runtime; preserving
+serialized bytes across hosts does not establish bit-identical recomputation there.
+In [CI run 39010072115](https://github.com/mikedotexe/reservoir-llm-research/actions/runs/39010072115),
+[Linux job 117330622890](https://github.com/mikedotexe/reservoir-llm-research/actions/runs/39010072115/job/117330622890)
+rejected the retained macOS v3 journal reconstruction, and
+[Windows job 117330622645](https://github.com/mikedotexe/reservoir-llm-research/actions/runs/39010072115/job/117330622645)
+rejected a retained macOS v1 event transition. Cross-host exact replay of those
+histories remains unqualified. Every target still checks their exact raw bytes,
+hashes, prompt/default contracts, and fresh same-host exact replay. The separately
+named historical replay tests retain every strict assertion and run on their
+qualified macOS arm64 target; other targets explicitly report them ignored.
+No fixture, numerical operation, validation threshold or runtime acceptance rule
+changes, and these checks do not establish general operating-system qualification.
+
 ## Observation and writing
 
 Observation `reservoir-and-sensory-v1` exposes all 32 recurrent coordinates in their
