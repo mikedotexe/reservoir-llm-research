@@ -82,6 +82,20 @@ Passing scoped source CI therefore does not qualify Windows activation persisten
 All 48 focused activation/backend setup tests passed on the local Apple Silicon
 host after this classification, with no ignored tests there.
 
+## Passive sampler timing assumption (October 17 follow-up)
+
+The [macOS run at `e5573be`](https://github.com/mikedotexe/reservoir-llm-research/actions/runs/39013242685/job/117340060581)
+also exposed an unrelated timing assumption in the passive sampler smoke test:
+two samples were retained during a 0.21-second capture where the test demanded
+three. The sampler includes real scheduling and durable writes within its time
+budget; it does not guarantee a fixed sample count. The smoke test now requires
+a nonempty capture and a completed duration at least as long as requested,
+while preserving identity, zero sample-error and complete-file checks, and
+explicitly verifying empty footer errors and the final executable hash. The
+sampler and historical measurements are unchanged; this is not a new throughput
+or timing qualification.
+All 14 passive-sampler tests passed locally after correcting the assertion.
+
 ## Observed cross-host replay gaps
 
 CI at `62f15cc5af8ffebed4ce49e6990de471390f5854` passed reference, Python,
