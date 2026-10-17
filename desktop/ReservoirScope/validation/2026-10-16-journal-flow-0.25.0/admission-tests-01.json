@@ -1,0 +1,90 @@
+{
+  "schema": "reservoir-journal-flow-admission-qualification-v1",
+  "startedAtUtc": "2026-10-16T22:17:55.206251+00:00",
+  "endedAtUtc": "2026-10-16T22:17:55.331140+00:00",
+  "elapsedSeconds": 0.12475191685371101,
+  "status": "passed",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "test_admit_once.py"
+  ],
+  "cwd": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.25.0",
+  "exitCode": 0,
+  "testsRun": 14,
+  "sourceBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.25.0/admit_once.py",
+      "bytes": 4231,
+      "sha256": "6049003c2ffbb948e6bc50a51d7d2252ee47e8ece4be4fc5a1bc7c2d5d68bb4e"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.25.0/test_admit_once.py",
+      "bytes": 10576,
+      "sha256": "13636c03251fe07cb13efc7e5f05ffc049a26af9d8c44ccba9722415a604dd04"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.25.0/admit_once.py",
+      "bytes": 4231,
+      "sha256": "6049003c2ffbb948e6bc50a51d7d2252ee47e8ece4be4fc5a1bc7c2d5d68bb4e"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.25.0/test_admit_once.py",
+      "bytes": 10576,
+      "sha256": "13636c03251fe07cb13efc7e5f05ffc049a26af9d8c44ccba9722415a604dd04"
+    }
+  ],
+  "sourceUnchanged": true,
+  "basisBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/admit_once.py",
+      "bytes": 4061,
+      "sha256": "8c76e50e4830142288378bbb1f53629b21ed26aa8d939feb402dfeabdbfe653e"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/test_admit_once.py",
+      "bytes": 5343,
+      "sha256": "c9f71a8b41196839ab9f811139de842d4429037383354dab76887207ce261ef6"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/QUALIFICATION-RESOURCES.md",
+      "bytes": 2559,
+      "sha256": "ff30b50a34a42de1a486551c67d21b00738ad4df00549b0b42fbc272d4462855"
+    }
+  ],
+  "basisAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/admit_once.py",
+      "bytes": 4061,
+      "sha256": "8c76e50e4830142288378bbb1f53629b21ed26aa8d939feb402dfeabdbfe653e"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/test_admit_once.py",
+      "bytes": 5343,
+      "sha256": "c9f71a8b41196839ab9f811139de842d4429037383354dab76887207ce261ef6"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/QUALIFICATION-RESOURCES.md",
+      "bytes": 2559,
+      "sha256": "ff30b50a34a42de1a486551c67d21b00738ad4df00549b0b42fbc272d4462855"
+    }
+  ],
+  "basisUnchanged": true,
+  "log": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.25.0/admission-tests-01.log",
+    "bytes": 2087,
+    "sha256": "f2f6cb69fc5525d60026e2f169b7ec689c5cab0691031e07a3e0ece7055828c2"
+  },
+  "scope": "Synthetic temporary-directory and mocked probe tests only. No actual admission, host resource samples, service, model, UI or process actions. Prior files and policy document are read-only.",
+  "changes": [
+    "New episodeId journal-flow-025-01",
+    "20 percent reported-free floor; normal pressure level 1, 8 GiB disk and one admission unchanged",
+    "Exact policy identity normal-pressure-reported-free-20-v1 enforced before any probes",
+    "Expanded synthetic boundary, freeze, policy-identity, unreadable-input and repeat-attempt coverage"
+  ]
+}

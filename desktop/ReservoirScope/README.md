@@ -349,9 +349,14 @@ package and a new output path. The [preserved invocation and field guidance](REA
 explain source/package identity, caller-supplied checks and limitations. Capture does
 not rebuild, confer test success, or establish public signing/notarization.
 
-This status update changes no product source, prompt, package or old receipt.
-The 0.21 source checkpoint `0001b7a` is local and unpushed; current work through 0.25 is
-subsequent to it. The
-[earlier publication account](validation/2026-10-13-public-checkpoint/README.md) remains
-historical. The full pre-edit README is preserved byte-for-byte in
+Earlier published source checkpoints are 0.25 at `3cfbf1b` and 0.27 private preview
+at `4a46c38`; candidate 04 is built from `c4a3ba1`. The
+[0.27.1 completion polish](RELEASE-0.27.1.md) adds a separately qualified, calm
+finish for fully saved sessions at their run limit. This save point also preserves
+the [bounded journal-flow account](validation/2026-10-16-journal-flow-0.27.0/README.md)
+and the superseded 0.25 check's preparation evidence. The standard 0.27.1 build does
+not replace the private candidate 04 handoff; prompts and original receipts remain
+unchanged. See [current status](STATUS.md) for the qualification boundaries.
+The [earlier publication account](validation/2026-10-13-public-checkpoint/README.md)
+remains historical. The full pre-edit README is preserved byte-for-byte in
 [README-HISTORY-2026-10-15.md](README-HISTORY-2026-10-15.md).

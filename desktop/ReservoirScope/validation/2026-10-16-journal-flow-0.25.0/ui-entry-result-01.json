@@ -1,0 +1,39 @@
+{
+  "schema": "reservoir-journal-flow-ui-entry-result-v1",
+  "recordedUtc": "2026-10-16T22:18:50.837019+00:00",
+  "outcome": "pending_user_choice_before_model_admission",
+  "launchedPid": 13340,
+  "launchReceiptSha256": "35eea7359344bdecf109a24b91ddb3897260f6ff56f56cd647fbb9b92f11767f",
+  "ownedPidCheck": {
+    "command": [
+      "/bin/ps",
+      "-p",
+      "13340",
+      "-o",
+      "pid=,comm="
+    ],
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": ""
+  },
+  "emptyLibrary": true,
+  "stdoutBytes": 0,
+  "stderrBytes": 0,
+  "nativeObservation": "Two exact-path getApp observations timed out. App inventory listed an active same-identifier preview; bundle-ID selection refused ambiguity among installed copies. No app controls were sent.",
+  "narrowPreviewProcessInventory": {
+    "command": [
+      "/usr/bin/pgrep",
+      "-fl",
+      "reservoir-scope-desktop"
+    ],
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": ""
+  },
+  "interpretation": "Consistent with existing single-instance preview preventing this distinct0.25launch; no new app session or model run established. Existing0.27instance is not owned by this attempt.",
+  "modelAdmissionExecuted": false,
+  "modelServiceStarted": false,
+  "inventoryRequests": 0,
+  "generationRequests": 0,
+  "userChoicePending": "Normal quit of0.27and proceed0.25, keep0.27and leavepending, or select0.27qualification. Never infer consent from elapsed time."
+}

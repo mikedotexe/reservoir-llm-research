@@ -1,0 +1,51 @@
+{
+  "schema": "reservoir-checkpoint-observation-v1",
+  "startedAtUtc": "2026-10-16T22:19:31.000571+00:00",
+  "completedAtUtc": "2026-10-16T22:19:31.900014+00:00",
+  "worktree": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research",
+  "scope": "Read-only named remote-reference and local checkpoint observation for this worktree. No fetch, stage, commit, tag change or push. Not a claim about the newest product or another installed preview.",
+  "remoteObservation": {
+    "command": [
+      "git",
+      "ls-remote",
+      "origin",
+      "refs/heads/codex/tauri-0.17-checkpoint",
+      "refs/tags/reservoir-scope-tauri-v0.25.0-checkpoint",
+      "refs/tags/reservoir-scope-tauri-v0.25.0-checkpoint^{}"
+    ],
+    "exitCode": 0,
+    "stdout": "3cfbf1b7fba9ceacba2c5ad84bd9636c04496909\trefs/heads/codex/tauri-0.17-checkpoint\n676817e24c3af8b126f7687d81c6c95291f02c8a\trefs/tags/reservoir-scope-tauri-v0.25.0-checkpoint\n3cfbf1b7fba9ceacba2c5ad84bd9636c04496909\trefs/tags/reservoir-scope-tauri-v0.25.0-checkpoint^{}\n",
+    "stderr": ""
+  },
+  "localObservation": {
+    "commands": [
+      [
+        "git",
+        "show",
+        "-s",
+        "--format=%H%n%P%n%cI%n%s",
+        "HEAD"
+      ],
+      [
+        "git",
+        "branch",
+        "--show-current"
+      ]
+    ],
+    "commit": "3cfbf1b7fba9ceacba2c5ad84bd9636c04496909",
+    "parents": [
+      "0001b7a8967c44c80201ed9ada035eaaf5695d63"
+    ],
+    "commitDate": "2026-10-15T19:12:46-07:00",
+    "subject": "Checkpoint Reservoir Scope Tauri 0.25.0",
+    "branch": "codex/tauri-0.17-checkpoint"
+  },
+  "checkpointTag": {
+    "name": "reservoir-scope-tauri-v0.25.0-checkpoint",
+    "kind": "annotated",
+    "object": "676817e24c3af8b126f7687d81c6c95291f02c8a",
+    "peeledCommit": "3cfbf1b7fba9ceacba2c5ad84bd9636c04496909"
+  },
+  "namedRemoteBranchMatchesLocal": true,
+  "limits": "References are observed at the recorded time. Publication is separate from software qualification, runtime results and collaborator acceptance."
+}

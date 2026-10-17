@@ -22,6 +22,19 @@ They retain the optional arrival-navigation refusal and all other qualification
 limits. Historical `reservoir-journal-v8` sessions keep their recorded contract;
 activation has a separate format and does not complete the three-condition study.
 
+The separate [ordinary Ollama journal-flow check](../../desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.27.0/README.md)
+on candidate 04 completes four v8 journals and next-step applications, native
+pinning during arrival, Later/Follow latest, current-versus-selected measurements,
+natural step-121 hold and normal quit. Same-package offline replay passes with all
+25 files unchanged. Its 1280×860 agent walkthrough adds no compact, export/recovery,
+endurance, GPU or human-acceptance claim and does not supersede the separate
+activation-arrival refusal.
+
+[0.27.1](../../desktop/ReservoirScope/RELEASE-0.27.1.md) adds calm settled-limit
+presentation with unchanged failure handling. Its source tests and standard macOS
+scripted finish/replay are qualified separately. Candidate 04 remains the private
+handoff; no new transfer, activation, other-platform or human acceptance is implied.
+
 The capability and platform tables below retain their recorded pre-activation
 baseline. They do not replace the newer route-specific release account or extend
 its checks to all workspaces, platforms, minimum OS versions or human acceptance.
@@ -236,8 +249,9 @@ The complete former ledger is preserved byte-for-byte in
 [PARITY-HISTORY-2026-10-15.md](PARITY-HISTORY-2026-10-15.md). It includes prior test
 failures, corrections, refusals and qualification accounts with their original links.
 Historical “next” sections are not the current backlog. The 0.20 source and
-documentation checkpoint remains at `1552bbc`; the later 0.21 checkpoint `0001b7a`
-is local and unpushed. Current work through 0.25 is subsequent to it. Checkpointing adds no
-package or platform acceptance.
+documentation checkpoint remains at `1552bbc`. Published checkpoints now include
+0.25 at `3cfbf1b` (parent `0001b7a`) and the 0.27 private preview at `4a46c38`, as
+bound by the [current status](../../desktop/ReservoirScope/STATUS.md#qualification-and-checkpoint-boundaries).
+Checkpointing adds no package or platform acceptance.
 Native backports remain focused proposals after Tauri qualification. Live Being
 producers and services remain outside this implementation program.

@@ -1,0 +1,71 @@
+{
+  "schema": "reservoir-native-journal-flow-plan-v1",
+  "episodeId": "journal-flow-025-01",
+  "recordedUtc": "2026-10-16T22:17:02.883889+00:00",
+  "sourceCommit": "3cfbf1b7fba9ceacba2c5ad84bd9636c04496909",
+  "version": "0.25.0",
+  "archiveReceipt": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-journal-first-0.25.0/archive-check-01.json",
+    "bytes": 12695,
+    "sha256": "59daf049e87b3c8cb50fc76c39f8f20627317926ebcf29bcb58ceb5f2c58a5ef"
+  },
+  "model": "gemma3:4b",
+  "softwareSelection": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/software-selection.json",
+    "bytes": 1771,
+    "sha256": "b055ddd7c91e67c75fae0df183b234836ef11eb3a96574b9da458b06576196fa"
+  },
+  "supervisor": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/owned_model.py",
+    "bytes": 38692,
+    "sha256": "415a585dfa4502e555331b4472cf08b6afbd3207944e6d02d952e133175f8c1b"
+  },
+  "priorRuntimeChecks": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/runtime-checks-03.json",
+    "bytes": 11762,
+    "sha256": "8d072d14bf64c912555812365ee715e1e261926fcc19a2816679fac455a682fe"
+  },
+  "session": {
+    "backend": "ollama",
+    "promptVersion": "reservoir-journal-v8",
+    "seed": "20260909",
+    "turnEvery": 30,
+    "maximumSteps": 121,
+    "maximumTurns": 4,
+    "maximumDurationSeconds": 900,
+    "storageBudgetBytes": 67108864,
+    "paceMs": 1000,
+    "contextTokens": 8192,
+    "outputTokens": 1024,
+    "requestDeadlineSeconds": 180,
+    "temperature": 0,
+    "responseFormat": null
+  },
+  "maxFreshRequests": 4,
+  "inventoryDeadlineSeconds": 5,
+  "responseLimitBytes": 1048576,
+  "serviceLifetimeSeconds": 1200,
+  "minimumServiceRemainingAtStart": 1140,
+  "ownedServiceDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.25-journal-flow-model01",
+  "appRunDirectory": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.25-journal-flow-ui01",
+  "provenance": {
+    "hostAdmission": {
+      "requiredPressureLevel": 1,
+      "minimumFreePercent": 20,
+      "minimumFreeDiskBytes": 8589934592,
+      "attempts": 1
+    },
+    "admissionPolicyId": "normal-pressure-reported-free-20-v1",
+    "authorization": "User requests one bounded local-model session through the journal-first flow. Existing selected private gemma3:4b and unchanged qualified Ollama0.40.5; no Being access or service changes.",
+    "scope": "Usability of actual app setup and following/pinning entries while they arrive. Open-ended prose read descriptively; no prompt comparison, creativity score or scientific replication claim."
+  },
+  "stopRule": "One admission and one app session. Stop on first incomplete/failed response, failed save, unexpected lifecycle outcome or insufficient remaining budget. No retry, extension, download, unrelated app cleanup or shared-service contact. Natural step121 bound permits four opportunities at30/60/90/120 and feedback31/61/91/121. The four-attempt ceiling permits the last prepared vector to be applied under the existing lifecycle contract.",
+  "readingChecks": [
+    "Setup through local source, exact model, explicit readiness, Create, then Start",
+    "Newest entry opens, prose precedes history, optional evidence stays inspectable",
+    "Pin first complete entry while later entry arrives; preserve prose and use Later/Follow latest",
+    "Current sensory fill remains distinct from selected historical measurements",
+    "Normal quit, exact saved-bundle offline replay, complete/incomplete outcomes retained"
+  ],
+  "cleanup": "Normal quit only owned QA app; create owned supervisor stop-request, wait for verified original-group cleanup; retain all artifacts. No native export/restore required for this scoped tranche."
+}

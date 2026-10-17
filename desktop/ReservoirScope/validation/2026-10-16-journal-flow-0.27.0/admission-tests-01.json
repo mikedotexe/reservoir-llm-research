@@ -1,0 +1,88 @@
+{
+  "schema": "reservoir-journal-flow-admission-qualification-v1",
+  "episodeId": "journal-flow-027-01",
+  "startedAtUtc": "2026-10-16T22:33:37.655606+00:00",
+  "endedAtUtc": "2026-10-16T22:33:37.792778+00:00",
+  "elapsedSeconds": 0.1370553751476109,
+  "status": "passed",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "test_admit_once.py"
+  ],
+  "cwd": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.27.0",
+  "exitCode": 0,
+  "testsRun": 14,
+  "sourceBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.27.0/admit_once.py",
+      "bytes": 4231,
+      "sha256": "b1b94f6d9d3b170ad78bd7bc9c51f9ab880897bc101a37e76b4b59d923c2c0e9"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.27.0/test_admit_once.py",
+      "bytes": 10576,
+      "sha256": "13636c03251fe07cb13efc7e5f05ffc049a26af9d8c44ccba9722415a604dd04"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.27.0/admit_once.py",
+      "bytes": 4231,
+      "sha256": "b1b94f6d9d3b170ad78bd7bc9c51f9ab880897bc101a37e76b4b59d923c2c0e9"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.27.0/test_admit_once.py",
+      "bytes": 10576,
+      "sha256": "13636c03251fe07cb13efc7e5f05ffc049a26af9d8c44ccba9722415a604dd04"
+    }
+  ],
+  "sourceUnchanged": true,
+  "basisBefore": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.25.0/admit_once.py",
+      "bytes": 4231,
+      "sha256": "6049003c2ffbb948e6bc50a51d7d2252ee47e8ece4be4fc5a1bc7c2d5d68bb4e"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.25.0/test_admit_once.py",
+      "bytes": 10576,
+      "sha256": "13636c03251fe07cb13efc7e5f05ffc049a26af9d8c44ccba9722415a604dd04"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.25.0/admission-tests-01.json",
+      "bytes": 4302,
+      "sha256": "77011e2ad30433590f21e49efe9f91a530c2996968d42d783de97f2b3294ecf5"
+    }
+  ],
+  "basisAfter": [
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.25.0/admit_once.py",
+      "bytes": 4231,
+      "sha256": "6049003c2ffbb948e6bc50a51d7d2252ee47e8ece4be4fc5a1bc7c2d5d68bb4e"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.25.0/test_admit_once.py",
+      "bytes": 10576,
+      "sha256": "13636c03251fe07cb13efc7e5f05ffc049a26af9d8c44ccba9722415a604dd04"
+    },
+    {
+      "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.25.0/admission-tests-01.json",
+      "bytes": 4302,
+      "sha256": "77011e2ad30433590f21e49efe9f91a530c2996968d42d783de97f2b3294ecf5"
+    }
+  ],
+  "basisUnchanged": true,
+  "helperOnlyEpisodeIdChanged": true,
+  "testsByteExactCopy": true,
+  "policyId": "normal-pressure-reported-free-20-v1",
+  "log": {
+    "path": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.27.0/admission-tests-01.log",
+    "bytes": 2087,
+    "sha256": "6153e83c702fe209879a297c7c7672861ae3c4c92639240a693ed106464a9b7f"
+  },
+  "scope": "Synthetic temporary-directory and mocked probe tests only. The helper differs from reviewed 0.25 only by episodeId journal-flow-025-01 to journal-flow-027-01; tests are byte-exact. No actual admission, freeze, host sampling, model, service or UI action. No product edits."
+}

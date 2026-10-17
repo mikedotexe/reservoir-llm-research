@@ -1,6 +1,13 @@
 # Reservoir Scope: current status and next work
 
-**October 16, 2026 · 0.27.0 candidate 04 · Ready for a first invited tester; human acceptance pending**
+**October 16, 2026 · 0.27.1 source polish · 0.27.0 candidate 04 private handoff; human acceptance pending**
+
+[0.27.1](RELEASE-0.27.1.md) makes a settled ordinary session limit calm while keeping
+unresolved writing/saves/feedback visible. Its 497 frontend tests, local macOS
+package, scripted actual-app finish and read-only replay pass. This source checkpoint
+also retains the completed four-journal 0.27 workflow below. Candidate 04 remains
+the separately qualified private handoff; the new standard build does not replace
+its private overlay or transferred-installation qualification.
 
 Candidate 04 is built from `c4a3ba17f1e8ade9f9cf2c1edcf6cd944356c7a0`. Its
 [release record](RELEASE-0.27.0.md) binds the archive and separates source checks,
@@ -59,6 +66,15 @@ it back, apply its encoded signal at the next numerical step, and carry the exac
 latest eligible journal into later context. It has a readable journal history and
 explicit paused recovery. The wider cross-platform Observatory and everyday-use
 qualification are still incomplete.
+
+The [ordinary Ollama journal-flow check](validation/2026-10-16-journal-flow-0.27.0/README.md)
+on candidate 04 now retains four complete v8 entries, exact carried prose and
+feedback at 31/61/91/121. Native pinning survives an arrival; Later/Follow latest
+and separate current/selected measurements work. Natural hold, normal quit and
+same-build replay pass with 25 files unchanged. Its full reading retains known
+invented-control and dynamical claims; this is a workflow pass, not improved
+grounding or uncoached acceptance. Its generic “review needed” finish led to the
+separately qualified settled-limit presentation change in 0.27.1.
 
 The new optional [Activation experiment](ACTIVATION-EXPERIMENT.md) is implemented
 after the published 0.25.0 checkpoint. It has an owned Python MLX worker, quiet
@@ -303,6 +319,15 @@ with annotated tag `reservoir-scope-tauri-v0.25.0-checkpoint`, including the thr
 preceding apparatus commits. Activation work follows in `codex/activation-loop`.
 Source checks, packages, agent UI observations and collaborator acceptance remain
 separate evidence; historical receipts retain their exact original scope.
+
+The 0.27 private-preview checkpoint is now published at
+`4a46c386c7e424f9502b20fc55182ecc757f436a`, tagged
+`reservoir-scope-tauri-v0.27.0-private-preview`; the journal-flow account retains
+read-only remote confirmation. Candidate 04 remains built from `c4a3ba1`.
+The journal-flow evidence and 0.27.1 presentation qualification form the next source
+save point on `codex/activation-loop`; candidate 04 and its tag remain unchanged.
+The standard build's optional included-activation-example control still needs
+clearer availability when the private collection is absent.
 
 The [full prior roadmap](../../TAURI-ROADMAP-HISTORY-2026-10-15.md),
 [parity chronology](../../shared/reservoir-scope/PARITY-HISTORY-2026-10-15.md) and

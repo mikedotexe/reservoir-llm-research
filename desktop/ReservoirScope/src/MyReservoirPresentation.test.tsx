@@ -62,14 +62,36 @@ describe('calm running view and visible recovery actions', () => {
     expect(controller.snapshot().summary?.diagnostics).toEqual([diagnostic]);
   });
 
-  it('keeps budget-only attention open without treating historical provider diagnostics as a current failure', () => {
+  it('shows a settled run limit calmly without treating historical provider diagnostics as a current failure', () => {
     const { controller } = reservoirFixture();
     const state = { ...controller.snapshot(), summary: reservoirSummary({ phase: 'budgetReached', canStart: false, diagnostics: ['Earlier HTTP 503; retained history.'] }) };
     const html = renderToStaticMarkup(<MyReservoirBoundary state={state} controller={controller}/>);
-    expect(html).toMatch(/^<details class="my-reservoir-boundary needs-attention" open="">/);
-    expect(html).toContain('The session is not advancing.');
+    expect(html).toMatch(/^<details class="my-reservoir-boundary"><summary>Writing and feedback<\/summary>/);
+    expect(html).not.toContain('review needed');
     expect(html).not.toContain('role="alert"');
     expect(html).not.toContain('Earlier HTTP 503');
+    const status = renderToStaticMarkup(<MyReservoirStatus state={state}/>);
+    expect(status).toContain('Run limit reached');
+    expect(status).toContain('Saved entries remain available to read and export.');
+    expect(status).not.toContain('needs-attention');
+    expect(status).not.toContain('all writing complete');
+  });
+
+  it.each([
+    { pendingLanguage: { operationId: 'prepared', turnId: 1, attemptId: 1, observedStep: 30, endpoint: '', model: '', state: 'prepared' as const } },
+    { pendingSave: { entryId: 'unsaved', attemptId: 1, observedStep: 30 } },
+    { pendingApplication: { entryId: 'saved', attemptId: 1, observedStep: 30, intendedStep: 31 } },
+    { canRetrySave: true }, { canRetryProvider: true }, { canSkipFeedback: true },
+    { step: 31, durableStep: 30 }, { canPause: true },
+  ])('keeps an unresolved limit visible: %j', unresolved => {
+    const { controller } = reservoirFixture();
+    const state = { ...controller.snapshot(), summary: reservoirSummary({ phase: 'budgetReached', canStart: false, ...unresolved }) };
+    const boundary = renderToStaticMarkup(<MyReservoirBoundary state={state} controller={controller}/>);
+    expect(boundary).toMatch(/^<details class="my-reservoir-boundary needs-attention" open="">/);
+    expect(boundary).toContain('review needed');
+    const status = renderToStaticMarkup(<MyReservoirStatus state={state}/>);
+    expect(status).toContain('needs-attention');
+    expect(status).not.toContain('Saved entries remain available to read and export.');
   });
 
   it('still exposes a current retry-save failure when a paused session offers a retry', () => {

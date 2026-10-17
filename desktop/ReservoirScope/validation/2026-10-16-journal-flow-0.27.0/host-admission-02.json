@@ -1,0 +1,53 @@
+{
+  "capturedUtc": "2026-10-16T22:39:52.043486+00:00",
+  "episodeId": "journal-flow-027-01",
+  "scope": "One passive pre-launch admission. No service/Being inspection or process changes. No retry.",
+  "freezeSha256": "d85aeb6fbbab78d33db14ef8e819374615fa9bcf64c54edf42799b60e513d34b",
+  "runPlan": {
+    "path": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.27.0/run-plan.json",
+    "bytes": 4542,
+    "sha256": "0efc77bff52705f20b3be8899049e61cacc073a7d0a75439b0ca7bd06470cd87"
+  },
+  "policyId": "normal-pressure-reported-free-20-v1",
+  "thresholds": {
+    "requiredPressureLevel": 1,
+    "minimumFreePercent": 20,
+    "minimumFreeDiskBytes": 8589934592,
+    "attempts": 1
+  },
+  "results": [
+    {
+      "command": [
+        "/usr/sbin/sysctl",
+        "-n",
+        "hw.memsize"
+      ],
+      "exit": 0,
+      "stdout": "68719476736\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/sbin/sysctl",
+        "-n",
+        "kern.memorystatus_vm_pressure_level"
+      ],
+      "exit": 0,
+      "stdout": "1\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/memory_pressure"
+      ],
+      "exit": 0,
+      "stdout": "The system has 68719476736 (4194304 pages with a page size of 16384).\n\nStats: \nPages free: 70543 \nPages purgeable: 6483 \nPages purged: 52668543 \n\nSwap I/O:\nSwapins: 87114749 \nSwapouts: 99650708 \n\nPage Q counts:\nPages active: 925387 \nPages inactive: 838371 \nPages speculative: 19238 \nPages throttled: 0 \nPages wired down: 1344235 \n\nCompressor Stats:\nPages used by compressor: 949889 \nPages decompressed: 2225149292 \nPages compressed: 2753853286 \n\nFile I/O:\nPageins: 1955454063 \nPageouts: 953311 \n\nSystem-wide memory free percentage: 44%\n",
+      "stderr": ""
+    }
+  ],
+  "totalMemoryBytes": 68719476736,
+  "pressureLevel": 1,
+  "freePercent": 44,
+  "diskFreeBytes": 478097166336,
+  "admitted": true
+}

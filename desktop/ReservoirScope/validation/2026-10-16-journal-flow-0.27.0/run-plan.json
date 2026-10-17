@@ -1,0 +1,77 @@
+{
+  "schema": "reservoir-native-journal-flow-plan-v2",
+  "episodeId": "journal-flow-027-01",
+  "recordedUtc": "2026-10-16T22:33:49.941693+00:00",
+  "sourceCommit": "e49be15953f9cefe6cb77f5aec0a24bcc857f0d9",
+  "version": "0.27.0",
+  "model": "gemma3:4b",
+  "softwareSelection": {
+    "path": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-runtime-0.40.5/software-selection.json",
+    "bytes": 1771,
+    "sha256": "b055ddd7c91e67c75fae0df183b234836ef11eb3a96574b9da458b06576196fa"
+  },
+  "supervisor": {
+    "path": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/owned_model.py",
+    "bytes": 38692,
+    "sha256": "415a585dfa4502e555331b4472cf08b6afbd3207944e6d02d952e133175f8c1b"
+  },
+  "priorRuntimeChecks": {
+    "path": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-15-context-sources-03/runtime-checks-03.json",
+    "bytes": 11762,
+    "sha256": "8d072d14bf64c912555812365ee715e1e261926fcc19a2816679fac455a682fe"
+  },
+  "session": {
+    "backend": "ollama",
+    "promptVersion": "reservoir-journal-v8",
+    "seed": "20260909",
+    "turnEvery": 30,
+    "maximumSteps": 121,
+    "maximumTurns": 4,
+    "maximumDurationSeconds": 900,
+    "storageBudgetBytes": 67108864,
+    "paceMs": 1000,
+    "contextTokens": 8192,
+    "outputTokens": 1024,
+    "requestDeadlineSeconds": 180,
+    "temperature": 0,
+    "responseFormat": null
+  },
+  "maxFreshRequests": 4,
+  "inventoryDeadlineSeconds": 5,
+  "responseLimitBytes": 1048576,
+  "serviceLifetimeSeconds": 1200,
+  "minimumServiceRemainingAtStart": 1140,
+  "ownedServiceDirectory": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.27-journal-flow-model01",
+  "appRunDirectory": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/target/qa/0.27-journal-flow-ui01",
+  "provenance": {
+    "hostAdmission": {
+      "requiredPressureLevel": 1,
+      "minimumFreePercent": 20,
+      "minimumFreeDiskBytes": 8589934592,
+      "attempts": 1
+    },
+    "admissionPolicyId": "normal-pressure-reported-free-20-v1",
+    "authorization": "User explicitly selected0.27 for the bounded journal-first check. Ordinary My reservoir Ollama flow only; optional Qwen activation experiment remains unused. Existing selected private gemma3:4b and qualified0.40.5; no Being access or shared service changes.",
+    "scope": "Usability of actual app setup and following/pinning entries while they arrive. Open-ended prose read descriptively; no prompt comparison, creativity score or scientific replication claim."
+  },
+  "stopRule": "One admission and one app session. Stop on first incomplete/failed response, failed save, unexpected lifecycle outcome or insufficient remaining budget. No retry, extension, download, unrelated app cleanup or shared-service contact. Natural step121 bound permits four opportunities at30/60/90/120 and feedback31/61/91/121. The four-attempt ceiling permits the last prepared vector to be applied under the existing lifecycle contract.",
+  "readingChecks": [
+    "Setup through local source, exact model, explicit readiness, Create, then Start",
+    "Newest entry opens, prose precedes history, optional evidence stays inspectable",
+    "Pin first complete entry while later entry arrives; preserve prose and use Later/Follow latest",
+    "Current sensory fill remains distinct from selected historical measurements",
+    "Normal quit, exact saved-bundle offline replay, complete/incomplete outcomes retained"
+  ],
+  "cleanup": "Normal quit only owned QA app; create owned supervisor stop-request, wait for verified original-group cleanup; retain all artifacts. No native export/restore required for this scoped tranche.",
+  "buildSourceCommit": "c4a3ba17f1e8ade9f9cf2c1edcf6cd944356c7a0",
+  "packageBefore": {
+    "path": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.27.0/package-before-01.json",
+    "bytes": 39811,
+    "sha256": "cbf5590c3bd08283c2c8486120d1a1f7d69e8464a5f85c7912b57eb354943634"
+  },
+  "previousPreparation": {
+    "path": "/Users/v/.codex/worktrees/tauri-checkpoint/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.25.0/preparation-status-02.json",
+    "bytes": 3702,
+    "sha256": "335685fe18fd2d993eb1ca73f695c3d55a9d10aed67ed631ee53f3ccf481b994"
+  }
+}

@@ -4,7 +4,7 @@ import MyReservoirVisuals from './MyReservoirVisuals';
 import MyReservoirJournals from './MyReservoirJournals';
 import MyReservoirRecovery, { SustainedVerification } from './MyReservoirRecovery';
 import { myReservoirController, type MyReservoirController, type MyReservoirState } from './myReservoirController';
-import { DEFAULT_SUSTAINED_CONFIG, validWritingLimits, type SustainedConfig } from './myReservoirTypes';
+import { DEFAULT_SUSTAINED_CONFIG, validWritingLimits, type SustainedConfig, type SustainedSummary } from './myReservoirTypes';
 import { DEFAULT_CAMERA } from './types';
 import { formatSessionDuration } from './sessionDuration';
 import ActivationExperiment from './ActivationExperiment';
@@ -13,11 +13,16 @@ import './myReservoir.css';
 const phase = (value: string) => ({ ready: 'Ready · not started', running: 'Running', awaitingLanguage: 'Waiting for writing', savingJournal: 'Saving journal', paused: 'Paused', stopped: 'Stopped', budgetReached: 'Run limit reached', storageBlocked: 'Storage needs attention', attemptBlocked: 'Writing needs attention', interrupted: 'Interrupted · review needed' })[value] ?? value;
 const bytes = (value: number) => `${(value / 1048576).toFixed(2)} MiB`;
 const attentionPhases = new Set(['storageBlocked', 'attemptBlocked', 'interrupted', 'budgetReached']);
+const settledLimit = (s: SustainedSummary) => s.phase === 'budgetReached'
+  && !s.pendingLanguage && !s.pendingSave && !s.pendingApplication
+  && !s.canRetrySave && !s.canRetryProvider && !s.canSkipFeedback
+  && !s.canPause && s.step === s.durableStep;
+const phaseNeedsAttention = (s: SustainedSummary) => attentionPhases.has(s.phase) && !settledLimit(s);
 const unsavedSteps = (step: number, durableStep: number) => step > durableStep ? (step === durableStep + 1 ? `step ${step}` : `steps ${durableStep + 1}–${step}`) : null;
 export function MyReservoirBoundary({ state, controller }: { state: MyReservoirState; controller: MyReservoirController }) {
   const s = state.summary; if (!s) return null;
   const pending = s.pendingLanguage;
-  const needsAttention = attentionPhases.has(s.phase) || s.canRetrySave || s.canRetryProvider || pending?.state === 'blocked' || !!s.pendingApplication && !s.canPause;
+  const needsAttention = phaseNeedsAttention(s) || s.canRetrySave || s.canRetryProvider || pending?.state === 'blocked' || !!s.pendingApplication && !s.canPause;
   const hasActiveFailure = (attentionPhases.has(s.phase) && s.phase !== 'budgetReached') || s.canRetrySave || s.canRetryProvider || pending?.state === 'blocked';
   const hasBoundary = !!pending || !!s.pendingSave || !!s.pendingApplication || s.canRetrySave || s.canRetryProvider || s.canSkipFeedback;
   return <details className={`my-reservoir-boundary${needsAttention ? ' needs-attention' : ''}`} open={needsAttention}>
@@ -37,7 +42,7 @@ export function MyReservoirStatus({ state }: { state: MyReservoirState }) {
   const s = state.summary; if (!s) return null;
   const fill = state.frame?.fillPercent;
   const fillAvailable = typeof fill === 'number' && Number.isFinite(fill) && fill >= 0 && fill <= 100;
-  return <section className={`my-reservoir-status${attentionPhases.has(s.phase) ? ' needs-attention' : ''}`} aria-label="Current reservoir session"><div className="my-reservoir-status-main"><div><strong>{phase(s.phase)}</strong><p>{s.config.language.backend === 'scripted' ? 'Example writing · offline' : `Local model · ${s.config.language.model}`} · journals save automatically</p><p>Live step {s.step}; saved through step {s.durableStep}.</p></div><dl><div className="my-reservoir-current-fill"><dt>Current sensory fill</dt><dd>{fillAvailable ? `${fill.toFixed(2)}%` : 'Unavailable'}</dd></div><div><dt>Saved journals</dt><dd>{s.journalCount}</dd></div><div><dt>Running time / limit</dt><dd>{formatSessionDuration(s.elapsedSeconds)} / {formatSessionDuration(s.config.maximumDurationSeconds)}</dd></div><div><dt>Storage / budget</dt><dd>{bytes(s.usedBytes)} / {bytes(s.config.storageBudgetBytes)}</dd></div></dl></div><details className="my-reservoir-status-details"><summary>Session measurements and limits</summary><dl><div><dt>Numerical step</dt><dd>{s.step} / {s.config.maximumSteps}</dd></div><div><dt>Saved through step</dt><dd>{s.durableStep}</dd></div><div><dt>Simulated seconds</dt><dd>{s.simulatedTime.toFixed(3)}</dd></div><div><dt>Elapsed / limit seconds</dt><dd>{s.elapsedSeconds.toFixed(1)} / {s.config.maximumDurationSeconds}</dd></div><div><dt>Attempts / limit</dt><dd>{s.turnCount} / {s.config.maximumTurns}</dd></div></dl><p>The first duration, step, attempt or storage bound holds the session. Writing and saving hold numerical time; running time is a separate clock.</p></details></section>;
+  return <section className={`my-reservoir-status${phaseNeedsAttention(s) ? ' needs-attention' : ''}`} aria-label="Current reservoir session"><div className="my-reservoir-status-main"><div><strong>{phase(s.phase)}</strong>{settledLimit(s) && <p>Saved entries remain available to read and export.</p>}<p>{s.config.language.backend === 'scripted' ? 'Example writing · offline' : `Local model · ${s.config.language.model}`} · journals save automatically</p><p>Live step {s.step}; saved through step {s.durableStep}.</p></div><dl><div className="my-reservoir-current-fill"><dt>Current sensory fill</dt><dd>{fillAvailable ? `${fill.toFixed(2)}%` : 'Unavailable'}</dd></div><div><dt>Saved journals</dt><dd>{s.journalCount}</dd></div><div><dt>Running time / limit</dt><dd>{formatSessionDuration(s.elapsedSeconds)} / {formatSessionDuration(s.config.maximumDurationSeconds)}</dd></div><div><dt>Storage / budget</dt><dd>{bytes(s.usedBytes)} / {bytes(s.config.storageBudgetBytes)}</dd></div></dl></div><details className="my-reservoir-status-details"><summary>Session measurements and limits</summary><dl><div><dt>Numerical step</dt><dd>{s.step} / {s.config.maximumSteps}</dd></div><div><dt>Saved through step</dt><dd>{s.durableStep}</dd></div><div><dt>Simulated seconds</dt><dd>{s.simulatedTime.toFixed(3)}</dd></div><div><dt>Elapsed / limit seconds</dt><dd>{s.elapsedSeconds.toFixed(1)} / {s.config.maximumDurationSeconds}</dd></div><div><dt>Attempts / limit</dt><dd>{s.turnCount} / {s.config.maximumTurns}</dd></div></dl><p>The first duration, step, attempt or storage bound holds the session. Writing and saving hold numerical time; running time is a separate clock.</p></details></section>;
 }
 export default function MyReservoir({ active, controller = myReservoirController }: { active: boolean; controller?: MyReservoirController }) {
   const state = useSyncExternalStore(controller.subscribe, controller.snapshot, controller.snapshot);

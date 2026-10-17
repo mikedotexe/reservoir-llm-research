@@ -1,0 +1,21 @@
+{
+  "recordedUtc": "2026-10-16T22:37:06.915416+00:00",
+  "passed": true,
+  "tests": 14,
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "test_admit_preflight02"
+  ],
+  "changes": "Helper receipt filename only; tests import new helper and new receipt filename. No policy or bounds change.",
+  "files": {
+    "admit_preflight02.py": "cfbd3c58e2faaaee0ca8711165a51c1a136e936a180cb35f7af1553807f32298",
+    "test_admit_preflight02.py": "ea0bc6407f74a71d558c630b17ba126c6a69720afca6563517d5300e828f1c72",
+    "admission-tests-02.log": "3b07db5728ceeb4202c95ce1ef50cccfe4d9a22ada9d5feb25685924341cd689",
+    "preflight-repair-01.json": "7f7969961f9c5cf0ab8b0a06d36969b5818cc52de9d8f70bef6667a6a4b6d356"
+  },
+  "scope": "Synthetic mocked host queries only; actual host admission remains unexecuted."
+}

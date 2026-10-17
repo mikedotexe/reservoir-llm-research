@@ -22,6 +22,19 @@ remains an isolated research apparatus. Its incomplete condition comparison is
 separate from preview readiness; action selection and continuous wall-clock ticking
 remain later tranches.
 
+A [bounded ordinary Ollama check on candidate 04](desktop/ReservoirScope/validation/2026-10-16-journal-flow-0.27.0/README.md)
+now records four complete v8 journals, saved/applied at 30→31 through 120→121.
+Native pinning survives a new arrival; Later and Follow latest work, with current
+fill distinct from selected-entry measurements. The session reaches its bound and
+quits normally; same-package offline replay preserves all 25 files. This adds scoped
+local-model reading evidence, not human acceptance, endurance or activation-study
+results. Known prose grounding limits remain; production is unchanged.
+
+[0.27.1 completion polish](desktop/ReservoirScope/RELEASE-0.27.1.md) now distinguishes
+a settled limit from unresolved work. Scoped source checks, a standard macOS package,
+native scripted completion and unchanged-record replay pass. The private handoff
+remains candidate 04; the new source save point adds no platform or human acceptance.
+
 The published **0.25.0 source checkpoint** retains production v8 and numerical/save
 contracts. [Journal-first reading](desktop/ReservoirScope/validation/2026-10-15-journal-first-0.25.0/README.md)
 puts complete selected prose and Earlier/Later before history, with live visuals
@@ -116,9 +129,11 @@ historical “next” statement—is preserved byte-for-byte in
 [the October 15 roadmap history](TAURI-ROADMAP-HISTORY-2026-10-15.md).
 Its historical priorities do not override the current backlog. The
 [housekeeping/source checkpoint](desktop/ReservoirScope/validation/2026-10-15-housekeeping-0.20.0/README.md)
-remains at `1552bbc`; the later 0.21 source checkpoint `0001b7a` is local and
-unpushed. Current work through 0.25 is subsequent to it. Source checkpointing adds no new
-package, runtime or collaborator acceptance.
+remains at `1552bbc`. Published checkpoints now include 0.25 at `3cfbf1b` (whose
+parent is `0001b7a`) and the 0.27 private preview at `4a46c38`; the
+[current status](desktop/ReservoirScope/STATUS.md#qualification-and-checkpoint-boundaries)
+binds their separate package and evidence scopes. Source checkpointing adds no
+runtime or collaborator acceptance.
 
 ## 1. Goal, decisions, and definition of success
 
