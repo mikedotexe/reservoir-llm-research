@@ -64,6 +64,10 @@ fn finish(state: &ActivationState) {
     }
 }
 
+#[cfg_attr(
+    not(unix),
+    ignore = "Activation durable evidence requires Unix directory sync; non-Unix persistence is unqualified"
+)]
 #[test]
 fn incomplete_response_over_64k_is_readable_without_becoming_a_journal_or_feedback() {
     let (_root, state, config) = setup(false);
@@ -163,6 +167,10 @@ else:
         .as_str()
         .is_some_and(|s| !s.is_empty()));
 }
+#[cfg_attr(
+    not(unix),
+    ignore = "Activation durable evidence requires Unix directory sync; non-Unix persistence is unqualified"
+)]
 #[test]
 fn cohort_shares_one_initialization_preserves_single_arm_parity_and_portable_proof() {
     let (root, state, config) = setup(false);
@@ -246,6 +254,10 @@ fn cohort_configuration_identity_is_checked_before_creating_evidence_or_worker()
     }
     assert!(!Path::new(&format!("{}.calls", config.worker_path)).exists());
 }
+#[cfg_attr(
+    not(unix),
+    ignore = "Activation durable evidence requires Unix directory sync; non-Unix persistence is unqualified"
+)]
 #[test]
 fn cohort_first_failed_arm_retains_completed_prefix_and_never_starts_third_arm() {
     let (root, _, config) = setup(false);
@@ -277,6 +289,10 @@ fn cohort_first_failed_arm_retains_completed_prefix_and_never_starts_third_arm()
         assert_eq!(session["canStart"], false);
     }
 }
+#[cfg_attr(
+    not(unix),
+    ignore = "Activation durable evidence requires Unix directory sync; non-Unix persistence is unqualified"
+)]
 #[test]
 fn cohort_deadline_and_cancellation_end_owned_worker_without_resend() {
     for cancellation in [false, true] {
@@ -337,6 +353,10 @@ fn cohort_deadline_and_cancellation_end_owned_worker_without_resend() {
         }
     }
 }
+#[cfg_attr(
+    not(unix),
+    ignore = "Activation durable evidence requires Unix directory sync; non-Unix persistence is unqualified"
+)]
 #[test]
 fn cohort_rejects_shared_initialization_and_wire_boundary_tampering() {
     let (root, _, config) = setup(false);
@@ -367,6 +387,10 @@ fn cohort_rejects_shared_initialization_and_wire_boundary_tampering() {
     fs::write(boundary_path, encode(&boundary).unwrap()).unwrap();
     assert!(verify(second).is_err());
 }
+#[cfg_attr(
+    not(unix),
+    ignore = "Activation durable evidence requires Unix directory sync; non-Unix persistence is unqualified"
+)]
 #[test]
 fn cohort_unknown_or_critical_resident_pressure_stops_before_model_dispatch() {
     fn refused() -> Result<Value> {
@@ -403,6 +427,10 @@ fn cohort_unknown_or_critical_resident_pressure_stops_before_model_dispatch() {
         1
     );
 }
+#[cfg_attr(
+    not(unix),
+    ignore = "Activation durable evidence requires Unix directory sync; non-Unix persistence is unqualified"
+)]
 #[test]
 fn cohort_warning_only_continues_a_resident_worker_and_critical_stops_at_next_arm() {
     static GUARDS: std::sync::atomic::AtomicUsize = std::sync::atomic::AtomicUsize::new(0);
@@ -449,6 +477,10 @@ fn cohort_warning_only_continues_a_resident_worker_and_critical_stops_at_next_ar
     assert_eq!(refused["workerStarts"], 0);
     assert_eq!(refused["modelsLoaded"], 0);
 }
+#[cfg_attr(
+    not(unix),
+    ignore = "Activation durable evidence requires Unix directory sync; non-Unix persistence is unqualified"
+)]
 #[test]
 fn cohort_changed_runtime_envelope_is_retained_but_never_applied() {
     let (root, _, config) = setup(false);
@@ -476,8 +508,21 @@ fn cohort_changed_runtime_envelope_is_retained_but_never_applied() {
     verify(p).unwrap();
     assert_reaped(&result);
 }
+#[cfg_attr(
+    not(unix),
+    ignore = "Activation durable evidence requires Unix directory sync; non-Unix persistence is unqualified"
+)]
 #[test]
 fn received_response_cannot_cross_the_request_deadline() {
+    response_deadline_is_enforced(true);
+}
+
+#[test]
+fn transport_response_cannot_cross_the_request_deadline() {
+    response_deadline_is_enforced(false);
+}
+
+fn response_deadline_is_enforced(retain_evidence: bool) {
     let (root, _, config) = setup(false);
     fs::write(&config.worker_path, r#"import json,sys,time
 for line in sys.stdin:
@@ -486,7 +531,9 @@ for line in sys.stdin:
  print(json.dumps({'id':r['id'],'command':r['command'],'type':'result','result':{'complete':True}}),flush=True)
 "#).unwrap();
     let mut worker = Worker::spawn(&config).unwrap();
-    worker.protocol_prefix = Some(root.path().join("late-protocol"));
+    if retain_evidence {
+        worker.protocol_prefix = Some(root.path().join("late-protocol"));
+    }
     let cancel = AtomicBool::new(false);
     worker
         .call("warm", json!({}), &cancel, Duration::from_secs(2))
@@ -513,6 +560,10 @@ for line in sys.stdin:
     #[cfg(not(unix))]
     assert!(worker.child.try_wait().unwrap().is_some());
 }
+#[cfg_attr(
+    not(unix),
+    ignore = "Activation durable evidence requires Unix directory sync; non-Unix persistence is unqualified"
+)]
 #[test]
 fn completed_arm_remains_verifiable_at_a_cancelled_or_expired_terminal_boundary() {
     let (root, _, config) = setup(false);
@@ -562,6 +613,10 @@ fn completed_arm_remains_verifiable_at_a_cancelled_or_expired_terminal_boundary(
     verify(path).unwrap();
     assert_eq!(worker.sequence, 0);
 }
+#[cfg_attr(
+    not(unix),
+    ignore = "Activation durable evidence requires Unix directory sync; non-Unix persistence is unqualified"
+)]
 #[test]
 fn optional_synthetic_reader_export() {
     let Some(path) = std::env::var_os("ACTIVATION_TEST_EXPORT_PATH") else {
@@ -580,6 +635,10 @@ fn optional_synthetic_reader_export() {
     assert_eq!(s.step, 121);
     state.export(&s.session_id, Path::new(&path)).unwrap();
 }
+#[cfg_attr(
+    not(unix),
+    ignore = "Activation durable evidence requires Unix directory sync; non-Unix persistence is unqualified"
+)]
 #[test]
 fn fake_worker_full_save_apply_export_import_and_offline_replay() {
     let (root, state, config) = setup(false);
@@ -605,6 +664,10 @@ fn fake_worker_full_save_apply_export_import_and_offline_replay() {
     assert_eq!(original, fs::read(&output).unwrap());
     verify(Path::new(&imported.directory)).unwrap();
 }
+#[cfg_attr(
+    not(unix),
+    ignore = "Activation durable evidence requires Unix directory sync; non-Unix persistence is unqualified"
+)]
 #[test]
 fn cancellation_kills_owned_worker_without_late_application_or_resend() {
     let (_root, state, config) = setup(true);
@@ -628,6 +691,10 @@ fn cancellation_kills_owned_worker_without_late_application_or_resend() {
     assert!(state.start(&s.session_id).is_err());
     verify(Path::new(&s.directory)).unwrap();
 }
+#[cfg_attr(
+    not(unix),
+    ignore = "Activation durable evidence requires Unix directory sync; non-Unix persistence is unqualified"
+)]
 #[test]
 fn changed_saved_text_or_projection_evidence_is_rejected() {
     let (_root, state, config) = setup(false);
@@ -643,6 +710,10 @@ fn changed_saved_text_or_projection_evidence_is_rejected() {
     assert!(verify(Path::new(&s.directory)).is_err());
     assert!(state.restore(&s.session_id).is_err());
 }
+#[cfg_attr(
+    not(unix),
+    ignore = "Activation durable evidence requires Unix directory sync; non-Unix persistence is unqualified"
+)]
 #[test]
 fn calibration_mutation_cannot_resume_or_pass_replay() {
     let (_root, state, config) = setup(false);
@@ -657,6 +728,10 @@ fn calibration_mutation_cannot_resume_or_pass_replay() {
     assert!(verify(Path::new(&s.directory)).is_err());
     assert!(state.restore(&s.session_id).is_err());
 }
+#[cfg_attr(
+    not(unix),
+    ignore = "Activation durable evidence requires Unix directory sync; non-Unix persistence is unqualified"
+)]
 #[test]
 fn close_stops_and_blocks_new_starts_until_cancelled() {
     let (_root, state, config) = setup(false);
@@ -671,6 +746,10 @@ fn close_stops_and_blocks_new_starts_until_cancelled() {
         "completed"
     );
 }
+#[cfg_attr(
+    not(unix),
+    ignore = "Activation durable evidence requires Unix directory sync; non-Unix persistence is unqualified"
+)]
 #[test]
 fn retained_response_projection_must_match_ledger_even_when_rehashed() {
     let (_root, state, config) = setup(false);

@@ -50,11 +50,37 @@ synthetic tests now discover an absolute Windows Python path and verify child
 exit with native Windows process handles, while retaining the Unix `ECHILD`
 assertions. The direct-child deadline test uses the existing portable `try_wait`
 pattern outside Unix. A readiness-path assertion now compares path components
-instead of requiring slash separators. These are test-harness changes; no
-activation test is disabled and no production process behavior is changed.
+instead of requiring slash separators. That test-harness repair kept every
+activation test enabled and changed no production process behavior.
 All 47 focused activation/backend setup tests passed locally after this repair.
 The same CI attempt passed its complete Rust stage on macOS and Linux before
 the corrected test harness was submitted for a fresh three-host run.
+
+## Windows activation persistence boundary (October 17 follow-up)
+
+The [next Windows job](https://github.com/mikedotexe/reservoir-llm-research/actions/runs/39011795019/job/117335753252)
+compiled successfully and passed 219 backend tests, with two existing skips. It
+failed 16 activation persistence tests with `Access is denied. (os error 5)`.
+The unchanged publisher writes and syncs each evidence file, then opens and syncs
+its parent directory; Windows rejects that plain directory open. Session save
+also requires directory sync after updating its latest pointer. These failures
+occur before the cohort process-exit assertions are reached.
+
+Activation execution is an Apple Silicon/macOS feature in the selected preview.
+This observation establishes that its Unix evidence-persistence implementation
+is not usable on Windows; it is not a Python-discovery failure. Production
+durability requirements and saved-record semantics remain unchanged.
+
+The 16 affected tests now report explicit non-Unix ignore reasons. The optional
+synthetic export test has the same scope: its earlier Windows pass only reflected
+an unset export environment variable. Configuration validation and both large-pipe
+deadline/cancellation tests remain enabled everywhere. A separate transport-only
+response deadline test preserves that check without requiring evidence publication;
+the original evidence-backed deadline test remains enabled on Unix. Reader,
+setup metadata, command-boundary and pure activation-core tests also remain active.
+Passing scoped source CI therefore does not qualify Windows activation persistence.
+All 48 focused activation/backend setup tests passed on the local Apple Silicon
+host after this classification, with no ignored tests there.
 
 ## Observed cross-host replay gaps
 
@@ -93,6 +119,11 @@ retained sustained sessions. Bind it to the two CI jobs above, the original fixt
 hashes and the unchanged validator. Isolate numerical differences before choosing
 a versioned portability design. Do not regenerate old fixtures, loosen replay
 validation or infer Windows/Linux install acceptance from source CI.
+
+Record Windows activation evidence persistence as another platform boundary,
+linked to the October 17 job above. Any future Windows execution support needs an
+explicit durability design and qualification; do not silently omit directory sync
+or reinterpret an already-written file as a completed save.
 
 This is a local proposal (`being: system`), not a live-board update. No new model
 generation, live-system change, private distribution or human acceptance occurred
