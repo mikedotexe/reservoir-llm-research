@@ -92,11 +92,19 @@ jobs:
           sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev
       - name: Install pinned Rust toolchain
         run: rustup toolchain install 1.94.1 --profile minimal --target ${{ matrix.target }}
+      - name: Install activation test dependency
+        # Synthetic protocol tests import the numerical helpers, but need no MLX,
+        # model weights or private journals. Match the qualified runtime's pin.
+        run: python -m pip install --only-binary=:all: --no-deps numpy==2.2.6
       - name: Check frozen native reference and staging behavior
         run: |
           python desktop/ReservoirScope/scripts/check_reference.py
           python -m unittest discover -s desktop/ReservoirScope/scripts -p 'test_*.py'
           python desktop/ReservoirScope/scripts/stage_resources.py
+      - name: Stage verified public bootstrap assets
+        # These ignored bundle inputs are downloaded without running them. This
+        # does not install an activation runtime or qualify it on the CI host.
+        run: python desktop/ReservoirScope/scripts/stage_activation_bootstrap.py
       - name: Install exact frontend dependencies
         working-directory: desktop/ReservoirScope
         run: npm ci
