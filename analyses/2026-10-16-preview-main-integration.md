@@ -44,6 +44,18 @@ Six synthetic stager tests cover integrity, reuse, conflicting files and unsafe
 archive/path cases. Windows separately required explicit scoping of POSIX-only
 cohort signal tests; portable protocol checks remain enabled there.
 
+The subsequent [Windows backend build](https://github.com/mikedotexe/reservoir-llm-research/actions/runs/39010819918/job/117332847387)
+exposed unguarded Unix `waitpid` assertions in the activation test harness. The
+synthetic tests now discover an absolute Windows Python path and verify child
+exit with native Windows process handles, while retaining the Unix `ECHILD`
+assertions. The direct-child deadline test uses the existing portable `try_wait`
+pattern outside Unix. A readiness-path assertion now compares path components
+instead of requiring slash separators. These are test-harness changes; no
+activation test is disabled and no production process behavior is changed.
+All 47 focused activation/backend setup tests passed locally after this repair.
+The same CI attempt passed its complete Rust stage on macOS and Linux before
+the corrected test harness was submitted for a fresh three-host run.
+
 ## Observed cross-host replay gaps
 
 CI at `62f15cc5af8ffebed4ce49e6990de471390f5854` passed reference, Python,

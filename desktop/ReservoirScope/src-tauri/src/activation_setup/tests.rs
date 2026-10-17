@@ -158,7 +158,9 @@ fn exact_readiness_paths_allow_spaces_and_do_not_spawn_a_driver() {
     let paths = fixture.state.ready_paths().unwrap().unwrap();
     assert_eq!(paths.0, receipt["pythonPath"].as_str().unwrap());
     assert_eq!(paths.1, receipt["modelPath"].as_str().unwrap());
-    assert!(paths.0.contains("Application Support/owned setup"));
+    assert!(Path::new(&paths.0)
+        .ancestors()
+        .any(|path| path.ends_with(Path::new("Application Support").join("owned setup"))));
     assert!(!fixture.state.0.driver.exists());
     assert!(!fixture.state.is_busy());
     assert!(fixture.state.0.join.lock().unwrap().is_none());

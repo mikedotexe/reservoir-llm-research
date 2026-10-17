@@ -1,4 +1,24 @@
 use super::*;
+
+fn test_python() -> String {
+    #[cfg(windows)]
+    {
+        // setup-python exposes python on PATH; Config requires its absolute path.
+        let output = Command::new("python")
+            .args(["-I", "-c", "import sys; print(sys.executable)"])
+            .output()
+            .expect("Synthetic activation tests require Python on PATH");
+        assert!(output.status.success(), "{output:?}");
+        let path = String::from_utf8(output.stdout).unwrap().trim().to_owned();
+        assert!(Path::new(&path).is_absolute(), "{path:?}");
+        path
+    }
+    #[cfg(not(windows))]
+    {
+        "/usr/bin/python3".into()
+    }
+}
+
 fn setup(slow: bool) -> (tempfile::TempDir, ActivationState, Config) {
     let root = tempfile::tempdir().unwrap();
     let worker = root.path().join("worker.py");
@@ -22,7 +42,7 @@ for line in sys.stdin:
     );
     fs::write(&worker, source).unwrap();
     let config = Config {
-        python_path: "/usr/bin/python3".into(),
+        python_path: test_python(),
         worker_path: worker.to_string_lossy().into(),
         model_path: root.path().join("model").to_string_lossy().into(),
         arm: Arm::Recurrent,
@@ -91,17 +111,57 @@ fn calls(config: &Config) -> Vec<Value> {
         .collect()
 }
 fn assert_reaped(result: &Value) {
-    let pid = result["workerPid"].as_u64().unwrap() as libc::pid_t;
-    let mut status = 0;
-    assert_eq!(
-        unsafe { libc::waitpid(pid, &mut status, libc::WNOHANG) },
-        -1
-    );
-    assert_eq!(
-        std::io::Error::last_os_error().raw_os_error(),
-        Some(libc::ECHILD)
-    );
+    let pid = result["workerPid"].as_u64().unwrap();
+    #[cfg(unix)]
+    {
+        let mut status = 0;
+        assert_eq!(
+            unsafe { libc::waitpid(pid as libc::pid_t, &mut status, libc::WNOHANG) },
+            -1
+        );
+        assert_eq!(
+            std::io::Error::last_os_error().raw_os_error(),
+            Some(libc::ECHILD)
+        );
+    }
+    #[cfg(windows)]
+    {
+        // Check the OS independently of the returned release receipt. A vanished
+        // PID or a signalled process handle proves exit; access errors do not.
+        let output = Command::new(test_python())
+            .args([
+                "-I",
+                "-c",
+                r#"import ctypes, sys
+from ctypes import wintypes
+kernel = ctypes.WinDLL('kernel32', use_last_error=True)
+kernel.OpenProcess.argtypes = [wintypes.DWORD, wintypes.BOOL, wintypes.DWORD]
+kernel.OpenProcess.restype = wintypes.HANDLE
+kernel.WaitForSingleObject.argtypes = [wintypes.HANDLE, wintypes.DWORD]
+kernel.WaitForSingleObject.restype = wintypes.DWORD
+kernel.CloseHandle.argtypes = [wintypes.HANDLE]
+kernel.CloseHandle.restype = wintypes.BOOL
+handle = kernel.OpenProcess(0x00100000, False, int(sys.argv[1]))
+if not handle:
+    error = ctypes.get_last_error()
+    assert error == 87, f'OpenProcess failed: {error}'
+else:
+    try:
+        status = kernel.WaitForSingleObject(handle, 0)
+        assert status == 0, f'Worker has not exited: {status}'
+    finally:
+        assert kernel.CloseHandle(handle)
+"#,
+            ])
+            .arg(pid.to_string())
+            .output()
+            .unwrap();
+        assert!(output.status.success(), "{output:?}");
+    }
     assert_eq!(result["workerReleased"], true);
+    assert!(result["workerExitStatus"]
+        .as_str()
+        .is_some_and(|s| !s.is_empty()));
 }
 #[test]
 fn cohort_shares_one_initialization_preserves_single_arm_parity_and_portable_proof() {
@@ -437,16 +497,21 @@ for line in sys.stdin:
     assert_eq!(error.category, "timeout");
     // Whether the response reached the reader or timed out in the pipe, it
     // cannot become an accepted result, and the owned child must be reaped.
-    let pid = worker.child.id() as libc::pid_t;
-    let mut status = 0;
-    assert_eq!(
-        unsafe { libc::waitpid(pid, &mut status, libc::WNOHANG) },
-        -1
-    );
-    assert_eq!(
-        std::io::Error::last_os_error().raw_os_error(),
-        Some(libc::ECHILD)
-    );
+    #[cfg(unix)]
+    {
+        let pid = worker.child.id() as libc::pid_t;
+        let mut status = 0;
+        assert_eq!(
+            unsafe { libc::waitpid(pid, &mut status, libc::WNOHANG) },
+            -1
+        );
+        assert_eq!(
+            std::io::Error::last_os_error().raw_os_error(),
+            Some(libc::ECHILD)
+        );
+    }
+    #[cfg(not(unix))]
+    assert!(worker.child.try_wait().unwrap().is_some());
 }
 #[test]
 fn completed_arm_remains_verifiable_at_a_cancelled_or_expired_terminal_boundary() {
