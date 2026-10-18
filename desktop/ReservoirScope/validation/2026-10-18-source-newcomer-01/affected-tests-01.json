@@ -1,0 +1,51 @@
+{
+  "recordedUtc": "2026-10-18T21:09:16.930795+00:00",
+  "before": {
+    "scripts/stage_activation_bootstrap.py": "87bbfa66da82663622c44adb09d6f8b650b8856d95534432be87dfb7297a9e66",
+    "scripts/test_stage_activation_bootstrap.py": "8d19a935299f4908939333f69c226b3a80c1bb9d2e4eeebff29c633879e157ad",
+    "scripts/prepare.mjs": "ab55be180f355d0de4f8351ff68e6f40dd77aff4c3567c296f6844219c990373"
+  },
+  "after": {
+    "scripts/stage_activation_bootstrap.py": "87bbfa66da82663622c44adb09d6f8b650b8856d95534432be87dfb7297a9e66",
+    "scripts/test_stage_activation_bootstrap.py": "8d19a935299f4908939333f69c226b3a80c1bb9d2e4eeebff29c633879e157ad",
+    "scripts/prepare.mjs": "ab55be180f355d0de4f8351ff68e6f40dd77aff4c3567c296f6844219c990373"
+  },
+  "unchanged": true,
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_stage_activation_bootstrap.py",
+        "-v"
+      ],
+      "exit": 0,
+      "log": "stage_activation_bootstrap-tests-01.log",
+      "elapsedSeconds": 0.141
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_reference.py",
+        "-v"
+      ],
+      "exit": 0,
+      "log": "reference-tests-01.log",
+      "elapsedSeconds": 2.877
+    }
+  ],
+  "scope": "Synthetic bootstrap and frozen-reference tests only; no network or model execution."
+}

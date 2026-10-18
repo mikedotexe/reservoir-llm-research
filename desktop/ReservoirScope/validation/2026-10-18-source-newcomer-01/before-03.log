@@ -1,0 +1,18 @@
+
+> reservoir-scope-desktop@0.27.1 build
+> tsc --noEmit && vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 126 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.45 kB │ gzip:   0.29 kB
+dist/assets/index-D6dZJAB4.css     83.98 kB │ gzip:  16.67 kB
+dist/assets/index-NQ_Rf9Tv.js   1,139.39 kB │ gzip: 310.32 kB │ map: 4,871.49 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.29s

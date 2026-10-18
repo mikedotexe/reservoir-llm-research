@@ -1,6 +1,6 @@
 # Reservoir Scope: Tauri parity and evolution roadmap
 
-**Accepted planning baseline:** October 11, 2026. **Current pointer reviewed:** October 16, 2026.
+**Accepted planning baseline:** October 11, 2026. **Current pointer reviewed:** October 18, 2026.
 
 [Current status and next tranches](desktop/ReservoirScope/STATUS.md) ·
 [Desktop preview](desktop/ReservoirScope/README.md) ·
@@ -11,6 +11,22 @@ This document retains the accepted long-term program, scientific and persistence
 contracts, milestones and qualification gates. Milestone descriptions are targets,
 not claims that every listed workflow is implemented or qualified. Current progress
 and the active backlog are consolidated in **STATUS.md**.
+
+The current preparation tranche is the ordinary **source build → existing Ollama
+model → create → read arriving journals → export/local paused recovery** journey.
+The [newcomer task card](desktop/ReservoirScope/SOURCE-NEWCOMER-CHECK.md) and
+[blank observer record](desktop/ReservoirScope/SOURCE-NEWCOMER-NOTES.md) keep it
+separate from the private Activation trial. A fresh tracked-source rehearsal found
+that required bootstrap assets were absent from a clone; a build-only staging
+repair and its executed checks belong to the
+[October 18 preparation account](desktop/ReservoirScope/validation/2026-10-18-source-newcomer-01/README.md).
+The repaired fresh-source macOS build passes and reproduces all 137 files of the
+prior standard 0.27.1 package; seventeen bootstrap and five reference tests pass.
+The source checkpoint includes this repair and the task packet. Each human session
+must identify its actual source revision, machine and installed model; the dated
+local preparation snapshot remains preserved separately.
+No participant acceptance, new model-writing result or private-package replacement
+follows from preparation. Prompts and numerical/save/feedback contracts stay unchanged.
 
 The current candidate is **0.27.0 candidate 04**, ready for a first invited tester
 on its scoped Apple Silicon macOS path; actual uncoached human acceptance remains

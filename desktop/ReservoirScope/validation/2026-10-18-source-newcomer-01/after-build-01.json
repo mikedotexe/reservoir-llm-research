@@ -1,0 +1,92 @@
+{
+  "recordedUtc": "2026-10-18T21:12:28.411285+00:00",
+  "sourceBaseCommit": "3459d7867eacaf6ceb4a48a0b0f539bd52d68c37",
+  "checkout": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/research/outputs/2026-10-18-source-newcomer-01/source-after",
+  "repairFiles": [
+    {
+      "path": ".github/workflows/tauri.yml",
+      "sha256": "e5e3c05b59060e38e65d9ddc2ccbe1fc9e7d2679a0b5e9aef3ad27e7e7a8c13e"
+    },
+    {
+      "path": "desktop/ReservoirScope/scripts/stage_activation_bootstrap.py",
+      "sha256": "87bbfa66da82663622c44adb09d6f8b650b8856d95534432be87dfb7297a9e66"
+    },
+    {
+      "path": "desktop/ReservoirScope/scripts/test_stage_activation_bootstrap.py",
+      "sha256": "8d19a935299f4908939333f69c226b3a80c1bb9d2e4eeebff29c633879e157ad"
+    },
+    {
+      "path": "desktop/ReservoirScope/scripts/prepare.mjs",
+      "sha256": "ab55be180f355d0de4f8351ff68e6f40dd77aff4c3567c296f6844219c990373"
+    }
+  ],
+  "repairUnchanged": true,
+  "cargoTargetCache": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/target",
+  "maximumBuildJobs": 2,
+  "bootstrapCacheInitiallyAbsent": true,
+  "steps": [
+    {
+      "command": [
+        "npm",
+        "ci",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 1.444,
+      "log": "after-01.log"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "prepare:resources"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 2.561,
+      "log": "after-02.log"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scripts/stage_activation_bootstrap.py",
+        "--check"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 0.149,
+      "log": "after-03.log"
+    },
+    {
+      "command": [
+        "cargo",
+        "check",
+        "--locked",
+        "--package",
+        "reservoir-scope-desktop"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 5.7,
+      "log": "after-04.log"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "tauri",
+        "--",
+        "build",
+        "--target",
+        "aarch64-apple-darwin",
+        "--bundles",
+        "app",
+        "--",
+        "--locked"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 167.73,
+      "log": "after-05.log"
+    }
+  ],
+  "scope": "Clean tracked-source export plus four identified build-only files; installed host toolchains/Cargo cache reused. Bootstrap downloaded from frozen public URLs, no app launch or model execution."
+}

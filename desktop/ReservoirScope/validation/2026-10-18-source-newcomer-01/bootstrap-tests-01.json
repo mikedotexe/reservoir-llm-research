@@ -1,0 +1,82 @@
+{
+  "schema": "bootstrap-synthetic-tests-v1",
+  "status": "passed",
+  "startedAtUtc": "2026-10-18T21:08:58.240959+00:00",
+  "endedAtUtc": "2026-10-18T21:08:58.426953+00:00",
+  "durationSeconds": 0.1858252079691738,
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts",
+    "-p",
+    "test_stage_activation_bootstrap.py",
+    "-v"
+  ],
+  "cwd": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope",
+  "exitCode": 0,
+  "sourceBefore": [
+    {
+      "path": "desktop/ReservoirScope/scripts/stage_activation_bootstrap.py",
+      "bytes": 14378,
+      "sha256": "87bbfa66da82663622c44adb09d6f8b650b8856d95534432be87dfb7297a9e66"
+    },
+    {
+      "path": "desktop/ReservoirScope/scripts/test_stage_activation_bootstrap.py",
+      "bytes": 13821,
+      "sha256": "8d19a935299f4908939333f69c226b3a80c1bb9d2e4eeebff29c633879e157ad"
+    },
+    {
+      "path": "desktop/ReservoirScope/scripts/prepare.mjs",
+      "bytes": 582,
+      "sha256": "ab55be180f355d0de4f8351ff68e6f40dd77aff4c3567c296f6844219c990373"
+    },
+    {
+      "path": ".github/workflows/tauri.yml",
+      "bytes": 5243,
+      "sha256": "e5e3c05b59060e38e65d9ddc2ccbe1fc9e7d2679a0b5e9aef3ad27e7e7a8c13e"
+    },
+    {
+      "path": "desktop/ReservoirScope/activation_setup_bundle/setup-manifest.json",
+      "bytes": 1519,
+      "sha256": "72ebc59a5c76cc3f8f956e4c32a8cc92ba6b829c4c81aa123c30f40a0c352a25"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "path": "desktop/ReservoirScope/scripts/stage_activation_bootstrap.py",
+      "bytes": 14378,
+      "sha256": "87bbfa66da82663622c44adb09d6f8b650b8856d95534432be87dfb7297a9e66"
+    },
+    {
+      "path": "desktop/ReservoirScope/scripts/test_stage_activation_bootstrap.py",
+      "bytes": 13821,
+      "sha256": "8d19a935299f4908939333f69c226b3a80c1bb9d2e4eeebff29c633879e157ad"
+    },
+    {
+      "path": "desktop/ReservoirScope/scripts/prepare.mjs",
+      "bytes": 582,
+      "sha256": "ab55be180f355d0de4f8351ff68e6f40dd77aff4c3567c296f6844219c990373"
+    },
+    {
+      "path": ".github/workflows/tauri.yml",
+      "bytes": 5243,
+      "sha256": "e5e3c05b59060e38e65d9ddc2ccbe1fc9e7d2679a0b5e9aef3ad27e7e7a8c13e"
+    },
+    {
+      "path": "desktop/ReservoirScope/activation_setup_bundle/setup-manifest.json",
+      "bytes": 1519,
+      "sha256": "72ebc59a5c76cc3f8f956e4c32a8cc92ba6b829c4c81aa123c30f40a0c352a25"
+    }
+  ],
+  "sourceUnchanged": true,
+  "log": {
+    "path": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/validation/2026-10-18-source-newcomer-01/bootstrap-tests-01.log",
+    "bytes": 3033,
+    "sha256": "9712ff1394c9dd7e7b5a5c37258a1ca1c05ebb51dd17a8ee6f23cea301ca5dd5"
+  },
+  "scope": "Synthetic temp-file and mocked HTTP/child calls only; no downloads, staging of actual assets, runtime, build or model calls."
+}

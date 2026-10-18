@@ -1,6 +1,6 @@
 # Reservoir Scope parity ledger
 
-**Current candidate: 0.27.0 candidate 04 · Current pointer reviewed October 16, 2026**
+**Private candidate: 0.27.0 candidate 04 · Source newcomer preparation reviewed October 18, 2026**
 
 This matrix separates implemented behavior, executed qualification and remaining
 work. A verifier pass does not establish complete workflow parity, scientific benefit
@@ -12,6 +12,18 @@ or live Being interoperability.
 [Exact pre-housekeeping history](PARITY-HISTORY-2026-10-15.md)
 
 ## Current position: 0.27 private preview
+
+The [ordinary source newcomer check](../../desktop/ReservoirScope/SOURCE-NEWCOMER-CHECK.md)
+now has a separate participant card and blank observer record for compile → own
+Ollama model → create/start → arriving journals → export/local paused recovery.
+The [October 18 account](../../desktop/ReservoirScope/validation/2026-10-18-source-newcomer-01/README.md)
+records a clean tracked-source build failure from missing bootstrap resources and
+the passing build-only repair checks: 17 bootstrap tests, five reference tests,
+fresh artifact fetch, Rust check and macOS package build. All 137 package files
+match the prior standard 0.27.1 copy. This adds preparation evidence; human acceptance,
+other platforms, new model sessions and private-package replacement remain separate.
+The source checkpoint carries the repaired build path and participant packet;
+publication does not complete the human-acceptance row.
 
 Candidate 04 is ready for a first invited tester on the observed Apple Silicon
 macOS 27.0.1 path; actual uncoached human acceptance remains pending. The

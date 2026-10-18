@@ -1,6 +1,6 @@
 # Reservoir Scope Tauri Preview
 
-**0.27.0 candidate 04 · Ready for a first invited tester · Human acceptance pending**
+**0.27.1 source · 0.27.0 candidate 04 private handoff · Human acceptance pending**
 
 Reservoir Scope combines a personal reservoir and journal with offline experiments,
 recordings and evidence readers. The native macOS app remains separate at
@@ -11,6 +11,12 @@ own storage. Opening a workspace starts no experiment, model connection or live 
 [Current status and next work](STATUS.md) ·
 [Capability/platform matrix](../../shared/reservoir-scope/PARITY.md) ·
 [Accepted roadmap](../../TAURI-ROADMAP.md)
+
+To compile the app and use your own installed Ollama model, start with
+[Start your reservoir journal](GETTING-STARTED.md). The
+[source newcomer check](SOURCE-NEWCOMER-CHECK.md) follows that journey through a
+short four-attempt session, reading during arrivals, export and local paused recovery.
+Its [observer notes](SOURCE-NEWCOMER-NOTES.md) keep real results separate from preparation.
 
 For the private Mac preview, begin with [Install and first reading](PREVIEW-START.md).
 The [0.27 release record](RELEASE-0.27.0.md) identifies candidate 04 and its exact
@@ -50,7 +56,7 @@ With the [build prerequisites](#build-prerequisites) installed, run from the rep
 ```sh
 cd desktop/ReservoirScope
 npm ci
-npm run tauri -- dev
+npm run tauri -- dev -- --locked
 ```
 
 In **My reservoir**, choose **My local Ollama model**, enter your server address and
@@ -289,7 +295,7 @@ npm run build
 npm run prepare:resources
 cargo test --locked --package reservoir-core
 cargo test --locked --package reservoir-scope-desktop
-npm run tauri -- dev
+npm run tauri -- dev -- --locked
 ```
 
 `npm run tauri -- dev` runs the native Tauri shell. `npm run dev` alone only serves
@@ -297,6 +303,12 @@ frontend assets; it does not provide the Rust commands or establish desktop pari
 Both Tauri development and package builds verify and stage reference resources before
 starting. Staging copies only checked canonical inputs into generated
 `src-tauri/resources/`; it never regenerates recordings or edits native originals.
+The same preparation also obtains checksum-verified uv and CPython bootstrap assets
+from the frozen setup manifest when they are absent. These public artifacts are
+needed by the standard bundle's optional Activation mode; no wheel/model download,
+dependency refreeze, runtime installation or inference happens at build time.
+Verified cached assets are reused. `python3 scripts/stage_activation_bootstrap.py --check`
+checks availability without downloading; run it from the desktop directory.
 Prepare resources before compiling either Rust package's tests directly: the core
 case tests also embed a staged resource at compile time. Test the two
 Rust packages in separate invocations: workspace feature unification must not hide

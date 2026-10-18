@@ -13,6 +13,10 @@ This preview currently connects to **Ollama's local API**. An arbitrary model fi
 or a different provider's server is not a supported endpoint. The offline example
 lets you try the same save-and-feedback workflow without a model.
 
+Trying this as a newcomer? Use the [first-journal task card](SOURCE-NEWCOMER-CHECK.md)
+with this guide. It covers building from source and using your existing model;
+the private Activation preview has a separate task card.
+
 ## 1. Build and open the app
 
 Install Node **20.20.1** with npm, Python **3.12+**, and Rust through rustup. The
@@ -22,22 +26,32 @@ and WebView2 on Windows, or the WebKitGTK/GTK development packages on Ubuntu.
 [Tauri's prerequisite guide](https://v2.tauri.app/start/prerequisites/) and our
 [host-specific build instructions](README.md#build-prerequisites) give the details.
 
-From this repository's root:
+Use the source revision named in your check's handoff. Record `git rev-parse HEAD`
+and `git status --short` at the repository root so the result identifies what you
+built. For a supplied source archive, retain its checksum and source manifest
+instead. A modified checkout is a different candidate. Then run:
 
 ```sh
 cd desktop/ReservoirScope
 npm ci
-npm run tauri -- dev
+npm run tauri -- dev -- --locked
 ```
 
-The last command prepares the included resources, compiles the Rust application
+The last command prepares resources, compiles the Rust application
 and opens **Reservoir Scope Tauri Preview**. The first compile takes longer than
 later launches. Keep its terminal running during development; quitting the app ends
 its session. `npm run dev` alone serves only the frontend and cannot run a reservoir.
 
 You do not need the private research captures, Python research index, or another
-Reservoir Scope installation. Python is used for build-time resource checks; it is
-not a bundled runtime. The preview has its own writable storage.
+Reservoir Scope installation. The first build also fetches two public, pinned
+bootstrap archives for the optional Activation mode and checks their hashes. It
+does not fetch a model or run those tools. Later builds reuse verified files.
+System Python runs build-time checks; ordinary Ollama writing does not use an
+app-owned Python runtime. The preview has its own writable storage.
+
+Before launching, save any work in an already-open Tauri preview and quit it
+normally. A second launch focuses the existing instance, which may be an older
+build. Check the version in **About** after opening. The native Swift app is separate.
 
 The currently inspected desktop platform is Apple-silicon macOS. Windows and Ubuntu
 builds and packaged behavior still need qualification; prerequisites alone are not
@@ -67,7 +81,9 @@ In **My reservoir**:
 3. Select **Check local model**. This checks the selected service's inventory;
    it generates no journal. A successful check does not guarantee sufficient memory
    or a complete response.
-4. Select **Create my reservoir**, then **Start** when ready.
+4. For a first visit, set the short limits below before creating the session.
+5. Select **Create my reservoir**, then **Start** when ready. Creation alone does
+   not ask the model to write.
 
 The app starts no service, installs no model and makes no automatic connection when
 you open it. Supported server addresses use HTTP and an explicit loopback port.
@@ -76,6 +92,34 @@ They contain no credentials, API path or query. Other providers are a future fea
 To try the interface first, leave **Offline example writing** selected and choose
 Create, then Start. Those entries are a deterministic script, clearly identified
 as example writing; they are not fresh LLM output.
+
+### A short first session
+
+Open **Advanced settings** before Create and use these limits for the newcomer
+check. They allow up to four complete entries and leave a numerical step after
+the last writing opportunity for feedback. A deadline or failure can end the run
+with fewer entries; four is a ceiling, not a promise.
+
+| Control | Value |
+| --- | --- |
+| Write every · numerical steps | 30 |
+| Pace · milliseconds per step | 1,000 |
+| Maximum numerical steps | 121 |
+| Maximum writing attempts · including retries | 4 |
+| Duration limit | 0 hours, 15 minutes, 0 seconds |
+| Storage budget · MiB | 64 |
+| Maximum output tokens per entry | 1,024 |
+| Request deadline · seconds | 180 |
+| Context tokens | 8,192 |
+
+Keep the seed and numerical settings at their defaults. These limits belong to
+this first visit; the app's longer defaults remain available for later sessions.
+The model must fit your computer. Use a service and model you manage, without
+changing another person's or a live research system's service.
+
+For this check, stop at the first failed or incomplete response, or the first run
+limit. Preserve what happened; do not retry, skip feedback or extend limits to get
+four journals. The app still offers recovery tools for later, separately recorded use.
 
 ## 3. Watch the writing loop
 
@@ -97,6 +141,12 @@ The journal initially follows the newest saved entry. Earlier/Later lets you rea
 without moving the reservoir clock. Selecting an older entry pins it; **Follow
 latest** returns to incoming writing. Current fill stays tied to the current
 observation, while a selected entry's Recorded measurements describe that entry.
+
+After a second entry arrives, select the first and keep reading while the next
+arrives. Your selected entry should stay in place. Then use Later and Follow latest
+to catch up. At a fully saved limit, **Run limit reached** and **Saved entries remain
+available to read and export** describe a normal finish. Unresolved work still
+shows **review needed**.
 
 If writing or saving needs attention, the app retains the outcome and shows the
 available retry, skip or recovery action. An incomplete response or failed save
@@ -130,8 +180,12 @@ and the [sustained numerical step](crates/reservoir-core/src/sustained.rs).
 ## Save a copy and return later
 
 Use Pause, then **Export saved session…** for a portable snapshot. Saved sessions
-and recovery can find a local session, verify its retained history and **Restore
-paused**. Restoration starts no request and never silently extends exhausted limits.
+and recovery offers **Find saved sessions → Verify and inspect → Restore paused**
+for a local session. After normal quit, reopen the same build, find that session
+and read the same entry while paused. Restoration starts no request and never
+silently extends exhausted limits. Resume can remain disabled after this short
+run's limit. The ordinary route currently restores local saved sessions; opening
+an arbitrary exported session folder is not an implemented import control.
 
 If the app is waiting for a request or save, review the visible boundary first.
 Quitting offers the existing checkpoint/return/discard flow when work is unresolved.

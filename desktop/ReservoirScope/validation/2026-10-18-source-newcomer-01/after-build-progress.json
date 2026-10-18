@@ -1,0 +1,62 @@
+{
+  "startedUtc": "2026-10-18T21:09:40.680952+00:00",
+  "currentCommand": [
+    "npm",
+    "run",
+    "tauri",
+    "--",
+    "build",
+    "--target",
+    "aarch64-apple-darwin",
+    "--bundles",
+    "app",
+    "--",
+    "--locked"
+  ],
+  "completed": [
+    {
+      "command": [
+        "npm",
+        "ci",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 1.444,
+      "log": "after-01.log"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "prepare:resources"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 2.561,
+      "log": "after-02.log"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scripts/stage_activation_bootstrap.py",
+        "--check"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 0.149,
+      "log": "after-03.log"
+    },
+    {
+      "command": [
+        "cargo",
+        "check",
+        "--locked",
+        "--package",
+        "reservoir-scope-desktop"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 5.7,
+      "log": "after-04.log"
+    }
+  ]
+}

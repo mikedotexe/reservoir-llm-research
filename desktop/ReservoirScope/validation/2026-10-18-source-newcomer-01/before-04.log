@@ -1,0 +1,29 @@
+   Compiling reservoir-scope-desktop v0.27.1 (/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/research/outputs/2026-10-18-source-newcomer-01/source-before/desktop/ReservoirScope/src-tauri)
+    Checking reservoir-core v0.1.0 (/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/research/outputs/2026-10-18-source-newcomer-01/source-before/desktop/ReservoirScope/crates/reservoir-core)
+error: failed to run custom build command for `reservoir-scope-desktop v0.27.1 (/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/research/outputs/2026-10-18-source-newcomer-01/source-before/desktop/ReservoirScope/src-tauri)`
+
+Caused by:
+  process didn't exit successfully: `/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/target/debug/build/reservoir-scope-desktop-4ba7c5d9727dab0c/build-script-build` (exit status: 101)
+  --- stdout
+  cargo:rerun-if-env-changed=TAURI_CONFIG
+  cargo:rustc-check-cfg=cfg(desktop)
+  cargo:rustc-cfg=desktop
+  cargo:rustc-check-cfg=cfg(mobile)
+  cargo:rerun-if-changed=/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/research/outputs/2026-10-18-source-newcomer-01/source-before/desktop/ReservoirScope/src-tauri/tauri.conf.json
+  cargo:rustc-env=TAURI_ANDROID_PACKAGE_NAME_APP_NAME=tauri
+  cargo:rustc-env=TAURI_ANDROID_PACKAGE_NAME_PREFIX=research_reservoir_scope
+  cargo:rustc-check-cfg=cfg(dev)
+  cargo:rustc-cfg=dev
+  cargo:PERMISSION_FILES_PATH=/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/target/debug/build/reservoir-scope-desktop-7964fb8378d18b59/out/app-manifest/__app__-permission-files
+  cargo:rerun-if-changed=permissions
+  cargo:PERMISSION_FILES_PATH=/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/target/debug/build/reservoir-scope-desktop-7964fb8378d18b59/out/app-manifest/__app__-permission-files
+  cargo:rerun-if-changed=/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/research/outputs/2026-10-18-source-newcomer-01/source-before/desktop/ReservoirScope/src-tauri/capabilities
+  cargo:rerun-if-env-changed=REMOVE_UNUSED_COMMANDS
+  cargo:rustc-env=TAURI_ENV_TARGET_TRIPLE=aarch64-apple-darwin
+
+  --- stderr
+
+  thread 'main' (48198354) panicked at src-tauri/build.rs:96:6:
+  Tauri build configuration must validate: resource path `../activation_setup_bundle/assets/cpython-3.12.13+20260510-aarch64-apple-darwin-install_only.tar.gz` doesn't exist
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+warning: build failed, waiting for other jobs to finish...

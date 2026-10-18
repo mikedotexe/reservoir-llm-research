@@ -97,6 +97,7 @@ jobs:
           python desktop/ReservoirScope/scripts/check_reference.py
           python -m unittest discover -s desktop/ReservoirScope/scripts -p 'test_*.py'
           python desktop/ReservoirScope/scripts/stage_resources.py
+          python desktop/ReservoirScope/scripts/stage_activation_bootstrap.py
       - name: Install exact frontend dependencies
         working-directory: desktop/ReservoirScope
         run: npm ci

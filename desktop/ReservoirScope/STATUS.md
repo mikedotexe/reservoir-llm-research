@@ -1,6 +1,22 @@
 # Reservoir Scope: current status and next work
 
-**October 16, 2026 · 0.27.1 source polish · 0.27.0 candidate 04 private handoff; human acceptance pending**
+**October 18, 2026 · Source newcomer preparation · 0.27.0 candidate 04 private handoff; human acceptance pending**
+
+The next selected check starts from source and an existing local Ollama model.
+Use the [ordinary-route task card](SOURCE-NEWCOMER-CHECK.md),
+[getting-started guide](GETTING-STARTED.md) and [blank notes](SOURCE-NEWCOMER-NOTES.md).
+This short check allows four writing attempts, observes selection during arrivals,
+then exports and returns to local saved writing while paused. The original
+Activation-focused card remains a separate task.
+
+The [October 18 preparation account](validation/2026-10-18-source-newcomer-01/README.md)
+retains a fresh-source compile failure caused by untracked bootstrap assets and
+the build-only repair. Seventeen bootstrap tests, five reference tests, a fresh
+bootstrap fetch, Rust check and macOS package build pass; all 137 package files
+match the previously checked standard 0.27.1 copy. This source checkpoint includes
+the repair and task packet. The earlier `3459d78` baseline retains the reproduced
+fresh-checkout failure; bind each walkthrough to its actual source commit.
+Human results remain pending. Existing packages and prompt/session behavior are unchanged.
 
 [0.27.1](RELEASE-0.27.1.md) makes a settled ordinary session limit calm while keeping
 unresolved writing/saves/feedback visible. Its 497 frontend tests, local macOS

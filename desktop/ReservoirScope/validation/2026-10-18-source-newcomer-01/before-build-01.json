@@ -1,0 +1,53 @@
+{
+  "sourceCommit": "3459d7867eacaf6ceb4a48a0b0f539bd52d68c37",
+  "checkout": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/research/outputs/2026-10-18-source-newcomer-01/source-before",
+  "recordedUtc": "2026-10-18T21:03:49.005165+00:00",
+  "cargoTargetCache": "/Users/v/.codex/worktrees/activation-loop/reservoir-llm-research/desktop/ReservoirScope/target",
+  "maximumBuildJobs": 2,
+  "steps": [
+    {
+      "command": [
+        "npm",
+        "ci",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 1.507,
+      "log": "before-01.log"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "prepare:resources"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 0.614,
+      "log": "before-02.log"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 5.186,
+      "log": "before-03.log"
+    },
+    {
+      "command": [
+        "cargo",
+        "check",
+        "--locked",
+        "--package",
+        "reservoir-scope-desktop"
+      ],
+      "exit": 101,
+      "elapsedSeconds": 3.841,
+      "log": "before-04.log"
+    }
+  ],
+  "scope": "Clean tracked-source export; installed host toolchains and existing Cargo registry/build cache. No UI or model execution."
+}

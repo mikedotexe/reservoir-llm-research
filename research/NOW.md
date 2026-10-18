@@ -3,6 +3,15 @@
 [Research findings](../RESEARCH.md) · [Current app candidate](CURRENT-RELEASE.md) ·
 [Earlier focus history](NOW-history-through-20260917.md)
 
+**October 18 selected app work: prepare the ordinary source newcomer journey.**
+The [task card](../desktop/ReservoirScope/SOURCE-NEWCOMER-CHECK.md) follows compiling
+the desktop app, selecting an existing local Ollama model, creating a reservoir,
+reading incoming journals and returning to saved writing while paused. The
+[preparation account](../desktop/ReservoirScope/validation/2026-10-18-source-newcomer-01/README.md)
+records the fresh-source build gap and build-only repair. It does not claim a human
+session, new writing result or replacement of the private Activation candidate.
+Production prompts and the live Beings remain unchanged.
+
 **October 16 current focus: Tauri 0.27.0 is ready for a first invited tester.** Mike
 selected app-guided standalone setup, portable historical writing, exact-package
 qualification and an uncoached newcomer workflow. Candidate 04 includes the
