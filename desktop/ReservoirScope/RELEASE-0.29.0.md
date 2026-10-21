@@ -39,5 +39,18 @@ returns the previous entry in full, so greedy decoding reproduced it.
 | `cargo fmt --check`, `cargo clippy` (both crates) | clean |
 | macOS package | not attempted; the 0.28.0 record explains the host's thin-LTO proc-macro failure, unchanged here |
 
-No human acceptance, platform qualification or writing result is claimed. Whether
-sampling keeps the entries from converging is the next observation, not a result.
+## First live session on this source
+
+Same model, seed and 0.28.0 field settings as the greedy session, temperature 0.7
+(session `sustained-1792609937721-1`, n = 6 entries, steps 30–180). Verbatim sentence
+overlap between consecutive entries: 0.00, 0.00, 0.06, 0.53, 0.22 (mean 0.16), against
+0.35, 0.52, 0.81, 0.43, 0.48, 0.67, 0.68, 0.59 (mean 0.57) for the greedy 0.28.0 session.
+Fill followed the same path (87 → 57 → 65 → 69 → 70 → 71%), as expected, since the
+field noise stream and forcing dominate it. Each journal object records temperature
+0.7 and a distinct seed. The entries open a traveler motif at step 30 and carry it
+forward; they still recite the supplied readings and still attribute fill changes to
+the traveler's "growing ability to absorb" information. Sampling reduces repetition;
+it does not change what the model is shown or how it explains it.
+
+No human acceptance, platform qualification or writing result beyond this bounded
+comparison is claimed.

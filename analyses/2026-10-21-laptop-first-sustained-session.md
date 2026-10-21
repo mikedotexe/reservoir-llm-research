@@ -141,3 +141,22 @@ sentence overlap between consecutive entries: 0.35, 0.52, 0.81. The readout reci
 has real movement to describe (RMS 0.27 → 0.53, fill 87 → 57 → 69) and the entries
 pick it up ("information ebbs and flows like the tides"), but the closing paragraphs
 converge as before. The field is fixed; the decoding is not.
+
+That session ended at step 300 with 9 entries when a formatting pass in the worktree
+hosting the running app made the dev watcher relaunch it; its data is a recoverable
+checkpoint. Its full overlap series: 0.35, 0.52, 0.81, 0.43, 0.48, 0.67, 0.68, 0.59
+(mean 0.57), alternating between two openings.
+
+## Same day, later still: sampling
+
+Desktop 0.29.0 adds a writing temperature with per-attempt seeds (branch
+`writing-temperature`, record `desktop/ReservoirScope/RELEASE-0.29.0.md`). A third
+session with the same model, seed and field settings at temperature 0.7
+(`sustained-1792609937721-1`, n = 6 entries) gave consecutive-entry overlap 0.00, 0.00,
+0.06, 0.53, 0.22 (mean 0.16) on the same fill path (87 → 57 → 65 → 69 → 70 → 71%).
+The first entry proposed "a tale of a traveler" and later entries continued it, while
+still reciting the readings and explaining fill as the traveler's growing absorption.
+Repetition fell by about two thirds; the recital and the attribution stories remain,
+which points at the prompt's returned entry and readout rather than at decoding.
+Smallest next observations: a memory policy that returns less than the full previous
+entry (a new prompt version), and a reading of several entries by Mike.
