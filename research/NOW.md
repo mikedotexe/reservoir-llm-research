@@ -3,7 +3,22 @@
 [Research findings](../RESEARCH.md) · [Current app candidate](CURRENT-RELEASE.md) ·
 [Earlier focus history](NOW-history-through-20260917.md)
 
-**October 16 current focus: Tauri 0.27.0 is ready for a first invited tester.** Mike
+**October 21 current focus: the laptop apparatus loop, frame share and loop share
+([S-010](studies/S-010-frame-share-and-loop-share.md)).** Mike ran the Tauri preview
+on his laptop with `mistral-small:24b`. Three dated accounts record the day:
+[the first session and why fill stayed near 14%](../analyses/2026-10-21-laptop-first-sustained-session.md),
+leading to desktop 0.28.0 (field noise and feedback scale; fill settled near 70%) and
+0.29.0 (writing temperature with recorded per-attempt seeds; consecutive-entry overlap
+fell from about 0.57 to 0.16), and [the loop trace](../analyses/2026-10-21-text-loop-trace.md),
+which found the loop closed only through surface statistics and a constant-direction
+kick, with 22 of 23 entries quoting the readout. Mike selected a frame ablation and a
+content-carrying reduction, and invited Claude to iterate autonomously toward signal
+within the repo's boundaries: no live-system contact, no pushes, apparatus changes on
+branches merged after the suites pass, numbers from probes. Both apps' release
+records note the host's packaging failure; the dev build runs. The native 0.15 work,
+the private 0.27.0 handoff and the earlier focus below are unchanged.
+
+**October 16 earlier focus: Tauri 0.27.0 is ready for a first invited tester.** Mike
 selected app-guided standalone setup, portable historical writing, exact-package
 qualification and an uncoached newcomer workflow. Candidate 04 includes the
 packaged export repair. Source checks, fourteen standalone real-model checks,
