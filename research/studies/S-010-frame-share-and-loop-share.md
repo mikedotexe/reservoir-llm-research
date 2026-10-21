@@ -113,7 +113,21 @@ Minime; human reading quality; other models. No live-system proposal is expected
 
 ## Progress and results
 
-2026-10-21: selected by Mike after the loop trace; protocol written; nothing run.
+2026-10-21 afternoon: Part B step 1 done offline
+([account](../../analyses/2026-10-21-embedding-reduction-offline.md)): the embedding
+and its 32-coordinate projection carry the content the codec drops. Part B step 2 and
+Part A apparatus implemented on branch `s010-frame-ablation` (desktop 0.30.0): embedding
+codec with provenance and a v3 mechanism, four frozen inert prompt versions with optional
+standing contracts sent as the system message, and an ignored headless arm runner.
+The five Part A arms (control v8, inert, inert without memory, inert with the plain
+contract, inert with the inviting contract; mistral-small:24b, seed 20260909,
+temperature 0.7, noise 0.5, scale 0.4, pace 250 ms, 12 entries) started at 13:30 PDT in
+private stores. First qualitative contrast at seven entries each: the control arm writes
+the reservoir traveler; the inert arm writes a dated workplace progress diary with an
+invented team, reading "fill" as a completion rate. No introspective register from the
+inert input alone.
+
+2026-10-21 midday: selected by Mike after the loop trace; protocol written.
 Retained inputs: sessions `sustained-1792603675762-1` (0.27.1 source, greedy, 43
 entries), `sustained-1792607625263-1` (0.28.0, greedy, 9 entries), and
 `sustained-1792609937721-1` (0.29.0, temperature 0.7, 14+ entries, still running at
