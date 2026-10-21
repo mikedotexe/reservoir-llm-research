@@ -13,6 +13,7 @@ fn ollama(temperature: Option<f64>) -> LanguageConfiguration {
         context_tokens: Some(8192),
         response_format: None,
         temperature,
+        thinking: None,
     }
 }
 

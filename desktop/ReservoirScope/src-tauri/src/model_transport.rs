@@ -284,12 +284,15 @@ pub struct Sampling {
     /// A frozen standing contract sent as the system message; none for every historical
     /// prompt version, so historical bodies are unchanged.
     pub system: Option<&'static str>,
+    /// `think` on the request when configured; omitted for every historical body.
+    pub thinking: Option<bool>,
 }
 impl Sampling {
     pub const GREEDY: Sampling = Sampling {
         temperature: 0.0,
         seed: None,
         system: None,
+        thinking: None,
     };
 }
 fn generation_body(
@@ -319,6 +322,9 @@ fn generation_body(
         "messages":messages, "options":options });
     if let Some(format) = &configuration.response_format {
         body["format"] = json!(format);
+    }
+    if let Some(thinking) = sampling.thinking {
+        body["think"] = json!(thinking);
     }
     body
 }

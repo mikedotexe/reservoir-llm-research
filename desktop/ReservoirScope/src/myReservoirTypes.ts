@@ -84,7 +84,7 @@ export interface JournalMeasurementReference {
 export interface SustainedJournal extends Omit<SustainedJournalRow, 'textPreview'> {
   providerPromptEvaluation?: ProviderPromptEvaluation | null;
   /** Sampling evidence; both absent for historical greedy journals. */
-  temperature?: number | null; samplingSeed?: string | null;
+  temperature?: number | null; samplingSeed?: string | null; thinking?: boolean | null;
   /** Present only under the embedding codec. */
   feedbackProvenance?: { kind: string; model: string; digest?: string | null; dimensions: number; embeddingSha256: string; projectionSeed: number } | null;
   text: string; prompt: string; promptVersion: SustainedPromptVersion; rawReply: string; observation: unknown; measurementReference?: JournalMeasurementReference | null;

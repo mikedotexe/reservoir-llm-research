@@ -68,6 +68,12 @@ vector spans about twelve of the field's 32 modes, so the controller stayed on i
 0.995 rail near 14% fill, while these values settled fill near 70%, inside the 64–72%
 band ([account](../../analyses/2026-10-21-laptop-first-sustained-session.md)).
 
+**Model thinking** (0.32.0) is an optional flag on the language configuration. Omitted,
+the request body is as built; `false` adds `think: false`, asking a thinking model such
+as gemma4 for the reply only, as both beings' runtimes do; `true` lets it think first.
+The journal object records the value and continuation validation checks it like the
+temperature.
+
 **Writing temperature** (0.29.0) lives on the language configuration. Omitted, as in
 every historical session, it means greedy decoding; a value in 0–2 is sent as the
 provider's temperature together with a sampler seed derived from the session seed and

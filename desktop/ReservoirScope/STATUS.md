@@ -1,6 +1,11 @@
 # Reservoir Scope: current status and next work
 
-**October 21, 2026 · 0.31.0 two more S-010 contract arms, on 0.30.0 embedding text reduction and S-010 frame arms, 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
+**October 21, 2026 · 0.32.0 model thinking toggle, on 0.31.0 two more S-010 contract arms, 0.30.0 embedding text reduction and S-010 frame arms, 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
+
+[0.32.0](RELEASE-0.32.0.md) adds an optional model-thinking flag on the language
+configuration, recorded on every journal: omitted sends the request as built; off asks a
+thinking model (gemma4 under Ollama) for the reply only, as the beings' runtimes do. Without
+it gemma4's thinking consumed the whole output budget and every attempt was blocked.
 
 [0.31.0](RELEASE-0.31.0.md) adds two frozen research prompt versions, each one change
 away from an existing S-010 arm: the plain contract without its naming sentence, and the

@@ -46,6 +46,11 @@ pub struct LanguageConfiguration {
     /// decoding (zero) and their exact serialized form.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub temperature: Option<f64>,
+    /// Whether a provider model with a thinking phase may think before replying. Omitted
+    /// sends the request body as built; `false` asks for the reply only, which is what the
+    /// beings' runtimes send to gemma4, whose thinking otherwise consumes the output budget.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub thinking: Option<bool>,
 }
 impl Default for LanguageConfiguration {
     fn default() -> Self {
@@ -56,6 +61,7 @@ impl Default for LanguageConfiguration {
             context_tokens: None,
             response_format: None,
             temperature: None,
+            thinking: None,
         }
     }
 }

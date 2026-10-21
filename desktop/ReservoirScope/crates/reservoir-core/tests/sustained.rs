@@ -211,6 +211,7 @@ fn failed_incomplete_mismatched_and_unqualified_responses_never_gain_feedback() 
         context_tokens: Some(2048),
         response_format: None,
         temperature: None,
+        thinking: None,
     };
     for mode in 0..8 {
         let mut s = SustainedSession::new(cfg.clone()).unwrap();

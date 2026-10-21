@@ -1984,6 +1984,7 @@ fn model_config(recipe: &str, steps: usize) -> SessionConfig {
         context_tokens: Some(4096),
         response_format: action_stage(recipe).map(|_| "json".into()),
         temperature: None,
+        thinking: None,
     };
     c
 }

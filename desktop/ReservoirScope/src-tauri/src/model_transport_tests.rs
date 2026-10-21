@@ -812,6 +812,7 @@ fn sampled_requests_carry_temperature_and_seed_while_greedy_bodies_are_unchanged
             temperature: 0.7,
             seed: Some(42),
             system: None,
+            thinking: None,
         },
     );
     assert_eq!(sampled["options"]["temperature"], json!(0.7));
@@ -834,6 +835,7 @@ fn a_standing_contract_is_sent_as_the_system_message_only_when_present() {
             temperature: 0.7,
             seed: Some(1),
             system: Some("You are a language agent."),
+            thinking: None,
         },
     );
     let messages = contract["messages"].as_array().unwrap();
@@ -843,6 +845,28 @@ fn a_standing_contract_is_sent_as_the_system_message_only_when_present() {
         json!({"role":"system","content":"You are a language agent."})
     );
     assert_eq!(messages[1], json!({"role":"user","content":"p"}));
+}
+#[test]
+fn a_thinking_flag_is_sent_only_when_configured() {
+    let config = configuration("http://localhost:1234".into());
+    let as_built = generation_body(&config, "p", 1024, Sampling::GREEDY);
+    assert!(as_built.get("think").is_none());
+    for flag in [false, true] {
+        let body = generation_body(
+            &config,
+            "p",
+            1024,
+            Sampling {
+                temperature: 0.7,
+                seed: Some(1),
+                system: None,
+                thinking: Some(flag),
+            },
+        );
+        assert_eq!(body["think"], json!(flag));
+        assert_eq!(body["messages"], as_built["messages"]);
+        assert_eq!(body["options"]["num_predict"], json!(1024));
+    }
 }
 #[test]
 fn embedding_requests_and_replies_are_bounded_and_exact() {

@@ -20,6 +20,7 @@ fn language(json: bool) -> LanguageConfiguration {
         context_tokens: Some(2048),
         response_format: json.then(|| "json".into()),
         temperature: None,
+        thinking: None,
     }
 }
 fn response(text: String) -> LanguageResponse {

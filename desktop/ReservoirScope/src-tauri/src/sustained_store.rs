@@ -308,6 +308,8 @@ pub struct JournalObject {
     pub temperature: Option<f64>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub sampling_seed: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub thinking: Option<bool>,
     pub timing: AttemptTiming,
 }
 /// The per-attempt sampler seed a sustained journal must carry, as a decimal string.
@@ -760,6 +762,7 @@ impl SustainedStore {
             configured_model: config.language.model.clone(),
             temperature: config.language.temperature,
             sampling_seed: expected_sampling_seed(config, pending.entry.attempt_id),
+            thinking: config.language.thinking,
             timing,
         };
         let path = p
@@ -771,6 +774,7 @@ impl SustainedStore {
                 || existing.configured_model != object.configured_model
                 || existing.temperature != object.temperature
                 || existing.sampling_seed != object.sampling_seed
+                || existing.thinking != object.thinking
                 || existing.request_started != object.request_started
             {
                 return Err(err(
@@ -1154,6 +1158,7 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
                     || object.temperature != manifest.config.language.temperature
                     || object.sampling_seed
                         != expected_sampling_seed(&manifest.config, entry.attempt_id)
+                    || object.thinking != manifest.config.language.thinking
                 {
                     return Err(err(
                         "journal",

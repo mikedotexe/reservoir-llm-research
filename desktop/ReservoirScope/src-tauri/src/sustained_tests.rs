@@ -601,6 +601,7 @@ fn model_config() -> SustainedConfig {
         context_tokens: Some(4096),
         response_format: None,
         temperature: None,
+        thinking: None,
     };
     c
 }
@@ -2033,6 +2034,7 @@ fn provider_receives_per_attempt_sampling_only_for_temperature_sessions() {
                         temperature: t,
                         seed: Some(reservoir_core::sustained::sampling_seed(seed, attempt)),
                         system: None,
+                        thinking: None,
                     }
                 ),
             }

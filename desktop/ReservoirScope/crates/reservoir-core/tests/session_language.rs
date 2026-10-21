@@ -10,6 +10,7 @@ fn language() -> LanguageConfiguration {
         context_tokens: Some(2048),
         response_format: None,
         temperature: None,
+        thinking: None,
     }
 }
 fn response(text: &str) -> LanguageResponse {

@@ -13,6 +13,8 @@ export interface LanguageConfiguration {
   backend: 'scripted' | 'ollama'; endpoint?: string | null; model?: string | null; contextTokens?: number | null; responseFormat?: 'json' | null;
   /** Omitted historical values keep greedy decoding (zero). */
   temperature?: number | null;
+  /** Omitted sends the request as built; false asks a thinking model for the reply only. */
+  thinking?: boolean | null;
 }
 export interface PendingLanguage {
   operationId: string; arm: SessionTrackId; turnId: number; observedStep: number; endpoint: string; model: string;
