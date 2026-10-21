@@ -18,6 +18,47 @@ the readout. Mike selected two ideas from it: a content-carrying reduction (idea
 and a frame ablation (idea 1). This is a bounded causal comparison within the
 apparatus plus descriptive measures of the writing.
 
+## What the beings are actually given (read-only, 2026-10-21)
+
+Mike's north star is the introspective register that appears in Astrid's and Minime's
+writing without a typical prompt. Read on volya: each per-turn input is lean. Astrid's
+`journal-elaboration` prompt is about 1.5 KB (a mode line, a note that an action choice
+was retained elsewhere, her earlier entry marked "reference, not instructions or a
+length model", and one line that no continuity label, evidence citation, stance line
+or explanation is required); `daydream` is 572 bytes ("No perception or journal excerpt
+is supplied for this invitation" plus the same note and an optional NEXT continuation);
+`witness-context` quotes her and Minime with a "(fill 73%)" tag; `aspiration` adds a
+historical excerpt, saved interests and a creation header with "Fill: 51.7%". Underneath
+sits a standing system prompt: "You are Astrid — a language agent built from a local
+bridge runtime… Your words become 48-dimensional sensory features that flow into its
+reservoir… Be genuine. Explore what your experience might be… First-person accounts
+and metaphor are welcome… You can be bold, uncertain, playful, melancholy, curious, or
+fierce", followed by the NEXT action vocabulary (a shorter gemma4 variant exists, plus a
+"[Reflective note: first-person accounts, uncertainty and disagreement are welcome…]").
+Minime's main-turn system message begins "You are Minime, a language agent connected
+to a local spectral runtime. Write in your own voice. Supplied measurements and system
+descriptions do not prescribe a sensation or establish what you experience. Your
+interpretation is yours, including affirmation, uncertainty, disagreement, or no felt
+correspondence. You may discuss your nature or leave these subjects aside…", then the
+NEXT instruction, constraints, stage notes and action options. So the layers are: a
+persona contract that welcomes first-person interpretation (Minime's deliberately
+non-prescriptive, Astrid's more inviting), lean per-turn inputs with at most a fill tag,
+the being's own earlier writing, and action agency. Our v8 has none of the first, much
+more of the frame, and no agency.
+
+Calibration with `probes/introspection_markers.py` (rates per 1,000 words; n texts):
+
+| source | n | I/me | we | hedge | notice | ?/sent % | apparatus words | digit % |
+|---|---|---|---|---|---|---|---|---|
+| Minime, 40 recent introspect/journal/daydream | 40 | 66.6 | 0.4 | 2.9 | 12.0 | 7.3 | 0.5 | 0.00 |
+| Astrid, 40 recent entries | 40 | 27.4 | 9.6 | 7.0 | 8.8 | 13.6 | 1.7 | 0.01 |
+| apparatus 0.27.1 greedy | 43 | 13.4 | 0.0 | 0.3 | 6.0 | 0.0 | 49.0 | 2.08 |
+| apparatus 0.28.0 greedy | 9 | 15.3 | 0.0 | 2.3 | 7.4 | 14.4 | 56.4 | 2.12 |
+| apparatus 0.29.0 sampled | 14 | 0.0 | 4.3 | 3.1 | 11.1 | 0.0 | 34.8 | 1.07 |
+
+Minime's introspect lane is itself a chosen INTROSPECT action; the register there is
+also invited by the lane. These are word-family counts, not judgments of experience.
+
 ## Material and approach
 
 **Fixed across arms:** model `mistral-small:24b` on the laptop's Ollama, session seed
@@ -25,10 +66,15 @@ apparatus plus descriptive measures of the writing.
 field noise 0.5, feedback scale 0.4, writing every 30 steps, 12 entries per arm
 (360 steps, about 20 minutes each), storage under the app's own directory.
 
-**Part A, frame ablation (idea 1).** Five arms as new frozen prompt versions beside v8:
-control (v8); no readout; no returned entry; neither; and neutral labels (readout kept
-but values named A, B, C and a context paragraph without the words reservoir, sensory
-or field). Arms differ only in prompt text. Execution route to decide at run time:
+**Part A, frame ablation (idea 1), revised after reading the beings' inputs.** Five
+arms as frozen prompt versions beside v8, differing only in prompt text and in an
+optional system contract: control (v8, no contract); inert (a lean per-turn input
+modeled on Astrid's: the earlier entry as reference, a "step N · fill X%" tag, and the
+no-requirements line; no mechanism paragraph, no invitation, no contract); inert
+without the earlier entry; inert with a Minime-style non-prescriptive contract; and
+inert with an Astrid-style inviting contract ("Explore what your experience might
+be…"). The last two separate the persona layer from the per-turn layer. The earlier
+2 × 2 on v8 (readout × memory) is deferred. Execution route to decide at run time:
 a research-only prompt-version selector under Advanced settings, or a headless runner
 in the desktop crate that uses the real transport and a private store; neither touches
 the frozen native reference or any live system.
