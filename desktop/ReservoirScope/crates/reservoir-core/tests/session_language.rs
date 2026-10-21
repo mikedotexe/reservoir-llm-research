@@ -9,6 +9,7 @@ fn language() -> LanguageConfiguration {
         model: Some("fixture-provider-not-contacted".into()),
         context_tokens: Some(2048),
         response_format: None,
+        temperature: None,
     }
 }
 fn response(text: &str) -> LanguageResponse {

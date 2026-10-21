@@ -5,6 +5,9 @@ export const isSustainedPromptVersion = (value: unknown): value is SustainedProm
 export const effectivePromptVersion = (config: SustainedConfig): SustainedPromptVersion => config.promptVersion === undefined ? 'reservoir-journal-v1' : config.promptVersion;
 export const effectiveOutputTokens = (config: SustainedConfig): number => config.outputTokens === undefined ? 256 : config.outputTokens;
 export const effectiveRequestDeadline = (config: SustainedConfig): number => config.requestDeadlineSeconds === undefined ? 60 : config.requestDeadlineSeconds;
+/** Fresh Ollama sessions sample at 0.7; omitted historical values keep greedy decoding. */
+export const DEFAULT_WRITING_TEMPERATURE = 0.7;
+export const effectiveTemperature = (config: SustainedConfig): number => config.language?.temperature == null ? 0 : config.language.temperature;
 /** Omitted historical values keep mechanism v1: no field noise and feedback ×1. */
 export const effectiveSensoryNoise = (config: SustainedConfig): number => config.sensoryNoiseAmplitude === undefined ? 0 : config.sensoryNoiseAmplitude;
 export const effectiveFeedbackScale = (config: SustainedConfig): number => config.feedbackScale === undefined ? 1 : config.feedbackScale;
@@ -14,10 +17,11 @@ export function validFieldControls(config: SustainedConfig): boolean {
 }
 export function validWritingLimits(config: SustainedConfig): boolean {
   const output = effectiveOutputTokens(config), deadline = effectiveRequestDeadline(config);
-  const context = config.language?.contextTokens;
+  const context = config.language?.contextTokens, temperature = config.language?.temperature;
   return Number.isInteger(output) && output >= 256 && output <= 2048
     && Number.isInteger(deadline) && deadline >= 60 && deadline <= 180
-    && (context == null || Number.isInteger(context) && context >= 512 && context <= 32768 && context > output);
+    && (context == null || Number.isInteger(context) && context >= 512 && context <= 32768 && context > output)
+    && (temperature == null || Number.isFinite(temperature) && temperature >= 0 && temperature <= 2);
 }
 
 export interface SustainedConfig {
@@ -67,6 +71,8 @@ export interface JournalMeasurementReference {
 }
 export interface SustainedJournal extends Omit<SustainedJournalRow, 'textPreview'> {
   providerPromptEvaluation?: ProviderPromptEvaluation | null;
+  /** Sampling evidence; both absent for historical greedy journals. */
+  temperature?: number | null; samplingSeed?: string | null;
   text: string; prompt: string; promptVersion: SustainedPromptVersion; rawReply: string; observation: unknown; measurementReference?: JournalMeasurementReference | null;
   memory: { entryId: string; text: string; sha256: string } | null;
   encodedFeatures: number[]; semanticVector: number[]; saveReceipt: { entryId: string; sha256: string; relativePath: string };

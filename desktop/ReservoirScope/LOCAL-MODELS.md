@@ -9,6 +9,8 @@ This document's 256-token/60-second limits describe **finite experiments**.
 My reservoir uses a separate [sustained writing budget](SUSTAINED-SESSIONS.md#bounded-room-for-writing):
 new 0.14.0 sessions default to 1,024 output tokens and 180 seconds, while historical
 sessions retain 256/60. This does not change finite records or their verification.
+Since 0.29.0 a sustained session may also set a writing temperature; finite requests
+stay at temperature zero as described below.
 
 ## Configuration and readiness
 

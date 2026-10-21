@@ -41,7 +41,7 @@ fn answer() -> LanguageResponse {
 }
 fn drive(s: &SustainedState, epoch: u64) -> bool {
     match s.worker_boundary(epoch).unwrap() {
-        Work::Provider(p) => {
+        Work::Provider(p, _) => {
             s.settle(epoch, p.attempt_id, Ok(answer()), 1).unwrap();
             true
         }
@@ -111,7 +111,7 @@ fn pause_before_dispatch_never_starts_request_and_saved_feedback_waits_for_start
             .request_started
     );
     let epoch = arm(&s);
-    let Work::Provider(p) = s.worker_boundary(epoch).unwrap() else {
+    let Work::Provider(p, _) = s.worker_boundary(epoch).unwrap() else {
         panic!()
     };
     s.pause("pause-inflight".into(), &id, &generation).unwrap();
@@ -172,7 +172,7 @@ fn uncommitted_segment_is_quarantined_when_explicit_skip_changes_pending_history
     let (_d, s, id, generation) = setup(10, 3);
     let epoch = arm(&s);
     until(&s, epoch, |a| a.engine.pending_language().is_some());
-    let Work::Provider(p) = s.worker_boundary(epoch).unwrap() else {
+    let Work::Provider(p, _) = s.worker_boundary(epoch).unwrap() else {
         panic!()
     };
     s.shared.store.fail_next(3);
@@ -500,7 +500,7 @@ fn stop_rejects_late_provider_result_and_subscription_ids_remain_bound() {
     .unwrap();
     let epoch = arm(&s);
     until(&s, epoch, |a| a.engine.pending_language().is_some());
-    let Work::Provider(p) = s.worker_boundary(epoch).unwrap() else {
+    let Work::Provider(p, _) = s.worker_boundary(epoch).unwrap() else {
         panic!()
     };
     s.stop("stop".into(), &id, &generation).unwrap();
@@ -581,6 +581,7 @@ fn model_config() -> SustainedConfig {
         model: Some("owned-fake".into()),
         context_tokens: Some(4096),
         response_format: None,
+        temperature: None,
     };
     c
 }
@@ -593,7 +594,7 @@ fn real_worker_pause_allows_inflight_reply_to_save_without_numerical_resumption(
     let r = release.clone();
     let s = SustainedState::with_provider(
         d.path().join("store"),
-        Arc::new(move |_, _, _, _, _| {
+        Arc::new(move |_, _, _, _, _, _| {
             e.store(true, Ordering::SeqCst);
             while !r.load(Ordering::SeqCst) {
                 std::thread::sleep(Duration::from_millis(5));
@@ -637,7 +638,7 @@ fn real_worker_stop_cancels_owned_provider_and_ignores_late_success() {
     let e = entered.clone();
     let s = SustainedState::with_provider(
         d.path().join("store"),
-        Arc::new(move |_, _, cancel, _, _| {
+        Arc::new(move |_, _, cancel, _, _, _| {
             e.store(true, Ordering::SeqCst);
             while !cancel.load(Ordering::SeqCst) {
                 std::thread::sleep(Duration::from_millis(5));
@@ -671,7 +672,7 @@ fn interruption_cancels_provider_and_requires_explicit_new_attempt() {
     let e = entered.clone();
     let s = SustainedState::with_provider(
         d.path().join("store"),
-        Arc::new(move |_, _, cancel, _, _| {
+        Arc::new(move |_, _, cancel, _, _, _| {
             e.store(true, Ordering::SeqCst);
             while !cancel.load(Ordering::SeqCst) {
                 std::thread::sleep(Duration::from_millis(5));
@@ -1386,7 +1387,7 @@ fn compact_prompt_memory_and_reader_evidence(version: SustainedPromptVersion) {
     let generation = accepted.generation;
     let epoch = arm(&s);
     until(&s, epoch, |a| a.engine.pending_language().is_some());
-    let Work::Provider(first) = s.worker_boundary(epoch).unwrap() else {
+    let Work::Provider(first, _) = s.worker_boundary(epoch).unwrap() else {
         panic!("expected first explicit scripted response boundary");
     };
     assert!(first.prompt.contains(version.as_str()));
@@ -1408,7 +1409,7 @@ fn compact_prompt_memory_and_reader_evidence(version: SustainedPromptVersion) {
     response.text = historical_text.into();
     s.settle(epoch, first.attempt_id, Ok(response), 1).unwrap();
     until(&s, epoch, |a| a.engine.pending_memory().is_some());
-    let Work::Provider(second) = s.worker_boundary(epoch).unwrap() else {
+    let Work::Provider(second, _) = s.worker_boundary(epoch).unwrap() else {
         panic!("expected the physically reread journal to prepare the next prompt");
     };
     let memory = second.memory.as_ref().unwrap();
@@ -1702,7 +1703,7 @@ fn sustained_generation_budget_actual_worker_saves_long_text_memory_and_restore_
     let provided = prose.clone();
     let s = SustainedState::with_provider(
         d.path().join("store"),
-        Arc::new(move |configuration, prompt, _, tokens, deadline| {
+        Arc::new(move |configuration, prompt, _, tokens, deadline, _| {
             capture.lock().unwrap().push((
                 prompt.to_owned(),
                 tokens,
@@ -1821,7 +1822,7 @@ fn sustained_generation_budget_healthy_slow_provider_does_not_trip_wall_gap_watc
     let r = release.clone();
     let s = SustainedState::with_provider(
         d.path().join("store"),
-        Arc::new(move |_, _, cancel, tokens, deadline| {
+        Arc::new(move |_, _, cancel, tokens, deadline, _| {
             assert_eq!((tokens, deadline), (1024, 180));
             e.store(true, Ordering::SeqCst);
             while !r.load(Ordering::SeqCst) && !cancel.load(Ordering::SeqCst) {
@@ -1963,5 +1964,71 @@ fn sustained_paired_measurement_reference_is_bound_to_writing_step_and_survives_
             .unwrap();
         assert_eq!(later.journal["measurementReference"], reference);
         assert_eq!(later.journal["observedStep"], 6);
+    }
+}
+#[test]
+fn provider_receives_per_attempt_sampling_only_for_temperature_sessions() {
+    for temperature in [None, Some(0.7)] {
+        let d = tempfile::tempdir().unwrap();
+        let calls = Arc::new(Mutex::new(Vec::new()));
+        let capture = calls.clone();
+        let s = SustainedState::with_provider(
+            d.path().join("store"),
+            Arc::new(move |_, _, _, _, _, sampling| {
+                capture.lock().unwrap().push(sampling);
+                Ok(LanguageResponse {
+                    text: "A sampled entry that is long enough to be saved as a journal.".into(),
+                    provider_model: Some("owned-fake".into()),
+                    stop_reason: Some("stop".into()),
+                    token_count: Some(20),
+                    provider_prompt_evaluation: None,
+                    complete: true,
+                })
+            }),
+        );
+        let mut cfg = model_config();
+        cfg.turn_every = 3;
+        cfg.maximum_steps = 7;
+        cfg.maximum_turns = 2;
+        cfg.language.temperature = temperature;
+        let seed: u64 = cfg.seed.parse().unwrap();
+        let m = s.create("create".into(), cfg).unwrap().summary.unwrap();
+        s.start("start".into(), &m.session_id, &m.generation)
+            .unwrap();
+        wait_for(|| {
+            let g = s.lock().unwrap();
+            let a = g.active.as_ref().unwrap();
+            !a.worker_active && a.engine.step() == 7
+        });
+        let calls = calls.lock().unwrap();
+        assert_eq!(calls.len(), 2);
+        for (i, sampling) in calls.iter().enumerate() {
+            let attempt = i as u64 + 1;
+            match temperature {
+                None => assert_eq!(*sampling, crate::model_transport::Sampling::GREEDY),
+                Some(t) => assert_eq!(
+                    *sampling,
+                    crate::model_transport::Sampling {
+                        temperature: t,
+                        seed: Some(reservoir_core::sustained::sampling_seed(seed, attempt)),
+                    }
+                ),
+            }
+        }
+        let journals = d.path().join("store").join(&m.session_id).join("journals");
+        let mut seen = 0;
+        for entry in fs::read_dir(&journals).unwrap() {
+            let object: sustained_store::JournalObject =
+                serde_json::from_slice(&fs::read(entry.unwrap().path()).unwrap()).unwrap();
+            seen += 1;
+            assert_eq!(object.temperature, temperature);
+            let attempt = object.pending.entry.attempt_id;
+            assert_eq!(
+                object.sampling_seed,
+                temperature
+                    .map(|_| reservoir_core::sustained::sampling_seed(seed, attempt).to_string())
+            );
+        }
+        assert_eq!(seen, 2);
     }
 }

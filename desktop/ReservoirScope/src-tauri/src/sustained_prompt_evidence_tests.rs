@@ -8,7 +8,7 @@ fn response_at_boundary(
     let (d, s, id, generation) = setup(4, 3);
     let epoch = arm(&s);
     until(&s, epoch, |a| a.engine.pending_language().is_some());
-    let Work::Provider(pending) = s.worker_boundary(epoch).unwrap() else {
+    let Work::Provider(pending, _) = s.worker_boundary(epoch).unwrap() else {
         panic!("missing held request")
     };
     s.settle(epoch, pending.attempt_id, Ok(response), 1)

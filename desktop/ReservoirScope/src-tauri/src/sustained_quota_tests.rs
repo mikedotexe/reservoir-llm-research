@@ -79,7 +79,7 @@ fn investigate(label: &str, cadence: u64) {
     let mut responses = 0u64;
     loop {
         match s.worker_boundary(epoch) {
-            Ok(Work::Provider(p)) => {
+            Ok(Work::Provider(p, _)) => {
                 responses += 1;
                 s.settle(epoch, p.attempt_id, Ok(answer()), 0).unwrap();
             }
@@ -388,7 +388,7 @@ fn quota_escaped_rejected_response_cannot_publish_or_claim_discard_of_retained_l
     let (_d, s, id, _) = setup(100, 3);
     let epoch = arm(&s);
     until(&s, epoch, |a| a.engine.pending_language().is_some());
-    let Work::Provider(p) = s.worker_boundary(epoch).unwrap() else {
+    let Work::Provider(p, _) = s.worker_boundary(epoch).unwrap() else {
         panic!()
     };
     let before = fs::read(s.shared.store.path(&id).unwrap().join("manifest.json")).unwrap();
@@ -417,7 +417,7 @@ fn quota_transport_sized_escaped_responses_retain_exact_terminal_path() {
         let (_d, s, id, generation) = setup(100, 3);
         let epoch = arm(&s);
         until(&s, epoch, |a| a.engine.pending_language().is_some());
-        let Work::Provider(first) = s.worker_boundary(epoch).unwrap() else {
+        let Work::Provider(first, _) = s.worker_boundary(epoch).unwrap() else {
             panic!()
         };
         let mut previous = answer();
@@ -433,7 +433,7 @@ fn quota_transport_sized_escaped_responses_retain_exact_terminal_path() {
             .pending_journal()
             .is_some());
         until(&s, epoch, |a| a.engine.pending_memory().is_some());
-        let Work::Provider(p) = s.worker_boundary(epoch).unwrap() else {
+        let Work::Provider(p, _) = s.worker_boundary(epoch).unwrap() else {
             panic!()
         };
         assert_eq!(p.memory.as_ref().unwrap().entry.text.len(), 65_536);

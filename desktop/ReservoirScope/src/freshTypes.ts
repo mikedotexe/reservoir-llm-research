@@ -11,6 +11,8 @@ export interface ExplorationControls {
 }
 export interface LanguageConfiguration {
   backend: 'scripted' | 'ollama'; endpoint?: string | null; model?: string | null; contextTokens?: number | null; responseFormat?: 'json' | null;
+  /** Omitted historical values keep greedy decoding (zero). */
+  temperature?: number | null;
 }
 export interface PendingLanguage {
   operationId: string; arm: SessionTrackId; turnId: number; observedStep: number; endpoint: string; model: string;

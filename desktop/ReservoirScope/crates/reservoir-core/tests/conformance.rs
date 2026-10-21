@@ -233,6 +233,7 @@ fn stopped_failed_and_provider_records_are_verified_offline() {
         model: Some("retained-only".into()),
         context_tokens: Some(4096),
         response_format: None,
+        temperature: None,
     };
     for turn in &mut provider.turns {
         turn.backend = "ollama".into();
@@ -293,6 +294,7 @@ fn recipe_and_endpoint_bounds_fail_closed() {
             model: Some("model".into()),
             context_tokens: None,
             response_format: None,
+            temperature: None,
         };
         assert!(spec.validate().is_err(), "accepted {endpoint}");
     }

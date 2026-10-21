@@ -87,6 +87,11 @@ at the next numerical step → later observation and eligible prior prose.**
 The model's topic and form remain open. Encoding is deterministic numerical input,
 not model training. A sentence describing an action does not execute a control.
 
+New Ollama sessions write at temperature 0.7 with a sampler seed derived from the
+session seed and the attempt number, both recorded with each entry. Temperature 0
+reproduces the greedy decoding of earlier sessions, under which consecutive entries
+converged to a repeated template. Change it under Advanced settings → Writing limits.
+
 By default, a writing opportunity occurs every 30 numerical steps at a requested
 pace of one step per second. Generation and saving hold numerical time, so an entry
 is not promised every 30 wall-clock seconds. The first complete journal appears

@@ -64,6 +64,21 @@ const SPLITMIX_INCREMENT: u64 = 0x9E37_79B9_7F4A_7C15;
 /// the text vector at 0.4 scale settled fill near 70%, inside the 64–72% deadband.
 pub const DEFAULT_SENSORY_NOISE_AMPLITUDE: f64 = 0.5;
 pub const DEFAULT_FEEDBACK_SCALE: f64 = 0.4;
+/// Fresh-session writing temperature. Historical configurations omit it and keep greedy
+/// decoding, under which consecutive entries converged to a verbatim template.
+pub const DEFAULT_WRITING_TEMPERATURE: f64 = 0.7;
+/// Seed of the sampler-seed stream; the stream is indexed by attempt and never stored.
+const SAMPLING_SEED: u64 = 0x5341_4D50_4C45;
+/// Sampler seed for one attempt: one SplitMix64 output of a state that is unique per
+/// (session seed, attempt), with the top bit cleared so a provider that parses a signed
+/// integer accepts it. Reproducible from the session seed; never stored in checkpoints.
+pub fn sampling_seed(session_seed: u64, attempt_id: u64) -> u64 {
+    SplitMix64::new(
+        (session_seed ^ SAMPLING_SEED).wrapping_add(attempt_id.wrapping_mul(SPLITMIX_INCREMENT)),
+    )
+    .next_u64()
+        & (u64::MAX >> 1)
+}
 pub fn legacy_sensory_noise_amplitude() -> f64 {
     0.0
 }

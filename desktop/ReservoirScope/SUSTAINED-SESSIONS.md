@@ -68,6 +68,17 @@ vector spans about twelve of the field's 32 modes, so the controller stayed on i
 0.995 rail near 14% fill, while these values settled fill near 70%, inside the 64–72%
 band ([account](../../analyses/2026-10-21-laptop-first-sustained-session.md)).
 
+**Writing temperature** (0.29.0) lives on the language configuration. Omitted, as in
+every historical session, it means greedy decoding; a value in 0–2 is sent as the
+provider's temperature together with a sampler seed derived from the session seed and
+the attempt number (`sampling_seed` in the core), so entries differ from one another
+yet a repeated attempt with the same prompt reproduces its text on the same model and
+backend. The pending-language record carries the temperature and continuation
+validation guards it; each journal object records the temperature and the seed it was
+requested with. Finite experiments are unchanged and remain greedy. Fresh Ollama
+sessions propose 0.7. Sampling changes which text the model emits, not what the
+numerical loop does with it.
+
 ## Open-ended writing and prompt history
 
 New sessions use `reservoir-journal-v8`: an ongoing journal invitation with no

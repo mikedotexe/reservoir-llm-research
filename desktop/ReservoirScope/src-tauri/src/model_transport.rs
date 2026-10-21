@@ -268,12 +268,34 @@ fn inventory_with_timeout(
         decode_inventory(&bytes, configuration.model.as_deref().unwrap())
     })
 }
+/// Per-request sampling. Temperature zero is greedy and sends no seed, which matches
+/// every historical request body; above zero the caller supplies a reproducible seed.
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct Sampling {
+    pub temperature: f64,
+    pub seed: Option<u64>,
+}
+impl Sampling {
+    pub const GREEDY: Sampling = Sampling {
+        temperature: 0.0,
+        seed: None,
+    };
+}
 fn generation_body(
     configuration: &LanguageConfiguration,
     prompt: &str,
     output_tokens: u32,
+    sampling: Sampling,
 ) -> serde_json::Value {
-    let mut options = json!({ "num_predict":output_tokens, "temperature":0 });
+    let temperature = if sampling.temperature == 0.0 {
+        json!(0)
+    } else {
+        json!(sampling.temperature)
+    };
+    let mut options = json!({ "num_predict":output_tokens, "temperature":temperature });
+    if let Some(seed) = sampling.seed {
+        options["seed"] = json!(seed);
+    }
     if let Some(context) = configuration.context_tokens {
         options["num_ctx"] = json!(context);
     }
@@ -407,6 +429,7 @@ pub fn generate_sustained(
     cancel: &AtomicBool,
     output_tokens: u32,
     request_deadline_seconds: u64,
+    sampling: Sampling,
 ) -> Result<LanguageResponse> {
     reservoir_core::sustained::validate_generation_budget(
         output_tokens,
@@ -420,6 +443,7 @@ pub fn generate_sustained(
         cancel,
         Duration::from_secs(request_deadline_seconds),
         output_tokens,
+        sampling,
     )
 }
 fn generate_with_timeout(
@@ -428,7 +452,14 @@ fn generate_with_timeout(
     cancel: &AtomicBool,
     timeout: Duration,
 ) -> Result<LanguageResponse> {
-    generate_with_limits(configuration, prompt, cancel, timeout, 256)
+    generate_with_limits(
+        configuration,
+        prompt,
+        cancel,
+        timeout,
+        256,
+        Sampling::GREEDY,
+    )
 }
 fn generate_with_limits(
     configuration: &LanguageConfiguration,
@@ -436,6 +467,7 @@ fn generate_with_limits(
     cancel: &AtomicBool,
     timeout: Duration,
     output_tokens: u32,
+    sampling: Sampling,
 ) -> Result<LanguageResponse> {
     validate_configuration(configuration)?;
     if prompt.len() > MAXIMUM_BYTES {
@@ -447,7 +479,12 @@ fn generate_with_limits(
     bounded(cancel, timeout, async {
         let bytes = request(
             configuration,
-            Some(generation_body(configuration, prompt, output_tokens)),
+            Some(generation_body(
+                configuration,
+                prompt,
+                output_tokens,
+                sampling,
+            )),
             timeout,
         )
         .await?;

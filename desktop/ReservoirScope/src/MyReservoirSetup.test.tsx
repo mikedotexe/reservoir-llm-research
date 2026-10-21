@@ -118,7 +118,7 @@ describe('calmer sustained setup without automatic execution', () => {
     const source = elements(tree).find(element => element.type === 'select' && element.props.value === 'scripted')!;
     (source.props.onChange as (event: { target: { value: string } }) => void)({ target: { value: 'ollama' } });
     const configured = setConfig.mock.calls[0][0];
-    expect(configured).toEqual({ ...DEFAULT_SUSTAINED_CONFIG, language: { backend: 'ollama', endpoint: '', model: '', contextTokens: 8192, responseFormat: null } });
+    expect(configured).toEqual({ ...DEFAULT_SUSTAINED_CONFIG, language: { backend: 'ollama', endpoint: '', model: '', contextTokens: 8192, responseFormat: null, temperature: 0.7 } });
     const localTree = MyReservoirConfig({ config: configured, setConfig, disabled: false });
     const endpoint = elements(localTree).find(element => element.type === 'input' && element.props.placeholder === 'http://127.0.0.1:11434')!;
     const model = elements(localTree).find(element => element.type === 'input' && element.props.placeholder === 'gemma3:4b')!;

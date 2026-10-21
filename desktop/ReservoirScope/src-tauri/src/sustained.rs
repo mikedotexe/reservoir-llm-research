@@ -224,7 +224,14 @@ pub struct JournalDetail {
 }
 type Listener = Arc<dyn Fn(SustainedUpdate) -> bool + Send + Sync>;
 type Provider = Arc<
-    dyn Fn(&LanguageConfiguration, &str, &AtomicBool, u32, u64) -> Result<LanguageResponse, String>
+    dyn Fn(
+            &LanguageConfiguration,
+            &str,
+            &AtomicBool,
+            u32,
+            u64,
+            crate::model_transport::Sampling,
+        ) -> Result<LanguageResponse, String>
         + Send
         + Sync,
 >;
@@ -268,8 +275,8 @@ impl SustainedState {
     pub fn new(root: PathBuf) -> Self {
         Self::with_provider(
             root,
-            Arc::new(|c, p, x, tokens, deadline| {
-                crate::model_transport::generate_sustained(c, p, x, tokens, deadline)
+            Arc::new(|c, p, x, tokens, deadline, sampling| {
+                crate::model_transport::generate_sustained(c, p, x, tokens, deadline, sampling)
                     .map_err(|e| e.to_string())
             }),
         )
@@ -835,7 +842,7 @@ impl SustainedState {
         loop {
             let outcome = self.worker_boundary(epoch);
             match outcome {
-                Ok(Work::Provider(p)) => {
+                Ok(Work::Provider(p, sampling)) => {
                     let transport_start = Instant::now();
                     let response = if p.configuration.backend == LanguageKind::Scripted {
                         Ok(LanguageResponse {
@@ -855,6 +862,7 @@ impl SustainedState {
                             &self.shared.cancel,
                             p.output_tokens,
                             p.request_deadline_seconds,
+                            sampling,
                         )
                     };
                     if let Err(e) = self.settle(
@@ -1000,7 +1008,17 @@ impl SustainedState {
                 },
                 ..Default::default()
             });
-            return Ok(Work::Provider(Box::new(p)));
+            let temperature = p.configuration.temperature.unwrap_or(0.0);
+            let sampling = crate::model_transport::Sampling {
+                temperature,
+                seed: (temperature > 0.0).then(|| {
+                    reservoir_core::sustained::sampling_seed(
+                        a.engine.specification().seed,
+                        p.attempt_id,
+                    )
+                }),
+            };
+            return Ok(Work::Provider(Box::new(p), sampling));
         }
         if a.engine.pending_journal().is_some() {
             self.save_journal(a)?;
@@ -1296,7 +1314,7 @@ impl SustainedState {
             session_id: id.into(),
             generation: generation.into(),
             revision: a.manifest.revision.clone(),
-            journal: serde_json::json!({"entryId":p.entry.id,"turnId":p.entry.turn_id,"attemptId":p.entry.attempt_id,"observedStep":p.entry.observed_step,"firstAppliedStep":index.first_applied_step,"text":p.entry.text,"sha256":p.entry.sha256,"prompt":p.prompt,"promptVersion":a.manifest.config.prompt_version,"rawReply":p.response.text,"observation":p.observation,"measurementReference":measurement_reference,"memory":memory,"encodedFeatures":p.encoded_features,"semanticVector":p.semantic_vector,"saveReceipt":{"entryId":entry_id,"sha256":index.sha256,"relativePath":format!("journals/{entry_id}.json")},"providerModel":p.response.provider_model,"stopReason":p.response.stop_reason,"tokenCount":p.response.token_count,"providerComplete":p.response.complete,"configuredModel":j.configured_model,"objectSha256":object_hash,"requestStarted":j.request_started,"timing":j.timing,"status":index.status,"application":application}),
+            journal: serde_json::json!({"entryId":p.entry.id,"turnId":p.entry.turn_id,"attemptId":p.entry.attempt_id,"observedStep":p.entry.observed_step,"firstAppliedStep":index.first_applied_step,"text":p.entry.text,"sha256":p.entry.sha256,"prompt":p.prompt,"promptVersion":a.manifest.config.prompt_version,"rawReply":p.response.text,"observation":p.observation,"measurementReference":measurement_reference,"memory":memory,"encodedFeatures":p.encoded_features,"semanticVector":p.semantic_vector,"saveReceipt":{"entryId":entry_id,"sha256":index.sha256,"relativePath":format!("journals/{entry_id}.json")},"providerModel":p.response.provider_model,"stopReason":p.response.stop_reason,"tokenCount":p.response.token_count,"providerComplete":p.response.complete,"configuredModel":j.configured_model,"temperature":j.temperature,"samplingSeed":j.sampling_seed,"objectSha256":object_hash,"requestStarted":j.request_started,"timing":j.timing,"status":index.status,"application":application}),
         };
         if let Some(value) = provider_prompt_evaluation {
             detail.journal["providerPromptEvaluation"] = serde_json::to_value(value).map_err(ce)?;
@@ -1483,7 +1501,10 @@ fn apply_catalog(
     }
 }
 enum Work {
-    Provider(Box<reservoir_core::sustained::SustainedPendingLanguage>),
+    Provider(
+        Box<reservoir_core::sustained::SustainedPendingLanguage>,
+        crate::model_transport::Sampling,
+    ),
     Continue(u64),
     Done,
 }

@@ -154,7 +154,7 @@ fn prose_requests_do_not_silently_add_json_or_context() {
     let mut config = configuration("http://localhost:1234".into());
     config.context_tokens = None;
     config.response_format = None;
-    let body = generation_body(&config, "p", 256);
+    let body = generation_body(&config, "p", 256, Sampling::GREEDY);
     assert!(body.get("format").is_none());
     assert!(body["options"].get("num_ctx").is_none());
     assert_eq!(body["options"]["num_predict"], 256);
@@ -401,6 +401,7 @@ fn owned_http_prompt_evaluation_cases_preserve_evidence_and_completion_independe
             &AtomicBool::new(false),
             1024,
             180,
+            Sampling::GREEDY,
         )
         .unwrap();
         worker.join().unwrap();
@@ -593,6 +594,7 @@ fn sustained_generation_posts_selected_budget_and_accepts_long_complete_prose() 
         &AtomicBool::new(false),
         1024,
         180,
+        Sampling::GREEDY,
     )
     .unwrap();
     assert!(response.complete);
@@ -629,24 +631,45 @@ fn sustained_invalid_budget_or_cancellation_never_connects() {
     let mut config = configuration(format!("http://{}", listener.local_addr().unwrap()));
     for (tokens, deadline) in [(255, 180), (2049, 180), (1024, 59), (1024, 181)] {
         assert_eq!(
-            generate_sustained(&config, "p", &AtomicBool::new(false), tokens, deadline)
-                .unwrap_err()
-                .category,
+            generate_sustained(
+                &config,
+                "p",
+                &AtomicBool::new(false),
+                tokens,
+                deadline,
+                Sampling::GREEDY
+            )
+            .unwrap_err()
+            .category,
             "configuration"
         );
     }
     config.context_tokens = Some(1024);
     assert_eq!(
-        generate_sustained(&config, "p", &AtomicBool::new(false), 1024, 180)
-            .unwrap_err()
-            .category,
+        generate_sustained(
+            &config,
+            "p",
+            &AtomicBool::new(false),
+            1024,
+            180,
+            Sampling::GREEDY
+        )
+        .unwrap_err()
+        .category,
         "configuration"
     );
     config.context_tokens = Some(8192);
     assert_eq!(
-        generate_sustained(&config, "p", &AtomicBool::new(true), 2048, 180)
-            .unwrap_err()
-            .category,
+        generate_sustained(
+            &config,
+            "p",
+            &AtomicBool::new(true),
+            2048,
+            180,
+            Sampling::GREEDY
+        )
+        .unwrap_err()
+        .category,
         "cancelled"
     );
     assert_eq!(
@@ -666,8 +689,9 @@ fn sustained_inflight_cancellation_and_total_deadline_remain_bounded() {
     });
     let flag = Arc::new(AtomicBool::new(false));
     let sent = flag.clone();
-    let task =
-        thread::spawn(move || generate_sustained(&configuration(url), "p", &sent, 2048, 180));
+    let task = thread::spawn(move || {
+        generate_sustained(&configuration(url), "p", &sent, 2048, 180, Sampling::GREEDY)
+    });
     seen_rx.recv_timeout(Duration::from_secs(3)).unwrap();
     flag.store(true, Ordering::Release);
     assert_eq!(task.join().unwrap().unwrap_err().category, "cancelled");
@@ -688,7 +712,8 @@ fn sustained_inflight_cancellation_and_total_deadline_remain_bounded() {
                 "p",
                 &AtomicBool::new(false),
                 Duration::from_millis(60),
-                1024
+                1024,
+                Sampling::GREEDY
             )
             .unwrap_err()
             .category,
@@ -712,9 +737,16 @@ fn sustained_route_keeps_one_mib_response_and_no_redirect_limits() {
             .unwrap();
     });
     assert_eq!(
-        generate_sustained(&configuration(url), "p", &AtomicBool::new(false), 1024, 180)
-            .unwrap_err()
-            .category,
+        generate_sustained(
+            &configuration(url),
+            "p",
+            &AtomicBool::new(false),
+            1024,
+            180,
+            Sampling::GREEDY
+        )
+        .unwrap_err()
+        .category,
         "response-size"
     );
     worker.join().unwrap();
@@ -725,9 +757,16 @@ fn sustained_route_keeps_one_mib_response_and_no_redirect_limits() {
         stream.write_all(format!("HTTP/1.1 302 Redirect\r\nLocation: http://{address}/api/chat\r\nContent-Length: 0\r\n\r\n").as_bytes()).unwrap();
     });
     assert_eq!(
-        generate_sustained(&configuration(url), "p", &AtomicBool::new(false), 1024, 180)
-            .unwrap_err()
-            .category,
+        generate_sustained(
+            &configuration(url),
+            "p",
+            &AtomicBool::new(false),
+            1024,
+            180,
+            Sampling::GREEDY
+        )
+        .unwrap_err()
+        .category,
         "http-status"
     );
     worker.join().unwrap();
@@ -752,9 +791,30 @@ fn sustained_selected_deadline_accepts_owned_response_after_old_sixty_second_lim
         &AtomicBool::new(false),
         1024,
         180,
+        Sampling::GREEDY,
     )
     .unwrap();
     assert!(response.complete);
     assert!(began.elapsed() >= Duration::from_secs(60));
     worker.join().unwrap();
+}
+#[test]
+fn sampled_requests_carry_temperature_and_seed_while_greedy_bodies_are_unchanged() {
+    let config = configuration("http://localhost:1234".into());
+    let greedy = generation_body(&config, "p", 1024, Sampling::GREEDY);
+    assert_eq!(greedy["options"]["temperature"], json!(0));
+    assert!(greedy["options"].get("seed").is_none());
+    let sampled = generation_body(
+        &config,
+        "p",
+        1024,
+        Sampling {
+            temperature: 0.7,
+            seed: Some(42),
+        },
+    );
+    assert_eq!(sampled["options"]["temperature"], json!(0.7));
+    assert_eq!(sampled["options"]["seed"], json!(42));
+    assert_eq!(sampled["options"]["num_predict"], json!(1024));
+    assert_eq!(sampled["messages"], greedy["messages"]);
 }

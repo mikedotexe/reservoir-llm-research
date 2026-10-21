@@ -1,6 +1,11 @@
 # Reservoir Scope: current status and next work
 
-**October 21, 2026 · 0.28.0 field-noise and feedback-scale source change, unqualified local candidate · 0.27.0 candidate 04 private handoff; human acceptance pending**
+**October 21, 2026 · 0.29.0 writing temperature, on 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
+
+[0.29.0](RELEASE-0.29.0.md) adds a writing temperature to My reservoir sessions with a
+per-attempt sampler seed derived from the session seed and recorded with each entry;
+omitted historical values keep greedy decoding. It follows the first 0.28.0 session,
+where fill reached its band but consecutive entries still converged to a template.
 
 [0.28.0](RELEASE-0.28.0.md) adds two numerical settings to My reservoir sessions,
 sensory input noise and text feedback scale, after the first laptop session with

@@ -19,6 +19,7 @@ fn language(json: bool) -> LanguageConfiguration {
         model: Some("fixture-provider-not-contacted".into()),
         context_tokens: Some(2048),
         response_format: json.then(|| "json".into()),
+        temperature: None,
     }
 }
 fn response(text: String) -> LanguageResponse {

@@ -1983,6 +1983,7 @@ fn model_config(recipe: &str, steps: usize) -> SessionConfig {
         model: Some("isolated-test-model".into()),
         context_tokens: Some(4096),
         response_format: action_stage(recipe).map(|_| "json".into()),
+        temperature: None,
     };
     c
 }

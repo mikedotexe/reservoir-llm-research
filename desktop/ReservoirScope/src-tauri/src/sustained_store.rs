@@ -303,7 +303,21 @@ pub struct JournalObject {
     pub pending: SustainedPendingJournal,
     pub request_started: bool,
     pub configured_model: Option<String>,
+    /// Sampling evidence; omitted for historical greedy journals.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub temperature: Option<f64>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub sampling_seed: Option<String>,
     pub timing: AttemptTiming,
+}
+/// The per-attempt sampler seed a sustained journal must carry, as a decimal string.
+pub fn expected_sampling_seed(config: &SustainedConfig, attempt_id: u64) -> Option<String> {
+    config
+        .language
+        .temperature
+        .filter(|t| *t > 0.0)
+        .and_then(|_| config.seed.parse::<u64>().ok())
+        .map(|seed| reservoir_core::sustained::sampling_seed(seed, attempt_id).to_string())
 }
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -744,6 +758,8 @@ impl SustainedStore {
             pending: pending.clone(),
             request_started: config.language.backend == LanguageKind::Ollama,
             configured_model: config.language.model.clone(),
+            temperature: config.language.temperature,
+            sampling_seed: expected_sampling_seed(config, pending.entry.attempt_id),
             timing,
         };
         let path = p
@@ -753,6 +769,8 @@ impl SustainedStore {
             let existing: JournalObject = typed(&path, OBJECT_LIMIT)?;
             if json(&existing.pending)? != json(pending)?
                 || existing.configured_model != object.configured_model
+                || existing.temperature != object.temperature
+                || existing.sampling_seed != object.sampling_seed
                 || existing.request_started != object.request_started
             {
                 return Err(err(
@@ -1132,6 +1150,9 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
                     || json(&object.pending)? != json(&pending)?
                     || json(entry)? != json(&pending.entry)?
                     || object.configured_model != manifest.config.language.model
+                    || object.temperature != manifest.config.language.temperature
+                    || object.sampling_seed
+                        != expected_sampling_seed(&manifest.config, entry.attempt_id)
                 {
                     return Err(err(
                         "journal",

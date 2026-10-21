@@ -42,6 +42,10 @@ pub struct LanguageConfiguration {
     pub context_tokens: Option<usize>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub response_format: Option<String>,
+    /// Sampling temperature for sustained writing. Omitted historical values keep greedy
+    /// decoding (zero) and their exact serialized form.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub temperature: Option<f64>,
 }
 impl Default for LanguageConfiguration {
     fn default() -> Self {
@@ -51,11 +55,18 @@ impl Default for LanguageConfiguration {
             model: None,
             context_tokens: None,
             response_format: None,
+            temperature: None,
         }
     }
 }
 impl LanguageConfiguration {
     pub fn validate(&self) -> Result<()> {
+        ensure(
+            self.temperature
+                .map(|t| t.is_finite() && (0.0..=2.0).contains(&t))
+                .unwrap_or(true),
+            "Temperature must be between 0 and 2",
+        )?;
         ensure(
             self.response_format
                 .as_deref()
