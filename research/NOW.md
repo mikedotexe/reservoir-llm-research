@@ -14,7 +14,11 @@ which found the loop closed only through surface statistics and a constant-direc
 kick, with 22 of 23 entries quoting the readout. Mike selected a frame ablation and a
 content-carrying reduction, and invited Claude to iterate autonomously toward signal
 within the repo's boundaries: no live-system contact, no pushes, apparatus changes on
-branches merged after the suites pass, numbers from probes. Both apps' release
+branches merged after the suites pass, numbers from probes. The [frame arms](../analyses/2026-10-21-frame-arms.md) (desktop
+0.30.0, two seeds) found that the standing contract, not the per-turn frame, brings the
+first-person reflective register, and that its wording seeds the topic; 0.31.0 adds two
+contracts one change from their parents, and the arms are being repeated on
+`gemma4:12b`, the beings' own model family. Both apps' release
 records note the host's packaging failure; the dev build runs. The native 0.15 work,
 the private 0.27.0 handoff and the earlier focus below are unchanged.
 
