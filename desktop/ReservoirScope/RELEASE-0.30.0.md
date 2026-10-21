@@ -40,5 +40,7 @@ layer. Surface-codec sessions and every earlier mechanism identity are unchanged
 | `cargo fmt --check`, `cargo clippy` | clean |
 | macOS package | not attempted; see the 0.28.0 record |
 
-Results of the arms belong to the study's dated account, not to this record. No human
+Results of the arms belong to the study's [dated account](../../analyses/2026-10-21-frame-arms.md),
+not to this record; the headless control arm reproduced the morning app session's first
+entry byte for byte, which is the sampler-seed design working as intended. No human
 acceptance, platform qualification or writing result is claimed.

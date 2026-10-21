@@ -73,7 +73,9 @@ def main(sessions, cache_path):
     for s in sessions:
         es = entries(s)
         vecs = embed([t for _, t, _ in es], cache)
-        data[os.path.basename(s)] = [(step, text, codec, emb, project(emb, matrix)) for (step, text, codec), emb in zip(es, vecs)]
+        parts = s.rstrip('/').split(os.sep)
+        label = os.path.join(parts[-2], parts[-1]) if len(parts) > 1 else parts[-1]
+        data[label] = [(step, text, codec, emb, project(emb, matrix)) for (step, text, codec), emb in zip(es, vecs)]
     json.dump(cache, open(cache_path, 'w'))
     print(f"embedding model {MODEL} · 768 dims · projection 32 x 768 Gaussian, seed {PROJECTION_SEED:#x}")
     for name, rows in data.items():

@@ -65,7 +65,8 @@ def main(sources):
     print(f"{'source':<36} {'n':>3} {'words':>6} {'I/me':>6} {'we':>5} {'hedge':>6} {'notice':>6} {'?/sent%':>7} {'selfref':>7} {'apparatus':>9} {'digit%':>6} {'w/sent':>6} {'ttr':>5} {'I-open%':>7}")
     for s in sources:
         texts, stripped = load(s); m = measure(texts)
-        label = os.path.basename(s.rstrip('/'))[:36]
+        parts = s.rstrip('/').split(os.sep)
+        label = (os.path.join(parts[-2], parts[-1]) if len(parts) > 1 and parts[-1].startswith('sustained-') else parts[-1])[-36:]
         print(f"{label:<36} {m['n']:>3} {m['words']:>6} {m['first']:>6.1f} {m['we']:>5.1f} {m['hedge']:>6.1f} {m['notice']:>6.1f} {m['questions']:>7.1f} {m['selfref']:>7.2f} {m['apparatus']:>9.1f} {m['digits']:>6.2f} {m['wps']:>6.1f} {m['ttr']:>5.2f} {m['fp_open']:>7.0f}" + (f"   (stripped {stripped} header lines)" if stripped else ''))
 
 if __name__ == '__main__':

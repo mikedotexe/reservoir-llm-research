@@ -133,8 +133,27 @@ entries), `sustained-1792607625263-1` (0.28.0, greedy, 9 entries), and
 `sustained-1792609937721-1` (0.29.0, temperature 0.7, 14+ entries, still running at
 the time of writing) under `~/Library/Application Support/research.reservoir.scope.tauri/sustained-v1/`.
 
+2026-10-21 evening, results ([account](../../analyses/2026-10-21-frame-arms.md)): all
+five frame arms and two codec twins ran to 12 entries. The inert input alone gives a
+dated workplace diary with an invented team, with or without the earlier entry (I/me
+4.3 and 42.2 per 1,000 words, noticing 1.6 and 5.6). A standing contract brings the
+register: the Minime-modeled plain contract gives counts next to Minime's recent entries
+(I/me 70.5 vs 66.6, noticing 12.8 vs 12.0, questions 5.4 vs 7.3 per cent of sentences);
+the Astrid-modeled inviting contract gives denser first person (112) that collapses to a
+refrain. Our v8 frame gives the third-person traveler with apparatus words at 39 per
+1,000 and the readout quoted in every entry. The headless control reproduced the app
+session's first entry byte for byte. The embedding codec changes the reservoir state
+entirely (state L2 4.4 between twins, vector cosine about −0.2) while the readouts the
+model sees move by about one fill point and 0.04 RMS, so the content now reaches the
+reservoir but not the model. One seed, one model: a reading, not a result.
+
 ## What changed / next
 
-Next: Mike's go on the embedding pull, then Part B offline, then Part A arms. Results
-go to a dated account in `analyses/`; apparatus changes go on a branch, pass the
-crate and frontend suites, and merge to main; nothing is pushed.
+Interpretation revised: the frame paragraph is not where the register comes from; the
+standing contract is, and its wording sets the shade, while the per-turn frame sets the
+topic. The loop share is small in the model-visible channel under either codec.
+
+Next (each one headless run of about twenty minutes): a second seed for every arm; a
+contract that grants interpretation without naming the runtime; Astrid's anti-attractor
+rules as an arm; a second model; the entry-effect readout under the embedding codec.
+Apparatus changes stay on branches, pass the suites, merge to main; nothing is pushed.
