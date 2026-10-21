@@ -35,7 +35,7 @@ describe('sensory field noise and feedback scale controls', () => {
     expect(old).toMatch(/Sensory input noise amplitude<input type="number" min="0" max="1" step=".05" required="" value="0"/);
     expect(old).toMatch(/Text feedback scale<input type="number" min="0" max="2" step=".05" required="" value="1"/);
     const invalid = renderToStaticMarkup(<MyReservoirConfig config={{ ...DEFAULT_SUSTAINED_CONFIG, feedbackScale: 3 }} setConfig={setConfig} disabled={false}/>);
-    expect(invalid).toContain('Use a sensory input noise amplitude of 0–1 and a text feedback scale of 0–2.');
+    expect(invalid).toContain('Use a sensory input noise amplitude of 0–1, a text feedback scale of 0–2');
     expect(invalid).toMatch(/Text feedback scale<input[^>]*aria-invalid="true"[^>]*>/);
     expect(invalid).toMatch(/Text feedback scale<input[^>]*value="3"[^>]*>/);
     expect(setConfig).not.toHaveBeenCalled();

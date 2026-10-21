@@ -143,6 +143,13 @@ async fn request(
     body: Option<serde_json::Value>,
     timeout: Duration,
 ) -> Result<Vec<u8>> {
+    request_path(configuration, body.map(|b| ("api/chat", b)), timeout).await
+}
+async fn request_path(
+    configuration: &LanguageConfiguration,
+    body: Option<(&str, serde_json::Value)>,
+    timeout: Duration,
+) -> Result<Vec<u8>> {
     let endpoint = configuration
         .endpoint
         .as_deref()
@@ -166,8 +173,8 @@ async fn request(
         )
         .build()
         .map_err(network)?;
-    let builder = if let Some(body) = body {
-        client.post(format!("{endpoint}/api/chat")).json(&body)
+    let builder = if let Some((path, body)) = body {
+        client.post(format!("{endpoint}/{path}")).json(&body)
     } else {
         client
             .get(format!("{endpoint}/api/tags"))
@@ -274,11 +281,15 @@ fn inventory_with_timeout(
 pub struct Sampling {
     pub temperature: f64,
     pub seed: Option<u64>,
+    /// A frozen standing contract sent as the system message; none for every historical
+    /// prompt version, so historical bodies are unchanged.
+    pub system: Option<&'static str>,
 }
 impl Sampling {
     pub const GREEDY: Sampling = Sampling {
         temperature: 0.0,
         seed: None,
+        system: None,
     };
 }
 fn generation_body(
@@ -299,8 +310,13 @@ fn generation_body(
     if let Some(context) = configuration.context_tokens {
         options["num_ctx"] = json!(context);
     }
+    let mut messages = Vec::new();
+    if let Some(system) = sampling.system {
+        messages.push(json!({"role":"system","content":system}));
+    }
+    messages.push(json!({"role":"user","content":prompt}));
     let mut body = json!({ "model":configuration.model, "stream":false,
-        "messages":[{"role":"user","content":prompt}], "options":options });
+        "messages":messages, "options":options });
     if let Some(format) = &configuration.response_format {
         body["format"] = json!(format);
     }
@@ -499,3 +515,78 @@ fn generate_with_limits(
 #[cfg(test)]
 #[path = "model_transport_tests.rs"]
 mod tests;
+
+/// One embedding of one text from the configured loopback service's `/api/embed`.
+#[derive(Clone, Debug, PartialEq, serde::Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct EmbeddingReceipt {
+    pub vector: Vec<f64>,
+    pub model: String,
+    pub digest: Option<String>,
+}
+pub fn embedding_body(model: &str, text: &str) -> serde_json::Value {
+    json!({ "model": model, "input": [text], "truncate": false })
+}
+pub fn decode_embedding(bytes: &[u8], model: &str) -> Result<EmbeddingReceipt> {
+    #[derive(serde::Deserialize)]
+    struct Body {
+        model: Option<String>,
+        embeddings: Vec<Vec<f64>>,
+    }
+    let body: Body = serde_json::from_slice(bytes).map_err(|_| {
+        error(
+            "embedding",
+            "The local service did not return a valid embedding.",
+        )
+    })?;
+    if body.model.as_deref().is_some_and(|m| m != model) {
+        return Err(error(
+            "embedding",
+            "The embedding service answered for a different model.",
+        ));
+    }
+    let [vector] = body.embeddings.as_slice() else {
+        return Err(error(
+            "embedding",
+            "Expected exactly one embedding for one text.",
+        ));
+    };
+    if vector.is_empty() || vector.len() > 8192 || vector.iter().any(|x| !x.is_finite()) {
+        return Err(error(
+            "embedding",
+            "The embedding has an unusable dimension or value.",
+        ));
+    }
+    Ok(EmbeddingReceipt {
+        vector: vector.clone(),
+        model: model.to_owned(),
+        digest: None,
+    })
+}
+/// Embed one entry's text with the loopback service named by `configuration` and the
+/// embedding `model`; bounded by the same deadline and size limits as generation.
+pub fn embed(
+    configuration: &LanguageConfiguration,
+    model: &str,
+    text: &str,
+    cancel: &AtomicBool,
+    deadline_seconds: u64,
+) -> Result<EmbeddingReceipt> {
+    validate_configuration(configuration)?;
+    if text.len() > MAXIMUM_BYTES {
+        return Err(error(
+            "prompt-size",
+            "The entry exceeds the bounded embedding request size.",
+        ));
+    }
+    let timeout = Duration::from_secs(deadline_seconds);
+    bounded(cancel, timeout, async {
+        let bytes = request_path(
+            configuration,
+            Some(("api/embed", embedding_body(model, text))),
+            timeout,
+        )
+        .await?;
+        decode_embedding(&bytes, model)
+    })
+}

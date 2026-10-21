@@ -11,7 +11,7 @@ fn response_at_boundary(
     let Work::Provider(pending, _) = s.worker_boundary(epoch).unwrap() else {
         panic!("missing held request")
     };
-    s.settle(epoch, pending.attempt_id, Ok(response), 1)
+    s.settle(epoch, pending.attempt_id, Ok(response), None, 1)
         .unwrap();
     (d, s, id, generation, epoch)
 }

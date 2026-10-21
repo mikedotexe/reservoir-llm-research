@@ -132,6 +132,9 @@ forcing channels and one constant text vector, which spans too few modes for the
 controller to reach its band; replay of the first recorded session stayed near 14%
 fill on the retention rail, and the defaults settled near 70%. Both are in
 Advanced settings. Noise 0 with scale 1 reproduces the earlier mechanism exactly.
+Advanced settings also offers the text reduction: surface statistics (as built) or an
+embedding from a local model such as `nomic-embed-text`, which must be installed on the
+same server; the embedding reduction lets the returning vector carry content.
 
 The percentage is fill level. A *fill rate* would be change per unit of time; the
 personal readout does not claim to measure that rate. The selected entry's optional

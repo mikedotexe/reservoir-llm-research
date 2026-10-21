@@ -1,0 +1,11 @@
+import { describe, expect, it } from 'vitest';
+import { FRAME_ARM_PROMPT_VERSIONS, isSustainedPromptVersion } from './myReservoirTypes';
+
+describe('frame arm prompt versions', () => {
+  it('are recognised for reading recovered research sessions but are not the fresh default', () => {
+    expect(FRAME_ARM_PROMPT_VERSIONS).toHaveLength(4);
+    for (const v of FRAME_ARM_PROMPT_VERSIONS) expect(isSustainedPromptVersion(v)).toBe(true);
+    expect(isSustainedPromptVersion('reservoir-journal-v8')).toBe(true);
+    expect(isSustainedPromptVersion('reservoir-journal-inert-v2')).toBe(false);
+  });
+});

@@ -811,10 +811,62 @@ fn sampled_requests_carry_temperature_and_seed_while_greedy_bodies_are_unchanged
         Sampling {
             temperature: 0.7,
             seed: Some(42),
+            system: None,
         },
     );
     assert_eq!(sampled["options"]["temperature"], json!(0.7));
     assert_eq!(sampled["options"]["seed"], json!(42));
     assert_eq!(sampled["options"]["num_predict"], json!(1024));
     assert_eq!(sampled["messages"], greedy["messages"]);
+}
+
+#[test]
+fn a_standing_contract_is_sent_as_the_system_message_only_when_present() {
+    let config = configuration("http://localhost:1234".into());
+    let plain = generation_body(&config, "p", 1024, Sampling::GREEDY);
+    assert_eq!(plain["messages"].as_array().unwrap().len(), 1);
+    assert_eq!(plain["messages"][0]["role"], json!("user"));
+    let contract = generation_body(
+        &config,
+        "p",
+        1024,
+        Sampling {
+            temperature: 0.7,
+            seed: Some(1),
+            system: Some("You are a language agent."),
+        },
+    );
+    let messages = contract["messages"].as_array().unwrap();
+    assert_eq!(messages.len(), 2);
+    assert_eq!(
+        messages[0],
+        json!({"role":"system","content":"You are a language agent."})
+    );
+    assert_eq!(messages[1], json!({"role":"user","content":"p"}));
+}
+#[test]
+fn embedding_requests_and_replies_are_bounded_and_exact() {
+    let body = embedding_body("nomic-embed-text", "An entry.");
+    assert_eq!(
+        body,
+        json!({"model":"nomic-embed-text","input":["An entry."],"truncate":false})
+    );
+    let good = br#"{"model":"nomic-embed-text","embeddings":[[0.1,-0.2,0.3]]}"#;
+    let receipt = decode_embedding(good, "nomic-embed-text").unwrap();
+    assert_eq!(receipt.vector, vec![0.1, -0.2, 0.3]);
+    assert_eq!(receipt.model, "nomic-embed-text");
+    for bad in [
+        br#"{"model":"other","embeddings":[[0.1]]}"#.as_slice(),
+        br#"{"embeddings":[]}"#.as_slice(),
+        br#"{"embeddings":[[0.1],[0.2]]}"#.as_slice(),
+        br#"{"embeddings":[[]]}"#.as_slice(),
+        br#"not json"#.as_slice(),
+    ] {
+        assert!(decode_embedding(bad, "nomic-embed-text").is_err());
+    }
+    let config = configuration("http://localhost:1234".into());
+    assert!(
+        embed(&config, "nomic-embed-text", "x", &AtomicBool::new(false), 1).is_err(),
+        "no service listens; bounded failure"
+    );
 }

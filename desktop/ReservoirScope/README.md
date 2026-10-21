@@ -1,7 +1,7 @@
 # Reservoir Scope Tauri Preview
 
 **0.27.0 candidate 04 · Ready for a first invited tester · Human acceptance pending**
-**0.29.0 source · writing temperature with recorded per-attempt seeds ([record](RELEASE-0.29.0.md)), on 0.28.0 field noise and feedback scale ([record](RELEASE-0.28.0.md)); unqualified local candidates**
+**0.30.0 source · embedding text reduction and S-010 frame arms ([record](RELEASE-0.30.0.md)), on 0.29.0 writing temperature ([record](RELEASE-0.29.0.md)) and 0.28.0 field noise and feedback scale ([record](RELEASE-0.28.0.md)); unqualified local candidates**
 
 Reservoir Scope combines a personal reservoir and journal with offline experiments,
 recordings and evidence readers. The native macOS app remains separate at

@@ -32,6 +32,7 @@ export function MyReservoirJournalDetail({ journal, revision, config, onRefreshE
         <dt>Request recorded started</dt><dd>{String(journal.requestStarted)}</dd>
         <dt>Provider completeness</dt><dd>{String(journal.providerComplete)}</dd>
         <dt>Stop reason / tokens</dt><dd>{journal.stopReason ?? 'Not retained'} / {journal.tokenCount ?? 'Not retained'}</dd>
+        <dt>Text reduction</dt><dd>{journal.feedbackProvenance ? `Embedding · ${journal.feedbackProvenance.model} · ${journal.feedbackProvenance.dimensions} dims · sha256 ${journal.feedbackProvenance.embeddingSha256.slice(0, 12)}… · projection seed ${journal.feedbackProvenance.projectionSeed}` : 'Surface statistics'}</dd>
         <dt>Sampling</dt><dd>{journal.temperature == null ? 'Greedy · temperature 0 (historical or unset)' : journal.temperature === 0 ? 'Greedy · temperature 0' : `Temperature ${journal.temperature} · seed ${journal.samplingSeed ?? 'not retained'}`}</dd>
         <dt>Captured session revision</dt><dd>{revision ?? 'Unavailable'}</dd>
       </dl>

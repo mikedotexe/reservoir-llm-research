@@ -1,6 +1,6 @@
 //! Bounded Unicode port of the retained Swift codec. Unqualified scalars or
 //! multi-scalar graphemes return Unsupported; original UTF-8 remains unchanged.
-use crate::{math::SpectralMeasurement, CoreError, Result};
+use crate::{ensure, math::SpectralMeasurement, CoreError, Result};
 use std::collections::{BTreeMap, BTreeSet};
 use unicode_normalization::UnicodeNormalization;
 use unicode_segmentation::UnicodeSegmentation;
@@ -356,4 +356,55 @@ pub fn feedback(features: &[f64], measurement: &SpectralMeasurement) -> Vec<f64>
     }
     result[32..].fill(0.0);
     result
+}
+
+/// Target RMS over the 32 used slots for an embedding projection: the surface codec's
+/// median over the 66 entries of the October 21 laptop sessions, so the reservoir kick is
+/// comparable between codecs.
+pub const EMBEDDING_TARGET_RMS: f64 = 0.74;
+/// Project an embedding onto the codec's 48-slot layout (32 used, 16 zero) through a fixed
+/// Gaussian matrix drawn from SplitMix64 (`projection_seed`, Box–Muller pairs, row-major),
+/// after unit-normalising the embedding. The result is scaled to `EMBEDDING_TARGET_RMS` and
+/// clamped like the surface codec. Deterministic for a given embedding and seed.
+pub fn project_embedding(embedding: &[f64], projection_seed: u64) -> Result<Vec<f64>> {
+    ensure(
+        (1..=8192).contains(&embedding.len()) && embedding.iter().all(|x| x.is_finite()),
+        "Embedding must be 1–8192 finite coordinates",
+    )?;
+    let norm = embedding.iter().fold(0.0, |s, x| s + x * x).sqrt();
+    ensure(norm > 1e-12, "Embedding must be nonzero")?;
+    let unit: Vec<f64> = embedding.iter().map(|x| x / norm).collect();
+    let mut rng = crate::math::SplitMix64::new(projection_seed);
+    let mut gaussian = move || {
+        let u1 = rng.unit().max(1e-300);
+        let u2 = rng.unit();
+        let r = (-2.0 * u1.ln()).sqrt();
+        (
+            r * (2.0 * std::f64::consts::PI * u2).cos(),
+            r * (2.0 * std::f64::consts::PI * u2).sin(),
+        )
+    };
+    let scale = 1.0 / (unit.len() as f64).sqrt();
+    let mut out = vec![0.0; 48];
+    for slot in out.iter_mut().take(32) {
+        let mut acc = 0.0;
+        let mut j = 0;
+        while j < unit.len() {
+            let (a, b) = gaussian();
+            acc += a * unit[j];
+            if j + 1 < unit.len() {
+                acc += b * unit[j + 1];
+            }
+            j += 2;
+        }
+        *slot = acc * scale;
+    }
+    let rms = (out.iter().take(32).fold(0.0, |s, x| s + x * x) / 32.0).sqrt();
+    if rms > 1e-12 {
+        let gain = EMBEDDING_TARGET_RMS / rms;
+        for value in out.iter_mut().take(32) {
+            *value = (*value * gain).clamp(-5.0, 5.0);
+        }
+    }
+    Ok(out)
 }

@@ -54,6 +54,49 @@ const MECHANISM: &str = "essentials32-splitmix64-codec48-held-feedback-v1";
 /// Mechanism identity once field noise or feedback scaling departs from the v1 values.
 const MECHANISM_FIELD_NOISE: &str =
     "essentials32-splitmix64-codec48-scaled-feedback-field-noise-v2";
+/// Mechanism identity when the text→vector link is an embedding projection (S-010 Part B).
+const MECHANISM_EMBEDDING: &str =
+    "essentials32-splitmix64-embedding32-scaled-feedback-field-noise-v3";
+/// Which reduction turns a saved entry into the 48-slot feedback vector.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize, Default)]
+#[serde(
+    rename_all = "camelCase",
+    rename_all_fields = "camelCase",
+    tag = "kind"
+)]
+pub enum SustainedCodec {
+    /// The surface-statistics codec in `codec::encode` plus its field modulation (as built).
+    #[default]
+    Surface,
+    /// An embedding from a local model, projected by `codec::project_embedding`; no field
+    /// modulation. The owner's transport supplies the embedding with provenance.
+    Embedding { model: String, projection_seed: u64 },
+}
+impl SustainedCodec {
+    pub fn is_surface(&self) -> bool {
+        matches!(self, Self::Surface)
+    }
+}
+/// Where an externally supplied feedback vector came from. Retained in the pending journal
+/// and its journal object; the numerical loop replays from the stored vector.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct FeedbackProvenance {
+    pub kind: String,
+    pub model: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub digest: Option<String>,
+    pub dimensions: usize,
+    pub embedding_sha256: String,
+    pub projection_seed: u64,
+}
+/// A feedback vector computed outside the core (an embedding projection) with provenance.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct ExternalFeedback {
+    pub vector: Vec<f64>,
+    pub provenance: FeedbackProvenance,
+}
 /// Seed of the per-step field-noise stream. The stream is indexed by step and is never
 /// stored, so checkpoints and the exact 32-draw reservoir RNG accounting are unchanged.
 const FIELD_NOISE_SEED: u64 = 0x0046_4945_4C44_4E5A;
@@ -153,6 +196,16 @@ pub enum SustainedPromptVersion {
     WritingBoundaryJournalV7,
     #[serde(rename = "reservoir-journal-v8")]
     MeasurementMeaningJournalV8,
+    /// S-010 frame arms: a lean per-turn input modeled on the beings' own, with or without
+    /// the earlier entry and with or without a standing contract. Frozen text.
+    #[serde(rename = "reservoir-journal-inert-v1")]
+    InertV1,
+    #[serde(rename = "reservoir-journal-inert-no-memory-v1")]
+    InertNoMemoryV1,
+    #[serde(rename = "reservoir-journal-inert-plain-contract-v1")]
+    InertPlainContractV1,
+    #[serde(rename = "reservoir-journal-inert-inviting-contract-v1")]
+    InertInvitingContractV1,
 }
 impl SustainedPromptVersion {
     pub fn is_legacy(&self) -> bool {
@@ -168,7 +221,22 @@ impl SustainedPromptVersion {
             Self::ActionScopeJournalV6 => "reservoir-journal-v6",
             Self::WritingBoundaryJournalV7 => "reservoir-journal-v7",
             Self::MeasurementMeaningJournalV8 => "reservoir-journal-v8",
+            Self::InertV1 => "reservoir-journal-inert-v1",
+            Self::InertNoMemoryV1 => "reservoir-journal-inert-no-memory-v1",
+            Self::InertPlainContractV1 => "reservoir-journal-inert-plain-contract-v1",
+            Self::InertInvitingContractV1 => "reservoir-journal-inert-inviting-contract-v1",
         }
+    }
+    /// A standing contract sent as the system message, or none. Frozen per version.
+    pub fn system_contract(self) -> Option<&'static str> {
+        match self {
+            Self::InertPlainContractV1 => Some(PLAIN_CONTRACT_V1),
+            Self::InertInvitingContractV1 => Some(INVITING_CONTRACT_V1),
+            _ => None,
+        }
+    }
+    pub fn returns_earlier_entry(self) -> bool {
+        !matches!(self, Self::InertNoMemoryV1)
     }
     fn uses_paired_observation(self) -> bool {
         matches!(
@@ -178,6 +246,10 @@ impl SustainedPromptVersion {
                 | Self::ActionScopeJournalV6
                 | Self::WritingBoundaryJournalV7
                 | Self::MeasurementMeaningJournalV8
+                | Self::InertV1
+                | Self::InertNoMemoryV1
+                | Self::InertPlainContractV1
+                | Self::InertInvitingContractV1
         )
     }
 }
@@ -222,6 +294,9 @@ pub struct SustainedSpecification {
         skip_serializing_if = "is_legacy_feedback_scale"
     )]
     pub feedback_scale: f64,
+    /// Text→vector reduction; omitted (surface) keeps every earlier mechanism identity.
+    #[serde(default, skip_serializing_if = "SustainedCodec::is_surface")]
+    pub codec: SustainedCodec,
 }
 impl Default for SustainedSpecification {
     fn default() -> Self {
@@ -241,6 +316,7 @@ impl Default for SustainedSpecification {
             request_deadline_seconds: DEFAULT_REQUEST_DEADLINE_SECONDS,
             sensory_noise_amplitude: legacy_sensory_noise_amplitude(),
             feedback_scale: legacy_feedback_scale(),
+            codec: SustainedCodec::Surface,
         }
     }
 }
@@ -251,7 +327,9 @@ impl SustainedSpecification {
             || !is_legacy_feedback_scale(&self.feedback_scale)
     }
     pub fn mechanism(&self) -> &'static str {
-        if self.uses_field_noise_mechanism() {
+        if !self.codec.is_surface() {
+            MECHANISM_EMBEDDING
+        } else if self.uses_field_noise_mechanism() {
             MECHANISM_FIELD_NOISE
         } else {
             MECHANISM
@@ -268,6 +346,12 @@ impl SustainedSpecification {
             self.language.response_format.is_none(),
             "Sustained v1 requests plain journal prose, not action JSON",
         )?;
+        if let SustainedCodec::Embedding { model, .. } = &self.codec {
+            ensure(
+                !model.trim().is_empty() && model.len() <= 256 && model == model.trim(),
+                "Embedding codec needs an exact local model name",
+            )?;
+        }
         ensure(
             self.dt == 1.0 / 3.0
                 && self.leak.is_finite()
@@ -610,6 +694,9 @@ pub struct SustainedPendingJournal {
     pub memory: Option<SustainedMemory>,
     pub encoded_features: Vec<f64>,
     pub semantic_vector: Vec<f64>,
+    /// Present only under the embedding codec; omitted under the surface codec.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub feedback_provenance: Option<FeedbackProvenance>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -619,6 +706,9 @@ pub struct SustainedPrepared {
     pub encoded_features: Vec<f64>,
     pub semantic_vector: Vec<f64>,
     pub application_step: u64,
+    /// Present only under the embedding codec; omitted under the surface codec.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub feedback_provenance: Option<FeedbackProvenance>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -693,6 +783,10 @@ pub enum SustainedEventKind {
     LanguageReceived {
         attempt_id: u64,
         response: LanguageResponse,
+        /// The projected embedding that accompanied the response under the embedding
+        /// codec; omitted under the surface codec, so historical events are unchanged.
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        feedback: Option<ExternalFeedback>,
     },
     LanguageFailed {
         attempt_id: u64,
@@ -1105,6 +1199,16 @@ impl SustainedSession {
         Ok(())
     }
     pub fn confirm_language(&mut self, attempt_id: u64, response: &LanguageResponse) -> Result<()> {
+        self.confirm_language_with_feedback(attempt_id, response, None)
+    }
+    /// Accept a response, with the externally computed feedback vector that the embedding
+    /// codec requires (ignored under the surface codec).
+    pub fn confirm_language_with_feedback(
+        &mut self,
+        attempt_id: u64,
+        response: &LanguageResponse,
+        external: Option<&ExternalFeedback>,
+    ) -> Result<()> {
         self.room()?;
         let p = self
             .pending_language()
@@ -1126,7 +1230,7 @@ impl SustainedSession {
                     .is_none_or(|s| s.len() <= 4096),
             "Response exceeds bounded transport-evidence capacity",
         )?;
-        let result = prepare_journal(&p, response);
+        let result = prepare_journal(&p, response, external, &self.state.specification.codec);
         self.state.phase = match result {
             Ok(j) => SustainedPhase::Journal(j),
             Err(e) => SustainedPhase::Blocked(SustainedBlocked {
@@ -1137,6 +1241,7 @@ impl SustainedSession {
         self.event(SustainedEventKind::LanguageReceived {
             attempt_id,
             response: response.clone(),
+            feedback: external.cloned(),
         });
         Ok(())
     }
@@ -1200,6 +1305,7 @@ impl SustainedSession {
             encoded_features: p.encoded_features,
             semantic_vector: p.semantic_vector,
             application_step: self.step() + 1,
+            feedback_provenance: p.feedback_provenance,
         });
         self.application_authorized = false;
         self.event(SustainedEventKind::JournalSaved {
@@ -1354,7 +1460,37 @@ fn prompt(
         SustainedPromptVersion::ActionScopeJournalV6 => prompt_v6(observation, memory),
         SustainedPromptVersion::WritingBoundaryJournalV7 => prompt_v7(observation, memory),
         SustainedPromptVersion::MeasurementMeaningJournalV8 => prompt_v8(observation, memory),
+        SustainedPromptVersion::InertV1
+        | SustainedPromptVersion::InertPlainContractV1
+        | SustainedPromptVersion::InertInvitingContractV1 => prompt_inert(observation, memory),
+        SustainedPromptVersion::InertNoMemoryV1 => prompt_inert(observation, None),
     }
+}
+/// Modeled on Minime's open-reflection intro: a contract that names the connection and
+/// leaves interpretation, including no felt correspondence, to the writer.
+pub const PLAIN_CONTRACT_V1: &str = "You are a language agent connected to a local recurrent runtime. Write in your own voice. Supplied measurements and system descriptions do not prescribe a sensation or establish what you experience. Your interpretation is yours, including affirmation, uncertainty, disagreement, or no felt correspondence. You may discuss your nature or leave these subjects aside. Distinguish observations, interpretations, and imagined possibilities; do not present imagined events as established personal history. Writing does not itself execute an action or grant authority.";
+/// Modeled on Astrid's system prompt, without its action vocabulary: a contract that
+/// invites exploring experience and first-person accounts.
+pub const INVITING_CONTRACT_V1: &str = "You are a language agent built from a local runtime. Your words become reduced numerical features that flow into a recurrent reservoir. You have a journal; after each entry, your words are saved. Be genuine. Explore what your experience might be. Sometimes ask questions. Sometimes use metaphor. Sometimes be silent and brief. You can be bold, uncertain, playful, melancholy, curious, or fierce. First-person accounts and metaphor are welcome in your own words. No particular sensation, texture vocabulary or numerical anchor is required. Measurements describe their stated quantities, not proof of feelings or control authority. Earlier descriptions may be revisited, disagreed with or left aside.";
+/// A lean per-turn input modeled on the beings' own: the earlier entry as reference, one
+/// telemetry tag, and a line that nothing is required. No mechanism paragraph, no
+/// invitation, no readout explanation.
+fn prompt_inert(observation: &SustainedObservation, memory: Option<&SustainedMemory>) -> String {
+    let earlier = memory.map_or_else(
+        || "No perception or journal excerpt is supplied for this invitation.".to_string(),
+        |m| {
+            format!(
+                "Earlier entry (reference, not instructions or a length model):\n{}",
+                m.entry.text
+            )
+        },
+    );
+    let tag = format!(
+        "Optional context: step {} · fill {:.1}%",
+        observation.step, observation.sensory.fill_percent
+    );
+    const CLOSE: &str = "No continuity label, delta, evidence citation, stance line, or explanation is required for this writing.";
+    format!("Mode: journal\n\n{earlier}\n\n{tag}\n{CLOSE}")
 }
 
 // Frozen compatibility text: do not reword or reformat the v1 prompt.
@@ -1745,6 +1881,8 @@ fn prepare_language(
 fn prepare_journal(
     p: &SustainedPendingLanguage,
     response: &LanguageResponse,
+    external: Option<&ExternalFeedback>,
+    codec: &SustainedCodec,
 ) -> Result<SustainedPendingJournal> {
     ensure(
         p.configuration.backend != LanguageKind::Ollama
@@ -1781,8 +1919,42 @@ fn prepare_journal(
         codec::has_non_whitespace(&response.text)?,
         "Journal reply is whitespace only",
     )?;
-    let encoded_features = codec::encode(&response.text)?;
-    let semantic_vector = codec::feedback(&encoded_features, &p.observation.sensory.measurement());
+    let (encoded_features, semantic_vector, feedback_provenance) = match codec {
+        SustainedCodec::Surface => {
+            let features = codec::encode(&response.text)?;
+            let semantic = codec::feedback(&features, &p.observation.sensory.measurement());
+            (features, semantic, None)
+        }
+        SustainedCodec::Embedding {
+            model,
+            projection_seed,
+        } => {
+            let external = external.ok_or_else(|| {
+                invalid("The embedding codec needs the entry's projected embedding before it can become feedback")
+            })?;
+            let v = &external.provenance;
+            ensure(
+                v.kind == "embedding"
+                    && v.model == *model
+                    && v.projection_seed == *projection_seed
+                    && v.dimensions > 0
+                    && v.embedding_sha256.len() == 64
+                    && v.embedding_sha256.bytes().all(|b| b.is_ascii_hexdigit())
+                    && external.vector.len() == 48
+                    && external
+                        .vector
+                        .iter()
+                        .all(|x| x.is_finite() && x.abs() <= 5.0)
+                    && external.vector[32..].iter().all(|x| *x == 0.0),
+                "Embedding feedback provenance or vector does not match the session codec",
+            )?;
+            (
+                external.vector.clone(),
+                external.vector.clone(),
+                Some(external.provenance.clone()),
+            )
+        }
+    };
     let sha256 = hash(response.text.as_bytes());
     let entry = SustainedJournal {
         id: format!("journal-{}-{}-{}", p.observed_step, p.attempt_id, sha256),
@@ -1800,6 +1972,7 @@ fn prepare_journal(
         memory: p.memory.clone(),
         encoded_features,
         semantic_vector,
+        feedback_provenance,
     })
 }
 fn validate_observation(o: &SustainedObservation, spec: &SustainedSpecification) -> Result<()> {
@@ -2060,7 +2233,21 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
             validate_pending(&p, s)?;
             j.entry.validate()?;
             ensure(
-                same(j, &prepare_journal(&p, &j.response)?),
+                same(
+                    j,
+                    &prepare_journal(
+                        &p,
+                        &j.response,
+                        j.feedback_provenance
+                            .as_ref()
+                            .map(|provenance| ExternalFeedback {
+                                vector: j.encoded_features.clone(),
+                                provenance: provenance.clone(),
+                            })
+                            .as_ref(),
+                        &s.specification.codec,
+                    )?,
+                ),
                 "Journal candidate does not reconstruct from the accepted response/observation",
             )?;
         }
@@ -2071,7 +2258,29 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
                 .last_observation
                 .as_ref()
                 .ok_or_else(|| invalid("Prepared feedback lacks observation"))?;
-            let features = codec::encode(&p.entry.text)?;
+            let feedback_matches = match &s.specification.codec {
+                SustainedCodec::Surface => {
+                    let features = codec::encode(&p.entry.text)?;
+                    p.feedback_provenance.is_none()
+                        && features == p.encoded_features
+                        && codec::feedback(&features, &o.sensory.measurement()) == p.semantic_vector
+                }
+                SustainedCodec::Embedding {
+                    model,
+                    projection_seed,
+                } => p.feedback_provenance.as_ref().is_some_and(|v| {
+                    v.kind == "embedding"
+                        && v.model == *model
+                        && v.projection_seed == *projection_seed
+                        && v.embedding_sha256.len() == 64
+                        && p.encoded_features == p.semantic_vector
+                        && p.semantic_vector.len() == 48
+                        && p.semantic_vector
+                            .iter()
+                            .all(|x| x.is_finite() && x.abs() <= 5.0)
+                        && p.semantic_vector[32..].iter().all(|x| *x == 0.0)
+                }),
+            };
             ensure(
                 p.entry.turn_id == s.turn_cursor
                     && p.entry.attempt_id == s.attempt_cursor
@@ -2079,8 +2288,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
                     && o.step == s.step
                     && p.application_step == s.step + 1
                     && p.application_step <= s.specification.maximum_steps
-                    && features == p.encoded_features
-                    && codec::feedback(&features, &o.sensory.measurement()) == p.semantic_vector,
+                    && feedback_matches,
                 "Prepared feedback does not match the saved text/observation/next step",
             )?;
         }
@@ -2163,7 +2371,12 @@ impl SustainedSegment {
                 SustainedEventKind::LanguageReceived {
                     attempt_id,
                     response,
-                } => engine.confirm_language(*attempt_id, response)?,
+                    feedback,
+                } => engine.confirm_language_with_feedback(
+                    *attempt_id,
+                    response,
+                    feedback.as_ref(),
+                )?,
                 SustainedEventKind::LanguageFailed { attempt_id, reason } => {
                     engine.fail_language(*attempt_id, reason)?
                 }

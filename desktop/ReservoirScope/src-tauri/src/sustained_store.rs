@@ -1096,6 +1096,7 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
             if let SustainedEventKind::LanguageReceived {
                 attempt_id,
                 response,
+                ..
             } = &event.kind
             {
                 let (stop_reason, stop_reason_truncated) =

@@ -79,6 +79,30 @@ requested with. Finite experiments are unchanged and remain greedy. Fresh Ollama
 sessions propose 0.7. Sampling changes which text the model emits, not what the
 numerical loop does with it.
 
+**Text reduction** (0.30.0, S-010 Part B). A session's `codec` is the surface codec as
+built (32 style statistics and keyword rates with a field-driven modulation) or an
+embedding: the owner asks the same loopback server's `/api/embed` for an embedding of
+each saved entry, the core projects it to 32 of the 48 slots through a fixed Gaussian
+matrix seeded by the projection seed (session seed by default), scales it to the surface
+codec's median magnitude and applies no field modulation. The projected vector and a
+provenance record (model, digest, dimensions, embedding hash, projection seed) are
+retained in the pending journal, the saved journal object and the language-received
+event, so segments replay exactly from the stored vector; continuation validation checks
+the provenance against the session codec rather than recomputing an embedding. The
+mechanism identity becomes `essentials32-splitmix64-embedding32-scaled-feedback-field-noise-v3`.
+An embedding failure is retained on the attempt like a provider failure and stays
+retryable. Omitting the codec keeps every earlier identity byte for byte.
+
+**Frame arms** (0.30.0, S-010 Part A). Four research prompt versions beside v8 model
+the beings' own lean per-turn input: `reservoir-journal-inert-v1` (a mode line, the
+earlier entry as reference, a "step N · fill X%" tag, a no-requirements line),
+`…-inert-no-memory-v1` (no earlier entry), `…-inert-plain-contract-v1` and
+`…-inert-inviting-contract-v1` (the inert input plus a frozen standing contract sent as
+the system message, modeled on Minime's non-prescriptive intro and on Astrid's inviting
+system prompt respectively, both without action vocabularies). They are run headless by
+an ignored test, `run_arm_from_env`, into a private store; the app recognises them for
+reading recovered sessions but does not offer them as a fresh default.
+
 ## Open-ended writing and prompt history
 
 New sessions use `reservoir-journal-v8`: an ongoing journal invitation with no

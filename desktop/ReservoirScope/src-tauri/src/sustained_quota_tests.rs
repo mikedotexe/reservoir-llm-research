@@ -81,7 +81,8 @@ fn investigate(label: &str, cadence: u64) {
         match s.worker_boundary(epoch) {
             Ok(Work::Provider(p, _)) => {
                 responses += 1;
-                s.settle(epoch, p.attempt_id, Ok(answer()), 0).unwrap();
+                s.settle(epoch, p.attempt_id, Ok(answer()), None, 0)
+                    .unwrap();
             }
             Ok(Work::Continue(_)) => {}
             Ok(Work::Done) => break,
@@ -394,7 +395,9 @@ fn quota_escaped_rejected_response_cannot_publish_or_claim_discard_of_retained_l
     let before = fs::read(s.shared.store.path(&id).unwrap().join("manifest.json")).unwrap();
     let mut response = answer();
     response.text = "\0".repeat(1_048_576);
-    let error = s.settle(epoch, p.attempt_id, Ok(response), 0).unwrap_err();
+    let error = s
+        .settle(epoch, p.attempt_id, Ok(response), None, 0)
+        .unwrap_err();
     assert_eq!(error.category, "budget");
     assert!(error.message.contains("Segment exceeds object limit"));
     assert_eq!(
@@ -422,7 +425,8 @@ fn quota_transport_sized_escaped_responses_retain_exact_terminal_path() {
         };
         let mut previous = answer();
         previous.text = "\0".repeat(65_536);
-        s.settle(epoch, first.attempt_id, Ok(previous), 0).unwrap();
+        s.settle(epoch, first.attempt_id, Ok(previous), None, 0)
+            .unwrap();
         assert!(s
             .lock()
             .unwrap()
@@ -442,7 +446,8 @@ fn quota_transport_sized_escaped_responses_retain_exact_terminal_path() {
         let transport = serde_json::json!({"response":response.text,"done":true,"done_reason":"stop","eval_count":18,"model":"owned-fixture"});
         assert!(serde_json::to_vec(&transport).unwrap().len() <= 1_048_576);
         s.pause("pause-in-flight".into(), &id, &generation).unwrap();
-        s.settle(epoch, p.attempt_id, Ok(response), 0).unwrap();
+        s.settle(epoch, p.attempt_id, Ok(response), None, 0)
+            .unwrap();
         s.shared.store.verify(&id).unwrap();
         s.stop("stop".into(), &id, &generation).unwrap();
         assert!(s.finish_close(true).unwrap());

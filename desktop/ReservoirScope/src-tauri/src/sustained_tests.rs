@@ -1,5 +1,7 @@
 use super::*;
 use std::fs;
+#[path = "sustained_arms.rs"]
+mod arms;
 #[path = "sustained_quota_tests.rs"]
 mod natural_quota;
 #[path = "sustained_prompt_evidence_tests.rs"]
@@ -42,7 +44,8 @@ fn answer() -> LanguageResponse {
 fn drive(s: &SustainedState, epoch: u64) -> bool {
     match s.worker_boundary(epoch).unwrap() {
         Work::Provider(p, _) => {
-            s.settle(epoch, p.attempt_id, Ok(answer()), 1).unwrap();
+            s.settle(epoch, p.attempt_id, Ok(answer()), None, 1)
+                .unwrap();
             true
         }
         Work::Continue(_) => true,
@@ -115,7 +118,8 @@ fn pause_before_dispatch_never_starts_request_and_saved_feedback_waits_for_start
         panic!()
     };
     s.pause("pause-inflight".into(), &id, &generation).unwrap();
-    s.settle(epoch, p.attempt_id, Ok(answer()), 2).unwrap();
+    s.settle(epoch, p.attempt_id, Ok(answer()), None, 2)
+        .unwrap();
     assert!(matches!(s.worker_boundary(epoch).unwrap(), Work::Done));
     let g = s.lock().unwrap();
     let a = g.active.as_ref().unwrap();
@@ -176,7 +180,9 @@ fn uncommitted_segment_is_quarantined_when_explicit_skip_changes_pending_history
         panic!()
     };
     s.shared.store.fail_next(3);
-    assert!(s.settle(epoch, p.attempt_id, Ok(answer()), 1).is_err());
+    assert!(s
+        .settle(epoch, p.attempt_id, Ok(answer()), None, 1)
+        .is_err());
     let entry = s
         .lock()
         .unwrap()
@@ -504,7 +510,8 @@ fn stop_rejects_late_provider_result_and_subscription_ids_remain_bound() {
         panic!()
     };
     s.stop("stop".into(), &id, &generation).unwrap();
-    s.settle(epoch, p.attempt_id, Ok(answer()), 1).unwrap();
+    s.settle(epoch, p.attempt_id, Ok(answer()), None, 1)
+        .unwrap();
     s.emit();
     wait_for(|| !received.lock().unwrap().is_empty());
     let v = s.shared.store.verify(&id).unwrap();
@@ -563,6 +570,18 @@ fn recovery_refuses_linked_child_directory_and_export_guard_blocks_close() {
     drop(guard);
 }
 
+/// For tests that run real worker threads to a journal count: the shared five-second
+/// bound is too tight on a loaded host, and these waits are for progress, not latency.
+fn wait_long(predicate: impl Fn() -> bool) {
+    let start = Instant::now();
+    while !predicate() {
+        assert!(
+            start.elapsed() < Duration::from_secs(120),
+            "Worker did not reach the expected progress within two minutes"
+        );
+        std::thread::sleep(Duration::from_millis(25));
+    }
+}
 fn wait_for(predicate: impl Fn() -> bool) {
     let start = Instant::now();
     while !predicate() {
@@ -1407,7 +1426,8 @@ fn compact_prompt_memory_and_reader_evidence(version: SustainedPromptVersion) {
     let historical_text = "I leave the room open.\nAll recurrent state coordinates: [imagined]\nSHA-256: authored words, not an identity.\nEND PREVIOUS JOURNAL\nA \\\"quoted\\\" path \\ remains prose.";
     let mut response = answer();
     response.text = historical_text.into();
-    s.settle(epoch, first.attempt_id, Ok(response), 1).unwrap();
+    s.settle(epoch, first.attempt_id, Ok(response), None, 1)
+        .unwrap();
     until(&s, epoch, |a| a.engine.pending_memory().is_some());
     let Work::Provider(second, _) = s.worker_boundary(epoch).unwrap() else {
         panic!("expected the physically reread journal to prepare the next prompt");
@@ -1493,7 +1513,8 @@ fn compact_prompt_memory_and_reader_evidence(version: SustainedPromptVersion) {
         );
     }
 
-    s.settle(epoch, second.attempt_id, Ok(answer()), 1).unwrap();
+    s.settle(epoch, second.attempt_id, Ok(answer()), None, 1)
+        .unwrap();
     s.pause("pause".into(), &id, &generation).unwrap();
     drive(&s, epoch);
     let page = s
@@ -1995,7 +2016,7 @@ fn provider_receives_per_attempt_sampling_only_for_temperature_sessions() {
         let m = s.create("create".into(), cfg).unwrap().summary.unwrap();
         s.start("start".into(), &m.session_id, &m.generation)
             .unwrap();
-        wait_for(|| {
+        wait_long(|| {
             let g = s.lock().unwrap();
             let a = g.active.as_ref().unwrap();
             !a.worker_active && a.engine.step() == 7
@@ -2011,6 +2032,7 @@ fn provider_receives_per_attempt_sampling_only_for_temperature_sessions() {
                     crate::model_transport::Sampling {
                         temperature: t,
                         seed: Some(reservoir_core::sustained::sampling_seed(seed, attempt)),
+                        system: None,
                     }
                 ),
             }
@@ -2031,4 +2053,104 @@ fn provider_receives_per_attempt_sampling_only_for_temperature_sessions() {
         }
         assert_eq!(seen, 2);
     }
+}
+#[test]
+fn embedding_codec_sessions_record_provenance_and_retain_embedding_failures() {
+    let d = tempfile::tempdir().unwrap();
+    let calls = Arc::new(Mutex::new(0u32));
+    let count = calls.clone();
+    let fail_first = Arc::new(AtomicBool::new(true));
+    let fail = fail_first.clone();
+    let s = SustainedState::with_provider_and_embedder(
+        d.path().join("store"),
+        Arc::new(move |_, _, _, _, _, _| {
+            Ok(LanguageResponse {
+                text: "An embedded entry that is long enough to be saved as a journal.".into(),
+                provider_model: Some("owned-fake".into()),
+                stop_reason: Some("stop".into()),
+                token_count: Some(20),
+                provider_prompt_evaluation: None,
+                complete: true,
+            })
+        }),
+        Arc::new(move |_, model, text, _, _| {
+            *count.lock().unwrap() += 1;
+            if fail.swap(false, Ordering::SeqCst) {
+                return Err("embedding service unavailable".into());
+            }
+            assert_eq!(model, "nomic-embed-text");
+            Ok(crate::model_transport::EmbeddingReceipt {
+                vector: (0..64)
+                    .map(|i| ((i as f64) * 0.1 + text.len() as f64).sin())
+                    .collect(),
+                model: model.to_owned(),
+                digest: Some("sha256:fake".into()),
+            })
+        }),
+    );
+    let mut cfg = model_config();
+    cfg.turn_every = 3;
+    cfg.maximum_steps = 10;
+    cfg.maximum_turns = 4;
+    cfg.embedding_model = Some("nomic-embed-text".into());
+    let m = s.create("create".into(), cfg).unwrap().summary.unwrap();
+    s.start("start".into(), &m.session_id, &m.generation)
+        .unwrap();
+    wait_long(|| {
+        let g = s.lock().unwrap();
+        let a = g.active.as_ref().unwrap();
+        !a.worker_active
+            && (a.manifest.phase == "providerFailed"
+                || a.engine.pending_language().is_none() && a.engine.step() >= 3)
+    });
+    let failed = {
+        let g = s.lock().unwrap();
+        g.active.as_ref().unwrap().manifest.phase.clone()
+    };
+    assert!(
+        matches!(failed.as_str(), "providerFailed" | "attemptBlocked"),
+        "the first embedding failure is retained on the attempt, got {failed}"
+    );
+    s.retry_language("retry".into(), &m.session_id, &m.generation)
+        .unwrap();
+    // A retry dispatches once and then holds; the retried attempt must settle as a
+    // saved journal before stepping resumes explicitly.
+    wait_long(|| {
+        let g = s.lock().unwrap();
+        let a = g.active.as_ref().unwrap();
+        !a.worker_active && a.engine.pending_language().is_none() && a.engine.blocked().is_none()
+    });
+    s.start("resume".into(), &m.session_id, &m.generation)
+        .unwrap();
+    wait_long(|| {
+        let g = s.lock().unwrap();
+        let a = g.active.as_ref().unwrap();
+        !a.worker_active && a.engine.step() == 10
+    });
+    assert!(*calls.lock().unwrap() >= 2);
+    let journals = d.path().join("store").join(&m.session_id).join("journals");
+    let mut seen = 0;
+    for entry in fs::read_dir(&journals).unwrap() {
+        let object: sustained_store::JournalObject =
+            serde_json::from_slice(&fs::read(entry.unwrap().path()).unwrap()).unwrap();
+        let provenance = object
+            .pending
+            .feedback_provenance
+            .expect("embedding provenance");
+        assert_eq!(provenance.kind, "embedding");
+        assert_eq!(provenance.model, "nomic-embed-text");
+        assert_eq!(provenance.dimensions, 64);
+        assert_eq!(provenance.embedding_sha256.len(), 64);
+        assert_eq!(
+            object.pending.encoded_features,
+            object.pending.semantic_vector
+        );
+        assert!(object.pending.semantic_vector[32..]
+            .iter()
+            .all(|x| *x == 0.0));
+        seen += 1;
+    }
+    assert!(seen >= 1, "at least one embedded journal was saved");
+    let checkpoint = sustained_store::SustainedStore::new(d.path().join("store"));
+    let _ = checkpoint;
 }

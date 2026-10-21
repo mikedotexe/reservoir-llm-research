@@ -15,7 +15,12 @@ inputs and scales the held vector on entry; it reads a separate stream seeded by
 step, so the 32-draw accounting and all v1 checkpoints are unchanged, and the frame
 records the exact field noise for replay. `LanguageConfiguration.temperature`
 (optional, 0–2) and `sampling_seed(session_seed, attempt_id)` describe sampling for the
-owner's transport; omitted temperature is greedy decoding. All authoritative numbers are f64. Step/turn/attempt/event
+owner's transport; omitted temperature is greedy decoding. `SustainedCodec::Embedding`
+(mechanism v3) replaces `codec::encode`/`feedback` with an externally supplied projected
+embedding carrying `FeedbackProvenance`, validated against the session codec and replayed
+from the stored vector; `codec::project_embedding` is the fixed projection. Inert prompt
+versions carry optional frozen system contracts via `system_contract`. All authoritative
+numbers are f64. Step/turn/attempt/event
 and RNG identities are u64; IPC owners must expose them as decimal strings where
 JavaScript integer precision would be inadequate. Each step is one third of a
 simulated second; backend wall-clock pace, elapsed duration and OS sleep remain

@@ -73,6 +73,12 @@ pub struct SustainedConfig {
         skip_serializing_if = "is_legacy_feedback_scale"
     )]
     pub feedback_scale: f64,
+    /// Embedding codec (S-010 Part B): the local embedding model; omitted keeps the
+    /// surface codec. The projection seed defaults to the session seed.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub embedding_model: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub embedding_projection_seed: Option<String>,
 }
 impl Default for SustainedConfig {
     fn default() -> Self {
@@ -94,6 +100,8 @@ impl Default for SustainedConfig {
             request_deadline_seconds: DEFAULT_REQUEST_DEADLINE_SECONDS,
             sensory_noise_amplitude: DEFAULT_SENSORY_NOISE_AMPLITUDE,
             feedback_scale: DEFAULT_FEEDBACK_SCALE,
+            embedding_model: None,
+            embedding_projection_seed: None,
         }
     }
 }
@@ -137,8 +145,49 @@ impl SustainedConfig {
             request_deadline_seconds: self.request_deadline_seconds,
             sensory_noise_amplitude: self.sensory_noise_amplitude,
             feedback_scale: self.feedback_scale,
+            codec: match &self.embedding_model {
+                None => reservoir_core::sustained::SustainedCodec::Surface,
+                Some(model) => {
+                    let projection_seed = match &self.embedding_projection_seed {
+                        None => seed,
+                        Some(text) => {
+                            let value = text.parse::<u64>().map_err(|_| {
+                                err("seed", "Use an unsigned decimal projection seed")
+                            })?;
+                            if *text != value.to_string() {
+                                return Err(err(
+                                    "seed",
+                                    "Projection seed must be canonical unsigned decimal",
+                                ));
+                            }
+                            value
+                        }
+                    };
+                    reservoir_core::sustained::SustainedCodec::Embedding {
+                        model: model.clone(),
+                        projection_seed,
+                    }
+                }
+            },
         })
     }
+}
+/// Embeds one entry for the embedding codec: the real transport in the app, a fake in tests.
+type Embedder = Arc<
+    dyn Fn(
+            &LanguageConfiguration,
+            &str,
+            &str,
+            &AtomicBool,
+            u64,
+        ) -> Result<crate::model_transport::EmbeddingReceipt, String>
+        + Send
+        + Sync,
+>;
+fn transport_embedder() -> Embedder {
+    Arc::new(|c, model, text, cancel, deadline| {
+        crate::model_transport::embed(c, model, text, cancel, deadline).map_err(|e| e.to_string())
+    })
 }
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -256,6 +305,7 @@ struct Shared {
     inner: Mutex<Inner>,
     store: SustainedStore,
     provider: Provider,
+    embedder: Embedder,
     closing: AtomicBool,
     close_requested: AtomicBool,
     busy: AtomicBool,
@@ -282,6 +332,9 @@ impl SustainedState {
         )
     }
     fn with_provider(root: PathBuf, provider: Provider) -> Self {
+        Self::with_provider_and_embedder(root, provider, transport_embedder())
+    }
+    fn with_provider_and_embedder(root: PathBuf, provider: Provider, embedder: Embedder) -> Self {
         // A single coalescing publisher serves this state, including across
         // successive runs. Slow state reads or WebView callbacks cannot block
         // the clock/watchdog or allocate an unbounded queue of old snapshots.
@@ -295,6 +348,7 @@ impl SustainedState {
                 }),
                 store: SustainedStore::new(root),
                 provider,
+                embedder,
                 closing: AtomicBool::new(false),
                 close_requested: AtomicBool::new(false),
                 busy: AtomicBool::new(false),
@@ -844,6 +898,7 @@ impl SustainedState {
             match outcome {
                 Ok(Work::Provider(p, sampling)) => {
                     let transport_start = Instant::now();
+                    let codec = self.codec_for(epoch);
                     let response = if p.configuration.backend == LanguageKind::Scripted {
                         Ok(LanguageResponse {
                             text: SCRIPTED_REPLIES
@@ -865,10 +920,55 @@ impl SustainedState {
                             sampling,
                         )
                     };
+                    // Under the embedding codec the entry's projected embedding must
+                    // accompany the response; an embedding failure is retained as a
+                    // provider failure of the same attempt and stays retryable.
+                    let (response, external) = match (response, codec) {
+                        (Ok(r), Some((model, projection_seed))) => {
+                            match (self.shared.embedder)(
+                                &p.configuration,
+                                &model,
+                                &r.text,
+                                &self.shared.cancel,
+                                p.request_deadline_seconds,
+                            )
+                            .and_then(|receipt| {
+                                reservoir_core::codec::project_embedding(
+                                    &receipt.vector,
+                                    projection_seed,
+                                )
+                                .map(|vector| (receipt, vector))
+                                .map_err(|e| e.to_string())
+                            }) {
+                                Ok((receipt, vector)) => {
+                                    let raw =
+                                        serde_json::to_vec(&receipt.vector).unwrap_or_default();
+                                    let external = reservoir_core::sustained::ExternalFeedback {
+                                        vector,
+                                        provenance: reservoir_core::sustained::FeedbackProvenance {
+                                            kind: "embedding".into(),
+                                            model: receipt.model.clone(),
+                                            digest: receipt.digest.clone(),
+                                            dimensions: receipt.vector.len(),
+                                            embedding_sha256: format!(
+                                                "{:x}",
+                                                <sha2::Sha256 as sha2::Digest>::digest(&raw)
+                                            ),
+                                            projection_seed,
+                                        },
+                                    };
+                                    (Ok(r), Some(external))
+                                }
+                                Err(e) => (Err(format!("embedding: {e}")), None),
+                            }
+                        }
+                        (response, _) => (response, None),
+                    };
                     if let Err(e) = self.settle(
                         epoch,
                         p.attempt_id,
                         response,
+                        external,
                         transport_start.elapsed().as_millis() as u64,
                     ) {
                         self.worker_failure(epoch, &e.message);
@@ -1017,6 +1117,7 @@ impl SustainedState {
                         p.attempt_id,
                     )
                 }),
+                system: a.engine.specification().prompt_version.system_contract(),
             };
             return Ok(Work::Provider(Box::new(p), sampling));
         }
@@ -1066,11 +1167,27 @@ impl SustainedState {
         }
         Ok(Work::Continue(a.manifest.config.pace_ms))
     }
+    /// The embedding codec's model and projection seed for the active session, if any.
+    fn codec_for(&self, epoch: u64) -> Option<(String, u64)> {
+        let g = self.lock().ok()?;
+        let a = g.active.as_ref()?;
+        if a.epoch != epoch {
+            return None;
+        }
+        match &a.engine.specification().codec {
+            reservoir_core::sustained::SustainedCodec::Embedding {
+                model,
+                projection_seed,
+            } => Some((model.clone(), *projection_seed)),
+            _ => None,
+        }
+    }
     fn settle(
         &self,
         epoch: u64,
         attempt: u64,
         response: Result<LanguageResponse, String>,
+        external: Option<reservoir_core::sustained::ExternalFeedback>,
         duration_ms: u64,
     ) -> Result<(), AppError> {
         let mut g = self.lock()?;
@@ -1094,7 +1211,10 @@ impl SustainedState {
             a.manifest.phase = "interrupted".into();
         } else {
             match response {
-                Ok(r) => a.engine.confirm_language(attempt, &r).map_err(ce)?,
+                Ok(r) => a
+                    .engine
+                    .confirm_language_with_feedback(attempt, &r, external.as_ref())
+                    .map_err(ce)?,
                 Err(message) => a
                     .engine
                     .fail_language(attempt, &message.chars().take(4096).collect::<String>())
@@ -1314,7 +1434,7 @@ impl SustainedState {
             session_id: id.into(),
             generation: generation.into(),
             revision: a.manifest.revision.clone(),
-            journal: serde_json::json!({"entryId":p.entry.id,"turnId":p.entry.turn_id,"attemptId":p.entry.attempt_id,"observedStep":p.entry.observed_step,"firstAppliedStep":index.first_applied_step,"text":p.entry.text,"sha256":p.entry.sha256,"prompt":p.prompt,"promptVersion":a.manifest.config.prompt_version,"rawReply":p.response.text,"observation":p.observation,"measurementReference":measurement_reference,"memory":memory,"encodedFeatures":p.encoded_features,"semanticVector":p.semantic_vector,"saveReceipt":{"entryId":entry_id,"sha256":index.sha256,"relativePath":format!("journals/{entry_id}.json")},"providerModel":p.response.provider_model,"stopReason":p.response.stop_reason,"tokenCount":p.response.token_count,"providerComplete":p.response.complete,"configuredModel":j.configured_model,"temperature":j.temperature,"samplingSeed":j.sampling_seed,"objectSha256":object_hash,"requestStarted":j.request_started,"timing":j.timing,"status":index.status,"application":application}),
+            journal: serde_json::json!({"entryId":p.entry.id,"turnId":p.entry.turn_id,"attemptId":p.entry.attempt_id,"observedStep":p.entry.observed_step,"firstAppliedStep":index.first_applied_step,"text":p.entry.text,"sha256":p.entry.sha256,"prompt":p.prompt,"promptVersion":a.manifest.config.prompt_version,"rawReply":p.response.text,"observation":p.observation,"measurementReference":measurement_reference,"memory":memory,"encodedFeatures":p.encoded_features,"semanticVector":p.semantic_vector,"saveReceipt":{"entryId":entry_id,"sha256":index.sha256,"relativePath":format!("journals/{entry_id}.json")},"providerModel":p.response.provider_model,"stopReason":p.response.stop_reason,"tokenCount":p.response.token_count,"providerComplete":p.response.complete,"configuredModel":j.configured_model,"temperature":j.temperature,"samplingSeed":j.sampling_seed,"feedbackProvenance":p.feedback_provenance,"objectSha256":object_hash,"requestStarted":j.request_started,"timing":j.timing,"status":index.status,"application":application}),
         };
         if let Some(value) = provider_prompt_evaluation {
             detail.journal["providerPromptEvaluation"] = serde_json::to_value(value).map_err(ce)?;

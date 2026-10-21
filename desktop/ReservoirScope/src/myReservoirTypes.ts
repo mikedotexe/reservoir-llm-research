@@ -1,7 +1,10 @@
 import type { LanguageConfiguration, SessionFrame } from './freshTypes';
 
-export type SustainedPromptVersion = 'reservoir-journal-v1' | 'reservoir-journal-v2' | 'reservoir-journal-v3' | 'reservoir-journal-v4' | 'reservoir-journal-v5' | 'reservoir-journal-v6' | 'reservoir-journal-v7' | 'reservoir-journal-v8';
-export const isSustainedPromptVersion = (value: unknown): value is SustainedPromptVersion => value === 'reservoir-journal-v1' || value === 'reservoir-journal-v2' || value === 'reservoir-journal-v3' || value === 'reservoir-journal-v4' || value === 'reservoir-journal-v5' || value === 'reservoir-journal-v6' || value === 'reservoir-journal-v7' || value === 'reservoir-journal-v8';
+export type SustainedPromptVersion = 'reservoir-journal-v1' | 'reservoir-journal-v2' | 'reservoir-journal-v3' | 'reservoir-journal-v4' | 'reservoir-journal-v5' | 'reservoir-journal-v6' | 'reservoir-journal-v7' | 'reservoir-journal-v8'
+  | 'reservoir-journal-inert-v1' | 'reservoir-journal-inert-no-memory-v1' | 'reservoir-journal-inert-plain-contract-v1' | 'reservoir-journal-inert-inviting-contract-v1';
+/** S-010 frame arms: lean per-turn input modeled on the beings' own, with or without the earlier entry or a standing contract. Research sessions; not offered as a fresh default. */
+export const FRAME_ARM_PROMPT_VERSIONS: SustainedPromptVersion[] = ['reservoir-journal-inert-v1', 'reservoir-journal-inert-no-memory-v1', 'reservoir-journal-inert-plain-contract-v1', 'reservoir-journal-inert-inviting-contract-v1'];
+export const isSustainedPromptVersion = (value: unknown): value is SustainedPromptVersion => value === 'reservoir-journal-v1' || value === 'reservoir-journal-v2' || value === 'reservoir-journal-v3' || value === 'reservoir-journal-v4' || value === 'reservoir-journal-v5' || value === 'reservoir-journal-v6' || value === 'reservoir-journal-v7' || value === 'reservoir-journal-v8' || (FRAME_ARM_PROMPT_VERSIONS as unknown[]).includes(value);
 export const effectivePromptVersion = (config: SustainedConfig): SustainedPromptVersion => config.promptVersion === undefined ? 'reservoir-journal-v1' : config.promptVersion;
 export const effectiveOutputTokens = (config: SustainedConfig): number => config.outputTokens === undefined ? 256 : config.outputTokens;
 export const effectiveRequestDeadline = (config: SustainedConfig): number => config.requestDeadlineSeconds === undefined ? 60 : config.requestDeadlineSeconds;
@@ -13,7 +16,11 @@ export const effectiveSensoryNoise = (config: SustainedConfig): number => config
 export const effectiveFeedbackScale = (config: SustainedConfig): number => config.feedbackScale === undefined ? 1 : config.feedbackScale;
 export function validFieldControls(config: SustainedConfig): boolean {
   const noise = effectiveSensoryNoise(config), scale = effectiveFeedbackScale(config);
-  return Number.isFinite(noise) && noise >= 0 && noise <= 1 && Number.isFinite(scale) && scale >= 0 && scale <= 2;
+  const model = config.embeddingModel;
+  const seed = config.embeddingProjectionSeed;
+  return Number.isFinite(noise) && noise >= 0 && noise <= 1 && Number.isFinite(scale) && scale >= 0 && scale <= 2
+    && (model == null || model.trim().length > 0 && model === model.trim() && model.length <= 256)
+    && (seed == null || seed === '' || /^(0|[1-9][0-9]*)$/.test(seed));
 }
 export function validWritingLimits(config: SustainedConfig): boolean {
   const output = effectiveOutputTokens(config), deadline = effectiveRequestDeadline(config);
@@ -34,7 +41,11 @@ export interface SustainedConfig {
   regulationEnabled: boolean; language: LanguageConfiguration;
   /** Omitted historical configuration keeps mechanism v1; fresh defaults select field noise 0.5 and feedback ×0.4. */
   sensoryNoiseAmplitude?: number; feedbackScale?: number;
+  /** Text reduction (S-010 Part B): an embedding model name selects the embedding codec; omitted keeps the surface codec. */
+  embeddingModel?: string | null; embeddingProjectionSeed?: string | null;
 }
+export const DEFAULT_EMBEDDING_MODEL = 'nomic-embed-text';
+export const effectiveCodec = (config: SustainedConfig): 'surface' | 'embedding' => config.embeddingModel ? 'embedding' : 'surface';
 export const DEFAULT_SUSTAINED_CONFIG: SustainedConfig = {
   promptVersion: 'reservoir-journal-v8', seed: '20260909', turnEvery: 30, maximumSteps: 10800, maximumTurns: 360, maximumDurationSeconds: 21600,
   storageBudgetBytes: 268435456, paceMs: 1000, leak: .65, noiseAmplitude: .02, initialRetention: .955,
@@ -73,6 +84,8 @@ export interface SustainedJournal extends Omit<SustainedJournalRow, 'textPreview
   providerPromptEvaluation?: ProviderPromptEvaluation | null;
   /** Sampling evidence; both absent for historical greedy journals. */
   temperature?: number | null; samplingSeed?: string | null;
+  /** Present only under the embedding codec. */
+  feedbackProvenance?: { kind: string; model: string; digest?: string | null; dimensions: number; embeddingSha256: string; projectionSeed: number } | null;
   text: string; prompt: string; promptVersion: SustainedPromptVersion; rawReply: string; observation: unknown; measurementReference?: JournalMeasurementReference | null;
   memory: { entryId: string; text: string; sha256: string } | null;
   encodedFeatures: number[]; semanticVector: number[]; saveReceipt: { entryId: string; sha256: string; relativePath: string };

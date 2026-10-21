@@ -10,7 +10,10 @@ My reservoir uses a separate [sustained writing budget](SUSTAINED-SESSIONS.md#bo
 new 0.14.0 sessions default to 1,024 output tokens and 180 seconds, while historical
 sessions retain 256/60. This does not change finite records or their verification.
 Since 0.29.0 a sustained session may also set a writing temperature; finite requests
-stay at temperature zero as described below.
+stay at temperature zero as described below. Since 0.30.0 a sustained session may select
+the embedding text reduction, which makes one bounded `POST /api/embed` request per saved
+entry to the same loopback service for the named embedding model; the same endpoint,
+size and deadline rules apply, and finite experiments are unchanged.
 
 ## Configuration and readiness
 
