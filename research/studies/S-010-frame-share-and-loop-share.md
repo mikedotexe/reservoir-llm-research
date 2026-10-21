@@ -170,6 +170,18 @@ moves more than register: the plain contract's "language agent" became an invent
 diary of user conversations at this seed. The probe now reports assistant-mode and
 diary-template shares, both 0 in the beings' samples.
 
+2026-10-21 16:15, the 0.31.0 contract arms at the first seed
+([account](../../analyses/2026-10-21-frame-arms.md#contract-arms-one-change-from-a-parent-0310-seed-20260909-n--12-entries-each)):
+removing the plain contract's naming sentence removes the invented social world (no
+users, no team) and keeps a first-person reflective register, with the writer placing
+itself unprompted as "a construct of code… also a consciousness" and reading the fill
+number openly; it repeats more (overlap 0.44) and asks almost no questions. Adding
+Astrid's opening-pattern and length lines to the inviting contract removes verbatim
+repetition entirely (overlap 0.00), lifts questions to her rate (12.6% vs 13.6% of
+sentences) and shows compliance on its face ("Mid-thought,"), with entries shrinking to
+45 words. Register from the grant of interpretation, subject from the naming words,
+style from the stylistic rule. Seed-7 repeats and the gemma4 set follow.
+
 ## What changed / next
 
 Interpretation revised: the frame paragraph is not where the register comes from; the

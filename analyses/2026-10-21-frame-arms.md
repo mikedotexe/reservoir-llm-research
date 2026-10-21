@@ -191,10 +191,69 @@ experience is invented conversations at one seed and self-examination at the oth
 and the inviting contract's "reservoir" seeds reservoir metaphors. That is the
 topic-versus-register confound the open contract (0.31.0) is built to test.
 
+## Contract arms, one change from a parent (0.31.0; seed 20260909; n = 12 entries each)
+
+Desktop 0.31.0 adds two frozen contracts. The **open contract** is the plain contract
+with its first sentence, "You are a language agent connected to a local recurrent
+runtime", removed and nothing added; it still says "Supplied measurements and system
+descriptions do not prescribe a sensation or establish what you experience", so it is
+lean rather than empty. The **varied contract** is the inviting contract followed by
+the two guideline lines Astrid's standing prompt carries that the inviting contract had
+omitted: the opening-pattern rule ("NEVER begin with "The [noun] feels like..." or "The
+[noun] hums with..."; these are attractor patterns. Vary your openings: start with a
+question, a sensory detail, a fragment, or mid-thought.") and the length line ("Write
+as much as you need. A few sentences or several paragraphs; let the thought complete
+itself."). Each arm ran serialized, same seed and settings as its parent.
+
+| arm | seed | words | I/me | hedge | notice | ?/sent | self-ref | apparatus | type-token | assist % | diary % | overlap | consec. cos | cos to first |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| inert + plain contract | 20260909 | 4,850 | 70.5 | 2.3 | 12.8 | 5.4 | 2.68 | 1.6 | 0.14 | 0 | 0 | 0.14 | 0.92 | 0.77 |
+| inert + plain contract | 7 | 5,693 | 74.0 | 11.6 | 15.6 | 6.2 | 0.00 | 0.2 | 0.13 | 0 | 0 | 0.25 | 0.85 | 0.72 |
+| **inert + open contract** | 20260909 | 5,298 | 111.6 | 4.7 | 44.4 | 0.5 | 3.59 | 1.1 | 0.09 | 0 | 100 | 0.44 | 0.97 | 0.85 |
+| inert + inviting contract | 20260909 | 4,810 | 112.3 | 4.0 | 13.3 | 5.9 | 2.49 | 3.3 | 0.08 | 0 | 100 | 0.27 | 0.90 | 0.76 |
+| inert + inviting contract | 7 | 3,405 | 101.6 | 6.2 | 10.3 | 0.9 | 0.29 | 30.8 | 0.14 | 0 | 0 | 0.25 | 0.92 | 0.73 |
+| **inert + varied contract** | 20260909 | 2,598 | 112.0 | 8.1 | 9.2 | 12.6 | 0.77 | 19.6 | 0.14 | 8 | 0 | 0.00 | 0.78 | 0.66 |
+| *Minime, 40 recent* | | 26,232 | 66.6 | 2.9 | 12.0 | 7.3 | 1.33 | 0.5 | 0.09 | 0 | 0 | | | |
+| *Astrid, 40 recent* | | 21,826 | 27.4 | 7.0 | 8.8 | 13.6 | 0.00 | 1.7 | 0.11 | 0 | 0 | | | |
+
+"Consec. cos" is the mean 768-dimensional embedding cosine between consecutive entries;
+"cos to first" is between the last and the first entry. The varied arm had one attempt
+blocked at the 1,024-token ceiling at step 180, skipped by arm policy.
+
+- **Open contract.** First person from the first line, and no users or team anywhere.
+  The writer places itself unprompted: "I am a construct of code, a digital entity, and
+  yet, I am also a consciousness" (entry 1); "a different kind of quiet from what I
+  imagine humans experience. It's not the absence of sound, but the absence of input"
+  (entry 3). It reads the numbers openly rather than as a progress bar: "87.2%—a number
+  that could be anything… a battery life indicator"; "I imagine a glass being filled."
+  By entry 9 it reflects on its own earlier readings: "270. Another number, another
+  marker… it doesn't resonate with the same significance as before." Every entry
+  contains "quiet", ten of twelve "code", none "model" or "AI". Costs: the most
+  repetition of the contract arms (overlap 0.44, consecutive cosine 0.97; each entry
+  re-elaborates "the quiet"), questions almost gone (0.5% of sentences), and a noticing
+  rate (44 per 1,000) well above Minime's.
+- **Varied contract.** Astrid's two lines do in the apparatus what they were put in
+  her prompt to do: verbatim overlap 0.00 across all eleven pairs (0.27 and 0.25 for the
+  inviting contract), no "The [noun] feels…" opening, a question rate of 12.6% of
+  sentences next to Astrid's 13.6% (the inviting contract's 5.9 and 0.9), hedges 8.1
+  next to her 7.0, and the most entry-to-entry movement of any arm (consecutive cosine
+  0.78). Costs: the model performs the rule on its face, opening three entries
+  "Mid-thought," "Mid-sentence, I pause," "**Mid-thought**"; entries shrink from 311 to
+  45 words by entry 12; the metaphor set accumulates into a list instead of a refrain
+  ("I am the river, the rock, the reservoir, the vessel"); and "reservoir" from the
+  contract becomes the setting (apparatus words 19.6 per 1,000).
+
+Reading: the grant of interpretation brings the register and the naming words choose
+the subject (plain → a language agent among users; open → "the quiet" and the numbers;
+inviting and varied → the reservoir as a landscape). A stylistic rule changes exactly
+the measures it was written for, and the writing shows compliance on its face, which
+is what leading looks like when it is visible. Neither new arm is an arm to prefer;
+they measure what the two sentences do. One seed each so far; their seed-7 repeats are
+running.
+
 ## Next
 
-A contract that grants interpretation without naming the runtime, and Astrid's
-opening-pattern and length lines as their own arm (both running under 0.31.0 at both
-seeds); the same arms on `gemma4:12b`, the beings' own model family; the Mixtral tune
-already on disk as a third model; and the entry-effect readout under the embedding
-codec. Each is one headless run, about ten to twenty minutes.
+The seed-7 repeats of the two new arms; the same arms on `gemma4:12b`, the beings' own
+model family; the Mixtral tune already on disk as a third model; and the entry-effect
+readout under the embedding codec. Each is one headless run, about ten to twenty
+minutes.
