@@ -53,6 +53,21 @@ recorded next numerical step and continues as input until replaced. It does not
 train model weights or recurrent weights. Forcing, seeded noise and regulation also
 contribute to change; pre/post observations do not isolate the effect of words.
 
+Two numerical settings were added after the first laptop session (0.28.0). **Sensory
+input noise amplitude** adds uniform noise to all 66 field inputs at every step; it is
+separate from the seeded reservoir noise, never enters the recurrence, and is drawn
+from a step-indexed SplitMix64 stream so checkpoints carry no extra RNG state. **Text
+feedback scale** multiplies the held 48-coordinate vector as it enters both the
+reservoir and the field; the stored held vector stays unscaled. Noise 0 with scale 1
+is byte-for-byte the earlier mechanism `essentials32-splitmix64-codec48-held-feedback-v1`;
+any other values identify the checkpoint as
+`essentials32-splitmix64-codec48-scaled-feedback-field-noise-v2`. Historical
+sessions omit the fields and replay unchanged. The fresh defaults are noise 0.5 and scale 0.4:
+offline replay of the first recorded session showed that forcing plus one held text
+vector spans about twelve of the field's 32 modes, so the controller stayed on its
+0.995 rail near 14% fill, while these values settled fill near 70%, inside the 64–72%
+band ([account](../../analyses/2026-10-21-laptop-first-sustained-session.md)).
+
 ## Open-ended writing and prompt history
 
 New sessions use `reservoir-journal-v8`: an ongoing journal invitation with no

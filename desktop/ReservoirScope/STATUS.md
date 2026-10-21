@@ -1,6 +1,13 @@
 # Reservoir Scope: current status and next work
 
-**October 16, 2026 · 0.27.1 source polish · 0.27.0 candidate 04 private handoff; human acceptance pending**
+**October 21, 2026 · 0.28.0 field-noise and feedback-scale source change, unqualified local candidate · 0.27.0 candidate 04 private handoff; human acceptance pending**
+
+[0.28.0](RELEASE-0.28.0.md) adds two numerical settings to My reservoir sessions,
+sensory input noise and text feedback scale, after the first laptop session with
+`mistral-small:24b` stayed near 14% fill with the retention controller on its rail.
+Historical sessions and the earlier mechanism are unchanged (noise 0, scale 1).
+The release record owns its checks; no package qualification, human acceptance or
+writing result is claimed for it yet.
 
 [0.27.1](RELEASE-0.27.1.md) makes a settled ordinary session limit calm while keeping
 unresolved writing/saves/feedback visible. Its 497 frontend tests, local macOS

@@ -5,6 +5,13 @@ export const isSustainedPromptVersion = (value: unknown): value is SustainedProm
 export const effectivePromptVersion = (config: SustainedConfig): SustainedPromptVersion => config.promptVersion === undefined ? 'reservoir-journal-v1' : config.promptVersion;
 export const effectiveOutputTokens = (config: SustainedConfig): number => config.outputTokens === undefined ? 256 : config.outputTokens;
 export const effectiveRequestDeadline = (config: SustainedConfig): number => config.requestDeadlineSeconds === undefined ? 60 : config.requestDeadlineSeconds;
+/** Omitted historical values keep mechanism v1: no field noise and feedback ×1. */
+export const effectiveSensoryNoise = (config: SustainedConfig): number => config.sensoryNoiseAmplitude === undefined ? 0 : config.sensoryNoiseAmplitude;
+export const effectiveFeedbackScale = (config: SustainedConfig): number => config.feedbackScale === undefined ? 1 : config.feedbackScale;
+export function validFieldControls(config: SustainedConfig): boolean {
+  const noise = effectiveSensoryNoise(config), scale = effectiveFeedbackScale(config);
+  return Number.isFinite(noise) && noise >= 0 && noise <= 1 && Number.isFinite(scale) && scale >= 0 && scale <= 2;
+}
 export function validWritingLimits(config: SustainedConfig): boolean {
   const output = effectiveOutputTokens(config), deadline = effectiveRequestDeadline(config);
   const context = config.language?.contextTokens;
@@ -21,12 +28,15 @@ export interface SustainedConfig {
   seed: string; turnEvery: number; maximumSteps: number; maximumTurns: number; maximumDurationSeconds: number;
   storageBudgetBytes: number; paceMs: number; leak: number; noiseAmplitude: number; initialRetention: number;
   regulationEnabled: boolean; language: LanguageConfiguration;
+  /** Omitted historical configuration keeps mechanism v1; fresh defaults select field noise 0.5 and feedback ×0.4. */
+  sensoryNoiseAmplitude?: number; feedbackScale?: number;
 }
 export const DEFAULT_SUSTAINED_CONFIG: SustainedConfig = {
   promptVersion: 'reservoir-journal-v8', seed: '20260909', turnEvery: 30, maximumSteps: 10800, maximumTurns: 360, maximumDurationSeconds: 21600,
   storageBudgetBytes: 268435456, paceMs: 1000, leak: .65, noiseAmplitude: .02, initialRetention: .955,
   regulationEnabled: true, language: { backend: 'scripted' },
   outputTokens: 1024, requestDeadlineSeconds: 180,
+  sensoryNoiseAmplitude: .5, feedbackScale: .4,
 };
 export interface SustainedSummary {
   sessionId: string; generation: string; revision: string; config: SustainedConfig; phase: string;

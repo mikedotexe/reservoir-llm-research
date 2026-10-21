@@ -1,6 +1,7 @@
 # Reservoir Scope Tauri Preview
 
 **0.27.0 candidate 04 · Ready for a first invited tester · Human acceptance pending**
+**0.28.0 source · field-noise and feedback-scale settings, unqualified local candidate ([record](RELEASE-0.28.0.md))**
 
 Reservoir Scope combines a personal reservoir and journal with offline experiments,
 recordings and evidence readers. The native macOS app remains separate at

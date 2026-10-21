@@ -121,6 +121,13 @@ at 67–70%, a writing-quality score, or a guarantee that a run will reach the t
 The personal field and historical Minime recordings have different mechanisms and
 reference policies. Their percentages must not be treated as interchangeable.
 
+New sessions add uniform noise to the field's inputs (default 0.5) and scale the
+returning text vector (default 0.4). Without them the field receives only sixteen
+forcing channels and one constant text vector, which spans too few modes for the
+controller to reach its band; replay of the first recorded session stayed near 14%
+fill on the retention rail, and the defaults settled near 70%. Both are in
+Advanced settings. Noise 0 with scale 1 reproduces the earlier mechanism exactly.
+
 The percentage is fill level. A *fill rate* would be change per unit of time; the
 personal readout does not claim to measure that rate. The selected entry's optional
 measurements help inspect what was actually observed when its prompt was prepared.

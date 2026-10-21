@@ -51,6 +51,48 @@ pub fn validate_generation_budget(
 const MAX_TEXT: usize = 65_536;
 const MAX_RESPONSE: usize = 1_048_576;
 const MECHANISM: &str = "essentials32-splitmix64-codec48-held-feedback-v1";
+/// Mechanism identity once field noise or feedback scaling departs from the v1 values.
+const MECHANISM_FIELD_NOISE: &str =
+    "essentials32-splitmix64-codec48-scaled-feedback-field-noise-v2";
+/// Seed of the per-step field-noise stream. The stream is indexed by step and is never
+/// stored, so checkpoints and the exact 32-draw reservoir RNG accounting are unchanged.
+const FIELD_NOISE_SEED: u64 = 0x0046_4945_4C44_4E5A;
+const SPLITMIX_INCREMENT: u64 = 0x9E37_79B9_7F4A_7C15;
+/// Defaults for new sessions. Offline replay of the first laptop session showed that
+/// forcing plus one held text vector spans about twelve of the field's 32 modes, so the
+/// retention controller stayed on its rail near 14% fill; uniform field noise of 0.5 with
+/// the text vector at 0.4 scale settled fill near 70%, inside the 64–72% deadband.
+pub const DEFAULT_SENSORY_NOISE_AMPLITUDE: f64 = 0.5;
+pub const DEFAULT_FEEDBACK_SCALE: f64 = 0.4;
+pub fn legacy_sensory_noise_amplitude() -> f64 {
+    0.0
+}
+pub fn is_legacy_sensory_noise_amplitude(value: &f64) -> bool {
+    *value == 0.0
+}
+pub fn legacy_feedback_scale() -> f64 {
+    1.0
+}
+pub fn is_legacy_feedback_scale(value: &f64) -> bool {
+    *value == 1.0
+}
+/// Uniform noise on all 66 sensory-field inputs for one step, or empty at zero amplitude.
+/// Step `t` reads draws `66t+1..=66t+66` of one SplitMix64 stream, so no two steps overlap.
+pub fn field_noise(specification: &SustainedSpecification, step: u64) -> Vec<f64> {
+    if is_legacy_sensory_noise_amplitude(&specification.sensory_noise_amplitude) {
+        return Vec::new();
+    }
+    let mut rng = SplitMix64::new(
+        (specification.seed ^ FIELD_NOISE_SEED)
+            .wrapping_add(step.wrapping_mul(66).wrapping_mul(SPLITMIX_INCREMENT)),
+    );
+    (0..66)
+        .map(|_| rng.signed() * specification.sensory_noise_amplitude)
+        .collect()
+}
+fn scaled_feedback(held: &[f64], scale: f64) -> Vec<f64> {
+    held.iter().map(|x| x * scale).collect()
+}
 fn invalid(message: &str) -> CoreError {
     CoreError::Invalid(message.into())
 }
@@ -152,6 +194,19 @@ pub struct SustainedSpecification {
         skip_serializing_if = "is_legacy_request_deadline_seconds"
     )]
     pub request_deadline_seconds: u64,
+    /// Uniform noise amplitude added to all 66 sensory-field inputs; 0 keeps mechanism v1.
+    #[serde(
+        default = "legacy_sensory_noise_amplitude",
+        skip_serializing_if = "is_legacy_sensory_noise_amplitude"
+    )]
+    pub sensory_noise_amplitude: f64,
+    /// Multiplier on the held textual-feature vector as it enters the reservoir and
+    /// the field; 1 keeps mechanism v1. The stored held vector stays unscaled.
+    #[serde(
+        default = "legacy_feedback_scale",
+        skip_serializing_if = "is_legacy_feedback_scale"
+    )]
+    pub feedback_scale: f64,
 }
 impl Default for SustainedSpecification {
     fn default() -> Self {
@@ -169,10 +224,24 @@ impl Default for SustainedSpecification {
             prompt_version: CURRENT_PROMPT_VERSION,
             output_tokens: DEFAULT_OUTPUT_TOKENS,
             request_deadline_seconds: DEFAULT_REQUEST_DEADLINE_SECONDS,
+            sensory_noise_amplitude: legacy_sensory_noise_amplitude(),
+            feedback_scale: legacy_feedback_scale(),
         }
     }
 }
 impl SustainedSpecification {
+    /// True once field noise or feedback scaling departs from the v1 values.
+    pub fn uses_field_noise_mechanism(&self) -> bool {
+        !is_legacy_sensory_noise_amplitude(&self.sensory_noise_amplitude)
+            || !is_legacy_feedback_scale(&self.feedback_scale)
+    }
+    pub fn mechanism(&self) -> &'static str {
+        if self.uses_field_noise_mechanism() {
+            MECHANISM_FIELD_NOISE
+        } else {
+            MECHANISM
+        }
+    }
     pub fn validate(&self) -> Result<()> {
         self.language.validate()?;
         validate_generation_budget(
@@ -191,7 +260,11 @@ impl SustainedSpecification {
                 && self.noise_amplitude.is_finite()
                 && (0.0..=0.2).contains(&self.noise_amplitude)
                 && self.initial_retention.is_finite()
-                && (0.82..=0.995).contains(&self.initial_retention),
+                && (0.82..=0.995).contains(&self.initial_retention)
+                && self.sensory_noise_amplitude.is_finite()
+                && (0.0..=1.0).contains(&self.sensory_noise_amplitude)
+                && self.feedback_scale.is_finite()
+                && (0.0..=2.0).contains(&self.feedback_scale),
             "Invalid sustained numerical controls",
         )?;
         ensure(
@@ -409,8 +482,12 @@ pub struct SustainedApplication {
 pub struct SustainedFrame {
     pub step: u64,
     pub simulated_time: f64,
+    /// Forcing plus the scaled held feedback: the reservoir's input.
     pub input: Vec<f64>,
     pub noise: Vec<f64>,
+    /// Field-only uniform noise added to `input` before the sensory step; empty under v1.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub sensory_noise: Vec<f64>,
     pub state: Vec<f64>,
     pub sensory: SustainedSensory,
     pub retention_used: f64,
@@ -658,7 +735,7 @@ impl SustainedSession {
         let model = ReservoirModel::seeded(specification.seed);
         let field = SensoryField::seeded(specification.seed ^ FIELD_SEED);
         let state = SustainedContinuation {
-            mechanism: MECHANISM.into(),
+            mechanism: specification.mechanism().into(),
             model_sha256: typed_hash(&model),
             projection_sha256: typed_hash(&field.projection),
             step: 0,
@@ -861,12 +938,25 @@ impl SustainedSession {
             Some(next.sensory_covariance.clone()),
         )?;
         let mut input = forcing(step as usize, next.specification.dt);
-        input[18..].copy_from_slice(&next.held_vector);
+        input[18..].copy_from_slice(&scaled_feedback(
+            &next.held_vector,
+            next.specification.feedback_scale,
+        ));
         let noise: Vec<_> = (0..32)
             .map(|_| rng.signed() * next.specification.noise_amplitude)
             .collect();
         let state = engine.step(&input, &noise)?;
-        let spectral = field.step(&input, next.retention)?;
+        let sensory_noise = field_noise(&next.specification, step);
+        let spectral = if sensory_noise.is_empty() {
+            field.step(&input, next.retention)?
+        } else {
+            let field_input: Vec<f64> = input
+                .iter()
+                .zip(&sensory_noise)
+                .map(|(x, n)| x + n)
+                .collect();
+            field.step(&field_input, next.retention)?
+        };
         let mut fill = ReducedFill {
             fill: next.reduced_fill,
         };
@@ -893,6 +983,7 @@ impl SustainedSession {
             simulated_time: step as f64 * next.specification.dt,
             input,
             noise,
+            sensory_noise,
             state: state.clone(),
             sensory,
             retention_used,
@@ -1809,7 +1900,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
     let model = ReservoirModel::seeded(s.specification.seed);
     let field = SensoryField::seeded(s.specification.seed ^ FIELD_SEED);
     ensure(
-        s.mechanism == MECHANISM
+        s.mechanism == s.specification.mechanism()
             && s.model_sha256 == typed_hash(&model)
             && s.projection_sha256 == typed_hash(&field.projection),
         "Checkpoint numerical mechanism/model/projection identity differs",
@@ -1893,7 +1984,9 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
             f.step == s.step
                 && f.simulated_time == s.step as f64 * s.specification.dt
                 && f.state == s.reservoir_state
-                && f.input[18..] == s.held_vector
+                && f.input[18..]
+                    == scaled_feedback(&s.held_vector, s.specification.feedback_scale)[..]
+                && f.sensory_noise == field_noise(&s.specification, f.step)
                 && f.semantic_journal_id == s.held_journal_id
                 && f.next_retention == s.retention
                 && f.retention_used.is_finite()

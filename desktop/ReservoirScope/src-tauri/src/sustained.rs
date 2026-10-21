@@ -10,10 +10,12 @@ use reservoir_core::{
     session::LanguageResponse,
     stage::{LanguageConfiguration, LanguageKind, SCRIPTED_REPLIES},
     sustained::{
-        is_legacy_output_tokens, is_legacy_request_deadline_seconds, legacy_output_tokens,
-        legacy_request_deadline_seconds, SustainedCheckpoint, SustainedEventKind, SustainedPhase,
-        SustainedPromptVersion, SustainedSession, SustainedSpecification, CURRENT_PROMPT_VERSION,
-        DEFAULT_OUTPUT_TOKENS, DEFAULT_REQUEST_DEADLINE_SECONDS,
+        is_legacy_feedback_scale, is_legacy_output_tokens, is_legacy_request_deadline_seconds,
+        is_legacy_sensory_noise_amplitude, legacy_feedback_scale, legacy_output_tokens,
+        legacy_request_deadline_seconds, legacy_sensory_noise_amplitude, SustainedCheckpoint,
+        SustainedEventKind, SustainedPhase, SustainedPromptVersion, SustainedSession,
+        SustainedSpecification, CURRENT_PROMPT_VERSION, DEFAULT_FEEDBACK_SCALE,
+        DEFAULT_OUTPUT_TOKENS, DEFAULT_REQUEST_DEADLINE_SECONDS, DEFAULT_SENSORY_NOISE_AMPLITUDE,
     },
 };
 use serde::{Deserialize, Serialize};
@@ -60,6 +62,17 @@ pub struct SustainedConfig {
         skip_serializing_if = "is_legacy_request_deadline_seconds"
     )]
     pub request_deadline_seconds: u64,
+    /// Omitted historical configuration keeps mechanism v1 (no field noise, feedback ×1).
+    #[serde(
+        default = "legacy_sensory_noise_amplitude",
+        skip_serializing_if = "is_legacy_sensory_noise_amplitude"
+    )]
+    pub sensory_noise_amplitude: f64,
+    #[serde(
+        default = "legacy_feedback_scale",
+        skip_serializing_if = "is_legacy_feedback_scale"
+    )]
+    pub feedback_scale: f64,
 }
 impl Default for SustainedConfig {
     fn default() -> Self {
@@ -79,6 +92,8 @@ impl Default for SustainedConfig {
             prompt_version: CURRENT_PROMPT_VERSION,
             output_tokens: DEFAULT_OUTPUT_TOKENS,
             request_deadline_seconds: DEFAULT_REQUEST_DEADLINE_SECONDS,
+            sensory_noise_amplitude: DEFAULT_SENSORY_NOISE_AMPLITUDE,
+            feedback_scale: DEFAULT_FEEDBACK_SCALE,
         }
     }
 }
@@ -120,6 +135,8 @@ impl SustainedConfig {
             prompt_version: self.prompt_version,
             output_tokens: self.output_tokens,
             request_deadline_seconds: self.request_deadline_seconds,
+            sensory_noise_amplitude: self.sensory_noise_amplitude,
+            feedback_scale: self.feedback_scale,
         })
     }
 }

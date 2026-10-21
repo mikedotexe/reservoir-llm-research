@@ -9,7 +9,11 @@ reads a journal file, accesses a Being system or uses wall-clock time.
 The fixed numerical mechanism is the seeded 32-node/66-input Essentials recurrence,
 SplitMix64 draws, separate 32-dimensional sensory covariance, reduced fill and
 optional retention controller. A step consumes exactly 32 noise draws even when
-noise amplitude is zero. All authoritative numbers are f64. Step/turn/attempt/event
+noise amplitude is zero. Mechanism v2 (`sensory_noise_amplitude` > 0 or
+`feedback_scale` ≠ 1) additionally adds step-indexed uniform noise to the 66 field
+inputs and scales the held vector on entry; it reads a separate stream seeded by
+step, so the 32-draw accounting and all v1 checkpoints are unchanged, and the frame
+records the exact field noise for replay. All authoritative numbers are f64. Step/turn/attempt/event
 and RNG identities are u64; IPC owners must expose them as decimal strings where
 JavaScript integer precision would be inadequate. Each step is one third of a
 simulated second; backend wall-clock pace, elapsed duration and OS sleep remain
