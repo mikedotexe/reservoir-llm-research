@@ -147,6 +147,18 @@ entirely (state L2 4.4 between twins, vector cosine about −0.2) while the read
 model sees move by about one fill point and 0.04 RMS, so the content now reaches the
 reservoir but not the model. One seed, one model: a reading, not a result.
 
+2026-10-21 late afternoon, apparatus and queue: desktop 0.31.0 (main `b8f0bb1`) adds two
+frozen contract arms, each one change from a parent so a contrast isolates that change:
+`reservoir-journal-inert-open-contract-v1` (the plain contract without its naming
+sentence; nothing names the writer or a runtime) and
+`…-inert-inviting-varied-contract-v1` (the inviting contract plus the opening-pattern
+rule and the length line Astrid's standing prompt carries). Read on volya, read-only:
+both beings run Gemma 4 12B (Astrid `gemma4:12b` through Ollama; Minime an MLX build,
+`gemma-4-12B-it-5bit`), so `gemma4:12b` was pulled onto the laptop as the second model
+under Mike's standing download permission. Queued one arm at a time: the seed-7 repeat
+of the five original arms (running), the two new arms at both seeds, six arms on
+`gemma4:12b`, then four on `dolphin-mixtral:8x7b-v2.7` already on disk.
+
 ## What changed / next
 
 Interpretation revised: the frame paragraph is not where the register comes from; the
