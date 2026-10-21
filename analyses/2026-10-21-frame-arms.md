@@ -82,7 +82,11 @@ The headless control arm used the same seed, temperature, prompt version and fie
 settings as the morning's 0.29.0 app session. Its first entry is byte-identical to that
 session's first entry (1,667 characters), and its embedding trajectory (0.95 → 0.75 over
 twelve entries) matches the app session's (0.95 → 0.71 over fourteen). The per-attempt
-sampler seed makes a run reproducible on the same model and backend.
+sampler seed makes a run reproducible on the same model and backend when requests are served
+one at a time. The two codec twins, which ran concurrently against the same server, share
+their first prompt and seed with their surface arms yet diverge after a few sentences, so
+concurrent requests on this backend are not bit-reproducible; serialize arms whose
+reproduction matters.
 
 ## Codec twins (S-010 Part B, step 3)
 
