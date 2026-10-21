@@ -1,6 +1,11 @@
 # Reservoir Scope: current status and next work
 
-**October 21, 2026 · 0.30.0 embedding text reduction and S-010 frame arms, on 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
+**October 21, 2026 · 0.31.0 two more S-010 contract arms, on 0.30.0 embedding text reduction and S-010 frame arms, 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
+
+[0.31.0](RELEASE-0.31.0.md) adds two frozen research prompt versions, each one change
+away from an existing S-010 arm: the plain contract without its naming sentence, and the
+inviting contract plus the opening-pattern and length lines Astrid's standing prompt
+carries. Nothing else changes.
 
 [0.30.0](RELEASE-0.30.0.md) adds an embedding text reduction with recorded provenance
 and a v3 mechanism identity, four frozen research prompt versions with optional standing

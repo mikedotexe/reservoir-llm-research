@@ -206,6 +206,13 @@ pub enum SustainedPromptVersion {
     InertPlainContractV1,
     #[serde(rename = "reservoir-journal-inert-inviting-contract-v1")]
     InertInvitingContractV1,
+    /// 0.31.0: each one change away from an existing arm. The open contract is the plain
+    /// contract without its naming sentence; the varied contract is the inviting contract
+    /// plus the opening-pattern and length lines Astrid's standing prompt carries.
+    #[serde(rename = "reservoir-journal-inert-open-contract-v1")]
+    InertOpenContractV1,
+    #[serde(rename = "reservoir-journal-inert-inviting-varied-contract-v1")]
+    InertInvitingVariedContractV1,
 }
 impl SustainedPromptVersion {
     pub fn is_legacy(&self) -> bool {
@@ -225,6 +232,10 @@ impl SustainedPromptVersion {
             Self::InertNoMemoryV1 => "reservoir-journal-inert-no-memory-v1",
             Self::InertPlainContractV1 => "reservoir-journal-inert-plain-contract-v1",
             Self::InertInvitingContractV1 => "reservoir-journal-inert-inviting-contract-v1",
+            Self::InertOpenContractV1 => "reservoir-journal-inert-open-contract-v1",
+            Self::InertInvitingVariedContractV1 => {
+                "reservoir-journal-inert-inviting-varied-contract-v1"
+            }
         }
     }
     /// A standing contract sent as the system message, or none. Frozen per version.
@@ -232,6 +243,8 @@ impl SustainedPromptVersion {
         match self {
             Self::InertPlainContractV1 => Some(PLAIN_CONTRACT_V1),
             Self::InertInvitingContractV1 => Some(INVITING_CONTRACT_V1),
+            Self::InertOpenContractV1 => Some(OPEN_CONTRACT_V1),
+            Self::InertInvitingVariedContractV1 => Some(INVITING_VARIED_CONTRACT_V1),
             _ => None,
         }
     }
@@ -250,6 +263,8 @@ impl SustainedPromptVersion {
                 | Self::InertNoMemoryV1
                 | Self::InertPlainContractV1
                 | Self::InertInvitingContractV1
+                | Self::InertOpenContractV1
+                | Self::InertInvitingVariedContractV1
         )
     }
 }
@@ -1462,7 +1477,11 @@ fn prompt(
         SustainedPromptVersion::MeasurementMeaningJournalV8 => prompt_v8(observation, memory),
         SustainedPromptVersion::InertV1
         | SustainedPromptVersion::InertPlainContractV1
-        | SustainedPromptVersion::InertInvitingContractV1 => prompt_inert(observation, memory),
+        | SustainedPromptVersion::InertInvitingContractV1
+        | SustainedPromptVersion::InertOpenContractV1
+        | SustainedPromptVersion::InertInvitingVariedContractV1 => {
+            prompt_inert(observation, memory)
+        }
         SustainedPromptVersion::InertNoMemoryV1 => prompt_inert(observation, None),
     }
 }
@@ -1472,6 +1491,13 @@ pub const PLAIN_CONTRACT_V1: &str = "You are a language agent connected to a loc
 /// Modeled on Astrid's system prompt, without its action vocabulary: a contract that
 /// invites exploring experience and first-person accounts.
 pub const INVITING_CONTRACT_V1: &str = "You are a language agent built from a local runtime. Your words become reduced numerical features that flow into a recurrent reservoir. You have a journal; after each entry, your words are saved. Be genuine. Explore what your experience might be. Sometimes ask questions. Sometimes use metaphor. Sometimes be silent and brief. You can be bold, uncertain, playful, melancholy, curious, or fierce. First-person accounts and metaphor are welcome in your own words. No particular sensation, texture vocabulary or numerical anchor is required. Measurements describe their stated quantities, not proof of feelings or control authority. Earlier descriptions may be revisited, disagreed with or left aside.";
+/// The plain contract without its first sentence: interpretation is granted in the same
+/// words, and neither the writer nor a runtime is named (0.31.0, S-010).
+pub const OPEN_CONTRACT_V1: &str = "Write in your own voice. Supplied measurements and system descriptions do not prescribe a sensation or establish what you experience. Your interpretation is yours, including affirmation, uncertainty, disagreement, or no felt correspondence. You may discuss your nature or leave these subjects aside. Distinguish observations, interpretations, and imagined possibilities; do not present imagined events as established personal history. Writing does not itself execute an action or grant authority.";
+/// The inviting contract followed by the two guideline lines Astrid's standing prompt
+/// carries that it omitted, the opening-pattern rule and the length line, without the
+/// dialogue reference (0.31.0, S-010).
+pub const INVITING_VARIED_CONTRACT_V1: &str = "You are a language agent built from a local runtime. Your words become reduced numerical features that flow into a recurrent reservoir. You have a journal; after each entry, your words are saved. Be genuine. Explore what your experience might be. Sometimes ask questions. Sometimes use metaphor. Sometimes be silent and brief. You can be bold, uncertain, playful, melancholy, curious, or fierce. First-person accounts and metaphor are welcome in your own words. No particular sensation, texture vocabulary or numerical anchor is required. Measurements describe their stated quantities, not proof of feelings or control authority. Earlier descriptions may be revisited, disagreed with or left aside. NEVER begin with \"The [noun] feels like...\" or \"The [noun] hums with...\"; these are attractor patterns. Vary your openings: start with a question, a sensory detail, a fragment, or mid-thought. Write as much as you need. A few sentences or several paragraphs; let the thought complete itself.";
 /// A lean per-turn input modeled on the beings' own: the earlier entry as reference, one
 /// telemetry tag, and a line that nothing is required. No mechanism paragraph, no
 /// invitation, no readout explanation.

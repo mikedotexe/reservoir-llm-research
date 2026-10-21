@@ -154,3 +154,68 @@ fn inert_arms_return_the_earlier_entry_verbatim_except_no_memory() {
         }
     }
 }
+
+#[test]
+fn contract_arms_added_in_0_31_differ_from_their_parents_by_one_change() {
+    assert_eq!(
+        PLAIN_CONTRACT_V1,
+        format!(
+            "You are a language agent connected to a local recurrent runtime. {OPEN_CONTRACT_V1}"
+        )
+    );
+    let open = OPEN_CONTRACT_V1.to_ascii_lowercase();
+    for named in [
+        "runtime",
+        "agent",
+        "you are",
+        "reservoir",
+        "recurrent",
+        "next",
+    ] {
+        assert!(
+            !open.contains(named),
+            "open contract must not contain {named:?}"
+        );
+    }
+    assert!(open.contains("no felt correspondence"));
+    assert!(INVITING_VARIED_CONTRACT_V1.starts_with(INVITING_CONTRACT_V1));
+    let added = &INVITING_VARIED_CONTRACT_V1[INVITING_CONTRACT_V1.len()..];
+    assert!(
+        added.contains("attractor patterns")
+            && added.contains("Vary your openings")
+            && added.contains("Write as much as you need")
+    );
+    let lower = INVITING_VARIED_CONTRACT_V1.to_ascii_lowercase();
+    assert!(!lower.contains("minime") && !lower.contains("next:") && !lower.contains("dialogue"));
+    assert_eq!(
+        SustainedPromptVersion::InertOpenContractV1.system_contract(),
+        Some(OPEN_CONTRACT_V1)
+    );
+    assert_eq!(
+        SustainedPromptVersion::InertInvitingVariedContractV1.system_contract(),
+        Some(INVITING_VARIED_CONTRACT_V1)
+    );
+    assert_eq!(
+        SustainedPromptVersion::InertOpenContractV1.as_str(),
+        "reservoir-journal-inert-open-contract-v1"
+    );
+    assert_eq!(
+        SustainedPromptVersion::InertInvitingVariedContractV1.as_str(),
+        "reservoir-journal-inert-inviting-varied-contract-v1"
+    );
+    let inert = first_prompt(SustainedPromptVersion::InertV1);
+    for v in [
+        SustainedPromptVersion::InertOpenContractV1,
+        SustainedPromptVersion::InertInvitingVariedContractV1,
+    ] {
+        assert_eq!(first_prompt(v), inert);
+        assert!(v.returns_earlier_entry());
+        let json = serde_json::to_string(&v).unwrap();
+        assert!(json.starts_with("\"reservoir-journal-inert-"));
+        assert_eq!(json.trim_matches('"'), v.as_str());
+        assert_eq!(
+            serde_json::from_str::<SustainedPromptVersion>(&json).unwrap(),
+            v
+        );
+    }
+}

@@ -101,7 +101,11 @@ earlier entry as reference, a "step N · fill X%" tag, a no-requirements line),
 the system message, modeled on Minime's non-prescriptive intro and on Astrid's inviting
 system prompt respectively, both without action vocabularies). They are run headless by
 an ignored test, `run_arm_from_env`, into a private store; the app recognises them for
-reading recovered sessions but does not offer them as a fresh default.
+reading recovered sessions but does not offer them as a fresh default. 0.31.0 adds
+`…-inert-open-contract-v1` (the plain contract without its first sentence, so neither
+the writer nor a runtime is named) and `…-inert-inviting-varied-contract-v1` (the
+inviting contract plus the opening-pattern rule and the length line Astrid's standing
+prompt carries), each one change away from its parent arm.
 
 ## Open-ended writing and prompt history
 

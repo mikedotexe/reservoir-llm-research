@@ -8,7 +8,7 @@ const V3: &str = "essentials32-splitmix64-embedding32-scaled-feedback-field-nois
 
 fn embedding(seed: u64) -> Vec<f64> {
     (0..768)
-        .map(|i| ((i as f64 * 0.37 + seed as f64).sin() * 0.5))
+        .map(|i| (i as f64 * 0.37 + seed as f64).sin() * 0.5)
         .collect()
 }
 fn spec(codec: SustainedCodec) -> SustainedSpecification {
