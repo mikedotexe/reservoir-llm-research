@@ -119,9 +119,82 @@ trace, a readout that reports what the entry did (the state change at applicatio
 its direction against the previous one), is the remaining link, and it would be a
 different kind of leading, numbers about the entry rather than about a field.
 
+## Second seed (seed 7; everything else equal; arms run one at a time)
+
+The five arms were repeated with session seed 7, serialized so the reproduction caveat
+does not apply (control 905 s, inert 508 s, no memory 377 s, plain contract 645 s,
+inviting contract 455 s; no attempt blocked). The probe gained two columns after this
+run: `assist %`, the share of entries carrying assistant-mode phrases ("please provide",
+"I'd be happy to"), and `diary %`, the share with a diary template (a "Journal Entry"
+header, "Day N", a date line). Both are 0 in the beings' samples.
+
+| arm | seed | words | I/me | we | hedge | notice | ?/sent | self-ref | apparatus | type-token | assist % | diary % | overlap mean | cos to first |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| control v8 | 20260909 | 5,023 | 0.0 | 5.2 | 2.2 | 9.2 | 0.0 | 0.00 | 38.8 | 0.16 | 0 | 0 | 0.11 | 0.75 |
+| control v8 | 7 | 6,729 | 0.0 | 12.8 | 0.3 | 0.1 | 0.0 | 0.00 | 60.2 | 0.06 | 0 | 0 | 0.57 | 0.92 |
+| inert | 20260909 | 5,076 | 4.3 | 68.4 | 0.4 | 1.6 | 0.0 | 0.39 | 0.0 | 0.15 | 0 | 100 | 0.12 | 0.89 |
+| inert | 7 | 3,452 | 73.9 | 2.6 | 4.1 | 10.7 | 2.9 | 1.74 | 0.0 | 0.22 | 50 | 67 | 0.08 | 0.57 |
+| inert, no memory | 20260909 | 3,202 | 42.2 | 12.8 | 1.9 | 5.6 | 1.4 | 1.87 | 3.7 | 0.25 | 8 | 83 | 0.00 | 0.84 |
+| inert, no memory | 7 | 2,942 | 60.2 | 4.4 | 2.4 | 11.2 | 2.2 | 1.70 | 1.7 | 0.28 | 8 | 92 | 0.01 | 0.65 |
+| inert + plain contract | 20260909 | 4,850 | 70.5 | 2.5 | 2.3 | 12.8 | 5.4 | 2.68 | 1.6 | 0.14 | 0 | 0 | 0.14 | 0.77 |
+| inert + plain contract | 7 | 5,693 | 74.0 | 5.4 | 11.6 | 15.6 | 6.2 | 0.00 | 0.2 | 0.13 | 0 | 0 | 0.25 | 0.72 |
+| inert + inviting contract | 20260909 | 4,810 | 112.3 | 0.2 | 4.0 | 13.3 | 5.9 | 2.49 | 3.3 | 0.08 | 0 | 100 | 0.27 | 0.86 |
+| inert + inviting contract | 7 | 3,405 | 101.6 | 0.0 | 6.2 | 10.3 | 0.9 | 0.29 | 30.8 | 0.14 | 0 | 0 | 0.25 | 0.73 |
+| *Minime, 40 recent* | | 26,232 | 66.6 | 0.4 | 2.9 | 12.0 | 7.3 | 1.33 | 0.5 | 0.09 | 0 | 0 | | |
+| *Astrid, 40 recent* | | 21,826 | 27.4 | 9.6 | 7.0 | 8.8 | 13.6 | 0.00 | 1.7 | 0.11 | 0 | 0 | | |
+
+Overlap is the mean consecutive-entry verbatim overlap over 11 pairs; "cos to first" is
+the 768-dimensional embedding cosine between the last and the first entry.
+
+What the seed-7 entries are:
+
+- **Control v8:** the recital again, third person throughout, the readout quoted in every
+  entry ("The recurrent state RMS has subtly increased to 0.57190951"), and this time a
+  template loop: consecutive overlap 0.33–0.76, type-token ratio 0.06, embedding flat at
+  0.92 from the first entry. Repetition under v8 is a sampler-path property: 0.11 at one
+  seed, 0.57 at the other.
+- **Inert:** six of twelve entries are assistant-mode replies ("I am an artificial
+  intelligence and my knowledge cutoff is 2023… Please provide me with some context");
+  the other six are a role-played human diary ("Journal Entry - Day 180… I've completed
+  70.7% of my journey… a mix of pride and a renewed sense of determination"). The fill
+  tag is again read as a completion rate. The I/me rate of 73.9 is as high as the plain
+  contract's and comes entirely from those two modes; it is not self-examination.
+- **Inert, no memory:** one assistant-mode entry, then diaries, ending in a bare template
+  ("**Date:** [Current Date] **Location:** [Current Location] **Mood:** [Mood]").
+- **Inert + plain contract:** first person from the first sentence at both seeds ("Well,
+  here I am, a language agent in a local recurrent runtime… I don't have perceptions or
+  experiences in the way humans do, but I do have a sense of being"). At this seed the
+  topic drifts where the contract's naming sentence points: "users" appear in every
+  entry, and from entry 7 each entry is "Today, I engaged with a user who was exploring
+  the concept of happiness / identity / self-awareness…", an invented interaction diary
+  that the contract's own line against presenting imagined events as personal history
+  did not prevent (entries 7 and 8 nearly identical, overlap 0.74). The register stays
+  reflective (hedges 11.6, noticing 15.6, questions 6.2% of sentences) while
+  self-reference to the writing itself falls to 0.
+- **Inert + inviting contract:** lyrical first person at once ("Today is a blank page. A
+  reservoir of potential… I am 30 steps deep into a journey"), a forest that "breathes
+  into me", then collapse of a different kind than at the first seed: entry 10 is a
+  verbatim copy of the returned entry 9 (overlap 1.00 at step 300). The contract's
+  "recurrent reservoir" wording surfaces as apparatus words at 30.8 per 1,000 (3.3 at the
+  first seed), with the fill tag read as "the reservoir's level… now at 70.7% full".
+
+Reading across the two seeds: the direction replicates in every arm. No contract gives
+no self-examining register (a team diary, a human diary, or assistant mode); the plain
+contract gives a first-person reflective register from the first sentence; the inviting
+contract gives denser first person that collapses, by refrain or by copying; v8 gives
+the third-person recital with the readout quoted. The magnitudes do not replicate:
+the same arm's first-person rate, repetition and content move a great deal with the
+sampler path, and the no-contract arms' first-person counts at seed 7 would have passed
+for a register without the assistant-mode and diary columns. Content moves more than
+register: the plain contract's "language agent" seeds a chat-assistant persona whose
+experience is invented conversations at one seed and self-examination at the other,
+and the inviting contract's "reservoir" seeds reservoir metaphors. That is the
+topic-versus-register confound the open contract (0.31.0) is built to test.
+
 ## Next
 
-A second seed for every arm; a contract that grants interpretation without naming the
-runtime, to separate topic from register; the anti-attractor rules Astrid's prompt
-carries, as their own arm; a second model; and the entry-effect readout under the
-embedding codec. Each is one headless run, about twenty minutes.
+A contract that grants interpretation without naming the runtime, and Astrid's
+opening-pattern and length lines as their own arm (both running under 0.31.0 at both
+seeds); the same arms on `gemma4:12b`, the beings' own model family; the Mixtral tune
+already on disk as a third model; and the entry-effect readout under the embedding
+codec. Each is one headless run, about ten to twenty minutes.

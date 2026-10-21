@@ -159,6 +159,17 @@ under Mike's standing download permission. Queued one arm at a time: the seed-7 
 of the five original arms (running), the two new arms at both seeds, six arms on
 `gemma4:12b`, then four on `dolphin-mixtral:8x7b-v2.7` already on disk.
 
+2026-10-21 16:00, second seed ([account](../../analyses/2026-10-21-frame-arms.md#second-seed-seed-7-everything-else-equal-arms-run-one-at-a-time)):
+all five arms repeated at seed 7, serialized. Direction replicates in every arm:
+no contract gives no self-examining register (at this seed, half the inert entries are
+assistant-mode replies and the rest a role-played human diary), the plain contract gives
+first-person reflection from the first sentence, the inviting contract collapses (a
+verbatim copy of the returned entry at step 300), v8 gives the recital with the readout
+quoted and a template loop (overlap 0.57). Magnitudes do not replicate, and content
+moves more than register: the plain contract's "language agent" became an invented
+diary of user conversations at this seed. The probe now reports assistant-mode and
+diary-template shares, both 0 in the beings' samples.
+
 ## What changed / next
 
 Interpretation revised: the frame paragraph is not where the register comes from; the
