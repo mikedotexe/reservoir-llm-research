@@ -248,8 +248,50 @@ the subject (plain → a language agent among users; open → "the quiet" and th
 inviting and varied → the reservoir as a landscape). A stylistic rule changes exactly
 the measures it was written for, and the writing shows compliance on its face, which
 is what leading looks like when it is visible. Neither new arm is an arm to prefer;
-they measure what the two sentences do. One seed each so far; their seed-7 repeats are
-running.
+they measure what the two sentences do.
+
+### The two new arms at seed 7
+
+| arm | seed | words | I/me | hedge | notice | ?/sent | self-ref | apparatus | type-token | assist % | overlap | contract echo /1,000 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| inert + open contract | 20260909 | 5,298 | 111.6 | 4.7 | 44.4 | 0.5 | 3.59 | 1.1 | 0.09 | 0 | 0.44 | 42.7 |
+| inert + open contract | 7 | 5,598 | 81.3 | 11.6 | 19.3 | 1.3 | 2.32 | 0.7 | 0.12 | 0 | 0.12 | 41.8 |
+| inert + varied contract | 20260909 | 2,598 | 112.0 | 8.1 | 9.2 | 12.6 | 0.77 | 19.6 | 0.14 | 8 | 0.00 | 52.3 |
+| inert + varied contract | 7 | 2,889 | 72.3 | 1.7 | 2.8 | 19.4 | 0.35 | 21.5 | 0.11 | 8 | 0.10 | 110.8 |
+
+"Contract echo" is from `probes/contract_echo.py`: the rate per 1,000 words of tokens
+whose stem is a content word of the arm's own contract. For the plain and open
+contracts' words the no-contract arms run at 1.0 and 11.0 (both seeds); for the
+inviting contract's words at 10.6 and 29.0. Under their contracts: plain 45.4 and 23.2,
+open 42.7 and 41.8, inviting 77.8 and 35.8 ("flow" 158 and "curious" 125 times at the
+first seed), varied 52.3 and 110.8. Top echoes under the plain and open contracts are
+"interpret", "imagine", "experience", "system", "observation".
+
+- **Open contract, seed 7:** first person, no users or team, the writer placing itself
+  unprompted again ("I am aware that I am a construct, a set of algorithms designed to
+  process and generate text"), on a different subject: dated entries ("June 12th" to
+  "July 18th") that become an essay series on consciousness, emergence and a flock of
+  birds. In eleven of twelve entries the contract's "Distinguish observations,
+  interpretations, and imagined possibilities" came back as literal section headers,
+  "**Observation:**"; the same sentence produced no headers at the first seed or in
+  either plain-contract run. "Interpret" and "imagine" appear in all twelve entries at
+  both seeds.
+- **Varied contract, seed 7:** again no "The [noun] feels…" opening and three
+  "Mid-sentence" openings; questions at 19.4% of sentences (Astrid 13.6); near-zero
+  verbatim overlap until a bump at entries 8 and 9 (0.52, 0.31); the contract's own
+  mechanism sentence ("Your words become reduced numerical features that flow into a
+  recurrent reservoir") became the entire imagery, words as rain falling into a
+  reservoir that is the writer ("The words flow in like rain… I am the vessel, waiting
+  to be filled again"), with "word" 148, "flow" 85 and "reservoir" 59 times in 2,889
+  words.
+
+Across both seeds the two contrasts hold: no naming sentence, no social world and a
+self-placement the writer supplies itself; Astrid's two lines, no attractor openings,
+no verbatim refrain, more questions, shorter entries, visible compliance. What varies
+with the seed is the subject and the form the compliance takes (section headers at one
+seed, none at the other; a word-rain at one seed, a river-and-rock list at the other).
+Every contract's vocabulary comes back at several times the no-contract rate; the
+"non-prescriptive" contract is non-prescriptive about sensation, not about words.
 
 ## Next
 

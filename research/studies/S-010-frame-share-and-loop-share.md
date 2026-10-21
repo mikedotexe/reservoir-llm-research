@@ -182,6 +182,16 @@ sentences) and shows compliance on its face ("Mid-thought,"), with entries shrin
 45 words. Register from the grant of interpretation, subject from the naming words,
 style from the stylistic rule. Seed-7 repeats and the gemma4 set follow.
 
+2026-10-21 16:35, the 0.31.0 arms at seed 7 and the contract-echo measure
+([account](../../analyses/2026-10-21-frame-arms.md#the-two-new-arms-at-seed-7)): both
+contrasts hold at the second seed; the subject and the form of compliance vary (the
+open contract's "distinguish observations, interpretations" line became section headers
+in 11 of 12 entries at seed 7; the varied contract's mechanism sentence became a
+word-rain imagery). `probes/contract_echo.py` counts each contract's own content words
+in its entries: 1–11 per 1,000 words without a contract, 23–111 under one. The six
+gemma4 arms started at 16:35 after a first attempt failed on a request deadline outside
+the engine's 60–180 s range.
+
 ## What changed / next
 
 Interpretation revised: the frame paragraph is not where the register comes from; the
