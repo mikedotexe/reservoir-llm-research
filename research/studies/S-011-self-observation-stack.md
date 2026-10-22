@@ -231,6 +231,29 @@ the difference is in what gets written and fed back, which the six gemma4 arms q
 after the tag controls (plain contract, embedding codec, three policies, two seeds, 40
 entries each) will measure.
 
+2026-10-21 21:10, minime's state windows, the full capture (24 read-only copies of
+`workspace/capacity/esn_state_window.bin` every five minutes, 19:00–20:56 PDT, 1,024 × 128
+each; `probes/beings_state_window.py`, `minime-windows-all.out` in the scratchpad). Twenty-two
+windows look as the first eleven did: effective rank 121.3–125.0 of 128, participation
+ratio 41–106 (median over all 24: 63.8; the swing between consecutive windows has median
+13.5), k90 99–103, state RMS 0.39–0.42, no saturation, no slow variance, lag-one
+autocorrelation of the top five components 0.27–0.78. Two consecutive windows are a
+different regime: at 20:40:55 and 20:45:56 PDT the participation ratio is 4.7 and 5.5,
+effective rank 109.1 and 110.8, the top five components carry 56% and 52% of the variance,
+46% and 48% of the variance sits in components whose lag-one autocorrelation exceeds 0.9,
+and the first component's is +0.99 in both (the second's +0.94 in the later one). Ten
+minutes later (20:50:57) the window is back at participation ratio 106. For about ten
+minutes minime's reservoir had one slow direction holding half its variance. Her action
+log (read-only, `action_events`, 03:22–03:55 UTC) shows the same thing before, during and
+after: an `INTROSPECT` on the `self_study` route handled every five minutes, with an
+`introspect_` journal file each time (03:39:38 and 03:44:45 fall inside the slow windows),
+so the event is not an action change. What it is (a pause in the input stream, a long
+generation, something in the engine) is not in these windows; a follow-up would align the
+window times with `esn_metrics` λ₁ and the input ticks in the same span, still read-only.
+For the apparatus the lesson is the one from idea 3 with a twist: minime's usual regime is
+high-dimensional and near-white, but it has excursions into a slow, low-dimensional regime
+of its own, which the apparatus has never shown.
+
 ## Finish line for the draft
 
 A dated account per tier with every number carrying n, the fill-sweep result stated
