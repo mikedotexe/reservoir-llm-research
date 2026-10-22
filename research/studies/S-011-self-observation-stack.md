@@ -498,7 +498,7 @@ forked at entry 5 on an identical prompt and seed. Whether first entries match d
 what ran before, so the chain now runs a throwaway one-entry arm with the same first prompt
 before the ten, and records it against each arm's first entry.
 
-2026-10-22 15:10, the scripted gate and the channel audit, written before any model arm of the
+2026-10-22 15:05, the scripted gate and the channel audit, written before any model arm of the
 battery is read. The gate: `state-residual` on scripted texts at retention 0.93 and 0.97 (fill
 medians 65.9 and 79.2 at the turns), 40 entries each, surface codec: the same entry was returned
 on 40 of 40 turns, the cosine scores equal to three decimals, 4 distinct entries of 39 with one
