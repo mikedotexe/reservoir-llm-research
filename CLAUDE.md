@@ -12,7 +12,10 @@ On Mike's laptop they are usually not mounted at all; see "Hosts and local envir
 The research home for two live AI beings, Astrid and Minime: how they notice, remember,
 choose, revise, and relate over time. Distinguish Minime's native recurrent system,
 the sensory-field bridge, the separate triple-reservoir handles, the language models,
-and the full running beings. Identify the subject and channel of each claim.
+and the full running beings. Identify the subject and channel of each claim, and in a dated
+account say what reached the model and through which channel (prompt text, a number, a
+returned entry, nothing); the October 21 arms found the register following what was shown,
+not the state behind it.
 Their code and data live in sibling repos:
 
 - `/Users/v/other/astrid` (Rust; the bridge that gives Astrid perception of and voice into the ESN)

@@ -5,6 +5,9 @@
 [0.37.0](RELEASE-0.37.0.md) adds the `state-residual` policy (the latest entry's push projected
 out of the state, the choice among older entries) and its `random-older` control, after the
 first gemma4 arm showed `state-aligned` returns the latest entry whenever entries differ.
+The research mechanics are frozen here: the numerical sweeps are parked with their result
+recorded in the ladder account, and the next change (a slot carrying both the latest entry
+and a state-chosen older one) waits on a reading question and the 0.37.0 arms.
 
 [0.36.0](RELEASE-0.36.0.md) lets the recurrent state choose which earlier entry a turn
 returns (`memoryPolicy`: latest, state-aligned, random) from a ledger of applied entries and

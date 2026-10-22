@@ -3,7 +3,34 @@
 [Research findings](../RESEARCH.md) · [Current app candidate](CURRENT-RELEASE.md) ·
 [Earlier focus history](NOW-history-through-20260917.md)
 
-**October 21 current focus: the laptop apparatus loop, frame share and loop share
+**October 21 evening focus: what reaches the model, and through which channel
+([S-011](studies/S-011-self-observation-stack.md)).** The evening's runs on `gemma4:12b`
+turned the question from the numerics to the text side of the loop. The fill sweep moved
+the register, and the no-tag and scrambled-tag controls showed the number on the context
+line did it, not the field behind it: with no number the 70% shelf arm wrote like the
+mid-fill arms, and a number that jumped every turn captured the writing more than any
+real one. The difference-signal channel (desktop 0.35.0, the spec's M5, a 72-run ladder in
+[the ladder account](../analyses/2026-10-21-difference-ladder.md)) is exact and raises the
+recurrent state's rank a little at the top of its range, and nothing the text could see
+moved. State-chosen memory (0.36.0 and 0.37.0, [the account](../analyses/2026-10-21-state-chosen-memory.md))
+showed its first rule degenerate with real entries and its cost: returning an older entry
+breaks the thread the model would otherwise develop, and the one passage that stood out in
+a blind reading came from seven consecutive turns of the model rereading its own previous
+entry under a sparse frame. The conditions behind the highlights so far are three: a frame
+that gives little, continuity of one's own text, and something unexpected to work against.
+So the apparatus is frozen at 0.37.0; the numerical sweeps are parked with their negative
+result recorded; every account states what reached the model and how; arms are read blind
+first (`probes/desktop_blind_sample.py`) with the human record in
+[the noteworthy passages](../analyses/2026-10-21-noteworthy-passages.md); and the next
+mechanics wait on a reading question (a slot carrying both the latest entry and a
+state-chosen older one, after the 0.37.0 arms report). Read-only work toward the beings is
+next: continuous state-window logging for minime (her reservoir showed a ten-minute slow,
+low-dimensional excursion with no action change), a probe for concept chains across her
+consecutive entries, and an audit of what Astrid's readout shows that moves at all. A
+planning pass with Mike sets the order. Chains still running at the time of writing: four
+no-tag arms at lower fill and the four 0.37.0 policy arms.
+
+**October 21 earlier focus: the laptop apparatus loop, frame share and loop share
 ([S-010](studies/S-010-frame-share-and-loop-share.md)).** Mike ran the Tauri preview
 on his laptop with `mistral-small:24b`. Three dated accounts record the day:
 [the first session and why fill stayed near 14%](../analyses/2026-10-21-laptop-first-sustained-session.md),

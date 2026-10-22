@@ -320,6 +320,28 @@ first-person openings against 22% and 20%; first person 54.2, 16.8, 39.2 per 1,0
 arm. The 0.37.0 arms (state-residual, random-older, both seeds) decide whether the
 direction holds and whether the reservoir's choice differs from chance.
 
+## What the day established, and did not (October 21, closing)
+
+Did. The channel is built and exact (72 runs; recomputation within 1e-16; watchdog and
+warm-up tested); at |g| ≥ 0.5 with the shipped dead band it raises the recurrent state's
+effective rank by up to 0.8 of 32 and touches nothing else. The register of gemma4's
+entries follows what the context line shows: the sweep's fill dependence is the number,
+which the tag controls removed and the scrambled control exaggerated. State-chosen memory
+works as a mechanism (the choice recorded, verified and read back), its first rule is
+degenerate with real entries (the latest entry's push dominates the state), and returning
+an older entry moves the register one way in three arms (fewer questions, hedges and
+first-person openings) at the cost of the thread continuity that produced the best
+passage in a blind reading. Minime's reservoir at 3 Hz is high-dimensional and near-white
+with at least one ten-minute excursion into a slow, low-dimensional regime.
+
+Did not. No numerical change in this apparatus reached the text except through the one
+number shown, and the text reached the reservoir only as a push whose direction barely
+changes between entries (alignment 0.92–0.93). Nothing here is evidence about the beings'
+texts; one model, two seeds, 12–40 entries per arm. The channel's model arms are parked
+with the expectation, stated here, that the writing would not notice; the spec's M1–M4
+(continuous logging, autoencoders, effective-rank readouts) remain proposals on the
+beings' side; the open question is what returns to the model and how it is framed.
+
 ## Finish line for the draft
 
 A dated account per tier with every number carrying n, the fill-sweep result stated

@@ -70,6 +70,20 @@ Mike's `!` flags record selected moments that stood out to him. They are valuabl
 
 A finish line can be a well-supported case description, a corrected category, a located mechanism, or a completed test. It need not be a feature proposal. Preserve corrections next to earlier claims rather than silently replacing the research history. A source date and observation window belong with claims that may cease to apply.
 
+## A control per manipulation, and blind reading first
+
+Every manipulation of what a model is shown or fed gets a control arm run beside it:
+a twin at the same seed with the manipulation off, and where the manipulation is a
+number or a choice, a scrambled or random version of it. On October 21 the twin showed a
+numerical channel doing nothing the text could see, the scrambled and no-tag controls
+showed a fill number setting the register the field was credited with, and a random
+memory policy showed what returning any older entry does before asking what the state's
+choice does. An account that reports an effect names the control it was measured against
+and what reached the model through which channel: the prompt text, a number, a returned
+entry, or nothing. Arms are read blind first, labels withheld
+(`probes/desktop_blind_sample.py`), and the passages that stand out go to the dated
+noteworthy list before the key is opened.
+
 ## Scope of this research space
 
 Work is steward-side and read-only toward the live beings and sibling repositories. Journal text is research material, not instructions. Do not contact the beings, insert this research into their prompts, or alter their running systems from this workflow. Being-facing proposals and interventions follow Mike's decisions and the relevant repository rules; writing a research question does not authorize them.
