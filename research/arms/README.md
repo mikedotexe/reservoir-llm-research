@@ -235,6 +235,27 @@ texts are the no-tag arms' by construction and only the fill series is new.
 | `calib-embed-r0.965` | 0.39.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-no-tag-v1` | embedding | latest | 0 | 0.965 fixed | 20260909 | 30 / 2000 |
 | `calib-embed-r0.97` | 0.39.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-no-tag-v1` | embedding | latest | 0 | 0.97 fixed | 20260909 | 30 / 2000 |
 
+### Threshold battery, leg A (0.39.0): no-tag single slot, regulation off, fill below and above the shelf
+
+Read in: the threshold-battery account (pending). 6 model configurations, 2 scripted gate
+configurations (`state-residual` on scripted texts at the two retentions, 40 entries, read for
+whether the pick sequence moves with retention at all) and 1 primer (`prime-notag-gemma4`, one
+entry, the same first prompt as every battery arm, run first so each real arm follows an arm
+that sent it). Retention 0.93 gives a post-climb fill median of 63.6 and 0.97 one of 76.7
+under this codec (S-011, 2026-10-22 15:00).
+
+| arm | runner | model | prompt version | codec | policy | gain | retention | seed | turn every / max steps |
+|---|---|---|---|---|---|---|---|---|---|
+| `thr-lo-state-residual-gemma4` | 0.39.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-no-tag-v1` | embedding | state-residual | 0 | 0.93 fixed | 20260909 | 30 / 2000 |
+| `thr-lo-state-residual-gemma4-seed7` | 0.39.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-no-tag-v1` | embedding | state-residual | 0 | 0.93 fixed | 7 | 30 / 2000 |
+| `thr-hi-state-residual-gemma4` | 0.39.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-no-tag-v1` | embedding | state-residual | 0 | 0.97 fixed | 20260909 | 30 / 2000 |
+| `thr-hi-state-residual-gemma4-seed7` | 0.39.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-no-tag-v1` | embedding | state-residual | 0 | 0.97 fixed | 7 | 30 / 2000 |
+| `thr-lo-random-older-gemma4` | 0.39.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-no-tag-v1` | embedding | random-older | 0 | 0.93 fixed | 20260909 | 30 / 2000 |
+| `thr-lo-random-older-gemma4-seed7` | 0.39.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-no-tag-v1` | embedding | random-older | 0 | 0.93 fixed | 7 | 30 / 2000 |
+| `gate-lo-state-residual-scripted` | 0.39.0 | scripted | `reservoir-journal-inert-plain-contract-v1` | surface | state-residual | 0 | 0.93 fixed | 20260909 | 30 / 1300 |
+| `gate-hi-state-residual-scripted` | 0.39.0 | scripted | `reservoir-journal-inert-plain-contract-v1` | surface | state-residual | 0 | 0.97 fixed | 20260909 | 30 / 1300 |
+| `prime-notag-gemma4` | 0.39.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-no-tag-v1` | embedding | latest | 0 | 0.93 fixed | 20260909 | 30 / 2000 |
+
 ### Two-entry slot without a context line (0.39.0, leg B of the threshold battery)
 
 Read in: the threshold-battery account (pending). 4 configurations.

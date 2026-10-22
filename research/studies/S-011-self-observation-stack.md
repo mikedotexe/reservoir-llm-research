@@ -479,6 +479,25 @@ Quoted numbers (`probes/desktop_quoted_numbers.py`): entries quoting 95% or more
 no-tag arms; the blind sample's finished-state family was entirely the tagged two-entry arms
 and both readers' picks came from the window arms. Confounded with the tag, hence 0.39.0.
 
+2026-10-22 15:00, the calibration and the fills (four 12-entry no-tag `latest` arms, embedding
+codec, regulation off, seed 20260909; `arms/logs/calib-embed.out` and `calib-medians.py` in the
+session scratchpad). After the start-up climb (steps 180–361) the fill holds within about one
+point of its median: retention 0.92 gives a median of 61.4 (59.4–64.9), 0.93 gives 63.6
+(61.5–67.1), 0.965 gives 74.8 (73.6–78.7) and 0.97 gives 76.7 (74.9–80.5), against the
+regulated shelf's 70.4–71.0 (67.9–73.3 over 1,200 steps, two arms). The plan's thresholds
+(a median at most 62 and at least 78) assumed the whole-series spread of 7–9 points, which
+is the climb; with the post-climb spread at 1–1.5 the rule is restated as the calibration
+point nearest the shelf on each side whose post-climb range is clear of the regulated band,
+which is 0.93 below (7.1 points under the shelf median, clear by 0.8) and 0.97 above (6.0
+over, clear by 1.6; 0.965 would be clear by 0.3 and asymmetric). Every battery arm's realized
+fill series is recorded with its reading. The calibration also found a provider state
+effect: the first arm after the model loaded reproduced the October 21 no-tag arm's twelve
+entries word for word, and the three arms that each followed another arm wrote one other
+first entry (397 tokens against 335), identical among themselves through entry 4, then
+forked at entry 5 on an identical prompt and seed. Whether first entries match depends on
+what ran before, so the chain now runs a throwaway one-entry arm with the same first prompt
+before the ten, and records it against each arm's first entry.
+
 ## What the day established, and did not (October 21, closing)
 
 Did. The channel is built and exact (72 runs; recomputation within 1e-16; watchdog and
