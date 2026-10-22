@@ -68,6 +68,13 @@ vector spans about twelve of the field's 32 modes, so the controller stayed on i
 0.995 rail near 14% fill, while these values settled fill near 70%, inside the 64–72%
 band ([account](../../analyses/2026-10-21-laptop-first-sustained-session.md)).
 
+**Telemetry-tag controls** (0.34.0, S-011). `reservoir-journal-inert-no-tag-v1` and
+`…-inert-plain-contract-no-tag-v1` drop the optional-context line entirely (the spec's
+prompt-leakage audit); `…-inert-plain-contract-scrambled-tag-v1` keeps the line but shows
+a fill number drawn in [40, 95) from the session seed and the step, never from the field
+(the shuffled-state control). The observation still records the live fill; the prompt
+records what was shown.
+
 **Entry-effect readout** (0.33.0, S-010 idea 3). `reservoir-journal-inert-effect-v1` and
 `…-inert-plain-contract-effect-v1` are the inert input, without and with the plain
 contract, plus one clause on the optional-context line from the second entry on:

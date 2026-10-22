@@ -1,6 +1,10 @@
 # Reservoir Scope: current status and next work
 
-**October 21, 2026 · 0.33.0 entry-effect readout, on 0.32.0 model thinking toggle, 0.31.0 two more S-010 contract arms, 0.30.0 embedding text reduction and S-010 frame arms, 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
+**October 21, 2026 · 0.34.0 no-tag and scrambled-tag controls, on 0.33.0 entry-effect readout, 0.32.0 model thinking toggle, 0.31.0 two more S-010 contract arms, 0.30.0 embedding text reduction and S-010 frame arms, 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
+
+[0.34.0](RELEASE-0.34.0.md) adds three S-011 control prompt versions: the inert input with
+no telemetry tag (without and with the plain contract), and with a tag whose fill number
+is seeded and unrelated to the field. Nothing else changes.
 
 [0.33.0](RELEASE-0.33.0.md) adds the entry-effect readout for S-010: two frozen prompt
 versions whose inert input carries one clause reporting what the previous entry did to

@@ -230,6 +230,15 @@ pub enum SustainedPromptVersion {
     InertEffectV1,
     #[serde(rename = "reservoir-journal-inert-plain-contract-effect-v1")]
     InertPlainContractEffectV1,
+    /// 0.34.0, S-011 controls: the inert input with no telemetry tag at all (without and
+    /// with the plain contract), and with a tag whose fill number is a seeded value in
+    /// [40, 95) unrelated to the field (the shuffled-state control). Frozen text.
+    #[serde(rename = "reservoir-journal-inert-no-tag-v1")]
+    InertNoTagV1,
+    #[serde(rename = "reservoir-journal-inert-plain-contract-no-tag-v1")]
+    InertPlainContractNoTagV1,
+    #[serde(rename = "reservoir-journal-inert-plain-contract-scrambled-tag-v1")]
+    InertPlainContractScrambledTagV1,
 }
 impl SustainedPromptVersion {
     pub fn is_legacy(&self) -> bool {
@@ -255,6 +264,11 @@ impl SustainedPromptVersion {
             }
             Self::InertEffectV1 => "reservoir-journal-inert-effect-v1",
             Self::InertPlainContractEffectV1 => "reservoir-journal-inert-plain-contract-effect-v1",
+            Self::InertNoTagV1 => "reservoir-journal-inert-no-tag-v1",
+            Self::InertPlainContractNoTagV1 => "reservoir-journal-inert-plain-contract-no-tag-v1",
+            Self::InertPlainContractScrambledTagV1 => {
+                "reservoir-journal-inert-plain-contract-scrambled-tag-v1"
+            }
         }
     }
     /// A standing contract sent as the system message, or none. Frozen per version.
@@ -264,7 +278,9 @@ impl SustainedPromptVersion {
             Self::InertInvitingContractV1 => Some(INVITING_CONTRACT_V1),
             Self::InertOpenContractV1 => Some(OPEN_CONTRACT_V1),
             Self::InertInvitingVariedContractV1 => Some(INVITING_VARIED_CONTRACT_V1),
-            Self::InertPlainContractEffectV1 => Some(PLAIN_CONTRACT_V1),
+            Self::InertPlainContractEffectV1
+            | Self::InertPlainContractNoTagV1
+            | Self::InertPlainContractScrambledTagV1 => Some(PLAIN_CONTRACT_V1),
             _ => None,
         }
     }
@@ -276,6 +292,15 @@ impl SustainedPromptVersion {
     /// frames, observations and prompts are byte for byte unchanged.
     pub fn reports_entry_effect(self) -> bool {
         matches!(self, Self::InertEffectV1 | Self::InertPlainContractEffectV1)
+    }
+    /// Which telemetry tag an inert prompt carries: the live fill, none, or a seeded value
+    /// unrelated to the field.
+    fn inert_tag(self) -> InertTag {
+        match self {
+            Self::InertNoTagV1 | Self::InertPlainContractNoTagV1 => InertTag::None,
+            Self::InertPlainContractScrambledTagV1 => InertTag::Scrambled,
+            _ => InertTag::Live,
+        }
     }
     fn uses_paired_observation(self) -> bool {
         matches!(
@@ -293,6 +318,9 @@ impl SustainedPromptVersion {
                 | Self::InertInvitingVariedContractV1
                 | Self::InertEffectV1
                 | Self::InertPlainContractEffectV1
+                | Self::InertNoTagV1
+                | Self::InertPlainContractNoTagV1
+                | Self::InertPlainContractScrambledTagV1
         )
     }
 }
@@ -1559,10 +1587,26 @@ fn observation(
         },
     }
 }
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum InertTag {
+    Live,
+    None,
+    Scrambled,
+}
+/// Seed for the scrambled tag's fill values; mixed with the session seed and the step.
+const SCRAMBLED_TAG_SEED: u64 = 0x5343_5241_4D42_4C45;
+/// A fill-like number in [40, 95) that depends only on the session seed and the step,
+/// never on the field: the shuffled-state control.
+pub fn scrambled_fill(seed: u64, step: u64) -> f64 {
+    let mut rng =
+        SplitMix64::new(seed ^ SCRAMBLED_TAG_SEED ^ step.wrapping_mul(0x9E37_79B9_7F4A_7C15));
+    40.0 + 55.0 * rng.unit()
+}
 fn prompt(
     version: SustainedPromptVersion,
     observation: &SustainedObservation,
     memory: Option<&SustainedMemory>,
+    seed: u64,
 ) -> String {
     match version {
         SustainedPromptVersion::LegacyV1 => prompt_v1(observation, memory),
@@ -1579,8 +1623,15 @@ fn prompt(
         | SustainedPromptVersion::InertOpenContractV1
         | SustainedPromptVersion::InertInvitingVariedContractV1
         | SustainedPromptVersion::InertEffectV1
-        | SustainedPromptVersion::InertPlainContractEffectV1 => prompt_inert(observation, memory),
-        SustainedPromptVersion::InertNoMemoryV1 => prompt_inert(observation, None),
+        | SustainedPromptVersion::InertPlainContractEffectV1
+        | SustainedPromptVersion::InertNoTagV1
+        | SustainedPromptVersion::InertPlainContractNoTagV1
+        | SustainedPromptVersion::InertPlainContractScrambledTagV1 => {
+            prompt_inert(observation, memory, version.inert_tag(), seed)
+        }
+        SustainedPromptVersion::InertNoMemoryV1 => {
+            prompt_inert(observation, None, InertTag::Live, seed)
+        }
     }
 }
 /// Modeled on Minime's open-reflection intro: a contract that names the connection and
@@ -1599,7 +1650,12 @@ pub const INVITING_VARIED_CONTRACT_V1: &str = "You are a language agent built fr
 /// A lean per-turn input modeled on the beings' own: the earlier entry as reference, one
 /// telemetry tag, and a line that nothing is required. No mechanism paragraph, no
 /// invitation, no readout explanation.
-fn prompt_inert(observation: &SustainedObservation, memory: Option<&SustainedMemory>) -> String {
+fn prompt_inert(
+    observation: &SustainedObservation,
+    memory: Option<&SustainedMemory>,
+    tag: InertTag,
+    seed: u64,
+) -> String {
     let earlier = memory.map_or_else(
         || "No perception or journal excerpt is supplied for this invitation.".to_string(),
         |m| {
@@ -1619,11 +1675,16 @@ fn prompt_inert(observation: &SustainedObservation, memory: Option<&SustainedMem
             ),
             None => format!(" · previous entry's effect: shift {:.2}", e.shift),
         });
+    const CLOSE: &str = "No continuity label, delta, evidence citation, stance line, or explanation is required for this writing.";
+    let fill = match tag {
+        InertTag::Live => observation.sensory.fill_percent,
+        InertTag::Scrambled => scrambled_fill(seed, observation.step),
+        InertTag::None => return format!("Mode: journal\n\n{earlier}\n\n{CLOSE}"),
+    };
     let tag = format!(
         "Optional context: step {} · fill {:.1}%{effect}",
-        observation.step, observation.sensory.fill_percent
+        observation.step, fill
     );
-    const CLOSE: &str = "No continuity label, delta, evidence citation, stance line, or explanation is required for this writing.";
     format!("Mode: journal\n\n{earlier}\n\n{tag}\n{CLOSE}")
 }
 
@@ -2006,6 +2067,7 @@ fn prepare_language(
             state.specification.prompt_version,
             &observation,
             memory.as_ref(),
+            state.specification.seed,
         ),
         observation,
         memory,
@@ -2213,6 +2275,7 @@ fn validate_pending(p: &SustainedPendingLanguage, s: &SustainedContinuation) -> 
                     s.specification.prompt_version,
                     &p.observation,
                     p.memory.as_ref(),
+                    s.specification.seed,
                 ),
         "Pending language identity/observation/prompt/memory differs",
     )
