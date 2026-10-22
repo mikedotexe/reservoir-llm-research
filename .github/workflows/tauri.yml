@@ -101,6 +101,7 @@ jobs:
         run: |
           python desktop/ReservoirScope/scripts/check_reference.py
           python -m unittest discover -s desktop/ReservoirScope/scripts -p 'test_*.py'
+          python -m unittest discover -s tests -p 'test_*.py'
           python desktop/ReservoirScope/scripts/stage_resources.py
       - name: Stage verified public bootstrap assets
         # These ignored bundle inputs are downloaded without running them. This

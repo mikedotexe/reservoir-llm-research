@@ -196,6 +196,7 @@ CLAUDE.md          this file
 README.md          short orientation
 RESEARCH.md        research home and connections to existing work
 research/         questions, current focus (NOW.md), CURRENT-RELEASE.md, methods, literature, episodes, studies, templates
+research/arms/    every laptop-apparatus arm's exact runner configuration, indexed by family with the account that read it, and how to rerun one
 reservoir_research/ local index, provenance readers, search, sampling, and reading packs
 tests/            standard-library unit and integration tests for the research toolkit
 pyproject.toml     packaging for the `reservoir-research` command; optional NumPy and Matplotlib extras

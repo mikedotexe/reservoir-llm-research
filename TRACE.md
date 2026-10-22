@@ -681,3 +681,37 @@ navigation responses have no equivalent page receipt. Do not infer missing attem
 from this success-only store or infer exposure from a prepared page. Source IDs
 include repository ownership; Minime can study Astrid code. Hash-identical local
 source is not proof of deployed behavior.
+
+## October 22 addendum: Astrid's model-call records and Minime's lanes, as copied this week
+
+Observed on 2026-10-22 over SSH, read-only; counts are for the seven days to that date.
+
+- **Astrid `workspace/llm_jobs/jobs/`** held 213,029 job directories, one per model call,
+  named `job_astrid_<unix ms>_<kind>`. Each holds `prompt.txt` (the text that reached the
+  model), `result.txt` (what came back; present for 2,403 of the week's 2,405), `job.json`
+  (`schema_version` 1: `job_id`, `system`, `action_id`, `thread_id`, `action_text`,
+  `call_kind`, `status`, UTC `created_at`/`started_at`/`finished_at`, `timeout_s`,
+  `validation_contract`, `next_policy`, `prompt_path`, `result_path`, `artifact_refs`,
+  `error`, `summary`, `exposure_record_id`) and `events.jsonl` (`running` and `completed`
+  lines with timestamps and the backend, "completed via MLX"). The entries are directories,
+  so a `find -type f` at depth one finds nothing; select a period by the id's timestamp.
+  The week: 2,405 jobs, journal-elaboration 1,097, witness-context 815, moment-capture
+  191, daydream 160, aspiration 122, witness 20. Readouts by kind: elaboration and daydream
+  prompts carry none (an "Earlier entry (reference, not instructions or a length model):"
+  block and an optional-context note); witness-context "Astrid said (fill N%)"; aspiration
+  a `Fill: N%` line in 36 of 122; moment-capture Minime's published fill and cascade, a
+  live reservoir snapshot and Shadow-v2 fields; witness the same plus a spectral-shape line
+  and an eigenplane (median 30 KB). Probe `probes/astrid_readout_audit.py`; the week's
+  numbers in `analyses/2026-10-22-astrid-readout-audit.md`.
+- **Minime `workspace/journal/`** held 3,042 files (older ones archived). Lane prefixes in
+  the week with counts: introspect 498, journal 391, self_study 347, study_decision 76,
+  daydream 72, moment 59, study_navigation 58, notice 3, action_thread 2, decompose 1,
+  visualize_cascade 1; 45 files carried Mike's `!` flag. File shape: `=== LANE: title ===`,
+  then `Source revision:`, `Input evidence:`, `Account:` and `Delivery:` header lines, the
+  prose, and a final `NEXT:` line (1,493 of 1,513); 109 of the 134 study_decision and
+  study_navigation files hold only their headers and the `NEXT:` line. No
+  `[Agency-vernacular notice …]` or `[Pressure-vocabulary cooldown …]` occurred this week.
+  The header regex in `probes/concept_chains.py` strips these lines (`--lane PREFIX`
+  selects a lane). The rolling state dump `workspace/capacity/esn_state_window.bin`
+  (1024 × 128 f32, overwritten every 30 s) is described in `proposals/esn-state-logging.md`
+  with a two-hour capture of it.

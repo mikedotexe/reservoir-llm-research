@@ -1,0 +1,26 @@
+{
+ "seed": "7",
+ "turnEvery": 30,
+ "maximumSteps": 2000,
+ "maximumTurns": 60,
+ "maximumDurationSeconds": 7200,
+ "storageBudgetBytes": 268435456,
+ "paceMs": 250,
+ "leak": 0.65,
+ "noiseAmplitude": 0.02,
+ "initialRetention": 0.955,
+ "regulationEnabled": true,
+ "language": {
+  "backend": "ollama",
+  "endpoint": "http://127.0.0.1:11434",
+  "model": "gemma4:12b",
+  "contextTokens": 8192,
+  "temperature": 0.7,
+  "thinking": false
+ },
+ "promptVersion": "reservoir-journal-inert-v1",
+ "outputTokens": 1024,
+ "requestDeadlineSeconds": 180,
+ "sensoryNoiseAmplitude": 0.5,
+ "feedbackScale": 0.4
+}
