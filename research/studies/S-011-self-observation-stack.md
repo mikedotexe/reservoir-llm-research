@@ -427,6 +427,41 @@ the tagged arms produced: carried 66.8%, reach 20.2%, no bridges, "fill" quoted 
 "ghost" in 335 of 500 introspections and 185 of 391 journal entries, 2 of 350 studies. The
 prompts were not copied, so which entries she was shown stays unknown from here.
 
+2026-10-22 14:20, the threshold battery: design and predictions, written before any arm runs
+(plan approved 14:05; Mike's idea of 13:20: no fill shown, fill held marginally below and
+marginally above the target, does the writing differ). The by-construction point first: with
+no number shown the prompt under `latest`, `random` and `random-older` does not depend on the
+field (24 of 24 entries identical at fill 70% and 44% on October 21; today the `random-older`
+pick sequence was the same under the single and the two-entry slot, 21 and 24 distinct at the
+two seeds, because the draw is seed-and-step), so fill can reach the writing only through
+`state-residual`'s choice of the older entry. Leg A: no-tag plain contract
+(`reservoir-journal-inert-plain-contract-no-tag-v1`), embedding codec, regulation off, fixed
+retention at R_lo and R_hi, chosen after four 12-entry calibration arms so that the fill
+medians sit about one within-arm spread (8 points) below and above the shelf median of 70
+(the regulator's target is 68, `regulation.rs`); `state-residual` at both fills and both seeds
+(four arms) and `random-older` at R_lo and both seeds (two; its texts are the same at any fill
+by construction and its picks are the tagged `policy-random-older` arms' picks, so the pair
+measures the tag alone). Leg B: a new prompt version
+`reservoir-journal-inert-plain-contract-two-no-tag-v1` (desktop 0.39.0: the two-entry slot
+with no context line), `state-residual` and `random-older` at the regulated shelf, two seeds
+(four arms), against today's tagged two-entry arms at the same seeds and the same picks. The
+0.38.0 key, opened today, is why leg B is the direct test: the invented-number family of the
+blind sample is entirely the tagged two-entry arms. Predictions. (1) The two `state-residual`
+fills at one seed are identical through entry 3 and part at the first turn the chooser picks
+differently, on a differing prompt rather than a fork; if they never part in 40 entries the
+chooser did not see the field in this range, which is itself the answer. (2) The marker
+differences between the two fills are no larger than the `state-residual`-against-`random-older`
+difference at one fill and seed, and no larger than the seed-to-seed difference: no fill effect
+beyond which entry came back; the seed-7 lock reappears at both fills (at most 10 distinct of
+39, one entry returned 12 or more times). (3) With no tag, entries quoting a percentage of 95
+or more fall to near zero in both legs (today's tagged two-entry arms: 11, 8, 25 and 12 of 40
+against 0–9 in the single-slot tagged arms, `probes/desktop_quoted_numbers.py`); the
+finished-state register may persist in the locked two-entry `state-residual` arms without
+numbers. (4) The two-entry no-tag arms keep the older-entry slot's low questions, hedges and
+first-person openings, and bridge at the no-tag rate (0.6–1.1 per entry) rather than the
+tagged rate (0.1–0.2). Reading order: identity and choice probes, quoted numbers, markers,
+chains; the 20-entry blind sample with Mike before its key.
+
 ## What the day established, and did not (October 21, closing)
 
 Did. The channel is built and exact (72 runs; recomputation within 1e-16; watchdog and
