@@ -68,6 +68,17 @@ vector spans about twelve of the field's 32 modes, so the controller stayed on i
 0.995 rail near 14% fill, while these values settled fill near 70%, inside the 64–72%
 band ([account](../../analyses/2026-10-21-laptop-first-sustained-session.md)).
 
+**Entry-effect readout** (0.33.0, S-010 idea 3). `reservoir-journal-inert-effect-v1` and
+`…-inert-plain-contract-effect-v1` are the inert input, without and with the plain
+contract, plus one clause on the optional-context line from the second entry on:
+"previous entry's effect: shift S · alignment with the one before A". `S` is the L2 norm
+of the difference between the application step computed with the entry's scaled vector
+and the same step (same prior state, forcing and noise draws) with no held feedback; `A`
+is the cosine of that difference against the previous application's. The application
+frame and the next observation carry the `entryEffect`; the continuation keeps the last
+effect and its vector. Only these two versions compute or report it, so every earlier
+session's frames, observations and prompts are unchanged.
+
 **Model thinking** (0.32.0) is an optional flag on the language configuration. Omitted,
 the request body is as built; `false` adds `think: false`, asking a thinking model such
 as gemma4 for the reply only, as both beings' runtimes do; `true` lets it think first.

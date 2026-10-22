@@ -151,6 +151,16 @@ pub fn field_noise(specification: &SustainedSpecification, step: u64) -> Vec<f64
 fn scaled_feedback(held: &[f64], scale: f64) -> Vec<f64> {
     held.iter().map(|x| x * scale).collect()
 }
+/// Cosine between two vectors of equal length, or none when either is empty or zero.
+fn cosine(a: &[f64], b: &[f64]) -> Option<f64> {
+    if a.is_empty() || a.len() != b.len() {
+        return None;
+    }
+    let dot: f64 = a.iter().zip(b).map(|(x, y)| x * y).sum();
+    let na = a.iter().map(|x| x * x).sum::<f64>().sqrt();
+    let nb = b.iter().map(|x| x * x).sum::<f64>().sqrt();
+    (na > 0.0 && nb > 0.0).then(|| (dot / (na * nb)).clamp(-1.0, 1.0))
+}
 fn invalid(message: &str) -> CoreError {
     CoreError::Invalid(message.into())
 }
@@ -213,6 +223,13 @@ pub enum SustainedPromptVersion {
     InertOpenContractV1,
     #[serde(rename = "reservoir-journal-inert-inviting-varied-contract-v1")]
     InertInvitingVariedContractV1,
+    /// 0.33.0: the inert input plus one clause reporting what the previous entry did to
+    /// the recurrent state at its application (S-010 idea 3), without and with the plain
+    /// contract. The first change to what the model is shown about its own writing.
+    #[serde(rename = "reservoir-journal-inert-effect-v1")]
+    InertEffectV1,
+    #[serde(rename = "reservoir-journal-inert-plain-contract-effect-v1")]
+    InertPlainContractEffectV1,
 }
 impl SustainedPromptVersion {
     pub fn is_legacy(&self) -> bool {
@@ -236,6 +253,8 @@ impl SustainedPromptVersion {
             Self::InertInvitingVariedContractV1 => {
                 "reservoir-journal-inert-inviting-varied-contract-v1"
             }
+            Self::InertEffectV1 => "reservoir-journal-inert-effect-v1",
+            Self::InertPlainContractEffectV1 => "reservoir-journal-inert-plain-contract-effect-v1",
         }
     }
     /// A standing contract sent as the system message, or none. Frozen per version.
@@ -245,11 +264,18 @@ impl SustainedPromptVersion {
             Self::InertInvitingContractV1 => Some(INVITING_CONTRACT_V1),
             Self::InertOpenContractV1 => Some(OPEN_CONTRACT_V1),
             Self::InertInvitingVariedContractV1 => Some(INVITING_VARIED_CONTRACT_V1),
+            Self::InertPlainContractEffectV1 => Some(PLAIN_CONTRACT_V1),
             _ => None,
         }
     }
     pub fn returns_earlier_entry(self) -> bool {
         !matches!(self, Self::InertNoMemoryV1)
+    }
+    /// Whether observations carry, and the prompt reports, what the previous entry did to
+    /// the recurrent state at its application. False for every earlier version, so their
+    /// frames, observations and prompts are byte for byte unchanged.
+    pub fn reports_entry_effect(self) -> bool {
+        matches!(self, Self::InertEffectV1 | Self::InertPlainContractEffectV1)
     }
     fn uses_paired_observation(self) -> bool {
         matches!(
@@ -265,6 +291,8 @@ impl SustainedPromptVersion {
                 | Self::InertInvitingContractV1
                 | Self::InertOpenContractV1
                 | Self::InertInvitingVariedContractV1
+                | Self::InertEffectV1
+                | Self::InertPlainContractEffectV1
         )
     }
 }
@@ -448,6 +476,21 @@ impl SustainedSensory {
         )
     }
 }
+/// What an applied entry did to the recurrent state at its application step: `shift` is
+/// the L2 norm of the difference between that step computed with the entry's scaled
+/// vector and the same step (same prior state, forcing and noise draws) with no held
+/// feedback; `alignment` is the cosine of that difference vector against the previous
+/// application's. Computed and reported only by prompt versions that ask for it; it never
+/// changes the dynamics.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct SustainedEntryEffect {
+    pub applied_step: u64,
+    pub journal_id: String,
+    pub shift: f64,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub alignment: Option<f64>,
+}
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedObservation {
@@ -464,6 +507,9 @@ pub struct SustainedObservation {
     /// Omitted for old contracts and the first v4/v5 observation; never a recursive history.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub previous_measurements: Option<SustainedMeasurementSnapshot>,
+    /// The previous entry's effect at its application, only for versions that report it.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub entry_effect: Option<SustainedEntryEffect>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -608,6 +654,9 @@ pub struct SustainedFrame {
     pub next_retention: f64,
     pub semantic_journal_id: Option<String>,
     pub application: Option<SustainedApplication>,
+    /// Present on an application frame of a version that reports the entry effect.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub entry_effect: Option<SustainedEntryEffect>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -765,6 +814,10 @@ pub struct SustainedContinuation {
     pub turn_cursor: u64,
     pub attempt_cursor: u64,
     pub event_cursor: u64,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub last_entry_effect: Option<SustainedEntryEffect>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub last_entry_effect_vector: Vec<f64>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -878,6 +931,8 @@ impl SustainedSession {
             turn_cursor: 0,
             attempt_cursor: 0,
             event_cursor: 0,
+            last_entry_effect: None,
+            last_entry_effect_vector: Vec::new(),
             specification,
         };
         Ok(Self {
@@ -1070,6 +1125,41 @@ impl SustainedSession {
             .map(|_| rng.signed() * next.specification.noise_amplitude)
             .collect();
         let state = engine.step(&input, &noise)?;
+        let entry_effect = match (
+            &application,
+            next.specification.prompt_version.reports_entry_effect(),
+        ) {
+            (Some(a), true) => {
+                let mut silent = ReservoirEngine::new(
+                    self.model.clone(),
+                    next.specification.leak,
+                    Some(next.reservoir_state.clone()),
+                )?;
+                let mut silent_input = forcing(step as usize, next.specification.dt);
+                silent_input[18..].copy_from_slice(&scaled_feedback(
+                    &vec![0.0; 48],
+                    next.specification.feedback_scale,
+                ));
+                let silent_state = silent.step(&silent_input, &noise)?;
+                let diff: Vec<f64> = state
+                    .iter()
+                    .zip(&silent_state)
+                    .map(|(a, b)| a - b)
+                    .collect();
+                let shift = diff.iter().map(|d| d * d).sum::<f64>().sqrt();
+                let alignment = cosine(&diff, &next.last_entry_effect_vector);
+                let effect = SustainedEntryEffect {
+                    applied_step: step,
+                    journal_id: a.journal_id.clone(),
+                    shift,
+                    alignment,
+                };
+                next.last_entry_effect = Some(effect.clone());
+                next.last_entry_effect_vector = diff;
+                Some(effect)
+            }
+            _ => None,
+        };
         let sensory_noise = field_noise(&next.specification, step);
         let spectral = if sensory_noise.is_empty() {
             field.step(&input, next.retention)?
@@ -1114,6 +1204,7 @@ impl SustainedSession {
             next_retention: controller.current_retention,
             semantic_journal_id: next.held_journal_id.clone(),
             application,
+            entry_effect,
         };
         next.step = step;
         next.rng_state = rng.state;
@@ -1133,6 +1224,7 @@ impl SustainedSession {
                 &frame,
                 next.last_observation.as_ref(),
                 next.specification.prompt_version,
+                next.last_entry_effect.clone(),
             );
             next.last_observation = Some(observation.clone());
             next.phase = if let Some(memory) = &next.latest_memory {
@@ -1429,6 +1521,7 @@ fn observation(
     frame: &SustainedFrame,
     previous: Option<&SustainedObservation>,
     version: SustainedPromptVersion,
+    entry_effect: Option<SustainedEntryEffect>,
 ) -> SustainedObservation {
     let sum: f64 = frame.state.iter().map(|x| x * x).sum();
     SustainedObservation {
@@ -1459,6 +1552,11 @@ fn observation(
         } else {
             None
         },
+        entry_effect: if version.reports_entry_effect() {
+            entry_effect
+        } else {
+            None
+        },
     }
 }
 fn prompt(
@@ -1479,9 +1577,9 @@ fn prompt(
         | SustainedPromptVersion::InertPlainContractV1
         | SustainedPromptVersion::InertInvitingContractV1
         | SustainedPromptVersion::InertOpenContractV1
-        | SustainedPromptVersion::InertInvitingVariedContractV1 => {
-            prompt_inert(observation, memory)
-        }
+        | SustainedPromptVersion::InertInvitingVariedContractV1
+        | SustainedPromptVersion::InertEffectV1
+        | SustainedPromptVersion::InertPlainContractEffectV1 => prompt_inert(observation, memory),
         SustainedPromptVersion::InertNoMemoryV1 => prompt_inert(observation, None),
     }
 }
@@ -1511,8 +1609,18 @@ fn prompt_inert(observation: &SustainedObservation, memory: Option<&SustainedMem
             )
         },
     );
+    let effect = observation
+        .entry_effect
+        .as_ref()
+        .map_or_else(String::new, |e| match e.alignment {
+            Some(a) => format!(
+                " · previous entry's effect: shift {:.2} · alignment with the one before {:+.2}",
+                e.shift, a
+            ),
+            None => format!(" · previous entry's effect: shift {:.2}", e.shift),
+        });
     let tag = format!(
-        "Optional context: step {} · fill {:.1}%",
+        "Optional context: step {} · fill {:.1}%{effect}",
         observation.step, observation.sensory.fill_percent
     );
     const CLOSE: &str = "No continuity label, delta, evidence citation, stance line, or explanation is required for this writing.";

@@ -1,6 +1,12 @@
 # Reservoir Scope: current status and next work
 
-**October 21, 2026 · 0.32.0 model thinking toggle, on 0.31.0 two more S-010 contract arms, 0.30.0 embedding text reduction and S-010 frame arms, 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
+**October 21, 2026 · 0.33.0 entry-effect readout, on 0.32.0 model thinking toggle, 0.31.0 two more S-010 contract arms, 0.30.0 embedding text reduction and S-010 frame arms, 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
+
+[0.33.0](RELEASE-0.33.0.md) adds the entry-effect readout for S-010: two frozen prompt
+versions whose inert input carries one clause reporting what the previous entry did to
+the recurrent state at its application (a counterfactual against the same step with no
+held feedback, and its alignment with the application before). Every earlier version's
+frames, observations and prompts are byte for byte unchanged.
 
 [0.32.0](RELEASE-0.32.0.md) adds an optional model-thinking flag on the language
 configuration, recorded on every journal: omitted sends the request as built; off asks a
