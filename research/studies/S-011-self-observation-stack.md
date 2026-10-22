@@ -365,6 +365,20 @@ entry six or more back on 41%; Astrid's is the previous entry on 59%; both bridg
 rarely as the tagged arms. The kaleidoscope passage from the blind reading sits on a
 four-entry chain (37–40).
 
+2026-10-22 00:43, the four 0.37.0 policy arms are in (`analyses/2026-10-21-state-chosen-memory.md`;
+gemma4, plain contract, embedding codec, 40 entries each, two seeds). Returning an older
+entry at every turn moves the register the way the 0.36.0 arms did, and further:
+questions per sentence 0.3–4.2% against 6.3–7.7%, hedges 0.5–3.3 against 4.5–4.8, no
+first-person openings against 20–22%, first person 13.5–47.5 per 1,000 against
+56.7–57.5, quoted digits up in three of four, a third fewer words in three of four. Seven
+arms over two releases move one way by amounts past a provider fork's, so this is now an
+effect of the returned entry under this contract. The chooser sets concentration, not
+direction: `state-residual` returned 10 and 3 distinct entries of 39 (one entry 15 and 36
+times) where `random-older` returned 21 and 24, and at seed 7 it locked on the third entry
+from the fourth turn on, every later entry measuring the current number against its
+67.8%. The concept-chain probe finds the shown entry on 62% and 54% of random-older turns
+(chance 14%). A twelve-entry blind sample from the four arms waits in the scratchpad.
+
 ## What the day established, and did not (October 21, closing)
 
 Did. The channel is built and exact (72 runs; recomputation within 1e-16; watchdog and
@@ -378,7 +392,11 @@ works as a mechanism (the choice recorded, verified and read back), its first ru
 degenerate with real entries (the latest entry's push dominates the state), and returning
 an older entry moves the register one way in three arms (fewer questions, hedges and
 first-person openings) at the cost of the thread continuity that produced the best
-passage in a blind reading. Minime's reservoir at 3 Hz is high-dimensional and near-white
+passage in a blind reading. The four 0.37.0 arms move it the same way by more, so seven arms over
+two releases make it an effect of the returned entry under this contract; the residual
+chooser converges on one entry (3 of 39 distinct at seed 7, one returned 36 times) where
+chance spreads (24), and the chooser sets how many entries come back, not which way the
+register moves. Minime's reservoir at 3 Hz is high-dimensional and near-white
 with at least one ten-minute excursion into a slow, low-dimensional regime.
 
 Did not. No numerical change in this apparatus reached the text except through the one
