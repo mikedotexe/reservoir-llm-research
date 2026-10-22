@@ -158,7 +158,7 @@ tag: every two-entry arm showed a fill number.
 
 ## What it offers
 
-The threshold battery (S-011 progress, 2026-10-22 14:20; desktop 0.39.0): the same two-entry
+The threshold battery (S-011 progress, 2026-10-22 14:02; desktop 0.39.0): the same two-entry
 slot with no context line, which tests whether the number made the saturated family, beside a
 no-tag single-slot leg that routes Mike's fill question through the one channel it can
 travel, the state-chosen return.

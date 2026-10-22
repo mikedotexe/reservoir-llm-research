@@ -427,8 +427,8 @@ the tagged arms produced: carried 66.8%, reach 20.2%, no bridges, "fill" quoted 
 "ghost" in 335 of 500 introspections and 185 of 391 journal entries, 2 of 350 studies. The
 prompts were not copied, so which entries she was shown stays unknown from here.
 
-2026-10-22 14:20, the threshold battery: design and predictions, written before any arm runs
-(plan approved 14:05; Mike's idea of 13:20: no fill shown, fill held marginally below and
+2026-10-22 14:02, the threshold battery: design and predictions, written before any arm runs
+(plan approved about 13:55; Mike's idea of 13:20: no fill shown, fill held marginally below and
 marginally above the target, does the writing differ). The by-construction point first: with
 no number shown the prompt under `latest`, `random` and `random-older` does not depend on the
 field (24 of 24 entries identical at fill 70% and 44% on October 21; today the `random-older`
@@ -462,8 +462,8 @@ first-person openings, and bridge at the no-tag rate (0.6–1.1 per entry) rathe
 tagged rate (0.1–0.2). Reading order: identity and choice probes, quoted numbers, markers,
 chains; the 20-entry blind sample with Mike before its key.
 
-2026-10-22 14:40, the 0.38.0 arms read in (`analyses/2026-10-22-two-entry-slot.md`; blind
-reading with Mike, key opened 13:55, `research/readings/2026-10-22-blind-policy-038.md`). The
+2026-10-22 14:15, the 0.38.0 arms read in (`analyses/2026-10-22-two-entry-slot.md`; blind
+reading with Mike, key opened about 13:50, `research/readings/2026-10-22-blind-policy-038.md`). The
 window: the residual rule at K = 3 returned 17 and 14 distinct entries against 10 and 3, the
 most-returned 6 and 9 times against 15 and 36, with a median of 4 turns between returns of
 one entry at both seeds; the lock is the rule reading a stable state, and the window turns it

@@ -21,7 +21,7 @@ entry's presence beside the older one restores none of the questions, hedges or 
 openings the older-entry slot removes; and the sample's finished-state, invented-number family
 is entirely the tagged two-entry arms ([account](../analyses/2026-10-22-two-entry-slot.md)).
 The threshold battery follows from it (desktop 0.39.0, the two-entry slot with no context
-line; ten no-tag arms; design and predictions in S-011 before any arm ran). Read-only toward the beings, with Mike's go for the two SSH copies: a week
+line; ten no-tag arms; design and predictions in S-011 at 14:02 before any arm ran). Read-only toward the beings, with Mike's go for the two SSH copies: a week
 of Astrid's prompts shows her journal elaborations carry no number at all and the numbers
 that move are Minime's telemetry in her moment-capture prompts, quoted in 164 of 191
 responses, while her own aspiration and witness readouts held one value all week
