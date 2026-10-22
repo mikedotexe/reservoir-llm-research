@@ -192,6 +192,28 @@ the fix, a warm-up before the fill ring counts, versioned so 0.35.0 bundles repl
 goes to 0.36.0. The readout is in the scratchpad's `logs/ladder-calibration.out`; the
 twins' segments are the gain-0 references for the ladder's deltas.
 
+2026-10-21 20:55, the fill sweep on gemma4 (plain contract, surface codec, field noise 0.5
+except the no-noise arm, regulation off, 12 entries per arm at a turn every 30 steps, two
+seeds; `probes/introspection_markers.py`, `analyze-sweep.out`; fill from the frames). Fill
+medians by arm (seed 20260909 / seed 7): no noise at retention 0.955 17.3/14.3%, retention
+0.82 43.7/43.4%, 0.90 57.0/56.5%, 0.95 70.0/69.3%, 0.99 98.1/98.2%. First person per 1,000
+words in the same order: 26.6/41.7, 66.1/32.9, 64.1/51.6, 17.7/21.5, 35.7/34.2; digit
+density 0.17/0.19, 0.02/0.56, 0.03/0.05, 0.58/0.41, 0.50/0.36; hedges 1.9/6.0, 5.0/3.3,
+6.2/3.9, 3.0/1.7, 1.7/4.1; texts opening in first person 0/0, 50/0, 17/0, 0/0, 0/0 percent;
+no assistant-mode or diary-shaped texts anywhere. The register is not monotone in fill. In
+both seeds the shelf arm (70%) carries the least first person and, with the saturated arm
+(98%), the most digits: there the model writes about the number ("The current metric has
+dropped to 71.5%"; "The metric has settled at 66.1%"), while at 57% it writes about memory
+and continuity with hardly a digit ("I do not 'remember' the previous entry as a lived
+experience; I access it as a data point"). The two seeds disagree at 17% and 44%, so with
+n = 12 per arm only the shelf-low, mid-high pattern repeats. The only thing that differs
+between arms in what the model is shown is the fill number on the optional-context line
+(and its own earlier entry), so the no-tag and scrambled-tag controls now running decide
+whether the number alone moves the register. Text overlap between consecutive entries is
+nil in every arm (one 0.91 at the last entry of the 98% arm, seed 1); consecutive
+embedding cosines 0.78–0.91 by arm, highest at 70% and 98%. Two passages are in the
+noteworthy list.
+
 ## Finish line for the draft
 
 A dated account per tier with every number carrying n, the fill-sweep result stated
