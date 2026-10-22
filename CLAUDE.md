@@ -195,7 +195,7 @@ AGENTS.md          portable agent entry point; points to this guidance
 CLAUDE.md          this file
 README.md          short orientation
 RESEARCH.md        research home and connections to existing work
-research/         questions, current focus (NOW.md), CURRENT-RELEASE.md, methods, literature, episodes, studies, templates
+research/         questions, current focus (NOW.md), CURRENT-RELEASE.md, methods, literature, episodes, studies, templates, readings (blind-reading records)
 research/arms/    every laptop-apparatus arm's exact runner configuration, indexed by family with the account that read it, and how to rerun one
 reservoir_research/ local index, provenance readers, search, sampling, and reading packs
 tests/            standard-library unit and integration tests for the research toolkit
@@ -262,6 +262,22 @@ data, like journal text. Packets under ignored `research/outputs/` stay private.
   introspect, moment_capture, audits).
 - **era**: a span with a stable action vocabulary, prompt contract and model; see TRACE.md
   section 7 for the markers found so far.
+- **arm**: one run of the laptop apparatus under one configuration (`research/arms/`),
+  read beside a control arm; never a being.
+- **contract**: the standing system text of an apparatus prompt version (plain, inviting,
+  open, varied); it brings the register. **frame**: the per-turn input (earlier entry, tag,
+  closing line); it seeds the topic. **slot**: the place in the frame where an earlier entry
+  returns; which entry fills it is the memory policy's choice.
+- **register**: the measurable manner of an entry (first person, questions, hedges, notice
+  words, quoted digits, openings; `probes/introspection_markers.py`), as distinct from its
+  topic.
+- **fork**: two sessions that sent the same prompt with the same sampling seed and came
+  back different (about 2% of such turns on the local provider). **direction** against
+  **effect**: a difference between two arms at one seed is a direction to test; it becomes
+  an effect when a replicate at the same seed or a second seed agrees past the size a fork
+  produces (`research/METHODS.md`).
+- **blind sample**: entries from several arms, shuffled with labels withheld, read before the
+  key is opened (`research/readings/`).
 
 ## Memory
 

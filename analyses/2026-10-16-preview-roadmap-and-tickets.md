@@ -72,7 +72,7 @@ first invited preview session.
 **Preserved research dispositions:** S-007 day11 remains parked at its missing
 historical release witness; S-006/S-008 bounded extensions remain closed with
 incomplete coverage, and S-009 remains a completed negative qualification.
-[Now](../research/NOW.md#closed-accounts-and-open-research) keeps the broader questions
+[Now](../research/NOW-history-20261007-through-20261016.md#closed-accounts-and-open-research) keeps the broader questions
 open without silently reopening those attempts. Separate-device backup remains an
 optional parked follow-up to the completed local recovery scope.
 
