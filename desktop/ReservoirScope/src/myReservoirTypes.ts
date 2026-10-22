@@ -31,8 +31,8 @@ export const validDifferenceControls = (config: SustainedConfig): boolean => {
   return Number.isFinite(gain) && gain >= -1 && gain <= 1 && Number.isFinite(tau) && tau >= 0 && tau <= 1000 && Number.isFinite(band) && band >= 0 && band <= 1 && Number.isFinite(clip) && clip > 0 && clip <= 5 && Number.isFinite(std) && std >= 0 && std <= 100 && Number.isInteger(warmup) && warmup >= 0 && warmup <= 10000000;
 };
 /** Which earlier entry a turn returns (0.36.0): omitted keeps the latest applied entry, as built. */
-export type SustainedMemoryPolicy = 'latest' | 'state-aligned' | 'random';
-export const MEMORY_POLICIES: SustainedMemoryPolicy[] = ['latest', 'state-aligned', 'random'];
+export type SustainedMemoryPolicy = 'latest' | 'state-aligned' | 'random' | 'state-residual' | 'random-older';
+export const MEMORY_POLICIES: SustainedMemoryPolicy[] = ['latest', 'state-aligned', 'random', 'state-residual', 'random-older'];
 export const effectiveMemoryPolicy = (config: SustainedConfig): SustainedMemoryPolicy => config.memoryPolicy === undefined ? 'latest' : config.memoryPolicy;
 export const validMemoryPolicy = (config: SustainedConfig): boolean => config.memoryPolicy === undefined || (MEMORY_POLICIES as unknown[]).includes(config.memoryPolicy);
 export function validFieldControls(config: SustainedConfig): boolean {

@@ -27,7 +27,9 @@ and continuation record, never a second event. `memory_policy` (0.36.0) lets
 `choose_memory` pick the returned entry from the continuation's `applied_entries` ledger by
 the cosine of each entry's recorded effect with the observing state, or by a seeded draw;
 `validate_state` recomputes the choice, and `difference_watchdog_warmup` holds the watchdog's
-fill ring through the start-up climb. All authoritative
+fill ring through the start-up climb; `state-residual` (0.37.0) projects the latest entry's
+effect out of the state with `project_out` and chooses among the older entries, `random-older`
+draws among them. All authoritative
 numbers are f64. Step/turn/attempt/event
 and RNG identities are u64; IPC owners must expose them as decimal strings where
 JavaScript integer precision would be inadequate. Each step is one third of a

@@ -991,6 +991,14 @@ pub enum SustainedMemoryPolicy {
     Latest,
     StateAligned,
     Random,
+    /// 0.37.0: among the entries older than the latest, the one whose effect points most
+    /// along the observing state with the latest entry's effect direction projected out,
+    /// so the push the held vector is still delivering does not decide. One candidate
+    /// returns the latest.
+    StateResidual,
+    /// 0.37.0: a seeded uniform draw among the entries older than the latest, the control
+    /// for `state-residual`. One candidate returns the latest.
+    RandomOlder,
 }
 impl SustainedMemoryPolicy {
     pub fn is_latest(&self) -> bool {
@@ -1001,8 +1009,23 @@ impl SustainedMemoryPolicy {
             Self::Latest => "latest",
             Self::StateAligned => "state-aligned",
             Self::Random => "random",
+            Self::StateResidual => "state-residual",
+            Self::RandomOlder => "random-older",
         }
     }
+}
+/// `x` with its component along `direction` removed; `x` itself when the direction has no
+/// length.
+pub fn project_out(x: &[f64], direction: &[f64]) -> Vec<f64> {
+    let norm2: f64 = direction.iter().map(|d| d * d).sum();
+    if norm2 <= 0.0 || direction.len() != x.len() {
+        return x.to_vec();
+    }
+    let dot: f64 = x.iter().zip(direction).map(|(a, b)| a * b).sum();
+    x.iter()
+        .zip(direction)
+        .map(|(a, b)| a - dot / norm2 * b)
+        .collect()
 }
 /// Seed mixed with the session seed and the boundary step for the `random` memory policy.
 pub const MEMORY_CHOICE_SEED: u64 = 0x004d_454d_4f52_5943;
@@ -2747,34 +2770,66 @@ fn pending_memory(
         }
     })
 }
+/// The entry among `entries[..limit]` whose effect points most along `target`: ties go
+/// to the most recent, entries without a direction lose, and `fallback` is returned when
+/// none has one.
+fn most_aligned(
+    entries: &[SustainedAppliedEntry],
+    limit: usize,
+    target: &[f64],
+    fallback: usize,
+) -> usize {
+    let mut best = fallback;
+    let mut best_score = f64::NEG_INFINITY;
+    for (i, e) in entries.iter().enumerate().take(limit) {
+        if let Some(c) = cosine(&e.effect, target) {
+            if c >= best_score {
+                best = i;
+                best_score = c;
+            }
+        }
+    }
+    best
+}
 /// The policy's choice among the applied entries at a turn boundary: the latest under
 /// `latest`; under `state-aligned` the entry whose effect at application points most
 /// along the observing state (ties to the most recent; entries without a direction lose,
 /// and when none has one the latest is returned); a seeded uniform draw under `random`.
+/// Under `state-residual` the latest entry's effect direction is projected out of the
+/// state first and only older entries compete; `random-older` draws among those.
 fn choose_memory(s: &SustainedContinuation, step: u64) -> Result<SustainedMemoryChoice> {
     let n = s.applied_entries.len();
     ensure(n > 0, "No applied entry to choose a memory from")?;
     let policy = s.specification.memory_policy;
     let mut score = None;
+    let draw = |modulus: usize| {
+        let mut rng = SplitMix64::new(s.specification.seed ^ MEMORY_CHOICE_SEED ^ step);
+        (rng.next_u64() % modulus as u64) as usize
+    };
     let index = match policy {
         SustainedMemoryPolicy::Latest => n - 1,
-        SustainedMemoryPolicy::Random => {
-            let mut rng = SplitMix64::new(s.specification.seed ^ MEMORY_CHOICE_SEED ^ step);
-            (rng.next_u64() % n as u64) as usize
+        SustainedMemoryPolicy::Random => draw(n),
+        SustainedMemoryPolicy::RandomOlder => {
+            if n == 1 {
+                0
+            } else {
+                draw(n - 1)
+            }
         }
         SustainedMemoryPolicy::StateAligned => {
-            let mut best = n - 1;
-            let mut best_score = f64::NEG_INFINITY;
-            for (i, e) in s.applied_entries.iter().enumerate() {
-                if let Some(c) = cosine(&e.effect, &s.reservoir_state) {
-                    if c >= best_score {
-                        best = i;
-                        best_score = c;
-                    }
-                }
-            }
+            let best = most_aligned(&s.applied_entries, n, &s.reservoir_state, n - 1);
             score = cosine(&s.applied_entries[best].effect, &s.reservoir_state);
             best
+        }
+        SustainedMemoryPolicy::StateResidual => {
+            if n == 1 {
+                0
+            } else {
+                let residual = project_out(&s.reservoir_state, &s.applied_entries[n - 1].effect);
+                let best = most_aligned(&s.applied_entries, n - 1, &residual, n - 2);
+                score = cosine(&s.applied_entries[best].effect, &residual);
+                best
+            }
         }
     };
     let e = &s.applied_entries[index];

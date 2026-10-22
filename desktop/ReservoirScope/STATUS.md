@@ -1,6 +1,10 @@
 # Reservoir Scope: current status and next work
 
-**October 21, 2026 · 0.36.0 state-chosen memory and watchdog warm-up, on 0.35.0 difference-signal channel, 0.34.0 no-tag and scrambled-tag controls, 0.33.0 entry-effect readout, 0.32.0 model thinking toggle, 0.31.0 two more S-010 contract arms, 0.30.0 embedding text reduction and S-010 frame arms, 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
+**October 21, 2026 · 0.37.0 state-residual and random-older memory policies, on 0.36.0 state-chosen memory and watchdog warm-up, 0.35.0 difference-signal channel, 0.34.0 no-tag and scrambled-tag controls, 0.33.0 entry-effect readout, 0.32.0 model thinking toggle, 0.31.0 two more S-010 contract arms, 0.30.0 embedding text reduction and S-010 frame arms, 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
+
+[0.37.0](RELEASE-0.37.0.md) adds the `state-residual` policy (the latest entry's push projected
+out of the state, the choice among older entries) and its `random-older` control, after the
+first gemma4 arm showed `state-aligned` returns the latest entry whenever entries differ.
 
 [0.36.0](RELEASE-0.36.0.md) lets the recurrent state choose which earlier entry a turn
 returns (`memoryPolicy`: latest, state-aligned, random) from a ledger of applied entries and

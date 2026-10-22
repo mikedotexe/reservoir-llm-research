@@ -107,7 +107,12 @@ and hash before the prompt is built, and the prompt is the one the version alway
 the state. Under `latest` nothing is serialised and every byte is the earlier mechanism's.
 `differenceWatchdogWarmup` (default 0) holds the watchdog's fill ring until that many steps
 have passed, because a regulated field's start-up climb alone gives a trailing 90-step
-spread of 14.6–16.9 points at step 90 (four gain-0 twins, S-011).
+spread of 14.6–16.9 points at step 90 (four gain-0 twins, S-011). 0.37.0 adds
+`state-residual` (the latest entry's effect direction projected out of the observing state
+by `project_out`, the choice among the entries older than the latest; one candidate returns
+the latest) and `random-older` (a seeded draw among the older entries), because with entries
+that differ `state-aligned` returns the latest every time: its vector is still being fed and
+the state points along its push.
 
 **Telemetry-tag controls** (0.34.0, S-011). `reservoir-journal-inert-no-tag-v1` and
 `…-inert-plain-contract-no-tag-v1` drop the optional-context line entirely (the spec's

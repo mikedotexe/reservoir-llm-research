@@ -292,6 +292,20 @@ the gains that do anything are the ones the dead-band rule would silence. Model 
 the channel are deferred behind the policy arms; the expectation from the unchanged
 alignment is that the writing will not notice.
 
+2026-10-21 22:05, the first gemma4 arm under `state-aligned` (plain contract, embedding
+codec, 40 entries, seed 20260909; `probes/desktop_memory_choice.py`) returned the latest
+entry on 39 of 39 turns, with cosine scores 0.75–0.85, and so wrote the same 40 entries as
+the `latest` arm word for word (seeded sampling, identical prompts). The reason is in the
+mechanism, not the model: the latest entry's vector is fed into the reservoir at every
+step until the next application, the observing state points along that push, and an
+entry's effect at application is that push's first step; with entries that differ, the
+cosine rule can only pick the latest. The scripted check had not shown it because every
+scripted entry carried the same text. Desktop 0.37.0 adds `state-residual` (the latest
+entry's effect direction projected out of the state, the choice among the older entries)
+and `random-older` as its control; `state-aligned` stays as documented degenerate. Four
+gemma4 arms (state-residual and random-older, two seeds) are queued after the no-tag fill
+arms; the `latest` arms already run serve as their baseline.
+
 ## Finish line for the draft
 
 A dated account per tier with every number carrying n, the fill-sweep result stated

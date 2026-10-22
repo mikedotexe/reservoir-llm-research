@@ -435,3 +435,86 @@ fn the_watchdog_warm_up_delays_the_fill_ring() {
         .all(|f| f.difference_gain_used == 0.1 && f.difference_input.len() == 48));
     checkpoint(&s).validate().unwrap();
 }
+
+#[test]
+fn residual_and_random_older_choose_among_the_older_entries() {
+    for policy in [
+        SustainedMemoryPolicy::StateResidual,
+        SustainedMemoryPolicy::RandomOlder,
+    ] {
+        let spec = spec(policy);
+        assert!(text(&spec).contains(policy.as_str()));
+        let mut s = SustainedSession::new(spec.clone()).unwrap();
+        let mut store = Store::default();
+        let mut base = checkpoint(&s);
+        let (mut boundaries, mut single) = (0, 0);
+        for i in 0..60 {
+            if i % 20 == 0 {
+                acknowledge(&mut s);
+                base = checkpoint(&s);
+            }
+            let c = checkpoint(&s);
+            if let Some(m) = s.pending_memory().cloned() {
+                boundaries += 1;
+                let choice = m.choice.clone().unwrap();
+                assert_eq!(choice.policy, policy);
+                let ledger = &c.state.applied_entries;
+                let n = ledger.len();
+                assert_eq!(choice.candidates as usize, n);
+                if n == 1 {
+                    single += 1;
+                    assert_eq!(choice.age, 0);
+                } else {
+                    assert!(
+                        choice.age >= 1,
+                        "{policy:?} returned the latest with {n} candidates"
+                    );
+                    let expected = match policy {
+                        SustainedMemoryPolicy::RandomOlder => {
+                            let mut rng =
+                                SplitMix64::new(spec.seed ^ MEMORY_CHOICE_SEED ^ m.observed_step);
+                            (rng.next_u64() % (n as u64 - 1)) as usize
+                        }
+                        _ => {
+                            let residual = project_out(&m.observation.state, &ledger[n - 1].effect);
+                            let dot: f64 = residual
+                                .iter()
+                                .zip(&ledger[n - 1].effect)
+                                .map(|(a, b)| a * b)
+                                .sum();
+                            assert!(dot.abs() < 1e-9, "the latest push is projected out");
+                            let mut best = n - 2;
+                            let mut best_score = f64::NEG_INFINITY;
+                            for (k, e) in ledger.iter().enumerate().take(n - 1) {
+                                if let Some(x) = cosine(&e.effect, &residual) {
+                                    if x >= best_score {
+                                        best = k;
+                                        best_score = x;
+                                    }
+                                }
+                            }
+                            assert_eq!(choice.score, cosine(&ledger[best].effect, &residual));
+                            best
+                        }
+                    };
+                    assert_eq!(choice.entry_id, ledger[expected].id);
+                    assert_eq!(choice.age as usize, n - 1 - expected);
+                }
+            }
+            store.step(&mut s);
+        }
+        assert!(boundaries >= 15 && single == 1, "{boundaries} {single}");
+        checkpoint(&s).validate().unwrap();
+        segment(&base, &s).verify().unwrap();
+    }
+    assert_eq!(project_out(&[1.0, 2.0], &[0.0, 0.0]), vec![1.0, 2.0]);
+    assert!(project_out(&[1.0, 1.0], &[1.0, 0.0])[0].abs() < 1e-12);
+    assert_eq!(
+        text(&SustainedMemoryPolicy::StateResidual),
+        "\"state-residual\""
+    );
+    assert_eq!(
+        text(&SustainedMemoryPolicy::RandomOlder),
+        "\"random-older\""
+    );
+}
