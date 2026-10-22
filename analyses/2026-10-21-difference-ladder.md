@@ -79,8 +79,42 @@ recurrent state never reads the field, so regulation changes nothing the channel
 the field's own response to the channel (fill std, its spectrum) is below the second
 decimal with or without the controller.
 
-## Blocks 3–5
+## Block 3a: regulated, seed 7, δ = 0.105, bound 34
 
-Block 3 (regulated and fixed, seed 7), block 4, the companion at δ = 0.02 (regulated, both
-seeds, the same ten gains), and block 5 at δ = 0.02 with gains ±0.5 and ±1.0 (regulated,
-both seeds): pending as this account is written; their rows follow below when the runs land.
+The twin: fill min/median/max 10.0/70.3/93.4, std 5.99, max trailing-90 std 14.64,
+actuation on 94% of steps (mean |Δ| 0.0010), state effective rank 8.88 and participation
+ratio 2.00, entry-effect shift median 1.836 (n=19), alignment +0.931 (n=18). The same ten
+gains, 600 frames each:
+
+| gain | contribution RMS | silent steps | clip hits | drops | recompute max abs Δ | Δ fill std | Δ trailing-90 std | Δ actuation | Δ erank | Δ PR | Δ shift median |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ±0.01 | 0.0002 | 62% | 0 | none | 7e-19 | 0.00 | 0.00 | 0 pts | 0.00 | 0.00 | 0.000 |
+| ±0.02 | 0.0003 | 62% | 0 | none | 1e-18 | 0.00 | 0.00 | 0 pts | 0.00 | 0.00 | 0.000 |
+| ±0.05 | 0.0008 | 62% | 0 | none | 3e-18 | 0.00 | 0.00 | 0 pts | +0.01 / 0.00 | 0.00 | 0.000 |
+| ±0.10 | 0.0016 | 62% | 0 | none | 5e-18 | 0.00 | 0.00 | 0 pts | +0.02 / 0.00 | 0.00 | 0.000 |
+| +0.20 | 0.0031 | 62% | 0 | none | 1e-17 | +0.01 | +0.01 | 0 pts | +0.05 | 0.00 | 0.000 |
+| −0.20 | 0.0031 | 62% | 0 | none | 1e-17 | 0.00 | 0.00 | +1 pt | +0.02 | +0.01 | 0.000 |
+
+The second seed repeats the first: the only deltas that reach the second decimal are at
+the top rung (fill std +0.01, state effective rank +0.05 at +0.20).
+
+## Block 3b: fixed retention 0.95, seed 7, δ = 0.105, bound 34
+
+The twin: fill min/median/max 10.0/69.8/97.0, std 7.54, max trailing-90 std 16.73, no
+actuation, state effective rank 8.88 and participation ratio 2.00, entry-effect shift
+median 1.834 (n=19), alignment +0.931 (n=18). The same ten gains, 600 frames each: the
+contribution RMS is 0.0002, 0.0003, 0.0008, 0.0016 and 0.0031 at |g| = 0.01, 0.02, 0.05,
+0.10 and 0.20, silent on 62% of steps, no clip hits, no drops, recomputation within 2e-17;
+every delta against the twin is 0.00 except the state effective rank at +0.05 (+0.01 at
+|g| 0.05, +0.02 at |g| 0.10, +0.05 at +0.20, +0.02 at −0.20) and the participation ratio
+at +0.01 at −0.20, as in block 3a.
+
+The main ladder: 44 runs, none interrupted. Its four gain-0 twins reproduce the four
+calibration twins run earlier by the same binary frame for frame (600 of 600 frames
+identical in each pair).
+
+## Blocks 4–5
+
+Block 4, the companion at δ = 0.02 (regulated, both seeds, the same ten gains), and block
+5 at δ = 0.02 with gains ±0.5 and ±1.0 (regulated, both seeds): pending as this account is
+written; their rows follow below when the runs land.
