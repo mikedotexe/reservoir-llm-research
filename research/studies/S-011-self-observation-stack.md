@@ -276,6 +276,22 @@ about theirs. Whether fill moves the register at all when no number is shown is 
 piece: four no-tag arms at retention 0.82 and 0.90 (both seeds) are queued after the
 policy arms. n = 12 entries per arm throughout; two seeds; one model.
 
+2026-10-21 21:55, the difference-signal ladder is complete (72 scripted runs of 600
+steps, none interrupted; `analyses/2026-10-21-difference-ladder.md`). The channel is
+exact (recomputation within 1e-16 of the engine), scales with the gain, is silent on
+62–64% of steps at the spec's dead band (0.105, twice the measured floor) and 18–22% at the
+shipped 0.02, clips only at |g| = 1, and never tripped the watchdog once the bound was set
+above the start-up climb. Through |g| = 0.2 at either dead band nothing about fill, its
+spectrum, the controller's actuation, the state's rank or the entries' measured effect
+moves beyond the second decimal. At the top of the specification's range, |g| = 0.5 and 1
+with the shipped dead band, the recurrent state's effective rank rises by +0.2 to +0.8 of
+32 (9.5 → 10.1–10.3 and 8.9 → 9.4–9.6, both signs) while the field and the controller
+stay the twin's to the second decimal and the entry-effect shift and alignment are
+unchanged to three decimals. A small rank-raiser for the reservoir, not a fill driver;
+the gains that do anything are the ones the dead-band rule would silence. Model arms for
+the channel are deferred behind the policy arms; the expectation from the unchanged
+alignment is that the writing will not notice.
+
 ## Finish line for the draft
 
 A dated account per tier with every number carrying n, the fill-sweep result stated

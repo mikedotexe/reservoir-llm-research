@@ -113,8 +113,61 @@ The main ladder: 44 runs, none interrupted. Its four gain-0 twins reproduce the 
 calibration twins run earlier by the same binary frame for frame (600 of 600 frames
 identical in each pair).
 
-## Blocks 4–5
+## Block 4: the shipped dead band 0.02, regulated, both seeds, bound 34
 
-Block 4, the companion at δ = 0.02 (regulated, both seeds, the same ten gains), and block
-5 at δ = 0.02 with gains ±0.5 and ±1.0 (regulated, both seeds): pending as this account is
-written; their rows follow below when the runs land.
+The same ten gains against the same regulated twins (600 frames each; none of the twenty
+runs interrupted). With the dead band under the motion floor the channel is silent on only
+19% (seed 20260909) and 22% (seed 7) of steps, and its contribution is about 2.7 times
+block 1's at every gain:
+
+| gain | contribution RMS, seed 20260909 / 7 | clip hits | drops | recompute max abs Δ | Δ fill std | Δ erank (s1 / s7) | Δ PR (s1 / s7) | Δ shift median |
+|---|---|---|---|---|---|---|---|---|
+| ±0.01 | 0.0004 / 0.0004 | 0 | none | 2e-18 | 0.00 | 0.00 / 0.00 | 0.00 / 0.00 | 0.000 |
+| ±0.02 | 0.0008 / 0.0009 | 0 | none | 3e-18 | 0.00 | 0.00 / +0.01, 0.00 | 0.00 / 0.00 | 0.000 |
+| ±0.05 | 0.0020 / 0.0022 | 0 | none | 7e-18 | 0.00 | −0.01, +0.01 / +0.03, 0.00 | 0.00 / 0.00 | 0.000 |
+| ±0.10 | 0.0039 / 0.0043–0.0044 | 0 | none | 2e-17 | 0.00 | −0.01, +0.03 / +0.05, +0.02 | 0.00 / 0.00, +0.01 | 0.000 |
+| ±0.20 | 0.0079 / 0.0086–0.0088 | 0 | none | 3e-17 | 0.00 / ±0.01 | +0.03, +0.08 / +0.08, +0.06 | +0.01, 0.00 / −0.02, +0.02 | 0.000 |
+
+Actuation and the fill spectrum are unchanged at every rung. The state's effective rank
+rises by up to 0.08 (of 9.5) at the top rung; nothing else leaves the second decimal.
+
+## Block 5: the shipped dead band 0.02 at gains ±0.5 and ±1.0, regulated, both seeds
+
+The top of the range the specification allows (600 frames each, none interrupted; the
+whole ladder is 72 runs, none interrupted). The twins as in blocks 1 and 3a.
+
+| seed | gain | contribution RMS | silent steps | clip hits | drops | recompute | fill std | max trailing-90 std | actuation | state erank | PR | shift median |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 20260909 | twin | | | | | | 6.33 | 14.95 | 93% | 9.54 | 2.34 | 1.589 |
+| 20260909 | +0.50 | 0.0197 | 19% | 0 | none | 6e-17 | 6.33 | 14.93 | 93% | 9.78 | 2.41 | 1.588 |
+| 20260909 | −0.50 | 0.0197 | 19% | 0 | none | 7e-17 | 6.35 | 14.97 | 93% | 9.88 | 2.37 | 1.589 |
+| 20260909 | +1.00 | 0.0396 | 19% | 45 | none | 8e-17 | 6.30 | 14.92 | 93% | 10.12 | 2.46 | 1.588 |
+| 20260909 | −1.00 | 0.0395 | 18% | 78 | none | 1e-16 | 6.31 | 14.91 | 93% | 10.31 | 2.46 | 1.589 |
+| 7 | twin | | | | | | 5.99 | 14.64 | 94% | 8.88 | 2.00 | 1.836 |
+| 7 | +0.50 | 0.0214 | 22% | 0 | none | 7e-17 | 5.99 | 14.63 | 94% | 9.17 | 1.95 | 1.836 |
+| 7 | −0.50 | 0.0227 | 22% | 0 | none | 8e-17 | 6.00 | 14.66 | 95% | 9.10 | 2.04 | 1.836 |
+| 7 | +1.00 | 0.0420 | 22% | 107 | none | 1e-16 | 5.98 | 14.62 | 94% | 9.62 | 1.99 | 1.836 |
+| 7 | −1.00 | 0.0461 | 22% | 237 | none | 1e-16 | 6.01 | 14.66 | 95% | 9.35 | 2.03 | 1.836 |
+
+## Reading
+
+Across 72 runs the channel did exactly what it says: its contribution scales with the
+gain, the dead band sets how often it speaks (62–64% silent at the spec's δ, 18–22% at the
+shipped one), the clip engages only at |g| = 1 (45–237 of 600 steps), the recomputation
+from the recorded states matches the engine to 1e-16, the watchdog never fired with the
+bound set above the start-up climb, and the entry-effect counterfactual, which keeps the
+channel on both sides, reports the same shift to three decimals at every rung. What it did
+to the dynamics is one thing: at |g| ≥ 0.5 with the shipped dead band the recurrent state's
+effective rank rises, by +0.24 to +0.34 at |g| = 0.5 and +0.47 to +0.77 at |g| = 1 (from
+9.5 to 10.1–10.3 at seed 20260909, from 8.9 to 9.4–9.6 at seed 7; both signs of the
+projection raise it). The field saw none of it: fill's median, spread, trailing spread and
+90-step spectrum, and the controller's actuation, are the twin's to the second decimal at
+every gain, because a contribution of 0.04 RMS per slot (the ceiling, under the clip) is
+small beside the scaled held vector and the forcing the field also reads. So in this
+apparatus the difference signal is a small rank-raiser for the reservoir, not a fill
+driver, and the gains that do anything are the ones the spec's dead-band rule would have
+silenced. A model arm would tell whether a reservoir with half a unit more rank writes
+differently; the entry-effect alignment this sweep leaves untouched (0.92–0.93) says the
+entries' pushes stay as alike as before, so the first expectation is no. The spec's
+own rule, δ at twice the floor, is the conservative one; whether the register follows the
+numerics at all is the S-010 question, which these runs do not touch.
