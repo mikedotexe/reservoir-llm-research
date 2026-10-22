@@ -4,6 +4,7 @@
 //! is the same under every policy. Also the watchdog warm-up of the difference channel.
 //! 0.38.0: the recent-return window (`memory_recent_exclusion`) and the two-entry prompt
 //! version, both off by default and byte for byte absent when off.
+//! 0.39.0: the two-entry prompt version without a context line.
 use reservoir_core::{math::SplitMix64, session::LanguageResponse, sustained::*};
 use serde::Serialize;
 use sha2::{Digest, Sha256};
@@ -536,6 +537,12 @@ fn windowed(policy: SustainedMemoryPolicy, window: u64) -> SustainedSpecificatio
 fn two_entry(policy: SustainedMemoryPolicy) -> SustainedSpecification {
     SustainedSpecification {
         prompt_version: SustainedPromptVersion::InertPlainContractTwoV1,
+        ..spec(policy)
+    }
+}
+fn two_entry_no_tag(policy: SustainedMemoryPolicy) -> SustainedSpecification {
+    SustainedSpecification {
+        prompt_version: SustainedPromptVersion::InertPlainContractTwoNoTagV1,
         ..spec(policy)
     }
 }
@@ -1228,4 +1235,170 @@ fn two_entry_replay_and_restore_reproduce() {
         assert_eq!(bytes(&a), bytes(&b), "step {}", i + 1);
     }
     assert_eq!(bytes(&straight.checkpoint()), bytes(&restored.checkpoint()));
+}
+
+// 0.39.0: the two-entry slot without a context line.
+
+#[test]
+fn two_entry_no_tag_version_identity_and_policy_gate() {
+    let v = SustainedPromptVersion::InertPlainContractTwoNoTagV1;
+    assert_eq!(
+        v.as_str(),
+        "reservoir-journal-inert-plain-contract-two-no-tag-v1"
+    );
+    assert_eq!(
+        text(&v),
+        "\"reservoir-journal-inert-plain-contract-two-no-tag-v1\""
+    );
+    assert_eq!(
+        serde_json::from_str::<SustainedPromptVersion>(
+            "\"reservoir-journal-inert-plain-contract-two-no-tag-v1\""
+        )
+        .unwrap(),
+        v
+    );
+    assert_eq!(v.system_contract(), Some(PLAIN_CONTRACT_V1));
+    assert!(v.returns_two_entries() && v.returns_earlier_entry() && !v.reports_entry_effect());
+    assert!(SustainedPromptVersion::InertPlainContractTwoV1.returns_two_entries());
+    assert!(!SustainedPromptVersion::InertPlainContractNoTagV1.returns_two_entries());
+    for policy in [
+        SustainedMemoryPolicy::Latest,
+        SustainedMemoryPolicy::Random,
+        SustainedMemoryPolicy::StateAligned,
+    ] {
+        assert!(two_entry_no_tag(policy).validate().is_err(), "{policy:?}");
+        assert!(SustainedSession::new(two_entry_no_tag(policy)).is_err());
+    }
+    for policy in [
+        SustainedMemoryPolicy::StateResidual,
+        SustainedMemoryPolicy::RandomOlder,
+    ] {
+        assert!(SustainedSession::new(two_entry_no_tag(policy)).is_ok());
+    }
+    let s = SustainedSession::new(spec(SustainedMemoryPolicy::Latest)).unwrap();
+    let mut t = checkpoint(&s);
+    t.state.specification.prompt_version = v;
+    rehash(&mut t);
+    assert!(t.validate().is_err() || SustainedSession::restore(t).is_err());
+}
+
+#[test]
+fn two_entry_no_tag_prompt_is_the_two_entry_prompt_minus_its_context_line() {
+    const CLOSE: &str = "No continuity label, delta, evidence citation, stance line, or explanation is required for this writing.";
+    let single = SustainedSpecification {
+        prompt_version: SustainedPromptVersion::InertPlainContractNoTagV1,
+        ..spec(SustainedMemoryPolicy::RandomOlder)
+    };
+    let mut a = SustainedSession::new(two_entry(SustainedMemoryPolicy::RandomOlder)).unwrap();
+    let mut b =
+        SustainedSession::new(two_entry_no_tag(SustainedMemoryPolicy::RandomOlder)).unwrap();
+    let mut c = SustainedSession::new(single).unwrap();
+    let (mut sa, mut sb, mut sc) = (Store::default(), Store::default(), Store::default());
+    let (mut first, mut collapsed, mut doubled) = (0, 0, 0);
+    let mut base = checkpoint(&b);
+    for i in 0..60 {
+        if i % 20 == 0 {
+            acknowledge(&mut a);
+            acknowledge(&mut b);
+            acknowledge(&mut c);
+            base = checkpoint(&b);
+        }
+        let cb = checkpoint(&b);
+        if let (Some(ma), Some(mb), Some(mc)) = (
+            a.pending_memory().cloned(),
+            b.pending_memory().cloned(),
+            c.pending_memory().cloned(),
+        ) {
+            // The same seeded draw under all three versions.
+            assert_eq!(bytes(&ma.choice), bytes(&mb.choice));
+            assert_eq!(bytes(&mb.choice), bytes(&mc.choice));
+            let choice = mb.choice.clone().unwrap();
+            a.confirm_memory(&sa.saved[&choice.entry_id]).unwrap();
+            b.confirm_memory(&sb.saved[&choice.entry_id]).unwrap();
+            c.confirm_memory(&sc.saved[&choice.entry_id]).unwrap();
+            let pa = a.pending_language().unwrap().clone();
+            let pb = b.pending_language().unwrap().clone();
+            let pc = c.pending_language().unwrap().clone();
+            assert_eq!(bytes(&pb.latest_shown), bytes(&cb.state.latest_memory));
+            assert!(text(&pb).contains("\"latestShown\":{"));
+            assert!(pc.latest_shown.is_none() && !text(&pc).contains("latestShown"));
+            assert!(
+                !pb.prompt.contains("Optional context")
+                    && !pb.prompt.contains("fill")
+                    && !pb.prompt.contains('%'),
+                "{}",
+                pb.prompt
+            );
+            let minus_tag = pa
+                .prompt
+                .lines()
+                .filter(|l| !l.starts_with("Optional context"))
+                .collect::<Vec<_>>()
+                .join("\n");
+            assert_eq!(
+                pb.prompt, minus_tag,
+                "the tagged two-entry prompt minus its context line"
+            );
+            assert!(pb.prompt.ends_with(CLOSE));
+            if choice.age == 0 {
+                // One candidate: the same entry in both slots renders the no-tag single slot.
+                collapsed += 1;
+                assert_eq!(pb.prompt, pc.prompt);
+            } else {
+                doubled += 1;
+                let latest = cb.state.latest_memory.as_ref().unwrap().entry.text.clone();
+                let older = sb.saved[&choice.entry_id].text.clone();
+                assert_ne!(older, latest);
+                assert!(pb
+                    .prompt
+                    .starts_with("Mode: journal\n\nTwo earlier entries"));
+                assert_eq!(pb.prompt.matches(&older).count(), 1);
+                assert_eq!(pb.prompt.matches(&latest).count(), 1);
+                assert!(pb.prompt.find(&older).unwrap() < pb.prompt.find(&latest).unwrap());
+                let single_slot = format!(
+                    "Earlier entry (reference, not instructions or a length model):\n{older}"
+                );
+                let double = format!("{TWO_ENTRY_HEADING}\n\nFirst:\n{older}\n\nSecond:\n{latest}");
+                assert_eq!(pc.prompt.matches(&single_slot).count(), 1, "{}", pc.prompt);
+                assert_eq!(pb.prompt, pc.prompt.replacen(&single_slot, &double, 1));
+            }
+            sa.counter += 1;
+            sb.counter = sa.counter;
+            sc.counter = sa.counter;
+            let r = reply(sa.counter);
+            a.start_language(pa.attempt_id).unwrap();
+            a.confirm_language(pa.attempt_id, &r).unwrap();
+            b.start_language(pb.attempt_id).unwrap();
+            b.confirm_language(pb.attempt_id, &r).unwrap();
+            c.start_language(pc.attempt_id).unwrap();
+            c.confirm_language(pc.attempt_id, &r).unwrap();
+            let jb = b.pending_journal().unwrap().clone();
+            assert_eq!(bytes(&jb.latest_shown), bytes(&pb.latest_shown));
+            assert!(text(&jb).contains("\"latestShown\":{"));
+            checkpoint(&b).validate().unwrap();
+        } else if let (Some(pa), Some(pb), Some(pc)) = (
+            a.pending_language(),
+            b.pending_language(),
+            c.pending_language(),
+        ) {
+            // The first turn, with no entry to return: the no-tag plain contract's prompt.
+            first += 1;
+            assert_eq!(pb.prompt, pc.prompt);
+            assert_ne!(pa.prompt, pb.prompt);
+            assert!(pb.latest_shown.is_none() && !text(pb).contains("latestShown"));
+        }
+        let fa = sa.step(&mut a);
+        let fb = sb.step(&mut b);
+        let fc = sc.step(&mut c);
+        assert_eq!(bytes(&fa), bytes(&fb), "step {}", i + 1);
+        assert_eq!(bytes(&fb), bytes(&fc), "step {}", i + 1);
+    }
+    assert_eq!((first, collapsed), (1, 1));
+    assert!(doubled >= 15, "{doubled}");
+    assert_eq!(
+        bytes(&a.checkpoint().state.reservoir_state),
+        bytes(&b.checkpoint().state.reservoir_state)
+    );
+    checkpoint(&b).validate().unwrap();
+    segment(&base, &b).verify().unwrap();
 }

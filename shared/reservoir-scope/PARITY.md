@@ -8,10 +8,10 @@ or live Being interoperability.
 
 [Current status and bounded backlog](../../desktop/ReservoirScope/STATUS.md) ·
 [Accepted roadmap](../../TAURI-ROADMAP.md) ·
-[Desktop preview](../../desktop/ReservoirScope/README.md) ·
+[Desktop app](../../desktop/ReservoirScope/README.md) ·
 [Exact pre-housekeeping history](PARITY-HISTORY-2026-10-15.md)
 
-## Current position: 0.27 private preview
+## Current position: the 0.27 private handoff
 
 Candidate 04 is ready for a first invited tester on the observed Apple Silicon
 macOS 27.0.1 path; actual uncoached human acceptance remains pending. The
@@ -236,7 +236,7 @@ source/package; no percentage substitutes for these gates.
 
 ## Next tranches
 
-Use the [current work areas](../../desktop/ReservoirScope/STATUS.md#broader-work-beyond-the-private-preview-finish):
+Use the [current work areas](../../desktop/ReservoirScope/STATUS.md#broader-work-beyond-the-private-handoff-finish):
 writing-context investigation; Observatory/reading/rendering; sustained lifecycle and
 endurance; conformance and optional selected feeds; platform packages; collaborator
 acceptance. Selected feeds are optional. Explicit budget extension still needs a
@@ -250,7 +250,7 @@ The complete former ledger is preserved byte-for-byte in
 failures, corrections, refusals and qualification accounts with their original links.
 Historical “next” sections are not the current backlog. The 0.20 source and
 documentation checkpoint remains at `1552bbc`. Published checkpoints now include
-0.25 at `3cfbf1b` (parent `0001b7a`) and the 0.27 private preview at `4a46c38`, as
+0.25 at `3cfbf1b` (parent `0001b7a`) and the 0.27 private handoff at `4a46c38`, as
 bound by the [current status](../../desktop/ReservoirScope/STATUS.md#qualification-and-checkpoint-boundaries).
 Checkpointing adds no package or platform acceptance.
 Native backports remain focused proposals after Tauri qualification. Live Being

@@ -397,6 +397,10 @@ pub enum SustainedPromptVersion {
     /// written and marked only by order. Needs an older-entry memory policy. Frozen text.
     #[serde(rename = "reservoir-journal-inert-plain-contract-two-v1")]
     InertPlainContractTwoV1,
+    /// 0.39.0: the two-entry slot with no context line at all, the no-tag frame around the
+    /// model's own two texts and nothing numeric. Needs an older-entry memory policy. Frozen text.
+    #[serde(rename = "reservoir-journal-inert-plain-contract-two-no-tag-v1")]
+    InertPlainContractTwoNoTagV1,
 }
 impl SustainedPromptVersion {
     pub fn is_legacy(&self) -> bool {
@@ -428,6 +432,9 @@ impl SustainedPromptVersion {
                 "reservoir-journal-inert-plain-contract-scrambled-tag-v1"
             }
             Self::InertPlainContractTwoV1 => "reservoir-journal-inert-plain-contract-two-v1",
+            Self::InertPlainContractTwoNoTagV1 => {
+                "reservoir-journal-inert-plain-contract-two-no-tag-v1"
+            }
         }
     }
     /// A standing contract sent as the system message, or none. Frozen per version.
@@ -440,7 +447,8 @@ impl SustainedPromptVersion {
             Self::InertPlainContractEffectV1
             | Self::InertPlainContractNoTagV1
             | Self::InertPlainContractScrambledTagV1
-            | Self::InertPlainContractTwoV1 => Some(PLAIN_CONTRACT_V1),
+            | Self::InertPlainContractTwoV1
+            | Self::InertPlainContractTwoNoTagV1 => Some(PLAIN_CONTRACT_V1),
             _ => None,
         }
     }
@@ -454,15 +462,21 @@ impl SustainedPromptVersion {
         matches!(self, Self::InertEffectV1 | Self::InertPlainContractEffectV1)
     }
     /// Whether the slot carries two entries, the policy's chosen older one and the latest
-    /// applied entry (0.38.0). False for every earlier version.
+    /// applied entry (0.38.0; without a context line, 0.39.0). False for every earlier
+    /// version.
     pub fn returns_two_entries(self) -> bool {
-        matches!(self, Self::InertPlainContractTwoV1)
+        matches!(
+            self,
+            Self::InertPlainContractTwoV1 | Self::InertPlainContractTwoNoTagV1
+        )
     }
     /// Which telemetry tag an inert prompt carries: the live fill, none, or a seeded value
     /// unrelated to the field.
     fn inert_tag(self) -> InertTag {
         match self {
-            Self::InertNoTagV1 | Self::InertPlainContractNoTagV1 => InertTag::None,
+            Self::InertNoTagV1
+            | Self::InertPlainContractNoTagV1
+            | Self::InertPlainContractTwoNoTagV1 => InertTag::None,
             Self::InertPlainContractScrambledTagV1 => InertTag::Scrambled,
             _ => InertTag::Live,
         }
@@ -487,6 +501,7 @@ impl SustainedPromptVersion {
                 | Self::InertPlainContractNoTagV1
                 | Self::InertPlainContractScrambledTagV1
                 | Self::InertPlainContractTwoV1
+                | Self::InertPlainContractTwoNoTagV1
         )
     }
 }
@@ -2166,7 +2181,8 @@ fn prompt(
     seed: u64,
 ) -> String {
     match version {
-        SustainedPromptVersion::InertPlainContractTwoV1 => {
+        SustainedPromptVersion::InertPlainContractTwoV1
+        | SustainedPromptVersion::InertPlainContractTwoNoTagV1 => {
             prompt_inert_two(observation, memory, latest, version.inert_tag(), seed)
         }
         SustainedPromptVersion::LegacyV1 => prompt_v1(observation, memory),

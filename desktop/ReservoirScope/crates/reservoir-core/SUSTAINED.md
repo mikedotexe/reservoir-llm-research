@@ -34,7 +34,9 @@ turns out of those two policies' candidates, marked on the ledger entry at the a
 the journal written with them in view and recorded on the choice as `excluded_recent`, and the
 prompt version `reservoir-journal-inert-plain-contract-two-v1` renders the chosen older entry
 and the latest applied entry in the order written, the latest carried as `latest_shown` on the
-pending language and journal and required by `validate_pending` to equal the continuation's.
+pending language and journal and required by `validate_pending` to equal the continuation's;
+`reservoir-journal-inert-plain-contract-two-no-tag-v1` (0.39.0) renders the same two entries
+with no context line.
 All authoritative
 numbers are f64. Step/turn/attempt/event
 and RNG identities are u64; IPC owners must expose them as decimal strings where

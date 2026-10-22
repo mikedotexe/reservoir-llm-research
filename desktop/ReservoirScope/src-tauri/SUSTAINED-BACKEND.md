@@ -38,7 +38,7 @@ its runtime measurements and the repair's tests/build remain separate receipts.
 
 ### Journal and feedback publication
 
-The first sustained format requests plain journal prose. There is no WAIT/action JSON mode. V5 retains full observations but presents only RMS, separate sensory fill and coordinate distance in its prompt, followed by the latest physically reread saved-and-applied journal (under a choosing memory policy, the chosen one; under the 0.38.0 two-entry prompt version, the chosen older entry and then the latest applied entry). Historical prompts preserve their original observations and wording. Full-text memory is distinct from the held 48-coordinate codec vector.
+The first sustained format requests plain journal prose. There is no WAIT/action JSON mode. V5 retains full observations but presents only RMS, separate sensory fill and coordinate distance in its prompt, followed by the latest physically reread saved-and-applied journal (under a choosing memory policy, the chosen one; under the 0.38.0 and 0.39.0 two-entry prompt versions, the chosen older entry and then the latest applied entry). Historical prompts preserve their original observations and wording. Full-text memory is distinct from the held 48-coordinate codec vector.
 
 The normal transaction is:
 

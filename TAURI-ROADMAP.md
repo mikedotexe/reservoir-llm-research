@@ -3,7 +3,7 @@
 **Accepted planning baseline:** October 11, 2026. **Current pointer reviewed:** October 16, 2026.
 
 [Current status and next tranches](desktop/ReservoirScope/STATUS.md) ·
-[Desktop preview](desktop/ReservoirScope/README.md) ·
+[Desktop app](desktop/ReservoirScope/README.md) ·
 [Capability and platform parity](shared/reservoir-scope/PARITY.md) ·
 [Frozen reference](shared/reservoir-scope/reference-manifest.json)
 
@@ -684,7 +684,7 @@ parity ledger. Milestones describe completion gates rather than speculative cale
 - Capture reference source and resource identities.
 - Create the Tauri application, Rust workspace, and three-platform build configuration.
 - Establish the separate application identity `research.reservoir.scope.tauri`.
-- Use the preview name **Reservoir Scope Tauri Preview**.
+- Use the installed name **Reservoir Scope Tauri** (**Reservoir Scope Tauri Preview** through 0.38.0; the app is past a preview).
 - Create separate app-data and preference locations.
 - Establish one main window and single-instance behavior.
 - Add fixture manifests without modifying canonical examples.

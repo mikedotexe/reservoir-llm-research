@@ -35,6 +35,8 @@ describe('earlier-entry policy and watchdog warm-up', () => {
     expect(validMemoryPolicy(withConfig({ promptVersion: 'reservoir-journal-inert-plain-contract-two-v1' }))).toBe(false);
     expect(validMemoryPolicy(withConfig({ promptVersion: 'reservoir-journal-inert-plain-contract-two-v1', memoryPolicy: 'random' }))).toBe(false);
     expect(validMemoryPolicy(withConfig({ promptVersion: 'reservoir-journal-inert-plain-contract-two-v1', memoryPolicy: 'state-residual' }))).toBe(true);
+    expect(validMemoryPolicy(withConfig({ promptVersion: 'reservoir-journal-inert-plain-contract-two-no-tag-v1' }))).toBe(false);
+    expect(validMemoryPolicy(withConfig({ promptVersion: 'reservoir-journal-inert-plain-contract-two-no-tag-v1', memoryPolicy: 'random-older' }))).toBe(true);
   });
   it('renders the policy select after the difference signal and the warm-up field with their explanations', () => {
     const setConfig = vi.fn();
@@ -53,6 +55,7 @@ describe('earlier-entry policy and watchdog warm-up', () => {
     expect(windowed).toMatch(/Recent-return window · turns<input type="number" min="0" max="256" step="1" required="" value="3"/);
     expect(windowed).toContain('keeps an entry returned within the last K turns');
     expect(windowed).toContain('reservoir-journal-inert-plain-contract-two-v1');
+    expect(windowed).toContain('reservoir-journal-inert-plain-contract-two-no-tag-v1 (0.39.0) shows the same two entries with no context line');
     expect(windowed).not.toContain('Use a recent-return window');
     const badWindow = renderToStaticMarkup(<MyReservoirConfig config={withConfig({ memoryRecentExclusion: 3 })} setConfig={setConfig} disabled={false}/>);
     expect(badWindow).toMatch(/Recent-return window · turns<input[^>]*aria-invalid="true"/);

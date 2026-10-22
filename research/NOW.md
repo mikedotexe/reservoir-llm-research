@@ -14,8 +14,14 @@ entry is the rule or the loop, and a prompt version whose slot carries the chose
 and the latest applied entry in the order written, the test that separates "an older entry
 present" from "the latest entry absent" in the register effect of the 0.37.0 arms. Six
 gemma4 arms (the window at K = 3 and the two-entry slot under both older-entry policies, two
-seeds) run today; their blind sample is written before any analysis, and the reading with
-Mike comes first. Read-only toward the beings, with Mike's go for the two SSH copies: a week
+seeds) ran and were read blind with Mike before the key
+([readings record](readings/2026-10-22-blind-policy-038.md)): the window turns the residual
+lock into a four-turn cycle, so the lock is the rule reading a stable state; the latest
+entry's presence beside the older one restores none of the questions, hedges or first-person
+openings the older-entry slot removes; and the sample's finished-state, invented-number family
+is entirely the tagged two-entry arms ([account](../analyses/2026-10-22-two-entry-slot.md)).
+The threshold battery follows from it (desktop 0.39.0, the two-entry slot with no context
+line; ten no-tag arms; design and predictions in S-011 before any arm ran). Read-only toward the beings, with Mike's go for the two SSH copies: a week
 of Astrid's prompts shows her journal elaborations carry no number at all and the numbers
 that move are Minime's telemetry in her moment-capture prompts, quoted in 164 of 191
 responses, while her own aspiration and witness readouts held one value all week
@@ -26,7 +32,7 @@ plain-contract arms, and the moment lane in the number-led shape of the tagged a
 ([account](../analyses/2026-10-22-minime-concept-chains-week.md)); the state-logging
 proposal gained the October 21 excursion and the index fields that would join an excursion to
 her text. Reading sessions pending with Mike: the 0.37.0 and 0.36.0 blind samples, then the
-0.38.0 one.
+0.39.0 one when its chain finishes.
 
 **October 21 evening focus: what reaches the model, and through which channel
 ([S-011](studies/S-011-self-observation-stack.md)).** The evening's runs on `gemma4:12b`
@@ -60,7 +66,7 @@ unchanged on the beings' copied entries, where Minime's entries draw on entries 
 back and both beings bridge as rarely as the tagged arms.
 
 **October 21 earlier focus: the laptop apparatus loop, frame share and loop share
-([S-010](studies/S-010-frame-share-and-loop-share.md)).** Mike ran the Tauri preview
+([S-010](studies/S-010-frame-share-and-loop-share.md)).** Mike ran the Tauri app
 on his laptop with `mistral-small:24b`. Three dated accounts record the day:
 [the first session and why fill stayed near 14%](../analyses/2026-10-21-laptop-first-sustained-session.md),
 leading to desktop 0.28.0 (field noise and feedback scale; fill settled near 70%) and
@@ -84,14 +90,12 @@ the private 0.27.0 handoff and the earlier focus below are unchanged.
 
 ## What the next session needs
 
-- **The 0.38.0 arms, read blind first.** The chain writes `blind-policy-038/` (18 entries,
-  labels withheld) in the session scratchpad before any analysis output; the reading with
-  Mike comes first, standout rows go to
-  [the noteworthy passages](../analyses/2026-10-21-noteworthy-passages.md) and the readings
-  record, then the key, then `analyses/2026-10-22-two-entry-slot.md` (markers across latest,
-  older-only and both-entries arms; reach held by the older entry; lock or spread under the
-  window and under the two-entry slot), S-011 progress and closing, and this page. One-seed
-  differences are directions; two seeds agreeing past the fork bar are effects.
+- **The 0.39.0 threshold battery, read blind first.** The chain writes `blind-policy-039/`
+  (20 entries, labels withheld) in the session scratchpad before any analysis output; the
+  numbers (identity, choice, quoted numbers, markers, chains) can be read first, the texts
+  wait for the reading with Mike, then the key, then the dated account against the four
+  predictions in S-011 (2026-10-22 14:20). One-seed differences are directions; two seeds
+  agreeing past the fork bar are effects.
 - **Two blind samples still unread with Mike:** the twelve entries from the 0.37.0 arms
   and entries 6–15 of the 0.36.0 sample (`research/readings/`).
 - **Still parked:** the channel model arms, the numerical sweeps, and the spec's M1–M4 on

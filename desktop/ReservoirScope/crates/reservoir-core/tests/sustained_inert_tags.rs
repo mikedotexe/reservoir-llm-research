@@ -84,3 +84,35 @@ fn the_scrambled_tag_is_seeded_bounded_and_unrelated_to_the_field() {
         "reservoir-journal-inert-plain-contract-scrambled-tag-v1"
     );
 }
+
+#[test]
+fn the_two_entry_no_tag_version_is_the_no_tag_frame_around_two_entries() {
+    let v = SustainedPromptVersion::InertPlainContractTwoNoTagV1;
+    assert_eq!(v.system_contract(), Some(PLAIN_CONTRACT_V1));
+    assert!(v.returns_two_entries() && v.returns_earlier_entry() && !v.reports_entry_effect());
+    let mut s = SustainedSession::new(SustainedSpecification {
+        seed: 11,
+        turn_every: 3,
+        maximum_steps: 100,
+        maximum_turns: 30,
+        prompt_version: v,
+        memory_policy: SustainedMemoryPolicy::RandomOlder,
+        ..Default::default()
+    })
+    .unwrap();
+    for _ in 0..3 {
+        s.advance().unwrap();
+    }
+    let p = s.pending_language().unwrap().clone();
+    let (single, _) = first(SustainedPromptVersion::InertPlainContractNoTagV1, 11);
+    assert_eq!(
+        p.prompt, single,
+        "the first turn is the no-tag plain contract's"
+    );
+    assert!(!p.prompt.contains("Optional context") && !p.prompt.contains("fill"));
+    let json = serde_json::to_string(&v).unwrap();
+    assert_eq!(
+        json.trim_matches('"'),
+        "reservoir-journal-inert-plain-contract-two-no-tag-v1"
+    );
+}

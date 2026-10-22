@@ -131,6 +131,9 @@ worker still reads one file, the chosen one; the latest entry's text comes from 
 continuation and rides on the pending language and the journal object as `latestShown`,
 which the validator requires to equal the continuation's latest entry under that version and
 to be absent under every other. A 0.37.0 reader rejects a bundle carrying either field.
+`reservoir-journal-inert-plain-contract-two-no-tag-v1` (0.39.0) is the same slot inside the
+no-tag frame: no context line at all, the single-slot fallback the no-tag plain contract's; it
+needs the same policies, and a 0.38.0 reader rejects a bundle naming it.
 
 **Telemetry-tag controls** (0.34.0, S-011). `reservoir-journal-inert-no-tag-v1` and
 `…-inert-plain-contract-no-tag-v1` drop the optional-context line entirely (the spec's

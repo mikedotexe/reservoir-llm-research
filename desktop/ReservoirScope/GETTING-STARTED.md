@@ -9,7 +9,7 @@ Its setup and controlled comparison are described in
 [Activation experiment](ACTIVATION-EXPERIMENT.md). Ordinary Ollama sessions below
 retain their existing behavior.
 
-This preview currently connects to **Ollama's local API**. An arbitrary model file
+This app currently connects to **Ollama's local API**. An arbitrary model file
 or a different provider's server is not a supported endpoint. The offline example
 lets you try the same save-and-feedback workflow without a model.
 
@@ -31,13 +31,13 @@ npm run tauri -- dev
 ```
 
 The last command prepares the included resources, compiles the Rust application
-and opens **Reservoir Scope Tauri Preview**. The first compile takes longer than
+and opens **Reservoir Scope Tauri** (named Reservoir Scope Tauri Preview before 0.39.0). The first compile takes longer than
 later launches. Keep its terminal running during development; quitting the app ends
 its session. `npm run dev` alone serves only the frontend and cannot run a reservoir.
 
 You do not need the private research captures, Python research index, or another
 Reservoir Scope installation. Python is used for build-time resource checks; it is
-not a bundled runtime. The preview has its own writable storage.
+not a bundled runtime. The app has its own writable storage.
 
 The currently inspected desktop platform is Apple-silicon macOS. Windows and Ubuntu
 builds and packaged behavior still need qualification; prerequisites alone are not

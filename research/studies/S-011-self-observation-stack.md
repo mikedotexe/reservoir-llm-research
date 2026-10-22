@@ -462,6 +462,23 @@ first-person openings, and bridge at the no-tag rate (0.6–1.1 per entry) rathe
 tagged rate (0.1–0.2). Reading order: identity and choice probes, quoted numbers, markers,
 chains; the 20-entry blind sample with Mike before its key.
 
+2026-10-22 14:40, the 0.38.0 arms read in (`analyses/2026-10-22-two-entry-slot.md`; blind
+reading with Mike, key opened 13:55, `research/readings/2026-10-22-blind-policy-038.md`). The
+window: the residual rule at K = 3 returned 17 and 14 distinct entries against 10 and 3, the
+most-returned 6 and 9 times against 15 and 36, with a median of 4 turns between returns of
+one entry at both seeds; the lock is the rule reading a stable state, and the window turns it
+into a cycle. The two-entry slot: both texts verbatim 39 of 39; state-residual still converged
+(9 and 8 distinct); random-older's picks were the single-slot arm's picks exactly. Markers: the
+latest entry's presence restores nothing (questions 0.3–0.8% of sentences against 6.3–7.7%
+under latest, hedges 0.7–1.3 against 4.5–4.8, entries opening with "I" 0 of 312 across the
+eight older-entry arms against 17 of 78), so the register effect belongs to the older entry's
+presence. Chains: with both shown the writing follows the second slot (inferred source the
+previous entry on 51–85% against 3–23%), the older entry holding 35–42% of the reach terms.
+Quoted numbers (`probes/desktop_quoted_numbers.py`): entries quoting 95% or more number 11, 8,
+25 and 12 of 40 in the two-entry arms against 0–9 in the single-slot arms, 0 of 24 in the
+no-tag arms; the blind sample's finished-state family was entirely the tagged two-entry arms
+and both readers' picks came from the window arms. Confounded with the tag, hence 0.39.0.
+
 ## What the day established, and did not (October 21, closing)
 
 Did. The channel is built and exact (72 runs; recomputation within 1e-16; watchdog and

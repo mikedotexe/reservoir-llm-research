@@ -15,4 +15,5 @@ key, and what the key then showed. Never the beings' texts.
 |---|---|---|
 | [2026-10-21 · 0.36.0 policy arms](2026-10-21-blind-policy-036.md) | 15 entries, 5 arms, seed not recorded (key file kept) | entries 1–5 read, key opened for them; 6–15 unread |
 | 2026-10-22 · 0.37.0 policy arms | 12 entries, 4 arms, seed 37 (`blind-policy-037/`) | unread |
-| 2026-10-22 · 0.38.0 window and two-entry arms | 18 entries, 6 arms, seed 38 (`blind-policy-038/`) | written by the chain before its analysis; unread |
+| [2026-10-22 · 0.38.0 window and two-entry arms](2026-10-22-blind-policy-038.md) | 18 entries, 6 arms, seed 38 (`blind-policy-038/`) | read in full with Mike; key opened 13:55 PDT; record complete |
+| 2026-10-22 · 0.39.0 threshold battery | 20 entries, 10 arms, seed 39 (`blind-policy-039/`) | written by the chain before its analysis; unread |

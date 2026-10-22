@@ -4,7 +4,7 @@ Tauri My reservoir session, plus cosine similarity of consecutive encoded featur
 
 Input: a sustained session directory (see desktop_session_overlap.py). Reads segments/*.json
 and journals/*.json only. Prints every 5th step and every step within 3 of a writing boundary.
-Standard library only. Subject: the laptop preview's own loop, never the beings.
+Standard library only. Subject: the laptop app's own loop, never the beings.
 """
 import glob, json, math, os, sys
 

@@ -5,9 +5,9 @@ export type SustainedPromptVersion = 'reservoir-journal-v1' | 'reservoir-journal
   | 'reservoir-journal-inert-open-contract-v1' | 'reservoir-journal-inert-inviting-varied-contract-v1'
   | 'reservoir-journal-inert-effect-v1' | 'reservoir-journal-inert-plain-contract-effect-v1'
   | 'reservoir-journal-inert-no-tag-v1' | 'reservoir-journal-inert-plain-contract-no-tag-v1' | 'reservoir-journal-inert-plain-contract-scrambled-tag-v1'
-  | 'reservoir-journal-inert-plain-contract-two-v1';
+  | 'reservoir-journal-inert-plain-contract-two-v1' | 'reservoir-journal-inert-plain-contract-two-no-tag-v1';
 /** S-010 frame arms: lean per-turn input modeled on the beings' own, with or without the earlier entry or a standing contract. Research sessions; not offered as a fresh default. */
-export const FRAME_ARM_PROMPT_VERSIONS: SustainedPromptVersion[] = ['reservoir-journal-inert-v1', 'reservoir-journal-inert-no-memory-v1', 'reservoir-journal-inert-plain-contract-v1', 'reservoir-journal-inert-inviting-contract-v1', 'reservoir-journal-inert-open-contract-v1', 'reservoir-journal-inert-inviting-varied-contract-v1', 'reservoir-journal-inert-effect-v1', 'reservoir-journal-inert-plain-contract-effect-v1', 'reservoir-journal-inert-no-tag-v1', 'reservoir-journal-inert-plain-contract-no-tag-v1', 'reservoir-journal-inert-plain-contract-scrambled-tag-v1', 'reservoir-journal-inert-plain-contract-two-v1'];
+export const FRAME_ARM_PROMPT_VERSIONS: SustainedPromptVersion[] = ['reservoir-journal-inert-v1', 'reservoir-journal-inert-no-memory-v1', 'reservoir-journal-inert-plain-contract-v1', 'reservoir-journal-inert-inviting-contract-v1', 'reservoir-journal-inert-open-contract-v1', 'reservoir-journal-inert-inviting-varied-contract-v1', 'reservoir-journal-inert-effect-v1', 'reservoir-journal-inert-plain-contract-effect-v1', 'reservoir-journal-inert-no-tag-v1', 'reservoir-journal-inert-plain-contract-no-tag-v1', 'reservoir-journal-inert-plain-contract-scrambled-tag-v1', 'reservoir-journal-inert-plain-contract-two-v1', 'reservoir-journal-inert-plain-contract-two-no-tag-v1'];
 export const isSustainedPromptVersion = (value: unknown): value is SustainedPromptVersion => value === 'reservoir-journal-v1' || value === 'reservoir-journal-v2' || value === 'reservoir-journal-v3' || value === 'reservoir-journal-v4' || value === 'reservoir-journal-v5' || value === 'reservoir-journal-v6' || value === 'reservoir-journal-v7' || value === 'reservoir-journal-v8' || (FRAME_ARM_PROMPT_VERSIONS as unknown[]).includes(value);
 export const effectivePromptVersion = (config: SustainedConfig): SustainedPromptVersion => config.promptVersion === undefined ? 'reservoir-journal-v1' : config.promptVersion;
 export const effectiveOutputTokens = (config: SustainedConfig): number => config.outputTokens === undefined ? 256 : config.outputTokens;
@@ -37,8 +37,10 @@ export const MEMORY_POLICIES: SustainedMemoryPolicy[] = ['latest', 'state-aligne
 export const effectiveMemoryPolicy = (config: SustainedConfig): SustainedMemoryPolicy => config.memoryPolicy === undefined ? 'latest' : config.memoryPolicy;
 /** The two policies that choose among the entries older than the latest (0.37.0); the recent-return window and the two-entry prompt version apply to these only. */
 export const choosesOlder = (config: SustainedConfig): boolean => effectiveMemoryPolicy(config) === 'state-residual' || effectiveMemoryPolicy(config) === 'random-older';
+/** The prompt versions whose slot carries two entries, the chosen older one and the latest (0.38.0; without a context line, 0.39.0); they need an older-entry policy. */
+export const returnsTwoEntries = (version: SustainedPromptVersion): boolean => version === 'reservoir-journal-inert-plain-contract-two-v1' || version === 'reservoir-journal-inert-plain-contract-two-no-tag-v1';
 export const validMemoryPolicy = (config: SustainedConfig): boolean => (config.memoryPolicy === undefined || (MEMORY_POLICIES as unknown[]).includes(config.memoryPolicy))
-  && (effectivePromptVersion(config) !== 'reservoir-journal-inert-plain-contract-two-v1' || choosesOlder(config));
+  && (!returnsTwoEntries(effectivePromptVersion(config)) || choosesOlder(config));
 /** Recent-return window (0.38.0): turns during which a returned entry stays out of the older-entry policies' candidates; omitted is 0, as built. */
 export const effectiveMemoryRecentExclusion = (config: SustainedConfig): number => config.memoryRecentExclusion === undefined ? 0 : config.memoryRecentExclusion;
 export const validMemoryRecentExclusion = (config: SustainedConfig): boolean => {

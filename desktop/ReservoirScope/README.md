@@ -1,19 +1,19 @@
-# Reservoir Scope Tauri Preview
+# Reservoir Scope Tauri
 
 **0.27.0 candidate 04 · Ready for a first invited tester · Human acceptance pending**
-**0.38.0 source · recent-return window and two-entry slot ([record](RELEASE-0.38.0.md)), on 0.37.0 state-residual and random-older memory policies ([record](RELEASE-0.37.0.md)), 0.36.0 state-chosen memory and watchdog warm-up ([record](RELEASE-0.36.0.md)), 0.35.0 difference-signal channel ([record](RELEASE-0.35.0.md)), 0.34.0 no-tag and scrambled-tag controls ([record](RELEASE-0.34.0.md)), 0.33.0 entry-effect readout ([record](RELEASE-0.33.0.md)), 0.32.0 model thinking toggle ([record](RELEASE-0.32.0.md)), 0.31.0 two more S-010 contract arms ([record](RELEASE-0.31.0.md)), 0.30.0 embedding text reduction and S-010 frame arms ([record](RELEASE-0.30.0.md)), 0.29.0 writing temperature ([record](RELEASE-0.29.0.md)) and 0.28.0 field noise and feedback scale ([record](RELEASE-0.28.0.md)); unqualified local candidates**
+**0.39.0 source · two-entry slot without a context line ([record](RELEASE-0.39.0.md)), on 0.38.0 recent-return window and two-entry slot ([record](RELEASE-0.38.0.md)), 0.37.0 state-residual and random-older memory policies ([record](RELEASE-0.37.0.md)), 0.36.0 state-chosen memory and watchdog warm-up ([record](RELEASE-0.36.0.md)), 0.35.0 difference-signal channel ([record](RELEASE-0.35.0.md)), 0.34.0 no-tag and scrambled-tag controls ([record](RELEASE-0.34.0.md)), 0.33.0 entry-effect readout ([record](RELEASE-0.33.0.md)), 0.32.0 model thinking toggle ([record](RELEASE-0.32.0.md)), 0.31.0 two more S-010 contract arms ([record](RELEASE-0.31.0.md)), 0.30.0 embedding text reduction and S-010 frame arms ([record](RELEASE-0.30.0.md)), 0.29.0 writing temperature ([record](RELEASE-0.29.0.md)) and 0.28.0 field noise and feedback scale ([record](RELEASE-0.28.0.md)); unqualified local candidates**
 
 Reservoir Scope combines a personal reservoir and journal with offline experiments,
 recordings and evidence readers. The native macOS app remains separate at
 [native/ReservoirScope](../../native/ReservoirScope/README.md), with its existing
-0.15.0 build 21 identity. This preview uses `research.reservoir.scope.tauri` and its
+0.15.0 build 21 identity. This app uses `research.reservoir.scope.tauri` and its
 own storage. Opening a workspace starts no experiment, model connection or live feed.
 
 [Current status and next work](STATUS.md) ·
 [Capability/platform matrix](../../shared/reservoir-scope/PARITY.md) ·
 [Accepted roadmap](../../TAURI-ROADMAP.md)
 
-For the private Mac preview, begin with [Install and first reading](PREVIEW-START.md).
+For the Mac install, begin with [Install and first reading](PREVIEW-START.md).
 The [0.27 release record](RELEASE-0.27.0.md) identifies candidate 04 and its exact
 archive. Source checks, fourteen standalone runtime checks, fresh setup and the
 bounded writing path have retained evidence. The repaired package completed two
@@ -125,7 +125,7 @@ Production v8 and backend behavior are unchanged.
 
 The prior [0.22.1 wording pass](validation/2026-10-15-research-language-0.22.1/README.md)
 uses plain workspace titles, shorter controls and optional technical details. About
-this preview holds build/platform information and diagnostic scenes. It passes all
+this app holds build/platform information and diagnostic scenes. It passes all
 413 existing frontend tests, TypeScript/Vite, reference checks and its distinct macOS
 package build. Scoped native inspection covers revised screens and one short
 scripted journal/save/application flow through step 31, then clean quit.
@@ -159,7 +159,7 @@ was not promoted: a local improvement coexisted with invented present measuremen
 Prior refusals and original journals remain unchanged. The report separates full
 readings, the review-order recovery and numerical evidence from writing style.
 
-## Use the preview
+## Use the app
 
 | Workspace | Available workflow | Details |
 | --- | --- | --- |
@@ -265,7 +265,7 @@ sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file lib
 
 On macOS, ensure `xcrun --show-sdk-path` resolves to an existing SDK. If multiple Xcode
 installations are present, select a valid SDK for the build process; do not alter the
-native application's identity or installation to build this preview.
+native application's identity or installation to build this app.
 
 ## Run and build
 
@@ -317,7 +317,7 @@ npm run tauri -- build --target x86_64-unknown-linux-gnu --bundles deb -- --lock
 ```
 
 Packages land under this directory's `target/<target>/release/bundle/`. These are
-local/CI previews, not signed public releases. macOS builds use ad-hoc signing; they
+local/CI builds, not signed public releases. macOS builds use ad-hoc signing; they
 are not notarized. Windows installer signing and public-distribution acceptance are
 not implemented. No command publishes a release or touches the beings' live systems.
 

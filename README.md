@@ -6,10 +6,10 @@ writing, supplied evidence, actions and changing environments to that question.
 
 | Start here | What you can do |
 |---|---|
-| **[Read the private-preview guide](desktop/ReservoirScope/PREVIEW-START.md)** | Tauri 0.27.0 is ready for a first invited tester; actual newcomer acceptance is pending. Read historical journals offline, then optionally prepare activation through the app. Activation requires Apple Silicon and macOS 26+, with macOS 27.0.1 tested. |
-| **[Start a personal reservoir journal](desktop/ReservoirScope/GETTING-STARTED.md)** | Build the Tauri preview, choose your installed local Ollama model, and read saved writing as it returns input to the reservoir. macOS preview; other-platform qualification remains open. |
+| **[Read the install guide](desktop/ReservoirScope/PREVIEW-START.md)** | Tauri 0.27.0 is ready for a first invited tester; actual newcomer acceptance is pending. Read historical journals offline, then optionally prepare activation through the app. Activation requires Apple Silicon and macOS 26+, with macOS 27.0.1 tested. |
+| **[Start a personal reservoir journal](desktop/ReservoirScope/GETTING-STARTED.md)** | Build the Tauri app, choose your installed local Ollama model, and read saved writing as it returns input to the reservoir. macOS preview; other-platform qualification remains open. |
 | **[Read what we’ve learned](RESEARCH.md)** | Start with four bounded findings and a worked episode; follow each into its evidence and open questions. |
-| **[Explore the offline lab](research/CURRENT-RELEASE.md)** | Use Reservoir Scope’s guided examples, recorded writing and reviewed cases; compare the current Tauri preview with the separate, retained native 0.15 candidate. |
+| **[Explore the offline lab](research/CURRENT-RELEASE.md)** | Use Reservoir Scope’s guided examples, recorded writing and reviewed cases; compare the current Tauri app with the separate, retained native 0.15 candidate. |
 | **[Reproduce or continue the work](research/QUICKSTART.md)** | Run the research CLI on two included synthetic entries using Python 3.12+, then choose the tools and evidence your task needs. |
 
 The checkout includes source, written accounts and selected examples. Full private

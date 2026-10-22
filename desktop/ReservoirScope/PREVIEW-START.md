@@ -1,13 +1,13 @@
 # Start with the writing
 
-**0.27.0 private-preview guide · candidate 04 is ready for a first invited tester.**
+**0.27.0 install guide · candidate 04 is ready for a first invited tester.**
 The handoff is a Mac app and this guide, with no source build or Terminal setup
 required. The [release record](RELEASE-0.27.0.md#candidate-identity-and-acceptance)
 identifies the exact archive and its scoped checks on Apple Silicon with macOS
 27.0.1. Normal transferred opening, standalone preparation and the named compact
 reading screens have passed. Actual uncoached newcomer acceptance remains pending.
 
-## Install the private preview
+## Install the app
 
 This delivery targets **Apple Silicon Macs**. New activation writing requires
 **macOS 26 or later** and at least **8 GiB of free disk space** before preparation.
@@ -17,7 +17,7 @@ target, but that does not qualify activation on older systems or establish a tes
 minimum operating system. Intel Macs, Windows and Linux are outside this delivery.
 
 1. Obtain the named private archive and its matching release receipt from Mike.
-   Expand the archive in Finder and move **Reservoir Scope Tauri Preview.app** to
+   Expand the archive in Finder and move the app (**Reservoir Scope Tauri Preview.app** in the 0.27.0 archive; **Reservoir Scope Tauri.app** from 0.39.0 builds on) to
    Applications, or another folder you use for applications.
 2. Open the app. Candidate 04 has verified local ad hoc signing,
    without an Apple notarization claim. macOS may require an exception for this exact app.
@@ -29,9 +29,9 @@ minimum operating system. Intel Macs, Windows and Linux are outside this deliver
    [Safely open apps on your Mac](https://support.apple.com/en-us/102445).
 4. If the alert instead says the app is damaged or will damage your computer, or
    the expected control is unavailable, retain the exact message and ask for help
-   with that copy. The preview does not require disabling system-wide protections.
+   with that copy. The app does not require disabling system-wide protections.
 
-The Tauri preview has its own application storage. The older native Reservoir
+The Tauri app has its own application storage. The older native Reservoir
 Scope app is a separate product and can remain installed.
 
 ## Read before preparing a model
@@ -117,4 +117,4 @@ The [newcomer task card](NEWCOMER-TASK-CARD.md) gives a short, uncoached first-u
 session. Keep the exact app version, what you tried, what you expected, the result,
 and any assistance. Interesting writing is welcome, but an ambiguous or ordinary
 entry is still valid experimental material. A complete, understandable record is
-the preview's standard; a positive intervention result is not required.
+the app's standard; a positive intervention result is not required.

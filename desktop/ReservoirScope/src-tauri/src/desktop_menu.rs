@@ -98,12 +98,12 @@ pub fn build(app: &tauri::AppHandle) -> tauri::Result<Menu<tauri::Wry>> {
     let quit = MenuItem::with_id(
         app,
         QUIT,
-        "Quit Reservoir Scope Tauri Preview",
+        "Quit Reservoir Scope Tauri",
         true,
         Some("CmdOrCtrl+Q"),
     )?;
     let about = AboutMetadata {
-        name: Some("Reservoir Scope Tauri Preview".into()),
+        name: Some("Reservoir Scope Tauri".into()),
         version: Some(app.package_info().version.to_string()),
         ..Default::default()
     };
@@ -111,7 +111,7 @@ pub fn build(app: &tauri::AppHandle) -> tauri::Result<Menu<tauri::Wry>> {
     #[cfg(target_os = "macos")]
     menu.append(&Submenu::with_items(
         app,
-        "Reservoir Scope Tauri Preview",
+        "Reservoir Scope Tauri",
         true,
         &[
             &PredefinedMenuItem::about(app, None, Some(about))?,

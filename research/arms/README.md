@@ -205,7 +205,7 @@ Read in: `analyses/2026-10-21-state-chosen-memory.md`. 14 configurations.
 
 ### Recent-return window (0.38.0)
 
-Read in: `analyses/2026-10-22-two-entry-slot.md` (pending). 2 configurations.
+Read in: `analyses/2026-10-22-two-entry-slot.md`. 2 configurations.
 
 | arm | runner | model | prompt version | codec | policy | gain | retention | seed | turn every / max steps |
 |---|---|---|---|---|---|---|---|---|---|
@@ -214,7 +214,7 @@ Read in: `analyses/2026-10-22-two-entry-slot.md` (pending). 2 configurations.
 
 ### Two-entry slot (0.38.0)
 
-Read in: `analyses/2026-10-22-two-entry-slot.md` (pending). 4 configurations.
+Read in: `analyses/2026-10-22-two-entry-slot.md`. 4 configurations.
 
 | arm | runner | model | prompt version | codec | policy | gain | retention | seed | turn every / max steps |
 |---|---|---|---|---|---|---|---|---|---|
@@ -222,6 +222,29 @@ Read in: `analyses/2026-10-22-two-entry-slot.md` (pending). 4 configurations.
 | `both-random-older-gemma4-seed7` | 0.38.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-two-v1` | embedding | random-older | 0 | 0.955 regulated | 7 | 30 / 2000 |
 | `both-state-residual-gemma4` | 0.38.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-two-v1` | embedding | state-residual | 0 | 0.955 regulated | 20260909 | 30 / 2000 |
 | `both-state-residual-gemma4-seed7` | 0.38.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-two-v1` | embedding | state-residual | 0 | 0.955 regulated | 7 | 30 / 2000 |
+
+### Fill calibration under the embedding codec (0.39.0)
+
+Read in: the threshold-battery account (pending). 4 configurations; no-tag `latest`, so the
+texts are the no-tag arms' by construction and only the fill series is new.
+
+| arm | runner | model | prompt version | codec | policy | gain | retention | seed | turn every / max steps |
+|---|---|---|---|---|---|---|---|---|---|
+| `calib-embed-r0.92` | 0.39.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-no-tag-v1` | embedding | latest | 0 | 0.92 fixed | 20260909 | 30 / 2000 |
+| `calib-embed-r0.93` | 0.39.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-no-tag-v1` | embedding | latest | 0 | 0.93 fixed | 20260909 | 30 / 2000 |
+| `calib-embed-r0.965` | 0.39.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-no-tag-v1` | embedding | latest | 0 | 0.965 fixed | 20260909 | 30 / 2000 |
+| `calib-embed-r0.97` | 0.39.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-no-tag-v1` | embedding | latest | 0 | 0.97 fixed | 20260909 | 30 / 2000 |
+
+### Two-entry slot without a context line (0.39.0, leg B of the threshold battery)
+
+Read in: the threshold-battery account (pending). 4 configurations.
+
+| arm | runner | model | prompt version | codec | policy | gain | retention | seed | turn every / max steps |
+|---|---|---|---|---|---|---|---|---|---|
+| `bothnotag-random-older-gemma4` | 0.39.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-two-no-tag-v1` | embedding | random-older | 0 | 0.955 regulated | 20260909 | 30 / 2000 |
+| `bothnotag-random-older-gemma4-seed7` | 0.39.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-two-no-tag-v1` | embedding | random-older | 0 | 0.955 regulated | 7 | 30 / 2000 |
+| `bothnotag-state-residual-gemma4` | 0.39.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-two-no-tag-v1` | embedding | state-residual | 0 | 0.955 regulated | 20260909 | 30 / 2000 |
+| `bothnotag-state-residual-gemma4-seed7` | 0.39.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-two-no-tag-v1` | embedding | state-residual | 0 | 0.955 regulated | 7 | 30 / 2000 |
 
 ### Entry-effect readout (0.33.0)
 

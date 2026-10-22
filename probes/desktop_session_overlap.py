@@ -5,7 +5,7 @@ Input: a sustained session directory, e.g.
   ~/Library/Application Support/research.reservoir.scope.tauri/sustained-v1/sustained-<id>
 Reads journals/*.json only. Prints, per entry: sentence count, sentences copied verbatim from
 the previous entry, their fraction, and the first new sentence. Standard library only.
-Subject: the laptop preview's own writing loop, never the beings.
+Subject: the laptop app's own writing loop, never the beings.
 """
 import glob, json, os, re, sys
 

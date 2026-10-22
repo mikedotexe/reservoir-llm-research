@@ -150,6 +150,13 @@ A twelve-entry blind sample from the four 0.37.0 arms is written to the session
 scratchpad (`blind-policy-037/blind-sample.md`, key beside it) for the joint reading;
 passages go to `analyses/2026-10-21-noteworthy-passages.md` before the key is opened.
 
+Read in on October 22 (`analyses/2026-10-22-two-entry-slot.md`): a three-turn recent-return
+window turns the seed-7 lock into a four-turn cycle (14 distinct of 39, the most-returned
+entry 9 times), so the lock is the rule reading a stable state; a slot carrying the latest
+entry beside the chosen older one restores none of the questions, hedges or first-person
+openings, so the register effect above belongs to the older entry's presence; and with the
+fill tag that slot multiplies the entries quoting a fill of 95% or more.
+
 ## Replicate
 
 The seed-20260909 `latest` arm rerun with the same config into a new store reproduced all

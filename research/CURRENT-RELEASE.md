@@ -2,7 +2,7 @@
 
 ## Tauri 0.27.0 · candidate 04, ready for a first invited tester
 
-The current sharing tranche is **Reservoir Scope Tauri Preview 0.27.0 candidate 04**,
+The current sharing tranche is **Reservoir Scope Tauri 0.27.0 candidate 04** (shipped under the app's earlier installed name, Reservoir Scope Tauri Preview),
 built from `c4a3ba17f1e8ade9f9cf2c1edcf6cd944356c7a0`. The identified archive and
 private handoff have scoped source, runtime and actual-app evidence. Fresh in-app
 setup completed without a source checkout or developer PATH. The bounded writing
@@ -15,7 +15,7 @@ The exact quarantined transfer opened through the authorized macOS exception and
 local authentication, completed standalone Prepare and Check, and reopened normally
 with the runtime ready. Measured 900×700 and 720×600 content viewports passed for
 the named activation setup, reading and recovery screens, with scoped keyboard and
-zoom checks. The technical preview gates are complete; actual uncoached newcomer
+zoom checks. The technical gates are complete; actual uncoached newcomer
 acceptance remains pending. No recipient delivery or human acceptance is claimed.
 An optional new synthetic arrival-navigation attempt was refused before initialization
 by the unchanged memory guard; its packaged behavior remains unobserved, with source

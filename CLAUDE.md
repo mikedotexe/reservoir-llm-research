@@ -45,7 +45,7 @@ the beings' live systems are Mike's.
   tools (`PYTHON=/opt/homebrew/bin/python3.14` for the desktop resource scripts). Node 24,
   Rust 1.94.1 (toolchain file) and tauri-cli are installed. Ollama is installed
   (`/usr/local/bin/ollama`, Ollama.app) but not running unless started; LM Studio is also
-  installed. The desktop preview only talks to a loopback Ollama endpoint.
+  installed. The desktop app only talks to a loopback Ollama endpoint.
 - Model writing produced on the laptop is a separate local experiment with its own storage
   under `~/Library/Application Support/`. It is never evidence about Astrid or Minime.
 
@@ -211,7 +211,7 @@ letters/           copies of every inbox letter delivered to a being (signed Mik
 analyses/          dated accounts and longer analyses, with retained evidence JSON
 essentials/        Swift numerical core, stage experiments and the headless `essentials-run` runner, with recorded examples
 native/            ReservoirScope/: the earlier native SwiftUI macOS app (0.15 candidates retained), its build, check and staging scripts, docs and validation receipts
-desktop/           ReservoirScope/: the Tauri 2 desktop preview (React + Vite frontend, Rust `crates/` and `src-tauri/`);
+desktop/           ReservoirScope/: the Tauri 2 desktop app (React + Vite frontend, Rust `crates/` and `src-tauri/`);
                    "My reservoir" Ollama journal loop and the optional isolated activation experiment;
                    STATUS.md, GETTING-STARTED.md, PREVIEW-START.md, RELEASE-*.md and dated validation/ accounts
 shared/            reservoir-scope/: frozen reference manifest and contracts shared by both apps (parity, activation experiment, record-reader IPC)

@@ -1,7 +1,7 @@
 # A first visit to Reservoir Scope
 
 **0.27.0 newcomer task card · no completed human acceptance is recorded.**
-This is a first-use study of the preview, separate from automated tests, an agent's
+This is a first-use study of the app, separate from automated tests, an agent's
 UI walkthrough, and Mike's earlier review of the native app.
 
 The participant receives the exact private app archive, its receipt, and
@@ -25,7 +25,7 @@ Any account provisioning or invitation to another person is a separate human ste
 
 ## Tasks
 
-1. **Open the preview and find some writing.** Use the supplied guide if needed.
+1. **Open the app and find some writing.** Use the supplied guide if needed.
    Explain what you think the app lets you investigate and what will happen if you
    simply open the experiment.
 2. **Read the included sequences.** Begin at the first entry, move forward and back,
@@ -74,7 +74,7 @@ questions.
 
 Keep this task card blank until an actual human session. Record findings in a new
 dated account tied to the exact package; do not overwrite earlier review records.
-An uncoached preview pass requires the core read → inspect → export/reopen and
+An uncoached first-use pass requires the core read → inspect → export/reopen and
 prepare → create/start → retain → paused recovery routes to be completed and
 understood without observer coaching. Resource-blocked generation remains an
 explicit gap in that route. If a fix changes the package, repeat the affected

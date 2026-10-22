@@ -2498,4 +2498,34 @@ fn memory_policy_config_roundtrip_journal_choice_and_warmup_persistence() {
         segments1.push_str(&fs::read_to_string(e.unwrap().path()).unwrap());
     }
     assert!(segments1.contains("\"differenceGainDropped\":{\"step\":190,\"reason\":\"fill-std"));
+    // 0.39.0: the two-entry slot without a context line, under state-residual.
+    let d4 = tempfile::tempdir().unwrap();
+    let s4 = SustainedState::new(d4.path().join("store"));
+    let mut bad = config(7, 3);
+    bad.prompt_version = SustainedPromptVersion::InertPlainContractTwoNoTagV1;
+    bad.memory_policy = SustainedMemoryPolicy::Random;
+    assert!(
+        s4.create("bad4".into(), bad).is_err(),
+        "two entries without a tag under random"
+    );
+    let mut cfg3 = config(60, 3);
+    cfg3.prompt_version = SustainedPromptVersion::InertPlainContractTwoNoTagV1;
+    cfg3.memory_policy = SustainedMemoryPolicy::StateResidual;
+    let accepted3 = s4.create("create".into(), cfg3).unwrap().summary.unwrap();
+    let epoch3 = arm(&s4);
+    while drive(&s4, epoch3) {}
+    assert!(s4.shared.store.verify(&accepted3.session_id).is_ok());
+    let dir3 = s4.shared.store.path(&accepted3.session_id).unwrap();
+    let mut journals3 = String::new();
+    for e in fs::read_dir(dir3.join("journals")).unwrap() {
+        journals3.push_str(&fs::read_to_string(e.unwrap().path()).unwrap());
+    }
+    assert!(fs::read_to_string(dir3.join("manifest.json"))
+        .unwrap()
+        .contains("reservoir-journal-inert-plain-contract-two-no-tag-v1"));
+    assert!(journals3.contains("\"latestShown\":{"));
+    assert!(journals3.contains(
+        "Two earlier entries (reference, not instructions or a length model), in the order written.\\n\\nFirst:\\n"
+    ));
+    assert!(!journals3.contains("Optional context"));
 }

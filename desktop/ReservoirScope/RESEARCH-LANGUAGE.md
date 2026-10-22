@@ -22,7 +22,7 @@ source records keep their exact text and behavior.
 - Let prose and visualizations lead. Put request IDs, hashes, successful export
   details and graphics counters in closed disclosures. Keep full evidence available.
 - Give concise help where a choice needs it. Keep version/platform qualification
-  and file-dialog/reference-scene checks under About this preview.
+  and file-dialog/reference-scene checks under About this app.
 - Use synthetic/example labels for scripted material. Neither the user nor the
   numerical reservoir is described as authoring the model's journal.
 
@@ -30,7 +30,7 @@ source records keep their exact text and behavior.
 
 | Previous wording | Current wording |
 | --- | --- |
-| THE CROSS-PLATFORM LAB; global version · My reservoir badge | Reservoir Scope; About this preview |
+| THE CROSS-PLATFORM LAB; global version · My reservoir badge | Reservoir Scope; About this app |
 | From input to choice. | Guided tour |
 | Questions, evidence, limits. | Research cases |
 | Watch the reservoir change. | Observatory |
@@ -46,8 +46,8 @@ Graphics frame counters remain available under Graphics diagnostics. Context los
 fallback, zero references, signed scales and unavailable values remain near their
 views. Exact original-file export behavior is unchanged.
 
-The separate installed name **Reservoir Scope Tauri Preview**, application identity,
-stores and preview qualification status remain deliberate coexistence decisions.
+The separate installed name **Reservoir Scope Tauri** (Reservoir Scope Tauri Preview before
+0.39.0), application identity, stores and qualification status remain deliberate coexistence decisions.
 Removing those would be a release/identity decision, not wording housekeeping.
 
 ## Navigation and remaining inspection work

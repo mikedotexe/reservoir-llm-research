@@ -1,6 +1,13 @@
 # Reservoir Scope: current status and next work
 
-**October 22, 2026 · 0.38.0 recent-return window and two-entry slot, on 0.37.0 state-residual and random-older memory policies, 0.36.0 state-chosen memory and watchdog warm-up, 0.35.0 difference-signal channel, 0.34.0 no-tag and scrambled-tag controls, 0.33.0 entry-effect readout, 0.32.0 model thinking toggle, 0.31.0 two more S-010 contract arms, 0.30.0 embedding text reduction and S-010 frame arms, 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
+**October 22, 2026 · 0.39.0 two-entry slot without a context line, on 0.38.0 recent-return window and two-entry slot, 0.37.0 state-residual and random-older memory policies, 0.36.0 state-chosen memory and watchdog warm-up, 0.35.0 difference-signal channel, 0.34.0 no-tag and scrambled-tag controls, 0.33.0 entry-effect readout, 0.32.0 model thinking toggle, 0.31.0 two more S-010 contract arms, 0.30.0 embedding text reduction and S-010 frame arms, 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
+
+[0.39.0](RELEASE-0.39.0.md) adds the prompt version
+`reservoir-journal-inert-plain-contract-two-no-tag-v1`: the two-entry slot inside the no-tag
+frame, with no context line at all, the direct test of whether the live fill tag made the
+finished-state, invented-number family that the 0.38.0 blind reading placed in the tagged
+two-entry arms. Off unless named; every other version is byte for byte unchanged. Arms and
+their reading belong to S-011's dated accounts.
 
 [0.38.0](RELEASE-0.38.0.md) adds `memoryRecentExclusion`, a window of turns during which an
 entry returned as memory stays out of the two older-entry policies' candidates (the test of
@@ -117,7 +124,7 @@ no retry or threshold change occurred. Stable selection during new activation
 arrivals retains source-test coverage, without a corresponding packaged UI pass.
 
 The scoped technical gates are complete. Actual uncoached newcomer acceptance is
-the remaining preview gate; no participant session or acceptance result is claimed.
+the remaining acceptance gate; no participant session or acceptance result is claimed.
 
 The [install-first guide](PREVIEW-START.md), [newcomer task card](NEWCOMER-TASK-CARD.md)
 and private handoff receipt describe this limited scope. The package is staged
@@ -165,7 +172,7 @@ qualify the new packaged UI or complete the three-condition writing comparison. 
 preserves tentative textual patterns alongside prompt and memory alternatives.
 
 [Build, choose a local model and start writing](GETTING-STARTED.md) ·
-[Preview and build reference](README.md) ·
+[App and build reference](README.md) ·
 [Capability/platform matrix](../../shared/reservoir-scope/PARITY.md) ·
 [Accepted program and contracts](../../TAURI-ROADMAP.md)
 
@@ -335,7 +342,7 @@ remain bounded, known-context diagnostics. Neither candidate was promoted.
 Candidate 04 now qualifies the named activation setup, reading, evidence and
 recovery screens at measured 900×700 and 720×600 content sizes. The earlier checks
 below retain their original scope; other destinations, broad accessibility and
-GPU/resource research remain separate from the private-preview finishing tranche.
+GPU/resource research remain separate from the 0.27 private-handoff finishing tranche.
 
 The 0.25 layout leads with prose and preserves the 0.24 named multi-page reading
 routes and keyboard access. Its scoped native three-entry reading and zoom checks
@@ -355,7 +362,7 @@ for broader resource measurement. This is sequencing, not a new measurement
 or a queued model run. Production writing v8 and the Beings remain outside this
 usability/measurement tranche. Other-platform and collaborator acceptance are separate.
 
-## Broader work beyond the private-preview finish
+## Broader work beyond the private-handoff finish
 
 | Area | Next useful completion boundary |
 | --- | --- |
@@ -388,7 +395,7 @@ preceding apparatus commits. Activation work follows in `codex/activation-loop`.
 Source checks, packages, agent UI observations and collaborator acceptance remain
 separate evidence; historical receipts retain their exact original scope.
 
-The 0.27 private-preview checkpoint is now published at
+The 0.27 private-handoff checkpoint is now published at
 `4a46c386c7e424f9502b20fc55182ecc757f436a`, tagged
 `reservoir-scope-tauri-v0.27.0-private-preview`; the journal-flow account retains
 read-only remote confirmation. Candidate 04 remains built from `c4a3ba1`.

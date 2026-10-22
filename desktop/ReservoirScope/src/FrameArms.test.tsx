@@ -3,8 +3,9 @@ import { FRAME_ARM_PROMPT_VERSIONS, isSustainedPromptVersion } from './myReservo
 
 describe('frame arm prompt versions', () => {
   it('are recognised for reading recovered research sessions but are not the fresh default', () => {
-    expect(FRAME_ARM_PROMPT_VERSIONS).toHaveLength(12);
+    expect(FRAME_ARM_PROMPT_VERSIONS).toHaveLength(13);
     expect(FRAME_ARM_PROMPT_VERSIONS).toContain('reservoir-journal-inert-plain-contract-two-v1');
+    expect(FRAME_ARM_PROMPT_VERSIONS).toContain('reservoir-journal-inert-plain-contract-two-no-tag-v1');
     expect(FRAME_ARM_PROMPT_VERSIONS).toContain('reservoir-journal-inert-plain-contract-scrambled-tag-v1');
     expect(FRAME_ARM_PROMPT_VERSIONS).toContain('reservoir-journal-inert-plain-contract-effect-v1');
     expect(FRAME_ARM_PROMPT_VERSIONS).toContain('reservoir-journal-inert-open-contract-v1');

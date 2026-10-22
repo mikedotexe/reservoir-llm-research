@@ -11,7 +11,7 @@ First it replays the recorded session (held vectors applied at their recorded st
 prints recorded vs replayed fill at each writing step as a fidelity check. Then it replays
 the same session under alternative feedback policies: scaled held vectors, a one-step or
 three-step pulse, exponential decay, and no feedback. The reservoir itself is not replayed;
-it does not feed the sensory field. Subject: the laptop preview's apparatus, never the beings.
+it does not feed the sensory field. Subject: the laptop app's apparatus, never the beings.
 """
 import glob, json, math, os, sys
 import numpy as np
