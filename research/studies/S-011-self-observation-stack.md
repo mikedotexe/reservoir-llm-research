@@ -108,6 +108,34 @@ of field and state per window; the entry-effect shift and alignment; the effect-
 quoting rate and the rank correlation between shown shift and entry length; for B5,
 Mike's blind ratings joined to arms after the fact.
 
+## Progress
+
+2026-10-21 19:05. Mike kept the spec file untracked at the repo root and delegated the
+M0 proposal (`proposals/esn-state-logging.md`): minime's engine already dumps a rolling
+1,024 × 128 state window every 30 s for a steward capacity audit, so the proposal is an
+append-only shard behind a flag, and a read-only capture of that window every five
+minutes for two hours is running. Its first window: effective rank 121 of 128,
+participation ratio 50, k90 99, state RMS 0.39, no saturation; whether that is
+high-dimensional dynamics or noise is what the temporal-structure probe
+(`probes/beings_state_window.py`) answers on the following windows.
+
+Fill calibration (model-free, scripted replies, regulation off, noise 0.5, scale 0.4,
+`calib-ret*` arms): retention 0.82 → fill 44.6 (field erank 8.2); 0.86 → 50.6 (9.6);
+0.90 → 58.0 (11.3); 0.93 → 65.2 (13.0); 0.95 → 70.7 (14.4); 0.97 → 77.3 (16.2);
+0.99 → 98.2 (19.7). Below 45% needs lower sensory noise (the first session's 14% was
+noise 0 at 0.955). The B1 sweep arms use noise 0 at 0.955 and noise 0.5 at 0.82, 0.90,
+0.95, 0.99 on gemma4 at two seeds, queued behind the effect chain; B2/B3 (0.34.0
+no-tag and scrambled-tag versions) are queued behind the sweep.
+
+Effect pairs on gemma4 at the first seed: the entries' effects at application are
+near-constant (shift 1.33–1.94, alignment with the previous application +0.64 to +0.87,
+medians 1.63 and +0.78 under the plain contract; 1.44–1.91 and +0.66 to +0.87 without
+a contract). Under the plain contract the model quoted a shown number in 2 of 11 entries
+and took the first one as a feeling ("The shift of 1.69 feels like a subtle
+recalibration of the internal compass"); without a contract it quoted none and the
+sculptor's diary went on as before. No relation between the shown shift and entry
+length (Spearman −0.15 and −0.20, n = 11).
+
 ## Finish line for the draft
 
 A dated account per tier with every number carrying n, the fill-sweep result stated
