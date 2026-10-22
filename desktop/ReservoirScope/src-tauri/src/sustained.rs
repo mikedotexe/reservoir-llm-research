@@ -10,8 +10,12 @@ use reservoir_core::{
     session::LanguageResponse,
     stage::{LanguageConfiguration, LanguageKind, SCRIPTED_REPLIES},
     sustained::{
+        default_difference_clip, default_difference_dead_band, default_difference_tau,
+        default_difference_watchdog, default_difference_watchdog_fill_std,
+        is_default_difference_clip, is_default_difference_dead_band, is_default_difference_tau,
+        is_default_difference_watchdog, is_default_difference_watchdog_fill_std,
         is_legacy_feedback_scale, is_legacy_output_tokens, is_legacy_request_deadline_seconds,
-        is_legacy_sensory_noise_amplitude, legacy_feedback_scale, legacy_output_tokens,
+        is_legacy_sensory_noise_amplitude, is_zero, legacy_feedback_scale, legacy_output_tokens,
         legacy_request_deadline_seconds, legacy_sensory_noise_amplitude, SustainedCheckpoint,
         SustainedEventKind, SustainedPhase, SustainedPromptVersion, SustainedSession,
         SustainedSpecification, CURRENT_PROMPT_VERSION, DEFAULT_FEEDBACK_SCALE,
@@ -79,6 +83,34 @@ pub struct SustainedConfig {
     pub embedding_model: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub embedding_projection_seed: Option<String>,
+    /// Difference-signal channel (S-011 M5); gain 0 keeps every earlier mechanism identity.
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub difference_gain: f64,
+    #[serde(
+        default = "default_difference_tau",
+        skip_serializing_if = "is_default_difference_tau"
+    )]
+    pub difference_tau: f64,
+    #[serde(
+        default = "default_difference_dead_band",
+        skip_serializing_if = "is_default_difference_dead_band"
+    )]
+    pub difference_dead_band: f64,
+    #[serde(
+        default = "default_difference_clip",
+        skip_serializing_if = "is_default_difference_clip"
+    )]
+    pub difference_clip: f64,
+    #[serde(
+        default = "default_difference_watchdog",
+        skip_serializing_if = "is_default_difference_watchdog"
+    )]
+    pub difference_watchdog: bool,
+    #[serde(
+        default = "default_difference_watchdog_fill_std",
+        skip_serializing_if = "is_default_difference_watchdog_fill_std"
+    )]
+    pub difference_watchdog_fill_std: f64,
 }
 impl Default for SustainedConfig {
     fn default() -> Self {
@@ -102,6 +134,12 @@ impl Default for SustainedConfig {
             feedback_scale: DEFAULT_FEEDBACK_SCALE,
             embedding_model: None,
             embedding_projection_seed: None,
+            difference_gain: 0.0,
+            difference_tau: default_difference_tau(),
+            difference_dead_band: default_difference_dead_band(),
+            difference_clip: default_difference_clip(),
+            difference_watchdog: default_difference_watchdog(),
+            difference_watchdog_fill_std: default_difference_watchdog_fill_std(),
         }
     }
 }
@@ -145,6 +183,12 @@ impl SustainedConfig {
             request_deadline_seconds: self.request_deadline_seconds,
             sensory_noise_amplitude: self.sensory_noise_amplitude,
             feedback_scale: self.feedback_scale,
+            difference_gain: self.difference_gain,
+            difference_tau: self.difference_tau,
+            difference_dead_band: self.difference_dead_band,
+            difference_clip: self.difference_clip,
+            difference_watchdog: self.difference_watchdog,
+            difference_watchdog_fill_std: self.difference_watchdog_fill_std,
             codec: match &self.embedding_model {
                 None => reservoir_core::sustained::SustainedCodec::Surface,
                 Some(model) => {

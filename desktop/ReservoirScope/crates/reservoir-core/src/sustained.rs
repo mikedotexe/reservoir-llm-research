@@ -57,6 +57,11 @@ const MECHANISM_FIELD_NOISE: &str =
 /// Mechanism identity when the text→vector link is an embedding projection (S-010 Part B).
 const MECHANISM_EMBEDDING: &str =
     "essentials32-splitmix64-embedding32-scaled-feedback-field-noise-v3";
+/// Mechanism identities once the difference-signal channel carries a nonzero gain (S-011 M5).
+const MECHANISM_DIFFERENCE: &str =
+    "essentials32-splitmix64-codec48-scaled-feedback-field-noise-difference-v4";
+const MECHANISM_EMBEDDING_DIFFERENCE: &str =
+    "essentials32-splitmix64-embedding32-scaled-feedback-field-noise-difference-v4";
 /// Which reduction turns a saved entry into the 48-slot feedback vector.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize, Default)]
 #[serde(
@@ -101,6 +106,20 @@ pub struct ExternalFeedback {
 /// stored, so checkpoints and the exact 32-draw reservoir RNG accounting are unchanged.
 const FIELD_NOISE_SEED: u64 = 0x0046_4945_4C44_4E5A;
 const SPLITMIX_INCREMENT: u64 = 0x9E37_79B9_7F4A_7C15;
+/// Seed of the fixed 48×32 difference-channel matrix; mixed with the session seed only,
+/// never with the per-step reservoir stream, so the 32-draw accounting is unchanged.
+const DIFFERENCE_SEED: u64 = 0x0044_4946_4645_5245;
+/// Watchdog bounds for the difference channel: the trailing fill window, the
+/// out-of-band and saturation step counts that force the gain to zero.
+pub const DIFFERENCE_FILL_WINDOW: usize = 90;
+pub const DIFFERENCE_OUT_OF_BAND_STEPS: u64 = 60;
+pub const DIFFERENCE_SATURATION_STEPS: u64 = 30;
+pub const DIFFERENCE_DROP_FILL_STD: &str =
+    "fill-std: trailing 90-step fill standard deviation above the configured bound";
+pub const DIFFERENCE_DROP_FILL_BAND: &str =
+    "fill-band: fill outside 15–98% for 60 consecutive steps";
+pub const DIFFERENCE_DROP_SATURATION: &str =
+    "saturation: more than half of the 32 nodes beyond |x| > 0.95 for 30 consecutive steps";
 /// Defaults for new sessions. Offline replay of the first laptop session showed that
 /// forcing plus one held text vector spans about twelve of the field's 32 modes, so the
 /// retention controller stayed on its rail near 14% fill; uniform field noise of 0.5 with
@@ -133,6 +152,140 @@ pub fn legacy_feedback_scale() -> f64 {
 }
 pub fn is_legacy_feedback_scale(value: &f64) -> bool {
     *value == 1.0
+}
+pub fn is_zero(value: &f64) -> bool {
+    *value == 0.0
+}
+fn is_zero_u64(value: &u64) -> bool {
+    *value == 0
+}
+pub fn default_difference_tau() -> f64 {
+    3.0
+}
+pub fn is_default_difference_tau(value: &f64) -> bool {
+    *value == 3.0
+}
+pub fn default_difference_dead_band() -> f64 {
+    0.02
+}
+pub fn is_default_difference_dead_band(value: &f64) -> bool {
+    *value == 0.02
+}
+pub fn default_difference_clip() -> f64 {
+    0.2
+}
+pub fn is_default_difference_clip(value: &f64) -> bool {
+    *value == 0.2
+}
+pub fn default_difference_watchdog() -> bool {
+    true
+}
+pub fn is_default_difference_watchdog(value: &bool) -> bool {
+    *value
+}
+pub fn default_difference_watchdog_fill_std() -> f64 {
+    10.0
+}
+pub fn is_default_difference_watchdog_fill_std(value: &f64) -> bool {
+    *value == 10.0
+}
+/// The fixed difference-channel matrix: 48 rows × 32 columns, row-major, standard
+/// Gaussian entries (SplitMix64, Box–Muller as in `codec::project_embedding`) scaled by
+/// 1/√32. Derived from `seed ^ DIFFERENCE_SEED`; never stored.
+pub fn difference_matrix(seed: u64) -> Vec<f64> {
+    let mut rng = SplitMix64::new(seed);
+    let scale = 1.0 / 32f64.sqrt();
+    let mut out = Vec::with_capacity(48 * 32);
+    while out.len() < 48 * 32 {
+        let u1 = rng.unit().max(1e-300);
+        let u2 = rng.unit();
+        let r = (-2.0 * u1.ln()).sqrt();
+        out.push(r * (2.0 * std::f64::consts::PI * u2).cos() * scale);
+        out.push(r * (2.0 * std::f64::consts::PI * u2).sin() * scale);
+    }
+    out
+}
+/// The 48-slot contribution of the channel for a filtered difference `d_f`: dead-band per
+/// coordinate, projection by the fixed matrix, gain, clip, and `-0.0` normalised to `0.0`.
+pub fn difference_contribution(
+    filtered: &[f64],
+    matrix: &[f64],
+    gain: f64,
+    dead_band: f64,
+    clip: f64,
+) -> Vec<f64> {
+    let banded: Vec<f64> = filtered
+        .iter()
+        .map(|d| {
+            if *d > dead_band {
+                d - dead_band
+            } else if *d < -dead_band {
+                d + dead_band
+            } else {
+                0.0
+            }
+        })
+        .collect();
+    matrix
+        .chunks(32)
+        .map(|row| {
+            let u = (gain * row.iter().zip(&banded).map(|(w, d)| w * d).sum::<f64>())
+                .clamp(-clip, clip);
+            if u == 0.0 {
+                0.0
+            } else {
+                u
+            }
+        })
+        .collect()
+}
+/// Advance the watchdog memory by one step: the trailing fill window, the consecutive
+/// out-of-band count (fill outside 15–98%) and the consecutive saturation count (more
+/// than half of the nodes beyond |x| > 0.95).
+pub fn difference_watchdog_update(
+    window: &mut Vec<f64>,
+    out_of_band: &mut u64,
+    saturated: &mut u64,
+    fill_percent: f64,
+    state: &[f64],
+) {
+    window.push(fill_percent);
+    if window.len() > DIFFERENCE_FILL_WINDOW {
+        window.remove(0);
+    }
+    *out_of_band = if (15.0..=98.0).contains(&fill_percent) {
+        0
+    } else {
+        *out_of_band + 1
+    };
+    *saturated = if state.iter().filter(|x| x.abs() > 0.95).count() > 16 {
+        *saturated + 1
+    } else {
+        0
+    };
+}
+/// The watchdog verdict: the first rule that holds, or none.
+pub fn difference_watchdog_verdict(
+    window: &[f64],
+    out_of_band: u64,
+    saturated: u64,
+    fill_std_bound: f64,
+) -> Option<&'static str> {
+    if window.len() == DIFFERENCE_FILL_WINDOW {
+        let mean = window.iter().sum::<f64>() / window.len() as f64;
+        let variance =
+            window.iter().map(|x| (x - mean) * (x - mean)).sum::<f64>() / window.len() as f64;
+        if variance.sqrt() > fill_std_bound {
+            return Some(DIFFERENCE_DROP_FILL_STD);
+        }
+    }
+    if out_of_band >= DIFFERENCE_OUT_OF_BAND_STEPS {
+        return Some(DIFFERENCE_DROP_FILL_BAND);
+    }
+    if saturated >= DIFFERENCE_SATURATION_STEPS {
+        return Some(DIFFERENCE_DROP_SATURATION);
+    }
+    None
 }
 /// Uniform noise on all 66 sensory-field inputs for one step, or empty at zero amplitude.
 /// Step `t` reads draws `66t+1..=66t+66` of one SplitMix64 stream, so no two steps overlap.
@@ -368,6 +521,36 @@ pub struct SustainedSpecification {
     /// Text→vector reduction; omitted (surface) keeps every earlier mechanism identity.
     #[serde(default, skip_serializing_if = "SustainedCodec::is_surface")]
     pub codec: SustainedCodec,
+    /// Difference-signal channel (S-011 M5): gain on the reservoir's own filtered change
+    /// since the last observation, projected into the 48 feedback slots. 0 keeps every
+    /// earlier mechanism identity; the sign selects ±W_d.
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub difference_gain: f64,
+    #[serde(
+        default = "default_difference_tau",
+        skip_serializing_if = "is_default_difference_tau"
+    )]
+    pub difference_tau: f64,
+    #[serde(
+        default = "default_difference_dead_band",
+        skip_serializing_if = "is_default_difference_dead_band"
+    )]
+    pub difference_dead_band: f64,
+    #[serde(
+        default = "default_difference_clip",
+        skip_serializing_if = "is_default_difference_clip"
+    )]
+    pub difference_clip: f64,
+    #[serde(
+        default = "default_difference_watchdog",
+        skip_serializing_if = "is_default_difference_watchdog"
+    )]
+    pub difference_watchdog: bool,
+    #[serde(
+        default = "default_difference_watchdog_fill_std",
+        skip_serializing_if = "is_default_difference_watchdog_fill_std"
+    )]
+    pub difference_watchdog_fill_std: f64,
 }
 impl Default for SustainedSpecification {
     fn default() -> Self {
@@ -388,6 +571,12 @@ impl Default for SustainedSpecification {
             sensory_noise_amplitude: legacy_sensory_noise_amplitude(),
             feedback_scale: legacy_feedback_scale(),
             codec: SustainedCodec::Surface,
+            difference_gain: 0.0,
+            difference_tau: default_difference_tau(),
+            difference_dead_band: default_difference_dead_band(),
+            difference_clip: default_difference_clip(),
+            difference_watchdog: default_difference_watchdog(),
+            difference_watchdog_fill_std: default_difference_watchdog_fill_std(),
         }
     }
 }
@@ -397,9 +586,17 @@ impl SustainedSpecification {
         !is_legacy_sensory_noise_amplitude(&self.sensory_noise_amplitude)
             || !is_legacy_feedback_scale(&self.feedback_scale)
     }
+    /// True once the difference channel carries a nonzero gain.
+    pub fn uses_difference_channel(&self) -> bool {
+        self.difference_gain != 0.0
+    }
     pub fn mechanism(&self) -> &'static str {
-        if !self.codec.is_surface() {
+        if !self.codec.is_surface() && self.uses_difference_channel() {
+            MECHANISM_EMBEDDING_DIFFERENCE
+        } else if !self.codec.is_surface() {
             MECHANISM_EMBEDDING
+        } else if self.uses_difference_channel() {
+            MECHANISM_DIFFERENCE
         } else if self.uses_field_noise_mechanism() {
             MECHANISM_FIELD_NOISE
         } else {
@@ -436,6 +633,20 @@ impl SustainedSpecification {
                 && self.feedback_scale.is_finite()
                 && (0.0..=2.0).contains(&self.feedback_scale),
             "Invalid sustained numerical controls",
+        )?;
+        ensure(
+            self.difference_gain.is_finite()
+                && (-1.0..=1.0).contains(&self.difference_gain)
+                && self.difference_tau.is_finite()
+                && (0.0..=1000.0).contains(&self.difference_tau)
+                && self.difference_dead_band.is_finite()
+                && (0.0..=1.0).contains(&self.difference_dead_band)
+                && self.difference_clip.is_finite()
+                && self.difference_clip > 0.0
+                && self.difference_clip <= 5.0
+                && self.difference_watchdog_fill_std.is_finite()
+                && (0.0..=100.0).contains(&self.difference_watchdog_fill_std),
+            "Invalid difference-signal controls",
         )?;
         ensure(
             (1..=MAX_STEPS).contains(&self.maximum_steps)
@@ -510,6 +721,13 @@ impl SustainedSensory {
 /// feedback; `alignment` is the cosine of that difference vector against the previous
 /// application's. Computed and reported only by prompt versions that ask for it; it never
 /// changes the dynamics.
+/// The step at which the difference-channel watchdog forced the gain to zero, and why.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct SustainedDifferenceDrop {
+    pub step: u64,
+    pub reason: String,
+}
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedEntryEffect {
@@ -685,6 +903,15 @@ pub struct SustainedFrame {
     /// Present on an application frame of a version that reports the entry effect.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub entry_effect: Option<SustainedEntryEffect>,
+    /// The difference channel's 48 values added into `input[18..66)` after the scaled held
+    /// vector; present whenever the gain in force is nonzero, empty otherwise.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub difference_input: Vec<f64>,
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub difference_gain_used: f64,
+    /// Present only on the step at which the watchdog forced the gain to zero.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub difference_gain_dropped: Option<SustainedDifferenceDrop>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -846,6 +1073,21 @@ pub struct SustainedContinuation {
     pub last_entry_effect: Option<SustainedEntryEffect>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub last_entry_effect_vector: Vec<f64>,
+    /// Difference-channel memory; every field stays at its skip value while the gain is 0.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub difference_filtered: Vec<f64>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub difference_reference: Vec<f64>,
+    #[serde(default, skip_serializing_if = "is_zero_u64")]
+    pub difference_reference_step: u64,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub difference_fill_window: Vec<f64>,
+    #[serde(default, skip_serializing_if = "is_zero_u64")]
+    pub difference_out_of_band_steps: u64,
+    #[serde(default, skip_serializing_if = "is_zero_u64")]
+    pub difference_saturated_steps: u64,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub difference_gain_dropped: Option<SustainedDifferenceDrop>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -931,6 +1173,8 @@ pub struct SustainedSession {
     state: SustainedContinuation,
     model: ReservoirModel,
     projection: Vec<f64>,
+    /// The fixed difference-channel matrix, derived from the seed like `projection`.
+    difference: Vec<f64>,
     events: VecDeque<SustainedEvent>,
     application_authorized: bool,
 }
@@ -961,12 +1205,21 @@ impl SustainedSession {
             event_cursor: 0,
             last_entry_effect: None,
             last_entry_effect_vector: Vec::new(),
+            difference_filtered: Vec::new(),
+            difference_reference: Vec::new(),
+            difference_reference_step: 0,
+            difference_fill_window: Vec::new(),
+            difference_out_of_band_steps: 0,
+            difference_saturated_steps: 0,
+            difference_gain_dropped: None,
             specification,
         };
+        let difference = difference_matrix(state.specification.seed ^ DIFFERENCE_SEED);
         Ok(Self {
             state,
             model,
             projection: field.projection,
+            difference,
             events: VecDeque::new(),
             application_authorized: false,
         })
@@ -1040,10 +1293,12 @@ impl SustainedSession {
         let model = ReservoirModel::seeded(checkpoint.state.specification.seed);
         let projection =
             SensoryField::seeded(checkpoint.state.specification.seed ^ FIELD_SEED).projection;
+        let difference = difference_matrix(checkpoint.state.specification.seed ^ DIFFERENCE_SEED);
         Ok(Self {
             state: checkpoint.state,
             model,
             projection,
+            difference,
             events: VecDeque::new(),
             application_authorized: false,
         })
@@ -1152,6 +1407,20 @@ impl SustainedSession {
         let noise: Vec<_> = (0..32)
             .map(|_| rng.signed() * next.specification.noise_amplitude)
             .collect();
+        let gain = if next.difference_gain_dropped.is_some() {
+            0.0
+        } else {
+            next.specification.difference_gain
+        };
+        let difference_input = if gain == 0.0 {
+            Vec::new()
+        } else {
+            let u = difference_step(&mut next, &self.difference, gain);
+            for (slot, value) in input[18..].iter_mut().zip(&u) {
+                *slot += value;
+            }
+            u
+        };
         let state = engine.step(&input, &noise)?;
         let entry_effect = match (
             &application,
@@ -1168,6 +1437,9 @@ impl SustainedSession {
                     &vec![0.0; 48],
                     next.specification.feedback_scale,
                 ));
+                for (slot, value) in silent_input[18..].iter_mut().zip(&difference_input) {
+                    *slot += value;
+                }
                 let silent_state = silent.step(&silent_input, &noise)?;
                 let diff: Vec<f64> = state
                     .iter()
@@ -1211,6 +1483,11 @@ impl SustainedSession {
         if next.specification.regulation_enabled {
             controller.update(fill_percent);
         }
+        let difference_gain_dropped = if gain != 0.0 && next.specification.difference_watchdog {
+            difference_watchdog(&mut next, fill_percent, &state, step)
+        } else {
+            None
+        };
         let sensory = SustainedSensory {
             eigenvalues: spectral.eigenvalues,
             field_vector: spectral.field_vector,
@@ -1233,6 +1510,9 @@ impl SustainedSession {
             semantic_journal_id: next.held_journal_id.clone(),
             application,
             entry_effect,
+            difference_input,
+            difference_gain_used: gain,
+            difference_gain_dropped,
         };
         next.step = step;
         next.rng_state = rng.state;
@@ -1255,6 +1535,10 @@ impl SustainedSession {
                 next.last_entry_effect.clone(),
             );
             next.last_observation = Some(observation.clone());
+            if gain != 0.0 && next.difference_gain_dropped.is_none() {
+                next.difference_reference = next.reservoir_state.clone();
+                next.difference_reference_step = step;
+            }
             next.phase = if let Some(memory) = &next.latest_memory {
                 SustainedPhase::Memory(SustainedPendingMemory {
                     turn_id: next.turn_cursor,
@@ -1544,6 +1828,64 @@ impl SustainedSession {
         });
         Ok(())
     }
+}
+/// One step of the channel: the raw per-step difference since the last observation,
+/// its exponential average, and the projected, gained, clipped contribution.
+fn difference_step(next: &mut SustainedContinuation, matrix: &[f64], gain: f64) -> Vec<f64> {
+    let elapsed = next.step.saturating_sub(next.difference_reference_step);
+    if next.difference_filtered.len() != 32 {
+        next.difference_filtered = vec![0.0; 32];
+    }
+    let beta = 1.0 / (next.specification.difference_tau + 1.0);
+    for (i, filtered) in next.difference_filtered.iter_mut().enumerate() {
+        let reference = next.difference_reference.get(i).copied().unwrap_or(0.0);
+        let raw = if elapsed == 0 {
+            0.0
+        } else {
+            (next.reservoir_state[i] - reference) / elapsed as f64
+        };
+        *filtered += beta * (raw - *filtered);
+    }
+    difference_contribution(
+        &next.difference_filtered,
+        matrix,
+        gain,
+        next.specification.difference_dead_band,
+        next.specification.difference_clip,
+    )
+}
+/// Advance the watchdog and, on a verdict, drop the gain for the rest of the session.
+fn difference_watchdog(
+    next: &mut SustainedContinuation,
+    fill_percent: f64,
+    state: &[f64],
+    step: u64,
+) -> Option<SustainedDifferenceDrop> {
+    difference_watchdog_update(
+        &mut next.difference_fill_window,
+        &mut next.difference_out_of_band_steps,
+        &mut next.difference_saturated_steps,
+        fill_percent,
+        state,
+    );
+    let reason = difference_watchdog_verdict(
+        &next.difference_fill_window,
+        next.difference_out_of_band_steps,
+        next.difference_saturated_steps,
+        next.specification.difference_watchdog_fill_std,
+    )?;
+    let drop = SustainedDifferenceDrop {
+        step,
+        reason: reason.into(),
+    };
+    next.difference_gain_dropped = Some(drop.clone());
+    next.difference_filtered.clear();
+    next.difference_reference.clear();
+    next.difference_reference_step = 0;
+    next.difference_fill_window.clear();
+    next.difference_out_of_band_steps = 0;
+    next.difference_saturated_steps = 0;
+    Some(drop)
 }
 fn observation(
     frame: &SustainedFrame,
@@ -2280,6 +2622,119 @@ fn validate_pending(p: &SustainedPendingLanguage, s: &SustainedContinuation) -> 
         "Pending language identity/observation/prompt/memory differs",
     )
 }
+/// The 48 feedback slots the latest frame must carry: the scaled held vector plus the
+/// difference channel's recorded contribution, summed in the order `advance` uses.
+fn expected_feedback_slots(s: &SustainedContinuation, f: &SustainedFrame) -> Vec<f64> {
+    let mut expected = scaled_feedback(&s.held_vector, s.specification.feedback_scale);
+    for (slot, value) in expected.iter_mut().zip(&f.difference_input) {
+        *slot += value;
+    }
+    expected
+}
+/// Difference-channel invariants of a continuation and its latest frame.
+fn validate_difference(s: &SustainedContinuation, f: Option<&SustainedFrame>) -> Result<()> {
+    let spec = &s.specification;
+    let channel_idle = s.difference_filtered.is_empty()
+        && s.difference_reference.is_empty()
+        && s.difference_reference_step == 0
+        && s.difference_fill_window.is_empty()
+        && s.difference_out_of_band_steps == 0
+        && s.difference_saturated_steps == 0;
+    if !spec.uses_difference_channel() {
+        ensure(
+            channel_idle
+                && s.difference_gain_dropped.is_none()
+                && f.is_none_or(|f| {
+                    f.difference_input.is_empty()
+                        && f.difference_gain_used == 0.0
+                        && f.difference_gain_dropped.is_none()
+                }),
+            "Difference-channel state present without a gain",
+        )?;
+        return Ok(());
+    }
+    let Some(f) = f else {
+        return ensure(
+            channel_idle && s.difference_gain_dropped.is_none(),
+            "Genesis checkpoint carries difference-channel state",
+        );
+    };
+    let matrix = difference_matrix(spec.seed ^ DIFFERENCE_SEED);
+    if let Some(d) = &s.difference_gain_dropped {
+        ensure(
+            spec.difference_watchdog
+                && d.step >= 1
+                && d.step <= s.step
+                && [
+                    DIFFERENCE_DROP_FILL_STD,
+                    DIFFERENCE_DROP_FILL_BAND,
+                    DIFFERENCE_DROP_SATURATION,
+                ]
+                .contains(&d.reason.as_str())
+                && channel_idle,
+            "Invalid difference-channel drop record",
+        )?;
+        if d.step == f.step {
+            ensure(
+                f.difference_gain_used == spec.difference_gain
+                    && f.difference_input.len() == 48
+                    && f.difference_input
+                        .iter()
+                        .all(|u| u.is_finite() && u.abs() <= spec.difference_clip)
+                    && f.difference_gain_dropped.as_ref() == Some(d),
+                "Drop-step frame differs from the drop record",
+            )
+        } else {
+            ensure(
+                f.difference_gain_used == 0.0
+                    && f.difference_input.is_empty()
+                    && f.difference_gain_dropped.is_none(),
+                "Frame after a watchdog drop still carries the channel",
+            )
+        }
+    } else {
+        ensure(
+            f.difference_gain_used == spec.difference_gain
+                && f.difference_gain_dropped.is_none()
+                && s.difference_filtered.len() == 32
+                && s.difference_filtered.iter().all(|x| x.is_finite())
+                && f.difference_input.len() == 48
+                && f.difference_input
+                    == difference_contribution(
+                        &s.difference_filtered,
+                        &matrix,
+                        spec.difference_gain,
+                        spec.difference_dead_band,
+                        spec.difference_clip,
+                    ),
+            "Latest frame's difference contribution differs from the continuation",
+        )?;
+        ensure(
+            (s.difference_reference.is_empty() && s.difference_reference_step == 0)
+                || (s.difference_reference.len() == 32
+                    && s.difference_reference_step >= 1
+                    && s.difference_reference_step <= s.step
+                    && s.difference_reference_step.is_multiple_of(spec.turn_every)
+                    && s.last_observation.as_ref().is_some_and(|o| {
+                        o.step == s.difference_reference_step && o.state == s.difference_reference
+                    })),
+            "Difference reference does not match the last observation",
+        )?;
+        ensure(
+            s.difference_fill_window.len() <= DIFFERENCE_FILL_WINDOW
+                && s.difference_fill_window
+                    .iter()
+                    .all(|x| x.is_finite() && (0.0..=100.0).contains(x))
+                && s.difference_out_of_band_steps < DIFFERENCE_OUT_OF_BAND_STEPS
+                && s.difference_saturated_steps < DIFFERENCE_SATURATION_STEPS
+                && (spec.difference_watchdog
+                    || (s.difference_fill_window.is_empty()
+                        && s.difference_out_of_band_steps == 0
+                        && s.difference_saturated_steps == 0)),
+            "Invalid difference-channel watchdog memory",
+        )
+    }
+}
 fn validate_state(s: &SustainedContinuation) -> Result<()> {
     s.specification.validate()?;
     let model = ReservoirModel::seeded(s.specification.seed);
@@ -2356,6 +2811,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
                 && matches!(s.phase, SustainedPhase::Ready),
             "Genesis checkpoint differs from the fixed initialization",
         )?;
+        validate_difference(s, None)?;
     } else {
         let f = s
             .latest_frame
@@ -2369,8 +2825,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
             f.step == s.step
                 && f.simulated_time == s.step as f64 * s.specification.dt
                 && f.state == s.reservoir_state
-                && f.input[18..]
-                    == scaled_feedback(&s.held_vector, s.specification.feedback_scale)[..]
+                && f.input[18..] == expected_feedback_slots(s, f)[..]
                 && f.sensory_noise == field_noise(&s.specification, f.step)
                 && f.semantic_journal_id == s.held_journal_id
                 && f.next_retention == s.retention
@@ -2379,6 +2834,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
                 && f.sensory.fill_percent == s.reduced_fill * 100.0,
             "Latest frame differs from continuation",
         )?;
+        validate_difference(s, Some(f))?;
         if let Some(a) = &f.application {
             ensure(
                 a.applied_step == s.step

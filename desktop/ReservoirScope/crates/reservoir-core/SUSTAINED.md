@@ -19,7 +19,11 @@ owner's transport; omitted temperature is greedy decoding. `SustainedCodec::Embe
 (mechanism v3) replaces `codec::encode`/`feedback` with an externally supplied projected
 embedding carrying `FeedbackProvenance`, validated against the session codec and replayed
 from the stored vector; `codec::project_embedding` is the fixed projection. Inert prompt
-versions carry optional frozen system contracts via `system_contract`. All authoritative
+versions carry optional frozen system contracts via `system_contract`. The difference-signal
+channel (`difference_gain` ≠ 0, mechanism v4) adds `difference_contribution` of the
+filtered state change into the 48 feedback slots, recorded per frame and recomputed by
+`validate_state` from the continuation's filtered vector; its watchdog drop is a frame
+and continuation record, never a second event. All authoritative
 numbers are f64. Step/turn/attempt/event
 and RNG identities are u64; IPC owners must expose them as decimal strings where
 JavaScript integer precision would be inadequate. Each step is one third of a

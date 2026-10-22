@@ -68,6 +68,27 @@ vector spans about twelve of the field's 32 modes, so the controller stayed on i
 0.995 rail near 14% fill, while these values settled fill near 70%, inside the 64–72%
 band ([account](../../analyses/2026-10-21-laptop-first-sustained-session.md)).
 
+**Difference-signal channel** (0.35.0, S-011 M5). Six optional fields on the specification,
+`differenceGain` (default 0), `differenceTau` (3 steps), `differenceDeadBand` (0.02),
+`differenceClip` (0.2), `differenceWatchdog` (true) and `differenceWatchdogFillStd` (10
+points). With a nonzero gain, each step takes the reservoir's 32-d state change since the
+last observation step divided by the elapsed steps, averages it with weight 1/(τ+1), zeroes
+each coordinate inside the dead band, projects it by a fixed 48×32 Gaussian matrix derived
+from the session seed (`DIFFERENCE_SEED`, Box–Muller, scaled 1/√32), multiplies by the gain
+(its sign selects ±W_d), clips, and adds the result into the 48 feedback slots after the
+scaled held vector, so the reservoir and the sensory field both see it. The frame records
+`differenceInput` and `differenceGainUsed`; the continuation keeps the filtered difference,
+the reference state and step, the fill window and the counters, all skipped at gain 0, so
+every earlier checkpoint, frame and identity is unchanged. Mechanism identities
+`…-codec48-scaled-feedback-field-noise-difference-v4` and
+`…-embedding32-scaled-feedback-field-noise-difference-v4`. The watchdog forces the gain to 0
+for the rest of the session when the trailing 90-step fill standard deviation exceeds the
+bound, fill is outside 15–98% for 60 consecutive steps, or more than half the nodes exceed
+|x| > 0.95 for 30 consecutive steps; the drop (step and reason) is recorded on that frame
+and in the continuation, not as a second event. The entry-effect counterfactual keeps the
+channel on both sides, so `shift` still isolates the entry. A 0.34.0 reader rejects a
+bundle whose gain is nonzero (unknown fields), as 0.14.0 did for budgets.
+
 **Telemetry-tag controls** (0.34.0, S-011). `reservoir-journal-inert-no-tag-v1` and
 `…-inert-plain-contract-no-tag-v1` drop the optional-context line entirely (the spec's
 prompt-leakage audit); `…-inert-plain-contract-scrambled-tag-v1` keeps the line but shows

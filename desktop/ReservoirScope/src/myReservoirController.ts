@@ -1,6 +1,6 @@
 import { errorText } from './api';
 import { myReservoirApi } from './myReservoirApi';
-import { effectivePromptVersion, effectiveOutputTokens, effectiveRequestDeadline, isSustainedPromptVersion, validFieldControls, validWritingLimits } from './myReservoirTypes';
+import { effectivePromptVersion, effectiveOutputTokens, effectiveRequestDeadline, isSustainedPromptVersion, validDifferenceControls, validFieldControls, validWritingLimits } from './myReservoirTypes';
 import type { SessionFrame } from './freshTypes';
 import type { MyReservoirApi, SustainedAction, SustainedConfig, SustainedJournal, SustainedJournalPage, SustainedSummary, SustainedUpdate, SustainedBundleReport, SustainedRecoveryPage, SustainedRecoveryDetail } from './myReservoirTypes';
 
@@ -97,6 +97,7 @@ export class MyReservoirController {
     if (!isSustainedPromptVersion(effectivePromptVersion(config))) { this.set({ error: 'The selected journal prompt version is unsupported.' }); return false; }
     if (!validWritingLimits(config)) { this.set({ error: 'Review the writing limits before creating a session.' }); return false; }
     if (!validFieldControls(config)) { this.set({ error: 'Review the sensory noise and feedback scale before creating a session.' }); return false; }
+    if (!validDifferenceControls(config)) { this.set({ error: 'Review the difference-signal settings before creating a session.' }); return false; }
     const identity = this.identityEpoch, requestId = this.id(), prior = this.state.summary;
     this.set({ busy: 'create', error: '', message: '' }); let accepted = false;
     try {

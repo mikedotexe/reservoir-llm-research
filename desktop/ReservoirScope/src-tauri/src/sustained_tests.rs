@@ -2156,3 +2156,122 @@ fn embedding_codec_sessions_record_provenance_and_retain_embedding_failures() {
     let checkpoint = sustained_store::SustainedStore::new(d.path().join("store"));
     let _ = checkpoint;
 }
+
+#[test]
+fn difference_channel_config_roundtrip_manifest_identity_and_drop_persistence() {
+    // Omitted fields are the as-built channel (gain 0) and serialise to nothing.
+    let fresh = config(7, 3);
+    let raw = serde_json::to_value(&fresh).unwrap();
+    assert!(!serde_json::to_string(&raw).unwrap().contains("difference"));
+    assert_eq!(fresh.difference_gain, 0.0);
+    assert_eq!(fresh.difference_clip, 0.2);
+    let mut gained = config(7, 3);
+    gained.difference_gain = 0.05;
+    let value = serde_json::to_value(&gained).unwrap();
+    assert_eq!(value["differenceGain"], serde_json::json!(0.05));
+    assert!(value.get("differenceTau").is_none() && value.get("differenceWatchdog").is_none());
+    let decoded: SustainedConfig = serde_json::from_value(value.clone()).unwrap();
+    decoded.validate().unwrap();
+    assert_eq!(decoded.specification().unwrap().difference_gain, 0.05);
+    assert_eq!(serde_json::to_value(decoded).unwrap(), value);
+    for (key, bad) in [
+        ("differenceGain", serde_json::json!(1.5)),
+        ("differenceGain", serde_json::json!(-1.5)),
+        ("differenceTau", serde_json::json!(-1)),
+        ("differenceDeadBand", serde_json::json!(2)),
+        ("differenceClip", serde_json::json!(0)),
+        ("differenceWatchdogFillStd", serde_json::json!(101)),
+    ] {
+        let mut changed = value.clone();
+        changed[key] = bad;
+        assert!(serde_json::from_value::<SustainedConfig>(changed)
+            .map(|c| c.validate().is_err())
+            .unwrap_or(true));
+    }
+
+    // A scripted session with the channel on: the manifest and the segments carry it,
+    // verification passes, and relabelling the gain breaks the chain.
+    let d = tempfile::tempdir().unwrap();
+    let s = SustainedState::new(d.path().join("store"));
+    let mut cfg = config(40, 3);
+    cfg.difference_gain = 0.05;
+    let accepted = s.create("create".into(), cfg).unwrap().summary.unwrap();
+    let epoch = arm(&s);
+    while drive(&s, epoch) {}
+    assert!(s.shared.store.verify(&accepted.session_id).is_ok());
+    let dir = s.shared.store.path(&accepted.session_id).unwrap();
+    let manifest = fs::read_to_string(dir.join("manifest.json")).unwrap();
+    assert!(manifest.contains("\"differenceGain\":0.05"));
+    let mut checkpoint_text = String::new();
+    for entry in fs::read_dir(dir.join("checkpoints")).unwrap() {
+        checkpoint_text.push_str(&fs::read_to_string(entry.unwrap().path()).unwrap());
+    }
+    assert!(checkpoint_text.contains("field-noise-difference-v4"));
+    let mut segment_text = String::new();
+    for entry in fs::read_dir(dir.join("segments")).unwrap() {
+        segment_text.push_str(&fs::read_to_string(entry.unwrap().path()).unwrap());
+    }
+    assert!(
+        segment_text.contains("\"differenceInput\":[")
+            && segment_text.contains("\"differenceGainUsed\":0.05")
+    );
+    let path = dir.join("manifest.json");
+    let original = fs::read(&path).unwrap();
+    for edit in [serde_json::json!(0.06), serde_json::Value::Null] {
+        let mut changed: serde_json::Value = serde_json::from_slice(&original).unwrap();
+        if edit.is_null() {
+            changed["config"]
+                .as_object_mut()
+                .unwrap()
+                .remove("differenceGain");
+        } else {
+            changed["config"]["differenceGain"] = edit;
+        }
+        fs::write(&path, serde_json::to_vec(&changed).unwrap()).unwrap();
+        assert!(s.shared.store.verify(&accepted.session_id).is_err());
+        fs::write(&path, &original).unwrap();
+    }
+    assert!(s.shared.store.verify(&accepted.session_id).is_ok());
+
+    // A gain-0 session of the same shape carries nothing of the channel anywhere.
+    let d0 = tempfile::tempdir().unwrap();
+    let s0 = SustainedState::new(d0.path().join("store"));
+    let accepted0 = s0
+        .create("create".into(), config(12, 3))
+        .unwrap()
+        .summary
+        .unwrap();
+    let epoch0 = arm(&s0);
+    while drive(&s0, epoch0) {}
+    let dir0 = s0.shared.store.path(&accepted0.session_id).unwrap();
+    let mut all = fs::read_to_string(dir0.join("manifest.json")).unwrap();
+    for sub in ["segments", "checkpoints"] {
+        for entry in fs::read_dir(dir0.join(sub)).unwrap() {
+            all.push_str(&fs::read_to_string(entry.unwrap().path()).unwrap());
+        }
+    }
+    assert!(!all.contains("difference"));
+
+    // The watchdog's drop persists: with a zero fill-std bound the gain drops at the 90th
+    // step, the drop is in a segment and the final checkpoint, and the chain verifies.
+    let d1 = tempfile::tempdir().unwrap();
+    let s1 = SustainedState::new(d1.path().join("store"));
+    let mut cfg1 = config(120, 30);
+    cfg1.difference_gain = 0.1;
+    cfg1.difference_watchdog_fill_std = 0.0;
+    let accepted1 = s1.create("create".into(), cfg1).unwrap().summary.unwrap();
+    let epoch1 = arm(&s1);
+    while drive(&s1, epoch1) {}
+    assert!(s1.shared.store.verify(&accepted1.session_id).is_ok());
+    let dir1 = s1.shared.store.path(&accepted1.session_id).unwrap();
+    let mut segments1 = String::new();
+    for entry in fs::read_dir(dir1.join("segments")).unwrap() {
+        segments1.push_str(&fs::read_to_string(entry.unwrap().path()).unwrap());
+    }
+    assert!(segments1.contains("\"differenceGainDropped\":{\"step\":90,\"reason\":\"fill-std"));
+    let mut checkpoints1 = String::new();
+    for entry in fs::read_dir(dir1.join("checkpoints")).unwrap() {
+        checkpoints1.push_str(&fs::read_to_string(entry.unwrap().path()).unwrap());
+    }
+    assert!(checkpoints1.contains("\"differenceGainDropped\":{\"step\":90"));
+}

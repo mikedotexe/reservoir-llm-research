@@ -17,6 +17,17 @@ export const effectiveTemperature = (config: SustainedConfig): number => config.
 /** Omitted historical values keep mechanism v1: no field noise and feedback ×1. */
 export const effectiveSensoryNoise = (config: SustainedConfig): number => config.sensoryNoiseAmplitude === undefined ? 0 : config.sensoryNoiseAmplitude;
 export const effectiveFeedbackScale = (config: SustainedConfig): number => config.feedbackScale === undefined ? 1 : config.feedbackScale;
+/** Difference-signal channel (0.35.0): omitted values are the as-built defaults (gain 0 keeps the earlier mechanism exactly). */
+export const effectiveDifferenceGain = (config: SustainedConfig): number => config.differenceGain === undefined ? 0 : config.differenceGain;
+export const effectiveDifferenceTau = (config: SustainedConfig): number => config.differenceTau === undefined ? 3 : config.differenceTau;
+export const effectiveDifferenceDeadBand = (config: SustainedConfig): number => config.differenceDeadBand === undefined ? 0.02 : config.differenceDeadBand;
+export const effectiveDifferenceClip = (config: SustainedConfig): number => config.differenceClip === undefined ? 0.2 : config.differenceClip;
+export const effectiveDifferenceWatchdog = (config: SustainedConfig): boolean => config.differenceWatchdog === undefined ? true : config.differenceWatchdog;
+export const effectiveDifferenceWatchdogFillStd = (config: SustainedConfig): number => config.differenceWatchdogFillStd === undefined ? 10 : config.differenceWatchdogFillStd;
+export const validDifferenceControls = (config: SustainedConfig): boolean => {
+  const gain = effectiveDifferenceGain(config), tau = effectiveDifferenceTau(config), band = effectiveDifferenceDeadBand(config), clip = effectiveDifferenceClip(config), std = effectiveDifferenceWatchdogFillStd(config);
+  return Number.isFinite(gain) && gain >= -1 && gain <= 1 && Number.isFinite(tau) && tau >= 0 && tau <= 1000 && Number.isFinite(band) && band >= 0 && band <= 1 && Number.isFinite(clip) && clip > 0 && clip <= 5 && Number.isFinite(std) && std >= 0 && std <= 100;
+};
 export function validFieldControls(config: SustainedConfig): boolean {
   const noise = effectiveSensoryNoise(config), scale = effectiveFeedbackScale(config);
   const model = config.embeddingModel;
@@ -44,6 +55,7 @@ export interface SustainedConfig {
   regulationEnabled: boolean; language: LanguageConfiguration;
   /** Omitted historical configuration keeps mechanism v1; fresh defaults select field noise 0.5 and feedback ×0.4. */
   sensoryNoiseAmplitude?: number; feedbackScale?: number;
+  differenceGain?: number; differenceTau?: number; differenceDeadBand?: number; differenceClip?: number; differenceWatchdog?: boolean; differenceWatchdogFillStd?: number;
   /** Text reduction (S-010 Part B): an embedding model name selects the embedding codec; omitted keeps the surface codec. */
   embeddingModel?: string | null; embeddingProjectionSeed?: string | null;
 }
@@ -54,7 +66,7 @@ export const DEFAULT_SUSTAINED_CONFIG: SustainedConfig = {
   storageBudgetBytes: 268435456, paceMs: 1000, leak: .65, noiseAmplitude: .02, initialRetention: .955,
   regulationEnabled: true, language: { backend: 'scripted' },
   outputTokens: 1024, requestDeadlineSeconds: 180,
-  sensoryNoiseAmplitude: .5, feedbackScale: .4,
+  sensoryNoiseAmplitude: .5, feedbackScale: .4, differenceGain: 0, differenceTau: 3, differenceDeadBand: .02, differenceClip: .2, differenceWatchdog: true, differenceWatchdogFillStd: 10,
 };
 export interface SustainedSummary {
   sessionId: string; generation: string; revision: string; config: SustainedConfig; phase: string;
