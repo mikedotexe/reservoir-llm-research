@@ -89,6 +89,26 @@ and in the continuation, not as a second event. The entry-effect counterfactual 
 channel on both sides, so `shift` still isolates the entry. A 0.34.0 reader rejects a
 bundle whose gain is nonzero (unknown fields), as 0.14.0 did for budgets.
 
+**Which earlier entry a turn returns** (0.36.0, S-011 Part B). `memoryPolicy` on the
+specification: `latest` (default, the latest applied entry, as built), `state-aligned` and
+`random`. Under a choosing policy the continuation keeps `appliedEntries`, a bounded ledger
+(256, oldest dropped) of applied entries with their identity, path, application step and the
+32-coordinate effect the entry had at its application (the 0.33.0 counterfactual, computed
+whenever a policy or a prompt version needs it; only the effect prompt versions report it to
+the model). At each turn boundary `state-aligned` returns the entry whose effect has the
+largest cosine with the observing state (ties to the most recent; an entry with no direction
+loses; when none has one the latest is returned); `random` returns a seeded uniform draw
+(`SplitMix64(seed ^ MEMORY_CHOICE_SEED ^ step)`), the control. The pending read then names
+the choice (policy, entry id and hash, path, step, age in entries, candidates, score) and
+carries no expected text; the worker rereads the chosen file and the engine matches its id
+and hash before the prompt is built, and the prompt is the one the version always built.
+`memoryChoice` rides on the pending language, the journal object and the journal detail,
+`chosenMemory` on the continuation; the validator recomputes the choice from the ledger and
+the state. Under `latest` nothing is serialised and every byte is the earlier mechanism's.
+`differenceWatchdogWarmup` (default 0) holds the watchdog's fill ring until that many steps
+have passed, because a regulated field's start-up climb alone gives a trailing 90-step
+spread of 14.6–16.9 points at step 90 (four gain-0 twins, S-011).
+
 **Telemetry-tag controls** (0.34.0, S-011). `reservoir-journal-inert-no-tag-v1` and
 `…-inert-plain-contract-no-tag-v1` drop the optional-context line entirely (the spec's
 prompt-leakage audit); `…-inert-plain-contract-scrambled-tag-v1` keeps the line but shows

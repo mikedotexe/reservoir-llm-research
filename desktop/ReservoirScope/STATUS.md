@@ -1,6 +1,12 @@
 # Reservoir Scope: current status and next work
 
-**October 21, 2026 · 0.35.0 difference-signal channel, on 0.34.0 no-tag and scrambled-tag controls, 0.33.0 entry-effect readout, 0.32.0 model thinking toggle, 0.31.0 two more S-010 contract arms, 0.30.0 embedding text reduction and S-010 frame arms, 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
+**October 21, 2026 · 0.36.0 state-chosen memory and watchdog warm-up, on 0.35.0 difference-signal channel, 0.34.0 no-tag and scrambled-tag controls, 0.33.0 entry-effect readout, 0.32.0 model thinking toggle, 0.31.0 two more S-010 contract arms, 0.30.0 embedding text reduction and S-010 frame arms, 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
+
+[0.36.0](RELEASE-0.36.0.md) lets the recurrent state choose which earlier entry a turn
+returns (`memoryPolicy`: latest, state-aligned, random) from a ledger of applied entries and
+their recorded effects, with the choice verified and recorded and the prompt text unchanged,
+and adds the difference channel's watchdog warm-up. Omitted, both are byte for byte the
+earlier mechanism.
 
 [0.35.0](RELEASE-0.35.0.md) adds the difference-signal channel from the self-observation
 spec's M5: the reservoir's own filtered change since the last observation, dead-banded,
@@ -9,7 +15,8 @@ watchdog that drops the gain for the rest of a session. Gain 0, the default, is 
 byte the earlier mechanism; a nonzero gain carries a v4 identity.
 The first ladder twins showed the default watchdog bound (10) sits below the start-up fill
 climb's trailing variance (14.6–16.9 at step 90), so nonzero-gain sessions with the defaults
-drop the gain at step 90; 0.36.0 adds a versioned warm-up. The shipped dead band 0.02 is
+drop the gain at step 90; 0.36.0 adds the warm-up field (default 0, so earlier bundles
+replay exactly). The shipped dead band 0.02 is
 below the measured gain-0 floor, where the spec's rule gives about 0.105.
 
 [0.34.0](RELEASE-0.34.0.md) adds three S-011 control prompt versions: the inert input with

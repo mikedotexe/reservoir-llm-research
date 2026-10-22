@@ -33,6 +33,7 @@ use std::{
     time::{Duration, Instant, SystemTime},
 };
 
+use reservoir_core::sustained::{is_zero_u64, SustainedMemoryPolicy};
 fn err(kind: &str, message: impl Into<String>) -> AppError {
     AppError::new("sustained", kind, message)
 }
@@ -111,6 +112,12 @@ pub struct SustainedConfig {
         skip_serializing_if = "is_default_difference_watchdog_fill_std"
     )]
     pub difference_watchdog_fill_std: f64,
+    /// Steps before the watchdog's fill ring counts (0.36.0); 0 is as built.
+    #[serde(default, skip_serializing_if = "is_zero_u64")]
+    pub difference_watchdog_warmup: u64,
+    /// Which earlier entry a turn returns as memory (0.36.0); `latest` is as built.
+    #[serde(default, skip_serializing_if = "SustainedMemoryPolicy::is_latest")]
+    pub memory_policy: SustainedMemoryPolicy,
 }
 impl Default for SustainedConfig {
     fn default() -> Self {
@@ -140,6 +147,8 @@ impl Default for SustainedConfig {
             difference_clip: default_difference_clip(),
             difference_watchdog: default_difference_watchdog(),
             difference_watchdog_fill_std: default_difference_watchdog_fill_std(),
+            difference_watchdog_warmup: 0,
+            memory_policy: SustainedMemoryPolicy::Latest,
         }
     }
 }
@@ -189,6 +198,8 @@ impl SustainedConfig {
             difference_clip: self.difference_clip,
             difference_watchdog: self.difference_watchdog,
             difference_watchdog_fill_std: self.difference_watchdog_fill_std,
+            difference_watchdog_warmup: self.difference_watchdog_warmup,
+            memory_policy: self.memory_policy,
             codec: match &self.embedding_model {
                 None => reservoir_core::sustained::SustainedCodec::Surface,
                 Some(model) => {
@@ -1109,11 +1120,11 @@ impl SustainedState {
             return Ok(Work::Done);
         }
         if let Some(p) = a.engine.pending_memory().cloned() {
-            match self
-                .shared
-                .store
-                .read_journal(&a.manifest.session_id, &p.entry.id)
-            {
+            let read = match p.entry_id() {
+                Some(id) => self.shared.store.read_journal(&a.manifest.session_id, id),
+                None => Err(err("engine", "Pending memory read names no entry")),
+            };
+            match read {
                 Ok(j) => {
                     if let Err(e) = a.engine.confirm_memory(&j.pending.entry) {
                         a.engine.fail_memory(&e.to_string()).map_err(ce)?;
@@ -1479,7 +1490,7 @@ impl SustainedState {
             session_id: id.into(),
             generation: generation.into(),
             revision: a.manifest.revision.clone(),
-            journal: serde_json::json!({"entryId":p.entry.id,"turnId":p.entry.turn_id,"attemptId":p.entry.attempt_id,"observedStep":p.entry.observed_step,"firstAppliedStep":index.first_applied_step,"text":p.entry.text,"sha256":p.entry.sha256,"prompt":p.prompt,"promptVersion":a.manifest.config.prompt_version,"rawReply":p.response.text,"observation":p.observation,"measurementReference":measurement_reference,"memory":memory,"encodedFeatures":p.encoded_features,"semanticVector":p.semantic_vector,"saveReceipt":{"entryId":entry_id,"sha256":index.sha256,"relativePath":format!("journals/{entry_id}.json")},"providerModel":p.response.provider_model,"stopReason":p.response.stop_reason,"tokenCount":p.response.token_count,"providerComplete":p.response.complete,"configuredModel":j.configured_model,"temperature":j.temperature,"samplingSeed":j.sampling_seed,"thinking":j.thinking,"feedbackProvenance":p.feedback_provenance,"objectSha256":object_hash,"requestStarted":j.request_started,"timing":j.timing,"status":index.status,"application":application}),
+            journal: serde_json::json!({"entryId":p.entry.id,"turnId":p.entry.turn_id,"attemptId":p.entry.attempt_id,"observedStep":p.entry.observed_step,"firstAppliedStep":index.first_applied_step,"text":p.entry.text,"sha256":p.entry.sha256,"prompt":p.prompt,"promptVersion":a.manifest.config.prompt_version,"rawReply":p.response.text,"observation":p.observation,"measurementReference":measurement_reference,"memory":memory,"memoryChoice":p.memory_choice,"encodedFeatures":p.encoded_features,"semanticVector":p.semantic_vector,"saveReceipt":{"entryId":entry_id,"sha256":index.sha256,"relativePath":format!("journals/{entry_id}.json")},"providerModel":p.response.provider_model,"stopReason":p.response.stop_reason,"tokenCount":p.response.token_count,"providerComplete":p.response.complete,"configuredModel":j.configured_model,"temperature":j.temperature,"samplingSeed":j.sampling_seed,"thinking":j.thinking,"feedbackProvenance":p.feedback_provenance,"objectSha256":object_hash,"requestStarted":j.request_started,"timing":j.timing,"status":index.status,"application":application}),
         };
         if let Some(value) = provider_prompt_evaluation {
             detail.journal["providerPromptEvaluation"] = serde_json::to_value(value).map_err(ce)?;

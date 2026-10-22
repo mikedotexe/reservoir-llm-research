@@ -60,7 +60,7 @@ fn save(s: &mut SustainedSession, text: &str) -> SustainedPendingJournal {
     journal
 }
 fn confirm_memory(s: &mut SustainedSession) {
-    let entry = s.pending_memory().unwrap().entry.clone();
+    let entry = s.pending_memory().unwrap().entry.clone().unwrap();
     s.confirm_memory(&entry).unwrap();
 }
 fn rehash(checkpoint: &mut SustainedCheckpoint) {
@@ -316,7 +316,7 @@ fn save_readback_restore_and_next_step_authorization_remain_separate_gates() {
     assert_eq!(s.checkpoint().sha256, restored.checkpoint().sha256);
     assert!(s.advance().unwrap().application.is_none());
     advance(&mut s, 1);
-    let expected = s.pending_memory().unwrap().entry.clone();
+    let expected = s.pending_memory().unwrap().entry.clone().unwrap();
     assert_eq!(expected.text, journal.entry.text);
     let before = s.checkpoint().sha256;
     assert!(s.confirm_memory(&wrong).is_err());

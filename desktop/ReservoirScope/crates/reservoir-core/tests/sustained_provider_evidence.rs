@@ -174,7 +174,10 @@ fn input_evidence_never_changes_prompts_save_gate_application_or_numerical_state
                 serde_json::to_vec(&restored.advance().unwrap()).unwrap()
             );
             advance(&mut s, 2);
-            assert_eq!(s.pending_memory().unwrap().entry.text, journal.entry.text);
+            assert_eq!(
+                s.pending_memory().unwrap().entry.as_ref().unwrap().text,
+                journal.entry.text
+            );
             s.confirm_memory(&journal.entry).unwrap();
             let comparable = (
                 first_prompt,

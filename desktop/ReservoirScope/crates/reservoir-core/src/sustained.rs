@@ -156,7 +156,7 @@ pub fn is_legacy_feedback_scale(value: &f64) -> bool {
 pub fn is_zero(value: &f64) -> bool {
     *value == 0.0
 }
-fn is_zero_u64(value: &u64) -> bool {
+pub fn is_zero_u64(value: &u64) -> bool {
     *value == 0
 }
 pub fn default_difference_tau() -> f64 {
@@ -551,6 +551,13 @@ pub struct SustainedSpecification {
         skip_serializing_if = "is_default_difference_watchdog_fill_std"
     )]
     pub difference_watchdog_fill_std: f64,
+    /// Steps before the watchdog's fill ring starts counting (0.36.0), so the start-up
+    /// climb of a regulated field is not read as an excursion; 0 is as built.
+    #[serde(default, skip_serializing_if = "is_zero_u64")]
+    pub difference_watchdog_warmup: u64,
+    /// Which earlier entry a turn returns as memory (0.36.0); `latest` is as built.
+    #[serde(default, skip_serializing_if = "SustainedMemoryPolicy::is_latest")]
+    pub memory_policy: SustainedMemoryPolicy,
 }
 impl Default for SustainedSpecification {
     fn default() -> Self {
@@ -577,6 +584,8 @@ impl Default for SustainedSpecification {
             difference_clip: default_difference_clip(),
             difference_watchdog: default_difference_watchdog(),
             difference_watchdog_fill_std: default_difference_watchdog_fill_std(),
+            difference_watchdog_warmup: 0,
+            memory_policy: SustainedMemoryPolicy::Latest,
         }
     }
 }
@@ -587,6 +596,11 @@ impl SustainedSpecification {
             || !is_legacy_feedback_scale(&self.feedback_scale)
     }
     /// True once the difference channel carries a nonzero gain.
+    /// The entry-effect counterfactual is computed when a prompt version reports it or a
+    /// memory policy chooses by it.
+    pub fn needs_entry_effect(&self) -> bool {
+        self.prompt_version.reports_entry_effect() || !self.memory_policy.is_latest()
+    }
     pub fn uses_difference_channel(&self) -> bool {
         self.difference_gain != 0.0
     }
@@ -645,7 +659,8 @@ impl SustainedSpecification {
                 && self.difference_clip > 0.0
                 && self.difference_clip <= 5.0
                 && self.difference_watchdog_fill_std.is_finite()
-                && (0.0..=100.0).contains(&self.difference_watchdog_fill_std),
+                && (0.0..=100.0).contains(&self.difference_watchdog_fill_std)
+                && self.difference_watchdog_warmup <= MAX_STEPS,
             "Invalid difference-signal controls",
         )?;
         ensure(
@@ -965,6 +980,62 @@ impl SustainedSaveReceipt {
         )
     }
 }
+/// Which earlier entry a turn returns as memory (0.36.0). `Latest` is the as-built
+/// behaviour; `StateAligned` lets the recurrent state choose among the applied entries by
+/// the cosine between each entry's effect at its application and the observing state;
+/// `Random` is the seeded control. The prompt text is the same under every policy.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "kebab-case")]
+pub enum SustainedMemoryPolicy {
+    #[default]
+    Latest,
+    StateAligned,
+    Random,
+}
+impl SustainedMemoryPolicy {
+    pub fn is_latest(&self) -> bool {
+        matches!(self, Self::Latest)
+    }
+    pub fn as_str(self) -> &'static str {
+        match self {
+            Self::Latest => "latest",
+            Self::StateAligned => "state-aligned",
+            Self::Random => "random",
+        }
+    }
+}
+/// Seed mixed with the session seed and the boundary step for the `random` memory policy.
+pub const MEMORY_CHOICE_SEED: u64 = 0x004d_454d_4f52_5943;
+/// Applied entries the memory policies choose among; the oldest is dropped past this.
+pub const MEMORY_LEDGER_CAP: usize = 256;
+/// An applied entry's identity and its effect at application (the 32-coordinate
+/// difference against the same step without the held feedback).
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct SustainedAppliedEntry {
+    pub id: String,
+    pub sha256: String,
+    pub relative_path: String,
+    pub applied_step: u64,
+    pub effect: Vec<f64>,
+}
+/// The policy's choice at a turn boundary, recorded with the pending read, the prompt and
+/// the journal object.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct SustainedMemoryChoice {
+    pub policy: SustainedMemoryPolicy,
+    pub entry_id: String,
+    pub sha256: String,
+    pub relative_path: String,
+    pub applied_step: u64,
+    /// Entries applied after the chosen one; 0 is the latest.
+    pub age: u64,
+    pub candidates: u64,
+    /// Cosine between the chosen entry's effect and the observing state (state-aligned only).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub score: Option<f64>,
+}
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedMemory {
@@ -977,9 +1048,23 @@ pub struct SustainedMemory {
 pub struct SustainedPendingMemory {
     pub turn_id: u64,
     pub observed_step: u64,
-    pub entry: SustainedJournal,
+    /// The expected readback under the `latest` policy; omitted when a choice names it.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub entry: Option<SustainedJournal>,
     pub relative_path: String,
     pub observation: SustainedObservation,
+    /// The policy's choice (0.36.0); omitted under `latest`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub choice: Option<SustainedMemoryChoice>,
+}
+impl SustainedPendingMemory {
+    /// The journal id the worker must read back.
+    pub fn entry_id(&self) -> Option<&str> {
+        self.entry
+            .as_ref()
+            .map(|e| e.id.as_str())
+            .or_else(|| self.choice.as_ref().map(|c| c.entry_id.as_str()))
+    }
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -991,6 +1076,9 @@ pub struct SustainedPendingLanguage {
     pub prompt: String,
     pub observation: SustainedObservation,
     pub memory: Option<SustainedMemory>,
+    /// The policy's choice behind `memory` (0.36.0); omitted under `latest`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub memory_choice: Option<SustainedMemoryChoice>,
     pub request_started: bool,
     #[serde(
         default = "legacy_output_tokens",
@@ -1011,6 +1099,9 @@ pub struct SustainedPendingJournal {
     pub response: LanguageResponse,
     pub observation: SustainedObservation,
     pub memory: Option<SustainedMemory>,
+    /// The policy's choice behind `memory` (0.36.0); omitted under `latest`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub memory_choice: Option<SustainedMemoryChoice>,
     pub encoded_features: Vec<f64>,
     pub semantic_vector: Vec<f64>,
     /// Present only under the embedding codec; omitted under the surface codec.
@@ -1088,6 +1179,13 @@ pub struct SustainedContinuation {
     pub difference_saturated_steps: u64,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub difference_gain_dropped: Option<SustainedDifferenceDrop>,
+    /// Applied entries with their effect at application, for the memory policies that
+    /// choose among them (0.36.0); empty under `latest`.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub applied_entries: Vec<SustainedAppliedEntry>,
+    /// The entry the current turn returned under a policy other than `latest`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub chosen_memory: Option<SustainedMemory>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -1212,6 +1310,8 @@ impl SustainedSession {
             difference_out_of_band_steps: 0,
             difference_saturated_steps: 0,
             difference_gain_dropped: None,
+            applied_entries: Vec::new(),
+            chosen_memory: None,
             specification,
         };
         let difference = difference_matrix(state.specification.seed ^ DIFFERENCE_SEED);
@@ -1422,10 +1522,7 @@ impl SustainedSession {
             u
         };
         let state = engine.step(&input, &noise)?;
-        let entry_effect = match (
-            &application,
-            next.specification.prompt_version.reports_entry_effect(),
-        ) {
+        let entry_effect = match (&application, next.specification.needs_entry_effect()) {
             (Some(a), true) => {
                 let mut silent = ReservoirEngine::new(
                     self.model.clone(),
@@ -1454,8 +1551,26 @@ impl SustainedSession {
                     shift,
                     alignment,
                 };
-                next.last_entry_effect = Some(effect.clone());
-                next.last_entry_effect_vector = diff;
+                if next.specification.prompt_version.reports_entry_effect() {
+                    next.last_entry_effect = Some(effect.clone());
+                    next.last_entry_effect_vector = diff.clone();
+                }
+                if !next.specification.memory_policy.is_latest() {
+                    let latest = next
+                        .latest_memory
+                        .as_ref()
+                        .ok_or_else(|| invalid("Applied entry without a latest memory"))?;
+                    next.applied_entries.push(SustainedAppliedEntry {
+                        id: a.journal_id.clone(),
+                        sha256: latest.entry.sha256.clone(),
+                        relative_path: latest.relative_path.clone(),
+                        applied_step: step,
+                        effect: diff,
+                    });
+                    if next.applied_entries.len() > MEMORY_LEDGER_CAP {
+                        next.applied_entries.remove(0);
+                    }
+                }
                 Some(effect)
             }
             _ => None,
@@ -1483,7 +1598,10 @@ impl SustainedSession {
         if next.specification.regulation_enabled {
             controller.update(fill_percent);
         }
-        let difference_gain_dropped = if gain != 0.0 && next.specification.difference_watchdog {
+        let difference_gain_dropped = if gain != 0.0
+            && next.specification.difference_watchdog
+            && step > next.specification.difference_watchdog_warmup
+        {
             difference_watchdog(&mut next, fill_percent, &state, step)
         } else {
             None
@@ -1539,16 +1657,11 @@ impl SustainedSession {
                 next.difference_reference = next.reservoir_state.clone();
                 next.difference_reference_step = step;
             }
-            next.phase = if let Some(memory) = &next.latest_memory {
-                SustainedPhase::Memory(SustainedPendingMemory {
-                    turn_id: next.turn_cursor,
-                    observed_step: step,
-                    entry: memory.entry.clone(),
-                    relative_path: memory.relative_path.clone(),
-                    observation,
-                })
+            next.phase = if next.latest_memory.is_some() {
+                next.chosen_memory = None;
+                SustainedPhase::Memory(pending_memory(&next, step, observation)?)
             } else {
-                SustainedPhase::Language(prepare_language(&mut next, observation, None)?)
+                SustainedPhase::Language(prepare_language(&mut next, observation, None, None)?)
             };
         }
         self.state = next;
@@ -1562,12 +1675,31 @@ impl SustainedSession {
             .pending_memory()
             .ok_or_else(|| invalid("No pending memory read"))?
             .clone();
-        ensure(
-            same(entry, &p.entry),
-            "Fresh journal readback differs from the expected saved memory",
-        )?;
-        let memory = self.state.latest_memory.clone();
-        let pending = prepare_language(&mut self.state, p.observation, memory)?;
+        let memory = match (&p.entry, &p.choice) {
+            (Some(expected), None) => {
+                ensure(
+                    same(entry, expected),
+                    "Fresh journal readback differs from the expected saved memory",
+                )?;
+                self.state.latest_memory.clone()
+            }
+            (None, Some(choice)) => {
+                entry.validate()?;
+                ensure(
+                    entry.id == choice.entry_id && entry.sha256 == choice.sha256,
+                    "Fresh journal readback differs from the chosen memory",
+                )?;
+                let memory = SustainedMemory {
+                    entry: entry.clone(),
+                    relative_path: choice.relative_path.clone(),
+                    applied_step: choice.applied_step,
+                };
+                self.state.chosen_memory = Some(memory.clone());
+                Some(memory)
+            }
+            _ => return Err(invalid("Pending memory read names no entry")),
+        };
+        let pending = prepare_language(&mut self.state, p.observation, memory, p.choice)?;
         self.state.phase = SustainedPhase::Language(pending);
         self.event(SustainedEventKind::MemoryConfirmed(entry.clone()));
         Ok(())
@@ -1591,6 +1723,7 @@ impl SustainedSession {
             prompt: String::new(),
             observation: p.observation,
             memory: None,
+            memory_choice: None,
             request_started: false,
         };
         self.state.phase = SustainedPhase::Blocked(SustainedBlocked {
@@ -1759,18 +1892,15 @@ impl SustainedSession {
         let previous_attempt_id = b.pending.attempt_id;
         // A new physical reread is mandatory even when the former prompt already
         // retained the same memory. No automatic retry consumes this state.
-        self.state.phase = if let Some(memory) = &self.state.latest_memory {
-            SustainedPhase::Memory(SustainedPendingMemory {
-                turn_id: self.state.turn_cursor,
-                observed_step: self.step(),
-                entry: memory.entry.clone(),
-                relative_path: memory.relative_path.clone(),
-                observation: b.pending.observation,
-            })
+        self.state.phase = if self.state.latest_memory.is_some() {
+            self.state.chosen_memory = None;
+            let step = self.step();
+            SustainedPhase::Memory(pending_memory(&self.state, step, b.pending.observation)?)
         } else {
             SustainedPhase::Language(prepare_language(
                 &mut self.state,
                 b.pending.observation,
+                None,
                 None,
             )?)
         };
@@ -2392,6 +2522,7 @@ fn prepare_language(
     state: &mut SustainedContinuation,
     observation: SustainedObservation,
     memory: Option<SustainedMemory>,
+    memory_choice: Option<SustainedMemoryChoice>,
 ) -> Result<SustainedPendingLanguage> {
     ensure(
         state.attempt_cursor < state.specification.maximum_turns,
@@ -2413,6 +2544,7 @@ fn prepare_language(
         ),
         observation,
         memory,
+        memory_choice,
         request_started: false,
     })
 }
@@ -2508,6 +2640,7 @@ fn prepare_journal(
         response: response.clone(),
         observation: p.observation.clone(),
         memory: p.memory.clone(),
+        memory_choice: p.memory_choice.clone(),
         encoded_features,
         semantic_vector,
         feedback_provenance,
@@ -2582,6 +2715,143 @@ fn validate_observation(o: &SustainedObservation, spec: &SustainedSpecification)
         "Invalid previous-observation change boundary",
     )
 }
+/// The physical reread a turn boundary asks for: the latest applied entry under `latest`,
+/// the policy's choice otherwise.
+fn pending_memory(
+    s: &SustainedContinuation,
+    observed_step: u64,
+    observation: SustainedObservation,
+) -> Result<SustainedPendingMemory> {
+    let memory = s
+        .latest_memory
+        .as_ref()
+        .ok_or_else(|| invalid("No saved-and-applied memory to read"))?;
+    Ok(if s.specification.memory_policy.is_latest() {
+        SustainedPendingMemory {
+            turn_id: s.turn_cursor,
+            observed_step,
+            entry: Some(memory.entry.clone()),
+            relative_path: memory.relative_path.clone(),
+            observation,
+            choice: None,
+        }
+    } else {
+        let choice = choose_memory(s, observed_step)?;
+        SustainedPendingMemory {
+            turn_id: s.turn_cursor,
+            observed_step,
+            entry: None,
+            relative_path: choice.relative_path.clone(),
+            observation,
+            choice: Some(choice),
+        }
+    })
+}
+/// The policy's choice among the applied entries at a turn boundary: the latest under
+/// `latest`; under `state-aligned` the entry whose effect at application points most
+/// along the observing state (ties to the most recent; entries without a direction lose,
+/// and when none has one the latest is returned); a seeded uniform draw under `random`.
+fn choose_memory(s: &SustainedContinuation, step: u64) -> Result<SustainedMemoryChoice> {
+    let n = s.applied_entries.len();
+    ensure(n > 0, "No applied entry to choose a memory from")?;
+    let policy = s.specification.memory_policy;
+    let mut score = None;
+    let index = match policy {
+        SustainedMemoryPolicy::Latest => n - 1,
+        SustainedMemoryPolicy::Random => {
+            let mut rng = SplitMix64::new(s.specification.seed ^ MEMORY_CHOICE_SEED ^ step);
+            (rng.next_u64() % n as u64) as usize
+        }
+        SustainedMemoryPolicy::StateAligned => {
+            let mut best = n - 1;
+            let mut best_score = f64::NEG_INFINITY;
+            for (i, e) in s.applied_entries.iter().enumerate() {
+                if let Some(c) = cosine(&e.effect, &s.reservoir_state) {
+                    if c >= best_score {
+                        best = i;
+                        best_score = c;
+                    }
+                }
+            }
+            score = cosine(&s.applied_entries[best].effect, &s.reservoir_state);
+            best
+        }
+    };
+    let e = &s.applied_entries[index];
+    Ok(SustainedMemoryChoice {
+        policy,
+        entry_id: e.id.clone(),
+        sha256: e.sha256.clone(),
+        relative_path: e.relative_path.clone(),
+        applied_step: e.applied_step,
+        age: (n - 1 - index) as u64,
+        candidates: n as u64,
+        score,
+    })
+}
+/// Under `latest` the prompt's memory is the latest applied entry; under the other
+/// policies it is the recorded choice, read back and confirmed.
+fn memory_matches_policy(p: &SustainedPendingLanguage, s: &SustainedContinuation) -> bool {
+    if s.specification.memory_policy.is_latest() {
+        return same(&p.memory, &s.latest_memory) && p.memory_choice.is_none();
+    }
+    match (&p.memory, &p.memory_choice) {
+        (None, None) => s.latest_memory.is_none(),
+        (Some(m), Some(c)) => {
+            same(&p.memory, &s.chosen_memory)
+                && c.policy == s.specification.memory_policy
+                && c.entry_id == m.entry.id
+                && c.sha256 == m.entry.sha256
+                && c.relative_path == m.relative_path
+                && c.applied_step == m.applied_step
+                && c.candidates >= 1
+                && c.age < c.candidates
+        }
+        _ => false,
+    }
+}
+/// The ledger exists only under a policy that chooses; it ends with the latest applied
+/// entry, in application order, bounded, with finite 32-coordinate effects.
+fn validate_memory_ledger(s: &SustainedContinuation) -> Result<()> {
+    if s.specification.memory_policy.is_latest() {
+        return ensure(
+            s.applied_entries.is_empty() && s.chosen_memory.is_none(),
+            "Memory ledger or choice present under the latest policy",
+        );
+    }
+    ensure(
+        s.applied_entries.len() <= MEMORY_LEDGER_CAP
+            && s.applied_entries.iter().all(|e| {
+                e.effect.len() == 32
+                    && e.effect.iter().all(|x| x.is_finite())
+                    && e.applied_step >= 1
+                    && e.applied_step <= s.step
+                    && e.relative_path == format!("journals/{}.json", e.id)
+                    && valid_hash(&e.sha256)
+                    && e.id.ends_with(&e.sha256)
+            })
+            && s.applied_entries
+                .windows(2)
+                .all(|w| w[0].applied_step < w[1].applied_step),
+        "Invalid memory ledger",
+    )?;
+    match &s.latest_memory {
+        Some(m) => ensure(
+            s.applied_entries.last().is_some_and(|e| {
+                e.id == m.entry.id && e.sha256 == m.entry.sha256 && e.applied_step == m.applied_step
+            }),
+            "Memory ledger does not end with the latest applied entry",
+        )?,
+        None => ensure(
+            s.applied_entries.is_empty(),
+            "Memory ledger without an applied entry",
+        )?,
+    }
+    if let Some(c) = &s.chosen_memory {
+        validate_memory(c, s.step)?;
+    }
+    Ok(())
+}
 fn validate_memory(m: &SustainedMemory, step: u64) -> Result<()> {
     m.entry.validate()?;
     ensure(
@@ -2611,7 +2881,7 @@ fn validate_pending(p: &SustainedPendingLanguage, s: &SustainedContinuation) -> 
             && same(&p.configuration, &s.specification.language)
             && p.output_tokens == s.specification.output_tokens
             && p.request_deadline_seconds == s.specification.request_deadline_seconds
-            && same(&p.memory, &s.latest_memory)
+            && memory_matches_policy(p, s)
             && p.prompt
                 == prompt(
                     s.specification.prompt_version,
@@ -2721,7 +2991,9 @@ fn validate_difference(s: &SustainedContinuation, f: Option<&SustainedFrame>) ->
             "Difference reference does not match the last observation",
         )?;
         ensure(
-            s.difference_fill_window.len() <= DIFFERENCE_FILL_WINDOW
+            s.difference_fill_window.len()
+                <= DIFFERENCE_FILL_WINDOW
+                    .min(s.step.saturating_sub(spec.difference_watchdog_warmup) as usize)
                 && s.difference_fill_window
                     .iter()
                     .all(|x| x.is_finite() && (0.0..=100.0).contains(x))
@@ -2793,6 +3065,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
             "Feedback has no saved-and-applied source",
         )?;
     }
+    validate_memory_ledger(s)?;
     if let Some(o) = &s.last_observation {
         validate_observation(o, &s.specification)?;
         ensure(o.step <= s.step, "Observation comes from a future step")?;
@@ -2863,11 +3136,30 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
             ensure(
                 p.turn_id == s.turn_cursor
                     && p.observed_step == s.step
-                    && same(&p.entry, &m.entry)
-                    && p.relative_path == m.relative_path
                     && same(&Some(p.observation.clone()), &s.last_observation),
                 "Pending memory boundary differs",
             )?;
+            match (
+                &p.entry,
+                &p.choice,
+                s.specification.memory_policy.is_latest(),
+            ) {
+                (Some(e), None, true) => ensure(
+                    same(e, &m.entry) && p.relative_path == m.relative_path,
+                    "Pending memory boundary differs",
+                )?,
+                (None, Some(c), false) => ensure(
+                    same(c, &choose_memory(s, s.step)?)
+                        && p.relative_path == c.relative_path
+                        && s.chosen_memory.is_none(),
+                    "Pending memory choice differs from the state's",
+                )?,
+                _ => {
+                    return Err(invalid(
+                        "Pending memory shape does not match the memory policy",
+                    ))
+                }
+            }
         }
         SustainedPhase::Language(p) => validate_pending(p, s)?,
         SustainedPhase::Journal(j) => {
@@ -2881,6 +3173,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
                 prompt: j.prompt.clone(),
                 observation: j.observation.clone(),
                 memory: j.memory.clone(),
+                memory_choice: j.memory_choice.clone(),
                 request_started: true,
             };
             validate_pending(&p, s)?;

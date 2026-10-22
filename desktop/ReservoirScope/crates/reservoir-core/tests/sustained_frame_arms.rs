@@ -139,7 +139,7 @@ fn inert_arms_return_the_earlier_entry_verbatim_except_no_memory() {
             s.advance().unwrap();
         }
         if let Some(m) = s.pending_memory().cloned() {
-            s.confirm_memory(&m.entry).unwrap();
+            s.confirm_memory(m.entry.as_ref().unwrap()).unwrap();
         }
         let second = s.pending_language().unwrap().prompt.clone();
         if expects_memory {

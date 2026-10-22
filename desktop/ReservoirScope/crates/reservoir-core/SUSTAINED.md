@@ -23,7 +23,11 @@ versions carry optional frozen system contracts via `system_contract`. The diffe
 channel (`difference_gain` ≠ 0, mechanism v4) adds `difference_contribution` of the
 filtered state change into the 48 feedback slots, recorded per frame and recomputed by
 `validate_state` from the continuation's filtered vector; its watchdog drop is a frame
-and continuation record, never a second event. All authoritative
+and continuation record, never a second event. `memory_policy` (0.36.0) lets
+`choose_memory` pick the returned entry from the continuation's `applied_entries` ledger by
+the cosine of each entry's recorded effect with the observing state, or by a seeded draw;
+`validate_state` recomputes the choice, and `difference_watchdog_warmup` holds the watchdog's
+fill ring through the start-up climb. All authoritative
 numbers are f64. Step/turn/attempt/event
 and RNG identities are u64; IPC owners must expose them as decimal strings where
 JavaScript integer precision would be inadequate. Each step is one third of a

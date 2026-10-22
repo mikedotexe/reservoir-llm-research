@@ -45,7 +45,7 @@ fn save(s: &mut SustainedSession, text: &str) -> SustainedPendingJournal {
     p
 }
 fn memory(s: &mut SustainedSession) {
-    let e = s.pending_memory().unwrap().entry.clone();
+    let e = s.pending_memory().unwrap().entry.clone().unwrap();
     s.confirm_memory(&e).unwrap();
 }
 fn rehash(c: &mut SustainedCheckpoint) {

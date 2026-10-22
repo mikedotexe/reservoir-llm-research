@@ -2275,3 +2275,112 @@ fn difference_channel_config_roundtrip_manifest_identity_and_drop_persistence() 
     }
     assert!(checkpoints1.contains("\"differenceGainDropped\":{\"step\":90"));
 }
+
+#[test]
+fn memory_policy_config_roundtrip_journal_choice_and_warmup_persistence() {
+    use reservoir_core::sustained::SustainedMemoryPolicy;
+    // Omitted, the policy is `latest` and serialises to nothing.
+    let fresh = config(7, 3);
+    assert!(!serde_json::to_string(&fresh)
+        .unwrap()
+        .contains("memoryPolicy"));
+    assert_eq!(fresh.memory_policy, SustainedMemoryPolicy::Latest);
+    assert_eq!(fresh.difference_watchdog_warmup, 0);
+    let mut chosen = config(7, 3);
+    chosen.memory_policy = SustainedMemoryPolicy::StateAligned;
+    let value = serde_json::to_value(&chosen).unwrap();
+    assert_eq!(value["memoryPolicy"], serde_json::json!("state-aligned"));
+    let decoded: SustainedConfig = serde_json::from_value(value.clone()).unwrap();
+    assert_eq!(
+        decoded.specification().unwrap().memory_policy,
+        SustainedMemoryPolicy::StateAligned
+    );
+    assert_eq!(serde_json::to_value(decoded).unwrap(), value);
+    let mut bad = value.clone();
+    bad["memoryPolicy"] = serde_json::json!("newest");
+    assert!(serde_json::from_value::<SustainedConfig>(bad).is_err());
+
+    // A scripted state-aligned session: the manifest carries the policy, the journals the
+    // choice, the checkpoints the ledger; verification passes; relabelling breaks it.
+    let d = tempfile::tempdir().unwrap();
+    let s = SustainedState::new(d.path().join("store"));
+    let mut cfg = config(60, 3);
+    cfg.memory_policy = SustainedMemoryPolicy::StateAligned;
+    let accepted = s.create("create".into(), cfg).unwrap().summary.unwrap();
+    let epoch = arm(&s);
+    while drive(&s, epoch) {}
+    assert!(s.shared.store.verify(&accepted.session_id).is_ok());
+    let dir = s.shared.store.path(&accepted.session_id).unwrap();
+    let read = |sub: &str| {
+        let mut t = String::new();
+        for e in fs::read_dir(dir.join(sub)).unwrap() {
+            t.push_str(&fs::read_to_string(e.unwrap().path()).unwrap());
+        }
+        t
+    };
+    assert!(fs::read_to_string(dir.join("manifest.json"))
+        .unwrap()
+        .contains("\"memoryPolicy\":\"state-aligned\""));
+    assert!(read("journals").contains("\"memoryChoice\":{\"policy\":\"state-aligned\""));
+    assert!(read("checkpoints").contains("\"appliedEntries\":[{"));
+    let path = dir.join("manifest.json");
+    let original = fs::read(&path).unwrap();
+    let mut changed: serde_json::Value = serde_json::from_slice(&original).unwrap();
+    changed["config"]
+        .as_object_mut()
+        .unwrap()
+        .remove("memoryPolicy");
+    fs::write(&path, serde_json::to_vec(&changed).unwrap()).unwrap();
+    assert!(s.shared.store.verify(&accepted.session_id).is_err());
+    fs::write(&path, &original).unwrap();
+    assert!(s.shared.store.verify(&accepted.session_id).is_ok());
+
+    // A latest session of the same shape carries none of it anywhere.
+    let d0 = tempfile::tempdir().unwrap();
+    let s0 = SustainedState::new(d0.path().join("store"));
+    let accepted0 = s0
+        .create("create".into(), config(60, 3))
+        .unwrap()
+        .summary
+        .unwrap();
+    let epoch0 = arm(&s0);
+    while drive(&s0, epoch0) {}
+    let dir0 = s0.shared.store.path(&accepted0.session_id).unwrap();
+    let mut all = fs::read_to_string(dir0.join("manifest.json")).unwrap();
+    for sub in ["segments", "checkpoints", "journals"] {
+        for e in fs::read_dir(dir0.join(sub)).unwrap() {
+            all.push_str(&fs::read_to_string(e.unwrap().path()).unwrap());
+        }
+    }
+    for key in [
+        "memoryPolicy",
+        "appliedEntries",
+        "chosenMemory",
+        "memoryChoice",
+        "\"choice\"",
+        "Warmup",
+    ] {
+        assert!(!all.contains(key), "{key}");
+    }
+
+    // The warm-up delays the watchdog: a zero bound with a 100-step warm-up drops at 190.
+    let d1 = tempfile::tempdir().unwrap();
+    let s1 = SustainedState::new(d1.path().join("store"));
+    let mut cfg1 = config(220, 30);
+    cfg1.difference_gain = 0.1;
+    cfg1.difference_watchdog_fill_std = 0.0;
+    cfg1.difference_watchdog_warmup = 100;
+    let accepted1 = s1.create("create".into(), cfg1).unwrap().summary.unwrap();
+    let epoch1 = arm(&s1);
+    while drive(&s1, epoch1) {}
+    assert!(s1.shared.store.verify(&accepted1.session_id).is_ok());
+    let dir1 = s1.shared.store.path(&accepted1.session_id).unwrap();
+    assert!(fs::read_to_string(dir1.join("manifest.json"))
+        .unwrap()
+        .contains("\"differenceWatchdogWarmup\":100"));
+    let mut segments1 = String::new();
+    for e in fs::read_dir(dir1.join("segments")).unwrap() {
+        segments1.push_str(&fs::read_to_string(e.unwrap().path()).unwrap());
+    }
+    assert!(segments1.contains("\"differenceGainDropped\":{\"step\":190,\"reason\":\"fill-std"));
+}

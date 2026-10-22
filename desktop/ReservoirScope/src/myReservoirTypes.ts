@@ -24,10 +24,17 @@ export const effectiveDifferenceDeadBand = (config: SustainedConfig): number => 
 export const effectiveDifferenceClip = (config: SustainedConfig): number => config.differenceClip === undefined ? 0.2 : config.differenceClip;
 export const effectiveDifferenceWatchdog = (config: SustainedConfig): boolean => config.differenceWatchdog === undefined ? true : config.differenceWatchdog;
 export const effectiveDifferenceWatchdogFillStd = (config: SustainedConfig): number => config.differenceWatchdogFillStd === undefined ? 10 : config.differenceWatchdogFillStd;
+/** Watchdog warm-up (0.36.0): steps before the fill ring counts; omitted is 0, as built. */
+export const effectiveDifferenceWatchdogWarmup = (config: SustainedConfig): number => config.differenceWatchdogWarmup === undefined ? 0 : config.differenceWatchdogWarmup;
 export const validDifferenceControls = (config: SustainedConfig): boolean => {
-  const gain = effectiveDifferenceGain(config), tau = effectiveDifferenceTau(config), band = effectiveDifferenceDeadBand(config), clip = effectiveDifferenceClip(config), std = effectiveDifferenceWatchdogFillStd(config);
-  return Number.isFinite(gain) && gain >= -1 && gain <= 1 && Number.isFinite(tau) && tau >= 0 && tau <= 1000 && Number.isFinite(band) && band >= 0 && band <= 1 && Number.isFinite(clip) && clip > 0 && clip <= 5 && Number.isFinite(std) && std >= 0 && std <= 100;
+  const gain = effectiveDifferenceGain(config), tau = effectiveDifferenceTau(config), band = effectiveDifferenceDeadBand(config), clip = effectiveDifferenceClip(config), std = effectiveDifferenceWatchdogFillStd(config), warmup = effectiveDifferenceWatchdogWarmup(config);
+  return Number.isFinite(gain) && gain >= -1 && gain <= 1 && Number.isFinite(tau) && tau >= 0 && tau <= 1000 && Number.isFinite(band) && band >= 0 && band <= 1 && Number.isFinite(clip) && clip > 0 && clip <= 5 && Number.isFinite(std) && std >= 0 && std <= 100 && Number.isInteger(warmup) && warmup >= 0 && warmup <= 10000000;
 };
+/** Which earlier entry a turn returns (0.36.0): omitted keeps the latest applied entry, as built. */
+export type SustainedMemoryPolicy = 'latest' | 'state-aligned' | 'random';
+export const MEMORY_POLICIES: SustainedMemoryPolicy[] = ['latest', 'state-aligned', 'random'];
+export const effectiveMemoryPolicy = (config: SustainedConfig): SustainedMemoryPolicy => config.memoryPolicy === undefined ? 'latest' : config.memoryPolicy;
+export const validMemoryPolicy = (config: SustainedConfig): boolean => config.memoryPolicy === undefined || (MEMORY_POLICIES as unknown[]).includes(config.memoryPolicy);
 export function validFieldControls(config: SustainedConfig): boolean {
   const noise = effectiveSensoryNoise(config), scale = effectiveFeedbackScale(config);
   const model = config.embeddingModel;
@@ -56,6 +63,8 @@ export interface SustainedConfig {
   /** Omitted historical configuration keeps mechanism v1; fresh defaults select field noise 0.5 and feedback ×0.4. */
   sensoryNoiseAmplitude?: number; feedbackScale?: number;
   differenceGain?: number; differenceTau?: number; differenceDeadBand?: number; differenceClip?: number; differenceWatchdog?: boolean; differenceWatchdogFillStd?: number;
+  /** 0.36.0: watchdog warm-up steps (omitted is 0) and the earlier-entry policy (omitted is latest). */
+  differenceWatchdogWarmup?: number; memoryPolicy?: SustainedMemoryPolicy;
   /** Text reduction (S-010 Part B): an embedding model name selects the embedding codec; omitted keeps the surface codec. */
   embeddingModel?: string | null; embeddingProjectionSeed?: string | null;
 }
@@ -67,6 +76,7 @@ export const DEFAULT_SUSTAINED_CONFIG: SustainedConfig = {
   regulationEnabled: true, language: { backend: 'scripted' },
   outputTokens: 1024, requestDeadlineSeconds: 180,
   sensoryNoiseAmplitude: .5, feedbackScale: .4, differenceGain: 0, differenceTau: 3, differenceDeadBand: .02, differenceClip: .2, differenceWatchdog: true, differenceWatchdogFillStd: 10,
+  differenceWatchdogWarmup: 0, memoryPolicy: 'latest',
 };
 export interface SustainedSummary {
   sessionId: string; generation: string; revision: string; config: SustainedConfig; phase: string;

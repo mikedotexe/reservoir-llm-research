@@ -179,7 +179,7 @@ fn v2_prompt_bytes_are_frozen_at_initial_and_full_memory_observations() {
     for _ in 0..10 {
         s.advance().unwrap();
     }
-    let memory = s.pending_memory().unwrap().entry.clone();
+    let memory = s.pending_memory().unwrap().entry.clone().unwrap();
     s.confirm_memory(&memory).unwrap();
     let expected = include_str!("fixtures/sustained-prompts/v2-memory-20.txt");
     assert_eq!(s.pending_language().unwrap().prompt, expected);
@@ -205,7 +205,7 @@ fn legacy_genesis_restore_retry_and_physical_memory_handoff_stay_v1() {
     let (memory, _) = envelope(V1_MEMORY);
     let expected = language(&memory.final_checkpoint).clone();
     let mut restored = SustainedSession::restore(memory.initial_checkpoint).unwrap();
-    let entry = restored.pending_memory().unwrap().entry.clone();
+    let entry = restored.pending_memory().unwrap().entry.clone().unwrap();
     restored.confirm_memory(&entry).unwrap();
     assert_eq!(restored.pending_language().unwrap().prompt, expected.prompt);
     assert_eq!(
@@ -241,7 +241,7 @@ fn v2_quotes_full_historical_text_without_promoting_its_headings_or_identity() {
     for _ in 0..3 {
         s.advance().unwrap();
     }
-    let memory = s.pending_memory().unwrap().entry.clone();
+    let memory = s.pending_memory().unwrap().entry.clone().unwrap();
     s.confirm_memory(&memory).unwrap();
     let p = s.pending_language().unwrap();
     assert_eq!(p.memory.as_ref().unwrap().entry.text, text);
@@ -404,7 +404,7 @@ fn v3_prompt_bytes_are_frozen_at_initial_and_full_memory_observations() {
     for _ in 0..10 {
         s.advance().unwrap();
     }
-    let memory = s.pending_memory().unwrap().entry.clone();
+    let memory = s.pending_memory().unwrap().entry.clone().unwrap();
     s.confirm_memory(&memory).unwrap();
     let expected = include_str!("fixtures/sustained-prompts/v3-memory-20.txt");
     assert_eq!(s.pending_language().unwrap().prompt, expected);
@@ -454,7 +454,7 @@ fn v3_preserves_free_choice_and_exact_full_memory_without_mandatory_measurements
     for _ in 0..3 {
         s.advance().unwrap();
     }
-    let entry = s.pending_memory().unwrap().entry.clone();
+    let entry = s.pending_memory().unwrap().entry.clone().unwrap();
     s.confirm_memory(&entry).unwrap();
     let prompt = &s.pending_language().unwrap().prompt;
     let quoted = prompt
@@ -481,7 +481,7 @@ fn v3_preserves_free_choice_and_exact_full_memory_without_mandatory_measurements
     s = SustainedSession::restore(s.checkpoint()).unwrap();
     s.retry_language().unwrap();
     assert!(s.pending_language().is_none());
-    let reread = s.pending_memory().unwrap().entry.clone();
+    let reread = s.pending_memory().unwrap().entry.clone().unwrap();
     assert_eq!(reread.text, text);
     s.confirm_memory(&reread).unwrap();
     assert_eq!(s.pending_language().unwrap().prompt, expected);

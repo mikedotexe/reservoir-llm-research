@@ -55,7 +55,7 @@ fn flush(s: &mut SustainedSession, base: &mut SustainedCheckpoint) -> SustainedS
 }
 fn settle(s: &mut SustainedSession) {
     if let Some(m) = s.pending_memory().cloned() {
-        s.confirm_memory(&m.entry).unwrap();
+        s.confirm_memory(m.entry.as_ref().unwrap()).unwrap();
     }
     if let Some(p) = s.pending_language().cloned() {
         s.start_language(p.attempt_id).unwrap();
@@ -128,10 +128,10 @@ fn segmented_and_serialized_continuation_matches_uninterrupted_across_all_saved_
         a.advance().unwrap();
         b.advance().unwrap();
         if let Some(m) = a.pending_memory().cloned() {
-            a.confirm_memory(&m.entry).unwrap();
+            a.confirm_memory(m.entry.as_ref().unwrap()).unwrap();
             flush(&mut b, &mut base);
             b = SustainedSession::restore(checkpoint(&b)).unwrap();
-            b.confirm_memory(&m.entry).unwrap();
+            b.confirm_memory(m.entry.as_ref().unwrap()).unwrap();
         }
         if let Some(p) = a.pending_language().cloned() {
             a.start_language(p.attempt_id).unwrap();
@@ -259,7 +259,7 @@ fn memory_must_be_reread_and_skipped_saved_journal_never_enters_memory() {
     }
     let m = s.pending_memory().unwrap().clone();
     assert_eq!(m.observed_step, 6);
-    let first = m.entry.clone();
+    let first = m.entry.clone().unwrap();
     let mut bad = first.clone();
     bad.text.push('!');
     assert!(s.confirm_memory(&bad).is_err());
@@ -289,8 +289,14 @@ fn memory_must_be_reread_and_skipped_saved_journal_never_enters_memory() {
     for _ in 0..3 {
         s.advance().unwrap();
     }
-    assert_eq!(s.pending_memory().unwrap().entry.id, first.id);
-    assert_ne!(s.pending_memory().unwrap().entry.id, j.entry.id);
+    assert_eq!(
+        s.pending_memory().unwrap().entry.as_ref().unwrap().id,
+        first.id
+    );
+    assert_ne!(
+        s.pending_memory().unwrap().entry.as_ref().unwrap().id,
+        j.entry.id
+    );
     flush(&mut s, &mut base);
 }
 #[test]
@@ -484,7 +490,7 @@ fn skipped_memory_failures_count_opportunities_without_fabricating_provider_atte
         s.advance().unwrap();
     }
     let m = s.pending_memory().unwrap().clone();
-    s.confirm_memory(&m.entry).unwrap();
+    s.confirm_memory(m.entry.as_ref().unwrap()).unwrap();
     assert_eq!(s.pending_language().unwrap().turn_id, 4);
     assert_eq!(s.pending_language().unwrap().attempt_id, 2);
     settle(&mut s);

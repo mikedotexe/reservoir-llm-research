@@ -4,7 +4,7 @@ import MyReservoirVisuals from './MyReservoirVisuals';
 import MyReservoirJournals from './MyReservoirJournals';
 import MyReservoirRecovery, { SustainedVerification } from './MyReservoirRecovery';
 import { myReservoirController, type MyReservoirController, type MyReservoirState } from './myReservoirController';
-import { DEFAULT_SUSTAINED_CONFIG, validDifferenceControls, validFieldControls, validWritingLimits, type SustainedConfig, type SustainedSummary } from './myReservoirTypes';
+import { DEFAULT_SUSTAINED_CONFIG, validDifferenceControls, validFieldControls, validMemoryPolicy, validWritingLimits, type SustainedConfig, type SustainedSummary } from './myReservoirTypes';
 import { DEFAULT_CAMERA } from './types';
 import { formatSessionDuration } from './sessionDuration';
 import ActivationExperiment from './ActivationExperiment';
@@ -51,7 +51,7 @@ export default function MyReservoir({ active, controller = myReservoirController
   const [activationOpen, setActivationOpen] = useState(false);
   useEffect(() => { controller.setActive(active); if (active) void controller.connect(); return () => controller.setActive(false); }, [controller, active]);
   if (!active) return null;
-  const s = state.summary, busy = !!state.busy, durationValid = Number.isInteger(config.maximumDurationSeconds) && config.maximumDurationSeconds >= 1 && config.maximumDurationSeconds <= 86400, writingValid = validWritingLimits(config), fieldValid = validFieldControls(config), differenceValid = validDifferenceControls(config), createDisabled = busy || !durationValid || !writingValid || !fieldValid || !differenceValid || !!s && s.phase !== 'stopped';
+  const s = state.summary, busy = !!state.busy, durationValid = Number.isInteger(config.maximumDurationSeconds) && config.maximumDurationSeconds >= 1 && config.maximumDurationSeconds <= 86400, writingValid = validWritingLimits(config), fieldValid = validFieldControls(config), differenceValid = validDifferenceControls(config) && validMemoryPolicy(config), createDisabled = busy || !durationValid || !writingValid || !fieldValid || !differenceValid || !!s && s.phase !== 'stopped';
   const editor = <><MyReservoirConfig config={config} setConfig={setConfig} disabled={busy}/><div className="my-reservoir-actions"><button className="primary-button" disabled={createDisabled} onClick={() => void controller.create(config)}>Create my reservoir</button><p className="my-reservoir-small">{!durationValid ? 'Choose a duration from 1 second to 24 hours in Advanced settings.' : !writingValid ? 'Review the writing limits in Advanced settings.' : !fieldValid ? 'Review the sensory noise and feedback scale in Advanced settings.' : s && s.phase !== 'stopped' ? 'Stop the current session before creating another.' : 'Create prepares the session. Choose Start when you are ready.'}</p></div></>;
   return <section className="my-reservoir"><header className="my-reservoir-heading"><div><h1>My reservoir</h1><p>Run a reservoir with scripted writing or a local model, read its journal, and watch saved text return as input. The session can continue while this app is open or minimized, within your chosen run and storage bounds.</p></div><label className="my-reservoir-graphics-control"><input type="checkbox" checked={tableOnly} onChange={event => setTableOnly(event.target.checked)}/>Replace 3D with exact values</label></header>
     {state.error && <p role="alert" className="my-reservoir-error">{state.error}</p>}{state.message && <p role="status" className="my-reservoir-message">{state.message}</p>}

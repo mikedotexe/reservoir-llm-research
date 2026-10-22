@@ -44,7 +44,7 @@ fn rehash(c: &mut SustainedCheckpoint) {
 }
 fn settle(s: &mut SustainedSession) {
     if let Some(m) = s.pending_memory().cloned() {
-        s.confirm_memory(&m.entry).unwrap();
+        s.confirm_memory(m.entry.as_ref().unwrap()).unwrap();
     }
     if let Some(p) = s.pending_language().cloned() {
         s.start_language(p.attempt_id).unwrap();

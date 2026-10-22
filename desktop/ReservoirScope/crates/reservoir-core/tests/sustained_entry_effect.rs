@@ -57,7 +57,7 @@ fn write_and_apply(s: &mut SustainedSession, text: &str) {
 fn next_prompt(s: &mut SustainedSession) -> (String, Vec<SustainedFrame>) {
     let frames = advance_to_language(s);
     if let Some(m) = s.pending_memory().cloned() {
-        s.confirm_memory(&m.entry).unwrap();
+        s.confirm_memory(m.entry.as_ref().unwrap()).unwrap();
     }
     (s.pending_language().unwrap().prompt.clone(), frames)
 }

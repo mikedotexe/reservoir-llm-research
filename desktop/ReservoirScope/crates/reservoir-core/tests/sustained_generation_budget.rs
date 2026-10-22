@@ -214,7 +214,10 @@ fn long_complete_journal_survives_save_prepared_restore_application_memory_and_r
     for _ in 0..2 {
         s.advance().unwrap();
     }
-    assert_eq!(s.pending_memory().unwrap().entry.text, r.text);
+    assert_eq!(
+        s.pending_memory().unwrap().entry.as_ref().unwrap().text,
+        r.text
+    );
     s.confirm_memory(&candidate.entry).unwrap();
     let p = s.pending_language().unwrap();
     assert_eq!((p.output_tokens, p.request_deadline_seconds), (1024, 180));

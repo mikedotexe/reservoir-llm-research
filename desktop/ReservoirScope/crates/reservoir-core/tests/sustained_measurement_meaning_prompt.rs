@@ -58,7 +58,7 @@ fn save(s: &mut SustainedSession, text: &str) -> SustainedPendingJournal {
     p
 }
 fn confirm_memory(s: &mut SustainedSession) {
-    let entry = s.pending_memory().unwrap().entry.clone();
+    let entry = s.pending_memory().unwrap().entry.clone().unwrap();
     s.confirm_memory(&entry).unwrap();
 }
 fn segment(s: &SustainedSession, initial: SustainedCheckpoint) -> SustainedSegment {
