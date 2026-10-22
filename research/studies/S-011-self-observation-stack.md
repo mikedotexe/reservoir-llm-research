@@ -320,13 +320,45 @@ first-person openings against 22% and 20%; first person 54.2, 16.8, 39.2 per 1,0
 arm. The 0.37.0 arms (state-residual, random-older, both seeds) decide whether the
 direction holds and whether the reservoir's choice differs from chance.
 
+2026-10-21 23:50, the no-tag fill arms are in (gemma4, plain contract without the context
+line, 12 entries per arm, regulation off at retention 0.82 and 0.90, both seeds, 0.36.0
+runner; `probes/desktop_arm_identity.py` and `probes/desktop_difference_channel.py`,
+outputs `notag-identity.out` and `notag-fill-probe.out` in the scratchpad). The field
+moved as the sweep said it would: fill median 43.6 and 43.1 at 0.82, 57.2 and 56.4 at
+0.90, against 70.3 and 70.2 in the shelf arms with the controller on (n = 361–366 frames
+per arm). The text did not. At 0.82 both arms reproduced the shelf arm of the same seed
+word for word, 12 of 12 entries each: identical prompts, identical sampling seeds,
+identical token counts, and so identical markers (first person 63.9 and 62.7 per 1,000,
+digits 0). At 0.90 the seed-7 arm matched for six entries and forked at the seventh, and
+the seed-20260909 arm forked at the first entry; both forks happened on an identical
+prompt and an identical sampling seed (the provider returned a different text to the same
+request), after which the returned entries, and so the prompts, differed for the rest of
+each run. Nothing reaches the model through the field when no number is shown; the field
+reaches the writing only as the returned entry, and that only changes when the text
+changes. Two more things fall out. First, the provider is not reproducible run to run:
+over the turns at which two arms had the same prompt and the same sampling seed (40 in the
+seed-20260909 policy pair, 12 and 12 at 0.82, 5 in the seed-7 policy pair before its first
+older return, 6 and then the fork at 0.90 seed 7, the fork at 0.90 seed 20260909), it
+forked on 2 of 77. Second, the single fork at entry 1 of the seed-20260909 0.90 arm moved
+the markers as far as some differences reported between arms: first person 70.2 against
+63.9 per 1,000, self-reference to the writing 1.23 against 0.18 (7 against 1 occurrences
+in about 5,500 words), questions per sentence 8.6% against 8.1%; the seed-7 fork at entry
+7 moved them less (first person 63.4 against 62.7; first-person openings 8% against 17%).
+A difference between two arms at one seed is of the size a single provider fork produces;
+the policy-arm reading in `analyses/2026-10-21-state-chosen-memory.md` is qualified
+accordingly, and the 0.37.0 arms are read with that bar. A replicate of the seed-20260909
+`latest` policy arm (same config, new store) is queued after the 0.37.0 arms to measure
+the fork rate under the embedding codec over 40 turns.
+
 ## What the day established, and did not (October 21, closing)
 
 Did. The channel is built and exact (72 runs; recomputation within 1e-16; watchdog and
 warm-up tested); at |g| ≥ 0.5 with the shipped dead band it raises the recurrent state's
 effective rank by up to 0.8 of 32 and touches nothing else. The register of gemma4's
 entries follows what the context line shows: the sweep's fill dependence is the number,
-which the tag controls removed and the scrambled control exaggerated. State-chosen memory
+which the tag controls removed and the scrambled control exaggerated. With no number
+shown, moving the field from the shelf (fill 70%) to 44% changed nothing in the text,
+word for word (24 of 24 entries at two seeds). State-chosen memory
 works as a mechanism (the choice recorded, verified and read back), its first rule is
 degenerate with real entries (the latest entry's push dominates the state), and returning
 an older entry moves the register one way in three arms (fewer questions, hedges and
@@ -340,7 +372,10 @@ changes between entries (alignment 0.92–0.93). Nothing here is evidence about 
 texts; one model, two seeds, 12–40 entries per arm. The channel's model arms are parked
 with the expectation, stated here, that the writing would not notice; the spec's M1–M4
 (continuous logging, autoencoders, effective-rank readouts) remain proposals on the
-beings' side; the open question is what returns to the model and how it is framed.
+beings' side; the open question is what returns to the model and how it is framed. The local provider forked on
+2 of 77 turns that two arms sent with the same prompt and sampling seed, and one fork at
+a first entry moved the marker rates as far as some between-arm differences: an arm
+difference at one seed is a direction to test, not an effect.
 
 ## Finish line for the draft
 

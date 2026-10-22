@@ -72,7 +72,13 @@ and 56.7). The self-reference to the writing itself that the seed-20260909 rando
 showed (1.79 per 1,000, "By writing about the act of writing, I am creating a feedback
 loop where the subject and the object are identical") did not repeat at seed 7 (0.00),
 where the random arm instead went quiet in the first person and quoted more numbers
-(digits 0.87%). Two seeds and one model; the 0.37.0 arms, which return older entries by
+(digits 0.87%). One caution from the no-tag fill arms that ran after these (S-011 progress, 23:50): the
+provider forked on 2 of 77 turns on which two arms had the same prompt and the same
+sampling seed, and the one fork at a first entry moved the first-person rate by 6 per
+1,000 and the self-reference rate from 0.18 to 1.23 per 1,000, the size of some of the
+differences in the tables above (`probes/desktop_arm_identity.py`). The direction across
+three arms stands as a direction; the sizes at one seed do not separate a policy from a
+fork. Two seeds and one model; the 0.37.0 arms, which return older entries by
 the reservoir's residual state or by chance at every turn, are the test of whether the
 direction holds and whether the chooser matters.
 
@@ -80,3 +86,5 @@ direction holds and whether the chooser matters.
 
 The four 0.37.0 arms (state-residual and random-older, both seeds) with the `latest` arms
 as their baseline; a blind sample for Mike (`probes/desktop_blind_sample.py`).
+A replicate of the seed-20260909 `latest` arm (same config, new store) to measure the
+provider's fork rate under the embedding codec over 40 turns, queued after the 0.37.0 arms.

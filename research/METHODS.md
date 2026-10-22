@@ -83,6 +83,12 @@ and what reached the model through which channel: the prompt text, a number, a r
 entry, or nothing. Arms are read blind first, labels withheld
 (`probes/desktop_blind_sample.py`), and the passages that stand out go to the dated
 noteworthy list before the key is opened.
+Two arms sent the same prompt with the same sampling seed can still come back different:
+on October 21 the local provider forked on 2 of 77 such turns, and one fork at a first
+entry moved the marker rates as far as some between-arm differences. A difference between
+two arms at one seed is read as a direction to test, not an effect, until a replicate at
+the same seed or a second seed agrees (`probes/desktop_arm_identity.py` says where two
+arms parted and on what).
 
 ## Scope of this research space
 
