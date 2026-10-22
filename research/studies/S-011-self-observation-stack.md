@@ -386,7 +386,7 @@ text, prompt and sampling seed, token counts equal at every turn, no fork. The t
 identical-prompt turns is now 117 with 2 forks (about 1.7% per turn), both in the no-tag
 arms at retention 0.90.
 
-2026-10-22 11:05, desktop 0.38.0 (main `50037bb`, `desktop/ReservoirScope/RELEASE-0.38.0.md`)
+2026-10-22 10:40, desktop 0.38.0 (main `50037bb`, `desktop/ReservoirScope/RELEASE-0.38.0.md`)
 after the planning pass with Mike: `memoryRecentExclusion`, a window of turns during which an
 entry returned as memory stays out of the `state-residual` and `random-older` candidates (the
 return marked on the ledger entry at the application of the journal written with it in view;
@@ -403,7 +403,7 @@ after three forced detours, or wander), and the two-entry slot under `state-resi
 and first-person openings while the older entry is still taken up). Their blind sample is
 written before any analysis output; the reading is joint, labels withheld.
 
-2026-10-22 11:20, Astrid's readouts over one week (`analyses/2026-10-22-astrid-readout-audit.md`;
+2026-10-22 10:50, Astrid's readouts over one week (`analyses/2026-10-22-astrid-readout-audit.md`;
 `probes/astrid_readout_audit.py` on 2,405 job prompts copied read-only, 2026-10-15 to
 2026-10-22 UTC). The 1,097 journal elaborations and 160 daydreams, 52% of the week's jobs,
 carry no readout quantity and (but for five) no percentage at all: the earlier entry and an
@@ -416,7 +416,7 @@ in none of 813 witness-context results; the aspiration prompts' `Fill: 51.7%` he
 across the week, and the 20 witness prompts held one value for every quantity but the live
 λ₁. A number that does not move cannot carry anything into the writing.
 
-2026-10-22 11:45, Minime's week by lane (`analyses/2026-10-22-minime-concept-chains-week.md`;
+2026-10-22 11:05, Minime's week by lane (`analyses/2026-10-22-minime-concept-chains-week.md`;
 1,513 files copied read-only, 1,404 with prose; `probes/concept_chains.py --lane`). The deep
 offsets of October 21 survive within a lane and grow: the nearest earlier entry is six or
 more back on 56% of introspections and 58% of journal entries, the previous one on 7–8%;
