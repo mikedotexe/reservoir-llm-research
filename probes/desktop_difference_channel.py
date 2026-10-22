@@ -14,7 +14,9 @@ effective rank and participation ratio over 64-step windows; entry-effect shift 
 alignment summaries; the channel's own contribution (RMS per step, share of dead-band-silent
 steps, clip hits); watchdog drops; and a fidelity check that recomputes the contribution
 from the recorded states with the same matrix recipe (SplitMix64, Box–Muller) and reports
-the largest discrepancy. Then the deltas against the twin. NumPy only. Subject: the laptop
+the largest discrepancy. Then the deltas against the twin. `--calibrate <gain-0 session dirs>`
+instead prints the noise floor of the filtered motion d_f those runs would have produced and the
+spec's implied dead band δ = 2 × RMS (step 0 of the ladder). NumPy only. Subject: the laptop
 apparatus, never the beings.
 """
 import glob, json, math, os, sys
@@ -117,7 +119,54 @@ def show(r, twin=None):
     if twin:
         print(f"  vs twin: fill std {r['fill_std'] - twin['fill_std']:+.2f} · trailing-90 std {r['trailing_max'] - twin['trailing_max']:+.2f} · short-period share {(r['spectrum'][1] - twin['spectrum'][1]) if r['spectrum'] and twin['spectrum'] else float('nan'):+.2f} · actuation {100*(r['act_rate'] - twin['act_rate']):+.0f} pts · erank {r['erank'] - twin['erank']:+.2f} · PR {r['pr'] - twin['pr']:+.2f}" + (f" · shift median {np.median(r['shift']) - np.median(twin['shift']):+.3f}" if r['shift'] and twin['shift'] else ''))
 
+def filtered_motion(session, tau=None):
+    """The filtered motion d_f the channel would compute from this session's recorded states (the
+    recursion of the fidelity check, at any gain): rows are steps, columns the 32 coordinates."""
+    fr = frames(session); cfg = json.load(open(os.path.join(session, 'manifest.json')))['config']
+    tau = cfg.get('differenceTau', 3.0) if tau is None else tau; turn = cfg['turnEvery']; max_steps = cfg['maximumSteps']
+    d_f = np.zeros(32); ref = np.zeros(32); ref_step = 0; prev_state = np.zeros(32); rows = []
+    for d in fr:
+        step = d['step']; elapsed = step - 1 - ref_step
+        raw = np.zeros(32) if elapsed == 0 else (prev_state - ref) / elapsed
+        d_f = d_f + (raw - d_f) / (tau + 1.0); rows.append(d_f.copy()); prev_state = np.array(d['state'])
+        if step % turn == 0 and step < max_steps: ref = prev_state.copy(); ref_step = step
+    return np.array(rows), cfg
+
+def longest_run(flags):
+    best = run = 0
+    for f in flags:
+        run = run + 1 if f else 0; best = max(best, run)
+    return best
+
+def watchdog_baseline(session):
+    """What the three watchdog rules would have seen on this run: the largest trailing-90-step fill
+    standard deviation (ring full) with the step it ends at, and the largest over windows ending after
+    step 180 (past the start-up climb); the longest run of steps with fill outside 15–98%; the largest
+    count of nodes beyond |x| > 0.95 and the longest run of steps with more than 16 such nodes."""
+    fr = frames(session); fill = np.array([d['sensory']['fillPercent'] for d in fr]); X = np.array([d['state'] for d in fr])
+    trailing = [(fill[a:a + 90].std(), a + 90) for a in range(0, len(fill) - 90 + 1)]
+    worst = max(trailing) if trailing else (float('nan'), 0); late = [t for t in trailing if t[1] > 180]; worst_late = max(late) if late else (float('nan'), 0)
+    sat = (np.abs(X) > 0.95).sum(1)
+    return (f"watchdog baseline: max trailing-90 fill std {worst[0]:.2f} (window ending step {worst[1]}), after step 180 {worst_late[0]:.2f} (ending step {worst_late[1]})"
+            f" · longest run outside 15–98% fill {longest_run((fill < 15) | (fill > 98))} steps · max saturated nodes {int(sat.max())}, longest run with more than 16: {longest_run(sat > 16)} steps")
+
+def calibrate(sessions, band=0.02):
+    """The spec's dead-band rule: δ = 2 × the noise floor of d_f measured at gain 0. Per gain-0
+    session: the RMS of d_f over all steps and coordinates, the per-coordinate RMS range, the share of
+    coordinate-steps beyond the current band, the implied δ; then the pooled values."""
+    pooled = []
+    for s in sessions:
+        M, cfg = filtered_motion(s); pooled.append(M)
+        rms = float(np.sqrt((M ** 2).mean())); per = np.sqrt((M ** 2).mean(0)); beyond = float((np.abs(M) > band).mean())
+        print(f"{os.path.basename(os.path.dirname(s.rstrip('/')))}: gain {cfg.get('differenceGain', 0.0):+.2f} · {len(M)} steps (n) · d_f RMS {rms:.4f} · per-coordinate RMS {per.min():.4f}–{per.max():.4f} · |d_f| > {band} on {100*beyond:.1f}% of coordinate-steps · implied δ = 2×RMS = {2*rms:.4f}")
+        print("  " + watchdog_baseline(s))
+    if pooled:
+        M = np.concatenate(pooled); rms = float(np.sqrt((M ** 2).mean()))
+        print(f"pooled: {len(M)} steps (n) · d_f RMS {rms:.4f} · implied δ {2*rms:.4f} · |d_f| > {band} on {100*float((np.abs(M) > band).mean()):.1f}% of coordinate-steps")
+
 def main(argv):
+    if argv and argv[0] == '--calibrate':
+        calibrate(argv[1:]); return
     twin = None
     if argv and argv[0] == '--twin':
         twin = analyse(argv[1]); show(twin); argv = argv[2:]

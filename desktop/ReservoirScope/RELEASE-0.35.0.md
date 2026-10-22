@@ -28,6 +28,13 @@ model arm that uses it runs beside an identical arm without it.
   90-step fill standard deviation above the bound; fill outside 15–98% for 60 steps; more
   than half the nodes beyond |x| > 0.95 for 30 steps. On trigger the gain is 0 for the rest
   of the session and the drop is recorded on the frame and the continuation.
+- Found on the first ladder twins (S-011, October 21): with regulation on, the fill's
+  start-up climb alone gives a trailing-90-step standard deviation of 14.6–16.9 in the window
+  ending at step 90, above the default bound of 10, so a nonzero gain with the defaults is
+  dropped at step 90 before the channel has done anything. Set `differenceWatchdogFillStd`
+  above the start-up value (the ladder uses 34) until a versioned warm-up lands in 0.36.0.
+  The shipped dead band 0.02 is below the gain-0 motion floor (RMS 0.050–0.055 per
+  coordinate), where the spec's rule gives about 0.105.
 - Tauri config carries the fields to the specification and the manifest; Advanced settings
   gain a "Difference signal (research)" group with its explanation. Version 0.35.0.
 

@@ -7,6 +7,10 @@ spec's M5: the reservoir's own filtered change since the last observation, dead-
 projected by a fixed seeded matrix into the 48 feedback slots, gained and clipped, with a
 watchdog that drops the gain for the rest of a session. Gain 0, the default, is byte for
 byte the earlier mechanism; a nonzero gain carries a v4 identity.
+The first ladder twins showed the default watchdog bound (10) sits below the start-up fill
+climb's trailing variance (14.6–16.9 at step 90), so nonzero-gain sessions with the defaults
+drop the gain at step 90; 0.36.0 adds a versioned warm-up. The shipped dead band 0.02 is
+below the measured gain-0 floor, where the spec's rule gives about 0.105.
 
 [0.34.0](RELEASE-0.34.0.md) adds three S-011 control prompt versions: the inert input with
 no telemetry tag (without and with the plain contract), and with a tag whose fill number

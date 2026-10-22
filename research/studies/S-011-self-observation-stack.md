@@ -171,6 +171,27 @@ the forcing (effective rank 9.5 of 32, participation ratio under 2). "Match the 
 before matching the words" (S-011 idea 3) now has a target: a participation ratio in the
 tens with no slow direction.
 
+2026-10-21 20:10, difference-signal ladder, step 0 (desktop 0.35.0, scripted backend, no
+model; `probes/desktop_difference_channel.py --calibrate` on four gain-0 twins of 600 steps:
+seeds 20260909 and 7, each regulated at initial retention 0.955 and fixed at 0.95, surface
+codec, field noise 0.5, feedback scale 0.4, a turn every 30 steps). The filtered motion d_f
+the channel would compute has RMS 0.0504 at seed 20260909 and 0.0550 at seed 7, the same to
+three decimals between the regulated and fixed twins at a seed (retention acts on the field,
+not on the recurrent state), per-coordinate RMS 0.016–0.110, pooled RMS 0.0528 over 2,400
+steps. The spec's rule, δ = 2 × the gain-0 floor, gives 0.1055; the shipped default 0.02
+sits below the floor and would pass 39% of coordinate-steps. The ladder's forty nonzero
+rungs run at δ = 0.105, and a companion block at the default 0.02 (regulated, both seeds,
+twenty runs) follows, so the account also says what the shipped default does. Second
+finding, on the watchdog's fill-variance rule: the trailing-90-step fill standard deviation
+peaks at 14.6–16.9 in the window ending at step 90 on all four twins, the start-up climb
+from about 10% to the shelf, and is 0.97–2.30 after step 180; no twin left 15–98% for more
+than one step or saturated more than 5 nodes. With the default bound of 10 the watchdog
+would have dropped the gain at step 90 on every rung, for a reason that has nothing to do
+with the channel. The ladder runs with the bound at 34, twice the largest start-up value;
+the fix, a warm-up before the fill ring counts, versioned so 0.35.0 bundles replay exactly,
+goes to 0.36.0. The readout is in the scratchpad's `logs/ladder-calibration.out`; the
+twins' segments are the gain-0 references for the ladder's deltas.
+
 ## Finish line for the draft
 
 A dated account per tier with every number carrying n, the fill-sweep result stated
