@@ -20,7 +20,9 @@ first-person reflective register, and that its wording seeds the topic; 0.31.0 a
 contracts one change from their parents; on `gemma4:12b`, the beings' own model family
 (0.32.0 thinking flag), the contrasts replicate: no contract gives a role-played person,
 the grant of interpretation gives self-examination from the first line, and Astrid's
-opening rule removes the attractor opening the inviting contract produces. Both apps' release
+opening rule removes the attractor opening the inviting contract produces. A third
+model agrees in direction; 32 arms and 384 entries in all, with the day's reading and
+what would weaken it in the account. Both apps' release
 records note the host's packaging failure; the dev build runs. The native 0.15 work,
 the private 0.27.0 handoff and the earlier focus below are unchanged.
 

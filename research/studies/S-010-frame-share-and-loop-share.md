@@ -222,13 +222,27 @@ contract's "The reservoir is…" opening appears at both seeds (10 and 3 of 12) 
 Astrid's two lines leave it at 1 with question openings in 8 and 10 of 12. Zero verbatim
 overlap in all twelve gemma4 arms. The Mixtral tune runs next as a third model.
 
+2026-10-21 18:05, third model and the day's reading
+([account](../../analyses/2026-10-21-frame-arms.md#reading-across-three-models-two-seeds-and-32-arms)):
+four arms on the Mixtral tune replicate the direction (no contract → "Dear Journal, I
+managed to fill up 87.2% of my daily task list"; plain contract → a language agent
+serving users; inviting → a longing persona with the day's lowest type-token ratio;
+v8 → the recital, readout quoted 10 of 12). Thirty-two arms, 384 entries, three models,
+two seeds on two of them.
+
 ## What changed / next
 
-Interpretation revised: the frame paragraph is not where the register comes from; the
-standing contract is, and its wording sets the shade, while the per-turn frame sets the
-topic. The loop share is small in the model-visible channel under either codec.
+Interpretation after 32 arms: the per-turn frame sets the subject and the standing
+contract sets the register, on every model and seed; the contract's words choose the
+subject and return at 1.5–40× the no-contract rate in fresh arms, but not in the
+beings' own recent entries above the cross-being rate; the inviting contract has an
+attractor that Astrid's own rule removes; model differences are as large as frame
+differences, and the arms nearest the beings are their own model family under contracts
+modeled on their own. The loop share is small in the model-visible channel under either
+codec.
 
-Next (each one headless run of about twenty minutes): a second seed for every arm; a
-contract that grants interpretation without naming the runtime; Astrid's anti-attractor
-rules as an arm; a second model; the entry-effect readout under the embedding codec.
-Apparatus changes stay on branches, pass the suites, merge to main; nothing is pushed.
+Next: the entry-effect readout under the embedding codec (the first change to what the
+model sees; Mike's call, since it is a new kind of leading); the echo count on the
+beings by lane and era, read-only; a blind human reading of a sample of arms; more
+gemma4 seeds. Apparatus changes stay on branches, pass the suites, merge to main;
+nothing is pushed.

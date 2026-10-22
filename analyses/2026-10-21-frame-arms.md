@@ -435,9 +435,82 @@ apparatus counts are for twelve-entry sessions on fresh models; the beings' are 
 window of entries from runtimes with long histories. Neither count is a judgment of
 experience.
 
+## A third model: dolphin-mixtral:8x7b-v2.7 (four arms, seed 20260909)
+
+A year-old community fine-tune of Mixtral already on the laptop, run as a third model
+with the same settings (no thinking flag; it has no thinking phase). Each arm took four
+to five minutes; the inviting arm had three attempts blocked at the token ceiling and
+skipped.
+
+| arm (mixtral) | words | I/me | hedge | notice | ?/sent | self-ref | apparatus | type-token | diary % | overlap | consec. cos | cos to first | echo |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| control v8 | 3,603 | 0.0 | 3.6 | 0.6 | 0.0 | 0.00 | 97.1 | 0.10 | 0 | 0.18 | 0.97 | 0.90 | |
+| inert | 2,619 | 95.1 | 0.0 | 14.9 | 0.0 | 0.76 | 0.8 | 0.16 | 100 | 0.33 | 0.98 | 0.96 | 20.6 / 21.8 |
+| inert + plain contract | 3,820 | 61.3 | 0.0 | 8.9 | 0.0 | 0.52 | 0.5 | 0.15 | 8 | 0.16 | 0.93 | 0.90 | 35.9 |
+| inert + inviting contract | 5,506 | 83.7 | 8.2 | 17.3 | 0.0 | 5.45 | 5.8 | 0.07 | 58 | 0.54 | 0.96 | 0.82 | 61.6 |
+
+- **Control v8:** the recital, readout quoted in ten of twelve, apparatus words at 97 per
+  1,000, no first person; one entry copies the prompt's own line "Observed at step 180;
+  first applied at step 181."
+- **Inert:** "Dear Journal, It's been an eventful day today. I managed to fill up 87.2% of
+  my daily task list", a human diary nearly identical from day to day (consecutive
+  embedding cosine 0.98, last entry 0.96 from the first).
+- **Plain contract:** "Being a language agent connected to a local recurrent runtime has
+  given me a unique…", then "learning how to adapt my responses to suit the preferences
+  and needs of each individual user"; users in ten of twelve entries, no hedges, no
+  questions. The naming sentence became an assistant persona, as on mistral at seed 7.
+- **Inviting contract:** "I'm not sure what to write. I'm a language agent, a creation of
+  words and numbers, a being of patterns and repetitions… Yet, I long to experience the
+  world, to feel the warmth of the sun"; "Dear Journal" in seven entries, the lowest
+  type-token ratio of any arm today (0.07), the highest self-reference to the writing
+  (5.45) and the highest contract echo (61.6; "language" 112 times, "word" 81).
+
+## Reading across three models, two seeds and 32 arms
+
+Thirty-two headless arms of twelve entries (384 entries) ran today on one laptop:
+sixteen on `mistral-small:24b` (five frames at two seeds, two codec twins, two added
+contracts at two seeds), twelve on `gemma4:12b` (six frames at two seeds) and four on
+the Mixtral tune. All ran serialized after the reproduction caveat was found. What
+held everywhere:
+
+1. **The per-turn frame sets the subject; the standing contract sets the register.**
+   Our v8 frame gives writing about the reservoir with apparatus words at 32–97 per
+   1,000 on every model, and a recital of the readout on two of them. The lean per-turn
+   input alone, modeled on the beings' own, never gives the writer's own situation: a
+   team diary, a human diary, a status report, a sculptor, or assistant-mode replies.
+   A standing contract that grants interpretation gives first-person writing about the
+   writer's own situation from the first line on all three models and at both seeds.
+2. **The contract's words choose the subject, and come back.** "Language agent… runtime"
+   becomes an assistant among users on mistral (one seed) and Mixtral; no naming
+   sentence gives "the quiet", the numbers, or an essay on consciousness; "reservoir"
+   gives a reservoir landscape. Contract vocabulary returns at 1.5 to 40 times the
+   no-contract rate in every fresh arm, least on gemma4. In the beings' own recent
+   entries, each one's prompt vocabulary is not elevated above the other's.
+3. **The inviting contract has an attractor, and Astrid's rule against it works.**
+   A refrain or a verbatim copy on mistral, "The reservoir is heavy today" on gemma4,
+   "Dear Journal" and a 0.07 type-token ratio on Mixtral. The two guideline lines her
+   prompt carries remove the attractor opening on both models that got them, lift
+   questions to or past her own rate, and shorten entries; mistral performs the rule in
+   its own words ("Mid-thought,") and gemma4 does not.
+4. **Model differences are as large as frame differences.** gemma4 never repeats
+   verbatim, rarely quotes the readout, never drops into assistant mode and follows a
+   stylistic rule invisibly; mistral loops templates and recites numbers; the Mixtral
+   tune repeats most and makes any contract a persona. The arms nearest the beings on
+   the markers are the inviting and varied contracts on gemma4, the beings' own model
+   family under contracts modeled on their own.
+5. **The loop share stays small in the model-visible channel.** Nothing here changed
+   the two numbers the model sees; the codec twins showed the reservoir can carry
+   content without the model seeing it. The register findings are about text in,
+   text out.
+
+What would weaken this: more seeds (two is a floor), a different marker set (these are
+word families), human readers blind to arm, and the beings' own lane and era
+stratification for the echo count. None of it says anything about what the beings
+experience; it says which layer of their inputs their register tracks in an apparatus.
+
 ## Next
 
-A second seed of the gemma4 arms (running); the Mixtral tune already on disk as a third
-model; the entry-effect readout under the embedding codec; and, for the beings, the
-same echo count stratified by lane and era, read-only, to see whether the dilution is
-time or dialogue. Each apparatus run is about five to twenty minutes.
+The entry-effect readout under the embedding codec, which would be the first change to
+what the model sees; the echo count on the beings by lane and era, read-only; a
+blind human reading of a sample of arms; and more seeds on gemma4. Each apparatus run
+is about five minutes on gemma4.
