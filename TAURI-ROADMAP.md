@@ -684,7 +684,7 @@ parity ledger. Milestones describe completion gates rather than speculative cale
 - Capture reference source and resource identities.
 - Create the Tauri application, Rust workspace, and three-platform build configuration.
 - Establish the separate application identity `research.reservoir.scope.tauri`.
-- Use the installed name **Reservoir Scope Tauri** (**Reservoir Scope Tauri Preview** through 0.38.0; the app is past a preview).
+- Use the installed name **Reservoir Scope** (**Reservoir Scope Tauri Preview** through 0.38.0; the app is past a preview and does not carry the toolkit's name).
 - Create separate app-data and preference locations.
 - Establish one main window and single-instance behavior.
 - Add fixture manifests without modifying canonical examples.

@@ -20,10 +20,12 @@ number made that family is the same slot with no number: one prompt version, one
   no-tag plain contract's single slot, byte for byte. A test asserts the prompt is the tagged
   two-entry prompt minus its context line and equals the no-tag single-slot prompt with the
   slot replaced.
-- The app is no longer labelled a preview (Mike, October 22: it is past that). The installed
-  name, window title, menu and About text are `Reservoir Scope Tauri`; the identifier
-  `research.reservoir.scope.tauri` and the storage it names are unchanged, so an installed
-  copy keeps its data. The living guides and references drop the label; dated records,
+- The app is no longer labelled a preview (Mike, October 22: it is past that, and it does not
+  need Tauri in its name either). The installed name, window title, menu and About text are
+  `Reservoir Scope`; the identifier `research.reservoir.scope.tauri` and the storage it names
+  are unchanged, so an installed copy keeps its data, and the earlier native macOS app keeps
+  its own identifier and storage, so the two can be installed side by side (one of them
+  renamed in Applications if both are wanted there). The living guides and references drop the label; dated records,
   validation receipts, the 0.27.0 archive's own name and the tag
   `reservoir-scope-tauri-v0.27.0-private-preview` keep theirs; the install guide keeps its
   file name `PREVIEW-START.md` because dated records link to it.

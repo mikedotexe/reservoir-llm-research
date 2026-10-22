@@ -95,15 +95,9 @@ pub fn handle_zoom(app: &tauri::AppHandle, id: &str) {
 }
 
 pub fn build(app: &tauri::AppHandle) -> tauri::Result<Menu<tauri::Wry>> {
-    let quit = MenuItem::with_id(
-        app,
-        QUIT,
-        "Quit Reservoir Scope Tauri",
-        true,
-        Some("CmdOrCtrl+Q"),
-    )?;
+    let quit = MenuItem::with_id(app, QUIT, "Quit Reservoir Scope", true, Some("CmdOrCtrl+Q"))?;
     let about = AboutMetadata {
-        name: Some("Reservoir Scope Tauri".into()),
+        name: Some("Reservoir Scope".into()),
         version: Some(app.package_info().version.to_string()),
         ..Default::default()
     };
@@ -111,7 +105,7 @@ pub fn build(app: &tauri::AppHandle) -> tauri::Result<Menu<tauri::Wry>> {
     #[cfg(target_os = "macos")]
     menu.append(&Submenu::with_items(
         app,
-        "Reservoir Scope Tauri",
+        "Reservoir Scope",
         true,
         &[
             &PredefinedMenuItem::about(app, None, Some(about))?,

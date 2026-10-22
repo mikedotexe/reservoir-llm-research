@@ -46,8 +46,8 @@ Graphics frame counters remain available under Graphics diagnostics. Context los
 fallback, zero references, signed scales and unavailable values remain near their
 views. Exact original-file export behavior is unchanged.
 
-The separate installed name **Reservoir Scope Tauri** (Reservoir Scope Tauri Preview before
-0.39.0), application identity, stores and qualification status remain deliberate coexistence decisions.
+The installed name **Reservoir Scope** (Reservoir Scope Tauri Preview before 0.39.0), the
+separate application identity and stores, and the qualification status remain deliberate coexistence decisions.
 Removing those would be a release/identity decision, not wording housekeeping.
 
 ## Navigation and remaining inspection work

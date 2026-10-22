@@ -2,7 +2,7 @@
 
 ## Tauri 0.27.0 · candidate 04, ready for a first invited tester
 
-The current sharing tranche is **Reservoir Scope Tauri 0.27.0 candidate 04** (shipped under the app's earlier installed name, Reservoir Scope Tauri Preview),
+The current sharing tranche is **Reservoir Scope 0.27.0 candidate 04** (the Tauri app, shipped under its earlier installed name, Reservoir Scope Tauri Preview),
 built from `c4a3ba17f1e8ade9f9cf2c1edcf6cd944356c7a0`. The identified archive and
 private handoff have scoped source, runtime and actual-app evidence. Fresh in-app
 setup completed without a source checkout or developer PATH. The bounded writing

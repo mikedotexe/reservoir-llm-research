@@ -17,7 +17,7 @@ target, but that does not qualify activation on older systems or establish a tes
 minimum operating system. Intel Macs, Windows and Linux are outside this delivery.
 
 1. Obtain the named private archive and its matching release receipt from Mike.
-   Expand the archive in Finder and move the app (**Reservoir Scope Tauri Preview.app** in the 0.27.0 archive; **Reservoir Scope Tauri.app** from 0.39.0 builds on) to
+   Expand the archive in Finder and move the app (**Reservoir Scope Tauri Preview.app** in the 0.27.0 archive; **Reservoir Scope.app** from 0.39.0 builds on; if the earlier native Reservoir Scope is also installed, rename one of them in Applications, since they have different identifiers and separate storage) to
    Applications, or another folder you use for applications.
 2. Open the app. Candidate 04 has verified local ad hoc signing,
    without an Apple notarization claim. macOS may require an exception for this exact app.

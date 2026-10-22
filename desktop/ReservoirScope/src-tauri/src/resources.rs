@@ -138,7 +138,7 @@ pub fn build_info(root: &Path, data: &Path) -> Result<BuildInfo, AppError> {
     let resources = statuses(root, &index);
     let valid = resources.iter().all(|r| r.status == "hash matched");
     Ok(BuildInfo {
-        app_name: "Reservoir Scope Tauri",
+        app_name: "Reservoir Scope",
         version: env!("CARGO_PKG_VERSION"),
         milestone:
             "Offline research and finite experiments · partial M1–M4; desktop parity is not yet qualified",

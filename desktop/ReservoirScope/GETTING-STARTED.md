@@ -31,7 +31,7 @@ npm run tauri -- dev
 ```
 
 The last command prepares the included resources, compiles the Rust application
-and opens **Reservoir Scope Tauri** (named Reservoir Scope Tauri Preview before 0.39.0). The first compile takes longer than
+and opens **Reservoir Scope** (installed as Reservoir Scope Tauri Preview before 0.39.0). The first compile takes longer than
 later launches. Keep its terminal running during development; quitting the app ends
 its session. `npm run dev` alone serves only the frontend and cannot run a reservoir.
 
