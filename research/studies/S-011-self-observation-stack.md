@@ -520,6 +520,23 @@ field reaches the writing, not through the state-chosen return either; the field
 writing only as the number shown, which the October 21 controls established and the two-entry
 arms multiplied. Leg B is untouched by this.
 
+2026-10-22 15:48, the first fill pair, read as numbers before the chain finishes (seed 20260909,
+`thr-lo-state-residual-gemma4` against `thr-hi-state-residual-gemma4`; the early read is
+`arms/logs/v039-early-pair1.out` in the session scratchpad; no text read). The two arms sent
+the same prompt and wrote the same text through entry 8, and parted at entry 9 on an identical
+prompt and an identical sampling seed: a fork, as the 15:05 audit said any parting would be, not
+a differing pick. Because the no-tag frame renders only the returned text, the prompt is a
+function of which entry came back, and after the fork the two arms sent identical prompts again
+on three turns (17, 18 and 29, when both returned one of the eight shared entries) and wrote
+identical texts on all three. So the pair gave 12 identical-prompt turns and 1 fork, and 11 of 40
+entries identical overall. The primer did its job: it wrote the 335-token first entry (the text
+of the first arm after a model load, on October 21 and in the calibration) and both battery arms
+wrote the 397-token one, so their first entries match each other and not the primer. The
+chooser under no tag at this seed: 7 and 8 distinct entries of 39, the most-returned 14 and 8
+times, median age 8 and 5 entries (`desktop_memory_choice.py`), against 10 distinct and 15
+times in the tagged 0.37.0 arm; the two arms are replicates from entry 9 on, so the 14-against-8
+is the replicate spread of the lock, the first such yardstick we have at 40 entries.
+
 ## What the day established, and did not (October 21, closing)
 
 Did. The channel is built and exact (72 runs; recomputation within 1e-16; watchdog and
