@@ -498,6 +498,28 @@ forked at entry 5 on an identical prompt and seed. Whether first entries match d
 what ran before, so the chain now runs a throwaway one-entry arm with the same first prompt
 before the ten, and records it against each arm's first entry.
 
+2026-10-22 15:10, the scripted gate and the channel audit, written before any model arm of the
+battery is read. The gate: `state-residual` on scripted texts at retention 0.93 and 0.97 (fill
+medians 65.9 and 79.2 at the turns), 40 entries each, surface codec: the same entry was returned
+on 40 of 40 turns, the cosine scores equal to three decimals, 4 distinct entries of 39 with one
+returned 20 times at both retentions (`arms/logs/v039-gate-choice.out`). The code says why
+(`crates/reservoir-core/src/sustained.rs`, `advance`; `math.rs`, `ReservoirEngine::step`): the
+recurrent state reads the forcing, the held text vector and its own seeded noise; the sensory
+field reads the same input with its retention, and nothing of the field returns to the
+reservoir. Under the surface codec the held vector is `codec::feedback(features, measurement)`,
+which scales four of the 48 coordinates by the field's head share, entropy and tail shares, so
+a weak channel exists there (the gate's reservoir states differed by at most 3e-3 and the
+feedback vectors by at most 2e-3 on four coordinates, with no pick changed); under the
+embedding codec the held vector is the projected embedding alone, so retention cannot reach the
+state, the choice or the prompt at all. Consequence for leg A, stated before its arms are
+read: the two fills under `state-residual` send identical prompts by construction, so the pairs
+are identical-prompt replicates (80 turns across the two seeds) that measure the provider's
+fork rate under the primer; prediction 1's first differing pick is not expected, and any parting
+is a fork. The fill question's answer for this apparatus: with no number shown, nothing of the
+field reaches the writing, not through the state-chosen return either; the field reaches the
+writing only as the number shown, which the October 21 controls established and the two-entry
+arms multiplied. Leg B is untouched by this.
+
 ## What the day established, and did not (October 21, closing)
 
 Did. The channel is built and exact (72 runs; recomputation within 1e-16; watchdog and
