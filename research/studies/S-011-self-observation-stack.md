@@ -136,6 +136,29 @@ recalibration of the internal compass"); without a contract it quoted none and t
 sculptor's diary went on as before. No relation between the shown shift and entry
 length (Spearman −0.15 and −0.20, n = 11).
 
+2026-10-21 20:10, the entry-effect pairs, all done (gemma4 at two seeds, mistral at
+one; each effect arm beside an identical arm without the clause, embedding codec,
+`probes/desktop_entry_effect.py`, n = 11 shown effects per arm):
+
+| pair | shift median (min–max) | alignment median | quoting a shown number | Spearman(shown shift, words) |
+|---|---|---|---|---|
+| plain contract, gemma4, seed 1 | 1.63 (1.33–1.94) | +0.78 | 2 of 11 | −0.15 |
+| no contract, gemma4, seed 1 | 1.66 (1.44–1.91) | +0.78 | 0 of 11 | −0.20 |
+| plain contract, gemma4, seed 7 | 1.78 (1.44–2.18) | +0.85 | 3 of 11 | −0.26 |
+| no contract, gemma4, seed 7 | 1.65 (1.33–1.92) | +0.83 | 5 of 11 | −0.54 |
+| plain contract, mistral, seed 1 | 1.93 (1.57–2.14) | +0.91 | 10 of 11 | +0.06 |
+
+Reading: the loop share is small for a second reason. Under the embedding codec,
+consecutive entries are similar enough that their effects on the reservoir are nearly
+the same push in nearly the same direction every time (alignment 0.78–0.91), so the
+readout says "about the same as before" at every step. gemma4 took the first number as a
+feeling ("The shift of 1.69 feels like a subtle recalibration of the internal compass")
+and then mostly left it; mistral quoted it in ten of eleven entries, as it quotes every
+number it is shown. Markers did not separate the twins beyond sampler-path differences
+(one pair per seed). A readout that varied more between entries would need entries that
+differ more, or a measure of the entry's effect relative to the previous one, which is
+exactly what the difference channel (M5) feeds back numerically.
+
 ## Finish line for the draft
 
 A dated account per tier with every number carrying n, the fill-sweep result stated
