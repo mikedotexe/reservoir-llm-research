@@ -350,6 +350,21 @@ accordingly, and the 0.37.0 arms are read with that bar. A replicate of the seed
 `latest` policy arm (same config, new store) is queued after the 0.37.0 arms to measure
 the fork rate under the embedding codec over 40 turns.
 
+2026-10-21 23:55, a concept-chain probe (`probes/concept_chains.py`, `tests/test_concept_chains.py`;
+`analyses/2026-10-21-concept-chains.md`) reads what an entry carries from the entry
+before it: shared terms, the earlier entry it most resembles, terms brought back from
+past the previous entry, explicit bridges, quoted terms and chains. On the random-memory
+arms, where the shown entry is a random older one, the text follows the shown entry
+(terms shared 28.9% and 36.9% against 24.7% and 25.1% with the previous entry; inferred
+source = shown on 36% and 61% of turns against 14% by chance), so the probe recovers the
+returned entry from text alone. With a fill number shown the entries repeat their own
+vocabulary and stop naming their past (carried 36.6% and 48.1% against 27–31%; bridges
+0.08–0.17 per entry against 0.58–1.08). Run unchanged on the beings' copied October 21
+samples (40 each): Minime's inferred source is the previous entry on 23% of turns and an
+entry six or more back on 41%; Astrid's is the previous entry on 59%; both bridge as
+rarely as the tagged arms. The kaleidoscope passage from the blind reading sits on a
+four-entry chain (37–40).
+
 ## What the day established, and did not (October 21, closing)
 
 Did. The channel is built and exact (72 runs; recomputation within 1e-16; watchdog and

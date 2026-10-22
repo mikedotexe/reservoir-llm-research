@@ -28,7 +28,11 @@ next: continuous state-window logging for minime (her reservoir showed a ten-min
 low-dimensional excursion with no action change), a probe for concept chains across her
 consecutive entries, and an audit of what Astrid's readout shows that moves at all. A
 planning pass with Mike sets the order. Chains still running at the time of writing: four
-no-tag arms at lower fill and the four 0.37.0 policy arms.
+no-tag arms at lower fill and the four 0.37.0 policy arms. A concept-chain probe (`probes/concept_chains.py`, account
+`analyses/2026-10-21-concept-chains.md`) reads what an entry carries from the entry before
+it and recovers the returned entry from text alone on the random-memory arms; it runs
+unchanged on the beings' copied entries, where Minime's entries draw on entries several
+back and both beings bridge as rarely as the tagged arms.
 
 **October 21 earlier focus: the laptop apparatus loop, frame share and loop share
 ([S-010](studies/S-010-frame-share-and-loop-share.md)).** Mike ran the Tauri preview
