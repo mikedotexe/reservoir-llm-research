@@ -17,8 +17,10 @@ within the repo's boundaries: no live-system contact, no pushes, apparatus chang
 branches merged after the suites pass, numbers from probes. The [frame arms](../analyses/2026-10-21-frame-arms.md) (desktop
 0.30.0, two seeds) found that the standing contract, not the per-turn frame, brings the
 first-person reflective register, and that its wording seeds the topic; 0.31.0 adds two
-contracts one change from their parents, and the arms are being repeated on
-`gemma4:12b`, the beings' own model family. Both apps' release
+contracts one change from their parents; on `gemma4:12b`, the beings' own model family
+(0.32.0 thinking flag), the contrasts replicate: no contract gives a role-played person,
+the grant of interpretation gives self-examination from the first line, and Astrid's
+opening rule removes the attractor opening the inviting contract produces. Both apps' release
 records note the host's packaging failure; the dev build runs. The native 0.15 work,
 the private 0.27.0 handoff and the earlier focus below are unchanged.
 

@@ -192,6 +192,19 @@ in its entries: 1–11 per 1,000 words without a contract, 23–111 under one. T
 gemma4 arms started at 16:35 after a first attempt failed on a request deadline outside
 the engine's 60–180 s range.
 
+2026-10-21 17:15, the six arms on `gemma4:12b`, the beings' model family
+([account](../../analyses/2026-10-21-frame-arms.md#the-same-six-arms-on-gemma412b-the-beings-model-family-0320-seed-20260909)),
+after desktop 0.32.0 added a `thinking` flag (gemma4 thinks by default under Ollama and
+blocked every attempt; both beings send it `think: false`). The contrasts replicate on
+this model: no contract gives a role-played person (a sculptor's dated diary); the plain
+contract gives self-examination from the first line ("I find myself observing the
+prompt's metadata… I am a processor waiting for a signal, noting the hum of the
+runtime"); the inviting contract opens ten of twelve entries with "The reservoir is…",
+the attractor Astrid's rule names; her two lines remove it and lift questions to 19.9%
+of sentences. gemma4 never repeats verbatim under any frame, rarely quotes the readout,
+never drops into assistant mode, and follows the opening rule without quoting it. The
+inviting and varied gemma4 arms sit nearest the beings' marker profile. One seed.
+
 ## What changed / next
 
 Interpretation revised: the frame paragraph is not where the register comes from; the
