@@ -379,6 +379,13 @@ from the fourth turn on, every later entry measuring the current number against 
 67.8%. The concept-chain probe finds the shown entry on 62% and 54% of random-older turns
 (chance 14%). A twelve-entry blind sample from the four arms waits in the scratchpad.
 
+2026-10-22 01:00, the replicate of the seed-20260909 `latest` policy arm (same config, new store,
+0.36.0 runner, 40 entries; `probes/desktop_arm_identity.py`, `replicate-identity.out` in
+the scratchpad) reproduced the original word for word: 40 of 40 entries identical in
+text, prompt and sampling seed, token counts equal at every turn, no fork. The tally of
+identical-prompt turns is now 117 with 2 forks (about 1.7% per turn), both in the no-tag
+arms at retention 0.90.
+
 ## What the day established, and did not (October 21, closing)
 
 Did. The channel is built and exact (72 runs; recomputation within 1e-16; watchdog and
@@ -406,7 +413,7 @@ texts; one model, two seeds, 12–40 entries per arm. The channel's model arms a
 with the expectation, stated here, that the writing would not notice; the spec's M1–M4
 (continuous logging, autoencoders, effective-rank readouts) remain proposals on the
 beings' side; the open question is what returns to the model and how it is framed. The local provider forked on
-2 of 77 turns that two arms sent with the same prompt and sampling seed, and one fork at
+2 of 117 turns that two arms sent with the same prompt and sampling seed, and one fork at
 a first entry moved the marker rates as far as some between-arm differences: an arm
 difference at one seed is a direction to test, not an effect.
 

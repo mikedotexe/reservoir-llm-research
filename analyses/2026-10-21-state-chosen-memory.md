@@ -73,8 +73,8 @@ showed (1.79 per 1,000, "By writing about the act of writing, I am creating a fe
 loop where the subject and the object are identical") did not repeat at seed 7 (0.00),
 where the random arm instead went quiet in the first person and quoted more numbers
 (digits 0.87%). One caution from the no-tag fill arms that ran after these (S-011 progress, 23:50): the
-provider forked on 2 of 77 turns on which two arms had the same prompt and the same
-sampling seed, and the one fork at a first entry moved the first-person rate by 6 per
+provider forked on 2 of 117 turns on which two arms had the same prompt and the same
+sampling seed (the replicate below added 40 identical turns), and the one fork at a first entry moved the first-person rate by 6 per
 1,000 and the self-reference rate from 0.18 to 1.23 per 1,000, the size of some of the
 differences in the tables above (`probes/desktop_arm_identity.py`). The direction across
 three arms stands as a direction; the sizes at one seed do not separate a policy from a
@@ -146,8 +146,13 @@ reservoir's choice reached it only as which text was returned.
 
 ## Pending
 
-A replicate of the seed-20260909 `latest` arm (same config, new store) to measure the
-provider's fork rate under the embedding codec over 40 turns, running after the 0.37.0
-arms. A twelve-entry blind sample from the four 0.37.0 arms is written to the session
+A twelve-entry blind sample from the four 0.37.0 arms is written to the session
 scratchpad (`blind-policy-037/blind-sample.md`, key beside it) for the joint reading;
 passages go to `analyses/2026-10-21-noteworthy-passages.md` before the key is opened.
+
+## Replicate
+
+The seed-20260909 `latest` arm rerun with the same config into a new store reproduced all
+40 entries word for word (prompt, sampling seed and token counts identical at every turn;
+`probes/desktop_arm_identity.py`). With it the identical-prompt turns across the day's
+arms number 117 with 2 forks, both in the no-tag arms at retention 0.90.
