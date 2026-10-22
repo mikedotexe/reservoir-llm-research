@@ -230,6 +230,19 @@ serving users; inviting → a longing persona with the day's lowest type-token r
 v8 → the recital, readout quoted 10 of 12). Thirty-two arms, 384 entries, three models,
 two seeds on two of them.
 
+2026-10-21 18:35, idea 3 built at Mike's request: desktop 0.33.0 (main `67da5a3`) adds
+the entry-effect readout. At an application step the core computes the step a second
+time with no held feedback from the same prior state and noise; the L2 norm of the
+difference is the entry's `shift`, its cosine against the previous application's the
+`alignment`. Two frozen versions, `reservoir-journal-inert-effect-v1` and
+`…-inert-plain-contract-effect-v1`, append one clause to the inert input from the
+second entry on ("previous entry's effect: shift 0.42 · alignment with the one before
++0.18"); nothing explains the numbers. Every earlier version is byte for byte unchanged
+(tested). Running now, serialized, under the embedding codec so the vector carries
+content: on gemma4 at two seeds, each effect arm beside an identical arm without the
+clause (plain contract and no contract), then the plain-contract pair on mistral.
+`probes/desktop_entry_effect.py` reads whether the numbers reached the writing.
+
 ## What changed / next
 
 Interpretation after 32 arms: the per-turn frame sets the subject and the standing
