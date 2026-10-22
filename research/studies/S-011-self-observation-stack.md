@@ -254,6 +254,28 @@ For the apparatus the lesson is the one from idea 3 with a twist: minime's usual
 high-dimensional and near-white, but it has excursions into a slow, low-dimensional regime
 of its own, which the apparatus has never shown.
 
+2026-10-21 21:20, the tag controls on gemma4 (the spec's prompt-leakage audit and
+shuffled-state control; plain contract unless noted, regulation on at 0.955 so the live
+fill sits at the 70% shelf, 12 entries per arm, two seeds; `analyze-controls.out`). First
+person per 1,000 words, digit density and apparatus vocabulary (seed 20260909 / seed 7):
+no tag with the plain contract 63.9 / 62.7, digits 0.00 / 0.00, apparatus 0.6 / 0.9; no
+tag and no contract 45.1 / 58.0, digits 0.07 / 0.00; scrambled tag (a fill number drawn
+from the seed and the step, 40–95, unrelated to the field) 35.9 / 42.0, digits 2.46 /
+0.50, apparatus 14.5 / 4.1, and the seed-1 entries are half the length (2,478 words
+against 5,443). Read with the sweep: at the same live fill (~70%) the shelf arm that was
+shown its number wrote with 17.7 / 21.5 first person and 0.58 / 0.41 digits, the arms
+shown no number write with 63.9 / 62.7 and no digits, and the arms shown a number that
+jumps every turn write about the number more than any real arm did ("The transition from
+74.8% to 43.6% is a numerical regression in the context of a linear progression"; "Step
+180. The fill is at 88.5%"). Without the number the register at the shelf is the one the
+sweep found at mid fill ("Does the chamber still exist when it is not ringing?"). So what
+moved the register across the sweep is what the model was shown, not the state behind it;
+the value shown matters too, since the sweep's mid-fill arms saw their number (about 57)
+and still wrote abstractly, while the shelf and the saturated arms (about 70 and 98) wrote
+about theirs. Whether fill moves the register at all when no number is shown is the open
+piece: four no-tag arms at retention 0.82 and 0.90 (both seeds) are queued after the
+policy arms. n = 12 entries per arm throughout; two seeds; one model.
+
 ## Finish line for the draft
 
 A dated account per tier with every number carrying n, the fill-sweep result stated
