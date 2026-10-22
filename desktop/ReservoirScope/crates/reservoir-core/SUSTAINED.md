@@ -29,7 +29,13 @@ the cosine of each entry's recorded effect with the observing state, or by a see
 `validate_state` recomputes the choice, and `difference_watchdog_warmup` holds the watchdog's
 fill ring through the start-up climb; `state-residual` (0.37.0) projects the latest entry's
 effect out of the state with `project_out` and chooses among the older entries, `random-older`
-draws among them. All authoritative
+draws among them; `memory_recent_exclusion` (0.38.0) keeps entries returned within the last K
+turns out of those two policies' candidates, marked on the ledger entry at the application of
+the journal written with them in view and recorded on the choice as `excluded_recent`, and the
+prompt version `reservoir-journal-inert-plain-contract-two-v1` renders the chosen older entry
+and the latest applied entry in the order written, the latest carried as `latest_shown` on the
+pending language and journal and required by `validate_pending` to equal the continuation's.
+All authoritative
 numbers are f64. Step/turn/attempt/event
 and RNG identities are u64; IPC owners must expose them as decimal strings where
 JavaScript integer precision would be inadequate. Each step is one third of a

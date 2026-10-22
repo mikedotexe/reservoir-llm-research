@@ -22,6 +22,17 @@ describe('journal prose and optional evidence', () => {
     expect(reading).not.toContain('line-clamp');
   });
 
+  it('shows the latest entry beside the retained memory only under the two-entry prompt version', () => {
+    const shown = { entryId: 'latest-shown-entry-id', text: 'the latest text, shown second', sha256: 'c'.repeat(64) };
+    const html = renderToStaticMarkup(<MyReservoirJournalDetail journal={{ ...journal(), latestShown: shown }} revision="9"/>);
+    expect(html).toContain('Latest entry also shown');
+    expect(html).toContain('the latest text, shown second');
+    expect(html).toContain('latest-shown-entry-id');
+    expect(html.indexOf('Retained full-text memory')).toBeLessThan(html.indexOf('Latest entry also shown'));
+    const plain = renderToStaticMarkup(<MyReservoirJournalDetail journal={journal()} revision="9"/>);
+    expect(plain).not.toContain('Latest entry also shown');
+  });
+
   it('keeps identity, source and full evidence in one closed disclosure', () => {
     const entry = {
       ...journal(2), entryId: 'long-entry-identity-unique', configuredModel: 'configured-model-unique', providerModel: 'returned-model-unique', tokenCount: 127,

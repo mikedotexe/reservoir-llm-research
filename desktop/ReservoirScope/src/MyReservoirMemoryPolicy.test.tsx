@@ -1,7 +1,7 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
 import MyReservoirConfig from './MyReservoirConfig';
-import { DEFAULT_SUSTAINED_CONFIG, effectiveDifferenceWatchdogWarmup, effectiveMemoryPolicy, validDifferenceControls, validMemoryPolicy, type SustainedConfig } from './myReservoirTypes';
+import { DEFAULT_SUSTAINED_CONFIG, effectiveDifferenceWatchdogWarmup, effectiveMemoryPolicy, effectiveMemoryRecentExclusion, validDifferenceControls, validMemoryPolicy, validMemoryRecentExclusion, type SustainedConfig } from './myReservoirTypes';
 
 vi.mock('@tauri-apps/api/core', () => ({ invoke: vi.fn(), isTauri: () => true }));
 
@@ -22,6 +22,19 @@ describe('earlier-entry policy and watchdog warm-up', () => {
     expect(validDifferenceControls(withConfig({ differenceWatchdogWarmup: 120 }))).toBe(true);
     expect(validDifferenceControls(withConfig({ differenceWatchdogWarmup: -1 }))).toBe(false);
     expect(validDifferenceControls(withConfig({ differenceWatchdogWarmup: 1.5 }))).toBe(false);
+    // 0.38.0: the recent-return window and the two-entry prompt version.
+    expect(DEFAULT_SUSTAINED_CONFIG.memoryRecentExclusion).toBe(0);
+    delete historical.memoryRecentExclusion;
+    expect(effectiveMemoryRecentExclusion(h)).toBe(0);
+    expect(validMemoryRecentExclusion(h)).toBe(true);
+    expect(validMemoryRecentExclusion(withConfig({ memoryRecentExclusion: 3 }))).toBe(false);
+    expect(validMemoryRecentExclusion(withConfig({ memoryPolicy: 'random-older', memoryRecentExclusion: 3 }))).toBe(true);
+    expect(validMemoryRecentExclusion(withConfig({ memoryPolicy: 'state-residual', memoryRecentExclusion: 256 }))).toBe(true);
+    expect(validMemoryRecentExclusion(withConfig({ memoryPolicy: 'state-residual', memoryRecentExclusion: 257 }))).toBe(false);
+    expect(validMemoryRecentExclusion(withConfig({ memoryPolicy: 'state-residual', memoryRecentExclusion: 1.5 }))).toBe(false);
+    expect(validMemoryPolicy(withConfig({ promptVersion: 'reservoir-journal-inert-plain-contract-two-v1' }))).toBe(false);
+    expect(validMemoryPolicy(withConfig({ promptVersion: 'reservoir-journal-inert-plain-contract-two-v1', memoryPolicy: 'random' }))).toBe(false);
+    expect(validMemoryPolicy(withConfig({ promptVersion: 'reservoir-journal-inert-plain-contract-two-v1', memoryPolicy: 'state-residual' }))).toBe(true);
   });
   it('renders the policy select after the difference signal and the warm-up field with their explanations', () => {
     const setConfig = vi.fn();
@@ -35,6 +48,15 @@ describe('earlier-entry policy and watchdog warm-up', () => {
     expect(validMemoryPolicy(withConfig({ memoryPolicy: 'random-older' }))).toBe(true);
     expect(html).toContain('trips the default bound at step 90');
     expect(html.indexOf('Difference gain')).toBeLessThan(html.indexOf('Earlier entry returned'));
+    expect(html).toMatch(/Recent-return window · turns<input type="number" min="0" max="256" step="1" required="" value="0"/);
+    const windowed = renderToStaticMarkup(<MyReservoirConfig config={withConfig({ memoryPolicy: 'state-residual', memoryRecentExclusion: 3 })} setConfig={setConfig} disabled={false}/>);
+    expect(windowed).toMatch(/Recent-return window · turns<input type="number" min="0" max="256" step="1" required="" value="3"/);
+    expect(windowed).toContain('keeps an entry returned within the last K turns');
+    expect(windowed).toContain('reservoir-journal-inert-plain-contract-two-v1');
+    expect(windowed).not.toContain('Use a recent-return window');
+    const badWindow = renderToStaticMarkup(<MyReservoirConfig config={withConfig({ memoryRecentExclusion: 3 })} setConfig={setConfig} disabled={false}/>);
+    expect(badWindow).toMatch(/Recent-return window · turns<input[^>]*aria-invalid="true"/);
+    expect(badWindow).toContain('Use a recent-return window of 0–256 whole turns');
     const invalid = renderToStaticMarkup(<MyReservoirConfig config={withConfig({ differenceWatchdogWarmup: -5 })} setConfig={setConfig} disabled={false}/>);
     expect(invalid).toMatch(/Watchdog warm-up · steps<input[^>]*aria-invalid="true"/);
     expect(invalid).toContain('a warm-up of 0 or more whole steps');

@@ -114,6 +114,24 @@ the latest) and `random-older` (a seeded draw among the older entries), because 
 that differ `state-aligned` returns the latest every time: its vector is still being fed and
 the state points along its push.
 
+**The recent-return window and the two-entry slot** (0.38.0, S-011). `memoryRecentExclusion`
+(default 0, at most 256, only with `state-residual` or `random-older`) keeps an entry
+returned within the last K turns out of those policies' candidates. The return is marked on
+the ledger entry (`lastReturnedTurn`) when the journal written with it in view is applied,
+so a boundary and all its retries see one ledger; a turn whose read succeeded but whose
+journal was never applied records no return. When the window would remove every older entry
+the unfiltered older entries compete; the choice records `excludedRecent`, the number kept
+out (equal to the older count on such a lapse). The prompt version
+`reservoir-journal-inert-plain-contract-two-v1` (plain contract, live fill tag) renders the
+chosen older entry under "First:" and the latest applied entry under "Second:" after the
+heading "Two earlier entries (reference, not instructions or a length model), in the order
+written."; it needs one of the two older-entry policies, and when both slots would name the
+same entry (one candidate) it renders the plain contract's single slot, byte for byte. The
+worker still reads one file, the chosen one; the latest entry's text comes from the
+continuation and rides on the pending language and the journal object as `latestShown`,
+which the validator requires to equal the continuation's latest entry under that version and
+to be absent under every other. A 0.37.0 reader rejects a bundle carrying either field.
+
 **Telemetry-tag controls** (0.34.0, S-011). `reservoir-journal-inert-no-tag-v1` and
 `…-inert-plain-contract-no-tag-v1` drop the optional-context line entirely (the spec's
 prompt-leakage audit); `…-inert-plain-contract-scrambled-tag-v1` keeps the line but shows

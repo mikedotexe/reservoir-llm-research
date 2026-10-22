@@ -52,7 +52,29 @@ class OrderingTests(unittest.TestCase):
             Path(root, "daydream_2026-10-21T08-36-05.000000.txt").write_text("=== RECESS DAYDREAM ===\nTimestamp: x\n\nSecond entry body here.\n", encoding="utf-8")
             Path(root, "!journal_2026-10-21T07-30-05.000000.txt").write_text("=== JOURNAL ===\n\nFirst entry body here.\nNEXT: REST\n", encoding="utf-8")
             entries = load(root)
+            lane = load(root, lane="journal")
         self.assertEqual([e["text"] for e in entries], ["First entry body here.", "Second entry body here."])
+        self.assertEqual([e["text"] for e in lane], ["First entry body here."])
+        self.assertFalse(any(e.get("both") for e in entries))
+
+    def test_session_entries_record_when_the_previous_entry_was_also_shown(self):
+        import json
+        with tempfile.TemporaryDirectory() as root:
+            journals = Path(root, "journals")
+            journals.mkdir()
+            first = dict(entry=dict(text="A first entry about a lantern."), observation=dict(step=3), memory=None)
+            second = dict(entry=dict(text="A second entry about the lantern and a river."), observation=dict(step=6),
+                          memory=dict(entry=dict(text="A first entry about a lantern.")))
+            third = dict(entry=dict(text="A third entry about the river."), observation=dict(step=9),
+                         memory=dict(entry=dict(text="A first entry about a lantern.")),
+                         latestShown=dict(entry=dict(text="A second entry about the lantern and a river.")))
+            for name, pending in [("journal-3-1-a.json", first), ("journal-6-1-b.json", second), ("journal-9-1-c.json", third)]:
+                Path(journals, name).write_text(json.dumps(dict(pending=pending)), encoding="utf-8")
+            entries = load(root)
+        self.assertEqual([e["label"] for e in entries], ["step 3", "step 6", "step 9"])
+        self.assertEqual([e["both"] for e in entries], [False, False, True])
+        self.assertEqual(entries[2]["shown"], "A first entry about a lantern.")
+        self.assertEqual(analyse(entries, window=12)["both"], 1)
 
 
 class ChainTests(unittest.TestCase):

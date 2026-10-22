@@ -1,13 +1,20 @@
 # Reservoir Scope: current status and next work
 
-**October 21, 2026 · 0.37.0 state-residual and random-older memory policies, on 0.36.0 state-chosen memory and watchdog warm-up, 0.35.0 difference-signal channel, 0.34.0 no-tag and scrambled-tag controls, 0.33.0 entry-effect readout, 0.32.0 model thinking toggle, 0.31.0 two more S-010 contract arms, 0.30.0 embedding text reduction and S-010 frame arms, 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
+**October 22, 2026 · 0.38.0 recent-return window and two-entry slot, on 0.37.0 state-residual and random-older memory policies, 0.36.0 state-chosen memory and watchdog warm-up, 0.35.0 difference-signal channel, 0.34.0 no-tag and scrambled-tag controls, 0.33.0 entry-effect readout, 0.32.0 model thinking toggle, 0.31.0 two more S-010 contract arms, 0.30.0 embedding text reduction and S-010 frame arms, 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
+
+[0.38.0](RELEASE-0.38.0.md) adds `memoryRecentExclusion`, a window of turns during which an
+entry returned as memory stays out of the two older-entry policies' candidates (the test of
+whether the residual rule's lock on one entry is the rule or the loop), and the prompt version
+`reservoir-journal-inert-plain-contract-two-v1`, whose slot carries the chosen older entry and
+the latest applied entry in the order written (the test that separates "an older entry
+present" from "the latest entry absent" in the 0.37.0 register effect). Both are off by
+default and byte for byte absent when off. The 0.37.0 arms reported (the direction is an
+effect over seven arms; the residual chooser converges), which was what the freeze waited on;
+the numerical sweeps stay parked. Arms and their reading belong to S-011's dated accounts.
 
 [0.37.0](RELEASE-0.37.0.md) adds the `state-residual` policy (the latest entry's push projected
 out of the state, the choice among older entries) and its `random-older` control, after the
 first gemma4 arm showed `state-aligned` returns the latest entry whenever entries differ.
-The research mechanics are frozen here: the numerical sweeps are parked with their result
-recorded in the ladder account, and the next change (a slot carrying both the latest entry
-and a state-chosen older one) waits on a reading question and the 0.37.0 arms.
 
 [0.36.0](RELEASE-0.36.0.md) lets the recurrent state choose which earlier entry a turn
 returns (`memoryPolicy`: latest, state-aligned, random) from a ledger of applied entries and

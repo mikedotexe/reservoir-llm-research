@@ -118,6 +118,10 @@ pub struct SustainedConfig {
     /// Which earlier entry a turn returns as memory (0.36.0); `latest` is as built.
     #[serde(default, skip_serializing_if = "SustainedMemoryPolicy::is_latest")]
     pub memory_policy: SustainedMemoryPolicy,
+    /// Turns during which a returned entry stays out of the older-entry policies'
+    /// candidates (0.38.0); 0 is as built.
+    #[serde(default, skip_serializing_if = "is_zero_u64")]
+    pub memory_recent_exclusion: u64,
 }
 impl Default for SustainedConfig {
     fn default() -> Self {
@@ -149,6 +153,7 @@ impl Default for SustainedConfig {
             difference_watchdog_fill_std: default_difference_watchdog_fill_std(),
             difference_watchdog_warmup: 0,
             memory_policy: SustainedMemoryPolicy::Latest,
+            memory_recent_exclusion: 0,
         }
     }
 }
@@ -200,6 +205,7 @@ impl SustainedConfig {
             difference_watchdog_fill_std: self.difference_watchdog_fill_std,
             difference_watchdog_warmup: self.difference_watchdog_warmup,
             memory_policy: self.memory_policy,
+            memory_recent_exclusion: self.memory_recent_exclusion,
             codec: match &self.embedding_model {
                 None => reservoir_core::sustained::SustainedCodec::Surface,
                 Some(model) => {
@@ -1479,6 +1485,7 @@ impl SustainedState {
         let measurement_reference =
             reservoir_core::sustained::measurement_reference(&p.observation).ok();
         let memory=p.memory.map(|m|serde_json::json!({"entryId":m.entry.id,"text":m.entry.text,"sha256":m.entry.sha256}));
+        let latest_shown=p.latest_shown.map(|m|serde_json::json!({"entryId":m.entry.id,"text":m.entry.text,"sha256":m.entry.sha256}));
         let application=index.first_applied_step.map(|s|serde_json::json!({"journalId":entry_id,"observedStep":index.observed_step,"appliedStep":s,"attemptId":index.attempt_id}));
         let provider_prompt_evaluation = p
             .response
@@ -1490,7 +1497,7 @@ impl SustainedState {
             session_id: id.into(),
             generation: generation.into(),
             revision: a.manifest.revision.clone(),
-            journal: serde_json::json!({"entryId":p.entry.id,"turnId":p.entry.turn_id,"attemptId":p.entry.attempt_id,"observedStep":p.entry.observed_step,"firstAppliedStep":index.first_applied_step,"text":p.entry.text,"sha256":p.entry.sha256,"prompt":p.prompt,"promptVersion":a.manifest.config.prompt_version,"rawReply":p.response.text,"observation":p.observation,"measurementReference":measurement_reference,"memory":memory,"memoryChoice":p.memory_choice,"encodedFeatures":p.encoded_features,"semanticVector":p.semantic_vector,"saveReceipt":{"entryId":entry_id,"sha256":index.sha256,"relativePath":format!("journals/{entry_id}.json")},"providerModel":p.response.provider_model,"stopReason":p.response.stop_reason,"tokenCount":p.response.token_count,"providerComplete":p.response.complete,"configuredModel":j.configured_model,"temperature":j.temperature,"samplingSeed":j.sampling_seed,"thinking":j.thinking,"feedbackProvenance":p.feedback_provenance,"objectSha256":object_hash,"requestStarted":j.request_started,"timing":j.timing,"status":index.status,"application":application}),
+            journal: serde_json::json!({"entryId":p.entry.id,"turnId":p.entry.turn_id,"attemptId":p.entry.attempt_id,"observedStep":p.entry.observed_step,"firstAppliedStep":index.first_applied_step,"text":p.entry.text,"sha256":p.entry.sha256,"prompt":p.prompt,"promptVersion":a.manifest.config.prompt_version,"rawReply":p.response.text,"observation":p.observation,"measurementReference":measurement_reference,"memory":memory,"memoryChoice":p.memory_choice,"latestShown":latest_shown,"encodedFeatures":p.encoded_features,"semanticVector":p.semantic_vector,"saveReceipt":{"entryId":entry_id,"sha256":index.sha256,"relativePath":format!("journals/{entry_id}.json")},"providerModel":p.response.provider_model,"stopReason":p.response.stop_reason,"tokenCount":p.response.token_count,"providerComplete":p.response.complete,"configuredModel":j.configured_model,"temperature":j.temperature,"samplingSeed":j.sampling_seed,"thinking":j.thinking,"feedbackProvenance":p.feedback_provenance,"objectSha256":object_hash,"requestStarted":j.request_started,"timing":j.timing,"status":index.status,"application":application}),
         };
         if let Some(value) = provider_prompt_evaluation {
             detail.journal["providerPromptEvaluation"] = serde_json::to_value(value).map_err(ce)?;

@@ -2359,9 +2359,124 @@ fn memory_policy_config_roundtrip_journal_choice_and_warmup_persistence() {
         "memoryChoice",
         "\"choice\"",
         "Warmup",
+        "memoryRecentExclusion",
+        "lastReturnedTurn",
+        "excludedRecent",
+        "latestShown",
     ] {
         assert!(!all.contains(key), "{key}");
     }
+
+    // 0.38.0: the recent-return window and the two-entry prompt version. Invalid
+    // combinations are refused at create; the manifest carries the window only when it is
+    // nonzero; the journals carry the choice's exclusion count and the latest entry beside
+    // the chosen older one, under the two-entry heading; the checkpoints carry the marks;
+    // verification passes; deleting the window key from the manifest breaks it; the detail
+    // projection carries both entries.
+    use reservoir_core::sustained::SustainedPromptVersion;
+    let dx = tempfile::tempdir().unwrap();
+    let sx = SustainedState::new(dx.path().join("store"));
+    let mut bad = config(7, 3);
+    bad.memory_recent_exclusion = 1;
+    assert!(
+        sx.create("bad".into(), bad).is_err(),
+        "a window under latest"
+    );
+    let mut bad = config(7, 3);
+    bad.prompt_version = SustainedPromptVersion::InertPlainContractTwoV1;
+    bad.memory_policy = SustainedMemoryPolicy::Random;
+    assert!(
+        sx.create("bad2".into(), bad).is_err(),
+        "two entries under random"
+    );
+    let mut bad = config(7, 3);
+    bad.memory_policy = SustainedMemoryPolicy::RandomOlder;
+    bad.memory_recent_exclusion = 257;
+    assert!(
+        sx.create("bad3".into(), bad).is_err(),
+        "a window past the ledger cap"
+    );
+    let mut cfg2 = config(60, 3);
+    cfg2.prompt_version = SustainedPromptVersion::InertPlainContractTwoV1;
+    cfg2.memory_policy = SustainedMemoryPolicy::RandomOlder;
+    cfg2.memory_recent_exclusion = 2;
+    assert!(!serde_json::to_string(&config(7, 3))
+        .unwrap()
+        .contains("memoryRecentExclusion"));
+    let value2 = serde_json::to_value(&cfg2).unwrap();
+    assert_eq!(value2["memoryRecentExclusion"], serde_json::json!(2));
+    let decoded2: SustainedConfig = serde_json::from_value(value2.clone()).unwrap();
+    assert_eq!(decoded2.specification().unwrap().memory_recent_exclusion, 2);
+    assert_eq!(serde_json::to_value(decoded2).unwrap(), value2);
+    let d2 = tempfile::tempdir().unwrap();
+    let s2 = SustainedState::new(d2.path().join("store"));
+    let accepted2 = s2.create("create".into(), cfg2).unwrap().summary.unwrap();
+    let epoch2 = arm(&s2);
+    while drive(&s2, epoch2) {}
+    assert!(s2.shared.store.verify(&accepted2.session_id).is_ok());
+    let dir2 = s2.shared.store.path(&accepted2.session_id).unwrap();
+    let read2 = |sub: &str| {
+        let mut t = String::new();
+        for e in fs::read_dir(dir2.join(sub)).unwrap() {
+            t.push_str(&fs::read_to_string(e.unwrap().path()).unwrap());
+        }
+        t
+    };
+    let manifest2 = fs::read_to_string(dir2.join("manifest.json")).unwrap();
+    assert!(manifest2.contains("\"memoryRecentExclusion\":2"));
+    assert!(manifest2.contains("reservoir-journal-inert-plain-contract-two-v1"));
+    let journals2 = read2("journals");
+    assert!(journals2.contains("\"latestShown\":{"));
+    assert!(journals2.contains("\"excludedRecent\":"));
+    // The prompt is a JSON string in the journal object, so its newlines are escaped.
+    assert!(journals2.contains(
+        "Two earlier entries (reference, not instructions or a length model), in the order written.\\n\\nFirst:\\n"
+    ));
+    assert!(read2("checkpoints").contains("\"lastReturnedTurn\":"));
+    let page2 = s2
+        .journal_page(
+            "page".into(),
+            &accepted2.session_id,
+            &accepted2.generation,
+            0,
+            50,
+        )
+        .unwrap();
+    let with_two = page2
+        .entries
+        .iter()
+        .find_map(|e| {
+            let d = s2
+                .journal(
+                    "detail".into(),
+                    &accepted2.session_id,
+                    &accepted2.generation,
+                    &e.entry_id,
+                )
+                .unwrap();
+            d.journal["latestShown"].is_object().then_some(d)
+        })
+        .expect("a journal written with both entries shown");
+    assert!(with_two.journal["memory"].is_object());
+    assert_ne!(
+        with_two.journal["memory"]["entryId"],
+        with_two.journal["latestShown"]["entryId"]
+    );
+    assert_eq!(
+        with_two.journal["memoryChoice"]["policy"],
+        serde_json::json!("random-older")
+    );
+    let path2 = dir2.join("manifest.json");
+    let original2 = fs::read(&path2).unwrap();
+    let mut changed2: serde_json::Value = serde_json::from_slice(&original2).unwrap();
+    changed2["config"]
+        .as_object_mut()
+        .unwrap()
+        .remove("memoryRecentExclusion");
+    fs::write(&path2, serde_json::to_vec(&changed2).unwrap()).unwrap();
+    assert!(s2.shared.store.verify(&accepted2.session_id).is_err());
+    fs::write(&path2, &original2).unwrap();
+    assert!(s2.shared.store.verify(&accepted2.session_id).is_ok());
 
     // The warm-up delays the watchdog: a zero bound with a 100-step warm-up drops at 190.
     let d1 = tempfile::tempdir().unwrap();

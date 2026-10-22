@@ -65,6 +65,12 @@ export function MyReservoirJournalDetail({ journal, revision, config, onRefreshE
           <p>Exact memory text retained with this opportunity. This is distinct from the reduced vector applied to the numerical system.</p>
         </> : <p>No prior journal text was retained as memory for this opportunity.</p>}
       </section>
+      {journal.latestShown && <section>
+        <h4>Latest entry also shown</h4>
+        <p className="my-reservoir-hash">Entry {journal.latestShown.entryId} · SHA-256 {journal.latestShown.sha256}</p>
+        <pre tabIndex={0} role="region" aria-label="Latest entry text">{journal.latestShown.text}</pre>
+        <p>Under the two-entry prompt version the latest applied entry was shown after the chosen older entry above, marked only by order.</p>
+      </section>}
       <section>
         <h4>Save and feedback provenance</h4>
         <dl className="my-reservoir-data">

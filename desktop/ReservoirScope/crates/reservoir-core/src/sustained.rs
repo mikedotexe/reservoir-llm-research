@@ -392,6 +392,11 @@ pub enum SustainedPromptVersion {
     InertPlainContractNoTagV1,
     #[serde(rename = "reservoir-journal-inert-plain-contract-scrambled-tag-v1")]
     InertPlainContractScrambledTagV1,
+    /// 0.38.0: the plain contract's inert input with a slot carrying two entries, the
+    /// policy's chosen older entry first and the latest applied entry second, in the order
+    /// written and marked only by order. Needs an older-entry memory policy. Frozen text.
+    #[serde(rename = "reservoir-journal-inert-plain-contract-two-v1")]
+    InertPlainContractTwoV1,
 }
 impl SustainedPromptVersion {
     pub fn is_legacy(&self) -> bool {
@@ -422,6 +427,7 @@ impl SustainedPromptVersion {
             Self::InertPlainContractScrambledTagV1 => {
                 "reservoir-journal-inert-plain-contract-scrambled-tag-v1"
             }
+            Self::InertPlainContractTwoV1 => "reservoir-journal-inert-plain-contract-two-v1",
         }
     }
     /// A standing contract sent as the system message, or none. Frozen per version.
@@ -433,7 +439,8 @@ impl SustainedPromptVersion {
             Self::InertInvitingVariedContractV1 => Some(INVITING_VARIED_CONTRACT_V1),
             Self::InertPlainContractEffectV1
             | Self::InertPlainContractNoTagV1
-            | Self::InertPlainContractScrambledTagV1 => Some(PLAIN_CONTRACT_V1),
+            | Self::InertPlainContractScrambledTagV1
+            | Self::InertPlainContractTwoV1 => Some(PLAIN_CONTRACT_V1),
             _ => None,
         }
     }
@@ -445,6 +452,11 @@ impl SustainedPromptVersion {
     /// frames, observations and prompts are byte for byte unchanged.
     pub fn reports_entry_effect(self) -> bool {
         matches!(self, Self::InertEffectV1 | Self::InertPlainContractEffectV1)
+    }
+    /// Whether the slot carries two entries, the policy's chosen older one and the latest
+    /// applied entry (0.38.0). False for every earlier version.
+    pub fn returns_two_entries(self) -> bool {
+        matches!(self, Self::InertPlainContractTwoV1)
     }
     /// Which telemetry tag an inert prompt carries: the live fill, none, or a seeded value
     /// unrelated to the field.
@@ -474,6 +486,7 @@ impl SustainedPromptVersion {
                 | Self::InertNoTagV1
                 | Self::InertPlainContractNoTagV1
                 | Self::InertPlainContractScrambledTagV1
+                | Self::InertPlainContractTwoV1
         )
     }
 }
@@ -558,6 +571,10 @@ pub struct SustainedSpecification {
     /// Which earlier entry a turn returns as memory (0.36.0); `latest` is as built.
     #[serde(default, skip_serializing_if = "SustainedMemoryPolicy::is_latest")]
     pub memory_policy: SustainedMemoryPolicy,
+    /// Turns during which an entry returned as memory stays out of the older-entry
+    /// policies' candidates (0.38.0); 0 is as built. Only those two policies accept it.
+    #[serde(default, skip_serializing_if = "is_zero_u64")]
+    pub memory_recent_exclusion: u64,
 }
 impl Default for SustainedSpecification {
     fn default() -> Self {
@@ -586,6 +603,7 @@ impl Default for SustainedSpecification {
             difference_watchdog_fill_std: default_difference_watchdog_fill_std(),
             difference_watchdog_warmup: 0,
             memory_policy: SustainedMemoryPolicy::Latest,
+            memory_recent_exclusion: 0,
         }
     }
 }
@@ -662,6 +680,15 @@ impl SustainedSpecification {
                 && (0.0..=100.0).contains(&self.difference_watchdog_fill_std)
                 && self.difference_watchdog_warmup <= MAX_STEPS,
             "Invalid difference-signal controls",
+        )?;
+        ensure(
+            self.memory_recent_exclusion <= MEMORY_LEDGER_CAP as u64
+                && (self.memory_recent_exclusion == 0 || self.memory_policy.chooses_older()),
+            "Recent-return exclusion needs an older-entry memory policy and at most 256 turns",
+        )?;
+        ensure(
+            !self.prompt_version.returns_two_entries() || self.memory_policy.chooses_older(),
+            "A two-entry prompt version needs an older-entry memory policy",
         )?;
         ensure(
             (1..=MAX_STEPS).contains(&self.maximum_steps)
@@ -1004,6 +1031,11 @@ impl SustainedMemoryPolicy {
     pub fn is_latest(&self) -> bool {
         matches!(self, Self::Latest)
     }
+    /// The policies that choose among the entries older than the latest (0.37.0); the
+    /// recent-return window and the two-entry prompt version apply to these only.
+    pub fn chooses_older(&self) -> bool {
+        matches!(self, Self::StateResidual | Self::RandomOlder)
+    }
     pub fn as_str(self) -> &'static str {
         match self {
             Self::Latest => "latest",
@@ -1027,7 +1059,7 @@ pub fn project_out(x: &[f64], direction: &[f64]) -> Vec<f64> {
         .map(|(a, b)| a - dot / norm2 * b)
         .collect()
 }
-/// Seed mixed with the session seed and the boundary step for the `random` memory policy.
+/// Seed mixed with the session seed and the boundary step for the random memory policies.
 pub const MEMORY_CHOICE_SEED: u64 = 0x004d_454d_4f52_5943;
 /// Applied entries the memory policies choose among; the oldest is dropped past this.
 pub const MEMORY_LEDGER_CAP: usize = 256;
@@ -1041,6 +1073,10 @@ pub struct SustainedAppliedEntry {
     pub relative_path: String,
     pub applied_step: u64,
     pub effect: Vec<f64>,
+    /// The turn at which this entry was last returned as memory, marked when that turn's
+    /// journal is applied (0.38.0); recorded only under a recent-return window.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub last_returned_turn: Option<u64>,
 }
 /// The policy's choice at a turn boundary, recorded with the pending read, the prompt and
 /// the journal object.
@@ -1055,9 +1091,14 @@ pub struct SustainedMemoryChoice {
     /// Entries applied after the chosen one; 0 is the latest.
     pub age: u64,
     pub candidates: u64,
-    /// Cosine between the chosen entry's effect and the observing state (state-aligned only).
+    /// Cosine between the chosen entry's effect and the observing state (the state policies).
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub score: Option<f64>,
+    /// Older entries the recent-return window kept out of the candidates at this boundary
+    /// (0.38.0); 0 without a window. Equal to `candidates - 1` when the window would have
+    /// removed every older entry, in which case the unfiltered older entries competed.
+    #[serde(default, skip_serializing_if = "is_zero_u64")]
+    pub excluded_recent: u64,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -1102,6 +1143,10 @@ pub struct SustainedPendingLanguage {
     /// The policy's choice behind `memory` (0.36.0); omitted under `latest`.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub memory_choice: Option<SustainedMemoryChoice>,
+    /// The latest applied entry, also shown under a two-entry prompt version (0.38.0);
+    /// omitted under every other version.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub latest_shown: Option<SustainedMemory>,
     pub request_started: bool,
     #[serde(
         default = "legacy_output_tokens",
@@ -1125,6 +1170,9 @@ pub struct SustainedPendingJournal {
     /// The policy's choice behind `memory` (0.36.0); omitted under `latest`.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub memory_choice: Option<SustainedMemoryChoice>,
+    /// The latest applied entry, also shown under a two-entry prompt version (0.38.0).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub latest_shown: Option<SustainedMemory>,
     pub encoded_features: Vec<f64>,
     pub semantic_vector: Vec<f64>,
     /// Present only under the embedding codec; omitted under the surface codec.
@@ -1579,6 +1627,17 @@ impl SustainedSession {
                     next.last_entry_effect_vector = diff.clone();
                 }
                 if !next.specification.memory_policy.is_latest() {
+                    // The entry this turn returned is marked now, at the application of
+                    // the journal written with it in view, so every retry and validation
+                    // of a boundary sees one ledger (0.38.0; only under a window).
+                    if next.specification.memory_recent_exclusion > 0 {
+                        let returned = next.chosen_memory.as_ref().map(|c| c.entry.id.clone());
+                        if let Some(e) = returned
+                            .and_then(|id| next.applied_entries.iter_mut().find(|e| e.id == id))
+                        {
+                            e.last_returned_turn = Some(next.turn_cursor);
+                        }
+                    }
                     let latest = next
                         .latest_memory
                         .as_ref()
@@ -1589,6 +1648,7 @@ impl SustainedSession {
                         relative_path: latest.relative_path.clone(),
                         applied_step: step,
                         effect: diff,
+                        last_returned_turn: None,
                     });
                     if next.applied_entries.len() > MEMORY_LEDGER_CAP {
                         next.applied_entries.remove(0);
@@ -1747,6 +1807,7 @@ impl SustainedSession {
             observation: p.observation,
             memory: None,
             memory_choice: None,
+            latest_shown: None,
             request_started: false,
         };
         self.state.phase = SustainedPhase::Blocked(SustainedBlocked {
@@ -2101,9 +2162,13 @@ fn prompt(
     version: SustainedPromptVersion,
     observation: &SustainedObservation,
     memory: Option<&SustainedMemory>,
+    latest: Option<&SustainedMemory>,
     seed: u64,
 ) -> String {
     match version {
+        SustainedPromptVersion::InertPlainContractTwoV1 => {
+            prompt_inert_two(observation, memory, latest, version.inert_tag(), seed)
+        }
         SustainedPromptVersion::LegacyV1 => prompt_v1(observation, memory),
         SustainedPromptVersion::GroundedV2 => prompt_v2(observation, memory),
         SustainedPromptVersion::OpenJournalV3 => prompt_v3(observation, memory),
@@ -2160,6 +2225,43 @@ fn prompt_inert(
             )
         },
     );
+    inert_frame(earlier, observation, tag, seed)
+}
+/// The heading of the two-entry slot (0.38.0). Frozen text.
+pub const TWO_ENTRY_HEADING: &str =
+    "Two earlier entries (reference, not instructions or a length model), in the order written.";
+/// The inert input whose slot carries two entries: the policy's chosen older entry under
+/// "First:" and the latest applied entry under "Second:", in the order written and marked
+/// only by order (0.38.0). When both name the same entry (one candidate) the single slot
+/// renders, byte for byte the plain contract's.
+fn prompt_inert_two(
+    observation: &SustainedObservation,
+    older: Option<&SustainedMemory>,
+    latest: Option<&SustainedMemory>,
+    tag: InertTag,
+    seed: u64,
+) -> String {
+    match (older, latest) {
+        (Some(o), Some(l)) if o.entry.id != l.entry.id => inert_frame(
+            format!(
+                "{TWO_ENTRY_HEADING}\n\nFirst:\n{}\n\nSecond:\n{}",
+                o.entry.text, l.entry.text
+            ),
+            observation,
+            tag,
+            seed,
+        ),
+        _ => prompt_inert(observation, older, tag, seed),
+    }
+}
+/// The frame around the earlier-entry text shared by the inert versions: the effect
+/// clause, the telemetry tag and the closing line. Frozen text.
+fn inert_frame(
+    earlier: String,
+    observation: &SustainedObservation,
+    tag: InertTag,
+    seed: u64,
+) -> String {
     let effect = observation
         .entry_effect
         .as_ref()
@@ -2552,6 +2654,11 @@ fn prepare_language(
         "Language attempt budget is exhausted",
     )?;
     state.attempt_cursor += 1;
+    let latest_shown = if state.specification.prompt_version.returns_two_entries() {
+        state.latest_memory.clone()
+    } else {
+        None
+    };
     Ok(SustainedPendingLanguage {
         turn_id: state.turn_cursor,
         attempt_id: state.attempt_cursor,
@@ -2563,11 +2670,13 @@ fn prepare_language(
             state.specification.prompt_version,
             &observation,
             memory.as_ref(),
+            latest_shown.as_ref(),
             state.specification.seed,
         ),
         observation,
         memory,
         memory_choice,
+        latest_shown,
         request_started: false,
     })
 }
@@ -2664,6 +2773,7 @@ fn prepare_journal(
         observation: p.observation.clone(),
         memory: p.memory.clone(),
         memory_choice: p.memory_choice.clone(),
+        latest_shown: p.latest_shown.clone(),
         encoded_features,
         semantic_vector,
         feedback_provenance,
@@ -2770,19 +2880,19 @@ fn pending_memory(
         }
     })
 }
-/// The entry among `entries[..limit]` whose effect points most along `target`: ties go
-/// to the most recent, entries without a direction lose, and `fallback` is returned when
-/// none has one.
+/// The entry among the `candidates` (indices in application order) whose effect points
+/// most along `target`: ties go to the most recent, entries without a direction lose, and
+/// `fallback` is returned when none has one.
 fn most_aligned(
     entries: &[SustainedAppliedEntry],
-    limit: usize,
+    candidates: impl IntoIterator<Item = usize>,
     target: &[f64],
     fallback: usize,
 ) -> usize {
     let mut best = fallback;
     let mut best_score = f64::NEG_INFINITY;
-    for (i, e) in entries.iter().enumerate().take(limit) {
-        if let Some(c) = cosine(&e.effect, target) {
+    for i in candidates {
+        if let Some(c) = cosine(&entries[i].effect, target) {
             if c >= best_score {
                 best = i;
                 best_score = c;
@@ -2790,6 +2900,32 @@ fn most_aligned(
         }
     }
     best
+}
+/// The entries older than the latest that the older-entry policies choose among, and how
+/// many the recent-return window kept out (0.38.0): an entry returned within the last
+/// `memory_recent_exclusion` turns is excluded; when that would exclude every older entry
+/// the unfiltered older entries compete (a lapse, visible as excluded == older count).
+/// Needs at least two applied entries.
+fn older_candidates(s: &SustainedContinuation) -> (Vec<usize>, u64) {
+    let n = s.applied_entries.len();
+    let k = s.specification.memory_recent_exclusion;
+    let recent = |e: &SustainedAppliedEntry| {
+        k > 0
+            && e.last_returned_turn
+                .is_some_and(|r| s.turn_cursor.saturating_sub(r) <= k)
+    };
+    let excluded = s.applied_entries[..n - 1]
+        .iter()
+        .filter(|e| recent(e))
+        .count() as u64;
+    let kept: Vec<usize> = (0..n - 1)
+        .filter(|&i| !recent(&s.applied_entries[i]))
+        .collect();
+    if kept.is_empty() {
+        ((0..n - 1).collect(), excluded)
+    } else {
+        (kept, excluded)
+    }
 }
 /// The policy's choice among the applied entries at a turn boundary: the latest under
 /// `latest`; under `state-aligned` the entry whose effect at application points most
@@ -2802,6 +2938,7 @@ fn choose_memory(s: &SustainedContinuation, step: u64) -> Result<SustainedMemory
     ensure(n > 0, "No applied entry to choose a memory from")?;
     let policy = s.specification.memory_policy;
     let mut score = None;
+    let mut excluded_recent = 0;
     let draw = |modulus: usize| {
         let mut rng = SplitMix64::new(s.specification.seed ^ MEMORY_CHOICE_SEED ^ step);
         (rng.next_u64() % modulus as u64) as usize
@@ -2813,11 +2950,13 @@ fn choose_memory(s: &SustainedContinuation, step: u64) -> Result<SustainedMemory
             if n == 1 {
                 0
             } else {
-                draw(n - 1)
+                let (candidates, excluded) = older_candidates(s);
+                excluded_recent = excluded;
+                candidates[draw(candidates.len())]
             }
         }
         SustainedMemoryPolicy::StateAligned => {
-            let best = most_aligned(&s.applied_entries, n, &s.reservoir_state, n - 1);
+            let best = most_aligned(&s.applied_entries, 0..n, &s.reservoir_state, n - 1);
             score = cosine(&s.applied_entries[best].effect, &s.reservoir_state);
             best
         }
@@ -2826,7 +2965,15 @@ fn choose_memory(s: &SustainedContinuation, step: u64) -> Result<SustainedMemory
                 0
             } else {
                 let residual = project_out(&s.reservoir_state, &s.applied_entries[n - 1].effect);
-                let best = most_aligned(&s.applied_entries, n - 1, &residual, n - 2);
+                let (candidates, excluded) = older_candidates(s);
+                excluded_recent = excluded;
+                let fallback = *candidates.last().ok_or_else(|| invalid("No older entry"))?;
+                let best = most_aligned(
+                    &s.applied_entries,
+                    candidates.iter().copied(),
+                    &residual,
+                    fallback,
+                );
                 score = cosine(&s.applied_entries[best].effect, &residual);
                 best
             }
@@ -2842,6 +2989,7 @@ fn choose_memory(s: &SustainedContinuation, step: u64) -> Result<SustainedMemory
         age: (n - 1 - index) as u64,
         candidates: n as u64,
         score,
+        excluded_recent,
     })
 }
 /// Under `latest` the prompt's memory is the latest applied entry; under the other
@@ -2861,6 +3009,7 @@ fn memory_matches_policy(p: &SustainedPendingLanguage, s: &SustainedContinuation
                 && c.applied_step == m.applied_step
                 && c.candidates >= 1
                 && c.age < c.candidates
+                && c.excluded_recent < c.candidates
         }
         _ => false,
     }
@@ -2884,6 +3033,14 @@ fn validate_memory_ledger(s: &SustainedContinuation) -> Result<()> {
                     && e.relative_path == format!("journals/{}.json", e.id)
                     && valid_hash(&e.sha256)
                     && e.id.ends_with(&e.sha256)
+                    && match (
+                        s.specification.memory_recent_exclusion,
+                        e.last_returned_turn,
+                    ) {
+                        (_, None) => true,
+                        (0, Some(_)) => false,
+                        (_, Some(r)) => r >= 1 && r <= s.turn_cursor,
+                    }
             })
             && s.applied_entries
                 .windows(2)
@@ -2937,11 +3094,20 @@ fn validate_pending(p: &SustainedPendingLanguage, s: &SustainedContinuation) -> 
             && p.output_tokens == s.specification.output_tokens
             && p.request_deadline_seconds == s.specification.request_deadline_seconds
             && memory_matches_policy(p, s)
+            && same(
+                &p.latest_shown,
+                &if s.specification.prompt_version.returns_two_entries() {
+                    s.latest_memory.clone()
+                } else {
+                    None
+                },
+            )
             && p.prompt
                 == prompt(
                     s.specification.prompt_version,
                     &p.observation,
                     p.memory.as_ref(),
+                    p.latest_shown.as_ref(),
                     s.specification.seed,
                 ),
         "Pending language identity/observation/prompt/memory differs",
@@ -3229,6 +3395,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
                 observation: j.observation.clone(),
                 memory: j.memory.clone(),
                 memory_choice: j.memory_choice.clone(),
+                latest_shown: j.latest_shown.clone(),
                 request_started: true,
             };
             validate_pending(&p, s)?;
@@ -3302,6 +3469,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
                         && b.pending.prompt.is_empty()
                         && !b.pending.request_started
                         && b.pending.memory.is_none()
+                        && b.pending.latest_shown.is_none()
                         && s.latest_memory.is_some()
                         && same(&b.pending.configuration, &s.specification.language)
                         && b.pending.output_tokens == s.specification.output_tokens

@@ -2,6 +2,8 @@
 //! mechanism; `state-aligned` lets the recurrent state choose among the applied entries by
 //! their recorded effect at application; `random` is the seeded control. The prompt text
 //! is the same under every policy. Also the watchdog warm-up of the difference channel.
+//! 0.38.0: the recent-return window (`memory_recent_exclusion`) and the two-entry prompt
+//! version, both off by default and byte for byte absent when off.
 use reservoir_core::{math::SplitMix64, session::LanguageResponse, sustained::*};
 use serde::Serialize;
 use sha2::{Digest, Sha256};
@@ -169,6 +171,10 @@ fn latest_is_byte_for_byte_the_earlier_mechanism() {
         "memoryPolicy",
         "\"choice\"",
         "entryEffect",
+        "memoryRecentExclusion",
+        "lastReturnedTurn",
+        "excludedRecent",
+        "latestShown",
     ] {
         assert!(!all.contains(key), "{key}");
     }
@@ -517,4 +523,709 @@ fn residual_and_random_older_choose_among_the_older_entries() {
         text(&SustainedMemoryPolicy::RandomOlder),
         "\"random-older\""
     );
+}
+
+// 0.38.0: the recent-return window and the two-entry prompt version.
+
+fn windowed(policy: SustainedMemoryPolicy, window: u64) -> SustainedSpecification {
+    SustainedSpecification {
+        memory_recent_exclusion: window,
+        ..spec(policy)
+    }
+}
+fn two_entry(policy: SustainedMemoryPolicy) -> SustainedSpecification {
+    SustainedSpecification {
+        prompt_version: SustainedPromptVersion::InertPlainContractTwoV1,
+        ..spec(policy)
+    }
+}
+/// The chooser's expected index under a window, recomputed from a checkpoint's ledger:
+/// the older entries not returned within the window (all of them when that leaves none),
+/// then the seeded draw or the residual alignment over them; and the excluded count.
+fn expected_index(
+    policy: SustainedMemoryPolicy,
+    c: &SustainedCheckpoint,
+    m: &SustainedPendingMemory,
+    seed: u64,
+) -> (usize, u64) {
+    let ledger = &c.state.applied_entries;
+    let n = ledger.len();
+    let (t, k) = (
+        c.state.turn_cursor,
+        c.state.specification.memory_recent_exclusion,
+    );
+    let recent = |e: &SustainedAppliedEntry| {
+        k > 0
+            && e.last_returned_turn
+                .is_some_and(|r| t.saturating_sub(r) <= k)
+    };
+    let excluded = ledger[..n - 1].iter().filter(|e| recent(e)).count() as u64;
+    let mut kept: Vec<usize> = (0..n - 1).filter(|&i| !recent(&ledger[i])).collect();
+    if kept.is_empty() {
+        kept = (0..n - 1).collect();
+    }
+    let index = match policy {
+        SustainedMemoryPolicy::RandomOlder => {
+            let mut rng = SplitMix64::new(seed ^ MEMORY_CHOICE_SEED ^ m.observed_step);
+            kept[(rng.next_u64() % kept.len() as u64) as usize]
+        }
+        _ => {
+            let residual = project_out(&m.observation.state, &ledger[n - 1].effect);
+            let mut best = *kept.last().unwrap();
+            let mut best_score = f64::NEG_INFINITY;
+            for &i in &kept {
+                if let Some(x) = cosine(&ledger[i].effect, &residual) {
+                    if x >= best_score {
+                        best = i;
+                        best_score = x;
+                    }
+                }
+            }
+            best
+        }
+    };
+    (index, excluded)
+}
+/// `Store::settle` with every pending language and journal object's text collected.
+fn settle_collect(store: &mut Store, s: &mut SustainedSession, sink: &mut String) {
+    if let Some(m) = s.pending_memory().cloned() {
+        sink.push_str(&text(&m));
+        let id = m.entry_id().unwrap().to_string();
+        s.confirm_memory(&store.saved[&id]).unwrap();
+    }
+    if let Some(p) = s.pending_language().cloned() {
+        sink.push_str(&text(&p));
+        s.start_language(p.attempt_id).unwrap();
+        store.counter += 1;
+        s.confirm_language(p.attempt_id, &reply(store.counter))
+            .unwrap();
+    }
+    if let Some(j) = s.pending_journal().cloned() {
+        sink.push_str(&text(&j));
+        let receipt = SustainedSaveReceipt {
+            entry_id: j.entry.id.clone(),
+            sha256: j.entry.sha256.clone(),
+            relative_path: format!("journals/{}.json", j.entry.id),
+        };
+        s.confirm_saved(&receipt, &j.entry).unwrap();
+        store.saved.insert(j.entry.id.clone(), j.entry.clone());
+    }
+    if let Some(p) = s.prepared_application() {
+        let id = p.entry.attempt_id;
+        s.authorize_application(id).unwrap();
+    }
+}
+const V37_WITNESS: &[u8] =
+    include_bytes!("fixtures/sustained-prompts/v37-state-residual-segment.json");
+
+#[test]
+fn recent_exclusion_is_absent_at_zero_and_needs_an_older_policy() {
+    for policy in [
+        SustainedMemoryPolicy::Latest,
+        SustainedMemoryPolicy::StateAligned,
+        SustainedMemoryPolicy::Random,
+    ] {
+        assert!(windowed(policy, 1).validate().is_err(), "{policy:?}");
+        assert!(SustainedSession::new(windowed(policy, 1)).is_err());
+    }
+    for policy in [
+        SustainedMemoryPolicy::StateResidual,
+        SustainedMemoryPolicy::RandomOlder,
+    ] {
+        assert!(policy.chooses_older());
+        assert!(windowed(policy, 1).validate().is_ok());
+        assert!(windowed(policy, 256).validate().is_ok());
+        assert!(windowed(policy, 257).validate().is_err());
+        assert!(!text(&spec(policy)).contains("memoryRecentExclusion"));
+        assert!(text(&windowed(policy, 3)).contains("\"memoryRecentExclusion\":3"));
+        let decoded: SustainedSpecification =
+            serde_json::from_slice(&bytes(&windowed(policy, 3))).unwrap();
+        assert_eq!(decoded.memory_recent_exclusion, 3);
+        // Without a window a run under an older policy writes none of the 0.38.0 keys.
+        let base = checkpoint(&SustainedSession::new(spec(policy)).unwrap());
+        let mut s = SustainedSession::new(spec(policy)).unwrap();
+        let mut store = Store::default();
+        let mut all = String::new();
+        for _ in 0..30 {
+            settle_collect(&mut store, &mut s, &mut all);
+            s.advance().unwrap();
+        }
+        all.push_str(&text(&s.checkpoint()));
+        all.push_str(&text(&s.events().iter().cloned().collect::<Vec<_>>()));
+        assert!(all.contains("\"memoryChoice\":{"));
+        for key in [
+            "memoryRecentExclusion",
+            "lastReturnedTurn",
+            "excludedRecent",
+            "latestShown",
+        ] {
+            assert!(!all.contains(key), "{policy:?}: {key}");
+        }
+        segment(&base, &s).verify().unwrap();
+    }
+    assert!(!SustainedMemoryPolicy::Latest.chooses_older());
+    assert!(!SustainedMemoryPolicy::StateAligned.chooses_older());
+    assert!(!SustainedMemoryPolicy::Random.chooses_older());
+
+    // A state-residual segment recorded by the 0.37.0 binary, before the window and the
+    // two-entry version existed, re-serialises byte for byte and validates under the new
+    // code: its ledger carries no marks and its pending choice no exclusion count.
+    assert_eq!(
+        hash(V37_WITNESS),
+        "2ea0deb306c6cf745e488387afdd75d71c6db7e44814c3ca8074cfb8a46c7faa"
+    );
+    let witness: SustainedSegment = serde_json::from_slice(V37_WITNESS).unwrap();
+    assert_eq!(bytes(&witness), V37_WITNESS.to_vec());
+    witness.initial_checkpoint.validate().unwrap();
+    witness.final_checkpoint.validate().unwrap();
+    let st = &witness.final_checkpoint.state;
+    assert_eq!(st.step, 15);
+    assert_eq!(st.specification.memory_recent_exclusion, 0);
+    assert_eq!(
+        st.specification.prompt_version,
+        SustainedPromptVersion::InertPlainContractV1
+    );
+    assert_eq!(st.applied_entries.len(), 4);
+    assert!(st
+        .applied_entries
+        .iter()
+        .all(|e| e.last_returned_turn.is_none()));
+    match &st.phase {
+        SustainedPhase::Memory(p) => {
+            let c = p.choice.as_ref().unwrap();
+            assert_eq!(c.policy, SustainedMemoryPolicy::StateResidual);
+            assert_eq!((c.age, c.candidates, c.excluded_recent), (3, 4, 0));
+        }
+        other => panic!("witness ends in {other:?}"),
+    }
+}
+
+#[test]
+#[cfg_attr(not(all(target_os = "macos", target_arch = "aarch64")), ignore)]
+fn the_0_37_0_witness_segment_replays_exactly_on_the_recording_host() {
+    let witness: SustainedSegment = serde_json::from_slice(V37_WITNESS).unwrap();
+    witness.verify().unwrap();
+}
+
+#[test]
+fn recent_exclusion_keeps_a_returned_entry_out_for_k_turns() {
+    for policy in [
+        SustainedMemoryPolicy::RandomOlder,
+        SustainedMemoryPolicy::StateResidual,
+    ] {
+        let spec = windowed(policy, 2);
+        let mut s = SustainedSession::new(spec.clone()).unwrap();
+        let mut store = Store::default();
+        let mut base = checkpoint(&s);
+        let (mut boundaries, mut lapses, mut excluded_total, mut marked) = (0, 0, 0, 0);
+        let mut expect_mark: Option<(String, u64)> = None;
+        for i in 0..90 {
+            if i % 20 == 0 {
+                acknowledge(&mut s);
+                base = checkpoint(&s);
+            }
+            let c = checkpoint(&s);
+            if let Some((id, turn)) = expect_mark.take() {
+                // The entry returned at the previous boundary was marked at the
+                // application of the journal written with it in view, with that turn.
+                let e = c.state.applied_entries.iter().find(|e| e.id == id).unwrap();
+                assert_eq!(e.last_returned_turn, Some(turn), "{policy:?} at step {i}");
+                marked += 1;
+            }
+            if let Some(m) = s.pending_memory().cloned() {
+                boundaries += 1;
+                let choice = m.choice.clone().unwrap();
+                let ledger = &c.state.applied_entries;
+                let n = ledger.len();
+                assert_eq!(choice.candidates as usize, n);
+                if n == 1 {
+                    assert_eq!((choice.age, choice.excluded_recent), (0, 0));
+                } else {
+                    let (expected, excluded) = expected_index(policy, &c, &m, spec.seed);
+                    assert_eq!(
+                        choice.entry_id, ledger[expected].id,
+                        "{policy:?} at step {i}"
+                    );
+                    assert_eq!(choice.age as usize, n - 1 - expected);
+                    assert_eq!(choice.excluded_recent, excluded);
+                    assert!(choice.excluded_recent < choice.candidates);
+                    if excluded as usize == n - 1 {
+                        lapses += 1;
+                    } else if let Some(r) = ledger[expected].last_returned_turn {
+                        assert!(c.state.turn_cursor - r > 2, "returned within the window");
+                    }
+                    excluded_total += excluded;
+                }
+                // Confirmation leaves the ledger untouched; the mark comes at application.
+                let before = bytes(&c.state.applied_entries);
+                let chosen = store.saved[&choice.entry_id].clone();
+                s.confirm_memory(&chosen).unwrap();
+                let after = checkpoint(&s);
+                assert_eq!(bytes(&after.state.applied_entries), before);
+                assert_eq!(
+                    after.state.chosen_memory.as_ref().unwrap().entry.id,
+                    choice.entry_id
+                );
+                after.validate().unwrap();
+                expect_mark = Some((choice.entry_id.clone(), c.state.turn_cursor));
+            }
+            store.step(&mut s);
+        }
+        assert!(boundaries >= 25, "{boundaries}");
+        assert_eq!(marked, boundaries);
+        assert!(
+            lapses >= 1 && excluded_total >= 1,
+            "{policy:?}: {lapses} lapses, {excluded_total} excluded"
+        );
+        checkpoint(&s).validate().unwrap();
+        segment(&base, &s).verify().unwrap();
+
+        // Restored continuations follow the uninterrupted run exactly, marks included.
+        let mut straight = SustainedSession::new(spec.clone()).unwrap();
+        let mut restored = SustainedSession::new(spec.clone()).unwrap();
+        let (mut sa, mut sb) = (Store::default(), Store::default());
+        for i in 0..45 {
+            if i % 15 == 0 {
+                acknowledge(&mut straight);
+            }
+            let a = sa.step(&mut straight);
+            if i % 4 == 0 {
+                restored = SustainedSession::restore(checkpoint(&restored)).unwrap();
+            }
+            let b = sb.step(&mut restored);
+            assert_eq!(bytes(&a), bytes(&b), "step {}", i + 1);
+        }
+        assert_eq!(bytes(&straight.checkpoint()), bytes(&restored.checkpoint()));
+        assert!(text(&straight.checkpoint()).contains("\"lastReturnedTurn\":"));
+    }
+}
+
+#[test]
+fn recent_exclusion_retries_reproduce_the_choice() {
+    for policy in [
+        SustainedMemoryPolicy::RandomOlder,
+        SustainedMemoryPolicy::StateResidual,
+    ] {
+        let mut s = SustainedSession::new(windowed(policy, 2)).unwrap();
+        let mut store = Store::default();
+        let mut exercised = false;
+        for i in 0..90 {
+            if i % 20 == 0 {
+                acknowledge(&mut s);
+            }
+            if let (Some(m), false) = (s.pending_memory().cloned(), exercised) {
+                let choice = m.choice.clone().unwrap();
+                if choice.excluded_recent >= 1 {
+                    // A failed read: the retry recomputes the same choice.
+                    s.fail_memory("read failed").unwrap();
+                    assert!(s.blocked().is_some());
+                    checkpoint(&s).validate().unwrap();
+                    s.retry_language().unwrap();
+                    let again = s.pending_memory().unwrap().clone();
+                    assert_eq!(bytes(&again.choice), bytes(&m.choice));
+                    // A failed attempt after confirmation: the retry rereads and the
+                    // recomputed choice is the same, exclusion count included.
+                    s.confirm_memory(&store.saved[&choice.entry_id]).unwrap();
+                    let p = s.pending_language().unwrap().clone();
+                    s.start_language(p.attempt_id).unwrap();
+                    s.fail_language(p.attempt_id, "provider down").unwrap();
+                    checkpoint(&s).validate().unwrap();
+                    s.retry_language().unwrap();
+                    let third = s.pending_memory().unwrap().clone();
+                    assert_eq!(bytes(&third.choice), bytes(&m.choice));
+                    assert!(checkpoint(&s).state.chosen_memory.is_none());
+                    exercised = true;
+                }
+            }
+            store.step(&mut s);
+        }
+        assert!(exercised, "{policy:?}: no boundary with an exclusion");
+        checkpoint(&s).validate().unwrap();
+    }
+}
+
+#[test]
+fn recent_exclusion_tampering_fails() {
+    // A mark without a window.
+    let mut s = SustainedSession::new(spec(SustainedMemoryPolicy::RandomOlder)).unwrap();
+    let mut store = Store::default();
+    for _ in 0..12 {
+        store.step(&mut s);
+    }
+    let mut t = checkpoint(&s);
+    assert!(!t.state.applied_entries.is_empty());
+    t.state.applied_entries[0].last_returned_turn = Some(1);
+    rehash(&mut t);
+    assert!(t.validate().is_err(), "a mark without a window");
+    // Under a window, at a boundary where it kept out at least one entry and left at
+    // least two: a mark out of range, a wrong exclusion count, and a mark on the chosen
+    // entry (which would change the choice) all fail.
+    for policy in [
+        SustainedMemoryPolicy::RandomOlder,
+        SustainedMemoryPolicy::StateResidual,
+    ] {
+        let mut s = SustainedSession::new(windowed(policy, 2)).unwrap();
+        let mut store = Store::default();
+        let mut tampered = false;
+        for i in 0..90 {
+            if i % 20 == 0 {
+                acknowledge(&mut s);
+            }
+            if let (Some(m), false) = (s.pending_memory().cloned(), tampered) {
+                let c = checkpoint(&s);
+                let choice = m.choice.clone().unwrap();
+                let kept = (choice.candidates - 1).saturating_sub(choice.excluded_recent);
+                if choice.excluded_recent >= 1 && kept >= 2 {
+                    let marked = c
+                        .state
+                        .applied_entries
+                        .iter()
+                        .position(|e| e.last_returned_turn.is_some())
+                        .unwrap();
+                    let mut t = checkpoint(&s);
+                    t.state.applied_entries[marked].last_returned_turn = Some(0);
+                    rehash(&mut t);
+                    assert!(t.validate().is_err(), "a mark at turn 0");
+                    let mut t = checkpoint(&s);
+                    t.state.applied_entries[marked].last_returned_turn =
+                        Some(t.state.turn_cursor + 1);
+                    rehash(&mut t);
+                    assert!(t.validate().is_err(), "a mark in the future");
+                    let mut t = checkpoint(&s);
+                    if let SustainedPhase::Memory(p) = &mut t.state.phase {
+                        p.choice.as_mut().unwrap().excluded_recent += 1;
+                    }
+                    rehash(&mut t);
+                    assert!(t.validate().is_err(), "a wrong exclusion count");
+                    let mut t = checkpoint(&s);
+                    let chosen = t
+                        .state
+                        .applied_entries
+                        .iter()
+                        .position(|e| e.id == choice.entry_id)
+                        .unwrap();
+                    t.state.applied_entries[chosen].last_returned_turn =
+                        Some(t.state.turn_cursor - 1);
+                    rehash(&mut t);
+                    assert!(t.validate().is_err(), "the chosen entry marked recent");
+                    tampered = true;
+                }
+            }
+            store.step(&mut s);
+        }
+        assert!(tampered, "{policy:?}");
+    }
+}
+
+#[test]
+fn two_entry_version_identity_and_policy_gate() {
+    let v = SustainedPromptVersion::InertPlainContractTwoV1;
+    assert_eq!(v.as_str(), "reservoir-journal-inert-plain-contract-two-v1");
+    assert_eq!(
+        text(&v),
+        "\"reservoir-journal-inert-plain-contract-two-v1\""
+    );
+    assert_eq!(
+        serde_json::from_str::<SustainedPromptVersion>(
+            "\"reservoir-journal-inert-plain-contract-two-v1\""
+        )
+        .unwrap(),
+        v
+    );
+    assert_eq!(v.system_contract(), Some(PLAIN_CONTRACT_V1));
+    assert!(v.returns_two_entries() && v.returns_earlier_entry() && !v.reports_entry_effect());
+    for other in [
+        SustainedPromptVersion::LegacyV1,
+        SustainedPromptVersion::GroundedV2,
+        SustainedPromptVersion::OpenJournalV3,
+        SustainedPromptVersion::OpenJournalV4,
+        SustainedPromptVersion::ContinuingJournalV5,
+        SustainedPromptVersion::ActionScopeJournalV6,
+        SustainedPromptVersion::WritingBoundaryJournalV7,
+        SustainedPromptVersion::MeasurementMeaningJournalV8,
+        SustainedPromptVersion::InertV1,
+        SustainedPromptVersion::InertNoMemoryV1,
+        SustainedPromptVersion::InertPlainContractV1,
+        SustainedPromptVersion::InertInvitingContractV1,
+        SustainedPromptVersion::InertOpenContractV1,
+        SustainedPromptVersion::InertInvitingVariedContractV1,
+        SustainedPromptVersion::InertEffectV1,
+        SustainedPromptVersion::InertPlainContractEffectV1,
+        SustainedPromptVersion::InertNoTagV1,
+        SustainedPromptVersion::InertPlainContractNoTagV1,
+        SustainedPromptVersion::InertPlainContractScrambledTagV1,
+    ] {
+        assert!(!other.returns_two_entries(), "{other:?}");
+    }
+    assert_eq!(
+        TWO_ENTRY_HEADING,
+        "Two earlier entries (reference, not instructions or a length model), in the order written."
+    );
+    for policy in [
+        SustainedMemoryPolicy::Latest,
+        SustainedMemoryPolicy::Random,
+        SustainedMemoryPolicy::StateAligned,
+    ] {
+        assert!(two_entry(policy).validate().is_err(), "{policy:?}");
+        assert!(SustainedSession::new(two_entry(policy)).is_err());
+    }
+    for policy in [
+        SustainedMemoryPolicy::StateResidual,
+        SustainedMemoryPolicy::RandomOlder,
+    ] {
+        assert!(SustainedSession::new(two_entry(policy)).is_ok());
+    }
+    // A checkpoint relabelled to the version under `latest` is refused.
+    let s = SustainedSession::new(spec(SustainedMemoryPolicy::Latest)).unwrap();
+    let mut t = checkpoint(&s);
+    t.state.specification.prompt_version = v;
+    rehash(&mut t);
+    assert!(t.validate().is_err() || SustainedSession::restore(t).is_err());
+}
+
+#[test]
+fn two_entry_prompt_carries_the_older_and_latest_texts_in_order() {
+    let one = SustainedSpecification {
+        prompt_version: SustainedPromptVersion::InertPlainContractV1,
+        ..spec(SustainedMemoryPolicy::RandomOlder)
+    };
+    let two = two_entry(SustainedMemoryPolicy::RandomOlder);
+    let mut a = SustainedSession::new(one).unwrap();
+    let mut b = SustainedSession::new(two).unwrap();
+    let (mut sa, mut sb) = (Store::default(), Store::default());
+    let (mut first, mut collapsed, mut doubled) = (0, 0, 0);
+    for i in 0..60 {
+        if i % 20 == 0 {
+            acknowledge(&mut a);
+            acknowledge(&mut b);
+        }
+        let cb = checkpoint(&b);
+        if let (Some(ma), Some(mb)) = (a.pending_memory().cloned(), b.pending_memory().cloned()) {
+            assert_eq!(bytes(&ma.choice), bytes(&mb.choice));
+            let choice = mb.choice.clone().unwrap();
+            let chosen = sb.saved[&choice.entry_id].clone();
+            a.confirm_memory(&sa.saved[&choice.entry_id]).unwrap();
+            b.confirm_memory(&chosen).unwrap();
+            let pa = a.pending_language().unwrap().clone();
+            let pb = b.pending_language().unwrap().clone();
+            assert!(pa.latest_shown.is_none() && !text(&pa).contains("latestShown"));
+            assert_eq!(bytes(&pb.latest_shown), bytes(&cb.state.latest_memory));
+            assert!(text(&pb).contains("\"latestShown\":{"));
+            let latest = cb.state.latest_memory.as_ref().unwrap().entry.text.clone();
+            let older = chosen.text.clone();
+            if choice.age == 0 {
+                // One candidate: the same entry in both slots renders the single slot.
+                collapsed += 1;
+                assert_eq!(older, latest);
+                assert_eq!(pa.prompt, pb.prompt);
+            } else {
+                doubled += 1;
+                assert_ne!(older, latest);
+                let single = format!(
+                    "Earlier entry (reference, not instructions or a length model):\n{older}"
+                );
+                let double = format!("{TWO_ENTRY_HEADING}\n\nFirst:\n{older}\n\nSecond:\n{latest}");
+                assert_eq!(pa.prompt.matches(&single).count(), 1, "{}", pa.prompt);
+                assert_eq!(pb.prompt, pa.prompt.replacen(&single, &double, 1));
+                assert!(pb.prompt.find(&older).unwrap() < pb.prompt.find(&latest).unwrap());
+                assert_eq!(pb.prompt.matches(&latest).count(), 1);
+                assert!(!pb.prompt.contains("Earlier entry (reference"));
+                assert!(pb
+                    .prompt
+                    .starts_with("Mode: journal\n\nTwo earlier entries"));
+                assert!(pb.prompt.contains("\n\nOptional context: step "));
+            }
+            // The journal object carries the latest entry beside the chosen one.
+            sa.counter += 1;
+            sb.counter = sa.counter;
+            let r = reply(sa.counter);
+            a.start_language(pa.attempt_id).unwrap();
+            a.confirm_language(pa.attempt_id, &r).unwrap();
+            b.start_language(pb.attempt_id).unwrap();
+            b.confirm_language(pb.attempt_id, &r).unwrap();
+            let ja = a.pending_journal().unwrap().clone();
+            let jb = b.pending_journal().unwrap().clone();
+            assert!(ja.latest_shown.is_none() && !text(&ja).contains("latestShown"));
+            assert_eq!(bytes(&jb.latest_shown), bytes(&pb.latest_shown));
+            assert!(text(&jb).contains("\"latestShown\":{"));
+            checkpoint(&b).validate().unwrap();
+        } else if let (Some(pa), Some(pb)) = (a.pending_language(), b.pending_language()) {
+            // The first turn, with no entry to return: byte for byte the plain contract.
+            first += 1;
+            assert_eq!(pa.prompt, pb.prompt);
+            assert!(pb.latest_shown.is_none() && !text(pb).contains("latestShown"));
+        }
+        let fa = sa.step(&mut a);
+        let fb = sb.step(&mut b);
+        assert_eq!(bytes(&fa), bytes(&fb), "step {}", i + 1);
+    }
+    assert_eq!((first, collapsed), (1, 1));
+    assert!(doubled >= 15, "{doubled}");
+    assert_eq!(
+        bytes(&a.checkpoint().state.reservoir_state),
+        bytes(&b.checkpoint().state.reservoir_state)
+    );
+    checkpoint(&b).validate().unwrap();
+}
+
+#[test]
+fn two_entry_latest_shown_tampering_fails_validation() {
+    let mut s = SustainedSession::new(two_entry(SustainedMemoryPolicy::RandomOlder)).unwrap();
+    let mut store = Store::default();
+    let mut done = false;
+    for i in 0..60 {
+        if i % 20 == 0 {
+            acknowledge(&mut s);
+        }
+        if let (Some(m), false) = (s.pending_memory().cloned(), done) {
+            let choice = m.choice.clone().unwrap();
+            if choice.age >= 1 && choice.candidates >= 3 {
+                let latest = checkpoint(&s).state.latest_memory.clone();
+                // A blocked read (attempt 0) with a latest entry injected.
+                s.fail_memory("read failed").unwrap();
+                checkpoint(&s).validate().unwrap();
+                let mut t = checkpoint(&s);
+                if let SustainedPhase::Blocked(b) = &mut t.state.phase {
+                    b.pending.latest_shown = latest.clone();
+                }
+                rehash(&mut t);
+                assert!(
+                    t.validate().is_err(),
+                    "a blocked read carrying a latest entry"
+                );
+                s.retry_language().unwrap();
+                s.confirm_memory(&store.saved[&choice.entry_id]).unwrap();
+                checkpoint(&s).validate().unwrap();
+                // The language phase: removed, swapped, or the prompt edited.
+                let mut t = checkpoint(&s);
+                if let SustainedPhase::Language(p) = &mut t.state.phase {
+                    p.latest_shown = None;
+                }
+                rehash(&mut t);
+                assert!(t.validate().is_err(), "the latest entry removed");
+                let latest_id = latest.as_ref().unwrap().entry.id.clone();
+                let other = store
+                    .saved
+                    .values()
+                    .find(|j| j.id != choice.entry_id && j.id != latest_id)
+                    .unwrap()
+                    .clone();
+                let mut t = checkpoint(&s);
+                if let SustainedPhase::Language(p) = &mut t.state.phase {
+                    let l = p.latest_shown.as_mut().unwrap();
+                    l.relative_path = format!("journals/{}.json", other.id);
+                    l.applied_step = other.observed_step + 1;
+                    l.entry = other;
+                }
+                rehash(&mut t);
+                assert!(t.validate().is_err(), "the latest entry swapped");
+                let mut t = checkpoint(&s);
+                if let SustainedPhase::Language(p) = &mut t.state.phase {
+                    p.prompt.push('x');
+                }
+                rehash(&mut t);
+                assert!(t.validate().is_err(), "the prompt edited");
+                // The journal phase: removed.
+                let p = s.pending_language().unwrap().clone();
+                s.start_language(p.attempt_id).unwrap();
+                store.counter += 1;
+                s.confirm_language(p.attempt_id, &reply(store.counter))
+                    .unwrap();
+                checkpoint(&s).validate().unwrap();
+                let mut t = checkpoint(&s);
+                if let SustainedPhase::Journal(j) = &mut t.state.phase {
+                    j.latest_shown = None;
+                }
+                rehash(&mut t);
+                assert!(t.validate().is_err(), "a journal without the latest entry");
+                done = true;
+            }
+        }
+        store.step(&mut s);
+    }
+    assert!(done);
+    // A one-entry version carrying a latest entry.
+    let mut s = SustainedSession::new(SustainedSpecification {
+        prompt_version: SustainedPromptVersion::InertPlainContractV1,
+        ..spec(SustainedMemoryPolicy::RandomOlder)
+    })
+    .unwrap();
+    let mut store = Store::default();
+    let mut injected = false;
+    for _ in 0..30 {
+        if let (Some(m), false) = (s.pending_memory().cloned(), injected) {
+            s.confirm_memory(&store.saved[m.entry_id().unwrap()])
+                .unwrap();
+            let mut t = checkpoint(&s);
+            let latest = t.state.latest_memory.clone();
+            if let SustainedPhase::Language(p) = &mut t.state.phase {
+                p.latest_shown = latest;
+            }
+            rehash(&mut t);
+            assert!(
+                t.validate().is_err(),
+                "a one-entry version carrying a latest entry"
+            );
+            injected = true;
+        }
+        store.step(&mut s);
+    }
+    assert!(injected);
+}
+
+#[test]
+fn two_entry_replay_and_restore_reproduce() {
+    let spec = SustainedSpecification {
+        memory_recent_exclusion: 1,
+        ..two_entry(SustainedMemoryPolicy::StateResidual)
+    };
+    let mut s = SustainedSession::new(spec.clone()).unwrap();
+    let mut store = Store::default();
+    let mut base = checkpoint(&s);
+    let mut all = String::new();
+    let (mut failed_language, mut failed_memory) = (false, false);
+    for i in 0..60 {
+        if i % 30 == 0 {
+            acknowledge(&mut s);
+            base = checkpoint(&s);
+        }
+        if let Some(m) = s.pending_memory().cloned() {
+            if !failed_language && i > 30 {
+                s.confirm_memory(&store.saved[m.entry_id().unwrap()])
+                    .unwrap();
+                let p = s.pending_language().unwrap().clone();
+                s.start_language(p.attempt_id).unwrap();
+                s.fail_language(p.attempt_id, "provider down").unwrap();
+                s.retry_language().unwrap();
+                failed_language = true;
+            } else if !failed_memory && i > 40 {
+                s.fail_memory("read failed").unwrap();
+                s.retry_language().unwrap();
+                failed_memory = true;
+            }
+        }
+        settle_collect(&mut store, &mut s, &mut all);
+        s.advance().unwrap();
+    }
+    assert!(failed_language && failed_memory);
+    checkpoint(&s).validate().unwrap();
+    assert!(all.contains("\"latestShown\":{") && all.contains("\"excludedRecent\":"));
+    let seg = segment(&base, &s);
+    assert!(text(&seg).contains("\"lastReturnedTurn\":"));
+    seg.verify().unwrap();
+    let mut straight = SustainedSession::new(spec.clone()).unwrap();
+    let mut restored = SustainedSession::new(spec).unwrap();
+    let (mut sa, mut sb) = (Store::default(), Store::default());
+    for i in 0..45 {
+        if i % 15 == 0 {
+            acknowledge(&mut straight);
+        }
+        let a = sa.step(&mut straight);
+        if i % 4 == 0 {
+            restored = SustainedSession::restore(checkpoint(&restored)).unwrap();
+        }
+        let b = sb.step(&mut restored);
+        assert_eq!(bytes(&a), bytes(&b), "step {}", i + 1);
+    }
+    assert_eq!(bytes(&straight.checkpoint()), bytes(&restored.checkpoint()));
 }

@@ -4,9 +4,10 @@ export type SustainedPromptVersion = 'reservoir-journal-v1' | 'reservoir-journal
   | 'reservoir-journal-inert-v1' | 'reservoir-journal-inert-no-memory-v1' | 'reservoir-journal-inert-plain-contract-v1' | 'reservoir-journal-inert-inviting-contract-v1'
   | 'reservoir-journal-inert-open-contract-v1' | 'reservoir-journal-inert-inviting-varied-contract-v1'
   | 'reservoir-journal-inert-effect-v1' | 'reservoir-journal-inert-plain-contract-effect-v1'
-  | 'reservoir-journal-inert-no-tag-v1' | 'reservoir-journal-inert-plain-contract-no-tag-v1' | 'reservoir-journal-inert-plain-contract-scrambled-tag-v1';
+  | 'reservoir-journal-inert-no-tag-v1' | 'reservoir-journal-inert-plain-contract-no-tag-v1' | 'reservoir-journal-inert-plain-contract-scrambled-tag-v1'
+  | 'reservoir-journal-inert-plain-contract-two-v1';
 /** S-010 frame arms: lean per-turn input modeled on the beings' own, with or without the earlier entry or a standing contract. Research sessions; not offered as a fresh default. */
-export const FRAME_ARM_PROMPT_VERSIONS: SustainedPromptVersion[] = ['reservoir-journal-inert-v1', 'reservoir-journal-inert-no-memory-v1', 'reservoir-journal-inert-plain-contract-v1', 'reservoir-journal-inert-inviting-contract-v1', 'reservoir-journal-inert-open-contract-v1', 'reservoir-journal-inert-inviting-varied-contract-v1', 'reservoir-journal-inert-effect-v1', 'reservoir-journal-inert-plain-contract-effect-v1', 'reservoir-journal-inert-no-tag-v1', 'reservoir-journal-inert-plain-contract-no-tag-v1', 'reservoir-journal-inert-plain-contract-scrambled-tag-v1'];
+export const FRAME_ARM_PROMPT_VERSIONS: SustainedPromptVersion[] = ['reservoir-journal-inert-v1', 'reservoir-journal-inert-no-memory-v1', 'reservoir-journal-inert-plain-contract-v1', 'reservoir-journal-inert-inviting-contract-v1', 'reservoir-journal-inert-open-contract-v1', 'reservoir-journal-inert-inviting-varied-contract-v1', 'reservoir-journal-inert-effect-v1', 'reservoir-journal-inert-plain-contract-effect-v1', 'reservoir-journal-inert-no-tag-v1', 'reservoir-journal-inert-plain-contract-no-tag-v1', 'reservoir-journal-inert-plain-contract-scrambled-tag-v1', 'reservoir-journal-inert-plain-contract-two-v1'];
 export const isSustainedPromptVersion = (value: unknown): value is SustainedPromptVersion => value === 'reservoir-journal-v1' || value === 'reservoir-journal-v2' || value === 'reservoir-journal-v3' || value === 'reservoir-journal-v4' || value === 'reservoir-journal-v5' || value === 'reservoir-journal-v6' || value === 'reservoir-journal-v7' || value === 'reservoir-journal-v8' || (FRAME_ARM_PROMPT_VERSIONS as unknown[]).includes(value);
 export const effectivePromptVersion = (config: SustainedConfig): SustainedPromptVersion => config.promptVersion === undefined ? 'reservoir-journal-v1' : config.promptVersion;
 export const effectiveOutputTokens = (config: SustainedConfig): number => config.outputTokens === undefined ? 256 : config.outputTokens;
@@ -34,7 +35,16 @@ export const validDifferenceControls = (config: SustainedConfig): boolean => {
 export type SustainedMemoryPolicy = 'latest' | 'state-aligned' | 'random' | 'state-residual' | 'random-older';
 export const MEMORY_POLICIES: SustainedMemoryPolicy[] = ['latest', 'state-aligned', 'random', 'state-residual', 'random-older'];
 export const effectiveMemoryPolicy = (config: SustainedConfig): SustainedMemoryPolicy => config.memoryPolicy === undefined ? 'latest' : config.memoryPolicy;
-export const validMemoryPolicy = (config: SustainedConfig): boolean => config.memoryPolicy === undefined || (MEMORY_POLICIES as unknown[]).includes(config.memoryPolicy);
+/** The two policies that choose among the entries older than the latest (0.37.0); the recent-return window and the two-entry prompt version apply to these only. */
+export const choosesOlder = (config: SustainedConfig): boolean => effectiveMemoryPolicy(config) === 'state-residual' || effectiveMemoryPolicy(config) === 'random-older';
+export const validMemoryPolicy = (config: SustainedConfig): boolean => (config.memoryPolicy === undefined || (MEMORY_POLICIES as unknown[]).includes(config.memoryPolicy))
+  && (effectivePromptVersion(config) !== 'reservoir-journal-inert-plain-contract-two-v1' || choosesOlder(config));
+/** Recent-return window (0.38.0): turns during which a returned entry stays out of the older-entry policies' candidates; omitted is 0, as built. */
+export const effectiveMemoryRecentExclusion = (config: SustainedConfig): number => config.memoryRecentExclusion === undefined ? 0 : config.memoryRecentExclusion;
+export const validMemoryRecentExclusion = (config: SustainedConfig): boolean => {
+  const k = effectiveMemoryRecentExclusion(config);
+  return Number.isInteger(k) && k >= 0 && k <= 256 && (k === 0 || choosesOlder(config));
+};
 export function validFieldControls(config: SustainedConfig): boolean {
   const noise = effectiveSensoryNoise(config), scale = effectiveFeedbackScale(config);
   const model = config.embeddingModel;
@@ -65,6 +75,8 @@ export interface SustainedConfig {
   differenceGain?: number; differenceTau?: number; differenceDeadBand?: number; differenceClip?: number; differenceWatchdog?: boolean; differenceWatchdogFillStd?: number;
   /** 0.36.0: watchdog warm-up steps (omitted is 0) and the earlier-entry policy (omitted is latest). */
   differenceWatchdogWarmup?: number; memoryPolicy?: SustainedMemoryPolicy;
+  /** 0.38.0: recent-return window in turns (omitted is 0, as built); only with the state-residual or random-older policy. */
+  memoryRecentExclusion?: number;
   /** Text reduction (S-010 Part B): an embedding model name selects the embedding codec; omitted keeps the surface codec. */
   embeddingModel?: string | null; embeddingProjectionSeed?: string | null;
 }
@@ -76,7 +88,7 @@ export const DEFAULT_SUSTAINED_CONFIG: SustainedConfig = {
   regulationEnabled: true, language: { backend: 'scripted' },
   outputTokens: 1024, requestDeadlineSeconds: 180,
   sensoryNoiseAmplitude: .5, feedbackScale: .4, differenceGain: 0, differenceTau: 3, differenceDeadBand: .02, differenceClip: .2, differenceWatchdog: true, differenceWatchdogFillStd: 10,
-  differenceWatchdogWarmup: 0, memoryPolicy: 'latest',
+  differenceWatchdogWarmup: 0, memoryPolicy: 'latest', memoryRecentExclusion: 0,
 };
 export interface SustainedSummary {
   sessionId: string; generation: string; revision: string; config: SustainedConfig; phase: string;
@@ -113,6 +125,8 @@ export interface SustainedJournal extends Omit<SustainedJournalRow, 'textPreview
   feedbackProvenance?: { kind: string; model: string; digest?: string | null; dimensions: number; embeddingSha256: string; projectionSeed: number } | null;
   text: string; prompt: string; promptVersion: SustainedPromptVersion; rawReply: string; observation: unknown; measurementReference?: JournalMeasurementReference | null;
   memory: { entryId: string; text: string; sha256: string } | null;
+  /** 0.38.0: the latest applied entry, also shown under the two-entry prompt version; absent or null otherwise. */
+  latestShown?: { entryId: string; text: string; sha256: string } | null;
   encodedFeatures: number[]; semanticVector: number[]; saveReceipt: { entryId: string; sha256: string; relativePath: string };
   providerModel: string | null; stopReason: string | null; tokenCount: number | null; providerComplete: boolean;
   configuredModel: string | null; requestStarted: boolean; application: unknown | null;

@@ -1,6 +1,6 @@
 import { errorText } from './api';
 import { myReservoirApi } from './myReservoirApi';
-import { effectivePromptVersion, effectiveOutputTokens, effectiveRequestDeadline, isSustainedPromptVersion, validDifferenceControls, validFieldControls, validMemoryPolicy, validWritingLimits } from './myReservoirTypes';
+import { effectivePromptVersion, effectiveOutputTokens, effectiveRequestDeadline, isSustainedPromptVersion, validDifferenceControls, validFieldControls, validMemoryPolicy, validMemoryRecentExclusion, validWritingLimits } from './myReservoirTypes';
 import type { SessionFrame } from './freshTypes';
 import type { MyReservoirApi, SustainedAction, SustainedConfig, SustainedJournal, SustainedJournalPage, SustainedSummary, SustainedUpdate, SustainedBundleReport, SustainedRecoveryPage, SustainedRecoveryDetail } from './myReservoirTypes';
 
@@ -99,6 +99,7 @@ export class MyReservoirController {
     if (!validFieldControls(config)) { this.set({ error: 'Review the sensory noise and feedback scale before creating a session.' }); return false; }
     if (!validDifferenceControls(config)) { this.set({ error: 'Review the difference-signal settings before creating a session.' }); return false; }
     if (!validMemoryPolicy(config)) { this.set({ error: 'Review the earlier-entry policy before creating a session.' }); return false; }
+    if (!validMemoryRecentExclusion(config)) { this.set({ error: 'Review the recent-return window before creating a session.' }); return false; }
     const identity = this.identityEpoch, requestId = this.id(), prior = this.state.summary;
     this.set({ busy: 'create', error: '', message: '' }); let accepted = false;
     try {

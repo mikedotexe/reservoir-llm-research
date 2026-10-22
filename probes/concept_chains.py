@@ -145,7 +145,10 @@ def timestamp_key(path):
     return (match.group(1) if match else "", name)
 
 
-def load(source):
+def load(source, lane=None):
+    """Entries of a session directory (ordered by step) or of a directory of `.txt` files
+    (ordered by the timestamp in the name); `lane` keeps only `.txt` files whose name,
+    after any `!` flag, starts with that lane prefix and an underscore."""
     entries = []
     if os.path.isdir(os.path.join(source, "journals")):
         files = sorted(glob.glob(os.path.join(source, "journals", "*.json")), key=lambda f: int(os.path.basename(f).split("-")[1]))
@@ -155,9 +158,14 @@ def load(source):
             pending = record["pending"]
             memory = pending.get("memory")
             shown = (memory.get("entry") or {}).get("text") if isinstance(memory, dict) else None
-            entries.append(dict(label=f"step {pending['observation']['step']}", text=pending["entry"]["text"], shown=shown))
+            # Under the 0.38.0 two-entry prompt version the latest applied entry (the previous
+            # entry of this session) was shown beside the chosen older one.
+            both = isinstance(pending.get("latestShown"), dict)
+            entries.append(dict(label=f"step {pending['observation']['step']}", text=pending["entry"]["text"], shown=shown, both=both))
     else:
         files = sorted(glob.glob(os.path.join(source, "*.txt")), key=timestamp_key)
+        if lane:
+            files = [f for f in files if os.path.basename(f).lstrip("!").startswith(lane + "_")]
         for f in files:
             with open(f, encoding="utf-8", errors="replace") as handle:
                 text = clean(handle.read())
@@ -285,7 +293,7 @@ def analyse(entries, window=12):
     for o in offsets:
         offset_bins["1" if o == 1 else "2" if o == 2 else "3–5" if o <= 5 else "6+"] += 1
     return dict(
-        n=n, words=total_words, window=window,
+        n=n, words=total_words, window=window, both=sum(1 for e in entries if e.get("both")),
         carried=pct(carried), carried_shown=pct(carried_shown), shown_n=len(carried_shown),
         offsets=offset_bins, offsets_n=len(offsets), offset_mean=mean(offsets),
         agree=pct(agree), agree_n=len(agree), chance=pct(chance),
@@ -309,7 +317,8 @@ def fmt(value, digits=1):
 
 
 def report(label, r, show_entries=False):
-    print(f"{label}: {r['n']} entries (n) · {r['words']:,} words · window {r['window']}")
+    both = f" · the previous entry was also shown beside the older one on {r['both']} entries" if r.get("both") else ""
+    print(f"{label}: {r['n']} entries (n) · {r['words']:,} words · window {r['window']}{both}")
     shown = f"; from the entry shown {fmt(r['carried_shown'])}% ({r['shown_n']} shown)" if r["shown_n"] else ""
     print(f"  carried from the previous entry: {fmt(r['carried'])}% of terms (mean over {r['n'] - 1} entries){shown}")
     bins = r["offsets"]
@@ -350,6 +359,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("sources", nargs="+")
     parser.add_argument("--window", type=int, default=12)
+    parser.add_argument("--lane", default=None, help="for .txt directories: keep only files whose name starts with this lane prefix")
     parser.add_argument("--entries", action="store_true")
     parser.add_argument("--json")
     parser.add_argument("--trace", action="append", default=[], metavar="TERM", help="print, per source, each entry holding this term (reduced) with its first sentence that does")
