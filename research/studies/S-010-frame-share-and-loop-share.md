@@ -213,6 +213,15 @@ apparatus arms echo their contract at 3–40× the no-contract rate. Dilution by
 dialogue, or a contract-shaped baseline; not separable here. `probes/contract_echo.py`
 takes `--file` and journal .txt directories for this.
 
+2026-10-21 17:50, gemma4 second seed
+([account](../../analyses/2026-10-21-frame-arms.md#the-gemma4-arms-at-seed-7)): every
+contrast holds on both seeds of the beings' model family. No contract gives a sculptor's
+diary or a project status report, never the writer's own situation; the plain and open
+contracts both give the fill followed as a felt texture in first person; the inviting
+contract's "The reservoir is…" opening appears at both seeds (10 and 3 of 12) and
+Astrid's two lines leave it at 1 with question openings in 8 and 10 of 12. Zero verbatim
+overlap in all twelve gemma4 arms. The Mixtral tune runs next as a third model.
+
 ## What changed / next
 
 Interpretation revised: the frame paragraph is not where the register comes from; the

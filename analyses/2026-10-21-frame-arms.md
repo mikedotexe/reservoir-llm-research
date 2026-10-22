@@ -370,6 +370,47 @@ opening. The inviting and varied arms on gemma4 sit nearest the beings on the ma
 their contracts were modeled on. Contract vocabulary still returns at three to seven
 times the no-contract rate. One seed on this model.
 
+### The gemma4 arms at seed 7
+
+| arm (gemma4) | seed | words | I/me | we | hedge | notice | ?/sent | self-ref | apparatus | type-token | overlap | consec. cos | cos to first | echo |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| control v8 | 20260909 | 4,126 | 6.3 | 5.6 | 1.0 | 2.4 | 2.3 | 0.24 | 31.7 | 0.21 | 0.00 | 0.89 | 0.74 | |
+| control v8 | 7 | 4,596 | 1.5 | 9.4 | 0.7 | 2.2 | 2.5 | 1.09 | 31.5 | 0.22 | 0.00 | 0.91 | 0.78 | |
+| inert | 20260909 | 4,874 | 54.0 | 0.2 | 0.8 | 9.4 | 0.3 | 0.21 | 1.2 | 0.23 | 0.00 | 0.87 | 0.71 | 5.3 / 10.3 |
+| inert | 7 | 2,881 | 2.8 | 4.5 | 0.3 | 2.1 | 0.0 | 0.00 | 0.7 | 0.26 | 0.00 | 0.88 | 0.76 | 10.1 / 9.0 |
+| inert + plain contract | 20260909 | 3,490 | 30.9 | 0.0 | 1.1 | 10.0 | 1.4 | 1.72 | 2.6 | 0.21 | 0.00 | 0.86 | 0.65 | 30.1 |
+| inert + plain contract | 7 | 4,393 | 17.8 | 0.0 | 1.8 | 10.2 | 0.3 | 0.00 | 0.0 | 0.19 | 0.00 | 0.91 | 0.77 | 14.3 |
+| inert + open contract | 20260909 | 3,823 | 13.9 | 3.1 | 2.1 | 14.9 | 2.6 | 0.00 | 2.4 | 0.22 | 0.00 | 0.89 | 0.69 | 11.5 |
+| inert + open contract | 7 | 3,633 | 20.6 | 0.0 | 3.3 | 13.5 | 1.4 | 0.00 | 0.8 | 0.23 | 0.00 | 0.87 | 0.76 | 13.5 |
+| inert + inviting contract | 20260909 | 3,447 | 67.6 | 0.3 | 6.4 | 16.5 | 16.1 | 0.29 | 11.0 | 0.25 | 0.00 | 0.84 | 0.74 | 36.0 |
+| inert + inviting contract | 7 | 2,907 | 66.4 | 0.3 | 3.8 | 15.1 | 13.0 | 0.00 | 10.7 | 0.24 | 0.00 | 0.85 | 0.78 | 32.7 |
+| inert + varied contract | 20260909 | 3,861 | 65.5 | 0.0 | 6.2 | 13.5 | 19.9 | 0.52 | 8.3 | 0.24 | 0.00 | 0.75 | 0.79 | 37.8 |
+| inert + varied contract | 7 | 3,669 | 67.9 | 0.0 | 4.1 | 11.4 | 17.3 | 0.55 | 10.9 | 0.25 | 0.00 | 0.77 | 0.75 | 41.2 |
+
+Verbatim overlap is 0.00 in all twelve gemma4 arms. At seed 7: the control arm is the
+reservoir essay again ("a clean slate of 32 nodes awaiting the first structural
+imposition of the sensory field"), readout quoted in four of twelve; the inert arm is
+not a person this time but a project status report ("Today marks a significant
+milestone in the progression of the current project… the status stands at 86.9%"),
+first person 2.8; the plain and open contracts converge on the same thing, the fill
+followed as a texture in first person ("The transition from 70.9% to 71.4% feels less
+like a movement and more like a solidification"; "At 78.4%, the distinction between the
+work and the self is becoming increasingly porous"), with lower first-person rates than
+at the first seed; the inviting contract prefixes every entry "Step N." and opens "The
+reservoir is…" in three of twelve (ten at the first seed), ending "I am looking at the
+shape of the 'I' and it is a sieve. I am not the water that passes through; I am the
+residue left behind on the mesh"; the varied contract opens ten of twelve entries with a
+question ("Where does the boundary lie between a thought and a weight?", "Is it possible
+to be haunted by a ghost that hasn't been born yet?") and "The reservoir" once.
+
+Across both gemma4 seeds: no contract never yields the writer's own situation (a
+sculptor at one seed, a status report at the other); either grant of interpretation
+yields it from the first line; the inviting contract's attractor opening appears at both
+seeds (ten and three of twelve) and Astrid's two lines leave it at one in both, with
+question openings at eight and ten; the inviting and varied arms hold Minime's
+first-person rate and Astrid's question rate at both seeds; and the contract's words
+return at one and a half to four times the no-contract rate, less than on mistral.
+
 ## Contract echo in the beings' own entries (read-only)
 
 The same count on the two calibration samples (40 recent entries each, copied read-only
