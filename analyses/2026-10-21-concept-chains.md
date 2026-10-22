@@ -104,7 +104,11 @@ are word runs, so a long run of a common word is register rather than a concept;
 inferred source is a lexical nearest neighbour and recency alone favours offset 1; the
 no-tag arms at retention 0.90 and 0.82 forked from the shelf arms only by provider
 variation (`analyses/2026-10-21-state-chosen-memory.md`), so differences between them
-are replicate noise.
+are replicate noise. On 2026-10-22 the probe's stop list gained four-letter function words
+(such as "that", "this" and "what") after a week of Minime's entries produced a 759-entry
+chain of a quoted "that"; the quoted-term columns
+above were computed before that change and are not comparable with later runs, while the
+carried, inferred-source, reach, bridge and chain columns are unaffected.
 
 ## What it offers the planning pass
 

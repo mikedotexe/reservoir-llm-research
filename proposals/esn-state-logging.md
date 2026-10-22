@@ -1,6 +1,6 @@
 # Proposal: continuous, timestamped reservoir-state logging for the beings (spec M0)
 
-Status: proposal only (2026-10-21). Implementation, if any, happens in the sibling repos
+Status: proposal only (2026-10-21; capture section added 2026-10-22). Implementation, if any, happens in the sibling repos
 under their own rules (`astrid/CLAUDE.md`, `minime/AGENTS.md`); nothing here touches the
 live systems. Source: Mike's self-observation build spec, milestone M0, and
 [S-011](../research/studies/S-011-self-observation-stack.md).
@@ -24,10 +24,37 @@ minime's engine keeps a ring of the last 1,024 ESN states (`minime/src/runtime/o
 (`:5660–5700`, a steward-only, side-effect-free block consumed by
 `astrid/scripts/reservoir_capacity_audit.py`, which computes the participation ratio).
 At the current ~3 Hz tick (`orchestration.rs:1040`) the window covers about 5.6 minutes.
-A read-only copy of that file every five minutes already gives a non-overlapping record
-of minime's state; Claude started such a capture on 2026-10-21 into the private
-scratchpad. Astrid's bridge has no state dump; its `eigenvalue_snapshots` writer is
+A read-only copy of that file every five minutes already gives a nearly non-overlapping
+record of minime's state; a two-hour capture at that spacing ran on 2026-10-21 (below). Astrid's bridge has no state dump; its `eigenvalue_snapshots` writer is
 `capsules/spectral-bridge/src/db.rs:1123`.
+
+## What the October 21 capture adds (read-only, 2026-10-21 19:00–20:55 PDT)
+
+Twenty-four copies of `esn_state_window.bin` at five-minute spacing, read with the
+participation ratio, effective rank, top-5% energy share, the share of slow modes and the
+lag-1 autocorrelation of the first five principal components (`minime-windows-all.out` in
+the session scratchpad; S-011 closing). Twenty-two windows are high-dimensional and near
+white: participation ratio 41–106 of 128, effective rank 121–125, lag-1 autocorrelation of
+the first component 0.35–0.59, no slow share. Two consecutive windows, 20:40:55 and
+20:45:56 PDT, are a different regime: participation ratio 4.7 and 5.5, effective rank 109
+and 111, the top 5% of modes holding 56% and 52% of the energy against 9–22%, slow share
+46% and 48% against 0, lag-1 autocorrelation of the first component 0.99. A ten-minute
+excursion into a slow, low-dimensional regime, and from here nothing says what the being was
+doing: the 5.6-minute ring carries no clock beyond `t_ms`, no action, no journal pointer.
+
+On the text side, the concept-chain probe on her 40 copied entries of the same day
+(`analyses/2026-10-21-concept-chains.md`) finds that an entry most resembles the previous
+entry on 23% of turns and an entry six or more back on 41% (mean offset 4.7): what she
+writes draws on entries several back, so a state record that spans only the previous entry
+is too short to join state to text.
+
+Two consequences for the change below, both already within its shape: the shards must keep
+the whole history (they do, as dated append-only files; the ring alone cannot), and the
+index line should carry, beside the scalars, the name of the latest journal file and the
+current action or lane at the moment of each window, so an excursion like 20:40 can be
+joined to the entries written around it without a second clock. The 24 windows are also a
+first pilot of M1 (dimensionality by window) on real state: the number varies by a factor of
+twenty within two hours, which the scalar tables could not have shown.
 
 ## Exact change (minime), smallest version
 
@@ -38,8 +65,11 @@ In the same block at `orchestration.rs:5660–5700`, beside the overwrite:
    window (`t_ms: u64`, `rows: u32`, `cols: u32`) followed by the rows; rotate daily.
 2. Write beside it one line per window to `workspace/capacity/shards/index.jsonl`:
    `{"t_ms":…, "t_wall":…, "rows":1024, "cols":128, "fill_ratio":…, "lambda1":…,
-   "esn_leak":…, "esn_lambda":…, "phase":…}`, taking the scalars the engine already
-   holds for `eigenvalue_timeline` and `esn_metrics` at that moment.
+   "esn_leak":…, "esn_lambda":…, "phase":…, "latest_journal":…, "action":…}`, taking the
+   scalars the engine already holds for `eigenvalue_timeline` and `esn_metrics` at that
+   moment, plus the latest journal file name and the current action or lane if the
+   orchestration has them in scope (otherwise null; the join can then go through
+   `action_events` by wall time).
 3. Gate both behind an environment flag (`MINIME_STATE_SHARDS=1`) read once at start;
    default off, so the deployed behaviour is unchanged until the steward opts in.
 

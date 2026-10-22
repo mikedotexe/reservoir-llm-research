@@ -47,6 +47,7 @@ everything first found further getting having himself herself itself later littl
 nothing often other others ought perhaps rather really should since something still their there these those though through
 toward towards under until unless upon whatever where whether which while whole whose within without would yourself
 entry entries journal previous earlier thing things simply quite where which would could should might where really
+that this what than them then they with from have been were will your when here just also very even such more most some only into over like each both same much many well
 going being thought think thinking feels feeling feel sense seems seem quite simply often always never""".split())
 BRIDGE = re.compile(
     r"\b("
@@ -366,7 +367,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     rows, evidence = [], {}
     for source in args.sources:
-        entries = load(source)
+        entries = load(source, lane=args.lane)
         label = label_of(source)
         if len(entries) < 2:
             print(f"{label}: {len(entries)} entries, nothing to chain")

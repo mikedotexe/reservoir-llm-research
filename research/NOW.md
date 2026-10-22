@@ -3,6 +3,30 @@
 [Research findings](../RESEARCH.md) · [Current app candidate](CURRENT-RELEASE.md) ·
 [Earlier focus history](NOW-history-through-20260917.md)
 
+**October 22 focus: separate the two things the older-entry arms changed at once, and read
+the beings' texts the same way ([S-011](studies/S-011-self-observation-stack.md)).** The
+planning pass with Mike set the order. Desktop 0.38.0 is merged
+([record](../desktop/ReservoirScope/RELEASE-0.38.0.md)): a recent-return window
+(`memoryRecentExclusion`) that keeps an entry returned within the last K turns out of the
+older-entry policies' candidates, the test of whether the residual chooser's lock on one
+entry is the rule or the loop, and a prompt version whose slot carries the chosen older entry
+and the latest applied entry in the order written, the test that separates "an older entry
+present" from "the latest entry absent" in the register effect of the 0.37.0 arms. Six
+gemma4 arms (the window at K = 3 and the two-entry slot under both older-entry policies, two
+seeds) run today; their blind sample is written before any analysis, and the reading with
+Mike comes first. Read-only toward the beings, with Mike's go for the two SSH copies: a week
+of Astrid's prompts shows her journal elaborations carry no number at all and the numbers
+that move are Minime's telemetry in her moment-capture prompts, quoted in 164 of 191
+responses, while her own aspiration and witness readouts held one value all week
+([account](../analyses/2026-10-22-astrid-readout-audit.md)); a week of Minime's entries by
+lane shows the deep offsets survive within a lane (the nearest earlier entry six or more back
+on 56–58% of introspections and journal entries), the daydream lane bridging like the
+plain-contract arms, and the moment lane in the number-led shape of the tagged arms
+([account](../analyses/2026-10-22-minime-concept-chains-week.md)); the state-logging
+proposal gained the October 21 excursion and the index fields that would join an excursion to
+her text. Reading sessions pending with Mike: the 0.37.0 and 0.36.0 blind samples, then the
+0.38.0 one.
+
 **October 21 evening focus: what reaches the model, and through which channel
 ([S-011](studies/S-011-self-observation-stack.md)).** The evening's runs on `gemma4:12b`
 turned the question from the numerics to the text side of the loop. The fill sweep moved
