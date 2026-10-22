@@ -205,6 +205,14 @@ of sentences. gemma4 never repeats verbatim under any frame, rarely quotes the r
 never drops into assistant mode, and follows the opening rule without quoting it. The
 inviting and varied gemma4 arms sit nearest the beings' marker profile. One seed.
 
+2026-10-21 17:25, contract echo on the beings' own entries (read-only, prompts kept out
+of the repo): Minime's intro words return in her 40 recent entries at 15.2 per 1,000 and
+in Astrid's at 13.7; Astrid's guideline words return in hers at 60.7 and in Minime's at
+71.6. Neither being echoes its own prompt above the other's rate, where the fresh
+apparatus arms echo their contract at 3–40× the no-contract rate. Dilution by time and
+dialogue, or a contract-shaped baseline; not separable here. `probes/contract_echo.py`
+takes `--file` and journal .txt directories for this.
+
 ## What changed / next
 
 Interpretation revised: the frame paragraph is not where the register comes from; the

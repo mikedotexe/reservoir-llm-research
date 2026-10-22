@@ -2,8 +2,10 @@
 """How much of a standing contract's own vocabulary comes back in the entries it governs.
 
 Inputs: a contract name (PLAIN, INVITING, OPEN, INVITING_VARIED, read from the desktop
-crate's frozen constants in crates/reservoir-core/src/sustained.rs) and one or more Tauri
-sustained session directories (journals/*.json). The contract's content words (lowercased,
+crate's frozen constants in crates/reservoir-core/src/sustained.rs) or `--file <path>` holding
+any standing prompt text (for example a being's, copied read-only and kept private), and one
+or more sources: Tauri sustained session directories (journals/*.json) or directories of
+journal .txt files (headers and NEXT lines stripped as in introspection_markers.py). The contract's content words (lowercased,
 stemmed crudely by stripping common suffixes, stopwords and short words removed) form the
 echo set. Prints, per session: entries, words, the rate per 1,000 words of tokens whose
 stem is in the echo set, the number of distinct contract stems that appear, and the ten
@@ -41,13 +43,26 @@ def contract_text(name):
 def echo_set(text):
     return {stem(w) for w in tokens(text) if w not in STOP and len(w) > 3}
 
+HEADER = re.compile(r"^(=== .* ===|Source revision:|Input evidence:|Account:|Delivery:|Mode:|Timestamp:|Fill:|Revised from:|NEXT:|--- .* ---|\[(Agency-vernacular|Pressure-vocabulary)[^\]]*\])")
+
 def load(session):
-    files = sorted(glob.glob(os.path.join(session, 'journals', '*.json')), key=lambda f: int(os.path.basename(f).split('-')[1]))
-    return [json.load(open(f))['pending']['entry']['text'] for f in files]
+    if os.path.isdir(os.path.join(session, 'journals')):
+        files = sorted(glob.glob(os.path.join(session, 'journals', '*.json')), key=lambda f: int(os.path.basename(f).split('-')[1]))
+        return [json.load(open(f))['pending']['entry']['text'] for f in files]
+    texts = []
+    for f in sorted(glob.glob(os.path.join(session, '*.txt'))):
+        kept = [line for line in open(f, encoding='utf-8', errors='replace').read().splitlines() if not HEADER.match(line.strip())]
+        t = '\n'.join(kept).strip()
+        if t: texts.append(t)
+    return texts
 
 def main(argv):
-    name, sessions = argv[0].upper(), argv[1:]
-    contract = contract_text(name); echo = echo_set(contract)
+    if argv[0] == '--file':
+        name, contract, sessions = os.path.basename(argv[1]), open(argv[1], encoding='utf-8').read(), argv[2:]
+    else:
+        name, sessions = argv[0].upper(), argv[1:]
+        contract = contract_text(name)
+    echo = echo_set(contract)
     print(f"contract {name}: {len(tokens(contract))} words, {len(echo)} content stems")
     print(f"{'session':<44} {'n':>3} {'words':>6} {'echo/1000':>9} {'stems':>5}  top echoed stems")
     for s in sessions:

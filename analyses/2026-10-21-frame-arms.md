@@ -370,9 +370,33 @@ opening. The inviting and varied arms on gemma4 sit nearest the beings on the ma
 their contracts were modeled on. Contract vocabulary still returns at three to seven
 times the no-contract rate. One seed on this model.
 
+## Contract echo in the beings' own entries (read-only)
+
+The same count on the two calibration samples (40 recent entries each, copied read-only
+on 2026-10-21) against their own standing texts, read read-only from the sibling repos
+the same day and kept out of this repository: Minime's open-reflection intro (79 words,
+42 content stems; our plain contract is this text without her name and "spectral") and
+the guidelines part of Astrid's system prompt (363 words, 145 stems, before the action
+vocabulary). The other being's entries serve as the baseline for the same words.
+
+| standing text | in its own being's entries | in the other being's entries |
+|---|---|---|
+| Minime's intro | 15.2 per 1,000 (top: experience 86, language 39, nature 34, observation 31, voice 30) | 13.7 |
+| Astrid's guidelines | 60.7 (top: state 99, feel 90, bridge 78, space 74) | 71.6 |
+| Astrid's full prompt, 757 stems | 159.0 | 159.5 |
+
+Neither being's writing carries its own prompt's words at a rate above the other's.
+In the fresh apparatus arms the governing contract's words return at three to forty
+times the no-contract rate. Two readings, not separable here: months of writing and of
+reading each other have diluted the contracts' vocabulary into a shared one, or the
+cross-being baseline is itself contract-shaped because both prompts share words. The
+apparatus counts are for twelve-entry sessions on fresh models; the beings' are for a
+window of entries from runtimes with long histories. Neither count is a judgment of
+experience.
+
 ## Next
 
-A second seed of the gemma4 arms; the Mixtral tune already on disk as a third model
-(running); the contract-echo count on the beings' own entries against their own
-standing prompts, read-only; and the entry-effect readout under the embedding codec.
-Each is one headless run, about five to twenty minutes.
+A second seed of the gemma4 arms (running); the Mixtral tune already on disk as a third
+model; the entry-effect readout under the embedding codec; and, for the beings, the
+same echo count stratified by lane and era, read-only, to see whether the dilution is
+time or dialogue. Each apparatus run is about five to twenty minutes.
