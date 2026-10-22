@@ -59,9 +59,28 @@ measured effect moved by more than the second decimal. The watchdog never fired;
 rung ends with the gain in force. Whether a larger gain at the shipped dead band does
 anything is block 4's question.
 
-## Blocks 2–4
+## Block 2: fixed retention 0.95, seed 20260909, δ = 0.105, bound 34
 
-Block 2 (fixed retention, seed 20260909), block 3 (regulated and fixed, seed 7), the
-companion block at δ = 0.02 (regulated, both seeds, the same ten gains) and block 4 at
-δ = 0.02 with gains ±0.5 and ±1.0 (regulated, both seeds): pending as this account is
-written; their rows follow below when the runs land.
+The twin without regulation: fill min/median/max 10.0/72.4/97.2, std 7.14, max trailing-90
+std 16.86 (start-up), no actuation, state effective rank 9.54 and participation ratio 2.34,
+entry-effect shift median 1.589 (n=19), alignment +0.917 (n=18). The same ten gains, 600
+frames each:
+
+| gain | contribution RMS | silent steps | clip hits | drops | recompute max abs Δ | Δ fill std | Δ trailing-90 std | Δ erank | Δ PR | Δ shift median |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ±0.01 | 0.0001 | 64% | 0 | none | 4e-19 | 0.00 | 0.00 | 0.00 | 0.00 | 0.000 |
+| ±0.02 | 0.0003 | 64% | 0 | none | 9e-19 | 0.00 | 0.00 | 0.00 | 0.00 | 0.000 |
+| ±0.05 | 0.0007 | 64% | 0 | none | 3e-18 | 0.00 | 0.00 | 0.00 | 0.00 | 0.000 |
+| ±0.10 | 0.0014 | 64% | 0 | none | 3e-18 | 0.00 | 0.00 | 0.00 / +0.01 | 0.00 | 0.000 |
+| ±0.20 | 0.0029 | 64% | 0 | none | 1e-17 | 0.00 | 0.00 | +0.02 | 0.00 | 0.000 |
+
+The channel's contribution is the same to four decimals as in block 1 at every gain: the
+recurrent state never reads the field, so regulation changes nothing the channel sees, and
+the field's own response to the channel (fill std, its spectrum) is below the second
+decimal with or without the controller.
+
+## Blocks 3–5
+
+Block 3 (regulated and fixed, seed 7), block 4, the companion at δ = 0.02 (regulated, both
+seeds, the same ten gains), and block 5 at δ = 0.02 with gains ±0.5 and ±1.0 (regulated,
+both seeds): pending as this account is written; their rows follow below when the runs land.

@@ -214,6 +214,23 @@ nil in every arm (one 0.91 at the last entry of the 98% arm, seed 1); consecutiv
 embedding cosines 0.78–0.91 by arm, highest at 70% and 98%. Two passages are in the
 noteworthy list.
 
+2026-10-21 21:00, desktop 0.36.0 landed (`ccaed27`): the memory policy (`latest`,
+`state-aligned`, `random`) and the watchdog warm-up, byte-identical under the defaults
+(core 262, desktop 262, frontend 507, witness replay intact). Scripted check, no model
+(`probes/desktop_memory_choice.py`, three 600-step runs at seed 20260909, a turn every 30
+steps, 19 entries each, the scripted reply being the same text every turn): under `latest`
+every one of the 18 returns is the latest entry (age 0, 29 steps old); under
+`state-aligned` 28% of returns are the latest, the median returned entry is 3 entries and
+119 steps old (max 16 entries, 509 steps), 5 distinct entries account for the 18 returns
+and the most-returned one comes back 5 times, with cosine scores 0.80–0.88; under `random`
+11% are the latest, median age 4 entries (134 steps), 9 distinct entries, the most-returned
+7 times. Every returned text appears verbatim in that turn's prompt (18 of 18 in each run).
+The recurrent trajectories of the three runs are identical on all 600 steps, as they must
+be with a scripted reply: the policy changes only what the model is shown, so with a model
+the difference is in what gets written and fed back, which the six gemma4 arms queued
+after the tag controls (plain contract, embedding codec, three policies, two seeds, 40
+entries each) will measure.
+
 ## Finish line for the draft
 
 A dated account per tier with every number carrying n, the fill-sweep result stated
