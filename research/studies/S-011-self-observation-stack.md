@@ -306,6 +306,20 @@ and `random-older` as its control; `state-aligned` stays as documented degenerat
 gemma4 arms (state-residual and random-older, two seeds) are queued after the no-tag fill
 arms; the `latest` arms already run serve as their baseline.
 
+2026-10-21 23:15, the six 0.36.0 policy arms are in (`analyses/2026-10-21-state-chosen-
+memory.md`; gemma4, plain contract, embedding codec, 40 entries per arm, two seeds; the
+seed-7 random arm stopped at 37 by the worker's wall-clock watchdog). `state-aligned`
+returned the latest entry on 39 of 39 turns at seed 20260909 and 35 of 39 at seed 7, so
+it is one text with `latest` at the first seed and parts from it at the second. Returning
+an older entry moved the register the same way in the three arms that did it (random at
+both seeds, state-aligned at seed 7) and by different amounts: questions per sentence
+2.9%, 1.2%, 3.4% against 7.7% and 6.3%; hedges 2.0, 3.2, 2.6 against 4.5 and 4.8; no
+first-person openings against 22% and 20%; first person 54.2, 16.8, 39.2 per 1,000 against
+57.5 and 56.7. The seed-20260909 random arm's self-reference to the writing (1.79 per
+1,000) did not repeat at seed 7 (0.00). No text overlap between consecutive entries in any
+arm. The 0.37.0 arms (state-residual, random-older, both seeds) decide whether the
+direction holds and whether the reservoir's choice differs from chance.
+
 ## Finish line for the draft
 
 A dated account per tier with every number carrying n, the fill-sweep result stated

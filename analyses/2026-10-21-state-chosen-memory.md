@@ -38,7 +38,7 @@ direction out of the state and chooses among the older entries, and `random-olde
 seeded draw among the older entries, as its control; `state-aligned` stays as the
 documented degenerate rule.
 
-## Model arms, seed 20260909 (interim: seed 7 and the 0.37.0 arms pending)
+## Model arms under the 0.36.0 policies, both seeds
 
 | arm | returned the latest | median age (entries / steps) | distinct returned of 39 | most-returned | I/me per 1,000 | hedges | notice | questions per sentence | self-reference | first-person openings |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -46,14 +46,37 @@ documented degenerate rule.
 | state-aligned | 100% | 0 / 29 | 39 | 1× | 57.5 | 4.5 | 14.0 | 7.7% | 0.24 | 22% |
 | random | 8% | 9 / 299 | 17 | 7× | 54.2 | 2.0 | 10.4 | 2.9% | 1.79 | 0% |
 
-n = 40 entries per arm, 16,842 words in the first two and 15,054 in the third. With a
-random older entry returned, the writing hedges less, asks fewer questions, opens in the
-first person less, and refers to the writing itself seven times as often ("By writing
-about the act of writing, I am creating a feedback loop where the subject and the object
-are identical"; 27 self-reference matches against 4). One seed; the second is running.
+Seed 7 (the random arm stopped by the worker's wall-clock watchdog at 37 entries, n = 37):
+
+| arm | returned the latest | median age (entries / steps) | distinct returned | most-returned | I/me per 1,000 | hedges | notice | questions per sentence | self-reference | digits | first-person openings |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| latest | 100% | 0 / 29 | 39 of 39 | 1× | 56.7 | 4.8 | 11.6 | 6.3% | 0.20 | 0.12% | 20% |
+| state-aligned | 90% | 0 / 29 (max 13 / 419) | 35 of 39 | 3× | 39.2 | 2.6 | 11.9 | 3.4% | 0.28 | 0.27% | 0% |
+| random | 6% | 6 / 209 | 21 of 36 | 4× | 16.8 | 3.2 | 14.2 | 1.2% | 0.00 | 0.87% | 0% |
+
+Seed 20260909: n = 40 entries per arm, 16,842 words in the first two arms and 15,054 in the
+third. Seed 7: 15,290, 14,279 and 10,676 words. No consecutive entries share text in any
+arm; consecutive embedding cosines (768-d) average 0.82 / 0.82 / 0.77 at seed 20260909 and
+0.81 / 0.86 / 0.86 at seed 7. Every returned text appears verbatim in its prompt (39, 39,
+39, 39, 39 and 36 of the turns).
+
+Reading. At seed 7 the state-aligned rule left the latest entry on four turns of 39 (the
+oldest return 13 entries and 419 steps back), and from the first of those the arm's
+writing parted from the latest arm's; at seed 20260909 it never left it and the two arms
+are one text. What returning an older entry does is consistent in direction across the
+three arms that did it (random at both seeds, state-aligned at seed 7) and inconsistent
+in size: fewer questions per sentence (2.9%, 1.2%, 3.4% against 7.7% and 6.3%), fewer
+hedges (2.0, 3.2, 2.6 against 4.5 and 4.8), no entries opening in the first person (0%,
+0%, 0% against 22% and 20%), and a lower first-person rate (54.2, 16.8, 39.2 against 57.5
+and 56.7). The self-reference to the writing itself that the seed-20260909 random arm
+showed (1.79 per 1,000, "By writing about the act of writing, I am creating a feedback
+loop where the subject and the object are identical") did not repeat at seed 7 (0.00),
+where the random arm instead went quiet in the first person and quoted more numbers
+(digits 0.87%). Two seeds and one model; the 0.37.0 arms, which return older entries by
+the reservoir's residual state or by chance at every turn, are the test of whether the
+direction holds and whether the chooser matters.
 
 ## Pending
 
-Seed 7 of the three 0.36.0 policies, then the four 0.37.0 arms (state-residual and
-random-older, both seeds) with the `latest` arms as their baseline; the overlap and
-embedding-drift readouts; a blind sample for Mike (`probes/desktop_blind_sample.py`).
+The four 0.37.0 arms (state-residual and random-older, both seeds) with the `latest` arms
+as their baseline; a blind sample for Mike (`probes/desktop_blind_sample.py`).
