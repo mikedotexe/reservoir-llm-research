@@ -159,6 +159,18 @@ number it is shown. Markers did not separate the twins beyond sampler-path diffe
 differ more, or a measure of the entry's effect relative to the previous one, which is
 exactly what the difference channel (M5) feeds back numerically.
 
+2026-10-21 20:20, minime's state windows (read-only capture every five minutes, eleven
+windows so far, `probes/beings_state_window.py`, 1,024 × 128 each): effective rank
+121–125 of 128, participation ratio 41–96 (swinging between five-minute windows),
+k90 99–102, state RMS 0.39, no saturation, and no slow variance at the tick scale: no
+principal component has a lag-one autocorrelation above 0.9, the top five sit at
+0.35–0.78. At ~3 Hz her reservoir is high-dimensional and close to white; whatever
+texture it carries lives either in the swing of the participation ratio between windows
+or at longer lags than one tick. The apparatus, by contrast, has one slow direction from
+the forcing (effective rank 9.5 of 32, participation ratio under 2). "Match the dynamics
+before matching the words" (S-011 idea 3) now has a target: a participation ratio in the
+tens with no slow direction.
+
 ## Finish line for the draft
 
 A dated account per tier with every number carrying n, the fill-sweep result stated
