@@ -134,13 +134,11 @@ the private 0.27.0 handoff and the earlier focus below are unchanged.
 
 ## What the next session needs
 
-- **The 0.39.0 blind sample with Mike, then its key.** The numbers are read and the account
-  written (`analyses/2026-10-22-threshold-battery.md`): no channel from the field without a
-  number (40 of 40 identical at seed 7 at two fills), no percentages at all without one (0 of
-  400), and the older-entry register effect of October 21–22 turned out to be the number's
-  (corrected beside the earlier claims). The 18-entry sample in `blind-policy-039/` (session
-  scratchpad) waits for the joint reading; record in `research/readings/`, rows to the
-  noteworthy list, key after.
+- **The 0.39.0 blind sample is read** (`research/readings/2026-10-22-blind-threshold-039.md`, by
+  Claude alone at Mike's delegation, notes before the key): the finished-state register survives
+  without numbers in three of nine step-1200 entries, and the finished state is the entry's, not
+  the arm's; four rows went to the noteworthy list. A reading with the key known stays open to
+  Mike.
 - **Parked 2026-10-22:** the twelve-entry 0.37.0 sample and entries 6–15 of the 0.36.0 sample
   (`research/readings/README.md`), superseded by the 0.38.0 key and the battery's correction;
   unparked by Mike asking to read them.

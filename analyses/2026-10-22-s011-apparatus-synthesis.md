@@ -123,7 +123,10 @@ arms). Without the tag the writing still follows the second slot (36–82% again
 single no-tag slot), bridges more than any tagged arm (1.12–1.80 sentences per entry naming
 earlier writing), and questions at 2.1–5.6% of sentences, between the tagged two-entry arms and
 `latest`. Whether the finished-state register the 0.38.0 reading named survives without its
-numbers is the question of the 0.39.0 blind sample, not of these counts.
+numbers is the question of the 0.39.0 blind sample, not of these counts [read the same evening:
+it survives, in three of nine step-1200 entries, two of them from two-entry arms and one from a
+single-slot arm, with its clearest instance and its explicit refusal in the same pair of arms at
+the two seeds; `research/readings/2026-10-22-blind-threshold-039.md`].
 
 **7. The chooser.** `state-aligned` was degenerate with real entries: the latest entry's vector
 is fed to the reservoir until the next application, so the observing state points along it and
@@ -249,6 +252,5 @@ One model family carried the policy, window, two-entry and battery arms; S-010's
 hold across three models in direction only. Two seeds; 12 entries per arm on October 21's
 sweep and controls, 40 elsewhere; the no-tag `latest` arms are 12 entries each. The provider
 forks and its first entries are uncontrolled. "Below" and "above" the shelf are post-climb
-bands 6–7 points away. The 0.39.0 blind sample is unread at the time of writing, so finding 6's
-reading question is open. The tier says nothing about a codec that fed the field back, about
+bands 6–7 points away. The 0.39.0 blind sample was read later the same evening (finding 6's bracket). The tier says nothing about a codec that fed the field back, about
 longer arms, or about any being.

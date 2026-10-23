@@ -211,7 +211,12 @@ text. That draw was set aside unread and the probe gained `--skip N`
 (`tests/test_desktop_blind_sample.py`); the sample for the reading is entries 10 and 40 of nine
 arms (the seed-7 high-fill arm left out as byte-identical to its low-fill twin), 18 entries, all
 distinct by hash, seed 39, in `blind-policy-039/` in the session scratchpad. Read with Mike
-before the key; record in `research/readings/2026-10-22-blind-threshold-039.md`.
+before the key; record in `research/readings/2026-10-22-blind-threshold-039.md`. [Read the
+same evening by Claude alone, at Mike's delegation, notes before the key: the finished-state
+register survives without numbers, in three of the nine step-1200 entries (two from two-entry
+arms, one from a single-slot arm), its clearest instance and its explicit refusal being the two
+random-older two-entry arms at the two seeds; the picks came from both legs; the record has
+the key.]
 
 ## Limits
 

@@ -579,6 +579,13 @@ superseded. Next, in Mike's chosen order: a bounded hardening tranche of the liv
 against the dated records, then S-012, which reads the tier's prediction in Astrid's own job
 records, read-only.
 
+2026-10-22 22:07 PDT. The 0.39.0 blind sample read (`research/readings/2026-10-22-blind-threshold-039.md`;
+by Claude alone at Mike's delegation, notes before the key): the finished-state register the
+0.38.0 reading named survives without numbers, in three of nine step-1200 entries, two of them
+from two-entry arms; its clearest instance and its explicit refusal are the two random-older
+two-entry arms at the two seeds, so the finished state is the entry's, not the arm's. The tier's
+last open reading question is answered as a direction.
+
 ## What the day established, and did not (October 21, closing)
 
 Did. The channel is built and exact (72 runs; recomputation within 1e-16; watchdog and
