@@ -33,6 +33,20 @@ not a positive intervention result or journals from the live Beings.
 The Tauri app uses `research.reservoir.scope.tauri` and separate storage. It does
 not replace the native app, its version history or its unfinished human review.
 
+## Tauri 0.39.0 · the research instrument, frozen (October 22, 2026)
+
+Desktop **0.39.0** is the laptop apparatus that ran the S-010 and S-011 arms of October 21–22
+(every configuration in [`research/arms/`](arms/README.md); the tier's
+[synthesis](../analyses/2026-10-22-s011-apparatus-synthesis.md)). It is frozen as of
+October 22, 2026: no further version is planned for S-011, and a new arm family, a second
+model at two seeds or a codec that feeds the field back would be a new decision. It is a
+research instrument, run headless through an ignored test and in the dev build, and it has
+never been a sharing candidate: none of the qualification gates above were run on 0.28.0
+through 0.39.0, and the sharing candidate remains 0.27.0 candidate 04. Each release record
+(`desktop/ReservoirScope/RELEASE-0.28.0.md` through `RELEASE-0.39.0.md`) states what its
+version added and that every earlier mechanism is byte for byte unchanged when the new
+setting is off.
+
 ## Native macOS 0.15.0 build 21 · preserved candidate
 
 **0.15.0, build 21 — qualified unreleased local candidate with direct lab navigation.**

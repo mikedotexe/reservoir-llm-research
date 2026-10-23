@@ -13,7 +13,7 @@ key, and what the key then showed. Never the beings' texts.
 
 | record | sample | state |
 |---|---|---|
-| [2026-10-21 · 0.36.0 policy arms](2026-10-21-blind-policy-036.md) | 15 entries, 5 arms, seed not recorded (key file kept) | entries 1–5 read, key opened for them; 6–15 unread |
-| 2026-10-22 · 0.37.0 policy arms | 12 entries, 4 arms, seed 37 (`blind-policy-037/`) | unread |
+| [2026-10-21 · 0.36.0 policy arms](2026-10-21-blind-policy-036.md) | 15 entries, 5 arms, seed not recorded (key file kept) | entries 1–5 read, key opened for them; 6–15 parked 2026-10-22 as superseded (the 0.38.0 key and the threshold battery read the same policies at 40 entries and corrected their register attribution); unparked by Mike asking to read them |
+| 2026-10-22 · 0.37.0 policy arms | 12 entries, 4 arms, seed 37 (`blind-policy-037/`) | parked 2026-10-22 as superseded (its arms are the 0.37.0 policy arms whose register attribution the battery corrected); unparked by Mike asking to read them |
 | [2026-10-22 · 0.38.0 window and two-entry arms](2026-10-22-blind-policy-038.md) | 18 entries, 6 arms, seed 38 (`blind-policy-038/`) | read in full with Mike; key opened about 13:50 PDT; record complete |
 | 2026-10-22 · 0.39.0 threshold battery | 18 entries (10 and 40 of each arm), 9 arms, seed 39 (`blind-policy-039/`; the chain's first draw of entries 2 and 40 set aside unread, entry 2 being shared across arms at one seed) | drawn after the numbers were read, texts unread; waits for the reading with Mike |

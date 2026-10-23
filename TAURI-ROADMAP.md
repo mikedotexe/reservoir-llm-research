@@ -1,6 +1,6 @@
 # Reservoir Scope: Tauri parity and evolution roadmap
 
-**Accepted planning baseline:** October 11, 2026. **Current pointer reviewed:** October 16, 2026.
+**Accepted planning baseline:** October 11, 2026. **Current pointer reviewed:** October 22, 2026.
 
 [Current status and next tranches](desktop/ReservoirScope/STATUS.md) ·
 [Desktop app](desktop/ReservoirScope/README.md) ·
@@ -11,6 +11,13 @@ This document retains the accepted long-term program, scientific and persistence
 contracts, milestones and qualification gates. Milestone descriptions are targets,
 not claims that every listed workflow is implemented or qualified. Current progress
 and the active backlog are consolidated in **STATUS.md**.
+
+**October 22, 2026:** the research line of the program (0.28.0 through 0.39.0, the
+sustained-session apparatus of S-010 and S-011) is frozen at 0.39.0 as an instrument
+([synthesis](analyses/2026-10-22-s011-apparatus-synthesis.md); [CURRENT-RELEASE](research/CURRENT-RELEASE.md)).
+The milestones after M5b (M6 collaborator qualification and the native backport review, the
+parity ledger, the Library work) are parked, not deleted: nothing below is withdrawn, and none
+of it is scheduled. The sharing candidate remains 0.27.0 candidate 04.
 
 The current candidate is **0.27.0 candidate 04**, ready for a first invited tester
 on its scoped Apple Silicon macOS path; actual uncoached human acceptance remains

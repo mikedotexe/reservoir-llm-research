@@ -45,7 +45,9 @@ before the key). Each prints its inputs and n.
 Runner: the desktop release whose test binary ran the arm. Policy: the memory policy, with
 the recent-return window in turns when set. Gain: the difference-channel gain. Retention:
 the initial retention and whether regulation was on. Read in: the account that reports the
-arm's numbers.
+arm's numbers. The families are closed at the threshold battery (desktop 0.39.0,
+2026-10-22): the tier's synthesis is `analyses/2026-10-22-s011-apparatus-synthesis.md`, and a new family,
+a second model at two seeds or a codec that feeds the field back would be a new decision.
 
 
 ### Difference ladder (desktop 0.35.0, scripted backend)

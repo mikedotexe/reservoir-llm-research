@@ -4,6 +4,23 @@
 [Focus history, October 7–16](NOW-history-20261007-through-20261016.md) ·
 [Earlier focus history](NOW-history-through-20260917.md)
 
+**October 22 evening focus: the apparatus tier of [S-011](studies/S-011-self-observation-stack.md)
+is closed; a hardening tranche, then S-012.** The
+[synthesis](../analyses/2026-10-22-s011-apparatus-synthesis.md) ranks the tier's ten findings with n,
+the comparison each was measured against and the channel through which what moved reached the
+model. The channel result in one sentence: in this apparatus the writing follows what the frame
+shows it, the contract, the number and the returned texts, and the state reaches the writing
+only as which older text came back. Desktop 0.39.0 is frozen as the instrument and the arm
+families are closed (0.27.0 candidate 04 stays the sharing candidate;
+[CURRENT-RELEASE](CURRENT-RELEASE.md) and the [roadmap](../TAURI-ROADMAP.md) say so); the 0.36.0
+and 0.37.0 blind samples are parked as superseded and the 0.39.0 one waits for the joint reading.
+Next, in the order chosen with Mike: one bounded hardening tranche of the living documents
+against the dated records (acceptance criteria written first, one pass, no feature work, no new
+arms; the push after it is Mike's call), then S-012, which reads the tier's prediction in
+Astrid's own job records read-only (what each lane's prompt shows, and whether quoted numbers
+and the register follow it), with Minime's lanes after a reconstruction audit of her prompt
+builders.
+
 **October 22 focus: separate the two things the older-entry arms changed at once, and read
 the beings' texts the same way ([S-011](studies/S-011-self-observation-stack.md)).** The
 planning pass with Mike set the order. Desktop 0.38.0 is merged
@@ -104,8 +121,15 @@ the private 0.27.0 handoff and the earlier focus below are unchanged.
   (corrected beside the earlier claims). The 18-entry sample in `blind-policy-039/` (session
   scratchpad) waits for the joint reading; record in `research/readings/`, rows to the
   noteworthy list, key after.
-- **Two blind samples still unread with Mike:** the twelve entries from the 0.37.0 arms
-  and entries 6–15 of the 0.36.0 sample (`research/readings/`).
+- **Parked 2026-10-22:** the twelve-entry 0.37.0 sample and entries 6–15 of the 0.36.0 sample
+  (`research/readings/README.md`), superseded by the 0.38.0 key and the battery's correction;
+  unparked by Mike asking to read them.
+- **The hardening tranche** (its dated account under `analyses/` when written): five acceptance
+  criteria first, one pass over the living documents, suites green; then the push is Mike's
+  call, as a named ref.
+- **S-012** (`research/studies/` when written): the tier's prediction read in Astrid's job
+  records, read-only over SSH into the session scratchpad, by kind and month; the probe built
+  and tested on the apparatus arms before any copy.
 - **Still parked:** the channel model arms, the numerical sweeps, and the spec's M1–M4 on
   the beings' side (`proposals/esn-state-logging.md` is the only being-facing proposal).
   The native 0.15 candidate, the 0.27.0 private handoff and the earlier research

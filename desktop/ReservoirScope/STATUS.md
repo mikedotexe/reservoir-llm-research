@@ -2,6 +2,12 @@
 
 **October 22, 2026 · 0.39.0 two-entry slot without a context line, on 0.38.0 recent-return window and two-entry slot, 0.37.0 state-residual and random-older memory policies, 0.36.0 state-chosen memory and watchdog warm-up, 0.35.0 difference-signal channel, 0.34.0 no-tag and scrambled-tag controls, 0.33.0 entry-effect readout, 0.32.0 model thinking toggle, 0.31.0 two more S-010 contract arms, 0.30.0 embedding text reduction and S-010 frame arms, 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
 
+**Frozen as the research instrument, October 22, 2026.** 0.39.0 is the last version planned
+for S-011; the arm families are closed and read in the tier's
+[synthesis](../../analyses/2026-10-22-s011-apparatus-synthesis.md). The unqualified local
+candidates 0.28.0–0.39.0 stay unqualified for sharing; the roadmap's milestones after M5b are
+parked ([roadmap](../../TAURI-ROADMAP.md)); 0.27.0 candidate 04 remains the private handoff.
+
 [0.39.0](RELEASE-0.39.0.md) adds the prompt version
 `reservoir-journal-inert-plain-contract-two-no-tag-v1`: the two-entry slot inside the no-tag
 frame, with no context line at all, the direct test of whether the live fill tag made the

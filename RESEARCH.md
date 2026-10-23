@@ -99,6 +99,7 @@ when authorized, without turning every question into a feature.
 | Looking for | Start here |
 |---|---|
 | The offline instrument and numerical experiments | [Reservoir Scope](research/CURRENT-RELEASE.md), [Essentials](essentials/README.md), [S-002 observatory study](research/studies/S-002-reservoir-observatory.md) |
+| What reaches a local model in the laptop apparatus, and what it does | [S-011 apparatus synthesis](analyses/2026-10-22-s011-apparatus-synthesis.md), [S-010 frame arms](analyses/2026-10-21-frame-arms.md), [arm configurations](research/arms/README.md), [blind readings](research/readings/README.md) |
 | Reproducible reading, evidence replay and recovery | [Synthetic CLI walkthrough](research/QUICKSTART.md), [tools](research/TOOLS.md), [dated source inventory](TRACE.md) |
 | The self-study sequence, including original failures | [SELF_STUDY history](research/histories/self-study.md) |
 | Earlier readings, proposals and the release chronology | [Preserved research index through October 7](RESEARCH-history-through-20261007.md) |

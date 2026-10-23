@@ -4,7 +4,7 @@ Drafted: 2026-10-21 evening · Lead: Claude (lead collaborator), Mike steward ·
 Mike's build spec "Reservoir Self-Observation Build Spec: JEPA, Autoencoders, Effective
 Rank, and Edge-of-Chaos Extensions for the 128-Node ESN" (his file, kept outside the
 repo until he decides where it lives) · Relates to S-010 (frame share and loop share) and
-to Mike's two-thirds-fill intuition · Status: **draft protocol, selected by Mike: pending**
+to Mike's two-thirds-fill intuition · Status: **apparatus tier closed 2026-10-22** ([synthesis](../../analyses/2026-10-22-s011-apparatus-synthesis.md)); the beings' side continues read-only in S-012
 
 ## What the spec asks, in one line
 
@@ -565,6 +565,20 @@ unknown), the five seed-7 arms one; METHODS and the CLAUDE.md fork clause amende
 sample was redrawn from entries 10 and 40 of nine arms (the chain's draw of entry 2 was shared
 across arms at one seed; `desktop_blind_sample.py --skip N`, with a test).
 
+2026-10-22 21:06. The apparatus tier is closed with one synthesis
+(`analyses/2026-10-22-s011-apparatus-synthesis.md`): ten findings ranked by evidence class with n,
+the comparison each was measured against and the channel through which what moved reached the
+model; the tiers walked (B1, B2, B3, B5 and the scripted C1 ran; A1 and A4 in part; A2, A3, B4,
+C1's model arms, C2 and C3 parked with the reason; C4 written as a proposal); the instrument
+frozen at desktop 0.39.0 with the arm families closed. The channel result in one sentence: the
+writing follows what the frame shows it (the contract, the number, the returned texts), and the
+state reaches the writing only as which older text came back. The finish line's three asks are
+met (below). Open at closing: the 0.39.0 blind sample with Mike before its key (the synthesis's
+finding 6 leaves a reading question); the 0.36.0 entries 6–15 and the 0.37.0 sample parked as
+superseded. Next, in Mike's chosen order: a bounded hardening tranche of the living documents
+against the dated records, then S-012, which reads the tier's prediction in Astrid's own job
+records, read-only.
+
 ## What the day established, and did not (October 21, closing)
 
 Did. The channel is built and exact (72 runs; recomputation within 1e-16; watchdog and
@@ -605,3 +619,11 @@ plainly (does the register move with the number), the effect-readout result (doe
 loop become visible to the model, at what cost in visible compliance), and a decision
 with Mike on whether to proposal-ize M0 for the beings. Nothing touches the live
 systems; nothing is pushed.
+
+**Reached (2026-10-22 21:06).** The dated accounts per tier exist (`analyses/2026-10-21-*.md` and
+`analyses/2026-10-22-*.md`, indexed in the synthesis); the fill-sweep result is stated plainly in
+the synthesis's finding 4 (the register follows the number shown, not fill); the effect-readout
+result in its finding 8 (the loop became visible as a number the model quoted or took as a
+feeling, at no measurable cost on the markers); the M0 proposal is written
+(`proposals/esn-state-logging.md`) and the decision on implementing it is Mike's and the sibling
+repos'. Nothing touched the live systems; nothing was pushed.
