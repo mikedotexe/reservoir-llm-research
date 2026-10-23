@@ -2,10 +2,12 @@
 """A blind reading sample from several desktop sessions: entries shuffled, labels withheld.
 
 Inputs: `--out <dir>` then one or more `label=<session dir>` pairs, optional `--per N`
-(entries per session, default 4; evenly spaced through each session), `--seed`, and
-`--include-first` (by default a session's first entry is left out: it is written with no
-earlier entry in view, so every arm at one seed writes the same first entry and a sample
-would spend slots on duplicates). Writes
+(entries per session, default 4; evenly spaced through each session), `--seed`,
+`--skip N` (leave out each session's first N entries, default 1: a first entry is written
+with no earlier entry in view, so every arm at one seed writes the same first entry, and
+arms that share a seed stay identical for as long as their prompts do, so a sample drawn from
+the opening entries spends slots on duplicates; `probes/desktop_arm_identity.py` says where
+two arms part, and `--skip` should clear it), and `--include-first` (`--skip 0`). Writes
 `<out>/blind-sample.md` (numbered entries, no labels, each with its step) and
 `<out>/blind-sample-key.json` (number → label, session, entry id), so a reader can judge the
 entries before seeing which arm wrote them. Standard library only. The sample is private
@@ -20,19 +22,20 @@ def entries(session):
     return sorted(out)
 
 def main(argv):
-    out, per, seed, pairs, include_first = None, 4, 2026, [], False
+    out, per, seed, pairs, skip = None, 4, 2026, [], 1
     i = 0
     while i < len(argv):
         if argv[i] == '--out': out = argv[i + 1]; i += 2
         elif argv[i] == '--per': per = int(argv[i + 1]); i += 2
         elif argv[i] == '--seed': seed = int(argv[i + 1]); i += 2
-        elif argv[i] == '--include-first': include_first = True; i += 1
+        elif argv[i] == '--skip': skip = int(argv[i + 1]); i += 2
+        elif argv[i] == '--include-first': skip = 0; i += 1
         else: label, path = argv[i].split('=', 1); pairs.append((label, path)); i += 1
     assert out and pairs, __doc__
     picked = []
     for label, path in pairs:
         rows = entries(path)
-        if not include_first and len(rows) > 1: rows = rows[1:]
+        if skip and len(rows) > skip: rows = rows[skip:]
         if not rows: continue
         idx = sorted({round(k * (len(rows) - 1) / max(per - 1, 1)) for k in range(per)})
         for k in idx: picked.append((label, path, rows[k]))

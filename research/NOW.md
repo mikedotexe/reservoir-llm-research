@@ -49,7 +49,14 @@ breaks the thread the model would otherwise develop, and the one passage that st
 a blind reading came from seven consecutive turns of the model rereading its own previous
 entry under a sparse frame. The conditions behind the highlights so far are three: a frame
 that gives little, continuity of one's own text, and something unexpected to work against.
-So the apparatus is frozen at 0.37.0; the numerical sweeps are parked with their negative
+Desktop 0.38.0 and 0.39.0 then separated the slot's parts: the lock is the rule reading a
+stable state and a window turns it into a cycle; the latest entry's presence beside the older
+one restores nothing while a number is shown; and the threshold battery of October 22
+(`analyses/2026-10-22-threshold-battery.md`) closed the fill question (with no number shown,
+nothing of the field reaches the writing, by code and by a 40-of-40 replicate at two fills)
+and corrected the register attribution: the older entry moves the register only beside a
+shown number, and without one the model writes no percentages at all (0 of 400 entries) and at
+the `latest` arms' rates. So the apparatus is frozen at 0.39.0; the numerical sweeps are parked with their negative
 result recorded; every account states what reached the model and how; arms are read blind
 first (`probes/desktop_blind_sample.py`) with the human record in
 [the noteworthy passages](../analyses/2026-10-21-noteworthy-passages.md); and the next
@@ -90,12 +97,13 @@ the private 0.27.0 handoff and the earlier focus below are unchanged.
 
 ## What the next session needs
 
-- **The 0.39.0 threshold battery, read blind first.** The chain writes `blind-policy-039/`
-  (20 entries, labels withheld) in the session scratchpad before any analysis output; the
-  numbers (identity, choice, quoted numbers, markers, chains) can be read first, the texts
-  wait for the reading with Mike, then the key, then the dated account against the four
-  predictions in S-011 (2026-10-22 14:20). One-seed differences are directions; two seeds
-  agreeing past the fork bar are effects.
+- **The 0.39.0 blind sample with Mike, then its key.** The numbers are read and the account
+  written (`analyses/2026-10-22-threshold-battery.md`): no channel from the field without a
+  number (40 of 40 identical at seed 7 at two fills), no percentages at all without one (0 of
+  400), and the older-entry register effect of October 21–22 turned out to be the number's
+  (corrected beside the earlier claims). The 18-entry sample in `blind-policy-039/` (session
+  scratchpad) waits for the joint reading; record in `research/readings/`, rows to the
+  noteworthy list, key after.
 - **Two blind samples still unread with Mike:** the twelve entries from the 0.37.0 arms
   and entries 6–15 of the 0.36.0 sample (`research/readings/`).
 - **Still parked:** the channel model arms, the numerical sweeps, and the spec's M1–M4 on

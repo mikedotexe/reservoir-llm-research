@@ -272,7 +272,10 @@ data, like journal text. Packets under ignored `research/outputs/` stay private.
   words, quoted digits, openings; `probes/introspection_markers.py`), as distinct from its
   topic.
 - **fork**: two sessions that sent the same prompt with the same sampling seed and came
-  back different (about 2% of such turns on the local provider). **direction** against
+  back different (about 2% of such turns on the local provider: 2 of 117 on October 21, 1 of
+  52 on October 22). The provider's first entries also depend on what ran before it (two
+  deterministic texts for one prompt and seed), so arms compared at one seed are checked at
+  their first entry (`research/METHODS.md`). **direction** against
   **effect**: a difference between two arms at one seed is a direction to test; it becomes
   an effect when a replicate at the same seed or a second seed agrees past the size a fork
   produces (`research/METHODS.md`).

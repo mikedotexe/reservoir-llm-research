@@ -372,7 +372,9 @@ questions per sentence 0.3–4.2% against 6.3–7.7%, hedges 0.5–3.3 against 4
 first-person openings against 20–22%, first person 13.5–47.5 per 1,000 against
 56.7–57.5, quoted digits up in three of four, a third fewer words in three of four. Seven
 arms over two releases move one way by amounts past a provider fork's, so this is now an
-effect of the returned entry under this contract. The chooser sets concentration, not
+effect of the returned entry under this contract [corrected 2026-10-22 evening: the effect
+is the older entry's presence beside a shown number; with no number the older-entry arms write
+at the `latest` arms' rates, `analyses/2026-10-22-threshold-battery.md`]. The chooser sets concentration, not
 direction: `state-residual` returned 10 and 3 distinct entries of 39 (one entry 15 and 36
 times) where `random-older` returned 21 and 24, and at seed 7 it locked on the third entry
 from the fourth turn on, every later entry measuring the current number against its
@@ -472,7 +474,9 @@ into a cycle. The two-entry slot: both texts verbatim 39 of 39; state-residual s
 latest entry's presence restores nothing (questions 0.3–0.8% of sentences against 6.3–7.7%
 under latest, hedges 0.7–1.3 against 4.5–4.8, entries opening with "I" 0 of 312 across the
 eight older-entry arms against 17 of 78), so the register effect belongs to the older entry's
-presence. Chains: with both shown the writing follows the second slot (inferred source the
+presence [corrected the same evening: to the older entry's presence beside a shown number; the
+0.39.0 no-tag older-entry arms question at 6.7–8.6% of sentences and hedge at 2.7–5.1, the
+`latest` arms' rates, `analyses/2026-10-22-threshold-battery.md`]. Chains: with both shown the writing follows the second slot (inferred source the
 previous entry on 51–85% against 3–23%), the older entry holding 35–42% of the reach terms.
 Quoted numbers (`probes/desktop_quoted_numbers.py`): entries quoting 95% or more number 11, 8,
 25 and 12 of 40 in the two-entry arms against 0–9 in the single-slot arms, 0 of 24 in the
@@ -537,6 +541,30 @@ times, median age 8 and 5 entries (`desktop_memory_choice.py`), against 10 disti
 times in the tagged 0.37.0 arm; the two arms are replicates from entry 9 on, so the 14-against-8
 is the replicate spread of the lock, the first such yardstick we have at 40 entries.
 
+2026-10-22 18:49, the threshold battery read as numbers (`analyses/2026-10-22-threshold-battery.md`;
+ten arms, 400 entries, texts unread; the 18-entry blind sample waits for the reading with
+Mike). Fill: the seed-7 `state-residual` pair is identical 40 of 40 at run medians 63.6 and
+76.3; the seed-20260909 pair is identical through entry 8, forks at 9 on an identical prompt and
+seed, and sends identical prompts again on three later turns with identical texts: 52
+identical-prompt turns across the two pairs, 1 fork. Prediction 1 held in its amended form (any
+parting a fork); prediction 2 held (fill-to-fill is zero or the replicate spread, inside
+policy-to-policy and seed-to-seed), with the seed-7 convergence back at 12 distinct of 39 and
+one entry returned 14 times rather than the tagged 3 and 36. Prediction 3 held in full: 0 of
+400 no-tag entries contain a percentage. Prediction 4 held on bridges (1.12–1.80 per entry) and
+failed on the register (questions 2.1–5.6% of sentences, between the tagged two-entry arms and
+`latest`). The correction: the `random-older` pairs at identical picks show the number
+carried the older-entry register effect (first person 26.1 to 64.9 and 19.6 to 59.5 per 1,000
+words, questions 0.6% to 8.2% and 0.3% to 6.7% of sentences, hedges 0.5 to 3.8 and 1.4 to 5.1
+when the context line is removed; two seeds, many times the replicate spread), so the October
+21–22 effect is the older entry's presence beside a shown number, and the no-tag older-entry
+arms write at the `latest` arms' rates; corrections are placed beside the claims above, in
+`analyses/2026-10-21-state-chosen-memory.md` and in `analyses/2026-10-22-two-entry-slot.md`.
+The provider: the five seed-20260909 arms wrote two different first entries (two the 397-token
+text, three the primer's 335-token one; the primer did not control it and the mechanism is
+unknown), the five seed-7 arms one; METHODS and the CLAUDE.md fork clause amended. The blind
+sample was redrawn from entries 10 and 40 of nine arms (the chain's draw of entry 2 was shared
+across arms at one seed; `desktop_blind_sample.py --skip N`, with a test).
+
 ## What the day established, and did not (October 21, closing)
 
 Did. The channel is built and exact (72 runs; recomputation within 1e-16; watchdog and
@@ -551,7 +579,9 @@ degenerate with real entries (the latest entry's push dominates the state), and 
 an older entry moves the register one way in three arms (fewer questions, hedges and
 first-person openings) at the cost of the thread continuity that produced the best
 passage in a blind reading. The four 0.37.0 arms move it the same way by more, so seven arms over
-two releases make it an effect of the returned entry under this contract; the residual
+two releases make it an effect of the returned entry under this contract [corrected
+2026-10-22: of the returned entry beside a shown number; without the number the register stays
+at the `latest` arms' rates, the threshold battery]; the residual
 chooser converges on one entry (3 of 39 distinct at seed 7, one returned 36 times) where
 chance spreads (24), and the chooser sets how many entries come back, not which way the
 register moves. Minime's reservoir at 3 Hz is high-dimensional and near-white

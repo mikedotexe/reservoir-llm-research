@@ -225,8 +225,9 @@ Read in: `analyses/2026-10-22-two-entry-slot.md`. 4 configurations.
 
 ### Fill calibration under the embedding codec (0.39.0)
 
-Read in: the threshold-battery account (pending). 4 configurations; no-tag `latest`, so the
-texts are the no-tag arms' by construction and only the fill series is new.
+Read in: `analyses/2026-10-22-threshold-battery.md` (calibration section). 4 configurations;
+no-tag `latest`, so the texts are the no-tag arms' by construction and only the fill series is
+new (post-climb medians 61.4, 63.6, 74.8, 76.7).
 
 | arm | runner | model | prompt version | codec | policy | gain | retention | seed | turn every / max steps |
 |---|---|---|---|---|---|---|---|---|---|
@@ -237,7 +238,7 @@ texts are the no-tag arms' by construction and only the fill series is new.
 
 ### Threshold battery, leg A (0.39.0): no-tag single slot, regulation off, fill below and above the shelf
 
-Read in: the threshold-battery account (pending). 6 model configurations, 2 scripted gate
+Read in: `analyses/2026-10-22-threshold-battery.md`. 6 model configurations, 2 scripted gate
 configurations (`state-residual` on scripted texts at the two retentions, 40 entries, read for
 whether the pick sequence moves with retention at all) and 1 primer (`prime-notag-gemma4`, one
 entry, the same first prompt as every battery arm, run first so each real arm follows an arm
@@ -258,7 +259,7 @@ under this codec (S-011, 2026-10-22 15:00).
 
 ### Two-entry slot without a context line (0.39.0, leg B of the threshold battery)
 
-Read in: the threshold-battery account (pending). 4 configurations.
+Read in: `analyses/2026-10-22-threshold-battery.md` (leg B). 4 configurations.
 
 | arm | runner | model | prompt version | codec | policy | gain | retention | seed | turn every / max steps |
 |---|---|---|---|---|---|---|---|---|---|

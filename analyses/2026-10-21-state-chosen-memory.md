@@ -157,6 +157,14 @@ entry beside the chosen older one restores none of the questions, hedges or firs
 openings, so the register effect above belongs to the older entry's presence; and with the
 fill tag that slot multiplies the entries quoting a fill of 95% or more.
 
+Corrected the same evening (`analyses/2026-10-22-threshold-battery.md`): the register effect
+above belongs to the older entry's presence beside a shown number. The 0.39.0 arms returned the
+same older entries in the same order with the context line removed, and the register went back
+to the `latest` arms' rates at both seeds (first person 26.1 to 64.9 and 19.6 to 59.5 per 1,000
+words, questions 0.6% to 8.2% and 0.3% to 6.7% of sentences, hedges 0.5 to 3.8 and 1.4 to 5.1).
+The seven-arm effect recorded in this account is real as measured and was measured with a
+number shown in every arm; the older entry alone does not move these markers.
+
 ## Replicate
 
 The seed-20260909 `latest` arm rerun with the same config into a new store reproduced all

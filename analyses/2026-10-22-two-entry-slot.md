@@ -71,6 +71,14 @@ stay at 0.3–0.8% of sentences against 6.3–7.7% under `latest`, hedges at 0.7
 56.7–57.5), and notice words fall only in the two-entry arms (7.4–8.5 against 8.2–14.5
 elsewhere), a direction at both seeds. The effect belongs to the older entry's presence.
 
+Corrected the same evening (`analyses/2026-10-22-threshold-battery.md`): the effect belongs to
+the older entry's presence beside a shown number. Every arm in the table above sent a context
+line; the 0.39.0 arms that return the same older entries with no context line question at
+6.7–8.6% of sentences in the single slot and 2.1–5.6% with two entries, hedge at 2.7–5.1 and
+1.1–4.0, and open with "I" on 0–22% and 0–12% of entries, the `latest` arms' rates or near them.
+What this section established, restated: with a number shown beside any older entry, the
+measurement register holds whether or not the latest entry is there.
+
 ## Concept chains: the writing follows the second slot, the older entry holds the reach
 
 `probes/concept_chains.py`, window 12; n = 40 entries per arm.

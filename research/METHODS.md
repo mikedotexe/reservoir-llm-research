@@ -89,6 +89,17 @@ entry moved the marker rates as far as some between-arm differences. A differenc
 two arms at one seed is read as a direction to test, not an effect, until a replicate at
 the same seed or a second seed agrees (`probes/desktop_arm_identity.py` says where two
 arms parted and on what).
+The provider also has a state. On October 22 one no-tag first prompt at one seed came back
+as one of two texts (335 and 397 tokens) depending on what had run before, and a one-entry
+primer with the same prompt run ahead of a ten-arm battery did not make the first entries
+uniform (two arms wrote one text, three the other; all five arms at the other seed wrote one
+text); the fork rate on later identical-prompt turns was 1 of 52 under that condition. So a
+comparison at one seed first checks that the arms' first entries match (the identity probe
+prints them against a primer) and compares arms whose first entries differ only on what they
+share. Arms at one seed also stay identical for as long as their prompts do (through entry 4
+when two policies first pick differently; through entry 2 when a second slot opens), so a
+blind sample skips past the parting entry (`desktop_blind_sample.py --skip N`) rather than
+spending its slots on texts several arms share.
 
 ## Scope of this research space
 
