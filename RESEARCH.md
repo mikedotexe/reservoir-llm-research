@@ -75,7 +75,7 @@ are different observations; the account preserves the gaps between them.
 Then try [an omitted Afterimage cue and a continuing thread](analyses/2026-09-07-first-afterimage-account.md)
 for a smaller trace of what was available, what was supplied and what followed.
 The accounts are in the checkout; their complete raw captures remain private.
-Reservoir Scope’s [reviewed research cases](native/ReservoirScope/docs/GUIDED-TOUR.md#reviewed-research-cases)
+The native ReservoirScope 0.15 app’s [reviewed research cases](native/ReservoirScope/docs/GUIDED-TOUR.md#reviewed-research-cases)
 offer a separate guided way to inspect retained evidence.
 
 ## Continue a question

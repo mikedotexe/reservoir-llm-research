@@ -1,7 +1,7 @@
 # Reservoir Scope (the Tauri desktop app)
 
 **0.27.0 candidate 04 · Ready for a first invited tester · Human acceptance pending**
-**0.39.0 source · two-entry slot without a context line ([record](RELEASE-0.39.0.md)), on 0.38.0 recent-return window and two-entry slot ([record](RELEASE-0.38.0.md)), 0.37.0 state-residual and random-older memory policies ([record](RELEASE-0.37.0.md)), 0.36.0 state-chosen memory and watchdog warm-up ([record](RELEASE-0.36.0.md)), 0.35.0 difference-signal channel ([record](RELEASE-0.35.0.md)), 0.34.0 no-tag and scrambled-tag controls ([record](RELEASE-0.34.0.md)), 0.33.0 entry-effect readout ([record](RELEASE-0.33.0.md)), 0.32.0 model thinking toggle ([record](RELEASE-0.32.0.md)), 0.31.0 two more S-010 contract arms ([record](RELEASE-0.31.0.md)), 0.30.0 embedding text reduction and S-010 frame arms ([record](RELEASE-0.30.0.md)), 0.29.0 writing temperature ([record](RELEASE-0.29.0.md)) and 0.28.0 field noise and feedback scale ([record](RELEASE-0.28.0.md)); unqualified local candidates**
+**0.39.0 source, frozen as the research instrument on October 22, 2026 ([synthesis](../../analyses/2026-10-22-s011-apparatus-synthesis.md)) · two-entry slot without a context line ([record](RELEASE-0.39.0.md)), on 0.38.0 recent-return window and two-entry slot ([record](RELEASE-0.38.0.md)), 0.37.0 state-residual and random-older memory policies ([record](RELEASE-0.37.0.md)), 0.36.0 state-chosen memory and watchdog warm-up ([record](RELEASE-0.36.0.md)), 0.35.0 difference-signal channel ([record](RELEASE-0.35.0.md)), 0.34.0 no-tag and scrambled-tag controls ([record](RELEASE-0.34.0.md)), 0.33.0 entry-effect readout ([record](RELEASE-0.33.0.md)), 0.32.0 model thinking toggle ([record](RELEASE-0.32.0.md)), 0.31.0 two more S-010 contract arms ([record](RELEASE-0.31.0.md)), 0.30.0 embedding text reduction and S-010 frame arms ([record](RELEASE-0.30.0.md)), 0.29.0 writing temperature ([record](RELEASE-0.29.0.md)) and 0.28.0 field noise and feedback scale ([record](RELEASE-0.28.0.md)); unqualified local candidates**
 
 Reservoir Scope combines a personal reservoir and journal with offline experiments,
 recordings and evidence readers. The native macOS app remains separate at
@@ -144,7 +144,9 @@ power; it is not whole-app or endurance qualification. The
 and [separate real v8 episode](validation/2026-10-14-v8-writing-episode01/README.md)
 identify executed checks and limits. Historical evidence belongs to its exact build.
 The two-hour synthetic run belongs to 0.12.0. Windows/Ubuntu's initial CI failure and
-unqualified test-only correction are retained separately; they are not successful
+unqualified test-only correction are retained separately, as is the October 16 run that
+executed on all three hosts and failed exact replay of retained macOS histories
+([integration checks](../../analyses/2026-10-16-preview-main-integration.md)); none is
 platform acceptance.
 
 Production v8 remains unchanged. The first standalone source-role diagnostic

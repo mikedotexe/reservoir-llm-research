@@ -289,9 +289,11 @@ Read in: S-011 progress and `analyses/2026-10-21-frame-arms.md`. 3 configuration
 | `plain-effect-gemma4-seed7` | 0.33.0 | gemma4:12b | `reservoir-journal-inert-plain-contract-effect-v1` | embedding | latest | 0 | 0.955 regulated | 7 | 30 / 2000 |
 | `plain-effect-mistral` | 0.33.0 | mistral-small:24b | `reservoir-journal-inert-plain-contract-effect-v1` | embedding | latest | 0 | 0.955 regulated | 20260909 | 30 / 2000 |
 
-### Embedding codec arms (0.30.0)
+### Embedding codec twins without the effect clause (0.33.0)
 
-Read in: `analyses/2026-10-21-frame-arms.md` and `analyses/2026-10-21-embedding-reduction-offline.md`. 2 configurations.
+Read in: S-011 progress (`research/studies/S-011-self-observation-stack.md`, 2026-10-21 20:10, the
+entry-effect pairs: each is the identical arm without the clause beside `inert-effect-gemma4[-seed7]`;
+S-010's own codec twins are the mistral arms of the frame family below). 2 configurations.
 
 | arm | runner | model | prompt version | codec | policy | gain | retention | seed | turn every / max steps |
 |---|---|---|---|---|---|---|---|---|---|

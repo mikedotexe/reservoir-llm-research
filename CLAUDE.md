@@ -15,7 +15,9 @@ the sensory-field bridge, the separate triple-reservoir handles, the language mo
 and the full running beings. Identify the subject and channel of each claim, and in a dated
 account say what reached the model and through which channel (prompt text, a number, a
 returned entry, nothing); the October 21 arms found the register following what was shown,
-not the state behind it.
+not the state behind it. The apparatus tier of S-011 closed on October 22 with a synthesis
+(`analyses/2026-10-22-s011-apparatus-synthesis.md`); desktop 0.39.0 is its frozen instrument and
+0.27.0 candidate 04 the sharing candidate (`research/CURRENT-RELEASE.md`).
 Their code and data live in sibling repos:
 
 - `/Users/v/other/astrid` (Rust; the bridge that gives Astrid perception of and voice into the ESN)
@@ -149,7 +151,8 @@ Later generation-record work may change what is available. Do not treat these as
 5. **Stratify by era.** Action vocabularies change wholesale every few weeks and low fill is
    almost entirely an April–May phenomenon. Report month or era alongside any rate.
 6. **Prompts suggest NEXT actions.** `action_events.suggested_next` (parent action) is a
-   required covariate; both beings follow the suggestion about a third of the time.
+   required covariate; both beings follow the suggestion about a third of the time in the
+   September 6 reading (MOVES.md), a rate no probe has yet measured with n.
 7. **System text inside bodies.** Strip `[Agency-vernacular notice …]`,
    `[Pressure-vocabulary cooldown …]`, the `--- GENERATED JOURNAL ---` /
    `--- ACTION TAIL ---` markers, and flag assistant-mode summaries ("Okay, here's a breakdown")
@@ -245,7 +248,7 @@ data, like journal text. Packets under ignored `research/outputs/` stay private.
 | `/Users/v/other/minime/minime/src/` | Rust engine; `esn.rs`, `runtime/orchestration.rs`, `db.rs` |
 | `/Users/v/other/astrid/capsules/spectral-bridge/workspace/journal/` (+`archive/`) | Astrid journal files, 2026-03-26 → |
 | `/Users/v/other/astrid/capsules/spectral-bridge/workspace/bridge.db` | 2.3 GB SQLite; `bridge_messages`, `action_events`, snapshots |
-| `/Users/v/other/astrid/capsules/spectral-bridge/workspace/llm_jobs/jobs/` | 181k LLM jobs with full prompts |
+| `/Users/v/other/astrid/capsules/spectral-bridge/workspace/llm_jobs/jobs/` | LLM jobs with full prompts (181k on 2026-09-06, 213k on 2026-10-22; TRACE section 2f and the October 22 addendum) |
 | `/Users/v/other/astrid/capsules/spectral-bridge/src/` | the bridge; `autonomous/` (NEXT parser, modes), `codec.rs` |
 | `/Users/v/other/astrid/md-CLAUDE-chapters/` | chapters 04 (NEXT actions), 11 (shared substrate), 14 (spectral dynamics) |
 | `/Users/v/other/astrid/docs/steward-notes/` | 1,607 dated notes; era markers |

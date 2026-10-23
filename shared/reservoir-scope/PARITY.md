@@ -1,6 +1,6 @@
 # Reservoir Scope parity ledger
 
-**Current candidate: 0.27.0 candidate 04 · Current pointer reviewed October 16, 2026**
+**Current candidate: 0.27.0 candidate 04 · Research instrument frozen at 0.39.0 (October 22, 2026) · Current pointer reviewed October 22, 2026**
 
 This matrix separates implemented behavior, executed qualification and remaining
 work. A verifier pass does not establish complete workflow parity, scientific benefit
@@ -226,8 +226,8 @@ not substituted for measured content dimensions.
 | Target | Build evidence | Packaged behavior | Human acceptance |
 | --- | --- | --- | --- |
 | macOS 14+ Apple silicon | Distinct 0.25.0 package build; 431 frontend tests, TypeScript/Vite and reference checks pass. Rust tests/Clippy are reused from 0.24 by exact 164-input comparison with five version-only substitutions, not rerun | At 1280 × 860, three scripted journals save/apply and naturally hold at step 91; Earlier/Later/Follow latest, current-versus-selected fill and 125%/200% zoom/reset pass. Normal quit and same-build replay preserve all 19 files. No fresh pinned-arrival or export/recovery check; prior 0.24 evidence remains tied to that build. Actual 900 × 700 / 720 × 600 content targets, minimum OS, broader accessibility, GPU/energy attribution and endurance remain open | Pending |
-| Windows 11 x64 | Initial CI passed reference/Python/frontend checks, then stopped at a core covariance assertion; a test-only correction is present but subsequent remote execution remains unqualified | Pending | Pending |
-| Ubuntu 24.04 x64 | Initial CI passed reference/Python/frontend checks, then stopped at a core covariance assertion; a test-only correction is present but subsequent remote execution remains unqualified | Pending | Pending |
+| Windows 11 x64 | Initial CI passed reference/Python/frontend checks, then stopped at a core covariance assertion; a test-only correction is present but subsequent remote execution remains unqualified; a later run on October 16 executed on all three hosts and rejected retained macOS numerical histories on exact replay ([integration checks](../../analyses/2026-10-16-preview-main-integration.md)) | Pending | Pending |
+| Ubuntu 24.04 x64 | Initial CI passed reference/Python/frontend checks, then stopped at a core covariance assertion; a test-only correction is present but subsequent remote execution remains unqualified; a later run on October 16 executed on all three hosts and rejected retained macOS numerical histories on exact replay ([integration checks](../../analyses/2026-10-16-preview-main-integration.md)) | Pending | Pending |
 
 See [platform CI evidence](../../desktop/ReservoirScope/validation/2026-10-14-platform-ci-0.17.0/README.md).
 A checked-in workflow is not a passing job, and a build is not installation, graphics,
@@ -235,6 +235,11 @@ accessibility or collaborator acceptance. Historical receipts apply to their exa
 source/package; no percentage substitutes for these gates.
 
 ## Next tranches
+
+**Parked October 22, 2026:** the research line is frozen at 0.39.0 as an instrument and the
+roadmap's milestones after M5b are parked, not scheduled
+([roadmap](../../TAURI-ROADMAP.md), [CURRENT-RELEASE](../../research/CURRENT-RELEASE.md));
+the areas below remain the accepted work areas, none of them scheduled.
 
 Use the [current work areas](../../desktop/ReservoirScope/STATUS.md#broader-work-beyond-the-private-handoff-finish):
 writing-context investigation; Observatory/reading/rendering; sustained lifecycle and

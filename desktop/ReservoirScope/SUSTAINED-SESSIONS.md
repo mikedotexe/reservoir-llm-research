@@ -308,8 +308,9 @@ An explicit context size must exceed the output ceiling. This simple configurati
 check does not prove that a provider tokenized or processed all supplied context.
 The app retains the exact full latest applied journal, never truncating it to make a
 request appear to fit. Longer context can cost more memory; actual capacity requires
-an explicitly configured run. Temperature remains zero, the response bound remains
-one MiB, and text/codec limits still apply. A length stop, over-budget reported token
+an explicitly configured run. Temperature is zero unless the language configuration
+sets one (0.29.0; fresh Ollama setups propose 0.7), the response bound remains one MiB,
+and text/codec limits still apply. A length stop, over-budget reported token
 count, timeout or incomplete response cannot become new journal feedback. No
 automatic retry or silent increase in output, context or duration is performed.
 

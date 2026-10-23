@@ -22,7 +22,9 @@ whether the residual rule's lock on one entry is the rule or the loop), and the 
 the latest applied entry in the order written (the test that separates "an older entry
 present" from "the latest entry absent" in the 0.37.0 register effect). Both are off by
 default and byte for byte absent when off. The 0.37.0 arms reported (the direction is an
-effect over seven arms; the residual chooser converges), which was what the freeze waited on;
+effect over seven arms; the residual chooser converges [corrected 2026-10-22: an effect of the
+returned older entry beside a shown number; without the number the register stays at the
+`latest` arms' rates, `../../analyses/2026-10-22-threshold-battery.md`]), which was what the freeze waited on;
 the numerical sweeps stay parked. Arms and their reading belong to S-011's dated accounts.
 
 [0.37.0](RELEASE-0.37.0.md) adds the `state-residual` policy (the latest entry's push projected

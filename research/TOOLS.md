@@ -626,7 +626,8 @@ a separately declared window, such as
 identities before enabling the new bare terminal SELF_STUDY choice subset on
 verified after-era entries. Old and unknown eras retain the historical parser;
 requested prose remains distinct from native parsed choice and actual dispatch.
-The original overnight report replays with all 15 report fields unchanged.
+The original overnight report replays with all 15 report fields unchanged
+([the SELF_STUDY history](histories/self-study.md) records the replay).
 
 ## Observe Minime source-study fidelity
 

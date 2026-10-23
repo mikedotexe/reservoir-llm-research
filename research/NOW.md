@@ -35,13 +35,17 @@ seeds) ran and were read blind with Mike before the key
 ([readings record](readings/2026-10-22-blind-policy-038.md)): the window turns the residual
 lock into a four-turn cycle, so the lock is the rule reading a stable state; the latest
 entry's presence beside the older one restores none of the questions, hedges or first-person
-openings the older-entry slot removes; and the sample's finished-state, invented-number family
+openings the older-entry slot removes [corrected the same evening: while a number is shown;
+without one the older-entry slot writes at the `latest` arms' rates, `analyses/2026-10-22-threshold-battery.md`];
+and the sample's finished-state, invented-number family
 is entirely the tagged two-entry arms ([account](../analyses/2026-10-22-two-entry-slot.md)).
 The threshold battery follows from it (desktop 0.39.0, the two-entry slot with no context
 line; ten no-tag arms; design and predictions in S-011 at 14:02 before any arm ran). Read-only toward the beings, with Mike's go for the two SSH copies: a week
-of Astrid's prompts shows her journal elaborations carry no number at all and the numbers
+of Astrid's prompts shows her journal elaborations carry no readout number (and, but for
+five of 1,097, no percentage at all) and the numbers
 that move are Minime's telemetry in her moment-capture prompts, quoted in 164 of 191
-responses, while her own aspiration and witness readouts held one value all week
+responses, while her own aspiration readout, and every witness quantity but the live λ₁,
+held one value all week
 ([account](../analyses/2026-10-22-astrid-readout-audit.md)); a week of Minime's entries by
 lane shows the deep offsets survive within a lane (the nearest earlier entry six or more back
 on 56–58% of introspections and journal entries), the daydream lane bridging like the
@@ -49,7 +53,8 @@ plain-contract arms, and the moment lane in the number-led shape of the tagged a
 ([account](../analyses/2026-10-22-minime-concept-chains-week.md)); the state-logging
 proposal gained the October 21 excursion and the index fields that would join an excursion to
 her text. Reading sessions pending with Mike: the 0.37.0 and 0.36.0 blind samples, then the
-0.39.0 one when its chain finishes.
+0.39.0 one when its chain finishes [the evening parked the 0.37.0 and 0.36.0 samples as
+superseded; the 0.39.0 sample waits].
 
 **October 21 evening focus: what reaches the model, and through which channel
 ([S-011](studies/S-011-self-observation-stack.md)).** The evening's runs on `gemma4:12b`
@@ -124,9 +129,9 @@ the private 0.27.0 handoff and the earlier focus below are unchanged.
 - **Parked 2026-10-22:** the twelve-entry 0.37.0 sample and entries 6–15 of the 0.36.0 sample
   (`research/readings/README.md`), superseded by the 0.38.0 key and the battery's correction;
   unparked by Mike asking to read them.
-- **The hardening tranche** (its dated account under `analyses/` when written): five acceptance
-  criteria first, one pass over the living documents, suites green; then the push is Mike's
-  call, as a named ref.
+- **The hardening tranche is done** (`analyses/2026-10-22-hardening-tranche.md`: five criteria
+  written first, 482 claims cross-checked, 17 edits beside the claims, suites green); the push
+  is Mike's call, as a named ref.
 - **S-012** (`research/studies/` when written): the tier's prediction read in Astrid's job
   records, read-only over SSH into the session scratchpad, by kind and month; the probe built
   and tested on the apparatus arms before any copy.

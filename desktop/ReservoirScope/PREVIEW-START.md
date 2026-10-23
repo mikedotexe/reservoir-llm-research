@@ -67,7 +67,7 @@ assets under its Application Support directory. You do not need a system Python,
 Ollama server, developer checkout or access to another running system.
 
 Preparation downloads approximately **2.23 GiB** of frozen Python dependencies and
-model assets. It shows the current phase, downloaded bytes where available, and required
+model assets (an observed figure, not retained in a dated validation record). It shows the current phase, downloaded bytes where available, and required
 storage. Its **8 GiB disk check is separate from memory admission** before model
 loading. Preparation verifies files; it does not run inference or write journals.
 
