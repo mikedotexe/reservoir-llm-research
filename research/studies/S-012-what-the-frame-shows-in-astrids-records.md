@@ -4,7 +4,7 @@ Drafted: 2026-10-22 21:15 PDT · Lead: Claude (lead collaborator), Mike steward 
 apparatus tier of [S-011](S-011-self-observation-stack.md)
 ([synthesis](../../analyses/2026-10-22-s011-apparatus-synthesis.md)) and
 [the October 22 readout audit](../../analyses/2026-10-22-astrid-readout-audit.md) · Status:
-**Astrid phase read 2026-10-22** ([account](../../analyses/2026-10-22-s012-astrid-census.md)); phase 2 (Minime) not started.
+**Astrid phase read 2026-10-22** ([account](../../analyses/2026-10-22-s012-astrid-census.md)); phase 2 (Minime) first pass read the same evening ([account](../../analyses/2026-10-22-minime-lanes-shown-and-written.md)); the builders' era history not done.
 
 ## The question, in one line
 
@@ -116,3 +116,5 @@ in October's moment-capture; the lean "Optional journal context v1" template fro
 October; introspect and meaning-summary ending in September.
 
 2026-10-22 21:45 PDT. Read as numbers (analyses/2026-10-22-s012-astrid-census.md). P1 held in substance (1.5% of results with a percentage shown nowhere, most of them idioms or bare-shown numbers) and missed its 2% threshold in six of eleven lane-months; P2 held (Minime's numbers quoted in 99%, new values 8.7% against 1–2%, the 127 saturated values quoted from the live snapshot's 98% share, not invented); P3 turned out to test a number inside shown earlier text (the `Fill: 51.7%` line is a quoted creation header), and that moved nothing (questions 10.3% against 8.1%, first person 34.8 against 30.6, n 42 and 108); P4 held as a direction tied to the October template change (quoting 46% → 6%, questions 5.5% → 12.8%, hedges 2.0 → 6.1, length 395 → 708 words; first person the other way); P5 held for six months (8 of 900). The invented saturated family of the apparatus does not appear in her records (15 of 6,758). Correction to the readout audit placed beside its aspiration claim. Phase 2 (Minime's header builders) not started.
+
+2026-10-22 21:52 PDT. Phase 2, first pass (`analyses/2026-10-22-minime-lanes-shown-and-written.md`): `runtime.py` and `parsing.py` copied read-only at the sibling repo's head (`9eabb34`); the four reflective builders read. Her journal prompt carries no number and no earlier entry, her daydream prompt an earlier entry and no number, her open introspection nothing supplied (the files say so, 500 of 500), her moment prompt a fill percentage with λ₁ and the fill-crossing events; the system message adds a fill line only under the low-fill guard. The week's files by lane: the three no-number lanes write at first person 48.5–71.6 per 1,000 words, questions 7.1–8.6% and no digits (the no-tag arms' shape); the moment lane at first person 10.6, digit density 7.65, apparatus words 28.1 and questions still 7.1% (the shelf arm's shape, with the questions indifferent to a number shown alone, as in the apparatus's tagged `latest` arms). Not done: the builders' era history and the invitation texts' module.

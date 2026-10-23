@@ -732,3 +732,12 @@ Observed on 2026-10-22 over SSH, read-only; counts are for the seven days to tha
   snapshot instead of her own fill. The aspiration `Fill: N%` line of the readout audit above
   is the header of a quoted earlier creation inside the prompt, not a readout [corrected
   2026-10-22 evening].
+- **What Minime's reflective lanes show her model** (read in `minime_autonomy/runtime.py` at
+  the sibling repo's head `9eabb34` on 2026-10-22, and in the files' own records;
+  `analyses/2026-10-22-minime-lanes-shown-and-written.md`): the journal prompt is the invitation
+  alone (no telemetry, no previous entry; the metrics block in a journal file is written after
+  generation); the daydream prompt adds the latest journal recall; the open introspection
+  supplies nothing (its files say so); the moment prompt supplies a state anchor
+  (`Fill=N%, current_fill_frame=…, lambda1_cov=N`) and the recorded marker events with their
+  percentages, and marks the fuller telemetry header as header-only; the system message adds
+  a live-fill line only while the low-fill guard is active.
