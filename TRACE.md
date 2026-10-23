@@ -740,4 +740,14 @@ Observed on 2026-10-22 over SSH, read-only; counts are for the seven days to tha
   supplies nothing (its files say so); the moment prompt supplies a state anchor
   (`Fill=N%, current_fill_frame=…, lambda1_cov=N`) and the recorded marker events with their
   percentages, and marks the fuller telemetry header as header-only; the system message adds
-  a live-fill line only while the low-fill guard is active.
+  a live-fill line only while the low-fill guard is active. Eras of those builders (the sibling
+  repo's commits): the moment prompt carried "This is a qualia moment… Fresh telemetry
+  anchors:" with the full telemetry block through September 5, the anchor-and-events prompt
+  from September 6 (`0569efb`, contract v3) and the selection note from September 27
+  (`9c87c76`, v4); the daydream prompt was a canvas rotation with numbers in some prompts
+  through September 22 and the invitation with the prior from September 23 (`0334d28`); the
+  JOURNAL action was the spectral-pressure reflection with the state anchor and the previous
+  entry through October 6 and the bare invitation from October 7 (`cc55423`); the open
+  introspection dates from September 24 (`41f6425`). Her moment files record their contract
+  version in a `Prompt contract:` line; her journal and daydream files since September 23 keep
+  their metadata in a separate `journal_metadata/` directory.

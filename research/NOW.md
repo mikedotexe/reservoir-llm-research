@@ -145,11 +145,11 @@ the private 0.27.0 handoff and the earlier focus below are unchanged.
 - **The hardening tranche is done** (`analyses/2026-10-22-hardening-tranche.md`: five criteria
   written first, 482 claims cross-checked, 17 edits beside the claims, suites green); the push
   is Mike's call, as a named ref.
-- **S-012 phase 2, Minime, first pass done** (`analyses/2026-10-22-minime-lanes-shown-and-written.md`): her journal and
-  open-introspection prompts carry no number, her daydream an earlier entry, her moment lane a
-  fill percentage with its events; the week's lanes write accordingly. What remains: the era
-  history of the four builders (65 commits since May) and the invitation module's texts, both
-  read-only. The Astrid phase is read (`analyses/2026-10-22-s012-astrid-census.md`).
+- **S-012 is complete** (Astrid: `analyses/2026-10-22-s012-astrid-census.md`; Minime:
+  `analyses/2026-10-22-minime-lanes-shown-and-written.md`, with the builders' eras). The one
+  open thread it leaves is a question, not a task: whether the system message's action catalog,
+  which every lane sees and the apparatus never tested, frames the writing; it would be an
+  apparatus arm or a read-only era read, and is not scheduled.
 - **The push**, as a named ref, is Mike's call; nothing is pushed.
 - **Still parked:** the channel model arms, the numerical sweeps, and the spec's M1–M4 on
   the beings' side (`proposals/esn-state-logging.md` is the only being-facing proposal).
