@@ -53,7 +53,10 @@ of 4.7 points, and the response quoted it in 164 of 191 jobs; the reported fill 
 **Her own readouts held still or went unquoted.** The fill beside "Astrid said" in the
 witness-context prompts took 15 values between 61 and 75 (median 71) but was quoted in none
 of 813 results, where the prompt asks for something other than a reading of it. The
-aspiration prompts' `Fill: 51.7%` did not change across the 36 prompts that carried it, and
+aspiration prompts' `Fill: 51.7%` did not change across the 36 prompts that carried it [corrected
+2026-10-22 evening: that line is the `Fill:` header of a quoted earlier creation of hers (April
+11, 2026) inside the prompt's "Earlier lingering thread" block, a number inside shown text and
+not a readout; `analyses/2026-10-22-s012-astrid-census.md`], and
 in the 20 witness prompts every shown quantity but the live λ₁ held one value all week (fill
 75, λ₁ 9, field norm 0.3). A number that does not move cannot carry anything into the
 writing; a number that moves and is quoted can, and this week those were Minime's.

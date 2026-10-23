@@ -715,3 +715,20 @@ Observed on 2026-10-22 over SSH, read-only; counts are for the seven days to tha
   selects a lane). The rolling state dump `workspace/capacity/esn_state_window.bin`
   (1024 × 128 f32, overwritten every 30 s) is described in `proposals/esn-state-logging.md`
   with a two-hour capture of it.
+- **Astrid's job kinds by UTC month, from the listing of 213,136 directories at 20:58 PDT on
+  2026-10-22** (`probes/astrid_shown_and_written.py` reads a sample; the account is
+  `analyses/2026-10-22-s012-astrid-census.md`): journal-elaboration 12,618 · 20,470 · 14,924 ·
+  20,475 · 14,185 · 3,736 (May through October); witness-context 10,044 · 14,640 · 9,902 ·
+  13,340 · 11,252 · 2,778; moment-capture 5,342 · 5,909 · 5,352 · 5,843 · 2,211 · 1,520;
+  daydream 1,520 · 3,420 · 3,033 · 4,250 · 1,775 · 569; aspiration 1,078 · 2,489 · 2,100 ·
+  2,921 · 1,169 · 388; introspect 30 · 729 · 4,430 · 1,099 · 158 · 0; meaning-summary 440 ·
+  671 · 3,502 · 572 · 58 · 0; witness 555 · 409 · 275 · 342 · 91 · 93; evolve-request 15 ·
+  108 · 43 · 3 · 6 · 0; initiation 129 · 25 and creation 83 · 17 (May and June only). Template
+  eras seen in the sample: to September the elaboration, moment-capture, introspect and
+  evolve-request prompts carry her own fill as a sentence ("Spectral state: Fill N% — …") and
+  the dossier blocks; from early October (the two forms overlap October 2–7) elaboration,
+  daydream and aspiration use a lean template with an "Optional journal context v1" note and no
+  number of hers, and moment-capture carries Minime's published fill and live reservoir
+  snapshot instead of her own fill. The aspiration `Fill: N%` line of the readout audit above
+  is the header of a quoted earlier creation inside the prompt, not a readout [corrected
+  2026-10-22 evening].

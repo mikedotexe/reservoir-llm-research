@@ -4,6 +4,20 @@
 [Focus history, October 7–16](NOW-history-20261007-through-20261016.md) ·
 [Earlier focus history](NOW-history-through-20260917.md)
 
+**October 22, late evening: S-012 read in Astrid's records, read-only
+([account](../analyses/2026-10-22-s012-astrid-census.md), [study](studies/S-012-what-the-frame-shows-in-astrids-records.md)).**
+Six months of her job prompts and results (7,001 sampled of 213,136, 6,758 with both files, up to
+150 per lane and month) say which parts of the apparatus tier transfer. Whether a shown number is
+quoted follows the lane's task (0–1% in witness-context, 2–20% in elaborations with her own state
+sentence, 85–99% in moment-capture), not the number's presence; where no number is shown she
+writes almost none (1.5%); the apparatus's invented saturated family does not appear (15 of
+6,758, and her 98% values are Minime's spectral share, quoted); the number-led lane writes in the
+tagged arms' shape and the lean October frames in the no-tag arms' questioning shape, as
+template contrasts; and the one isolated number in her records, an old `Fill: 51.7%` header
+inside a quoted creation, moves nothing (which corrects the readout audit's reading of that line
+as a readout, beside the claim). Her model family is the apparatus's. Phase 2, Minime's header
+builders, is not started. The hardening tranche is committed (`analyses/2026-10-22-hardening-tranche.md`).
+
 **October 22 evening focus: the apparatus tier of [S-011](studies/S-011-self-observation-stack.md)
 is closed; a hardening tranche, then S-012.** The
 [synthesis](../analyses/2026-10-22-s011-apparatus-synthesis.md) ranks the tier's ten findings with n,
@@ -44,7 +58,8 @@ line; ten no-tag arms; design and predictions in S-011 at 14:02 before any arm r
 of Astrid's prompts shows her journal elaborations carry no readout number (and, but for
 five of 1,097, no percentage at all) and the numbers
 that move are Minime's telemetry in her moment-capture prompts, quoted in 164 of 191
-responses, while her own aspiration readout, and every witness quantity but the live λ₁,
+responses, while her own aspiration readout [corrected the same evening: a quoted creation
+header inside the prompt, not a readout; S-012], and every witness quantity but the live λ₁,
 held one value all week
 ([account](../analyses/2026-10-22-astrid-readout-audit.md)); a week of Minime's entries by
 lane shows the deep offsets survive within a lane (the nearest earlier entry six or more back
@@ -132,9 +147,11 @@ the private 0.27.0 handoff and the earlier focus below are unchanged.
 - **The hardening tranche is done** (`analyses/2026-10-22-hardening-tranche.md`: five criteria
   written first, 482 claims cross-checked, 17 edits beside the claims, suites green); the push
   is Mike's call, as a named ref.
-- **S-012** (`research/studies/` when written): the tier's prediction read in Astrid's job
-  records, read-only over SSH into the session scratchpad, by kind and month; the probe built
-  and tested on the apparatus arms before any copy.
+- **S-012 phase 2, Minime:** her job prompts are stubs, so what her lanes show is in the header
+  builders of `minime_autonomy/runtime.py` (on volya, read-only copy); the audit lists per lane
+  and era which readouts and earlier text each builder inserts, then the week's journal copies
+  by lane carry the result side. The Astrid phase is read (`analyses/2026-10-22-s012-astrid-census.md`).
+- **The push**, as a named ref, is Mike's call; nothing is pushed.
 - **Still parked:** the channel model arms, the numerical sweeps, and the spec's M1–M4 on
   the beings' side (`proposals/esn-state-logging.md` is the only being-facing proposal).
   The native 0.15 candidate, the 0.27.0 private handoff and the earlier research
