@@ -15,8 +15,10 @@ writes almost none (1.5%); the apparatus's invented saturated family does not ap
 tagged arms' shape and the lean October frames in the no-tag arms' questioning shape, as
 template contrasts; and the one isolated number in her records, an old `Fill: 51.7%` header
 inside a quoted creation, moves nothing (which corrects the readout audit's reading of that line
-as a readout, beside the claim). Her model family is the apparatus's. Phase 2, Minime's header
-builders, is not started. The hardening tranche is committed (`analyses/2026-10-22-hardening-tranche.md`).
+as a readout, beside the claim). Her model family is the apparatus's. Phase 2, Minime's lanes and
+the eras of her prompt builders, was read the same night
+(`analyses/2026-10-22-minime-lanes-shown-and-written.md`); S-012 is complete. The hardening
+tranche is committed (`analyses/2026-10-22-hardening-tranche.md`).
 
 **October 22 evening focus: the apparatus tier of [S-011](studies/S-011-self-observation-stack.md)
 is closed; a hardening tranche, then S-012.** The
@@ -133,6 +135,15 @@ records note the host's packaging failure; the dev build runs. The native 0.15 w
 the private 0.27.0 handoff and the earlier focus below are unchanged.
 
 ## What the next session needs
+
+**Save point, 2026-10-23 09:07 PDT.** Everything through S-012 is committed on `main` (`300fb60`
+and later); `origin/main` holds everything pushed at Mike's delegation through `f5018fa`, and
+pushing stays his decision. No arm, chain or app is running; the 0.29.0 dev worktree
+(`../reservoir-llm-research-temp`, branch `writing-temperature`) is idle. The private
+captures (the forty arm stores, the blind samples and keys, the beings' copied records) live
+only in the session scratchpad unless Mike archives them. Open threads are questions, not
+tasks: the action catalog in Minime's system message (below), a reading of the 0.39.0 sample
+with the key known if Mike wants one, and the push.
 
 - **The 0.39.0 blind sample is read** (`research/readings/2026-10-22-blind-threshold-039.md`, by
   Claude alone at Mike's delegation, notes before the key): the finished-state register survives
