@@ -157,4 +157,5 @@ the private 0.27.0 handoff and the earlier focus below are unchanged.
   closeouts are unchanged; their state is in the October 7–16 history.
 
 Use [board records](../board/README.md) for coordination; the Hold Shelf carries the
-October 22 finding cards and session log. Nothing is pushed; pushing is Mike's decision.
+October 22 finding cards and session logs. `main` was pushed to `origin` as a named ref at
+`ecafcf3` on 2026-10-22 at 22:08 PDT, at Mike's delegation; pushing remains his decision.
