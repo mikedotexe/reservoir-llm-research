@@ -1,11 +1,14 @@
 """Scientific accounting invariants across study scorers."""
 import unittest
 
-from reservoir_experiments.correction_memory import build_correction
+from reservoir_experiments.correction_memory import build_correction, parse_forecast
 from reservoir_experiments.scoring import study_report
 
 
 class ScoringTests(unittest.TestCase):
+    def test_unbounded_integer_probability_is_invalid_without_overflow(self):
+        self.assertIsNone(parse_forecast('{"p_supported":' + str(10 ** 400) + '}'))
+
     def test_forecast_missingness_preserves_planned_pairs(self):
         protocol = build_correction("development")
         records = {}

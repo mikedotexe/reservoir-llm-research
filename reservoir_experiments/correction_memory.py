@@ -425,7 +425,7 @@ def parse_forecast(text: str | None) -> float | None:
     except (ValueError, TypeError):
         return None
     p = parsed.get("p_supported") if isinstance(parsed, dict) else None
-    if isinstance(p, bool) or not isinstance(p, (int, float)) or not math.isfinite(p) or not 0 <= p <= 1:
+    if isinstance(p, bool) or not isinstance(p, (int, float)) or not 0 <= p <= 1 or not math.isfinite(p):
         return None
     return float(p)
 
