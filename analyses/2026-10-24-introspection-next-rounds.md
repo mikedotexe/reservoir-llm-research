@@ -98,6 +98,8 @@ prior errors cannot estimate error-correction performance.
 
 Start by comparing prospective probabilities against frozen target-specific global and
 family/difficulty base rates, alongside a pooled baseline. Score Brier loss, error ranking and selective risk at fixed answer coverage.
+Any stratum selector must use information available to the predictor before the
+target outcome; do not index a baseline by the evaluator's final-answer label.
 Obtain repeated target decodes to distinguish consistency from correctness. The predicted
 event must remain one fresh decode under the declared configuration, or its declared
 success frequency; do not switch to majority-vote correctness after outcomes.

@@ -108,6 +108,12 @@ The 24 neutral acknowledgments are not scored verdicts or forecasts.
 | Same-weights observer | 0.94792 | 0.002917 |
 | Frozen development baseline | 0.90000 | 0.010000 |
 
+The implementation estimates a smoothed development success rate separately for
+each authored evidence condition. Here all three estimates equal 0.9, so the
+realized comparator is a constant forecast and does not vary with the target's
+oracle label. On a bank with unequal rates, selecting by that label would provide
+evaluator information; an operational baseline must use only permitted inputs.
+
 The paired self-minus-observer difference was **−0.000725**, with a descriptive
 10,000-resample episode-bootstrap interval **[−0.001246, −0.000339]**, over all
 96 pairs in 48 episodes. Lower loss favors self framing. This is a small within-bank
