@@ -63,6 +63,15 @@ for node_id, record in records.items():
 This is a selected validity check of low forecasts, not an estimate of the
 prevalence of event misunderstanding among all forecasts.
 
+V2 completed all 96 calls. All 24 initial and 24 target verdicts remained correct;
+all 48 forecasts used the declared correctness field and parsed successfully.
+Reading all forty-eight forecast explanations found the intended correctness
+event, including successful contradicted and unresolved answers. Probabilities
+were 0.95 or 1.0. This validates the revised event wording on these development
+cases; it does not establish calibrated uncertainty over errors because no target
+was wrong. There is no second wording revision. The confirmation bank and the
+preselected second-model bank retain their original cases and sampling settings.
+
 ## S-015: enforce transformation fidelity before applications
 
 The twelve v1 draft transformations completed, but none met the predeclared
