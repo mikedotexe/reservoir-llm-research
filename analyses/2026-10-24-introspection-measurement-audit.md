@@ -137,3 +137,19 @@ confirmation account and future proposal now identify its privileged relation
 access. A future operational comparator must infer consequences from permitted
 visible text and retain warranted unresolved answers. The exact source-path audit
 is `methods-review/memory-transfer-baseline-access-audit-v1.md` in the private store.
+
+## Mistral catalog qualification labels
+
+An input-only audit during Mistral collection found that the catalog bundle retains
+the earlier Gemma `padding_qualification` field. It describes Gemma's calibration,
+not the qualification of Mistral prompts. Mistral has a separate saved calibration
+history, frozen before its prose generation, and 48 exact-prompt qualifications in
+the final protocol's `context_qualifications` and `token_matching` records. All
+matched inputs pass the 1% tolerance; the maximum absolute fractional residual is
+0.000248047. The frozen protocol is unchanged. Actual generation input counts still
+require their separate output-receipt audit.
+
+The private `methods-review/s016-mistral-input-qualification-label-audit-v1.json`
+binds both fields to the protocol and bundle hashes. Future bundle construction
+should label calibration provenance by model to avoid treating an inherited
+summary as the active qualification receipt.
