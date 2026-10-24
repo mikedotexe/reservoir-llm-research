@@ -77,6 +77,12 @@ misleading irrelevant comments, stale versions, and a few compositional steps. P
 construction and difficulty on separate material, then freeze the held-out distribution.
 Do not select only observed failures or stop when an attractive number of errors appears.
 
+Include initial evidence that warrants supported, contradicted and unresolved
+answers, and score each initial answer against that evidence. Report correction
+of an erroneous prior verdict separately from resolution of justified uncertainty.
+Freeze the cases before generating initial answers; a fixed bank that produces no
+prior errors cannot estimate error-correction performance.
+
 Start by comparing prospective probabilities against frozen target-specific global and
 family/difficulty base rates, alongside a pooled baseline. Score Brier loss, error ranking and selective risk at fixed answer coverage.
 Obtain repeated target decodes to distinguish consistency from correctness. The predicted
@@ -128,8 +134,9 @@ links and explicit assessment cutoffs, and a separate evidence oracle must allow
 unresolved answers when they are missing. The existing scores remain frozen;
 this is a design lesson, not a post-hoc repair of the result.
 Supply an identical subject-and-time envelope to every relevant-memory arm,
-separate from the text being compressed. Check its relationship to each future
-question before freezing the bank. Distinguish rationale fidelity, final-verdict
+separate from the text being compressed. An independent oracle audit checks its
+relationship to each future question before freezing the bank; the construction
+roles remain blind to those questions. Distinguish rationale fidelity, final-verdict
 polarity and warranted uncertainty in the outcome record; one label cannot stand
 in for all three.
 

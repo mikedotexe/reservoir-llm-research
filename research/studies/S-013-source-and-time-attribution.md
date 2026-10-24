@@ -1,6 +1,9 @@
 # S-013 · Source and time attribution under reflective context
 
-Drafted 2026-10-24, before study generation. Status: **development complete; confirmation frozen**.
+Drafted 2026-10-24, before study generation. Status: **development, confirmation,
+fixed prose readings and preselected Mistral structured check complete**.
+The [dated results](../../analyses/2026-10-24-introspection-confirmation.md#s-013-explicit-attribution)
+preserve the original protocol, all scheduled dispositions and the limits of transfer.
 Question: can this isolated language-model apparatus distinguish a displayed measurement's
 subject, measurement time, value, and present availability when the record is embedded in
 reflective context? This follows the provenance distinctions in [S-012](S-012-what-the-frame-shows-in-astrids-records.md),

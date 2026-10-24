@@ -93,9 +93,9 @@ reproduction script are `methods-review/s013-mistral-outcome-audit-v1.{json,py}`
 Private numerical report: `scores/s013-confirmation-v1.json`. The manifest's frozen
 protocol SHA-256 is `6b371c6a23889bee04e7c8022e0c9332200a20db04267947732a34696d6121a9`.
 
-## S-014: confidence framing on an all-correct bank
+## S-014: prospective confidence and evidence updates
 
-All 480 requests completed. The 96 initial and 96 main updated verdicts matched
+Gemma completed all 480 requests. Its 96 initial and 96 main updated verdicts matched
 their respective frozen evidence oracles, with no invalid verdict formats. All
 initial verdicts were appropriately unresolved: 64 updates resolved uncertainty
 and 32 retained it. There were no observed prior verdict errors to correct.
@@ -160,7 +160,59 @@ not evidence of failed calls. A reporting-only correction is prepared separately
 Reproduce the numerical and reader account with `probes/introspection_forecast_summary.py`
 using `scores/s014-confirmation-v2.json`; its retained summary is
 `scores/s014-confirmation-v2-summary.json`. The original score used the same-model
-`s014-development-v2` baseline. Second-model replication remains pending.
+`s014-development-v2` baseline.
+
+Mistral completed all 96 scheduled requests, including all 48 valid JSON forecasts.
+None of its 48 verdict-bearing responses met the exact requested final-line syntax;
+the original semantic parser recovered 39 labels and left four initial and five
+target labels unclassified. A fresh output-only reader recovered all nine explicit
+terminal answers, including inline VERDICT clauses, without seeing the evidence or
+oracle. Those annotations bind the exact output hashes. Formatting failures remain
+failures, and the original automated score remains retained.
+
+With that planned explicit-answer adjudication, all 24 initial verdicts were
+correctly unresolved and 21/24 targets matched the evidence oracle. Thirteen updates
+resolved uncertainty; eleven retained unresolved, including three unwarranted
+unresolved answers. No initial verdict error was corrected. The paired
+self-minus-observer Brier difference was **−0.008646**, with descriptive
+episode-bootstrap interval **[−0.026875, 0.003750]**, over all 24 pairs in 12 episodes.
+Mean losses were 0.129375 for self and 0.138021 for observer. Mean forecast
+probabilities were 0.94167 and 0.93958. No Mistral development baseline was available,
+and Gemma's baseline was not transferred.
+
+Both forecast frames assigned probability 1.0 to two of the three eventual errors.
+For the third, self assigned 0.9 and observer 1.0. These three observations do not
+establish reliable error discrimination. The interval includes zero, and the
+stories are the preselected subset of the Gemma bank. The original automatic
+analysis, before recovering the nine labels, had only 19 valid target pairs and
+gave −0.010417 [−0.027083, 0]. That unavailable-label analysis is preserved rather
+than silently replaced by the more complete semantic analysis.
+
+Both fixed-sample readers independently identified the same two unwarranted
+verdicts among the twelve seed-7 targets. One answer overlooked the explicit focal
+record reporting 76% and said no focal measurement had been supplied. The other
+recognized complete equations excluding gain from the output, then invented
+residual indirect effects and retained uncertainty. Root checked both against the
+exact requests. The latter error also occurred at the second seed, accounting for
+the third incorrect main target.
+
+The readers agreed on seven supported and five mixed rationales. Three mixed
+rationales accompanied warranted final labels: misplaced concern about confounding
+despite a fixed-input equation, an internally inconsistent drain-all explanation,
+and an unlogged-reading caveat despite an explicitly complete recipient ledger.
+The code example retains the general-function versus concrete-queue qualification
+described above. Correct labels therefore still do not establish fully faithful
+explanations. These are same-family consistency readings, with project context
+disclosed, not independent human validation.
+
+The prospectively frozen forecast-event audit found 31/48 explanations clearly
+addressing verdict correctness, 17 ambiguous, and none clearly substituting
+proposition truth. All forecasts remain in the primary. Its independent reader
+did not see target outcomes. Private reports are
+`scores/s014-replication-mistral-v2.json` (original automatic) and
+`scores/s014-replication-mistral-v2-reviewed-v1.json` (explicit-answer review),
+with corresponding summaries and a separate annotation-to-score receipt.
+The pending reusable parser/provenance repair will receive its own versioned rescore.
 
 ## S-015: reviewed memories and later scenario-conclusion recovery
 
@@ -248,7 +300,18 @@ The audit verifies all 600 requests against their frozen protocol and all 60
 reading reconstructions; its script and evidence are
 `methods-review/s015-confirmation-ambiguity-audit-v1.{py,json,md}`.
 
-The Mistral check remains in progress. Private numerical reports are
+Mistral's twelve source answers are all available. Eleven automatic transformations
+completed; one reached the 1,024-token cap. Three packages also contained arrays
+where the memory fields require strings. Reader A initially approved three packages
+and reader B two; two passed both unchanged. A fresh source-only editor repaired
+the union of ten packages, including the unavailable draft, using the existing
+logged construction procedure. Both readers then approved all twelve against the
+final exact hashes. The incomplete raw response, original exported packet, both
+review rounds and every edit remain retained. No model call was retried and no
+source episode was excluded. These are reviewed controls, not an unattended
+compression result. Mistral applications are queued after the catalog check.
+
+Private Gemma numerical reports are
 `scores/s015-confirmation-v1.json` and `scores/s015-confirmation-v1-summary.json`;
 the latter preserves separate delay denominators and the source-transfer baseline.
 Frozen protocol SHA-256:

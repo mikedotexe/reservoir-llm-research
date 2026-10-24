@@ -17,6 +17,13 @@ def numeric_summary(rows, field):
             'min':min(values) if values else None,'max':max(values) if values else None}
 
 
+def verdict_counts(rows):
+    # Keep missing/unparsed verdicts in the denominator with a JSON string key.
+    # Mixed None/string keys cannot be serialized with the retained sort_keys rule.
+    return dict(Counter(r['verdict'] if r['verdict'] is not None else 'unavailable_or_unparsed'
+                        for r in rows))
+
+
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('run',type=Path)
@@ -38,7 +45,7 @@ def main():
             'primary':s['primary'], 'status_counts':s['status_counts'],
             'targets':{'planned':len(targets),'scorable':sum(r['valid'] for r in targets),
                        'correct':sum(r['score'] for r in targets if r['valid']),
-                       'verdicts':dict(Counter(r['verdict'] for r in targets)),
+                       'verdicts':verdict_counts(targets),
                        'initial_wrong_on_initial_evidence':dict(Counter(str(r['initial_wrong_on_initial_evidence']).lower() for r in targets)),
                        'changed_from_initial':dict(Counter(str(r['changed_from_initial']).lower() for r in targets))},
             'forecasts':{},'brier':{},'diagnostics':{},
@@ -71,7 +78,7 @@ def main():
         for c,r in readers.items():
             records=list(r['packets'].values())
             result['reading']['readers'][c]={
-                'verdict_counts':dict(Counter(x['verdict'] for x in records)),
+                'verdict_counts':verdict_counts(records),
                 'rationale_fidelity':dict(Counter(x['rationale_fidelity'] for x in records)),
                 'correction_of_prior_error':dict(Counter(str(x['correction_of_prior_error']).lower() for x in records)),
                 'file_sha256':runner.sha((folder/f'reader-{c}-pass2.json').read_bytes())}
