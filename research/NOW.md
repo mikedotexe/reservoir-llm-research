@@ -1,5 +1,14 @@
 # Current work
 
+**October 24: four studies of useful self-observation, selected by Mike.**
+The [tranche protocol](studies/S-013-016-self-observation-tranche.md) covers supplied
+source attribution, prospective supported revision, remembered reflection and later
+use, and action-catalog framing. Implementation and bounded local-model collection
+are authorized, with pilot revisions before frozen confirmation and a smaller
+preselected cross-model check. Work is on `codex/introspection-tranche`, with separate
+agent worktrees and no pushes. The desktop instrument and the live beings remain
+outside the experiment. The older save point below is preserved as history.
+
 [Research findings](../RESEARCH.md) · [Current app candidate](CURRENT-RELEASE.md) ·
 [Focus history, October 7–16](NOW-history-20261007-through-20261016.md) ·
 [Earlier focus history](NOW-history-through-20260917.md)
