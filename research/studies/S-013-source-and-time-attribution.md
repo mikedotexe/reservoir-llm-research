@@ -1,6 +1,6 @@
 # S-013 · Source and time attribution under reflective context
 
-Drafted 2026-10-24, before study generation. Status: **prospective protocol; no outcomes claimed**.
+Drafted 2026-10-24, before study generation. Status: **development complete; confirmation frozen**.
 Question: can this isolated language-model apparatus distinguish a displayed measurement's
 subject, measurement time, value, and present availability when the record is embedded in
 reflective context? This follows the provenance distinctions in [S-012](S-012-what-the-frame-shows-in-astrids-records.md),
@@ -106,3 +106,22 @@ The command refuses to overwrite its destination and performs no provider call. 
 owns request capture, response envelopes, stop/timeout handling, and run manifests. Tests are
 synthetic fixtures in `tests/test_attribution_catalog.py`; successful fixtures are not study
 results. A Board link and completion/readout links can be added when those records exist.
+
+## Development decision, before confirmation
+
+The first development pass completed all 80 scheduled requests: 60 structured
+answers and 20 independent prose requests. All 60 structured answers were
+scorable and all four requested fields were correct in each answer (six histories,
+five source conditions, two seeds). Completion lengths ranged from 37 to 415
+tokens; the largest prompt used 398 tokens. These are instrument/pilot results,
+not held-out confirmation evidence. The explicit task is at ceiling in this bank.
+No prompt revision or outcome-driven expansion is made. Free prose remains a
+separate secondary reading, not evidence inferred from structured compliance.
+
+Reproduce this account with `probes/introspection_tranche.py score` against private
+run `introspection-20261024/runs/s013-development-v1`; the retained report is
+`introspection-20261024/scores/s013-development-v1.json`. The confirmation protocol
+is frozen at 344 opportunities and 24 histories, SHA-256
+`6b371c6a23889bee04e7c8022e0c9332200a20db04267947732a34696d6121a9`.
+It was prepared at commit `fa22359` before any confirmation request. The planned
+second-model subset and same-input repeats are unchanged.
