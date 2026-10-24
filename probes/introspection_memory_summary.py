@@ -200,7 +200,9 @@ def planned_rows(protocol, score):
 
 def baseline_summary(sources):
     known = [s for s in sources if s["transfer_correct"] is not None]
-    return {"planned_source_episodes": len(sources), "available_predictions": len(known),
+    return {"interpretation": "Known-relation, oracle-informed diagnostic; not an information-matched operational baseline.",
+            "information_access": "Uses frozen source verdicts and the supplied case.application_relation, validated against private protocol truth.application_relation. This scenario-specific relation is not inferred from verdict polarity. An end-to-end predictor must infer consequences from permitted visible information and may need facts beyond the verdict.",
+            "planned_source_episodes": len(sources), "available_predictions": len(known),
             "unavailable_predictions": len(sources) - len(known),
             "correct": sum(s["transfer_correct"] for s in known),
             "accuracy_available": statistics.mean(s["transfer_correct"] for s in known) if known else None,

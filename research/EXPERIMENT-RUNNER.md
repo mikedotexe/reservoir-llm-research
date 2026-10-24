@@ -162,8 +162,13 @@ retained primary contrast and frozen source verdicts (including missing verdicts
 and reports separate delayed/immediate denominators with explicit unavailable
 sources. Its immediate-minus-delayed diagnostic pairs the preselected variant-0
 episodes by episode, seed and arm, then bootstraps episode means with seeds
-clustered. It also reports the source copy/invert baseline and memory-length and
-token summaries. It does not generate text or rescore answers; current versus
+clustered. The legacy `source_transfer_baseline` key reports a known-relation,
+oracle-informed diagnostic: it uses the supplied private application relation,
+which can depend on scenario facts beyond verdict polarity. It is not an
+information-matched operational baseline; an end-to-end predictor must infer
+consequences from permitted visible information and may need facts beyond the
+verdict. The probe also reports memory-length and token summaries.
+It does not generate text or rescore answers; current versus
 retained scoring-code hashes are disclosed without changing the retained score.
 
 All raw outputs are ignored private research material. Publish an aggregate
