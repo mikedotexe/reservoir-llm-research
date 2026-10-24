@@ -72,6 +72,12 @@ cases; it does not establish calibrated uncertainty over errors because no targe
 was wrong. There is no second wording revision. The confirmation bank and the
 preselected second-model bank retain their original cases and sampling settings.
 
+`probes/introspection_compare_runs.py` checked the two passes' 24 initial and
+24 target cells: all 48 rendered requests and all 48 completed texts were identical,
+and provider identity was unchanged. The changed forecast question was not supplied
+to the update branch. This is an instrument-integrity comparison prompted by a
+measurement defect, not a prospectively selected independent replication.
+
 ## S-015: enforce transformation fidelity before applications
 
 The twelve v1 draft transformations completed, but none met the predeclared
@@ -89,6 +95,22 @@ transformation needs repair. All claims, errors, uncertainties and omissions mus
 be preserved; reviewers do not replace source statements with the scenario oracle.
 This tests controlled memory packages. It does not qualify an unattended
 automatic memory-compression system for deployment.
+
+The twelve v2 drafts all completed and all paraphrases met the length bound
+(ratios 0.977–1.032). Independent first reviews approved eight and seven entries
+respectively; five distinct entries needed repair. Issues included evidence
+versus proof, loss of a single-log limitation, loss of a metric or receipt
+attribution, and corrupted math notation. The first researcher notation repair
+overescaped a backslash; both reviewers rejected it. The next repair copied the
+decoded source math substrings directly and checked exact equality. Both readers
+then approved all twelve final sets. Every draft, repair, decision and text hash
+is retained; no later-use output existed during these reviews.
+
+The approved development packet SHA-256 is
+`d438e8aaaf016b493e5571155bc606d3379c97bbeac6ca1da219c2cd60473bbf`.
+It feeds the first 120-call S-015 application protocol, SHA-256
+`a5f92a530e902bba8dd9ff49c868621879d932a5976679d7ebdf08b012dc07f5`.
+The original seed-7 target is unchanged and remains one of the five conditions.
 
 Length checks are reproducible from the unreviewed packet:
 
@@ -117,6 +139,13 @@ reuses only verified matching receipts, checks both padded and neutral controls,
 and refuses to produce a final protocol when matching fails. The study runner
 then requires the actual prompt-token count to equal its qualification receipt.
 Generated probe text is not used to select padding or outcomes.
+
+All twenty-four distinct development prompts passed qualification before their
+forty-eight prose opportunities began. Across the six histories, padded and
+neutral input counts differed from the matched full count by at most 0.000627
+(0.0627%). The first study prose request reproduced its qualification token count
+at the planned context. This validates input delivery and matching, not the
+eventual uptake endpoint.
 
 ## Board updates pending
 
