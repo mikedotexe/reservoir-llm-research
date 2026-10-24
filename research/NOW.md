@@ -12,10 +12,10 @@ outside the experiment. The older save point below is preserved as history.
 The [runner](EXPERIMENT-RUNNER.md) and all four builders are implemented.
 The [development record](../analyses/2026-10-24-introspection-development.md) is
 complete. The [confirmation account](../analyses/2026-10-24-introspection-confirmation.md)
-now includes Gemma source-attribution, forecasting and catalog results, with their
-separate blind readings. Memory construction passed its two-reader gate after retained
-repairs, and memory applications are collecting. The fixed Mistral checks remain
-queued. The [next-round proposals](../analyses/2026-10-24-introspection-next-rounds.md)
+now includes all four Gemma numerical results and separate blind readings, with
+memory-prompt ambiguities under final evidence audit. Memory construction passed its
+two-reader gate after retained repairs. The fixed Mistral source-attribution check
+has completed, and forecasting is collecting. The [next-round proposals](../analyses/2026-10-24-introspection-next-rounds.md)
 are being refined from those findings; they are not additional initiated studies.
 
 [Research findings](../RESEARCH.md) · [Current app candidate](CURRENT-RELEASE.md) ·

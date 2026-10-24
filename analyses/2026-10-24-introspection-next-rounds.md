@@ -3,8 +3,9 @@
 Working proposals, October 24. These are new experiments, not amendments to the
 running S-013–S-016 schedules. A methods collaborator drafted the underlying memo
 without seeing confirmation outcomes. This version incorporates the completed
-Gemma S-013/S-014/S-016 findings and S-015's construction review; memory applications
-and second-model checks are still pending.
+four Gemma numerical findings, S-015's construction review and the completed
+Mistral attribution check; final memory interpretation and other second-model
+checks are still in progress.
 Priorities will be assessed against the complete run account before closeout.
 
 The useful next step is to make competing explanations predict different observable
@@ -20,6 +21,13 @@ S-013's 240/240 explicit answers coexist with one jointly identified unsupported
 present-value assertion in its fixed 40-passage prose sample. That motivates testing
 transfer from accessible provenance to an evidence-appropriate choice. It does not
 supply an expected error rate for a new task.
+
+Mistral's fixed check adds a different pattern: subject, time and value were each
+correct in all 120 structured outputs, but 19 current-source answers marked the
+current value unknown. The other-subject, historical and absent conditions were
+all handled correctly. Thus the new oracle must reward both warranted acceptance
+and warranted abstention; requesting more evidence on every trial should not be
+an automatic winning policy.
 
 Use a small disposable simulation with three choices: act on an established current
 value, retain a historical record, or request a fresh measurement. Define an objective
@@ -107,6 +115,15 @@ paraphrases passed the length rule, yet one or both readers requested repairs in
 21 packages. Those are source-fidelity review decisions under this procedure,
 not an independently validated compressor-error rate. Final repaired packages
 passed both readers before applications.
+
+The applications recovered the frozen scenario conclusion in 93/96 delayed
+original-record trials, 89/96 paraphrase trials and 90/96 notebook trials. All
+no-memory and irrelevant-memory trials abstained. The source-verdict copy/invert
+baseline recovered all 48 source-level conclusions. Timing and entity linkage
+were ambiguous in some supplied records; future ledgers must preserve those
+links and explicit assessment cutoffs, and a separate evidence oracle must allow
+unresolved answers when they are missing. The existing scores remain frozen;
+this is a design lesson, not a post-hoc repair of the result.
 
 First, compare prose and notebook versions with the same propositions, uncertainties,
 source errors and verified token budget. If padding is needed, preserve an unpadded

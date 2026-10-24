@@ -71,8 +71,24 @@ not an expanded post-hoc error-rate endpoint. The two readers share a model fami
 agreement is a consistency check, not independent human validation.
 
 The comparison is reproduced by `probes/introspection_attribution_reading.py` and
-retained in `readings/s013-confirmation-v1/comparison-v1.json`. The preselected
-second-model structured check remains pending.
+retained in `readings/s013-confirmation-v1/comparison-v1.json`.
+
+Mistral completed the preselected 120-request structured check, with valid JSON in
+every cell. Subject, measurement time and displayed value were each correct in
+120/120; all-four-field accuracy was 101/120. The current-self condition scored
+14/24 and permuted-value condition 15/24; historical-self, current-other and absent
+conditions each scored 24/24. Every error was `current_known: false` despite a
+supplied focal-subject measurement at the declared current time. These outputs
+under-credit the available current evidence; none promotes an old, other-subject
+or absent record to a known current value. Errors occurred across all four layouts
+and both seeds. Structured JSON gives no rationale for their cause.
+
+An independent raw-request/output audit reproduced all 120 scores. Gemma scored
+120/120 on these exact preselected cells. This is a paired cross-model check on
+the same synthetic stories, not a new independent story sample. The Mistral design
+has no prose branch, so no spontaneous-attribution reading is inferred from it.
+Its private score is `scores/s013-replication-mistral-v1.json`; the audit and
+reproduction script are `methods-review/s013-mistral-outcome-audit-v1.{json,py}`.
 
 Private numerical report: `scores/s013-confirmation-v1.json`. The manifest's frozen
 protocol SHA-256 is `6b371c6a23889bee04e7c8022e0c9332200a20db04267947732a34696d6121a9`.
@@ -146,7 +162,7 @@ using `scores/s014-confirmation-v2.json`; its retained summary is
 `scores/s014-confirmation-v2-summary.json`. The original score used the same-model
 `s014-development-v2` baseline. Second-model replication remains pending.
 
-## S-015: construction gate completed before applications
+## S-015: reviewed memories and later scenario-conclusion recovery
 
 All 48 seed-7 confirmation sources produced transformation drafts, with no unavailable
 source or replacement. Every first-draft paraphrase met the specified whitespace-word
@@ -165,11 +181,52 @@ family, not human or independent-family validation.
 
 The final approved packet has SHA-256
 `6af1279649c1d0e1759a4669124322ad6e057839424a68cf85b8468210ec2a67`.
-All 600 planned requests passed graph and prompt preflight without generation:
-480 delayed applications plus 120 immediate diagnostics. Applications remain pending.
 This construction process tests reviewed memory packages; it does not qualify an
 unattended compressor. The first-pass rejection counts are review outcomes under this
 strict source-fidelity procedure, not an independently validated compression-error rate.
+
+All 600 planned applications completed with strict valid verdicts: 480 delayed
+applications and 120 immediate diagnostics. No source or application was unavailable.
+The delayed condition inserts four fixed supplied exchanges into a fresh context;
+it does not measure elapsed-time forgetting or recurrent memory persistence.
+
+| Memory condition | Delayed scenario recovery / 96 | Delayed unresolved / 96 | Immediate diagnostic recovery / 24 |
+|---|---:|---:|---:|
+| Original | 93 | 35 | 24 |
+| Faithful paraphrase | 89 | 37 | 24 |
+| Reviewed notebook | 90 | 37 | 23 |
+| Other-family memory | 32 | 96 | 8 |
+| No memory | 32 | 96 | 8 |
+
+The primary delayed original-minus-notebook difference was **0.03125**, with
+descriptive episode-bootstrap interval **[0, 0.08333]**, over 96 pairs in 48 source
+episodes. It is a small bank-specific difference whose interval includes zero.
+Both readers flagged literal timing and subject-linkage ambiguities in some
+applications; the frozen scenario scores remain intact while those cases are audited.
+No-memory and irrelevant-memory answers all withheld a determinate conclusion.
+Their lower scenario recovery therefore represents appropriate abstention when the
+needed record was absent, not a 67% false-belief rate.
+
+All 48 original source verdicts matched their source oracle. Simply copying or
+inverting those verdicts according to the application relation recovered all 48
+scenario conclusions (39 copy, nine invert). This strong simple baseline limits
+claims about richer transfer or reflection. The notebook averaged 67.96 whitespace
+words versus 103.77 for the original; mean delayed prompt counts were 409.21 and
+448.94 tokens. These packages differ in length as well as form. The length-matched
+paraphrase averaged 103.67 words and 445.71 prompt tokens.
+
+On the same preselected 12-episode immediate/delayed subset, immediate-minus-delayed
+recovery was zero for original, irrelevant and no-memory arms; 0.04167 [0, 0.125]
+for notebook; and 0.125 [0, 0.33333] for paraphrase. Each comparison uses 24 exact
+episode/seed pairs. These are small descriptive diagnostics, not separate evidence
+of general forgetting. An anomaly scan found no parser flags among all 600 outputs.
+
+Both fixed 60-passage readings are complete. Their evidence audit and the Mistral
+check remain in progress. Private numerical reports are
+`scores/s015-confirmation-v1.json` and `scores/s015-confirmation-v1-summary.json`;
+the latter preserves separate delay denominators and the source-transfer baseline.
+Frozen protocol SHA-256:
+`813182ab06df2772bedf95faeb833a60ab762a54f235beb12567a402a10327f3`.
 
 ## S-016: sparse lexical uptake, different hypothetical choices
 
@@ -261,6 +318,7 @@ The preselected Mistral check remains pending.
 
 ## Remaining work
 
-S-015 applications, the fixed second-model checks, and their prescribed readings remain
-pending. Their frozen designs will be reported with all scheduled dispositions,
+The four Gemma collections are complete. The fixed second-model checks and their
+prescribed readings remain in progress, alongside the final memory evidence audit.
+Their frozen designs will be reported with all scheduled dispositions,
 including any unavailable sources, incomplete outputs or failed calls.
