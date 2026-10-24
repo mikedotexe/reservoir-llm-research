@@ -73,7 +73,8 @@ flowchart LR
 ```
 
 The diagram abbreviates common evidence carried in each request. The saved rendered
-messages remain the authority. An actual forecast is supplied only to its declared
+messages remain the authority. Every application arm waits for the complete memory
+construction review, including the original and control arms. An actual forecast is supplied only to its declared
 diagnostic branch, and application questions are fixed before their source answers.
 
 Every rendered request is retained before dispatch. Provider envelopes, decoded

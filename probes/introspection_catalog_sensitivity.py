@@ -110,7 +110,9 @@ def score(args):
             'primary_unchanged': True, 'sensitivity_only': True, 'analyses': analyses,
             'inventory_sha256': runner.sha(args.inventory.read_bytes()),
             'manifest_sha256': runner.sha((args.run / 'manifest.json').read_bytes()),
-            'code_sha256': runner.sha(Path(__file__).read_bytes())}
+            'code_sha256': runner.sha(Path(__file__).read_bytes()),
+            'dependency_sha256': {name: runner.sha((ROOT / 'reservoir_experiments' / name).read_bytes())
+                                  for name in ('attribution_catalog.py', 'statistics.py')}}
 
 
 def main():
