@@ -133,3 +133,13 @@ The CLI refuses to overwrite destinations. Synthetic extraction, menu preservati
 and scoring fixtures are in `tests/test_attribution_catalog.py`. Bundle hashes, qualification
 receipts, model identities, and run manifests belong with the private run. A Board link and
 completion/readout links can be added when those records exist.
+
+## Source-normalization qualification before outcome inspection
+
+The [measurement audit](../../analyses/2026-10-24-introspection-measurement-audit.md)
+found that the frozen extractor and literal scorer handle punctuation differently.
+The original 1,062-phrase primary remains fixed, but "description-only" is qualified:
+some token pairs also appear as underscore or punctuated identifiers in concise.
+Two source-only sensitivity definitions were frozen before any catalog outcomes
+were inspected and before confirmation began. Report both separately and retain
+the original endpoint; do not select a definition based on its result.
