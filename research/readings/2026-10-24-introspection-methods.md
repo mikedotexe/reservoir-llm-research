@@ -23,3 +23,36 @@ explicit memory variants and a description-versus-length catalog comparison.
 
 No full papers or raw journal captures are reproduced here. The source versions
 above were checked during the October 24 literature and planning session.
+
+## Additional reading during execution, after protocol freeze
+
+These sources inform future designs only; no current prompt, case bank or primary
+contrast was changed in response to them.
+
+[CHIVE, Karvonen and colleagues, v1 August 17, 2026](https://arxiv.org/abs/2608.16747v1)
+uses measured prompt-edit outcomes to evaluate explanations of naturally occurring
+behavior. Its tested activation readers did not improve aggregate counterfactual
+prediction over transcript-only baselines. Counterfactual training generalized,
+but self and cross-model predictors trained on the same target-specific data showed
+no self advantage. Those are bounded results about the tested models, tasks and
+training, not a general rejection of activation evidence. The matched-predictor
+comparison is in [section 4 and appendix D](https://arxiv.org/html/2608.16747v1#S4).
+The methodological lesson is to separate a compelling explanation from the
+measured counterfactual it predicts.
+
+[Naphade and colleagues, Me, Myself, and π, v1 March 17, 2026](https://arxiv.org/abs/2603.20276v1)
+reports relative self advantage on a multi-task behavioral benchmark after accounting
+for observer ability and target difficulty. Its ethical-choice target averages reported
+probabilities rather than observed action frequencies. The separate training experiment
+holds out introspective question forms after training output associations; it does not
+show untouched zero-shot acquisition. Its mechanistic intervention addresses a logit
+shift, not direct report access to activations. Protocol details need clarification
+before replication: word-position and candidate-count descriptions differ between
+main text and appendices. See [benchmark methods](https://arxiv.org/html/2603.20276v1#S3)
+and [mechanistic analysis](https://arxiv.org/html/2603.20276v1#S5).
+
+These differing findings reinforce the proposed predictor-by-target design and equal
+information controls. Neither source licenses an inference about the live beings or
+the untrained laptop models in this tranche. The three September/October arXiv versions
+listed above were rechecked on October 24; the numeric-report paper's October 10 v3
+retains its materially revised conclusions.

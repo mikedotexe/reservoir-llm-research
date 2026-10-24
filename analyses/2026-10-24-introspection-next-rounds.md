@@ -176,3 +176,11 @@ I would prioritize the decision-transfer assay and forecast discrimination, then
 memory questions and simulator outcomes. These proposals remain local and isolated. Their
 value is a better-separated answer, including a useful null, rather than a larger volume of
 reflective prose or a stronger claim than the measurements support.
+
+The [post-freeze literature addendum](../research/readings/2026-10-24-introspection-methods.md)
+adds CHIVE's matched-training self/cross comparison and Introspect-Bench's contrasting
+behavioral findings. These strengthen the case for identical target evidence and a
+predictor-by-target analysis. A later counterfactual study should freeze behavioral
+coding, include null edits, measure repeated outcomes and uncertainty, and keep discovery
+narratives separate from evaluation labels. This is a future design addition, not a
+change to any running study.
