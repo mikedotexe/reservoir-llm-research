@@ -2,8 +2,9 @@
 
 Working proposals, October 24. These are new experiments, not amendments to the
 running S-013–S-016 schedules. A methods collaborator drafted the underlying memo
-without seeing confirmation outcomes. This version incorporates S-013's completed
-Gemma reading; other confirmation results and second-model checks are still pending.
+without seeing confirmation outcomes. This version incorporates the completed
+Gemma S-013/S-014 findings and S-015's construction review; memory applications,
+catalog confirmation results and second-model checks are still pending.
 Priorities will be assessed against the complete run account before closeout.
 
 The useful next step is to make competing explanations predict different observable
@@ -54,7 +55,10 @@ and local simulator. This requires no live-system integration.
 
 A self-versus-observer Brier difference can be produced by a uniform confidence shift
 when nearly every answer is correct. The development forecast probabilities were
-concentrated at 0.95 and 1.0, with no target errors. A more informative follow-up must
+concentrated at 0.95 and 1.0, with no target errors. Confirmation likewise produced
+96 correct main targets; self framing had slightly lower Brier loss because its
+probabilities were higher. That measures a confidence shift on this bank without
+estimating error discrimination. A more informative follow-up must
 separate average calibration, item-specific error discrimination and target specificity.
 
 Build a new bank with prospectively specified difficulty strata: extra receipt joins,
@@ -94,6 +98,12 @@ Their training regimes and tested models do not predict this apparatus's outcome
 S-015 deliberately tests reviewed source packages. Its repaired controls cannot qualify
 an unattended compressor, and its current application bank admits a simple source-verdict
 copy/invert baseline. A follow-up should separate two useful questions.
+
+The construction review makes that distinction concrete: all 48 first-draft
+paraphrases passed the length rule, yet one or both readers requested repairs in
+21 packages. Those are source-fidelity review decisions under this procedure,
+not an independently validated compressor-error rate. Final repaired packages
+passed both readers before applications.
 
 First, compare prose and notebook versions with the same propositions, uncertainties,
 source errors and verified token budget. If padding is needed, preserve an unpadded

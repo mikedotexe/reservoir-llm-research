@@ -9,6 +9,15 @@ preselected cross-model check. Work is on `codex/introspection-tranche`, with se
 agent worktrees and no pushes. The desktop instrument and the live beings remain
 outside the experiment. The older save point below is preserved as history.
 
+The [runner](EXPERIMENT-RUNNER.md) and all four builders are implemented.
+The [development record](../analyses/2026-10-24-introspection-development.md) is
+complete. The [confirmation account](../analyses/2026-10-24-introspection-confirmation.md)
+now includes Gemma source-attribution and forecasting results, with their separate
+blind readings. Memory construction passed its two-reader gate after retained
+repairs; catalog confirmation is collecting. Memory applications and the fixed
+Mistral checks remain queued. The [next-round proposals](../analyses/2026-10-24-introspection-next-rounds.md)
+are being refined from those findings; they are not additional initiated studies.
+
 [Research findings](../RESEARCH.md) · [Current app candidate](CURRENT-RELEASE.md) ·
 [Focus history, October 7–16](NOW-history-20261007-through-20261016.md) ·
 [Earlier focus history](NOW-history-through-20260917.md)
