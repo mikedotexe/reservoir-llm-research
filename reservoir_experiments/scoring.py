@@ -1,12 +1,12 @@
 """Verified study scoring and episode-paired summaries; no model calls."""
 from __future__ import annotations
 
-from collections import Counter
+from collections import Counter, defaultdict
 import math
 from pathlib import Path
 
 from . import runner
-from .statistics import paired_contrast, summarize
+from .statistics import finite_score, paired_contrast, summarize
 
 
 def instrument_summary(records):
@@ -83,6 +83,22 @@ def study_report(protocol, records, annotations=None, baseline=None):
     elif study == "S-016":
         report = score_catalog(protocol, records)
         report["primary"] = paired_contrast(report["rows"], "full", "concise_padded", kind="catalog")
+        nodes = {n["id"]: n for n in protocol["nodes"]}
+        grouped = defaultdict(list)
+        for row in report["rows"]:
+            row["filler"] = nodes[row["node_id"]]["metadata"]["filler"]
+            if row["kind"] == "catalog":
+                grouped[(row["condition"], None, None)].append(row)
+                grouped[(row["condition"], row["filler"], row["seed"])].append(row)
+        report["lexical_totals"] = []
+        for (condition, filler, sample_seed), group in grouped.items():
+            valid = [r for r in group if finite_score(r)]
+            words = sum(r["words"] for r in valid)
+            hits = sum(r["phrase_count"] for r in valid)
+            report["lexical_totals"].append({"condition": condition, "filler": filler, "seed": sample_seed,
+                                             "planned": len(group), "scorable": len(valid),
+                                             "prose_words": words, "phrase_occurrences": hits,
+                                             "pooled_per_1000_words": hits * 1000 / words if words else None})
     else:
         raise ValueError(f"No scorer for study {study}")
     if "groups" in report:
@@ -111,6 +127,16 @@ def score_run(run, *, annotations=None, out=None, baseline=None):
     notes = runner.read_json(Path(annotations)) if annotations else {}
     report = study_report(protocol, records, annotations=notes, baseline=baseline)
     report["duplicates"] = duplicate_receipts(protocol, records, run)
+    rows = {r["node_id"]: r for r in report["rows"]}
+    metric_deltas = []
+    for pair in report["duplicates"]["pairs"]:
+        a, b = rows.get(pair["original"], {}), rows.get(pair["duplicate"], {})
+        if pair["identical_request"] and finite_score(a) and finite_score(b):
+            pair["metric_difference"] = b["score"] - a["score"]
+            metric_deltas.append(abs(pair["metric_difference"]))
+    report["duplicates"]["scorable_metric_pairs"] = len(metric_deltas)
+    report["duplicates"]["mean_absolute_metric_difference"] = (sum(metric_deltas) / len(metric_deltas)
+                                                                 if metric_deltas else None)
     report["provenance"] = {"manifest_sha256": runner.sha(runner.stable_read(run / "manifest.json")),
                             "runner_commit": manifest["git_head"], "verified": verification["valid"],
                             "scoring_sha256": runner.sha(runner.stable_read(Path(__file__))),
