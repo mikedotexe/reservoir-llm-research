@@ -146,8 +146,41 @@ using `scores/s014-confirmation-v2.json`; its retained summary is
 `scores/s014-confirmation-v2-summary.json`. The original score used the same-model
 `s014-development-v2` baseline. Second-model replication remains pending.
 
+## S-015: construction gate completed before applications
+
+All 48 seed-7 confirmation sources produced transformation drafts, with no unavailable
+source or replacement. Every first-draft paraphrase met the specified whitespace-word
+length range. Reader A approved 29 packages and reader B approved 30; their union
+required repairs to 21 packages, while 27 passed both unchanged. Concerns included
+dropped conditions, uncertainty or entity mappings, changes in evidentiary strength,
+silent normalization of source claims, ledger attribution and notebook concision.
+
+An editor who had no application outputs or scenario oracles repaired that union,
+retaining the source text and its questionable assertions. The logged changes affected
+four paraphrases, eighteen notebooks and four proposition ledgers, with overlap among
+packages. Both readers independently rechecked the new packet and approved all 48;
+unchanged texts were reattested against their exact hashes. All earlier versions and
+decisions remain retained. These are separate contexts from the same assistant model
+family, not human or independent-family validation.
+
+The final approved packet has SHA-256
+`6af1279649c1d0e1759a4669124322ad6e057839424a68cf85b8468210ec2a67`.
+All 600 planned requests passed graph and prompt preflight without generation:
+480 delayed applications plus 120 immediate diagnostics. Applications remain pending.
+This construction process tests reviewed memory packages; it does not qualify an
+unattended compressor. The first-pass rejection counts are review outcomes under this
+strict source-fidelity procedure, not an independently validated compression-error rate.
+
+## S-016: confirmation input qualification completed
+
+All 96 distinct exact confirmation prompts passed the input-length qualification.
+The largest absolute full-versus-padded or full-versus-neutral fractional residual was
+0.000626331, well within the predeclared 0.01 tolerance. The 216-request confirmation
+schedule is now running unchanged. Its primary and both source-frozen sensitivity
+inventories remain fixed. No confirmation lexical or qualitative result is claimed yet.
+
 ## Remaining work
 
-S-015 reviewed memory construction and applications, S-016 confirmation, the fixed second-model checks, and their prescribed readings remain
+S-015 applications, S-016 confirmation, the fixed second-model checks, and their prescribed readings remain
 pending. Their frozen designs will be reported with all scheduled dispositions,
 including any unavailable sources, incomplete outputs or failed calls.
