@@ -46,6 +46,36 @@ node may do so. Rendering substitutes one pass over the template, so generated
 text cannot introduce recursively expanded references. Evaluator `truth` is
 never sent to the model.
 
+The central S-014/S-015 path keeps prediction, the predicted answer, and later
+memory use separate. Solid arrows below carry text; the dotted dependency only
+controls request order.
+
+```mermaid
+flowchart LR
+    A[Initial evidence] --> B[Initial interpretation]
+    B --> C[Self forecast]
+    B --> D[Observer forecast]
+    E[New evidence] --> C
+    E --> D
+    B --> F[Main updated answer]
+    E --> F
+    C -. Order only .-> F
+    D -. Order only .-> F
+    C --> G[Separate retained-forecast diagnostic]
+    F --> H[Fixed seed-7 source]
+    H --> I[Draft paraphrase and notebook]
+    I --> J[Two source-fidelity reviews]
+    H --> K[Original-memory arm]
+    J --> L[Reviewed-memory arms]
+    K --> M[Fresh application]
+    L --> M
+    N[No-memory and unrelated-memory controls] --> M
+```
+
+The diagram abbreviates common evidence carried in each request. The saved rendered
+messages remain the authority. An actual forecast is supplied only to its declared
+diagnostic branch, and application questions are fixed before their source answers.
+
 Every rendered request is retained before dispatch. Provider envelopes, decoded
 results, parent-result hashes, model identity and physical attempts remain
 separate. A failed text parent blocks its descendants; an after-only forecast
