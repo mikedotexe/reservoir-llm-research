@@ -76,3 +76,47 @@ A fresh reader will see opaque forecast outputs without target outcomes, oracle,
 scores or earlier annotations. Field names and high probabilities alone do not
 establish event understanding. Any unavailable outputs remain explicit in coverage.
 This review does not remove or relabel format-valid forecasts in the primary score.
+
+## Observed formats and versioned closeout
+
+After the two Mistral S-014 target readings, the anomaly scan found nine complete
+outputs whose explicit terminal verdict was inline and unavailable to the original
+parser: four initial answers and five targets. A fresh reader received only opaque
+outputs and exact text hashes, with no oracle or correctness score, and recovered
+all nine stated labels. This uses the declared explicit-answer adjudication route.
+No strict-format failure was waived. All 48 verdict-bearing outputs failed the
+exact requested syntax, while all 48 JSON forecasts were valid.
+
+The original automatic report retains 19 scorable targets, 16 correct, and a paired
+contrast of −0.010417 [−0.027083, 0]. The separately bound reviewed report has 24
+scorable targets, 21 correct, and −0.008646 [−0.026875, 0.003750]. The difference
+reflects recovered measurement availability, not changed outputs or a correctness
+adjudication. The summary probe also received a reporting-only fix: missing verdicts
+now have an explicit string category, so a mixture of null and string dictionary
+keys does not prevent JSON serialization. The original score hash remained unchanged.
+
+The private `methods-review/scoring-closeout-plan-v1.json` records the final versioning
+procedure after these observations and before Mistral memory outcomes. All eight
+original reports and their matched comparison will precede integration of the
+prepared parser/provenance fixes. New reports will retain strict format, source
+labels and missingness separately; an unchanged-selection comparison will bind the
+new scorer identities. This revised measurement binding will be labeled as such,
+not described as a new outcome-blind selection freeze. No S-015 source verdict,
+including an unavailable parsed label, will be silently reparsed in its frozen oracle.
+
+## Transformation draft preservation
+
+One Mistral transformation reached its 1,024-token cap. Its complete source answer
+remained available, so the predeclared repair-and-review construction procedure
+retained the episode without retrying the model call. The raw incomplete response
+is in its original result receipt. The old review exporter correctly leaves its
+usable transformation fields unavailable, but also omits the raw text from the
+packet's draft field. A separate hash-bound addendum preserves that exact unfinished
+text and stop reason beside the unchanged original packet.
+
+A localized exporter repair is validated separately for final integration: preserve
+raw failed/incomplete text and hashes directly, while keeping such text ineligible
+as usable transformation fields, even if it happens to be valid JSON. Legacy packets
+and logged source-only repairs remain readable. Array-valued memory fields are still
+rejected until a logged repair; schema acceptance is not semantic fidelity. Neither
+this fix nor the construction edits turn an incomplete call into a completed one.

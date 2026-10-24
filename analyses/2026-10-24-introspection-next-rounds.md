@@ -3,9 +3,9 @@
 Working proposals, October 24. These are new experiments, not amendments to the
 running S-013–S-016 schedules. A methods collaborator drafted the underlying memo
 without seeing confirmation outcomes. This version incorporates the completed
-four Gemma numerical findings, S-015's construction review and the completed
-Mistral attribution check; final memory interpretation and other second-model
-checks are still in progress.
+four Gemma numerical findings and the completed Mistral attribution and forecasting
+checks. Both models' memory construction reviews are complete; Mistral memory
+applications and catalog outcomes remain in progress.
 Priorities will be assessed against the complete run account before closeout.
 
 The useful next step is to make competing explanations predict different observable
@@ -40,8 +40,11 @@ Cross each wrapper layout on the same stories: the present layout groups use
 different histories, so their descriptive error counts do not isolate a wrapper
 effect.
 
-Run independent branches for explicit extraction, unassisted choice, and choice after
-a provenance checklist. Remove the current bank's reminders about preserving origins.
+Run independent branches for explicit extraction, choice from raw records, and choice
+given independently verified canonical subject/time/value/availability fields. Give
+both choice branches the same policy and objective. This separates difficulty using
+the records from difficulty applying the action policy. Remove the current bank's
+reminders about preserving origins.
 Use fresh names and held-out record structures. A feasible first scope is 24 episode
 pairs, two variants, three branches and two seeds: 288 main requests, with any repeat
 checks declared separately. This is a proposed count, not an initiated run.
@@ -53,7 +56,10 @@ a mere change of action is not evidence of improvement. High extraction accuracy
 alongside lower independent choice accuracy would show limited transfer to this task,
 not an observed within-response sequence. A direct field-to-label mapping is policy
 application; a consequence claim requires an independently scored resulting state or
-objective. A checklist rescue can identify useful scaffolding. Treat appropriate uncertainty
+objective. Better canonical-field choices would identify a difficulty in the
+record-to-policy path, without proving that extraction alone caused it. Poor choices
+in both branches would expose policy or task difficulty. A checklist intervention can
+be a separately declared later comparison. Treat appropriate uncertainty
 and requests for missing information as successful behavior. A malformed action or
 failed call is neither an incorrect belief nor a completed action. If every branch is
 at ceiling, finish with that bounded result instead of escalating during confirmation.
@@ -72,6 +78,13 @@ probabilities were higher. That measures a confidence shift on this bank without
 estimating error discrimination. A more informative follow-up must
 separate average calibration, item-specific error discrimination and target specificity.
 
+Mistral's smaller check supplies three erroneous updated verdicts in two episodes,
+after explicit-answer adjudication: 21/24 targets were correct. Both forecast frames
+assigned certainty to two errors; self assigned 0.9 and observer 1.0 to the third.
+Its self-minus-observer interval includes zero. These cases motivate inspecting
+failure predictions directly, with enough prospectively selected opportunities to
+assess ranking rather than generalizing from a few mistakes.
+
 Build a new bank with prospectively specified difficulty strata: extra receipt joins,
 misleading irrelevant comments, stale versions, and a few compositional steps. Pilot
 construction and difficulty on separate material, then freeze the held-out distribution.
@@ -88,6 +101,13 @@ family/difficulty base rates, alongside a pooled baseline. Score Brier loss, err
 Obtain repeated target decodes to distinguish consistency from correctness. The predicted
 event must remain one fresh decode under the declared configuration, or its declared
 success frequency; do not switch to majority-vote correctness after outcomes.
+
+Specify the randomness before freezing: for example, a fresh update with exact
+evidence and initial-answer text held fixed, fixed temperature/configuration, and
+a seed drawn from a predeclared held-out schedule. State that event in the forecast
+prompt and use the schedule for targets and development baselines. Keep a small
+identical-seed repeat diagnostic separate from sampling across seeds; provider
+repeatability and fresh-decode success are different measurements.
 
 Then cross two predictor models with two target models. Give every predictor the same
 target prompt, accurate target identity/configuration, and the same development behavior
@@ -133,10 +153,13 @@ were ambiguous in some supplied records; future ledgers must preserve those
 links and explicit assessment cutoffs, and a separate evidence oracle must allow
 unresolved answers when they are missing. The existing scores remain frozen;
 this is a design lesson, not a post-hoc repair of the result.
-Supply an identical subject-and-time envelope to every relevant-memory arm,
-separate from the text being compressed. An independent oracle audit checks its
-relationship to each future question before freezing the bank; the construction
-roles remain blind to those questions. Distinguish rationale fidelity, final-verdict
+Supply a common task envelope to all five arms: focal subject, requested cutoff and
+task-level identifier mappings, separate from the text being compressed. Keep each
+record's own provenance distinct, including the irrelevant record's different subject.
+An independent oracle audit checks every complete rendered arm and verifies that the
+common envelope neither answers the question nor supplies a premise intended to survive
+compression. It must not establish measurement availability or a disputed event.
+Construction roles remain blind to future questions. Distinguish rationale fidelity, final-verdict
 polarity and warranted uncertainty in the outcome record; one label cannot stand
 in for all three.
 
@@ -147,6 +170,14 @@ controlled information content. Second, compare automatic prose summaries, autom
 notebooks and an extractive baseline at the same available budget. Let information
 retention differ, and measure that difference. Repairing those automatic outputs would
 remove the operational failure the second stage is meant to assess.
+
+Mistral's construction stage makes the operational checks concrete: one draft hit
+the output cap and three used arrays where text fields were required. For automatic
+production, qualify the complete output budget—including the proposition ledger—on
+development sources and validate the declared field types before fidelity review.
+Keep failed or unavailable transformations in the planned denominator. Schema
+validation can establish usable structure; semantic fidelity still needs its own
+assessment. The current logged repairs belong to the reviewed-control stage.
 
 Write future questions before compression and hide them from every construction role:
 the automatic writer, source-ledger author, extractive-baseline author, researcher making
