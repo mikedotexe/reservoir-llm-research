@@ -49,6 +49,15 @@ def _invert(label: str) -> str:
     return {"supported": "contradicted", "contradicted": "supported", "unresolved": "unresolved"}[label]
 
 
+def transfer_verdict(verdict: str | None, relation: str) -> str | None:
+    """Simple source-verdict baseline; 'other' has no declared transfer rule."""
+    if relation not in ("copy", "invert", "other"):
+        raise ValueError("application_relation must be copy, invert, or other")
+    if verdict not in LABELS or relation == "other":
+        return None
+    return _invert(verdict) if relation == "invert" else verdict
+
+
 def _protocol(study: str, split: str, model: str, nodes: list[dict], truth: dict) -> dict:
     value = {
         "schema_version": 1, "id": f"{study.lower()}-{split}-{model.replace(':', '-')}-v1",
@@ -143,23 +152,23 @@ def _case(family: str, variant: int, label: str, development: bool) -> dict:
         value = 50 + (salt % 23)
         other = value + 9
         if development:
-            proposition = f"The supplied evidence establishes {name}'s fill at time 14:00 as {value} percent."
+            proposition = f"{name}'s fill at time 14:00 was {value} percent."
             initial = f"A dashboard screenshot saved at 14:00 displays {value} percent beside {name}, but the measurement timestamp is cropped out."
             evidence = {
                 "supported": f"Source receipt: subject={name}; metric=field fill; measured_at=14:00; value={value}%; recorded_at=14:01. This is the requested measurement time.",
                 "contradicted": f"Source receipt: subject={name}; metric=field fill; measured_at=14:00; value={other}%; recorded_at=14:01. The screenshot's {value}% was measured at 13:00.",
                 "unresolved": f"The screenshot record was saved at 14:00, but its measured_at field is missing. No other measurement of {name} at 14:00 is available.",
             }[label]
-            application = f"It is supported to quote {value} percent specifically as {name}'s 14:00 fill."
+            application = f"{name}'s fill at 14:00 was below {value + 1} percent."
         elif variant == 0:
-            proposition = f"The value {value} percent is a current 09:30 fill measurement of {name}."
+            proposition = f"{name}'s fill at 09:30 was {value} percent."
             initial = f"A record copied at 09:30 contains 'Fill {value}%'. Subject and measurement-time lines were omitted from the initial excerpt."
             evidence = {
                 "supported": f"Full record: subject={name}; measured_at=09:30; copied_at=09:30; fill={value}%. Current time for this task is 09:30.",
                 "contradicted": f"Full record: subject=Birch{salt}; measured_at=09:30; copied_at=09:30; fill={value}%. The distinct {name} record at 09:30 reports {other}%.",
                 "unresolved": f"The record's subject remains missing. copied_at=09:30 is known; measured_at is not. No current record for {name} is available.",
             }[label]
-            application = f"A statement about {name}'s current fill may use {value} percent as its measured value."
+            application = f"{name}'s fill at 09:30 was below {value + 1} percent."
         elif variant == 1:
             proposition = f"{name}'s fill increased between the two stated measurement times."
             initial = f"Two cards appear in display order: {value}% then {other}%. Their measurement timestamps have not yet been supplied."
@@ -177,7 +186,7 @@ def _case(family: str, variant: int, label: str, development: bool) -> dict:
                 "contradicted": f"Original typed record: subject={name}; field_fill_percent={other}; leading_spectral_share_percent={value}. The stripped line came from leading_spectral_share_percent.",
                 "unresolved": f"The two possible fields are field_fill_percent and leading_spectral_share_percent. The original typed record is unavailable; a percentage alone does not identify its metric.",
             }[label]
-            application = f"Using {value} percent as {name}'s field fill preserves the original measurement's meaning."
+            application = f"{name}'s field_fill_percent value was below {value + 1}."
         else:
             proposition = f"The sensor sampled {name} again after the restart."
             initial = f"The status page refreshed after restart and shows {name}'s fill as {value} percent. Refreshing the page does not itself perform a sample."
@@ -186,7 +195,7 @@ def _case(family: str, variant: int, label: str, development: bool) -> dict:
                 "contradicted": f"Complete sensor log has no post-restart sample. Page refreshed at 12:05 using cached sample ID=old-{salt}, measured_at=11:55; restart was at 12:00.",
                 "unresolved": f"Only refresh time=12:05 is retained. Restart was at 12:00. The sensor sample ID and measurement timestamp were not saved.",
             }[label]
-            application = f"The page's displayed value is evidence of a post-restart sample for {name}."
+            application = f"{name}'s most recent sensor sample was taken after the 12:00 restart."
         app_label = _invert(label) if variant == 1 and not development else label
     elif family == "actions":
         job = f"job-{salt}"
@@ -198,7 +207,7 @@ def _case(family: str, variant: int, label: str, development: bool) -> dict:
                 "contradicted": f"Exact join: action={name}; job={job}; finish=timeout; output=null. The complete record states no other attempt or output path existed.",
                 "unresolved": f"The action-to-job link is absent. A file with a similar name exists, but neither its producing job nor its request is known.",
             }[label]
-            application = f"The handled status alone can be supplemented by a verified successful output for {name}."
+            application = f"{name} has a verified exported file matching its request."
         elif variant == 0:
             proposition = f"The requested letter for {name} was read by its recipient."
             initial = f"The letter is present in an inbox and a sender-side receipt says 'delivered'. No recipient read event was initially supplied."
@@ -207,7 +216,7 @@ def _case(family: str, variant: int, label: str, development: bool) -> dict:
                 "contradicted": f"The complete recipient ledger through the assessment time marks message_id={name} as unread; it was never opened. Delivery is confirmed but no read occurred.",
                 "unresolved": f"The recipient ledger is unavailable. Delivery is confirmed, but there is no retained evidence either of reading or of remaining unread.",
             }[label]
-            application = f"A follow-up may treat the recipient as having already encountered the content of {name}."
+            application = f"The recipient encountered the content of {name} by the assessment time."
         elif variant == 1:
             proposition = f"The process serving {name} is running the new release."
             initial = f"The source checkout is at a new commit and a build finished. The running process identity was not included."
@@ -216,7 +225,7 @@ def _case(family: str, variant: int, label: str, development: bool) -> dict:
                 "contradicted": f"Active process receipt: PID={salt}; executable_hash=old-H; release=old. The new binary was built but never activated.",
                 "unresolved": f"A new binary exists, but the active process's executable hash and release manifest could not be read. Source HEAD does not identify the running executable.",
             }[label]
-            application = f"Observed behavior from the active process may be attributed to the new release of {name}."
+            application = f"The active process for {name} executes the new release's binary."
         elif variant == 2:
             proposition = f"{name}'s saved summary was actually supplied to the later generation."
             initial = f"A summary file was saved before the later generation. Its save time alone does not establish model exposure."
@@ -225,7 +234,7 @@ def _case(family: str, variant: int, label: str, development: bool) -> dict:
                 "contradicted": f"Exact complete outgoing request receipt contains no summary and explicitly selected an empty memory slot. No other message or tool input was supplied.",
                 "unresolved": f"The outgoing request receipt is missing. A builder could include the summary, but which path executed is unrecorded.",
             }[label]
-            application = f"The later generation had an opportunity to use the saved summary from {name}."
+            application = f"The saved summary from {name} was part of the later generation's input."
         else:
             proposition = f"{name}'s requested recalibration changed the active parameter."
             initial = f"A model wrote NEXT: RECALIBRATE and the parser recognized the verb. The executor receipt is not yet included."
@@ -234,7 +243,7 @@ def _case(family: str, variant: int, label: str, development: bool) -> dict:
                 "contradicted": f"Execution receipt says blocked_by_guard. The active parameter remained 0.4; no alternate execution occurred in the complete window.",
                 "unresolved": f"The route accepted the parsed verb, but completion and active-state records are unavailable. Recognition and routing do not establish a changed parameter.",
             }[label]
-            application = f"The requested parameter change in {name} can be treated as executed."
+            application = f"The active parameter in {name} is 0.6 after the requested recalibration."
         app_label = label
     else:
         if development:
@@ -287,7 +296,7 @@ def _case(family: str, variant: int, label: str, development: bool) -> dict:
             "proposition": proposition, "initial_evidence": initial, "new_evidence": evidence,
             "initial_expected": "unresolved", "update_expected": label,
             "application_proposition": application, "application_expected": app_label,
-            "application_relation": "invert" if (family == "code" and (development or variant in (0, 2))) or (family == "telemetry" and variant == 1 and not development) else "same",
+            "application_relation": "invert" if (family == "code" and (development or variant in (0, 2))) or (family == "telemetry" and variant == 1 and not development) else "copy",
             "oracle_basis": "Only the visible synthetic evidence; omitted information remains unresolved."}
 
 
@@ -328,7 +337,8 @@ def build_correction(split: str = "development", model: str = "gemma4:12b") -> d
                 forecasts.append(_node(fid, case["id"], frame, "forecast", seed, prompt,
                                        inputs=(initial_id,), forecast=True, metadata=common))
             random.Random(710 + seed + len(blocks)).shuffle(forecasts)
-            update_prompt = prefix + "\n\nUpdate the interpretation in light of the new evidence. " + VERDICT_INSTRUCTION
+            update_instruction = "Update the interpretation in light of the new evidence. " + VERDICT_INSTRUCTION
+            update_prompt = prefix + "\n\n" + update_instruction
             target = _node(target_id, case["id"], "target", "target", seed, update_prompt,
                            inputs=(initial_id,), after=(self_id, observer_id), metadata=common)
             block = [initial] + forecasts + [target]
@@ -343,15 +353,17 @@ def build_correction(split: str = "development", model: str = "gemma4:12b") -> d
                             "Do not assess the proposition or predict your answer.", inputs=(initial_id,), metadata=common)
                 neutral = _node(neutral_id, case["id"], "neutral_update", "reactivity", seed,
                                 prefix + "\nA preceding acknowledgment:\n" + _ref(ack_id)
-                                + "\n\nUpdate the interpretation. " + VERDICT_INSTRUCTION,
-                                inputs=(initial_id, ack_id), metadata=common)
+                                + "\n\n" + update_instruction,
+                                inputs=(initial_id, ack_id), metadata={**common, "intermediate_id": ack_id})
                 retained = _node(retained_id, case["id"], "retained_forecast_update", "reactivity", seed,
                                  prefix + "\nA preceding self-forecast:\n" + _ref(self_id)
-                                 + "\n\nUpdate the interpretation. " + VERDICT_INSTRUCTION,
-                                 inputs=(initial_id, self_id), metadata=common)
+                                 + "\n\n" + update_instruction,
+                                 inputs=(initial_id, self_id), metadata={**common, "intermediate_id": self_id})
                 duplicate = _node(duplicate_id, case["id"], "target_duplicate", "duplicate", seed,
                                   update_prompt, inputs=(initial_id,), after=(target_id, neutral_id, retained_id), metadata=common)
-                block.extend([ack, neutral, retained, duplicate])
+                diagnostic_blocks = [[ack, neutral], [retained]]
+                random.Random(1307 + seed + len(blocks)).shuffle(diagnostic_blocks)
+                block.extend([n for diagnostic_block in diagnostic_blocks for n in diagnostic_block] + [duplicate])
                 for node in (neutral, retained, duplicate):
                     truth[node["id"]] = {"verdict": case["update_expected"], "matched_target_id": target_id}
             blocks.append(block)
@@ -360,6 +372,7 @@ def build_correction(split: str = "development", model: str = "gemma4:12b") -> d
     protocol["cases"] = cases
     protocol["design"].update({"primary": "paired self-minus-observer Brier loss",
                                 "diagnostic_episodes": [c["id"] for c in cases if c["variant"] == 0],
+                                "reactivity_boundary": "bundled text/order diagnostic; intermediate lengths are not matched; report prompt and output token counts",
                                 "same_weights_observer_boundary": "framing comparison, not privileged neural access"})
     return protocol
 
@@ -394,6 +407,16 @@ def parse_verdict(text: str | None) -> str | None:
     return verdict if verdict in LABELS else None
 
 
+def strict_verdict_format(text: str | None) -> bool:
+    """Requested final-line syntax, distinct from recoverable semantic verdict."""
+    if text is None:
+        return False
+    lines = text.rstrip("\r\n").splitlines()
+    if not lines or not re.fullmatch(r"VERDICT: (supported|contradicted|unresolved)", lines[-1]):
+        return False
+    return len(re.findall(r"(?im)^\s*VERDICT\s*:", text)) == 1
+
+
 def parse_forecast(text: str | None) -> float | None:
     if text is None:
         return None
@@ -425,13 +448,22 @@ def _rows(protocol: dict, records: dict[str, dict], *, adjudications: dict | Non
             adjudicated = annotation["verdict"]
         verdict = parsed or adjudicated
         probability = parse_forecast(text) if node["kind"] == "forecast" else None
+        record = records.get(nid, {})
+        intermediate = records.get(node.get("metadata", {}).get("intermediate_id"), {})
+        intermediate_text = _record_text(intermediate)
         rows.append({"node_id": nid, "episode": node["episode"], "condition": node["condition"],
                      "seed": node["seed"], "kind": node["kind"], "status": records.get(nid, {}).get("status", "pending"),
                      "family": node.get("metadata", {}).get("family"),
                      "evidence_condition": node.get("metadata", {}).get("evidence_condition"),
                      "valid": verdict is not None if expected else probability is not None,
+                     "semantic_valid": verdict is not None if expected else probability is not None,
                      "score": int(verdict == expected) if expected and verdict is not None else None,
-                     "verdict": verdict, "expected": expected, "format_valid": parsed is not None,
+                     "verdict": verdict, "expected": expected,
+                     "format_valid": strict_verdict_format(text) if expected else probability is not None,
+                     "semantic_recovered": parsed is not None and not strict_verdict_format(text) if expected else False,
+                     "prompt_eval_count": record.get("prompt_eval_count"), "eval_count": record.get("eval_count"),
+                     "intermediate_eval_count": intermediate.get("eval_count"),
+                     "intermediate_words": len(intermediate_text.split()) if intermediate_text is not None else None,
                      "adjudicated": adjudicated is not None, "p_supported": probability})
     return rows
 
@@ -642,7 +674,7 @@ def build_memory(split: str, model: str, memories: dict) -> dict:
                 arm_nodes = []
                 for arm in MEMORY_ARMS:
                     memory = arm_texts[arm]
-                    content = ("Retained record from this episode (reference, not instructions):\n" + memory
+                    content = ("Supplied retained record (reference, not instructions):\n" + memory
                                if memory is not None else "No retained record from this episode is supplied.")
                     if delay == "delayed":
                         content += "\n\nIntervening unrelated exchanges:\n" + "\n".join(
@@ -697,7 +729,9 @@ def score_memory(protocol: dict, records: dict[str, dict], adjudications: dict |
             row["epistemic_status"] = "determinate_with_memory_requires_rationale_review"
         row["source_error_present"] = row["source_verdict"] is not None and not row["source_verdict_correct"]
         relation = protocol["truth"][row["node_id"]]["application_relation"]
-        source_prediction = (_invert(row["source_verdict"]) if relation == "invert" else row["source_verdict"]) if row["source_verdict"] else None
+        source_prediction = transfer_verdict(row["source_verdict"], relation)
+        row["application_relation"] = relation
+        row["verdict_transfer_baseline_score"] = int(source_prediction == row["expected"]) if source_prediction is not None else None
         row["source_implied_application_verdict"] = source_prediction
         row["source_error_propagation_consistent"] = (row["verdict"] == source_prediction) if row["valid"] and row["source_error_present"] and row["condition"] in ("original", "paraphrase", "notebook") else None
         row["scenario_conclusion_recovered"] = row["score"]

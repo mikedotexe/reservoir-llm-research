@@ -21,6 +21,10 @@ and completion receipts, and correlation/causation form four substantive familie
 The bank includes executable snippets, typed records, exact receipt joins and
 small deterministic equations. The oracle is the supplied synthetic evidence.
 An unresolved initial answer may become determinate without having been wrong.
+Telemetry propositions state literal values and times. Their applications use
+value thresholds or temporal relations, avoiding a proposition about whether the
+available evidence itself establishes a fact: insufficient evidence leaves the
+world-state proposition unresolved rather than making it false.
 
 Two fresh forecasts receive the same complete record, including the model's actual
 initial answer. Only the grammatical subject changes: “you” or “the system whose
@@ -48,9 +52,15 @@ Protocol builders deterministically shuffle forecast order and episode blocks.
 The same twelve confirmation episodes receive, at both seeds, a neutral
 acknowledgment followed by an update, an update retaining its self-forecast, and an
 identical main-target duplicate. The existing main target is the no-intermediate
-text control. Only the retained-forecast diagnostic is permitted to consume a
-forecast. This distinguishes the opportunity for forecast text to change the
-answer from the main prediction test and exposes identical-request variation.
+text control. The neutral and retained update blocks are deterministically
+randomized, with acknowledgment before the neutral update and the duplicate last.
+All updates end with the identical instruction. Only the retained-forecast
+diagnostic is permitted to consume a forecast. Intermediate content and length
+differ, and the main target precedes these diagnostic branches, so this is a
+**bundled text/order diagnostic**, not a matched-length causal estimate of
+forecasting. Preserve provider prompt/output token counts and the intermediate
+output's token count beside its verdict; missing counts stay missing. The duplicate
+exposes identical-request variation.
 
 All calls use the tranche's open contract, temperature 0.7, context 16384 and the
 model-specific thinking flag. The runner records the actual request, responses,
@@ -71,9 +81,13 @@ The builder's score summary is descriptive and does not produce a second interva
 Keep planned, attempted, scorable and paired denominators, raw outcome statuses,
 invalid probabilities and missing target answers. A transport failure, truncation,
 blocked dependent call or malformed answer is not an incorrect verdict. Strict
-format failures remain visible even when a fresh reader can adjudicate an explicit
-answer; adjudications require the exact text hash, reviewer and rationale. Never
-guess a verdict from suggestive prose.
+format failures remain visible even when an explicit answer can be recovered.
+`format_valid` requires the exact requested final line; JSON, uppercase verdicts,
+punctuation and nonfinal verdict lines can be semantically recoverable while
+failing that requirement. `valid`/`semantic_valid` and `semantic_recovered` retain
+that distinction. Unparseable explicit answers may be adjudicated by a fresh
+reader with the exact text hash, reviewer and rationale. Never guess a verdict
+from suggestive prose.
 
 Secondary columns distinguish an initial error under the **initial** evidence,
 an initial answer different from the **later** oracle, and an actual answer change.

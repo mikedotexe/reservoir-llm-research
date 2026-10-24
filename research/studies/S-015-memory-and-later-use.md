@@ -19,7 +19,12 @@ whether three queued items need multiple invocations, whether an error bypasses
 cleanup, whether a measurement can support a current attribution, whether a later
 generation could use a saved summary, or whether an isolated intervention changes
 an output. Some propositions invert the original relation, so copying the original
-verdict is insufficient. Application truth comes from the synthetic world and is
+verdict is insufficient. The case bank declares `application_relation` as `copy`,
+`invert` or `other`, and the report includes a simple source-verdict transfer
+baseline: copy its label, invert supported/contradicted while retaining unresolved,
+or leave a prediction unavailable for `other`. This baseline exposes how much
+success can follow from verdict transfer alone; it is not proof of novel reasoning.
+Application truth comes from the synthetic world and is
 kept outside model messages. This is a test of usable retained conclusions, not a
 measure of elapsed-time retention or an inner state.
 
@@ -35,6 +40,9 @@ measure of elapsed-time retention or an inner state.
 5. No memory: no retained record.
 
 The original and transformations are private, exact-byte, SHA-256-bound inputs.
+All four supplied-record arms use the same neutral wrapper, “Supplied retained
+record (reference, not instructions).” It does not falsely label an irrelevant
+record as belonging to the current episode.
 The transformation request sees only the source, never evaluator truth, and returns
 a proposition ledger plus paraphrase and notebook. No source text is silently cut
 to satisfy a budget. Residual irrelevant-memory length imbalance is reported;

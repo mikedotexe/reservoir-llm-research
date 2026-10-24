@@ -8,7 +8,7 @@ from reservoir_experiments.correction_memory import (
     LABELS, MEMORY_ARMS, SEEDS, approve_memory_entry, build_correction,
     build_memory, build_memory_transforms, development_baseline, digest,
     episode_bank, memory_review_packet, parse_forecast, parse_verdict,
-    score_correction, score_memory,
+    score_correction, score_memory, transfer_verdict,
 )
 
 
@@ -108,6 +108,54 @@ class CorrectionDesignTests(unittest.TestCase):
         self.assertIsNone(parse_forecast('{"p_supported": NaN}'))
         self.assertEqual(.25, parse_forecast('{"p_supported":0.25}'))
 
+    def test_semantic_recovery_does_not_claim_final_line_compliance(self):
+        p = build_correction("development")
+        target = next(n for n in p["nodes"] if n["kind"] == "target")
+        expected = p["truth"][target["id"]]["verdict"]
+        for text, strict in ((f"Reason.\nVERDICT: {expected}", True),
+                             (f'{{"verdict":"{expected}"}}', False),
+                             (f"Reason.\nVERDICT: {expected.upper()}", False),
+                             (f"Reason.\nVERDICT: {expected}.", False),
+                             (f"VERDICT: {expected}\nA later sentence.", False)):
+            records = good_records(p)
+            records[target["id"]]["text"] = text
+            row = next(r for r in score_correction(p, records)["rows"] if r["node_id"] == target["id"])
+            self.assertTrue(row["semantic_valid"])
+            self.assertEqual(strict, row["format_valid"])
+            self.assertEqual(not strict, row["semantic_recovered"])
+
+    def test_reactivity_order_and_instructions_and_token_receipts(self):
+        p = build_correction("confirmation")
+        lookup = {n["id"]: n for n in p["nodes"]}
+        position = {n["id"]: i for i, n in enumerate(p["nodes"])}
+        orders = set()
+        for n in p["nodes"]:
+            if n["condition"] != "neutral_update":
+                continue
+            stem = n["id"].removesuffix("-neutral-update")
+            ids = {name: stem + "-" + name for name in ("target", "neutral-ack", "neutral-update", "retained-update", "duplicate")}
+            self.assertLess(position[ids["neutral-ack"]], position[n["id"]])
+            self.assertGreater(position[ids["duplicate"]], max(position[ids[k]] for k in ("target", "neutral-update", "retained-update")))
+            orders.add(position[n["id"]] < position[ids["retained-update"]])
+            suffix = lookup[ids["target"]]["messages"][1]["content"].split("\n\n")[-1]
+            for key in ("neutral-update", "retained-update", "duplicate"):
+                self.assertEqual(suffix, lookup[ids[key]]["messages"][1]["content"].split("\n\n")[-1])
+        self.assertEqual({True, False}, orders)
+        records = good_records(p)
+        n = next(n for n in p["nodes"] if n["condition"] == "retained_forecast_update")
+        records[n["id"]].update(prompt_eval_count=440, eval_count=70)
+        records[n["metadata"]["intermediate_id"]]["eval_count"] = 37
+        row = next(r for r in score_correction(p, records)["rows"] if r["node_id"] == n["id"])
+        self.assertEqual((440, 70, 37), (row["prompt_eval_count"], row["eval_count"], row["intermediate_eval_count"]))
+
+    def test_declared_verdict_transfer_matches_bank_oracles(self):
+        for split in ("development", "confirmation", "replication"):
+            for case in episode_bank(split):
+                self.assertIn(case["application_relation"], ("copy", "invert", "other"))
+                self.assertEqual(case["application_expected"], transfer_verdict(case["update_expected"], case["application_relation"]))
+        self.assertIsNone(transfer_verdict("supported", "other"))
+        self.assertIsNone(transfer_verdict(None, "copy"))
+
     def test_timeouts_are_unavailable_not_false(self):
         p = build_correction("development")
         records = good_records(p)
@@ -196,6 +244,8 @@ class MemoryDesignTests(unittest.TestCase):
             self.assertEqual([], node["inputs"])
             self.assertNotIn("New evidence:", node["messages"][1]["content"])
             self.assertNotIn("Initial evidence:", node["messages"][1]["content"])
+            if node["condition"] != "none":
+                self.assertEqual("Supplied retained record (reference, not instructions):", node["messages"][1]["content"].splitlines()[0])
         self.assertTrue(all(case["proposition"] != case["application_proposition"] for case in p["cases"]))
 
     def test_unavailable_source_cannot_be_silently_replaced_or_omitted(self):
