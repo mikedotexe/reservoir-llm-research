@@ -29,9 +29,11 @@ def build(args):
     elif args.study == "S-015":
         if args.memory_packet is None:
             raise ValueError("S-015 requires a reviewed memory packet")
-        protocol = build_memory(args.split, args.model, runner.read_json(args.memory_packet))
+        packet = runner.read_json(args.memory_packet)
+        protocol = build_memory(args.split, args.model, packet)
         protocol.setdefault("sources", []).append({"path": str(args.memory_packet.resolve()),
                                                     "sha256": runner.sha(args.memory_packet.read_bytes())})
+        protocol["sources"].extend(packet.get("provenance_files", []))
     else:
         protocol = build_catalog(args.split, args.model, args.catalog)
         protocol.setdefault("sources", []).append({"path": str(args.catalog.resolve()),
@@ -46,6 +48,37 @@ def build(args):
     return {"protocol": str(path), "sha256": runner.sha(path.read_bytes()),
             "nodes": len(protocol["nodes"]), "episodes": len({n["episode"] for n in protocol["nodes"]}),
             "study": args.study, "split": args.split, "model": args.model}
+
+
+def evidence_files(run, node_ids):
+    files = [Path(run) / name for name in ("manifest.json", "protocol.json", "identity.json")]
+    files.extend(Path(run) / "nodes" / nid / "result.json" for nid in node_ids)
+    return [{"path": str(path.resolve()), "sha256": runner.sha(runner.stable_read(path))} for path in files]
+
+
+def transform_stage(args):
+    from reservoir_experiments.correction_memory import build_memory_transforms, memory_review_packet
+    runner.verify(args.run)
+    _, source = runner.load_run(args.run)
+    records = runner.read_results(args.run)
+    if args.command == "transforms":
+        protocol = build_memory_transforms(source, records)
+        ids = [entry["source_id"] for entry in protocol["memory_sources"].values()]
+        protocol["sources"] = evidence_files(args.run, ids)
+        for name in ("correction_memory.py", "scoring.py", "statistics.py"):
+            path = ROOT / "reservoir_experiments" / name
+            protocol["sources"].append({"path": str(path), "sha256": runner.sha(path.read_bytes())})
+        runner.validate_protocol(protocol)
+        value = protocol
+    else:
+        value = memory_review_packet(source, records)
+        value["provenance_files"] = list(source.get("sources", [])) + evidence_files(args.run, records)
+    path = runner.guard_output(args.out, ROOT)
+    runner.write_json(path, value)
+    return {"path": str(path), "sha256": runner.sha(path.read_bytes()),
+            "stage": args.command, "nodes": len(value.get("nodes", [])),
+            "memories": len(value.get("memories", {})),
+            "unavailable_sources": len(value.get("unavailable_sources", []))}
 
 
 def main():
@@ -63,9 +96,15 @@ def main():
     command.add_argument("--annotations", type=Path)
     command.add_argument("--baseline-run", type=Path)
     command.add_argument("--out", type=Path, required=True)
+    for name in ("transforms", "review-packet"):
+        command = sub.add_parser(name)
+        command.add_argument("run", type=Path)
+        command.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     if args.command == "build":
         result = build(args)
+    elif args.command in ("transforms", "review-packet"):
+        result = transform_stage(args)
     else:
         baseline = None
         if args.baseline_run:
