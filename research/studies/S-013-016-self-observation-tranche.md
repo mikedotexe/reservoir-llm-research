@@ -70,8 +70,8 @@ replications of these trials.
 ## Progress
 
 October 24: implementation integrated on `codex/introspection-tranche` from three
-separate, committed agent branches. The assembled test suite passed 489 tests
-(31 optional tests skipped); subsequent scoring and design fixes passed their
+separate, committed agent branches. The assembled suite ran 489 tests successfully
+(including 31 skips); subsequent scoring and design fixes passed their
 focused suites. Independent code reviews checked graph isolation, receipt
 integrity, evidence oracles and memory controls. No desktop or live-system edits.
 
