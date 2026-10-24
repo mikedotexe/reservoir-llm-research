@@ -17,7 +17,7 @@ analysis = ["numpy", "matplotlib"]
 reservoir-research = "reservoir_research.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["reservoir_research*"]
+include = ["reservoir_research*", "reservoir_experiments*"]
 
 [tool.setuptools.package-data]
 "reservoir_research.daily" = ["era-definitions-v1.json"]
