@@ -28,6 +28,15 @@ Application truth comes from the synthetic world and is
 kept outside model messages. This is a test of usable retained conclusions, not a
 measure of elapsed-time retention or an inner state.
 
+**October 24 access qualification, after completed Gemma outcomes:** the retained
+calculation receives `application_relation` from evaluator-only metadata. Its
+48/48 result is a known-relation, oracle-informed diagnostic; it does not establish
+that an operational verdict-only system can infer the mapping from visible inputs.
+Some mappings also depend on record facts: rejecting “fill equals v” alone cannot
+settle “fill below v+1,” although the authored alternative value fixes that relation
+in this bank. This qualifies the earlier “verdict transfer alone” wording without
+changing the calculation, its legacy field name, the endpoint or any score.
+
 ## Five arms and qualification before application
 
 1. Original: the complete source answer.

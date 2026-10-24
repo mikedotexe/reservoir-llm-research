@@ -136,8 +136,10 @@ our adaptation, not a replication of that estimator.
 ## 3. Separate memory packaging from information survival
 
 S-015 deliberately tests reviewed source packages. Its repaired controls cannot qualify
-an unattended compressor, and its current application bank admits a simple source-verdict
-copy/invert baseline. A follow-up should separate two useful questions.
+an unattended compressor. Its current bank permits perfect transfer of correct source
+labels when the evaluator supplies each copy/invert relation. That diagnostic motivates
+a minimal-memory comparison; it does not establish an operational verdict-only baseline.
+A follow-up should separate two useful questions.
 
 The construction review makes that distinction concrete: all 48 first-draft
 paraphrases passed the length rule, yet one or both readers requested repairs in
@@ -147,8 +149,9 @@ passed both readers before applications.
 
 The applications recovered the frozen scenario conclusion in 93/96 delayed
 original-record trials, 89/96 paraphrase trials and 90/96 notebook trials. All
-no-memory and irrelevant-memory trials abstained. The source-verdict copy/invert
-baseline recovered all 48 source-level conclusions. Timing and entity linkage
+no-memory and irrelevant-memory trials abstained. The evaluator-informed transfer
+diagnostic recovered all 48 source-level conclusions; no baseline inferred the relation
+from the application prompt. Timing and entity linkage
 were ambiguous in some supplied records; future ledgers must preserve those
 links and explicit assessment cutoffs, and a separate evidence oracle must allow
 unresolved answers when they are missing. The existing scores remain frozen;
@@ -188,6 +191,15 @@ all answers. Split by source episode, not by application question. Preserve no-m
 unrelated-memory controls, and keep the original source as a full-source information
 control: it can still contain errors or lack a needed premise. Score source-faithful
 application separately from correctness against the synthetic world oracle.
+
+Add an end-to-end minimal-memory comparator containing the source proposition and
+verdict, with the same permitted task envelope. Derive those fields from the source
+or make them consistently available to every arm; never reconstruct omissions from
+evaluator truth. Its construction role must also remain blind to future questions.
+The application predictor must infer what follows from visible text without case IDs,
+family/variant selectors, relation metadata or oracle labels. Some new propositions
+will properly remain unresolved from that minimal record. Keep the known-relation
+diagnostic separately, and measure evidence-warrantedness alongside scenario recovery.
 
 Report proposition coverage, unsupported additions, uncertainty loss, token use, successful
 applications and source-error propagation separately. A notebook that wins by retaining

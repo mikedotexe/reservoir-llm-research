@@ -120,3 +120,20 @@ as usable transformation fields, even if it happens to be valid JSON. Legacy pac
 and logged source-only repairs remain readable. Array-valued memory fields are still
 rejected until a logged repair; schema acceptance is not semantic fidelity. Neither
 this fix nor the construction edits turn an incomplete call into a completed one.
+
+## Transfer-diagnostic information access
+
+A post-outcome source audit qualifies S-015's legacy “verdict-transfer baseline”
+name. The calculation receives the authored `copy`/`invert` relation from evaluator
+metadata; that field is absent from model messages. Some mappings rely on scenario
+facts, not just grammatical polarity. A rejected equality, for example, does not
+determine which side of a new threshold the value lies on. Gemma's 48/48 calculation
+therefore characterizes transfer given the correct source labels and known relation;
+it is not evidence that a verdict-only predictor using the actual visible input
+achieved 48/48, or that retained rationales were unnecessary.
+
+The numerical diagnostic and existing score-field names remain unchanged. The
+confirmation account and future proposal now identify its privileged relation
+access. A future operational comparator must infer consequences from permitted
+visible text and retain warranted unresolved answers. The exact source-path audit
+is `methods-review/memory-transfer-baseline-access-audit-v1.md` in the private store.

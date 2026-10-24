@@ -266,10 +266,14 @@ No-memory and irrelevant-memory answers all withheld a determinate conclusion.
 Their lower scenario recovery therefore represents appropriate abstention when the
 needed record was absent, not a 67% false-belief rate.
 
-All 48 original source verdicts matched their source oracle. Simply copying or
-inverting those verdicts according to the application relation recovered all 48
-scenario conclusions (39 copy, nine invert). This strong simple baseline limits
-claims about richer transfer or reflection. The notebook averaged 67.96 whitespace
+All 48 original source verdicts matched their source oracle. A deterministic transfer
+given the evaluator's copy/invert relation recovered all 48 scenario conclusions
+(39 copy, nine invert). This is a known-relation, oracle-informed diagnostic, not an
+information-matched operational baseline. A verdict-only system would still have
+to infer the relation from visible information, and some mappings require record
+facts beyond the verdict. For example, rejecting an equality alone does not settle
+whether a value is below a new threshold. No end-to-end minimal-memory predictor
+was run. The notebook averaged 67.96 whitespace
 words versus 103.77 for the original; mean delayed prompt counts were 409.21 and
 448.94 tokens. These packages differ in length as well as form. The length-matched
 paraphrase averaged 103.67 words and 445.71 prompt tokens.
