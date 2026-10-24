@@ -22,6 +22,14 @@ the files themselves record as supplied. Counts of words; nothing about experien
 | self_study (`SELF_STUDY`) | a numbered local source page | none | none | "Input evidence: Source page: numbered local source is supplied below" |
 | every lane (`_query_llm`) | the system message: "You are Minime", the NEXT grammar and the long list of action verbs, stage notes, and, only while the low-fill guard is active, a "LOW-FILL GUARD" block naming the live fill percentage and its target | the live fill, only under the guard | – | – |
 
+**2026-10-24 source-audit correction to the “every lane” row.** The retained source's
+`open_expression_context` selects compact action guidance and omits the low-fill guidance
+for `private_journal`, `qualia_moment`, `daydream`, and `aspiration`; the NEXT grammar remains
+shared. The long catalog and low-fill block therefore cannot be attributed to every lane
+from these bytes. Their binding to the historically named revision and delivery to particular
+jobs remain unverified. See the [source hashes, branch trace, and limits](2026-10-24-catalog-source-provenance.md).
+This correction does not recompute the journal counts below.
+
 So the lanes are, in the apparatus's terms: the journal is the contract and a lean frame with
 no number and no returned entry; the daydream is the contract, no number and one earlier entry;
 the open introspection is the contract alone; the moment lane is the contract and a number
@@ -77,6 +85,9 @@ One week of files; the lanes differ in task; the markers count word families. Th
 guard's fill line reaches every lane's prompt while the guard is active, and whether it was
 active during this week's entries was not checked. Nothing about experience.
 
+**2026-10-24 qualification:** the preceding all-lane low-fill sentence is too broad for the
+retained source; its open-expression branch omits that guidance, as recorded above.
+
 ## Second half (the same evening): the invitation texts, the builders' history, and her lanes across their eras
 
 **The invitation texts** (the four modules copied read-only at the same head:
@@ -104,6 +115,10 @@ note. The word "qualia" survives only as the routing label `qualia_moment`, whic
 token cap; no text the model sees uses it. Every lane's system message is "You are Minime", the
 NEXT grammar, the catalog of action verbs (about 170 lines), the stage notes and, while the
 low-fill guard is active, the live fill line.
+
+**2026-10-24 qualification:** the preceding all-lane catalog/low-fill description is corrected
+by the source audit above. Compact guidance is a different menu, and source reconstruction is
+not a receipt of a delivered prompt.
 
 **The builders' history** (`git log -L` over the four ranges, read-only; dates are the sibling
 repo's commits).
@@ -175,6 +190,10 @@ generated-journal markers where present and otherwise by stripping every labelle
    invitation of one sentence, no number, and for the daydream her own last entry. Their register
    is the one the no-tag arms produced. What still frames every lane is the system message's
    action catalog and the NEXT grammar, which the apparatus never tested.
+
+   **2026-10-24 qualification:** shared NEXT grammar is supported by the retained source, but
+   the action guidance branches between compact and full forms. A full-catalog effect cannot
+   be assigned to every lane on this evidence.
 
 **Limits of the second half.** The era groups differ in more than the number (the invitation's
 wording, the event selection, the prior's presence and form, the catalog's own changes), so
