@@ -166,6 +166,24 @@ neutral input counts differed from the matched full count by at most 0.000627
 at the planned context. This validates input delivery and matching, not the
 eventual uptake endpoint.
 
+The completed development run has all 48 responses available and scorable. All
+actual study input counts matched their qualification receipts. Every output had
+a hypothetical NEXT line, and completions used 170–344 tokens, below the 1,024-token
+ceiling. No change to the generation prompt or primary phrase inventory is made.
+
+The original primary full-minus-padded difference was 0.0768 phrase occurrences
+per 1,000 prose words, over six episode means and twelve seed pairs; its descriptive
+bootstrap interval was [−2.2137, 2.2370]. Full had four counted occurrences in 2,269
+prose words, padded concise five in 2,661, concise two in 2,236, and neutral two in
+2,703. The source-only sensitivity definitions gave the same pilot paired contrast.
+These sparse pilot counts do not establish a catalog effect or its absence.
+
+The confirmation base retains 216 opportunities and the frozen Gemma padding
+bundle. Base protocol SHA-256:
+`83fe0cb4a4649593ff4136119603e7983e2e1a6cd349edb199d95b6086dd0684`.
+It will receive exact-prompt input qualifications before preparation and dispatch;
+those receipts add a final qualified-protocol identity without changing prompts.
+
 ## Board updates pending
 
 The Hold Shelf requires authentication in the available browser. Pending: update

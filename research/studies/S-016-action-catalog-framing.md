@@ -1,6 +1,6 @@
 # S-016 · Action-description uptake with the option set held fixed
 
-Drafted 2026-10-24, before study generation. Status: **prospective protocol; no outcomes claimed**.
+Drafted 2026-10-24, before study generation. Status: **development complete; confirmation prompts frozen, qualification pending**.
 Question: does a descriptive action catalog leave detectable language in reflective prose
 when command availability and length are controlled? The source qualification is recorded in
 [the catalog provenance audit](../../analyses/2026-10-24-catalog-source-provenance.md), with a
