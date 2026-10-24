@@ -55,6 +55,16 @@ word targets in the private bundle. Preserve the final input-token residual diff
 the qualification receipt, and freeze that bundle hash before confirmation. A length-controlled
 interpretation remains unavailable if matching or complete input delivery is unverified.
 
+Padding targets are model-specific counts of added filler words, not counts of tokens.
+`padding_word_targets[model]` accepts aggregate `concise_padded` and `neutral` counts plus
+optional `concise_padded_by_filler` and `neutral_by_filler` maps with string keys `"0"` and
+`"1"`. A filler-specific value overrides the aggregate; an omitted value falls back to the
+aggregate and then to the initial word-count match. Counts must be integers from 0 to 15,000.
+Each node records the resolved targets and the filler words actually added. Calibration may
+adjust these counts using input-token receipts before full-prose study outcomes, requiring
+the full versus padded and full versus neutral input counts to agree within 1% for each
+model/filler before the bundle is frozen. Keep residual differences in the run account.
+
 ## Schedule and endpoint
 
 `build_catalog(split, model, catalog_path)` constructs six distinct development histories and

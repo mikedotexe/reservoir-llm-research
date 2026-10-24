@@ -115,6 +115,47 @@ class CatalogFixture(unittest.TestCase):
         self.assertFalse(empty["valid"])
         self.assertIsNone(empty["score"])
 
+    def test_per_filler_padding_overrides_and_aggregate_fallback(self):
+        self.bundle["padding_word_targets"] = {"gemma4:12b": {
+            "concise_padded": 3, "neutral": 6,
+            "concise_padded_by_filler": {"0": 7, "1": 9},
+            "neutral_by_filler": {"0": 11},
+        }}
+        self.path.write_text(json.dumps(self.bundle))
+        p = build_catalog(catalog_path=self.path)
+        concise_words = len(self.bundle["concise"].split())
+        for node in p["nodes"]:
+            meta = node["metadata"]
+            expected = {"concise_padded": 7 if meta["filler"] == 0 else 9,
+                        "neutral": 11 if meta["filler"] == 0 else 6}
+            self.assertEqual(meta["padding_word_targets"], expected)
+            self.assertEqual(meta["padding_words"], expected.get(node["condition"], 0))
+            if node["condition"] == "concise_padded":
+                self.assertEqual(meta["guidance_words"], concise_words + expected["concise_padded"])
+            elif node["condition"] == "neutral":
+                self.assertEqual(meta["guidance_words"], expected["neutral"])
+        other = build_catalog(model="mistral:7b", catalog_path=self.path)
+        self.assertEqual(other["padding_word_targets"], {})
+
+    def test_padding_targets_require_bounded_integers_and_known_fillers(self):
+        for invalid in (-1, 15001, 1.5, True, "3", None):
+            for key, value in (("neutral", invalid), ("concise_padded_by_filler", {"1": invalid})):
+                with self.subTest(key=key, invalid=invalid):
+                    self.bundle["padding_word_targets"] = {"gemma4:12b": {key: value}}
+                    self.path.write_text(json.dumps(self.bundle))
+                    with self.assertRaises(ValueError):
+                        build_catalog(catalog_path=self.path)
+        for targets in ({"neutral_by_filler": {"2": 4}}, {"neutral_by_filler": []}, None, {"misspelled": 3}):
+            self.bundle["padding_word_targets"] = {"gemma4:12b": targets}
+            self.path.write_text(json.dumps(self.bundle))
+            with self.assertRaises(ValueError):
+                build_catalog(catalog_path=self.path)
+        self.bundle["padding_word_targets"] = {"gemma4:12b": {"neutral": 0, "concise_padded": 15000}}
+        self.path.write_text(json.dumps(self.bundle))
+        p = build_catalog(catalog_path=self.path)
+        neutral = next(n for n in p["nodes"] if n["condition"] == "neutral")
+        self.assertEqual(neutral["metadata"]["guidance_words"], 0)
+
 
 class AttributionProtocolTests(unittest.TestCase):
     def test_counts_holdouts_layouts_and_repeat_placement(self):

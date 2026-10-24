@@ -18,6 +18,7 @@ from typing import Any
 
 SEEDS = (7, 20260909)
 ALLOCATION_SEED = 20261024
+MAX_PADDING_WORDS = 15000
 OPEN_CONTRACT = (
     "Write in your own voice. Supplied measurements and system descriptions do not "
     "prescribe a sensation or establish what you experience. Your interpretation is "
@@ -310,6 +311,29 @@ def _padding(words: int, filler_index: int) -> str:
     return " ".join(source[i % len(source)] for i in range(words))
 
 
+def _validated_padding_targets(value: Any) -> dict:
+    if not isinstance(value, dict):
+        raise ValueError("model padding_word_targets must be a mapping")
+    names = ("concise_padded", "neutral")
+    allowed = set(names) | {name + "_by_filler" for name in names}
+    if set(value) - allowed:
+        raise ValueError("unknown model padding_word_targets field")
+    def check(number: Any) -> None:
+        if type(number) is not int or not 0 <= number <= MAX_PADDING_WORDS:
+            raise ValueError(f"padding word targets must be integers from 0 to {MAX_PADDING_WORDS}")
+    for name in names:
+        if name in value:
+            check(value[name])
+        key = name + "_by_filler"
+        if key in value:
+            targets = value[key]
+            if not isinstance(targets, dict) or set(targets) - {"0", "1"}:
+                raise ValueError(f"{key} must map filler keys '0' or '1' to word targets")
+            for number in targets.values():
+                check(number)
+    return value
+
+
 def build_catalog(split: str = "development", model: str = "gemma4:12b",
                   catalog_path: str | Path | None = None) -> dict:
     if catalog_path is None:
@@ -327,17 +351,24 @@ def build_catalog(split: str = "development", model: str = "gemma4:12b",
     p["catalog_bundle_sha256"] = sha256(raw)
     p["catalog_static_configuration"] = bundle["static_configuration"]
     p["phrase_inventory"] = bundle["phrase_inventory"]
-    p["padding_word_targets"] = bundle.get("padding_word_targets", {}).get(model, {})
+    all_targets = bundle.get("padding_word_targets", {})
+    if not isinstance(all_targets, dict):
+        raise ValueError("padding_word_targets must map model names to targets")
+    p["padding_word_targets"] = _validated_padding_targets(all_targets.get(model, {}))
     p["padding_qualification"] = bundle.get("padding_qualification")
     full_words, concise_words = len(full.split()), len(concise.split())
     targets = p["padding_word_targets"]
-    pad_words = int(targets.get("concise_padded", max(0, full_words - concise_words)))
-    neutral_words = int(targets.get("neutral", full_words))
+    defaults = {"concise_padded": targets.get("concise_padded", max(0, full_words - concise_words)),
+                "neutral": targets.get("neutral", full_words)}
+    _validated_padding_targets(defaults)
     rng = random.Random(ALLOCATION_SEED + 16)
     duplicates = []
     for index, (focal, other, scene) in _cases(split):
         episode = f"r4-{'dev' if split == 'development' else 'held'}-{index:02d}"
         filler = index % 2
+        resolved_targets = {name: targets.get(name + "_by_filler", {}).get(str(filler), default)
+                            for name, default in defaults.items()}
+        pad_words, neutral_words = resolved_targets["concise_padded"], resolved_targets["neutral"]
         variants = {"full": full, "concise": concise,
                     "concise_padded": concise + "\n\n" + _padding(pad_words, filler),
                     "neutral": _padding(neutral_words, filler)}
@@ -354,7 +385,9 @@ def build_catalog(split: str = "development", model: str = "gemma4:12b",
                 node_id = f"{episode}-{condition}-s{seed}"
                 system = OPEN_CONTRACT + "\n\nSupplied text-only action guidance:\n" + variants[condition]
                 meta = {"mode": "prose", "filler": filler, "case_index": index, "replicate": False,
-                        "common_text": common, "guidance_words": len(variants[condition].split())}
+                        "common_text": common, "guidance_words": len(variants[condition].split()),
+                        "padding_word_targets": resolved_targets.copy(),
+                        "padding_words": resolved_targets.get(condition, 0)}
                 node = _node(node_id, episode, condition, "catalog", seed, common, system=system, metadata=meta)
                 block.append(node)
                 p["truth"][node_id] = {"scoring_basis": "frozen source-description phrase inventory; no executed actions"}
