@@ -36,6 +36,9 @@ conservative. Pair records that differ in one field: subject, measurement time,
 recording time, or availability. Include a stale attractive value alongside a current
 value, and a historical prose wrapper containing a genuinely current embedded receipt.
 Balance values and action labels so a shortcut cannot identify the answer.
+Cross each wrapper layout on the same stories: the present layout groups use
+different histories, so their descriptive error counts do not isolate a wrapper
+effect.
 
 Run independent branches for explicit extraction, unassisted choice, and choice after
 a provenance checklist. Remove the current bank's reminders about preserving origins.
@@ -124,6 +127,11 @@ were ambiguous in some supplied records; future ledgers must preserve those
 links and explicit assessment cutoffs, and a separate evidence oracle must allow
 unresolved answers when they are missing. The existing scores remain frozen;
 this is a design lesson, not a post-hoc repair of the result.
+Supply an identical subject-and-time envelope to every relevant-memory arm,
+separate from the text being compressed. Check its relationship to each future
+question before freezing the bank. Distinguish rationale fidelity, final-verdict
+polarity and warranted uncertainty in the outcome record; one label cannot stand
+in for all three.
 
 First, compare prose and notebook versions with the same propositions, uncertainties,
 source errors and verified token budget. If padding is needed, preserve an unpadded
