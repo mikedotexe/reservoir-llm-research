@@ -65,3 +65,14 @@ study schedule. An input-only check confirmed the same 96 unique confirmation
 prompt hashes and unchanged 216-node study order, grouped into six system texts.
 Each receipt still binds its exact prompt, and actual study input counts must
 match. The qualification report records this ordering explicitly.
+
+## Forecast-event semantic audit
+
+The supplemental Gemma review distinguishes explanations about verdict correctness
+from clear proposition-truth substitutions and explanations too ambiguous to decide.
+Before any Mistral forecast was dispatched, the same rubric was saved for its 48
+planned forecasts in `methods-review/mistral-forecast-event-audit-plan-v1.json`.
+A fresh reader will see opaque forecast outputs without target outcomes, oracle,
+scores or earlier annotations. Field names and high probabilities alone do not
+establish event understanding. Any unavailable outputs remain explicit in coverage.
+This review does not remove or relabel format-valid forecasts in the primary score.
