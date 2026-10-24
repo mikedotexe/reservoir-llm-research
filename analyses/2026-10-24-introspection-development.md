@@ -112,6 +112,25 @@ It feeds the first 120-call S-015 application protocol, SHA-256
 `a5f92a530e902bba8dd9ff49c868621879d932a5976679d7ebdf08b012dc07f5`.
 The original seed-7 target is unchanged and remains one of the five conditions.
 
+All 120 development applications completed in the requested verdict format.
+Scenario-conclusion recovery was23/24 for original records and24/24 for each
+of paraphrase and notebook. The single original-record error at seed20260909
+treated a displayed50% as evidence for being below51% at14:00 while acknowledging
+that its measurement time was unknown. The source and oracle retained that time
+uncertainty. This is an application error, not a reason to alter the case or source.
+The original-minus-notebook pilot difference is−0.0417 over12 episode means,
+with a descriptive episode-bootstrap95% interval[−0.125,0]; it is not held-out
+evidence of a format advantage.
+
+Both irrelevant-memory and no-memory conditions answered unresolved in all24
+opportunities. Their8/24 matches to the scenario oracle are the unresolved-world
+cases; the remaining abstentions are legitimate absent-knowledge responses,
+not demonstrated false beliefs. The first application pass requires no revision.
+The held-out application propositions are already in the frozen S-014 confirmation
+case bank; final source-derived memory texts will be fixed and reviewed after
+those source targets exist, before their applications. No additional pilot or
+outcome-driven case selection is planned.
+
 Length checks are reproducible from the unreviewed packet:
 
 ```python
