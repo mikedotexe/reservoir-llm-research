@@ -88,10 +88,13 @@ base rate is useful calibration but no error ranking. A bank with no errors leav
 discrimination unestimated. Declare minimum reporting denominators before running, and
 allow the fixed sample to finish inconclusive.
 
-This design borrows the behavioral comparison in [Looking Inward](https://arxiv.org/abs/2410.13787),
+This design borrows the behavioral comparison in [Looking Inward](https://openreview.net/pdf?id=eb5pkwIB5i),
 the generic-model alternative in [Strangers to Themselves](https://arxiv.org/abs/2609.09899v1),
 and the correctness/consistency distinction in [Yax and colleagues](https://arxiv.org/abs/2609.33886v2).
 Their training regimes and tested models do not predict this apparatus's outcome.
+Yax's trained confidence is an activation readout and its consistency measure is
+distribution concentration; the proposed repeated-decode verbal forecasts are
+our adaptation, not a replication of that estimator.
 
 ## 3. Separate memory packaging from information survival
 
