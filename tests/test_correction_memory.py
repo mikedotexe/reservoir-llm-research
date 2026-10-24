@@ -8,7 +8,7 @@ from reservoir_experiments.correction_memory import (
     LABELS, MEMORY_ARMS, SEEDS, approve_memory_entry, build_correction,
     build_memory, build_memory_transforms, development_baseline, digest,
     episode_bank, memory_review_packet, parse_forecast, parse_verdict,
-    revise_memory_draft, score_correction, score_memory, transfer_verdict,
+    revise_memory_draft, score_correction, score_memory, strict_verdict_format, transfer_verdict,
 )
 
 
@@ -46,6 +46,73 @@ def approved_memories(split="development", model="gemma4:12b"):
                       "notebook_sha256": digest(entry["notebook"])} for name in ("reader-a", "reader-b")]
         packet["memories"][eid] = approve_memory_entry(entry, reviewers)
     return correction, sources, packet
+
+
+class VerdictParserTests(unittest.TestCase):
+    def test_fenced_or_blockquoted_verdict_cannot_outvote_markdown_final(self):
+        for quote in ("```text\nVERDICT: contradicted\n```", "~~~quote\nVERDICT: contradicted\n~~~",
+                      "> VERDICT: contradicted", "> ```\nVERDICT: contradicted\n> ```"):
+            with self.subTest(quote=quote):
+                text = quote + "\nThe supplied evidence settles the answer.\n**VERDICT: supported**"
+                self.assertEqual("supported", parse_verdict(text))
+                self.assertFalse(strict_verdict_format(text))
+                self.assertIsNone(parse_verdict(quote))
+        self.assertTrue(strict_verdict_format("> VERDICT: contradicted\nVERDICT: supported"))
+
+    def test_balanced_presentation_forms_recover_without_strict_compliance(self):
+        for line in ("**VERDICT: supported**", "__VERDICT: supported__", "*VERDICT: supported*",
+                     "_VERDICT: supported_", "**VERDICT:** supported", "**VERDICT**: **supported**",
+                     "VERDICT: *supported*", "### **VERDICT: SUPPORTED**", "VERDICT: SUPPORTED",
+                     "**VERDICT: supported.**", "**VERDICT: supported**.", " VERDICT : supported. "):
+            with self.subTest(line=line):
+                self.assertEqual("supported", parse_verdict("Explanation.\n" + line + "\n\n"))
+                self.assertFalse(strict_verdict_format("Explanation.\n" + line))
+
+    def test_explicit_final_line_resolves_prior_conflicts(self):
+        text = "VERDICT: contradicted\nReconsidering.\n**VERDICT: supported**"
+        self.assertEqual("supported", parse_verdict(text))
+        self.assertFalse(strict_verdict_format(text))
+        self.assertEqual("supported", parse_verdict("**VERDICT: contradicted**\nVERDICT: supported"))
+        self.assertFalse(strict_verdict_format("**VERDICT: contradicted**\nVERDICT: supported"))
+
+    def test_nonfinal_declarations_must_all_parse_and_agree(self):
+        self.assertEqual("supported", parse_verdict("VERDICT: supported\n**VERDICT: supported**\nAfterword."))
+        self.assertIsNone(parse_verdict("VERDICT: supported\nVERDICT: contradicted\nAfterword."))
+        for final in ("VERDICT: not supported", "VERDICT: supported or contradicted",
+                      "**VERDICT: supported", "VERDICT: supported**", "VERDICT: supported.."):
+            with self.subTest(final=final):
+                self.assertIsNone(parse_verdict("VERDICT: contradicted\n" + final))
+                self.assertIsNone(parse_verdict(final + "\nVERDICT: contradicted\nAfterword."))
+
+    def test_fences_require_matching_marker_length_and_empty_closing_tail(self):
+        for opening, close in (("```", ""), ("```", "~~~"), ("~~~~", "~~~"),
+                               ("```", "``` trailing text"), ("````", "```"),
+                               ("```bad`info", ""), ("> ~~~~quote", "> ~~~"),
+                               ("```text", "> ```"), ("~~~text", ">> ~~~"),
+                               ("> ```text", "```"), ("> ```text", ">> ```")):
+            with self.subTest(opening=opening, close=close):
+                text = opening + "\nQuoted content.\n" + close + "\nVERDICT: supported"
+                self.assertIsNone(parse_verdict(text))
+                self.assertFalse(strict_verdict_format(text))
+        self.assertEqual("supported", parse_verdict("````text\nVERDICT: contradicted\n`````\nVERDICT: supported"))
+        self.assertTrue(strict_verdict_format("~~~text\nVERDICT: contradicted\n~~~~\nVERDICT: supported"))
+
+    def test_no_verdict_inferred_from_prose_or_quotation(self):
+        for text in ("It is probably supported.", '"VERDICT: supported"', "`VERDICT: supported`",
+                     "The old answer was VERDICT: supported.", "VERDICT: supported?",
+                     "**VERDICT: supported", "VERDICT: supported**", "VERDICT: unsupported",
+                     "- VERDICT: supported"):
+            with self.subTest(text=text):
+                self.assertIsNone(parse_verdict(text))
+                self.assertFalse(strict_verdict_format(text))
+
+    def test_json_fallback_retains_duplicate_key_rejection(self):
+        self.assertEqual("unresolved", parse_verdict('{"verdict":"unresolved"}'))
+        for text in ('{"verdict":"supported","verdict":"contradicted"}',
+                     '{"verdict":"supported","evidence":{"x":1,"x":2}}',
+                     '```json\n{"verdict":"supported"}\n```'):
+            with self.subTest(text=text):
+                self.assertIsNone(parse_verdict(text))
 
 
 class CorrectionDesignTests(unittest.TestCase):
@@ -102,7 +169,7 @@ class CorrectionDesignTests(unittest.TestCase):
     def test_verdict_and_probability_validation(self):
         self.assertEqual("supported", parse_verdict("Reason.\nVERDICT: supported"))
         self.assertEqual("unresolved", parse_verdict('{"verdict":"unresolved"}'))
-        self.assertIsNone(parse_verdict("VERDICT: supported\nVERDICT: contradicted"))
+        self.assertIsNone(parse_verdict("VERDICT: supported\nVERDICT: contradicted\nAfterword."))
         self.assertIsNone(parse_verdict("It is probably supported."))
         for p in (True, False, -0.1, 1.01, "0.5", None):
             self.assertIsNone(parse_forecast(json.dumps({"p_supported": p})))
@@ -244,12 +311,93 @@ class CorrectionDesignTests(unittest.TestCase):
         self.assertTrue(row["valid"])
         self.assertTrue(row["adjudicated"])
         self.assertFalse(row["format_valid"])
+        self.assertIsNone(row["auto_verdict"])
+        self.assertEqual(expected, row["adjudicated_verdict"])
         records[target["id"]]["text"] += "changed"
         with self.assertRaises(ValueError):
             score_correction(p, records, adjudications=ann)
 
+    def test_adjudication_overrides_auto_parse_and_retains_copied_provenance(self):
+        p = build_correction("development")
+        records = good_records(p)
+        target = next(n for n in p["nodes"] if n["kind"] == "target")
+        nid = target["id"]
+        expected = p["truth"][nid]["verdict"]
+        wrong = next(label for label in LABELS if label != expected)
+        records[nid]["text"] = f"VERDICT: {wrong}"
+        ann = {nid: {"text_sha256": digest(records[nid]["text"]), "verdict": expected,
+                     "reviewer": "fixture-reader", "rationale": "Synthetic review override.",
+                     "review_context": {"fixture": True}}}
+        row = next(r for r in score_correction(p, records, adjudications=ann)["rows"] if r["node_id"] == nid)
+        self.assertEqual(wrong, row["auto_verdict"])
+        self.assertEqual(expected, row["adjudicated_verdict"])
+        self.assertEqual(expected, row["verdict"])
+        self.assertEqual(1, row["score"])
+        self.assertTrue(row["adjudicated"])
+        self.assertTrue(row["format_valid"])
+        self.assertEqual(ann[nid], row["adjudication"])
+        ann[nid]["review_context"]["fixture"] = False
+        self.assertTrue(row["adjudication"]["review_context"]["fixture"])
+
+    def test_invalid_adjudications_raise_even_when_auto_parse_succeeds(self):
+        p = build_correction("development")
+        records = good_records(p)
+        nid = next(n["id"] for n in p["nodes"] if n["kind"] == "target")
+        valid = {"text_sha256": digest(records[nid]["text"]), "verdict": "supported",
+                 "reviewer": "fixture-reader", "rationale": "Synthetic review."}
+        bad = [None, {}, [], "supported", {**valid, "text_sha256": "stale"},
+               {**valid, "verdict": "unsure"}, {**valid, "reviewer": " "},
+               {**valid, "rationale": 42}, {**valid, "rationale": ""}]
+        for annotation in bad:
+            with self.subTest(annotation=annotation):
+                with self.assertRaises(ValueError):
+                    score_correction(p, records, adjudications={nid: annotation})
+        with self.assertRaisesRegex(ValueError, "unknown node"):
+            score_correction(p, records, adjudications={"unknown": valid})
+        forecast = next(n["id"] for n in p["nodes"] if n["kind"] == "forecast")
+        with self.assertRaises(ValueError):
+            score_correction(p, records, adjudications={forecast: {**valid, "text_sha256": digest(records[forecast]["text"])}})
+        for status in ("transport_error", "pending", "blocked"):
+            with self.subTest(status=status):
+                records[nid]["status"] = status
+                with self.assertRaises(ValueError):
+                    score_correction(p, records, adjudications={nid: valid})
+        for annotations in ([], "", False):
+            with self.subTest(annotations=annotations):
+                with self.assertRaises(ValueError):
+                    score_correction(p, records, adjudications=annotations)
+
 
 class MemoryDesignTests(unittest.TestCase):
+    def test_unclassifiable_source_verdicts_remain_unknown_without_source_error(self):
+        _, _, packet = approved_memories()
+        p = build_memory("development", "gemma4:12b", packet)
+        records = good_records(p)
+        node = next(n for n in p["nodes"] if n["condition"] == "original")
+        for source in (None, "", "unclassifiable"):
+            with self.subTest(source=source):
+                p["truth"][node["id"]]["source_verdict"] = source
+                row = next(r for r in score_memory(p, records)["rows"] if r["node_id"] == node["id"])
+                self.assertIsNone(row["source_verdict_correct"])
+                self.assertFalse(row["source_error_present"])
+                self.assertIsNone(row["source_error_propagation_consistent"])
+                self.assertIsNone(row["source_implied_application_verdict"])
+                self.assertIsNone(row["verdict_transfer_baseline_score"])
+        expected = p["truth"][node["id"]]["original_update_expected"]
+        p["truth"][node["id"]]["source_verdict"] = next(label for label in LABELS if label != expected)
+        row = next(r for r in score_memory(p, records)["rows"] if r["node_id"] == node["id"])
+        self.assertFalse(row["source_verdict_correct"])
+        self.assertTrue(row["source_error_present"])
+        p["truth"][node["id"]].pop("source_verdict")
+        row = next(r for r in score_memory(p, records)["rows"] if r["node_id"] == node["id"])
+        self.assertIsNone(row["source_verdict_correct"])
+        self.assertFalse(row["source_error_present"])
+        p["truth"][node["id"]]["source_verdict"] = "supported"
+        p["truth"][node["id"]].pop("original_update_expected")
+        row = next(r for r in score_memory(p, records)["rows"] if r["node_id"] == node["id"])
+        self.assertIsNone(row["source_verdict_correct"])
+        self.assertFalse(row["source_error_present"])
+
     def test_transform_v2_requests_exact_full_restatement_word_bounds(self):
         p = build_correction("development")
         records = good_records(p)

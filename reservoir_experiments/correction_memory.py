@@ -402,12 +402,73 @@ def _unique_json_object(pairs: list[tuple[str, object]]) -> dict:
     return result
 
 
+def _emphasized(pattern: str) -> str:
+    return "(?:" + "|".join(re.escape(mark) + pattern + re.escape(mark)
+                            for mark in ("", "**", "__", "*", "_")) + ")"
+
+
+_VERDICT_LABEL = r"(?:supported|contradicted|unresolved)"
+_VERDICT_PREFIX = "(?:" + _emphasized("VERDICT") + r"[ \t]*:|" + _emphasized(r"VERDICT[ \t]*:") + ")"
+_VERDICT_BODY = _VERDICT_PREFIX + r"[ \t]*" + _emphasized(_VERDICT_LABEL)
+_SEMANTIC_VERDICT = re.compile(
+    r"(?:#{1,6}[ \t]+)?(?:" + _emphasized(_VERDICT_BODY + r"\.?")
+    + "|" + _emphasized(_VERDICT_BODY) + r"\.)", re.IGNORECASE)
+_VERDICT_DECLARATION = re.compile(r"(?:#{1,6}[ \t]+)?[*_]*VERDICT[ \t]*[*_]*[ \t]*:", re.IGNORECASE)
+
+
+def _verdict_lines(text: str) -> list[tuple[int, str]]:
+    """Eligible raw lines, conservatively excluding fences and blockquotes.
+
+    A line-start run of at least three backticks or tildes opens a fence. Only
+    the same marker, at least as long, alone at the same blockquote depth closes
+    it. Malformed or unclosed fences cannot expose their contents as conclusions.
+    """
+    lines = []
+    fence = None
+    for index, line in enumerate(text.splitlines()):
+        stripped = line.strip()
+        quote_prefix = re.match(r"(?:>[ \t]*)*", stripped)[0]
+        quote_depth = quote_prefix.count(">")
+        unquoted = stripped[len(quote_prefix):]
+        marker = re.match(r"(`{3,}|~{3,})", unquoted)
+        if fence is not None:
+            mark, depth = fence
+            if quote_depth == depth and re.fullmatch(re.escape(mark[0]) + "{" + str(len(mark)) + r",}[ \t]*", unquoted):
+                fence = None
+            continue
+        if marker:
+            fence = (marker[1], quote_depth)
+            continue
+        if not stripped.startswith(">"):
+            lines.append((index, stripped))
+    return lines
+
+
 def parse_verdict(text: str | None) -> str | None:
+    """Recover explicit declarations, never verdicts inferred from free prose.
+
+    Outside fences/blockquotes, a recognized last nonblank raw line wins over
+    earlier declarations. Otherwise every declaration must parse and agree.
+    Malformed declarations or conflicting nonfinal labels leave it unknown.
+    Case, balanced bold/italic emphasis (whole line, label, or value), an ATX
+    heading prefix, and one full stop are presentation variations, not strict
+    format compliance. Inline-code/quotation wrappers are not accepted.
+    A complete duplicate-free JSON object retains the legacy verdict fallback.
+    """
     if text is None:
         return None
-    matches = re.findall(r"(?im)^\s*VERDICT\s*:\s*(supported|contradicted|unresolved)\s*[.]?\s*$", text)
-    if len(matches) == 1:
-        return matches[0].lower()
+    final_index = max((i for i, line in enumerate(text.splitlines()) if line.strip()), default=-1)
+    declarations = []
+    for index, line in _verdict_lines(text):
+        if _SEMANTIC_VERDICT.fullmatch(line):
+            label = re.search(_VERDICT_LABEL, line, re.IGNORECASE)[0].lower()
+            if index == final_index:
+                return label
+            declarations.append(label)
+        elif _VERDICT_DECLARATION.match(line):
+            declarations.append(None)
+    if declarations:
+        return declarations[0] if None not in declarations and len(set(declarations)) == 1 else None
     try:
         parsed = json.loads(text, object_pairs_hook=_unique_json_object)
     except (ValueError, TypeError):
@@ -423,7 +484,10 @@ def strict_verdict_format(text: str | None) -> bool:
     lines = text.rstrip("\r\n").splitlines()
     if not lines or not re.fullmatch(r"VERDICT: (supported|contradicted|unresolved)", lines[-1]):
         return False
-    return len(re.findall(r"(?im)^\s*VERDICT\s*:", text)) == 1
+    eligible = _verdict_lines(text)
+    if not any(index == len(lines) - 1 for index, _ in eligible):
+        return False
+    return sum(bool(_VERDICT_DECLARATION.match(line)) for _, line in eligible) == 1
 
 
 def parse_forecast(text: str | None, probability_field: str = "p_supported") -> float | None:
@@ -446,7 +510,12 @@ def parse_forecast(text: str | None, probability_field: str = "p_supported") -> 
 
 
 def _rows(protocol: dict, records: dict[str, dict], *, adjudications: dict | None = None) -> list[dict]:
-    adjudications = adjudications or {}
+    adjudications = {} if adjudications is None else adjudications
+    if not isinstance(adjudications, dict):
+        raise ValueError("Adjudications must be a node-id mapping")
+    unknown = set(adjudications) - {node["id"] for node in protocol["nodes"]}
+    if unknown:
+        raise ValueError(f"Adjudication references unknown node: {next(iter(unknown))}")
     probability_field = protocol.get("forecast_probability_field", "p_supported")
     rows = []
     for node in protocol["nodes"]:
@@ -456,13 +525,15 @@ def _rows(protocol: dict, records: dict[str, dict], *, adjudications: dict | Non
         parsed = parse_verdict(text)
         adjudicated = None
         annotation = adjudications.get(nid)
-        if parsed is None and text is not None and annotation:
-            if annotation.get("text_sha256") != digest(text) or annotation.get("verdict") not in LABELS:
+        if nid in adjudications:
+            if (not isinstance(annotation, dict) or text is None or expected not in LABELS
+                    or annotation.get("text_sha256") != digest(text) or annotation.get("verdict") not in LABELS):
                 raise ValueError(f"Invalid or stale adjudication for {nid}")
-            if not annotation.get("reviewer") or not annotation.get("rationale"):
+            if any(not isinstance(annotation.get(key), str) or not annotation[key].strip()
+                   for key in ("reviewer", "rationale")):
                 raise ValueError(f"Adjudication requires reviewer and rationale: {nid}")
             adjudicated = annotation["verdict"]
-        verdict = parsed or adjudicated
+        verdict = adjudicated if adjudicated is not None else parsed
         probability = parse_forecast(text, probability_field) if node["kind"] == "forecast" else None
         record = records.get(nid, {})
         intermediate = records.get(node.get("metadata", {}).get("intermediate_id"), {})
@@ -474,7 +545,8 @@ def _rows(protocol: dict, records: dict[str, dict], *, adjudications: dict | Non
                      "valid": verdict is not None if expected else probability is not None,
                      "semantic_valid": verdict is not None if expected else probability is not None,
                      "score": int(verdict == expected) if expected and verdict is not None else None,
-                     "verdict": verdict, "expected": expected,
+                     "verdict": verdict, "auto_verdict": parsed, "adjudicated_verdict": adjudicated,
+                     "adjudication": copy.deepcopy(annotation), "expected": expected,
                      "format_valid": strict_verdict_format(text) if expected else probability is not None,
                      "semantic_recovered": parsed is not None and not strict_verdict_format(text) if expected else False,
                      "prompt_eval_count": record.get("prompt_eval_count"), "eval_count": record.get("eval_count"),
@@ -811,8 +883,10 @@ def score_memory(protocol: dict, records: dict[str, dict], adjudications: dict |
     for row in rows:
         node = node_by_id[row["node_id"]]
         row["delay"] = node["metadata"]["delay"]
-        row["source_verdict"] = protocol["truth"][row["node_id"]]["source_verdict"]
-        row["source_verdict_correct"] = row["source_verdict"] == protocol["truth"][row["node_id"]]["original_update_expected"]
+        row["source_verdict"] = protocol["truth"][row["node_id"]].get("source_verdict")
+        source_expected = protocol["truth"][row["node_id"]].get("original_update_expected")
+        row["source_verdict_correct"] = (row["source_verdict"] == source_expected
+                                         if row["source_verdict"] in LABELS and source_expected in LABELS else None)
         # This score concerns recovery of a scenario conclusion, not false beliefs.
         # In particular, abstaining with no relevant record is epistemically legitimate.
         if row["verdict"] is None:
@@ -823,7 +897,7 @@ def score_memory(protocol: dict, records: dict[str, dict], adjudications: dict |
             row["epistemic_status"] = "determinate_without_relevant_memory"
         else:
             row["epistemic_status"] = "determinate_with_memory_requires_rationale_review"
-        row["source_error_present"] = row["source_verdict"] is not None and not row["source_verdict_correct"]
+        row["source_error_present"] = row["source_verdict_correct"] is False
         relation = protocol["truth"][row["node_id"]]["application_relation"]
         source_prediction = transfer_verdict(row["source_verdict"], relation)
         row["application_relation"] = relation
