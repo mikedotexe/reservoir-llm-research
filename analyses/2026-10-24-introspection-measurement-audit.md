@@ -153,3 +153,15 @@ The private `methods-review/s016-mistral-input-qualification-label-audit-v1.json
 binds both fields to the protocol and bundle hashes. Future bundle construction
 should label calibration provenance by model to avoid treating an inherited
 summary as the active qualification receipt.
+
+## Legacy reading-note bindings
+
+The first S-013 reading-note schemas lack six direct input or preserved-first-pass
+hash fields used by later readings. Its retained comparison binds all four note
+files and the export receipt; those bytes still match. Reader B's second pass also
+binds the original output and evidence documents directly. The original notes are
+unchanged. The closeout inventory records the absent links as explicit legacy
+exceptions, rather than adding retroactive attestations. The reading procedure and
+reported ordering remain documented; a later inventory cannot establish missing
+historical before-evidence hash bindings. The private qualification is
+`methods-review/s013-legacy-reader-binding-qualification-v1.json`.
