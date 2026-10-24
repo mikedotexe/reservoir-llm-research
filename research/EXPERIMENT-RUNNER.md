@@ -123,7 +123,10 @@ transformation receipts. A source unavailable in S-014 remains unavailable; a
 poor transformation of an available source is not grounds to exclude it.
 
 `revise_memory_draft` records pre-application construction edits and resets
-approval. `approve_memory_entry` accepts explicit decisions from two distinct
+approval. Review packets preserve exact raw transform text and its hash even for
+incomplete responses. Only complete responses initialize usable draft fields;
+an incomplete draft requires a logged repair before review.
+`approve_memory_entry` accepts explicit decisions from two distinct
 reviewers bound to the exact source, paraphrase and notebook texts. Length checks
 and source-hash checks are necessary but do not infer approval. `build_memory`
 refuses unreviewed, changed, or out-of-range paraphrases. See the full

@@ -703,7 +703,8 @@ def _validate_draft_history(entry: dict) -> None:
     if (draft.get("sha256") != (digest(raw) if raw is not None else None)
             or entry.get("transform_sha256") != draft.get("sha256")):
         raise ValueError("Original transform draft changed")
-    state = _transform_fields(raw)
+    # Retain failed/incomplete text as evidence, never as an initial usable draft.
+    state = _transform_fields(_record_text(draft))
     for change in entry.get("edit_history", []):
         if (not change.get("editor") or not change.get("rationale")
                 or change.get("before_sha256") != _draft_digest(state)
@@ -740,15 +741,18 @@ def memory_review_packet(transform_protocol: dict, records: dict[str, dict]) -> 
         source = transform_protocol["memory_sources"].get(eid)
         if source is None:
             continue
-        raw = _record_text(records.get(eid + "-transform"))
+        record = records.get(eid + "-transform", {})
+        raw = record.get("text")
+        raw = raw if isinstance(raw, str) else None
+        raw_sha256 = digest(raw) if raw is not None else None
         entry = copy.deepcopy(source)
         entry.update({"reviewed": False, "reviewers": [], "propositions": [],
-                      "paraphrase": None, "notebook": None, "transform_sha256": digest(raw) if raw else None,
+                      "paraphrase": None, "notebook": None, "transform_sha256": raw_sha256,
                       "transform_protocol_version": transform_protocol.get("protocol_version", 1),
-                      "original_transform_draft": {"text": raw, "sha256": digest(raw) if raw else None,
-                                                    "status": records.get(eid + "-transform", {}).get("status", "pending")},
+                      "original_transform_draft": {"text": raw, "sha256": raw_sha256,
+                                                    "status": record.get("status", "pending")},
                       "edit_history": []})
-        entry.update(_transform_fields(raw))
+        entry.update(_transform_fields(_record_text(record)))
         entries[eid] = entry
     return {"schema_version": 1, "split": transform_protocol["split"], "model": transform_protocol["model"],
             "sources_protocol_id": transform_protocol["id"], "memories": entries,
