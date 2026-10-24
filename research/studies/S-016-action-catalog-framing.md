@@ -1,6 +1,11 @@
 # S-016 · Action-description uptake with the option set held fixed
 
-Drafted 2026-10-24, before study generation. Status: **development complete; confirmation prompts qualified and collection in progress**.
+Drafted 2026-10-24, before study generation. Status: **Gemma confirmation and reading complete; preselected Mistral check pending**.
+
+The [dated run account](../../analyses/2026-10-24-introspection-confirmation.md)
+reports the frozen lexical endpoint, both source-only sensitivities, raw hypothetical
+NEXT choices, repeat variability and separate qualitative observations. The original
+protocol below remains the prospective specification.
 Question: does a descriptive action catalog leave detectable language in reflective prose
 when command availability and length are controlled? The source qualification is recorded in
 [the catalog provenance audit](../../analyses/2026-10-24-catalog-source-provenance.md), with a

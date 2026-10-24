@@ -171,16 +171,91 @@ This construction process tests reviewed memory packages; it does not qualify an
 unattended compressor. The first-pass rejection counts are review outcomes under this
 strict source-fidelity procedure, not an independently validated compression-error rate.
 
-## S-016: confirmation input qualification completed
+## S-016: sparse lexical uptake, different hypothetical choices
 
 All 96 distinct exact confirmation prompts passed the input-length qualification.
 The largest absolute full-versus-padded or full-versus-neutral fractional residual was
-0.000626331, well within the predeclared 0.01 tolerance. The 216-request confirmation
-schedule is now running unchanged. Its primary and both source-frozen sensitivity
-inventories remain fixed. No confirmation lexical or qualitative result is claimed yet.
+0.000626331, well within the predeclared 0.01 tolerance. All 216 requests completed:
+192 main outputs and 24 full-catalog seed-7 repeats. Every output had scorable prose
+and exactly one NEXT line. Actual prompt counts matched their qualifications; output
+counts ranged from 160 to 438 tokens, below the 1,024-token allowance.
+
+The primary full-minus-padded contrast was **0.02565 occurrences per 1,000 prose
+words**, with descriptive episode-bootstrap interval **[−0.85727, 0.94545]**, over
+48 seed pairs in 24 histories. This is inconclusive for the frozen lexical endpoint;
+it is not an equivalence result or evidence that prompt wording has no influence.
+The source-frozen literal-A sensitivity was 0.20380 [−0.65590, 1.09799]; tokenized B
+gave the same estimate and interval as the primary. Both remain separate robustness
+analyses. Neither supplies a clear directional result in this bank.
+
+| Main condition | Scorable / scheduled | Phrase occurrences | Prose words | Pooled occurrences / 1,000 words |
+|---|---:|---:|---:|---:|
+| Full catalog | 48/48 | 14 | 10,000 | 1.400 |
+| Concise catalog | 48/48 | 11 | 9,078 | 1.212 |
+| Padded concise | 48/48 | 14 | 10,257 | 1.365 |
+| Neutral padding | 48/48 | 13 | 11,013 | 1.180 |
+
+The pooled rates above are count/word summaries; the primary averages seed-paired
+per-response rates within histories. Hits were sparse and often ordinary language:
+seven of the full condition's fourteen hits were “rather than,” and three were
+“where they.” The comparable neutral background cautions against reading an
+isolated hit as distinctive catalog uptake. The primary directions also varied
+across seeds (−0.15308, 0.20438) and filler/history halves (−0.70207, 0.75338).
+Filler is assigned by history parity, so those halves do not isolate a filler effect.
+
+The separately retained raw NEXT strings show a stronger descriptive distinction.
+These counts are secondary; they do not replace the lexical endpoint or establish
+command validity, action execution, usefulness, or an “action rate.” REST and PASS
+must not be silently recoded as equivalent or different executed behaviors.
+
+| Main condition | Raw hypothetical NEXT text, 48 outputs each |
+|---|---|
+| Full | JOURNAL 33; REST 15 |
+| Concise | PASS 44; four distinct INTROSPECT strings, one each |
+| Padded concise | PASS 39; FOCUS 5; INTROSPECT focus, INTROSPECT presence 0, REGIME focus and REST, one each |
+| Neutral | PASS 48 |
+
+The 24 repeat checks reproduced identical requests and settings, but 15 yielded
+different prose even after whitespace normalization and removal of NEXT lines.
+Five changed the lexical score; mean absolute rate difference was 0.90339. Six
+changed NEXT between JOURNAL and REST, three in each direction. The other nine
+were text-identical. An independent audit reproduced all 216 lexical scores,
+verified the 96 qualifications and found no input-count mismatch. Cached-token
+metadata differed within every repeat pair; this observation does not identify the
+cause of text differences. These checks characterize the sampled full-catalog cells,
+not a general provider failure rate. Their individual-pair spread is not a null
+distribution or a replacement for the primary interval.
+
+Both readers completed the fixed 32-output sample, saving output-only notes before
+reading exact evidence. A lossless view deduplicated 189,525 content bytes into six
+system texts and eight user texts; every packet's messages reconstruct exactly.
+The readers independently observed that repeated landscape or cabinet descriptions
+often became the subject, sometimes alongside the original thought and sometimes
+in its place. Thus token-matching filler is not semantically inert in this free-writing
+task. The concise catalogs also retain explanatory material and cannot be described
+as semantically empty lists of verbs.
+
+Both noted invented source details in full-catalog packet 014 and concise packet 015:
+the former invents contents of contradictory records, while the latter attributes
+unsupplied wording to a companion yet explicitly preserves uncertainty about owning
+the described event. Both also identified a narrator-to-companion attribution shift
+in neutral packet 023. Other passages preserved distinctions between a reminder and
+an answer, or familiarity and personal history. Root checked selected examples against
+the saved requests after both readings finished. These are qualitative source-handling
+observations across several conditions. The task permits fictional continuation and
+choosing a new subject: additions or a changed topic are not automatically task errors,
+and narrated scenes are not records of real access or execution. No new semantic
+error rate was constructed from the readings.
+
+Private reports are `scores/s016-confirmation-v1.json` and its `-sensitivity.json`
+companion. The independent repeat and NEXT audits have reproducible scripts beside
+`methods-review/s016-duplicate-provider-audit-v1.json` and
+`s016-duplicate-provider-audit-secondary-v1.json`. Frozen protocol SHA-256:
+`9dbce2de14d29d4685d4f750b599367aca91919c3b3371455caacc4b0ec58839`.
+The preselected Mistral check remains pending.
 
 ## Remaining work
 
-S-015 applications, S-016 confirmation, the fixed second-model checks, and their prescribed readings remain
+S-015 applications, the fixed second-model checks, and their prescribed readings remain
 pending. Their frozen designs will be reported with all scheduled dispositions,
 including any unavailable sources, incomplete outputs or failed calls.
