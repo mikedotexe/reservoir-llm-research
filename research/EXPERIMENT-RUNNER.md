@@ -37,6 +37,14 @@ use remote endpoints, redirect, retry, switch providers or execute NEXT actions.
 Requests are serial, deadline-bounded and byte-bounded. The existing corpus CLI
 remains separate.
 
+Use one dispatching checkout per provider port. The provider lock is shared by
+runs inside this research checkout; it is not a host-wide lock across unrelated
+worktrees or other clients. This tranche uses one dispatcher, with implementation
+and review agents making no provider calls. Model/runtime identity is checked at
+batch start and periodically during dispatch, while each response's model name is
+validated; these are retained identity checkpoints, not continuous attestation
+of the weights between checks.
+
 ## Information flow is explicit
 
 Each node has static messages, a seed and output budget. `inputs` declares every
