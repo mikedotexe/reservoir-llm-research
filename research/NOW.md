@@ -13,7 +13,7 @@ The [runner](EXPERIMENT-RUNNER.md) and all four builders are implemented.
 The [development record](../analyses/2026-10-24-introspection-development.md) is
 complete. The [confirmation account](../analyses/2026-10-24-introspection-confirmation.md)
 now includes all four Gemma numerical results and separate blind readings, with
-memory-prompt ambiguities under final evidence audit. Memory construction passed its
+memory-prompt ambiguities documented in an exact-request audit. Memory construction passed its
 two-reader gate after retained repairs. The fixed Mistral source-attribution check
 has completed, and forecasting is collecting. The [next-round proposals](../analyses/2026-10-24-introspection-next-rounds.md)
 are being refined from those findings; they are not additional initiated studies.

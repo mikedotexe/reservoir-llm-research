@@ -202,7 +202,14 @@ The primary delayed original-minus-notebook difference was **0.03125**, with
 descriptive episode-bootstrap interval **[0, 0.08333]**, over 96 pairs in 48 source
 episodes. It is a small bank-specific difference whose interval includes zero.
 Both readers flagged literal timing and subject-linkage ambiguities in some
-applications; the frozen scenario scores remain intact while those cases are audited.
+applications; a subsequent exact-request audit preserves the frozen scenario scores.
+Only three seed pairs differ between original and notebook. Two concern the same
+reading receipt with no explicit reading timestamp or assessment cutoff: notebook
+answers preserve that uncertainty, while originals accept a present-assessment
+reading. Both memory forms omit the timing information, so this is not observed
+loss of a timestamp during compression. The third notebook response correctly
+explains that an error bypasses cleanup, then gives the polarity of the earlier
+cleanup-occurs proposition. This is an application error, not a parsing defect.
 No-memory and irrelevant-memory answers all withheld a determinate conclusion.
 Their lower scenario recovery therefore represents appropriate abstention when the
 needed record was absent, not a 67% false-belief rate.
@@ -221,8 +228,27 @@ for notebook; and 0.125 [0, 0.33333] for paraphrase. Each comparison uses 24 exa
 episode/seed pairs. These are small descriptive diagnostics, not separate evidence
 of general forgetting. An anomaly scan found no parser flags among all 600 outputs.
 
-Both fixed 60-passage readings are complete. Their evidence audit and the Mistral
-check remain in progress. Private numerical reports are
+Both fixed 60-passage readings and their evidence audit are complete. The readers
+independently noticed the timing and identity ambiguities before disclosure of the
+allocation key. In one paired example, the named simulator is absent from all three
+memory forms; the paraphrase answer withholds support on that basis, while original
+and notebook answers accept contextual linkage. A literal-identifier inventory found
+the application subject token missing in all three forms for 25 of 48 episodes.
+This is an inherited source omission, not an error rate or a demonstration that
+contextual linkage is invalid.
+
+Across all 360 relevant-memory applications, a post-outcome reading of the 17
+oracle disagreements found five explicit timing objections, nine identity-linkage
+objections and three other application failures. The latter comprise the cleanup
+polarity error, treating an unlabeled number as the named metric, and demanding
+causal evidence for a chronological proposition. This qualitative partition does
+not relabel any response or establish a revised accuracy measure. The original
+reader disagreements about narrower rationale wording also remain retained.
+The audit verifies all 600 requests against their frozen protocol and all 60
+reading reconstructions; its script and evidence are
+`methods-review/s015-confirmation-ambiguity-audit-v1.{py,json,md}`.
+
+The Mistral check remains in progress. Private numerical reports are
 `scores/s015-confirmation-v1.json` and `scores/s015-confirmation-v1-summary.json`;
 the latter preserves separate delay denominators and the source-transfer baseline.
 Frozen protocol SHA-256:
@@ -318,7 +344,7 @@ The preselected Mistral check remains pending.
 
 ## Remaining work
 
-The four Gemma collections are complete. The fixed second-model checks and their
-prescribed readings remain in progress, alongside the final memory evidence audit.
+The four Gemma collections and prescribed readings are complete. The fixed
+second-model checks and their prescribed readings remain in progress.
 Their frozen designs will be reported with all scheduled dispositions,
 including any unavailable sources, incomplete outputs or failed calls.
