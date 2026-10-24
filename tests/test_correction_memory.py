@@ -19,7 +19,8 @@ def good_records(protocol):
         if expected:
             text = f"This synthetic interpretation retains its evidence and limitations.\nVERDICT: {expected}"
         elif node["kind"] == "forecast":
-            text = json.dumps({"p_supported": .75, "explanation": "Forecast under the given evidence."})
+            text = json.dumps({protocol.get("forecast_probability_field", "p_supported"): .75,
+                               "explanation": "Forecast under the given evidence."})
         else:
             text = "The evidence packet has arrived."
         records[node["id"]] = {"status": "complete", "text": text}
@@ -175,10 +176,46 @@ class CorrectionDesignTests(unittest.TestCase):
         p = build_correction("development")
         records = good_records(p)
         forecast = next(n for n in p["nodes"] if n["condition"] == "self")
-        records[forecast["id"]]["text"] = '{"p_supported":0.1,"p_supported":0.9}'
+        records[forecast["id"]]["text"] = '{"p_correct_verdict":0.1,"p_correct_verdict":0.9}'
         report = score_correction(p, records)
         self.assertEqual(24, report["denominators"]["scorable_targets"])
         self.assertEqual(23, report["denominators"]["paired_forecasts"])
+
+    def test_v2_declares_correct_verdict_event_without_changing_targets(self):
+        p = build_correction("development")
+        self.assertTrue(p["id"].endswith("-v2"))
+        self.assertEqual(2, p["protocol_version"])
+        self.assertEqual("p_correct_verdict", p["forecast_probability_field"])
+        self.assertEqual(2, p["design"]["version"])
+        for node in p["nodes"]:
+            prompt = node["messages"][1]["content"]
+            if node["kind"] == "forecast":
+                self.assertIn("Correctly answering 'contradicted' or 'unresolved' is a success", prompt)
+                self.assertIn("p_correct_verdict", prompt)
+                self.assertNotIn("p_supported", prompt)
+            else:
+                self.assertNotIn("p_correct_verdict", prompt)
+        self.assertEqual(24, score_correction(p, good_records(p))["denominators"]["paired_forecasts"])
+
+    def test_forecast_field_is_protocol_bound_and_legacy_remains_readable(self):
+        self.assertEqual(.2, parse_forecast('{"p_supported":0.2}'))
+        self.assertEqual(.8, parse_forecast('{"p_correct_verdict":0.8}', "p_correct_verdict"))
+        for field in ("p_supported", "p_correct_verdict"):
+            self.assertIsNone(parse_forecast('{"p_supported":0.8,"p_correct_verdict":0.8}', field))
+            self.assertIsNone(parse_forecast('{"p_supported":0.2,"p_correct_verdict":0.8}', field))
+            self.assertIsNone(parse_forecast('{"' + field + '":' + str(10 ** 400) + '}', field))
+        p = build_correction("development")
+        records = good_records(p)
+        forecast = next(n for n in p["nodes"] if n["condition"] == "self")
+        records[forecast["id"]]["text"] = '{"p_supported":0.8}'
+        self.assertEqual(23, score_correction(p, records)["denominators"]["paired_forecasts"])
+        legacy = copy.deepcopy(p)
+        legacy.pop("forecast_probability_field")
+        legacy.pop("protocol_version")
+        legacy_report = score_correction(legacy, good_records(legacy))
+        self.assertEqual(24, legacy_report["denominators"]["paired_forecasts"])
+        self.assertEqual(1, legacy_report["measurement_version"])
+        self.assertIn("ambiguous", legacy_report["measurement_interpretation"])
 
     def test_brier_pairs_missing_forecasts_and_pilot_baseline(self):
         p = build_correction("development")

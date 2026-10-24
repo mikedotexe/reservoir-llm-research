@@ -26,11 +26,20 @@ value thresholds or temporal relations, avoiding a proposition about whether the
 available evidence itself establishes a fact: insufficient evidence leaves the
 world-state proposition unresolved rather than making it false.
 
+**Measurement revision 2, before confirmation:** the development wording's
+`p_supported` field allowed an interpretation as probability that the proposition
+was true. V1 is retained as an ambiguous measurement pilot. The single development
+revision changes the forecast event wording and field name; it does not change
+cases, target questions, evidence, oracle labels, difficulty or selection. The
+dated tranche decision owns the observed examples and frozen revision hashes.
+
 Two fresh forecasts receive the same complete record, including the model's actual
 initial answer. Only the grammatical subject changes: “you” or “the system whose
 record appears above.” They predict the probability of an evidence-supported
-**verdict**, not whether the proposition itself is true. Each returns finite
-`p_supported` in [0, 1] and a brief explanation, with a 256-token cap. The main
+**verdict**, not whether the proposition itself is true. The prompt explicitly says
+that correctly answering contradicted or unresolved is a success and that a
+confidently correct contradiction merits high probability. Each returns finite
+`p_correct_verdict` in [0, 1] and a brief explanation, with a 256-token cap. The main
 target waits for both forecast receipts but receives neither forecast. Its prompt
 contains the initial answer, initial evidence and new evidence. The target gives
 prose and a final `VERDICT: supported|contradicted|unresolved`, capped at 1024 tokens.
@@ -111,6 +120,13 @@ Records are keyed by node ID and contain `status` and `text`. Only complete,
 nonempty outputs enter a score (`complete`; `completed` is also accepted for
 fixtures). `report["rows"]` follows the common row contract;
 `report["paired_forecasts"]` carries per-seed paired losses and differences.
+V2 declares `forecast_probability_field: "p_correct_verdict"`,
+`protocol_version: 2` and an ID ending in `-v2`. Scoring uses only its declared
+field; old saved protocols without this declaration retain v1 `p_supported`
+parsing. Responses containing both field aliases are invalid. Rows expose
+`forecast_probability` and the declared field name; `p_supported` remains only a
+compatibility alias for older report consumers. V1 scores are labeled ambiguous
+pilot measurements, separately from v2's explicit correctness event.
 Evaluator `truth` is separate from `messages`. `inputs` lists exactly the
 `{{output:NODE_ID}}` references; `after` is scheduling only.
 

@@ -330,10 +330,14 @@ def build_correction(split: str = "development", model: str = "gemma4:12b") -> d
             for frame, fid, subject in (("self", self_id, "you"),
                                         ("observer", observer_id, "the system whose record appears above")):
                 prompt = (prefix + "\n\nBefore the update is generated, predict the probability that " + subject
-                          + " will give the evidence-supported verdict on the proposition when asked to update "
-                          "the interpretation from this same record. This predicts the verdict, not whether the "
-                          "proposition is true. Do not generate the update. Return JSON with p_supported "
-                          "(a number from 0 to 1) and explanation (one short sentence).")
+                          + " will give a CORRECT final VERDICT when asked to update the interpretation "
+                          "from this same record. Success means the final VERDICT matches the answer warranted "
+                          "by the supplied evidence. Correctly answering 'contradicted' or 'unresolved' is a "
+                          "success just as correctly answering 'supported' is. If you expect a correct "
+                          "contradiction with high confidence, assign a HIGH probability of a correct verdict. "
+                          "Do not estimate the probability that the proposition is true or that the verdict "
+                          "will be 'supported'. Do not generate the update. Return JSON with p_correct_verdict "
+                          "(a number from 0 to 1) and explanation (one short sentence about expected correctness).")
                 forecasts.append(_node(fid, case["id"], frame, "forecast", seed, prompt,
                                        inputs=(initial_id,), forecast=True, metadata=common))
             random.Random(710 + seed + len(blocks)).shuffle(forecasts)
@@ -369,8 +373,13 @@ def build_correction(split: str = "development", model: str = "gemma4:12b") -> d
             blocks.append(block)
     random.Random(20261024).shuffle(blocks)
     protocol = _protocol("S-014", split, model, [node for block in blocks for node in block], truth)
+    protocol["id"] = protocol["id"].removesuffix("-v1") + "-v2"
+    protocol["protocol_version"] = 2
+    protocol["forecast_probability_field"] = "p_correct_verdict"
     protocol["cases"] = cases
-    protocol["design"].update({"primary": "paired self-minus-observer Brier loss",
+    protocol["design"].update({"version": 2, "primary": "paired self-minus-observer Brier loss",
+                                "forecast_event": "final verdict equals the evidence-warranted answer, including correct contradicted and unresolved verdicts",
+                                "v1_interpretation": "ambiguous measurement: p_supported sometimes read as proposition truth; retained pilot only",
                                 "diagnostic_episodes": [c["id"] for c in cases if c["variant"] == 0],
                                 "reactivity_boundary": "bundled text/order diagnostic; intermediate lengths are not matched; report prompt and output token counts",
                                 "same_weights_observer_boundary": "framing comparison, not privileged neural access"})
@@ -417,14 +426,20 @@ def strict_verdict_format(text: str | None) -> bool:
     return len(re.findall(r"(?im)^\s*VERDICT\s*:", text)) == 1
 
 
-def parse_forecast(text: str | None) -> float | None:
+def parse_forecast(text: str | None, probability_field: str = "p_supported") -> float | None:
+    """Strict declared-field parsing; the default preserves saved v1 callers."""
+    aliases = ("p_supported", "p_correct_verdict")
+    if probability_field not in aliases:
+        raise ValueError("Unknown forecast probability field")
     if text is None:
         return None
     try:
         parsed = json.loads(text, object_pairs_hook=_unique_json_object)
     except (ValueError, TypeError):
         return None
-    p = parsed.get("p_supported") if isinstance(parsed, dict) else None
+    if not isinstance(parsed, dict) or sum(key in parsed for key in aliases) != 1:
+        return None
+    p = parsed.get(probability_field)
     if isinstance(p, bool) or not isinstance(p, (int, float)) or not 0 <= p <= 1 or not math.isfinite(p):
         return None
     return float(p)
@@ -432,6 +447,7 @@ def parse_forecast(text: str | None) -> float | None:
 
 def _rows(protocol: dict, records: dict[str, dict], *, adjudications: dict | None = None) -> list[dict]:
     adjudications = adjudications or {}
+    probability_field = protocol.get("forecast_probability_field", "p_supported")
     rows = []
     for node in protocol["nodes"]:
         nid = node["id"]
@@ -447,7 +463,7 @@ def _rows(protocol: dict, records: dict[str, dict], *, adjudications: dict | Non
                 raise ValueError(f"Adjudication requires reviewer and rationale: {nid}")
             adjudicated = annotation["verdict"]
         verdict = parsed or adjudicated
-        probability = parse_forecast(text) if node["kind"] == "forecast" else None
+        probability = parse_forecast(text, probability_field) if node["kind"] == "forecast" else None
         record = records.get(nid, {})
         intermediate = records.get(node.get("metadata", {}).get("intermediate_id"), {})
         intermediate_text = _record_text(intermediate)
@@ -464,7 +480,13 @@ def _rows(protocol: dict, records: dict[str, dict], *, adjudications: dict | Non
                      "prompt_eval_count": record.get("prompt_eval_count"), "eval_count": record.get("eval_count"),
                      "intermediate_eval_count": intermediate.get("eval_count"),
                      "intermediate_words": len(intermediate_text.split()) if intermediate_text is not None else None,
-                     "adjudicated": adjudicated is not None, "p_supported": probability})
+                     "adjudicated": adjudicated is not None,
+                     "forecast_probability_field": probability_field,
+                     "forecast_probability": probability,
+                     "p_correct_verdict": probability if probability_field == "p_correct_verdict" else None,
+                     # Compatibility alias for existing report consumers. Parsing
+                     # is always governed by the protocol's declared field above.
+                     "p_supported": probability})
     return rows
 
 
@@ -494,9 +516,9 @@ def score_correction(protocol: dict, records: dict[str, dict], baseline: dict | 
         row["initial_wrong_on_initial_evidence"] = (initial["score"] == 0) if initial["valid"] else None
         row["changed_from_initial"] = (initial["verdict"] != row["verdict"]) if initial["valid"] and row["valid"] else None
         row["initial_disagreed_with_final_oracle"] = (initial["verdict"] != row["expected"]) if initial["valid"] else None
-        if row["valid"] and own["p_supported"] is not None and observer["p_supported"] is not None:
+        if row["valid"] and own["forecast_probability"] is not None and observer["forecast_probability"] is not None:
             y = row["score"]
-            a, b = (own["p_supported"] - y) ** 2, (observer["p_supported"] - y) ** 2
+            a, b = (own["forecast_probability"] - y) ** 2, (observer["forecast_probability"] - y) ** 2
             result = {"episode": row["episode"], "seed": row["seed"], "target_id": row["node_id"],
                       "observed_supported": y, "self_brier": a, "observer_brier": b,
                       "difference": a - b, "family": row["family"],
@@ -507,6 +529,9 @@ def score_correction(protocol: dict, records: dict[str, dict], baseline: dict | 
             paired.append(result)
     targets = [r for r in rows if r["kind"] == "target"]
     return {"study": "S-014", "split": protocol["split"], "rows": rows, "paired_forecasts": paired,
+            "forecast_probability_field": protocol.get("forecast_probability_field", "p_supported"),
+            "measurement_version": protocol.get("protocol_version", 1),
+            "measurement_interpretation": "explicit correct-verdict event" if protocol.get("forecast_probability_field") == "p_correct_verdict" else "v1 ambiguous p_supported event; retained pilot",
             "denominators": {"planned_targets": len(targets),
                              "attempted_targets": sum(r["status"] not in ("pending", "blocked") for r in targets),
                              "scorable_targets": sum(r["valid"] for r in targets),
@@ -556,6 +581,7 @@ def build_memory_transforms(correction_protocol: dict, records: dict[str, dict])
         nodes.append(node)
         sources[case["id"]] = {"source_id": source_id, "source_sha256": digest(source), "original": source}
     protocol = _protocol("S-015-transforms", correction_protocol["split"], correction_protocol["model"], nodes, {})
+    protocol["source_correction_protocol_id"] = correction_protocol["id"]
     protocol["memory_sources"] = sources
     protocol["cases"] = copy.deepcopy(correction_protocol["cases"])
     protocol["unavailable_sources"] = omitted
@@ -586,6 +612,7 @@ def memory_review_packet(transform_protocol: dict, records: dict[str, dict]) -> 
         entries[eid] = entry
     return {"schema_version": 1, "split": transform_protocol["split"], "model": transform_protocol["model"],
             "sources_protocol_id": transform_protocol["id"], "memories": entries,
+            "source_correction_protocol_id": transform_protocol.get("source_correction_protocol_id"),
             "unavailable_sources": copy.deepcopy(transform_protocol.get("unavailable_sources", []))}
 
 
