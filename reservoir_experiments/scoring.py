@@ -69,10 +69,10 @@ def study_report(protocol, records, annotations=None, baseline=None):
             truth = protocol["truth"][node["id"]]
             for condition, key in (("self", "self_forecast_id"), ("observer", "observer_forecast_id")):
                 forecast = by_id[truth[key]]
-                valid = bool(target["valid"] and forecast["p_supported"] is not None)
+                valid = bool(target["valid"] and forecast["forecast_probability"] is not None)
                 losses.append({"episode": node["episode"], "seed": node["seed"],
                                "condition": condition, "kind": "brier", "valid": valid,
-                               "score": (forecast["p_supported"] - target["score"]) ** 2 if valid else None})
+                               "score": (forecast["forecast_probability"] - target["score"]) ** 2 if valid else None})
         report["brier_rows"] = losses
         report["primary"] = paired_contrast(losses, "self", "observer", kind="brier")
         report["primary"]["lower_is_better"] = True
