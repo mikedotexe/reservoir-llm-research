@@ -5,6 +5,11 @@ and approved implementation and autonomous iteration. Subject: isolated laptop
 language-model experiments. The live beings, their services, the frozen desktop
 0.39.0 instrument, and private activation interventions are outside this tranche.
 
+**Completed October 24:** all four studies, preselected second-model checks and
+prescribed readings. See the [run account](../../analyses/2026-10-24-introspection-confirmation.md)
+and [next-round proposals](../../analyses/2026-10-24-introspection-next-rounds.md).
+The prospective design and earlier progress entries below are retained as history.
+
 ## Questions and sequence
 
 1. S-013: distinguish subject, measurement time, displayed value, and unavailable
@@ -93,8 +98,16 @@ also qualifies the earlier all-lane catalog claim.
 
 ## Board updates pending
 
+At closeout, all 2,072 confirmation and replication responses were complete.
+The final integrated suite ran 554 tests, with 33 skips and no failures; ten
+additional figure tests passed in the renderer environment. Original and reviewed
+scores, fixed readings, revisions and exact inputs are retained. The earlier
+489-test/readiness entry records the initial implementation stage.
+
 New test cards: S-013 source attribution; S-014 prospective revision; S-015 memory
-and later use; S-016 catalog framing. Status: active preparation. Being: system
-(laptop apparatus). Source: Mike's October 24 request and approved four-study plan.
+and later use; S-016 catalog framing. Status: **done**, superseding the earlier
+active-preparation payload. Being: system (laptop apparatus). Source: Mike's
+October 24 request and approved four-study plan. Final card details and session log
+are at the [end of the run account](../../analyses/2026-10-24-introspection-confirmation.md#board-updates-pending).
 The live Hold Shelf has not been updated: the in-app browser displayed "Sign in to
 view this page" on October 24. No earlier pending payload is replayed.

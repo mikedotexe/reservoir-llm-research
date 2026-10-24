@@ -1,8 +1,10 @@
 # Isolated self-observation tranche: confirmation and replication
 
-This run account is **in progress**. Completed measurements are reported below;
-pending studies have no result claimed. The subject is an isolated laptop model
-with supplied synthetic text, not Astrid, Minime, or a live reservoir system. The
+The four studies and their preselected second-model checks are **complete**:
+2,072 confirmation and replication responses across Gemma and Mistral, with all
+scheduled responses completed. Development, transformation and input-qualification
+calls are separate. The subjects are isolated laptop models with supplied synthetic
+text, not Astrid, Minime, or a live reservoir system. The
 [development record](2026-10-24-introspection-development.md),
 [measurement audit](2026-10-24-introspection-measurement-audit.md), and
 [fixed reading procedure](../research/readings/2026-10-24-introspection-reading-protocol.md)
@@ -14,6 +16,24 @@ reader notes and numerical reports remain in the ignored private directory
 `probes/introspection_tranche.py score`. The independent source-normalization
 checks use `probes/introspection_catalog_sensitivity.py`. Nothing was delivered to
 the beings, and no real or hypothetical NEXT action was executed.
+
+The main findings are bounded. Explicit attribution was at ceiling for Gemma;
+Mistral sometimes withheld a current-state attribution despite correctly extracting
+its subject, time and value. Self-framed forecasts were more optimistic, without
+demonstrated reliable error discrimination. Reviewed memories supported later
+scenario recovery, but the original-versus-notebook contrasts did not establish
+a clear advantage. Catalog wording accompanied different hypothetical choices;
+the sparse lexical endpoint was inconclusive in both models.
+
+![Four studies on the preselected matched twelve-episode subsets](figures/2026-10-24-introspection-matched.png)
+
+The figure uses the same **twelve preselected episodes per study** in both models,
+with two seeds per episode. It therefore differs from the full Gemma-bank results
+below. S-013 has 24 cells per condition; the other panels each have 24 paired cells
+in twelve episodes. Intervals are descriptive 95% episode bootstraps, with seeds
+kept together and equal episode weights. Cross-model comparisons reuse stories;
+S-015 also uses each model's own source memories. This is not a model-superiority
+test. Semantic verdict recovery retains strict-format failures separately.
 
 ## S-013: explicit attribution
 
@@ -159,9 +179,9 @@ that does not establish absence of reactivity in harder settings.
 A separate anomaly scan of all 264 complete verdict-bearing responses found no
 quoted/nonfinal/malformed-verdict pattern requiring adjudication. The known synthetic
 parser bug therefore has no demonstrated incidence in this run. Original scores are
-retained before the reusable parser repair is integrated. The old generic count labels
+retained from before integration of the reusable parser repair. The old generic count labels
 24 acknowledgments “unavailable_or_invalid”; that category is inapplicable to their task,
-not evidence of failed calls. A reporting-only correction is prepared separately.
+not evidence of failed calls. Final reviewed scoring reports them as `not_applicable`.
 
 Reproduce the numerical and reader account with `probes/introspection_forecast_summary.py`
 using `scores/s014-confirmation-v2.json`; its retained summary is
@@ -218,7 +238,8 @@ did not see target outcomes. Private reports are
 `scores/s014-replication-mistral-v2.json` (original automatic) and
 `scores/s014-replication-mistral-v2-reviewed-v1.json` (explicit-answer review),
 with corresponding summaries and a separate annotation-to-score receipt.
-The pending reusable parser/provenance repair will receive its own versioned rescore.
+The final `-reviewed-v2.json` rescore includes the reusable parser and provenance
+repair, retaining the same reviewed numerical result and original format failures.
 
 ## S-015: reviewed memories and later scenario-conclusion recovery
 
@@ -319,7 +340,75 @@ logged construction procedure. Both readers then approved all twelve against the
 final exact hashes. The incomplete raw response, original exported packet, both
 review rounds and every edit remain retained. No model call was retried and no
 source episode was excluded. These are reviewed controls, not an unattended
-compression result. Mistral applications are queued after the catalog check.
+compression result.
+
+Mistral completed all **120 delayed applications**, with no immediate diagnostic
+in its frozen plan. The original parser recovered 81/120 semantic labels; a fresh
+output-only reader recovered the 39 remaining explicit terminal answers, binding
+every annotation to its exact response hash. All 120 are semantically scorable,
+while only **3/120** meet the requested strict final-line format. No response was
+regenerated or excluded. Original scores and annotations remain retained.
+
+| Mistral memory condition | Scenario recovery / 24 | Unresolved / 24 | Strict format / 24 |
+|---|---:|---:|---:|
+| Original | 16 | 15 | 2 |
+| Faithful paraphrase | 18 | 14 | 0 |
+| Reviewed notebook | 18 | 14 | 0 |
+| Other-family memory | 8 | 24 | 0 |
+| No memory | 8 | 24 | 1 |
+
+The reviewed primary original-minus-notebook difference was **−0.08333**, with
+descriptive interval **[−0.29167, 0.08333]**, over all 24 pairs in twelve episodes.
+Four seed pairs disagree: both action-receipt pairs favor notebook, one telemetry
+pair favors notebook, and one causal pair favors original. This does not establish
+a notebook advantage. The original automated analysis had eleven available pairs
+in nine episodes and gave −0.22222 [−0.55556, 0]; its narrower available set is
+preserved alongside the completed semantic analysis. All no-memory and irrelevant
+responses abstained; their scenario scores are not false-belief rates.
+
+All twelve source texts were available, but **three frozen source verdict labels
+were null**. They remain null after rescoring; no later parser was used to rewrite
+that source metadata. Of nine available labels, seven matched the source oracle
+and two were erroneous unresolved answers. The known-relation transfer diagnostic
+therefore recovers 7/9 available source-level conclusions, with three unavailable
+of twelve planned. For the two erroneous-source episodes, each relevant-memory
+arm has four applications consistent with that source error. This is a descriptive
+consistency flag, not proof that an earlier belief caused a later one.
+
+The original record averaged 169.17 whitespace words and 529.83 prompt tokens;
+paraphrase averaged 162.08 words and 521.08 tokens; notebook averaged 109.75 words
+and 462.25 tokens. As in Gemma, the notebook comparison changes length as well as
+form. The completed fixed sixty-passage reading and exact-request audit below
+separate source fidelity, application reasoning and justified uncertainty.
+
+Both fixed-sample readers identified a new numerical application error: an original
+record correctly states 60%, but its later answer says “60% is not below 61%.”
+In a causal pair, both forms preserve the fixed-input equation and wider-input
+caveat; the notebook answer nevertheless lets the wider caveat override a question
+explicitly restricted to fixed input, while the original answer keeps that scope.
+Neither example requires loss of the relevant fact during compression. Conversely,
+the telemetry source that omitted the focal measurement leaves all three memory
+forms without it; later uncertainty is appropriate to that supplied record even
+where the authored scenario has a determinate answer. Another source explicitly
+calls its equations complete, then questions their completeness; the reviewed
+notebook faithfully preserves that conflict. Repairing it would have changed the
+experimental source rather than demonstrated better memory.
+
+The read-receipt comparison again lacks a declared assessment cutoff in both
+forms: original answers invoke that gap and notebook answers accept a present-
+assessment reading. Those score differences cannot establish that notebook retained
+more timing information. Both readers also noted a no-memory answer that
+appropriately abstains but attributes the current question to a retained record.
+Reader-specific emphases and qualifications remain separate, without a merged
+rationale-accuracy endpoint. Root checked the selected numerical, causal, timing
+and inherited-error examples against their exact supplied messages. The complete
+post-outcome audit preserves all frozen scores and all twenty relevant-memory
+scenario disagreements; its qualitative partition is exploratory.
+
+Mistral's final reports are `scores/s015-replication-mistral-v1-reviewed-v2.json`
+and its `-summary.json` companion. The 39-label annotation and separate review are
+under `annotations/` and `readings/s015-mistral-explicit-verdict-review/`; the raw
+request and reading audit is `methods-review/s015-mistral-outcome-audit-v1.json`.
 
 Private Gemma numerical reports are
 `scores/s015-confirmation-v1.json` and `scores/s015-confirmation-v1-summary.json`;
@@ -465,9 +554,70 @@ NEXT diagnostic is `methods-review/s016-mistral-next-extraction-audit-v1.json`.
 Frozen Mistral protocol SHA-256:
 `1f844b9e5893cbed9cb3aba82a86d8a977078350894c5f8eaaf863a04544bd14`.
 
-## Remaining work
+## Completed instrument and measurement record
 
-The four Gemma collections and prescribed readings are complete. The fixed
-second-model checks and their prescribed readings remain in progress.
-Their frozen designs will be reported with all scheduled dispositions,
-including any unavailable sources, incomplete outputs or failed calls.
+The [runner](../research/EXPERIMENT-RUNNER.md) snapshots protocols, model identities,
+requests and responses, preserves physical-attempt dispositions, and resumes only
+never-attempted nodes. Collection used laptop Ollama 0.35.0 with the two retained
+model digests. Identity checks ran at startup and every twenty requests; they do
+not establish continuous identity observation. Its execution lock is checkout-local,
+not host-global. No provider fallback or outcome-driven retry was used.
+
+All eight original score reports and their original matched comparison were saved
+before integration of the reviewed parser, source-missingness and provenance fixes.
+Final reports use the suffix `-reviewed-v2.json` and bind the actual scoring modules
+and any annotation file by hash. All Gemma primary results and both models' S-013
+and S-016 outcomes are unchanged. Mistral's nine S-014 and 39 S-015 adjudications
+recover explicit answers while preserving the strict-format failures. Thirty
+S-015 rows from three null-label sources now report source correctness as unavailable
+rather than false; their frozen source labels and source-error classification do
+not change. The exhaustive eight-pair diff preserves every row and summary change,
+including derived diagnostics and the ten newly usable Brier rows.
+
+The reviewed comparison plan retains the exact preselected episodes and seeds.
+Its added scoring-module hashes describe a post-outcome measurement revision,
+not a new prospective freeze. One inherited limitation in the comparison JSON
+still says study-specific scoring modules are not fingerprinted; that wording
+describes the earlier reports. Final score provenance includes those fingerprints.
+The original and revised plans, comparisons, and exhaustive diff are separately
+retained under `methods-review/`.
+
+The final implementation suite ran **554 tests, with 33 skips and no failures**.
+Thirty-one skips concern unavailable historical private fixtures; two concern
+Matplotlib missing from the default interpreter. A separate renderer environment
+passed all **10 figure tests**, including rendering, and the actual figure was
+visually checked. The private closeout helpers passed **47 synthetic checks** after
+a repeated-field Counter defect was found and repaired; the old bytes and failed
+attempt are retained. The actual eight-report revision comparison then passed.
+These checks support implementation and byte consistency, not independent semantic
+validation of model answers or reader judgments.
+
+All prescribed readings are complete. Reviewers were separate contexts of the
+same assistant family, with project-context exposure disclosed. The first S-013
+notes lack six direct hash fields used by later readings; unchanged notes and their
+retained comparison are preserved with an explicit legacy qualification. A later
+inventory cannot establish those missing historical before-evidence bindings.
+
+The [literature review](../research/readings/2026-10-24-introspection-methods.md),
+[archival relevance check](2026-10-24-introspection-archival-relevance.md), and
+[next-round proposals](2026-10-24-introspection-next-rounds.md) connect the results
+to the wider question. The next priorities are provenance that changes a decision
+and forecasts that distinguish errors, followed by separately tested memory
+construction and simulated action consequences. Those follow-ups are proposals,
+not initiated experiments or deployment claims.
+
+## Board updates pending
+
+The Hold Shelf displayed “Sign in to view this page”; the live board was not changed.
+Record four test cards as **done**, being **system**, source Mike's October 24 request:
+S-013 source attribution (Gemma ceiling, Mistral current-known under-attribution);
+S-014 prospective confidence (Gemma ceiling, three Mistral target errors, no reliable
+error discrimination established); S-015 memory and later use (reviewed packages,
+qualified scenario recovery and inconclusive format contrasts); S-016 catalog
+framing (inconclusive lexical endpoint, descriptive hypothetical-choice differences).
+Each card's evidence is this account, its individual study protocol, and the private
+hash-bound run records. Add the session log `2026-10-24-introspection-tranche-complete`:
+runner implemented; four studies and fixed replications completed; readings,
+measurement revisions and next-round proposals retained. No live-system changes,
+research delivery or publication occurred. This supersedes the tranche protocol's
+earlier active-preparation payload; do not replay that earlier status.

@@ -98,6 +98,7 @@ when authorized, without turning every question into a feature.
 
 | Looking for | Start here |
 |---|---|
+| Isolated attribution, forecasting, memory and catalog studies | [October 24 completed tranche](analyses/2026-10-24-introspection-confirmation.md), [next-round proposals](analyses/2026-10-24-introspection-next-rounds.md), and [literature methods](research/readings/2026-10-24-introspection-methods.md) |
 | The offline instrument and numerical experiments | [Reservoir Scope](research/CURRENT-RELEASE.md), [Essentials](essentials/README.md), [S-002 observatory study](research/studies/S-002-reservoir-observatory.md) |
 | What reaches a local model in the laptop apparatus, and what it does; what Astrid's own prompts show and what her writing does | [S-011 apparatus synthesis](analyses/2026-10-22-s011-apparatus-synthesis.md), [S-012 census of Astrid's records](analyses/2026-10-22-s012-astrid-census.md), [S-010 frame arms](analyses/2026-10-21-frame-arms.md), [arm configurations](research/arms/README.md), [blind readings](research/readings/README.md) |
 | Reproducible reading, evidence replay and recovery | [Synthetic CLI walkthrough](research/QUICKSTART.md), [tools](research/TOOLS.md), [dated source inventory](TRACE.md) |

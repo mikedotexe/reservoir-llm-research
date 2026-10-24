@@ -181,3 +181,30 @@ both null and string NEXT keys. Its partial v1 output is preserved. A separately
 named v2 utility uses value/count rows, preserving null distinctly, and serializes
 before opening its output. Its full receipt/lexical audit passes. This utility
 repair changes no generated response, frozen score or model-call disposition.
+
+## Final scoring and closeout
+
+The prospective closeout plan above was executed. All eight original scores and
+their matched comparison were retained before integration. The final reviewed-v2
+scores bind the scoring modules and annotations by hash. The exhaustive revision
+diff verifies unchanged row identities, oracles, strict formats, dispositions and
+frozen S-015 source labels; it records all field and summary differences.
+
+Mistral S-015's original parser left 39 of 120 explicit verdicts unclassified.
+A fresh output-only reader recovered all 39, with exact quotes and response hashes;
+none required a correctness judgment. Semantic availability becomes 120/120,
+while strict-format compliance remains 3/120. Three frozen source labels remain
+null; the derived source-correctness field changes from false to null on their
+thirty application rows. This is a missingness correction, not repaired source
+content or a newly detected source error. The original report remains retained.
+
+The private revision-diff utility initially passed single-change fixtures but
+failed on actual repeated field names: `Counter.update` was given delta values
+instead of field names. The exact original utility is retained. The one-line
+repair and multirow regression cases passed, with 47 combined helper checks.
+The actual eight-pair exhaustive comparison then succeeded. No model output,
+score, primary endpoint or source oracle changed because of that utility repair.
+
+The [completed account](2026-10-24-introspection-confirmation.md) reports the final
+versions, strict-format and available-pair denominators, qualitative limitations,
+implementation tests and evidence-preservation record.

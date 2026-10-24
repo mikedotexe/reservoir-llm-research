@@ -1,6 +1,6 @@
 # Current work
 
-**October 24: four studies of useful self-observation, selected by Mike.**
+**October 24: four studies of useful self-observation completed.**
 The [tranche protocol](studies/S-013-016-self-observation-tranche.md) covers supplied
 source attribution, prospective supported revision, remembered reflection and later
 use, and action-catalog framing. Implementation and bounded local-model collection
@@ -12,14 +12,15 @@ outside the experiment. The older save point below is preserved as history.
 The [runner](EXPERIMENT-RUNNER.md) and all four builders are implemented.
 The [development record](../analyses/2026-10-24-introspection-development.md) is
 complete. The [confirmation account](../analyses/2026-10-24-introspection-confirmation.md)
-now includes all four Gemma numerical results and separate blind readings, with
-memory-prompt ambiguities documented in an exact-request audit. Memory construction passed its
-two-reader gate after retained repairs. The fixed Mistral attribution and forecasting
-checks are complete, including the forecasting readings. Mistral catalog collection
-and its fixed readings are complete. Mistral memory packages passed
-their two-reader gate after retained repairs, and the final applications are collecting.
+includes all four Gemma studies and all four preselected Mistral checks: 2,072
+completed confirmation and replication responses. All prescribed readings and
+memory construction reviews are complete. Original and reviewed scores preserve
+format failures, unavailable source labels and documented prompt ambiguities.
+The matched twelve-episode figure is distinct from the larger Gemma-bank estimates.
 The [next-round proposals](../analyses/2026-10-24-introspection-next-rounds.md)
-are being refined from those findings; they are not additional initiated studies.
+prioritize provenance-to-decision transfer and non-ceiling error forecasting,
+followed by memory fidelity and simulated action outcomes. They are not initiated
+studies. All changes are local; the live Hold Shelf update remains pending login.
 
 [Research findings](../RESEARCH.md) · [Current app candidate](CURRENT-RELEASE.md) ·
 [Focus history, October 7–16](NOW-history-20261007-through-20261016.md) ·

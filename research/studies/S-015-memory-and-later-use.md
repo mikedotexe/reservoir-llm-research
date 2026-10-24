@@ -1,7 +1,8 @@
 # S-015 · Memory format and later use
 
-Selected with Mike on October 24, 2026. Status: builders, scoring and review gate
-implemented; outcomes belong in the tranche's dated run account. Question: RQ-03,
+Selected with Mike on October 24, 2026. Status: **completed** for both models,
+including construction reviews, applications and fixed readings. Outcomes and
+measurement qualifications are in the [dated run account](../../analyses/2026-10-24-introspection-confirmation.md#s-015-reviewed-memories-and-later-scenario-conclusion-recovery). Question: RQ-03,
 useful continuity, with RQ-02's distinction between retained and corrected claims.
 This is R3 of the four-study introspection tranche.
 

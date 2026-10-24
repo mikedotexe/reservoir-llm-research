@@ -1,12 +1,10 @@
 # Next-round proposals from the isolated introspection tranche
 
-Working proposals, October 24. These are new experiments, not amendments to the
-running S-013–S-016 schedules. A methods collaborator drafted the underlying memo
+Completed proposals, October 24. These are new experiments, not amendments to the
+completed S-013–S-016 schedules. A methods collaborator drafted the underlying memo
 without seeing confirmation outcomes. This version incorporates the completed
-four Gemma numerical findings and the completed Mistral attribution and forecasting
-checks. Both models' memory construction reviews are complete; Mistral memory
-applications remain in progress. The catalog check and its readings are complete.
-Priorities will be assessed against the complete run account before closeout.
+four Gemma studies and all four preselected Mistral checks, including their fixed
+readings and retained measurement corrections. These proposals have not been run.
 
 The useful next step is to make competing explanations predict different observable
 results. Explicit record reading, fluent reflection, well-calibrated average confidence,
@@ -138,7 +136,7 @@ our adaptation, not a replication of that estimator.
 ## 3. Separate memory packaging from information survival
 
 S-015 deliberately tests reviewed source packages. Its repaired controls cannot qualify
-an unattended compressor. Its current bank permits perfect transfer of correct source
+an unattended compressor. Gemma's current bank permits perfect transfer of correct source
 labels when the evaluator supplies each copy/invert relation. That diagnostic motivates
 a minimal-memory comparison; it does not establish an operational verdict-only baseline.
 A follow-up should separate two useful questions.
@@ -148,6 +146,15 @@ paraphrases passed the length rule, yet one or both readers requested repairs in
 21 packages. Those are source-fidelity review decisions under this procedure,
 not an independently validated compressor-error rate. Final repaired packages
 passed both readers before applications.
+
+Mistral recovered 16/24 delayed conclusions with original memory and 18/24 with
+each reviewed transformation. Both primary intervals include zero (Gemma's touches
+zero). Mistral's twelve source texts include two erroneous parsed
+verdicts and three unavailable frozen labels; the oracle-informed transfer diagnostic
+is 7/9 available, not 12/12. Some later failures preserve source errors; others
+misapply retained facts, including a reversed numerical inequality. A useful next
+study must locate the failure in construction, retrieval, interpretation or answer
+polarity, without treating every later wrong scenario label as compression loss.
 
 The applications recovered the frozen scenario conclusion in 93/96 delayed
 original-record trials, 89/96 paraphrase trials and 90/96 notebook trials. All
@@ -296,4 +303,4 @@ behavioral findings. These strengthen the case for identical target evidence and
 predictor-by-target analysis. A later counterfactual study should freeze behavioral
 coding, include null edits, measure repeated outcomes and uncertainty, and keep discovery
 narratives separate from evaluation labels. This is a future design addition, not a
-change to any running study.
+change to any completed study.
