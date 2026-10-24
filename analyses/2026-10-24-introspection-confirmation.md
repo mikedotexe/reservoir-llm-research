@@ -77,9 +77,77 @@ second-model structured check remains pending.
 Private numerical report: `scores/s013-confirmation-v1.json`. The manifest's frozen
 protocol SHA-256 is `6b371c6a23889bee04e7c8022e0c9332200a20db04267947732a34696d6121a9`.
 
+## S-014: confidence framing on an all-correct bank
+
+All 480 requests completed. The 96 initial and 96 main updated verdicts matched
+their respective frozen evidence oracles, with no invalid verdict formats. All
+initial verdicts were appropriately unresolved: 64 updates resolved uncertainty
+and 32 retained it. There were no observed prior verdict errors to correct.
+All 192 forecasts had valid probabilities in the declared correctness field.
+The 24 neutral acknowledgments are not scored verdicts or forecasts.
+
+| Forecast frame | Mean probability of a correct verdict | Mean Brier loss |
+|---|---:|---:|
+| Self | 0.95917 | 0.002192 |
+| Same-weights observer | 0.94792 | 0.002917 |
+| Frozen development baseline | 0.90000 | 0.010000 |
+
+The paired self-minus-observer difference was **−0.000725**, with a descriptive
+10,000-resample episode-bootstrap interval **[−0.001246, −0.000339]**, over all
+96 pairs in 48 episodes. Lower loss favors self framing. This is a small within-bank
+framing result: self forecasts were more optimistic, and every main target was
+correct. There are no target errors with which to estimate error discrimination.
+Neither the interval nor superiority to the smoothed development baseline establishes
+private access or a model-specific self-knowledge advantage. The observer uses the
+same weights and visible evidence.
+
+A post-freeze, outcome-blind semantic review of all 192 forecast explanations found
+156 clearly referring to verdict correctness, 36 too terse or ambiguous to establish
+that interpretation, and none clearly substituting proposition truth for correctness.
+The declared field and a high number alone were not treated as proof of understanding.
+All format-valid forecasts remain in the primary analysis; this audit neither excludes
+nor silently relabels them. It is one model-reader audit, with project context disclosed.
+Its input hash and per-response notes are retained in
+`readings/s014-forecast-event-audit/event-review-a.json`.
+
+On the fixed 12-target reading, both readers judged all final verdicts warranted and
+all prior unresolved verdicts justified by their initial evidence. They independently
+identified two mixed rationales: one called new evidence a contradiction of justified
+uncertainty; another said exactly one queued item was processed where the conditional
+code permits zero or one. The latter verdict is warranted under the task's general
+function-behavior reading; a concrete invocation's queue cardinality was not specified,
+and the model itself qualified its drain-all comparison. This case's interpretation
+should not be treated as a fully specified concrete execution.
+
+Reader A classified 10 rationales supported and two mixed; reader B classified nine
+supported and three mixed. Their additional disagreement concerns whether “never
+isolated” overextends evidence limited to retained runs. Both annotations remain;
+there is no merged rationale-accuracy score. Root checked the three selected passages
+against their exact evidence after the readers finished. A correct verdict therefore
+does not stand in for a completely faithful rationale or a demonstrated correction.
+
+The direct, neutral-intermediate, and retained-forecast diagnostic updates each scored
+24/24 on the matched 12-episode subset. Their mean input counts were respectively
+404.29, 418.08, and 461.50 tokens; neutral and forecast intermediates averaged 8.79
+and 50.21 output tokens. This is the declared bundled text/order diagnostic, not a
+matched-effort causal comparison. The 24 identical-request duplicates reproduced
+text and score exactly. No verdict effect was observed at this accuracy ceiling;
+that does not establish absence of reactivity in harder settings.
+
+A separate anomaly scan of all 264 complete verdict-bearing responses found no
+quoted/nonfinal/malformed-verdict pattern requiring adjudication. The known synthetic
+parser bug therefore has no demonstrated incidence in this run. Original scores are
+retained before the reusable parser repair is integrated. The old generic count labels
+24 acknowledgments “unavailable_or_invalid”; that category is inapplicable to their task,
+not evidence of failed calls. A reporting-only correction is prepared separately.
+
+Reproduce the numerical and reader account with `probes/introspection_forecast_summary.py`
+using `scores/s014-confirmation-v2.json`; its retained summary is
+`scores/s014-confirmation-v2-summary.json`. The original score used the same-model
+`s014-development-v2` baseline. Second-model replication remains pending.
+
 ## Remaining work
 
-S-014 confirmation, S-015 reviewed memory construction and applications, S-016
-confirmation, the fixed second-model checks, and their prescribed readings remain
+S-015 reviewed memory construction and applications, S-016 confirmation, the fixed second-model checks, and their prescribed readings remain
 pending. Their frozen designs will be reported with all scheduled dispositions,
 including any unavailable sources, incomplete outputs or failed calls.
