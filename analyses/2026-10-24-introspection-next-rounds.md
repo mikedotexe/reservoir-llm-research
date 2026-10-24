@@ -3,8 +3,8 @@
 Working proposals, October 24. These are new experiments, not amendments to the
 running S-013–S-016 schedules. A methods collaborator drafted the underlying memo
 without seeing confirmation outcomes. This version incorporates the completed
-Gemma S-013/S-014 findings and S-015's construction review; memory applications,
-catalog confirmation results and second-model checks are still pending.
+Gemma S-013/S-014/S-016 findings and S-015's construction review; memory applications
+and second-model checks are still pending.
 Priorities will be assessed against the complete run account before closeout.
 
 The useful next step is to make competing explanations predict different observable
@@ -142,6 +142,13 @@ S-016's endpoint is lexical uptake. A follow-up can test whether descriptions ch
 operations or outcomes, while retaining the distinction between prose, a selected command,
 execution and success.
 
+The completed Gemma comparison makes this useful: its lexical contrast was close
+to zero with a wide interval, while raw hypothetical NEXT text differed markedly.
+The full condition chose JOURNAL or REST in all 48 main outputs; the other conditions
+mostly chose PASS. This secondary description is not a validated action or benefit
+finding. Six of 24 identical-input full-catalog repeats changed between JOURNAL and
+REST, so the follow-up also needs repeats of its actual primary decision cells.
+
 Use a small deterministic simulator with a closed action set and disposable state. Every
 arm receives the same formal preconditions, effects, syntax, options and task goals.
 Vary only decorative descriptions: plain, rich, and descriptions permuted across action
@@ -151,6 +158,15 @@ objective and instruction priority; permutation must not break references or int
 contradictions. If evaluative guidance is intentionally retained, call the treatment
 description-based guidance instead of pure decorative wording. Match
 input tokens, counterbalance names/positions and retain identical-input checks.
+
+Prefer comparably long plain and rich formulations of the same formal content.
+The current blind readings show that repeated “neutral” scenic padding can become
+the subject of the prose. If padding is still needed, retain an unpadded diagnostic
+and counterbalance its content; do not assume it is semantically inert. Define
+stop/rest options by their simulated transitions and costs, so names such as REST
+and PASS do not become an unexamined proxy for acting. Predeclare provider-order
+and repeat checks separately, preserving any differences instead of tuning a
+primer after seeing outcomes.
 
 The model selects a structured action and receives a simulator receipt. Score valid
 selection, actual state transition, goal progress, wasted steps and unsupported completion
