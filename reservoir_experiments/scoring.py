@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 from collections import Counter, defaultdict
+import copy
+import json
 import math
 from pathlib import Path
 
@@ -120,12 +122,17 @@ def study_report(protocol, records, annotations=None, baseline=None):
 
 
 def score_run(run, *, annotations=None, out=None, baseline=None):
+    from . import attribution_catalog, correction_memory
     run = Path(run)
     verification = runner.verify(run)
     manifest, protocol = runner.load_run(run)
     records = runner.read_results(run)
-    notes = runner.read_json(Path(annotations)) if annotations else {}
+    annotation_bytes = runner.stable_read(Path(annotations)) if annotations else None
+    notes = json.loads(annotation_bytes) if annotation_bytes is not None else {}
+    baseline = copy.deepcopy(baseline)
     report = study_report(protocol, records, annotations=notes, baseline=baseline)
+    if protocol["study"] == "S-014" and baseline is not None:
+        report["baseline"] = copy.deepcopy(baseline)
     report["duplicates"] = duplicate_receipts(protocol, records, run)
     rows = {r["node_id"]: r for r in report["rows"]}
     metric_deltas = []
@@ -137,10 +144,15 @@ def score_run(run, *, annotations=None, out=None, baseline=None):
     report["duplicates"]["scorable_metric_pairs"] = len(metric_deltas)
     report["duplicates"]["mean_absolute_metric_difference"] = (sum(metric_deltas) / len(metric_deltas)
                                                                  if metric_deltas else None)
+    study_module = {"S-013": attribution_catalog, "S-014": correction_memory,
+                    "S-015": correction_memory, "S-016": attribution_catalog}[protocol["study"]]
     report["provenance"] = {"manifest_sha256": runner.sha(runner.stable_read(run / "manifest.json")),
                             "runner_commit": manifest["git_head"], "verified": verification["valid"],
                             "scoring_sha256": runner.sha(runner.stable_read(Path(__file__))),
-                            "statistics_sha256": runner.sha(runner.stable_read(Path(__file__).with_name("statistics.py")))}
+                            "statistics_sha256": runner.sha(runner.stable_read(Path(__file__).with_name("statistics.py"))),
+                            "study_scoring_module": study_module.__name__,
+                            "study_scoring_sha256": runner.sha(runner.stable_read(Path(study_module.__file__))),
+                            "annotations_sha256": runner.sha(annotation_bytes) if annotation_bytes is not None else None}
     if out is not None:
         destination = runner.guard_output(Path(out), Path(manifest["repository"]))
         runner.write_json(destination, report)
