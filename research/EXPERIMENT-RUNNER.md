@@ -2,7 +2,7 @@
 
 `reservoir_experiments` is a separate standard-library Python instrument for the
 [S-013–S-016 tranche](studies/S-013-016-self-observation-tranche.md). It does not
-modify the desktop instrument or the beings' systems. Use Python3.12 or later;
+modify the desktop instrument or the beings' systems. Use Python 3.12 or later;
 this laptop's project interpreter is `/opt/homebrew/bin/python3.14`.
 
 ## Prepare, execute, inspect
@@ -61,15 +61,15 @@ allowance and reserve. A long catalog needs an explicit empirical qualification:
 python3.14 -m reservoir_experiments qualify protocol.json NODE_ID --out research/outputs/example/qualification
 ```
 
-The named probe uses the exact static prompt at context32768 and output budget1.
-Its input count must leave room inside the planned context16384 for the study
-output budget plus a512-token reserve. It records raw request/response/identity
+The named probe uses the exact static prompt at context 32768 and output budget 1.
+Its input count must leave room inside the planned context 16384 for the study
+output budget plus a 512-token reserve. It records raw request/response/identity
 evidence. Add its directory to `context_qualifications` before preparing the study.
-The actual study request keeps context16384 and must reproduce the qualified
+The actual study request keeps context 16384 and must reproduce the qualified
 input-token count. Qualification output text is not a study outcome.
 
 `probes/introspection_catalog_qualify.py` orchestrates this for S-016, reuses exact
-matching completed receipts across seeds, and enforces the predeclared1% padded
+matching completed receipts across seeds, and enforces the predeclared 1% padded
 and neutral input-token match against the full condition. `--case-index` restricts
 an initial calibration check; a final full qualification covers every unique
 prompt and writes a new qualified protocol. Raw source/catalog text stays private.
@@ -101,7 +101,7 @@ tranche's fixed secondary-reading sampler.
 
 `probes/introspection_tranche.py score` adds an optional `--baseline-run` for the
 same model's S-014 development baseline. Numeric inference uses episode-level
-means of seed-paired differences, followed by10000 episode-bootstrap resamples.
+means of seed-paired differences, followed by 10000 episode-bootstrap resamples.
 Reports retain missingness, semantic and requested-format counts, token/word
 denominators and identical-request variability. Intervals describe the constructed
 bank, not population prevalence. V1 forecast-event ambiguity, v2 correctness
