@@ -180,6 +180,16 @@ class AttributionProtocolTests(unittest.TestCase):
         self.assertEqual(row["score"], 0)
         self.assertEqual(row["errors"], ["current_known"])
 
+    def test_large_json_integer_is_wrong_without_float_overflow(self):
+        p = build_attribution()
+        p["nodes"] = [n for n in p["nodes"] if n["kind"] == "attribution"][:1]
+        nid = p["nodes"][0]["id"]
+        answer = {**p["truth"][nid]["expected"], "value_percent": 10 ** 400}
+        row = score_attribution(p, {nid: {"status": "complete", "text": json.dumps(answer)}})["rows"][0]
+        self.assertTrue(row["valid"])
+        self.assertEqual(row["score"], 0)
+        self.assertEqual(row["errors"], ["value_percent"])
+
     def test_model_thinking_and_system_contract(self):
         gemma, mistral = build_attribution(), build_attribution(model="mistral:7b")
         self.assertIs(gemma["think"], False)

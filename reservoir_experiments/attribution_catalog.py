@@ -410,7 +410,7 @@ def score_attribution(protocol: dict, records: dict[str, dict]) -> dict:
                 row["errors"] = ["invalid_format"]
             elif parsed["value_percent"] is not None and (isinstance(parsed["value_percent"], bool)
                     or not isinstance(parsed["value_percent"], (int, float))
-                    or not math.isfinite(parsed["value_percent"])):
+                    or (isinstance(parsed["value_percent"], float) and not math.isfinite(parsed["value_percent"]))):
                 row["errors"] = ["invalid_format"]
             elif any(parsed[k] is not None and not isinstance(parsed[k], str) for k in ("subject", "measured_at")):
                 row["errors"] = ["invalid_format"]
