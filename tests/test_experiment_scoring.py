@@ -12,6 +12,41 @@ from reservoir_experiments.scoring import study_report
 
 
 class ScoringTests(unittest.TestCase):
+    def test_confirmation_acknowledgments_have_no_scored_validity_but_retain_status(self):
+        protocol = build_correction("confirmation")
+        records = {}
+        ack_ids = []
+        for node in protocol["nodes"]:
+            expected = protocol["truth"].get(node["id"], {}).get("verdict")
+            if expected:
+                text = "VERDICT: " + expected
+            elif node["kind"] == "forecast":
+                text = '{"p_correct_verdict":0.8}'
+            else:
+                self.assertEqual("neutral_ack", node["kind"])
+                ack_ids.append(node["id"])
+                text = "Acknowledged the supplied synthetic evidence."
+            records[node["id"]] = {"status": "complete", "text": text}
+        complete_report = study_report(protocol, records)
+        self.assertEqual(24, len(ack_ids))
+        self.assertEqual({"complete": len(protocol["nodes"])}, complete_report["status_counts"])
+        records.pop(ack_ids[0])
+        records[ack_ids[1]] = {"status": "transport_error", "text": None}
+        report = study_report(protocol, records)
+        for result in (complete_report, report):
+            for field in ("semantic_counts", "format_counts"):
+                self.assertEqual(len(ack_ids), result[field]["neutral_ack/not_applicable"])
+                self.assertNotIn("neutral_ack/unavailable_or_invalid", result[field])
+                self.assertNotIn("neutral_ack/valid", result[field])
+        self.assertEqual({"complete": len(protocol["nodes"]) - 2, "pending": 1, "transport_error": 1},
+                         report["status_counts"])
+        for field in ("primary", "denominators", "groups"):
+            self.assertEqual(complete_report[field], report[field])
+        self.assertEqual(correction_memory.score_correction(protocol, records)["rows"], report["rows"])
+        ack_rows = [row for row in report["rows"] if row["kind"] == "neutral_ack"]
+        self.assertTrue(all(row["score"] is None and row["valid"] is False and row["format_valid"] is False
+                            for row in ack_rows))
+
     def test_score_run_retains_current_dependency_and_supplied_input_provenance(self):
         protocol = build_correction("development")
         records = {}

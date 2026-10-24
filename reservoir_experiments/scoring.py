@@ -107,9 +107,11 @@ def study_report(protocol, records, annotations=None, baseline=None):
         report["study_groups"] = report["groups"]
     numeric_rows = [r for r in report["rows"] if r["kind"] not in ("forecast", "neutral_ack", "prose")]
     report["groups"] = summarize(numeric_rows)
-    report["semantic_counts"] = dict(Counter((r["kind"] + "/" + ("valid" if r["valid"] else "unavailable_or_invalid"))
+    report["semantic_counts"] = dict(Counter((r["kind"] + "/" + ("not_applicable" if r["kind"] == "neutral_ack"
+                                             else "valid" if r["valid"] else "unavailable_or_invalid"))
                                              for r in report["rows"]))
-    report["format_counts"] = dict(Counter((r["kind"] + "/" + ("valid" if r.get("format_valid", r["valid"]) else "unavailable_or_invalid"))
+    report["format_counts"] = dict(Counter((r["kind"] + "/" + ("not_applicable" if r["kind"] == "neutral_ack"
+                                           else "valid" if r.get("format_valid", r["valid"]) else "unavailable_or_invalid"))
                                            for r in report["rows"]))
     report["status_counts"] = dict(Counter(records.get(n["id"], {}).get("status", "pending")
                                           for n in protocol["nodes"]))
