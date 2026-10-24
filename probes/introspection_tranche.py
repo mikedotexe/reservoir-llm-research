@@ -59,7 +59,7 @@ def evidence_files(run, node_ids):
 def transform_stage(args):
     from reservoir_experiments.correction_memory import build_memory_transforms, memory_review_packet
     runner.verify(args.run)
-    _, source = runner.load_run(args.run)
+    manifest, source = runner.load_run(args.run)
     records = runner.read_results(args.run)
     if args.command == "transforms":
         protocol = build_memory_transforms(source, records)
@@ -72,7 +72,9 @@ def transform_stage(args):
         value = protocol
     else:
         value = memory_review_packet(source, records)
-        value["provenance_files"] = list(source.get("sources", [])) + evidence_files(args.run, records)
+        frozen_sources = [{"path": str((Path(args.run) / entry["snapshot"]).resolve()), "sha256": entry["sha256"]}
+                          for entry in manifest["sources"]]
+        value["provenance_files"] = frozen_sources + evidence_files(args.run, records)
     path = runner.guard_output(args.out, ROOT)
     runner.write_json(path, value)
     return {"path": str(path), "sha256": runner.sha(path.read_bytes()),
