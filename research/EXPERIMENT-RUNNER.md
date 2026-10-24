@@ -146,6 +146,23 @@ denominators and identical-request variability. Intervals describe the construct
 bank, not population prevalence. V1 forecast-event ambiguity, v2 correctness
 forecasts, lexical uptake and semantic reader observations remain distinct.
 
+After the required blind readings, create an S-015 descriptive supplement from a
+frozen run and its already retained score in the same checkout:
+
+```sh
+python3.14 probes/introspection_memory_summary.py research/outputs/example/run research/outputs/example/score.json --out research/outputs/example/memory-summary.json
+```
+
+Choose a new output path under `research/outputs`; existing files are never
+overwritten. The probe verifies receipts and score provenance, preserves the
+retained primary contrast and frozen source verdicts (including missing verdicts),
+and reports separate delayed/immediate denominators with explicit unavailable
+sources. Its immediate-minus-delayed diagnostic pairs the preselected variant-0
+episodes by episode, seed and arm, then bootstraps episode means with seeds
+clustered. It also reports the source copy/invert baseline and memory-length and
+token summaries. It does not generate text or rescore answers; current versus
+retained scoring-code hashes are disclosed without changing the retained score.
+
 All raw outputs are ignored private research material. Publish an aggregate
 account only within the user's authorized scope. Preserve private evidence before
 archiving a worktree; Git snapshots do not include ignored outputs.
