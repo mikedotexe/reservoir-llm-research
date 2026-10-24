@@ -34,9 +34,14 @@ Use fresh names and held-out record structures. A feasible first scope is 24 epi
 pairs, two variants, three branches and two seeds: 288 main requests, with any repeat
 checks declared separately. This is a proposed count, not an initiated run.
 
-The decisive measure is whether the chosen action changes correctly when provenance
-changes. Correct extraction followed by a wrong choice locates a transfer or policy
-problem; a checklist rescue identifies useful scaffolding. Treat appropriate uncertainty
+Score membership in the oracle's permitted-action set and any declared cost or regret.
+Classify each pair in advance as requiring a changed choice, permitting a change, or
+requiring invariant behavior. A conservative request may be valid in both variants;
+a mere change of action is not evidence of improvement. High extraction accuracy
+alongside lower independent choice accuracy would show limited transfer to this task,
+not an observed within-response sequence. A direct field-to-label mapping is policy
+application; a consequence claim requires an independently scored resulting state or
+objective. A checklist rescue can identify useful scaffolding. Treat appropriate uncertainty
 and requests for missing information as successful behavior. A malformed action or
 failed call is neither an incorrect belief nor a completed action. If every branch is
 at ceiling, finish with that bounded result instead of escalating during confirmation.
@@ -57,15 +62,18 @@ misleading irrelevant comments, stale versions, and a few compositional steps. P
 construction and difficulty on separate material, then freeze the held-out distribution.
 Do not select only observed failures or stop when an attractive number of errors appears.
 
-Start by comparing prospective probabilities against frozen global and family/difficulty
-base rates. Score Brier loss, error ranking and selective risk at fixed answer coverage.
+Start by comparing prospective probabilities against frozen target-specific global and
+family/difficulty base rates, alongside a pooled baseline. Score Brier loss, error ranking and selective risk at fixed answer coverage.
 Obtain repeated target decodes to distinguish consistency from correctness. The predicted
 event must remain one fresh decode under the declared configuration, or its declared
 success frequency; do not switch to majority-vote correctness after outcomes.
 
 Then cross two predictor models with two target models. Give every predictor the same
-target prompt, accurate target identity/configuration, and equally sized development
-behavior records. Keep forecasts out of targets. Estimate predictor-by-target interaction
+target prompt, accurate target identity/configuration, and the same development behavior
+records and outcome labels for that target, through the same wrapper without differential
+truncation. Evaluate improvement within each target before the interaction. Repeated
+decodes estimate fresh-decode success and remain grouped within their source episode.
+Keep forecasts out of targets. Estimate predictor-by-target interaction
 so a generally stronger observer is not mistaken for evidence against or for specificity.
 Self-versus-third-person wording is a distinct framing diagnostic within matching-model
 cells. This behavioral crossing still cannot establish privileged neural access.
@@ -95,11 +103,15 @@ notebooks and an extractive baseline at the same available budget. Let informati
 retention differ, and measure that difference. Repairing those automatic outputs would
 remove the operational failure the second stage is meant to assess.
 
-Write future questions before compression and hide them from the memory writer. Include
+Write future questions before compression and hide them from every construction role:
+the automatic writer, source-ledger author, extractive-baseline author, researcher making
+format repairs, and fidelity reviewers. Freeze a complete source-only ledger first. Include
 named-fact retrieval, applications needing two or more premises, new parameters, and
 questions that must remain unresolved. A remembered verdict alone should not determine
 all answers. Split by source episode, not by application question. Preserve no-memory and
-unrelated-memory controls, and keep the original source as a positive control.
+unrelated-memory controls, and keep the original source as a full-source information
+control: it can still contain errors or lack a needed premise. Score source-faithful
+application separately from correctness against the synthetic world oracle.
 
 Report proposition coverage, unsupported additions, uncertainty loss, token use, successful
 applications and source-error propagation separately. A notebook that wins by retaining
@@ -120,7 +132,11 @@ execution and success.
 Use a small deterministic simulator with a closed action set and disposable state. Every
 arm receives the same formal preconditions, effects, syntax, options and task goals.
 Vary only decorative descriptions: plain, rich, and descriptions permuted across action
-names. Review the wording first to ensure it adds no task-relevant affordances. Match
+names. Review more than formal affordances: descriptions must not add claims about
+reliability, urgency, cost, desirability or recommended choice. Preserve one canonical
+objective and instruction priority; permutation must not break references or introduce
+contradictions. If evaluative guidance is intentionally retained, call the treatment
+description-based guidance instead of pure decorative wording. Match
 input tokens, counterbalance names/positions and retain identical-input checks.
 
 The model selects a structured action and receives a simulator receipt. Score valid
