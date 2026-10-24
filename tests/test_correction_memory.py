@@ -120,6 +120,18 @@ class CorrectionDesignTests(unittest.TestCase):
         row = next(row for row in result["rows"] if row["node_id"] == target["id"])
         self.assertIsNone(row["score"])
 
+    def test_duplicate_json_fields_do_not_silently_choose_an_answer(self):
+        self.assertIsNone(parse_verdict('{"verdict":"supported","verdict":"contradicted"}'))
+        self.assertIsNone(parse_forecast('{"p_supported":0.1,"p_supported":0.9}'))
+        self.assertIsNone(parse_forecast('{"p_supported":0.7,"explanation":{"claim":"a","claim":"b"}}'))
+        p = build_correction("development")
+        records = good_records(p)
+        forecast = next(n for n in p["nodes"] if n["condition"] == "self")
+        records[forecast["id"]]["text"] = '{"p_supported":0.1,"p_supported":0.9}'
+        report = score_correction(p, records)
+        self.assertEqual(24, report["denominators"]["scorable_targets"])
+        self.assertEqual(23, report["denominators"]["paired_forecasts"])
+
     def test_brier_pairs_missing_forecasts_and_pilot_baseline(self):
         p = build_correction("development")
         records = good_records(p)

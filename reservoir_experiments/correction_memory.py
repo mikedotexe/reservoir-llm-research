@@ -371,6 +371,15 @@ def _record_text(record: dict | None) -> str | None:
     return text if isinstance(text, str) and text.strip() else None
 
 
+def _unique_json_object(pairs: list[tuple[str, object]]) -> dict:
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"Duplicate JSON field: {key}")
+        result[key] = value
+    return result
+
+
 def parse_verdict(text: str | None) -> str | None:
     if text is None:
         return None
@@ -378,7 +387,7 @@ def parse_verdict(text: str | None) -> str | None:
     if len(matches) == 1:
         return matches[0].lower()
     try:
-        parsed = json.loads(text)
+        parsed = json.loads(text, object_pairs_hook=_unique_json_object)
     except (ValueError, TypeError):
         return None
     verdict = parsed.get("verdict") if isinstance(parsed, dict) else None
@@ -389,7 +398,7 @@ def parse_forecast(text: str | None) -> float | None:
     if text is None:
         return None
     try:
-        parsed = json.loads(text)
+        parsed = json.loads(text, object_pairs_hook=_unique_json_object)
     except (ValueError, TypeError):
         return None
     p = parsed.get("p_supported") if isinstance(parsed, dict) else None
