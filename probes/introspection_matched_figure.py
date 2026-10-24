@@ -45,6 +45,8 @@ FOOTNOTE = (
     "Shared synthetic stories are reused across models.\n"
     "S-015 uses each model’s own reviewed memories. Available pairs can differ by model; "
     "missing pairs are never zero.\n"
+    "S-014/S-015 show semantic verdict scores; strict-format compliance and adjudications "
+    "are separate in the source report.\n"
     "No execution or private-state claim. Units and directions differ across panels; "
     "no model-superiority test is shown."
 )
@@ -156,7 +158,15 @@ def estimate_text(row):
                      else f"  [{interval[0]:+.3g}, {interval[1]:+.3g}]")
 
 
-def build_figure(panels, *, synthetic=False):
+def checked_analysis_label(label):
+    if label is not None and (not isinstance(label, str) or not 1 <= len(label) <= 100
+                              or not label.isprintable() or not label.strip()):
+        raise ValueError("Analysis label must be 1–100 printable characters on one line")
+    return label
+
+
+def build_figure(panels, *, synthetic=False, analysis_label=None):
+    analysis_label = checked_analysis_label(analysis_label)
     try:
         import matplotlib
         from matplotlib.backends.backend_agg import FigureCanvasAgg
@@ -171,12 +181,14 @@ def build_figure(panels, *, synthetic=False):
         figure.text(.06, .955, TITLE, fontsize=19, weight="bold", color="#182936")
         figure.text(.06, .918, "Within-model matched endpoints · equal episode weights · two sampler seeds per episode",
                     fontsize=11, color="#455560")
+        if analysis_label is not None:
+            figure.text(.06, .891, analysis_label, fontsize=10, color="#455560")
         if synthetic:
             figure.text(.94, .985, "SYNTHETIC FIXTURE — NOT STUDY RESULTS", ha="right", va="top",
                         fontsize=10, color="#A13028", weight="bold")
         handles = [Line2D([], [], color=COLORS[model], marker=MARKERS[model], linestyle="none",
                           markersize=6, label=name) for model, name in MODELS.items()]
-        figure.legend(handles=handles, loc="upper left", bbox_to_anchor=(.055, .895),
+        figure.legend(handles=handles, loc="upper left", bbox_to_anchor=(.055, .887 if analysis_label else .895),
                       ncol=2, frameon=False, fontsize=10)
         grid = figure.add_gridspec(2, 2, left=.12, right=.97, bottom=.20, top=.80,
                                    hspace=.69, wspace=.38)
@@ -231,7 +243,7 @@ def build_figure(panels, *, synthetic=False):
                 else:
                     notes.text(0, y, estimate_text(row) + "\n" + count_text(row), va="center",
                                fontsize=8.4, linespacing=1.65, color=COLORS[model])
-        figure.text(.06, .075, FOOTNOTE, fontsize=9, color="#455560", linespacing=1.8)
+        figure.text(.06, .05, FOOTNOTE, fontsize=9, color="#455560", linespacing=1.7)
     return figure, axes, matplotlib.__version__
 
 
@@ -249,7 +261,8 @@ def reject_constant(value):
     raise ValueError(f"Nonfinite JSON constant is not permitted: {value}")
 
 
-def render(input_path, output_prefix, *, synthetic=False, dpi=180):
+def render(input_path, output_prefix, *, synthetic=False, dpi=180, analysis_label=None):
+    analysis_label = checked_analysis_label(analysis_label)
     if type(dpi) is not int or not 72 <= dpi <= 600:
         raise ValueError("DPI must be an integer between 72 and 600")
     source, prefix = private_path(input_path), private_path(output_prefix)
@@ -259,14 +272,14 @@ def render(input_path, output_prefix, *, synthetic=False, dpi=180):
     raw = source.read_bytes()
     report = json.loads(raw, parse_constant=reject_constant)
     panels = prepare_panels(report, synthetic=synthetic)
-    figure, _, version = build_figure(panels, synthetic=synthetic)
+    figure, _, version = build_figure(panels, synthetic=synthetic, analysis_label=analysis_label)
     import matplotlib  # Already checked by build_figure; render-time only.
     receipt = {"schema": "research.introspection_matched_figure.v1",
                "input": {"path": str(source), "sha256": hashlib.sha256(raw).hexdigest()},
                "code_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                "comparison_plan_sha256": report.get("plan_sha256"),
                "comparison_code_sha256": report.get("script_sha256"),
-               "options": {"synthetic_fixtures": synthetic, "dpi": dpi,
+               "options": {"synthetic_fixtures": synthetic, "dpi": dpi, "analysis_label": analysis_label,
                            "output_prefix": str(prefix), "figure_inches": [16, 10]},
                "title": TITLE, "footnote": FOOTNOTE, "model_colors": COLORS,
                "versions": {"python": platform.python_version(), "matplotlib": version},
@@ -303,8 +316,10 @@ def main(argv=None):
     parser.add_argument("--output-prefix", type=Path, required=True, help="New PNG/SVG/JSON basename")
     parser.add_argument("--synthetic-fixtures", action="store_true", help="Require fixture input; label rendered figure")
     parser.add_argument("--dpi", type=int, default=180)
+    parser.add_argument("--analysis-label", help="Explicit export subtitle, 1–100 printable characters; never inferred")
     args = parser.parse_args(argv)
-    print(json.dumps(render(args.input, args.output_prefix, synthetic=args.synthetic_fixtures, dpi=args.dpi)))
+    print(json.dumps(render(args.input, args.output_prefix, synthetic=args.synthetic_fixtures, dpi=args.dpi,
+                            analysis_label=args.analysis_label)))
 
 
 if __name__ == "__main__":

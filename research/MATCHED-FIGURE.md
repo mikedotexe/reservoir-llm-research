@@ -25,6 +25,13 @@ summaries, scale limits, dependency versions, input/code SHA-256 hashes, compari
 plan/code hashes when present, and PNG/SVG hashes are retained in the receipt.
 Only a separately reviewed aggregate should later be copied for publication.
 
+Use `--analysis-label "Reviewed semantic scores; original-format failures retained"`
+to distinguish an export with an explicit subtitle. The label is optional, limited
+to 100 printable characters on one line, and saved verbatim in the receipt's
+options. It is never inferred from outcomes and changes no score or display scale.
+The figure footnote distinguishes S-014/S-015 semantic verdict scores from
+strict-format compliance and adjudications, which remain in the source report.
+
 The four panels are fixed before results are inspected:
 
 - S-013: all-four-field structured accuracy for all five source conditions, both

@@ -120,6 +120,9 @@ class FigureDataTests(unittest.TestCase):
                         summary(0, valid=0, episodes=0), summary(.5, valid=24, episodes=2)):
             with self.assertRaises(ValueError):
                 figure.checked_summary(invalid, "S-014")
+        for label in ("x" * 101, "first\nsecond", "   "):
+            with self.assertRaisesRegex(ValueError, "Analysis label"):
+                figure.checked_analysis_label(label)
 
     def test_import_needs_no_optional_dependency_or_runner(self):
         program = ("import runpy, sys; runpy.run_path(sys.argv[1]); "
@@ -168,8 +171,10 @@ class FigureRenderTests(unittest.TestCase):
             raw = (json.dumps(synthetic_comparison()) + "\n").encode()
             source.write_bytes(raw)
             with patch.object(figure, "PRIVATE_ROOT", private):
-                paths = figure.render(source, private / "figure", synthetic=True, dpi=72)
+                label = "Reviewed semantic scores; original-format failures retained"
+                paths = figure.render(source, private / "figure", synthetic=True, dpi=72, analysis_label=label)
                 receipt = json.loads(Path(paths["json"]).read_text())
+                self.assertEqual(receipt["options"]["analysis_label"], label)
                 self.assertEqual(receipt["input"]["sha256"], hashlib.sha256(raw).hexdigest())
                 self.assertEqual(receipt["code_sha256"], hashlib.sha256(Path(figure.__file__).read_bytes()).hexdigest())
                 for ext in ("png", "svg"):
@@ -177,6 +182,8 @@ class FigureRenderTests(unittest.TestCase):
                 self.assertTrue(Path(paths["png"]).read_bytes().startswith(b"\x89PNG"))
                 self.assertIn("SYNTHETIC FIXTURE", Path(paths["svg"]).read_text())
                 self.assertIn("<text", Path(paths["svg"]).read_text())
+                self.assertIn(label, Path(paths["svg"]).read_text())
+                self.assertIn("strict-format compliance", Path(paths["svg"]).read_text())
                 self.assertEqual(source.read_bytes(), raw)
                 retained = {ext: Path(path).read_bytes() for ext, path in paths.items()}
                 with self.assertRaisesRegex(ValueError, "overwrite"):
