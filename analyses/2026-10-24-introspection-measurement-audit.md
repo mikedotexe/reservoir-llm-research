@@ -55,3 +55,13 @@ opportunities even if unavailable sources prevent some requests. The generated
 node count alone would omit those source-dependent slots. Use delay-specific
 `study_groups` for immediate versus delayed tables; the generic `groups` summary
 pools both delays. Missingness and abstention remain separate from false beliefs.
+
+## Qualification execution order
+
+The exact-prompt qualification probe now groups identical system messages to reuse
+provider prefix processing. This changes only one-token input-count probe order,
+not any study request, sampler, phrase inventory, acceptance threshold or randomized
+study schedule. An input-only check confirmed the same 96 unique confirmation
+prompt hashes and unchanged 216-node study order, grouped into six system texts.
+Each receipt still binds its exact prompt, and actual study input counts must
+match. The qualification report records this ordering explicitly.

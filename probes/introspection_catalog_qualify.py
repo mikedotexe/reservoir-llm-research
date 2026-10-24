@@ -39,6 +39,12 @@ def main():
         elif (directory / "dispatch.json").exists():
             unfinished.add(key)
     selected = [n for n in protocol["nodes"] if args.case_index is None or n["metadata"]["case_index"] in args.case_index]
+    # Qualification is an input-length measurement, not the randomized study.
+    # Group identical system text to reuse provider prefix work. Every exact
+    # prompt and the final study schedule remain unchanged.
+    selected.sort(key=lambda node: (
+        runner.sha(runner.json_bytes([m for m in node["messages"] if m["role"] == "system"])),
+        node["episode"], node["seed"], node["id"]))
     used, counts = {}, {}
     for node in selected:
         if node.get("inputs"):
@@ -70,6 +76,7 @@ def main():
                         "fractional_residual": residual, "qualified": abs(residual) <= .01})
     report = {"kind": "catalog-token-qualification", "base_protocol_sha256": runner.sha(args.protocol.read_bytes()),
               "unique_prompts": len(used), "opportunities": len(selected), "matches": matches,
+              "qualification_order": "grouped identical system text; randomized study order unchanged",
               "all_within_one_percent": all(m["qualified"] for m in matches)}
     out = runner.guard_output(args.out, ROOT)
     if args.case_index is not None:
