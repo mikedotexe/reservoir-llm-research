@@ -14,9 +14,10 @@ The [development record](../analyses/2026-10-24-introspection-development.md) is
 complete. The [confirmation account](../analyses/2026-10-24-introspection-confirmation.md)
 now includes all four Gemma numerical results and separate blind readings, with
 memory-prompt ambiguities documented in an exact-request audit. Memory construction passed its
-two-reader gate after retained repairs. The fixed Mistral source-attribution check
-and forecasting checks and their readings have completed. Mistral memory packages
-passed their two-reader gate after retained repairs, and catalog prose is collecting.
+two-reader gate after retained repairs. The fixed Mistral attribution and forecasting
+checks are complete, including the forecasting readings. Mistral catalog collection
+and its fixed readings are complete. Mistral memory packages passed
+their two-reader gate after retained repairs, and the final applications are collecting.
 The [next-round proposals](../analyses/2026-10-24-introspection-next-rounds.md)
 are being refined from those findings; they are not additional initiated studies.
 

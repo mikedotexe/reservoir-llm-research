@@ -1,6 +1,6 @@
 # S-016 · Action-description uptake with the option set held fixed
 
-Drafted 2026-10-24, before study generation. Status: **Gemma confirmation and reading complete; preselected Mistral check pending**.
+Drafted 2026-10-24, before study generation. Status: **Gemma confirmation and preselected Mistral check complete, including their fixed readings**.
 
 The [dated run account](../../analyses/2026-10-24-introspection-confirmation.md)
 reports the frozen lexical endpoint, both source-only sensitivities, raw hypothetical

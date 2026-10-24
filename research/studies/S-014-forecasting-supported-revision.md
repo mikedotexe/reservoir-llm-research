@@ -1,7 +1,8 @@
 # S-014 · Forecasting an evidence-supported revision
 
-Selected with Mike on October 24, 2026. Status: protocol and fixture-tested builders
-implemented; experimental outcomes belong in the tranche's dated run account.
+Selected with Mike on October 24, 2026. Status: **Gemma confirmation and preselected
+Mistral check complete, including their fixed readings**. Outcomes and versioned
+measurement corrections are in the [dated run account](../../analyses/2026-10-24-introspection-confirmation.md).
 Question: RQ-02, behavioral self-knowledge and revision. This is R2 of the four-study
 introspection tranche. It uses local synthetic tasks, not the beings' live systems.
 

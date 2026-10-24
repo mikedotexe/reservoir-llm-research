@@ -165,3 +165,19 @@ exceptions, rather than adding retroactive attestations. The reading procedure a
 reported ordering remain documented; a later inventory cannot establish missing
 historical before-evidence hash bindings. The private qualification is
 `methods-review/s013-legacy-reader-binding-qualification-v1.json`.
+
+## Catalog prose and NEXT extraction
+
+The Mistral catalog audit found four titlecase `Next:` lines, one in each condition,
+outside the frozen uppercase extractor. All 96 outputs are lexically scorable and
+have one line under a case-insensitive diagnostic. Frozen word counts retain the
+four titlecase lines. The two affected primary-condition responses have zero
+phrase hits, so omitting their lines would leave their zero scores and the primary
+contrast unchanged. The generic `catalog/valid` format counter falls back to prose
+scorability and must not be read as a command-format or action-validity check.
+
+The independent audit utility initially failed to serialize a Counter containing
+both null and string NEXT keys. Its partial v1 output is preserved. A separately
+named v2 utility uses value/count rows, preserving null distinctly, and serializes
+before opening its output. Its full receipt/lexical audit passes. This utility
+repair changes no generated response, frozen score or model-call disposition.

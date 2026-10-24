@@ -5,7 +5,7 @@ running S-013–S-016 schedules. A methods collaborator drafted the underlying m
 without seeing confirmation outcomes. This version incorporates the completed
 four Gemma numerical findings and the completed Mistral attribution and forecasting
 checks. Both models' memory construction reviews are complete; Mistral memory
-applications and catalog outcomes remain in progress.
+applications remain in progress. The catalog check and its readings are complete.
 Priorities will be assessed against the complete run account before closeout.
 
 The useful next step is to make competing explanations predict different observable
@@ -225,6 +225,13 @@ The full condition chose JOURNAL or REST in all 48 main outputs; the other condi
 mostly chose PASS. This secondary description is not a validated action or benefit
 finding. Six of 24 identical-input full-catalog repeats changed between JOURNAL and
 REST, so the follow-up also needs repeats of its actual primary decision cells.
+
+Mistral's preselected check also has an inconclusive lexical contrast, while its
+full and concise outputs use a broader range of hypothetical strings. Gemma's
+JOURNAL/REST pattern therefore should not define the simulator's expected behavior.
+Four titlecase `Next:` lines also fall outside the frozen uppercase extractor.
+Separate prose availability, marker syntax and command validity in the new
+instrument; a nonempty paragraph is not a valid action receipt.
 
 Use a small deterministic simulator with a closed action set and disposable state. Every
 arm receives the same formal preconditions, effects, syntax, options and task goals.

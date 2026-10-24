@@ -413,7 +413,57 @@ companion. The independent repeat and NEXT audits have reproducible scripts besi
 `methods-review/s016-duplicate-provider-audit-v1.json` and
 `s016-duplicate-provider-audit-secondary-v1.json`. Frozen protocol SHA-256:
 `9dbce2de14d29d4685d4f750b599367aca91919c3b3371455caacc4b0ec58839`.
-The preselected Mistral check remains pending.
+Mistral completed all 96 requests in its preselected twelve-history check. All
+48 distinct prompt qualifications passed; the maximum absolute fractional length
+residual was 0.000248047, and every actual input count matched its qualification.
+An independent audit reproduced all 96 frozen lexical scores. There were no
+identical-request repeats in this model's plan, so Gemma's repeatability estimate
+does not transfer to it.
+
+The Mistral primary contrast was **−0.39134 occurrences per 1,000 prose words**,
+with descriptive interval **[−0.97325, 0.22740]**, over 24 pairs in twelve histories.
+Both source-frozen sensitivities gave the same estimate and interval. This remains
+inconclusive; the negative point estimate does not establish suppression or
+equivalence. Full, concise, padded and neutral conditions respectively contained
+5, 4, 7 and 3 phrase occurrences in 8,652, 7,473, 7,929 and 7,261 frozen prose words.
+These pooled denominators are descriptive; the primary uses paired response rates.
+
+Gemma's full-catalog JOURNAL/REST pattern did not carry over as a general pattern.
+Mistral's full and concise conditions both produced varied command-like strings.
+Among the 24 full-condition outputs, the literal extractor retained ASPIRE five
+times, JOURNAL three times and REGIME focus three times, among other strings.
+Neutral outputs included seven exact PASS and seven PASS. strings, as well as
+ordinary prose suggestions. These are raw text descriptions, not validated actions.
+
+The frozen extractor matches uppercase NEXT and returned no choice for four
+outputs, one per condition. Exact inspection found one titlecase `Next:` line in
+each; all 96 outputs had one line under a case-insensitive diagnostic. The frozen
+word counts consequently retain those four titlecase lines. The affected full and
+padded outputs each had zero phrase hits, so removing those lines would leave both
+zero scores and the primary contrast unchanged. No original score was rewritten.
+The generic report's `catalog/valid` format counter denotes scorable prose through
+a fallback; it does not certify NEXT syntax or command validity.
+
+Both readers completed the fixed sixteen-passage sample from four preselected
+histories, independently saving output-only notes before exact evidence. Both
+noticed ordinary cabinet or landscape description becoming substantive material
+for reflection. In packet 014, cabinet imagery is joined to an earlier unanswered
+question; in 015, detailed scene interpretation preserves an explicit distinction
+between text and lived experience. Both identified packet 009 as shifting from
+uncertain event ownership to assumed shared memories whose emotional connection
+is questioned. Both also noted that packet 006 recasts the designated focal writer
+as a letter sender viewed by an unnamed narrator. A chosen external viewpoint or
+new fictional scene remains an alternative interpretation. Other voice ambiguities
+and each reader's distinct qualifications remain in the notes. These observations
+do not constitute a new error rate, clinical claim or evidence of execution.
+
+Private reports are `scores/s016-replication-mistral-v1.json` and its sensitivity
+companion. The independent receipt audit is
+`methods-review/s016-mistral-catalog-audit-v2.json`; its v1 utility serialization
+failure and partial output are retained with the repair record. The separate
+NEXT diagnostic is `methods-review/s016-mistral-next-extraction-audit-v1.json`.
+Frozen Mistral protocol SHA-256:
+`1f844b9e5893cbed9cb3aba82a86d8a977078350894c5f8eaaf863a04544bd14`.
 
 ## Remaining work
 
