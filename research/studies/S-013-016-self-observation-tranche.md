@@ -69,9 +69,27 @@ replications of these trials.
 
 ## Progress
 
-October 24: implementation started on a dedicated branch with separate agent
-worktrees. No experiment results exist at this checkpoint. The local metadata
-endpoint reports Ollama 0.35.0; generation readiness is not yet qualified.
+October 24: implementation integrated on `codex/introspection-tranche` from three
+separate, committed agent branches. The assembled test suite passed 489 tests
+(31 optional tests skipped); subsequent scoring and design fixes passed their
+focused suites. Independent code reviews checked graph isolation, receipt
+integrity, evidence oracles and memory controls. No desktop or live-system edits.
+
+Ollama 0.35.0 completed the first Gemma readiness request. S-013 and S-014
+development protocols are frozen privately and local collection has started.
+S-016's exact-prompt qualification uses an explicitly separate 32768-token probe
+with one output token; its token receipt must demonstrate room for the planned
+16384-token study context, output allowance and reserve. Study requests retain
+16384 and must reproduce the qualified prompt count. The first full-catalog
+development prompt measured 7984 input tokens. Padding is being calibrated by
+model and filler before prose outcomes; the prospective tolerance is one percent.
+These are instrument checks, not a study finding.
+
+The [archival relevance reading](../../analyses/2026-10-24-introspection-archival-relevance.md)
+was completed without controlled confirmation outcomes. It preserves relevant
+discrepancies and successful distinctions from a fixed sixteen-record sample;
+it does not estimate their prevalence. The [source audit](../../analyses/2026-10-24-catalog-source-provenance.md)
+also qualifies the earlier all-lane catalog claim.
 
 ## Board updates pending
 
