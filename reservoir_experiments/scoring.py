@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from collections import Counter
+import math
 from pathlib import Path
 
 from . import runner
@@ -11,7 +12,9 @@ from .statistics import paired_contrast, summarize
 def instrument_summary(records):
     result = {}
     for field in ("prompt_eval_count", "eval_count", "elapsed_seconds"):
-        values = [r[field] for r in records.values() if type(r.get(field)) in (int, float)]
+        values = [r[field] for r in records.values()
+                  if type(r.get(field)) in (int, float) and r[field] >= 0
+                  and (type(r[field]) is int or math.isfinite(r[field]))]
         result[field] = {"available": len(values), "min": min(values) if values else None,
                          "max": max(values) if values else None, "sum": sum(values)}
     return result
@@ -86,7 +89,9 @@ def study_report(protocol, records, annotations=None, baseline=None):
         report["study_groups"] = report["groups"]
     numeric_rows = [r for r in report["rows"] if r["kind"] not in ("forecast", "neutral_ack", "prose")]
     report["groups"] = summarize(numeric_rows)
-    report["format_counts"] = dict(Counter((r["kind"] + "/" + ("valid" if r["valid"] else "unavailable_or_invalid"))
+    report["semantic_counts"] = dict(Counter((r["kind"] + "/" + ("valid" if r["valid"] else "unavailable_or_invalid"))
+                                             for r in report["rows"]))
+    report["format_counts"] = dict(Counter((r["kind"] + "/" + ("valid" if r.get("format_valid", r["valid"]) else "unavailable_or_invalid"))
                                            for r in report["rows"]))
     report["status_counts"] = dict(Counter(records.get(n["id"], {}).get("status", "pending")
                                           for n in protocol["nodes"]))
