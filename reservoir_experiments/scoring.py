@@ -8,6 +8,15 @@ from . import runner
 from .statistics import paired_contrast, summarize
 
 
+def instrument_summary(records):
+    result = {}
+    for field in ("prompt_eval_count", "eval_count", "elapsed_seconds"):
+        values = [r[field] for r in records.values() if type(r.get(field)) in (int, float)]
+        result[field] = {"available": len(values), "min": min(values) if values else None,
+                         "max": max(values) if values else None, "sum": sum(values)}
+    return result
+
+
 def duplicate_receipts(protocol, records, run):
     """Compare repeated requests only when their rendered request hashes match."""
     pairs = []
@@ -85,6 +94,7 @@ def study_report(protocol, records, annotations=None, baseline=None):
     report["model"] = protocol["model"]
     report["split"] = protocol["split"]
     report["opportunities"] = len(protocol["nodes"])
+    report["instrument"] = instrument_summary(records)
     return report
 
 
