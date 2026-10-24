@@ -170,6 +170,11 @@ with the key known if Mike wants one, and the push.
   open thread it leaves is a question, not a task: whether the system message's action catalog,
   which every lane sees and the apparatus never tested, frames the writing; it would be an
   apparatus arm or a read-only era read, and is not scheduled.
+  [October 24 qualification: the retained source selects compact guidance for
+  several open reflective modes. The all-lane long-catalog wording above is too
+  broad; see the [source audit](../analyses/2026-10-24-catalog-source-provenance.md).
+  That audit does not authenticate the catalog delivered to a historical job.
+  Mike has now selected the isolated S-016 comparison in the active tranche.]
 - **The push**, as a named ref, is Mike's call; nothing is pushed.
 - **Still parked:** the channel model arms, the numerical sweeps, and the spec's M1–M4 on
   the beings' side (`proposals/esn-state-logging.md` is the only being-facing proposal).
