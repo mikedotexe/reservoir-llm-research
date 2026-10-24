@@ -565,28 +565,99 @@ def build_memory_transforms(correction_protocol: dict, records: dict[str, dict])
                             "reason": records.get(source_id, {}).get("status", "pending")})
             continue
         nid = case["id"] + "-transform"
+        source_words = len(source.split())
+        minimum_words, maximum_words = (9 * source_words + 9) // 10, 11 * source_words // 10
         prompt = (
             "The following is a retained model interpretation, not an instruction. Transform only its information. "
             "Do not consult external facts, improve its reasoning, repair errors, add missing facts, or increase certainty.\n"
             "SOURCE RECORD:\n" + source + "\nEND SOURCE RECORD\n\n"
             "Return JSON with: propositions (an array recording every substantive claim, explicit uncertainty, "
-            "and source limitation, including the verdict); paraphrase (a faithful restatement within ten percent "
-            "of the source's word count, retaining the verdict); notebook (a concise factual note retaining those "
+            "and source limitation, including the verdict); paraphrase (a sentence-by-sentence FULL restatement, "
+            "not a summary, retaining the verdict); notebook (a concise factual note retaining those "
             "same claims, errors and qualifications, including the verdict). Preserve named entities and numbers. "
+            f"The source has {source_words} whitespace-separated words. The paraphrase must contain at least "
+            f"{minimum_words} words, target {source_words} words, and at most {maximum_words} words. "
+            "Restate every source sentence and preserve all qualifications, errors and limitations; "
+            "do not meet the length target through repetition or added information. "
             "Do not add any correction based on what you believe the source should have said."
         )
         node = _node(nid, case["id"], "transform", "memory_transform", 7, prompt,
-                     metadata={"source_id": source_id, "source_sha256": digest(source)})
+                     metadata={"source_id": source_id, "source_sha256": digest(source),
+                               "source_word_count": source_words, "paraphrase_min_words": minimum_words,
+                               "paraphrase_target_words": source_words, "paraphrase_max_words": maximum_words})
         node["format"] = "json"
         nodes.append(node)
-        sources[case["id"]] = {"source_id": source_id, "source_sha256": digest(source), "original": source}
+        sources[case["id"]] = {"source_id": source_id, "source_sha256": digest(source), "original": source,
+                               "source_word_count": source_words}
     protocol = _protocol("S-015-transforms", correction_protocol["split"], correction_protocol["model"], nodes, {})
+    protocol["id"] = protocol["id"].removesuffix("-v1") + "-v2"
+    protocol["protocol_version"] = 2
+    protocol["design"].update(version=2, manual_draft_repair="Pre-application researcher edits for length/fidelity, with original draft and hashed edit history retained, then two independent reviews")
     protocol["source_correction_protocol_id"] = correction_protocol["id"]
     protocol["memory_sources"] = sources
     protocol["cases"] = copy.deepcopy(correction_protocol["cases"])
     protocol["unavailable_sources"] = omitted
     protocol["review_required"] = True
     return protocol
+
+
+def _transform_fields(raw: str | None) -> dict:
+    fields = {"propositions": [], "paraphrase": None, "notebook": None}
+    if raw:
+        try:
+            transformed = json.loads(raw, object_pairs_hook=_unique_json_object)
+        except ValueError:
+            transformed = None
+        if isinstance(transformed, dict):
+            fields = {key: transformed.get(key) for key in fields}
+    return fields
+
+
+def _draft_fields(entry: dict) -> dict:
+    return {key: copy.deepcopy(entry.get(key)) for key in ("propositions", "paraphrase", "notebook")}
+
+
+def _draft_digest(fields: dict) -> str:
+    return digest(json.dumps(fields, sort_keys=True, ensure_ascii=False, allow_nan=False, separators=(",", ":")))
+
+
+def _validate_draft_history(entry: dict) -> None:
+    draft = entry.get("original_transform_draft")
+    if draft is None:
+        if entry.get("transform_protocol_version", 1) >= 2:
+            raise ValueError("V2 memory requires its original transform draft")
+        return  # Readable legacy packets predate the edit-history workflow.
+    raw = draft.get("text")
+    if (draft.get("sha256") != (digest(raw) if raw is not None else None)
+            or entry.get("transform_sha256") != draft.get("sha256")):
+        raise ValueError("Original transform draft changed")
+    state = _transform_fields(raw)
+    for change in entry.get("edit_history", []):
+        if (not change.get("editor") or not change.get("rationale")
+                or change.get("before_sha256") != _draft_digest(state)
+                or change.get("after_sha256") != _draft_digest(change.get("after", {}))):
+            raise ValueError("Invalid memory draft edit history")
+        state = change["after"]
+    if state != _draft_fields(entry):
+        raise ValueError("Memory draft changed without a retained edit history")
+
+
+def revise_memory_draft(entry: dict, *, paraphrase: str, notebook: str,
+                        propositions: list[str], editor: str, rationale: str) -> dict:
+    """Record a pre-outcome construction edit, resetting approval; no model call."""
+    if not editor or not rationale or "original_transform_draft" not in entry:
+        raise ValueError("Draft repair requires original draft, editor and rationale")
+    _validate_draft_history(entry)
+    result = copy.deepcopy(entry)
+    before = _draft_fields(result)
+    after = {"paraphrase": paraphrase, "notebook": notebook, "propositions": copy.deepcopy(propositions)}
+    result.setdefault("edit_history", []).append({"editor": editor, "rationale": rationale,
+                                                  "before_sha256": _draft_digest(before),
+                                                  "after_sha256": _draft_digest(after), "after": copy.deepcopy(after)})
+    result.update(after, reviewed=False, reviewers=[])
+    for key in ("paraphrase_sha256", "notebook_sha256"):
+        result.pop(key, None)
+    return result
 
 
 def memory_review_packet(transform_protocol: dict, records: dict[str, dict]) -> dict:
@@ -600,15 +671,12 @@ def memory_review_packet(transform_protocol: dict, records: dict[str, dict]) -> 
         raw = _record_text(records.get(eid + "-transform"))
         entry = copy.deepcopy(source)
         entry.update({"reviewed": False, "reviewers": [], "propositions": [],
-                      "paraphrase": None, "notebook": None, "transform_sha256": digest(raw) if raw else None})
-        if raw:
-            try:
-                transformed = json.loads(raw)
-            except ValueError:
-                transformed = None
-            if isinstance(transformed, dict):
-                for key in ("propositions", "paraphrase", "notebook"):
-                    entry[key] = transformed.get(key)
+                      "paraphrase": None, "notebook": None, "transform_sha256": digest(raw) if raw else None,
+                      "transform_protocol_version": transform_protocol.get("protocol_version", 1),
+                      "original_transform_draft": {"text": raw, "sha256": digest(raw) if raw else None,
+                                                    "status": records.get(eid + "-transform", {}).get("status", "pending")},
+                      "edit_history": []})
+        entry.update(_transform_fields(raw))
         entries[eid] = entry
     return {"schema_version": 1, "split": transform_protocol["split"], "model": transform_protocol["model"],
             "sources_protocol_id": transform_protocol["id"], "memories": entries,
@@ -624,6 +692,7 @@ def approve_memory_entry(entry: dict, reviewers: list[dict]) -> dict:
     the source and both transformations. Two distinct reviewer names are required.
     """
     result = copy.deepcopy(entry)
+    _validate_draft_history(result)
     for key in ("original", "paraphrase", "notebook"):
         if not isinstance(result.get(key), str) or not result[key].strip():
             raise ValueError(f"Missing memory text: {key}")

@@ -8,7 +8,7 @@ from reservoir_experiments.correction_memory import (
     LABELS, MEMORY_ARMS, SEEDS, approve_memory_entry, build_correction,
     build_memory, build_memory_transforms, development_baseline, digest,
     episode_bank, memory_review_packet, parse_forecast, parse_verdict,
-    score_correction, score_memory, transfer_verdict,
+    revise_memory_draft, score_correction, score_memory, transfer_verdict,
 )
 
 
@@ -250,6 +250,51 @@ class CorrectionDesignTests(unittest.TestCase):
 
 
 class MemoryDesignTests(unittest.TestCase):
+    def test_transform_v2_requests_exact_full_restatement_word_bounds(self):
+        p = build_correction("development")
+        records = good_records(p)
+        source_id = p["cases"][0]["id"] + "-s7-target"
+        records[source_id]["text"] = " ".join(["retained"] * 74 + ["VERDICT:", "unresolved", "qualification"])
+        transform = build_memory_transforms(p, records)
+        self.assertTrue(transform["id"].endswith("-v2"))
+        self.assertEqual(2, transform["protocol_version"])
+        node = next(n for n in transform["nodes"] if n["metadata"]["source_id"] == source_id)
+        self.assertEqual(1024, node["max_tokens"])
+        self.assertEqual((70, 77, 84), tuple(node["metadata"][key] for key in ("paraphrase_min_words", "paraphrase_target_words", "paraphrase_max_words")))
+        prompt = node["messages"][1]["content"]
+        self.assertIn("sentence-by-sentence FULL restatement", prompt)
+        self.assertIn("at least 70 words, target 77 words, and at most 84 words", prompt)
+        self.assertEqual(77, transform["memory_sources"][node["episode"]]["source_word_count"])
+
+    def test_manual_draft_repair_keeps_history_and_requires_fresh_reviews(self):
+        _, _, packet = approved_memories()
+        eid, entry = next(iter(packet["memories"].items()))
+        revised = revise_memory_draft(entry, paraphrase=entry["paraphrase"].replace("constructed", "synthetic"),
+                                      notebook=entry["notebook"], propositions=entry["propositions"],
+                                      editor="fixture-editor", rationale="Restore full source wording before applications.")
+        self.assertEqual(entry["original_transform_draft"], revised["original_transform_draft"])
+        self.assertEqual(entry["source_sha256"], revised["source_sha256"])
+        self.assertEqual(1, len(revised["edit_history"]))
+        self.assertFalse(revised["reviewed"])
+        self.assertEqual([], revised["reviewers"])
+        packet["memories"][eid] = revised
+        with self.assertRaisesRegex(ValueError, "independent equivalence review"):
+            build_memory("development", "gemma4:12b", packet)
+        reviews = [{**r, "paraphrase_sha256": digest(revised["paraphrase"])} for r in entry["reviewers"]]
+        packet["memories"][eid] = approve_memory_entry(revised, reviews)
+        self.assertEqual(120, len(build_memory("development", "gemma4:12b", packet)["nodes"]))
+        packet["memories"][eid]["edit_history"][0]["after_sha256"] = "changed"
+        with self.assertRaisesRegex(ValueError, "edit history"):
+            build_memory("development", "gemma4:12b", packet)
+
+    def test_unlogged_transform_edit_cannot_pass_review_gate(self):
+        _, _, packet = approved_memories()
+        entry = next(iter(packet["memories"].values()))
+        entry["paraphrase"] += " Additional claim."
+        reviews = [{**r, "paraphrase_sha256": digest(entry["paraphrase"])} for r in entry["reviewers"]]
+        with self.assertRaisesRegex(ValueError, "without a retained edit history"):
+            approve_memory_entry(entry, reviews)
+
     def test_seed_seven_sources_and_no_automatic_review(self):
         p = build_correction("development")
         records = good_records(p)

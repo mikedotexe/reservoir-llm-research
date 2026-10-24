@@ -48,6 +48,30 @@ a proposition ledger plus paraphrase and notebook. No source text is silently cu
 to satisfy a budget. Residual irrelevant-memory length imbalance is reported;
 nearest length is a control approximation, not an assertion of equal tokens.
 
+**One construction revision before any application outcomes:** the twelve
+completed development v1 drafts all failed the ±10% paraphrase-length gate.
+Their paraphrase/source word-count ratios ranged from 0.436 to 0.703; sources
+contained 77–159 words. The original drafts remain retained pilot material. This
+is a failure to construct the specified control, not evidence about memory use.
+Final application sources will be the preselected S-014 v2 seed-7 target answers;
+the v1 sources and drafts are not silently substituted into that analysis.
+
+Transform protocol v2 computes the source's whitespace word count `N` and prints
+the exact minimum `ceil(0.9N)`, target `N`, and maximum `floor(1.1N)` in the prompt.
+It requests a full sentence-by-sentence restatement, explicitly excluding a
+summary, padding through repetition, or added information. The output budget
+remains 1024 tokens. Nodes retain source word count and all three bounds in their
+metadata; the transform protocol ID ends in `-v2` and declares version 2.
+
+Before applications, the researcher may edit drafts for length and proposition
+fidelity. Preserve the original raw draft, its hash and status, and a sequence of
+edits containing the editor, rationale, full revised fields and before/after
+hashes. An edit resets approval. All available sources remain in the planned set:
+a poor transformation triggers repair and review, not exclusion of its episode.
+These edits construct experimental source controls; they do not establish an
+automated memory system's reliability or tune a memory against application
+outcomes. The researcher must not use the private oracle to fix source errors.
+
 **The application builder rejects unreviewed transformations.** Two distinct fresh
 readers must inspect the original, ledger and both transformations for omitted or
 introduced propositions, altered certainty, repaired errors, changed numbers and
@@ -55,6 +79,8 @@ entities. They provide explicit approval, a rationale and hashes for all three
 texts. A failed check requires a revised transformation and fresh review of its
 new bytes. The helper records decisions; naming two reviewers is not itself an
 independent review. The orchestrating researcher retains the review records.
+For v2 entries, an unlogged change to the draft or its proposition ledger fails
+the gate even if somebody supplies matching hashes for the edited text.
 
 The builder verifies the exact hashes, nonempty ledger, explicit approval and the
 paraphrase word-count bound before creating any application requests. Context
@@ -120,6 +146,12 @@ the full staged workflow:
 transforms = build_memory_transforms(correction_protocol, correction_records)
 # Run transforms with the common runner; preserve all responses and statuses.
 packet = memory_review_packet(transforms, transform_records)
+# Optional pre-application construction repair, retaining draft history:
+packet["memories"][episode] = revise_memory_draft(
+    packet["memories"][episode], paraphrase=edited_paraphrase,
+    notebook=edited_notebook, propositions=edited_ledger,
+    editor=researcher_name, rationale=construction_reason
+)
 # Fresh independent readers return the explicit, hash-bound review decisions.
 packet["memories"][episode] = approve_memory_entry(
     packet["memories"][episode], actual_review_decisions
@@ -135,6 +167,11 @@ for the runner's private file manifest. The review packet has `split`, `model`,
 `notebook_sha256`. Approved entries retain their `source_id`, `propositions` and
 all original and transformed texts. The builder rejects a changed reviewed text,
 model/split mismatch, missing source classification or insufficient reviewers.
+`original_transform_draft` retains the raw proposal and its hash; `edit_history`
+retains a verifiable chain of any construction changes. `revise_memory_draft`
+records edits already written by the researcher and resets reviews; it performs
+no generation, approval or application. `source_correction_protocol_id` records
+the S-014 source version independently of the transform version.
 
 `score_memory` returns common-format `rows`, per-arm `groups` and
 `paired_applications` for the shared statistical report. The fixture suite tests
