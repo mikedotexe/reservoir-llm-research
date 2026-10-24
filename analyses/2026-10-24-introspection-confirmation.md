@@ -180,6 +180,11 @@ The largest absolute full-versus-padded or full-versus-neutral fractional residu
 and exactly one NEXT line. Actual prompt counts matched their qualifications; output
 counts ranged from 160 to 438 tokens, below the 1,024-token allowance.
 
+The concise arm is the conservative source-derived control, not the actual compact
+guidance used by some runtime paths. The [source audit](2026-10-24-catalog-source-provenance.md)
+records the selected static configuration and missing historical delivery evidence.
+These trials do not replay every reflective lane or compare the actual live menus.
+
 The primary full-minus-padded contrast was **0.02565 occurrences per 1,000 prose
 words**, with descriptive episode-bootstrap interval **[−0.85727, 0.94545]**, over
 48 seed pairs in 24 histories. This is inconclusive for the frozen lexical endpoint;
