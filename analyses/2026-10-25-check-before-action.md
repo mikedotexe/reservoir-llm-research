@@ -32,3 +32,17 @@ shuffle seed 20261025 and clarified that malformed or incomplete check diagnosti
 are unavailable, not false. Actual order violations remain assigned-arm outcomes.
 The existing installed model digest and Ollama 0.35.0 were checked through laptop
 loopback metadata only; no generation was used for readiness.
+
+Implementation was integrated at `7f947d8` from the isolated committed checkpoint
+`d5de912`; only the new study module, probe and tests were added. The generic
+runner, simulator, statistical helper and earlier study code remain unchanged.
+All 23 integrated study tests passed using injected synthetic transports. The
+development, discovery and confirmation designs were saved before any output.
+Independent synthetic reconstruction was prepared separately from those outcomes.
+
+Preflight caught a reading-helper edge case: an empty generated response cannot
+supply a nonempty quotation. The revised private reading instructions permit an
+empty quotation list only for empty/whitespace text, require an explicit absence
+observation, and distinguish unavailable-text display placeholders from model
+text. Earlier instructions and helper versions remain preserved. The fixed sample,
+scientific comparisons and stopping rule did not change.
