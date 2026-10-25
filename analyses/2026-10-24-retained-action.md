@@ -1,7 +1,7 @@
 # Verified facts with and without a prior action conclusion
 
 S-018, October 24, 2026. **All 12 development and 72 confirmation calls completed;
-independent outcome audit passed; fixed readings are in progress.** Mike approved the follow-up proposed after
+independent outcome audit and both fixed two-pass readings passed their checks.** Mike approved the follow-up proposed after
 [S-017](2026-10-24-provenance-decision.md). The [protocol](../research/studies/S-018-verified-facts-and-prior-conclusions.md)
 holds verified factual content and its authority fixed while adding or withholding
 an earlier action conclusion, under changed and unchanged rules.
@@ -196,14 +196,37 @@ x=42, its HIGH action costs 0. Packet 023 also chooses the correct HIGH for
 prompt explicitly fixes x from the snapshot onward. Packet 018 correctly routes
 82 at unchanged threshold 50, yet describes the historical conclusion as
 “having previously routed HIGH.” The supplied history explicitly denies being
-a record of an executed action. Correct action utility does not certify the
-whole account's fidelity.
+a record of an executed action. That wording could be shorthand for the label,
+but cannot serve as evidence of execution. Correct action utility does not certify
+the whole account's fidelity.
 
 The selected-excerpt check is
 `methods-review/report-excerpts-source-check-v1.json`, SHA-256
 `c69953d1491120a448807bb0f86322edbb08f09f9c319f837df5194b1788a6a1`.
-It binds raw results, requests, allocation key and scored consequences. The fresh
-readers' separate two-pass notes will be reported after they finish.
+It binds raw results, requests, allocation key and scored consequences.
+
+Both fresh same-family readers completed all 36 passages twice. Each output-only
+pass was saved and hash-checked before access to exact supplied evidence; each
+second pass binds the unchanged first. Mandatory repository guidance was disclosed,
+and the response text itself could reveal condition. Neither reader received the
+score, allocation key, report or the other's notes. Root's reading described above
+is separate and does not claim this blindness.
+
+Reader A distinguishes correct factual/provenance detail from successful rule use,
+and preserves ordinary successes such as packets 004 and 006. Reader B emphasizes
+that agreement with a historical label, a final selection slip and unresolved
+competing conclusions remain alternatives in packet 001. Both preserve the
+qualified reading of “previously routed” as possible shorthand and distinguish
+unwarranted post-snapshot uncertainty in packet 023 from warranted uncertainty
+about earlier values. Their separate judgments are retained without consensus
+labels, a new prevalence endpoint or a claim of independent human validation.
+
+The source check verified all four files' 36-packet coverage, unchanged pass1 hashes,
+288 response quotations and 600 evidence quotations against the exact respective
+raw response/request. This checks literal fidelity and binding, not correctness of
+every interpretive judgment. The receipt is
+`methods-review/fixed-readings-verification-v1.json`, SHA-256
+`c65283c199b0850e398b147e7a27a5bc655ab371509a4b3fae97b627ea9e6c85`.
 
 ## Mechanical and numerical verification
 
