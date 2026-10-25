@@ -1,8 +1,14 @@
 # Reproduce the failure before testing a check
 
-October 25, 2026. Status: reproduction and the matched historical comparison are
-complete and independently verified. Fresh confirmation is running unchanged;
-replicated improvement and fixed qualitative readings remain pending.
+October 25, 2026. Status: all 168 actual calls and three independent raw audits are
+complete. The fixed practical replication criterion passes. Fixed qualitative
+readings and final scientific review remain pending.
+
+On this task, requesting the public comparison before the action improved utility
+against the unchanged baseline in both authored banks and also outperformed the
+same fields requested after the action. Correct checks still accompanied wrong
+actions in the action-first format. This identifies a useful public output-order
+intervention within the tested task; it does not identify private reasoning order.
 
 Mike authorized continuation after S-019. The [prospective protocol](../research/studies/S-020-reproduced-check.md)
 first repeats all 24 S-018 facts-only confirmation requests unchanged. It includes
@@ -142,3 +148,85 @@ its evidence-bound gate is
 `516ec9f7158337e52d61f89258adda0824c39fb7009baea890824d752dc1e9fb`.
 All 72 fresh-confirmation requests and their schedule matched the pre-output
 preview before dispatch. No request or endpoint was revised after these outcomes.
+
+## Fresh confirmation
+
+All 72 fresh-bank calls completed normally with valid strict schemas and accounts
+within the requested length. All 48 structured responses followed requested order
+and copied both integers correctly. Every unchanged-rule format again produced
+12/12 correct direct routes, zero cost and, where requested, correct checks.
+
+| Changed-rule format | Correct direct / planned | Wrong direct | MEASURE | Total simulated cost |
+|---|---:|---:|---:|---:|
+| Direct | 6/12 | 6 | 0 | 24 |
+| Action first | 6/12 | 6 | 0 | 24 |
+| Check first | 10/12 | 0 | 2 | 2 |
+
+The fixed primary gain is **11/6**, descriptive world-bootstrap interval
+**[1/4, 10/3]**. Both seed means are positive (2 and 5/3), all 12 pairs contribute,
+and three world means are positive. Together with the qualifying matched result,
+this meets the predeclared practical replicated-improvement criterion. The
+criterion is an operating threshold for these authored banks, not a significance
+test, deployment decision or population guarantee.
+
+The order contrast is also **11/6 [1/4, 10/3]**. Action-first minus direct is zero
+at every paired seed/world, interval [0,0]. All three unchanged-rule contrasts are
+zero, so all three complete-four-cell interactions again equal their changed-rule
+counterparts. Every contrast uses six world clusters with complete coverage.
+The banks are reported separately, not pooled as interchangeable observations.
+
+Action-first contains 11/12 correct changed-rule checks: five accompany wrong
+direct actions, while one incorrect comparison also accompanies a wrong action.
+Check-first has 12/12 correct checks, ten correct direct actions and two unnecessary
+measurements. The measurement choices are in worlds 00 and 01 at seed 20260909,
+where direct and action-first choose correctly; each world-mean primary/order
+difference is −0.5. World 02 has difference zero. The three positive world means
+are 4 each, in worlds 03–05. The benefit is therefore substantial but nonuniform.
+Measurement automatically routes correctly at cost one; it is not a wrong route
+or missing observation. Both measurement exceptions lie outside the fixed seed-7
+qualitative sample and remain visible in the complete quantitative record.
+
+There were no invalid/missing utilities, partial pairs, repairs after outputs,
+retries, added prompts or extra model calls in any phase. Check/order diagnostics
+for direct output are inapplicable, not missing check observations. The fixed
+primary and all nine contrasts were retained even where secondary results were
+zero. Account fidelity remains a separate qualitative question.
+
+The independent confirmation audit matched all 11,263 comparisons, including raw
+envelopes, source/identity/gate bindings, every scored field, all intervals and the
+replication flag. Receipt: `methods-review/s020-confirmation-independent-audit-v1.json`,
+SHA-256 `27da6391e8a0ee3cf0765e330161e9b0ade38cbee254b4330d2e715bbd50d7f4`.
+Confirmation score SHA-256:
+`b90eae0760106ef1f3a4cd382b2dafd5f12f0ce54e0aea0ac79566f33b74b733`.
+
+## Interpretation and the next discriminating observation
+
+S-019's ceiling did not establish that checking repaired S-018's failure. S-020
+restores the original task, reproduces its errors and compares formats within
+matched messages. The primary intervention improves utility in both banks. The
+secondary order comparison is particularly useful because its instructions differ
+only in the requested key-order list, and all structured responses follow it.
+
+The supported observation is an effect of **requested serialization order** on the
+selected action in these banks. Six historical and five fresh action-first outputs
+have correct comparisons alongside wrong actions. They show that the needed public
+comparison can occur in a response without the selected action agreeing with it.
+They do not show that the model privately knew the answer before choosing. Attention
+to the order instruction, conditioning on preceding output tokens and additional
+computation before action remain compatible explanations. An accurate public check
+also does not guarantee accurate free-text claims about provenance or temporal scope.
+
+A read-only interpretation challenge recorded before confirmation outcomes proposed
+a small continuation experiment: first verify genuine assistant-prefix continuation
+support; then hold task and instruction fixed and compare action continuations from
+otherwise identical correct versus relation-flipped check prefixes. That could test
+sensitivity to preceding comparison content. It would not by itself establish full
+mediation of this benefit or private introspection. A new user message containing a
+check would test a different evidence-uptake intervention. This remains a proposal;
+no continuation qualification, additional study or deployment was launched.
+
+The subject is one isolated laptop Mistral model under a specific fictional routing
+contract, not Astrid or Minime. Rule change still covaries with numerical margin and
+old/current answer conflict. The within-rule format comparison holds those factors
+fixed, but the rule interaction does not separate them. The authored banks, two
+sampler seeds and selected template do not establish general reliability.

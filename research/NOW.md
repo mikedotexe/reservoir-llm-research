@@ -13,8 +13,14 @@ All 24 reproduction calls completed: changed rules yielded 10/12 wrong direct
 routes, unchanged rules 12/12 correct. Five worlds failed at both seeds, qualifying
 the frozen gate. The matched historical comparison completed and passed independent
 reconstruction: changed-rule direct actions were correct 2/12, action-first 4/12,
-and check-first 11/12 with one MEASURE. The fixed primary gain was 3.25; the order
-contrast was 31/12. Fresh confirmation is running unchanged. Work is local on
+and check-first 11/12 with one MEASURE. Fresh confirmation also passed independent
+reconstruction: direct and action-first each had 6/12 correct routes; check-first
+had 10/12 plus two MEASURE choices and no wrong routes. The fixed primary gain was
+3.25 historically and 11/6 in confirmation, meeting the prospective practical
+replication criterion. Requested-order contrasts were positive in both banks;
+public check correctness and action correctness still diverged in action-first.
+All 168 calls are complete. Fixed two-pass readings and final report review are
+underway. Work is local on
 `codex/reproduced-check`; earlier evidence archives remain closed.
 
 **October 25: checkable-comparison study completed.**
