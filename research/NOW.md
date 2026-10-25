@@ -1,5 +1,17 @@
 # Current work
 
+**October 25: reproduce the earlier failure, then test a check.**
+Mike authorized continuation after S-019. [S-020](studies/S-020-reproduced-check.md)
+first repeats all 24 original S-018 facts-only confirmation requests unchanged.
+A prospective headroom gate controls whether the fixed 72-call matched historical
+comparison and 72-call fresh confirmation proceed. Only the terminal output-format
+instruction varies within each comparison; the direct baseline is preserved exactly.
+Primary utility, order diagnostics and qualitative account fidelity remain distinct.
+The prospective protocol is committed, source requests copied and hash-checked,
+and the Hold Shelf test is active. Implementation and independent preflight are
+underway; no S-020 model generation has started. Work is local on
+`codex/reproduced-check`; earlier evidence archives remain closed.
+
 **October 25: checkable-comparison study completed.**
 Mike authorized autonomous iteration after S-018. [S-019](studies/S-019-check-before-action.md)
 completed all 306 planned local-model calls: 18 development, 144 discovery and
