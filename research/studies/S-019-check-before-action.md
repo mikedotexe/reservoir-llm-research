@@ -51,6 +51,11 @@ memory. No generated S-018 output or executed past action is supplied. No extern
 checker result or correct route is supplied to the model in S-019. Independent
 checks occur only in offline scoring.
 
+Shuffle each split's complete static schedule with Python random.Random(20261025)
+before outcomes; never reorder based on responses. Use the same fixed seed for
+shuffling the 36 selected reading slots. The bootstrap seed remains 20261024 as
+specified below.
+
 ## Worlds and historical context
 
 For every world, current t=x+offset is fixed across all nine format/context cells.
