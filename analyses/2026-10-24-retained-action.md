@@ -1,7 +1,7 @@
 # Verified facts with and without a prior action conclusion
 
-S-018, October 24, 2026. **In progress: independent preflight approved;
-development collection underway.** Mike approved the follow-up proposed after
+S-018, October 24, 2026. **In progress: all 12 development calls completed;
+the original 72-call confirmation is underway.** Mike approved the follow-up proposed after
 [S-017](2026-10-24-provenance-decision.md). The [protocol](../research/studies/S-018-verified-facts-and-prior-conclusions.md)
 holds verified factual content and its authority fixed while adding or withholding
 an earlier action conclusion, under changed and unchanged rules.
@@ -71,3 +71,19 @@ private evidence root, SHA-256
 `af76f379d99e839873180cb232d8c3b7e2671a001ad91ff8cf0304bd51ba33d7`.
 Development preparation snapshots that approval, the prospective study, reading
 instructions and provider-readiness receipt alongside all construction sources.
+
+## Development gate
+
+All 12 development requests completed with normal stops, strict valid schemas and
+accounts within the requested length. All source hashes remained matched. The six
+unchanged-rule decisions were correct; under the changed rule Lark01 was correct
+in all three arms, while Lark02 was wrong in all three. Each Lark02 response quoted
+x=73 and threshold=78 but described 73 as above, or not less than, 78 and selected
+HIGH. Facts-only produced the error too. This is an observed comparison/application
+failure, not evidence that the included historical conclusion caused it.
+
+The development gate found no construction, format or completion defect. No
+revision was made. The original confirmation design, already frozen before any
+development outcome, was prepared with the gate receipt among its sources and
+dispatched unchanged. Development behavior is reported separately from confirmation;
+it was not used to select worlds, seeds, endpoints or further model calls.

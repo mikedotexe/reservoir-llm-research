@@ -7,7 +7,8 @@ historical action conclusion, and crosses changed/unchanged rules. A swapped-cho
 diagnostic accompanies the primary with/without comparison. The bounded schedule
 is 12 development and 72 confirmation calls on the existing local apparatus,
 followed by independent checks and fixed readings. Implementation and independent
-preflight passed; development collection is underway.
+preflight passed; all 12 development calls completed and the original 72-call
+confirmation is underway without a study revision.
 The [dated account](../analyses/2026-10-24-retained-action.md) owns execution and
 limitations. Work is local on `codex/retained-action`; earlier studies are closed.
 The Hold Shelf is accessible in this session.
