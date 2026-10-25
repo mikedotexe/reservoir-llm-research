@@ -1,5 +1,15 @@
 # Current work
 
+**October 25: checkable comparison before an action selected.**
+Mike authorized autonomous iteration after S-018. [S-019](studies/S-019-check-before-action.md)
+compares structured checks requested before/after the action, a direct baseline,
+and matched historical-threshold contexts. A fixed discovery rule selects one
+confirmation emphasis; all fresh confirmation cells run regardless. The bounded
+schedule is 18 development plus 144 discovery and 144 confirmation calls.
+The [dated account](../analyses/2026-10-25-check-before-action.md) owns progress.
+No S-019 model outcomes yet. Work is local on `codex/decision-check`; earlier
+private evidence remains closed and live systems remain outside the study.
+
 **October 24: verified-facts/prior-conclusion comparison completed.**
 Mike approved [S-018](studies/S-018-verified-facts-and-prior-conclusions.md).
 The prospective design holds facts and their authority fixed, varies an explicit
