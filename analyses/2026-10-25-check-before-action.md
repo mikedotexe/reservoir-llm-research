@@ -23,4 +23,12 @@ trigger it. Implementation and preflight are next. No earlier archive is reopene
 for writing, and no live system or desktop instrument is changed.
 
 The Hold Shelf was read through its authenticated UI. S-018's completed test and
-bounded finding are present; a new active S-019 card will be recorded and verified.
+bounded finding are present. The new test card, tagged
+`id:t-s019-check-before-action`, was saved and read back as **active** before any
+model output. A private screenshot preserves the visible record.
+
+Before implementation freeze, the protocol explicitly fixed schedule/reading
+shuffle seed 20261025 and clarified that malformed or incomplete check diagnostics
+are unavailable, not false. Actual order violations remain assigned-arm outcomes.
+The existing installed model digest and Ollama 0.35.0 were checked through laptop
+loopback metadata only; no generation was used for readiness.
