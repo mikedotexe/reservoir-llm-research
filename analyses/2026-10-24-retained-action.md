@@ -268,3 +268,22 @@ was no elapsed-time memory test, persistent internal state intervention, activat
 access, live-being contact or desktop change. The private readings and raw packets
 remain local. The implementation collaborator's clean worktree was archived after
 integration, preserving its committed checkpoint. No refs were pushed or deployed.
+
+## Closed evidence and verified backup
+
+The private evidence tree is closed. `CLOSED.json` binds completed-report checkpoint
+`a405aa4a26feaccc15895a422d836367063b0799`, the implementation freeze, prospective
+protocol snapshot, scores, raw-run manifests, separate readings, audits and board
+receipt. Its SHA-256 is
+`0b1e361c1e98c69f73e2290d980d74e74a166d23da473a635ec791fea9283cfd`.
+No further model calls or private-tree writes followed closure.
+
+The [backup manifest](/Users/mikepurvis/other/reservoir-llm-research/research/outputs/retained-action-20261024-closed-backup-20261025T024930Z/backup-manifest.json)
+records **1,854 files, 12,085,682 bytes** outside this working checkout. SHA-256
+inventories of the source before and after copying and every backup file matched
+exactly. Manifest SHA-256:
+`29946a58700c3b73c2866f9f2cdedf16a78c09550595426f2118ee66bcb55669`.
+The backup is under the original checkout's ignored `research/outputs/`; private
+packets were not added to Git. This preserves the bytes, not new authentication
+of original provenance. The final documentation commit adds this pointer after
+the completed-report checkpoint.
