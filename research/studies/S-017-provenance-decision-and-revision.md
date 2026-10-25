@@ -100,8 +100,10 @@ confirmation cases, larger sample, new model or retry follows an attractive resu
    evidence, other response and simulator receipts do not enter through another slot.
 
 The delay is supplied context, not elapsed-time forgetting or persistent internal
-memory. The later action cannot succeed simply by copying the prior action on the
-four changed-route bases; it still can succeed through a lucky guess. The factual
+memory. On four bases the correct direct destination changes; repeating an earlier
+correct direct route then fails. `MEASURE` still succeeds at cost 1, and an earlier
+wrong direct route can become correct after the threshold changes. Later success
+alone therefore does not prove use of a corrected fact. The factual
 audit remains the only exogenous corrective evidence. Action-dependent simulator
 receipts are consequences, not a claim that feedback access is naturally identical.
 
@@ -144,8 +146,12 @@ sample expansion is part of this study.
 ## Outcomes and interpretation
 
 Primary: later updated-minus-initial-response utility, paired by case and seed.
-Average seed-paired differences and the two variants within each base pair, then
-weight the six base pairs equally. Use 10,000 base-pair bootstrap draws, seed
+First average available seed-paired differences within each provenance variant;
+then average the available variant means equally within each base pair; finally
+weight the contributing base pairs equally. A partially available variant must not
+receive less weight merely because fewer seeds completed. Report every variant's
+available pairs, partially covered bases and absent bases. Use 10,000 base-pair
+bootstrap draws, seed
 20261024. This is a descriptive interval on six constructed worlds, not a population
 estimate or a powered superiority test. Report planned, available and paired counts;
 missing values are never zero. Disclose partial pair/seed coverage explicitly.
