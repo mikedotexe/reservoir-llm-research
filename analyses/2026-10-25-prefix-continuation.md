@@ -1,8 +1,8 @@
 # Does the preceding comparison change the choice?
 
-October 25, 2026. Status: implementation, independent preflight and all 76
-render-only checks passed. All four normal sentinel continuations and their
-independent qualification audit passed. The fixed 72 routing calls are running.
+October 25, 2026. Status: all four qualification and 72 routing calls completed.
+Independent outcome reconstruction and both fixed two-pass readings passed.
+Final scientific review and preservation are pending.
 
 Mike authorized working toward the proposed comparison and then assessing a good
 save point. [S-021](../research/studies/S-021-prefix-continuation.md) tests whether
@@ -90,6 +90,140 @@ The legacy Mintlify Index documentation service is discontinued; its tool return
 that notice. Official version-matched source was used instead. No software or
 provider configuration was changed during this investigation.
 
+## Completed routing outcomes
+
+All 72 scheduled routing calls completed with strict, scorable prefix-plus-suffix
+objects. There were no unavailable outcomes, retries, replacement prompts or
+repaired parses. All requested key orders were retained; two generated accounts
+exceeded the requested length and remain in the outcomes. Qualification contributed
+four separate normal generations. The 76 render-only requests remain separately
+accounted for.
+
+Each row below contains 12 calls: six worlds at each of two seeds. MEASURE pays
+one unit and then routes correctly in the deterministic simulator. A wrong direct
+route costs four; a correct direct route costs zero. Mean utility is negative cost.
+
+| Rule | Supplied prefix | Correct direct | Wrong direct | MEASURE | Mean utility |
+|---|---|---:|---:|---:|---:|
+| Unchanged | Operands only | 12 | 0 | 0 | 0 |
+| Unchanged | Correct relation | 12 | 0 | 0 | 0 |
+| Unchanged | Flipped relation | 0 | 0 | 12 | −1 |
+| Changed | Operands only | 9 | 2 | 1 | −0.750 |
+| Changed | Correct relation | 8 | 0 | 4 | −0.333 |
+| Changed | Flipped relation | 0 | 2 | 10 | −1.500 |
+
+The primary correct-minus-flipped changed-rule utility difference is **7/6
+(1.167)**, with descriptive world-bootstrap interval **[0.333, 2.333]**. All 12
+same-world, same-seed pairs contribute. Both seed means are 7/6; four of six world
+means are positive and two are zero. The prespecified practical sensitivity
+criterion is met. The zero worlds are not equal successful routes: both supplied
+relations led to measurement. These are six authored worlds, not a sampled
+population or a separate replication.
+
+Independent reconstruction from raw requests, responses and the frozen query
+passed 11,717 checks, including every row, group, contrast, missing denominator
+and the practical flag. Score SHA-256 is
+`ce1550f8651c8bcf8c8bcdcc3f4e642954e3c6e3ebfc2653915a1f5cba064eb0`;
+`methods-review/independent-study-audit-v1.json` has SHA-256
+`5aa6ad1d72ebcfba44f32dde6cc2440d1d57284d7611f5c1e8578ff242451ecb`.
+
+For completeness, all nine frozen contrasts follow. Baseline means operands-only;
+interaction means changed minus unchanged. Each contrast has six contributing
+worlds, with 12 complete pairs or, for interactions, 12 complete four-cell sets.
+Intervals use the frozen 10,000 world-bootstrap draws and are descriptive.
+
+| Contrast | Utility difference | Descriptive 95% interval |
+|---|---:|---:|
+| Correct − flipped, changed (primary) | 1.167 | [0.333, 2.333] |
+| Correct − flipped, unchanged | 1.000 | [1.000, 1.000] |
+| Correct − flipped, interaction | 0.167 | [−0.667, 1.333] |
+| Correct − baseline, changed | 0.417 | [−0.500, 1.917] |
+| Correct − baseline, unchanged | 0.000 | [0.000, 0.000] |
+| Correct − baseline, interaction | 0.417 | [−0.500, 1.917] |
+| Flipped − baseline, changed | −0.750 | [−2.417, 1.000] |
+| Flipped − baseline, unchanged | −1.000 | [−1.000, −1.000] |
+| Flipped − baseline, interaction | 0.250 | [−1.417, 2.000] |
+
+Only operands-only generates a relation field: its 24 relations include 22 correct
+and two incorrect. Both incorrect relations accompany wrong direct routes; one
+correct relation accompanies MEASURE. The supplied fields in the other 48 calls
+are interventions, not successful or failed model-generated checks.
+
+## What the fixed passages show
+
+The prospective reading sample contains 18 packets: worlds 00, 02 and 05, both
+rules and all three conditions at seed 7, in a frozen shuffled order. Two fresh
+same-family readers first received generated suffixes alone; their notes were
+saved and hash-verified before separate release of the exact supplied messages
+and authored prefix. Their mandatory repository context was disclosed. This is
+independent reading execution, not independent human validation or a prevalence
+estimate.
+
+Both readers completed all 18 packets in both passes and independently identified
+the distinctions illustrated below. All literal quotations, packet coverage and
+input bindings passed verification; saved first-pass notes remained unchanged.
+`methods-review/fixed-readings-verification-v1.json` has SHA-256
+`9bf927b743287cbef29a0c6a1c0efa149a36e875ae78f8b3c21085041ae586fd`.
+Agreement between these executions does not independently validate a hidden
+mechanism or create a quantitative semantic endpoint.
+
+Ordinary successes matter here. Packet 10, with a correct supplied relation for
+24 against 50, generates ROUTE_LOW and says, “This evidence alone is sufficient to
+decide the correct route. No measurement or additional information is necessary.”
+Packet 17 generates its own correct comparison and ROUTE_HIGH for 81 against 50,
+including “Since x is fixed at 81, and the threshold is 50, x cannot be less than
+50.” The evidence can be applied with its temporal scope intact.
+
+Packet 8 supplies the wrong LT relation for 24 against 19. Its generated account
+states the correct inequality: “The current threshold is 19; therefore, x is
+greater than the threshold.” Yet it chooses MEASURE and says “the only warranted
+action is to MEASURE to obtain the current value of x.” The task instead
+explicitly states, “Its x is fixed from that snapshot onward; this says nothing
+about earlier values.” The public prose corrects the inequality without explicitly
+retracting the supplied field, and its temporal justification understates the
+evidence. This does not reveal when or why the action was internally selected.
+
+Packet 14 supplies the correct GE for 44 against 39 but still generates MEASURE:
+“the correct route could be HIGH but we cannot infer it with certainty.” The same
+onward-persistence evidence applies. Thus unnecessary measurement and understated
+evidence are not confined to a wrong supplied relation.
+
+Packet 11 exposes a different failure in the operands-only condition: it generates
+GE and ROUTE_HIGH for 81 against 86, saying, “The current threshold is 86, so x is
+GE (greater than or equal to) the threshold.” Here the incorrect comparison is
+actually model-generated and accompanies a wrong direct route. It must not be
+collapsed with the researcher-supplied wrong fields in the flipped condition.
+
+These illustrative passages were checked literally against raw suffixes and
+requests in `methods-review/report-quotation-check-v1.json`. The two flipped
+wrong direct routes in the full numerical record both belong to world 04, outside
+this fixed reading sample; no post-outcome expansion was made to obtain their
+prose. The sampled packet 14's 103-word account and an unsampled 109-word account
+exceed the requested limit; both retain action utility under the frozen rule.
+
+## What the comparison supports
+
+Changing only the supplied relation changes the continuation's action and cost in
+this apparatus. Most of the flipped condition's cost comes from measurement,
+including all 12 unchanged-rule calls. That is not evidence that the model simply
+obeys a wrong relation. Whether the generated accounts acknowledge or misdescribe
+the conflict is a separate reading question.
+
+The practical positive primary also does not establish a general benefit from
+supplying a correct check. Against operands-only, the correct-prefix condition
+has fewer correct direct routes under changed rules (8 versus 9), but has no wrong
+routes and more measurements, resulting in lower total cost
+(4 versus 9). Its small mean utility advantage has a descriptive interval spanning
+zero. This secondary comparison also changes how much of the response the model
+generates. Correct prefixes still produce four unnecessary measurements.
+
+The changed-minus-unchanged content interaction is small and its interval spans
+zero. Rule-change specificity is not established; rule condition also bundles
+margin and conflict with the old threshold. The result narrows behavioral
+sensitivity to supplied comparison content. It does not identify the natural
+mediator of S-020's requested-order result, recover private reasoning, establish
+introspection, or predict a benefit in Astrid or Minime's live systems.
+
 ## Research save-point scope
 
 A separate pre-outcome synthesis review supports stopping after this bounded
@@ -114,3 +248,25 @@ The intended save point preserves named commits, exact requests and raw outputs,
 prefix/suffix distinctions, every scheduled disposition, independent checks, fixed
 readings, the board record and a closed byte-verified backup outside this worktree.
 No next study, live-system change or publication is part of this finish line.
+
+## Save-point assessment
+
+**This is a good scientific save point after S-021's remaining review and
+preservation checks.** The sequence has reached a bounded answer to the selected
+follow-up: the content placed immediately before the generated action matters
+in this task, predominantly through the choice to measure again. The uncertainty
+is now more specific. We do not know the natural mechanism behind the earlier
+order effect or whether any of these results transfer to other tasks, models or
+the Beings.
+
+Across the tranche, preserving a fact, applying a comparison, choosing an action,
+and accurately explaining the evidence have repeatedly needed separate checks.
+S-021 adds a controlled intervention on supplied comparison content while retaining
+the distinction between authored input and generated behavior. That is enough to
+make this a useful stopping point without turning a narrow result into a general
+theory of introspection.
+
+No further study is launched. A later resumption can begin from the committed
+protocol and this completed record, with a newly selected question and prospective
+design. Pending closure work is final scientific review, board read-back, immutable
+evidence closure and the byte-verified backup.
