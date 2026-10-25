@@ -205,6 +205,15 @@ repair and multirow regression cases passed, with 47 combined helper checks.
 The actual eight-pair exhaustive comparison then succeeded. No model output,
 score, primary endpoint or source oracle changed because of that utility repair.
 
+Actual manifest assembly exposed a second helper issue: hashes of evidence
+subsections were mistaken for whole-document hashes. The preserved assembler was
+revised to distinguish whole-file bindings from component hash claims; twenty
+scope and assembly checks passed, followed by successful actual assembly and
+integrity verification. Component claims remain inside unchanged, hash-bound
+reader notes but do not satisfy whole-file obligations and are not independently
+reconstructed by this helper. Separate study audits perform their stated exact
+prompt checks. No reader note was edited to make the inventory pass.
+
 The [completed account](2026-10-24-introspection-confirmation.md) reports the final
 versions, strict-format and available-pair denominators, qualitative limitations,
 implementation tests and evidence-preservation record.

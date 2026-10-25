@@ -598,6 +598,35 @@ notes lack six direct hash fields used by later readings; unchanged notes and th
 retained comparison are preserved with an explicit legacy qualification. A later
 inventory cannot establish those missing historical before-evidence bindings.
 
+Final manifest assembly initially confused subsection hashes with whole-document
+hashes. The retained repair distinguishes their scopes; twenty regression and
+assembly checks passed. Component hashes are preserved in unchanged notes, not
+promoted to independently verified whole-document bindings. Actual assembly and
+the subsequent integrity verification both passed with **121 named artifacts,
+eighteen run directories and seven reading sets**. Across all retained runs,
+including development and transformations, there are 2,597 physical dispatches:
+2,596 complete and the one capped transformation incomplete. The 187 instrument-
+only input qualifications are separate. All 2,072 confirmation/replication
+responses are complete. No missing or incomplete output became a scored answer.
+
+The integrity receipt is `methods-review/tranche-integrity-receipt-v2.json`,
+SHA-256 `5009a3cd92cec157917228832840b0121b7065e3c68e2a1cc7ab2d981e90f7ea`.
+It verifies a finite snapshot of bytes and structural links, with the six legacy
+reading exceptions explicit. The independent final peer audit reproduced the
+aggregate statistics without importing the project scoring helpers and found no
+material blocker in the bounded conclusions.
+
+After all private writes closed, a separate backup preserved **43,137 files,
+183,888,167 bytes**. Source inventories before and after copying exactly match
+the destination inventory. The backup is outside the managed worktree, under the
+original checkout's ignored `research/outputs/` directory:
+`introspection-20261024-closed-backup-20261024T235852Z/`.
+Its `backup-manifest.json` has SHA-256
+`2cf3472a5eb895fae49d2acb047c72dd86ae442eba75f5df15c3e37c42944d60`.
+This preserves bytes, including old versions and synthetic verification fixtures;
+it does not add authentication of historical captures or rewrite absolute origin
+paths for portability. The active checkout and local branch remain retained.
+
 The [literature review](../research/readings/2026-10-24-introspection-methods.md),
 [archival relevance check](2026-10-24-introspection-archival-relevance.md), and
 [next-round proposals](2026-10-24-introspection-next-rounds.md) connect the results
