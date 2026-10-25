@@ -250,7 +250,8 @@ to the old threshold in the written rationale. This is stronger textual evidence
 than a coincidentally old-rule-compatible action; it still does not establish
 which private process caused the choice.
 
-The fixed notes also distinguish operand/comparison errors (009 and 024), an
+The fixed notes also distinguish comparison and relation-label errors despite
+correctly copied operands (009 and 024), an
 accurate comparison followed by a contradictory route and overbroad verification
 attribution (020), and execution-like wording that supplies no execution receipt
 (035). These are illustrative account observations, not additional endpoints.
@@ -282,7 +283,8 @@ computation before action remain compatible explanations. S-019 separately showe
 that an accurate check/action does not guarantee accurate temporal-scope wording;
 the S-020 excerpts above establish a different set of public account mismatches.
 
-A read-only interpretation challenge recorded before confirmation outcomes proposed
+A read-only interpretation challenge recorded before the reviewer accessed
+confirmation outcomes proposed
 a small continuation experiment: first verify genuine assistant-prefix continuation
 support; then hold task and instruction fixed and compare action continuations from
 otherwise identical correct versus relation-flipped check prefixes. That could test
