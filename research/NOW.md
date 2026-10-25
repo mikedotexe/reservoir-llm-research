@@ -20,9 +20,10 @@ action and account fidelity well enough for a useful save point.
 
 No further study is launched. A fresh-bank repetition is an unlaunched proposal,
 not an active assignment. Work is local on `codex/prefix-continuation`. The board
-test is done, the bounded finding verified and the session log saved. Evidence
-closure and a verified backup are the final administrative steps; their receipts
-belong to the dated account. Earlier archives and live systems remain unchanged.
+test is done, the bounded finding verified and the session log saved and read back.
+The private evidence tree is closed, with a byte-verified 840-file backup outside
+this worktree on the laptop. The dated account links both preservation receipts.
+Earlier archives and live systems remain unchanged. The selected work is complete.
 
 **October 25: reproduced failure and check-order comparison completed.**
 Mike authorized continuation after S-019. [S-020](studies/S-020-reproduced-check.md)

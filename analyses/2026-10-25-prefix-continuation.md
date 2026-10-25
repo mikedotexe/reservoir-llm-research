@@ -251,8 +251,8 @@ No next study, live-system change or publication is part of this finish line.
 
 ## Save-point assessment
 
-**This is a good scientific save point after S-021's remaining review and
-preservation checks.** The sequence has reached a bounded answer to the selected
+**This is a good scientific save point. S-021's review and preservation checks
+are complete.** The sequence has reached a bounded answer to the selected
 follow-up: the content placed immediately before the generated action matters
 in this task, predominantly through the choice to measure again. The uncertainty
 is now more specific. We do not know the natural mechanism behind the earlier
@@ -272,8 +272,8 @@ design. If this specific question is reopened, the minimum next observation woul
 be a prospectively fixed fresh authored bank repeating the same three-prefix
 comparison, retaining MEASURE separately from wrong direct routes, to test whether
 the observed sensitivity recurs. That is an unlaunched replication proposal; it
-would not identify S-020's natural mediator. Pending closure work is final scientific
-review, board read-back, immutable evidence closure and the byte-verified backup.
+would not identify S-020's natural mediator. Final scientific review, board
+read-back, immutable evidence closure and the byte-verified backup are complete.
 
 ## Final review and administrative closure
 
@@ -305,3 +305,27 @@ The account snapshot before evidence closure is retained as
 the approved scientific account, all audits and every retained evidence file.
 The backup verification and final administrative commit are recorded separately
 below so no closed evidence is modified to add its own backup receipt.
+
+## Closed evidence and verified backup
+
+The evidence tree was closed after checkpoint `9cc3506`. Its final write was
+`research/outputs/prefix-continuation-20261025/CLOSED.json`, SHA-256
+`98bba29466b707ac2cfea71063f15b74df6b07d4b0bc42cd1a3d47085411fc3a`.
+The marker seals 839 preceding files and binds the complete account snapshot,
+scientific review, exact requests/responses, prefix/suffix distinctions, every
+scheduled outcome, reading stages, code hashes and board proof. No write to this
+evidence tree occurred afterward.
+
+The closed tree was copied outside this worktree: **840 files, 5,752,100 bytes**.
+Source inventories before and after copying matched the destination; a separate
+standard-library check then compared every literal byte, the full inventory and
+the closure marker's inventory without importing the backup helper.
+
+- [Backup manifest](/Users/mikepurvis/other/reservoir-llm-research/research/outputs/prefix-continuation-20261025-closed-backup-20261025T195101Z/backup-manifest.json), SHA-256 `02ed6648e3c9fb5e7b5aa07f7bd6ae536d6a0fa7352d0735de1e690f1dc99686`.
+- [Separate verification receipt](/Users/mikepurvis/other/reservoir-llm-research/research/outputs/prefix-continuation-20261025-closed-backup-20261025T195101Z/independent-verification-v1.json), SHA-256 `baf80389575de2e47c461cba6444cfb172eb40ab0fa23edc1026ae9984a55c2e`.
+
+This preserves a second copy on the laptop, not an independently verified backup
+to another device. The protocol, implementation, approved account and completed
+account remain named Git checkpoints. These final administrative additions live
+in tracked documentation, outside the closed evidence. The research is saved;
+there is no running experiment or automatically assigned next round.
