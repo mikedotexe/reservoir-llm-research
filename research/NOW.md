@@ -1,5 +1,15 @@
 # Current work
 
+**October 25: prefix-content comparison, then a research save point.**
+Mike authorized [S-021](studies/S-021-prefix-continuation.md): qualify genuine
+assistant-prefix continuation, then compare correct, flipped and operands-only
+prefixes while holding the task fixed. The protocol freezes four non-routing
+qualification calls and 72 routing calls before generation. Supplied relation
+fields are not model-generated checks. The intended finish is independent review,
+fixed readings, evidence preservation and a cumulative save-point assessment;
+no further study is automatically launched. Local work is on
+`codex/prefix-continuation`; all earlier archives remain closed.
+
 **October 25: reproduced failure and check-order comparison completed.**
 Mike authorized continuation after S-019. [S-020](studies/S-020-reproduced-check.md)
 first repeats all 24 original S-018 facts-only confirmation requests unchanged.
