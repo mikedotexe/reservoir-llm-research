@@ -1,6 +1,6 @@
 # Current work
 
-**October 25: reproduce the earlier failure, then test a check.**
+**October 25: reproduced failure and check-order comparison completed.**
 Mike authorized continuation after S-019. [S-020](studies/S-020-reproduced-check.md)
 first repeats all 24 original S-018 facts-only confirmation requests unchanged.
 A prospective headroom gate controls whether the fixed 72-call matched historical
@@ -8,7 +8,8 @@ comparison and 72-call fresh confirmation proceed. Only the terminal output-form
 instruction varies within each comparison; the direct baseline is preserved exactly.
 Primary utility, order diagnostics and qualitative account fidelity remain distinct.
 The prospective protocol is committed, source requests copied and hash-checked,
-and the Hold Shelf test is active. Implementation and independent preflight passed.
+and the Hold Shelf test was active before dispatch. Implementation and independent
+preflight passed.
 All 24 reproduction calls completed: changed rules yielded 10/12 wrong direct
 routes, unchanged rules 12/12 correct. Five worlds failed at both seeds, qualifying
 the frozen gate. The matched historical comparison completed and passed independent
@@ -19,9 +20,15 @@ had 10/12 plus two MEASURE choices and no wrong routes. The fixed primary gain w
 3.25 historically and 11/6 in confirmation, meeting the prospective practical
 replication criterion. Requested-order contrasts were positive in both banks;
 public check correctness and action correctness still diverged in action-first.
-All 168 calls are complete. Fixed two-pass readings and final report review are
-underway. Work is local on
-`codex/reproduced-check`; earlier evidence archives remain closed.
+All 168 calls, both fixed two-pass readings and final scientific review are complete.
+Readings distinguish correct comparison with wrong action from ordinary successes
+and public explanations invoking the old threshold. The finding concerns requested
+output order in this task, not private reasoning order or introspective access.
+The [dated account](../analyses/2026-10-25-reproduced-check.md) owns the complete
+results, exceptions and preservation record. The Hold Shelf test is done, the
+bounded finding verified and session log saved and read back after reload.
+The next prefix-continuation comparison remains a proposal. Work is local on
+`codex/reproduced-check`; earlier archives and live systems remain unchanged.
 
 **October 25: checkable-comparison study completed.**
 Mike authorized autonomous iteration after S-018. [S-019](studies/S-019-check-before-action.md)

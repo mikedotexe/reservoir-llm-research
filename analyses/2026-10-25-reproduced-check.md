@@ -2,7 +2,7 @@
 
 October 25, 2026. Status: all 168 actual calls and three independent raw audits are
 complete. The fixed practical replication criterion passes. Both fixed qualitative
-readings are complete; final scientific review remains pending.
+readings and final scientific review are complete.
 
 On this task, requesting the public comparison before the action improved utility
 against the unchanged baseline in both authored banks and also outperformed the
@@ -48,7 +48,7 @@ Approval receipt SHA-256:
 `7e584c8ad7346839b4ce971316df27b2474f0b24e0d6bc27df62c8b0a4f04261`.
 The prepared reproduction schedule and every request hash matched the frozen preview
 before dispatch; model/runtime identity also matched. The board test
-`id:t-s020-reproduced-check` is active and persisted after reload.
+`id:t-s020-reproduced-check` was active before dispatch and persisted after reload.
 Earlier archives are read-only; live systems and the frozen desktop instrument
 remain outside this study.
 
@@ -333,3 +333,35 @@ archives, generic runner and earlier study sources remain unchanged.
 | Matched design | `designs/matched-v2.json` | `f56a6731d5fbcf894d2392ffd68df230ff4ff3ca911ccdbd5775eb103257f2a3` |
 | Confirmation design | `designs/confirmation-v2.json` | `92e113d4de64ac8ff0b8179ef772b0bf5d00ad16fc4ffa31135a098c322e176e` |
 | Reading export receipt | `readings/confirmation-v1/receipt.json` | `1eae7b21830295ded02f61d060349f5007b3b62c79e3573c6072e347f4b25ff4` |
+
+## Review and work coordination
+
+Final scientific review approved checkpoint `6bd705dbdbb9ebef1aff8b8594d627bac6ed900f`
+after 873 targeted final checks. It verified the numerical claims against the
+three completed independent audits, the fixed sample, all four reading input/quote
+bindings, selected interpretations and the reproduction command's output boundary.
+Two wording corrections from the initial submitted report are preserved in the
+review: both error examples copied operands correctly, and the interpretation
+challenge preceded its reviewer's outcome access, not necessarily generation.
+There are no outstanding scientific corrections.
+
+The exact reviewed report is retained as
+`methods-review/reviewed-report-6bd705d-v1.md`, SHA-256
+`1a01194aedb00f430f1ff9ad8a047309b31843b4b50ff8a71dfdb58a34928435`.
+Approval receipt `methods-review/final-scientific-report-review-v1.json` has SHA-256
+`2a3a9bcb469ada79366260cd421238035c90ac441770bb6ee2efb6f9d2a4b287`.
+Administrative status, board and preservation appendices were added afterward
+and are outside that scientific review.
+
+The Hold Shelf test is **done**, tagged `id:t-s020-reproduced-check`; the bounded
+finding is **verified**, tagged `id:f-s020-check-order`. The session log is
+“S-020 complete: reproduced errors and replicated check-order benefit.” Both
+cards and the log were saved and read back after reload. The private board receipt,
+accessibility capture and screenshot retain that observation.
+
+The implementation worktree was archived after clean committed integration;
+its checkpoint `f1aacd82c3cd0599d96646e4af91b2d707301177` remains reachable.
+All work is local on `codex/reproduced-check`. No ref was pushed, no deployment
+performed and no live-being or frozen desktop instrument changed. The proposed
+prefix-continuation comparison remains unlaunched. Evidence closure and the
+verified backup are recorded below when complete.

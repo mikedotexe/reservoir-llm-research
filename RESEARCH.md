@@ -98,6 +98,8 @@ when authorized, without turning every question into a feature.
 
 | Looking for | Start here |
 |---|---|
+| Reproducing a routing failure and testing when a public comparison appears | [October 25 reproduced-check study](analyses/2026-10-25-reproduced-check.md), [S-020 protocol](research/studies/S-020-reproduced-check.md) |
+| A checking comparison at ceiling, with a separate temporal-account mismatch | [October 25 check-before-action study](analyses/2026-10-25-check-before-action.md), [S-019 protocol](research/studies/S-019-check-before-action.md) |
 | Verified facts with and without an explicit historical action conclusion | [October 24 retained-action comparison](analyses/2026-10-24-retained-action.md), [S-018 protocol](research/studies/S-018-verified-facts-and-prior-conclusions.md) |
 | A corrected fact, its consequence and later use under a changed rule | [October 24 decision/revision study](analyses/2026-10-24-provenance-decision.md), [S-017 protocol](research/studies/S-017-provenance-decision-and-revision.md) |
 | Isolated attribution, forecasting, memory and catalog studies | [October 24 completed tranche](analyses/2026-10-24-introspection-confirmation.md), [next-round proposals](analyses/2026-10-24-introspection-next-rounds.md), and [literature methods](research/readings/2026-10-24-introspection-methods.md) |
