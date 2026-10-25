@@ -7,7 +7,9 @@ and matched historical-threshold contexts. A fixed discovery rule selects one
 confirmation emphasis; all fresh confirmation cells run regardless. The bounded
 schedule is 18 development plus 144 discovery and 144 confirmation calls.
 The [dated account](../analyses/2026-10-25-check-before-action.md) owns progress.
-No S-019 model outcomes yet. Work is local on `codex/decision-check`; earlier
+All 18 development calls completed with valid schemas and correct direct actions;
+the unchanged discovery bank is next. Ceiling performance did not trigger tuning.
+Work is local on `codex/decision-check`; earlier
 private evidence remains closed and live systems remain outside the study.
 
 **October 24: verified-facts/prior-conclusion comparison completed.**

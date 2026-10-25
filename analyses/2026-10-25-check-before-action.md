@@ -1,6 +1,6 @@
 # A checkable comparison before an action
 
-S-019, October 25, 2026. **Prospective; no model outputs yet.** Mike authorized
+S-019, October 25, 2026. **In progress; development completed.** Mike authorized
 autonomous iteration on the gap between accurately stated distinctions and selected
 actions. The [protocol](../research/studies/S-019-check-before-action.md) defines
 development, discovery and fresh-bank confirmation, with a fixed rule selecting
@@ -46,3 +46,11 @@ empty quotation list only for empty/whitespace text, require an explicit absence
 observation, and distinguish unavailable-text display placeholders from model
 text. Earlier instructions and helper versions remain preserved. The fixed sample,
 scientific comparisons and stopping rule did not change.
+
+The final preflight passed 4,361 independent construction, rendering, parser,
+pairing, gate and reading-helper checks and retained all 306 prospective request
+hashes. The actual prepared development requests matched those hashes and their
+schedule before dispatch. All 18 development calls completed, all 18 schemas were
+valid, and all 18 actions were correct direct routes. Independent raw reconstruction
+found zero mismatches. The saved development decision is **proceed unchanged**;
+ceiling performance did not trigger tuning or an extra development round.
