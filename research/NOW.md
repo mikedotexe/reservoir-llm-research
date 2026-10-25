@@ -8,8 +8,11 @@ comparison and 72-call fresh confirmation proceed. Only the terminal output-form
 instruction varies within each comparison; the direct baseline is preserved exactly.
 Primary utility, order diagnostics and qualitative account fidelity remain distinct.
 The prospective protocol is committed, source requests copied and hash-checked,
-and the Hold Shelf test is active. Implementation and independent preflight passed;
-the unchanged 24-call reproduction phase is running. Work is local on
+and the Hold Shelf test is active. Implementation and independent preflight passed.
+All 24 reproduction calls completed: changed rules yielded 10/12 wrong direct
+routes, unchanged rules 12/12 correct. Five worlds failed at both seeds, qualifying
+the frozen gate. The 72-call matched historical comparison is running; independent
+raw reconstruction of reproduction is underway. Work is local on
 `codex/reproduced-check`; earlier evidence archives remain closed.
 
 **October 25: checkable-comparison study completed.**
