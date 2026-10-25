@@ -119,6 +119,10 @@ and seed, average available paired seed differences within world, then weight
 contributing worlds equally. Report all world and seed-specific differences and
 paired denominators. Use 10,000 world-bootstrap draws, seed 20261024, for a
 descriptive 95% interval. Six worlds are six clusters, not 72 independent subjects.
+Use the unchanged statistics helper's exact convention: world IDs sorted, Python
+`random.Random(20261024)`, each draw sampling n world means with `choices(..., k=n)`,
+sorted draw means at indices `int(.025*(10000-1))` and `int(.975*(10000-1))`, without
+interpolation. Zero contributing worlds yields null difference and null interval.
 
 Secondary: the analogous prior-minus-facts contrast under the unchanged rule;
 the interaction `[prior−facts]changed − [prior−facts]unchanged` uses only complete
