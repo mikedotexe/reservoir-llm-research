@@ -353,12 +353,50 @@ class ReceiptChainTests(unittest.TestCase):
         with patch.object(s, 'guard_output', side_effect=lambda p: runner.guard_output(p, self.root)):
             self.assertEqual(s.reading(reproduction[0], reproduction[1], out)['packets'], 12)
 
-    def test_pending_cannot_gate_or_read(self):
+    def test_pending_cannot_gate_but_fixed_reading_preserves_slots(self):
         data = self.execute('reproduction', callback=reproduced_errors, limit=1)
         with self.assertRaises(ValueError):
             self.gate(data)
-        with self.assertRaises(ValueError):
-            s.reading(data[0], data[1], self.root / 'unused')
+        out = self.root / 'research' / 'outputs' / 'partial-reading'
+        with patch.object(s, 'guard_output', side_effect=lambda p: runner.guard_output(p, self.root)):
+            receipt = s.reading(data[0], data[1], out)
+        self.assertEqual(receipt['packets'], 12)
+        key = json.loads((out / 'allocation-key.json').read_text())
+        states = runner.status(data[1])['nodes']
+        self.assertTrue(any(r['status'] == 'pending' for r in key))
+        for row in key:
+            self.assertEqual(row['status'], states[row['node_id']])
+            directory = data[1] / 'nodes' / row['node_id']
+            for name, digest in row['files'].items():
+                self.assertEqual(digest, s.digest(directory / name) if (directory / name).exists() else None)
+        self.assertIn('[No generated text available.]', (out / 'reading.md').read_text())
+        self.assertIn('[No request dispatched.]', (out / 'evidence.md').read_text())
+
+    def test_unresolved_reading_preserves_existing_request_and_no_output(self):
+        data = self.execute('reproduction', callback=reproduced_errors, limit=0)
+        design, protocol, records = s.frozen_run(data[0], data[1])
+        slot = next(r for r in protocol['planned_slots'] if r['seed'] == 7)
+        node = next(n for n in protocol['nodes'] if n['id'] == slot['node_id'])
+        directory = data[1] / 'nodes' / node['id']
+        directory.mkdir(parents=True, exist_ok=True)
+        request = runner.render_request(protocol, node, {})
+        (directory / 'request.json').write_bytes(request)
+        # An explicit synthetic state supplied to the exporter; no dispatch or
+        # terminal result is invented. The frozen-run verifier is tested elsewhere.
+        records[node['id']] = {'status': 'unresolved', 'text': None}
+        out = self.root / 'research' / 'outputs' / 'unresolved-reading'
+        with patch.object(s, 'frozen_run', return_value=(design, protocol, records)), \
+                patch.object(s, 'guard_output', side_effect=lambda p: runner.guard_output(p, self.root)):
+            receipt = s.reading(data[0], data[1], out)
+        self.assertEqual(receipt['packets'], 12)
+        key = json.loads((out / 'allocation-key.json').read_text())
+        row = next(r for r in key if r['node_id'] == node['id'])
+        self.assertEqual(row['status'], 'unresolved')
+        self.assertEqual(row['files']['request.json'], runner.sha(request))
+        self.assertIsNone(row['files']['dispatch.json'])
+        self.assertIsNone(row['files']['result.json'])
+        self.assertIn('Status: unresolved.', (out / 'reading.md').read_text())
+        self.assertIn(node['messages'][0]['content'], (out / 'evidence.md').read_text())
 
     def test_tampered_gate_score_and_unexpected_gate_rejected(self):
         data = self.execute('reproduction', callback=reproduced_errors)

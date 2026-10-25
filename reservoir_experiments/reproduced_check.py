@@ -388,13 +388,16 @@ def read_gate(path):
 
 
 def reading(design_path, run, out):
+    """Preserve the fixed sample even when dispatch stopped with pending slots.
+
+    Export is observation only: it neither qualifies a phase nor authorizes a
+    retry. Existing request bytes and exact runner statuses remain separate.
+    """
     design, protocol, records = frozen_run(design_path, run)
     if design['split'] == 'matched':
         raise ValueError('No matched-phase reading was predeclared')
     if design['split'] == 'reproduction' and score_rows(design, protocol['planned_slots'], records)['reproduction_decision']['qualified']:
         raise ValueError('Qualified reproduction requires the confirmation reading')
-    if any(r['status'] not in TERMINAL for r in records.values()):
-        raise ValueError('Reading requires a terminal phase')
     slots = [s for s in protocol['planned_slots'] if s['seed'] == design['reading_seed']]
     random.Random(design['reading_shuffle_seed']).shuffle(slots)
     documents = {'reading.md': '# Output-only reading\n\n', 'evidence.md': '# Exact supplied messages\n\n'}
