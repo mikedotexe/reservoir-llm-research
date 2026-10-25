@@ -1,5 +1,16 @@
 # Current work
 
+**October 24, selected follow-up: verified facts with and without a prior conclusion.**
+Mike approved [S-018](studies/S-018-verified-facts-and-prior-conclusions.md).
+The prospective design holds facts and their authority fixed, varies an explicit
+historical action conclusion, and crosses changed/unchanged rules. A swapped-choice
+diagnostic accompanies the primary with/without comparison. The bounded schedule
+is 12 development and 72 confirmation calls on the existing local apparatus,
+followed by independent checks and fixed readings. No outputs collected yet.
+The [dated account](../analyses/2026-10-24-retained-action.md) owns execution and
+limitations. Work is local on `codex/retained-action`; earlier studies are closed.
+The Hold Shelf is accessible in this session.
+
 **October 24: decision, consequence and revision study completed.**
 Mike approved [S-017](studies/S-017-provenance-decision-and-revision.md) after stepping
 back from the four-study tranche. The bounded design has 24 development and 144
