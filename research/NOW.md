@@ -16,7 +16,8 @@ distinguishes retained content, accepted evidence and application, with cautious
 source treatment and ordinary successes preserved. The next comparison is a
 proposal, not a launched study. Work is local on `codex/provenance-decision`;
 the prior tranche and its closed private backup remain intact. Hold Shelf updates
-remain pending login.
+remain pending login. The new private evidence tree is also closed with a verified
+backup outside the worktree; its manifest is linked from the account.
 
 **October 24: four studies of useful self-observation completed.**
 The [tranche protocol](studies/S-013-016-self-observation-tranche.md) covers supplied

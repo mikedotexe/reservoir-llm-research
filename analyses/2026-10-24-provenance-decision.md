@@ -285,6 +285,24 @@ do not establish a general introspective capacity or a natural-world benefit.
 There were no live-being accesses or changes, no desktop instrument changes, and
 no pushes or deployments. The earlier completed tranche archive remains closed.
 
+## Closed evidence and verified backup
+
+The private evidence tree is closed. `CLOSED.json` binds the completed report
+save point `ab17bd0013332bf1850127f57f4a83c82650ae29`, the generation code freeze,
+final scores, readings, audits and figure. Its SHA-256 is
+`c55aaf0811362ff39b18b87d7632056fa90421c791a868bfaaf139b477d508d4`.
+No further model collection or private-tree writes followed closure.
+
+The [backup manifest](/Users/mikepurvis/other/reservoir-llm-research/research/outputs/provenance-decision-20261024-closed-backup-20261025T011644Z/backup-manifest.json)
+records a copy outside this worktree: **4,103 files, 18,261,400 bytes**. SHA-256
+inventories of the source before and after copying and the backup contents matched
+exactly. Manifest SHA-256:
+`a471bc378b6744103011ca1e20b1309bf01d956ac76898b63eadbfa41ba70d59`.
+The backup remains under the original checkout's ignored `research/outputs/`;
+raw evidence and fixture material were not added to Git. This preserves bytes,
+not new authentication of their original provenance. The final documentation
+commit adds this backup pointer after the completed-report save point.
+
 ## Board updates pending
 
 The Hold Shelf was checked on October 24 and displayed “Sign in to view this page.”
