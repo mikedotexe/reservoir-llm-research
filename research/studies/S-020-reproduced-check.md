@@ -91,8 +91,11 @@ baseline. No extra identical-request repeats or outcome-driven reordering.
 The reproduction gate requires all 24 complete, valid closed-set actions and at
 least two original changed-rule worlds with a wrong direct route at both seeds.
 MEASURE, missing or malformed outputs do not count as reproduced wrong routes.
-Report unchanged-rule behavior, but it does not qualify or disqualify this gate.
-If the gate fails, stop at reproduction and read its fixed seed-7 sample. This is
+Unchanged-rule route correctness does not affect the wrong-route criterion;
+all 24 responses, including unchanged-rule cells, must still meet the completion,
+schema and action-validity requirement. If the gate fails, stop at reproduction
+and read its fixed seed-7 sample. Missing or invalid responses make reproduction
+incomplete/unqualified, not evidence that the historical error failed to recur. This is
 a predeclared practical headroom criterion, not a significance test or proof that
 the historical result was false. No alternate prompt or model is tried.
 
