@@ -269,6 +269,32 @@ class StudyTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'different initial run'):
             s.build_stage(self.design,'later',initial_run=run,revision_run=self.runs['revision'])
 
+    def test_unresolved_last_dispatch_blocks_stage_advance(self):
+        protocol,ledger=s.build_stage(self.design,'initial')
+        path=self.root/'interrupted.json';path.write_bytes(json_bytes(protocol))
+        run=self.root/'research/outputs/interrupted'
+        runner.prepare(path,run,repository=self.root)
+        class Interrupted(BaseException):
+            pass
+        class LastDispatchInterrupted(Fake):
+            def generate(self,request,timeout):
+                if len(self.requests)==3:
+                    raise Interrupted()
+                return super().generate(request,timeout)
+        with self.assertRaises(Interrupted):
+            runner.run_protocol(run,transport=LastDispatchInterrupted([answer()]*4))
+        state=runner.status(run)
+        self.assertEqual(state['counts'],{'complete':3,'ambiguous':1})
+        self.assertNotIn('pending',state['counts'])
+        with self.assertRaisesRegex(ValueError,'unresolved physical dispatch'):
+            s.build_stage(self.design,'revision',initial_run=run)
+        # Persisting the generic runner's ambiguity receipt does not make the
+        # unresolved physical attempt an eligible cross-stage parent.
+        runner.run_protocol(run,transport=Fake([]))
+        self.assertEqual(runner.read_results(run)[protocol['nodes'][-1]['id']]['status'],'ambiguous')
+        with self.assertRaisesRegex(ValueError,'unresolved physical dispatch'):
+            s.build_stage(self.design,'revision',initial_run=run)
+
     def test_fixed_reading_keeps_slots_and_binds_exact_messages(self):
         for stage in s.STAGES:self.run_stage(stage)
         out=self.root/'reading'

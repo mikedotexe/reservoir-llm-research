@@ -193,6 +193,8 @@ def _parent(run, design, design_sha, expected_stage):
     state = runner.status(run)
     if state['counts'].get('pending', 0):
         raise ValueError('Parent stage still has pending nodes')
+    if state['counts'].get('ambiguous', 0):
+        raise ValueError('Parent stage has an unresolved physical dispatch; establish quiescence before advancing')
     files = [run / name for name in ('manifest.json', 'manifest.sha256', 'protocol.json', 'identity.json', 'identity.sha256')]
     for nid in manifest['schedule']:
         files += [p for p in (run / 'nodes' / nid).iterdir()
