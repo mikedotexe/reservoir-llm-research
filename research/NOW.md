@@ -1,5 +1,15 @@
 # Current work
 
+**October 24, next study: follow a decision through its consequence and revision.**
+Mike approved [S-017](studies/S-017-provenance-decision-and-revision.md) after stepping
+back from the four-study tranche. The bounded design has 24 development and 144
+confirmation requests on one local model, with a deterministic routing simulator
+and four later-use conditions. It tests carrying an updated decision response,
+with factual-audit and no-record controls. Implementation and independent design
+checks precede collection; the [dated account](../analyses/2026-10-24-provenance-decision.md)
+will retain outcomes and limitations. Work is local on `codex/provenance-decision`;
+the prior tranche and its closed private backup remain intact.
+
 **October 24: four studies of useful self-observation completed.**
 The [tranche protocol](studies/S-013-016-self-observation-tranche.md) covers supplied
 source attribution, prospective supported revision, remembered reflection and later
