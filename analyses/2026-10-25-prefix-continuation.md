@@ -2,7 +2,7 @@
 
 October 25, 2026. Status: all four qualification and 72 routing calls completed.
 Independent outcome reconstruction and both fixed two-pass readings passed.
-Final scientific review and preservation are pending.
+Final scientific review approved. The preservation record follows below.
 
 Mike authorized working toward the proposed comparison and then assessing a good
 save point. [S-021](../research/studies/S-021-prefix-continuation.md) tests whether
@@ -274,3 +274,34 @@ comparison, retaining MEASURE separately from wrong direct routes, to test wheth
 the observed sensitivity recurs. That is an unlaunched replication proposal; it
 would not identify S-020's natural mediator. Pending closure work is final scientific
 review, board read-back, immutable evidence closure and the byte-verified backup.
+
+## Final review and administrative closure
+
+The independent scientific review approved the exact account at `a9cdb8a` after
+1,095 checks. Its source copy is `methods-review/reviewed-account-v2.md`, SHA-256
+`d12c2dddb7e469c52ca499c19a00798dbab4886d2bcad5ed10afc93c975d8014`.
+Review receipt `methods-review/final-scientific-review-v1.json` has SHA-256
+`ccaf323978d0e6e97a68adb7e45201d3f1ecc39b8d06e1f8b610b8aef1cfdb20`.
+The sole reporting omission was the minimum next-observation sentence; it was
+added explicitly as an unlaunched replication proposal. No outcome or method
+changed during review. The earlier review input remains preserved as v1.
+
+All generation sessions and independent writers have stopped. The implementation
+worktree was clean, its checkpoint `fd37dafa` was integrated at `64458d8`, and it
+was archived through the app with its named checkpoint retained. Main remains at
+`b9f845dd095cd422d6e80de36c6b41e94880ed03` with no tracked changes. There was no
+push, deployment, additional study or access to the Beings' live systems.
+
+The Hold Shelf test `t-s021-prefix-continuation` is done, finding
+`f-s021-prefix-content` is verified, and the session log records the bounded result
+and cumulative save point. All three were saved and read back after a reload.
+Private AX text, screenshots and `methods-review/board-closure-v1.json` retain the
+proof. The temporary browser tab was closed. NOW and the research index point to
+this account. Board wording distinguishes completed science from final evidence
+preservation.
+
+The account snapshot before evidence closure is retained as
+`methods-review/completed-account-v1.md`. The closure marker binds that snapshot,
+the approved scientific account, all audits and every retained evidence file.
+The backup verification and final administrative commit are recorded separately
+below so no closed evidence is modified to add its own backup receipt.

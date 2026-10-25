@@ -1,18 +1,28 @@
 # Current work
 
-**October 25: prefix-content comparison, then a research save point.**
-Mike authorized [S-021](studies/S-021-prefix-continuation.md): qualify genuine
-assistant-prefix continuation, then compare correct, flipped and operands-only
-prefixes while holding the task fixed. The protocol freezes four non-routing
-qualification calls and 72 routing calls before generation. Supplied relation
-fields are not model-generated checks. The intended finish is independent review,
-fixed readings, evidence preservation and a cumulative save-point assessment;
-no further study is automatically launched. Local work is on
-`codex/prefix-continuation`; all earlier archives remain closed.
-Implementation and independent preflight passed. All 76 render-only requests
-matched the exact open-prefix boundary, and all four normal sentinel completions
-passed their independently audited qualification gate. The fixed 72 routing calls
-are running; no routing conclusion is recorded yet.
+**October 25: S-021 completed; research save point.**
+Mike authorized [S-021](studies/S-021-prefix-continuation.md) and then a save-point
+assessment. All four non-routing qualification and 72 routing calls completed,
+along with 76 separately recorded render-only boundary checks. Correct versus
+flipped supplied relations changed action continuation: changed-rule utility gain
+was 7/6, meeting the prospective within-bank criterion across all 12 pairs and
+six authored worlds. Flipped prefixes mainly prompted costly MEASURE choices.
+Benefit over generating the comparison remains uncertain, and a correct supplied
+comparison still sometimes led to unnecessary measurement.
+
+Independent raw reconstruction, both fixed two-pass readings and final scientific
+review passed. The [dated account](../analyses/2026-10-25-prefix-continuation.md)
+preserves all outcomes, contrasts, ordinary successes, exceptions and scope.
+Supplied relation fields are authored inputs, not model-generated checks; the
+result does not establish private introspection, S-020 mediation or a benefit to
+the live Beings. The cumulative tranche now separates fact retention, comparison,
+action and account fidelity well enough for a useful save point.
+
+No further study is launched. A fresh-bank repetition is an unlaunched proposal,
+not an active assignment. Work is local on `codex/prefix-continuation`. The board
+test is done, the bounded finding verified and the session log saved. Evidence
+closure and a verified backup are the final administrative steps; their receipts
+belong to the dated account. Earlier archives and live systems remain unchanged.
 
 **October 25: reproduced failure and check-order comparison completed.**
 Mike authorized continuation after S-019. [S-020](studies/S-020-reproduced-check.md)
@@ -41,8 +51,8 @@ output order in this task, not private reasoning order or introspective access.
 The [dated account](../analyses/2026-10-25-reproduced-check.md) owns the complete
 results, exceptions and preservation record. The Hold Shelf test is done, the
 bounded finding verified and session log saved and read back after reload.
-The next prefix-continuation comparison remains a proposal. Work is local on
-`codex/reproduced-check`; earlier archives and live systems remain unchanged.
+That proposed prefix comparison subsequently became S-021 above. S-020 was saved
+on `codex/reproduced-check`; earlier archives and live systems remained unchanged.
 The private evidence tree is closed with a byte-verified backup outside this
 worktree; the account links its manifest.
 

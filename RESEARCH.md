@@ -98,6 +98,7 @@ when authorized, without turning every question into a feature.
 
 | Looking for | Start here |
 |---|---|
+| Supplied comparison content, generated choices, and the cumulative research save point | [October 25 prefix-continuation study and save-point assessment](analyses/2026-10-25-prefix-continuation.md), [S-021 protocol](research/studies/S-021-prefix-continuation.md) |
 | Reproducing a routing failure and testing when a public comparison appears | [October 25 reproduced-check study](analyses/2026-10-25-reproduced-check.md), [S-020 protocol](research/studies/S-020-reproduced-check.md) |
 | A checking comparison at ceiling, with a separate temporal-account mismatch | [October 25 check-before-action study](analyses/2026-10-25-check-before-action.md), [S-019 protocol](research/studies/S-019-check-before-action.md) |
 | Verified facts with and without an explicit historical action conclusion | [October 24 retained-action comparison](analyses/2026-10-24-retained-action.md), [S-018 protocol](research/studies/S-018-verified-facts-and-prior-conclusions.md) |
