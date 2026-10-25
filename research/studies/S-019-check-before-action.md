@@ -139,6 +139,12 @@ checks followed by wrong direct actions or MEASURE, and incorrect checks followe
 by correct direct actions. These are mechanical output properties, not semantic
 ratings of the free-text account or access to latent states.
 
+Mechanical check diagnostics and key-order compliance are scorable only for
+complete, strict-schema-valid responses with a recognized action. Otherwise they
+are null, with unavailable counts and their denominator retained. Direct-format
+check diagnostics are always inapplicable, not false. A valid but incorrect
+numerical comparison is scorable and false; missing or malformed fields are not.
+
 Pair every comparison by the same world and sampler seed. Average complete paired
 seed differences within world, then weight contributing worlds equally. Report
 all seed/world differences, coverage and unavailable/partial worlds. Eight worlds
