@@ -364,4 +364,26 @@ its checkpoint `f1aacd82c3cd0599d96646e4af91b2d707301177` remains reachable.
 All work is local on `codex/reproduced-check`. No ref was pushed, no deployment
 performed and no live-being or frozen desktop instrument changed. The proposed
 prefix-continuation comparison remains unlaunched. Evidence closure and the
-verified backup are recorded below when complete.
+verified backup are recorded below.
+
+## Closed evidence and verified backup
+
+The evidence tree was closed at **2026-10-25 19:01:26 UTC** after all writers
+stopped. The final readiness check matched 706 retained source hashes, including
+all three audited runs, reading notes, board captures and prior preservation
+boundaries. `CLOSED.json` has SHA-256
+`61bd2cedc9cacaa14634ae9ef2d70077f0cd17f772b54768b45cc594c84b6d28`.
+It binds the completed-report checkpoint
+`c0ff2a63e766eae0c0ac146cc310a2ad1f9f9988`, with exact report snapshot retained as
+`methods-review/completed-report-c0ff2a6-v1.md`. This appendix was added afterward,
+outside both the closed evidence tree and the scientific review.
+
+The [backup manifest](/Users/mikepurvis/other/reservoir-llm-research/research/outputs/reproduced-check-20261025-closed-backup-20261025T190126Z/backup-manifest.json)
+records **1,186 files and 9,267,588 bytes**, SHA-256
+`ce6ca7b9946f601165e91d82cb0962493276ad3489034047fa585283b03896d8`.
+Full source inventories before and after copying matched the destination. A
+separate read-only final check again matched every relative path, byte count and
+file hash in source, copy and manifest. No evidence-tree writes followed closure.
+This verifies byte preservation, not new authentication of original capture
+provenance. The original main checkout remains at
+`b9f845dd095cd422d6e80de36c6b41e94880ed03` with no tracked changes.

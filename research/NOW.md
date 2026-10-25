@@ -29,6 +29,8 @@ results, exceptions and preservation record. The Hold Shelf test is done, the
 bounded finding verified and session log saved and read back after reload.
 The next prefix-continuation comparison remains a proposal. Work is local on
 `codex/reproduced-check`; earlier archives and live systems remain unchanged.
+The private evidence tree is closed with a byte-verified backup outside this
+worktree; the account links its manifest.
 
 **October 25: checkable-comparison study completed.**
 Mike authorized autonomous iteration after S-018. [S-019](studies/S-019-check-before-action.md)
