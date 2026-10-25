@@ -6,8 +6,9 @@ back from the four-study tranche. The bounded design has 24 development and 144
 confirmation requests on one local model, with a deterministic routing simulator
 and four later-use conditions. It tests carrying an updated decision response,
 with factual-audit and no-record controls. Implementation and independent preflight
-checks are complete; all 24 development requests completed and the unchanged
-confirmation is collecting. The [dated account](../analyses/2026-10-24-provenance-decision.md)
+checks are complete; all 24 development and 144 unchanged confirmation requests
+completed. Independent numerical verification passed; the fixed two-pass readings
+and archival closeout are underway. The [dated account](../analyses/2026-10-24-provenance-decision.md)
 retains decisions and limitations. Work is local on `codex/provenance-decision`;
 the prior tranche and its closed private backup remain intact.
 

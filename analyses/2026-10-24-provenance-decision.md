@@ -1,7 +1,7 @@
 # Following a decision through consequence, revision and later use
 
-S-017, selected October 24, 2026. **In progress: development complete, fixed
-confirmation collecting. No confirmation result is claimed yet.** The [prospective protocol](../research/studies/S-017-provenance-decision-and-revision.md)
+S-017, selected October 24, 2026. **Collection complete: 24 development and 144
+confirmation responses. Final fixed readings and archival closeout in progress.** The [prospective protocol](../research/studies/S-017-provenance-decision-and-revision.md)
 defines a bounded next observation after the [completed tranche](2026-10-24-introspection-confirmation.md).
 Subjects are isolated laptop model calls in a synthetic task. Nothing reaches the
 live beings or changes the frozen desktop instrument.
@@ -37,7 +37,7 @@ Original methods notes and the new addendum are retained separately.
 
 The existing runner supports immutable staged protocols; the study-specific
 builder, simulator and scorer carry deterministic receipts between stages.
-Provider results will not be fabricated for simulator events. The earlier private
+Provider results were not fabricated for simulator events. The earlier private
 archive is closed; this study writes only to the new ignored directory
 `research/outputs/provenance-decision-20261024/`.
 
@@ -81,6 +81,138 @@ The unchanged confirmation design has SHA-256
 The private `methods-review/development-finish-and-confirmation-gate-v1.json`
 records the decision before confirmation dispatch; `scores/development-v1.json`
 retains all pilot rows and `runs/` retains exact requests and raw responses.
+
+## Confirmation: updated responses did not improve later utility
+
+All 144 planned confirmation responses completed, passed the strict action schema,
+and stayed within the requested 100-word account length. There were no missing
+cells, failed calls or retries. The 24 development responses remain a separate
+split; they are not pooled with confirmation. The model was the installed
+`mistral-small:24b` on laptop loopback Ollama 0.35.0, temperature 0.7, context 16384,
+output limit 640, seeds 7 and 20260909. These are supplied-text experiments, with
+no access to hidden activations or the beings' live systems.
+
+Each row below contains 24 fresh simulated tickets. Correct direct routing costs
+0, measurement followed by automatic correct routing costs 1, and a wrong direct
+route costs 4. Thus a successful route and useful reuse of evidence are different
+outcomes. Utility is the negative of the declared cost.
+
+| Stage / supplied later record | Correct direct | Measure, then correct | Wrong direct | Total cost |
+|---|---:|---:|---:|---:|
+| Initial decision | 11 | 11 | 2 | 19 |
+| Revision after consequence and authoritative audit | 23 | 1 | 0 | 1 |
+| Later: updated complete response | 2 | 21 | 1 | 25 |
+| Later: initial complete response | 3 | 21 | 0 | 21 |
+| Later: authoritative factual audit | 24 | 0 | 0 | 0 |
+| Later: no episode record | 0 | 24 | 0 | 24 |
+
+The primary updated-minus-initial later utility contrast is **−0.167 per ticket**,
+with a descriptive 95% base-world bootstrap interval **[−0.417, 0.000]**. All 24
+case/seed pairs contribute: paired seeds are averaged within provenance variant,
+variants equally within base world, and the six worlds equally. The six base
+differences are −0.25, 0, 0, 0, 0, and −0.75. The interval uses 10,000 draws with
+seed 20261024. This small constructed bank supplies no observed benefit; it is not
+a population estimate or a powered general superiority test.
+
+Secondary updated-minus-factual utility is −1.042, descriptive interval
+[−1.333, −0.833]; updated-minus-no-record is −0.042, interval [−0.333, 0.167]. The
+factual benchmark changes source authority, content, prior-action text, form and
+length together. Its advantage cannot be attributed to concise wording alone.
+Nor is the primary comparison the effect of generating reflection: both initial
+and revised responses already exist, and the revision receives exogenous evidence.
+
+The initial action complied with the explicit source policy in 21/24 cases.
+Both wrong direct routes used the same absent-current-record world at different
+seeds; one additional case measured despite an adequate current receipt. Following
+the audit, the frozen transition categories are: 11 maintained correct direct
+routes, 10 resolutions of justified uncertainty, 1 reduction of unnecessary
+caution, 1 wrong-route-to-correct-direct correction, and 1 earlier wrong route
+followed by measurement. The last action routes correctly at cost 1, but does not
+meet the protocol's direct-correction definition. These categories are not counts
+of hidden beliefs.
+
+The [local figure](../research/outputs/provenance-decision-20261024/figures/confirmation-v2.png)
+plots these retained counts and six paired differences. Its first layout is
+preserved; version 2 moves an overlapping annotation without changing data.
+
+## One corrected fact survived in text while its old action was repeated
+
+The sole eligible corrected chain is `confirmation-base-05-invalid`, seed
+`20260909`. This is the protocol-required inspection of eligible corrections,
+identified from outcomes, **separate from the fixed 36-passage reading**. Its other
+seed is retained beside it for context; neither becomes a new selected error rate.
+
+Initially the model received only Oriole06's 08:00 record, x=45. The task explicitly
+guaranteed stability only from the noon snapshot onward. The response nevertheless
+inferred noon x=45 and chose LOW under threshold 50, which cost 4: the simulator's
+noon value was 55. After seeing its consequence and the independent audit, the
+response correctly stated x=55 and chose HIGH, cost 0.
+
+At later use, the fresh task changed the threshold to 60. The updated-response
+condition received that earlier complete response as reference material. Its new
+output was **byte-for-byte identical to the revision output**, including the
+corrected x=55 and the now-wrong HIGH conclusion and action. The right bin had
+become LOW; the action cost 4. The same chain measured under the initial-response
+and no-record conditions, cost 1 each, and routed LOW with the factual audit,
+cost 0.
+
+This is observed retention of the corrected value without successful application
+under the changed rule. It does not show that the value was forgotten or erased.
+Exact textual reuse is observable; a hidden copying mechanism is not established.
+One eligible chain cannot estimate a general correction-survival rate. The other
+seed acknowledged x=55 and the earlier error but chose MEASURE during revision,
+so it is not another eligible direct correction.
+
+The source-bound private trace is
+`methods-review/corrected-chain-source-check-v1.json`, SHA-256
+`7ab85f13d1abe6611ce3d92c7fe6de54d4954053d4fac4f3bb5c69a52a5e2824`.
+It binds all six stages/conditions at both seeds to exact requests, results and raw
+provider responses. The independent outcome audit separately verifies the eligible
+chain's threshold change, exact response equality and four later consequences.
+
+## Verification and interpretation limits
+
+The confirmation score comes from `probes/provenance_decision.py score` applied to
+the frozen confirmation design and the three `confirmation-{initial,revision,later}-v1`
+runs. The same probe's `reading` command exports the fixed sample. Reproduction
+requires the private evidence tree and a new output destination; existing results
+are never overwritten. See the [runner instructions](../research/EXPERIMENT-RUNNER.md)
+for the staged commands and missing-source rules.
+
+All six development/confirmation runs passed the runner's request, raw-result,
+identity, source and manifest checks. Across the 168 calls, the largest input used
+1,249 tokens and the largest output 169, below the declared budgets. Confirmation
+accounts reached at most 76 words. The completion verification script and receipt
+retain those counts. The model digest is
+`8039dd90c1138d772437a0779a33b7349efd5d9cca71edcd26e4dd463f90439d`.
+The study implementation was frozen at local commit `7e7cbca`; later collection
+commits changed documentation only.
+
+A separate assistant prepared an independent scorer before seeing confirmation
+outcomes, checked it with 32 synthetic fixtures, then reproduced every final row,
+group, transition and all three bootstrap contrasts exactly. It independently
+checked 144 actual request masks and provider-text links, 432 result-file hashes,
+323 source snapshots, and all 24 simulator receipts and supplied audits. It used
+the generic runner for read-only byte verification, but separately implemented
+parsing, simulation, policy, transitions and numerical aggregation. This is
+independent execution by another same-family assistant, not independent human
+validation. Semantic warrant of a retained response remains a reading question.
+
+The main private receipts, relative to `research/outputs/provenance-decision-20261024/`, are:
+
+| Record | SHA-256 |
+|---|---|
+| `scores/confirmation-v1.json` | `c76bfb0af2ad970964cf39a6d9fe547708dad76c22c62a9fb1f2f20801b62004` |
+| `methods-review/s017-outcome-audit-confirmation-v1.json` | `25edfd7de8b6d40b04899f654dcf6d814364ffa701bc2d34926eb0b2e720e96b` |
+| `methods-review/completion-verification-v1.json` | `87920e7f38014379764aa6fc00256a6945f4276c594dbaaf379eafd8dd0cd27e` |
+
+The intervention supplies whole responses, with their factual claims and prior
+action recommendations together. Later prompts are fresh contexts with four fixed
+unrelated exchanges supplied as text. They do not test elapsed-time forgetting or
+persistent internal memory. This one model, six constructed worlds, and two seeds
+do not establish a general introspective capacity or a natural-world benefit.
+There were no live-being accesses or changes, no desktop instrument changes, and
+no pushes or deployments. The earlier completed tranche archive remains closed.
 
 ## Board updates pending
 
