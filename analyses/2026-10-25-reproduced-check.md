@@ -1,8 +1,8 @@
 # Reproduce the failure before testing a check
 
 October 25, 2026. Status: all 24 reproduction calls completed and the prospective
-gate qualified. The matched historical comparison is running; independent raw
-reconstruction of reproduction is underway. Later results remain pending.
+gate qualified. Independent reconstruction of reproduction passed. The matched
+historical comparison is running; later results remain pending.
 
 Mike authorized continuation after S-019. The [prospective protocol](../research/studies/S-020-reproduced-check.md)
 first repeats all 24 S-018 facts-only confirmation requests unchanged. It includes
@@ -82,3 +82,13 @@ All 72 matched requests and their order matched the pre-output preview before
 dispatch. New direct requests are interleaved with both structured formats. The
 fresh bank will run unchanged after this phase, regardless of its intervention
 result; the primary contrast will not be selected from favorable secondaries.
+
+The independent standard-library query was frozen on synthetic examples before
+raw-outcome access. It imports no study parser, scorer or statistics implementation.
+Its reproduction audit matched all 3,617 comparisons, including provider envelope
+to decoded text, every action and simulator field, group counts, source snapshots,
+preview request hashes, model/runtime identity and the evidence-bound gate.
+Audit receipt: `methods-review/s020-reproduction-independent-audit-v1.json`,
+SHA-256 `00601939ec845179aba9f4f488f823bb925b2ab41b06b9130bc0fc8a230e5431`.
+The adapter's post-release construction is disclosed separately from the frozen
+independent numerical query.
