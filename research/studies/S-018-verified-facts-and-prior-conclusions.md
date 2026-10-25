@@ -163,3 +163,27 @@ reproduces the contrasts. All sources and outputs use a new private directory,
 `research/outputs/retained-action-20261024/`; prior archives remain closed. Save
 bounded conclusions, exact artifacts, source-checked quotations and a verified
 backup before closing. Board status/log are updated when accessible.
+
+## Completion record, October 24, 2026
+
+The prospective text above was frozen before outcomes and is retained byte-for-byte
+in both prepared runs' source snapshots. All 12 development and 72 confirmation
+requests completed normally with valid schemas and requested-length accounts.
+No study revision, retry, new model or expanded bank was used. Independent raw-outcome
+reconstruction matched every row, group and contrast; both fixed 36-passage
+two-pass readings completed with unchanged first-pass hashes and literal quotations
+checked against each packet's exact supplied evidence.
+
+Prior-minus-facts utility was zero at every paired seed and world under both rules,
+as was the complete-four-cell interaction. The descriptive 95% intervals [0, 0]
+describe this finite bank, not general equivalence. Changed-rule correct routes
+were 2/12 in each main arm; every unchanged-rule arm was 12/12. The swapped
+changed-rule diagnostic was 4/12, or +2/3 utility with interval [0, 2], entirely
+one world at both seeds. Errors without the explicit conclusion narrow the
+interpretation, but old-rule information remains in all arms and rule change is
+confounded with margin, threshold values and answer conflict.
+
+The [completed account](../../analyses/2026-10-24-retained-action.md) owns the
+readings, exact excerpts, source/audit receipts, final preservation and board
+record. [RQ-04: what self-description does](../QUESTIONS.md#rq-04) remains open.
+No further study or live intervention was launched.

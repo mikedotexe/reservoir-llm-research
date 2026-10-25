@@ -1,17 +1,21 @@
 # Current work
 
-**October 24, selected follow-up: verified facts with and without a prior conclusion.**
+**October 24: verified-facts/prior-conclusion comparison completed.**
 Mike approved [S-018](studies/S-018-verified-facts-and-prior-conclusions.md).
 The prospective design holds facts and their authority fixed, varies an explicit
 historical action conclusion, and crosses changed/unchanged rules. A swapped-choice
 diagnostic accompanies the primary with/without comparison. The bounded schedule
-is 12 development and 72 confirmation calls on the existing local apparatus,
-followed by independent checks and fixed readings. Implementation and independent
-preflight passed; all 12 development calls completed and the original 72-call
-confirmation is underway without a study revision.
+was 12 development and 72 confirmation calls on the existing local apparatus.
+All completed without a study revision; independent outcome reconstruction and
+both fixed two-pass readings passed their checks. Prior-minus-facts utility and
+the rule interaction were zero at every paired seed/world. Under changed rules
+both main arms were 2/12 correct; all unchanged-rule arms were 12/12. The explicit
+conclusion was not necessary for these errors. The swapped diagnostic helped in
+one world at both seeds. Degenerate intervals do not establish general equivalence.
 The [dated account](../analyses/2026-10-24-retained-action.md) owns execution and
 limitations. Work is local on `codex/retained-action`; earlier studies are closed.
-The Hold Shelf is accessible in this session.
+The Hold Shelf is accessible in this session; closure records are being finalized.
+The broader question remains open, with no next experiment launched.
 
 **October 24: decision, consequence and revision study completed.**
 Mike approved [S-017](studies/S-017-provenance-decision-and-revision.md) after stepping
