@@ -1,5 +1,10 @@
 # Reservoir Scope · current candidates
 
+**October 25 development note:** 0.40.0 adds a local [S-021 walkthrough](../desktop/ReservoirScope/S021-WALKTHROUGH.md)
+with saved-result recalculation. It is a development preview, not a newly
+qualified sharing candidate. The sharing and frozen-instrument identities below
+remain unchanged.
+
 ## Tauri 0.27.0 · candidate 04, ready for a first invited tester
 
 The current sharing tranche is **Reservoir Scope 0.27.0 candidate 04** (the Tauri app, shipped under its earlier installed name, Reservoir Scope Tauri Preview),

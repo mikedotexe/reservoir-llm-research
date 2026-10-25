@@ -1,5 +1,13 @@
 # Current work
 
+**October 25: lightweight S-021 app walkthrough.** Mike selected a new
+collaborator's reading/reproduction experience after the research save point.
+Development version 0.40.0 opens with the question, reported result, one paired
+example and offline saved-output recalculation. The [walkthrough guide](../desktop/ReservoirScope/S021-WALKTHROUGH.md)
+describes its private-data staging and bounded replay. This is UX work on
+`codex/s021-walkthrough`, not a new study; the closed evidence and frozen research
+instrument remain preserved.
+
 **October 25: S-021 completed; research save point.**
 Mike authorized [S-021](studies/S-021-prefix-continuation.md) and then a save-point
 assessment. All four non-routing qualification and 72 routing calls completed,

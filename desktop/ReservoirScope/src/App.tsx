@@ -10,15 +10,16 @@ import type { RecordOpenRequest } from './types';
 import ObservatoryWorkspace, { type ObservatoryView } from './ObservatoryWorkspace';
 import MyReservoir, { SustainedClosePanel } from './MyReservoir';
 import DesktopDiagnostics from './DesktopDiagnostics';
+import StudyWalkthrough from './StudyWalkthrough';
 
-const workspaces = ['My reservoir', 'Guided tour', 'Experiments', 'Research cases', 'Geometry bookmarks', 'Observatory'] as const;
+const workspaces = ['Study', 'My reservoir', 'Guided tour', 'Experiments', 'Research cases', 'Geometry bookmarks', 'Observatory'] as const;
 type Workspace = typeof workspaces[number];
 
 export default function App() {
   const exampleSequence = useRef(0);
   const [openRequest,setOpenRequest]=useState<RecordOpenRequest|null>(null);
   const [experimentView,setExperimentView]=useState<'library'|'recording'|'fresh'>('library');
-  const [workspace, setWorkspace] = useState<Workspace>('My reservoir');
+  const [workspace, setWorkspace] = useState<Workspace>('Study');
   const [aboutOpen, setAboutOpen] = useState(false);
   const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
   const [observatoryView, setObservatoryView] = useState<ObservatoryView>('recordings');
@@ -61,6 +62,7 @@ export default function App() {
     <nav className="workspace-nav" aria-label="Workspaces">{workspaces.map(name => <button key={name} aria-current={workspace === name ? 'page' : undefined} onClick={() => navigate(name)}>{name}</button>)}</nav>
     <FreshClosePanel /><SustainedClosePanel />
     <main id="workspace-main" ref={main} tabIndex={-1}>
+      <StudyWalkthrough active={workspace === 'Study'} />
       <GuidedTour active={workspace === 'Guided tour'} onOpenExample={openExample} />
       <CasesWorkspace active={workspace === 'Research cases'} />
       <GeometryWorkspace active={workspace === 'Geometry bookmarks'} />

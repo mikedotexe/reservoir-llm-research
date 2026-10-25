@@ -1,5 +1,12 @@
 # Reservoir Scope: current status and next work
 
+**October 25, 2026 · 0.40.0 development walkthrough.** Mike selected one simple
+S-021 reading/reproduction path: question, result, one exact paired example and
+offline recalculation of saved counts/costs. The new Study tab is the initial
+view. See [walkthrough and reproduction](S021-WALKTHROUGH.md). This local UX
+preview is separate from the frozen 0.39.0 instrument below and does not change
+the 0.27.0 sharing candidate or its human-acceptance status.
+
 **October 22, 2026 · 0.39.0 two-entry slot without a context line, on 0.38.0 recent-return window and two-entry slot, 0.37.0 state-residual and random-older memory policies, 0.36.0 state-chosen memory and watchdog warm-up, 0.35.0 difference-signal channel, 0.34.0 no-tag and scrambled-tag controls, 0.33.0 entry-effect readout, 0.32.0 model thinking toggle, 0.31.0 two more S-010 contract arms, 0.30.0 embedding text reduction and S-010 frame arms, 0.29.0 writing temperature and 0.28.0 field noise and feedback scale, unqualified local candidates · 0.27.0 candidate 04 private handoff; human acceptance pending**
 
 **Frozen as the research instrument, October 22, 2026.** 0.39.0 is the last version planned

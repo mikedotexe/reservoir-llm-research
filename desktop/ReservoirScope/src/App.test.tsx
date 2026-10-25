@@ -10,11 +10,14 @@ vi.mock('./RecordedExperiments', () => ({ default: ({ active }: { active: boolea
 
 // Startup route wiring; controller tests separately exercise attachment and navigation.
 describe('application entry point', () => {
-  it('lands directly in personal setup without creating or starting a session', () => {
+  it('opens the study walkthrough without creating or starting a session', () => {
     const create = vi.spyOn(myReservoirApi, 'create'), action = vi.spyOn(myReservoirApi, 'action');
     const html = renderToStaticMarkup(<App/>);
-    expect(html).toContain('<button aria-current="page">My reservoir</button>');
-    expect(html).toContain('Create my reservoir');
+    expect(html).toContain('<button aria-current="page">Study</button>');
+    expect(html).toContain('aria-labelledby="study-title"');
+    expect(html).toContain('Does a supplied comparison');
+    expect(html).toContain('<button>My reservoir</button>');
+    expect(html).not.toContain('Create my reservoir');
     expect(html).not.toContain('aria-label="Experiment views"');
     expect(html).not.toContain('class="preparation-history"');
     expect(html).not.toContain('<canvas');

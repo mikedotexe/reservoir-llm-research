@@ -1,0 +1,54 @@
+.study-walkthrough{max-width:1000px;margin:0 auto 40px;color:#dce7ea}
+.study-walkthrough[hidden]{display:none}
+.study-heading{padding:4px 0 28px}
+.study-kicker,.study-step{font-size:11px!important;font-weight:650;letter-spacing:1.5px;text-transform:uppercase;color:#93c6ba!important}
+.study-heading h1{font-size:42px;line-height:1.16;margin:14px 0 18px;letter-spacing:-1.2px}
+.study-heading>p:last-of-type{font-size:16px;max-width:730px}
+.study-heading nav{display:flex;gap:26px;flex-wrap:wrap;margin-top:26px;font-size:13px}
+.study-heading nav a{text-decoration:none;border-bottom:1px solid #44655d;padding-bottom:5px}
+.study-walkthrough>section{padding:30px 0;border-top:1px solid var(--line);scroll-margin-top:82px}
+.study-walkthrough h2{margin:8px 0 14px;font-size:25px}
+.study-walkthrough p{font-size:14px;color:#aabdc6;max-width:850px}
+.study-walkthrough p+p{margin-top:12px}
+.study-walkthrough .study-small{font-size:12px;color:#91a7b2}
+.study-walkthrough .study-small strong,.study-walkthrough p b{color:#dce7ea;font-weight:550}
+.study-result-label{font-size:11px;color:#93c6ba;margin:24px 0 9px}
+.study-table-wrap{overflow-x:auto;border:1px solid #30434d;border-radius:8px}
+.study-table-wrap:focus-visible{outline:2px solid #92e4d5;outline-offset:3px}
+.study-table-wrap table{font-size:13px;min-width:650px}
+.study-table-wrap caption{font-size:12px;padding:12px 16px;background:#15242c}
+.study-table-wrap th,.study-table-wrap td{padding:13px 16px;white-space:nowrap}
+.study-table-wrap thead{position:static;background:#14212a}
+.study-table-wrap thead th{font-size:11px;color:#9db3bf;font-weight:550}
+.study-table-wrap tbody th{font-weight:450;white-space:normal}
+.study-table-wrap td{font-variant-numeric:tabular-nums}
+.study-table-wrap tbody tr:last-child>*{border-bottom:0}
+.study-table-wrap tbody tr:nth-child(2){background:#142820}
+.study-walkthrough .study-cost-key{font-size:12px;margin-top:12px}
+.study-finding{display:flex;align-items:center;gap:24px;background:#14251f;border-left:3px solid #88cdb3;padding:17px 20px;margin-top:20px}
+.study-finding strong{flex:0 0 185px;font-size:19px;color:#b4e2ce;font-weight:550}
+.study-finding p{font-size:13px}
+.study-walkthrough summary{font-size:13px}
+.study-walkthrough .study-limit{margin-top:20px;font-size:13px;max-width:850px}
+.study-facts{padding:20px 22px;border:1px solid #31444e;background:#121e26;border-radius:8px;margin:20px 0}
+.study-facts>strong{font-size:13px}.study-facts p{font-size:13px;margin-top:8px}
+.study-walkthrough blockquote{margin:12px 0;font-size:13px;line-height:1.7;color:#c2d3da}
+.study-facts blockquote{padding-left:14px;border-left:2px solid #7c9caa}
+.study-example-pair{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.study-example-pair article{padding:24px;border:1px solid #30434d;border-radius:8px;background:#101a22;min-width:0}
+.study-example-pair h3{font-size:19px;margin:6px 0 24px}
+.study-example-pair .study-label{font-size:10px;letter-spacing:.8px;color:#8aa7b5;text-transform:uppercase}
+.study-action{display:block;font-size:18px;font-weight:550;margin-top:8px;color:#c4e6d6}
+.study-example-pair .study-outcome{padding-top:14px;margin-top:18px;border-top:1px solid #283a43;font-size:13px;color:#b4d6c5}
+.study-outcome span{display:block;color:#8ca8b3;font-size:10px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px}
+.study-example-reading{margin-top:22px}
+.study-walkthrough pre{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.65;font-size:12px;background:#0a1219;padding:15px;border-radius:5px;color:#bbced6}
+.study-walkthrough .study-id{font-size:10px;overflow-wrap:anywhere}
+.study-walkthrough .primary-button{margin-top:22px;font-size:14px;padding:12px 18px}
+.study-replay-message:empty{display:none}
+.study-replay-message{margin-top:18px;border-left:3px solid #99d7bd;padding:10px 16px;background:#14251f}
+.study-replay-message p{color:#b7dfcd}
+.study-replay-error{border-color:#e0b17a;background:#292116}.study-replay-error p{color:#e7c9a5}
+.study-replay-message+p{margin-top:14px}
+.study-provenance{margin-top:24px!important}.study-provenance dl{grid-template-columns:125px minmax(0,1fr)}
+@media(max-width:800px){.study-heading h1{font-size:33px}.study-wide-break{display:none}.study-example-pair{grid-template-columns:1fr}.study-finding{display:block}.study-finding p{margin-top:8px}.study-heading nav{gap:14px}.study-walkthrough>section{scroll-margin-top:75px}}
