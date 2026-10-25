@@ -1,7 +1,7 @@
 # Reproduce the failure before testing a check
 
-October 25, 2026. Status: preparation complete; independent final preflight pending.
-No S-020 model generation has started at this checkpoint.
+October 25, 2026. Status: independent preflight approved; the unchanged 24-call
+reproduction phase is running. No empirical result is claimed at this checkpoint.
 
 Mike authorized continuation after S-019. The [prospective protocol](../research/studies/S-020-reproduced-check.md)
 first repeats all 24 S-018 facts-only confirmation requests unchanged. It includes
@@ -36,6 +36,11 @@ Private evidence is under `research/outputs/reproduced-check-20261025/`. All thr
 final designs and previews use `-v2.json`; actual run directories will use `-v1`
 because no earlier actual runs exist. The protocol SHA-256 is
 `d860f3a4391e25d6bce328aa623b6c0c825f498ab1ff7b9dd21da8da32335c1e`.
-The board test `id:t-s020-reproduced-check` is active and persisted after reload.
+Final independent preflight passed 4,962 checks and 22 integrated synthetic tests.
+Approval receipt SHA-256:
+`7e584c8ad7346839b4ce971316df27b2474f0b24e0d6bc27df62c8b0a4f04261`.
+The prepared reproduction schedule and every request hash matched the frozen preview
+before dispatch; model/runtime identity also matched. The board test
+`id:t-s020-reproduced-check` is active and persisted after reload.
 Earlier archives are read-only; live systems and the frozen desktop instrument
 remain outside this study.
