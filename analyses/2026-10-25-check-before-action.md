@@ -1,6 +1,6 @@
 # A checkable comparison before an action
 
-S-019, October 25, 2026. **In progress; development and discovery completed.** Mike authorized
+S-019, October 25, 2026. **In progress; confirmation underway.** Mike authorized
 autonomous iteration on the gap between accurately stated distinctions and selected
 actions. The [protocol](../research/studies/S-019-check-before-action.md) defines
 development, discovery and fresh-bank confirmation, with a fixed rule selecting
@@ -68,4 +68,26 @@ The immutable discovery gate records **no discovery candidate** and retains
 `order_conflict` as the fallback confirmation primary. Its SHA-256 is
 `f94f6be8d90501372abd897fc781f93550915de2586fdbcb5a11632cd8da7fe3`.
 No confirmation request was prepared before that receipt. The independent raw
-audit and unchanged full confirmation bank are next.
+audit compared 5,291 fields with zero mismatches and reconstructed the same
+candidate decisions and source bindings. The actual prepared confirmation bank
+matched all 144 prospective request hashes and their schedule before dispatch;
+all 144 cells are now running.
+
+## Cross-study interpretation
+
+A separate source-only audit, completed without accessing S-019 outcomes, found
+that S-019's direct baseline is not a literal S-018 baseline. S-018 placed the old
+threshold 50 beside the current threshold before the factual record and discussed
+historical action conclusions. S-019 calls historical thresholds background rather
+than the current rule and places its optional historical number after the factual
+record. It uses fresh numerical banks, names and dates, removes the fixed old
+threshold and explicit historical action conclusions, and adds an explicit key-order
+instruction even in the direct arm. The shared runner, simulator, transport and
+statistical helper have identical source hashes.
+
+These simultaneous changes prevent attributing a cross-study recovery to any one
+of them. Within S-019, the structured order contrast changes only the requested
+key order; the structured-versus-direct comparison changes a larger bundle of
+fields, instructions and emitted tokens. Neither comparison authenticates private
+reasoning. The discovery ceiling leaves no observed action-error headroom for
+either intervention; it does not explain which change removed S-018's errors.
