@@ -1,8 +1,8 @@
 # Does the preceding comparison change the choice?
 
 October 25, 2026. Status: implementation, independent preflight and all 76
-render-only checks passed. All four normal sentinel continuations passed their
-strict qualification gate; independent qualification audit precedes routing.
+render-only checks passed. All four normal sentinel continuations and their
+independent qualification audit passed. The fixed 72 routing calls are running.
 
 Mike authorized working toward the proposed comparison and then assessing a good
 save point. [S-021](../research/studies/S-021-prefix-continuation.md) tests whether
@@ -66,6 +66,13 @@ the actual rendered-boundary evidence rather than substituting convincing prose
 for it. Qualification score SHA-256:
 `9335b8447fb9ce3858e65b69ed5da905128f1d661fc5a65f254890063672977c`;
 gate SHA-256 `c7818f6e9ca8cd5a073c9d48482a6eb069e94b105c3edcd27d2a23276cffc837`.
+Independent raw qualification reconstruction passed 725 checks, including all
+request/dispatch/envelope/source bindings and the exact study-design gate.
+Receipt `methods-review/independent-qualification-audit-v1.json` has SHA-256
+`aba7d07ddd6f24542a6adae266e65debacb91b0b136ffd4fdfc82f68df1aa83b`.
+The full 72-call study schedule and request hashes matched the pre-output preview
+again immediately before dispatch. Study manifest SHA-256:
+`b0b013a0c978319a8641804cdef19070b7ac957daf577adfca5f6b2a728c6a26`.
 
 Implementation is integrated at `64458d8`. Twenty final S-021 synthetic tests
 passed. Independent final preflight passed 21,130 comparisons, including every

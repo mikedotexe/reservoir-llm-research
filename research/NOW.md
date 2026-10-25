@@ -9,6 +9,10 @@ fields are not model-generated checks. The intended finish is independent review
 fixed readings, evidence preservation and a cumulative save-point assessment;
 no further study is automatically launched. Local work is on
 `codex/prefix-continuation`; all earlier archives remain closed.
+Implementation and independent preflight passed. All 76 render-only requests
+matched the exact open-prefix boundary, and all four normal sentinel completions
+passed their independently audited qualification gate. The fixed 72 routing calls
+are running; no routing conclusion is recorded yet.
 
 **October 25: reproduced failure and check-order comparison completed.**
 Mike authorized continuation after S-019. [S-020](studies/S-020-reproduced-check.md)
