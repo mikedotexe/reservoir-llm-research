@@ -266,4 +266,24 @@ The implementation worktree was archived after clean committed integration;
 checkpoint `d5de912` remains reachable. Its only ignored local files were Python
 bytecode caches, and the needed synthetic audit inputs were separately preserved.
 All work remains local on `codex/decision-check`; no refs have been pushed or live
-systems changed. The byte-verified evidence backup is the remaining closure step.
+systems changed. Evidence closure and the byte-verified backup are complete.
+
+## Closed evidence and verified backup
+
+The evidence tree was closed at 2026-10-25 17:59:47 UTC after all writers stopped.
+`CLOSED.json` has SHA-256
+`fa042ee031c43641f06c60fa1250d9932a8dee20c6bc861a05ab8a87650a15df`
+and binds the completed-report checkpoint
+`2b0cf16311cf84266dad20ad29478136b3f5f06b`. Its report snapshot is retained as
+`methods-review/completed-report-2b0cf16-v1.md`; this preservation appendix was
+added afterward, outside the closed evidence tree and the scientific review.
+
+The [backup manifest](/Users/mikepurvis/other/reservoir-llm-research/research/outputs/decision-check-20261025-closed-backup-20261025T175947Z/backup-manifest.json)
+records **2,205 files and 22,917,701 bytes**, with SHA-256
+`0a1e1c605349803b36ecebfef1324d32ee17e20e5a7422ed895909754d4ef8a9`.
+Full source inventories before and after copying matched the destination.
+A separate final read-only check again matched every relative path, byte count
+and file hash in source, copy and manifest. No further evidence-tree writes were
+made. This verifies byte preservation, not new authentication of original capture
+provenance. The original main checkout remains at
+`b9f845dd095cd422d6e80de36c6b41e94880ed03` with no tracked changes.
