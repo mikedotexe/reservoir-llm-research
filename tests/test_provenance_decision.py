@@ -300,8 +300,11 @@ class StudyTests(unittest.TestCase):
         out=self.root/'reading'
         with patch.object(s.runner,'guard_output',side_effect=lambda p:Path(p)):
             r=s.reading(self.design,self.runs,out)
-        # Development has only base0 of fixed 0,2,4; 2 variants * 6 outputs.
+        # Development has only base1 of fixed 1,2,4; 2 variants * 6 outputs.
         self.assertEqual(r['packets'],12)
+        key=json.loads((out/'allocation-key.json').read_text())
+        self.assertEqual({item['base_index'] for item in key},{1})
+        self.assertEqual({item['variant'] for item in key},{'current','invalid'})
         self.assertEqual(set(r['files']),{'reading.md','evidence.md','allocation-key.json'})
         for name,h in r['files'].items():self.assertEqual(s.digest(out/name),h)
         self.assertNotIn('case_id',(out/'reading.md').read_text())

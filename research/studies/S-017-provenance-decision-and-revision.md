@@ -173,8 +173,11 @@ endpoint will turn an inconvenient result into a success.
 
 ## Fixed reading and review
 
-The fixed sample is bases 0, 2 and 4, both provenance variants, seed 7, and all six
+The fixed sample is bases 1, 2 and 4, both provenance variants, seed 7, and all six
 outputs per chain: initial, revision and four later branches, 36 planned passages.
+This pre-outcome selection covers each invalidation family, both initial direct
+destinations, both directions of route change, and an unchanged destination. It
+supersedes the initial 0,2,4 sketch, which covered only initially LOW worlds.
 Two fresh same-family assistant readers first save output-only notes with allocation
 labels withheld, then read exact supplied evidence. Missing passages retain their
 slots. Review source fidelity, uncertainty, rationale/action agreement, new versus
