@@ -174,3 +174,29 @@ retained scoring-code hashes are disclosed without changing the retained score.
 All raw outputs are ignored private research material. Publish an aggregate
 account only within the user's authorized scope. Preserve private evidence before
 archiving a worktree; Git snapshots do not include ignored outputs.
+
+## S-017: deterministic consequences between model stages
+
+[`probes/provenance_decision.py`](../probes/provenance_decision.py) adds the bounded
+[decision-and-revision study](studies/S-017-provenance-decision-and-revision.md)
+without changing the generic dispatcher. Its `design --split ... --out ...` command
+freezes the authored bank and implementation hashes. `build-stage DESIGN STAGE`
+produces a new protocol and opportunity ledger through `--out` and `--ledger-out`;
+use `--initial-run` for revision, and both `--initial-run` and `--revision-run`
+for later use. Repeated `--source FILE` arguments snapshot the study document or
+other declared construction sources. Prepare, run and verify each stage using the
+generic commands above before building its successor.
+
+The builder checks the parent chain and refuses pending or unresolved physical
+dispatches. It saves deterministic simulator receipts separately from provider
+results. Complete malformed response text remains eligible as a retained record;
+only valid closed-set actions execute in the simulation. Missing or incomplete
+source text blocks its later record branch, while factual and no-record controls
+remain eligible. Every planned slot remains in the ledger.
+
+The dedicated `score DESIGN` and `reading DESIGN` commands take all three runs as
+`--initial-run`, `--revision-run`, and `--later-run`, plus a new `--out` destination.
+Scoring separates actual utility from evidence-policy compliance and clusters
+both provenance variants and seeds within base worlds. Reading exports the fixed
+36-slot confirmation sample with exact inputs and a separate allocation key. The
+prospective document owns the interpretation, finish line and missingness rules.
