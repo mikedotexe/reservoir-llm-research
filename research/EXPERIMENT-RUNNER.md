@@ -200,3 +200,21 @@ Scoring separates actual utility from evidence-policy compliance and clusters
 both provenance variants and seeds within base worlds. Reading exports the fixed
 36-slot confirmation sample with exact inputs and a separate allocation key. The
 prospective document owns the interpretation, finish line and missingness rules.
+
+## S-018: facts and an explicit historical conclusion
+
+[`probes/retained_action.py`](../probes/retained_action.py) implements the bounded
+[verified-facts comparison](studies/S-018-verified-facts-and-prior-conclusions.md).
+`design --split development|confirmation --out FILE` freezes the authored worlds
+and implementation hashes. `build DESIGN --out PROTOCOL --ledger-out LEDGER`
+accepts repeated `--source FILE` arguments for the prospective document and reviews.
+Prepare, run and verify that protocol with the unchanged generic commands above.
+
+All requests are static, researcher-authored inputs. They have no generated parents
+or stage dependencies. `score DESIGN --run RUN --out FILE` retains every planned
+cell, separates invalid/missing utilities from zero cost, and reports paired
+world-clustered contrasts. Its rule interaction uses only complete same-seed
+four-cell intersections. `reading DESIGN --run RUN --out NEW_DIRECTORY` exports
+the fixed 36-passage confirmation sample, exact supplied messages and a separate
+allocation key. These probe commands never contact a provider. Existing output
+paths are refused; the prospective document owns the fixed finish line.

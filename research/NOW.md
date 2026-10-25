@@ -6,7 +6,8 @@ The prospective design holds facts and their authority fixed, varies an explicit
 historical action conclusion, and crosses changed/unchanged rules. A swapped-choice
 diagnostic accompanies the primary with/without comparison. The bounded schedule
 is 12 development and 72 confirmation calls on the existing local apparatus,
-followed by independent checks and fixed readings. No outputs collected yet.
+followed by independent checks and fixed readings. Implementation and independent
+preflight passed; development collection is underway.
 The [dated account](../analyses/2026-10-24-retained-action.md) owns execution and
 limitations. Work is local on `codex/retained-action`; earlier studies are closed.
 The Hold Shelf is accessible in this session.
@@ -25,9 +26,12 @@ One corrected value survived verbatim with an action that became wrong after a
 threshold change. The [dated account](../analyses/2026-10-24-provenance-decision.md)
 distinguishes retained content, accepted evidence and application, with cautious
 source treatment and ordinary successes preserved. The next comparison is a
-proposal, not a launched study. Work is local on `codex/provenance-decision`;
+proposal in that closed account; Mike has since authorized S-018 above. The S-017
+checkpoint is local on `codex/provenance-decision`;
 the prior tranche and its closed private backup remain intact. Hold Shelf updates
-remain pending login. The new private evidence tree is also closed with a verified
+were reconciled through the authenticated board during S-018 preparation: both
+cards and the session log were saved and read back. Its private evidence tree is
+also closed with a verified
 backup outside the worktree; its manifest is linked from the account.
 
 **October 24: four studies of useful self-observation completed.**

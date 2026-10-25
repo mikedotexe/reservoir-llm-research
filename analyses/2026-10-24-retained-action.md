@@ -1,7 +1,7 @@
 # Verified facts with and without a prior action conclusion
 
-S-018, October 24, 2026. **In progress: prospective design committed; no model
-outputs collected yet.** Mike approved the follow-up proposed after
+S-018, October 24, 2026. **In progress: independent preflight approved;
+development collection underway.** Mike approved the follow-up proposed after
 [S-017](2026-10-24-provenance-decision.md). The [protocol](../research/studies/S-018-verified-facts-and-prior-conclusions.md)
 holds verified factual content and its authority fixed while adding or withholding
 an earlier action conclusion, under changed and unchanged rules.
@@ -49,3 +49,25 @@ only after the saved card is read back. It was subsequently saved and read back 
 prospective commit and this account linked. A private screenshot preserves the
 visible card. Earlier login-blocked notices remain dated historical records until
 separately reconciled.
+
+The S-017 test and finding cards and its session log were subsequently saved and
+read back through the same authenticated board. This reconciles that study's
+earlier pending notice; it does not claim publication of older tranche notices.
+Its closed private evidence and original report remain intact.
+
+## Implementation qualification
+
+The implementation was integrated locally at `f38ed7b`; the full suite passed
+583 tests with 33 skips. Independent preflight v2 passed 7,223 checks against
+the actual 12- and 72-request designs, exact input invariants, source bindings,
+strict parser/simulator reuse, missingness, complete-intersection interaction,
+bootstrap convention and fixed reading exports. The auditor's initial synthetic
+fixture accidentally equated the correct and deliberately incorrect interaction
+calculations; the failed self-check and corrected fixture are both retained.
+This was an audit-fixture correction, not a study-code or design revision.
+
+The frozen approval is `methods-review/s018-preflight-review-v2.json` in the
+private evidence root, SHA-256
+`af76f379d99e839873180cb232d8c3b7e2671a001ad91ff8cf0304bd51ba33d7`.
+Development preparation snapshots that approval, the prospective study, reading
+instructions and provider-readiness receipt alongside all construction sources.
