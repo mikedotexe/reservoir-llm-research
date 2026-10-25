@@ -1,7 +1,9 @@
 # S-017 · A decision, its consequence, and a retained revision
 
 Selected by Mike on October 24, 2026, after the completed S-013–S-016 tranche.
-Status: prospective design and implementation, before any S-017 model outcomes.
+Status: completed; the design below was frozen before S-017 model outcomes.
+The post-collection completion record is appended at the end. Exact prospective
+source copies remain in each immutable staged run.
 Question: when an agent revisits a decision after authoritative evidence, does
 carrying its updated response help it use that information on a later decision?
 
@@ -191,3 +193,22 @@ information flow and planned cells. Meaningful fixture tests cover thresholds,
 receipt provenance, wrong versus unavailable actions, missing parents, immutable
 source bindings and base-pair weighting. The final account includes exact receipts,
 limitations, and a pending board payload if the live board remains inaccessible.
+
+## Completion record, October 24, 2026
+
+All 24 development and 144 confirmation opportunities completed with valid action
+schemas and no retries. The confirmation design and code were unchanged after
+development. All six staged runs verified; independent numerical execution
+reproduced the complete score, and both fixed 36-passage two-pass readings finished.
+
+Updated-minus-initial later utility was −0.167, descriptive 95% base-world interval
+[−0.417, 0.000], on all 24 paired case/seed cells within six constructed worlds.
+The sole wrong-route-to-correct-direct chain later repeated its revision text
+exactly, preserving x=55 alongside HIGH after the threshold changed from 50 to 60.
+That is a retained correction with failed application under the new rule, not an
+estimated general correction-survival rate. Source authority and interpretation
+remain separate from route utility. No extension was initiated.
+
+The [completed account](../../analyses/2026-10-24-provenance-decision.md) owns the
+results, fixed readings, separately selected corrected-chain trace, independent
+audit, evidence receipts, backup record and pending board payload.

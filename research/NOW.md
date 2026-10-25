@@ -1,16 +1,22 @@
 # Current work
 
-**October 24, next study: follow a decision through its consequence and revision.**
+**October 24: decision, consequence and revision study completed.**
 Mike approved [S-017](studies/S-017-provenance-decision-and-revision.md) after stepping
 back from the four-study tranche. The bounded design has 24 development and 144
 confirmation requests on one local model, with a deterministic routing simulator
 and four later-use conditions. It tests carrying an updated decision response,
 with factual-audit and no-record controls. Implementation and independent preflight
 checks are complete; all 24 development and 144 unchanged confirmation requests
-completed. Independent numerical verification passed; the fixed two-pass readings
-and archival closeout are underway. The [dated account](../analyses/2026-10-24-provenance-decision.md)
-retains decisions and limitations. Work is local on `codex/provenance-decision`;
-the prior tranche and its closed private backup remain intact.
+completed. Independent numerical verification and both fixed two-pass readings
+passed their checks. Updated-response later utility did not improve over the
+initial response (difference −0.167, descriptive interval [−0.417, 0], six worlds).
+One corrected value survived verbatim with an action that became wrong after a
+threshold change. The [dated account](../analyses/2026-10-24-provenance-decision.md)
+distinguishes retained content, accepted evidence and application, with cautious
+source treatment and ordinary successes preserved. The next comparison is a
+proposal, not a launched study. Work is local on `codex/provenance-decision`;
+the prior tranche and its closed private backup remain intact. Hold Shelf updates
+remain pending login.
 
 **October 24: four studies of useful self-observation completed.**
 The [tranche protocol](studies/S-013-016-self-observation-tranche.md) covers supplied

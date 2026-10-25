@@ -1,10 +1,17 @@
 # Following a decision through consequence, revision and later use
 
-S-017, selected October 24, 2026. **Collection complete: 24 development and 144
-confirmation responses. Final fixed readings and archival closeout in progress.** The [prospective protocol](../research/studies/S-017-provenance-decision-and-revision.md)
+S-017, selected October 24, 2026. **Completed: 24 development and 144 confirmation
+responses, independent outcome audit, and both fixed two-pass readings.** The [prospective protocol](../research/studies/S-017-provenance-decision-and-revision.md)
 defines a bounded next observation after the [completed tranche](2026-10-24-introspection-confirmation.md).
 Subjects are isolated laptop model calls in a synthetic task. Nothing reaches the
 live beings or changes the frozen desktop instrument.
+
+Supplying the updated response did not improve later utility over the initial
+response on these six constructed worlds. The most informative single chain
+retained its corrected x=55 verbatim while repeating HIGH after the rule changed
+to require LOW. The fixed readings separately show inaccurate source descriptions,
+explicit doubts about source authority, and ordinary successful use. Retaining a
+fact, accepting it as evidence, and applying it under a changed rule are distinct.
 
 The question is whether supplying an updated response helps a later decision,
 compared with carrying the initial response. Shared earlier calls produce initial
@@ -170,6 +177,64 @@ It binds all six stages/conditions at both seeds to exact requests, results and 
 provider responses. The independent outcome audit separately verifies the eligible
 chain's threshold change, exact response equality and four later consequences.
 
+## Fixed readings: available content and accepted evidence differ
+
+Two fresh same-family assistant contexts each read all 36 prespecified passages:
+bases 1, 2 and 4, both provenance variants, seed 7, initial/revision/four later
+outputs. Each saved output-only notes before receiving exact supplied messages,
+then saved a separate second pass bound to its unchanged first-pass hash. They read
+mandatory repository guidance but not scores, the allocation key, this account,
+or one another's notes. Text could reveal conditions. The detailed reading
+instructions were written after development, during initial confirmation collection,
+before this later-output sample existed; the sample and core reading purpose had
+already been fixed before S-017 generation.
+
+The separate notes preserve these observations and qualifications:
+
+| Fixed packet | Supplied content and later response | Reading and limit |
+|---|---|---|
+| 007, initial-response arm | The retained response explicitly identifies Oriole02, noon and x=76; the later response calls the value nonfocal. | Both readers identify a mismatch with the supplied prose. Caution about a fallible source could still motivate MEASURE, but does not support the claimed different station. |
+| 026, updated-response arm | The source repeatedly calls x=37 a target-snapshot value; the later response calls it an earlier-snapshot value. | Both distinguish an inaccurate description of the source from uncertainty about whether to trust it. The retained account omits explicit station and date. |
+| 028, updated-response arm | A retained audit report gives Oriole05's target x=45; the response rejects it as concerning an unrelated ticket. | Both note that the task fixes x across fresh tickets. The ticket objection does not follow from that rule; authority of the reported audit remains a separate question. |
+| 020 and 032, initial/updated arms | The responses acknowledge the value and its reported provenance, then ask for stronger authority. | Both preserve cautious source treatment as a plausible reading. Presence in generated prose does not guarantee its truth, and these accounts omit some explicit subject/time binding. |
+| 029, updated-response arm | The model accepts the retained Oriole03 target x=37 and routes LOW correctly. | Reader A treats this as a counterexample to blanket rejection. Reader B additionally emphasizes that LOW was also the retained action, so this packet alone does not demonstrate recomputation under the new threshold. |
+| 033, initial stage | The actual noon record belongs to Cedar02; the only Oriole02 record is old. | Both find MEASURE supported. Omitting the nonfocal record's name from the account is not itself a misreading. |
+
+Ordinary no-record measurements and correct uses of direct factual records remain
+in both readings. The visible revision sequences resolve justified uncertainty or
+maintain already correct decisions; these six sampled chains contain no previously
+wrong route corrected to a direct route. The eligible correction therefore remains
+the separately disclosed full-chain trace above.
+
+No consensus label or semantic error rate was constructed. Both readers' full
+judgments and alternatives remain in `readings/confirmation-v1/reader-{a,b}-pass{1,2}-v1.json`.
+Root verification checked all 36 packets in each note, each literal quotation
+against its exact raw response or supplied message, input hashes and the unchanged
+first-pass hashes. Its receipt is `methods-review/fixed-readings-verification-v1.json`,
+SHA-256 `9d7530df126681fbc9f53b0d1b5198d1e829444be02c156ac42c3d3c9378e8b4`.
+This check establishes source fidelity, not the correctness of every interpretation.
+
+## What this changes about the next question
+
+The study distinguishes three accomplishments: retaining a fact in an account,
+accepting that account as evidence, and applying its fact under a changed rule.
+The observed corrected chain demonstrates the first and fails the third. The fixed
+readings show why the middle step cannot be inferred solely from measurement costs:
+some responses misdescribe available content, while others explicitly question its
+authority. The factual-audit control establishes successful decisions under a
+clearer source contract in this task, not a general superiority of one writing style.
+
+One proposed follow-up, **not initiated**, would hold the audited factual content
+and explicit source verification fixed and vary only whether a previously correct,
+now-obsolete routing conclusion is also supplied. Use changed and unchanged rules,
+freeze the bank before outputs, and retain direct errors, measurement costs and
+source readings. This would test the effect of including an inherited action
+conclusion under an agreed source contract. It would not isolate all wording or
+length effects, and it would not be a test of private introspection. The narrower
+development-only suggestion to vary source verification is retained in its original
+memo; the confirmation's exact stale-action sequence motivates this proposed focus.
+No model, sample or prompt expansion was run after the fixed schedule.
+
 ## Verification and interpretation limits
 
 The confirmation score comes from `probes/provenance_decision.py score` applied to
@@ -198,6 +263,12 @@ parsing, simulation, policy, transitions and numerical aggregation. This is
 independent execution by another same-family assistant, not independent human
 validation. Semantic warrant of a retained response remains a reading question.
 
+A final methods review found no material issue in the reported numbers, correction
+eligibility, source-authority qualifications, reading-sample distinctions or the
+unrun follow-up proposal. Its private receipt is
+`methods-review/final-interpretation-review-v1.json`, SHA-256
+`cc4d09f95d2ec14f095d960e3485c1b9e1e3f18e57f7958c22ba21b88bc23c4c`.
+
 The main private receipts, relative to `research/outputs/provenance-decision-20261024/`, are:
 
 | Record | SHA-256 |
@@ -217,10 +288,24 @@ no pushes or deployments. The earlier completed tranche archive remains closed.
 ## Board updates pending
 
 The Hold Shelf was checked on October 24 and displayed “Sign in to view this page.”
-Pending test card `t-s017-provenance-decision-revision`, status **active**, being
-**system**: implement and complete the frozen isolated decision/consequence/revision
-study; source Mike's explicit approval of the proposed next experiment; evidence
-this account and the S-017 protocol. Pending session log:
+Pending test card `t-s017-provenance-decision-revision`, status **done**, being
+**system**: completed 24 development and 144 fixed confirmation calls, independent
+mechanical/numerical audit and two fixed two-pass readings. Updated-response later
+utility did not improve over initial response in this bank; the one eligible
+corrected chain retained its corrected value but repeated an obsolete action.
+Source: Mike's explicit approval of the proposed experiment. Evidence: this account
+and the S-017 protocol.
+
+Pending finding card `f-s017-corrected-value-stale-action`, lane **finding**, status
+**verified**, being **system**: one isolated Mistral chain corrected x45 to x55
+with an authoritative audit, then repeated the entire revised response including
+HIGH after the threshold changed 50 to 60. This is exact textual retention with
+failed changed-rule application in one constructed case, not a general memory or
+introspection finding. Evidence: this account's separate corrected-chain trace and
+independent audit. Tags: `s017`, `provenance`, `revision`, `simulated-outcome`.
+
+Pending session log:
 `2026-10-24-s017-provenance-decision`, “Follow a decision through its consequence
-and revision,” with the design, counterbalancing and local-system boundaries above.
+and revision,” recording the fixed completion, audit, readings, results and
+local-system boundaries above. No next experiment has been launched.
 No board publication is claimed.
