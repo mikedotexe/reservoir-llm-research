@@ -44,5 +44,8 @@ including null or ceiling results. No outcome-driven expansion is planned.
 
 The Hold Shelf was read on October 24 through the authenticated browser and was
 accessible. A new S-018 test card is being recorded; publication will be claimed
-only after the saved card is read back. Earlier login-blocked notices remain dated
-historical records until separately reconciled.
+only after the saved card is read back. It was subsequently saved and read back as
+**active**, tagged `id:t-s018-verified-facts-prior-conclusions`, with the protocol,
+prospective commit and this account linked. A private screenshot preserves the
+visible card. Earlier login-blocked notices remain dated historical records until
+separately reconciled.
