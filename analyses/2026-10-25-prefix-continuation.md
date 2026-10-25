@@ -268,5 +268,9 @@ theory of introspection.
 
 No further study is launched. A later resumption can begin from the committed
 protocol and this completed record, with a newly selected question and prospective
-design. Pending closure work is final scientific review, board read-back, immutable
-evidence closure and the byte-verified backup.
+design. If this specific question is reopened, the minimum next observation would
+be a prospectively fixed fresh authored bank repeating the same three-prefix
+comparison, retaining MEASURE separately from wrong direct routes, to test whether
+the observed sensitivity recurs. That is an unlaunched replication proposal; it
+would not identify S-020's natural mediator. Pending closure work is final scientific
+review, board read-back, immutable evidence closure and the byte-verified backup.
