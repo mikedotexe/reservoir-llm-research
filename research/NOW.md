@@ -11,8 +11,10 @@ The prospective protocol is committed, source requests copied and hash-checked,
 and the Hold Shelf test is active. Implementation and independent preflight passed.
 All 24 reproduction calls completed: changed rules yielded 10/12 wrong direct
 routes, unchanged rules 12/12 correct. Five worlds failed at both seeds, qualifying
-the frozen gate. The 72-call matched historical comparison is running; independent
-raw reconstruction of reproduction is underway. Work is local on
+the frozen gate. The matched historical comparison completed and passed independent
+reconstruction: changed-rule direct actions were correct 2/12, action-first 4/12,
+and check-first 11/12 with one MEASURE. The fixed primary gain was 3.25; the order
+contrast was 31/12. Fresh confirmation is running unchanged. Work is local on
 `codex/reproduced-check`; earlier evidence archives remain closed.
 
 **October 25: checkable-comparison study completed.**

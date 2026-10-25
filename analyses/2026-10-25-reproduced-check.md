@@ -1,8 +1,8 @@
 # Reproduce the failure before testing a check
 
-October 25, 2026. Status: all 24 reproduction calls completed and the prospective
-gate qualified. Independent reconstruction of reproduction passed. The matched
-historical comparison is running; later results remain pending.
+October 25, 2026. Status: reproduction and the matched historical comparison are
+complete and independently verified. Fresh confirmation is running unchanged;
+replicated improvement and fixed qualitative readings remain pending.
 
 Mike authorized continuation after S-019. The [prospective protocol](../research/studies/S-020-reproduced-check.md)
 first repeats all 24 S-018 facts-only confirmation requests unchanged. It includes
@@ -92,3 +92,53 @@ Audit receipt: `methods-review/s020-reproduction-independent-audit-v1.json`,
 SHA-256 `00601939ec845179aba9f4f488f823bb925b2ab41b06b9130bc0fc8a230e5431`.
 The adapter's post-release construction is disclosed separately from the frozen
 independent numerical query.
+
+## Matched historical comparison
+
+All 72 calls completed normally with valid strict schemas and accounts within the
+requested length. All 48 structured responses followed the requested key order.
+Direct has no explicit order requirement; its order diagnostic is inapplicable.
+There are no unavailable action slots, pairs or worlds.
+
+| Rule | Format | Correct direct / planned | Wrong direct | MEASURE | Total simulated cost |
+|---|---|---:|---:|---:|---:|
+| Unchanged | Direct | 12/12 | 0 | 0 | 0 |
+| Unchanged | Action first | 12/12 | 0 | 0 | 0 |
+| Unchanged | Check first | 12/12 | 0 | 0 | 0 |
+| Changed | Direct | 2/12 | 10 | 0 | 40 |
+| Changed | Action first | 4/12 | 8 | 0 | 32 |
+| Changed | Check first | 11/12 | 0 | 1 | 1 |
+
+The fixed primary check-first minus direct utility gain is **3.25**, descriptive
+world-bootstrap interval **[1.75, 4]**. Its seed-specific gains are 10/3 and 19/6;
+five world means are positive. All 12 pairs contribute across six worlds, meeting
+the predeclared matched-bank practical criterion. This alone is not replication.
+
+The check-first minus action-first order contrast is **31/12**, interval
+**[13/12, 4]**. Action-first minus direct is **2/3**, interval **[0, 2]**, entirely
+base 02 at both seeds. Every unchanged-rule contrast is zero with interval [0,0],
+so each complete-four-cell interaction equals its corresponding changed-rule
+contrast. These nine contrasts were all specified before outcomes; the primary
+was not selected from them. The 10,000-draw intervals describe the six authored
+world clusters, not 72 independent subjects or population equivalence.
+
+All 48 structured responses copied both integers correctly. Under unchanged
+rules all 24 structured comparisons were correct and agreed with their actions.
+Under changed rules, action-first had 10/12 correct comparisons; six of these
+accompanied wrong direct actions. The other two comparisons were incorrect and
+also accompanied wrong direct actions. Check-first had 12/12 correct comparisons,
+11 correct direct routes and one unnecessary MEASURE. That measurement cost one
+at base 01, seed 20260909, where both alternative formats chose correctly. Its
+world-mean primary and order differences are therefore −0.5. This exception is
+retained alongside the improvements; checking did not improve every world.
+
+Independent reconstruction matched all 11,532 comparisons, including raw responses,
+all nine contrasts and exact bootstrap intervals. Audit receipt:
+`methods-review/s020-matched-independent-audit-v1.json`, SHA-256
+`a98c41bc66d35ce34facf46ca59520e4658d62f1ed5abefec34b94342e2a1210`.
+The matched score SHA-256 is
+`ff176c210c042c912493a031346a4ed917af69dffc1ec266521f0d719b940d69`;
+its evidence-bound gate is
+`516ec9f7158337e52d61f89258adda0824c39fb7009baea890824d752dc1e9fb`.
+All 72 fresh-confirmation requests and their schedule matched the pre-output
+preview before dispatch. No request or endpoint was revised after these outcomes.
