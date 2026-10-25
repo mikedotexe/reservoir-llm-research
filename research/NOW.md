@@ -14,7 +14,8 @@ conclusion was not necessary for these errors. The swapped diagnostic helped in
 one world at both seeds. Degenerate intervals do not establish general equivalence.
 The [dated account](../analyses/2026-10-24-retained-action.md) owns execution and
 limitations. Work is local on `codex/retained-action`; earlier studies are closed.
-The Hold Shelf is accessible in this session; closure records are being finalized.
+The Hold Shelf test is done, the bounded finding verified and the session log
+saved and read back. Private evidence preservation is recorded in the account.
 The broader question remains open, with no next experiment launched.
 
 **October 24: decision, consequence and revision study completed.**

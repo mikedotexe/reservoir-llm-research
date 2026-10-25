@@ -42,13 +42,14 @@ including null or ceiling results. No outcome-driven expansion is planned.
 
 ## Work coordination
 
-The Hold Shelf was read on October 24 through the authenticated browser and was
-accessible. A new S-018 test card is being recorded; publication will be claimed
-only after the saved card is read back. It was subsequently saved and read back as
-**active**, tagged `id:t-s018-verified-facts-prior-conclusions`, with the protocol,
-prospective commit and this account linked. A private screenshot preserves the
-visible card. Earlier login-blocked notices remain dated historical records until
-separately reconciled.
+The Hold Shelf was accessible through the authenticated browser. The S-018 test
+card was saved as active before collection, and subsequently saved and read back
+as **done**, tagged `id:t-s018-verified-facts-prior-conclusions`. The bounded finding
+`id:f-s018-prior-conclusion-paired-null` was saved as **verified**. The session log,
+“S-018 complete: facts, prior conclusions and rule application,” was also saved
+and read back. Both cards persisted after reload; the clarified log wording was
+subsequently saved and read back. The private board receipt, accessibility record
+and screenshot preserve those observations.
 
 The S-017 test and finding cards and its session log were subsequently saved and
 read back through the same authenticated board. This reconciles that study's
@@ -253,6 +254,14 @@ The immutable receipt is
 SHA-256 `34f5dccc8c1c6f0f7484b05de02dc27970c52ee052d0485cc71784bed8034bba`.
 The independent reconstruction SHA-256 is
 `a7d7a3ae8eb49aa84c28c4393de577c4f65eb5b7aa38e727ecd20c93568599cc`.
+
+A separate final methods review approved the numerical interpretation, then the
+completed reading section and its alternatives. The latter independently checked
+all literal quotations, reading coverage and frozen-pass bindings, with no requested
+prose change. Its receipt is
+`methods-review/final-reading-interpretation-review-v1.json`, SHA-256
+`f0c20bd4a3f1cf3001b52e70210bfa965cd590adc071fa9766e06a3890a69d91`.
+Board publication and backup were outside that scientific review.
 
 The histories and unrelated exchanges arrived as text in fresh requests. There
 was no elapsed-time memory test, persistent internal state intervention, activation
