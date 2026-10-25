@@ -98,6 +98,7 @@ when authorized, without turning every question into a feature.
 
 | Looking for | Start here |
 |---|---|
+| Verified facts with and without an explicit historical action conclusion | [October 24 retained-action comparison](analyses/2026-10-24-retained-action.md), [S-018 protocol](research/studies/S-018-verified-facts-and-prior-conclusions.md) |
 | A corrected fact, its consequence and later use under a changed rule | [October 24 decision/revision study](analyses/2026-10-24-provenance-decision.md), [S-017 protocol](research/studies/S-017-provenance-decision-and-revision.md) |
 | Isolated attribution, forecasting, memory and catalog studies | [October 24 completed tranche](analyses/2026-10-24-introspection-confirmation.md), [next-round proposals](analyses/2026-10-24-introspection-next-rounds.md), and [literature methods](research/readings/2026-10-24-introspection-methods.md) |
 | The offline instrument and numerical experiments | [Reservoir Scope](research/CURRENT-RELEASE.md), [Essentials](essentials/README.md), [S-002 observatory study](research/studies/S-002-reservoir-observatory.md) |
