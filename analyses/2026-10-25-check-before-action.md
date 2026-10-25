@@ -1,6 +1,6 @@
 # A checkable comparison before an action
 
-S-019, October 25, 2026. **In progress; development completed.** Mike authorized
+S-019, October 25, 2026. **In progress; development and discovery completed.** Mike authorized
 autonomous iteration on the gap between accurately stated distinctions and selected
 actions. The [protocol](../research/studies/S-019-check-before-action.md) defines
 development, discovery and fresh-bank confirmation, with a fixed rule selecting
@@ -54,3 +54,18 @@ schedule before dispatch. All 18 development calls completed, all 18 schemas wer
 valid, and all 18 actions were correct direct routes. Independent raw reconstruction
 found zero mismatches. The saved development decision is **proceed unchanged**;
 ceiling performance did not trigger tuning or an extra development round.
+
+Discovery completed all 144 calls with valid schemas and correct direct actions:
+16/16 in every format/context cell. All 96 structured checks copied the correct
+inputs, returned the correct comparison and agreed with the selected action.
+All requested key orders were followed. One account exceeded 100 words; it keeps
+its otherwise valid utility under the prospective rule. No action was unavailable.
+All 13 contrasts are zero at every paired seed and world, with descriptive
+intervals [0, 0]. The direct baseline is already at ceiling, so this does not show
+that checking or order has no effect in harder settings.
+
+The immutable discovery gate records **no discovery candidate** and retains
+`order_conflict` as the fallback confirmation primary. Its SHA-256 is
+`f94f6be8d90501372abd897fc781f93550915de2586fdbcb5a11632cd8da7fe3`.
+No confirmation request was prepared before that receipt. The independent raw
+audit and unchanged full confirmation bank are next.

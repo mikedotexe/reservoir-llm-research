@@ -7,8 +7,11 @@ and matched historical-threshold contexts. A fixed discovery rule selects one
 confirmation emphasis; all fresh confirmation cells run regardless. The bounded
 schedule is 18 development plus 144 discovery and 144 confirmation calls.
 The [dated account](../analyses/2026-10-25-check-before-action.md) owns progress.
-All 18 development calls completed with valid schemas and correct direct actions;
-the unchanged discovery bank is next. Ceiling performance did not trigger tuning.
+All 18 development and 144 discovery calls completed with valid schemas and
+correct direct actions. Discovery found no qualifying improvement; the saved
+fallback primary is check-first minus action-first under conflicting history.
+All 144 fresh confirmation cells are still planned. Ceiling performance did not
+trigger tuning or selective expansion.
 Work is local on `codex/decision-check`; earlier
 private evidence remains closed and live systems remain outside the study.
 
