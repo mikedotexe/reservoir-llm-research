@@ -355,9 +355,14 @@ def score_rows(design, slots, records):
             valid = [r for r in group if r['valid']]
             diagnostics = {}
             for field in DIAGNOSTICS:
-                values = [r[field] for r in group if r[field] is not None]
-                diagnostics[field] = {'scorable': len(values), 'true': sum(values), 'false': len(values) - sum(values),
-                                      'unavailable': len(group) - len(values)}
+                applicable = (form != 'operands_only' if field == 'action_matches_supplied_relation'
+                              else True if field in ('requested_order_compliant', 'within_requested_account_length')
+                              else form == 'operands_only')
+                values = [r[field] for r in group if applicable and r[field] is not None]
+                applicable_count = len(group) if applicable else 0
+                diagnostics[field] = {'applicable': applicable, 'inapplicable': len(group) - applicable_count,
+                                      'scorable': len(values), 'true': sum(values), 'false': len(values) - sum(values),
+                                      'unavailable': applicable_count - len(values)}
             correct = sum(r['correct_direct'] for r in group)
             groups.append({'rule': rule, 'condition': form, 'planned': len(group),
                            'completed': sum(r['status'] == 'complete' for r in group),

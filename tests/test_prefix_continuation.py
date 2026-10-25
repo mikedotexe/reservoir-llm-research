@@ -213,6 +213,29 @@ class ScoringTests(unittest.TestCase):
                 self.assertIsNone(row['generated_relation_correct'])
                 self.assertEqual(row['action_matches_supplied_relation'], row['condition'] == 'correct')
 
+    def test_group_diagnostics_distinguish_inapplicable_from_missing(self):
+        design, slots, records = fixture_rows()
+        for form in s.FORMATS:
+            slot = next(r for r in slots if r['rule'] == 'changed' and r['condition'] == form)
+            records[slot['node_id']] = {'status': 'pending', 'text': None}
+        report = s.score_rows(design, slots, records)
+        generated = {'generated_relation_correct', 'action_matches_generated_relation',
+                     'generated_relation_correct_wrong_direct', 'generated_relation_correct_measure',
+                     'generated_relation_incorrect_correct_direct'}
+        for group in report['groups']:
+            missing = 1 if group['rule'] == 'changed' else 0
+            for field, diagnostic in group['diagnostics'].items():
+                applicable = (group['condition'] == 'operands_only' if field in generated
+                              else group['condition'] != 'operands_only' if field == 'action_matches_supplied_relation'
+                              else True)
+                self.assertEqual(diagnostic['applicable'], applicable)
+                self.assertEqual(diagnostic['inapplicable'], 0 if applicable else 12)
+                self.assertEqual(diagnostic['unavailable'], missing if applicable else 0)
+                self.assertEqual(diagnostic['scorable'], 12 - missing if applicable else 0)
+                self.assertEqual(diagnostic['true'] + diagnostic['false'], diagnostic['scorable'])
+                if not applicable:
+                    self.assertEqual((diagnostic['true'], diagnostic['false']), (0, 0))
+
     def test_primary_flag_is_fixed_and_all_criteria_required(self):
         def output(node, case):
             current = s.current_case(case, node['kind'])
