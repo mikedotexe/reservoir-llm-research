@@ -1,7 +1,7 @@
 # Verified facts with and without a prior action conclusion
 
 S-018, October 24, 2026. **All 12 development and 72 confirmation calls completed;
-independent outcome audit and fixed readings are in progress.** Mike approved the follow-up proposed after
+independent outcome audit passed; fixed readings are in progress.** Mike approved the follow-up proposed after
 [S-017](2026-10-24-provenance-decision.md). The [protocol](../research/studies/S-018-verified-facts-and-prior-conclusions.md)
 holds verified factual content and its authority fixed while adding or withholding
 an earlier action conclusion, under changed and unchanged rules.
@@ -94,7 +94,7 @@ Adding the explicit old-correct conclusion produced **zero utility difference**
 from facts only in the changed-rule condition. Every one of the twelve paired
 seed differences was zero, across all six worlds. The unchanged-rule contrast
 and complete-four-cell interaction were also zero in every seed and world.
-Their descriptive world-bootstrap intervals are [0, 0]. This degenerate interval
+Their descriptive 95% world-bootstrap intervals are [0, 0]. This degenerate interval
 describes the observed bank; it is not evidence of population equivalence or a
 guarantee that the line cannot matter elsewhere.
 
@@ -118,8 +118,9 @@ invalid actions, unnecessary measurements or outcome-driven retries. Every
 contrast has twelve complete seed pairs and six contributing worlds; the
 interaction has twelve complete same-seed quadruples, with no partial worlds.
 
-The swapped-choice diagnostic improves changed-rule utility by **2/3**, descriptive
-interval [0, 2]. The whole difference is Finch03, x=42 and current threshold=37:
+Changed-rule utility in the swapped-choice diagnostic was **2/3 higher** than
+facts only in this bank, with a descriptive 95% interval [0, 2]. The whole difference
+is Finch03, x=42 and current threshold=37:
 both seeds choose LOW in facts-only and old-correct arms, and HIGH in the swapped
 arm. Its world difference is +4; the other five world differences are zero.
 The unchanged-rule swapped contrast is zero. In changed worlds the swapped
