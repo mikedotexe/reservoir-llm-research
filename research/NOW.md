@@ -1,20 +1,24 @@
 # Current work
 
-**October 25: checkable comparison before an action selected.**
+**October 25: checkable-comparison study completed.**
 Mike authorized autonomous iteration after S-018. [S-019](studies/S-019-check-before-action.md)
-compares structured checks requested before/after the action, a direct baseline,
-and matched historical-threshold contexts. A fixed discovery rule selects one
-confirmation emphasis; all fresh confirmation cells run regardless. The bounded
-schedule is 18 development plus 144 discovery and 144 confirmation calls.
-The [dated account](../analyses/2026-10-25-check-before-action.md) owns progress.
-All 18 development and 144 discovery calls completed with valid schemas and
-correct direct actions. Discovery found no qualifying improvement; the saved
-fallback primary is check-first minus action-first under conflicting history.
-The independent discovery audit passed and all 144 fresh confirmation cells are
-now running. Ceiling performance did not
-trigger tuning or selective expansion.
-Work is local on `codex/decision-check`; earlier
-private evidence remains closed and live systems remain outside the study.
+completed all 306 planned local-model calls: 18 development, 144 discovery and
+144 fresh-bank confirmation. Both research banks had 144/144 correct direct
+routes, including the direct baseline, and 96/96 correct structured checks.
+All 13 utility contrasts were zero. No discovery candidate qualified; the fixed
+fallback order primary did not establish practical replicated improvement.
+The ceiling leaves the proposed checking benefit unresolved.
+
+Independent raw reconstruction and both fixed two-pass readings passed; final
+scientific review approved the [dated account](../analyses/2026-10-25-check-before-action.md).
+An illustrative passage still understates the evidence's temporal reach despite
+a correct check/action. This account-fidelity issue is distinct from the absent
+wrong-action pattern and from private introspection. Cross-study task changes
+prevent identifying what removed S-018 errors. The next comparison is a proposal,
+not a launched study. The Hold Shelf test is done, bounded finding verified and
+session log saved and read back after reload. Work is local on
+`codex/decision-check`; prior archives and live systems remain unchanged.
+Private evidence closure and backup are recorded in the account.
 
 **October 24: verified-facts/prior-conclusion comparison completed.**
 Mike approved [S-018](studies/S-018-verified-facts-and-prior-conclusions.md).

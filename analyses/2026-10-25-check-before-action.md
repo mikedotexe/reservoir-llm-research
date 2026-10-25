@@ -1,8 +1,8 @@
 # A checkable comparison before an action
 
 S-019, October 25, 2026. **All 306 planned calls completed; independent numerical
-reconstruction and both fixed two-pass readings passed their checks. Final review
-and closure are in progress.**
+reconstruction and both fixed two-pass readings passed their checks. The scientific
+report is reviewed and the board record is complete.**
 Mike authorized autonomous iteration on the gap between accurately stated
 information and selected actions after [S-018](2026-10-24-retained-action.md).
 The [prospective protocol](../research/studies/S-019-check-before-action.md)
@@ -245,7 +245,25 @@ selection gate, independent audits and reading versions are retained. The final
 independent audit summary is
 `methods-review/s019-independent-outcome-audit/final-actual-audit-summary-20261025T174442.999038Z.json`.
 
+## Review and work coordination
+
+Final scientific review approved checkpoint `ebe8c53`, with 5,303 independent
+numerical/source checks and 1,666 additional reading/source checks. The exact
+reviewed report is retained as `methods-review/reviewed-report-ebe8c53-v1.md`,
+SHA-256 `932df76a102072ebd50b5cf98bf396d468ca838b9aaf1b68a86a065ee2a597ca`.
+The review receipt is `methods-review/final-scientific-report-review-v1.json`,
+SHA-256 `2ed14805dac955725d122bf8a38f67ae4206cdd9449e0e85720399d3e815f192`.
+Later board and preservation notes are outside that scientific review.
+
 The Hold Shelf was read and the test card saved as active before generation.
-It was updated after the audited discovery result and read back. Final board
-closure, report review and a byte-verified backup are pending. All work remains
-local on `codex/decision-check`; no refs have been pushed or live systems changed.
+It is now **done**, tagged `id:t-s019-check-before-action`. The bounded finding
+`id:f-s019-checking-ceiling` is **verified**, and the session log is “S-019 complete:
+paired ceilings and an account boundary.” Both cards and the log were saved,
+read back and verified after reload. The private board receipt, accessibility
+record and screenshot retain that observation.
+
+The implementation worktree was archived after clean committed integration;
+checkpoint `d5de912` remains reachable. Its only ignored local files were Python
+bytecode caches, and the needed synthetic audit inputs were separately preserved.
+All work remains local on `codex/decision-check`; no refs have been pushed or live
+systems changed. The byte-verified evidence backup is the remaining closure step.
