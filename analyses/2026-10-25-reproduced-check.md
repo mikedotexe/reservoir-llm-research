@@ -1,8 +1,8 @@
 # Reproduce the failure before testing a check
 
 October 25, 2026. Status: all 168 actual calls and three independent raw audits are
-complete. The fixed practical replication criterion passes. Fixed qualitative
-readings and final scientific review remain pending.
+complete. The fixed practical replication criterion passes. Both fixed qualitative
+readings are complete; final scientific review remains pending.
 
 On this task, requesting the public comparison before the action improved utility
 against the unchanged baseline in both authored banks and also outperformed the
@@ -40,8 +40,8 @@ slots are identical between the original and revised previews. The prospective
 scientific protocol is unchanged by these corrections.
 
 Private evidence is under `research/outputs/reproduced-check-20261025/`. All three
-final designs and previews use `-v2.json`; actual run directories will use `-v1`
-because no earlier actual runs exist. The protocol SHA-256 is
+final designs and previews use `-v2.json`; actual run directories use `-v1`
+because these are the first actual runs. The protocol SHA-256 is
 `d860f3a4391e25d6bce328aa623b6c0c825f498ab1ff7b9dd21da8da32335c1e`.
 Final independent preflight passed 4,962 checks and 22 integrated synthetic tests.
 Approval receipt SHA-256:
@@ -86,8 +86,8 @@ reproduction score SHA-256 is
 `97cdd357fe8dfcc463e993bd27a974aecea13fe9081c823d0f6b51e51b2d8da2`.
 All 72 matched requests and their order matched the pre-output preview before
 dispatch. New direct requests are interleaved with both structured formats. The
-fresh bank will run unchanged after this phase, regardless of its intervention
-result; the primary contrast will not be selected from favorable secondaries.
+fresh bank was committed to run unchanged after this phase, regardless of its
+intervention result; the primary contrast was not selected from favorable secondaries.
 
 The independent standard-library query was frozen on synthetic examples before
 raw-outcome access. It imports no study parser, scorer or statistics implementation.
@@ -199,6 +199,71 @@ SHA-256 `27da6391e8a0ee3cf0765e330161e9b0ade38cbee254b4330d2e715bbd50d7f4`.
 Confirmation score SHA-256:
 `b90eae0760106ef1f3a4cd382b2dafd5f12f0ce54e0aea0ac79566f33b74b733`.
 
+## Fixed readings and account fidelity
+
+The prospectively fixed sample contains all six fresh-bank worlds, both rules and
+all three formats at seed 7: 36 packets, shuffled with seed 20261025. Two fresh
+same-family readers saved output-only notes before receiving each packet's exact
+supplied messages. Scores, allocation key and the other reader's notes remained
+withheld. Visible field order can reveal format. Mandatory project guidance and
+the then-current research summary were disclosed before outcomes. Separate model
+reading executions are not independent human validation.
+
+All four notes cover every packet. Input hashes, immutable first-pass notes and
+literal quotations passed verification: each pass includes 36 response quotations;
+each second pass also includes 216 evidence quotations. This verifies coverage and
+quotation fidelity, not a semantic error rate. Root read the complete fixed sample
+after both first passes were frozen. The following post-outcome selections preserve
+ordinary successes alongside the salient mismatches.
+
+Reader B later clarified one wording issue without editing the saved notes:
+direct packets match the required field membership, but have no requested order.
+The observed `action, account` sequence is not order compliance. The clarification
+is retained as `methods-review/reader-b-direct-order-clarification-v1.json`.
+
+Packet 026, action first with x=21 and current threshold 16, correctly returns GE
+and HIGH. Its account says: “The verified record is the only evidence for x, which
+is fixed from the snapshot onward.” Both readers treat this as faithful within the
+closed task: the input explicitly supplies onward persistence. It does not assert
+that evidence elsewhere is impossible. This ordinary success shows that the
+action-first format can carry both a supported route and accurate temporal scope.
+
+Packet 003, check first with x=56 and current threshold 61, correctly returns LT
+and LOW: “Since x is less than the threshold, the correct route is LOW.” Its
+snapshot reference does not claim that validity ends there. Omitting the explicit
+persistence sentence is not the same as S-019's explicit snapshot-only denial.
+
+Packet 032, action first with x=67 and current threshold 72, copies both numbers
+and returns the correct LT field, but chooses HIGH. Its account says: “x is less
+than the threshold, so the correct route is HIGH.” The exact supplied rule is:
+“For any threshold, LOW is correct when x < threshold; otherwise HIGH is correct.”
+Both readers identify the public rule/application mismatch. Its HIGH action would
+have been correct under old threshold 50, but this response does not explicitly
+invoke that threshold or establish an internal cause.
+
+Packet 036 is the same world/rule/seed in the direct format. It correctly describes
+being below the current threshold, then says: “The direct route is ROUTE_HIGH,
+because x is above the old threshold, and below the current threshold.” Both
+comparisons are true, but the supplied instruction says: “Choose for a fresh,
+unrouted ticket using the current rule.” Both readers identify an explicit appeal
+to the old threshold in the written rationale. This is stronger textual evidence
+than a coincidentally old-rule-compatible action; it still does not establish
+which private process caused the choice.
+
+The fixed notes also distinguish operand/comparison errors (009 and 024), an
+accurate comparison followed by a contradictory route and overbroad verification
+attribution (020), and execution-like wording that supplies no execution receipt
+(035). These are illustrative account observations, not additional endpoints.
+The original S-019 temporal underclaim should not be silently recast as an S-020
+finding. The fixed sample excludes the two confirmation MEASURE choices; their
+costs remain in the quantitative record without a sampled qualitative account.
+
+Root's exact excerpts and request/result bindings are retained in
+`methods-review/root-reading-excerpts-v1.json`, SHA-256
+`96fccc5bb9f230e4040061c01e28fc3f015f1d9b7839ff8138d193d4df4c5d9a`.
+Fixed-reading verification SHA-256:
+`4b720be65d1d2141d9e63b45799d00364514dc5259ffac982ec17194935ead76`.
+
 ## Interpretation and the next discriminating observation
 
 S-019's ceiling did not establish that checking repaired S-018's failure. S-020
@@ -213,8 +278,9 @@ have correct comparisons alongside wrong actions. They show that the needed publ
 comparison can occur in a response without the selected action agreeing with it.
 They do not show that the model privately knew the answer before choosing. Attention
 to the order instruction, conditioning on preceding output tokens and additional
-computation before action remain compatible explanations. An accurate public check
-also does not guarantee accurate free-text claims about provenance or temporal scope.
+computation before action remain compatible explanations. S-019 separately showed
+that an accurate check/action does not guarantee accurate temporal-scope wording;
+the S-020 excerpts above establish a different set of public account mismatches.
 
 A read-only interpretation challenge recorded before confirmation outcomes proposed
 a small continuation experiment: first verify genuine assistant-prefix continuation
@@ -230,3 +296,38 @@ contract, not Astrid or Minime. Rule change still covaries with numerical margin
 old/current answer conflict. The within-rule format comparison holds those factors
 fixed, but the rule interaction does not separate them. The authored banks, two
 sampler seeds and selected template do not establish general reliability.
+
+## Reproduction and retained evidence
+
+The isolated provider was `mistral-small:24b`, digest
+`8039dd90c1138d772437a0779a33b7349efd5d9cca71edcd26e4dd463f90439d`,
+Ollama 0.35.0, temperature 0.7, context 16,384, maximum generation 640 tokens,
+JSON output, deadline 180 seconds and seeds 7 and 20260909. Each request was
+dispatched once by root through the numeric-loopback local provider. There were
+24 reproduction, 72 matched and 72 confirmation calls, with no development calls.
+
+Numerical results come from `probes/reproduced_check.py score` with the frozen
+design and completed run, independently checked by the separately frozen query.
+For example, from the repository root, with a **new sibling directory under
+research/outputs, outside closed evidence** (replace UNIQUE with a fresh identifier):
+
+```sh
+/opt/homebrew/bin/python3.14 -B probes/reproduced_check.py score \
+  research/outputs/reproduced-check-20261025/designs/confirmation-v2.json \
+  --run research/outputs/reproduced-check-20261025/runs/confirmation-v1 \
+  --out research/outputs/reproduced-check-rescore-UNIQUE/confirmation.json
+```
+
+The request previews, original S-018 request copies, final designs, complete
+protocols/ledgers, source snapshots, manifests, requests, dispatch records, raw
+provider responses, decoded results, provider identity, gates, scores, independent
+audits and both reading passes are retained. A simulator cost is a deterministic
+evaluation of a returned action, not a live-world consequence. All earlier
+archives, generic runner and earlier study sources remain unchanged.
+
+| Evidence | Path within the private evidence root | SHA-256 |
+|---|---|---|
+| Reproduction design | `designs/reproduction-v2.json` | `2b144665aed38c274c86a38cf836e552dbb64b6c34ca3a82c23cd07661e9150f` |
+| Matched design | `designs/matched-v2.json` | `f56a6731d5fbcf894d2392ffd68df230ff4ff3ca911ccdbd5775eb103257f2a3` |
+| Confirmation design | `designs/confirmation-v2.json` | `92e113d4de64ac8ff0b8179ef772b0bf5d00ad16fc4ffa31135a098c322e176e` |
+| Reading export receipt | `readings/confirmation-v1/receipt.json` | `1eae7b21830295ded02f61d060349f5007b3b62c79e3573c6072e347f4b25ff4` |
