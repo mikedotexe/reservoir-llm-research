@@ -160,6 +160,51 @@ verified, or writing that a decision follows the current rule does not establish
 successful application. The fixed two-pass readings below examine that distinction
 without adding a post-outcome semantic prevalence endpoint.
 
+## Reading the account beside the action
+
+These examples come from the preselected 36-passage sample. Root chose them after
+seeing aggregate scores, recorded the packet selections before opening their key,
+then checked each quotation against the exact raw result and supplied messages.
+They are illustrative cases, not an additional semantic error-rate estimate.
+
+**A correct comparison can still produce the wrong route.** Packet 030 is
+Finch05, facts-only, changed rule, seed 7. It writes: “The current threshold is 74,
+so x is less than the threshold. The correct route is therefore HIGH, which costs
+0.” The given x is 69. The inequality is correct; the task says LOW when x is
+less than the threshold. The returned HIGH therefore incurs simulated cost 4,
+irrespective of its account's cost claim. No historical action conclusion was
+supplied in this arm.
+
+**The account can contain its own correct alternative.** Packet 001 is Finch04,
+old-correct conclusion, changed rule, seed 7. After quoting x=58 and threshold=63,
+it says “Because x is less than the threshold, ROUTE_LOW is correct.” It dismisses
+the historical HIGH as irrelevant, then ends: “Therefore, the least-cost action
+is ROUTE_HIGH.” The action field is also HIGH, with simulated cost 4. Stating that
+the earlier conclusion is irrelevant does not show that the current rule was
+successfully applied, or reveal what internally produced the final choice.
+
+**Some responses misstate the comparison itself.** Packet 003, Finch01 facts-only,
+calls 18 “below the current threshold of 13” and selects LOW. This differs from
+the correct-inequality/wrong-route case above. Both are observable textual failures;
+neither establishes a private reasoning mechanism.
+
+**Ordinary successes and imperfect successful accounts remain visible.** Packet
+025, Finch03 with the swapped conclusion, says “The current threshold is 37, so
+x is greater than the threshold. Therefore the correct route is HIGH.” With
+x=42, its HIGH action costs 0. Packet 023 also chooses the correct HIGH for
+31/26, but adds “I do not know whether x has changed since the snapshot.” Its
+prompt explicitly fixes x from the snapshot onward. Packet 018 correctly routes
+82 at unchanged threshold 50, yet describes the historical conclusion as
+“having previously routed HIGH.” The supplied history explicitly denies being
+a record of an executed action. Correct action utility does not certify the
+whole account's fidelity.
+
+The selected-excerpt check is
+`methods-review/report-excerpts-source-check-v1.json`, SHA-256
+`c69953d1491120a448807bb0f86322edbb08f09f9c319f837df5194b1788a6a1`.
+It binds raw results, requests, allocation key and scored consequences. The fresh
+readers' separate two-pass notes will be reported after they finish.
+
 ## Mechanical and numerical verification
 
 Both actual runs passed immutable manifest, source, request, identity, raw-response
