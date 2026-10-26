@@ -1,5 +1,20 @@
 # Current work
 
+**October 25, late evening (Claude): Codex's tranche read, the README reshaped, the root
+tidied.** Local `main` was fast-forwarded to Codex's published `d1a26af` (0.41.1), then:
+the three dated root documents moved to `archive/` with every live link repointed
+(`da87f17`); the README rewritten in our voice around the journal, with three screenshots
+from a real session run in Codex's 0.41.1 preview instance (gemma4:12b, Plain journal,
+embedding codec, the reservoir-chosen residual memory with a three-turn window: thirty-three
+entries in thirty-three minutes, three early entries returned on more than half the turns,
+excerpts in the README); and a dated read of the tranche
+(`analyses/2026-10-25-codex-tranche-review.md`): what arrived, what was checked here (Python
+suite 648 green, loopback-only transport, no being touchpoints, the writing loop untouched),
+what the nine studies are, and four decisions for Mike (the opening workspace, the stale
+`codex/*` branches and worktrees, an era read of S-016's NEXT result beside Minime's
+catalog, the push). The screenshot session may still be running in the preview instance
+(six-hour limit; Pause in My reservoir ends it cleanly). Nothing was pushed.
+
 **October 25: journal folder shortcut.** Mike requested a simple button beside
 the journals and publication after verification. Version 0.41.1 opens the current
 session’s owned journal folder. [Change record](../desktop/ReservoirScope/RELEASE-0.41.1.md).

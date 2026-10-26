@@ -201,6 +201,8 @@ RESEARCH.md        research home and connections to existing work
 research/         questions, current focus (NOW.md), CURRENT-RELEASE.md, methods, literature, episodes, studies, templates, readings (blind-reading records)
 research/arms/    every laptop-apparatus arm's exact runner configuration, indexed by family with the account that read it, and how to rerun one
 reservoir_research/ local index, provenance readers, search, sampling, and reading packs
+reservoir_experiments/ the isolated local experiment runner behind S-013 and later (research/EXPERIMENT-RUNNER.md); loopback Ollama only, never the beings
+docs/              images used by the README
 tests/            standard-library unit and integration tests for the research toolkit
 pyproject.toml     packaging for the `reservoir-research` command; optional NumPy and Matplotlib extras
 archive/           superseded root documents kept for the record: MOVES.md (the September 6 agenda, with later qualifications), the research index through October 7, the October 15 roadmap history
