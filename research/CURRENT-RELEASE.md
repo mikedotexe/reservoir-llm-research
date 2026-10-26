@@ -1,6 +1,7 @@
 # Reservoir Scope · current candidates
 
-**October 25 development note:** 0.40.1 adds [first-session guidance](../desktop/ReservoirScope/GETTING-STARTED.md)
+**October 25 development note:** 0.41.0 adds explicit same-session limit extensions
+to the 0.40.1 [first-session guidance](../desktop/ReservoirScope/GETTING-STARTED.md)
 and a Plain journal invitation choice, retaining the 0.40.0 local [S-021 walkthrough](../desktop/ReservoirScope/S021-WALKTHROUGH.md)
 with saved-result recalculation. It is a development preview, not a newly
 qualified sharing candidate. The sharing and frozen-instrument identities below

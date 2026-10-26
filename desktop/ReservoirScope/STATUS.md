@@ -1,5 +1,11 @@
 # Reservoir Scope: current status and next work
 
+**October 25, 2026 · 0.41.0 same-session extensions.** Mike asked that people
+be able to keep an existing journal running for hours. Pause, open **Extend
+session limits**, save higher totals and explicitly Resume. Original settings,
+entries and elapsed time remain intact; extensions are retained in saved history.
+[First-session guide](GETTING-STARTED.md) · [change record](RELEASE-0.41.0.md).
+
 **October 25, 2026 · 0.40.1 first-session polish.** The README now leads with
 source launch and a short journal session. Advanced settings offers an explicit
 Plain journal invitation alongside the unchanged Current readout default.

@@ -5,7 +5,7 @@ then read it with some curiosity. You do not need to understand the reservoir's
 math to begin. Plan for **up to 30 minutes of running time**, after installation
 and model setup, plus a few minutes to read.
 
-These instructions describe **0.40.1 source**. If you received the older 0.27.0
+These instructions describe **0.41.0 source**. If you received the older 0.27.0
 candidate 04 package, follow its [install guide](PREVIEW-START.md).
 
 ## 1. Open the app
@@ -117,6 +117,26 @@ If writing needs attention, read the shown reason before retrying. **Writing and
 feedback** shows whether an entry was saved and applied. **Evidence** preserves
 the prompt and retained record. An unfinished response or failed save does not
 silently become reservoir feedback.
+
+## Keep the same session going
+
+You can extend a short session after it starts, including after it reaches a run
+limit. If it is running, **Pause** and let any writing or save finish first.
+
+1. Open **Extend session limits**.
+2. Choose **Add 1 hour**, or enter higher total limits. The shortcut adds time,
+   step capacity and writing attempts together; review the proposed totals.
+3. Choose **Save extended limits**, then **Resume** when ready.
+
+Your entries, earlier-text memory, seed and elapsed time carry on from the same
+session. The original settings and each extension stay in the saved history and
+export. Saving an extension does not start a model request.
+
+Limits are cumulative totals, up to **24 hours, 10,000 writing attempts and
+1,000,000 steps** per session. The storage limit stays fixed. An unresolved writing
+or storage failure must be dealt with first; extending time does not clear it.
+You can also restore a saved session paused, then extend it. Longer runs still
+need the app open and the machine awake.
 
 ## 5. Read, save and tell us what you noticed
 

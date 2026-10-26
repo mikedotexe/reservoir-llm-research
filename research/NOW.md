@@ -1,5 +1,11 @@
 # Current work
 
+**October 25: longer sessions by explicit extension.** After the README
+checkpoint, Mike asked to extend a session after it starts. Development version
+0.41.0 adds paused-session limit extensions, retaining original settings and
+recording changes for export and recovery. See the [change record](../desktop/ReservoirScope/RELEASE-0.41.0.md).
+This is application work; closed study evidence and live systems are unchanged.
+
 **October 25: first-session documentation and invitation choice.** Mike selected
 README polish for new collaborators. Development version 0.40.1 adds an explicit
 Plain journal choice and documents launch, a bounded first session, reading and

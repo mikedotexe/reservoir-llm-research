@@ -7,7 +7,7 @@ Minime or Astrid, and it makes no claim of learning or benefit to a Being.
 
 ## Starting and reading
 
-Choose **Experiments → My reservoir**, configure a seed, pace, observation cadence,
+Choose **My reservoir**, configure a seed, pace, observation cadence,
 run budgets and either the explicit scripted demonstration or a loopback model.
 Model endpoint and name must be supplied deliberately. Creating a session records
 its genesis without contacting a model. Start begins the Rust-owned run. An inventory
@@ -21,6 +21,22 @@ explicit. Prompts, replies and journals render as inert text.
 Only one lab may be admitted to active work at a time. Retain or reset unsaved finite
 work before starting My reservoir; settle or stop the personal session before starting
 another finite run. Opening a workspace starts neither computation nor networking.
+
+## Extending a session (0.41.0)
+
+While ready, paused or held at a run limit, use **Extend session limits** to save
+higher duration, attempt or step totals, then explicitly Start/Resume. Running
+work must pause first. Unresolved failures, an in-flight request, an unfinished
+save or a storage hold are not cleared by extension. A saved entry awaiting its
+next-step application can continue unchanged after the new limits are saved.
+
+The original configuration remains the genesis record. Effective limits are
+recorded separately through replayed budget events and matching manifest receipts,
+including duration changes. Totals only increase within the existing ceilings of
+24 hours, 10,000 attempts and 1,000,000 steps. Extension preserves elapsed time,
+seed, numerical state and prior writing; it changes no prompt or model setting.
+Storage retains its original budget. Verification, export and paused recovery
+retain the extensions. A failed unpublished save grants no new running budget.
 
 ## Numerical and observation version
 

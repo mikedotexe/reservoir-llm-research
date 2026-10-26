@@ -4,7 +4,7 @@ A desktop app for reading model writing, running a personal reservoir journal,
 and exploring reproducible research examples. Opening it starts no model request.
 You choose when a new session begins.
 
-**Current source: 0.40.1 development preview.** The current app has been checked
+**Current source: 0.41.0 development preview.** The current app has been checked
 locally on Apple-silicon macOS. A second-machine first session is still needed.
 Windows and Linux remain qualification targets.
 
@@ -14,6 +14,7 @@ Follow [Your first journal session](GETTING-STARTED.md) to open the app, choose 
 local model, let it write for a short bounded session, then read and export.
 The short first-session limits are optional; you can keep the six-hour defaults
 or set your own duration, step and attempt limits before creating a session.
+You can also pause, open **Extend session limits**, add time and resume the same journal.
 It includes a **Plain journal** invitation that returns prior writing without a
 numerical readout. The existing **Current readout** invitation remains the default.
 
@@ -83,7 +84,7 @@ opens only the browser frontend; use the Tauri command for the full app.
 ## Research and release records
 
 - [Research overview](../../RESEARCH.md) and [current work](../../research/NOW.md).
-- [Current app status](STATUS.md) and [0.40.1 change record](RELEASE-0.40.1.md).
+- [Current app status](STATUS.md) and [0.41.0 change record](RELEASE-0.41.0.md).
 - [Current candidates](../../research/CURRENT-RELEASE.md): the older **0.27.0 candidate 04**
   is the private sharing candidate; **0.39.0** remains the frozen S-011 instrument.
 - [Install guide for 0.27.0 candidate 04](PREVIEW-START.md), if you received that package.

@@ -6,7 +6,7 @@ rows and the 12-pair changed-rule mean difference from saved prefixes and model
 continuations. It makes no model calls. The study report, intervals, qualification
 and qualitative readings remain in the [full account](../../analyses/2026-10-25-prefix-continuation.md).
 
-Introduced in 0.40.0 and retained in development version 0.40.1. The frozen 0.39.0 research instrument and
+Introduced in 0.40.0 and retained in development version 0.41.0. The frozen 0.39.0 research instrument and
 0.27.0 sharing candidate retain their separate identities and status. This UI
 check is not newcomer acceptance or a newly qualified sharing release.
 
