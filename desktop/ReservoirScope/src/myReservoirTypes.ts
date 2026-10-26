@@ -92,7 +92,9 @@ export const DEFAULT_SUSTAINED_CONFIG: SustainedConfig = {
   sensoryNoiseAmplitude: .5, feedbackScale: .4, differenceGain: 0, differenceTau: 3, differenceDeadBand: .02, differenceClip: .2, differenceWatchdog: true, differenceWatchdogFillStd: 10,
   differenceWatchdogWarmup: 0, memoryPolicy: 'latest', memoryRecentExclusion: 0,
 };
+export interface SustainedLimits { maximumSteps: number; maximumTurns: number; maximumDurationSeconds: number }
 export interface SustainedSummary {
+  effectiveLimits?: SustainedLimits; canExtendLimits?: boolean; limitExtensionCount?: number;
   sessionId: string; generation: string; revision: string; config: SustainedConfig; phase: string;
   step: number; durableStep: number; simulatedTime: number; elapsedSeconds: number; usedBytes: number;
   journalCount: number; turnCount: number; canStart: boolean; canPause: boolean; canStop: boolean; canRetrySave: boolean;
@@ -140,6 +142,7 @@ export interface MyReservoirApi {
   get(requestId: string, onUpdate: (update: SustainedUpdate) => void): Promise<SustainedUpdate>;
   create(requestId: string, config: SustainedConfig): Promise<SustainedUpdate>;
   action(action: SustainedAction, requestId: string, sessionId: string, generation: string, expectedEntryId?: string | null, expectedAttemptId?: number | null): Promise<SustainedUpdate>;
+  extendLimits(requestId: string, sessionId: string, generation: string, expectedRevision: string, limits: SustainedLimits): Promise<SustainedUpdate>;
   journals(requestId: string, sessionId: string, generation: string, offset: number, limit: number): Promise<SustainedJournalPage>;
   journal(requestId: string, sessionId: string, generation: string, entryId: string): Promise<SustainedJournalResult>;
   listenClose(handler: () => void): Promise<() => void>;

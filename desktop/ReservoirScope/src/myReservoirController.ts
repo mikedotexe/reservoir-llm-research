@@ -1,8 +1,9 @@
+import { extensionError, sessionLimits, validSessionLimits } from './sustainedLimits';
 import { errorText } from './api';
 import { myReservoirApi } from './myReservoirApi';
 import { effectivePromptVersion, effectiveOutputTokens, effectiveRequestDeadline, isSustainedPromptVersion, validDifferenceControls, validFieldControls, validMemoryPolicy, validMemoryRecentExclusion, validWritingLimits } from './myReservoirTypes';
 import type { SessionFrame } from './freshTypes';
-import type { MyReservoirApi, SustainedAction, SustainedConfig, SustainedJournal, SustainedJournalPage, SustainedSummary, SustainedUpdate, SustainedBundleReport, SustainedRecoveryPage, SustainedRecoveryDetail } from './myReservoirTypes';
+import type { MyReservoirApi, SustainedLimits, SustainedAction, SustainedConfig, SustainedJournal, SustainedJournalPage, SustainedSummary, SustainedUpdate, SustainedBundleReport, SustainedRecoveryPage, SustainedRecoveryDetail } from './myReservoirTypes';
 
 export interface MyReservoirState {
   summary: SustainedSummary | null; frame: SessionFrame | null; connected: boolean; busy: string | null;
@@ -25,6 +26,8 @@ function check(update: SustainedUpdate) {
   if (!s.config || !isSustainedPromptVersion(effectivePromptVersion(s.config))) throw new Error('The session has an unsupported journal prompt version.');
   if (!validWritingLimits(s.config)) throw new Error('The session has invalid retained writing limits.');
   if (!s.sessionId || !ordinal(s.generation) || !ordinal(s.revision) || !bounded(s.step) || !bounded(s.durableStep) || s.durableStep > s.step || !bounded(s.journalCount, 10000) || !bounded(s.turnCount, 10000) || s.journalCount > s.turnCount || !bounded(s.usedBytes, Number.MAX_SAFE_INTEGER) || ![s.simulatedTime, s.elapsedSeconds].every(value => Number.isFinite(value) && value >= 0) || !Array.isArray(s.diagnostics)) throw new Error('The sustained session update has invalid identity or bounded measurements.');
+  if (s.effectiveLimits && (!validSessionLimits(s.effectiveLimits) || Object.entries(s.effectiveLimits).some(([key, value]) => value < s.config[key as keyof SustainedLimits]))) throw new Error('The session has invalid extended limits.');
+  if (s.limitExtensionCount !== undefined && !bounded(s.limitExtensionCount)) throw new Error('The session has an invalid extension count.');
   if (f && (f.step !== String(s.step) || !finite(f.state, 32) || !finite(f.input, 66) || !finite(f.noise, 32) || f.eigenvalues !== null && !finite(f.eigenvalues, 32) || f.fillPercent !== null && (!Number.isFinite(f.fillPercent) || f.fillPercent < 0 || f.fillPercent > 100) || f.time !== null && !Number.isFinite(f.time))) throw new Error('The current state does not match the session clock and exact vector sizes.');
 }
 function same(s: SustainedSummary | null, other: { sessionId: string; generation: string }) { return !!s && s.sessionId === other.sessionId && s.generation === other.generation; }
@@ -61,6 +64,7 @@ export class MyReservoirController {
     if (matched && (effectiveOutputTokens(summary.config) !== effectiveOutputTokens(existing!.config)
       || effectiveRequestDeadline(summary.config) !== effectiveRequestDeadline(existing!.config)
       || (summary.config.language.contextTokens ?? null) !== (existing!.config.language.contextTokens ?? null))) throw new Error('The session changed its retained writing limits.');
+    if (matched && Object.entries(sessionLimits(summary)).some(([key, value]) => value < sessionLimits(existing!)[key as keyof SustainedLimits])) throw new Error('The session reduced a previously accepted run limit.');
     this.snapshotSequence = sequence;
     const changed = !matched, grew = summary.journalCount > (existing?.journalCount ?? 0);
     if (changed) { this.identityEpoch++; this.pageEpoch++; this.journalEpoch++; this.selectedId = null; this.lastApplicationRead = ''; }
@@ -122,6 +126,24 @@ export class MyReservoirController {
       if (epoch !== this.identityEpoch) return false;
       if (result.requestId !== requestId || !result.summary || !same(summary, result.summary)) throw new Error('The action result did not match this session generation.');
       this.accept(result); return true;
+    } catch (error) { if (epoch === this.identityEpoch) this.set({ error: errorText(error) }); return false; }
+    finally { if (epoch === this.identityEpoch) this.set({ busy: null }); }
+  }
+  async extendLimits(limits: SustainedLimits, expectedRevision: string) {
+    const summary = this.state.summary; if (!summary || this.state.busy) return false;
+    if (!summary.canExtendLimits) { this.set({ error: 'Pause and resolve pending work before extending this session.' }); return false; }
+    if (summary.revision !== expectedRevision) { this.set({ error: 'The session changed. Review its current limits before saving.' }); return false; }
+    const invalid = extensionError(sessionLimits(summary), limits);
+    if (invalid) { this.set({ error: invalid }); return false; }
+    const epoch = this.identityEpoch, requestId = this.id(); this.set({ busy: 'extendLimits', error: '', message: '' });
+    try {
+      const result = await this.api.extendLimits(requestId, summary.sessionId, summary.generation, expectedRevision, limits);
+      if (epoch !== this.identityEpoch) return false;
+      if (result.requestId !== requestId || !result.summary || !same(summary, result.summary)) throw new Error('The extension result did not match this session generation.');
+      this.accept(result);
+      this.set({ message: this.state.summary?.canStart
+        ? `Extended limits saved. Choose ${this.state.summary.step === 0 ? 'Start' : 'Resume'} when you are ready to continue.`
+        : 'Extended limits saved. Another limit or pending boundary still holds this session; review it before continuing.' }); return true;
     } catch (error) { if (epoch === this.identityEpoch) this.set({ error: errorText(error) }); return false; }
     finally { if (epoch === this.identityEpoch) this.set({ busy: null }); }
   }

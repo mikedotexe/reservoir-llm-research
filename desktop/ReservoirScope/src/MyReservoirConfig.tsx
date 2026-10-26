@@ -5,7 +5,7 @@ import { formatSessionDuration, parseSessionDuration, splitSessionDuration, type
 
 const PLAIN_JOURNAL_PROMPT = 'reservoir-journal-inert-plain-contract-no-tag-v1';
 
-function DurationEditor({ value, onChange }: { value: number; onChange: (seconds: number) => void }) {
+export function DurationEditor({ value, onChange, label = 'Duration limit' }: { value: number; onChange: (seconds: number) => void; label?: string }) {
   const [parts, setParts] = useState(() => splitSessionDuration(value)), id = useId();
   useEffect(() => {
     if (Number.isFinite(value) && value !== parseSessionDuration(parts)) setParts(splitSessionDuration(value));
@@ -16,7 +16,7 @@ function DurationEditor({ value, onChange }: { value: number; onChange: (seconds
     // Keep an invalid draft invalid for Create; never silently reuse an older duration.
     onChange(parseSessionDuration(next) ?? Number.NaN);
   };
-  return <fieldset className="my-reservoir-duration"><legend>Duration limit</legend><div className="my-reservoir-duration-fields">
+  return <fieldset className="my-reservoir-duration"><legend>{label}</legend><div className="my-reservoir-duration-fields">
     {(['hours', 'minutes', 'seconds'] as const).map(key => <label key={key}>{key[0].toUpperCase() + key.slice(1)}<input type="text" inputMode="numeric" pattern="[0-9]{1,2}" required value={parts[key]} aria-invalid={invalid || undefined} aria-describedby={invalid ? id : undefined} onChange={event => change(key, event.target.value)}/></label>)}
   </div>{invalid ? <p id={id} role="alert">Use whole hours, minutes and seconds for a duration from 1 second to 24 hours. Minutes and seconds must be 0–59.</p> : <p className="my-reservoir-small">{formatSessionDuration(value)} · exactly {value} seconds</p>}</fieldset>;
 }

@@ -10,6 +10,7 @@ export const myReservoirApi: MyReservoirApi = {
   get: (requestId, onUpdate) => command('get_sustained', { requestId, onUpdate: new Channel<SustainedUpdate>(onUpdate) }),
   create: (requestId, config) => command('create_sustained', { requestId, config }),
   action: (action, requestId, sessionId, generation, expectedEntryId = null, expectedAttemptId = null) => command(({ start: 'start_sustained', pause: 'pause_sustained', stop: 'stop_sustained', retrySave: 'retry_sustained_save', retryProvider: 'retry_sustained_language', skipFeedback: 'skip_sustained_feedback' })[action], { requestId, sessionId, generation, ...(action === 'skipFeedback' ? { expectedEntryId, expectedAttemptId } : {}) }),
+  extendLimits: (requestId, sessionId, generation, expectedRevision, limits) => command('extend_sustained_limits', { requestId, sessionId, generation, expectedRevision, limits }),
   journals: (requestId, sessionId, generation, offset, limit) => command('list_sustained_journals', { requestId, sessionId, generation, offset, limit }),
   journal: (requestId, sessionId, generation, entryId) => command('get_sustained_journal', { requestId, sessionId, generation, entryId }),
   listenClose: async handler => isTauri() ? listen('sustained-close-requested', handler) : () => {},
