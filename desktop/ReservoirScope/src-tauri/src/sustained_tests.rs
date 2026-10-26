@@ -2,12 +2,12 @@ use super::*;
 use std::fs;
 #[path = "sustained_arms.rs"]
 mod arms;
+#[path = "sustained_limit_tests.rs"]
+mod limits;
 #[path = "sustained_quota_tests.rs"]
 mod natural_quota;
 #[path = "sustained_prompt_evidence_tests.rs"]
 mod prompt_evidence;
-#[path = "sustained_limit_tests.rs"]
-mod limits;
 fn config(steps: u64, turn: u64) -> SustainedConfig {
     SustainedConfig {
         maximum_steps: steps,
