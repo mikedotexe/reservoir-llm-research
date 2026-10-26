@@ -16,7 +16,7 @@ copying their version numbers or board totals here.
 | Inspect reviewed evidence | The direct Research cases workspace: choose a question, then use the [case’s embedded evidence links](docs/GUIDED-TOUR.md#reviewed-research-cases) |
 | Continue a research question | [Question library](../../research/QUESTIONS.md), owning study and [Methods](../../research/METHODS.md) |
 | Reconcile coordination | [Board records](../../board/README.md); older pending payloads are historical inputs, not independent publication requests |
-| Understand earlier work | [Preserved handoff](HANDOFF-history-through-0.13.1.md), [research chronology](../../RESEARCH-history-through-20261007.md) |
+| Understand earlier work | [Preserved handoff](HANDOFF-history-through-0.13.1.md), [research chronology](../../archive/RESEARCH-history-through-20261007.md) |
 
 ## Preserve the boundaries
 

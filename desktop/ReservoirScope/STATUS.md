@@ -435,7 +435,7 @@ save point on `codex/activation-loop`; candidate 04 and its tag remain unchanged
 The standard build's optional included-activation-example control still needs
 clearer availability when the private collection is absent.
 
-The [full prior roadmap](../../TAURI-ROADMAP-HISTORY-2026-10-15.md),
+The [full prior roadmap](../../archive/TAURI-ROADMAP-HISTORY-2026-10-15.md),
 [parity chronology](../../shared/reservoir-scope/PARITY-HISTORY-2026-10-15.md) and
 [desktop README](README-HISTORY-2026-10-15.md) are preserved byte-for-byte as dated
 history. Their old “next” statements describe their own time, not the active backlog.

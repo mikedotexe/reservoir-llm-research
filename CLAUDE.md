@@ -55,7 +55,7 @@ the beings' live systems are Mike's.
 
 0. **Research direction:** `RESEARCH.md` is the hub; `research/QUESTIONS.md` holds enduring
    questions; `research/NOW.md` points to the selected study. Follow Mike's latest request.
-   `MOVES.md` preserves the earlier agenda, with later corrections. A source audit and
+   `archive/MOVES.md` preserves the earlier agenda, with later corrections. A source audit and
    feature work are parts of the program, not prerequisites for every discovery session.
    `TAURI-ROADMAP.md` and `desktop/ReservoirScope/STATUS.md` own the desktop app program,
    its qualification gates and its active backlog; `research/CURRENT-RELEASE.md` owns the
@@ -152,7 +152,7 @@ Later generation-record work may change what is available. Do not treat these as
    almost entirely an April–May phenomenon. Report month or era alongside any rate.
 6. **Prompts suggest NEXT actions.** `action_events.suggested_next` (parent action) is a
    required covariate; both beings follow the suggestion about a third of the time in the
-   September 6 reading (MOVES.md), a rate no probe has yet measured with n.
+   September 6 reading (archive/MOVES.md), a rate no probe has yet measured with n.
 7. **System text inside bodies.** Strip `[Agency-vernacular notice …]`,
    `[Pressure-vocabulary cooldown …]`, the `--- GENERATED JOURNAL ---` /
    `--- ACTION TAIL ---` markers, and flag assistant-mode summaries ("Okay, here's a breakdown")
@@ -203,9 +203,9 @@ research/arms/    every laptop-apparatus arm's exact runner configuration, index
 reservoir_research/ local index, provenance readers, search, sampling, and reading packs
 tests/            standard-library unit and integration tests for the research toolkit
 pyproject.toml     packaging for the `reservoir-research` command; optional NumPy and Matplotlib extras
-MOVES.md           preserved September 6 agenda, with later qualifications
+archive/           superseded root documents kept for the record: MOVES.md (the September 6 agenda, with later qualifications), the research index through October 7, the October 15 roadmap history
 TAURI-ROADMAP.md   accepted program, contracts and qualification gates for the Tauri desktop app
-                   (earlier text in TAURI-ROADMAP-HISTORY-2026-10-15.md)
+                   (earlier text in archive/TAURI-ROADMAP-HISTORY-2026-10-15.md)
 TRACE.md           data trace: inventory, formats, join keys, traps, eras, probe results
 exercises/         one file per close reading (A material, B claims checked, C what fell out)
 probes/            read-only scripts; each prints the numbers it produces and states its inputs

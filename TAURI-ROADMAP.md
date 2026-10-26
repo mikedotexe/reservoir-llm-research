@@ -133,7 +133,7 @@ Historical attempts retain their frozen rules; this pointer schedules no new run
 
 The complete pre-housekeeping document—including every dated execution account and
 historical “next” statement—is preserved byte-for-byte in
-[the October 15 roadmap history](TAURI-ROADMAP-HISTORY-2026-10-15.md).
+[the October 15 roadmap history](archive/TAURI-ROADMAP-HISTORY-2026-10-15.md).
 Its historical priorities do not override the current backlog. The
 [housekeeping/source checkpoint](desktop/ReservoirScope/validation/2026-10-15-housekeeping-0.20.0/README.md)
 remains at `1552bbc`. Published checkpoints now include 0.25 at `3cfbf1b` (whose
@@ -1148,7 +1148,7 @@ executed qualification and remaining gates.
 ## 6. Execution ledger
 
 The full execution ledger through the source-role launch refusal is preserved in
-[the dated roadmap history](TAURI-ROADMAP-HISTORY-2026-10-15.md#6-execution-ledger).
+[the dated roadmap history](archive/TAURI-ROADMAP-HISTORY-2026-10-15.md#6-execution-ledger).
 Its original wording, links, corrections and build-specific limits are unchanged.
 For current outcomes and the next bounded work, use
 [STATUS.md](desktop/ReservoirScope/STATUS.md); for exact checks, use the linked dated
@@ -1156,6 +1156,6 @@ validation accounts. Do not append another running chronology to this program pl
 
 <a id="october-13-completed-two-hour-measurement-and-recovery-evidence"></a>
 The earlier two-hour measurement remains evidence for frozen 0.12.0 only. Its
-[complete historical account](TAURI-ROADMAP-HISTORY-2026-10-15.md#october-13-completed-two-hour-measurement-and-recovery-evidence)
+[complete historical account](archive/TAURI-ROADMAP-HISTORY-2026-10-15.md#october-13-completed-two-hour-measurement-and-recovery-evidence)
 and [qualification folder](desktop/ReservoirScope/validation/2026-10-13-reliability-0.12.0/README.md)
 remain available; it does not qualify the current build's long-run resource use.

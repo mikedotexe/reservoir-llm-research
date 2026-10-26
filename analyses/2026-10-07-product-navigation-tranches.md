@@ -12,7 +12,7 @@ what we have learned, explore the offline lab, and reproduce or continue the wor
 linked to its account, unresolved claim and question family. The September 6
 around-time reconstruction is the first worked account. The complete previous
 hub is preserved byte-for-byte at
-[RESEARCH-history-through-20261007.md](../RESEARCH-history-through-20261007.md), at
+[RESEARCH-history-through-20261007.md](../archive/RESEARCH-history-through-20261007.md), at
 the same relative-link base.
 
 The question library connects results to open questions. S-002’s opening now
