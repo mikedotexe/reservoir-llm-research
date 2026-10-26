@@ -12,6 +12,7 @@ export function reservoirFixture() {
   const nextSequence = () => String(++snapshots);
   const update = (requestId: string): SustainedUpdate => ({ requestId, snapshotSequence: nextSequence(), summary: current, frame: current?.step ? reservoirFrame(current.step) : null, closeRequested: wanted });
   const api: MyReservoirApi = {
+    openJournalFolder: async () => {},
     get: async (id, callback) => { listener = callback; channelId = id; return update(id); },
     create: async (id, config) => { serial++; current = reservoirSummary({ config, sessionId: `personal-${serial}`, generation: String(serial) }); return update(id); },
     action: async (action, id) => { if (current) current = { ...current, revision: String(Number(current.revision) + 1), phase: action === 'start' ? 'running' : action === 'stop' ? 'stopped' : 'paused', canStart: action !== 'start' && action !== 'stop', canPause: action === 'start', canStop: action !== 'stop' }; return update(id); },

@@ -11,7 +11,7 @@ experiment; it does not connect to their live systems.
 
 ## Open the app
 
-The current source is **0.41.0**, a development preview. Apple-silicon macOS is the
+The current source is **0.41.1**, a development preview. Apple-silicon macOS is the
 platform checked locally; Windows and Linux still need qualification. If you were
 given the older **0.27.0 candidate 04** package, use its [install guide](desktop/ReservoirScope/PREVIEW-START.md)
 instead. There is no public installer for the current version.
@@ -53,8 +53,9 @@ creating the session. You can also pause an existing session, extend its limits,
 and resume the same journal. The guide explains how the limits work together.
 
 Create the session, start it, and let a few complete entries arrive. Then pause if still running,
-read backward and export a copy. Look for changes, repetition, surprising passages
-and claims the text cannot support. An ordinary or repetitive journal is a useful
+read backward and export a copy. **Open journal folder**, beside the Journal
+heading, opens this session’s saved files in your file manager. Look for changes,
+repetition, surprising passages and claims the text cannot support. An ordinary or repetitive journal is a useful
 outcome too. We are exploring the writing and its conditions; a compelling
 first-person passage alone does not establish subjective experience.
 

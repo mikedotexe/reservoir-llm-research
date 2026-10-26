@@ -2531,3 +2531,45 @@ fn memory_policy_config_roundtrip_journal_choice_and_warmup_persistence() {
     ));
     assert!(!journals3.contains("Optional context"));
 }
+
+#[test]
+fn journal_directory_is_owned_and_does_not_change_the_session() {
+    let (d, s, id, generation) = setup(10, 2);
+    let manifest = d.path().join("store").join(&id).join("manifest.json");
+    let before = fs::read(&manifest).unwrap();
+    let expected = d.path().join("store").join(&id).join("journals");
+    assert_eq!(s.journal_directory(&id, &generation).unwrap(), expected);
+    assert!(s.journal_directory(&id, "999").is_err());
+    assert!(s.journal_directory("../other", &generation).is_err());
+    arm(&s);
+    assert_eq!(s.journal_directory(&id, &generation).unwrap(), expected);
+    assert_eq!(fs::read(&manifest).unwrap(), before);
+    fs::remove_dir(&expected).unwrap();
+    assert!(s.journal_directory(&id, &generation).is_err());
+    assert!(!expected.exists());
+}
+
+#[cfg(unix)]
+#[test]
+fn journal_directory_refuses_linked_storage() {
+    for component in ["root", "session", "journals"] {
+        let (d, s, id, generation) = setup(10, 2);
+        let root = d.path().join("store");
+        let path = match component {
+            "root" => root,
+            "session" => root.join(&id),
+            _ => root.join(&id).join("journals"),
+        };
+        let moved = d.path().join("moved");
+        fs::rename(&path, &moved).unwrap();
+        std::os::unix::fs::symlink(&moved, &path).unwrap();
+        assert!(s.journal_directory(&id, &generation).is_err());
+    }
+}
+
+#[test]
+fn journal_directory_refuses_an_unowned_store() {
+    let (d, s, id, generation) = setup(10, 2);
+    fs::write(d.path().join("store/owner"), b"not this app").unwrap();
+    assert!(s.journal_directory(&id, &generation).is_err());
+}

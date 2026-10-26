@@ -27,6 +27,7 @@ fn main() {
             "retry_sustained_language",
             "skip_sustained_feedback",
             "list_sustained_journals",
+            "open_sustained_journal_folder",
             "get_sustained_journal",
             "list_sustained_recovery",
             "inspect_sustained_recovery",

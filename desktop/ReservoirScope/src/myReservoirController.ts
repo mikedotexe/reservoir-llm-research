@@ -9,11 +9,11 @@ export interface MyReservoirState {
   summary: SustainedSummary | null; frame: SessionFrame | null; connected: boolean; busy: string | null;
   error: string; message: string; closeRequested: boolean;
   page: SustainedJournalPage | null; journal: SustainedJournal | null; journalRevision: string | null; journalPosition: number | null;
-  readingPage: boolean; readingJournal: boolean; journalError: string; followLatest: boolean; seenJournalCount: number;
+  readingPage: boolean; readingJournal: boolean; openingJournalFolder: boolean; journalError: string; followLatest: boolean; seenJournalCount: number;
   exported: SustainedBundleReport | null; exportRevision: string | null;
   recovery: SustainedRecoveryPage | null; recovered: SustainedRecoveryDetail | null; recoveryBusy: boolean; recoveryError: string; recoveryMessage: string;
 }
-const empty = (): MyReservoirState => ({ summary: null, frame: null, connected: false, busy: null, error: '', message: '', closeRequested: false, page: null, journal: null, journalRevision: null, journalPosition: null, readingPage: false, readingJournal: false, journalError: '', followLatest: true, seenJournalCount: 0, exported: null, exportRevision: null, recovery: null, recovered: null, recoveryBusy: false, recoveryError: '', recoveryMessage: '' });
+const empty = (): MyReservoirState => ({ summary: null, frame: null, connected: false, busy: null, error: '', message: '', closeRequested: false, page: null, journal: null, journalRevision: null, journalPosition: null, readingPage: false, readingJournal: false, openingJournalFolder: false, journalError: '', followLatest: true, seenJournalCount: 0, exported: null, exportRevision: null, recovery: null, recovered: null, recoveryBusy: false, recoveryError: '', recoveryMessage: '' });
 const ordinal = (value: string) => typeof value === 'string' && /^[0-9]{1,20}$/.test(value);
 const snapshotOrdinal = (value: string) => typeof value === 'string' && /^[1-9][0-9]{0,19}$/.test(value) && BigInt(value) <= 18446744073709551615n;
 const bounded = (value: number, maximum = 1_000_000) => Number.isSafeInteger(value) && value >= 0 && value <= maximum;
@@ -74,7 +74,7 @@ export class MyReservoirController {
     const priorFrame = this.state.frame;
     const frame = matched && update.frame && priorFrame?.step === update.frame.step ? priorFrame : update.frame;
     this.set({ summary, frame, connected: true, closeRequested: update.closeRequested,
-      ...(changed ? { busy: null, page: null, journal: null, journalRevision: null, journalPosition: null, readingPage: false, readingJournal: false, journalError: '', followLatest: true, seenJournalCount: 0, exported: null, exportRevision: null } : {}) });
+      ...(changed ? { busy: null, page: null, journal: null, journalRevision: null, journalPosition: null, readingPage: false, readingJournal: false, openingJournalFolder: false, journalError: '', followLatest: true, seenJournalCount: 0, exported: null, exportRevision: null } : {}) });
     if (!this.active) return true;
     if ((changed || grew) && summary.journalCount && this.state.followLatest) {
       if (this.state.readingPage) this.followRefreshNeeded = true;
@@ -146,6 +146,15 @@ export class MyReservoirController {
         : 'Extended limits saved. Another limit or pending boundary still holds this session; review it before continuing.' }); return true;
     } catch (error) { if (epoch === this.identityEpoch) this.set({ error: errorText(error) }); return false; }
     finally { if (epoch === this.identityEpoch) this.set({ busy: null }); }
+  }
+  async openJournalFolder() {
+    const summary = this.state.summary;
+    if (!summary || this.state.openingJournalFolder) return;
+    const identity = this.identityEpoch;
+    this.set({ openingJournalFolder: true, journalError: '' });
+    try { await this.api.openJournalFolder(summary.sessionId, summary.generation); }
+    catch (error) { if (identity === this.identityEpoch) this.set({ journalError: errorText(error) }); }
+    finally { if (identity === this.identityEpoch) this.set({ openingJournalFolder: false }); }
   }
   async journals(offset = 0, follow = false) {
     const summary = this.state.summary; if (!summary || !bounded(offset, 10000)) return;

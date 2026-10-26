@@ -1,5 +1,9 @@
 # Reservoir Scope: current status and next work
 
+**October 25, 2026 · 0.41.1 journal folder shortcut.** **Open journal folder**
+beside Journal opens the current session’s saved files in the system file manager.
+[Change record](RELEASE-0.41.1.md).
+
 **October 25, 2026 · 0.41.0 same-session extensions.** Mike asked that people
 be able to keep an existing journal running for hours. Pause, open **Extend
 session limits**, save higher totals and explicitly Resume. Original settings,

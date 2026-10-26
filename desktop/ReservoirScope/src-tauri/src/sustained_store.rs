@@ -832,6 +832,14 @@ impl SustainedStore {
             readback.pending.entry,
         ))
     }
+    pub fn journal_directory(&self, id: &str) -> Result<PathBuf, AppError> {
+        self.root(false)?;
+        let session = self.path(id)?;
+        ordinary(&session)?;
+        let journals = session.join("journals");
+        ordinary(&journals)?;
+        Ok(journals)
+    }
     pub fn read_journal(&self, id: &str, entry_id: &str) -> Result<JournalObject, AppError> {
         Ok(self.read_journal_proof(id, entry_id)?.0)
     }

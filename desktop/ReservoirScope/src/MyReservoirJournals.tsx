@@ -106,6 +106,7 @@ export default function MyReservoirJournals({ state, controller }: { state: MyRe
             : `Saved writing at step ${summary.pendingApplication!.observedStep} · waiting for application at step ${summary.pendingApplication!.intendedStep}.`}</p>}
       </div>
       <div className="my-reservoir-actions">
+        <button disabled={state.openingJournalFolder} onClick={() => void controller.openJournalFolder()}>{state.openingJournalFolder ? 'Opening folder…' : 'Open journal folder'}</button>
         <button aria-pressed={state.followLatest} disabled={!state.followLatest && state.readingPage} onClick={() => state.followLatest ? controller.pinJournal() : void controller.followLatest()}>{state.followLatest ? 'Pause following' : 'Follow latest'}{!state.followLatest && newCount > 0 ? ` · ${newCount} new` : ''}</button>
         <button disabled={state.readingPage} onClick={() => void controller.refreshJournals()}>Refresh this page</button>
       </div>

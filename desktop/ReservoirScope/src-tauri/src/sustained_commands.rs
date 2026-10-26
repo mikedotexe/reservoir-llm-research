@@ -159,6 +159,28 @@ pub async fn skip_sustained_feedback(
     .map_err(worker)?
 }
 #[tauri::command]
+pub async fn open_sustained_journal_folder(
+    state: tauri::State<'_, SustainedState>,
+    session_id: String,
+    generation: String,
+) -> Result<(), AppError> {
+    let s = state.inner().clone();
+    tauri::async_runtime::spawn_blocking(move || {
+        // Resolve only the selected session's owned directory. Release the state
+        // lock before handing the folder to the system file manager.
+        let path = s.journal_directory(&session_id, &generation)?;
+        tauri_plugin_opener::open_path(path, None::<&str>).map_err(|e| {
+            AppError::new(
+                "journal-folder",
+                "open",
+                format!("Could not open the journal folder: {e}"),
+            )
+        })
+    })
+    .await
+    .map_err(worker)?
+}
+#[tauri::command]
 pub async fn list_sustained_journals(
     state: tauri::State<'_, SustainedState>,
     request_id: String,

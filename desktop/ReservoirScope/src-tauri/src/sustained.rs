@@ -1570,6 +1570,11 @@ impl SustainedState {
             }
         }
     }
+    pub fn journal_directory(&self, id: &str, generation: &str) -> Result<PathBuf, AppError> {
+        let mut g = self.lock()?;
+        active(&mut g, id, generation)?;
+        self.shared.store.journal_directory(id)
+    }
     pub fn journal_page(
         &self,
         request_id: String,

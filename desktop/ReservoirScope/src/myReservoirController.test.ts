@@ -232,3 +232,30 @@ describe('sustained recovery, exports and close decisions', () => {
     await controller.finishClose(false); expect(controller.snapshot().error).toContain('persistence or close decision'); const cancel = vi.spyOn(api, 'cancelClose'); await controller.returnToApp(); expect(cancel).toHaveBeenCalledOnce(); expect(controller.snapshot().closeRequested).toBe(false);
   });
 });
+
+describe('opening the journal folder', () => {
+  it('keeps reading and execution unchanged, coalesces clicks and reports an opener failure', async () => {
+    const { api, controller } = reservoirFixture();
+    await controller.create(DEFAULT_SUSTAINED_CONFIG); await settle();
+    await controller.action('start');
+    const summary = controller.snapshot().summary;
+    let fail!: (error: Error) => void;
+    const open = vi.spyOn(api, 'openJournalFolder').mockImplementation(() => new Promise((_, reject) => { fail = reject; }));
+    const action = vi.spyOn(api, 'action');
+    const pending = controller.openJournalFolder();
+    controller.pinJournal();
+    await controller.openJournalFolder();
+    expect(open).toHaveBeenCalledExactlyOnceWith(summary!.sessionId, summary!.generation);
+    expect(controller.snapshot().openingJournalFolder).toBe(true);
+    expect(controller.snapshot().summary).toBe(summary);
+    expect(action).not.toHaveBeenCalled();
+    fail(new Error('File manager unavailable')); await pending;
+    expect(controller.snapshot().openingJournalFolder).toBe(false);
+    expect(controller.snapshot().journalError).toContain('File manager unavailable');
+    const stale = controller.openJournalFolder();
+    await controller.create(DEFAULT_SUSTAINED_CONFIG); await settle();
+    fail(new Error('Old session failure')); await stale;
+    expect(controller.snapshot().journalError).toBe('');
+    expect(controller.snapshot().openingJournalFolder).toBe(false);
+  });
+});

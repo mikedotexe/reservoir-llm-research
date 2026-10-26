@@ -1,5 +1,10 @@
 # Current work
 
+**October 25: journal folder shortcut.** Mike requested a simple button beside
+the journals and publication after verification. Version 0.41.1 opens the current
+session’s owned journal folder. [Change record](../desktop/ReservoirScope/RELEASE-0.41.1.md).
+This is app polish; no new research run.
+
 **October 25: longer sessions by explicit extension.** After the README
 checkpoint, Mike asked to extend a session after it starts. Development version
 0.41.0 adds paused-session limit extensions, retaining original settings and

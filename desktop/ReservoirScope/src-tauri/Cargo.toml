@@ -1,6 +1,6 @@
 [package]
 name = "reservoir-scope-desktop"
-version = "0.41.0"
+version = "0.41.1"
 edition = "2021"
 rust-version = "1.94.1"
 description = "Reservoir Scope offline research workspaces (the Tauri desktop app)"
@@ -21,6 +21,7 @@ rusqlite = { version = "=0.40.2", features = ["bundled"] }
 # Explicit HTTP-only loopback transport, with no TLS, proxy, redirect or compression defaults.
 reqwest = { version = "=0.13.4", default-features = false, features = ["json"] }
 tokio = { version = "=1.53.2", features = ["rt", "net", "time"] }
+tauri-plugin-opener = "=2.7.2"
 
 [target.'cfg(unix)'.dependencies]
 libc = "=0.2.190"

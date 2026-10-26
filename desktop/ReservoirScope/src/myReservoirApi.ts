@@ -7,6 +7,7 @@ async function command<T>(name: string, args: Record<string, unknown>): Promise<
   return invoke<T>(name, args);
 }
 export const myReservoirApi: MyReservoirApi = {
+  openJournalFolder: (sessionId, generation) => command('open_sustained_journal_folder', { sessionId, generation }),
   get: (requestId, onUpdate) => command('get_sustained', { requestId, onUpdate: new Channel<SustainedUpdate>(onUpdate) }),
   create: (requestId, config) => command('create_sustained', { requestId, config }),
   action: (action, requestId, sessionId, generation, expectedEntryId = null, expectedAttemptId = null) => command(({ start: 'start_sustained', pause: 'pause_sustained', stop: 'stop_sustained', retrySave: 'retry_sustained_save', retryProvider: 'retry_sustained_language', skipFeedback: 'skip_sustained_feedback' })[action], { requestId, sessionId, generation, ...(action === 'skipFeedback' ? { expectedEntryId, expectedAttemptId } : {}) }),

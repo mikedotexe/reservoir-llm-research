@@ -139,6 +139,7 @@ export interface SustainedJournal extends Omit<SustainedJournalRow, 'textPreview
 export interface SustainedJournalPage { requestId: string; sessionId: string; generation: string; revision: string; total: number; offset: number; hasMore: boolean; entries: SustainedJournalRow[] }
 export interface SustainedJournalResult { requestId: string; sessionId: string; generation: string; revision: string; journal: SustainedJournal }
 export interface MyReservoirApi {
+  openJournalFolder(sessionId: string, generation: string): Promise<void>;
   get(requestId: string, onUpdate: (update: SustainedUpdate) => void): Promise<SustainedUpdate>;
   create(requestId: string, config: SustainedConfig): Promise<SustainedUpdate>;
   action(action: SustainedAction, requestId: string, sessionId: string, generation: string, expectedEntryId?: string | null, expectedAttemptId?: number | null): Promise<SustainedUpdate>;

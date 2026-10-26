@@ -153,6 +153,11 @@ report of subjective experience. The numerical fill display is also not a measur
 of awareness or writing quality. Repetitive, mundane or unconvincing passages are
 as welcome in the record as surprising ones.
 
+**Open journal folder**, beside the Journal heading, opens this session’s saved
+files in Finder, File Explorer or your Linux file manager. Entries are JSON files
+containing the writing and its saved context. You can open the folder while the
+session runs; use Export below when you want a portable copy.
+
 If the session is still running, choose **Pause**. Wait for any request/save
 boundary to settle, then choose **Export saved session…** for a portable copy. To reopen a local session, expand **Saved sessions
 and recovery**, choose **Find saved sessions**, then **Verify and inspect** and
