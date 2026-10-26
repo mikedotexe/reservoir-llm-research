@@ -1031,6 +1031,7 @@ fn main() {
             sustained_commands::create_sustained,
             sustained_commands::get_sustained,
             sustained_commands::start_sustained,
+            sustained_commands::extend_sustained_limits,
             sustained_commands::pause_sustained,
             sustained_commands::stop_sustained,
             sustained_commands::retry_sustained_save,

@@ -17,8 +17,8 @@ use reservoir_core::{
         is_legacy_feedback_scale, is_legacy_output_tokens, is_legacy_request_deadline_seconds,
         is_legacy_sensory_noise_amplitude, is_zero, legacy_feedback_scale, legacy_output_tokens,
         legacy_request_deadline_seconds, legacy_sensory_noise_amplitude, SustainedCheckpoint,
-        SustainedEventKind, SustainedPhase, SustainedPromptVersion, SustainedSession,
-        SustainedSpecification, CURRENT_PROMPT_VERSION, DEFAULT_FEEDBACK_SCALE,
+        SustainedEventKind, SustainedPhase, SustainedPromptVersion, SustainedRunLimitContext,
+        SustainedSession, SustainedSpecification, CURRENT_PROMPT_VERSION, DEFAULT_FEEDBACK_SCALE,
         DEFAULT_OUTPUT_TOKENS, DEFAULT_REQUEST_DEADLINE_SECONDS, DEFAULT_SENSORY_NOISE_AMPLITUDE,
     },
 };
@@ -233,6 +233,44 @@ impl SustainedConfig {
         })
     }
 }
+pub const MAX_LIMIT_EXTENSIONS: usize = 256;
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct SustainedRunLimits {
+    pub maximum_steps: u64,
+    pub maximum_turns: u64,
+    pub maximum_duration_seconds: u64,
+}
+impl SustainedRunLimits {
+    pub fn from_config(config: &SustainedConfig) -> Self {
+        Self {
+            maximum_steps: config.maximum_steps,
+            maximum_turns: config.maximum_turns,
+            maximum_duration_seconds: config.maximum_duration_seconds,
+        }
+    }
+    pub fn validate_extension(&self, previous: &Self) -> Result<(), AppError> {
+        if !(1..=1_000_000).contains(&self.maximum_steps)
+            || !(1..=10_000).contains(&self.maximum_turns)
+            || !(1..=86_400).contains(&self.maximum_duration_seconds)
+            || self.maximum_steps < previous.maximum_steps
+            || self.maximum_turns < previous.maximum_turns
+            || self.maximum_duration_seconds < previous.maximum_duration_seconds
+            || self == previous
+        {
+            return Err(err("limits", "Increase at least one limit without lowering another; maximum totals are 1,000,000 steps, 10,000 attempts and 24 hours."));
+        }
+        Ok(())
+    }
+}
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct SustainedLimitExtension {
+    pub event_id: u64,
+    pub step: u64,
+    pub elapsed_millis: u64,
+    pub limits: SustainedRunLimits,
+}
 /// Embeds one entry for the embedding codec: the real transport in the app, a fake in tests.
 type Embedder = Arc<
     dyn Fn(
@@ -279,6 +317,9 @@ pub struct PendingApplication {
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct SustainedSummary {
+    pub effective_limits: SustainedRunLimits,
+    pub can_extend_limits: bool,
+    pub limit_extension_count: usize,
     pub session_id: String,
     pub generation: String,
     pub revision: String,
@@ -581,6 +622,7 @@ impl SustainedState {
             generation: g.generation.to_string(),
             revision: "1".into(),
             config,
+            limit_extensions: vec![],
             phase: "ready".into(),
             step: 0,
             durable_step: 0,
@@ -667,6 +709,108 @@ impl SustainedState {
             return Ok(self.update(&g, request_id));
         }
         self.launch(a);
+        let update = self.update(&g, request_id);
+        drop(g);
+        self.emit();
+        Ok(update)
+    }
+    fn can_extend_limits(&self, a: &Active) -> bool {
+        !a.worker_active
+            && !a.run_requested
+            && !a.dispatch_once
+            && matches!(
+                a.manifest.phase.as_str(),
+                "ready" | "paused" | "budgetReached"
+            )
+            && !sustained_store::storage_held(&a.manifest)
+            && a.engine.blocked().is_none()
+            && a.engine.pending_journal().is_none()
+            && !a
+                .engine
+                .pending_language()
+                .is_some_and(|pending| pending.request_started)
+            && a.engine.events().is_empty()
+            && a.engine.checkpoint().sha256 == a.committed.sha256
+            && a.manifest.limit_extensions.len() < MAX_LIMIT_EXTENSIONS
+    }
+    pub fn extend_limits(
+        &self,
+        request_id: String,
+        id: &str,
+        generation: &str,
+        expected_revision: &str,
+        limits: SustainedRunLimits,
+    ) -> Result<SustainedUpdate, AppError> {
+        let mut g = self.lock()?;
+        let a = active(&mut g, id, generation)?;
+        if a.manifest.revision != expected_revision {
+            return Err(err(
+                "stale",
+                "Session changed before the limit extension was saved",
+            ));
+        }
+        if !self.can_extend_limits(a) {
+            return Err(err("phase", "Pause at a saved boundary before extending run limits; resolve pending errors or storage holds first"));
+        }
+        let previous = a.manifest.effective_limits();
+        limits.validate_extension(&previous)?;
+        // Prepare the entire transaction separately. Unpublished changes never
+        // grant the active worker a larger budget.
+        let mut engine = a.engine.clone();
+        engine
+            .extend_run_budgets(
+                limits.maximum_steps,
+                limits.maximum_turns,
+                Some(SustainedRunLimitContext {
+                    previous_duration_seconds: previous.maximum_duration_seconds,
+                    maximum_duration_seconds: limits.maximum_duration_seconds,
+                    elapsed_millis: a.manifest.elapsed_millis,
+                }),
+            )
+            .map_err(ce)?;
+        let event_id = engine.events().back().expect("extension event").id;
+        let mut manifest = a.manifest.clone();
+        manifest.limit_extensions.push(SustainedLimitExtension {
+            event_id,
+            step: engine.step(),
+            elapsed_millis: manifest.elapsed_millis,
+            limits,
+        });
+        manifest.phase = "paused".into();
+        manifest.revision = next(&manifest.revision);
+        let committed = match self.shared.store.persist(
+            &mut manifest,
+            &a.committed,
+            &mut engine,
+            sustained_store::Admission::Ordinary,
+        ) {
+            Ok(checkpoint) => checkpoint,
+            Err(error) => {
+                // Publication can finish before a final sync/readback reports an
+                // error. Accept only the exact proposed, independently verified
+                // commit; otherwise retain the original active limits.
+                let recovered = self.shared.store.verify(id).ok().filter(|saved| {
+                    saved.manifest.generation == manifest.generation
+                        && saved.manifest.revision == manifest.revision
+                        && saved.manifest.limit_extensions == manifest.limit_extensions
+                        && saved.checkpoint.sha256 == engine.checkpoint().sha256
+                });
+                let Some(saved) = recovered else {
+                    return Err(error);
+                };
+                manifest = saved.manifest;
+                engine.acknowledge_events(event_id).map_err(ce)?;
+                saved.checkpoint
+            }
+        };
+        a.engine = engine;
+        a.manifest = manifest;
+        a.committed = committed;
+        a.used_bytes = self.shared.store.used_bytes(id).unwrap_or(a.used_bytes);
+        self.shared.busy.store(true, Ordering::SeqCst);
+        a.run_requested = false;
+        a.dispatch_once = false;
+        self.shared.pause.store(true, Ordering::SeqCst);
         let update = self.update(&g, request_id);
         drop(g);
         self.emit();
@@ -823,10 +967,10 @@ impl SustainedState {
         Ok(self.update(&g, request_id))
     }
     fn duration_reached(&self, a: &Active) -> bool {
-        a.manifest.elapsed_millis >= a.manifest.config.maximum_duration_seconds * 1000
+        a.manifest.elapsed_millis >= a.manifest.effective_limits().maximum_duration_seconds * 1000
     }
     fn step_budget_reached(&self, a: &Active) -> bool {
-        a.engine.step() >= a.manifest.config.maximum_steps
+        a.engine.step() >= a.manifest.effective_limits().maximum_steps
             || (a.engine.budget_reached()
                 && a.engine.prepared_application().is_none()
                 && a.engine.pending_language().is_none()
@@ -1347,6 +1491,9 @@ impl SustainedState {
         });
         let cp = &a.committed.state;
         SustainedSummary {
+            effective_limits: a.manifest.effective_limits(),
+            can_extend_limits: self.can_extend_limits(a),
+            limit_extension_count: a.manifest.limit_extensions.len(),
             session_id: a.manifest.session_id.clone(),
             generation: a.manifest.generation.clone(),
             revision: a.manifest.revision.clone(),
@@ -1377,7 +1524,7 @@ impl SustainedState {
             can_retry_provider: !a.worker_active
                 && !sustained_store::storage_held(&a.manifest)
                 && a.engine.blocked().is_some()
-                && cp.attempt_cursor < a.manifest.config.maximum_turns,
+                && cp.attempt_cursor < a.manifest.effective_limits().maximum_turns,
             can_skip_feedback: !a.worker_active
                 && !matches!(a.engine.phase(), SustainedPhase::Ready),
             pending_language,

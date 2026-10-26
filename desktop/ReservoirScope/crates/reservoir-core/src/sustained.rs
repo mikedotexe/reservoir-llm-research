@@ -1334,7 +1334,18 @@ pub enum SustainedEventKind {
     BudgetsExtended {
         maximum_steps: u64,
         maximum_turns: u64,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        run_limit: Option<SustainedRunLimitContext>,
     },
+}
+/// Host running-time evidence accompanying an explicit budget extension. The core
+/// replays its bytes; the host verifies continuity from its original duration.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct SustainedRunLimitContext {
+    pub previous_duration_seconds: u64,
+    pub maximum_duration_seconds: u64,
+    pub elapsed_millis: u64,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -2039,12 +2050,33 @@ impl SustainedSession {
         Ok(())
     }
     pub fn extend_budgets(&mut self, maximum_steps: u64, maximum_turns: u64) -> Result<()> {
+        self.extend_run_budgets(maximum_steps, maximum_turns, None)
+    }
+    pub fn extend_run_budgets(
+        &mut self,
+        maximum_steps: u64,
+        maximum_turns: u64,
+        run_limit: Option<SustainedRunLimitContext>,
+    ) -> Result<()> {
         self.room()?;
         let mut spec = self.specification().clone();
+        if let Some(context) = &run_limit {
+            ensure(
+                (1..=86_400).contains(&context.previous_duration_seconds)
+                    && (context.previous_duration_seconds..=86_400)
+                        .contains(&context.maximum_duration_seconds),
+                "Running duration extension must be bounded and monotonic",
+            )?;
+        }
+        let duration_increased = run_limit.as_ref().is_some_and(|context| {
+            context.maximum_duration_seconds > context.previous_duration_seconds
+        });
         ensure(
             maximum_steps >= spec.maximum_steps
                 && maximum_turns >= spec.maximum_turns
-                && (maximum_steps > spec.maximum_steps || maximum_turns > spec.maximum_turns),
+                && (maximum_steps > spec.maximum_steps
+                    || maximum_turns > spec.maximum_turns
+                    || duration_increased),
             "Budget extension must be explicit and monotonic",
         )?;
         spec.maximum_steps = maximum_steps;
@@ -2054,6 +2086,7 @@ impl SustainedSession {
         self.event(SustainedEventKind::BudgetsExtended {
             maximum_steps,
             maximum_turns,
+            run_limit,
         });
         Ok(())
     }
@@ -3593,7 +3626,10 @@ impl SustainedSegment {
                 SustainedEventKind::BudgetsExtended {
                     maximum_steps,
                     maximum_turns,
-                } => engine.extend_budgets(*maximum_steps, *maximum_turns)?,
+                    run_limit,
+                } => {
+                    engine.extend_run_budgets(*maximum_steps, *maximum_turns, run_limit.clone())?
+                }
             }
             let actual = engine
                 .events

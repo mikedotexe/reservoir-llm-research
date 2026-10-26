@@ -1,7 +1,9 @@
 //! Bounded, app-owned sustained bundles. A manifest names a committed prefix;
 //! leftover objects are never promoted to history merely because they exist.
 use crate::files::{self, AppError};
-use crate::sustained::SustainedConfig;
+use crate::sustained::{
+    SustainedConfig, SustainedLimitExtension, SustainedRunLimits, MAX_LIMIT_EXTENSIONS,
+};
 use reservoir_core::session::{ProviderPromptEvaluation, ProviderPromptEvaluationIssue};
 use reservoir_core::stage::LanguageKind;
 use reservoir_core::sustained::{
@@ -181,6 +183,8 @@ pub struct Manifest {
     pub generation: String,
     pub revision: String,
     pub config: SustainedConfig,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub limit_extensions: Vec<SustainedLimitExtension>,
     pub phase: String,
     pub step: u64,
     pub durable_step: u64,
@@ -192,6 +196,14 @@ pub struct Manifest {
     pub previous_checkpoint_sha256: Option<String>,
     pub diagnostics: Vec<String>,
     pub attempt_timing: Option<AttemptTiming>,
+}
+impl Manifest {
+    pub fn effective_limits(&self) -> SustainedRunLimits {
+        self.limit_extensions
+            .last()
+            .map(|extension| extension.limits.clone())
+            .unwrap_or_else(|| SustainedRunLimits::from_config(&self.config))
+    }
 }
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -1077,6 +1089,9 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
         .map_err(ce)?
         .checkpoint();
     let mut previous = None;
+    let mut effective_limits = SustainedRunLimits::from_config(&manifest.config);
+    let mut limit_extensions = Vec::new();
+    let mut prior_extension_elapsed = 0;
     let mut journal_count = 0;
     let mut received_response_total = 0;
     let mut received_responses = VecDeque::new();
@@ -1097,6 +1112,40 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
         // The existing verified-chain traversal already owns these typed events.
         // Retain only the newest bounded metadata rows, never full response text.
         for event in &link.segment.events {
+            if let SustainedEventKind::BudgetsExtended {
+                maximum_steps,
+                maximum_turns,
+                run_limit,
+            } = &event.kind
+            {
+                let context = run_limit.as_ref().ok_or_else(|| {
+                    err("limits", "Run limit extension lacks its duration evidence")
+                })?;
+                let limits = SustainedRunLimits {
+                    maximum_steps: *maximum_steps,
+                    maximum_turns: *maximum_turns,
+                    maximum_duration_seconds: context.maximum_duration_seconds,
+                };
+                limits.validate_extension(&effective_limits)?;
+                if context.previous_duration_seconds != effective_limits.maximum_duration_seconds
+                    || context.elapsed_millis < prior_extension_elapsed
+                    || context.elapsed_millis > manifest.elapsed_millis
+                    || limit_extensions.len() >= MAX_LIMIT_EXTENSIONS
+                {
+                    return Err(err(
+                        "limits",
+                        "Run limit extension does not continue the recorded limits",
+                    ));
+                }
+                limit_extensions.push(SustainedLimitExtension {
+                    event_id: event.id,
+                    step: event.step,
+                    elapsed_millis: context.elapsed_millis,
+                    limits: limits.clone(),
+                });
+                prior_extension_elapsed = context.elapsed_millis;
+                effective_limits = limits;
+            }
             if let SustainedEventKind::LanguageReceived {
                 attempt_id,
                 response,
@@ -1185,6 +1234,9 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
         || previous != manifest.last_segment_sha256
         || manifest.step != checkpoint.state.step
         || manifest.journal_count != journal_count
+        || manifest.limit_extensions != limit_extensions
+        || checkpoint.state.specification.maximum_steps != effective_limits.maximum_steps
+        || checkpoint.state.specification.maximum_turns != effective_limits.maximum_turns
     {
         return Err(err(
             "chain",
@@ -1410,6 +1462,7 @@ mod quota_projection_tests {
             generation: "1".into(),
             revision: "1".into(),
             config,
+            limit_extensions: vec![],
             phase: "ready".into(),
             step: 0,
             durable_step: 0,

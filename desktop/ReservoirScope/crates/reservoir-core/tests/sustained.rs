@@ -497,3 +497,51 @@ fn skipped_memory_failures_count_opportunities_without_fabricating_provider_atte
     s.advance().unwrap();
     flush(&mut s, &mut base);
 }
+
+#[test]
+fn duration_context_extension_replays_without_changing_numerical_state() {
+    let mut session = SustainedSession::new(spec()).unwrap();
+    let mut base = session.checkpoint();
+    let original = base.clone();
+    let context = SustainedRunLimitContext {
+        previous_duration_seconds: 1800,
+        maximum_duration_seconds: 5400,
+        elapsed_millis: 1_800_000,
+    };
+    session.extend_run_budgets(100, 30, Some(context)).unwrap();
+    assert_eq!(session.step(), 0);
+    assert_eq!(
+        session.checkpoint().state.rng_state,
+        original.state.rng_state
+    );
+    let segment = flush(&mut session, &mut base);
+    let restored: SustainedSegment = serde_json::from_slice(&bytes(&segment)).unwrap();
+    restored.verify().unwrap();
+    assert!(session
+        .extend_run_budgets(
+            100,
+            30,
+            Some(SustainedRunLimitContext {
+                previous_duration_seconds: 5400,
+                maximum_duration_seconds: 1800,
+                elapsed_millis: 0,
+            })
+        )
+        .is_err());
+    assert!(session
+        .extend_run_budgets(
+            100,
+            30,
+            Some(SustainedRunLimitContext {
+                previous_duration_seconds: 5400,
+                maximum_duration_seconds: 86_401,
+                elapsed_millis: 0,
+            })
+        )
+        .is_err());
+    session.extend_budgets(101, 30).unwrap();
+    assert!(!String::from_utf8(bytes(session.events().back().unwrap()))
+        .unwrap()
+        .contains("run_limit"));
+    flush(&mut session, &mut base);
+}

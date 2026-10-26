@@ -1,7 +1,10 @@
 //! Narrow IPC for explicit sustained runs, durable journal inspection and export.
 use crate::{
     files::AppError,
-    sustained::{JournalDetail, JournalPage, SustainedConfig, SustainedState, SustainedUpdate},
+    sustained::{
+        JournalDetail, JournalPage, SustainedConfig, SustainedRunLimits, SustainedState,
+        SustainedUpdate,
+    },
     sustained_store::{BundleReport, RecoveryDetail, RecoveryPage},
 };
 use std::sync::Arc;
@@ -20,6 +23,28 @@ pub async fn create_sustained(
     tauri::async_runtime::spawn_blocking(move || s.create(request_id, config))
         .await
         .map_err(worker)?
+}
+#[tauri::command]
+pub async fn extend_sustained_limits(
+    state: tauri::State<'_, SustainedState>,
+    request_id: String,
+    session_id: String,
+    generation: String,
+    expected_revision: String,
+    limits: SustainedRunLimits,
+) -> Result<SustainedUpdate, AppError> {
+    let s = state.inner().clone();
+    tauri::async_runtime::spawn_blocking(move || {
+        s.extend_limits(
+            request_id,
+            &session_id,
+            &generation,
+            &expected_revision,
+            limits,
+        )
+    })
+    .await
+    .map_err(worker)?
 }
 #[tauri::command]
 pub async fn get_sustained(

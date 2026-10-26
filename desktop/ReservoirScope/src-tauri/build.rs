@@ -20,6 +20,7 @@ fn main() {
             "create_sustained",
             "get_sustained",
             "start_sustained",
+            "extend_sustained_limits",
             "pause_sustained",
             "stop_sustained",
             "retry_sustained_save",
