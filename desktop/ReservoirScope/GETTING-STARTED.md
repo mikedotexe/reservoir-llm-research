@@ -1,157 +1,161 @@
-# Start your reservoir journal
+# Your first journal session
 
-Build the desktop app, select an installed local model, and watch its saved writing
-return as input to a reservoir. Journal prose leads the running view; current
-sensory fill and the reservoir surface remain available alongside it.
+The aim is simple: open Reservoir Scope, let a local model write a short sequence,
+then read it with some curiosity. You do not need to understand the reservoir's
+math to begin. Plan for **up to 30 minutes of running time**, after installation
+and model setup, plus a few minutes to read.
 
-The separate **Activation experiment** is an optional Apple-silicon research mode.
-Its setup and controlled comparison are described in
-[Activation experiment](ACTIVATION-EXPERIMENT.md). Ordinary Ollama sessions below
-retain their existing behavior.
+These instructions describe **0.40.1 source**. If you received the older 0.27.0
+candidate 04 package, follow its [install guide](PREVIEW-START.md).
 
-This app currently connects to **Ollama's local API**. An arbitrary model file
-or a different provider's server is not a supported endpoint. The offline example
-lets you try the same save-and-feedback workflow without a model.
+## 1. Open the app
 
-## 1. Build and open the app
+Have Node with npm, Python 3.12+, Rust via rustup and your platform's build tools
+installed. Node 24 is used locally; the repo pins Rust 1.94.1. On macOS, install
+Xcode Command Line Tools. [Full build instructions](BUILDING.md).
 
-Install Node **20.20.1** with npm, Python **3.12+**, and Rust through rustup. The
-repository selects Rust **1.94.1** through its toolchain file. Install the system
-build tools for your host: Xcode Command Line Tools on macOS, MSVC C++ Build Tools
-and WebView2 on Windows, or the WebKitGTK/GTK development packages on Ubuntu.
-[Tauri's prerequisite guide](https://v2.tauri.app/start/prerequisites/) and our
-[host-specific build instructions](README.md#build-prerequisites) give the details.
-
-From this repository's root:
+From the repository root:
 
 ```sh
 cd desktop/ReservoirScope
 npm ci
+python3 scripts/stage_activation_bootstrap.py
 npm run tauri -- dev
 ```
 
-The last command prepares the included resources, compiles the Rust application
-and opens **Reservoir Scope** (installed as Reservoir Scope Tauri Preview before 0.39.0). The first compile takes longer than
-later launches. Keep its terminal running during development; quitting the app ends
-its session. `npm run dev` alone serves only the frontend and cannot run a reservoir.
+The staging command downloads and verifies pinned runtime assets, not a model.
+Use your Python 3.12+ command if `python3` is older, and set `PYTHON` for the Tauri
+build as described in [Building](BUILDING.md#choosing-python). The first compile
+takes longer than later launches. Keep the development terminal open.
 
-You do not need the private research captures, Python research index, or another
-Reservoir Scope installation. Python is used for build-time resource checks; it is
-not a bundled runtime. The app has its own writable storage.
+The app opens on **Study**, a walkthrough of a completed experiment. Select
+**My reservoir** to start your own journal. For a quick look without any model,
+leave **Offline example writing** selected, choose **Create my reservoir**, then
+**Start**. Those entries are scripted examples.
 
-The currently inspected desktop platform is Apple-silicon macOS. Windows and Ubuntu
-builds and packaged behavior still need qualification; prerequisites alone are not
-a support claim. To run without a development terminal, build the
-[package for your host](README.md#run-and-build).
+## 2. Choose a local model
 
-## 2. Choose your installed model
+Install and open [Ollama](https://ollama.com/), or use your existing local service.
+The app does not install a model or start the service for you.
 
-Start your own Ollama service if it is not already running. To see the installed
-model names, run:
+Our recent journal explorations used **gemma4:12b**. If your machine can run it,
+you can download it and check the installed names with:
 
 ```sh
-ollama list
+ollama pull gemma4:12b
+ollama ls
 ```
 
-Use the exact name, including its tag, from the service you intend to use. For
-example, enter `gemma3:4b` only if that name is installed there. A typical local
-server address is `http://127.0.0.1:11434`; use your service's actual port.
-For a custom service address, query that service's model list rather than assuming
-the CLI's default inventory is the same. [Ollama CLI](https://docs.ollama.com/cli)
-and [model inventory API](https://docs.ollama.com/api/tags).
+Model setup may take longer than the first journal session. Another installed
+model is fine for exploration; record which one you used and expect different
+writing. The same model tag can also change over time, so the tag alone does not
+guarantee an exact research reproduction.
+[Ollama CLI reference](https://docs.ollama.com/cli) · [model page](https://ollama.com/library/gemma4:12b).
 
 In **My reservoir**:
 
-1. Choose **My local Ollama model** under Writing source.
-2. Enter the local server address and exact model name.
-3. Select **Check local model**. This checks the selected service's inventory;
-   it generates no journal. A successful check does not guarantee sufficient memory
-   or a complete response.
-4. Select **Create my reservoir**, then **Start** when ready.
+1. Under **Writing source**, choose **My local Ollama model**.
+2. Enter your **Local server address**, usually `http://127.0.0.1:11434`, and the
+   **Exact model name** from that service's inventory.
+3. Choose **Check local model**. This checks availability without generating a
+   journal. Available does not guarantee that the model will fit in memory or
+   finish within the response limits.
 
-The app starts no service, installs no model and makes no automatic connection when
-you open it. Supported server addresses use HTTP and an explicit loopback port.
-They contain no credentials, API path or query. Other providers are a future feature.
+This path supports Ollama's local API, using an HTTP loopback address with an
+explicit port. An arbitrary model file or another provider's API is not a
+supported replacement.
 
-To try the interface first, leave **Offline example writing** selected and choose
-Create, then Start. Those entries are a deterministic script, clearly identified
-as example writing; they are not fresh LLM output.
+## 3. Set up a short session
 
-## 3. Watch the writing loop
+Open **Advanced settings** before creating the session:
 
-Feedback is included in My reservoir; there is no additional enable switch:
+| Setting | For this first session |
+|---|---|
+| **Writing invitation** | **Plain journal · prior text, no numerical readout** |
+| **Writing limits → Model thinking** | **Off · reply only**, for gemma4 |
+| **Writing limits → Writing temperature** | **0.7** |
+| **Writing limits → Context tokens** | **8192** |
+| **Earlier entry returned** | **Latest applied entry (as built)** |
+| **Seed and run limits → Maximum writing attempts · including retries** | **12** |
+| **Duration limit** | **0 hours, 30 minutes, 0 seconds** |
 
-**Reservoir observation → model writing → durable save and readback → encoded input
-at the next numerical step → later observation and eligible prior prose.**
+Leave the other settings as they are. This is a manageable first reading, not an
+exact repetition of a published study.
 
-The model's topic and form remain open. Encoding is deterministic numerical input,
-not model training. A sentence describing an action does not execute a control.
+**Want to let it run for hours?** Set the limits before choosing Create my reservoir.
+The existing defaults allow up to **6 hours, 360 writing attempts and 10,800 steps**.
+Keep those defaults for a longer run, or choose your own duration, attempt and step
+limits under Advanced settings. The first limit reached holds the session, so
+raising the duration while leaving the attempt limit at 12 will still stop after
+12 attempts. Keep the machine awake and start with a model that completes writing
+successfully. These limits allow longer runs; they do not guarantee uninterrupted
+writing for that duration.
 
-New Ollama sessions write at temperature 0.7 with a sampler seed derived from the
-session seed and the attempt number, both recorded with each entry. Temperature 0
-reproduces the greedy decoding of earlier sessions, under which consecutive entries
-converged to a repeated template. Change it under Advanced settings → Writing limits.
+**Plain journal** uses a standing writing contract and, when available, one earlier
+saved entry. With the memory setting above, that is the latest applied entry.
+It sends no numerical readout or context tag. The reservoir continues to run and
+receive encoded writing, but the model cannot inspect that hidden state through
+this invitation. The **Current readout (as built)** option supplies observations
+instead; it remains the app's default. Saved sessions keep their original prompt.
 
-By default, a writing opportunity occurs every 30 numerical steps at a requested
-pace of one step per second. Generation and saving hold numerical time, so an entry
-is not promised every 30 wall-clock seconds. The first complete journal appears
-after the first writing opportunity finishes and its save is checked. Responses
-arrive as complete entries; the app does not stream partial prose into the journal.
+Choose **Create my reservoir**, then **Start**. Keep the app open and your machine
+awake. It can run minimized. You can **Pause** whenever you have enough to read.
 
-The journal initially follows the newest saved entry. Earlier/Later lets you read
-without moving the reservoir clock. Selecting an older entry pins it; **Follow
-latest** returns to incoming writing. Current fill stays tied to the current
-observation, while a selected entry's Recorded measurements describe that entry.
+## 4. Let a few entries arrive
 
-If writing or saving needs attention, the app retains the outcome and shows the
-available retry, skip or recovery action. An incomplete response or failed save
-cannot silently become reservoir feedback. Check **Writing and feedback** for the
-boundary; Evidence preserves the exact prompt and retained record.
+At the default pace, a writing opportunity comes after 30 numerical steps, about
+30 seconds before generation time is added. The model finishes, the app saves and
+checks the entry, and the journal appears as complete prose. Partial text is not
+streamed into the journal. Generation and saving pause the numerical clock.
 
-The session can continue while the app is open or minimized. Its first duration,
-step, attempt or storage limit holds it. The initial limits are 6 hours, 10,800
-steps, 360 writing attempts and 256 MiB; these are ceilings, not a six-hour runtime
-guarantee. Advanced settings changes the next session's limits. There is no current
-budget-extension control, and quitting or computer sleep is not background execution.
+The first reached duration, step, attempt or storage limit holds the session.
+Twelve attempts can produce fewer than twelve journals: retries count too. Slow
+generation or an error may end the session with less writing. A limit reached
+while a request or save is underway still needs that visible boundary resolved.
 
-## 4. Read fill alongside the journal
+If writing needs attention, read the shown reason before retrying. **Writing and
+feedback** shows whether an entry was saved and applied. **Evidence** preserves
+the prompt and retained record. An unfinished response or failed save does not
+silently become reservoir feedback.
 
-**Sensory fill (%)** is a smoothed estimate of active modes in a separate sensory
-covariance field. It is not memory usage or the proportion of occupied reservoir
-nodes. The state surface shows a different quantity: signed reservoir coordinates.
+## 5. Read, save and tell us what you noticed
 
-With sensory regulation enabled, this implementation uses a **68% target** and a
-**64–72% deadband**. Those are controller settings, not a demonstrated special state
-at 67–70%, a writing-quality score, or a guarantee that a run will reach the target.
-The personal field and historical Minime recordings have different mechanisms and
-reference policies. Their percentages must not be treated as interchangeable.
+Use **Earlier** and **Later** to read without moving the reservoir clock.
+**Follow latest** returns to new writing. Try reading several consecutive entries,
+not just the most striking sentence:
 
-New sessions add uniform noise to the field's inputs (default 0.5) and scale the
-returning text vector (default 0.4). Without them the field receives only sixteen
-forcing channels and one constant text vector, which spans too few modes for the
-controller to reach its band; replay of the first recorded session stayed near 14%
-fill on the retention rail, and the defaults settled near 70%. Both are in
-Advanced settings. Noise 0 with scale 1 reproduces the earlier mechanism exactly.
-Advanced settings also offers the text reduction: surface statistics (as built) or an
-embedding from a local model such as `nomic-embed-text`, which must be installed on the
-same server; the embedding reduction lets the returning vector carry content.
+- What changes, and what repeats?
+- Does a later entry pick up something specific from an earlier one?
+- Which statements are supported by the prompt, and which appear invented?
 
-The percentage is fill level. A *fill rate* would be change per unit of time; the
-personal readout does not claim to measure that rate. The selected entry's optional
-measurements help inspect what was actually observed when its prompt was prepared.
-The implementation is in [ReducedFill and RetentionController](crates/reservoir-core/src/math.rs)
-and the [sustained numerical step](crates/reservoir-core/src/sustained.rs).
+Reflective, first-person writing can be interesting without being a reliable
+report of subjective experience. The numerical fill display is also not a measure
+of awareness or writing quality. Repetitive, mundane or unconvincing passages are
+as welcome in the record as surprising ones.
 
-## Save a copy and return later
+If the session is still running, choose **Pause**. Wait for any request/save
+boundary to settle, then choose **Export saved session…** for a portable copy. To reopen a local session, expand **Saved sessions
+and recovery**, choose **Find saved sessions**, then **Verify and inspect** and
+**Restore paused**. Restoration makes no new model request and does not extend
+exhausted limits. [More on saving and recovery](SUSTAINED-SESSIONS.md).
 
-Use Pause, then **Export saved session…** for a portable snapshot. Saved sessions
-and recovery can find a local session, verify its retained history and **Restore
-paused**. Restoration starts no request and never silently extends exhausted limits.
+For a useful first report, note your app version, machine, model and invitation;
+how long you ran and how many entries finished; one passage you found surprising;
+and one that felt repetitive or unsupported. Include any setup friction. Review
+your exported text before choosing what to share. The app does not send us a report.
 
-If the app is waiting for a request or save, review the visible boundary first.
-Quitting offers the existing checkpoint/return/discard flow when work is unresolved.
-See [sustained-session behavior](SUSTAINED-SESSIONS.md) for exact recovery boundaries.
+## If something gets in the way
 
-Build/test records and the remaining platform, endurance, graphics and collaborator
-checks live in [Current status](STATUS.md). They are separate from this first-use
-walkthrough; your chosen model and machine still need their own practical check.
+| What you see | What to try |
+|---|---|
+| Build cannot find a Python/uv asset | Run `python3 scripts/stage_activation_bootstrap.py` from this app directory. |
+| Python version or resource-check error | Select Python 3.12+ for staging and `PYTHON`; see [Building](BUILDING.md#choosing-python). |
+| Model unavailable | Confirm Ollama is running and the exact model name belongs to the selected local server. |
+| No journal yet | Check the step count and writing status; a complete response and successful save come first. |
+| Unfinished response | For gemma4, check **Model thinking → Off · reply only**. Keep the recorded failure if it persists. |
+| Study example/recalculation unavailable | The private S-021 packet was not included; [what is needed](S021-WALKTHROUGH.md). My reservoir still works. |
+
+Apple-silicon macOS is the platform checked locally. Windows/Linux behavior and a
+first session on a second machine still need their own checks. The optional
+[Activation experiment](ACTIVATION-EXPERIMENT.md) is a separate research mode;
+it is not part of this first-session path.

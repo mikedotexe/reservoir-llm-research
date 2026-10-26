@@ -1,5 +1,12 @@
 # Current work
 
+**October 25: first-session documentation and invitation choice.** Mike selected
+README polish for new collaborators. Development version 0.40.1 adds an explicit
+Plain journal choice and documents launch, a bounded first session, reading and
+export. See the [first-session guide](../desktop/ReservoirScope/GETTING-STARTED.md)
+and [change record](../desktop/ReservoirScope/RELEASE-0.40.1.md). This is app and
+documentation work, with no new research run or change to the closed studies.
+
 **October 25: lightweight S-021 app walkthrough.** Mike selected a new
 collaborator's reading/reproduction experience after the research save point.
 Development version 0.40.0 opens with the question, reported result, one paired

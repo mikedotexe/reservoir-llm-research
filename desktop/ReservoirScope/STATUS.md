@@ -1,5 +1,11 @@
 # Reservoir Scope: current status and next work
 
+**October 25, 2026 · 0.40.1 first-session polish.** The README now leads with
+source launch and a short journal session. Advanced settings offers an explicit
+Plain journal invitation alongside the unchanged Current readout default.
+[First-session guide](GETTING-STARTED.md) · [change record](RELEASE-0.40.1.md).
+This remains a local development preview; a second-machine first session is pending.
+
 **October 25, 2026 · 0.40.0 development walkthrough.** Mike selected one simple
 S-021 reading/reproduction path: question, result, one exact paired example and
 offline recalculation of saved counts/costs. The new Study tab is the initial

@@ -1,5 +1,8 @@
 # Start with the writing
 
+For the current source build, use [Your first journal session](GETTING-STARTED.md).
+This guide describes the older 0.27.0 candidate 04 package.
+
 **0.27.0 install guide · candidate 04 is ready for a first invited tester.**
 The handoff is a Mac app and this guide, with no source build or Terminal setup
 required. The [release record](RELEASE-0.27.0.md#candidate-identity-and-acceptance)
