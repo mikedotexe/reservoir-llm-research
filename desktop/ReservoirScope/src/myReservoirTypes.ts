@@ -55,6 +55,8 @@ export function validFieldControls(config: SustainedConfig): boolean {
     && (model == null || model.trim().length > 0 && model === model.trim() && model.length <= 256)
     && (seed == null || seed === '' || /^(0|[1-9][0-9]*)$/.test(seed));
 }
+export const embeddingConfigurationError = (config: SustainedConfig): string | null => config.embeddingModel != null && config.language.backend !== 'ollama'
+  ? 'Embedding text reduction requires My local Ollama model. Choose local model writing or Surface statistics.' : null;
 export function validWritingLimits(config: SustainedConfig): boolean {
   const output = effectiveOutputTokens(config), deadline = effectiveRequestDeadline(config);
   const context = config.language?.contextTokens, temperature = config.language?.temperature;
@@ -141,20 +143,21 @@ export interface SustainedSummary {
   sessionId: string; generation: string; revision: string; config: SustainedConfig; phase: string;
   step: number; durableStep: number; simulatedTime: number; elapsedSeconds: number; usedBytes: number;
   journalCount: number; turnCount: number; canStart: boolean; canPause: boolean; canStop: boolean; canRetrySave: boolean;
-  canRetryProvider: boolean; canSkipFeedback: boolean;
+  canRetryProvider: boolean; canRetryEmbedding?: boolean; canSkipFeedback: boolean;
+  pendingEmbedding?: { attemptId: number; observedStep: number; responseText: string; reason: string | null; state: 'prepared' | 'requesting' | 'blocked' } | null;
   pendingLanguage: { operationId: string; turnId: number; attemptId: number; observedStep: number; endpoint: string; model: string; state: 'prepared' | 'requesting' | 'blocked' } | null;
   pendingSave: { entryId: string; attemptId: number; observedStep: number } | null; diagnostics: string[];
   pendingApplication: { entryId: string; attemptId: number; observedStep: number; intendedStep: number } | null;
 }
 export interface SustainedUpdate { requestId: string; snapshotSequence: string; summary: SustainedSummary | null; frame: SessionFrame | null; closeRequested: boolean }
-export type SustainedAction = 'start' | 'pause' | 'stop' | 'retrySave' | 'retryProvider' | 'skipFeedback';
+export type SustainedAction = 'start' | 'pause' | 'stop' | 'retrySave' | 'retryProvider' | 'retryEmbedding' | 'skipFeedback';
 export interface SustainedBundleReport { format: string; sessionId: string; manifestSha256: string; checkpointSha256: string; segmentCount: number; step: number; journalCount: number; sizeBytes: number; verification: string; diagnostics: string[] }
 export interface SustainedExport { requestId: string; sessionId: string; generation: string; revision: string; bundle: SustainedBundleReport | null }
 export interface SustainedManifest { format: string; sessionId: string; generation: string; revision: string; config: SustainedConfig; phase: string; step: number; durableStep: number; elapsedMillis: number; journalCount: number; segmentCount: number; lastSegmentSha256: string | null; checkpointSha256: string; previousCheckpointSha256: string | null; diagnostics: string[] }
 export interface SustainedRecoveryEntry { sessionId: string; generation: string | null; revision: string | null; phase: string | null; step: number | null; durableStep: number | null; journalCount: number | null; diagnostic: string | null }
 export interface SustainedRecoveryPage { requestId: string; entries: SustainedRecoveryEntry[]; complete: boolean }
 export type ProviderPromptEvaluation = { status: 'reported'; count: string } | { status: 'unusable'; reason: 'wrongType' | 'negative' | 'nonInteger' | 'outOfRange' | 'duplicateField' };
-export interface RetainedProviderResponses { total: number; truncated: boolean; entries: { attemptId: string; observedStep: string; complete: boolean; stopReason: string | null; stopReasonTruncated: boolean; tokenCount: string | null; providerPromptEvaluation?: ProviderPromptEvaluation | null }[] }
+export interface RetainedProviderResponses { total: number; truncated: boolean; entries: { attemptId: string; observedStep: string; complete: boolean; stopReason: string | null; stopReasonTruncated: boolean; tokenCount: string | null; providerPromptEvaluation?: ProviderPromptEvaluation | null; responseText?: string; responseTextTruncated?: boolean }[] }
 export interface SustainedRecoveryDetail { requestId: string; manifest: SustainedManifest; checkpoint: unknown; report: SustainedBundleReport; receivedResponses?: RetainedProviderResponses }
 export interface SustainedJournalRow {
   entryId: string; turnId: number; attemptId: number; observedStep: number; firstAppliedStep: number | null;

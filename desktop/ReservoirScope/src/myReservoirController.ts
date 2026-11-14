@@ -3,7 +3,7 @@ import { validActionReceipt, validActionSummary, validAuthoredActionConfig, vali
 import { extensionError, sessionLimits, validSessionLimits } from './sustainedLimits';
 import { errorText } from './api';
 import { myReservoirApi } from './myReservoirApi';
-import { effectivePromptVersion, effectiveOutputTokens, effectiveRequestDeadline, isSustainedPromptVersion, validDifferenceControls, validFieldControls, validMemoryPolicy, validMemoryRecentExclusion, validWritingLimits } from './myReservoirTypes';
+import { embeddingConfigurationError, effectivePromptVersion, effectiveOutputTokens, effectiveRequestDeadline, isSustainedPromptVersion, validDifferenceControls, validFieldControls, validMemoryPolicy, validMemoryRecentExclusion, validWritingLimits } from './myReservoirTypes';
 import type { SessionFrame } from './freshTypes';
 import type { MyReservoirApi, SustainedLimits, SustainedAction, SustainedActionReceipt, SustainedConfig, SustainedJournal, SustainedJournalPage, SustainedSummary, SustainedUpdate, SustainedBundleReport, SustainedRecoveryPage, SustainedRecoveryDetail } from './myReservoirTypes';
 
@@ -35,6 +35,15 @@ function check(update: SustainedUpdate) {
     if (!schedule || c.intervalSeconds !== schedule.intervalSeconds || c.endAfterSeconds !== schedule.endAfterSeconds || !bounded(c.settings.revision) || !validCheckInPrompt(c.settings.prompt) || typeof c.settings.includeTelemetry !== 'boolean' || typeof c.canEdit !== 'boolean' || typeof c.complete !== 'boolean' || !Array.isArray(c.slots) || c.slots.length !== times.length || c.slots.some((slot, index) => slot.ordinal !== index + 1 || slot.scheduledSeconds !== times[index] || !['pending', 'prepared', 'requesting', 'failed', 'saved', 'applied', 'skipped', 'missed', 'cancelled'].includes(slot.status))) throw new Error('The scheduled conversation progress does not match this session.');
   }
   if (!s.sessionId || !ordinal(s.generation) || !ordinal(s.revision) || !bounded(s.step) || !bounded(s.durableStep) || s.durableStep > s.step || !bounded(s.journalCount, 10000) || !bounded(s.turnCount, 10000) || s.journalCount > s.turnCount || !bounded(s.usedBytes, Number.MAX_SAFE_INTEGER) || ![s.simulatedTime, s.elapsedSeconds].every(value => Number.isFinite(value) && value >= 0) || !Array.isArray(s.diagnostics)) throw new Error('The sustained session update has invalid identity or bounded measurements.');
+  const embedding = s.pendingEmbedding;
+  if ((s.canRetryEmbedding !== undefined && typeof s.canRetryEmbedding !== 'boolean')
+    || (embedding != null && (!bounded(embedding.attemptId, 10000) || embedding.attemptId === 0
+      || !bounded(embedding.observedStep) || embedding.observedStep !== s.step
+      || typeof embedding.responseText !== 'string' || embedding.responseText.length > 1048576
+      || (embedding.reason !== null && typeof embedding.reason !== 'string')
+      || !['prepared', 'requesting', 'blocked'].includes(embedding.state)
+      || !!s.pendingLanguage || !!s.pendingSave || !!s.pendingApplication))
+    || (s.canRetryEmbedding && (!embedding || embedding.state === 'requesting'))) throw new Error('The session has invalid retained encoding state.');
   if (s.effectiveLimits && (!validSessionLimits(s.effectiveLimits) || Object.entries(s.effectiveLimits).some(([key, value]) => value < s.config[key as keyof SustainedLimits]))) throw new Error('The session has invalid extended limits.');
   if (s.limitExtensionCount !== undefined && !bounded(s.limitExtensionCount)) throw new Error('The session has an invalid extension count.');
   if (f && (f.step !== String(s.step) || !finite(f.state, 32) || !finite(f.input, 66) || !finite(f.noise, 32) || f.eigenvalues !== null && !finite(f.eigenvalues, 32) || f.fillPercent !== null && (!Number.isFinite(f.fillPercent) || f.fillPercent < 0 || f.fillPercent > 100) || f.time !== null && !Number.isFinite(f.time))) throw new Error('The current state does not match the session clock and exact vector sizes.');
@@ -112,6 +121,8 @@ export class MyReservoirController {
     if (!isSustainedPromptVersion(effectivePromptVersion(config))) { this.set({ error: 'The selected journal prompt version is unsupported.' }); return false; }
     if (!validAuthoredActionConfig(config)) { this.set({ error: 'Reservoir actions need their matching writing invitation.' }); return false; }
     if (!validWritingLimits(config)) { this.set({ error: 'Review the writing limits before creating a session.' }); return false; }
+    const embeddingError = embeddingConfigurationError(config);
+    if (embeddingError) { this.set({ error: embeddingError }); return false; }
     if (!validFieldControls(config)) { this.set({ error: 'Review the sensory noise and feedback scale before creating a session.' }); return false; }
     if (!validDifferenceControls(config)) { this.set({ error: 'Review the difference-signal settings before creating a session.' }); return false; }
     if (!validMemoryPolicy(config)) { this.set({ error: 'Review the earlier-entry policy before creating a session.' }); return false; }
@@ -132,11 +143,11 @@ export class MyReservoirController {
   }
   async action(action: SustainedAction) {
     const summary = this.state.summary; if (!summary || this.state.busy) return false;
-    const available = { start: summary.canStart, pause: summary.canPause, stop: summary.canStop, retrySave: summary.canRetrySave, retryProvider: summary.canRetryProvider, skipFeedback: summary.canSkipFeedback };
+    const available = { start: summary.canStart, pause: summary.canPause, stop: summary.canStop, retrySave: summary.canRetrySave, retryProvider: summary.canRetryProvider, retryEmbedding: summary.canRetryEmbedding, skipFeedback: summary.canSkipFeedback };
     if (!available[action]) { this.set({ error: 'This action is not available at the current backend boundary.' }); return false; }
     const epoch = this.identityEpoch, requestId = this.id(); this.set({ busy: action, error: '', message: '' });
     try {
-      const result = await this.api.action(action, requestId, summary.sessionId, summary.generation, summary.pendingApplication?.entryId ?? summary.pendingSave?.entryId ?? null, summary.pendingApplication?.attemptId ?? summary.pendingSave?.attemptId ?? summary.pendingLanguage?.attemptId ?? null);
+      const result = await this.api.action(action, requestId, summary.sessionId, summary.generation, summary.pendingApplication?.entryId ?? summary.pendingSave?.entryId ?? null, summary.pendingApplication?.attemptId ?? summary.pendingSave?.attemptId ?? summary.pendingLanguage?.attemptId ?? summary.pendingEmbedding?.attemptId ?? null);
       if (epoch !== this.identityEpoch) return false;
       if (result.requestId !== requestId || !result.summary || !same(summary, result.summary)) throw new Error('The action result did not match this session generation.');
       this.accept(result); return true;
@@ -352,10 +363,10 @@ export class MyReservoirController {
     try {
       const result = await this.api.restore(requestId, m.sessionId, m.generation, m.revision);
       if (epoch !== this.recoveryEpoch || identity !== this.identityEpoch) return;
-      if (result.requestId !== requestId || !result.summary || result.summary.sessionId !== m.sessionId || result.summary.generation === m.generation || ['running', 'awaitingLanguage', 'savingJournal'].includes(result.summary.phase)) throw new Error('Recovery did not restore this session into a new held generation.');
+      if (result.requestId !== requestId || !result.summary || result.summary.sessionId !== m.sessionId || result.summary.generation === m.generation || ['running', 'awaitingLanguage', 'waitingForEmbedding', 'savingJournal'].includes(result.summary.phase)) throw new Error('Recovery did not restore this session into a new held generation.');
       if (effectivePromptVersion(result.summary.config) !== effectivePromptVersion(m.config)) throw new Error('Recovery changed the inspected journal prompt version.');
       if (!this.accept(result, true)) throw new Error('A newer session snapshot superseded this replacement.');
-      this.channelEpoch++; accepted = true; this.set({ recoveryMessage: result.summary.checkIns?.complete ? 'Completed scheduled conversations restored for reading. No new writing was started.' : 'Verified continuation restored without starting execution. Review its boundary, then Start explicitly.' });
+      this.channelEpoch++; accepted = true; this.set({ recoveryMessage: result.summary.checkIns?.complete ? 'Completed scheduled conversations restored for reading. No new writing was started.' : result.summary.pendingEmbedding ? 'Completed writing restored without starting execution. Review the retained response, then Retry encoding explicitly.' : 'Verified continuation restored without starting execution. Review its boundary, then Start explicitly.' });
     } catch (error) { if (epoch === this.recoveryEpoch) this.set({ recoveryError: errorText(error) }); }
     finally { if (epoch === this.recoveryEpoch) this.set({ busy: null, recoveryBusy: false }); if (accepted) void this.connect(); }
   }

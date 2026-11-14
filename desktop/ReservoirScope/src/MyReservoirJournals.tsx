@@ -119,8 +119,10 @@ export default function MyReservoirJournals({ state, controller }: { state: MyRe
       <div>
         <h2>Journal</h2>
         <p className="my-reservoir-small">{summary.journalCount} saved journals · reading never moves the live clock.</p>
-        {(summary.pendingSave || summary.pendingLanguage || summary.pendingApplication) && <p className="my-reservoir-journal-progress" role="status">{summary.pendingSave
+        {(summary.pendingSave || summary.pendingEmbedding || summary.pendingLanguage || summary.pendingApplication) && <p className="my-reservoir-journal-progress" role="status">{summary.pendingSave
           ? `Writing at step ${summary.pendingSave.observedStep} · save not yet confirmed.`
+          : summary.pendingEmbedding
+            ? `Completed writing at step ${summary.pendingEmbedding.observedStep} · ${summary.pendingEmbedding.state === 'requesting' ? 'encoding in progress' : 'awaiting encoding; response retained'}.`
           : summary.pendingLanguage
             ? `Writing at step ${summary.pendingLanguage.observedStep} · ${summary.pendingLanguage.state === 'blocked' ? 'needs attention' : summary.pendingLanguage.state === 'prepared' ? 'prepared, not yet dispatched' : summary.config.language.backend === 'scripted' ? 'preparing example writing' : 'waiting for the local model'}.`
             : `Saved writing at step ${summary.pendingApplication!.observedStep} · waiting for application at step ${summary.pendingApplication!.intendedStep}.`}</p>}
