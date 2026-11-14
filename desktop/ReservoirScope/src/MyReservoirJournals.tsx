@@ -4,16 +4,19 @@ import ProviderPromptEvidence from './ProviderPromptEvidence';
 import JournalMeasurements from './JournalMeasurements';
 import { JournalActionDetails, actionReceiptStatus } from './MyReservoirActions';
 import type { MyReservoirController, MyReservoirState } from './myReservoirController';
-import { effectiveOutputTokens, effectiveRequestDeadline, type SustainedConfig, type SustainedJournal } from './myReservoirTypes';
+import { effectiveOutputTokens, effectiveRequestDeadline, type SustainedConfig, type SustainedJournal, type SustainedJournalRow } from './myReservoirTypes';
 
-const status = (value: SustainedJournal['status']) => value === 'applied' ? 'Saved · feedback applied' : value === 'skipped' ? 'Saved · feedback skipped' : 'Saved · waiting for first application';
+const withheld = (journal: Pick<SustainedJournal, 'actionReceipt'>) => journal.actionReceipt?.reservoirInput !== undefined && journal.actionReceipt.reservoirInput.disposition !== 'send';
+const status = (journal: Pick<SustainedJournalRow, 'status' | 'actionReceipt'>) => journal.status === 'applied'
+  ? withheld(journal) ? journal.actionReceipt?.reservoirInput?.disposition === 'rejected' ? 'Saved · input directive rejected; text input withheld' : 'Saved · text input withheld' : 'Saved · feedback applied'
+  : journal.status === 'skipped' ? 'Saved · feedback skipped' : 'Saved · waiting for first application';
 const json = (value: unknown) => value == null ? 'Not retained.' : JSON.stringify(value, null, 2);
 export function MyReservoirJournalDetail({ journal, revision, config, onRefreshEvidence, refreshing = false }: { journal: SustainedJournal; revision: string | null; config?: SustainedConfig; onRefreshEvidence?: () => void; refreshing?: boolean }) {
   const body = journal.action?.body ?? journal.text;
   return <article className="my-reservoir-journal-detail">
     <span className="eyebrow">{journal.checkIn ? `SCHEDULED CHECK-IN ${journal.checkIn.ordinal}` : 'SAVED ENTRY'}</span>
     <h3>Entry at step {journal.observedStep}</h3>
-    <p className="my-reservoir-journal-status"><strong>{status(journal.status)}</strong>{journal.firstAppliedStep !== null ? ` · first applied at step ${journal.firstAppliedStep}` : ' · no first application recorded'}</p>
+    <p className="my-reservoir-journal-status"><strong>{status(journal)}</strong>{journal.firstAppliedStep !== null ? ` · first applied at step ${journal.firstAppliedStep}` : ' · no first application recorded'}</p>
     <div className="my-reservoir-journal-prose" style={{ whiteSpace: 'pre-wrap' }}>{body.trim() ? body : <span className="my-reservoir-small">No journal text in this entry.</span>}</div>
     {journal.status !== 'applied' && <p className="my-reservoir-journal-return">
       {journal.status === 'savedPendingApplication' ? 'Saved and checked. This entry is waiting for its first application, so it is not yet eligible to return as memory in a later prompt.' : 'This journal remains readable. Its feedback and automatic prompt-memory exposure were explicitly skipped.'}
@@ -22,7 +25,7 @@ export function MyReservoirJournalDetail({ journal, revision, config, onRefreshE
     <JournalMeasurements value={journal.measurementReference} observedStep={journal.observedStep} promptVersion={journal.checkIn ? undefined : journal.promptVersion}/>
     <details className="my-reservoir-journal-evidence">
       <summary>Evidence</summary>
-      <p className="my-reservoir-journal-return">{journal.status === 'applied' && <>This entry’s feedback was first applied at step {journal.firstAppliedStep}. {journal.action ? 'Its journal body is eligible for later prompts. ' : 'Its full text is eligible for later prompts. '}</>}{journal.action ? 'Only the separate parsed action can change controls; prose is retained as writing.' : 'Describing a control change does not execute it.'}</p>
+      <p className="my-reservoir-journal-return">{journal.status === 'applied' && <>{withheld(journal) ? 'Zero text input replaced the previous held input' : 'This entry’s feedback was first applied'} at step {journal.firstAppliedStep}. {journal.action ? 'Its journal body is eligible for later prompts. ' : 'Its full text is eligible for later prompts. '}</>}{journal.action ? 'Only the separate parsed action can change controls; prose is retained as writing.' : 'Describing a control change does not execute it.'}</p>
       {onRefreshEvidence && <button disabled={refreshing} onClick={onRefreshEvidence}>Refresh save and feedback details</button>}
       {journal.checkIn && <section><h4>Scheduled conversation</h4><dl className="my-reservoir-data">
         <dt>Check-in</dt><dd>{journal.checkIn.ordinal} · due at {formatSessionDuration(journal.checkIn.scheduledSeconds)}</dd>
@@ -44,7 +47,7 @@ export function MyReservoirJournalDetail({ journal, revision, config, onRefreshE
         <dt>Request recorded started</dt><dd>{String(journal.requestStarted)}</dd>
         <dt>Provider completeness</dt><dd>{String(journal.providerComplete)}</dd>
         <dt>Stop reason / tokens</dt><dd>{journal.stopReason ?? 'Not retained'} / {journal.tokenCount ?? 'Not retained'}</dd>
-        <dt>Text reduction</dt><dd>{journal.feedbackProvenance ? `Embedding · ${journal.feedbackProvenance.model} · ${journal.feedbackProvenance.dimensions} dims · sha256 ${journal.feedbackProvenance.embeddingSha256.slice(0, 12)}… · projection seed ${journal.feedbackProvenance.projectionSeed}` : 'Surface statistics'}</dd>
+        <dt>Text reduction</dt><dd>{journal.action?.reservoirInput && journal.action.reservoirInput.disposition !== 'send' ? 'Withheld · zero numerical text input; no embedding request' : journal.feedbackProvenance ? `Embedding · ${journal.feedbackProvenance.model} · ${journal.feedbackProvenance.dimensions} dims · sha256 ${journal.feedbackProvenance.embeddingSha256.slice(0, 12)}… · projection seed ${journal.feedbackProvenance.projectionSeed}` : 'Surface statistics'}</dd>
         <dt>Sampling</dt><dd>{journal.temperature == null ? 'Greedy · temperature 0 (historical or unset)' : journal.temperature === 0 ? 'Greedy · temperature 0' : `Temperature ${journal.temperature} · seed ${journal.samplingSeed ?? 'not retained'}`}</dd>
         <dt>Model thinking</dt><dd>{journal.thinking == null ? 'As built (field omitted)' : journal.thinking ? 'On' : 'Off · reply only'}</dd>
         <dt>Captured session revision</dt><dd>{revision ?? 'Unavailable'}</dd>
@@ -157,7 +160,7 @@ export default function MyReservoirJournals({ state, controller }: { state: MyRe
         <ul className="my-reservoir-journal-list">{page?.entries.map(entry => <li key={entry.entryId}>
           <button aria-pressed={state.journal?.entryId === entry.entryId} onClick={() => void controller.selectJournal(entry.entryId)}>
             <strong>Step {entry.observedStep}</strong>
-            <span className="my-reservoir-history-status">{status(entry.status)} · {entry.firstAppliedStep === null ? 'No first application recorded' : `First applied ${entry.firstAppliedStep}`}</span>
+            <span className="my-reservoir-history-status">{status(entry)} · {entry.firstAppliedStep === null ? 'No first application recorded' : `First applied ${entry.firstAppliedStep}`}</span>
             {entry.actionReceipt && <span className="my-reservoir-history-status">{actionReceiptStatus(entry.actionReceipt)}</span>}
             <span>{entry.textPreview.trim() ? entry.textPreview : 'No journal text in this entry.'}</span>
           </button>

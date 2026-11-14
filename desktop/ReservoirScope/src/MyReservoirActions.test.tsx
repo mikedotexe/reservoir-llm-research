@@ -3,19 +3,19 @@ import { describe, expect, it, vi } from 'vitest';
 import MyReservoirConfig from './MyReservoirConfig';
 import MyReservoirActions, { JournalActionDetails } from './MyReservoirActions';
 import { MyReservoirJournalDetail } from './MyReservoirJournals';
-import { ACTION_JOURNAL_PROMPT, validActionSummary, validAuthoredActionConfig, validJournalAction, withAuthoredActions } from './authoredActions';
+import { ACTION_JOURNAL_PROMPT, ACTION_JOURNAL_PROMPT_V1, validActionSummary, validAuthoredActionConfig, validJournalAction, withAuthoredActions } from './authoredActions';
 import { DEFAULT_CHECK_IN_SCHEDULE } from './checkInSchedule';
 import { DEFAULT_SUSTAINED_CONFIG, type SustainedActionControls, type SustainedActionDecision, type SustainedActionReceipt, type SustainedActions, type SustainedConfig, type SustainedJournal } from './myReservoirTypes';
 import { journal, reservoirFixture, reservoirSummary, settle } from './myReservoirTestFixtures';
 
 vi.mock('@tauri-apps/api/core', () => ({ invoke: vi.fn(), isTauri: () => true }));
 
-const enabled: SustainedConfig = { ...DEFAULT_SUSTAINED_CONFIG, actionMode: 'authored-v1', promptVersion: ACTION_JOURNAL_PROMPT };
+const enabled: SustainedConfig = { ...DEFAULT_SUSTAINED_CONFIG, actionMode: 'authored-v1', promptVersion: ACTION_JOURNAL_PROMPT_V1 };
 const controls: SustainedActionControls = { leak: .65, recurrentGain: 1, feedbackScale: .4 };
 const decision: SustainedActionDecision = { body: 'I would like to follow this change.', rawTail: 'NEXT: TUNE leak 0.2', request: { kind: 'tune', parameter: 'leak', value: .2 }, rejection: null };
 const receipt: SustainedActionReceipt = { journalId: 'journal-1', attemptId: 1, observedStep: 3, appliedStep: 4, status: 'applied', request: decision.request, rawTail: decision.rawTail, rejection: null, controlsBefore: controls, controlsAfter: { ...controls, leak: .2 }, stateDeltaL2: .14, stateDeltaMaxAbs: .04, clippedCoordinates: 0 };
 const actionState = (patch: Partial<SustainedActions> = {}): SustainedActions => ({ state: { controls: receipt.controlsAfter, latestReceipt: receipt, recentReceipts: [receipt], decisionCount: 1, appliedCount: 1, rejectedCount: 0 }, durableStep: 4, ...patch });
-const actionJournal = (patch: Partial<SustainedJournal> = {}): SustainedJournal => ({ ...journal(), promptVersion: ACTION_JOURNAL_PROMPT, text: `${decision.body}\n${decision.rawTail}`, rawReply: `${decision.body}\n${decision.rawTail}`, action: decision, actionReceipt: receipt, bodySha256: 'b'.repeat(64), ...patch });
+const actionJournal = (patch: Partial<SustainedJournal> = {}): SustainedJournal => ({ ...journal(), promptVersion: ACTION_JOURNAL_PROMPT_V1, text: `${decision.body}\n${decision.rawTail}`, rawReply: `${decision.body}\n${decision.rawTail}`, action: decision, actionReceipt: receipt, bodySha256: 'b'.repeat(64), ...patch });
 const renderSetup = (config: SustainedConfig) => renderToStaticMarkup(<MyReservoirConfig config={config} setConfig={() => {}} disabled={false}/>);
 
 describe('new-session reservoir action capability', () => {
@@ -23,7 +23,7 @@ describe('new-session reservoir action capability', () => {
     const plain = 'reservoir-journal-inert-plain-contract-no-tag-v1';
     const config: SustainedConfig = { ...DEFAULT_SUSTAINED_CONFIG, promptVersion: plain, checkInSchedule: { ...DEFAULT_CHECK_IN_SCHEDULE, includeTelemetry: false } };
     const active = withAuthoredActions(config, true, plain);
-    expect(active).toEqual({ ...config, actionMode: 'authored-v1', promptVersion: ACTION_JOURNAL_PROMPT });
+    expect(active).toEqual({ ...config, actionMode: 'authored-v2', promptVersion: ACTION_JOURNAL_PROMPT });
     expect(validAuthoredActionConfig(active)).toBe(true);
     expect(withAuthoredActions(active, false, plain)).toEqual(config);
     expect(JSON.stringify(withAuthoredActions(active, false, plain))).not.toContain('actionMode');
@@ -38,7 +38,7 @@ describe('new-session reservoir action capability', () => {
     expect(html).toContain('checked=""/>Let the model shape the reservoir');
     expect(html).toContain('Adjustments persist until the model changes or releases them');
     expect(html).toContain('Writing invitation<select disabled=""');
-    expect(html).toContain(`value="${ACTION_JOURNAL_PROMPT}" selected="">Journal with reservoir actions`);
+    expect(html).toContain(`value="${ACTION_JOURNAL_PROMPT_V1}" selected="">Journal with reservoir actions`);
     expect(html).toContain('This choice is fixed when you create the session');
     expect(html).toContain('No action menu or action receipt is added to a plain prompt');
     expect(html).toContain('NEXT text in a check-in never executes a control');
