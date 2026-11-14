@@ -15,6 +15,9 @@ use std::collections::VecDeque;
 #[path = "sustained_check_ins.rs"]
 mod check_ins;
 pub use check_ins::*;
+#[path = "sustained_actions.rs"]
+mod actions;
+pub use actions::*;
 
 pub const FORMAT: &str = "reservoir-sustained-segment-v1";
 pub const CHECKPOINT_FORMAT: &str = "reservoir-sustained-checkpoint-v1";
@@ -346,6 +349,8 @@ fn valid_hash(s: &str) -> bool {
 /// Missing serialized versions are legacy; fresh Rust defaults explicitly use v8.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub enum SustainedPromptVersion {
+    #[serde(rename = "reservoir-journal-actions-v1")]
+    ActionJournalV1,
     #[default]
     #[serde(rename = "reservoir-journal-v1")]
     LegacyV1,
@@ -412,6 +417,7 @@ impl SustainedPromptVersion {
     }
     pub fn as_str(self) -> &'static str {
         match self {
+            Self::ActionJournalV1 => "reservoir-journal-actions-v1",
             Self::LegacyV1 => "reservoir-journal-v1",
             Self::GroundedV2 => "reservoir-journal-v2",
             Self::OpenJournalV3 => "reservoir-journal-v3",
@@ -488,7 +494,8 @@ impl SustainedPromptVersion {
     fn uses_paired_observation(self) -> bool {
         matches!(
             self,
-            Self::OpenJournalV4
+            Self::ActionJournalV1
+                | Self::OpenJournalV4
                 | Self::ContinuingJournalV5
                 | Self::ActionScopeJournalV6
                 | Self::WritingBoundaryJournalV7
@@ -513,6 +520,8 @@ impl SustainedPromptVersion {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedSpecification {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub action_mode: Option<SustainedActionMode>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub check_in_schedule: Option<SustainedCheckInSchedule>,
     pub seed: u64,
@@ -600,6 +609,7 @@ pub struct SustainedSpecification {
 impl Default for SustainedSpecification {
     fn default() -> Self {
         Self {
+            action_mode: None,
             check_in_schedule: None,
             seed: 20260909,
             dt: 1.0 / 3.0,
@@ -645,7 +655,9 @@ impl SustainedSpecification {
         self.difference_gain != 0.0
     }
     pub fn mechanism(&self) -> &'static str {
-        if !self.codec.is_surface() && self.uses_difference_channel() {
+        if self.action_mode.is_some() {
+            ACTION_MECHANISM
+        } else if !self.codec.is_surface() && self.uses_difference_channel() {
             MECHANISM_EMBEDDING_DIFFERENCE
         } else if !self.codec.is_surface() {
             MECHANISM_EMBEDDING
@@ -658,6 +670,11 @@ impl SustainedSpecification {
         }
     }
     pub fn validate(&self) -> Result<()> {
+        ensure(
+            self.action_mode.is_some()
+                == (self.prompt_version == SustainedPromptVersion::ActionJournalV1),
+            "Authored mode requires its matching action prompt version",
+        )?;
         if let Some(schedule) = &self.check_in_schedule {
             schedule.validate()?;
         }
@@ -953,6 +970,8 @@ pub struct SustainedApplication {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedFrame {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub action_receipt: Option<SustainedActionReceipt>,
     pub step: u64,
     pub simulated_time: f64,
     /// Forcing plus the scaled held feedback: the reservoir's input.
@@ -983,6 +1002,9 @@ pub struct SustainedFrame {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedJournal {
+    /// Body of an action-enabled ordinary reply; raw text and its hash remain intact.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub body: Option<String>,
     pub id: String,
     pub turn_id: u64,
     pub attempt_id: u64,
@@ -1012,6 +1034,13 @@ impl SustainedJournal {
             "Empty sustained journal",
         )?;
         codec::encode(&self.text)?;
+        if let Some(body) = &self.body {
+            ensure(
+                *body == parse_authored_action(&self.text).body,
+                "Journal body differs from raw reply",
+            )?;
+            codec::encode(body)?;
+        }
         Ok(())
     }
 }
@@ -1195,6 +1224,8 @@ pub struct SustainedPendingLanguage {
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedPendingJournal {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub action: Option<SustainedActionDecision>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub check_in: Option<SustainedCheckInContext>,
     pub entry: SustainedJournal,
     pub prompt: String,
@@ -1216,6 +1247,8 @@ pub struct SustainedPendingJournal {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedPrepared {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub action: Option<SustainedActionDecision>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub check_in: Option<SustainedCheckInContext>,
     pub entry: SustainedJournal,
@@ -1247,6 +1280,8 @@ pub enum SustainedPhase {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedContinuation {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub action_state: Option<SustainedActionState>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub check_in_state: Option<SustainedCheckInState>,
     pub mechanism: String,
@@ -1410,6 +1445,9 @@ impl SustainedSession {
         let model = ReservoirModel::seeded(specification.seed);
         let field = SensoryField::seeded(specification.seed ^ FIELD_SEED);
         let state = SustainedContinuation {
+            action_state: specification
+                .action_mode
+                .map(|_| SustainedActionState::initial(&specification)),
             check_in_state: specification
                 .check_in_schedule
                 .as_ref()
@@ -1467,6 +1505,19 @@ impl SustainedSession {
     }
     pub fn latest_frame(&self) -> Option<&SustainedFrame> {
         self.state.latest_frame.as_ref()
+    }
+    pub fn action_state(&self) -> Option<&SustainedActionState> {
+        self.state.action_state.as_ref()
+    }
+    /// Exact input for an external text codec; raw response remains the journal evidence.
+    pub fn feedback_text_for_response(&self, text: &str) -> Result<String> {
+        let pending = self
+            .pending_language()
+            .ok_or_else(|| invalid("No pending language response"))?;
+        Ok(
+            actions::decision_for(&self.state.specification, pending.check_in.as_ref(), text)
+                .map_or_else(|| text.to_string(), |action| action.body),
+        )
     }
     pub fn latest_memory(&self) -> Option<&SustainedMemory> {
         self.state.latest_memory.as_ref()
@@ -1640,10 +1691,36 @@ impl SustainedSession {
             None
         };
         let step = next.step + 1;
+        let decision = match &next.phase {
+            SustainedPhase::Prepared(prepared) => prepared.action.clone(),
+            _ => None,
+        };
+        let controls_before = next.action_state.as_ref().map(|a| a.controls.clone());
+        if let (Some(actions), Some(decision)) = (&mut next.action_state, &decision) {
+            actions.controls = actions::controls_after(
+                &actions.controls,
+                &next.specification,
+                decision.request.as_ref(),
+            );
+        }
+        let effective_leak = next
+            .action_state
+            .as_ref()
+            .map_or(next.specification.leak, |a| a.controls.leak);
+        let effective_scale = next
+            .action_state
+            .as_ref()
+            .map_or(next.specification.feedback_scale, |a| {
+                a.controls.feedback_scale
+            });
+        let effective_model = next.action_state.as_ref().map_or_else(
+            || self.model.clone(),
+            |a| actions::model_for_controls(&self.model, &a.controls),
+        );
         let mut rng = SplitMix64::new(next.rng_state);
         let mut engine = ReservoirEngine::new(
-            self.model.clone(),
-            next.specification.leak,
+            effective_model.clone(),
+            effective_leak,
             Some(next.reservoir_state.clone()),
         )?;
         let mut field = SensoryField::new(
@@ -1653,10 +1730,7 @@ impl SustainedSession {
             Some(next.sensory_covariance.clone()),
         )?;
         let mut input = forcing(step as usize, next.specification.dt);
-        input[18..].copy_from_slice(&scaled_feedback(
-            &next.held_vector,
-            next.specification.feedback_scale,
-        ));
+        input[18..].copy_from_slice(&scaled_feedback(&next.held_vector, effective_scale));
         let noise: Vec<_> = (0..32)
             .map(|_| rng.signed() * next.specification.noise_amplitude)
             .collect();
@@ -1674,23 +1748,58 @@ impl SustainedSession {
             }
             u
         };
-        let state = engine.step(&input, &noise)?;
+        let mut state = engine.step(&input, &noise)?;
+        let clipped_coordinates = actions::apply_pulse(
+            &mut state,
+            decision.as_ref().and_then(|d| d.request.as_ref()),
+        );
+        let action_receipt = match (&application, &decision, controls_before) {
+            (Some(application), Some(decision), Some(before)) => {
+                // Omit only this new action. Previous controls, the newly saved body,
+                // recurrence state, forcing, difference contribution and noise are shared.
+                let mut omitted = ReservoirEngine::new(
+                    actions::model_for_controls(&self.model, &before),
+                    before.leak,
+                    Some(next.reservoir_state.clone()),
+                )?;
+                let mut omitted_input = forcing(step as usize, next.specification.dt);
+                omitted_input[18..]
+                    .copy_from_slice(&scaled_feedback(&next.held_vector, before.feedback_scale));
+                for (slot, value) in omitted_input[18..].iter_mut().zip(&difference_input) {
+                    *slot += value;
+                }
+                let omitted_state = omitted.step(&omitted_input, &noise)?;
+                Some(actions::record_receipt(
+                    next.action_state.as_mut().expect("enabled action state"),
+                    application,
+                    decision,
+                    before,
+                    &state,
+                    &omitted_state,
+                    clipped_coordinates,
+                ))
+            }
+            _ => None,
+        };
         let entry_effect = match (&application, next.specification.needs_entry_effect()) {
             (Some(a), true) => {
                 let mut silent = ReservoirEngine::new(
-                    self.model.clone(),
-                    next.specification.leak,
+                    effective_model.clone(),
+                    effective_leak,
                     Some(next.reservoir_state.clone()),
                 )?;
                 let mut silent_input = forcing(step as usize, next.specification.dt);
-                silent_input[18..].copy_from_slice(&scaled_feedback(
-                    &vec![0.0; 48],
-                    next.specification.feedback_scale,
-                ));
+                silent_input[18..]
+                    .copy_from_slice(&scaled_feedback(&vec![0.0; 48], effective_scale));
                 for (slot, value) in silent_input[18..].iter_mut().zip(&difference_input) {
                     *slot += value;
                 }
-                let silent_state = silent.step(&silent_input, &noise)?;
+                let mut silent_state = silent.step(&silent_input, &noise)?;
+                // The text-effect comparison retains the same action on both paths.
+                actions::apply_pulse(
+                    &mut silent_state,
+                    decision.as_ref().and_then(|d| d.request.as_ref()),
+                );
                 let diff: Vec<f64> = state
                     .iter()
                     .zip(&silent_state)
@@ -1781,6 +1890,7 @@ impl SustainedSession {
             fill_percent,
         };
         let frame = SustainedFrame {
+            action_receipt,
             step,
             simulated_time: step as f64 * next.specification.dt,
             input,
@@ -1957,7 +2067,7 @@ impl SustainedSession {
                     .is_none_or(|s| s.len() <= 4096),
             "Response exceeds bounded transport-evidence capacity",
         )?;
-        let result = prepare_journal(&p, response, external, &self.state.specification.codec);
+        let result = prepare_journal(&p, response, external, &self.state.specification);
         self.state.phase = match result {
             Ok(j) => SustainedPhase::Journal(j),
             Err(e) => SustainedPhase::Blocked(SustainedBlocked {
@@ -2027,6 +2137,7 @@ impl SustainedSession {
             "Journal readback differs from exact pending text/identity",
         )?;
         self.state.phase = SustainedPhase::Prepared(SustainedPrepared {
+            action: p.action.clone(),
             check_in: p.check_in.clone(),
             entry: p.entry,
             receipt: receipt.clone(),
@@ -2320,7 +2431,8 @@ fn prompt(
         SustainedPromptVersion::ContinuingJournalV5 => prompt_v5(observation, memory),
         SustainedPromptVersion::ActionScopeJournalV6 => prompt_v6(observation, memory),
         SustainedPromptVersion::WritingBoundaryJournalV7 => prompt_v7(observation, memory),
-        SustainedPromptVersion::MeasurementMeaningJournalV8 => prompt_v8(observation, memory),
+        SustainedPromptVersion::MeasurementMeaningJournalV8
+        | SustainedPromptVersion::ActionJournalV1 => prompt_v8(observation, memory),
         SustainedPromptVersion::InertV1
         | SustainedPromptVersion::InertPlainContractV1
         | SustainedPromptVersion::InertInvitingContractV1
@@ -2787,6 +2899,26 @@ fn prompt_v8(observation: &SustainedObservation, memory: Option<&SustainedMemory
             1,
         )
 }
+fn render_pending_prompt(
+    state: &SustainedContinuation,
+    observation: &SustainedObservation,
+    memory: Option<&SustainedMemory>,
+    latest: Option<&SustainedMemory>,
+    check_in: Option<&SustainedCheckInContext>,
+) -> String {
+    if actions::enabled_for_turn(&state.specification, check_in) {
+        actions::render_prompt(state, observation, memory)
+    } else {
+        check_ins::render_prompt(
+            state.specification.prompt_version,
+            observation,
+            memory,
+            latest,
+            state.specification.seed,
+            check_in,
+        )
+    }
+}
 fn prepare_language(
     state: &mut SustainedContinuation,
     observation: SustainedObservation,
@@ -2825,12 +2957,11 @@ fn prepare_language_for(
         configuration: state.specification.language.clone(),
         output_tokens: state.specification.output_tokens,
         request_deadline_seconds: state.specification.request_deadline_seconds,
-        prompt: check_ins::render_prompt(
-            state.specification.prompt_version,
+        prompt: render_pending_prompt(
+            state,
             &observation,
             memory.as_ref(),
             latest_shown.as_ref(),
-            state.specification.seed,
             check_in.as_ref(),
         ),
         check_in,
@@ -2845,7 +2976,7 @@ fn prepare_journal(
     p: &SustainedPendingLanguage,
     response: &LanguageResponse,
     external: Option<&ExternalFeedback>,
-    codec: &SustainedCodec,
+    spec: &SustainedSpecification,
 ) -> Result<SustainedPendingJournal> {
     ensure(
         p.configuration.backend != LanguageKind::Ollama
@@ -2882,44 +3013,55 @@ fn prepare_journal(
         codec::has_non_whitespace(&response.text)?,
         "Journal reply is whitespace only",
     )?;
-    let (encoded_features, semantic_vector, feedback_provenance) = match codec {
-        SustainedCodec::Surface => {
-            let features = codec::encode(&response.text)?;
-            let semantic = codec::feedback(&features, &p.observation.sensory.measurement());
-            (features, semantic, None)
-        }
-        SustainedCodec::Embedding {
-            model,
-            projection_seed,
-        } => {
-            let external = external.ok_or_else(|| {
+    let action = actions::decision_for(spec, p.check_in.as_ref(), &response.text);
+    let body = action
+        .as_ref()
+        .map_or(response.text.as_str(), |a| a.body.as_str());
+    let (encoded_features, semantic_vector, feedback_provenance) = if action.is_some()
+        && !codec::has_non_whitespace(body)?
+    {
+        (vec![0.0; 48], vec![0.0; 48], None)
+    } else {
+        match &spec.codec {
+            SustainedCodec::Surface => {
+                let features = codec::encode(body)?;
+                let semantic = codec::feedback(&features, &p.observation.sensory.measurement());
+                (features, semantic, None)
+            }
+            SustainedCodec::Embedding {
+                model,
+                projection_seed,
+            } => {
+                let external = external.ok_or_else(|| {
                 invalid("The embedding codec needs the entry's projected embedding before it can become feedback")
             })?;
-            let v = &external.provenance;
-            ensure(
-                v.kind == "embedding"
-                    && v.model == *model
-                    && v.projection_seed == *projection_seed
-                    && v.dimensions > 0
-                    && v.embedding_sha256.len() == 64
-                    && v.embedding_sha256.bytes().all(|b| b.is_ascii_hexdigit())
-                    && external.vector.len() == 48
-                    && external
-                        .vector
-                        .iter()
-                        .all(|x| x.is_finite() && x.abs() <= 5.0)
-                    && external.vector[32..].iter().all(|x| *x == 0.0),
-                "Embedding feedback provenance or vector does not match the session codec",
-            )?;
-            (
-                external.vector.clone(),
-                external.vector.clone(),
-                Some(external.provenance.clone()),
-            )
+                let v = &external.provenance;
+                ensure(
+                    v.kind == "embedding"
+                        && v.model == *model
+                        && v.projection_seed == *projection_seed
+                        && v.dimensions > 0
+                        && v.embedding_sha256.len() == 64
+                        && v.embedding_sha256.bytes().all(|b| b.is_ascii_hexdigit())
+                        && external.vector.len() == 48
+                        && external
+                            .vector
+                            .iter()
+                            .all(|x| x.is_finite() && x.abs() <= 5.0)
+                        && external.vector[32..].iter().all(|x| *x == 0.0),
+                    "Embedding feedback provenance or vector does not match the session codec",
+                )?;
+                (
+                    external.vector.clone(),
+                    external.vector.clone(),
+                    Some(external.provenance.clone()),
+                )
+            }
         }
     };
     let sha256 = hash(response.text.as_bytes());
     let entry = SustainedJournal {
+        body: action.as_ref().map(|a| a.body.clone()),
         id: format!("journal-{}-{}-{}", p.observed_step, p.attempt_id, sha256),
         turn_id: p.turn_id,
         attempt_id: p.attempt_id,
@@ -2928,6 +3070,7 @@ fn prepare_journal(
         sha256,
     };
     Ok(SustainedPendingJournal {
+        action,
         check_in: p.check_in.clone(),
         entry,
         prompt: p.prompt.clone(),
@@ -3278,12 +3421,11 @@ fn validate_pending(p: &SustainedPendingLanguage, s: &SustainedContinuation) -> 
                 },
             )
             && p.prompt
-                == check_ins::render_prompt(
-                    s.specification.prompt_version,
+                == render_pending_prompt(
+                    s,
                     &p.observation,
                     p.memory.as_ref(),
                     p.latest_shown.as_ref(),
-                    s.specification.seed,
                     p.check_in.as_ref(),
                 ),
         "Pending language identity/observation/prompt/memory differs",
@@ -3292,7 +3434,13 @@ fn validate_pending(p: &SustainedPendingLanguage, s: &SustainedContinuation) -> 
 /// The 48 feedback slots the latest frame must carry: the scaled held vector plus the
 /// difference channel's recorded contribution, summed in the order `advance` uses.
 fn expected_feedback_slots(s: &SustainedContinuation, f: &SustainedFrame) -> Vec<f64> {
-    let mut expected = scaled_feedback(&s.held_vector, s.specification.feedback_scale);
+    let scale = s
+        .action_state
+        .as_ref()
+        .map_or(s.specification.feedback_scale, |a| {
+            a.controls.feedback_scale
+        });
+    let mut expected = scaled_feedback(&s.held_vector, scale);
     for (slot, value) in expected.iter_mut().zip(&f.difference_input) {
         *slot += value;
     }
@@ -3408,6 +3556,7 @@ fn validate_difference(s: &SustainedContinuation, f: Option<&SustainedFrame>) ->
 fn validate_state(s: &SustainedContinuation) -> Result<()> {
     s.specification.validate()?;
     check_ins::validate_schedule_state(s)?;
+    actions::validate_state(s)?;
     let model = ReservoirModel::seeded(s.specification.seed);
     let field = SensoryField::seeded(s.specification.seed ^ FIELD_SEED);
     ensure(
@@ -3603,7 +3752,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
                                 provenance: provenance.clone(),
                             })
                             .as_ref(),
-                        &s.specification.codec,
+                        &s.specification,
                     )?,
                 ),
                 "Journal candidate does not reconstruct from the accepted response/observation",
@@ -3612,33 +3761,51 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
         SustainedPhase::Prepared(p) => {
             check_ins::validate_context(p.check_in.as_ref(), s)?;
             p.entry.validate()?;
+            actions::validate_decision(
+                p.action.as_ref(),
+                &p.entry,
+                &s.specification,
+                p.check_in.as_ref(),
+            )?;
             p.receipt.validate(&p.entry)?;
             let o = s
                 .last_observation
                 .as_ref()
                 .ok_or_else(|| invalid("Prepared feedback lacks observation"))?;
-            let feedback_matches = match &s.specification.codec {
-                SustainedCodec::Surface => {
-                    let features = codec::encode(&p.entry.text)?;
-                    p.feedback_provenance.is_none()
-                        && features == p.encoded_features
-                        && codec::feedback(&features, &o.sensory.measurement()) == p.semantic_vector
+            let empty_body = match &p.action {
+                Some(action) => !codec::has_non_whitespace(&action.body)?,
+                None => false,
+            };
+            let feedback_matches = if empty_body {
+                p.feedback_provenance.is_none()
+                    && p.encoded_features == vec![0.0; 48]
+                    && p.semantic_vector == vec![0.0; 48]
+            } else {
+                match &s.specification.codec {
+                    SustainedCodec::Surface => {
+                        let features =
+                            codec::encode(p.entry.body.as_ref().unwrap_or(&p.entry.text))?;
+                        p.feedback_provenance.is_none()
+                            && features == p.encoded_features
+                            && codec::feedback(&features, &o.sensory.measurement())
+                                == p.semantic_vector
+                    }
+                    SustainedCodec::Embedding {
+                        model,
+                        projection_seed,
+                    } => p.feedback_provenance.as_ref().is_some_and(|v| {
+                        v.kind == "embedding"
+                            && v.model == *model
+                            && v.projection_seed == *projection_seed
+                            && v.embedding_sha256.len() == 64
+                            && p.encoded_features == p.semantic_vector
+                            && p.semantic_vector.len() == 48
+                            && p.semantic_vector
+                                .iter()
+                                .all(|x| x.is_finite() && x.abs() <= 5.0)
+                            && p.semantic_vector[32..].iter().all(|x| *x == 0.0)
+                    }),
                 }
-                SustainedCodec::Embedding {
-                    model,
-                    projection_seed,
-                } => p.feedback_provenance.as_ref().is_some_and(|v| {
-                    v.kind == "embedding"
-                        && v.model == *model
-                        && v.projection_seed == *projection_seed
-                        && v.embedding_sha256.len() == 64
-                        && p.encoded_features == p.semantic_vector
-                        && p.semantic_vector.len() == 48
-                        && p.semantic_vector
-                            .iter()
-                            .all(|x| x.is_finite() && x.abs() <= 5.0)
-                        && p.semantic_vector[32..].iter().all(|x| *x == 0.0)
-                }),
             };
             ensure(
                 p.entry.turn_id == s.turn_cursor
