@@ -64,7 +64,7 @@ export default function MyReservoirActions({ summary }: { summary: SustainedSumm
     {actions ? <>
       <h3>Saved controls · through step {actions.durableStep}</h3>
       <Controls controls={actions.state.controls}/>
-      <p className="my-reservoir-small">{actions.state.decisionCount} recorded choices · {actions.state.appliedCount} applied actions · {actions.state.rejectedCount} rejected choices</p>
+      <p className="my-reservoir-small">{actions.state.decisionCount} recorded NEXT choices · {actions.state.appliedCount} applied actions · {actions.state.rejectedCount} rejected NEXT choices</p>
       {pending && <div className="my-reservoir-action-pending" role="status">
         <h3>{pending.durablePrepared ? 'Saved action waiting for application' : 'Action waiting for save confirmation'}</h3>
         <Decision decision={pending.decision}/>

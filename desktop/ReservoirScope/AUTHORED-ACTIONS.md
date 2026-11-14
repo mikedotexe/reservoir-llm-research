@@ -4,6 +4,10 @@ Development design for 0.43.0, November 13, 2026. This extends the local laptop
 experiment. It does not change Astrid, Minime, or the separate triple-reservoir
 service. Implementation and validation status belong in the release record.
 
+0.44.0 adds an independent [choice to withhold an entry's numerical input](INPUT-CHOICE.md)
+for new sessions. Earlier `authored-v1` sessions retain the behavior documented
+in the 0.43.0 release.
+
 The model can write freely and choose one explicit operation after its ordinary
 entry. Its choice can change the current recurrent state or the dynamics that
 process later input. The next ordinary turn receives current controls and a
@@ -50,7 +54,7 @@ numerical model, not a map of subjective effects.
 The complete provider reply is retained as evidence. A strict final `NEXT:` line
 at column zero is parsed separately from its journal body. Quoted or list material
 must end with a blank separator before a fresh action line. Only the body supplies encoded text
-feedback on an action-enabled ordinary turn. An unknown or malformed action
+feedback on an action-enabled ordinary turn when that input is sent. An unknown or malformed action
 produces a visible rejected decision, never an inferred numerical intervention.
 A response consisting only of an action is permitted: its body is empty, its
 text-feedback vector is zero, and its action still follows the save barrier.

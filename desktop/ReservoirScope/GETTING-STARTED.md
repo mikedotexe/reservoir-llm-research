@@ -5,7 +5,7 @@ then read it with some curiosity. You do not need to understand the reservoir's
 math to begin. Plan for **up to 30 minutes of running time**, after installation
 and model setup, plus a few minutes to read.
 
-These instructions describe **0.43.0 source**. If you received the older 0.27.0
+These instructions describe **0.44.0 source**. If you received the older 0.27.0
 candidate 04 package, follow its [install guide](PREVIEW-START.md).
 
 ## 1. Open the app
@@ -139,6 +139,13 @@ You can also restore a saved session paused, then extend it. Longer runs still
 need the app open and the machine awake.
 
 ## Let the model shape the reservoir
+
+New shaping sessions also let each ordinary entry choose whether its text becomes
+numerical reservoir input. `WITHHOLD_RESERVOIR_INPUT=true` immediately before
+`NEXT:` keeps the body in the journal and available as text memory, while replacing
+the previous held text input with zero. Omitting it or choosing `false` sends the
+body as usual. Control actions remain a separate choice; scheduled conversations
+still send their answers through feedback. [Input choice and examples](INPUT-CHOICE.md).
 
 Before creating a session, enable **Reservoir shaping → Let the model shape the
 reservoir**. Its ordinary entries can then choose a state pulse, tune recurrent

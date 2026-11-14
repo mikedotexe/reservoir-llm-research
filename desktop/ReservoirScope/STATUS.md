@@ -1,5 +1,15 @@
 # Reservoir Scope: current status and next work
 
+**November 13, 2026 · 0.44.0 independent input choice.** New action-enabled
+sessions can keep an ordinary entry as journal and memory while withholding its
+numerical text input, independently of NEXT. The prior held text vector becomes
+zero at the saved application boundary; later entries can send again.
+[Semantics and inquiry](INPUT-CHOICE.md) · [validation](RELEASE-0.44.0.md).
+Core, host and frontend checks passed, with native send/withhold/send execution,
+export, recovery and v1 replay compatibility verified. Model competence remains
+a separate research question.
+The separate six-hour 0.42.0 run remains unchanged.
+
 **November 13, 2026 · 0.43.0 authored reservoir actions.** New sessions can let the
 model choose a state pulse, persistent tuning, release, or no extra intervention
 after an ordinary journal. Saved action receipts and current controls return to
