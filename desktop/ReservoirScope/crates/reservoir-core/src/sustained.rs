@@ -971,7 +971,7 @@ pub struct SustainedApplication {
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedFrame {
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub action_receipt: Option<SustainedActionReceipt>,
+    pub action_receipt: Option<Box<SustainedActionReceipt>>,
     pub step: u64,
     pub simulated_time: f64,
     /// Forcing plus the scaled held feedback: the reservoir's input.
@@ -1224,7 +1224,7 @@ pub struct SustainedPendingLanguage {
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedPendingJournal {
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub action: Option<SustainedActionDecision>,
+    pub action: Option<Box<SustainedActionDecision>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub check_in: Option<SustainedCheckInContext>,
     pub entry: SustainedJournal,
@@ -1248,7 +1248,7 @@ pub struct SustainedPendingJournal {
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedPrepared {
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub action: Option<SustainedActionDecision>,
+    pub action: Option<Box<SustainedActionDecision>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub check_in: Option<SustainedCheckInContext>,
     pub entry: SustainedJournal,
@@ -1272,7 +1272,7 @@ pub enum SustainedPhase {
     Ready,
     Memory(SustainedPendingMemory),
     Language(SustainedPendingLanguage),
-    Journal(SustainedPendingJournal),
+    Journal(Box<SustainedPendingJournal>),
     Prepared(SustainedPrepared),
     Blocked(SustainedBlocked),
 }
@@ -1890,7 +1890,7 @@ impl SustainedSession {
             fill_percent,
         };
         let frame = SustainedFrame {
-            action_receipt,
+            action_receipt: action_receipt.map(Box::new),
             step,
             simulated_time: step as f64 * next.specification.dt,
             input,
@@ -2069,7 +2069,7 @@ impl SustainedSession {
         )?;
         let result = prepare_journal(&p, response, external, &self.state.specification);
         self.state.phase = match result {
-            Ok(j) => SustainedPhase::Journal(j),
+            Ok(j) => SustainedPhase::Journal(Box::new(j)),
             Err(e) => SustainedPhase::Blocked(SustainedBlocked {
                 pending: p,
                 reason: e.to_string(),
@@ -3070,7 +3070,7 @@ fn prepare_journal(
         sha256,
     };
     Ok(SustainedPendingJournal {
-        action,
+        action: action.map(Box::new),
         check_in: p.check_in.clone(),
         entry,
         prompt: p.prompt.clone(),
@@ -3741,7 +3741,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
             j.entry.validate()?;
             ensure(
                 same(
-                    j,
+                    j.as_ref(),
                     &prepare_journal(
                         &p,
                         &j.response,
@@ -3762,7 +3762,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
             check_ins::validate_context(p.check_in.as_ref(), s)?;
             p.entry.validate()?;
             actions::validate_decision(
-                p.action.as_ref(),
+                p.action.as_deref(),
                 &p.entry,
                 &s.specification,
                 p.check_in.as_ref(),

@@ -516,3 +516,57 @@ fn replay_rejects_tampered_actions_controls_body_and_receipts() {
     rehash(&mut cp);
     assert!(cp.validate().is_err());
 }
+
+#[test]
+fn inherited_zero_leak_and_release_are_preserved_without_clamping() {
+    let spec = SustainedSpecification {
+        leak: 0.0,
+        ..specification()
+    };
+    let mut run = Run::new(spec);
+    assert_eq!(run.session.action_state().unwrap().controls.leak, 0.0);
+    run.turn("Change the mix.\nNEXT: TUNE leak 0.5");
+    run.turn("Release the adjustment.\nNEXT: RELEASE");
+    assert_eq!(run.session.action_state().unwrap().controls.leak, 0.0);
+    run.verify();
+}
+
+#[test]
+fn extreme_or_inconsistent_receipt_counters_fail_without_panicking() {
+    let mut run = Run::new(specification());
+    run.turn("Body.\nNEXT: PULSE uniform 0.5");
+    for value in [0, u64::MAX] {
+        let mut checkpoint = run.session.checkpoint();
+        checkpoint
+            .state
+            .action_state
+            .as_mut()
+            .unwrap()
+            .applied_count = value;
+        rehash(&mut checkpoint);
+        assert!(checkpoint.validate().is_err());
+    }
+    let mut checkpoint = run.session.checkpoint();
+    checkpoint
+        .state
+        .action_state
+        .as_mut()
+        .unwrap()
+        .recent_receipts[0]
+        .observed_step = u64::MAX;
+    checkpoint
+        .state
+        .action_state
+        .as_mut()
+        .unwrap()
+        .latest_receipt = checkpoint
+        .state
+        .action_state
+        .as_ref()
+        .unwrap()
+        .recent_receipts
+        .last()
+        .cloned();
+    rehash(&mut checkpoint);
+    assert!(checkpoint.validate().is_err());
+}

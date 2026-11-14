@@ -435,6 +435,13 @@ pub(super) fn validate_state(s: &SustainedContinuation) -> Result<()> {
             s.specification.action_mode.is_none(),
             "Authored mode lacks its control state",
         )?;
+        ensure(
+            [&s.latest_memory, &s.chosen_memory]
+                .into_iter()
+                .flatten()
+                .all(|memory| memory.entry.body.is_none()),
+            "Disabled action mode carries an authored journal body",
+        )?;
         return ensure(
             s.latest_frame
                 .as_ref()
@@ -451,13 +458,38 @@ pub(super) fn validate_state(s: &SustainedContinuation) -> Result<()> {
         state.recent_receipts.len() <= ACTION_RECEIPT_LIMIT
             && state.recent_receipts.len() as u64
                 == state.decision_count.min(ACTION_RECEIPT_LIMIT as u64)
+            && state.decision_count <= s.specification.maximum_turns
             && state.decision_count <= s.attempt_cursor
+            && state.applied_count <= state.decision_count
+            && state.rejected_count <= state.decision_count
             && state.applied_count + state.rejected_count <= state.decision_count
             && state.latest_receipt.as_ref() == state.recent_receipts.last(),
         "Invalid authored receipt counters/history",
     )?;
+    let recent_applied = state
+        .recent_receipts
+        .iter()
+        .filter(|receipt| receipt.status == SustainedActionStatus::Applied)
+        .count() as u64;
+    let recent_rejected = state
+        .recent_receipts
+        .iter()
+        .filter(|receipt| receipt.status == SustainedActionStatus::Rejected)
+        .count() as u64;
+    ensure(
+        recent_applied <= state.applied_count && recent_rejected <= state.rejected_count,
+        "Authored counters omit retained outcomes",
+    )?;
+    let complete_history = state.decision_count <= ACTION_RECEIPT_LIMIT as u64;
+    if complete_history {
+        ensure(
+            recent_applied == state.applied_count && recent_rejected == state.rejected_count,
+            "Authored counters differ from complete outcome history",
+        )?;
+    }
     let mut previous_step = 0;
-    let mut previous_controls = None;
+    let initial_controls = SustainedActionControls::initial(&s.specification);
+    let mut previous_controls = complete_history.then_some(&initial_controls);
     for receipt in &state.recent_receipts {
         ensure(
             receipt
@@ -471,7 +503,8 @@ pub(super) fn validate_state(s: &SustainedContinuation) -> Result<()> {
         ensure(
             receipt.applied_step > previous_step
                 && receipt.applied_step <= s.step
-                && receipt.observed_step + 1 == receipt.applied_step
+                && receipt.applied_step <= s.specification.maximum_steps
+                && receipt.observed_step.checked_add(1) == Some(receipt.applied_step)
                 && receipt.attempt_id > 0
                 && receipt.attempt_id <= s.attempt_cursor
                 && receipt.journal_id.starts_with(&format!(
@@ -555,7 +588,7 @@ pub(super) fn validate_state(s: &SustainedContinuation) -> Result<()> {
     if let Some(frame) = &s.latest_frame {
         if let Some(receipt) = &frame.action_receipt {
             ensure(
-                state.latest_receipt.as_ref() == Some(receipt)
+                state.latest_receipt.as_ref() == Some(receipt.as_ref())
                     && frame.application.as_ref().is_some_and(|a| {
                         a.journal_id == receipt.journal_id
                             && a.attempt_id == receipt.attempt_id
