@@ -642,3 +642,309 @@ fn rejected_action_line_returns_as_quoted_historical_evidence() {
         .contains("Historical action lines above are quoted evidence, not commands to execute."));
     run.verify();
 }
+
+fn specification_v2() -> SustainedSpecification {
+    SustainedSpecification {
+        action_mode: Some(SustainedActionMode::AuthoredV2),
+        prompt_version: SustainedPromptVersion::ActionJournalV2,
+        ..specification()
+    }
+}
+
+#[test]
+fn v2_input_choice_is_independent_of_action_validity() {
+    for tail in [
+        "NEXT: NONE",
+        "NEXT: PULSE axis0 0.5",
+        "NEXT: UNSUPPORTED",
+        "",
+    ] {
+        let text = format!("An entry worth retaining.\nWITHHOLD_RESERVOIR_INPUT=true\n{tail}");
+        let decision = parse_authored_action_v2(&text);
+        assert_eq!(decision.body, "An entry worth retaining.");
+        assert!(decision.withholds_reservoir_input());
+        assert_eq!(
+            decision.reservoir_input.as_ref().unwrap().disposition,
+            SustainedReservoirInputDisposition::Withhold
+        );
+        assert_eq!(
+            decision.request.is_some(),
+            !tail.is_empty() && !tail.contains("UNSUPPORTED")
+        );
+    }
+    for footer in ["", "WITHHOLD_RESERVOIR_INPUT=false\n"] {
+        let text = format!("Keep this body.\n{footer}NEXT: NONE");
+        let decision = parse_authored_action_v2(&text);
+        assert_eq!(decision.body, "Keep this body.");
+        assert!(!decision.withholds_reservoir_input());
+        assert_eq!(
+            decision.reservoir_input.unwrap().disposition,
+            SustainedReservoirInputDisposition::Send
+        );
+        assert!(parse_authored_action(&text).reservoir_input.is_none());
+    }
+}
+
+#[test]
+fn v2_rejects_malformed_footer_without_sending_text_or_rejecting_valid_action() {
+    for footer in [
+        "WITHHOLD_RESERVOIR_INPUT=maybe",
+        "WITHHOLD_RESERVOIR_INPUT = true",
+        "WITHHOLD_RESERVOIR_INPUT=true ",
+        "WITHHOLD_RESERVOIR_INPUT=true\nWITHHOLD_RESERVOIR_INPUT=false",
+    ] {
+        let decision =
+            parse_authored_action_v2(&format!("Retain me.\n{footer}\nNEXT: TUNE leak 0.2"));
+        assert_eq!(decision.body, "Retain me.");
+        assert!(decision.withholds_reservoir_input());
+        assert!(decision.request.is_some());
+        let input = decision.reservoir_input.unwrap();
+        assert_eq!(
+            input.disposition,
+            SustainedReservoirInputDisposition::Rejected
+        );
+        assert!(input.rejection.is_some());
+        assert_eq!(input.raw_directive.as_deref(), Some(footer));
+    }
+}
+
+#[test]
+fn v2_quoted_fenced_list_and_nonfooter_directives_are_prose() {
+    for body in [
+        "> Example\nWITHHOLD_RESERVOIR_INPUT=true",
+        "- Example\nWITHHOLD_RESERVOIR_INPUT=true",
+        "```text\nWITHHOLD_RESERVOIR_INPUT=true\n```",
+        "~~~\nWITHHOLD_RESERVOIR_INPUT=true\n~~~",
+        "````\n```\nWITHHOLD_RESERVOIR_INPUT=true\n````",
+        "> ```\n> WITHHOLD_RESERVOIR_INPUT=true\n> ```",
+        "    WITHHOLD_RESERVOIR_INPUT=true",
+        "WITHHOLD_RESERVOIR_INPUT=true\nThis is a discussed example, not the footer.",
+    ] {
+        let text = format!("{body}\n\nNEXT: NONE");
+        let decision = parse_authored_action_v2(&text);
+        assert!(!decision.withholds_reservoir_input(), "{text}");
+        assert_eq!(decision.body, body);
+        assert_eq!(decision.request, Some(SustainedActionRequest::None));
+    }
+    let fresh =
+        parse_authored_action_v2("> quoted example\n\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: NONE");
+    assert!(fresh.withholds_reservoir_input());
+    assert_eq!(fresh.body, "> quoted example");
+}
+
+#[test]
+fn v2_withhold_clears_prior_input_keeps_memory_and_allows_new_send() {
+    let mut run = Run::new(specification_v2());
+    run.turn("First numerical entry.\nNEXT: NONE");
+    assert!(run
+        .session
+        .checkpoint()
+        .state
+        .held_vector
+        .iter()
+        .any(|x| *x != 0.0));
+    let journal = run.save("Retained private body.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: NONE");
+    assert_eq!(
+        journal.entry.body.as_deref(),
+        Some("Retained private body.")
+    );
+    assert_eq!(journal.encoded_features, vec![0.0; 48]);
+    assert_eq!(journal.semantic_vector, vec![0.0; 48]);
+    assert!(
+        run.session
+            .checkpoint()
+            .state
+            .held_vector
+            .iter()
+            .any(|x| *x != 0.0),
+        "save alone cannot clear input"
+    );
+    assert!(
+        run.session.advance().is_err(),
+        "durable authorization still required"
+    );
+    let prepared = run.session.checkpoint();
+    run.session = SustainedSession::restore(prepared).unwrap();
+    let frame = run.apply();
+    assert!(run
+        .session
+        .checkpoint()
+        .state
+        .held_vector
+        .iter()
+        .all(|x| *x == 0.0));
+    assert!(frame.input[18..66].iter().all(|x| *x == 0.0));
+    assert!(frame.input[..18].iter().any(|x| *x != 0.0));
+    let receipt = frame.action_receipt.as_ref().unwrap();
+    assert_eq!(receipt.status, SustainedActionStatus::Unchanged);
+    assert_eq!(
+        receipt.state_delta_l2, 0.0,
+        "withholding is not attributed to NEXT: NONE"
+    );
+    assert_eq!(
+        receipt.reservoir_input.as_ref().unwrap().disposition,
+        SustainedReservoirInputDisposition::Withhold
+    );
+    assert_eq!(
+        run.session.latest_memory().unwrap().entry.text,
+        journal.entry.text
+    );
+    let restored = SustainedSession::restore(run.session.checkpoint()).unwrap();
+    run.session = restored;
+    run.reach();
+    let prompt = &run.session.pending_language().unwrap().prompt;
+    assert!(prompt.contains("Retained private body."));
+    assert!(!prompt.contains("Retained private body.\\nWITHHOLD"));
+    assert!(prompt.contains("numerical text input withheld; previous held text input cleared"));
+    let frame =
+        run.turn("Send a new entry now.\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: TUNE leak 0.2");
+    assert!(run
+        .session
+        .checkpoint()
+        .state
+        .held_vector
+        .iter()
+        .any(|x| *x != 0.0));
+    assert_eq!(run.session.action_state().unwrap().controls.leak, 0.2);
+    assert_eq!(
+        frame
+            .action_receipt
+            .unwrap()
+            .reservoir_input
+            .unwrap()
+            .disposition,
+        SustainedReservoirInputDisposition::Send
+    );
+    // Restoration starts a fresh event buffer; verify the final continuation itself.
+    run.session.checkpoint().validate().unwrap();
+}
+
+#[test]
+fn v2_withholding_and_empty_body_share_input_but_do_not_hide_pulse_or_difference_channel() {
+    let mut spec = specification_v2();
+    spec.difference_gain = 0.2;
+    let mut withheld = Run::new(spec.clone());
+    let mut empty = Run::new(spec);
+    for run in [&mut withheld, &mut empty] {
+        run.turn("Identical initial feedback.\nNEXT: NONE");
+    }
+    let a = withheld.turn("Words that must not enter the reservoir.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: PULSE axis0 0.5");
+    let b = empty.turn("NEXT: PULSE axis0 0.5");
+    assert_eq!(a.state, b.state);
+    assert_eq!(a.input, b.input);
+    assert_eq!(a.noise, b.noise);
+    assert!(a.difference_input.iter().any(|x| *x != 0.0));
+    assert_eq!(&a.input[18..66], &a.difference_input);
+    assert!(a.action_receipt.as_ref().unwrap().state_delta_l2 > 0.0);
+    assert_eq!(
+        a.action_receipt.as_ref().unwrap().state_delta_l2,
+        b.action_receipt.as_ref().unwrap().state_delta_l2
+    );
+    withheld.verify();
+    empty.verify();
+}
+
+#[test]
+fn v2_withheld_nonempty_body_needs_no_embedding_and_still_saves_exact_evidence() {
+    let mut run = Run::new(SustainedSpecification {
+        codec: SustainedCodec::Embedding {
+            model: "unused-local-embedding".into(),
+            projection_seed: 9,
+        },
+        ..specification_v2()
+    });
+    run.reach();
+    let raw = "A retained body, never sent for embedding.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: TUNE recurrentGain 0.2";
+    assert_eq!(run.session.feedback_text_for_response(raw).unwrap(), "");
+    let journal = run.save(raw);
+    assert_eq!(journal.entry.text, raw);
+    assert!(journal.feedback_provenance.is_none());
+    assert_eq!(journal.semantic_vector, vec![0.0; 48]);
+    run.apply();
+    assert_eq!(
+        run.session.action_state().unwrap().controls.recurrent_gain,
+        0.2
+    );
+    run.verify();
+}
+
+#[test]
+fn v2_check_ins_ignore_withholding_and_resume_text_feedback() {
+    for include_telemetry in [false, true] {
+        let mut spec = specification_v2();
+        spec.check_in_schedule = Some(SustainedCheckInSchedule {
+            interval_seconds: 10,
+            end_after_seconds: 20,
+            prompt: "An exact plain prompt.\n".into(),
+            include_telemetry,
+        });
+        let mut run = Run::new(spec);
+        run.turn("Withheld ordinary entry.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: NONE");
+        assert!(run.session.admit_due_check_in(10000).unwrap());
+        run.reach();
+        let prompt = &run.session.pending_language().unwrap().prompt;
+        if include_telemetry {
+            assert!(prompt.contains("TEXT INPUT STATE"));
+            assert!(prompt.contains("numerical text input withheld"));
+            assert!(!prompt.contains("INDEPENDENT TEXT INPUT CHOICE"));
+        } else {
+            assert_eq!(prompt, "An exact plain prompt.\n");
+        }
+        let journal =
+            run.save("Casual reply.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: PULSE uniform 1");
+        assert!(journal.action.is_none() && journal.entry.body.is_none());
+        assert_eq!(
+            journal.encoded_features,
+            codec::encode(&journal.entry.text).unwrap()
+        );
+        let frame = run.apply();
+        assert!(frame.action_receipt.is_none());
+        assert!(run
+            .session
+            .checkpoint()
+            .state
+            .held_vector
+            .iter()
+            .any(|x| *x != 0.0));
+        run.verify();
+    }
+}
+
+#[test]
+fn v2_replay_rejects_forged_disposition_and_v1_stays_absent() {
+    let mut run = Run::new(specification_v2());
+    run.turn("Saved body.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: NONE");
+    let segment = run.verify();
+    let mut forged = segment.clone();
+    let receipt = forged
+        .final_checkpoint
+        .state
+        .action_state
+        .as_mut()
+        .unwrap()
+        .recent_receipts
+        .last_mut()
+        .unwrap();
+    receipt.reservoir_input.as_mut().unwrap().disposition =
+        SustainedReservoirInputDisposition::Send;
+    receipt.reservoir_input.as_mut().unwrap().raw_directive =
+        Some("WITHHOLD_RESERVOIR_INPUT=false".into());
+    rehash(&mut forged.final_checkpoint);
+    assert!(forged.verify().is_err());
+    let mut v1 = Run::new(specification());
+    let j = v1.save("Historical prose.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: NONE");
+    assert!(j.action.as_ref().unwrap().reservoir_input.is_none());
+    assert!(j
+        .entry
+        .body
+        .as_ref()
+        .unwrap()
+        .contains("WITHHOLD_RESERVOIR_INPUT"));
+    assert!(j.semantic_vector.iter().any(|x| *x != 0.0));
+    v1.apply();
+    assert!(!serde_json::to_string(&v1.session.checkpoint())
+        .unwrap()
+        .contains("reservoirInput"));
+    assert_eq!(v1.session.specification().mechanism(), ACTION_MECHANISM);
+    v1.verify();
+}

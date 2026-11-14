@@ -351,6 +351,8 @@ fn valid_hash(s: &str) -> bool {
 pub enum SustainedPromptVersion {
     #[serde(rename = "reservoir-journal-actions-v1")]
     ActionJournalV1,
+    #[serde(rename = "reservoir-journal-actions-v2")]
+    ActionJournalV2,
     #[default]
     #[serde(rename = "reservoir-journal-v1")]
     LegacyV1,
@@ -418,6 +420,7 @@ impl SustainedPromptVersion {
     pub fn as_str(self) -> &'static str {
         match self {
             Self::ActionJournalV1 => "reservoir-journal-actions-v1",
+            Self::ActionJournalV2 => "reservoir-journal-actions-v2",
             Self::LegacyV1 => "reservoir-journal-v1",
             Self::GroundedV2 => "reservoir-journal-v2",
             Self::OpenJournalV3 => "reservoir-journal-v3",
@@ -495,6 +498,7 @@ impl SustainedPromptVersion {
         matches!(
             self,
             Self::ActionJournalV1
+                | Self::ActionJournalV2
                 | Self::OpenJournalV4
                 | Self::ContinuingJournalV5
                 | Self::ActionScopeJournalV6
@@ -655,7 +659,9 @@ impl SustainedSpecification {
         self.difference_gain != 0.0
     }
     pub fn mechanism(&self) -> &'static str {
-        if self.action_mode.is_some() {
+        if self.action_mode == Some(SustainedActionMode::AuthoredV2) {
+            ACTION_MECHANISM_V2
+        } else if self.action_mode.is_some() {
             ACTION_MECHANISM
         } else if !self.codec.is_surface() && self.uses_difference_channel() {
             MECHANISM_EMBEDDING_DIFFERENCE
@@ -671,8 +677,19 @@ impl SustainedSpecification {
     }
     pub fn validate(&self) -> Result<()> {
         ensure(
-            self.action_mode.is_some()
-                == (self.prompt_version == SustainedPromptVersion::ActionJournalV1),
+            match self.action_mode {
+                Some(SustainedActionMode::AuthoredV1) => {
+                    self.prompt_version == SustainedPromptVersion::ActionJournalV1
+                }
+                Some(SustainedActionMode::AuthoredV2) => {
+                    self.prompt_version == SustainedPromptVersion::ActionJournalV2
+                }
+                None => !matches!(
+                    self.prompt_version,
+                    SustainedPromptVersion::ActionJournalV1
+                        | SustainedPromptVersion::ActionJournalV2
+                ),
+            },
             "Authored mode requires its matching action prompt version",
         )?;
         if let Some(schedule) = &self.check_in_schedule {
@@ -1036,7 +1053,8 @@ impl SustainedJournal {
         codec::encode(&self.text)?;
         if let Some(body) = &self.body {
             ensure(
-                *body == parse_authored_action(&self.text).body,
+                *body == parse_authored_action(&self.text).body
+                    || *body == parse_authored_action_v2(&self.text).body,
                 "Journal body differs from raw reply",
             )?;
             codec::encode(body)?;
@@ -1516,7 +1534,16 @@ impl SustainedSession {
             .ok_or_else(|| invalid("No pending language response"))?;
         Ok(
             actions::decision_for(&self.state.specification, pending.check_in.as_ref(), text)
-                .map_or_else(|| text.to_string(), |action| action.body),
+                .map_or_else(
+                    || text.to_string(),
+                    |action| {
+                        if action.withholds_reservoir_input() {
+                            String::new()
+                        } else {
+                            action.body
+                        }
+                    },
+                ),
         )
     }
     pub fn latest_memory(&self) -> Option<&SustainedMemory> {
@@ -1961,6 +1988,7 @@ impl SustainedSession {
             }
             (None, Some(choice)) => {
                 entry.validate()?;
+                actions::validate_journal_body(entry, &self.state.specification)?;
                 ensure(
                     entry.id == choice.entry_id && entry.sha256 == choice.sha256,
                     "Fresh journal readback differs from the chosen memory",
@@ -2432,7 +2460,8 @@ fn prompt(
         SustainedPromptVersion::ActionScopeJournalV6 => prompt_v6(observation, memory),
         SustainedPromptVersion::WritingBoundaryJournalV7 => prompt_v7(observation, memory),
         SustainedPromptVersion::MeasurementMeaningJournalV8
-        | SustainedPromptVersion::ActionJournalV1 => prompt_v8(observation, memory),
+        | SustainedPromptVersion::ActionJournalV1
+        | SustainedPromptVersion::ActionJournalV2 => prompt_v8(observation, memory),
         SustainedPromptVersion::InertV1
         | SustainedPromptVersion::InertPlainContractV1
         | SustainedPromptVersion::InertInvitingContractV1
@@ -2920,7 +2949,11 @@ fn render_pending_prompt(
         if state.specification.action_mode.is_some()
             && check_in.is_some_and(|context| context.include_telemetry)
         {
-            format!("READ-ONLY ACTION CONTEXT\nThis conversational check-in cannot issue actions. Current controls and actual execution receipts are supplied as context; any NEXT text in this reply stays prose.\n\n{}\n\n{}", actions::render_execution_context(state), prompt)
+            if state.specification.action_mode == Some(SustainedActionMode::AuthoredV2) {
+                format!("READ-ONLY ACTION CONTEXT\nThis conversational check-in cannot issue actions or withhold input. Current controls and actual execution/input receipts are supplied as context; any NEXT or WITHHOLD_RESERVOIR_INPUT text in this reply stays prose and the complete reply enters numerical text feedback normally.\n\n{}\n\n{}", actions::render_execution_context(state), prompt)
+            } else {
+                format!("READ-ONLY ACTION CONTEXT\nThis conversational check-in cannot issue actions. Current controls and actual execution receipts are supplied as context; any NEXT text in this reply stays prose.\n\n{}\n\n{}", actions::render_execution_context(state), prompt)
+            }
         } else {
             prompt
         }
@@ -3024,8 +3057,10 @@ fn prepare_journal(
     let body = action
         .as_ref()
         .map_or(response.text.as_str(), |a| a.body.as_str());
-    let (encoded_features, semantic_vector, feedback_provenance) = if action.is_some()
-        && !codec::has_non_whitespace(body)?
+    let (encoded_features, semantic_vector, feedback_provenance) = if action
+        .as_ref()
+        .is_some_and(|a| a.withholds_reservoir_input())
+        || (action.is_some() && !codec::has_non_whitespace(body)?)
     {
         (vec![0.0; 48], vec![0.0; 48], None)
     } else {
@@ -3780,7 +3815,9 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
                 .as_ref()
                 .ok_or_else(|| invalid("Prepared feedback lacks observation"))?;
             let empty_body = match &p.action {
-                Some(action) => !codec::has_non_whitespace(&action.body)?,
+                Some(action) => {
+                    action.withholds_reservoir_input() || !codec::has_non_whitespace(&action.body)?
+                }
                 None => false,
             };
             let feedback_matches = if empty_body {
