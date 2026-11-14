@@ -2909,14 +2909,21 @@ fn render_pending_prompt(
     if actions::enabled_for_turn(&state.specification, check_in) {
         actions::render_prompt(state, observation, memory)
     } else {
-        check_ins::render_prompt(
+        let prompt = check_ins::render_prompt(
             state.specification.prompt_version,
             observation,
             memory,
             latest,
             state.specification.seed,
             check_in,
-        )
+        );
+        if state.specification.action_mode.is_some()
+            && check_in.is_some_and(|context| context.include_telemetry)
+        {
+            format!("READ-ONLY ACTION CONTEXT\nThis conversational check-in cannot issue actions. Current controls and actual execution receipts are supplied as context; any NEXT text in this reply stays prose.\n\n{}\n\n{}", actions::render_execution_context(state), prompt)
+        } else {
+            prompt
+        }
     }
 }
 fn prepare_language(

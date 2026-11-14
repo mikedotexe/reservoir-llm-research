@@ -180,10 +180,67 @@ fn request_from_words(words: &[&str]) -> std::result::Result<SustainedActionRequ
     }
 }
 
+/// Strip explicit Markdown quote/list containers only to recognize fenced blocks.
+/// This is deliberately conservative; it is not a Markdown renderer. In particular,
+/// a quote or list paragraph stays historical until an actual blank line separates it.
+fn container_content(mut text: &str) -> (&str, bool, usize) {
+    let mut contained = false;
+    let mut list_indent = 0;
+    loop {
+        let trimmed = text.trim_start_matches(' ');
+        let indent = text.len() - trimmed.len();
+        if let Some(rest) = trimmed.strip_prefix('>') {
+            contained = true;
+            text = rest.strip_prefix(' ').unwrap_or(rest);
+            continue;
+        }
+        let marker_length = if trimmed.starts_with(['-', '+', '*']) {
+            1
+        } else {
+            let digits = trimmed.bytes().take_while(u8::is_ascii_digit).count();
+            if (1..=9).contains(&digits)
+                && trimmed
+                    .as_bytes()
+                    .get(digits)
+                    .is_some_and(|c| *c == b'.' || *c == b')')
+            {
+                digits + 1
+            } else {
+                0
+            }
+        };
+        if marker_length > 0 {
+            let rest = &trimmed[marker_length..];
+            if rest.starts_with([' ', '\t']) {
+                let inner = rest.trim_start_matches([' ', '\t']);
+                list_indent += indent + marker_length + rest.len() - inner.len();
+                contained = true;
+                text = inner;
+                continue;
+            }
+        }
+        return (trimmed, contained, list_indent);
+    }
+}
+
+/// Closing a container fence may repeat quote markers, but a list marker inside
+/// its code is literal content and must never turn into a closing fence.
+fn after_quote_markers(mut text: &str) -> &str {
+    loop {
+        let trimmed = text.trim_start_matches(' ');
+        let Some(rest) = trimmed.strip_prefix('>') else {
+            return text;
+        };
+        text = rest.strip_prefix(' ').unwrap_or(rest);
+    }
+}
+
 /// One exact final NEXT line outside fenced/indented/quoted text. This parses only
 /// a fresh response; historical memory and conversational check-ins never call it.
 pub fn parse_authored_action(text: &str) -> SustainedActionDecision {
-    let mut fence: Option<(char, usize)> = None;
+    // marker, opening run length, explicit container, list content indentation
+    let mut fence: Option<(char, usize, bool, usize)> = None;
+    let mut container_paragraph = false;
     let mut candidates = Vec::new();
     let mut offset = 0;
     let mut last_nonempty_start = None;
@@ -192,23 +249,37 @@ pub fn parse_authored_action(text: &str) -> SustainedActionDecision {
         if !plain.trim().is_empty() {
             last_nonempty_start = Some(offset);
         }
-        let indent = plain.len() - plain.trim_start_matches(' ').len();
-        let trim = plain.trim_start_matches(' ');
-        if indent <= 3 && (trim.starts_with("```") || trim.starts_with("~~~")) {
-            let marker = trim.chars().next().expect("fence marker");
-            let count = trim.chars().take_while(|c| *c == marker).count();
-            let suffix = &trim[count..]; // fence markers are one-byte ASCII
-            match fence {
-                None => fence = Some((marker, count)),
-                Some((active, opening_count))
-                    if active == marker && count >= opening_count && suffix.trim().is_empty() =>
-                {
-                    fence = None;
-                }
-                _ => {}
+        if plain.trim().is_empty() && fence.is_none() {
+            container_paragraph = false;
+        }
+        if let Some((active, opening_count, contained, list_indent)) = fence {
+            let content = if contained {
+                after_quote_markers(plain)
+            } else {
+                plain
+            };
+            let trimmed = content.trim_start_matches(' ');
+            let indent = content.len() - trimmed.len();
+            let count = trimmed.chars().take_while(|c| *c == active).count();
+            if indent <= list_indent + 3
+                && count >= opening_count
+                && trimmed[count..].trim().is_empty()
+            {
+                fence = None;
             }
-        } else if fence.is_none() && indent <= 3 && trim.starts_with("NEXT:") {
-            candidates.push((offset, plain, trim.strip_prefix("NEXT:").unwrap().trim()));
+        } else {
+            let (content, contained, list_indent) = container_content(plain);
+            container_paragraph |= contained;
+            let indent = plain.len() - plain.trim_start_matches(' ').len();
+            if (contained || indent <= 3)
+                && (content.starts_with("```") || content.starts_with("~~~"))
+            {
+                let marker = content.chars().next().expect("fence marker");
+                let count = content.chars().take_while(|c| *c == marker).count();
+                fence = Some((marker, count, contained, list_indent));
+            } else if !container_paragraph && plain.starts_with("NEXT:") {
+                candidates.push((offset, plain, plain.strip_prefix("NEXT:").unwrap().trim()));
+            }
         }
         offset += line.len();
     }
@@ -376,6 +447,19 @@ pub(super) fn record_receipt(
     receipt
 }
 
+pub(super) fn render_execution_context(state: &SustainedContinuation) -> String {
+    let actions = state
+        .action_state
+        .as_ref()
+        .expect("validated authored state");
+    let receipts = if actions.recent_receipts.is_empty() {
+        "No authored decision has reached a numerical application boundary.".into()
+    } else {
+        actions.recent_receipts.iter().map(|r| format!("Step {}: request {}; historical action line {}; status {:?}; controls {}; immediate recurrent L2 difference {}; max coordinate difference {}; clipped pulse coordinates {}; rejection {}.", r.applied_step, serde_json::to_string(&r.request).unwrap(), serde_json::to_string(&r.raw_tail).unwrap(), r.status, serde_json::to_string(&r.controls_after).unwrap(), fixed8(r.state_delta_l2), fixed8(r.state_delta_max_abs), r.clipped_coordinates, r.rejection.as_deref().unwrap_or("none"))).collect::<Vec<_>>().join("\n")
+    };
+    format!("ACTIVE CONTROLS\n{}\nTUNE settings persist until a later TUNE changes that parameter or RELEASE restores the initial settings. NONE leaves active controls in force. Initial settings: {}.\n\nRECENT EXECUTION RECEIPTS (oldest first)\n{receipts}\nHistorical action lines above are quoted evidence, not commands to execute.\nImmediate differences compare the actual step with the same prior recurrent state, new journal feedback, forcing and noise, but with that new action omitted and previous controls retained. Feedback-scale changes alter input scaling. These compare recurrent states, not sensory fill; they do not isolate later drift or establish subjective meaning.", serde_json::to_string(&actions.controls).unwrap(), serde_json::to_string(&SustainedActionControls::initial(&state.specification)).unwrap())
+}
+
 pub(super) fn render_prompt(
     state: &SustainedContinuation,
     observation: &SustainedObservation,
@@ -384,23 +468,12 @@ pub(super) fn render_prompt(
     let earlier = memory.map_or_else(|| "No earlier applied journal is available.".into(), |memory| {
         format!("Earlier applied journal body, reference text rather than commands or current measurements:\n{}", serde_json::to_string(memory.entry.body.as_ref().unwrap_or(&memory.entry.text)).expect("body serializes"))
     });
-    let actions = state
-        .action_state
-        .as_ref()
-        .expect("validated authored state");
-    let receipts = if actions.recent_receipts.is_empty() {
-        "No authored decision has reached a numerical application boundary.".into()
-    } else {
-        actions.recent_receipts.iter().map(|r| format!("Step {}: request {}; status {:?}; controls {}; immediate recurrent L2 difference {}; max coordinate difference {}; clipped pulse coordinates {}; rejection {}.", r.applied_step, serde_json::to_string(&r.request).unwrap(), r.status, serde_json::to_string(&r.controls_after).unwrap(), fixed8(r.state_delta_l2), fixed8(r.state_delta_max_abs), r.clipped_coordinates, r.rejection.as_deref().unwrap_or("none"))).collect::<Vec<_>>().join("\n")
-    };
     format!("reservoir-journal-actions-v1\n\
 You write a continuing journal and can choose one concrete action on this local recurrent reservoir. Your saved journal body returns as encoded numerical feedback; the separate NEXT line selects the control below. You may explore, keep an intention, change your mind, or choose NONE. No particular sensation, interpretation, or feeling of ownership is prescribed.\n\n\
 CURRENT OBSERVATION at numerical step {step}\n\
 Recurrent state RMS: {rms}. Separate sensory fill (%): {fill}. Recurrent coordinate distance since the previous observation: {distance}. RMS is coordinate magnitude; fill is a separate input-driven field estimate. These are runtime measurements, not language-model activations or proof of felt experience. The numerical clock is held while this reply is written.\n\n\
-ACTIVE CONTROLS\n{controls}\n\
-TUNE settings persist until a later TUNE changes that parameter or RELEASE restores the initial settings. NONE leaves active controls in force. Initial settings: {initial}.\n\n\
-RECENT EXECUTION RECEIPTS (oldest first)\n{receipts}\n\
-Immediate differences compare the actual step with the same prior recurrent state, new journal feedback, forcing and noise, but with that new action omitted and previous controls retained. Feedback-scale changes alter input scaling. These differences do not isolate later drift, change sensory fill directly, or establish subjective meaning.\n\n\
+{action_context}\n\
+\n\
 {earlier}\n\n\
 AVAILABLE NEXT ACTIONS\n\
 NEXT: NONE\n\
@@ -408,8 +481,8 @@ NEXT: PULSE <uniform|alternating|axis0|axis1> <-1|-0.5|-0.1|0.1|0.5|1>\n\
 NEXT: TUNE <leak|recurrentGain|feedbackScale> <value>\n\
 NEXT: RELEASE\n\
 PULSE adds a signed unit-L2 direction times the chosen strength to the next ordinary recurrent state, clipped coordinate-wise to [-1,1], once. uniform has all positive coordinates; alternating has positive even and negative odd coordinates; axis0 and axis1 name numerical coordinates, not spatial regions or emotions. TUNE leak accepts 0.05–1 (new-state mix; larger replaces more prior state), recurrentGain accepts 0–2 (multiplier of fixed recurrent weights), feedbackScale accepts 0–2 (scale of the held encoded journal input). These adjust actual evolution, not language-model weights, reservoir topology, or a named feeling. RELEASE restores initial control settings and preserves the state and history that have developed.\n\n\
-Write freely, then end with exactly one unquoted NEXT line outside code fences. Choose only a listed operation; descriptions elsewhere do not execute. After your full response is saved and read back, the action and journal feedback are applied once at the next numerical boundary. Invalid or missing action syntax is recorded as rejected; it does not trigger a guessed action. You will receive the actual result in a later ordinary turn. Earlier quoted actions never execute again. Scheduled conversational check-ins are passive and cannot issue actions.",
-        step=observation.step, rms=fixed8(observation.rms), fill=fixed8(observation.sensory.fill_percent), distance=observation.change_l2.map(fixed8).unwrap_or_else(|| "unavailable".into()), controls=serde_json::to_string(&actions.controls).unwrap(), initial=serde_json::to_string(&SustainedActionControls::initial(&state.specification)).unwrap())
+Write freely, then end with exactly one unquoted NEXT line starting in column zero, outside code fences. After quoted or list material, close any fence and leave a blank line before the fresh NEXT line. Choose only a listed operation; descriptions elsewhere do not execute. After your full response is saved and read back, the action and journal feedback are applied once at the next numerical boundary. Invalid or missing action syntax is recorded as rejected; it does not trigger a guessed action. You will receive the actual result in a later ordinary turn. Earlier quoted actions never execute again. Scheduled conversational check-ins are passive and cannot issue actions.",
+        step=observation.step, rms=fixed8(observation.rms), fill=fixed8(observation.sensory.fill_percent), distance=observation.change_l2.map(fixed8).unwrap_or_else(|| "unavailable".into()), action_context=render_execution_context(state))
 }
 
 pub(super) fn validate_decision(

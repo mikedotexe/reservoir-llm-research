@@ -415,7 +415,12 @@ fn scheduled_conversations_never_execute_actions_in_either_context_mode() {
         } else {
             assert!(!pending.prompt.contains("AVAILABLE NEXT ACTIONS"));
             assert!(pending.prompt.contains("I choose a setting."));
-            assert!(!pending.prompt.contains("NEXT: TUNE leak 0.2"));
+            assert!(pending.prompt.contains("READ-ONLY ACTION CONTEXT"));
+            assert!(pending
+                .prompt
+                .contains("historical action line \"NEXT: TUNE leak 0.2\""));
+            assert!(pending.prompt.contains("\"leak\":0.2"));
+            assert!(!pending.prompt.contains("I choose a setting.\\nNEXT:"));
         }
         let journal = run.save("Casual response.\nNEXT: TUNE feedbackScale 2");
         assert!(journal.action.is_none());
@@ -569,4 +574,71 @@ fn extreme_or_inconsistent_receipt_counters_fail_without_panicking() {
         .cloned();
     rehash(&mut checkpoint);
     assert!(checkpoint.validate().is_err());
+}
+
+#[test]
+fn quoted_and_list_continuations_cannot_be_mistaken_for_fresh_actions() {
+    for text in [
+        "> The earlier proposal was:\nNEXT: PULSE axis0 1",
+        "> Earlier proposal\nA lazy continuation.\nNEXT: RELEASE",
+        "- ```text\n  NEXT: PULSE axis0 1",
+        "- ```text\nNEXT: PULSE axis0 1",
+        "1. ```text\n   NEXT: PULSE axis0 1",
+        "1) Earlier proposal\nNEXT: RELEASE",
+        "- Earlier proposal\nNEXT: RELEASE",
+        "> ```text\n> NEXT: RELEASE\nNEXT: PULSE axis0 1",
+        "> ````\n> ```\n\nNEXT: RELEASE",
+        "- ```text\n- ```\n\nNEXT: RELEASE",
+        "```text\n> ```\n\nNEXT: RELEASE",
+        "Body.\n  NEXT: RELEASE",
+    ] {
+        let decision = parse_authored_action(text);
+        assert!(decision.request.is_none(), "{text}");
+        assert!(decision.rejection.is_some());
+        let mut run = Run::new(specification());
+        let applied = run.turn(text);
+        assert_eq!(
+            applied.action_receipt.unwrap().status,
+            SustainedActionStatus::Rejected,
+            "{text}"
+        );
+        assert_eq!(
+            run.session.action_state().unwrap().controls,
+            SustainedActionControls::initial(&specification())
+        );
+        run.verify();
+    }
+    for text in [
+        "> The earlier proposal was:\nNEXT: PULSE axis0 1\n\nNEXT: NONE",
+        "- Earlier proposal\n\nNEXT: NONE",
+        "1) Earlier proposal\n\nNEXT: NONE",
+        "- ```text\n  NEXT: PULSE axis0 1\n  ```\n\nNEXT: NONE",
+        "1. ```text\n   NEXT: PULSE axis0 1\n   ```\n\nNEXT: NONE",
+        "> ```text\n> NEXT: PULSE axis0 1\n> ```\n\nNEXT: NONE",
+        "> - ```text\n>   NEXT: PULSE axis0 1\n>   ```\n\nNEXT: NONE",
+        "- ````text\n  ```\n  NEXT: PULSE axis0 1\n  ````\n\nNEXT: NONE",
+    ] {
+        assert_eq!(
+            parse_authored_action(text).request,
+            Some(SustainedActionRequest::None),
+            "{text}"
+        );
+    }
+}
+
+#[test]
+fn rejected_action_line_returns_as_quoted_historical_evidence() {
+    let tail = "NEXT: TUNE leak \"0.5\"";
+    let mut run = Run::new(specification());
+    run.turn(&format!("I tried a setting.\n{tail}"));
+    run.reach();
+    let prompt = &run.session.pending_language().unwrap().prompt;
+    assert!(prompt.contains(&format!(
+        "historical action line {}",
+        serde_json::to_string(&Some(tail)).unwrap()
+    )));
+    assert!(prompt.contains("status Rejected"));
+    assert!(prompt
+        .contains("Historical action lines above are quoted evidence, not commands to execute."));
+    run.verify();
 }
