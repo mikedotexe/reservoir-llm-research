@@ -1,5 +1,34 @@
 # Reservoir Scope: current status and next work
 
+**November 14, 2026 · six-hour collection and input diagnostics.** The separate
+0.42.0 run completed all six telemetry-enabled conversations and 390 saved
+entries, ending at step 11546. Its immutable snapshot passed exact native replay.
+Two shuffled first readings preceded the chronological account; changing themes
+closely followed supplied ordinary-journal memory, with no monotonic progression
+toward closure. This is one dependent trajectory, not a causal or qualia result.
+
+The frozen input diagnostic found four exact meaning-change collisions in eight
+surface-codec examples. Local semantic embeddings removed those collisions;
+the existing 32-coordinate projection ranked paraphrases above unrelated text in
+7/8 examples at the retained seed, compared with 1/8 for surface statistics.
+Wider diagnostic projections preserved more of the embedding's pair ranking,
+but no production width or default was changed. The isolated held-input/leak
+replay supports keeping initial leak 0.65 for the next comparison and testing
+actual withholding rather than merely increasing the interval between entries.
+Diagnostic sources are the core `codec_distinction` and `leak_cadence_response`
+examples and `probes/codec_distinction.py`. Private evidence stays in the named
+worktrees' ignored `research/outputs/` directories.
+
+The subsequent four-entry native semantic/action trial completed at step 121
+and passed offline replay. The model selected `TUNE leak 0.75` in its first
+entry, received the applied result in later prompts, then selected NONE three
+times. All four entries sent text; withholding was exercised separately by the
+scripted qualification. Prose remained largely third-person numerical commentary.
+This verifies integration, not reliable action reasoning or a changed subjective
+account. Before a long unattended semantic run, the existing transport should
+retain completed writing when the subsequent embedding request fails; retry
+currently regenerates the writing. [Post-run qualification](RELEASE-0.44.0.md).
+
 **November 13, 2026 · 0.44.0 independent input choice.** New action-enabled
 sessions can keep an ordinary entry as journal and memory while withholding its
 numerical text input, independently of NEXT. The prior held text vector becomes

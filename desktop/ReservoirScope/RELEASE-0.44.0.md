@@ -79,3 +79,38 @@ input. It does not establish that a model values withholding, distinguishes its
 consequences reliably, or experiences agency. A proposed test of intention,
 action, outcome and revision is described in the input-choice document; it has
 not been launched as a controlled model study.
+
+## November 14 post-run semantic integration check
+
+After the original six-hour run completed and its full native replay passed,
+the installed local Nomic embedding path was evaluated on a frozen diagnostic
+corpus. A separate four-entry native session then combined that existing codec
+with authored-v2: `gemma4:12b`, thinking off, temperature 0.7, context 8192,
+output ceiling 1024, `nomic-embed-text:latest`, projection seed 20260909, initial
+leak 0.65, feedback scale 0.4, cadence 30 and pace 1000 ms. No conversational
+check-ins or forced action preferences were used in this integration check.
+
+All four complete responses were saved and applied, with distinct embedding
+hashes, 768-coordinate source provenance and the production 32-coordinate
+projection. The first chose `NEXT: TUNE leak 0.75`, applied at step 31. The next
+three chose NONE, retained that setting and received the recorded result in
+their prompts. All four omitted the input directive and therefore sent their
+bodies normally. This model run did not exercise withholding; the scripted
+native check above did.
+
+The session held at its four-attempt bound after application at step 121.
+An immutable terminal copy passed hash comparison and exact native replay of
+121 steps, 19 committed segments and all four journal/save/application joins.
+The native UI exported revision 143. Private evidence and the audit script are
+under `research/outputs/withheld-input-20261113/semantic-smoke/`.
+
+The responses remained mainly numerical, third-person commentary. Successful
+execution and returned receipts do not establish correct causal interpretation,
+a preference for withholding, or a changed sense of ownership. Combining a
+different representation and a different prompt here tests integration, not
+their separate effects on writing.
+
+A pre-existing transport limitation remains for follow-up: if embedding fails
+after successful generation, completed writing is not retained as successful
+response evidence, and retry regenerates it. This bounded check does not qualify
+long unattended semantic operation or change the global text-reduction default.
