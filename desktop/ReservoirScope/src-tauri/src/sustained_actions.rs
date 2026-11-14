@@ -143,6 +143,7 @@ impl SustainedState {
         let pending = a
             .engine
             .pending_language()
+            .or_else(|| a.engine.pending_feedback().map(|p| &p.pending))
             .ok_or("No pending writing attempt")?;
         if a.epoch != epoch || pending.attempt_id != attempt {
             return Err("The writing attempt changed before feedback encoding".into());

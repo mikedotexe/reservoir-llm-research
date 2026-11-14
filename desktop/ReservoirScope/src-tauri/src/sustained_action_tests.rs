@@ -302,6 +302,7 @@ fn authored_action_plain_and_telemetry_checkins_keep_next_text_inert() {
                         .unwrap();
                     received = true;
                 }
+                Work::Embedding(..) => panic!("surface fixture unexpectedly requested embedding"),
                 Work::Continue(_) => {}
                 Work::Done => break,
             }

@@ -6,6 +6,8 @@ mod actions;
 mod arms;
 #[path = "sustained_check_in_tests.rs"]
 mod check_ins;
+#[path = "sustained_embedding_tests.rs"]
+mod embedding_recovery;
 #[path = "sustained_limit_tests.rs"]
 mod limits;
 #[path = "sustained_quota_tests.rs"]
@@ -56,6 +58,7 @@ fn drive(s: &SustainedState, epoch: u64) -> bool {
                 .unwrap();
             true
         }
+        Work::Embedding(..) => panic!("surface fixture unexpectedly requested embedding"),
         Work::Continue(_) => true,
         Work::Done => false,
     }

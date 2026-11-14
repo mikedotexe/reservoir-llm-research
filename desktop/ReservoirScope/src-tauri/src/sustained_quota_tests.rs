@@ -84,6 +84,9 @@ fn investigate(label: &str, cadence: u64) {
                 s.settle(epoch, p.attempt_id, Ok(answer()), None, 0)
                     .unwrap();
             }
+            Ok(Work::Embedding(..)) => {
+                panic!("surface quota fixture unexpectedly requested embedding")
+            }
             Ok(Work::Continue(_)) => {}
             Ok(Work::Done) => break,
             Err(error) => panic!(

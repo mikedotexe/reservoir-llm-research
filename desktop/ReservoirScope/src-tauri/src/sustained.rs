@@ -334,6 +334,15 @@ pub struct PendingLanguage {
 }
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
+pub struct PendingEmbedding {
+    pub attempt_id: u64,
+    pub observed_step: u64,
+    pub response_text: String,
+    pub reason: Option<String>,
+    pub state: &'static str,
+}
+#[derive(Clone, Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct PendingSave {
     pub attempt_id: u64,
     pub entry_id: String,
@@ -374,8 +383,10 @@ pub struct SustainedSummary {
     pub can_stop: bool,
     pub can_retry_save: bool,
     pub can_retry_provider: bool,
+    pub can_retry_embedding: bool,
     pub can_skip_feedback: bool,
     pub pending_language: Option<PendingLanguage>,
+    pub pending_embedding: Option<PendingEmbedding>,
     pub pending_save: Option<PendingSave>,
     pub pending_application: Option<PendingApplication>,
     pub diagnostics: Vec<String>,
@@ -634,6 +645,12 @@ impl SustainedState {
         config: SustainedConfig,
     ) -> Result<SustainedUpdate, AppError> {
         config.validate()?;
+        if config.embedding_model.is_some() && config.language.backend != LanguageKind::Ollama {
+            return Err(err(
+                "configuration",
+                "Semantic text encoding requires a local Ollama writing source.",
+            ));
+        }
         let engine = SustainedSession::new(config.specification()?).map_err(ce)?;
         let mut g = self.lock()?;
         if g.active.as_ref().is_some_and(|a| {
@@ -717,6 +734,7 @@ impl SustainedState {
         if a.worker_active
             || sustained_store::storage_held(&a.manifest)
             || a.engine.blocked().is_some()
+            || a.engine.pending_feedback().is_some()
             || matches!(
                 a.manifest.phase.as_str(),
                 "stopped"
@@ -763,6 +781,7 @@ impl SustainedState {
             && !sustained_store::storage_held(&a.manifest)
             && a.engine.blocked().is_none()
             && a.engine.pending_journal().is_none()
+            && a.engine.pending_feedback().is_none()
             && !a
                 .engine
                 .pending_language()
@@ -898,6 +917,13 @@ impl SustainedState {
                 )
                 .map_err(ce)?;
         }
+        if a.engine.pending_feedback().is_some() {
+            a.engine
+                .interrupt(
+                    "Explicit Stop interrupted encoding; completed writing remains retained.",
+                )
+                .map_err(ce)?;
+        }
         a.manifest.phase = "stopped".into();
         a.manifest.revision = next(&a.manifest.revision);
         self.persist_mode(a, sustained_store::Admission::Stop)?;
@@ -921,6 +947,7 @@ impl SustainedState {
             return Err(err("busy", "Wait for the active write/request to settle"));
         }
         a.run_requested = false;
+        a.dispatch_once = false;
         a.manifest.phase = if a.engine.check_in_complete() {
             "scheduleComplete"
         } else {
@@ -977,6 +1004,60 @@ impl SustainedState {
         self.launch(a);
         Ok(self.update(&g, request_id))
     }
+    /// Retry only encoding of an already retained reply. No writer request,
+    /// sampling seed, attempt identity or memory selection changes.
+    pub fn retry_embedding(
+        &self,
+        request_id: String,
+        id: &str,
+        generation: &str,
+    ) -> Result<SustainedUpdate, AppError> {
+        let mut g = self.lock()?;
+        let a = active(&mut g, id, generation)?;
+        if a.worker_active {
+            return Err(err(
+                "busy",
+                "Wait for the active encoding request to settle",
+            ));
+        }
+        if a.manifest.phase == "storageBlocked"
+            || sustained_store::storage_held(&a.manifest)
+            || a.used_bytes.saturating_add(sustained_store::RUN_HEADROOM)
+                > a.manifest.config.storage_budget_bytes
+        {
+            return Err(err(
+                "budget",
+                "Save the retained writing and resolve storage headroom before retrying encoding.",
+            ));
+        }
+        let pending = a
+            .engine
+            .pending_feedback()
+            .ok_or_else(|| err("phase", "No retained writing awaits encoding"))?;
+        if pending.request_started {
+            return Err(err(
+                "phase",
+                "The prior encoding outcome is uncertain; restore the saved session first",
+            ));
+        }
+        if pending.failure.is_some() {
+            a.engine.retry_feedback().map_err(ce)?;
+        }
+        a.dispatch_once = true;
+        a.run_requested = false;
+        a.manifest.phase = "waitingForEmbedding".into();
+        a.manifest.revision = next(&a.manifest.revision);
+        self.shared.cancel.store(false, Ordering::SeqCst);
+        self.shared.interrupted.store(false, Ordering::SeqCst);
+        self.shared.pause.store(true, Ordering::SeqCst);
+        self.persist(a)?;
+        if a.manifest.phase == "budgetReached" {
+            return Ok(self.update(&g, request_id));
+        }
+        a.last_accounted = Instant::now();
+        self.launch(a);
+        Ok(self.update(&g, request_id))
+    }
     pub fn skip(
         &self,
         request_id: String,
@@ -1003,6 +1084,7 @@ impl SustainedState {
             .pending_language()
             .map(|p| p.attempt_id)
             .or_else(|| a.engine.blocked().map(|p| p.pending.attempt_id))
+            .or_else(|| a.engine.pending_feedback().map(|p| p.pending.attempt_id))
             .or_else(|| a.engine.pending_journal().map(|p| p.entry.attempt_id))
             .or_else(|| a.engine.prepared_application().map(|p| p.entry.attempt_id));
         if expected_entry != entry_id || expected_attempt != attempt_id {
@@ -1042,6 +1124,7 @@ impl SustainedState {
                 && a.engine.prepared_application().is_none()
                 && a.engine.pending_language().is_none()
                 && a.engine.pending_journal().is_none()
+                && a.engine.pending_feedback().is_none()
                 && a.engine.pending_memory().is_none())
     }
     fn persist(&self, a: &mut Active) -> Result<(), AppError> {
@@ -1170,7 +1253,6 @@ impl SustainedState {
             match outcome {
                 Ok(Work::Provider(p, sampling)) => {
                     let transport_start = Instant::now();
-                    let codec = self.codec_for(epoch);
                     let response = if p.configuration.backend == LanguageKind::Scripted {
                         Ok(LanguageResponse {
                             text: self.scripted_reply_for(epoch, &p),
@@ -1190,31 +1272,34 @@ impl SustainedState {
                             sampling,
                         )
                     };
-                    // Under the embedding codec the entry's projected embedding must
-                    // accompany the response; an embedding failure is retained as a
-                    // provider failure of the same attempt and stays retryable.
-                    let (response, external) = match (response, codec) {
-                        (Ok(r), Some((model, projection_seed))) => {
-                            match self.external_feedback_for(
-                                epoch,
-                                &p,
-                                &r.text,
-                                &model,
-                                projection_seed,
-                            ) {
-                                Ok(external) => (Ok(r), external),
-                                Err(e) => (Err(format!("embedding: {e}")), None),
-                            }
-                        }
-                        (response, _) => (response, None),
-                    };
                     if let Err(e) = self.settle(
                         epoch,
                         p.attempt_id,
                         response,
-                        external,
+                        None,
                         transport_start.elapsed().as_millis() as u64,
                     ) {
+                        self.worker_failure(epoch, &e.message);
+                        break;
+                    }
+                }
+                Ok(Work::Embedding(p, model, projection_seed)) => {
+                    let result = self
+                        .external_feedback_for(
+                            epoch,
+                            &p.pending,
+                            &p.response.text,
+                            &model,
+                            projection_seed,
+                        )
+                        .and_then(|value| {
+                            value.ok_or_else(|| {
+                                "Retained reply unexpectedly needs no encoding".into()
+                            })
+                        });
+                    if let Err(e) =
+                        self.settle_embedding(epoch, p.pending.attempt_id, p.request_id, result)
+                    {
                         self.worker_failure(epoch, &e.message);
                         break;
                     }
@@ -1282,7 +1367,7 @@ impl SustainedState {
                 .saturating_add(elapsed.as_millis().min(u64::MAX as u128) as u64);
         }
         if self.shared.interrupted.load(Ordering::SeqCst) {
-            if a.engine.pending_language().is_some() {
+            if a.engine.pending_language().is_some() || a.engine.pending_feedback().is_some() {
                 a.engine.interrupt("System sleep/wake or a long wall-clock interruption; explicit recovery choice is required.").map_err(ce)?;
             }
             a.run_requested = false;
@@ -1393,6 +1478,72 @@ impl SustainedState {
             };
             return Ok(Work::Provider(Box::new(p), sampling));
         }
+        if let Some(p) = a.engine.pending_feedback().cloned() {
+            if let Some(reason) = &p.failure {
+                a.run_requested = false;
+                a.dispatch_once = false;
+                a.manifest.phase = "embeddingBlocked".into();
+                diagnostic(a, reason);
+                a.manifest.revision = next(&a.manifest.revision);
+                self.persist(a)?;
+                return Ok(Work::Done);
+            }
+            if !a.run_requested && !a.dispatch_once {
+                a.manifest.phase = "paused".into();
+                a.manifest.revision = next(&a.manifest.revision);
+                self.persist(a)?;
+                return Ok(Work::Done);
+            }
+            if p.request_started {
+                return Err(err(
+                    "request",
+                    "An uncertain encoding request requires explicit recovery",
+                ));
+            }
+            let (model, projection_seed) = match &a.engine.specification().codec {
+                reservoir_core::sustained::SustainedCodec::Embedding {
+                    model,
+                    projection_seed,
+                } => (model.clone(), *projection_seed),
+                _ => {
+                    return Err(err(
+                        "encoding",
+                        "Retained encoding requires a semantic codec",
+                    ))
+                }
+            };
+            a.engine.start_feedback(p.pending.attempt_id).map_err(ce)?;
+            a.dispatch_once = false;
+            a.manifest.phase = "waitingForEmbedding".into();
+            a.manifest.revision = next(&a.manifest.revision);
+            // Both the full reply and dispatch state are durable before network work.
+            if let Err(error) = self.persist(a) {
+                // No network request was sent. Retain a retryable interruption
+                // in memory alongside the unsaved events; Retry save publishes it.
+                a.engine
+                    .interrupt(
+                        "Encoding dispatch was not durably saved; no encoding request was sent.",
+                    )
+                    .map_err(ce)?;
+                return Err(error);
+            }
+            if a.manifest.phase == "budgetReached" {
+                a.engine.interrupt("Storage budget held encoding before dispatch; completed writing remains retained.").map_err(ce)?;
+                a.manifest.revision = next(&a.manifest.revision);
+                self.persist_mode(a, sustained_store::Admission::Stop)?;
+                return Ok(Work::Done);
+            }
+            return Ok(Work::Embedding(
+                Box::new(
+                    a.engine
+                        .pending_feedback()
+                        .expect("started feedback")
+                        .clone(),
+                ),
+                model,
+                projection_seed,
+            ));
+        }
         if a.engine.pending_journal().is_some() {
             self.save_journal(a)?;
             if a.manifest.phase == "budgetReached" {
@@ -1442,21 +1593,6 @@ impl SustainedState {
         }
         Ok(Work::Continue(a.manifest.config.pace_ms))
     }
-    /// The embedding codec's model and projection seed for the active session, if any.
-    fn codec_for(&self, epoch: u64) -> Option<(String, u64)> {
-        let g = self.lock().ok()?;
-        let a = g.active.as_ref()?;
-        if a.epoch != epoch {
-            return None;
-        }
-        match &a.engine.specification().codec {
-            reservoir_core::sustained::SustainedCodec::Embedding {
-                model,
-                projection_seed,
-            } => Some((model.clone(), *projection_seed)),
-            _ => None,
-        }
-    }
     fn settle(
         &self,
         epoch: u64,
@@ -1486,10 +1622,21 @@ impl SustainedState {
             a.manifest.phase = "interrupted".into();
         } else {
             match response {
-                Ok(r) => a
-                    .engine
-                    .confirm_language_with_feedback(attempt, &r, external.as_ref())
-                    .map_err(ce)?,
+                Ok(r) => {
+                    if external.is_none() && a.engine.response_needs_feedback(&r).unwrap_or(false) {
+                        a.engine
+                            .retain_language_for_feedback(attempt, &r)
+                            .map_err(ce)?;
+                        a.manifest.phase = "waitingForEmbedding".into();
+                        // Finish encoding this explicitly admitted generation even if
+                        // numerical pacing was paused while the writer was busy.
+                        a.dispatch_once = true;
+                    } else {
+                        a.engine
+                            .confirm_language_with_feedback(attempt, &r, external.as_ref())
+                            .map_err(ce)?;
+                    }
+                }
                 Err(message) => a
                     .engine
                     .fail_language(attempt, &message.chars().take(4096).collect::<String>())
@@ -1497,6 +1644,53 @@ impl SustainedState {
             }
         }
         a.manifest.revision = next(&a.manifest.revision);
+        self.persist(a)?;
+        Ok(())
+    }
+    fn settle_embedding(
+        &self,
+        epoch: u64,
+        attempt: u64,
+        request: u64,
+        result: Result<reservoir_core::sustained::ExternalFeedback, String>,
+    ) -> Result<(), AppError> {
+        let mut g = self.lock()?;
+        let Some(a) = g.active.as_mut() else {
+            return Ok(());
+        };
+        if a.epoch != epoch
+            || a.engine.pending_feedback().is_none_or(|p| {
+                p.pending.attempt_id != attempt || p.request_id != request || !p.request_started
+            })
+        {
+            return Ok(());
+        }
+        if self.shared.interrupted.load(Ordering::SeqCst) {
+            a.engine
+                .interrupt(
+                    "Encoding interrupted; completed writing is retained for explicit retry.",
+                )
+                .map_err(ce)?;
+            a.run_requested = false;
+            a.manifest.phase = "interrupted".into();
+        } else {
+            let result = result.and_then(|feedback| {
+                a.engine
+                    .confirm_feedback(attempt, request, &feedback)
+                    .map_err(|e| e.to_string())
+            });
+            if let Err(message) = result {
+                let message = message.chars().take(4096).collect::<String>();
+                a.engine
+                    .fail_feedback(attempt, request, &message)
+                    .map_err(ce)?;
+                a.run_requested = false;
+                a.manifest.phase = "embeddingBlocked".into();
+                diagnostic(a, &message);
+            }
+        }
+        a.manifest.revision = next(&a.manifest.revision);
+        // Preserve generation timing; this operation did not generate new writing.
         self.persist(a)?;
         Ok(())
     }
@@ -1582,6 +1776,7 @@ impl SustainedState {
                 && !a.run_requested
                 && !sustained_store::storage_held(&a.manifest)
                 && a.engine.blocked().is_none()
+                && a.engine.pending_feedback().is_none()
                 && !matches!(
                     a.manifest.phase.as_str(),
                     "stopped" | "storageBlocked" | "budgetReached"
@@ -1597,9 +1792,30 @@ impl SustainedState {
                 && !sustained_store::storage_held(&a.manifest)
                 && a.engine.blocked().is_some()
                 && cp.attempt_cursor < a.manifest.effective_limits().maximum_turns,
+            can_retry_embedding: !a.worker_active
+                && a.manifest.phase != "storageBlocked"
+                && !sustained_store::storage_held(&a.manifest)
+                && a.used_bytes.saturating_add(sustained_store::RUN_HEADROOM)
+                    <= a.manifest.config.storage_budget_bytes
+                && a.engine
+                    .pending_feedback()
+                    .is_some_and(|p| !p.request_started),
             can_skip_feedback: !a.worker_active
                 && !matches!(a.engine.phase(), SustainedPhase::Ready),
             pending_language,
+            pending_embedding: a.engine.pending_feedback().map(|p| PendingEmbedding {
+                attempt_id: p.pending.attempt_id,
+                observed_step: p.pending.observed_step,
+                response_text: p.response.text.clone(),
+                reason: p.failure.clone(),
+                state: if p.failure.is_some() {
+                    "blocked"
+                } else if p.request_started {
+                    "requesting"
+                } else {
+                    "prepared"
+                },
+            }),
             pending_save: a.engine.pending_journal().map(|p| PendingSave {
                 attempt_id: p.entry.attempt_id,
                 entry_id: p.entry.id.clone(),
@@ -1946,6 +2162,11 @@ enum Work {
     Provider(
         Box<reservoir_core::sustained::SustainedPendingLanguage>,
         crate::model_transport::Sampling,
+    ),
+    Embedding(
+        Box<reservoir_core::sustained::SustainedPendingFeedback>,
+        String,
+        u64,
     ),
     Continue(u64),
     Done,

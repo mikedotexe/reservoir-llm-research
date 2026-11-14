@@ -161,6 +161,23 @@ pub async fn retry_sustained_language(
     .map_err(worker)?
 }
 #[tauri::command]
+pub async fn retry_sustained_embedding(
+    app: tauri::AppHandle,
+    state: tauri::State<'_, SustainedState>,
+    request_id: String,
+    session_id: String,
+    generation: String,
+) -> Result<SustainedUpdate, AppError> {
+    let s = state.inner().clone();
+    tauri::async_runtime::spawn_blocking(move || {
+        crate::execution_admission::start_sustained(&app, || {
+            s.retry_embedding(request_id, &session_id, &generation)
+        })
+    })
+    .await
+    .map_err(worker)?
+}
+#[tauri::command]
 pub async fn skip_sustained_feedback(
     state: tauri::State<'_, SustainedState>,
     request_id: String,

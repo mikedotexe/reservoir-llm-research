@@ -36,6 +36,7 @@ fn next_provider(
     for _ in 0..5000 {
         match s.worker_boundary(epoch).unwrap() {
             Work::Provider(p, _) => return p,
+            Work::Embedding(..) => panic!("surface fixture unexpectedly requested embedding"),
             Work::Continue(_) => {}
             Work::Done => panic!("session held before the next provider boundary"),
         }
@@ -433,6 +434,7 @@ fn checkin_withholding_text_is_inert_and_replaces_held_zero_with_ordinary_feedba
                         .unwrap();
                     received = true;
                 }
+                Work::Embedding(..) => panic!("surface fixture unexpectedly requested embedding"),
                 Work::Continue(_) => {}
                 Work::Done => break,
             }

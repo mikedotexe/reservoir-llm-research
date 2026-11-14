@@ -1037,6 +1037,7 @@ fn main() {
             sustained_commands::stop_sustained,
             sustained_commands::retry_sustained_save,
             sustained_commands::retry_sustained_language,
+            sustained_commands::retry_sustained_embedding,
             sustained_commands::skip_sustained_feedback,
             sustained_commands::list_sustained_journals,
             sustained_commands::open_sustained_journal_folder,

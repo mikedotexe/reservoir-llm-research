@@ -138,6 +138,26 @@ or storage failure must be dealt with first; extending time does not clear it.
 You can also restore a saved session paused, then extend it. Longer runs still
 need the app open and the machine awake.
 
+## Use semantic text input
+
+With **My local Ollama model** selected, open **Advanced settings → Text
+reduction** and choose **Embedding, projected to 32 coordinates**. Enter the
+exact name of an installed embedding model, for example `nomic-embed-text:latest`.
+This choice is fixed for the new session. It changes how journal text becomes
+numerical input; it does not train either model or change the reservoir's size.
+
+Completed writing is retained before encoding starts. If encoding fails, the
+**Completed writing awaiting encoding** panel shows the exact reply.
+**Retry encoding** uses that reply again without asking the writer for another
+response or consuming another writing attempt. After retry succeeds, the session
+stays paused with its saved input ready; choose **Resume** to apply it. An action
+in the retained reply executes only at that saved application boundary.
+
+You can export the held response or restore its session after reopening the app.
+Restoration starts no request. **Skip** explicitly omits this reply from feedback
+and prose memory while retaining its response evidence. Withheld ordinary input
+and empty action-only bodies do not request an embedding.
+
 ## Let the model shape the reservoir
 
 New shaping sessions also let each ordinary entry choose whether its text becomes
