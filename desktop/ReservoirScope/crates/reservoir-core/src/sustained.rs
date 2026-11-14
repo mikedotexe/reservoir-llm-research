@@ -18,6 +18,9 @@ pub use check_ins::*;
 #[path = "sustained_actions.rs"]
 mod actions;
 pub use actions::*;
+#[path = "sustained_continuity.rs"]
+mod continuity;
+pub use continuity::*;
 
 pub const FORMAT: &str = "reservoir-sustained-segment-v1";
 pub const CHECKPOINT_FORMAT: &str = "reservoir-sustained-checkpoint-v1";
@@ -353,6 +356,8 @@ pub enum SustainedPromptVersion {
     ActionJournalV1,
     #[serde(rename = "reservoir-journal-actions-v2")]
     ActionJournalV2,
+    #[serde(rename = "reservoir-journal-actions-v3")]
+    ActionJournalV3,
     #[default]
     #[serde(rename = "reservoir-journal-v1")]
     LegacyV1,
@@ -421,6 +426,7 @@ impl SustainedPromptVersion {
         match self {
             Self::ActionJournalV1 => "reservoir-journal-actions-v1",
             Self::ActionJournalV2 => "reservoir-journal-actions-v2",
+            Self::ActionJournalV3 => "reservoir-journal-actions-v3",
             Self::LegacyV1 => "reservoir-journal-v1",
             Self::GroundedV2 => "reservoir-journal-v2",
             Self::OpenJournalV3 => "reservoir-journal-v3",
@@ -499,6 +505,7 @@ impl SustainedPromptVersion {
             self,
             Self::ActionJournalV1
                 | Self::ActionJournalV2
+                | Self::ActionJournalV3
                 | Self::OpenJournalV4
                 | Self::ContinuingJournalV5
                 | Self::ActionScopeJournalV6
@@ -659,7 +666,9 @@ impl SustainedSpecification {
         self.difference_gain != 0.0
     }
     pub fn mechanism(&self) -> &'static str {
-        if self.action_mode == Some(SustainedActionMode::AuthoredV2) {
+        if self.action_mode == Some(SustainedActionMode::AuthoredV3) {
+            ACTION_MECHANISM_V3
+        } else if self.action_mode == Some(SustainedActionMode::AuthoredV2) {
             ACTION_MECHANISM_V2
         } else if self.action_mode.is_some() {
             ACTION_MECHANISM
@@ -684,10 +693,14 @@ impl SustainedSpecification {
                 Some(SustainedActionMode::AuthoredV2) => {
                     self.prompt_version == SustainedPromptVersion::ActionJournalV2
                 }
+                Some(SustainedActionMode::AuthoredV3) => {
+                    self.prompt_version == SustainedPromptVersion::ActionJournalV3
+                }
                 None => !matches!(
                     self.prompt_version,
                     SustainedPromptVersion::ActionJournalV1
                         | SustainedPromptVersion::ActionJournalV2
+                        | SustainedPromptVersion::ActionJournalV3
                 ),
             },
             "Authored mode requires its matching action prompt version",
@@ -1054,7 +1067,8 @@ impl SustainedJournal {
         if let Some(body) = &self.body {
             ensure(
                 *body == parse_authored_action(&self.text).body
-                    || *body == parse_authored_action_v2(&self.text).body,
+                    || *body == parse_authored_action_v2(&self.text).body
+                    || *body == parse_authored_action_v3(&self.text).body,
                 "Journal body differs from raw reply",
             )?;
             codec::encode(body)?;
@@ -1839,12 +1853,16 @@ impl SustainedSession {
             }
             u
         };
+        continuity::add_probe(
+            &mut input,
+            decision.as_ref().and_then(|d| d.request.as_ref()),
+        );
         let mut state = engine.step(&input, &noise)?;
         let clipped_coordinates = actions::apply_pulse(
             &mut state,
             decision.as_ref().and_then(|d| d.request.as_ref()),
         );
-        let action_receipt = match (&application, &decision, controls_before) {
+        let mut action_receipt = match (&application, &decision, controls_before) {
             (Some(application), Some(decision), Some(before)) => {
                 // Omit only this new action. Previous controls, the newly saved body,
                 // recurrence state, forcing, difference contribution and noise are shared.
@@ -1872,6 +1890,18 @@ impl SustainedSession {
             }
             _ => None,
         };
+        if let SustainedPhase::Prepared(prepared) = &next.phase {
+            if let Some(actions) = &mut next.action_state {
+                continuity::record_application(
+                    actions,
+                    prepared,
+                    next.last_observation
+                        .as_ref()
+                        .expect("prepared observation"),
+                    &mut action_receipt,
+                );
+            }
+        }
         let entry_effect = match (&application, next.specification.needs_entry_effect()) {
             (Some(a), true) => {
                 let mut silent = ReservoirEngine::new(
@@ -1885,6 +1915,10 @@ impl SustainedSession {
                 for (slot, value) in silent_input[18..].iter_mut().zip(&difference_input) {
                     *slot += value;
                 }
+                continuity::add_probe(
+                    &mut silent_input,
+                    decision.as_ref().and_then(|d| d.request.as_ref()),
+                );
                 let mut silent_state = silent.step(&silent_input, &noise)?;
                 // The text-effect comparison retains the same action on both paths.
                 actions::apply_pulse(
@@ -2670,7 +2704,8 @@ fn prompt(
         SustainedPromptVersion::WritingBoundaryJournalV7 => prompt_v7(observation, memory),
         SustainedPromptVersion::MeasurementMeaningJournalV8
         | SustainedPromptVersion::ActionJournalV1
-        | SustainedPromptVersion::ActionJournalV2 => prompt_v8(observation, memory),
+        | SustainedPromptVersion::ActionJournalV2
+        | SustainedPromptVersion::ActionJournalV3 => prompt_v8(observation, memory),
         SustainedPromptVersion::InertV1
         | SustainedPromptVersion::InertPlainContractV1
         | SustainedPromptVersion::InertInvitingContractV1
@@ -3158,7 +3193,9 @@ fn render_pending_prompt(
         if state.specification.action_mode.is_some()
             && check_in.is_some_and(|context| context.include_telemetry)
         {
-            if state.specification.action_mode == Some(SustainedActionMode::AuthoredV2) {
+            if state.specification.action_mode == Some(SustainedActionMode::AuthoredV3) {
+                format!("CONVERSATIONAL CONTEXT\nThis reply is a conversation: NEXT, PROBE, input and inquiry directives in it remain prose and execute nothing. Its complete saved text returns through ordinary automatic feedback. Ordinary journal turns retain their control and local inquiry choices.\n\n{}\n\n{}\n\n{}", continuity::render_context(state), continuity::render_inquiry(state, observation), prompt)
+            } else if state.specification.action_mode == Some(SustainedActionMode::AuthoredV2) {
                 format!("READ-ONLY ACTION CONTEXT\nThis conversational check-in cannot issue actions or withhold input. Current controls and actual execution/input receipts are supplied as context; any NEXT or WITHHOLD_RESERVOIR_INPUT text in this reply stays prose and the complete reply enters numerical text feedback normally.\n\n{}\n\n{}", actions::render_execution_context(state), prompt)
             } else {
                 format!("READ-ONLY ACTION CONTEXT\nThis conversational check-in cannot issue actions. Current controls and actual execution receipts are supplied as context; any NEXT text in this reply stays prose.\n\n{}\n\n{}", actions::render_execution_context(state), prompt)
@@ -3718,6 +3755,13 @@ fn expected_feedback_slots(s: &SustainedContinuation, f: &SustainedFrame) -> Vec
     let mut expected = scaled_feedback(&s.held_vector, scale);
     for (slot, value) in expected.iter_mut().zip(&f.difference_input) {
         *slot += value;
+    }
+    if let Some(SustainedActionRequest::Probe { vector }) =
+        f.action_receipt.as_ref().and_then(|r| r.request.as_ref())
+    {
+        for (slot, value) in expected.iter_mut().zip(vector) {
+            *slot += value;
+        }
     }
     expected
 }

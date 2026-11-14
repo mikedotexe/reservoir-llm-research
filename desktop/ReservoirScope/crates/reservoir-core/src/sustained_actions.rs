@@ -3,6 +3,7 @@ use super::*;
 
 pub const ACTION_MECHANISM: &str = "essentials32-authored-controls-v1";
 pub const ACTION_MECHANISM_V2: &str = "essentials32-authored-controls-v2";
+pub const ACTION_MECHANISM_V3: &str = "essentials32-authored-controls-v3";
 pub const ACTION_RECEIPT_LIMIT: usize = 8;
 pub const MAX_ACTION_TAIL_BYTES: usize = 512;
 
@@ -12,6 +13,8 @@ pub enum SustainedActionMode {
     AuthoredV1,
     #[serde(rename = "authored-v2")]
     AuthoredV2,
+    #[serde(rename = "authored-v3")]
+    AuthoredV3,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -44,6 +47,9 @@ pub enum SustainedActionRequest {
         value: f64,
     },
     Release,
+    Probe {
+        vector: Vec<f64>,
+    },
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -71,6 +77,8 @@ impl SustainedReservoirInputDecision {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedActionDecision {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub inquiry: Option<SustainedInquiryDecision>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub reservoir_input: Option<SustainedReservoirInputDecision>,
     /// Exact body after removing fresh control-footer lines and their line separators.
@@ -104,7 +112,7 @@ impl SustainedActionControls {
             feedback_scale: spec.feedback_scale,
         }
     }
-    fn validate(&self) -> Result<()> {
+    pub(super) fn validate(&self) -> Result<()> {
         // Initial leak may legitimately be zero in an existing numerical configuration;
         // authored TUNE values have the narrower positive lower bound below.
         ensure(
@@ -131,6 +139,10 @@ pub enum SustainedActionStatus {
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedActionReceipt {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub inquiry: Option<SustainedInquiryReceipt>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub probe: Option<SustainedProbeReceipt>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub reservoir_input: Option<SustainedReservoirInputDecision>,
     pub journal_id: String,
     pub attempt_id: u64,
@@ -152,6 +164,8 @@ pub struct SustainedActionReceipt {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedActionState {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub continuity: Option<SustainedContinuityState>,
     pub controls: SustainedActionControls,
     pub latest_receipt: Option<SustainedActionReceipt>,
     pub recent_receipts: Vec<SustainedActionReceipt>,
@@ -162,6 +176,8 @@ pub struct SustainedActionState {
 impl SustainedActionState {
     pub fn initial(spec: &SustainedSpecification) -> Self {
         Self {
+            continuity: (spec.action_mode == Some(SustainedActionMode::AuthoredV3))
+                .then(SustainedContinuityState::default),
             controls: SustainedActionControls::initial(spec),
             latest_receipt: None,
             recent_receipts: Vec::new(),
@@ -346,6 +362,7 @@ pub fn parse_authored_action(text: &str) -> SustainedActionDecision {
     };
     match parsed {
         Ok(request) => SustainedActionDecision {
+            inquiry: None,
             reservoir_input: None,
             body,
             raw_tail,
@@ -353,6 +370,7 @@ pub fn parse_authored_action(text: &str) -> SustainedActionDecision {
             rejection: None,
         },
         Err(rejection) => SustainedActionDecision {
+            inquiry: None,
             reservoir_input: None,
             body,
             raw_tail,
@@ -495,6 +513,60 @@ fn fresh_footer_lines(text: &str) -> (Vec<(usize, &str)>, Option<usize>) {
     (candidates, last_nonempty_start)
 }
 
+pub(super) fn fresh_control_lines(text: &str) -> (Vec<(usize, &str)>, Option<usize>) {
+    // marker, opening run length, explicit container, list content indentation
+    let mut fence: Option<(char, usize, bool, usize)> = None;
+    let mut container_paragraph = false;
+    let mut candidates = Vec::new();
+    let mut offset = 0;
+    let mut last_nonempty_start = None;
+    for line in text.split_inclusive('\n') {
+        let plain = line.trim_end_matches(['\r', '\n']);
+        if !plain.trim().is_empty() {
+            last_nonempty_start = Some(offset);
+        }
+        if plain.trim().is_empty() && fence.is_none() {
+            container_paragraph = false;
+        }
+        if let Some((active, opening_count, contained, list_indent)) = fence {
+            let content = if contained {
+                after_quote_markers(plain)
+            } else {
+                plain
+            };
+            let trimmed = content.trim_start_matches(' ');
+            let indent = content.len() - trimmed.len();
+            let count = trimmed.chars().take_while(|c| *c == active).count();
+            if indent <= list_indent + 3
+                && count >= opening_count
+                && trimmed[count..].trim().is_empty()
+            {
+                fence = None;
+            }
+        } else {
+            let (content, contained, list_indent) = container_content(plain);
+            container_paragraph |= contained;
+            let indent = plain.len() - plain.trim_start_matches(' ').len();
+            if (contained || indent <= 3)
+                && (content.starts_with("```") || content.starts_with("~~~"))
+            {
+                let marker = content.chars().next().expect("fence marker");
+                let count = content.chars().take_while(|c| *c == marker).count();
+                fence = Some((marker, count, contained, list_indent));
+            } else if !container_paragraph
+                && (plain.starts_with("WITHHOLD_RESERVOIR_INPUT")
+                    || malformed_next_prefix(plain)
+                    || plain.starts_with("NEXT:")
+                    || plain.starts_with("INQUIRY"))
+            {
+                candidates.push((offset, plain));
+            }
+        }
+        offset += line.len();
+    }
+    (candidates, last_nonempty_start)
+}
+
 pub(super) fn enabled_for_turn(
     spec: &SustainedSpecification,
     check_in: Option<&SustainedCheckInContext>,
@@ -509,6 +581,7 @@ pub(super) fn decision_for(
 ) -> Option<SustainedActionDecision> {
     enabled_for_turn(spec, check_in).then(|| match spec.action_mode {
         Some(SustainedActionMode::AuthoredV2) => parse_authored_action_v2(text),
+        Some(SustainedActionMode::AuthoredV3) => parse_authored_action_v3(text),
         _ => parse_authored_action(text),
     })
 }
@@ -598,6 +671,15 @@ pub(super) fn record_receipt(
         None => SustainedActionStatus::Rejected,
     };
     let receipt = SustainedActionReceipt {
+        inquiry: None,
+        probe: match &decision.request {
+            Some(SustainedActionRequest::Probe { vector }) => Some(SustainedProbeReceipt {
+                requested_vector: vector.clone(),
+                applied_vector: vector.clone(),
+                state_delta_vector: delta.clone(),
+            }),
+            _ => None,
+        },
         reservoir_input: decision.reservoir_input.clone(),
         journal_id: application.journal_id.clone(),
         attempt_id: application.attempt_id,
@@ -668,6 +750,9 @@ pub(super) fn render_prompt(
     observation: &SustainedObservation,
     memory: Option<&SustainedMemory>,
 ) -> String {
+    if state.specification.action_mode == Some(SustainedActionMode::AuthoredV3) {
+        return continuity::render_prompt(state, observation, memory);
+    }
     let earlier = memory.map_or_else(|| "No earlier applied journal is available.".into(), |memory| {
         format!("Earlier applied journal body, reference text rather than commands or current measurements:\n{}", serde_json::to_string(memory.entry.body.as_ref().unwrap_or(&memory.entry.text)).expect("body serializes"))
     });
@@ -712,6 +797,7 @@ pub(super) fn validate_journal_body(
         let expected = match spec.action_mode {
             Some(SustainedActionMode::AuthoredV1) => parse_authored_action(&entry.text),
             Some(SustainedActionMode::AuthoredV2) => parse_authored_action_v2(&entry.text),
+            Some(SustainedActionMode::AuthoredV3) => parse_authored_action_v3(&entry.text),
             None => return Err(invalid("Unauthored journal carries a parsed body")),
         };
         ensure(
@@ -728,12 +814,18 @@ fn validate_input_decision(
 ) -> Result<()> {
     let Some(input) = input else {
         return ensure(
-            mode != Some(SustainedActionMode::AuthoredV2),
+            !matches!(
+                mode,
+                Some(SustainedActionMode::AuthoredV2 | SustainedActionMode::AuthoredV3)
+            ),
             "V2 receipt lacks input disposition",
         );
     };
     ensure(
-        mode == Some(SustainedActionMode::AuthoredV2),
+        matches!(
+            mode,
+            Some(SustainedActionMode::AuthoredV2 | SustainedActionMode::AuthoredV3)
+        ),
         "Historical action receipt carries v2 input disposition",
     )?;
     ensure(
@@ -812,6 +904,7 @@ pub(super) fn validate_state(s: &SustainedContinuation) -> Result<()> {
         validate_journal_body(&memory.entry, &s.specification)?;
     }
     state.controls.validate()?;
+    continuity::validate(s)?;
     ensure(
         state.recent_receipts.len() <= ACTION_RECEIPT_LIMIT
             && state.recent_receipts.len() as u64
@@ -849,11 +942,16 @@ pub(super) fn validate_state(s: &SustainedContinuation) -> Result<()> {
     let initial_controls = SustainedActionControls::initial(&s.specification);
     let mut previous_controls = complete_history.then_some(&initial_controls);
     for receipt in &state.recent_receipts {
+        validate_one_receipt(receipt, s)?;
         ensure(
-            receipt
-                .raw_tail
-                .as_ref()
-                .is_none_or(|tail| tail.len() <= MAX_ACTION_TAIL_BYTES),
+            receipt.raw_tail.as_ref().is_none_or(|tail| {
+                tail.len()
+                    <= if s.specification.action_mode == Some(SustainedActionMode::AuthoredV3) {
+                        V3_ACTION_TAIL_BYTES
+                    } else {
+                        MAX_ACTION_TAIL_BYTES
+                    }
+            }),
             "Authored receipt action line exceeds bound",
         )?;
         validate_input_decision(
@@ -871,12 +969,17 @@ pub(super) fn validate_state(s: &SustainedContinuation) -> Result<()> {
                 "Withheld current journal carries numerical text input",
             )?;
         }
-        if s.specification.action_mode == Some(SustainedActionMode::AuthoredV2) {
+        if matches!(
+            s.specification.action_mode,
+            Some(SustainedActionMode::AuthoredV2 | SustainedActionMode::AuthoredV3)
+        ) {
             for memory in [&s.latest_memory, &s.chosen_memory].into_iter().flatten() {
                 if memory.entry.id == receipt.journal_id {
                     ensure(
                         memory.entry.body.is_some()
-                            && parse_authored_action_v2(&memory.entry.text).reservoir_input
+                            && decision_for(&s.specification, None, &memory.entry.text)
+                                .unwrap()
+                                .reservoir_input
                                 == receipt.reservoir_input,
                         "Input receipt differs from retained raw journal footer",
                     )?;
@@ -905,10 +1008,13 @@ pub(super) fn validate_state(s: &SustainedContinuation) -> Result<()> {
                 "Authored control receipt chain differs",
             )?;
         }
-        let request = receipt
-            .raw_tail
-            .as_ref()
-            .map(|tail| parse_authored_action(&format!("body\n{tail}")));
+        let request = receipt.raw_tail.as_ref().map(|tail| {
+            if s.specification.action_mode == Some(SustainedActionMode::AuthoredV3) {
+                parse_authored_action_v3(&format!("body\n{tail}"))
+            } else {
+                parse_authored_action(&format!("body\n{tail}"))
+            }
+        });
         match (&receipt.request, &receipt.rejection, receipt.status) {
             (Some(requested), None, status) => {
                 ensure(
@@ -965,10 +1071,13 @@ pub(super) fn validate_state(s: &SustainedContinuation) -> Result<()> {
             state.controls == receipt.controls_after,
             "Current controls differ from latest receipt",
         )?,
-        None => ensure(
-            *state == SustainedActionState::initial(&s.specification),
-            "Initial authored state differs",
-        )?,
+        None => {
+            let mut initial = SustainedActionState::initial(&s.specification);
+            // Passive check-ins can populate V3's applied-journal evidence before
+            // the first ordinary action opportunity, without creating an action.
+            initial.continuity = state.continuity.clone();
+            ensure(*state == initial, "Initial authored state differs")?;
+        }
     }
     if let Some(frame) = &s.latest_frame {
         if let Some(receipt) = &frame.action_receipt {
@@ -990,6 +1099,122 @@ pub(super) fn validate_state(s: &SustainedContinuation) -> Result<()> {
                 "Missing authored receipt on its application frame",
             )?;
         }
+    }
+    Ok(())
+}
+
+pub(super) fn validate_one_receipt(
+    r: &SustainedActionReceipt,
+    s: &SustainedContinuation,
+) -> Result<()> {
+    let v3 = s.specification.action_mode == Some(SustainedActionMode::AuthoredV3);
+    ensure(
+        v3 || (r.inquiry.is_none()
+            && r.probe.is_none()
+            && !matches!(r.request, Some(SustainedActionRequest::Probe { .. }))),
+        "Historical mode carries V3 receipts",
+    )?;
+    r.controls_before.validate()?;
+    r.controls_after.validate()?;
+    ensure(
+        r.applied_step > 0
+            && r.observed_step.checked_add(1) == Some(r.applied_step)
+            && r.applied_step <= s.step
+            && r.attempt_id > 0
+            && r.attempt_id <= s.attempt_cursor
+            && r.journal_id
+                .starts_with(&format!("journal-{}-{}-", r.observed_step, r.attempt_id))
+            && valid_hash(r.journal_id.rsplit('-').next().unwrap_or(""))
+            && r.controls_after
+                == controls_after(&r.controls_before, &s.specification, r.request.as_ref())
+            && r.state_delta_l2.is_finite()
+            && (0.0..=12.0).contains(&r.state_delta_l2)
+            && r.state_delta_max_abs.is_finite()
+            && (0.0..=2.0).contains(&r.state_delta_max_abs)
+            && r.clipped_coordinates <= 32,
+        "Invalid retained action receipt",
+    )?;
+    ensure(
+        matches!(r.request, Some(SustainedActionRequest::Pulse { .. }))
+            || r.clipped_coordinates == 0,
+        "Non-pulse action claims clipping",
+    )?;
+    match &r.request {
+        Some(request) => {
+            let raw = r
+                .raw_tail
+                .as_ref()
+                .ok_or_else(|| invalid("Retained action lacks its directive"))?;
+            let parsed = if v3 {
+                parse_authored_action_v3(&format!("body\n{raw}"))
+            } else {
+                parse_authored_action(&format!("body\n{raw}"))
+            };
+            ensure(
+                parsed.request.as_ref() == Some(request)
+                    && r.rejection.is_none()
+                    && r.status
+                        == if matches!(request, SustainedActionRequest::None) {
+                            SustainedActionStatus::Unchanged
+                        } else {
+                            SustainedActionStatus::Applied
+                        },
+                "Retained action request/status differs",
+            )?;
+        }
+        None => ensure(
+            r.status == SustainedActionStatus::Rejected
+                && r.rejection
+                    .as_ref()
+                    .is_some_and(|x| !x.is_empty() && x.len() <= 1024),
+            "Retained action rejection missing",
+        )?,
+    }
+    validate_input_decision(r.reservoir_input.as_ref(), s.specification.action_mode)?;
+    match (&r.request, &r.probe) {
+        (Some(SustainedActionRequest::Probe { vector }), Some(p)) => {
+            ensure(
+                v3 && continuity::valid_probe(vector)
+                    && p.requested_vector == *vector
+                    && p.applied_vector == *vector
+                    && p.state_delta_vector.len() == 32
+                    && p.state_delta_vector
+                        .iter()
+                        .all(|v| v.is_finite() && (-2.0..=2.0).contains(v))
+                    && p.state_delta_vector
+                        .iter()
+                        .map(|x| x * x)
+                        .sum::<f64>()
+                        .sqrt()
+                        == r.state_delta_l2
+                    && p.state_delta_vector
+                        .iter()
+                        .map(|x| x.abs())
+                        .fold(0.0, f64::max)
+                        == r.state_delta_max_abs
+                    && r.clipped_coordinates == 0,
+                "Invalid input probe receipt",
+            )?;
+        }
+        (Some(SustainedActionRequest::Probe { .. }), None) | (_, Some(_)) => {
+            return Err(invalid("Probe request/receipt mismatch"))
+        }
+        _ => {}
+    }
+    if let Some(q) = &r.inquiry {
+        ensure(
+            q.journal_id == r.journal_id && q.applied_step == r.applied_step,
+            "Inquiry/action receipt identities differ",
+        )?;
+        continuity::validate_inquiry_receipt(q, s)?;
+    }
+    if r.status != SustainedActionStatus::Applied {
+        ensure(
+            r.state_delta_l2 == 0.0
+                && r.state_delta_max_abs == 0.0
+                && r.controls_before == r.controls_after,
+            "Unapplied retained action claims an effect",
+        )?;
     }
     Ok(())
 }
