@@ -2070,6 +2070,8 @@ fn provider_receives_per_attempt_sampling_only_for_temperature_sessions() {
 #[test]
 fn embedding_codec_sessions_record_provenance_and_retain_embedding_failures() {
     let d = tempfile::tempdir().unwrap();
+    let writers = Arc::new(AtomicU64::new(0));
+    let writer_count = writers.clone();
     let calls = Arc::new(Mutex::new(0u32));
     let count = calls.clone();
     let fail_first = Arc::new(AtomicBool::new(true));
@@ -2077,6 +2079,7 @@ fn embedding_codec_sessions_record_provenance_and_retain_embedding_failures() {
     let s = SustainedState::with_provider_and_embedder(
         d.path().join("store"),
         Arc::new(move |_, _, _, _, _, _| {
+            writer_count.fetch_add(1, Ordering::SeqCst);
             Ok(LanguageResponse {
                 text: "An embedded entry that is long enough to be saved as a journal.".into(),
                 provider_model: Some("owned-fake".into()),
@@ -2113,26 +2116,43 @@ fn embedding_codec_sessions_record_provenance_and_retain_embedding_failures() {
         let g = s.lock().unwrap();
         let a = g.active.as_ref().unwrap();
         !a.worker_active
-            && (a.manifest.phase == "providerFailed"
-                || a.engine.pending_language().is_none() && a.engine.step() >= 3)
+            && a.engine
+                .pending_feedback()
+                .is_some_and(|p| p.failure.is_some())
     });
-    let failed = {
+    let retained_attempt = {
         let g = s.lock().unwrap();
-        g.active.as_ref().unwrap().manifest.phase.clone()
+        let a = g.active.as_ref().unwrap();
+        assert_eq!(a.manifest.phase, "embeddingBlocked");
+        a.engine.pending_feedback().unwrap().pending.attempt_id
     };
-    assert!(
-        matches!(failed.as_str(), "providerFailed" | "attemptBlocked"),
-        "the first embedding failure is retained on the attempt, got {failed}"
-    );
-    s.retry_language("retry".into(), &m.session_id, &m.generation)
+    assert_eq!(writers.load(Ordering::SeqCst), 1);
+    s.retry_embedding("retry".into(), &m.session_id, &m.generation)
         .unwrap();
-    // A retry dispatches once and then holds; the retried attempt must settle as a
-    // saved journal before stepping resumes explicitly.
+    // Encoding retries the retained writing once, then holds its saved journal
+    // before stepping resumes explicitly.
     wait_long(|| {
         let g = s.lock().unwrap();
         let a = g.active.as_ref().unwrap();
-        !a.worker_active && a.engine.pending_language().is_none() && a.engine.blocked().is_none()
+        !a.worker_active
+            && a.engine.pending_feedback().is_none()
+            && a.engine.prepared_application().is_some()
     });
+    assert_eq!(writers.load(Ordering::SeqCst), 1);
+    assert_eq!(*calls.lock().unwrap(), 2);
+    assert_eq!(
+        s.lock()
+            .unwrap()
+            .active
+            .as_ref()
+            .unwrap()
+            .engine
+            .prepared_application()
+            .unwrap()
+            .entry
+            .attempt_id,
+        retained_attempt
+    );
     s.start("resume".into(), &m.session_id, &m.generation)
         .unwrap();
     wait_long(|| {

@@ -1,5 +1,16 @@
 # Reservoir Scope: current status and next work
 
+**November 14, 2026 · 0.45.0 semantic encoding recovery.** Completed writing is
+saved before embedding. If encoding fails or the app restarts, Retry encoding
+reuses the exact retained response without another writing request; explicit
+Resume applies its saved text and NEXT choice once. Native failure/restart/retry
+qualification recorded one writing request, two encoding requests, and one
+applied action. The new export and both previous 0.44.0 exports passed offline
+verification. Core, host and frontend checks passed. This resolves the recovery
+limitation identified below; a longer semantic model study remains future work.
+[Behavior, checks and limits](RELEASE-0.45.0.md) ·
+[setup and recovery](GETTING-STARTED.md#use-semantic-text-input).
+
 **November 14, 2026 · six-hour collection and input diagnostics.** The separate
 0.42.0 run completed all six telemetry-enabled conversations and 390 saved
 entries, ending at step 11546. Its immutable snapshot passed exact native replay.
