@@ -210,13 +210,22 @@ impl SustainedState {
 /// the model separately. An action entry's raw-text hash never labels body-only text.
 pub(super) fn memory_evidence(
     memory: &reservoir_core::sustained::SustainedMemory,
+    version: SustainedPromptVersion,
 ) -> serde_json::Value {
     let mut value = serde_json::json!({
         "entryId": memory.entry.id,
         "text": memory.entry.text,
         "sha256": memory.entry.sha256,
     });
-    if let Some(body) = &memory.entry.body {
+    if version == SustainedPromptVersion::ActionJournalV3 {
+        let body = memory.entry.body.as_deref().unwrap_or(&memory.entry.text);
+        let supplied = reservoir_core::sustained::sustained_v3_memory_excerpt(body);
+        value["suppliedText"] = supplied.into();
+        value["suppliedTextSha256"] = crate::files::digest(supplied.as_bytes()).into();
+        value["suppliedTextTruncated"] = (supplied.len() < body.len()).into();
+        value["fullBodyBytes"] = body.len().into();
+        value["fullBodySha256"] = crate::files::digest(body.as_bytes()).into();
+    } else if let Some(body) = &memory.entry.body {
         value["suppliedText"] = body.clone().into();
         value["suppliedTextSha256"] = crate::files::digest(body.as_bytes()).into();
     }

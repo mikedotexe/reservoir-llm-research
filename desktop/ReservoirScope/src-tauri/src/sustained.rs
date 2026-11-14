@@ -1924,8 +1924,12 @@ impl SustainedState {
         // verified historical journal. Raw evidence remains available on failure.
         let measurement_reference =
             reservoir_core::sustained::measurement_reference(&p.observation).ok();
-        let memory = p.memory.map(|m| actions::memory_evidence(&m));
-        let latest_shown = p.latest_shown.map(|m| actions::memory_evidence(&m));
+        let memory = p
+            .memory
+            .map(|m| actions::memory_evidence(&m, a.manifest.config.prompt_version));
+        let latest_shown = p
+            .latest_shown
+            .map(|m| actions::memory_evidence(&m, a.manifest.config.prompt_version));
         let application=index.first_applied_step.map(|s|serde_json::json!({"journalId":entry_id,"observedStep":index.observed_step,"appliedStep":s,"attemptId":index.attempt_id}));
         let provider_prompt_evaluation = p
             .response

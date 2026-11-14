@@ -26,11 +26,14 @@ export function validInquiryReceipt(value: unknown, durableStep: number): value 
     || !['opened', 'replaced', 'continued', 'closed', 'rejected'].includes(String(value.status))
     || !optionalText(value.inquiryId) || !optionalText(value.previousInquiryId) || !optionalText(value.rejection, 1024)
     || !validInquiryDecision(value.decision)) return false;
-  if (value.status === 'rejected') return text(value.rejection, 1024);
+  if (value.status === 'rejected') return text(value.rejection, 1024) && value.inquiryId === value.previousInquiryId
+    && (value.decision.request === null ? value.rejection === value.decision.rejection
+      : (value.decision.request.kind === 'continue' || value.decision.request.kind === 'close') && value.inquiryId === null);
   if (value.rejection !== null || value.decision.rejection !== null || value.decision.request === null) return false;
-  if (value.status === 'opened' || value.status === 'replaced') return value.decision.request.kind === 'open' && text(value.inquiryId);
-  if (value.status === 'continued') return value.decision.request.kind === 'continue' && text(value.inquiryId);
-  return value.decision.request.kind === 'close';
+  if (value.status === 'opened' || value.status === 'replaced') return value.decision.request.kind === 'open' && text(value.inquiryId)
+    && (value.status === 'replaced') === (value.previousInquiryId !== null);
+  if (value.status === 'continued') return value.decision.request.kind === 'continue' && text(value.inquiryId) && value.inquiryId === value.previousInquiryId;
+  return value.decision.request.kind === 'close' && value.inquiryId === null && text(value.previousInquiryId);
 }
 
 function validInquiryJournal(value: unknown, durableStep: number): value is SustainedInquiryJournal {
@@ -58,13 +61,18 @@ export function validContinuityState(value: unknown, durableStep: number, validR
     || !journals(value.journalWindow, 8, durableStep)
     || value.latestInquiryReceipt !== null && !validInquiryReceipt(value.latestInquiryReceipt, durableStep)) return false;
   const inquiry = value.activeInquiry;
-  if (inquiry === null) return true;
+  const latest = value.latestInquiryReceipt as SustainedInquiryReceipt | null;
+  if (inquiry === null) return latest === null || latest.inquiryId === null;
+  if (!record(inquiry) || latest === null || latest.inquiryId !== inquiry.id) return false;
+  if (latest.decision.request?.kind === 'open' && (latest.decision.request.question !== inquiry.question || latest.decision.request.source !== inquiry.source
+    || latest.journalId !== inquiry.openedJournalId || latest.appliedStep !== inquiry.openedAppliedStep)) return false;
+  if (latest.status === 'continued' && latest.appliedStep !== inquiry.lastContinuedStep) return false;
   return record(inquiry) && text(inquiry.id) && question(inquiry.question) && source(inquiry.source)
     && text(inquiry.openedJournalId) && count(inquiry.openedObservedStep, durableStep) && count(inquiry.openedAppliedStep, durableStep)
     && inquiry.openedAppliedStep > inquiry.openedObservedStep && count(inquiry.lastContinuedStep, durableStep) && inquiry.lastContinuedStep >= inquiry.openedAppliedStep
     && count(inquiry.continuationCount, 10000) && controls(inquiry.openingControls) && record(inquiry.baseline)
     && inquiry.baseline.step === inquiry.openedObservedStep && scalar(inquiry.baseline.rms, 0, 1) && scalar(inquiry.baseline.sensoryFill, 0, 100)
-    && vector(inquiry.baseline.state, 32, 1) && journals(inquiry.history, 4, inquiry.lastContinuedStep);
+    && vector(inquiry.baseline.state, 32, 1) && journals(inquiry.history, 4, inquiry.lastContinuedStep - 1);
 }
 
 export function sameInquiryDecision(left: SustainedInquiryDecision | undefined, right: SustainedInquiryDecision | undefined): boolean {

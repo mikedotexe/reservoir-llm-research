@@ -99,6 +99,15 @@ export function validJournalAction(journal: SustainedJournal, config: SustainedC
   for (const memory of [journal.memory, journal.latestShown]) {
     if (memory && (memory.suppliedText !== undefined || memory.suppliedTextSha256 !== undefined)
       && (!hasAuthoredActions(config) || typeof memory.suppliedText !== 'string' || typeof memory.suppliedTextSha256 !== 'string' || !/^[a-f0-9]{64}$/.test(memory.suppliedTextSha256))) return false;
+    if (memory && hasLocalInquiry(config)) {
+      if (typeof memory.suppliedText !== 'string' || typeof memory.suppliedTextTruncated !== 'boolean'
+        || typeof memory.fullBodySha256 !== 'string' || !/^[a-f0-9]{64}$/.test(memory.fullBodySha256)
+        || !count(memory.fullBodyBytes, 1_048_576)) return false;
+      const suppliedBytes = new TextEncoder().encode(memory.suppliedText).length;
+      if (suppliedBytes > 2048 || suppliedBytes > memory.fullBodyBytes
+        || memory.suppliedTextTruncated !== (suppliedBytes < memory.fullBodyBytes)
+        || !memory.suppliedTextTruncated && memory.fullBodySha256 !== memory.suppliedTextSha256) return false;
+    } else if (memory && (memory.suppliedTextTruncated !== undefined || memory.fullBodyBytes !== undefined || memory.fullBodySha256 !== undefined)) return false;
   }
   if (!journal.action) return journal.actionReceipt == null && journal.bodySha256 == null && (!hasReservoirInputChoice(config) || !!journal.checkIn);
   if (!hasAuthoredActions(config) || journal.checkIn || !validActionDecision(journal.action) || !validChoiceForMode(journal.action, config) || journal.bodySha256 != null && !/^[a-f0-9]{64}$/.test(journal.bodySha256)) return false;

@@ -318,6 +318,132 @@ fn passive_checkin_neither_closes_inquiry_nor_applies_probe() {
 }
 
 #[test]
+fn supplied_memory_evidence_matches_v3_prefix_for_ordinary_and_telemetry_prompts() {
+    let body = format!("{}é retained suffix outside the prefix", "a".repeat(2047));
+    let raw = format!("{body}\nNEXT: NONE");
+    for (mode, version) in [
+        (
+            SustainedActionMode::AuthoredV1,
+            SustainedPromptVersion::ActionJournalV1,
+        ),
+        (
+            SustainedActionMode::AuthoredV2,
+            SustainedPromptVersion::ActionJournalV2,
+        ),
+        (
+            SustainedActionMode::AuthoredV3,
+            SustainedPromptVersion::ActionJournalV3,
+        ),
+    ] {
+        let d = tempfile::tempdir().unwrap();
+        let s = SustainedState::new(d.path().join("store"));
+        let cfg = SustainedConfig {
+            action_mode: Some(mode),
+            prompt_version: version,
+            check_in_schedule: Some(SustainedCheckInSchedule {
+                interval_seconds: 60,
+                end_after_seconds: 60,
+                prompt: "Continue our conversation.".into(),
+                include_telemetry: true,
+            }),
+            maximum_duration_seconds: 60,
+            maximum_turns: 1000,
+            ..config(1000, 3)
+        };
+        let m = s.create("create".into(), cfg).unwrap().summary.unwrap();
+        let epoch = arm(&s);
+        dispatch(&s, epoch, &raw);
+        until(&s, epoch, |a| a.engine.step() == 4);
+        let p = next_provider(&s, epoch);
+        let earlier = p.memory.as_ref().unwrap();
+        let projection = crate::sustained::actions::memory_evidence(earlier, version);
+        let expected = if mode == SustainedActionMode::AuthoredV3 {
+            "a".repeat(2047)
+        } else {
+            body.clone()
+        };
+        assert_eq!(projection["suppliedText"], expected);
+        assert_eq!(
+            projection["suppliedTextSha256"],
+            crate::files::digest(expected.as_bytes())
+        );
+        assert_eq!(projection["text"], raw);
+        if mode == SustainedActionMode::AuthoredV3 {
+            assert!(p
+                .prompt
+                .contains(&serde_json::to_string(&expected).unwrap()));
+            assert!(!p.prompt.contains("retained suffix outside the prefix"));
+            assert_eq!(projection["suppliedTextTruncated"], true);
+            assert_eq!(
+                projection["fullBodySha256"],
+                crate::files::digest(body.as_bytes())
+            );
+            assert_eq!(projection["fullBodyBytes"], body.len());
+            let mut conversational_memory = earlier.clone();
+            conversational_memory.entry.body = None;
+            let fallback =
+                crate::sustained::actions::memory_evidence(&conversational_memory, version);
+            assert_eq!(fallback["suppliedText"], expected);
+            assert_eq!(
+                fallback["fullBodySha256"],
+                crate::files::digest(raw.as_bytes())
+            );
+        } else {
+            assert!(p.prompt.contains(&body));
+            assert!(projection.get("suppliedTextTruncated").is_none());
+            assert!(projection.get("fullBodySha256").is_none());
+        }
+        s.settle(epoch, p.attempt_id, Ok(response(&raw)), None, 1)
+            .unwrap();
+        until(&s, epoch, |a| a.engine.step() == 7);
+        {
+            let mut g = s.lock().unwrap();
+            let a = g.active.as_mut().unwrap();
+            a.manifest.elapsed_millis = 60_000;
+            a.last_accounted = Instant::now();
+        }
+        let check_in = next_provider(&s, epoch);
+        assert!(check_in.check_in.is_some());
+        s.settle(
+            epoch,
+            check_in.attempt_id,
+            Ok(response("A passive conversation.")),
+            None,
+            1,
+        )
+        .unwrap();
+        while drive(&s, epoch) {}
+        let page = s
+            .journal_page("page".into(), &m.session_id, &m.generation, 0, 10)
+            .unwrap();
+        for entry in page.entries.iter().take(2) {
+            let detail = s
+                .journal(
+                    "detail".into(),
+                    &m.session_id,
+                    &m.generation,
+                    &entry.entry_id,
+                )
+                .unwrap()
+                .journal;
+            assert_eq!(detail["memory"]["suppliedText"], expected);
+            assert_eq!(
+                detail["memory"]["suppliedTextSha256"],
+                crate::files::digest(expected.as_bytes())
+            );
+            let prompt = detail["prompt"].as_str().unwrap();
+            if mode == SustainedActionMode::AuthoredV3 {
+                assert!(prompt.contains(&serde_json::to_string(&expected).unwrap()));
+                assert!(!prompt.contains("retained suffix outside the prefix"));
+            } else {
+                assert!(prompt.contains(&body));
+            }
+        }
+        s.shared.store.verify(&m.session_id).unwrap();
+    }
+}
+
+#[test]
 fn withheld_probe_and_inquiry_skip_encoding_but_keep_both_applied_choices() {
     let d = tempfile::tempdir().unwrap();
     let s = SustainedState::with_provider_and_embedder(

@@ -3,8 +3,9 @@ import { describe, expect, it, vi } from 'vitest';
 import MyReservoirActions, { ActionReceiptView, JournalActionDetails } from './MyReservoirActions';
 import MyReservoirConfig from './MyReservoirConfig';
 import MyReservoirInquiry from './MyReservoirInquiry';
+import { MyReservoirJournalDetail } from './MyReservoirJournals';
 import { ACTION_JOURNAL_PROMPT, ACTION_JOURNAL_PROMPT_V1, CONTINUITY_JOURNAL_PROMPT, validActionSummary, validAuthoredActionConfig, validJournalAction, withAuthoredActionMode, withAuthoredActions } from './authoredActions';
-import { validInquiryDecision, validProbeVector } from './localInquiries';
+import { validInquiryDecision, validInquiryReceipt, validProbeVector } from './localInquiries';
 import { DEFAULT_CHECK_IN_SCHEDULE } from './checkInSchedule';
 import { DEFAULT_SUSTAINED_CONFIG, type SustainedActionDecision, type SustainedActionReceipt, type SustainedConfig, type SustainedContinuityState, type SustainedInquiryDecision, type SustainedInquiryReceipt, type SustainedJournal } from './myReservoirTypes';
 import { journal, reservoirFixture, reservoirSummary, settle } from './myReservoirTestFixtures';
@@ -107,6 +108,19 @@ describe('versioned continuing local inquiry', () => {
     const malformed = summary(); malformed.actions!.state.continuity!.journalWindow[0].bodySha256 = 'invalid';
     expect(validActionSummary(malformed)).toBe(false);
   });
+
+  it('rejects contradictory inquiry identities and history from its own application step', () => {
+    const changed = summary(); changed.actions!.state.continuity!.activeInquiry!.id = 'different';
+    expect(validActionSummary(changed)).toBe(false);
+    const sameStep = summary(); sameStep.actions!.state.continuity!.activeInquiry!.history[0].appliedStep = 4;
+    expect(validActionSummary(sameStep)).toBe(false);
+    expect(validInquiryReceipt({ ...inquiryReceipt, status: 'rejected', rejection: 'Cannot reject a valid OPEN' }, 4)).toBe(false);
+    expect(validInquiryReceipt({ ...inquiryReceipt, status: 'continued', decision: { rawDirective: 'INQUIRY: CONTINUE', request: { kind: 'continue' }, rejection: null } }, 4)).toBe(false);
+    expect(validInquiryReceipt({ ...inquiryReceipt, status: 'closed', previousInquiryId: 'inquiry-4', decision: { rawDirective: 'INQUIRY: CLOSE', request: { kind: 'close' }, rejection: null } }, 4)).toBe(false);
+    const rejected = { ...inquiryReceipt, status: 'rejected', previousInquiryId: 'inquiry-4', rejection: 'Invalid inquiry', decision: { rawDirective: 'INQUIRY: UNKNOWN', request: null, rejection: 'Invalid inquiry' } };
+    expect(validInquiryReceipt(rejected, 4)).toBe(true);
+    expect(validInquiryReceipt({ ...rejected, inquiryId: 'changed-by-rejection' }, 4)).toBe(false);
+  });
 });
 
 describe('bounded input probe and inquiry evidence', () => {
@@ -137,5 +151,25 @@ describe('bounded input probe and inquiry evidence', () => {
     const checkIn: SustainedJournal = { ...journal(), promptVersion: CONTINUITY_JOURNAL_PROMPT, text: 'INQUIRY: CLOSE\nNEXT: NONE', checkIn: { ordinal: 1, scheduledSeconds: 60, admittedElapsedMillis: 60000, settingsRevision: 0, prompt: 'Hello', includeTelemetry: false } };
     expect(validJournalAction(checkIn, config)).toBe(true);
     expect(renderToStaticMarkup(<JournalActionDetails journal={checkIn}/>)).toBe('');
+  });
+
+  it('shows only the supplied memory prefix while retaining separate complete response evidence', () => {
+    const prefix = 'a'.repeat(2047), body = `${prefix}é a suffix outside this slot`;
+    const saved: SustainedJournal = { ...journal(), promptVersion: CONTINUITY_JOURNAL_PROMPT, action: decision, actionReceipt: receipt, bodySha256: 'b'.repeat(64), memory: {
+      entryId: 'older', text: `${body}\nNEXT: NONE`, sha256: 'a'.repeat(64), suppliedText: prefix, suppliedTextSha256: 'b'.repeat(64), suppliedTextTruncated: true, fullBodySha256: 'c'.repeat(64), fullBodyBytes: new TextEncoder().encode(body).length,
+    } };
+    expect(validJournalAction(saved, config)).toBe(true);
+    const html = renderToStaticMarkup(<MyReservoirJournalDetail journal={saved} revision="9" config={config}/>);
+    const supplied = html.match(/aria-label="Previous journal text">(.*?)<\/pre>/)?.[1];
+    expect(supplied).toBe(prefix);
+    expect(supplied).not.toContain('suffix outside');
+    expect(html).toContain('Only the bounded prefix above was supplied in this earlier-writing slot');
+    expect(html).toContain('Supplied prefix SHA-256');
+    expect(html).toContain('Complete body ·');
+    expect(html).toContain('é a suffix outside this slot');
+    const missing = structuredClone(saved); delete missing.memory!.suppliedTextTruncated;
+    expect(validJournalAction(missing, config)).toBe(false);
+    const oversized = structuredClone(saved); oversized.memory!.suppliedText = body;
+    expect(validJournalAction(oversized, config)).toBe(false);
   });
 });

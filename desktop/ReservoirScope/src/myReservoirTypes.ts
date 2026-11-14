@@ -191,6 +191,12 @@ export interface JournalMeasurementReference {
   currentStep: number; previousStep: number | null; comparisonAvailable: boolean;
   rows: { key: string; label: string; unit: 'dimensionless' | 'percent'; current: number; previous: number | null; delta: number | null }[];
 }
+export interface SustainedMemoryEvidence {
+  entryId: string; text: string; sha256: string;
+  suppliedText?: string; suppliedTextSha256?: string;
+  /** V3 supplies a bounded UTF-8-safe prefix; raw response identity remains separate. */
+  suppliedTextTruncated?: boolean; fullBodyBytes?: number; fullBodySha256?: string;
+}
 export interface SustainedJournal extends Omit<SustainedJournalRow, 'textPreview'> {
   checkIn?: SustainedCheckInEvidence;
   action?: SustainedActionDecision | null;
@@ -203,9 +209,9 @@ export interface SustainedJournal extends Omit<SustainedJournalRow, 'textPreview
   /** Present only under the embedding codec. */
   feedbackProvenance?: { kind: string; model: string; digest?: string | null; dimensions: number; embeddingSha256: string; projectionSeed: number } | null;
   text: string; prompt: string; promptVersion: SustainedPromptVersion; rawReply: string; observation: unknown; measurementReference?: JournalMeasurementReference | null;
-  memory: { entryId: string; text: string; sha256: string; suppliedText?: string; suppliedTextSha256?: string } | null;
+  memory: SustainedMemoryEvidence | null;
   /** 0.38.0: the latest applied entry, also shown under the two-entry prompt version; absent or null otherwise. */
-  latestShown?: { entryId: string; text: string; sha256: string; suppliedText?: string; suppliedTextSha256?: string } | null;
+  latestShown?: SustainedMemoryEvidence | null;
   encodedFeatures: number[]; semanticVector: number[]; saveReceipt: { entryId: string; sha256: string; relativePath: string };
   providerModel: string | null; stopReason: string | null; tokenCount: number | null; providerComplete: boolean;
   configuredModel: string | null; requestStarted: boolean; application: unknown | null;
