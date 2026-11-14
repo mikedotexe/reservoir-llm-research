@@ -1,6 +1,6 @@
 # Three local models with continuing inquiry — 14 November 2026
 
-Status: fresh primary sessions prepared after an output-limit pilot hold; primary writing has not started. This is a separate laptop apparatus experiment, not a run of Astrid or Minime.
+Status: three primary sessions running from approximately 14:25 PST, with recoveries retained. This is a separate laptop apparatus experiment, not a run of Astrid or Minime.
 
 Mike selected three-hour runs with the same default conversational prompt every hour, telemetry enabled, and the new continuing inquiry and authored-vector probe controls. The comparison is Gemma4 12B, GLM-4.7-Flash Q4_K_M, and Mistral’s Ministral 3 8B Instruct Q4_K_M. The last is a compact local Mistral-family instruction model, chosen to leave room for simultaneous inference on this 64 GiB laptop; it is not a claim to be Mistral’s largest or newest flagship.
 
@@ -61,3 +61,16 @@ larger allowance returned a complete 304-token reply. It was never applied to
 any session. Because it is a different shorter response, it does not demonstrate
 that the same truncated reply would have finished or that all later entries will
 fit. It is retained separately, with the original incomplete attempt unchanged.
+
+## Primary ordinary-attempt recovery
+
+At 20 minutes 14.444 seconds of GLM active time, ordinary attempt 18 at step540
+hit the 2,048-token ceiling (`complete=false`, `stopReason=length`) after181.406
+seconds. No text from that attempt entered feedback. The failure and pre-recovery
+checkpoint are retained. At approximately14:47 PST, the steward-side agent explicitly
+skipped the failed ordinary attempt and resumed the same session without changing
+its configuration or retrying that opportunity. This deviates from the initial
+no-skip plan: the same operational handling will apply to any arm’s incomplete
+ordinary entries. Every intervention remains in `primary-2048/recovery-ledger.jsonl`
+and the native event stream. Scheduled hourly opportunities remain separate, with
+no selected replacements. Paused recovery time does not count toward active time.
