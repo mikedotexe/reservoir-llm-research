@@ -245,6 +245,11 @@ fn terminal_reserve(
         if cancel {
             if let Some(p) = preview.pending_language() {
                 preview.cancel_language(p.attempt_id, &reason).map_err(ce)?;
+            } else if preview.pending_feedback().is_some() {
+                // Stop retains completed writing while interrupting its encoding.
+                // Reserve that full checkpoint/event transition before accepting
+                // an ordinary boundary, including an in-flight encoding request.
+                preview.interrupt(&reason).map_err(ce)?;
             }
         } else if !matches!(preview.phase(), core::SustainedPhase::Ready) {
             preview.skip_pending(&reason).map_err(ce)?;
@@ -383,6 +388,8 @@ pub struct ReceivedResponseEvidence {
     pub stop_reason: Option<String>,
     pub stop_reason_truncated: bool,
     pub token_count: Option<String>,
+    pub response_text: String,
+    pub response_text_truncated: bool,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub provider_prompt_evaluation: Option<ProviderPromptEvaluationView>,
 }
@@ -395,6 +402,18 @@ pub struct ReceivedResponses {
 }
 const RECEIVED_RESPONSE_LIMIT: usize = 50;
 const STOP_REASON_DISPLAY_CHARACTERS: usize = 256;
+const RESPONSE_TEXT_DISPLAY_BYTES: usize = 16 * 1024;
+
+fn response_text_view(text: &str) -> (String, bool) {
+    if text.len() <= RESPONSE_TEXT_DISPLAY_BYTES {
+        return (text.into(), false);
+    }
+    let mut end = RESPONSE_TEXT_DISPLAY_BYTES;
+    while !text.is_char_boundary(end) {
+        end -= 1;
+    }
+    (text[..end].into(), true)
+}
 
 fn stop_reason_view(reason: Option<&str>) -> (Option<String>, bool) {
     let Some(reason) = reason else {
@@ -1064,6 +1083,8 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
         "ready",
         "running",
         "awaitingLanguage",
+        "waitingForEmbedding",
+        "embeddingBlocked",
         "savingJournal",
         "paused",
         "stopped",
@@ -1120,7 +1141,8 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
         }
         let evidence = link.segment.journal_evidence().map_err(ce)?;
         // The existing verified-chain traversal already owns these typed events.
-        // Retain only the newest bounded metadata rows, never full response text.
+        // Retain the newest bounded metadata rows and bounded text previews.
+        // Full response bytes remain in the immutable event/checkpoint evidence.
         for event in &link.segment.events {
             let check_in_elapsed = match &event.kind {
                 SustainedEventKind::CheckInSettingsUpdated { elapsed_millis, .. }
@@ -1174,10 +1196,15 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
                 attempt_id,
                 response,
                 ..
+            }
+            | SustainedEventKind::LanguageRetainedForFeedback {
+                attempt_id,
+                response,
             } = &event.kind
             {
                 let (stop_reason, stop_reason_truncated) =
                     stop_reason_view(response.stop_reason.as_deref());
+                let (response_text, response_text_truncated) = response_text_view(&response.text);
                 received_response_total += 1;
                 if received_responses.len() == RECEIVED_RESPONSE_LIMIT {
                     received_responses.pop_front();
@@ -1189,6 +1216,8 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
                     stop_reason,
                     stop_reason_truncated,
                     token_count: response.token_count.map(|count| count.to_string()),
+                    response_text,
+                    response_text_truncated,
                     provider_prompt_evaluation: response
                         .provider_prompt_evaluation
                         .as_ref()
@@ -1486,6 +1515,10 @@ fn validate_timing(t: &AttemptTiming) -> Result<(), AppError> {
     }
     Ok(())
 }
+
+#[cfg(test)]
+#[path = "sustained_embedding_store_tests.rs"]
+mod embedding_recovery_tests;
 
 #[cfg(test)]
 mod quota_projection_tests {
