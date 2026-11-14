@@ -1,5 +1,14 @@
 # Reservoir Scope · current candidates
 
+**November 14 development note:** the local 0.46.0 preview adds continuing
+inquiries, bounded journal/dynamics evidence and model-designed one-step input
+probes. It follows the completed three-hour local model comparison and preserves
+earlier session contracts. Native recovery/export and legacy replay are qualified
+within the [release record's scope](../desktop/ReservoirScope/RELEASE-0.46.0.md).
+See [returning to a question](../desktop/ReservoirScope/CONTINUITY-INQUIRY.md).
+This is a local development checkpoint; the sharing candidate and frozen
+instrument below remain unchanged.
+
 **October 25 development note:** 0.41.0 adds explicit same-session limit extensions
 to the 0.40.1 [first-session guidance](../desktop/ReservoirScope/GETTING-STARTED.md)
 and a Plain journal invitation choice, retaining the 0.40.0 local [S-021 walkthrough](../desktop/ReservoirScope/S021-WALKTHROUGH.md)

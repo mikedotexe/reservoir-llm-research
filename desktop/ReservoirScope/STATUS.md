@@ -1,5 +1,20 @@
 # Reservoir Scope: current status and next work
 
+**November 14, 2026 · 0.46.0 continuing inquiry and input probes.** Ordinary
+entries can retain a question, revisit bounded recent journal and reservoir
+evidence, and explicitly continue, replace or close it. A bounded bespoke
+48-coordinate PROBE enters the numerical input channels for one step, separately
+from text withholding. Exact immediate recurrent effects and meaningful action
+history return to later writing. The desktop exposes these records, and its
+memory evidence identifies the actual supplied prefix. New local-model inquiry
+setup uses at least 16,384 context tokens following a measured context stress
+check; saved settings remain intact. Native failure/restart/
+encoding-only retry, once-only inquiry/probe application and export passed;
+both completed three-hour model exports replay under the new binary. V1/V2
+contracts and saved sessions retain their earlier behavior. The 48-call wording
+diagnostic is separate from runtime qualification and long-run model competence.
+[Behavior](CONTINUITY-INQUIRY.md) · [checks and limits](RELEASE-0.46.0.md).
+
 **November 14, 2026 · 0.45.0 semantic encoding recovery.** Completed writing is
 saved before embedding. If encoding fails or the app restarts, Retry encoding
 reuses the exact retained response without another writing request; explicit

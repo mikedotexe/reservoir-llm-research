@@ -5,7 +5,7 @@ then read it with some curiosity. You do not need to understand the reservoir's
 math to begin. Plan for **up to 30 minutes of running time**, after installation
 and model setup, plus a few minutes to read.
 
-These instructions describe **0.44.0 source**. If you received the older 0.27.0
+These instructions describe **0.46.0 source**. If you received the older 0.27.0
 candidate 04 package, follow its [install guide](PREVIEW-START.md).
 
 ## 1. Open the app
@@ -168,7 +168,9 @@ body as usual. Control actions remain a separate choice; scheduled conversations
 still send their answers through feedback. [Input choice and examples](INPUT-CHOICE.md).
 
 Before creating a session, enable **Reservoir shaping → Let the model shape the
-reservoir**. Its ordinary entries can then choose a state pulse, tune recurrent
+reservoir**. **Writing and action context → Continuing inquiry and reservoir
+actions** selects the current invitation. The earlier action contexts remain
+available for comparisons. Its ordinary entries can then choose a state pulse, tune recurrent
 leak or gain or text-feedback strength, release adjustments, or leave controls
 unchanged. The app supplies the exact action menu; you do not have to write it.
 
@@ -186,6 +188,32 @@ pulse, tune, no additional action and release. [Exact behavior and research scop
 Scheduled conversations still save and feed back their writing, but never execute
 actions. With telemetry on they also receive current controls and recent action
 results. Their plain-prompt option remains just your editable prompt.
+
+## Give a curiosity a later opportunity
+
+With **Continuing inquiry and reservoir actions**, an ordinary entry can open a
+question about its reservoir, recent journal history, or both. Later entries
+receive the retained question, its opening measurements and identified evidence.
+The model can refresh the recent journal excerpts, replace the question, close
+it, or leave it open. It can still choose its own subject, form and length.
+For a new local-model session this choice sets at least **16,384 context tokens**
+to accommodate retained evidence. Larger custom sizes remain; saved sessions
+keep their original settings. Advanced settings still allows a smaller size.
+
+The model can also design a bounded, 48-coordinate input probe. The probe enters
+the reservoir and separate sensory field for one numerical step. It is independent
+of whether the journal text is sent, and differs from a direct state pulse.
+Its exact vector and immediate recurrent effect are retained in the action record.
+
+**Continuing local inquiry** shows the applied question. Open **Retained inquiry
+evidence** to see the baseline and source excerpts, and **Latest inquiry choice**
+to distinguish an accepted change from a rejection. Meaningful interventions
+remain visible after later entries choose no additional action.
+
+The first version supplies bounded recent history, not full-archive search or
+outside reading. Opening a question does not claim it has been answered; later
+writing is the opportunity to investigate. [Evidence, probe semantics and saved
+continuity](CONTINUITY-INQUIRY.md).
 
 ## Schedule a conversation during the run
 

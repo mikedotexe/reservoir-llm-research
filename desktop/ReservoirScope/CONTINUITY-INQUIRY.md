@@ -18,6 +18,12 @@ write briefly, develop a thought, ask a question, revisit an earlier idea, or
 leave a thread aside. An inquiry is optional and does not require a report on
 every entry. Text-input choice, control choice and inquiry choice are independent.
 
+Selecting this mode for a new local-model session sets the context to at least
+16,384 tokens to make room for retained evidence. Larger custom settings survive.
+You can explicitly choose a smaller context in Advanced settings, but it may
+omit supplied material. Existing and restored sessions retain their saved size.
+The bounded evidence is not a tokenizer-independent guarantee for every model.
+
 The runtime distinguishes two measurements:
 
 - **Observed state difference** compares coordinates at two observation steps.
@@ -32,7 +38,9 @@ vector, while base forcing, noise and separately chosen actions continue.
 
 Meaningful interventions have a separate bounded history, so subsequent `NONE`
 choices do not immediately displace them. Input-disposition changes also remain
-separate from control changes.
+separate from control changes. Here that history means applied choices other
+than `NONE`; a zero probe or a repeated tuning value can still be a retained
+choice without producing a nonzero additional effect.
 
 ## Opening and returning to an inquiry
 

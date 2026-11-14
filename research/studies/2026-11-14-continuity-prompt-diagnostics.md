@@ -4,6 +4,10 @@ Protocol declared November 14, 2026, before generation. Status: prepared for the
 user-authorized local follow-up; generation results belong in a separate dated
 account. This tests narrow wording changes, not the complete new inquiry mechanism.
 
+Later status: all 48 planned opportunities completed on November 14. The
+[separate results account](2026-11-14-continuity-prompt-results.md) preserves
+counterexamples, native parser outcomes and the limits of this diagnostic.
+
 ## Question and scope
 
 The completed three-hour comparison supplied two useful leads: a GLM follow-up
