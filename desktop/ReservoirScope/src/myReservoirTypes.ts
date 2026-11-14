@@ -64,7 +64,26 @@ export function validWritingLimits(config: SustainedConfig): boolean {
     && (temperature == null || Number.isFinite(temperature) && temperature >= 0 && temperature <= 2);
 }
 
+export interface SustainedCheckInSchedule {
+  intervalSeconds: number; endAfterSeconds: number; prompt: string; includeTelemetry: boolean;
+}
+export interface SustainedCheckInSettings { revision: number; prompt: string; includeTelemetry: boolean }
+export interface SustainedCheckInEvidence {
+  ordinal: number; scheduledSeconds: number; admittedElapsedMillis: number;
+  settingsRevision: number; prompt: string; includeTelemetry: boolean;
+}
+export interface SustainedCheckInSlot {
+  ordinal: number; scheduledSeconds: number; status: string;
+  admittedElapsedMillis?: number | null; entryId?: string | null; attemptId?: number | null;
+  settingsRevision?: number | null; prompt?: string | null; includeTelemetry?: boolean | null;
+}
+export interface SustainedCheckIns {
+  intervalSeconds: number; endAfterSeconds: number; settings: SustainedCheckInSettings;
+  canEdit: boolean; complete: boolean; slots: SustainedCheckInSlot[];
+  settingsHistory?: (SustainedCheckInSettings & { elapsedMillis?: number })[];
+}
 export interface SustainedConfig {
+  checkInSchedule?: SustainedCheckInSchedule;
   /** Omitted historical configuration retains v1; only fresh defaults select v8. */
   promptVersion?: SustainedPromptVersion;
   /** Omitted historical budgets retain 256 tokens / 60 seconds. */
@@ -94,6 +113,7 @@ export const DEFAULT_SUSTAINED_CONFIG: SustainedConfig = {
 };
 export interface SustainedLimits { maximumSteps: number; maximumTurns: number; maximumDurationSeconds: number }
 export interface SustainedSummary {
+  checkIns?: SustainedCheckIns;
   effectiveLimits?: SustainedLimits; canExtendLimits?: boolean; limitExtensionCount?: number;
   sessionId: string; generation: string; revision: string; config: SustainedConfig; phase: string;
   step: number; durableStep: number; simulatedTime: number; elapsedSeconds: number; usedBytes: number;
@@ -122,6 +142,8 @@ export interface JournalMeasurementReference {
   rows: { key: string; label: string; unit: 'dimensionless' | 'percent'; current: number; previous: number | null; delta: number | null }[];
 }
 export interface SustainedJournal extends Omit<SustainedJournalRow, 'textPreview'> {
+  checkIn?: SustainedCheckInEvidence;
+  observationSupplied?: boolean; systemContract?: string | null;
   providerPromptEvaluation?: ProviderPromptEvaluation | null;
   /** Sampling evidence; both absent for historical greedy journals. */
   temperature?: number | null; samplingSeed?: string | null; thinking?: boolean | null;
@@ -143,6 +165,7 @@ export interface MyReservoirApi {
   get(requestId: string, onUpdate: (update: SustainedUpdate) => void): Promise<SustainedUpdate>;
   create(requestId: string, config: SustainedConfig): Promise<SustainedUpdate>;
   action(action: SustainedAction, requestId: string, sessionId: string, generation: string, expectedEntryId?: string | null, expectedAttemptId?: number | null): Promise<SustainedUpdate>;
+  updateCheckInSettings(requestId: string, sessionId: string, generation: string, expectedRevision: string, prompt: string, includeTelemetry: boolean): Promise<SustainedUpdate>;
   extendLimits(requestId: string, sessionId: string, generation: string, expectedRevision: string, limits: SustainedLimits): Promise<SustainedUpdate>;
   journals(requestId: string, sessionId: string, generation: string, offset: number, limit: number): Promise<SustainedJournalPage>;
   journal(requestId: string, sessionId: string, generation: string, entryId: string): Promise<SustainedJournalResult>;

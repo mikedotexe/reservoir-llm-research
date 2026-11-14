@@ -1,3 +1,4 @@
+import { formatSessionDuration } from './sessionDuration';
 import './myReservoirReading.css';
 import ProviderPromptEvidence from './ProviderPromptEvidence';
 import JournalMeasurements from './JournalMeasurements';
@@ -8,21 +9,29 @@ const status = (value: SustainedJournal['status']) => value === 'applied' ? 'Sav
 const json = (value: unknown) => value == null ? 'Not retained.' : JSON.stringify(value, null, 2);
 export function MyReservoirJournalDetail({ journal, revision, config, onRefreshEvidence, refreshing = false }: { journal: SustainedJournal; revision: string | null; config?: SustainedConfig; onRefreshEvidence?: () => void; refreshing?: boolean }) {
   return <article className="my-reservoir-journal-detail">
-    <span className="eyebrow">SAVED ENTRY</span>
+    <span className="eyebrow">{journal.checkIn ? `SCHEDULED CHECK-IN ${journal.checkIn.ordinal}` : 'SAVED ENTRY'}</span>
     <h3>Entry at step {journal.observedStep}</h3>
     <p className="my-reservoir-journal-status"><strong>{status(journal.status)}</strong>{journal.firstAppliedStep !== null ? ` · first applied at step ${journal.firstAppliedStep}` : ' · no first application recorded'}</p>
     <div className="my-reservoir-journal-prose" style={{ whiteSpace: 'pre-wrap' }}>{journal.text}</div>
     {journal.status !== 'applied' && <p className="my-reservoir-journal-return">
       {journal.status === 'savedPendingApplication' ? 'Saved and checked. This entry is waiting for its first application, so it is not yet eligible to return as memory in a later prompt.' : 'This journal remains readable. Its feedback and automatic prompt-memory exposure were explicitly skipped.'}
     </p>}
-    <JournalMeasurements value={journal.measurementReference} observedStep={journal.observedStep} promptVersion={journal.promptVersion}/>
+    {journal.checkIn && <p>{journal.checkIn.includeTelemetry ? 'Telemetry and session context were supplied with the conversational prompt.' : 'Only the conversational prompt was supplied. Numerical observations below were retained internally, not sent to the model.'}</p>}
+    <JournalMeasurements value={journal.measurementReference} observedStep={journal.observedStep} promptVersion={journal.checkIn ? undefined : journal.promptVersion}/>
     <details className="my-reservoir-journal-evidence">
       <summary>Evidence</summary>
       <p className="my-reservoir-journal-return">{journal.status === 'applied' && <>This entry’s feedback was first applied at step {journal.firstAppliedStep}. Its full text is eligible for later prompts. </>}Describing a control change does not execute it.</p>
       {onRefreshEvidence && <button disabled={refreshing} onClick={onRefreshEvidence}>Refresh save and feedback details</button>}
+      {journal.checkIn && <section><h4>Scheduled conversation</h4><dl className="my-reservoir-data">
+        <dt>Check-in</dt><dd>{journal.checkIn.ordinal} · due at {formatSessionDuration(journal.checkIn.scheduledSeconds)}</dd>
+        <dt>Prepared running time</dt><dd>{journal.checkIn.admittedElapsedMillis / 1000} seconds</dd>
+        <dt>Prompt revision</dt><dd>{journal.checkIn.settingsRevision}</dd>
+        <dt>Context mode</dt><dd>{journal.checkIn.includeTelemetry ? 'Telemetry + session context' : 'Plain prompt only'}</dd>
+        <dt>Numerical observation supplied</dt><dd>{journal.observationSupplied ? 'Compact readout supplied; full observation retained internally' : 'Not supplied'}</dd>
+      </dl><h5>Editable prompt used</h5><pre>{journal.checkIn.prompt}</pre><h5>Exact app-supplied system message</h5>{journal.systemContract ? <pre>{journal.systemContract}</pre> : <p>No app-supplied system message.</p>}</section>}
       <h4>Journal and request identity</h4>
       <dl className="my-reservoir-data">
-        <dt>Journal prompt version</dt><dd>{journal.promptVersion}</dd>
+        <dt>{journal.checkIn ? 'Ordinary invitation version' : 'Journal prompt version'}</dt><dd>{journal.promptVersion}{journal.checkIn && ' · this check-in used the scheduled-conversation renderer'}</dd>
         {config && <><dt>Retained output ceiling</dt><dd>{effectiveOutputTokens(config)} tokens</dd><dt>Retained request deadline</dt><dd>{effectiveRequestDeadline(config)} seconds</dd></>}
         <dt>Entry identity</dt><dd className="my-reservoir-hash">{journal.entryId}</dd>
         <dt>Turn / attempt</dt><dd>{journal.turnId} / {journal.attemptId}</dd>
@@ -51,7 +60,7 @@ export function MyReservoirJournalDetail({ journal, revision, config, onRefreshE
       </section>}
       <section>
         <h4>Exact prompt and observation</h4>
-        {(journal.promptVersion === 'reservoir-journal-v5' || journal.promptVersion === 'reservoir-journal-v6' || journal.promptVersion === 'reservoir-journal-v7' || journal.promptVersion === 'reservoir-journal-v8') && <p>The {journal.promptVersion.replace('reservoir-journal-', '')} prompt uses a compact measurement subset. The full retained observation below also includes coordinates, spectra and other values that were not supplied as part of that readout. The exact prompt records what was supplied, including prior prose.</p>}
+        {(!journal.checkIn && (journal.promptVersion === 'reservoir-journal-v5' || journal.promptVersion === 'reservoir-journal-v6' || journal.promptVersion === 'reservoir-journal-v7' || journal.promptVersion === 'reservoir-journal-v8')) && <p>The {journal.promptVersion.replace('reservoir-journal-', '')} prompt uses a compact measurement subset. The full retained observation below also includes coordinates, spectra and other values that were not supplied as part of that readout. The exact prompt records what was supplied, including prior prose.</p>}
         <p>Recurrent coordinates and summaries are separate from sensory measurements. Reading or selecting a coordinate in this app does not edit this retained prompt.</p>
         <h5>Exact prompt</h5><pre tabIndex={0} role="region" aria-label="Exact journal prompt">{journal.prompt}</pre>
         <h5>Versioned numerical observation</h5><pre tabIndex={0} role="region" aria-label="Numerical observation">{json(journal.observation)}</pre>

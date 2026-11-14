@@ -1,3 +1,4 @@
+import { checkInConfigurationError, checkInTimes, validCheckInPrompt } from './checkInSchedule';
 import { extensionError, sessionLimits, validSessionLimits } from './sustainedLimits';
 import { errorText } from './api';
 import { myReservoirApi } from './myReservoirApi';
@@ -25,6 +26,12 @@ function check(update: SustainedUpdate) {
   if (!s) { if (f) throw new Error('A state frame has no owning session.'); return; }
   if (!s.config || !isSustainedPromptVersion(effectivePromptVersion(s.config))) throw new Error('The session has an unsupported journal prompt version.');
   if (!validWritingLimits(s.config)) throw new Error('The session has invalid retained writing limits.');
+  if (checkInConfigurationError(s.config)) throw new Error('The session has invalid scheduled conversation settings.');
+  if (s.checkIns) {
+    const schedule = s.config.checkInSchedule, c = s.checkIns;
+    const times = schedule ? checkInTimes(schedule) : [];
+    if (!schedule || c.intervalSeconds !== schedule.intervalSeconds || c.endAfterSeconds !== schedule.endAfterSeconds || !bounded(c.settings.revision) || !validCheckInPrompt(c.settings.prompt) || typeof c.settings.includeTelemetry !== 'boolean' || typeof c.canEdit !== 'boolean' || typeof c.complete !== 'boolean' || !Array.isArray(c.slots) || c.slots.length !== times.length || c.slots.some((slot, index) => slot.ordinal !== index + 1 || slot.scheduledSeconds !== times[index] || !['pending', 'prepared', 'requesting', 'failed', 'saved', 'applied', 'skipped', 'missed', 'cancelled'].includes(slot.status))) throw new Error('The scheduled conversation progress does not match this session.');
+  }
   if (!s.sessionId || !ordinal(s.generation) || !ordinal(s.revision) || !bounded(s.step) || !bounded(s.durableStep) || s.durableStep > s.step || !bounded(s.journalCount, 10000) || !bounded(s.turnCount, 10000) || s.journalCount > s.turnCount || !bounded(s.usedBytes, Number.MAX_SAFE_INTEGER) || ![s.simulatedTime, s.elapsedSeconds].every(value => Number.isFinite(value) && value >= 0) || !Array.isArray(s.diagnostics)) throw new Error('The sustained session update has invalid identity or bounded measurements.');
   if (s.effectiveLimits && (!validSessionLimits(s.effectiveLimits) || Object.entries(s.effectiveLimits).some(([key, value]) => value < s.config[key as keyof SustainedLimits]))) throw new Error('The session has invalid extended limits.');
   if (s.limitExtensionCount !== undefined && !bounded(s.limitExtensionCount)) throw new Error('The session has an invalid extension count.');
@@ -104,6 +111,8 @@ export class MyReservoirController {
     if (!validDifferenceControls(config)) { this.set({ error: 'Review the difference-signal settings before creating a session.' }); return false; }
     if (!validMemoryPolicy(config)) { this.set({ error: 'Review the earlier-entry policy before creating a session.' }); return false; }
     if (!validMemoryRecentExclusion(config)) { this.set({ error: 'Review the recent-return window before creating a session.' }); return false; }
+    const scheduleError = checkInConfigurationError(config);
+    if (scheduleError) { this.set({ error: scheduleError }); return false; }
     const identity = this.identityEpoch, requestId = this.id(), prior = this.state.summary;
     this.set({ busy: 'create', error: '', message: '' }); let accepted = false;
     try {
@@ -146,6 +155,38 @@ export class MyReservoirController {
         : 'Extended limits saved. Another limit or pending boundary still holds this session; review it before continuing.' }); return true;
     } catch (error) { if (epoch === this.identityEpoch) this.set({ error: errorText(error) }); return false; }
     finally { if (epoch === this.identityEpoch) this.set({ busy: null }); }
+  }
+  async updateCheckInSettings(prompt: string, includeTelemetry: boolean, expectedRevision: string) {
+    const summary = this.state.summary; if (!summary || this.state.busy) return false;
+    if (!summary.checkIns?.canEdit) { this.set({ error: 'Pause and let any writing or save settle before editing future check-ins.' }); return false; }
+    if (summary.revision !== expectedRevision) { this.set({ error: 'The session changed. Review the current check-in settings before saving.' }); return false; }
+    if (!validCheckInPrompt(prompt) || typeof includeTelemetry !== 'boolean') { this.set({ error: 'Enter a nonempty conversational prompt within the text limit.' }); return false; }
+    const epoch = this.identityEpoch, requestId = this.id(); this.set({ busy: 'updateCheckInSettings', error: '', message: '' });
+    try {
+      const result = await this.api.updateCheckInSettings(requestId, summary.sessionId, summary.generation, expectedRevision, prompt, includeTelemetry);
+      if (epoch !== this.identityEpoch) return false;
+      if (result.requestId !== requestId || !result.summary || !same(summary, result.summary)) throw new Error('The prompt update did not match this session generation.');
+      this.accept(result);
+      this.set({ message: 'Future check-in settings saved. Prepared check-ins and retries keep their original settings. Resume when ready.' }); return true;
+    } catch (error) { if (epoch === this.identityEpoch) this.set({ error: errorText(error) }); return false; }
+    finally { if (epoch === this.identityEpoch) this.set({ busy: null }); }
+  }
+  /** Read a fixed batch without changing the journal selection, worker, or numerical clock. */
+  async loadCheckInAnswers(): Promise<SustainedJournal[]> {
+    const summary = this.state.summary;
+    if (!summary?.checkIns) return [];
+    const epoch = this.identityEpoch, slots = summary.checkIns.slots.filter(slot => slot.entryId), answers: SustainedJournal[] = [];
+    for (let offset = 0; offset < slots.length; offset += 4) {
+      const chunk = await Promise.all(slots.slice(offset, offset + 4).map(async slot => {
+        const requestId = this.id(), result = await this.api.journal(requestId, summary.sessionId, summary.generation, slot.entryId!);
+        const j = result.journal, context = j.checkIn;
+        if (epoch !== this.identityEpoch) throw new Error('The session changed while loading the reading. Open it again for the current session.');
+        if (result.requestId !== requestId || !same(summary, result) || !ordinal(result.revision) || BigInt(result.revision) < BigInt(summary.revision) || j.entryId !== slot.entryId || !validRow(j) || !isSustainedPromptVersion(j.promptVersion) || j.promptVersion !== effectivePromptVersion(summary.config) || j.saveReceipt.entryId !== j.entryId || j.saveReceipt.sha256 !== j.sha256 || !context || context.ordinal !== slot.ordinal || context.scheduledSeconds !== slot.scheduledSeconds || context.settingsRevision !== slot.settingsRevision || context.includeTelemetry !== slot.includeTelemetry || context.prompt !== slot.prompt) throw new Error('A check-in answer did not match its saved identity and context.');
+        return j;
+      }));
+      answers.push(...chunk);
+    }
+    return answers;
   }
   async openJournalFolder() {
     const summary = this.state.summary;

@@ -66,3 +66,20 @@
 .my-reservoir-live-view .scene-canvas, .my-reservoir-live-view .recorded-fill-canvas { height: 240px; }
 .my-reservoir-status .my-reservoir-current-fill dd { color: #d0f0df; font-size: 24px; }
 @media (max-width: 1100px) { .my-reservoir-reading-layout { grid-template-columns: minmax(0, 1fr); } }
+
+.my-reservoir-check-in-setup { margin-top: 22px; padding-top: 16px; border-top: 1px solid #314953; }
+.my-reservoir-check-in-setup h3 { font-size: 16px; margin: 0 0 14px; }
+.my-reservoir-check-in-setup textarea, .my-reservoir-check-ins textarea { display: block; box-sizing: border-box; width: 100%; min-height: 110px; resize: vertical; padding: 12px; color: #e4edef; background: #0c1720; border: 1px solid #405c68; border-radius: 6px; font: inherit; line-height: 1.6; }
+.my-reservoir-config .my-reservoir-check-in-toggle, .my-reservoir-check-ins .my-reservoir-check-in-toggle { display: flex; flex-direction: row; align-items: center; gap: 9px; margin: 14px 0 0; }
+.my-reservoir-config .my-reservoir-check-in-toggle input, .my-reservoir-check-in-toggle input { width: auto; flex: 0 0 auto; }
+.my-reservoir-check-ins { margin: 20px 0; padding: 18px; background: #10212a; border: 1px solid #395563; border-radius: 10px; min-width: 0; }
+.my-reservoir-check-ins h2 { margin: 0 0 10px; font-size: 22px; }
+.my-reservoir-check-ins h3 { font-size: 16px; }
+.my-reservoir-check-ins p { font-size: 12px; }
+.my-reservoir-check-ins label { display: flex; flex-direction: column; gap: 8px; font-size: 12px; }
+.my-reservoir-check-ins fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.my-reservoir-check-ins legend { margin-bottom: 16px; font-size: 14px; }
+.my-reservoir-check-in-slots { list-style: none; padding: 0; margin: 12px 0 0; max-height: 440px; overflow-y: auto; }
+.my-reservoir-check-in-slots li { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 14px 0; border-top: 1px solid #314953; font-size: 13px; }
+.my-reservoir-check-in-slots p { margin: 5px 0 0; }
+.my-reservoir-check-in-reading .my-reservoir-journal-detail { margin: 14px 0; }

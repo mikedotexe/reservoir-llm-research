@@ -7,10 +7,10 @@ import { formatSessionDuration } from './sessionDuration';
 
 export default function MyReservoirLimits({ state, controller }: { state: MyReservoirState; controller: MyReservoirController }) {
   const s = state.summary;
-  if (!s || s.phase === 'stopped') return null;
+  if (!s || s.phase === 'stopped' || s.phase === 'scheduleComplete') return null;
   return <details className="my-reservoir-details">
     <summary>Extend session limits</summary>
-    <p>Keep this journal going for longer. If running, pause first. Save higher limits, then continue when ready.</p>
+    <p>{s.checkIns && 'These limits do not move the scheduled final check-in. '}Keep this journal going for longer. If running, pause first. Save higher limits, then continue when ready.</p>
     {s.canExtendLimits
       ? <LimitEditor key={`${s.sessionId}:${s.generation}:${s.revision}`} state={state} controller={controller}/>
       : <p>{s.phase === 'storageHeld' || s.phase === 'storageBlocked'
