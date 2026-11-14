@@ -34,6 +34,10 @@ use std::{
 };
 
 use reservoir_core::sustained::{is_zero_u64, SustainedMemoryPolicy};
+#[path = "sustained_check_ins.rs"]
+mod check_ins;
+use check_ins::CheckInSummary;
+
 fn err(kind: &str, message: impl Into<String>) -> AppError {
     AppError::new("sustained", kind, message)
 }
@@ -43,6 +47,9 @@ fn ce(e: impl std::fmt::Display) -> AppError {
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedConfig {
+    /// Optional elapsed-running-time conversation schedule; absent in historical sessions.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub check_in_schedule: Option<reservoir_core::sustained::SustainedCheckInSchedule>,
     pub seed: String,
     pub turn_every: u64,
     pub maximum_steps: u64,
@@ -126,6 +133,7 @@ pub struct SustainedConfig {
 impl Default for SustainedConfig {
     fn default() -> Self {
         Self {
+            check_in_schedule: None,
             seed: "20260909".into(),
             turn_every: 30,
             maximum_steps: 10800,
@@ -168,6 +176,22 @@ impl SustainedConfig {
             return Err(err("configuration","Sustained budgets: 1–1,000,000 steps, 1–10,000 attempts, 1–86,400 seconds, 16–512 MiB and 100–10,000 ms pacing."));
         }
         self.specification()?.validate().map_err(ce)?;
+        if let Some(schedule) = &self.check_in_schedule {
+            if schedule.end_after_seconds != self.maximum_duration_seconds {
+                return Err(err(
+                    "configuration",
+                    "The conversation schedule must end at the session's original duration.",
+                ));
+            }
+            let slots = schedule
+                .end_after_seconds
+                .div_ceil(schedule.interval_seconds);
+            let steps = (schedule.end_after_seconds * 1000).div_ceil(self.pace_ms) + slots + 1;
+            let turns = steps.div_ceil(self.turn_every) + slots;
+            if self.maximum_steps < steps || self.maximum_turns < turns {
+                return Err(err("configuration", format!("This schedule needs at least {steps} steps and {turns} writing attempts; increase the run limits before creating it.")));
+            }
+        }
         if self.language.backend == LanguageKind::Ollama {
             crate::model_transport::validate_configuration(&self.language).map_err(ce)?;
         }
@@ -182,6 +206,7 @@ impl SustainedConfig {
             return Err(err("seed", "Seed must be canonical unsigned decimal"));
         }
         Ok(SustainedSpecification {
+            check_in_schedule: self.check_in_schedule.clone(),
             seed,
             dt: 1.0 / 3.0,
             leak: self.leak,
@@ -317,6 +342,8 @@ pub struct PendingApplication {
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct SustainedSummary {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub check_ins: Option<CheckInSummary>,
     pub effective_limits: SustainedRunLimits,
     pub can_extend_limits: bool,
     pub limit_extension_count: usize,
@@ -694,7 +721,7 @@ impl SustainedState {
                 "Resolve the held outcome before explicitly starting",
             ));
         }
-        if self.duration_reached(a) || self.step_budget_reached(a) {
+        if a.engine.check_in_complete() || self.duration_reached(a) || self.step_budget_reached(a) {
             return Err(err("budget", "A configured sustained budget is exhausted"));
         }
         a.run_requested = true;
@@ -715,7 +742,8 @@ impl SustainedState {
         Ok(update)
     }
     fn can_extend_limits(&self, a: &Active) -> bool {
-        !a.worker_active
+        !a.engine.check_in_complete()
+            && !a.worker_active
             && !a.run_requested
             && !a.dispatch_once
             && matches!(
@@ -829,7 +857,12 @@ impl SustainedState {
         self.shared.pause.store(true, Ordering::SeqCst);
         a.manifest.revision = next(&a.manifest.revision);
         if !a.worker_active {
-            a.manifest.phase = "paused".into();
+            a.manifest.phase = if a.engine.check_in_complete() {
+                "scheduleComplete"
+            } else {
+                "paused"
+            }
+            .into();
             self.persist(a)?;
         }
         Ok(self.update(&g, request_id))
@@ -878,7 +911,12 @@ impl SustainedState {
             return Err(err("busy", "Wait for the active write/request to settle"));
         }
         a.run_requested = false;
-        a.manifest.phase = "paused".into();
+        a.manifest.phase = if a.engine.check_in_complete() {
+            "scheduleComplete"
+        } else {
+            "paused"
+        }
+        .into();
         a.manifest.revision = next(&a.manifest.revision);
         self.persist(a)?;
         if a.manifest.phase == "budgetReached" {
@@ -886,6 +924,9 @@ impl SustainedState {
         }
         if a.engine.pending_journal().is_some() {
             self.save_journal(a)?;
+        }
+        if a.engine.check_in_complete() {
+            self.shared.busy.store(false, Ordering::SeqCst);
         }
         Ok(self.update(&g, request_id))
     }
@@ -918,6 +959,10 @@ impl SustainedState {
         self.persist(a)?;
         if a.manifest.phase == "budgetReached" {
             return Ok(self.update(&g, request_id));
+        }
+        // A retry starts a new active interval; exclude the preceding pause.
+        if a.engine.check_in_state().is_some() {
+            a.last_accounted = Instant::now();
         }
         self.launch(a);
         Ok(self.update(&g, request_id))
@@ -961,13 +1006,25 @@ impl SustainedState {
                 "User explicitly skipped this opportunity; previous applied feedback remains held.",
             )
             .map_err(ce)?;
-        a.manifest.phase = "paused".into();
+        a.manifest.phase = if a.engine.check_in_complete() {
+            "scheduleComplete"
+        } else {
+            "paused"
+        }
+        .into();
         a.manifest.revision = next(&a.manifest.revision);
         self.persist_mode(a, sustained_store::Admission::Skip)?;
+        if a.engine.check_in_complete() {
+            self.shared.busy.store(false, Ordering::SeqCst);
+        }
         Ok(self.update(&g, request_id))
     }
     fn duration_reached(&self, a: &Active) -> bool {
-        a.manifest.elapsed_millis >= a.manifest.effective_limits().maximum_duration_seconds * 1000
+        // A scheduled run closes only after its final check-in is resolved.
+        // Resource and provider failure holds still apply throughout settlement.
+        a.engine.check_in_state().is_none()
+            && a.manifest.elapsed_millis
+                >= a.manifest.effective_limits().maximum_duration_seconds * 1000
     }
     fn step_budget_reached(&self, a: &Active) -> bool {
         a.engine.step() >= a.manifest.effective_limits().maximum_steps
@@ -1234,10 +1291,14 @@ impl SustainedState {
         }
         let elapsed = a.last_accounted.elapsed();
         a.last_accounted = Instant::now();
-        a.manifest.elapsed_millis = a
-            .manifest
-            .elapsed_millis
-            .saturating_add(elapsed.as_millis().min(u64::MAX as u128) as u64);
+        // A sleep/long-gap interruption does not advance a conversation schedule.
+        // Historical unscheduled elapsed-time accounting remains unchanged.
+        if a.engine.check_in_state().is_none() || !self.shared.interrupted.load(Ordering::SeqCst) {
+            a.manifest.elapsed_millis = a
+                .manifest
+                .elapsed_millis
+                .saturating_add(elapsed.as_millis().min(u64::MAX as u128) as u64);
+        }
         if self.shared.interrupted.load(Ordering::SeqCst) {
             if a.engine.pending_language().is_some() {
                 a.engine.interrupt("System sleep/wake or a long wall-clock interruption; explicit recovery choice is required.").map_err(ce)?;
@@ -1259,6 +1320,29 @@ impl SustainedState {
             a.manifest.revision = next(&a.manifest.revision);
             self.persist(a)?;
             return Ok(Work::Done);
+        }
+        if a.engine.check_in_state().is_some() && a.run_requested && self.step_budget_reached(a) {
+            a.run_requested = false;
+            a.manifest.phase = "budgetReached".into();
+            a.manifest.revision = next(&a.manifest.revision);
+            self.persist(a)?;
+            self.shared.busy.store(false, Ordering::SeqCst);
+            return Ok(Work::Done);
+        }
+        if a.run_requested
+            && !a.dispatch_once
+            && a.engine
+                .admit_due_check_in(a.manifest.elapsed_millis)
+                .map_err(ce)?
+        {
+            a.manifest.revision = next(&a.manifest.revision);
+            self.persist(a)?;
+            if a.manifest.phase == "budgetReached" {
+                return Ok(Work::Done);
+            }
+        }
+        if a.engine.check_in_complete() {
+            return self.finish_check_ins(a);
         }
         if self.duration_reached(a)
             && (a.engine.pending_memory().is_some() || a.engine.pending_language().is_some())
@@ -1322,7 +1406,7 @@ impl SustainedState {
                         p.attempt_id,
                     )
                 }),
-                system: a.engine.specification().prompt_version.system_contract(),
+                system: a.engine.pending_system_contract(),
                 thinking: p.configuration.thinking,
             };
             return Ok(Work::Provider(Box::new(p), sampling));
@@ -1362,6 +1446,9 @@ impl SustainedState {
                 .map_err(ce)?;
         }
         let f = a.engine.advance().map_err(ce)?;
+        if a.engine.check_in_complete() {
+            return self.finish_check_ins(a);
+        }
         a.manifest.phase = "running".into();
         a.manifest.revision = next(&a.manifest.revision);
         if f.application.is_some()
@@ -1491,6 +1578,7 @@ impl SustainedState {
         });
         let cp = &a.committed.state;
         SustainedSummary {
+            check_ins: self.check_in_summary(a),
             effective_limits: a.manifest.effective_limits(),
             can_extend_limits: self.can_extend_limits(a),
             limit_extension_count: a.manifest.limit_extensions.len(),
@@ -1507,6 +1595,7 @@ impl SustainedState {
             journal_count: a.catalog.len() as u64,
             turn_count: cp.attempt_cursor,
             can_start: !a.worker_active
+                && !a.engine.check_in_complete()
                 && !a.run_requested
                 && !sustained_store::storage_held(&a.manifest)
                 && a.engine.blocked().is_none()
@@ -1651,6 +1740,20 @@ impl SustainedState {
             revision: a.manifest.revision.clone(),
             journal: serde_json::json!({"entryId":p.entry.id,"turnId":p.entry.turn_id,"attemptId":p.entry.attempt_id,"observedStep":p.entry.observed_step,"firstAppliedStep":index.first_applied_step,"text":p.entry.text,"sha256":p.entry.sha256,"prompt":p.prompt,"promptVersion":a.manifest.config.prompt_version,"rawReply":p.response.text,"observation":p.observation,"measurementReference":measurement_reference,"memory":memory,"memoryChoice":p.memory_choice,"latestShown":latest_shown,"encodedFeatures":p.encoded_features,"semanticVector":p.semantic_vector,"saveReceipt":{"entryId":entry_id,"sha256":index.sha256,"relativePath":format!("journals/{entry_id}.json")},"providerModel":p.response.provider_model,"stopReason":p.response.stop_reason,"tokenCount":p.response.token_count,"providerComplete":p.response.complete,"configuredModel":j.configured_model,"temperature":j.temperature,"samplingSeed":j.sampling_seed,"thinking":j.thinking,"feedbackProvenance":p.feedback_provenance,"objectSha256":object_hash,"requestStarted":j.request_started,"timing":j.timing,"status":index.status,"application":application}),
         };
+        if let Some(check_in) = &p.check_in {
+            detail.journal["checkIn"] = serde_json::to_value(check_in).map_err(ce)?;
+            detail.journal["observationSupplied"] = check_in.include_telemetry.into();
+            detail.journal["systemContract"] = if check_in.include_telemetry {
+                a.manifest
+                    .config
+                    .prompt_version
+                    .system_contract()
+                    .map(serde_json::Value::from)
+                    .unwrap_or(serde_json::Value::Null)
+            } else {
+                serde_json::Value::Null
+            };
+        }
         if let Some(value) = provider_prompt_evaluation {
             detail.journal["providerPromptEvaluation"] = serde_json::to_value(value).map_err(ce)?;
         }
@@ -1702,7 +1805,13 @@ impl SustainedState {
         g.generation = g.generation.max(manifest.generation.parse().unwrap_or(0)) + 1;
         manifest.generation = g.generation.to_string();
         manifest.revision = next(&manifest.revision);
-        manifest.phase = "paused".into();
+        let schedule_complete = engine.check_in_complete();
+        manifest.phase = if schedule_complete {
+            "scheduleComplete"
+        } else {
+            "paused"
+        }
+        .into();
         let committed = self.shared.store.persist(
             &mut manifest,
             &v.checkpoint,
@@ -1723,7 +1832,7 @@ impl SustainedState {
             dispatch_once: false,
             last_accounted: Instant::now(),
         });
-        self.shared.busy.store(true, Ordering::SeqCst);
+        self.shared.busy.store(!schedule_complete, Ordering::SeqCst);
         self.shared.pause.store(true, Ordering::SeqCst);
         self.shared.interrupted.store(false, Ordering::SeqCst);
         self.shared.cancel.store(false, Ordering::SeqCst);

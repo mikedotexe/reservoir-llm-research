@@ -1,5 +1,14 @@
 # Current work
 
+**November 13: scheduled conversational check-ins.** Mike selected an editable
+hourly prompt during a continuing local LLM–reservoir session, through hour six,
+with a plain-prompt/context toggle and paused edits. Development version 0.42.0
+adds the schedule, retained settings and outcomes, final-response feedback, and a
+shuffled reading view. [Change record](../desktop/ReservoirScope/RELEASE-0.42.0.md).
+This implements an exploratory reading capability; no six-hour model run,
+controlled comparison or conclusion about qualia has been produced. Earlier
+studies, frozen instruments and the live beings remain separate.
+
 **October 25, late evening (Claude): Codex's tranche read, the README reshaped, the root
 tidied.** Local `main` was fast-forwarded to Codex's published `d1a26af` (0.41.1), then:
 the three dated root documents moved to `archive/` with every live link repointed

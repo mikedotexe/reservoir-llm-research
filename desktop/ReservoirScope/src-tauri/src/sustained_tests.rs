@@ -2,6 +2,8 @@ use super::*;
 use std::fs;
 #[path = "sustained_arms.rs"]
 mod arms;
+#[path = "sustained_check_in_tests.rs"]
+mod check_ins;
 #[path = "sustained_limit_tests.rs"]
 mod limits;
 #[path = "sustained_quota_tests.rs"]

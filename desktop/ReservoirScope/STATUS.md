@@ -1,5 +1,13 @@
 # Reservoir Scope: current status and next work
 
+**November 13, 2026 · 0.42.0 scheduled conversations.** My reservoir can insert
+editable conversational prompts during ordinary journaling, defaulting to hours
+1–6. The context toggle selects actual telemetry plus session context or the
+editable prompt alone. Paused edits preserve history; the final answer is saved
+and applied before completion. [Change record](RELEASE-0.42.0.md) ·
+[first-session guide](GETTING-STARTED.md#schedule-a-conversation-during-the-run).
+Local development work; no six-hour model study or publication is claimed.
+
 **October 25, 2026 · 0.41.1 journal folder shortcut.** **Open journal folder**
 beside Journal opens the current session’s saved files in the system file manager.
 [Change record](RELEASE-0.41.1.md).

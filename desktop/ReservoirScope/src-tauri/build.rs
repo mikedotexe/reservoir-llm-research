@@ -21,6 +21,7 @@ fn main() {
             "get_sustained",
             "start_sustained",
             "extend_sustained_limits",
+            "update_sustained_check_in_settings",
             "pause_sustained",
             "stop_sustained",
             "retry_sustained_save",

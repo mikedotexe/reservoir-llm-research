@@ -403,3 +403,38 @@ real-model checks and human acceptance are separate evidence. The roadmap's mult
 and 24-hour soaks remain qualification goals until a receipt records those durations.
 An accelerated numerical test is not a 24-hour run. Windows/Linux lifecycle, actual
 system sleep/wake and measured GPU/power efficiency each require their own checks.
+
+## Scheduled conversations (0.42.0)
+
+The optional `checkInSchedule` configuration contains `intervalSeconds`,
+`endAfterSeconds`, `prompt`, and `includeTelemetry`. Its end equals the original
+session duration; later resource extensions do not move the schedule. An omitted
+schedule leaves historical configuration, prompts and replay identities unchanged.
+See [setup and reading](GETTING-STARTED.md#schedule-a-conversation-during-the-run).
+
+Admission and prompt/context edits are replayable core events. Each opportunity
+retains its ordinal and due time; prepared turns freeze their admitted elapsed
+time, settings revision and exact prompt. The settings history begins with the
+original configuration (revision 0). Paused edits are published durably before
+becoming available to future turns. A prepared or failed attempt keeps its frozen
+revision through retry. Each retry has its own ordinary attempt identity.
+
+Plain turns bypass memory selection and the app system contract. Their internal
+numerical observation is still retained for encoding and evidence, explicitly
+separate from what was sent. Telemetry turns use actual current readings even if
+the ordinary journal invitation omits or scrambles a readout. The check-in renderer
+is separate from the historical journal renderers. Supplied measurements,
+returned text and standing instructions are recorded distinctly.
+
+The backend admits due check-ins before undispatched ordinary writing, after
+prior feedback settles. It records superseded slots as missed and keeps provider,
+save and storage failures visible. The duration boundary permits the final
+request, save and one feedback application, then enters `scheduleComplete`.
+An explicit skip also resolves that slot while retaining the gap. Restoring a
+completed schedule cannot restart or extend it; restoring an uncertain request
+requires an explicit retry or skip, without automatic resending.
+
+Exports include schedule configuration, settings history, exact turn evidence and
+outcomes through the existing verified chain. Readers predating this feature do
+not understand the new scheduled events. The current reader still verifies
+historical unscheduled bundles.

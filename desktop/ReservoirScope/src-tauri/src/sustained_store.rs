@@ -1073,6 +1073,7 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
         "compatibilityBlocked",
         "attemptBlocked",
         "interrupted",
+        "scheduleComplete",
     ]
     .contains(&manifest.phase.as_str())
     {
@@ -1100,6 +1101,7 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
     let mut effective_limits = SustainedRunLimits::from_config(&manifest.config);
     let mut limit_extensions = Vec::new();
     let mut prior_extension_elapsed = 0;
+    let mut prior_check_in_elapsed = 0;
     let mut journal_count = 0;
     let mut received_response_total = 0;
     let mut received_responses = VecDeque::new();
@@ -1120,6 +1122,20 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
         // The existing verified-chain traversal already owns these typed events.
         // Retain only the newest bounded metadata rows, never full response text.
         for event in &link.segment.events {
+            let check_in_elapsed = match &event.kind {
+                SustainedEventKind::CheckInSettingsUpdated { elapsed_millis, .. }
+                | SustainedEventKind::CheckInAdmitted { elapsed_millis } => Some(*elapsed_millis),
+                _ => None,
+            };
+            if let Some(elapsed) = check_in_elapsed {
+                if elapsed < prior_check_in_elapsed || elapsed > manifest.elapsed_millis {
+                    return Err(err(
+                        "schedule",
+                        "Conversation timing differs from the retained running time",
+                    ));
+                }
+                prior_check_in_elapsed = elapsed;
+            }
             if let SustainedEventKind::BudgetsExtended {
                 maximum_steps,
                 maximum_turns,
@@ -1249,6 +1265,16 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
         return Err(err(
             "chain",
             "Final manifest/checkpoint/journal count differs from replayed committed prefix",
+        ));
+    }
+    if manifest.phase == "scheduleComplete"
+        && !SustainedSession::restore(checkpoint.clone())
+            .map_err(ce)?
+            .check_in_complete()
+    {
+        return Err(err(
+            "schedule",
+            "Conversation completion lacks a resolved final check-in",
         ));
     }
     let size_bytes = disk_bytes(path)?;

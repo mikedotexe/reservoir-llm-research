@@ -5,7 +5,7 @@ then read it with some curiosity. You do not need to understand the reservoir's
 math to begin. Plan for **up to 30 minutes of running time**, after installation
 and model setup, plus a few minutes to read.
 
-These instructions describe **0.41.0 source**. If you received the older 0.27.0
+These instructions describe **0.42.0 source**. If you received the older 0.27.0
 candidate 04 package, follow its [install guide](PREVIEW-START.md).
 
 ## 1. Open the app
@@ -137,6 +137,47 @@ Limits are cumulative totals, up to **24 hours, 10,000 writing attempts and
 or storage failure must be dealt with first; extending time does not clear it.
 You can also restore a saved session paused, then extend it. Longer runs still
 need the app open and the machine awake.
+
+## Schedule a conversation during the run
+
+Before creating a session, enable **Scheduled conversations → Add conversational
+check-ins**. The preset runs for six hours and asks once each hour, ending with
+hour six. Edit the **Conversational prompt** to ask your own open-ended question.
+Ordinary journaling continues between these check-ins.
+
+**Include telemetry and session context** supplies the actual current readout,
+the selected earlier writing and the session’s standing instructions. Turn it off
+for a **plain prompt**: only the text you entered is sent, with no app-supplied
+instructions, earlier writing or measurements. Both kinds of answer are saved and
+fed back through the ordinary reservoir path. Plain requests receive no explicit
+history of the preceding run; the app does not maintain a hidden conversation.
+
+Set **Run duration** and **Conversation interval** as needed. The final check-in
+always occurs at the end, including when the duration is not an interval multiple.
+For just one conversation after several hours, set the two durations equal.
+The setup raises step and attempt capacity to accommodate the schedule; storage
+limits, retries and failures can still hold it.
+
+The schedule counts running time, including generation, and excludes pauses and
+sleep interruptions. A due prompt waits for the current writing/save/feedback
+boundary. The final reply must be saved and its feedback applied before the run
+finishes, so completion can be later than the displayed final time. Older missed
+opportunities remain visible; the app does not send a burst of overdue prompts.
+
+To revise a running session’s prompt or context mode, **Pause**, let writing and
+saving settle, and open **Edit future check-ins**. Save, then explicitly Resume.
+An already prepared request or retry retains its original settings. The interval
+and final time stay fixed, including when resource limits are extended.
+
+The scheduled-conversation list includes unanswered, failed and skipped slots.
+Use **Open answer and evidence** to inspect supplied context and feedback status,
+or **Read answers without hour labels** for a shuffled first reading before
+revealing chronology. Prompt revisions and timing survive export and recovery.
+This first run is one developing sequence: look for recurring curiosities,
+continuity, repetition and changes in expressed experience. Switching modes also
+changes returned writing and instructions, so it is not a telemetry-only test.
+These reports can inform a discussion of possible qualia without establishing
+subjective experience.
 
 ## 5. Read, save and tell us what you noticed
 

@@ -47,6 +47,30 @@ pub async fn extend_sustained_limits(
     .map_err(worker)?
 }
 #[tauri::command]
+pub async fn update_sustained_check_in_settings(
+    state: tauri::State<'_, SustainedState>,
+    request_id: String,
+    session_id: String,
+    generation: String,
+    expected_revision: String,
+    prompt: String,
+    include_telemetry: bool,
+) -> Result<SustainedUpdate, AppError> {
+    let s = state.inner().clone();
+    tauri::async_runtime::spawn_blocking(move || {
+        s.update_check_in_settings(
+            request_id,
+            &session_id,
+            &generation,
+            &expected_revision,
+            prompt,
+            include_telemetry,
+        )
+    })
+    .await
+    .map_err(worker)?
+}
+#[tauri::command]
 pub async fn get_sustained(
     state: tauri::State<'_, SustainedState>,
     request_id: String,
