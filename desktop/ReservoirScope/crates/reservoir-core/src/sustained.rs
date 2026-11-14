@@ -12,6 +12,10 @@ use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::collections::VecDeque;
 
+#[path = "sustained_check_ins.rs"]
+mod check_ins;
+pub use check_ins::*;
+
 pub const FORMAT: &str = "reservoir-sustained-segment-v1";
 pub const CHECKPOINT_FORMAT: &str = "reservoir-sustained-checkpoint-v1";
 pub const OBSERVATION_VERSION: &str = "reservoir-and-sensory-v1";
@@ -509,6 +513,8 @@ impl SustainedPromptVersion {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedSpecification {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub check_in_schedule: Option<SustainedCheckInSchedule>,
     pub seed: u64,
     pub dt: f64,
     pub leak: f64,
@@ -594,6 +600,7 @@ pub struct SustainedSpecification {
 impl Default for SustainedSpecification {
     fn default() -> Self {
         Self {
+            check_in_schedule: None,
             seed: 20260909,
             dt: 1.0 / 3.0,
             leak: 0.65,
@@ -651,6 +658,9 @@ impl SustainedSpecification {
         }
     }
     pub fn validate(&self) -> Result<()> {
+        if let Some(schedule) = &self.check_in_schedule {
+            schedule.validate()?;
+        }
         self.language.validate()?;
         validate_generation_budget(
             self.output_tokens,
@@ -1125,6 +1135,11 @@ pub struct SustainedMemory {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedPendingMemory {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub check_in: Option<SustainedCheckInContext>,
+    /// An ordinary, undispatched attempt converted into a scheduled opportunity.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub reserved_attempt_id: Option<u64>,
     pub turn_id: u64,
     pub observed_step: u64,
     /// The expected readback under the `latest` policy; omitted when a choice names it.
@@ -1148,6 +1163,8 @@ impl SustainedPendingMemory {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedPendingLanguage {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub check_in: Option<SustainedCheckInContext>,
     pub turn_id: u64,
     pub attempt_id: u64,
     pub observed_step: u64,
@@ -1177,6 +1194,8 @@ pub struct SustainedPendingLanguage {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedPendingJournal {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub check_in: Option<SustainedCheckInContext>,
     pub entry: SustainedJournal,
     pub prompt: String,
     pub response: LanguageResponse,
@@ -1197,6 +1216,8 @@ pub struct SustainedPendingJournal {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedPrepared {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub check_in: Option<SustainedCheckInContext>,
     pub entry: SustainedJournal,
     pub receipt: SustainedSaveReceipt,
     pub encoded_features: Vec<f64>,
@@ -1226,6 +1247,8 @@ pub enum SustainedPhase {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedContinuation {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub check_in_state: Option<SustainedCheckInState>,
     pub mechanism: String,
     pub specification: SustainedSpecification,
     pub model_sha256: String,
@@ -1294,6 +1317,14 @@ impl SustainedCheckpoint {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(tag = "type", content = "data", rename_all = "camelCase")]
 pub enum SustainedEventKind {
+    CheckInAdmitted {
+        elapsed_millis: u64,
+    },
+    CheckInSettingsUpdated {
+        prompt: String,
+        include_telemetry: bool,
+        elapsed_millis: u64,
+    },
     Advanced(SustainedFrame),
     MemoryConfirmed(SustainedJournal),
     MemoryFailed {
@@ -1379,6 +1410,10 @@ impl SustainedSession {
         let model = ReservoirModel::seeded(specification.seed);
         let field = SensoryField::seeded(specification.seed ^ FIELD_SEED);
         let state = SustainedContinuation {
+            check_in_state: specification
+                .check_in_schedule
+                .as_ref()
+                .map(|_| SustainedCheckInState::default()),
             mechanism: specification.mechanism().into(),
             model_sha256: typed_hash(&model),
             projection_sha256: typed_hash(&field.projection),
@@ -1539,6 +1574,10 @@ impl SustainedSession {
     pub fn advance(&mut self) -> Result<SustainedFrame> {
         self.room()?;
         ensure(
+            !self.check_in_complete(),
+            "The final scheduled conversation is complete",
+        )?;
+        ensure(
             matches!(
                 self.state.phase,
                 SustainedPhase::Ready | SustainedPhase::Prepared(_)
@@ -1574,6 +1613,23 @@ impl SustainedSession {
                 relative_path: p.receipt.relative_path.clone(),
                 applied_step: p.application_step,
             });
+            if let Some(context) = &p.check_in {
+                let outcome = next
+                    .check_in_state
+                    .as_mut()
+                    .expect("validated schedule")
+                    .outcomes
+                    .last_mut()
+                    .expect("admitted check-in");
+                ensure(
+                    outcome.ordinal == context.ordinal
+                        && outcome.status == SustainedCheckInStatus::Pending,
+                    "Prepared check-in does not own its outcome",
+                )?;
+                outcome.status = SustainedCheckInStatus::Applied;
+                outcome.journal_id = Some(p.entry.id.clone());
+                outcome.applied_step = Some(p.application_step);
+            }
             Some(SustainedApplication {
                 attempt_id: p.entry.attempt_id,
                 journal_id: p.entry.id.clone(),
@@ -1753,6 +1809,7 @@ impl SustainedSession {
         if step.is_multiple_of(next.specification.turn_every)
             && step < next.specification.maximum_steps
             && next.attempt_cursor < next.specification.maximum_turns
+            && !check_ins::check_in_complete(&next)
         {
             next.turn_cursor += 1;
             let observation = observation(
@@ -1808,7 +1865,14 @@ impl SustainedSession {
             }
             _ => return Err(invalid("Pending memory read names no entry")),
         };
-        let pending = prepare_language(&mut self.state, p.observation, memory, p.choice)?;
+        let pending = prepare_language_for(
+            &mut self.state,
+            p.observation,
+            memory,
+            p.choice,
+            p.check_in,
+            p.reserved_attempt_id,
+        )?;
         self.state.phase = SustainedPhase::Language(pending);
         self.event(SustainedEventKind::MemoryConfirmed(entry.clone()));
         Ok(())
@@ -1823,6 +1887,7 @@ impl SustainedSession {
         // No prompt may pretend a failed read supplied text. Retrying this blocked
         // phase returns to a physical memory read before another prompt is prepared.
         let pending = SustainedPendingLanguage {
+            check_in: p.check_in,
             turn_id: p.turn_id,
             attempt_id: 0,
             observed_step: p.observed_step,
@@ -1962,6 +2027,7 @@ impl SustainedSession {
             "Journal readback differs from exact pending text/identity",
         )?;
         self.state.phase = SustainedPhase::Prepared(SustainedPrepared {
+            check_in: p.check_in.clone(),
             entry: p.entry,
             receipt: receipt.clone(),
             encoded_features: p.encoded_features,
@@ -1969,6 +2035,16 @@ impl SustainedSession {
             application_step: self.step() + 1,
             feedback_provenance: p.feedback_provenance,
         });
+        if p.check_in.is_some() {
+            self.state
+                .check_in_state
+                .as_mut()
+                .expect("validated schedule")
+                .outcomes
+                .last_mut()
+                .expect("admitted check-in")
+                .journal_id = Some(readback.id.clone());
+        }
         self.application_authorized = false;
         self.event(SustainedEventKind::JournalSaved {
             receipt: receipt.clone(),
@@ -2002,15 +2078,23 @@ impl SustainedSession {
         let previous_attempt_id = b.pending.attempt_id;
         // A new physical reread is mandatory even when the former prompt already
         // retained the same memory. No automatic retry consumes this state.
-        self.state.phase = if self.state.latest_memory.is_some() {
+        let check_in = b.pending.check_in.clone();
+        self.state.phase = if self.state.latest_memory.is_some()
+            && check_in.as_ref().is_none_or(|c| c.include_telemetry)
+        {
             self.state.chosen_memory = None;
             let step = self.step();
-            SustainedPhase::Memory(pending_memory(&self.state, step, b.pending.observation)?)
+            let mut memory = pending_memory(&self.state, step, b.pending.observation)?;
+            memory.check_in = check_in;
+            SustainedPhase::Memory(memory)
         } else {
-            SustainedPhase::Language(prepare_language(
+            self.state.chosen_memory = None;
+            SustainedPhase::Language(prepare_language_for(
                 &mut self.state,
                 b.pending.observation,
                 None,
+                None,
+                check_in,
                 None,
             )?)
         };
@@ -2026,6 +2110,17 @@ impl SustainedSession {
             !matches!(self.state.phase, SustainedPhase::Ready),
             "No pending opportunity to skip",
         )?;
+        if check_ins::phase_check_in(&self.state.phase).is_some() {
+            let outcome = self
+                .state
+                .check_in_state
+                .as_mut()
+                .expect("validated schedule")
+                .outcomes
+                .last_mut()
+                .expect("admitted check-in");
+            outcome.status = SustainedCheckInStatus::Skipped;
+        }
         self.state.phase = SustainedPhase::Ready;
         self.application_authorized = false;
         self.event(SustainedEventKind::Skipped {
@@ -2698,12 +2793,27 @@ fn prepare_language(
     memory: Option<SustainedMemory>,
     memory_choice: Option<SustainedMemoryChoice>,
 ) -> Result<SustainedPendingLanguage> {
+    prepare_language_for(state, observation, memory, memory_choice, None, None)
+}
+fn prepare_language_for(
+    state: &mut SustainedContinuation,
+    observation: SustainedObservation,
+    memory: Option<SustainedMemory>,
+    memory_choice: Option<SustainedMemoryChoice>,
+    check_in: Option<SustainedCheckInContext>,
+    reserved_attempt_id: Option<u64>,
+) -> Result<SustainedPendingLanguage> {
     ensure(
-        state.attempt_cursor < state.specification.maximum_turns,
+        reserved_attempt_id.is_some_and(|id| id > 0 && id == state.attempt_cursor)
+            || state.attempt_cursor < state.specification.maximum_turns,
         "Language attempt budget is exhausted",
     )?;
-    state.attempt_cursor += 1;
-    let latest_shown = if state.specification.prompt_version.returns_two_entries() {
+    if reserved_attempt_id.is_none() {
+        state.attempt_cursor += 1;
+    }
+    let latest_shown = if state.specification.prompt_version.returns_two_entries()
+        && check_in.as_ref().is_none_or(|c| c.include_telemetry)
+    {
         state.latest_memory.clone()
     } else {
         None
@@ -2715,13 +2825,15 @@ fn prepare_language(
         configuration: state.specification.language.clone(),
         output_tokens: state.specification.output_tokens,
         request_deadline_seconds: state.specification.request_deadline_seconds,
-        prompt: prompt(
+        prompt: check_ins::render_prompt(
             state.specification.prompt_version,
             &observation,
             memory.as_ref(),
             latest_shown.as_ref(),
             state.specification.seed,
+            check_in.as_ref(),
         ),
+        check_in,
         observation,
         memory,
         memory_choice,
@@ -2816,6 +2928,7 @@ fn prepare_journal(
         sha256,
     };
     Ok(SustainedPendingJournal {
+        check_in: p.check_in.clone(),
         entry,
         prompt: p.prompt.clone(),
         response: response.clone(),
@@ -2910,6 +3023,8 @@ fn pending_memory(
         .ok_or_else(|| invalid("No saved-and-applied memory to read"))?;
     Ok(if s.specification.memory_policy.is_latest() {
         SustainedPendingMemory {
+            check_in: None,
+            reserved_attempt_id: None,
             turn_id: s.turn_cursor,
             observed_step,
             entry: Some(memory.entry.clone()),
@@ -2920,6 +3035,8 @@ fn pending_memory(
     } else {
         let choice = choose_memory(s, observed_step)?;
         SustainedPendingMemory {
+            check_in: None,
+            reserved_attempt_id: None,
             turn_id: s.turn_cursor,
             observed_step,
             entry: None,
@@ -3044,6 +3161,12 @@ fn choose_memory(s: &SustainedContinuation, step: u64) -> Result<SustainedMemory
 /// Under `latest` the prompt's memory is the latest applied entry; under the other
 /// policies it is the recorded choice, read back and confirmed.
 fn memory_matches_policy(p: &SustainedPendingLanguage, s: &SustainedContinuation) -> bool {
+    if p.check_in.as_ref().is_some_and(|c| !c.include_telemetry) {
+        return p.memory.is_none()
+            && p.memory_choice.is_none()
+            && p.latest_shown.is_none()
+            && s.chosen_memory.is_none();
+    }
     if s.specification.memory_policy.is_latest() {
         return same(&p.memory, &s.latest_memory) && p.memory_choice.is_none();
     }
@@ -3123,6 +3246,7 @@ fn validate_memory(m: &SustainedMemory, step: u64) -> Result<()> {
     )
 }
 fn validate_pending(p: &SustainedPendingLanguage, s: &SustainedContinuation) -> Result<()> {
+    check_ins::validate_context(p.check_in.as_ref(), s)?;
     validate_observation(&p.observation, &s.specification)?;
     if let Some(m) = &p.memory {
         validate_memory(m, s.step)?;
@@ -3145,19 +3269,22 @@ fn validate_pending(p: &SustainedPendingLanguage, s: &SustainedContinuation) -> 
             && memory_matches_policy(p, s)
             && same(
                 &p.latest_shown,
-                &if s.specification.prompt_version.returns_two_entries() {
+                &if s.specification.prompt_version.returns_two_entries()
+                    && p.check_in.as_ref().is_none_or(|c| c.include_telemetry)
+                {
                     s.latest_memory.clone()
                 } else {
                     None
                 },
             )
             && p.prompt
-                == prompt(
+                == check_ins::render_prompt(
                     s.specification.prompt_version,
                     &p.observation,
                     p.memory.as_ref(),
                     p.latest_shown.as_ref(),
                     s.specification.seed,
+                    p.check_in.as_ref(),
                 ),
         "Pending language identity/observation/prompt/memory differs",
     )
@@ -3279,6 +3406,7 @@ fn validate_difference(s: &SustainedContinuation, f: Option<&SustainedFrame>) ->
 }
 fn validate_state(s: &SustainedContinuation) -> Result<()> {
     s.specification.validate()?;
+    check_ins::validate_schedule_state(s)?;
     let model = ReservoirModel::seeded(s.specification.seed);
     let field = SensoryField::seeded(s.specification.seed ^ FIELD_SEED);
     ensure(
@@ -3290,7 +3418,11 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
     ensure(
         s.step <= s.specification.maximum_steps
             && s.attempt_cursor <= s.specification.maximum_turns
-            && s.turn_cursor <= s.step / s.specification.turn_every
+            && s.turn_cursor
+                <= s.step / s.specification.turn_every
+                    + s.check_in_state.as_ref().map_or(0, |c| {
+                        c.outcomes.iter().filter(|o| o.context.is_some()).count() as u64
+                    })
             && s.event_cursor >= s.step,
         "Invalid continuation cursor/budget",
     )?;
@@ -3399,6 +3531,13 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
     match &s.phase {
         SustainedPhase::Ready => {}
         SustainedPhase::Memory(p) => {
+            check_ins::validate_context(p.check_in.as_ref(), s)?;
+            ensure(
+                p.check_in.as_ref().is_none_or(|c| c.include_telemetry)
+                    && p.reserved_attempt_id
+                        .is_none_or(|id| p.check_in.is_some() && id > 0 && id == s.attempt_cursor),
+                "Invalid scheduled memory preparation",
+            )?;
             let m = s
                 .latest_memory
                 .as_ref()
@@ -3434,6 +3573,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
         SustainedPhase::Language(p) => validate_pending(p, s)?,
         SustainedPhase::Journal(j) => {
             let p = SustainedPendingLanguage {
+                check_in: j.check_in.clone(),
                 turn_id: j.entry.turn_id,
                 attempt_id: j.entry.attempt_id,
                 observed_step: j.entry.observed_step,
@@ -3469,6 +3609,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
             )?;
         }
         SustainedPhase::Prepared(p) => {
+            check_ins::validate_context(p.check_in.as_ref(), s)?;
             p.entry.validate()?;
             p.receipt.validate(&p.entry)?;
             let o = s
@@ -3510,6 +3651,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
             )?;
         }
         SustainedPhase::Blocked(b) => {
+            check_ins::validate_context(b.pending.check_in.as_ref(), s)?;
             reason(&b.reason)?;
             if b.pending.attempt_id == 0 {
                 ensure(
@@ -3574,6 +3716,23 @@ impl SustainedSegment {
         let mut journals = Vec::new();
         for expected in &self.events {
             match &expected.kind {
+                SustainedEventKind::CheckInAdmitted { elapsed_millis } => {
+                    ensure(
+                        engine.admit_due_check_in(*elapsed_millis)?,
+                        "Recorded check-in admission is not due",
+                    )?;
+                }
+                SustainedEventKind::CheckInSettingsUpdated {
+                    prompt,
+                    include_telemetry,
+                    elapsed_millis,
+                } => {
+                    engine.update_check_in_settings(
+                        prompt.clone(),
+                        *include_telemetry,
+                        *elapsed_millis,
+                    )?;
+                }
                 SustainedEventKind::Advanced(_) => {
                     if let Some(p) = engine.prepared_application() {
                         let id = p.entry.attempt_id;
