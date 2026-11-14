@@ -22,3 +22,21 @@ it('keeps bounded received-response evidence distinct from saved journals, inclu
   expect(html).toContain('output tokens: 9223372036854775807');
   expect(html).not.toContain('<details open');
 });
+
+
+it('offers completed schedules for reading without suggesting they can resume', () => {
+  const { controller } = reservoirFixture();
+  const state = { ...controller.snapshot(), recovered: {
+    requestId: 'completed-inspection', manifest: { ...manifest(), phase: 'scheduleComplete' }, report: bundle(), checkpoint: {},
+  } };
+  const html = renderToStaticMarkup(<MyReservoirRecovery state={state} controller={controller}/>);
+  expect(html).toContain('Restore for reading');
+  expect(html).toContain('This completed schedule stays complete when restored.');
+  expect(html).toContain('restoring does not restart the schedule or send new model requests.');
+  expect(html).not.toContain('Restore paused');
+  expect(html).not.toContain('choosing Resume');
+  const paused = renderToStaticMarkup(<MyReservoirRecovery state={{ ...state, recovered: { ...state.recovered, manifest: manifest() } }} controller={controller}/>);
+  expect(paused).toContain('Restore paused');
+  expect(paused).toContain('Restoring keeps the session paused. Review any waiting feedback or interrupted writing before choosing Resume; no request is sent automatically.');
+  expect(paused).not.toContain('Restore for reading');
+});
