@@ -1,10 +1,10 @@
 # Three local models with continuing inquiry — 14 November 2026
 
-Status: qualified and prepared; no study writing has started. This is a separate laptop apparatus experiment, not a run of Astrid or Minime.
+Status: fresh primary sessions prepared after an output-limit pilot hold; primary writing has not started. This is a separate laptop apparatus experiment, not a run of Astrid or Minime.
 
 Mike selected three-hour runs with the same default conversational prompt every hour, telemetry enabled, and the new continuing inquiry and authored-vector probe controls. The comparison is Gemma4 12B, GLM-4.7-Flash Q4_K_M, and Mistral’s Ministral 3 8B Instruct Q4_K_M. The last is a compact local Mistral-family instruction model, chosen to leave room for simultaneous inference on this 64 GiB laptop; it is not a claim to be Mistral’s largest or newest flagship.
 
-The prospective machine-readable protocol and all private evidence are in `research/outputs/three-model-inquiry-20261114/` in the `codex/three-model-inquiry` worktree. Its protocol fixes a fresh seed of 20260909, authored-v3, semantic input through `nomic-embed-text:latest`, 16,384 context tokens, 1,024 output-token ceiling, temperature .7, thinking off, a 30-step ordinary cadence, and 1000 ms requested pace. Three separately compiled app identifiers isolate windows and storage. A separate loopback-only Ollama service uses the existing local model files.
+The initial prospective protocol and all private evidence are in `research/outputs/three-model-inquiry-20261114/` in the `codex/three-model-inquiry` worktree. Its protocol fixes a fresh seed of 20260909, authored-v3, semantic input through `nomic-embed-text:latest`, 16,384 context tokens, 1,024 output-token ceiling, temperature .7, thinking off, a 30-step ordinary cadence, and 1000 ms requested pace. Three separately compiled app identifiers isolate windows and storage. A separate loopback-only Ollama service uses the existing local model files.
 
 ## Question and prospective reading
 
@@ -35,3 +35,29 @@ TypeScript, production build and formatting checks. Fresh ready manifests match 
 prospective protocol exactly apart from writer model, with zero elapsed time, steps
 and journals. `ready-audit.json` retains the independent storage paths and hashes;
 `protocol-before-start.json` freezes the final settings before any Start action.
+
+## Output-budget amendment before the primary runs
+
+The 1,024-token sessions started around 14:07 PST. GLM ordinary attempt 9 at step
+270 returned `stopReason=length`, `tokenCount=1024`, `complete=false` after 104.438
+seconds. The app held that attempt and excluded it from feedback. This was an
+output ceiling, not the request deadline. The other two sessions were paused at
+settled boundaries, retaining their last saved but unapplied replies. The three
+pilot snapshots preserve 9 Gemma, 8 GLM and 10 Ministral journals; every scheduled
+hourly opportunity is still pending. These are explicitly incomplete pilot
+trajectories, not three-hour outcomes or replacement hourly samples.
+
+Before restarting, all three fresh primary configurations were changed uniformly
+to the existing maximum of 2,048 output tokens. Every other numerical, language,
+prompt and schedule setting is unchanged. Primary exact settings, ready manifests
+and subsequent outputs live under `primary-2048/`; `pilot-1024-exports/` retains
+the complete pilot material with source/destination hashes. The model identities,
+0.46.1 source and app binaries are unchanged. This amendment is based on the
+recorded operational failure before any hourly sample existed, not on a prose
+preference.
+
+A diagnostic call using the blocked GLM prompt and derived attempt seed with the
+larger allowance returned a complete 304-token reply. It was never applied to
+any session. Because it is a different shorter response, it does not demonstrate
+that the same truncated reply would have finished or that all later entries will
+fit. It is retained separately, with the original incomplete attempt unchanged.
