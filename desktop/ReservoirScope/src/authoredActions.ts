@@ -5,6 +5,7 @@ export const ACTION_JOURNAL_PROMPT_V1 = 'reservoir-journal-actions-v1';
 /** Frozen actions/input-choice baseline retained for comparisons and saved sessions. */
 export const ACTION_JOURNAL_PROMPT = 'reservoir-journal-actions-v2';
 export const CONTINUITY_JOURNAL_PROMPT = 'reservoir-journal-actions-v3';
+export const CONTINUITY_CONTEXT_TOKENS = 16_384;
 export const isActionPrompt = (version: SustainedPromptVersion | undefined): boolean => version === ACTION_JOURNAL_PROMPT_V1 || version === ACTION_JOURNAL_PROMPT || version === CONTINUITY_JOURNAL_PROMPT;
 export const hasAuthoredActions = (config: SustainedConfig): boolean => config.actionMode === 'authored-v1' || config.actionMode === 'authored-v2' || config.actionMode === 'authored-v3';
 export const hasReservoirInputChoice = (config: SustainedConfig): boolean => config.actionMode === 'authored-v2' || config.actionMode === 'authored-v3';
@@ -17,7 +18,11 @@ export const validAuthoredActionConfig = (config: SustainedConfig): boolean => c
     || config.actionMode === 'authored-v3' && effectivePromptVersion(config) === CONTINUITY_JOURNAL_PROMPT;
 
 export function withAuthoredActionMode(config: SustainedConfig, mode: NonNullable<SustainedConfig['actionMode']>): SustainedConfig {
-  return { ...config, actionMode: mode, promptVersion: mode === 'authored-v3' ? CONTINUITY_JOURNAL_PROMPT : mode === 'authored-v2' ? ACTION_JOURNAL_PROMPT : ACTION_JOURNAL_PROMPT_V1 };
+  // Apply a new-session preset only on explicit selection, never during restore or validation.
+  const language = mode === 'authored-v3' && config.language.backend === 'ollama'
+    ? { ...config.language, contextTokens: Math.max(CONTINUITY_CONTEXT_TOKENS, Number.isFinite(config.language.contextTokens) ? config.language.contextTokens! : 0) }
+    : config.language;
+  return { ...config, language, actionMode: mode, promptVersion: mode === 'authored-v3' ? CONTINUITY_JOURNAL_PROMPT : mode === 'authored-v2' ? ACTION_JOURNAL_PROMPT : ACTION_JOURNAL_PROMPT_V1 };
 }
 
 /** The invitation remembered by the setup form is not serialized into the run. */
