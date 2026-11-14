@@ -1,5 +1,16 @@
 # Reservoir Scope: current status and next work
 
+**November 13, 2026 · 0.43.0 authored reservoir actions.** New sessions can let the
+model choose a state pulse, persistent tuning, release, or no extra intervention
+after an ordinary journal. Saved action receipts and current controls return to
+later ordinary turns. Scheduled conversations remain passive, with exact plain
+prompts or read-only telemetry/context. [Behavior and scope](AUTHORED-ACTIONS.md) ·
+[setup](GETTING-STARTED.md#let-the-model-shape-the-reservoir).
+Local development on `codex/authored-reservoir-actions`; source checks, scripted
+native execution/export/recovery, and matched numerical comparisons passed.
+[Validation and limits](RELEASE-0.43.0.md). Model action competence remains untested.
+The separate six-hour 0.42.0 session continues with its original configuration.
+
 **November 13, 2026 · 0.42.0 scheduled conversations.** My reservoir can insert
 editable conversational prompts during ordinary journaling, defaulting to hours
 1–6. The context toggle selects actual telemetry plus session context or the

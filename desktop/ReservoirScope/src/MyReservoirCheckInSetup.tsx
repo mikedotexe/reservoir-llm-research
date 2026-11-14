@@ -29,7 +29,7 @@ export default function MyReservoirCheckInSetup({ config, setConfig }: { config:
         <DurationEditor label="Run duration · final check-in" value={schedule.endAfterSeconds} onChange={endAfterSeconds => update({ endAfterSeconds })}/>
         <DurationEditor label="Conversation interval" value={schedule.intervalSeconds} onChange={intervalSeconds => update({ intervalSeconds })}/>
       </div>
-      {config.actionMode && <p>Check-ins are conversations, not action turns. No action menu or action receipt is added to a plain prompt, and NEXT text in a check-in never executes a control.</p>}
+      {config.actionMode && <p>Check-ins are conversations, not action turns. No action menu or action receipt is added to a plain prompt, and NEXT text in a check-in never executes a control. With telemetry on, current controls and recent action results are included as context.</p>}
       <CheckInPromptFields prompt={schedule.prompt} includeTelemetry={schedule.includeTelemetry} onChange={(prompt, includeTelemetry) => update({ prompt, includeTelemetry })}/>
       {error ? <p role="alert">{error}</p> : <p>{checkInTimes(schedule).length} scheduled check-ins · every {formatSessionDuration(schedule.intervalSeconds)}, with the final one at {formatSessionDuration(schedule.endAfterSeconds)}. Set interval equal to duration for one final conversation.</p>}
       {capacity && <p className="my-reservoir-small">Capacity: {capacity.maximumSteps.toLocaleString('en-US')} steps and {capacity.maximumTurns.toLocaleString('en-US')} writing attempts, including retries. These limits are raised with the schedule; storage and failed writing can still hold the run.</p>}

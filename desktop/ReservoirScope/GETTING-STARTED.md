@@ -5,7 +5,7 @@ then read it with some curiosity. You do not need to understand the reservoir's
 math to begin. Plan for **up to 30 minutes of running time**, after installation
 and model setup, plus a few minutes to read.
 
-These instructions describe **0.42.0 source**. If you received the older 0.27.0
+These instructions describe **0.43.0 source**. If you received the older 0.27.0
 candidate 04 package, follow its [install guide](PREVIEW-START.md).
 
 ## 1. Open the app
@@ -137,6 +137,28 @@ Limits are cumulative totals, up to **24 hours, 10,000 writing attempts and
 or storage failure must be dealt with first; extending time does not clear it.
 You can also restore a saved session paused, then extend it. Longer runs still
 need the app open and the machine awake.
+
+## Let the model shape the reservoir
+
+Before creating a session, enable **Reservoir shaping → Let the model shape the
+reservoir**. Its ordinary entries can then choose a state pulse, tune recurrent
+leak or gain or text-feedback strength, release adjustments, or leave controls
+unchanged. The app supplies the exact action menu; you do not have to write it.
+
+Tuning persists until the model changes or releases it. Release restores the
+session's original controls while preserving the state and writing that developed.
+The **Reservoir shaping** panel shows saved controls, pending choices and actual
+results. Each entry's action details distinguish its request from application.
+The next ordinary turn receives current controls and recent results even when
+an older journal is returned as memory.
+
+The capability and its writing invitation are fixed for that session. For a quick
+demonstration, use **Offline example writing**; its scripted entries cycle through
+pulse, tune, no additional action and release. [Exact behavior and research scope](AUTHORED-ACTIONS.md).
+
+Scheduled conversations still save and feed back their writing, but never execute
+actions. With telemetry on they also receive current controls and recent action
+results. Their plain-prompt option remains just your editable prompt.
 
 ## Schedule a conversation during the run
 
