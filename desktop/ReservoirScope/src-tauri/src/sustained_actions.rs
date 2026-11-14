@@ -1,7 +1,8 @@
 //! Display only committed control/receipt state; pending decisions never imply execution.
 use super::*;
 use reservoir_core::sustained::{
-    SustainedActionDecision, SustainedActionRequest, SustainedActionState,
+    SustainedActionDecision, SustainedActionMode, SustainedActionRequest, SustainedActionState,
+    SustainedReservoirInputDecision,
 };
 
 #[derive(Clone, Serialize)]
@@ -9,12 +10,15 @@ use reservoir_core::sustained::{
 pub struct PendingActionDecision {
     pub request: Option<SustainedActionRequest>,
     pub rejection: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reservoir_input: Option<SustainedReservoirInputDecision>,
 }
 impl From<&SustainedActionDecision> for PendingActionDecision {
     fn from(value: &SustainedActionDecision) -> Self {
         Self {
             request: value.request.clone(),
             rejection: value.rejection.clone(),
+            reservoir_input: value.reservoir_input.clone(),
         }
     }
 }
@@ -82,19 +86,29 @@ impl SustainedState {
         epoch: u64,
         pending: &reservoir_core::sustained::SustainedPendingLanguage,
     ) -> String {
-        let enabled = pending.check_in.is_none()
-            && self
-                .lock()
-                .ok()
-                .and_then(|g| {
+        let mode = pending
+            .check_in
+            .is_none()
+            .then(|| {
+                self.lock().ok().and_then(|g| {
                     g.active
                         .as_ref()
-                        .map(|a| a.epoch == epoch && a.engine.specification().action_mode.is_some())
+                        .filter(|a| a.epoch == epoch)
+                        .and_then(|a| a.engine.specification().action_mode)
                 })
-                .unwrap_or(false);
-        if !enabled {
+            })
+            .flatten();
+        let Some(mode) = mode else {
             return SCRIPTED_REPLIES[((pending.attempt_id - 1) as usize) % SCRIPTED_REPLIES.len()]
                 .into();
+        };
+        if mode == SustainedActionMode::AuthoredV2 {
+            return match (pending.attempt_id - 1) % 4 {
+                0 => "Example writing: I will send this entry as numerical input and apply an alternating state pulse.\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: PULSE alternating 0.5",
+                1 => "Example writing: I will retain these words in memory while withholding their numerical input, and change recurrent leak to 0.35.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: TUNE leak 0.35",
+                2 => "Example writing: I will send this entry as numerical input again while leaving the current controls in place.\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: NONE",
+                _ => "Example writing: I will release the authored control adjustments while retaining the state that has developed.\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: RELEASE",
+            }.into();
         }
         match (pending.attempt_id - 1) % 4 {
             0 => "Example writing: I will apply an alternating state pulse and inspect its recorded consequence.\nNEXT: PULSE alternating 0.5",
@@ -150,8 +164,9 @@ impl SustainedState {
     ) -> Result<Option<reservoir_core::sustained::ExternalFeedback>, String> {
         let (body, authored) =
             self.feedback_text_and_action_for(epoch, pending.attempt_id, text)?;
-        // An explicitly authored action may stand alone. It still saves and applies,
-        // but its empty body contributes zero text feedback and needs no embedding.
+        // The core returns no text to encode for an empty authored body or a v2
+        // withheld/rejected input decision. The saved body and raw reply remain
+        // intact, but there is no embedding request or claimed embedding receipt.
         if authored && body.trim().is_empty() {
             return Ok(None);
         }

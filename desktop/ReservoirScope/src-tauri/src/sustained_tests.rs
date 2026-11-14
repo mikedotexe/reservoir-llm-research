@@ -12,6 +12,8 @@ mod limits;
 mod natural_quota;
 #[path = "sustained_prompt_evidence_tests.rs"]
 mod prompt_evidence;
+#[path = "sustained_withhold_tests.rs"]
+mod withholding;
 fn config(steps: u64, turn: u64) -> SustainedConfig {
     SustainedConfig {
         maximum_steps: steps,
