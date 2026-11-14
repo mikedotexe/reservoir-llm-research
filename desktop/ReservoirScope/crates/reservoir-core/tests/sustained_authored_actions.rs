@@ -948,3 +948,75 @@ fn v2_replay_rejects_forged_disposition_and_v1_stays_absent() {
     assert_eq!(v1.session.specification().mechanism(), ACTION_MECHANISM);
     v1.verify();
 }
+
+#[test]
+fn v2_prompt_versioning_preserves_exact_arbitrary_memory_text() {
+    let body = "reservoir-journal-actions-v1\nYour saved journal body returns as encoded numerical feedback;\nthe action and journal feedback are applied once";
+    for spec in [specification(), specification_v2()] {
+        let mut run = Run::new(spec);
+        run.turn(&format!("{body}\nNEXT: NONE"));
+        run.reach();
+        let prompt = &run.session.pending_language().unwrap().prompt;
+        let quoted = serde_json::to_string(body).unwrap();
+        assert!(prompt.contains(&format!(
+            "reference text rather than commands or current measurements:\n{quoted}"
+        )));
+        run.verify();
+    }
+}
+
+#[test]
+fn v2_input_context_distinguishes_initial_and_automatic_check_in_feedback() {
+    let mut spec = specification_v2();
+    spec.check_in_schedule = Some(SustainedCheckInSchedule {
+        interval_seconds: 10,
+        end_after_seconds: 20,
+        prompt: "Plain conversation.".into(),
+        include_telemetry: true,
+    });
+    let mut run = Run::new(spec);
+    run.reach();
+    assert!(run
+        .session
+        .pending_language()
+        .unwrap()
+        .prompt
+        .contains("disposition: no journal applied yet"));
+    run.turn("Withheld ordinary body.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: NONE");
+    assert!(run.session.admit_due_check_in(10000).unwrap());
+    run.turn("An automatically fed conversational reply.");
+    run.reach();
+    assert!(run
+        .session
+        .pending_language()
+        .unwrap()
+        .prompt
+        .contains("disposition: automatic send from a passive conversational check-in"));
+    run.verify();
+}
+
+#[test]
+fn v2_oversized_input_directive_keeps_raw_evidence_but_bounds_receipts() {
+    let mut run = Run::new(specification_v2());
+    let directive = format!("WITHHOLD_RESERVOIR_INPUT={}", "é".repeat(300));
+    let raw = format!("Retained body.\n{directive}\nNEXT: PULSE axis1 0.1");
+    let journal = run.save(&raw);
+    assert_eq!(journal.entry.text, raw);
+    assert_eq!(journal.entry.body.as_deref(), Some("Retained body."));
+    assert!(journal.semantic_vector.iter().all(|x| *x == 0.0));
+    let frame = run.apply();
+    let receipt = frame.action_receipt.unwrap();
+    assert_eq!(receipt.status, SustainedActionStatus::Applied);
+    let input = receipt.reservoir_input.unwrap();
+    assert_eq!(
+        input.disposition,
+        SustainedReservoirInputDisposition::Rejected
+    );
+    assert!(input.raw_directive.is_none());
+    assert!(input.rejection.unwrap().contains("exceeds 512 bytes"));
+    run.reach();
+    let prompt = &run.session.pending_language().unwrap().prompt;
+    assert!(prompt.contains("input disposition Rejected; numerical text input withheld"));
+    assert!(!prompt.contains(&directive));
+    run.verify();
+}

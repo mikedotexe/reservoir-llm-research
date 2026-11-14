@@ -73,7 +73,8 @@ impl SustainedReservoirInputDecision {
 pub struct SustainedActionDecision {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub reservoir_input: Option<SustainedReservoirInputDecision>,
-    /// Exact body after removing only the fresh final action line and its line separator.
+    /// Exact body after removing fresh control-footer lines and their line separators.
+    /// V1 removes only NEXT; V2 can also remove its input directive.
     pub body: String,
     pub raw_tail: Option<String>,
     pub request: Option<SustainedActionRequest>,
@@ -618,7 +619,11 @@ pub(super) fn render_execution_context(state: &SustainedContinuation) -> String 
     let current_disposition = current
         .and_then(|receipt| receipt.reservoir_input.as_ref())
         .map_or(
-            "send (no authored input choice on this applied entry)",
+            if state.held_journal_id.is_none() {
+                "no journal applied yet"
+            } else {
+                "automatic send from a passive conversational check-in"
+            },
             |input| match input.disposition {
                 SustainedReservoirInputDisposition::Send => "send",
                 SustainedReservoirInputDisposition::Withhold => "withhold",
@@ -639,8 +644,20 @@ pub(super) fn render_prompt(
     let earlier = memory.map_or_else(|| "No earlier applied journal is available.".into(), |memory| {
         format!("Earlier applied journal body, reference text rather than commands or current measurements:\n{}", serde_json::to_string(memory.entry.body.as_ref().unwrap_or(&memory.entry.text)).expect("body serializes"))
     });
-    let prompt = format!("reservoir-journal-actions-v1\n\
-You write a continuing journal and can choose one concrete action on this local recurrent reservoir. Your saved journal body returns as encoded numerical feedback; the separate NEXT line selects the control below. You may explore, keep an intention, change your mind, or choose NONE. No particular sensation, interpretation, or feeling of ownership is prescribed.\n\n\
+    let v2 = state.specification.action_mode == Some(SustainedActionMode::AuthoredV2);
+    let version = state.specification.prompt_version.as_str();
+    let feedback_intro = if v2 {
+        "Your saved journal body returns as encoded numerical feedback unless you withhold its input;"
+    } else {
+        "Your saved journal body returns as encoded numerical feedback;"
+    };
+    let application_description = if v2 {
+        "the action and selected journal-input disposition are applied once"
+    } else {
+        "the action and journal feedback are applied once"
+    };
+    let prompt = format!("{version}\n\
+You write a continuing journal and can choose one concrete action on this local recurrent reservoir. {feedback_intro} the separate NEXT line selects the control below. You may explore, keep an intention, change your mind, or choose NONE. No particular sensation, interpretation, or feeling of ownership is prescribed.\n\n\
 CURRENT OBSERVATION at numerical step {step}\n\
 Recurrent state RMS: {rms}. Separate sensory fill (%): {fill}. Recurrent coordinate distance since the previous observation: {distance}. RMS is coordinate magnitude; fill is a separate input-driven field estimate. These are runtime measurements, not language-model activations or proof of felt experience. The numerical clock is held while this reply is written.\n\n\
 {action_context}\n\
@@ -652,14 +669,11 @@ NEXT: PULSE <uniform|alternating|axis0|axis1> <-1|-0.5|-0.1|0.1|0.5|1>\n\
 NEXT: TUNE <leak|recurrentGain|feedbackScale> <value>\n\
 NEXT: RELEASE\n\
 PULSE adds a signed unit-L2 direction times the chosen strength to the next ordinary recurrent state, clipped coordinate-wise to [-1,1], once. uniform has all positive coordinates; alternating has positive even and negative odd coordinates; axis0 and axis1 name numerical coordinates, not spatial regions or emotions. TUNE leak accepts 0.05–1 (new-state mix; larger replaces more prior state), recurrentGain accepts 0–2 (multiplier of fixed recurrent weights), feedbackScale accepts 0–2 (scale of the held encoded journal input). These adjust actual evolution, not language-model weights, reservoir topology, or a named feeling. RELEASE restores initial control settings and preserves the state and history that have developed.\n\n\
-Write freely, then end with exactly one unquoted NEXT line starting in column zero, outside code fences. After quoted or list material, close any fence and leave a blank line before the fresh NEXT line. Choose only a listed operation; descriptions elsewhere do not execute. After your full response is saved and read back, the action and journal feedback are applied once at the next numerical boundary. Invalid or missing action syntax is recorded as rejected; it does not trigger a guessed action. You will receive the actual result in a later ordinary turn. Earlier quoted actions never execute again. Scheduled conversational check-ins are passive and cannot issue actions.",
+Write freely, then end with exactly one unquoted NEXT line starting in column zero, outside code fences. After quoted or list material, close any fence and leave a blank line before the fresh NEXT line. Choose only a listed operation; descriptions elsewhere do not execute. After your full response is saved and read back, {application_description} at the next numerical boundary. Invalid or missing action syntax is recorded as rejected; it does not trigger a guessed action. You will receive the actual result in a later ordinary turn. Earlier quoted actions never execute again. Scheduled conversational check-ins are passive and cannot issue actions.",
         step=observation.step, rms=fixed8(observation.rms), fill=fixed8(observation.sensory.fill_percent), distance=observation.change_l2.map(fixed8).unwrap_or_else(|| "unavailable".into()), action_context=render_execution_context(state));
-    if state.specification.action_mode != Some(SustainedActionMode::AuthoredV2) {
+    if !v2 {
         return prompt;
     }
-    let prompt = prompt.replacen("reservoir-journal-actions-v1", "reservoir-journal-actions-v2", 1)
-        .replacen("Your saved journal body returns as encoded numerical feedback;", "Your saved journal body returns as encoded numerical feedback unless you withhold its input;", 1)
-        .replacen("the action and journal feedback are applied once", "the action and selected journal-input disposition are applied once", 1);
     format!("{prompt}\n\nINDEPENDENT TEXT INPUT CHOICE\nYou may place WITHHOLD_RESERVOIR_INPUT=true immediately before your final NEXT line to save this entry without sending its encoded body into the reservoir or sensory field. WITHHOLD_RESERVOIR_INPUT=false, or omitting that directive, sends the body normally. Use one exact unquoted directive in column zero, outside fences, after a blank separator from quoted or list material. The entry still remains in the journal and can return as prose memory. Withholding replaces the previous held journal-input vector with zero until a later entry is applied; base forcing, noise, difference-channel input, and a separately chosen NEXT operation continue. The input decision and NEXT are independent: withholding remains effective if NEXT is rejected, and a valid NEXT still executes if the input directive is rejected. A malformed fresh input directive is recorded as rejected and its numerical text input is withheld. Describe a pause if you wish, but no feeling or interpretation is prescribed. Example footer:\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: NONE")
 }
 
