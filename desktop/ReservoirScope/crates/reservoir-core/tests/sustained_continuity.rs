@@ -863,3 +863,12 @@ fn final_probe_channel_and_serialized_receipts_replay_exactly() {
         vector
     );
 }
+
+#[test]
+fn exported_memory_excerpt_helper_matches_exact_utf8_bound() {
+    let body = format!("{}éZ", "a".repeat(V3_MEMORY_PREFIX_BYTES - 1));
+    let excerpt = sustained_v3_memory_excerpt(&body);
+    assert_eq!(excerpt.len(), 2047);
+    assert_eq!(excerpt, "a".repeat(2047));
+    assert_eq!(sustained_v3_memory_excerpt("short"), "short");
+}
