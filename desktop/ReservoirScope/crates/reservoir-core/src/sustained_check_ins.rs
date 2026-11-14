@@ -96,6 +96,7 @@ pub(super) fn phase_check_in(phase: &SustainedPhase) -> Option<&SustainedCheckIn
         SustainedPhase::Ready => None,
         SustainedPhase::Memory(p) => p.check_in.as_ref(),
         SustainedPhase::Language(p) => p.check_in.as_ref(),
+        SustainedPhase::Feedback(p) => p.pending.check_in.as_ref(),
         SustainedPhase::Journal(p) => p.check_in.as_ref(),
         SustainedPhase::Prepared(p) => p.check_in.as_ref(),
         SustainedPhase::Blocked(p) => p.pending.check_in.as_ref(),

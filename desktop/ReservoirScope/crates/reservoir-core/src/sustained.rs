@@ -1284,12 +1284,25 @@ pub struct SustainedBlocked {
     pub pending: SustainedPendingLanguage,
     pub reason: String,
 }
+/// Completed writing retained independently of the still-pending external encoding.
+/// The writer attempt never changes during an embedding retry. `request_id` names
+/// each physical embedding request so stale outcomes cannot settle a later retry.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct SustainedPendingFeedback {
+    pub pending: SustainedPendingLanguage,
+    pub response: LanguageResponse,
+    pub request_id: u64,
+    pub request_started: bool,
+    pub failure: Option<String>,
+}
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(tag = "kind", content = "value", rename_all = "camelCase")]
 pub enum SustainedPhase {
     Ready,
     Memory(SustainedPendingMemory),
     Language(SustainedPendingLanguage),
+    Feedback(Box<SustainedPendingFeedback>),
     Journal(Box<SustainedPendingJournal>),
     Prepared(SustainedPrepared),
     Blocked(SustainedBlocked),
@@ -1393,6 +1406,30 @@ pub enum SustainedEventKind {
         /// codec; omitted under the surface codec, so historical events are unchanged.
         #[serde(default, skip_serializing_if = "Option::is_none")]
         feedback: Option<ExternalFeedback>,
+    },
+    LanguageRetainedForFeedback {
+        attempt_id: u64,
+        response: LanguageResponse,
+    },
+    FeedbackStarted {
+        attempt_id: u64,
+        request_id: u64,
+    },
+    FeedbackReceived {
+        attempt_id: u64,
+        request_id: u64,
+        feedback: ExternalFeedback,
+    },
+    FeedbackFailed {
+        attempt_id: u64,
+        request_id: u64,
+        reason: String,
+    },
+    FeedbackRetried {
+        attempt_id: u64,
+    },
+    FeedbackInterrupted {
+        reason: String,
     },
     LanguageFailed {
         attempt_id: u64,
@@ -1529,9 +1566,17 @@ impl SustainedSession {
     }
     /// Exact input for an external text codec; raw response remains the journal evidence.
     pub fn feedback_text_for_response(&self, text: &str) -> Result<String> {
-        let pending = self
-            .pending_language()
-            .ok_or_else(|| invalid("No pending language response"))?;
+        let pending = if let Some(p) = self.pending_language() {
+            p
+        } else if let Some(p) = self.pending_feedback() {
+            ensure(
+                text == p.response.text,
+                "Encoding text differs from retained response",
+            )?;
+            &p.pending
+        } else {
+            return Err(invalid("No pending language response"));
+        };
         Ok(
             actions::decision_for(&self.state.specification, pending.check_in.as_ref(), text)
                 .map_or_else(
@@ -1565,6 +1610,22 @@ impl SustainedSession {
         } else {
             None
         }
+    }
+    pub fn pending_feedback(&self) -> Option<&SustainedPendingFeedback> {
+        if let SustainedPhase::Feedback(p) = &self.state.phase {
+            Some(p)
+        } else {
+            None
+        }
+    }
+    /// Validate writing before an external request. Invalid/incomplete responses
+    /// must still be retained through the ordinary `confirm_language` path.
+    pub fn response_needs_feedback(&self, response: &LanguageResponse) -> Result<bool> {
+        let p = self
+            .pending_language()
+            .or_else(|| self.pending_feedback().map(|f| &f.pending))
+            .ok_or_else(|| invalid("No pending language response"))?;
+        response_needs_external_feedback(p, response, &self.state.specification)
     }
     pub fn pending_journal(&self) -> Option<&SustainedPendingJournal> {
         if let SustainedPhase::Journal(p) = &self.state.phase {
@@ -1619,6 +1680,9 @@ impl SustainedSession {
         let mut s = Self::from_checkpoint(checkpoint)?;
         if s.pending_language().is_some() {
             s.interrupt("Recovery cannot establish the outcome of an outstanding provider attempt; retry with a new identity or skip explicitly.")?;
+        }
+        if s.pending_feedback().is_some_and(|p| p.failure.is_none()) {
+            s.interrupt("Recovery retained completed writing; retry its embedding explicitly or skip. No new writing request is needed.")?;
         }
         Ok(s)
     }
@@ -2110,6 +2174,143 @@ impl SustainedSession {
         });
         Ok(())
     }
+    /// Retain eligible completed writing before the owner issues an external
+    /// encoding request. The owner must durably commit this event/checkpoint first.
+    pub fn retain_language_for_feedback(
+        &mut self,
+        attempt_id: u64,
+        response: &LanguageResponse,
+    ) -> Result<()> {
+        self.room()?;
+        let p = self
+            .pending_language()
+            .ok_or_else(|| invalid("No pending language response"))?
+            .clone();
+        ensure(
+            p.attempt_id == attempt_id && p.request_started,
+            "Response does not own the dispatched attempt",
+        )?;
+        ensure(
+            response_needs_external_feedback(&p, response, &self.state.specification)?,
+            "Response does not require external feedback",
+        )?;
+        self.state.phase = SustainedPhase::Feedback(Box::new(SustainedPendingFeedback {
+            pending: p,
+            response: response.clone(),
+            request_id: 0,
+            request_started: false,
+            failure: None,
+        }));
+        self.event(SustainedEventKind::LanguageRetainedForFeedback {
+            attempt_id,
+            response: response.clone(),
+        });
+        Ok(())
+    }
+    pub fn start_feedback(&mut self, attempt_id: u64) -> Result<u64> {
+        self.room()?;
+        let p = self
+            .pending_feedback()
+            .ok_or_else(|| invalid("No pending external feedback"))?;
+        ensure(
+            p.pending.attempt_id == attempt_id && !p.request_started && p.failure.is_none(),
+            "Wrong, blocked or already started embedding request",
+        )?;
+        let request_id = p
+            .request_id
+            .checked_add(1)
+            .ok_or_else(|| invalid("Embedding request identity exhausted"))?;
+        if let SustainedPhase::Feedback(p) = &mut self.state.phase {
+            p.request_id = request_id;
+            p.request_started = true;
+        }
+        self.event(SustainedEventKind::FeedbackStarted {
+            attempt_id,
+            request_id,
+        });
+        Ok(request_id)
+    }
+    pub fn confirm_feedback(
+        &mut self,
+        attempt_id: u64,
+        request_id: u64,
+        feedback: &ExternalFeedback,
+    ) -> Result<()> {
+        self.room()?;
+        let p = self
+            .pending_feedback()
+            .ok_or_else(|| invalid("No pending external feedback"))?
+            .clone();
+        ensure(
+            p.pending.attempt_id == attempt_id
+                && p.request_started
+                && p.request_id == request_id
+                && p.failure.is_none(),
+            "Embedding outcome does not own the active request",
+        )?;
+        // Reject malformed feedback without losing the retained writing. The host
+        // can then record the validation error with `fail_feedback`.
+        let journal = prepare_journal(
+            &p.pending,
+            &p.response,
+            Some(feedback),
+            &self.state.specification,
+        )?;
+        self.state.phase = SustainedPhase::Journal(Box::new(journal));
+        self.event(SustainedEventKind::FeedbackReceived {
+            attempt_id,
+            request_id,
+            feedback: feedback.clone(),
+        });
+        Ok(())
+    }
+    pub fn fail_feedback(
+        &mut self,
+        attempt_id: u64,
+        request_id: u64,
+        diagnostic: &str,
+    ) -> Result<()> {
+        self.room()?;
+        reason(diagnostic)?;
+        let p = self
+            .pending_feedback()
+            .ok_or_else(|| invalid("No pending external feedback"))?;
+        ensure(
+            p.pending.attempt_id == attempt_id
+                && p.request_started
+                && p.request_id == request_id
+                && p.failure.is_none(),
+            "Embedding outcome does not own the active request",
+        )?;
+        if let SustainedPhase::Feedback(p) = &mut self.state.phase {
+            p.request_started = false;
+            p.failure = Some(diagnostic.into());
+        }
+        self.event(SustainedEventKind::FeedbackFailed {
+            attempt_id,
+            request_id,
+            reason: diagnostic.into(),
+        });
+        Ok(())
+    }
+    /// Retry only encoding of the exact retained response. This neither creates a
+    /// writer attempt nor rereads memory and remains available at its attempt cap.
+    pub fn retry_feedback(&mut self) -> Result<()> {
+        self.room()?;
+        let p = self
+            .pending_feedback()
+            .ok_or_else(|| invalid("No retained writing to re-encode"))?;
+        ensure(
+            !p.request_started && p.failure.is_some(),
+            "Only a failed or interrupted embedding can be explicitly retried",
+        )?;
+        let attempt_id = p.pending.attempt_id;
+        if let SustainedPhase::Feedback(p) = &mut self.state.phase {
+            p.failure = None;
+        }
+        self.event(SustainedEventKind::FeedbackRetried { attempt_id });
+        Ok(())
+    }
     pub fn fail_language(&mut self, attempt_id: u64, diagnostic: &str) -> Result<()> {
         self.finish_language(attempt_id, diagnostic, false)
     }
@@ -2270,6 +2471,14 @@ impl SustainedSession {
     pub fn interrupt(&mut self, diagnostic: &str) -> Result<()> {
         self.room()?;
         reason(diagnostic)?;
+        if let SustainedPhase::Feedback(p) = &mut self.state.phase {
+            p.request_started = false;
+            p.failure = Some(diagnostic.into());
+            self.event(SustainedEventKind::FeedbackInterrupted {
+                reason: diagnostic.into(),
+            });
+            return Ok(());
+        }
         let p = self
             .pending_language()
             .ok_or_else(|| invalid("No outstanding provider preparation to interrupt"))?
@@ -3012,12 +3221,10 @@ fn prepare_language_for(
         request_started: false,
     })
 }
-fn prepare_journal(
+fn validate_journal_response(
     p: &SustainedPendingLanguage,
     response: &LanguageResponse,
-    external: Option<&ExternalFeedback>,
-    spec: &SustainedSpecification,
-) -> Result<SustainedPendingJournal> {
+) -> Result<()> {
     ensure(
         p.configuration.backend != LanguageKind::Ollama
             || response
@@ -3053,6 +3260,32 @@ fn prepare_journal(
         codec::has_non_whitespace(&response.text)?,
         "Journal reply is whitespace only",
     )?;
+    Ok(())
+}
+fn response_needs_external_feedback(
+    p: &SustainedPendingLanguage,
+    response: &LanguageResponse,
+    spec: &SustainedSpecification,
+) -> Result<bool> {
+    validate_journal_response(p, response)?;
+    if !matches!(spec.codec, SustainedCodec::Embedding { .. }) {
+        return Ok(false);
+    }
+    let action = actions::decision_for(spec, p.check_in.as_ref(), &response.text);
+    match action {
+        Some(action) => {
+            Ok(!action.withholds_reservoir_input() && codec::has_non_whitespace(&action.body)?)
+        }
+        None => Ok(true),
+    }
+}
+fn prepare_journal(
+    p: &SustainedPendingLanguage,
+    response: &LanguageResponse,
+    external: Option<&ExternalFeedback>,
+    spec: &SustainedSpecification,
+) -> Result<SustainedPendingJournal> {
+    validate_journal_response(p, response)?;
     let action = actions::decision_for(spec, p.check_in.as_ref(), &response.text);
     let body = action
         .as_ref()
@@ -3763,6 +3996,18 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
             }
         }
         SustainedPhase::Language(p) => validate_pending(p, s)?,
+        SustainedPhase::Feedback(p) => {
+            validate_pending(&p.pending, s)?;
+            ensure(
+                p.pending.request_started
+                    && response_needs_external_feedback(&p.pending, &p.response, &s.specification)?
+                    && (!p.request_started || (p.request_id > 0 && p.failure.is_none())),
+                "Invalid retained writing or embedding request state",
+            )?;
+            if let Some(failure) = &p.failure {
+                reason(failure)?;
+            }
+        }
         SustainedPhase::Journal(j) => {
             let p = SustainedPendingLanguage {
                 check_in: j.check_in.clone(),
@@ -3902,6 +4147,7 @@ impl SustainedSegment {
                 matches!(
                     e.kind,
                     SustainedEventKind::LanguageReceived { .. }
+                        | SustainedEventKind::LanguageRetainedForFeedback { .. }
                         | SustainedEventKind::LanguageFailed { .. }
                         | SustainedEventKind::LanguageCancelled { .. }
                         | SustainedEventKind::Interrupted { .. }
@@ -3966,6 +4212,44 @@ impl SustainedSegment {
                     response,
                     feedback.as_ref(),
                 )?,
+                SustainedEventKind::LanguageRetainedForFeedback {
+                    attempt_id,
+                    response,
+                } => {
+                    engine.retain_language_for_feedback(*attempt_id, response)?;
+                }
+                SustainedEventKind::FeedbackStarted {
+                    attempt_id,
+                    request_id,
+                } => {
+                    ensure(
+                        engine.start_feedback(*attempt_id)? == *request_id,
+                        "Embedding request identity does not reproduce",
+                    )?;
+                }
+                SustainedEventKind::FeedbackReceived {
+                    attempt_id,
+                    request_id,
+                    feedback,
+                } => {
+                    engine.confirm_feedback(*attempt_id, *request_id, feedback)?;
+                }
+                SustainedEventKind::FeedbackFailed {
+                    attempt_id,
+                    request_id,
+                    reason,
+                } => {
+                    engine.fail_feedback(*attempt_id, *request_id, reason)?;
+                }
+                SustainedEventKind::FeedbackRetried { attempt_id } => {
+                    ensure(
+                        engine
+                            .pending_feedback()
+                            .is_some_and(|p| p.pending.attempt_id == *attempt_id),
+                        "Embedding retry does not name retained writing",
+                    )?;
+                    engine.retry_feedback()?;
+                }
                 SustainedEventKind::LanguageFailed { attempt_id, reason } => {
                     engine.fail_language(*attempt_id, reason)?
                 }
@@ -3993,7 +4277,8 @@ impl SustainedSegment {
                     engine.retry_language()?;
                 }
                 SustainedEventKind::Skipped { reason } => engine.skip_pending(reason)?,
-                SustainedEventKind::Interrupted { reason } => engine.interrupt(reason)?,
+                SustainedEventKind::Interrupted { reason }
+                | SustainedEventKind::FeedbackInterrupted { reason } => engine.interrupt(reason)?,
                 SustainedEventKind::BudgetsExtended {
                     maximum_steps,
                     maximum_turns,
