@@ -193,7 +193,7 @@ The deterministic 48-coordinate codec has 32 active textual-feature coordinates,
 a learned embedding and does not train reservoir or language-model weights.
 
 New sessions select `outputTokens` (default 1,024; 256–2,048) and
-`requestDeadlineSeconds` (default 180; 60–180). These settings are retained in the
+`requestDeadlineSeconds` (default 180; 60–600). These settings are retained in the
 specification and each pending request, so replay binds them to the genesis recipe.
 Historical omitted settings mean exactly 256 tokens and 60 seconds; those values
 remain omitted on serialization, preserving old typed checkpoint hashes and bytes.

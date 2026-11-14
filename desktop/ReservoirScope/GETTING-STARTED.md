@@ -5,7 +5,7 @@ then read it with some curiosity. You do not need to understand the reservoir's
 math to begin. Plan for **up to 30 minutes of running time**, after installation
 and model setup, plus a few minutes to read.
 
-These instructions describe **0.46.0 source**. If you received the older 0.27.0
+These instructions describe **0.46.1 source**. If you received the older 0.27.0
 candidate 04 package, follow its [install guide](PREVIEW-START.md).
 
 ## 1. Open the app
@@ -68,6 +68,10 @@ supported replacement.
 ## 3. Set up a short session
 
 Open **Advanced settings** before creating the session:
+
+The request deadline defaults to three minutes. For slower local models or shared
+hardware, choose 60–600 seconds under **Writing limits** before creating the
+session. A longer ceiling does not request longer writing or retry failed calls.
 
 | Setting | For this first session |
 |---|---|

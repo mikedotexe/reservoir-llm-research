@@ -593,7 +593,7 @@ fn sustained_generation_posts_selected_budget_and_accepts_long_complete_prose() 
         "Exact open journal prompt",
         &AtomicBool::new(false),
         1024,
-        180,
+        600,
         Sampling::GREEDY,
     )
     .unwrap();
@@ -629,7 +629,7 @@ fn sustained_invalid_budget_or_cancellation_never_connects() {
     let listener = TcpListener::bind((Ipv4Addr::LOCALHOST, 0)).unwrap();
     listener.set_nonblocking(true).unwrap();
     let mut config = configuration(format!("http://{}", listener.local_addr().unwrap()));
-    for (tokens, deadline) in [(255, 180), (2049, 180), (1024, 59), (1024, 181)] {
+    for (tokens, deadline) in [(255, 180), (2049, 180), (1024, 59), (1024, 601)] {
         assert_eq!(
             generate_sustained(
                 &config,

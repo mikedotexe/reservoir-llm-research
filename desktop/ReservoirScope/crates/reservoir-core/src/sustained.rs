@@ -53,8 +53,8 @@ pub fn validate_generation_budget(
     context_tokens: Option<usize>,
 ) -> Result<()> {
     ensure(
-        (256..=2048).contains(&output_tokens) && (60..=180).contains(&request_deadline_seconds),
-        "Sustained generation requires 256–2048 output tokens and a 60–180 second deadline",
+        (256..=2048).contains(&output_tokens) && (60..=600).contains(&request_deadline_seconds),
+        "Sustained generation requires 256–2048 output tokens and a 60–600 second deadline",
     )?;
     ensure(context_tokens.is_none_or(|n| n > output_tokens as usize), "Explicit context tokens must exceed the sustained output-token budget; this does not establish prompt fit")
 }

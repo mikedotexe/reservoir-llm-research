@@ -126,7 +126,7 @@ fn new_defaults_and_legacy_deserialization_are_distinct_and_budget_bounds_fail_c
         ("outputTokens", serde_json::json!(255)),
         ("outputTokens", serde_json::json!(2049)),
         ("requestDeadlineSeconds", serde_json::json!(59)),
-        ("requestDeadlineSeconds", serde_json::json!(181)),
+        ("requestDeadlineSeconds", serde_json::json!(601)),
         ("outputTokens", serde_json::Value::Null),
         ("requestDeadlineSeconds", serde_json::json!(60.5)),
     ] {
@@ -139,6 +139,7 @@ fn new_defaults_and_legacy_deserialization_are_distinct_and_budget_bounds_fail_c
     assert!(validate_generation_budget(256, 60, Some(512)).is_ok());
     assert!(validate_generation_budget(1024, 180, Some(1024)).is_err());
     assert!(validate_generation_budget(2048, 180, Some(8192)).is_ok());
+    assert!(validate_generation_budget(2048, 600, Some(8192)).is_ok());
 }
 #[test]
 fn request_budget_does_not_reword_prompt_and_cannot_be_mutated_with_a_new_hash() {
@@ -178,8 +179,12 @@ fn request_budget_does_not_reword_prompt_and_cannot_be_mutated_with_a_new_hash()
     }
 }
 #[test]
-fn long_complete_journal_survives_save_prepared_restore_application_memory_and_replay() {
-    let mut s = SustainedSession::new(spec()).unwrap();
+fn extended_deadline_survives_save_prepared_restore_application_memory_and_replay() {
+    let mut s = SustainedSession::new(SustainedSpecification {
+        request_deadline_seconds: 600,
+        ..spec()
+    })
+    .unwrap();
     let initial = s.checkpoint();
     for _ in 0..3 {
         s.advance().unwrap();
@@ -220,7 +225,7 @@ fn long_complete_journal_survives_save_prepared_restore_application_memory_and_r
     );
     s.confirm_memory(&candidate.entry).unwrap();
     let p = s.pending_language().unwrap();
-    assert_eq!((p.output_tokens, p.request_deadline_seconds), (1024, 180));
+    assert_eq!((p.output_tokens, p.request_deadline_seconds), (1024, 600));
     assert_eq!(p.memory.as_ref().unwrap().entry.text, r.text);
     let encoded = p
         .prompt

@@ -1,5 +1,12 @@
 # Reservoir Scope: current status and next work
 
+**November 14, 2026 · 0.46.1 selectable request headroom.** New sessions may
+explicitly choose a request deadline from 60 to 600 seconds. The default remains
+180 seconds, historical omitted deadlines remain 60 seconds, and existing
+sessions retain their saved value. This supports qualification on shared local
+hardware without changing prompts, output limits or retry behavior.
+[Checks and limits](RELEASE-0.46.1.md).
+
 **November 14, 2026 · 0.46.0 continuing inquiry and input probes.** Ordinary
 entries can retain a question, revisit bounded recent journal and reservoir
 evidence, and explicitly continue, replace or close it. A bounded bespoke

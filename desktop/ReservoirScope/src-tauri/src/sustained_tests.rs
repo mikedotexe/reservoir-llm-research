@@ -1712,7 +1712,7 @@ fn sustained_generation_budget_legacy_config_roundtrip_and_rejection() {
         ("outputTokens", serde_json::json!(255)),
         ("outputTokens", serde_json::json!(2049)),
         ("requestDeadlineSeconds", serde_json::json!(59)),
-        ("requestDeadlineSeconds", serde_json::json!(181)),
+        ("requestDeadlineSeconds", serde_json::json!(601)),
         ("outputTokens", serde_json::Value::Null),
         ("requestDeadlineSeconds", serde_json::json!(60.5)),
     ] {
@@ -1757,6 +1757,7 @@ fn sustained_generation_budget_actual_worker_saves_long_text_memory_and_restore_
     );
     let mut cfg = model_config();
     cfg.turn_every = 3;
+    cfg.request_deadline_seconds = 600;
     cfg.maximum_steps = 7;
     cfg.maximum_turns = 2;
     cfg.language.context_tokens = Some(8192);
@@ -1775,7 +1776,7 @@ fn sustained_generation_budget_actual_worker_saves_long_text_memory_and_restore_
     let calls = calls.lock().unwrap();
     assert_eq!(calls.len(), 2);
     for c in calls.iter() {
-        assert_eq!((c.1, c.2, c.3), (1024, 180, Some(8192)));
+        assert_eq!((c.1, c.2, c.3), (1024, 600, Some(8192)));
     }
     let encoded = calls[1]
         .0
@@ -1841,7 +1842,7 @@ fn sustained_generation_budget_actual_worker_saves_long_text_memory_and_restore_
             update.config.output_tokens,
             update.config.request_deadline_seconds
         ),
-        (1024, 180)
+        (1024, 600)
     );
     assert_eq!(update.step, 7);
     assert!(!update.can_start);

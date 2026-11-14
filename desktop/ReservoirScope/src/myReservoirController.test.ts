@@ -12,9 +12,18 @@ describe('sustained owner and independent reading', () => {
     expect(controller.snapshot().summary?.config).not.toHaveProperty('outputTokens');
     expect(controller.snapshot().summary?.config).not.toHaveProperty('requestDeadlineSeconds');
   });
+  it('retains an explicitly selected ten-minute deadline without starting or retrying writing', async () => {
+    const { api, controller } = reservoirFixture(), action = vi.spyOn(api, 'action');
+    const config = { ...DEFAULT_SUSTAINED_CONFIG, requestDeadlineSeconds: 600 };
+    expect(await controller.create(config)).toBe(true); await settle();
+    expect(controller.snapshot().summary?.config.requestDeadlineSeconds).toBe(600);
+    expect(controller.snapshot().summary?.phase).toBe('ready');
+    expect(action).not.toHaveBeenCalled();
+    expect(DEFAULT_SUSTAINED_CONFIG.requestDeadlineSeconds).toBe(180);
+  });
   it('rejects malformed drafts before Create and changed retained ceilings before replacing accepted state', async () => {
     const { api, controller, channel, nextSequence } = reservoirFixture(), create = vi.spyOn(api, 'create');
-    for (const patch of [{ outputTokens: 255 }, { outputTokens: 2049 }, { outputTokens: 1024.5 }, { outputTokens: Number.NaN }, { outputTokens: null }, { requestDeadlineSeconds: 59 }, { requestDeadlineSeconds: 181 }, { requestDeadlineSeconds: 60.5 }, { requestDeadlineSeconds: null }, { language: { backend: 'ollama', contextTokens: 1024 } }]) {
+    for (const patch of [{ outputTokens: 255 }, { outputTokens: 2049 }, { outputTokens: 1024.5 }, { outputTokens: Number.NaN }, { outputTokens: null }, { requestDeadlineSeconds: 59 }, { requestDeadlineSeconds: 601 }, { requestDeadlineSeconds: 60.5 }, { requestDeadlineSeconds: null }, { language: { backend: 'ollama', contextTokens: 1024 } }]) {
       expect(await controller.create({ ...DEFAULT_SUSTAINED_CONFIG, ...patch } as SustainedConfig)).toBe(false);
     }
     expect(create).not.toHaveBeenCalled();

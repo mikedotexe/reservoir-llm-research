@@ -61,7 +61,7 @@ export function validWritingLimits(config: SustainedConfig): boolean {
   const output = effectiveOutputTokens(config), deadline = effectiveRequestDeadline(config);
   const context = config.language?.contextTokens, temperature = config.language?.temperature;
   return Number.isInteger(output) && output >= 256 && output <= 2048
-    && Number.isInteger(deadline) && deadline >= 60 && deadline <= 180
+    && Number.isInteger(deadline) && deadline >= 60 && deadline <= 600
     && (context == null || Number.isInteger(context) && context >= 512 && context <= 32768 && context > output)
     && (temperature == null || Number.isFinite(temperature) && temperature >= 0 && temperature <= 2);
 }
