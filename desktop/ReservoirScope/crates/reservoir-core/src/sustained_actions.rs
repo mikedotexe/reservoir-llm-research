@@ -367,6 +367,20 @@ pub fn parse_authored_action(text: &str) -> SustainedActionDecision {
 /// response end if NEXT is missing) is consumed. Mentions elsewhere stay prose.
 pub fn parse_authored_action_v2(text: &str) -> SustainedActionDecision {
     let mut action = parse_authored_action(text);
+    // A malformed NEXT-like final line still belongs to the fresh footer. Keep
+    // the action rejected while allowing the independent input choice before it.
+    let (fresh_lines, last_nonempty) = fresh_footer_lines(text);
+    if let Some((start, raw)) = fresh_lines
+        .last()
+        .filter(|(start, raw)| Some(*start) == last_nonempty && malformed_next_prefix(raw))
+    {
+        action.body = text[..*start].trim_end_matches(['\r', '\n']).to_string();
+        action.raw_tail = (raw.len() <= MAX_ACTION_TAIL_BYTES).then(|| (*raw).to_string());
+        action.request = None;
+        action.rejection = Some(
+            "Expected NEXT: followed by a listed operation; no authored control was applied".into(),
+        );
+    }
     let mut input = SustainedReservoirInputDecision {
         disposition: SustainedReservoirInputDisposition::Send,
         raw_directive: None,
@@ -375,7 +389,11 @@ pub fn parse_authored_action_v2(text: &str) -> SustainedActionDecision {
     // The v1 parser already strips a syntactically positioned final NEXT line,
     // even when its operation is rejected. Its body is therefore the input footer.
     let prefix = action.body.as_str();
-    let (directives, last_nonempty) = fresh_input_directives(prefix);
+    let (fresh_lines, last_nonempty) = fresh_footer_lines(prefix);
+    let directives: Vec<_> = fresh_lines
+        .into_iter()
+        .filter(|(_, raw)| raw.starts_with("WITHHOLD_RESERVOIR_INPUT"))
+        .collect();
     if let Some((start, raw)) = directives
         .last()
         .filter(|(start, _)| Some(*start) == last_nonempty)
@@ -419,7 +437,14 @@ pub fn parse_authored_action_v2(text: &str) -> SustainedActionDecision {
     action
 }
 
-fn fresh_input_directives(text: &str) -> (Vec<(usize, &str)>, Option<usize>) {
+fn malformed_next_prefix(line: &str) -> bool {
+    line == "NEXT"
+        || line.starts_with("NEXT ")
+        || line.starts_with("NEXT\t")
+        || line.starts_with("NEXT=")
+}
+
+fn fresh_footer_lines(text: &str) -> (Vec<(usize, &str)>, Option<usize>) {
     // marker, opening run length, explicit container, list content indentation
     let mut fence: Option<(char, usize, bool, usize)> = None;
     let mut container_paragraph = false;
@@ -459,7 +484,9 @@ fn fresh_input_directives(text: &str) -> (Vec<(usize, &str)>, Option<usize>) {
                 let marker = content.chars().next().expect("fence marker");
                 let count = content.chars().take_while(|c| *c == marker).count();
                 fence = Some((marker, count, contained, list_indent));
-            } else if !container_paragraph && plain.starts_with("WITHHOLD_RESERVOIR_INPUT") {
+            } else if !container_paragraph
+                && (plain.starts_with("WITHHOLD_RESERVOIR_INPUT") || malformed_next_prefix(plain))
+            {
                 candidates.push((offset, plain));
             }
         }

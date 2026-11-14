@@ -1020,3 +1020,43 @@ fn v2_oversized_input_directive_keeps_raw_evidence_but_bounds_receipts() {
     assert!(!prompt.contains(&directive));
     run.verify();
 }
+
+#[test]
+fn v2_malformed_next_prefix_does_not_cancel_independent_withholding() {
+    for tail in [
+        "NEXT NONE",
+        "NEXT = NONE",
+        "NEXT=NONE",
+        "NEXT\tNONE",
+        "NEXT",
+    ] {
+        for directive in [
+            "WITHHOLD_RESERVOIR_INPUT=true",
+            "WITHHOLD_RESERVOIR_INPUT=maybe",
+        ] {
+            let raw = format!("Retained body.\n{directive}\n{tail}");
+            let parsed = parse_authored_action_v2(&raw);
+            assert!(parsed.withholds_reservoir_input(), "{raw}");
+            assert_eq!(parsed.body, "Retained body.");
+            assert_eq!(parsed.raw_tail.as_deref(), Some(tail));
+            assert!(parsed.request.is_none() && parsed.rejection.is_some());
+            let mut run = Run::new(specification_v2());
+            let journal = run.save(&raw);
+            assert_eq!(journal.semantic_vector, vec![0.0; 48]);
+            let receipt = run.apply().action_receipt.unwrap();
+            assert_eq!(receipt.status, SustainedActionStatus::Rejected);
+            assert_eq!(receipt.state_delta_l2, 0.0);
+            assert!(receipt.reservoir_input.unwrap().withholds());
+            run.verify();
+        }
+    }
+    for quoted in [
+        "> earlier\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT NONE",
+        "- earlier\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT = NONE",
+        "```\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT NONE\n```",
+    ] {
+        let parsed = parse_authored_action_v2(quoted);
+        assert!(!parsed.withholds_reservoir_input());
+        assert_eq!(parsed.body, quoted);
+    }
+}
