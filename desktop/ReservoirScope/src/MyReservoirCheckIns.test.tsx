@@ -117,6 +117,18 @@ describe('paused conversational prompt editing', () => {
 });
 
 describe('check-in outcomes and reading', () => {
+  it('describes completed schedule recovery without suggesting another start', async () => {
+    const { controller, api, nextSequence } = reservoirFixture();
+    await controller.inspect('personal-1');
+    const summary = reservoirSummary({ config: config(), checkIns: { ...answeredSchedule(), complete: true, canEdit: false }, phase: 'scheduleComplete', generation: '2', revision: '8', canStart: false });
+    vi.spyOn(api, 'restore').mockImplementation(async requestId => ({ requestId, snapshotSequence: nextSequence(), summary, frame: null, closeRequested: false }));
+    vi.spyOn(api, 'get').mockImplementation(async requestId => ({ requestId, snapshotSequence: nextSequence(), summary, frame: null, closeRequested: false }));
+    const action = vi.spyOn(api, 'action');
+    await controller.restore();
+    expect(controller.snapshot().recoveryMessage).toBe('Completed scheduled conversations restored for reading. No new writing was started.');
+    expect(controller.snapshot().summary?.canStart).toBe(false);
+    expect(action).not.toHaveBeenCalled();
+  });
   it('keeps all six outcomes visible and gives a calm completed status', () => {
     const { controller } = reservoirFixture(); const state = { ...controller.snapshot(), summary: reservoirSummary({ config: config(), checkIns: answeredSchedule(), phase: 'scheduleComplete', canStart: false }) };
     const html = renderToStaticMarkup(<MyReservoirCheckIns state={state} controller={controller}/>);

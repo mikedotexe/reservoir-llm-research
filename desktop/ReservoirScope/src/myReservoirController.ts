@@ -350,7 +350,7 @@ export class MyReservoirController {
       if (result.requestId !== requestId || !result.summary || result.summary.sessionId !== m.sessionId || result.summary.generation === m.generation || ['running', 'awaitingLanguage', 'savingJournal'].includes(result.summary.phase)) throw new Error('Recovery did not restore this session into a new held generation.');
       if (effectivePromptVersion(result.summary.config) !== effectivePromptVersion(m.config)) throw new Error('Recovery changed the inspected journal prompt version.');
       if (!this.accept(result, true)) throw new Error('A newer session snapshot superseded this replacement.');
-      this.channelEpoch++; accepted = true; this.set({ recoveryMessage: 'Verified continuation restored without starting execution. Review its boundary, then Start explicitly.' });
+      this.channelEpoch++; accepted = true; this.set({ recoveryMessage: result.summary.checkIns?.complete ? 'Completed scheduled conversations restored for reading. No new writing was started.' : 'Verified continuation restored without starting execution. Review its boundary, then Start explicitly.' });
     } catch (error) { if (epoch === this.recoveryEpoch) this.set({ recoveryError: errorText(error) }); }
     finally { if (epoch === this.recoveryEpoch) this.set({ busy: null, recoveryBusy: false }); if (accepted) void this.connect(); }
   }
