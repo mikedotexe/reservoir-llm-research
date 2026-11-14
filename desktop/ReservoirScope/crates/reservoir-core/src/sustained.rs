@@ -3182,6 +3182,11 @@ fn render_pending_prompt(
     if actions::enabled_for_turn(&state.specification, check_in) {
         actions::render_prompt(state, observation, memory)
     } else {
+        if state.specification.action_mode == Some(SustainedActionMode::AuthoredV3) {
+            if let Some(context) = check_in.filter(|context| context.include_telemetry) {
+                return continuity::render_check_in(state, observation, memory, latest, context);
+            }
+        }
         let prompt = check_ins::render_prompt(
             state.specification.prompt_version,
             observation,
@@ -3193,9 +3198,7 @@ fn render_pending_prompt(
         if state.specification.action_mode.is_some()
             && check_in.is_some_and(|context| context.include_telemetry)
         {
-            if state.specification.action_mode == Some(SustainedActionMode::AuthoredV3) {
-                format!("CONVERSATIONAL CONTEXT\nThis reply is a conversation: NEXT, PROBE, input and inquiry directives in it remain prose and execute nothing. Its complete saved text returns through ordinary automatic feedback. Ordinary journal turns retain their control and local inquiry choices.\n\n{}\n\n{}\n\n{}", continuity::render_context(state), continuity::render_inquiry(state, observation), prompt)
-            } else if state.specification.action_mode == Some(SustainedActionMode::AuthoredV2) {
+            if state.specification.action_mode == Some(SustainedActionMode::AuthoredV2) {
                 format!("READ-ONLY ACTION CONTEXT\nThis conversational check-in cannot issue actions or withhold input. Current controls and actual execution/input receipts are supplied as context; any NEXT or WITHHOLD_RESERVOIR_INPUT text in this reply stays prose and the complete reply enters numerical text feedback normally.\n\n{}\n\n{}", actions::render_execution_context(state), prompt)
             } else {
                 format!("READ-ONLY ACTION CONTEXT\nThis conversational check-in cannot issue actions. Current controls and actual execution receipts are supplied as context; any NEXT text in this reply stays prose.\n\n{}\n\n{}", actions::render_execution_context(state), prompt)

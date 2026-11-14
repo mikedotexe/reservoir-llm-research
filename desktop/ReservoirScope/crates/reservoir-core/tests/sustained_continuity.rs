@@ -1,4 +1,4 @@
-use reservoir_core::{session::LanguageResponse, sustained::*};
+use reservoir_core::{codec, session::LanguageResponse, sustained::*};
 use sha2::{Digest, Sha256};
 
 fn spec() -> SustainedSpecification {
@@ -37,12 +37,17 @@ fn rehash(c: &mut SustainedCheckpoint) {
 struct Run {
     session: SustainedSession,
     base: SustainedCheckpoint,
+    entries: Vec<SustainedJournal>,
 }
 impl Run {
     fn new(spec: SustainedSpecification) -> Self {
         let session = SustainedSession::new(spec).unwrap();
         let base = session.checkpoint();
-        Self { session, base }
+        Self {
+            session,
+            base,
+            entries: Vec::new(),
+        }
     }
     fn reach(&mut self) {
         while matches!(self.session.phase(), SustainedPhase::Ready) {
@@ -50,7 +55,16 @@ impl Run {
         }
         if let Some(m) = self.session.pending_memory().cloned() {
             self.session
-                .confirm_memory(m.entry.as_ref().expect("latest memory"))
+                .confirm_memory(
+                    m.entry
+                        .as_ref()
+                        .or_else(|| {
+                            self.entries
+                                .iter()
+                                .find(|e| Some(e.id.as_str()) == m.entry_id())
+                        })
+                        .expect("saved memory"),
+                )
                 .unwrap();
         }
     }
@@ -70,6 +84,7 @@ impl Run {
                 &p.entry,
             )
             .unwrap();
+        self.entries.push(p.entry.clone());
         p
     }
     fn apply(&mut self) -> SustainedFrame {
@@ -583,4 +598,268 @@ fn tiny_probe_coordinates_are_rendered_exactly() {
         .prompt
         .contains("[1e-12,"));
     r.verify();
+}
+
+#[test]
+fn v3_none_keeps_v2_numerical_path_without_extra_rng_draws() {
+    let mut v2 = spec();
+    v2.action_mode = Some(SustainedActionMode::AuthoredV2);
+    v2.prompt_version = SustainedPromptVersion::ActionJournalV2;
+    let mut old = Run::new(v2);
+    let mut new = Run::new(spec());
+    for text in [
+        "One.\nNEXT: NONE",
+        "Two.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: NONE",
+        "Three.\nNEXT: NONE",
+    ] {
+        let a = old.turn(text);
+        let b = new.turn(text);
+        assert_eq!(a.state, b.state);
+        assert_eq!(a.input, b.input);
+        assert_eq!(a.sensory.field_vector, b.sensory.field_vector);
+        assert_eq!(a.noise, b.noise);
+        assert_eq!(a.sensory_noise, b.sensory_noise);
+        old.verify();
+        new.verify();
+    }
+}
+
+#[test]
+fn inquiry_and_probe_survive_embedding_failure_restore_and_retry_without_early_effect() {
+    let mut c = spec();
+    c.codec = SustainedCodec::Embedding {
+        model: "fixture".into(),
+        projection_seed: 99,
+    };
+    let mut r = Run::new(c);
+    r.reach();
+    let pending = r.session.pending_language().unwrap().clone();
+    let id = pending.attempt_id;
+    r.session.start_language(id).unwrap();
+    let response=reply(&format!("Investigate this input.\nINQUIRY: OPEN both \"What changes?\"\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: {}",probe(0.5)));
+    r.session
+        .retain_language_for_feedback(id, &response)
+        .unwrap();
+    assert_eq!(
+        r.session
+            .feedback_text_for_response(&response.text)
+            .unwrap(),
+        "Investigate this input."
+    );
+    let first = r.session.start_feedback(id).unwrap();
+    r.session
+        .fail_feedback(id, first, "fixture unavailable")
+        .unwrap();
+    r.verify();
+    assert!(r.continuity().active_inquiry.is_none());
+    assert!(r.continuity().meaningful_receipts.is_empty());
+    r.session = SustainedSession::restore(
+        serde_json::from_slice(&serde_json::to_vec(&r.session.checkpoint()).unwrap()).unwrap(),
+    )
+    .unwrap();
+    assert_eq!(
+        r.session.pending_feedback().unwrap().pending.prompt,
+        pending.prompt
+    );
+    assert_eq!(
+        r.session.pending_feedback().unwrap().response.text,
+        response.text
+    );
+    r.session.retry_feedback().unwrap();
+    let retry = r.session.start_feedback(id).unwrap();
+    let source: Vec<_> = (0..768).map(|i| (i as f64 * 0.37).sin()).collect();
+    let external = ExternalFeedback {
+        vector: codec::project_embedding(&source, 99).unwrap(),
+        provenance: FeedbackProvenance {
+            kind: "embedding".into(),
+            model: "fixture".into(),
+            digest: None,
+            dimensions: 768,
+            embedding_sha256: format!("{:x}", Sha256::digest(b"fixture")),
+            projection_seed: 99,
+        },
+    };
+    assert!(r.session.confirm_feedback(id, first, &external).is_err());
+    r.session.confirm_feedback(id, retry, &external).unwrap();
+    let p = r.session.pending_journal().unwrap().clone();
+    r.session
+        .confirm_saved(
+            &SustainedSaveReceipt {
+                entry_id: p.entry.id.clone(),
+                sha256: p.entry.sha256.clone(),
+                relative_path: format!("journals/{}.json", p.entry.id),
+            },
+            &p.entry,
+        )
+        .unwrap();
+    assert!(r.continuity().active_inquiry.is_none());
+    assert!(r.session.advance().is_err());
+    r.verify();
+    r.apply();
+    assert!(r.continuity().active_inquiry.is_some());
+    assert_eq!(r.continuity().meaningful_receipts.len(), 1);
+    assert_eq!(r.session.checkpoint().state.attempt_cursor, id);
+    r.verify();
+    r.reach();
+    assert!(r
+        .session
+        .pending_language()
+        .unwrap()
+        .prompt
+        .contains("Investigate this input."));
+    r.verify();
+}
+
+#[test]
+fn plain_and_telemetry_check_ins_preserve_inquiry_and_execute_no_directives() {
+    for telemetry in [false, true] {
+        let mut c = spec();
+        let prompt = " Tell me, friend.\n".to_string();
+        c.check_in_schedule = Some(SustainedCheckInSchedule {
+            interval_seconds: 10,
+            end_after_seconds: 30,
+            prompt: prompt.clone(),
+            include_telemetry: telemetry,
+        });
+        let mut r = Run::new(c);
+        r.turn("Opening.\nINQUIRY: OPEN both \"Carry this question.\"\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: TUNE leak 0.7");
+        r.verify();
+        let before = r.continuity().active_inquiry.clone();
+        let controls = r.session.action_state().unwrap().controls.clone();
+        let latest = r.continuity().latest_inquiry_receipt.clone();
+        assert!(r.session.admit_due_check_in(10000).unwrap());
+        if let Some(m) = r.session.pending_memory().cloned() {
+            r.session.confirm_memory(m.entry.as_ref().unwrap()).unwrap();
+        }
+        let p = r.session.pending_language().unwrap();
+        if telemetry {
+            assert!(p
+                .prompt
+                .contains("Ordinary journal turns retain their control"));
+            assert!(p.prompt.contains("Carry this question."));
+        } else {
+            assert_eq!(p.prompt, prompt);
+        }
+        let raw = format!(
+            "Conversation.\nINQUIRY: CLOSE\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: {}",
+            probe(1.0)
+        );
+        let j = r.save(&raw);
+        assert!(j.action.is_none());
+        assert!(j.entry.body.is_none());
+        assert_eq!(j.entry.text, raw);
+        let frame = r.apply();
+        assert!(frame.action_receipt.is_none());
+        assert_eq!(r.continuity().active_inquiry, before);
+        assert_eq!(r.continuity().latest_inquiry_receipt, latest);
+        assert_eq!(r.session.action_state().unwrap().controls, controls);
+        assert!(r.continuity().journal_window.last().unwrap().check_in);
+        assert_eq!(
+            r.continuity().input_transitions.last().unwrap().disposition,
+            SustainedReservoirInputDisposition::Send
+        );
+        assert!(r
+            .session
+            .checkpoint()
+            .state
+            .held_vector
+            .iter()
+            .any(|v| *v != 0.0));
+        r.verify();
+        r.reach();
+        assert!(r
+            .session
+            .pending_language()
+            .unwrap()
+            .prompt
+            .contains("Carry this question."));
+        r.verify();
+    }
+}
+
+#[test]
+fn prose_about_inquiry_is_not_a_directive() {
+    let d = parse_authored_action_v3("INQUIRY seems a useful word.\nNEXT: NONE");
+    assert!(d.inquiry.is_none());
+    assert_eq!(d.body, "INQUIRY seems a useful word.");
+}
+
+#[test]
+fn prior_window_identity_and_bounded_context_survive_long_histories() {
+    let mut c = spec();
+    c.memory_policy = SustainedMemoryPolicy::StateAligned;
+    let mut r = Run::new(c);
+    for n in 0..9 {
+        r.turn(&format!(
+            "{}\nWITHHOLD_RESERVOIR_INPUT={}\nNEXT: TUNE feedbackScale {}",
+            "a".repeat(3000),
+            n % 2 == 0,
+            if n % 2 == 0 { 0.5 } else { 1.0 }
+        ));
+        r.verify();
+    }
+    r.turn(&format!(
+        "{}\nINQUIRY: OPEN both {}\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: {}",
+        "b".repeat(3000),
+        serde_json::to_string(&"q".repeat(512)).unwrap(),
+        probe(0.123456789012345)
+    ));
+    r.verify();
+    let mut bad = r.session.checkpoint();
+    bad.state
+        .action_state
+        .as_mut()
+        .unwrap()
+        .continuity
+        .as_mut()
+        .unwrap()
+        .journal_window
+        .remove(0);
+    rehash(&mut bad);
+    assert!(bad.validate().is_err());
+    r.reach();
+    let prompt = &r.session.pending_language().unwrap().prompt;
+    assert!(
+        prompt.len() < 22000,
+        "bounded prompt is {} bytes",
+        prompt.len()
+    );
+    assert!(!prompt.contains(&"b".repeat(2049)));
+    r.verify();
+}
+
+#[test]
+fn final_probe_channel_and_serialized_receipts_replay_exactly() {
+    let mut vector = vec![0.0; 48];
+    vector[47] = 0.125;
+    let mut actual = Run::new(spec());
+    let mut control = Run::new(spec());
+    let a = actual.turn(&format!(
+        "Body\nNEXT: PROBE {}",
+        serde_json::to_string(&vector).unwrap()
+    ));
+    let b = control.turn("Body\nNEXT: NONE");
+    assert_eq!(a.input[65] - b.input[65], 0.125);
+    assert_eq!(&a.input[..65], &b.input[..65]);
+    assert!(distance(&a.state, &b.state) > 0.0);
+    assert_ne!(a.sensory.field_vector, b.sensory.field_vector);
+    let segment = actual.verify();
+    let restored: SustainedSegment =
+        serde_json::from_slice(&serde_json::to_vec(&segment).unwrap()).unwrap();
+    restored.verify().unwrap();
+    actual.session = SustainedSession::restore(restored.final_checkpoint).unwrap();
+    assert_eq!(
+        actual
+            .session
+            .action_state()
+            .unwrap()
+            .latest_receipt
+            .as_ref()
+            .unwrap()
+            .probe
+            .as_ref()
+            .unwrap()
+            .applied_vector,
+        vector
+    );
 }
