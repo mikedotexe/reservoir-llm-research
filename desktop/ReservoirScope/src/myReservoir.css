@@ -83,3 +83,19 @@
 .my-reservoir-check-in-slots li { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 14px 0; border-top: 1px solid #314953; font-size: 13px; }
 .my-reservoir-check-in-slots p { margin: 5px 0 0; }
 .my-reservoir-check-in-reading .my-reservoir-journal-detail { margin: 14px 0; }
+
+/* Authored controls remain distinct from automatic text feedback. */
+.my-reservoir-action-setup { margin-top: 22px; padding-top: 16px; border-top: 1px solid #314953; }
+.my-reservoir-action-setup h3 { font-size: 16px; margin: 0 0 14px; }
+.my-reservoir-authored-actions { margin: 20px 0; padding: 18px; border: 1px solid #395563; border-radius: 10px; background: #10212a; min-width: 0; }
+.my-reservoir-authored-actions h2 { margin: 0 0 10px; font-size: 22px; }
+.my-reservoir-authored-actions h3 { font-size: 15px; margin: 18px 0 8px; }
+.my-reservoir-authored-actions p { font-size: 12px; overflow-wrap: anywhere; }
+.my-reservoir-action-controls { max-width: 640px; font-variant-numeric: tabular-nums; }
+.my-reservoir-action-pending { border-left: 3px solid #b6a05c; padding-left: 14px; }
+.my-reservoir-action-receipt { border-left: 3px solid #638c7d; padding-left: 14px; }
+.my-reservoir-action-receipt.action-rejected { border-left-color: #bc8f6c; }
+.my-reservoir-action-receipt.action-unchanged { border-left-color: #6f8794; }
+.my-reservoir-action-history { padding-left: 22px; }
+.my-reservoir-action-history li { margin-bottom: 16px; }
+.my-reservoir-action-rejection { color: #efc0b4 !important; white-space: pre-wrap; overflow-wrap: anywhere; }

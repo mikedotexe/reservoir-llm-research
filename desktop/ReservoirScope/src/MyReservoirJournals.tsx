@@ -2,25 +2,27 @@ import { formatSessionDuration } from './sessionDuration';
 import './myReservoirReading.css';
 import ProviderPromptEvidence from './ProviderPromptEvidence';
 import JournalMeasurements from './JournalMeasurements';
+import { JournalActionDetails, actionReceiptStatus } from './MyReservoirActions';
 import type { MyReservoirController, MyReservoirState } from './myReservoirController';
 import { effectiveOutputTokens, effectiveRequestDeadline, type SustainedConfig, type SustainedJournal } from './myReservoirTypes';
 
 const status = (value: SustainedJournal['status']) => value === 'applied' ? 'Saved · feedback applied' : value === 'skipped' ? 'Saved · feedback skipped' : 'Saved · waiting for first application';
 const json = (value: unknown) => value == null ? 'Not retained.' : JSON.stringify(value, null, 2);
 export function MyReservoirJournalDetail({ journal, revision, config, onRefreshEvidence, refreshing = false }: { journal: SustainedJournal; revision: string | null; config?: SustainedConfig; onRefreshEvidence?: () => void; refreshing?: boolean }) {
+  const body = journal.action?.body ?? journal.text;
   return <article className="my-reservoir-journal-detail">
     <span className="eyebrow">{journal.checkIn ? `SCHEDULED CHECK-IN ${journal.checkIn.ordinal}` : 'SAVED ENTRY'}</span>
     <h3>Entry at step {journal.observedStep}</h3>
     <p className="my-reservoir-journal-status"><strong>{status(journal.status)}</strong>{journal.firstAppliedStep !== null ? ` · first applied at step ${journal.firstAppliedStep}` : ' · no first application recorded'}</p>
-    <div className="my-reservoir-journal-prose" style={{ whiteSpace: 'pre-wrap' }}>{journal.text}</div>
+    <div className="my-reservoir-journal-prose" style={{ whiteSpace: 'pre-wrap' }}>{body.trim() ? body : <span className="my-reservoir-small">No journal text in this entry.</span>}</div>
     {journal.status !== 'applied' && <p className="my-reservoir-journal-return">
       {journal.status === 'savedPendingApplication' ? 'Saved and checked. This entry is waiting for its first application, so it is not yet eligible to return as memory in a later prompt.' : 'This journal remains readable. Its feedback and automatic prompt-memory exposure were explicitly skipped.'}
     </p>}
-    {journal.checkIn && <p>{journal.checkIn.includeTelemetry ? 'Telemetry and session context were supplied with the conversational prompt.' : 'Only the conversational prompt was supplied. Numerical observations below were retained internally, not sent to the model.'}</p>}
+    {journal.checkIn && <p>{journal.checkIn.includeTelemetry ? 'Telemetry and session context were supplied with the conversational prompt.' : 'Only the conversational prompt was supplied. Numerical observations below were retained internally, not sent to the model.'} {config?.actionMode && 'No action was requested or executed by this check-in.'}</p>}
     <JournalMeasurements value={journal.measurementReference} observedStep={journal.observedStep} promptVersion={journal.checkIn ? undefined : journal.promptVersion}/>
     <details className="my-reservoir-journal-evidence">
       <summary>Evidence</summary>
-      <p className="my-reservoir-journal-return">{journal.status === 'applied' && <>This entry’s feedback was first applied at step {journal.firstAppliedStep}. Its full text is eligible for later prompts. </>}Describing a control change does not execute it.</p>
+      <p className="my-reservoir-journal-return">{journal.status === 'applied' && <>This entry’s feedback was first applied at step {journal.firstAppliedStep}. {journal.action ? 'Its journal body is eligible for later prompts. ' : 'Its full text is eligible for later prompts. '}</>}{journal.action ? 'Only the separate parsed action can change controls; prose is retained as writing.' : 'Describing a control change does not execute it.'}</p>
       {onRefreshEvidence && <button disabled={refreshing} onClick={onRefreshEvidence}>Refresh save and feedback details</button>}
       {journal.checkIn && <section><h4>Scheduled conversation</h4><dl className="my-reservoir-data">
         <dt>Check-in</dt><dd>{journal.checkIn.ordinal} · due at {formatSessionDuration(journal.checkIn.scheduledSeconds)}</dd>
@@ -29,6 +31,7 @@ export function MyReservoirJournalDetail({ journal, revision, config, onRefreshE
         <dt>Context mode</dt><dd>{journal.checkIn.includeTelemetry ? 'Telemetry + session context' : 'Plain prompt only'}</dd>
         <dt>Numerical observation supplied</dt><dd>{journal.observationSupplied ? 'Compact readout supplied; full observation retained internally' : 'Not supplied'}</dd>
       </dl><h5>Editable prompt used</h5><pre>{journal.checkIn.prompt}</pre><h5>Exact app-supplied system message</h5>{journal.systemContract ? <pre>{journal.systemContract}</pre> : <p>No app-supplied system message.</p>}</section>}
+      <JournalActionDetails journal={journal}/>
       <h4>Journal and request identity</h4>
       <dl className="my-reservoir-data">
         <dt>{journal.checkIn ? 'Ordinary invitation version' : 'Journal prompt version'}</dt><dd>{journal.promptVersion}{journal.checkIn && ' · this check-in used the scheduled-conversation renderer'}</dd>
@@ -61,6 +64,7 @@ export function MyReservoirJournalDetail({ journal, revision, config, onRefreshE
       <section>
         <h4>Exact prompt and observation</h4>
         {(!journal.checkIn && (journal.promptVersion === 'reservoir-journal-v5' || journal.promptVersion === 'reservoir-journal-v6' || journal.promptVersion === 'reservoir-journal-v7' || journal.promptVersion === 'reservoir-journal-v8')) && <p>The {journal.promptVersion.replace('reservoir-journal-', '')} prompt uses a compact measurement subset. The full retained observation below also includes coordinates, spectra and other values that were not supplied as part of that readout. The exact prompt records what was supplied, including prior prose.</p>}
+        {journal.action && <p>The action prompt supplies a compact current readout, active controls, recent action results and any earlier journal body. The full observation below contains additional values retained for inspection.</p>}
         <p>Recurrent coordinates and summaries are separate from sensory measurements. Reading or selecting a coordinate in this app does not edit this retained prompt.</p>
         <h5>Exact prompt</h5><pre tabIndex={0} role="region" aria-label="Exact journal prompt">{journal.prompt}</pre>
         <h5>Versioned numerical observation</h5><pre tabIndex={0} role="region" aria-label="Numerical observation">{json(journal.observation)}</pre>
@@ -70,14 +74,18 @@ export function MyReservoirJournalDetail({ journal, revision, config, onRefreshE
         <h4>Retained full-text memory</h4>
         {journal.memory ? <>
           <p className="my-reservoir-hash">Entry {journal.memory.entryId} · SHA-256 {journal.memory.sha256}</p>
-          <pre tabIndex={0} role="region" aria-label="Previous journal text">{journal.memory.text}</pre>
-          <p>Exact memory text retained with this opportunity. This is distinct from the reduced vector applied to the numerical system.</p>
+          {journal.memory.suppliedTextSha256 && <p className="my-reservoir-hash">Supplied body SHA-256: {journal.memory.suppliedTextSha256}</p>}
+          <pre tabIndex={0} role="region" aria-label="Previous journal text">{journal.memory.suppliedText ?? journal.memory.text}</pre>
+          <p>{journal.memory.suppliedText !== undefined ? 'The journal body above was supplied as earlier writing. The entry identity and original SHA-256 refer to the complete saved response.' : 'Exact memory text retained with this opportunity.'} This is distinct from the reduced vector applied to the numerical system.</p>
+          {journal.memory.suppliedText !== undefined && <details><summary>Original earlier journal · full response</summary><pre tabIndex={0} role="region" aria-label="Original earlier journal">{journal.memory.text}</pre></details>}
         </> : <p>No prior journal text was retained as memory for this opportunity.</p>}
       </section>
       {journal.latestShown && <section>
         <h4>Latest entry also shown</h4>
         <p className="my-reservoir-hash">Entry {journal.latestShown.entryId} · SHA-256 {journal.latestShown.sha256}</p>
-        <pre tabIndex={0} role="region" aria-label="Latest entry text">{journal.latestShown.text}</pre>
+        {journal.latestShown.suppliedTextSha256 && <p className="my-reservoir-hash">Supplied body SHA-256: {journal.latestShown.suppliedTextSha256}</p>}
+        <pre tabIndex={0} role="region" aria-label="Latest entry text">{journal.latestShown.suppliedText ?? journal.latestShown.text}</pre>
+        {journal.latestShown.suppliedText !== undefined && <details><summary>Original latest journal · full response</summary><pre>{journal.latestShown.text}</pre></details>}
         <p>Under the two-entry prompt version the latest applied entry was shown after the chosen older entry above, marked only by order.</p>
       </section>}
       <section>
@@ -150,7 +158,8 @@ export default function MyReservoirJournals({ state, controller }: { state: MyRe
           <button aria-pressed={state.journal?.entryId === entry.entryId} onClick={() => void controller.selectJournal(entry.entryId)}>
             <strong>Step {entry.observedStep}</strong>
             <span className="my-reservoir-history-status">{status(entry.status)} · {entry.firstAppliedStep === null ? 'No first application recorded' : `First applied ${entry.firstAppliedStep}`}</span>
-            <span>{entry.textPreview}</span>
+            {entry.actionReceipt && <span className="my-reservoir-history-status">{actionReceiptStatus(entry.actionReceipt)}</span>}
+            <span>{entry.textPreview.trim() ? entry.textPreview : 'No journal text in this entry.'}</span>
           </button>
         </li>)}</ul>
         {page && <div className="my-reservoir-actions">

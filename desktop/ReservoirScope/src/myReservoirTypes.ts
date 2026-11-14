@@ -1,6 +1,6 @@
 import type { LanguageConfiguration, SessionFrame } from './freshTypes';
 
-export type SustainedPromptVersion = 'reservoir-journal-v1' | 'reservoir-journal-v2' | 'reservoir-journal-v3' | 'reservoir-journal-v4' | 'reservoir-journal-v5' | 'reservoir-journal-v6' | 'reservoir-journal-v7' | 'reservoir-journal-v8'
+export type SustainedPromptVersion = 'reservoir-journal-v1' | 'reservoir-journal-v2' | 'reservoir-journal-v3' | 'reservoir-journal-v4' | 'reservoir-journal-v5' | 'reservoir-journal-v6' | 'reservoir-journal-v7' | 'reservoir-journal-v8' | 'reservoir-journal-actions-v1'
   | 'reservoir-journal-inert-v1' | 'reservoir-journal-inert-no-memory-v1' | 'reservoir-journal-inert-plain-contract-v1' | 'reservoir-journal-inert-inviting-contract-v1'
   | 'reservoir-journal-inert-open-contract-v1' | 'reservoir-journal-inert-inviting-varied-contract-v1'
   | 'reservoir-journal-inert-effect-v1' | 'reservoir-journal-inert-plain-contract-effect-v1'
@@ -8,7 +8,7 @@ export type SustainedPromptVersion = 'reservoir-journal-v1' | 'reservoir-journal
   | 'reservoir-journal-inert-plain-contract-two-v1' | 'reservoir-journal-inert-plain-contract-two-no-tag-v1';
 /** S-010 frame arms: lean per-turn input modeled on the beings' own, with or without the earlier entry or a standing contract. Research sessions; not offered as a fresh default. */
 export const FRAME_ARM_PROMPT_VERSIONS: SustainedPromptVersion[] = ['reservoir-journal-inert-v1', 'reservoir-journal-inert-no-memory-v1', 'reservoir-journal-inert-plain-contract-v1', 'reservoir-journal-inert-inviting-contract-v1', 'reservoir-journal-inert-open-contract-v1', 'reservoir-journal-inert-inviting-varied-contract-v1', 'reservoir-journal-inert-effect-v1', 'reservoir-journal-inert-plain-contract-effect-v1', 'reservoir-journal-inert-no-tag-v1', 'reservoir-journal-inert-plain-contract-no-tag-v1', 'reservoir-journal-inert-plain-contract-scrambled-tag-v1', 'reservoir-journal-inert-plain-contract-two-v1', 'reservoir-journal-inert-plain-contract-two-no-tag-v1'];
-export const isSustainedPromptVersion = (value: unknown): value is SustainedPromptVersion => value === 'reservoir-journal-v1' || value === 'reservoir-journal-v2' || value === 'reservoir-journal-v3' || value === 'reservoir-journal-v4' || value === 'reservoir-journal-v5' || value === 'reservoir-journal-v6' || value === 'reservoir-journal-v7' || value === 'reservoir-journal-v8' || (FRAME_ARM_PROMPT_VERSIONS as unknown[]).includes(value);
+export const isSustainedPromptVersion = (value: unknown): value is SustainedPromptVersion => value === 'reservoir-journal-v1' || value === 'reservoir-journal-v2' || value === 'reservoir-journal-v3' || value === 'reservoir-journal-v4' || value === 'reservoir-journal-v5' || value === 'reservoir-journal-v6' || value === 'reservoir-journal-v7' || value === 'reservoir-journal-v8' || value === 'reservoir-journal-actions-v1' || (FRAME_ARM_PROMPT_VERSIONS as unknown[]).includes(value);
 export const effectivePromptVersion = (config: SustainedConfig): SustainedPromptVersion => config.promptVersion === undefined ? 'reservoir-journal-v1' : config.promptVersion;
 export const effectiveOutputTokens = (config: SustainedConfig): number => config.outputTokens === undefined ? 256 : config.outputTokens;
 export const effectiveRequestDeadline = (config: SustainedConfig): number => config.requestDeadlineSeconds === undefined ? 60 : config.requestDeadlineSeconds;
@@ -82,8 +82,28 @@ export interface SustainedCheckIns {
   canEdit: boolean; complete: boolean; slots: SustainedCheckInSlot[];
   settingsHistory?: (SustainedCheckInSettings & { elapsedMillis?: number })[];
 }
+export interface SustainedActionControls { leak: number; recurrentGain: number; feedbackScale: number }
+export type SustainedAuthoredRequest = { kind: 'none' } | { kind: 'pulse'; direction: 'uniform' | 'alternating' | 'axis0' | 'axis1'; strength: number }
+  | { kind: 'tune'; parameter: keyof SustainedActionControls; value: number } | { kind: 'release' };
+export interface SustainedActionDecision { body: string; rawTail: string | null; request: SustainedAuthoredRequest | null; rejection: string | null }
+export interface SustainedActionReceipt {
+  journalId: string; attemptId: number; observedStep: number; appliedStep: number;
+  status: 'applied' | 'unchanged' | 'rejected'; request: SustainedAuthoredRequest | null; rawTail: string | null; rejection: string | null;
+  controlsBefore: SustainedActionControls; controlsAfter: SustainedActionControls;
+  stateDeltaL2: number; stateDeltaMaxAbs: number; clippedCoordinates: number;
+}
+export interface SustainedActionState {
+  controls: SustainedActionControls; latestReceipt: SustainedActionReceipt | null; recentReceipts: SustainedActionReceipt[];
+  decisionCount: number; appliedCount: number; rejectedCount: number;
+}
+export interface SustainedActions {
+  state: SustainedActionState; durableStep: number;
+  pending?: { attemptId: number; entryId: string; observedStep: number; intendedStep?: number | null; phase: 'saving' | 'prepared'; durablePrepared: boolean; decision: Pick<SustainedActionDecision, 'request' | 'rejection'> } | null;
+}
 export interface SustainedConfig {
   checkInSchedule?: SustainedCheckInSchedule;
+  /** Explicit new-session capability. Omitted historical sessions never execute authored actions. */
+  actionMode?: 'authored-v1';
   /** Omitted historical configuration retains v1; only fresh defaults select v8. */
   promptVersion?: SustainedPromptVersion;
   /** Omitted historical budgets retain 256 tokens / 60 seconds. */
@@ -114,6 +134,7 @@ export const DEFAULT_SUSTAINED_CONFIG: SustainedConfig = {
 export interface SustainedLimits { maximumSteps: number; maximumTurns: number; maximumDurationSeconds: number }
 export interface SustainedSummary {
   checkIns?: SustainedCheckIns;
+  actions?: SustainedActions;
   effectiveLimits?: SustainedLimits; canExtendLimits?: boolean; limitExtensionCount?: number;
   sessionId: string; generation: string; revision: string; config: SustainedConfig; phase: string;
   step: number; durableStep: number; simulatedTime: number; elapsedSeconds: number; usedBytes: number;
@@ -136,6 +157,7 @@ export interface SustainedRecoveryDetail { requestId: string; manifest: Sustaine
 export interface SustainedJournalRow {
   entryId: string; turnId: number; attemptId: number; observedStep: number; firstAppliedStep: number | null;
   status: 'savedPendingApplication' | 'applied' | 'skipped'; textPreview: string; sha256: string;
+  actionReceipt?: SustainedActionReceipt | null;
 }
 export interface JournalMeasurementReference {
   currentStep: number; previousStep: number | null; comparisonAvailable: boolean;
@@ -143,6 +165,9 @@ export interface JournalMeasurementReference {
 }
 export interface SustainedJournal extends Omit<SustainedJournalRow, 'textPreview'> {
   checkIn?: SustainedCheckInEvidence;
+  action?: SustainedActionDecision | null;
+  actionReceipt?: SustainedActionReceipt | null;
+  bodySha256?: string | null;
   observationSupplied?: boolean; systemContract?: string | null;
   providerPromptEvaluation?: ProviderPromptEvaluation | null;
   /** Sampling evidence; both absent for historical greedy journals. */
@@ -150,9 +175,9 @@ export interface SustainedJournal extends Omit<SustainedJournalRow, 'textPreview
   /** Present only under the embedding codec. */
   feedbackProvenance?: { kind: string; model: string; digest?: string | null; dimensions: number; embeddingSha256: string; projectionSeed: number } | null;
   text: string; prompt: string; promptVersion: SustainedPromptVersion; rawReply: string; observation: unknown; measurementReference?: JournalMeasurementReference | null;
-  memory: { entryId: string; text: string; sha256: string } | null;
+  memory: { entryId: string; text: string; sha256: string; suppliedText?: string; suppliedTextSha256?: string } | null;
   /** 0.38.0: the latest applied entry, also shown under the two-entry prompt version; absent or null otherwise. */
-  latestShown?: { entryId: string; text: string; sha256: string } | null;
+  latestShown?: { entryId: string; text: string; sha256: string; suppliedText?: string; suppliedTextSha256?: string } | null;
   encodedFeatures: number[]; semanticVector: number[]; saveReceipt: { entryId: string; sha256: string; relativePath: string };
   providerModel: string | null; stopReason: string | null; tokenCount: number | null; providerComplete: boolean;
   configuredModel: string | null; requestStarted: boolean; application: unknown | null;

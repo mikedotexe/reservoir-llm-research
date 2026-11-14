@@ -1,10 +1,11 @@
 import { checkInConfigurationError, checkInTimes, validCheckInPrompt } from './checkInSchedule';
+import { validActionReceipt, validActionSummary, validAuthoredActionConfig, validJournalAction } from './authoredActions';
 import { extensionError, sessionLimits, validSessionLimits } from './sustainedLimits';
 import { errorText } from './api';
 import { myReservoirApi } from './myReservoirApi';
 import { effectivePromptVersion, effectiveOutputTokens, effectiveRequestDeadline, isSustainedPromptVersion, validDifferenceControls, validFieldControls, validMemoryPolicy, validMemoryRecentExclusion, validWritingLimits } from './myReservoirTypes';
 import type { SessionFrame } from './freshTypes';
-import type { MyReservoirApi, SustainedLimits, SustainedAction, SustainedConfig, SustainedJournal, SustainedJournalPage, SustainedSummary, SustainedUpdate, SustainedBundleReport, SustainedRecoveryPage, SustainedRecoveryDetail } from './myReservoirTypes';
+import type { MyReservoirApi, SustainedLimits, SustainedAction, SustainedActionReceipt, SustainedConfig, SustainedJournal, SustainedJournalPage, SustainedSummary, SustainedUpdate, SustainedBundleReport, SustainedRecoveryPage, SustainedRecoveryDetail } from './myReservoirTypes';
 
 export interface MyReservoirState {
   summary: SustainedSummary | null; frame: SessionFrame | null; connected: boolean; busy: string | null;
@@ -25,6 +26,7 @@ function check(update: SustainedUpdate) {
   if (!snapshotOrdinal(update.snapshotSequence)) throw new Error('The session update has no canonical snapshot sequence.');
   if (!s) { if (f) throw new Error('A state frame has no owning session.'); return; }
   if (!s.config || !isSustainedPromptVersion(effectivePromptVersion(s.config))) throw new Error('The session has an unsupported journal prompt version.');
+  if (!validAuthoredActionConfig(s.config) || !validActionSummary(s)) throw new Error('The session has invalid reservoir action settings or saved results.');
   if (!validWritingLimits(s.config)) throw new Error('The session has invalid retained writing limits.');
   if (checkInConfigurationError(s.config)) throw new Error('The session has invalid scheduled conversation settings.');
   if (s.checkIns) {
@@ -38,8 +40,9 @@ function check(update: SustainedUpdate) {
   if (f && (f.step !== String(s.step) || !finite(f.state, 32) || !finite(f.input, 66) || !finite(f.noise, 32) || f.eigenvalues !== null && !finite(f.eigenvalues, 32) || f.fillPercent !== null && (!Number.isFinite(f.fillPercent) || f.fillPercent < 0 || f.fillPercent > 100) || f.time !== null && !Number.isFinite(f.time))) throw new Error('The current state does not match the session clock and exact vector sizes.');
 }
 function same(s: SustainedSummary | null, other: { sessionId: string; generation: string }) { return !!s && s.sessionId === other.sessionId && s.generation === other.generation; }
-function validRow(row: { entryId: string; turnId: number; attemptId: number; observedStep: number; firstAppliedStep: number | null; status: string; sha256: string }) {
-  return !!row.entryId && bounded(row.turnId, 10000) && bounded(row.attemptId, 10000) && bounded(row.observedStep) && (row.firstAppliedStep === null || bounded(row.firstAppliedStep) && row.firstAppliedStep > row.observedStep) && ['savedPendingApplication', 'applied', 'skipped'].includes(row.status) && /^[a-f0-9]{64}$/.test(row.sha256) && (row.status === 'applied') === (row.firstAppliedStep !== null);
+function validRow(row: { entryId: string; turnId: number; attemptId: number; observedStep: number; firstAppliedStep: number | null; status: string; sha256: string; actionReceipt?: SustainedActionReceipt | null }) {
+  return !!row.entryId && bounded(row.turnId, 10000) && bounded(row.attemptId, 10000) && bounded(row.observedStep) && (row.firstAppliedStep === null || bounded(row.firstAppliedStep) && row.firstAppliedStep > row.observedStep) && ['savedPendingApplication', 'applied', 'skipped'].includes(row.status) && /^[a-f0-9]{64}$/.test(row.sha256) && (row.status === 'applied') === (row.firstAppliedStep !== null)
+    && (!row.actionReceipt || row.firstAppliedStep !== null && validActionReceipt(row.actionReceipt, row.firstAppliedStep) && row.actionReceipt.journalId === row.entryId && row.actionReceipt.appliedStep === row.firstAppliedStep && row.actionReceipt.attemptId === row.attemptId && row.actionReceipt.observedStep === row.observedStep);
 }
 
 /** The backend alone advances time. UI subscriptions and journal reading never start or pause it. */
@@ -67,6 +70,7 @@ export class MyReservoirController {
     }
     const existing = this.state.summary, matched = same(existing, summary);
     if (!replacement && !matched || matched && BigInt(summary.revision) < BigInt(existing!.revision)) return false;
+    if (matched && summary.config.actionMode !== existing!.config.actionMode) throw new Error('The session changed its reservoir action capability.');
     if (matched && effectivePromptVersion(summary.config) !== effectivePromptVersion(existing!.config)) throw new Error('The session changed its retained journal prompt version.');
     if (matched && (effectiveOutputTokens(summary.config) !== effectiveOutputTokens(existing!.config)
       || effectiveRequestDeadline(summary.config) !== effectiveRequestDeadline(existing!.config)
@@ -106,6 +110,7 @@ export class MyReservoirController {
   async create(config: SustainedConfig) {
     if (this.state.busy) return false;
     if (!isSustainedPromptVersion(effectivePromptVersion(config))) { this.set({ error: 'The selected journal prompt version is unsupported.' }); return false; }
+    if (!validAuthoredActionConfig(config)) { this.set({ error: 'Reservoir actions need their matching writing invitation.' }); return false; }
     if (!validWritingLimits(config)) { this.set({ error: 'Review the writing limits before creating a session.' }); return false; }
     if (!validFieldControls(config)) { this.set({ error: 'Review the sensory noise and feedback scale before creating a session.' }); return false; }
     if (!validDifferenceControls(config)) { this.set({ error: 'Review the difference-signal settings before creating a session.' }); return false; }
@@ -181,7 +186,7 @@ export class MyReservoirController {
         const requestId = this.id(), result = await this.api.journal(requestId, summary.sessionId, summary.generation, slot.entryId!);
         const j = result.journal, context = j.checkIn;
         if (epoch !== this.identityEpoch) throw new Error('The session changed while loading the reading. Open it again for the current session.');
-        if (result.requestId !== requestId || !same(summary, result) || !ordinal(result.revision) || BigInt(result.revision) < BigInt(summary.revision) || j.entryId !== slot.entryId || !validRow(j) || !isSustainedPromptVersion(j.promptVersion) || j.promptVersion !== effectivePromptVersion(summary.config) || j.saveReceipt.entryId !== j.entryId || j.saveReceipt.sha256 !== j.sha256 || !context || context.ordinal !== slot.ordinal || context.scheduledSeconds !== slot.scheduledSeconds || context.settingsRevision !== slot.settingsRevision || context.includeTelemetry !== slot.includeTelemetry || context.prompt !== slot.prompt) throw new Error('A check-in answer did not match its saved identity and context.');
+        if (result.requestId !== requestId || !same(summary, result) || !ordinal(result.revision) || BigInt(result.revision) < BigInt(summary.revision) || j.entryId !== slot.entryId || !validRow(j) || !validJournalAction(j, summary.config) || !isSustainedPromptVersion(j.promptVersion) || j.promptVersion !== effectivePromptVersion(summary.config) || j.saveReceipt.entryId !== j.entryId || j.saveReceipt.sha256 !== j.sha256 || !context || context.ordinal !== slot.ordinal || context.scheduledSeconds !== slot.scheduledSeconds || context.settingsRevision !== slot.settingsRevision || context.includeTelemetry !== slot.includeTelemetry || context.prompt !== slot.prompt) throw new Error('A check-in answer did not match its saved identity and context.');
         return j;
       }));
       answers.push(...chunk);
@@ -295,7 +300,7 @@ export class MyReservoirController {
       const result = await this.api.journal(requestId, summary.sessionId, summary.generation, entryId);
       if (epoch !== this.journalEpoch || identity !== this.identityEpoch || this.selectedId !== entryId) return;
       const j = result.journal;
-      if (result.requestId !== requestId || !same(summary, result) || !ordinal(result.revision) || j.entryId !== entryId || !isSustainedPromptVersion(j.promptVersion) || j.promptVersion !== effectivePromptVersion(summary.config) || !validRow(j) || !finite(j.encodedFeatures) || !finite(j.semanticVector) || j.saveReceipt.entryId !== entryId || j.saveReceipt.sha256 !== j.sha256 || expectedHash !== null && j.sha256 !== expectedHash) throw new Error('Journal detail did not match its identity and saved evidence.');
+      if (result.requestId !== requestId || !same(summary, result) || !ordinal(result.revision) || j.entryId !== entryId || !isSustainedPromptVersion(j.promptVersion) || j.promptVersion !== effectivePromptVersion(summary.config) || !validRow(j) || !validJournalAction(j, summary.config) || !finite(j.encodedFeatures) || !finite(j.semanticVector) || j.saveReceipt.entryId !== entryId || j.saveReceipt.sha256 !== j.sha256 || expectedHash !== null && j.sha256 !== expectedHash) throw new Error('Journal detail did not match its identity and saved evidence.');
       this.set({ journal: j, journalRevision: result.revision, journalPosition: position, ...(acceptedPage ? { page: acceptedPage } : {}) });
     } catch (error) { if (epoch === this.journalEpoch && identity === this.identityEpoch) this.set({ journalError: errorText(error) }); }
     finally { if (epoch === this.journalEpoch && identity === this.identityEpoch) this.set({ readingJournal: false }); }
