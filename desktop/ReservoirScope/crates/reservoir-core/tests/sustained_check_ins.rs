@@ -414,3 +414,26 @@ fn absent_schedule_has_no_new_serialized_fields() {
     assert!(!serialized.contains("checkIn"));
     assert!(!serialized.contains("reservedAttempt"));
 }
+
+#[test]
+fn scheduled_observations_update_difference_reference_between_ordinary_boundaries() {
+    for telemetry in [false, true] {
+        let mut cfg = spec(telemetry);
+        cfg.difference_gain = 0.1;
+        cfg.difference_watchdog = false;
+        let mut s = SustainedSession::new(cfg).unwrap();
+        let mut base = s.checkpoint();
+        let mut entries = HashMap::new();
+        s.advance().unwrap();
+        assert!(s.admit_due_check_in(10000).unwrap());
+        assert_eq!(s.checkpoint().state.difference_reference_step, 1);
+        s.checkpoint().validate().unwrap();
+        save(
+            &mut s,
+            &mut entries,
+            "a thought between ordinary observations",
+        );
+        apply(&mut s);
+        flush(&mut s, &mut base);
+    }
+}

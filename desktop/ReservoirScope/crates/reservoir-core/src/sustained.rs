@@ -3381,7 +3381,8 @@ fn validate_difference(s: &SustainedContinuation, f: Option<&SustainedFrame>) ->
                 || (s.difference_reference.len() == 32
                     && s.difference_reference_step >= 1
                     && s.difference_reference_step <= s.step
-                    && s.difference_reference_step.is_multiple_of(spec.turn_every)
+                    && (s.difference_reference_step.is_multiple_of(spec.turn_every)
+                        || spec.check_in_schedule.is_some())
                     && s.last_observation.as_ref().is_some_and(|o| {
                         o.step == s.difference_reference_step && o.state == s.difference_reference
                     })),
