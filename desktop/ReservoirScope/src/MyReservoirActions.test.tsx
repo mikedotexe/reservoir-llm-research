@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import MyReservoirConfig from './MyReservoirConfig';
 import MyReservoirActions, { JournalActionDetails } from './MyReservoirActions';
 import { MyReservoirJournalDetail } from './MyReservoirJournals';
-import { ACTION_JOURNAL_PROMPT, ACTION_JOURNAL_PROMPT_V1, validActionSummary, validAuthoredActionConfig, validJournalAction, withAuthoredActions } from './authoredActions';
+import { ACTION_JOURNAL_PROMPT, ACTION_JOURNAL_PROMPT_V1, CONTINUITY_JOURNAL_PROMPT, validActionSummary, validAuthoredActionConfig, validJournalAction, withAuthoredActions } from './authoredActions';
 import { DEFAULT_CHECK_IN_SCHEDULE } from './checkInSchedule';
 import { DEFAULT_SUSTAINED_CONFIG, type SustainedActionControls, type SustainedActionDecision, type SustainedActionReceipt, type SustainedActions, type SustainedConfig, type SustainedJournal } from './myReservoirTypes';
 import { journal, reservoirFixture, reservoirSummary, settle } from './myReservoirTestFixtures';
@@ -23,7 +23,7 @@ describe('new-session reservoir action capability', () => {
     const plain = 'reservoir-journal-inert-plain-contract-no-tag-v1';
     const config: SustainedConfig = { ...DEFAULT_SUSTAINED_CONFIG, promptVersion: plain, checkInSchedule: { ...DEFAULT_CHECK_IN_SCHEDULE, includeTelemetry: false } };
     const active = withAuthoredActions(config, true, plain);
-    expect(active).toEqual({ ...config, actionMode: 'authored-v2', promptVersion: ACTION_JOURNAL_PROMPT });
+    expect(active).toEqual({ ...config, actionMode: 'authored-v3', promptVersion: CONTINUITY_JOURNAL_PROMPT });
     expect(validAuthoredActionConfig(active)).toBe(true);
     expect(withAuthoredActions(active, false, plain)).toEqual(config);
     expect(JSON.stringify(withAuthoredActions(active, false, plain))).not.toContain('actionMode');

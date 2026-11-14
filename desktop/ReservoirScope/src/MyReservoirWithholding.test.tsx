@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import MyReservoirActions, { JournalActionDetails } from './MyReservoirActions';
 import MyReservoirConfig from './MyReservoirConfig';
 import MyReservoirJournals, { MyReservoirJournalDetail } from './MyReservoirJournals';
-import { ACTION_JOURNAL_PROMPT, ACTION_JOURNAL_PROMPT_V1, validActionSummary, validAuthoredActionConfig, validJournalAction, validReservoirInput, withAuthoredActions } from './authoredActions';
+import { ACTION_JOURNAL_PROMPT, ACTION_JOURNAL_PROMPT_V1, validActionSummary, validAuthoredActionConfig, validJournalAction, validReservoirInput, withAuthoredActionMode, withAuthoredActions } from './authoredActions';
 import { DEFAULT_CHECK_IN_SCHEDULE } from './checkInSchedule';
 import { DEFAULT_SUSTAINED_CONFIG, type SustainedActionDecision, type SustainedActionReceipt, type SustainedActions, type SustainedConfig, type SustainedJournal, type SustainedReservoirInput } from './myReservoirTypes';
 import { journal, reservoirFixture, reservoirSummary, row, settle } from './myReservoirTestFixtures';
@@ -20,7 +20,7 @@ const retained = (patch: Partial<SustainedJournal> = {}): SustainedJournal => ({
 
 describe('independent numerical text-input choice', () => {
   it('creates v2 shaping sessions while retaining exact v1 capability pairs', () => {
-    expect(withAuthoredActions(DEFAULT_SUSTAINED_CONFIG, true, 'reservoir-journal-v8')).toEqual(config);
+    expect(withAuthoredActionMode(DEFAULT_SUSTAINED_CONFIG, 'authored-v2')).toEqual(config);
     expect(validAuthoredActionConfig(config)).toBe(true);
     expect(validAuthoredActionConfig({ ...config, actionMode: 'authored-v1', promptVersion: ACTION_JOURNAL_PROMPT_V1 })).toBe(true);
     expect(validAuthoredActionConfig({ ...config, actionMode: 'authored-v1' })).toBe(false);

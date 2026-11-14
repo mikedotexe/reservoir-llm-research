@@ -6,6 +6,8 @@ mod actions;
 mod arms;
 #[path = "sustained_check_in_tests.rs"]
 mod check_ins;
+#[path = "sustained_continuity_tests.rs"]
+mod continuity;
 #[path = "sustained_embedding_tests.rs"]
 mod embedding_recovery;
 #[path = "sustained_limit_tests.rs"]

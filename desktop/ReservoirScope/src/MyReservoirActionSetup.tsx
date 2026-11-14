@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { hasAuthoredActions, isActionPrompt, withAuthoredActions } from './authoredActions';
+import { hasAuthoredActions, hasLocalInquiry, hasReservoirInputChoice, isActionPrompt, withAuthoredActionMode, withAuthoredActions } from './authoredActions';
 import type { SustainedConfig, SustainedPromptVersion } from './myReservoirTypes';
 
 export default function MyReservoirActionSetup({ config, setConfig }: { config: SustainedConfig; setConfig: (config: SustainedConfig) => void }) {
@@ -13,9 +13,15 @@ export default function MyReservoirActionSetup({ config, setConfig }: { config: 
     }}/>Let the model shape the reservoir</label>
     <p>After ordinary journal entries, the model can choose a state pulse, adjust how the reservoir evolves, release its adjustments, or leave controls unchanged.</p>
     {enabled && <>
+      <label>Writing and action context<select value={config.actionMode} onChange={event => setConfig(withAuthoredActionMode(config, event.target.value as NonNullable<SustainedConfig['actionMode']>))}>
+        <option value="authored-v3">Continuing inquiry and reservoir actions</option>
+        <option value="authored-v2">Earlier actions and input choice</option>
+        <option value="authored-v1">Earlier actions only</option>
+      </select></label>
       <p>Adjustments persist until the model changes or releases them. Each action is saved with the entry, then its actual result returns with later writing. Releasing an adjustment preserves the state and history that developed.</p>
-      {config.actionMode === 'authored-v2' && <p>The model can also withhold an entry’s numerical text input independently of its action. The entry stays in the journal and can return as memory. Withholding replaces the previous held text input with zero; ordinary dynamics and any chosen action continue.</p>}
-      <p className="my-reservoir-small">This choice is fixed when you create the session. Scheduled conversations still feed their writing back, but do not execute actions.</p>
+      {hasReservoirInputChoice(config) && <p>The model can also withhold an entry’s numerical text input independently of its action. The entry stays in the journal and can return as memory. Withholding replaces the previous held text input with zero; ordinary dynamics and any chosen action continue.</p>}
+      {hasLocalInquiry(config) && <p>The model can send a bounded one-step input probe, keep an open question, and return to bounded evidence from its own reservoir and saved journal history. Meaningful interventions remain available beyond the recent action results. An inquiry is an opportunity to investigate, not a promise that the question has been answered.</p>}
+      <p className="my-reservoir-small">This choice is fixed when you create the session. Scheduled conversations still feed their writing back. Controls remain available in ordinary journal turns, but do not execute in the scheduled conversation itself.</p>
     </>}
   </section>;
 }

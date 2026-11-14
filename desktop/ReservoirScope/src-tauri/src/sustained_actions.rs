@@ -2,7 +2,7 @@
 use super::*;
 use reservoir_core::sustained::{
     SustainedActionDecision, SustainedActionMode, SustainedActionRequest, SustainedActionState,
-    SustainedReservoirInputDecision,
+    SustainedInquiryDecision, SustainedReservoirInputDecision,
 };
 
 #[derive(Clone, Serialize)]
@@ -12,6 +12,8 @@ pub struct PendingActionDecision {
     pub rejection: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reservoir_input: Option<SustainedReservoirInputDecision>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub inquiry: Option<SustainedInquiryDecision>,
 }
 impl From<&SustainedActionDecision> for PendingActionDecision {
     fn from(value: &SustainedActionDecision) -> Self {
@@ -19,6 +21,7 @@ impl From<&SustainedActionDecision> for PendingActionDecision {
             request: value.request.clone(),
             rejection: value.rejection.clone(),
             reservoir_input: value.reservoir_input.clone(),
+            inquiry: value.inquiry.clone(),
         }
     }
 }
@@ -102,6 +105,14 @@ impl SustainedState {
             return SCRIPTED_REPLIES[((pending.attempt_id - 1) as usize) % SCRIPTED_REPLIES.len()]
                 .into();
         };
+        if mode == SustainedActionMode::AuthoredV3 {
+            return match (pending.attempt_id - 1) % 4 {
+                0 => "Example writing: I will retain a question and inspect the recorded consequence of an alternating pulse.\nINQUIRY: OPEN both \"What changes after this pulse, and what does the recent journal record?\"\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: PULSE alternating 0.5",
+                1 => "Example writing: I will keep the question available while withholding this entry's numerical input and changing leak.\nINQUIRY: CONTINUE\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: TUNE leak 0.35",
+                2 => "Example writing: I will leave the question open and let ordinary dynamics continue.\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: NONE",
+                _ => "Example writing: I will close this question and restore the initial controls while retaining the accumulated state and journal.\nINQUIRY: CLOSE\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: RELEASE",
+            }.into();
+        }
         if mode == SustainedActionMode::AuthoredV2 {
             return match (pending.attempt_id - 1) % 4 {
                 0 => "Example writing: I will send this entry as numerical input and apply an alternating state pulse.\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: PULSE alternating 0.5",
@@ -165,7 +176,7 @@ impl SustainedState {
     ) -> Result<Option<reservoir_core::sustained::ExternalFeedback>, String> {
         let (body, authored) =
             self.feedback_text_and_action_for(epoch, pending.attempt_id, text)?;
-        // The core returns no text to encode for an empty authored body or a v2
+        // The core returns no text to encode for an empty authored body or a v2/v3
         // withheld/rejected input decision. The saved body and raw reply remain
         // intact, but there is no embedding request or claimed embedding receipt.
         if authored && body.trim().is_empty() {

@@ -1,4 +1,6 @@
 import type { SustainedActionControls, SustainedActionDecision, SustainedActionReceipt, SustainedAuthoredRequest, SustainedJournal, SustainedReservoirInput, SustainedSummary } from './myReservoirTypes';
+import { hasReservoirInputChoice } from './authoredActions';
+import MyReservoirInquiry, { InquiryDecisionView, InquiryReceiptView } from './MyReservoirInquiry';
 
 const parameterNames: Record<keyof SustainedActionControls, string> = { leak: 'Recurrent leak', recurrentGain: 'Recurrent gain', feedbackScale: 'Text feedback scale' };
 const number = (value: number) => Number.isFinite(value) ? Number(value.toPrecision(6)).toString() : 'Unavailable';
@@ -9,6 +11,7 @@ export function actionDescription(request: SustainedAuthoredRequest | null): str
     case 'pulse': return `PULSE · ${request.direction} · strength ${number(request.strength)}`;
     case 'tune': return `TUNE · ${parameterNames[request.parameter]} to ${number(request.value)}`;
     case 'release': return 'RELEASE · return controls to session settings';
+    case 'probe': return 'Input probe · one step through the numerical input channel';
   }
 }
 export function actionReceiptStatus(receipt: SustainedActionReceipt): string {
@@ -35,8 +38,8 @@ function ReservoirInput({ input, appliedStep, skipped = false }: { input: Sustai
     {skipped ? <p>No text-input application was recorded. This entry’s automatic memory exposure was skipped.</p> : input.disposition !== 'send' && <p>{applied ? 'The previous held text input was replaced with zero. The journal body remains eligible for memory.' : 'On application, zero will replace the previous held text input and the journal body will become eligible for memory.'} Other inputs, ordinary dynamics, and separately chosen actions continue.</p>}
   </div>;
 }
-function Decision({ decision, skipped = false }: { decision: Pick<SustainedActionDecision, 'request' | 'rejection' | 'reservoirInput'>; skipped?: boolean }) {
-  return <><p>{actionDescription(decision.request)}</p>{decision.rejection && <p className="my-reservoir-action-rejection">{decision.rejection}</p>}{decision.reservoirInput && <ReservoirInput input={decision.reservoirInput} skipped={skipped}/>}</>;
+function Decision({ decision, skipped = false }: { decision: Pick<SustainedActionDecision, 'request' | 'rejection' | 'reservoirInput' | 'inquiry'>; skipped?: boolean }) {
+  return <><p>{actionDescription(decision.request)}</p>{decision.rejection && <p className="my-reservoir-action-rejection">{decision.rejection}</p>}{decision.reservoirInput && <ReservoirInput input={decision.reservoirInput} skipped={skipped}/>} {decision.inquiry && <InquiryDecisionView decision={decision.inquiry} skipped={skipped}/>}</>;
 }
 
 export function ActionReceiptView({ receipt, detailed = false }: { receipt: SustainedActionReceipt; detailed?: boolean }) {
@@ -45,9 +48,17 @@ export function ActionReceiptView({ receipt, detailed = false }: { receipt: Sust
     <p>{actionDescription(receipt.request)}</p>
     {receipt.rejection && <p className="my-reservoir-action-rejection">{receipt.rejection}</p>}
     {receipt.reservoirInput && <ReservoirInput input={receipt.reservoirInput} appliedStep={receipt.appliedStep}/>}
+    {receipt.inquiry && <InquiryReceiptView receipt={receipt.inquiry}/>}
+    {receipt.request?.kind === 'release' && <p>The initial control settings were restored. Accumulated state and journal history were retained.</p>}
     {detailed && <>
       <dl className="my-reservoir-data"><dt>Observed / applied step</dt><dd>{receipt.observedStep} / {receipt.appliedStep}</dd><dt>Attempt</dt><dd>{receipt.attemptId}</dd><dt>Immediate action difference · L2</dt><dd>{number(receipt.stateDeltaL2)}</dd><dt>Largest coordinate difference</dt><dd>{number(receipt.stateDeltaMaxAbs)}</dd><dt>Pulse coordinates clipped</dt><dd>{receipt.clippedCoordinates}</dd></dl>
-      <p className="my-reservoir-small">The immediate difference compares the resulting recurrent state with the same step omitting this action, while retaining the previous controls and the same journal feedback and noise. It does not measure the action’s later effect.</p>
+      <p className="my-reservoir-small">The immediate difference compares the resulting recurrent state with the same step omitting this action, while retaining the previous controls and the same journal feedback and noise. It does not measure the action’s later effect or the state difference between writing observations. A zero additional effect for NONE does not mean the reservoir stopped changing.</p>
+      {receipt.probe && <details className="my-reservoir-details"><summary>Exact input probe and immediate recurrent response</summary>
+        <p>This one-step input is separate from the journal’s held text input and from a state pulse. It enters recurrence and the sensory field; the paired response below describes only the immediate recurrent state.</p>
+        <h5>Requested input · 48 coordinates</h5><pre className="my-reservoir-probe-vector">{JSON.stringify(receipt.probe.requestedVector)}</pre>
+        <h5>Applied input · 48 coordinates</h5><pre className="my-reservoir-probe-vector">{JSON.stringify(receipt.probe.appliedVector)}</pre>
+        <h5>Recurrent response · actual minus action-omitted state</h5><pre className="my-reservoir-probe-vector">{JSON.stringify(receipt.probe.stateDeltaVector)}</pre>
+      </details>}
       <h5>Controls before this choice</h5><Controls controls={receipt.controlsBefore}/>
       <h5>Controls after this choice</h5><Controls controls={receipt.controlsAfter}/>
     </>}
@@ -59,8 +70,8 @@ export default function MyReservoirActions({ summary }: { summary: SustainedSumm
   const actions = summary.actions, pending = actions?.pending;
   return <section className="my-reservoir-authored-actions" aria-label="Reservoir shaping">
     <h2>Reservoir shaping</h2>
-    <p>The model chooses actions after ordinary entries. Adjustments persist until changed or released; scheduled conversations do not execute actions.</p>
-    {summary.config.actionMode === 'authored-v2' && <p>The model can also choose whether an ordinary entry’s text enters numerical input. This is independent of NEXT. Scheduled conversations continue to feed their text back.</p>}
+    <p>The model chooses actions after ordinary entries. Adjustments persist until changed or released. Scheduled conversations do not execute actions in that reply; ordinary journal turns retain their controls.</p>
+    {hasReservoirInputChoice(summary.config) && <p>The model can also choose whether an ordinary entry’s text enters numerical input. This is independent of NEXT. Scheduled conversations continue to feed their text back.</p>}
     {actions ? <>
       <h3>Saved controls · through step {actions.durableStep}</h3>
       <Controls controls={actions.state.controls}/>
@@ -71,6 +82,11 @@ export default function MyReservoirActions({ summary }: { summary: SustainedSumm
         <p>Entry at step {pending.observedStep}{pending.intendedStep == null ? '' : ` · intended step ${pending.intendedStep}`}. No application has been recorded for this choice.</p>
       </div>}
       {actions.state.latestReceipt ? <><h3>Latest recorded result</h3><ActionReceiptView receipt={actions.state.latestReceipt}/></> : <p>No action result has been recorded yet.</p>}
+      {actions.state.continuity && <>
+        <MyReservoirInquiry continuity={actions.state.continuity}/>
+        {actions.state.continuity.meaningfulReceipts.length > 0 && <details className="my-reservoir-details"><summary>Retained interventions · {actions.state.continuity.meaningfulReceipts.length}</summary><ol className="my-reservoir-action-history">{actions.state.continuity.meaningfulReceipts.map(receipt => <li key={`${receipt.journalId}:${receipt.appliedStep}`}><ActionReceiptView receipt={receipt} detailed/></li>)}</ol><p>These bounded intervention records remain available when newer NONE choices fill the recent results. They are not the complete action archive.</p></details>}
+        {actions.state.continuity.inputTransitions.length > 0 && <details className="my-reservoir-details"><summary>Retained text-input changes · {actions.state.continuity.inputTransitions.length}</summary><ol>{actions.state.continuity.inputTransitions.map(input => <li key={`${input.journalId}:${input.appliedStep}`}>Step {input.appliedStep}: {input.disposition === 'rejected' ? 'directive rejected; text input withheld' : input.disposition === 'withhold' ? 'withheld' : 'sent'}</li>)}</ol></details>}
+      </>}
       {actions.state.recentReceipts.length > 0 && <details className="my-reservoir-details"><summary>Recent action results · {actions.state.recentReceipts.length}</summary><ol className="my-reservoir-action-history">{actions.state.recentReceipts.map(receipt => <li key={`${receipt.journalId}:${receipt.appliedStep}`}><ActionReceiptView receipt={receipt}/></li>)}</ol><p>The current controls and recent results return to ordinary writing independently of the earlier journal selected as memory.</p></details>}
     </> : <p>Waiting for saved action state.</p>}
   </section>;
@@ -86,6 +102,7 @@ export function JournalActionDetails({ journal }: { journal: SustainedJournal })
     </>}
     {journal.action.rawTail !== null && <><h5>Exact action line</h5><pre>{journal.action.rawTail}</pre></>}
     {journal.action.reservoirInput?.rawDirective != null && <><h5>Exact text-input directive</h5><pre>{journal.action.reservoirInput.rawDirective}</pre></>}
+    {journal.action.inquiry?.rawDirective != null && <><h5>Exact inquiry directive</h5><pre>{journal.action.inquiry.rawDirective}</pre></>}
     <p>{journal.action.reservoirInput ? 'The text-input decision controls whether the journal body becomes numerical feedback. It does not remove the saved writing or change the separate NEXT choice.' : 'The journal body is encoded as feedback separately from the action line.'} The complete received reply remains in Evidence.</p>
     {journal.bodySha256 && <p className="my-reservoir-hash">Journal body SHA-256: {journal.bodySha256}</p>}
   </section>;
