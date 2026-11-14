@@ -37,6 +37,9 @@ use reservoir_core::sustained::{is_zero_u64, SustainedMemoryPolicy};
 #[path = "sustained_check_ins.rs"]
 mod check_ins;
 use check_ins::CheckInSummary;
+#[path = "sustained_actions.rs"]
+mod actions;
+use actions::ActionsSummary;
 
 fn err(kind: &str, message: impl Into<String>) -> AppError {
     AppError::new("sustained", kind, message)
@@ -47,6 +50,9 @@ fn ce(e: impl std::fmt::Display) -> AppError {
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedConfig {
+    /// Immutable, opt-in authority for fresh ordinary writing turns only.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub action_mode: Option<reservoir_core::sustained::SustainedActionMode>,
     /// Optional elapsed-running-time conversation schedule; absent in historical sessions.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub check_in_schedule: Option<reservoir_core::sustained::SustainedCheckInSchedule>,
@@ -133,6 +139,7 @@ pub struct SustainedConfig {
 impl Default for SustainedConfig {
     fn default() -> Self {
         Self {
+            action_mode: None,
             check_in_schedule: None,
             seed: "20260909".into(),
             turn_every: 30,
@@ -206,6 +213,7 @@ impl SustainedConfig {
             return Err(err("seed", "Seed must be canonical unsigned decimal"));
         }
         Ok(SustainedSpecification {
+            action_mode: self.action_mode,
             check_in_schedule: self.check_in_schedule.clone(),
             seed,
             dt: 1.0 / 3.0,
@@ -342,6 +350,8 @@ pub struct PendingApplication {
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct SustainedSummary {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub actions: Option<ActionsSummary>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub check_ins: Option<CheckInSummary>,
     pub effective_limits: SustainedRunLimits,
@@ -1163,9 +1173,7 @@ impl SustainedState {
                     let codec = self.codec_for(epoch);
                     let response = if p.configuration.backend == LanguageKind::Scripted {
                         Ok(LanguageResponse {
-                            text: SCRIPTED_REPLIES
-                                [((p.attempt_id - 1) as usize) % SCRIPTED_REPLIES.len()]
-                            .into(),
+                            text: self.scripted_reply_for(epoch, &p),
                             provider_model: None,
                             stop_reason: Some("stop".into()),
                             token_count: None,
@@ -1187,40 +1195,14 @@ impl SustainedState {
                     // provider failure of the same attempt and stays retryable.
                     let (response, external) = match (response, codec) {
                         (Ok(r), Some((model, projection_seed))) => {
-                            match (self.shared.embedder)(
-                                &p.configuration,
-                                &model,
+                            match self.external_feedback_for(
+                                epoch,
+                                &p,
                                 &r.text,
-                                &self.shared.cancel,
-                                p.request_deadline_seconds,
-                            )
-                            .and_then(|receipt| {
-                                reservoir_core::codec::project_embedding(
-                                    &receipt.vector,
-                                    projection_seed,
-                                )
-                                .map(|vector| (receipt, vector))
-                                .map_err(|e| e.to_string())
-                            }) {
-                                Ok((receipt, vector)) => {
-                                    let raw =
-                                        serde_json::to_vec(&receipt.vector).unwrap_or_default();
-                                    let external = reservoir_core::sustained::ExternalFeedback {
-                                        vector,
-                                        provenance: reservoir_core::sustained::FeedbackProvenance {
-                                            kind: "embedding".into(),
-                                            model: receipt.model.clone(),
-                                            digest: receipt.digest.clone(),
-                                            dimensions: receipt.vector.len(),
-                                            embedding_sha256: format!(
-                                                "{:x}",
-                                                <sha2::Sha256 as sha2::Digest>::digest(&raw)
-                                            ),
-                                            projection_seed,
-                                        },
-                                    };
-                                    (Ok(r), Some(external))
-                                }
+                                &model,
+                                projection_seed,
+                            ) {
+                                Ok(external) => (Ok(r), external),
                                 Err(e) => (Err(format!("embedding: {e}")), None),
                             }
                         }
@@ -1578,6 +1560,7 @@ impl SustainedState {
         });
         let cp = &a.committed.state;
         SustainedSummary {
+            actions: self.actions_summary(a),
             check_ins: self.check_in_summary(a),
             effective_limits: a.manifest.effective_limits(),
             can_extend_limits: self.can_extend_limits(a),
@@ -1725,8 +1708,8 @@ impl SustainedState {
         // verified historical journal. Raw evidence remains available on failure.
         let measurement_reference =
             reservoir_core::sustained::measurement_reference(&p.observation).ok();
-        let memory=p.memory.map(|m|serde_json::json!({"entryId":m.entry.id,"text":m.entry.text,"sha256":m.entry.sha256}));
-        let latest_shown=p.latest_shown.map(|m|serde_json::json!({"entryId":m.entry.id,"text":m.entry.text,"sha256":m.entry.sha256}));
+        let memory = p.memory.map(|m| actions::memory_evidence(&m));
+        let latest_shown = p.latest_shown.map(|m| actions::memory_evidence(&m));
         let application=index.first_applied_step.map(|s|serde_json::json!({"journalId":entry_id,"observedStep":index.observed_step,"appliedStep":s,"attemptId":index.attempt_id}));
         let provider_prompt_evaluation = p
             .response
@@ -1740,6 +1723,13 @@ impl SustainedState {
             revision: a.manifest.revision.clone(),
             journal: serde_json::json!({"entryId":p.entry.id,"turnId":p.entry.turn_id,"attemptId":p.entry.attempt_id,"observedStep":p.entry.observed_step,"firstAppliedStep":index.first_applied_step,"text":p.entry.text,"sha256":p.entry.sha256,"prompt":p.prompt,"promptVersion":a.manifest.config.prompt_version,"rawReply":p.response.text,"observation":p.observation,"measurementReference":measurement_reference,"memory":memory,"memoryChoice":p.memory_choice,"latestShown":latest_shown,"encodedFeatures":p.encoded_features,"semanticVector":p.semantic_vector,"saveReceipt":{"entryId":entry_id,"sha256":index.sha256,"relativePath":format!("journals/{entry_id}.json")},"providerModel":p.response.provider_model,"stopReason":p.response.stop_reason,"tokenCount":p.response.token_count,"providerComplete":p.response.complete,"configuredModel":j.configured_model,"temperature":j.temperature,"samplingSeed":j.sampling_seed,"thinking":j.thinking,"feedbackProvenance":p.feedback_provenance,"objectSha256":object_hash,"requestStarted":j.request_started,"timing":j.timing,"status":index.status,"application":application}),
         };
+        if let Some(action) = &p.action {
+            detail.journal["action"] = serde_json::to_value(action).map_err(ce)?;
+            detail.journal["bodySha256"] = crate::files::digest(action.body.as_bytes()).into();
+        }
+        if let Some(receipt) = &index.action_receipt {
+            detail.journal["actionReceipt"] = serde_json::to_value(receipt).map_err(ce)?;
+        }
         if let Some(check_in) = &p.check_in {
             detail.journal["checkIn"] = serde_json::to_value(check_in).map_err(ce)?;
             detail.journal["observationSupplied"] = check_in.include_telemetry.into();
@@ -1918,7 +1908,14 @@ fn apply_catalog(
                 observed_step: entry.observed_step,
                 first_applied_step: None,
                 status: "savedPendingApplication".into(),
-                text_preview: entry.text.chars().take(160).collect(),
+                text_preview: entry
+                    .body
+                    .as_deref()
+                    .unwrap_or(&entry.text)
+                    .chars()
+                    .take(160)
+                    .collect(),
+                action_receipt: None,
                 sha256: entry.sha256.clone(),
                 object_sha256: String::new(),
             }),
@@ -1930,6 +1927,7 @@ fn apply_catalog(
                     {
                         j.first_applied_step = Some(applied.applied_step);
                         j.status = "applied".into();
+                        j.action_receipt = f.action_receipt.as_deref().cloned();
                     }
                 }
             }

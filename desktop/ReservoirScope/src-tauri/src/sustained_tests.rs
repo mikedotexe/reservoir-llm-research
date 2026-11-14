@@ -1,5 +1,7 @@
 use super::*;
 use std::fs;
+#[path = "sustained_action_tests.rs"]
+mod actions;
 #[path = "sustained_arms.rs"]
 mod arms;
 #[path = "sustained_check_in_tests.rs"]

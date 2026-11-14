@@ -1331,6 +1331,8 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct JournalIndex {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub action_receipt: Option<reservoir_core::sustained::SustainedActionReceipt>,
     pub entry_id: String,
     pub turn_id: u64,
     pub attempt_id: u64,
@@ -1359,7 +1361,14 @@ fn journal_index(path: &Path, manifest: &Manifest) -> Result<Vec<JournalIndex>, 
                             observed_step: entry.observed_step,
                             first_applied_step: None,
                             status: "savedPendingApplication".into(),
-                            text_preview: entry.text.chars().take(160).collect(),
+                            text_preview: entry
+                                .body
+                                .as_deref()
+                                .unwrap_or(&entry.text)
+                                .chars()
+                                .take(160)
+                                .collect(),
+                            action_receipt: None,
                             object_sha256: link
                                 .journal_sha256s
                                 .get(&entry.id)
@@ -1374,6 +1383,7 @@ fn journal_index(path: &Path, manifest: &Manifest) -> Result<Vec<JournalIndex>, 
                         if let Some(e) = entries.get_mut(&a.journal_id) {
                             e.first_applied_step = Some(a.applied_step);
                             e.status = "applied".into();
+                            e.action_receipt = f.action_receipt.as_deref().cloned();
                         }
                         pending = None;
                     }
