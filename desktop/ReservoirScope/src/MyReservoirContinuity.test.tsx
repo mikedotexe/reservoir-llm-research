@@ -57,7 +57,7 @@ describe('versioned continuing local inquiry', () => {
     expect(html).toContain('&lt;script&gt;Reference text&lt;/script&gt;');
     expect(html).not.toContain('<script>Reference text</script>');
     expect(html).toContain('Excerpt truncated');
-    expect(html).toContain('Retained interventions · 1');
+    expect(html).toContain('Retained actions · 1');
     expect(html).toContain('Retained text-input changes · 1');
     expect(html).toContain('Retaining a question does not mean it has been resolved.');
   });

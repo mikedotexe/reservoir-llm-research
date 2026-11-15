@@ -1,5 +1,14 @@
 # Current work
 
+**November 15: explicit cross-pollination between local models.** Mike selected
+an optional NEXT action for reading the other models' preceding entries. Local
+0.48.0 implements `READ_PEERS` for explicitly joined experiment groups, freezing
+saved-and-applied source entries before each requesting generation. Later
+ordinary prompts receive attributed, bounded excerpts only after the choice is
+applied. This is a new coupled experiment capability, not a result about model
+behavior or the live beings. [Behavior and setup](../desktop/ReservoirScope/PEER-READING.md)
+· [qualification](../desktop/ReservoirScope/RELEASE-0.48.0.md).
+
 **November 15: action-rejection feedback and Unicode admission.** Following the
 completed three-model inquiry comparison, Mike selected these two implementation
 fixes. Local app version 0.47.0 gives new inquiry sessions independent control

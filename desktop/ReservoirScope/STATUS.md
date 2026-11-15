@@ -1,5 +1,12 @@
 # Reservoir Scope: current status and next work
 
+**November 15, 2026 · 0.48.0 explicit peer reading.** Fresh linked local sessions
+can select `NEXT: READ_PEERS`. Each ordinary turn freezes preceding applied peer
+entries; an explicit read exposes those labeled excerpts to later writing after
+save/readback/application. Group membership is fixed, unavailable peers remain
+explicit, and exports retain the observations. Historical sessions retain their
+contracts. [Setup and semantics](PEER-READING.md) · [qualification](RELEASE-0.48.0.md).
+
 **November 15, 2026 · 0.47.0 control feedback and Unicode admission.** New inquiry
 selections provide specific rejection explanations and separate NEXT/input/inquiry
 outcomes. New embedding selections admit Unicode text without passing it through

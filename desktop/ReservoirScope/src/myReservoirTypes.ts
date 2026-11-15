@@ -87,7 +87,7 @@ export interface SustainedCheckIns {
 }
 export interface SustainedActionControls { leak: number; recurrentGain: number; feedbackScale: number }
 export type SustainedAuthoredRequest = { kind: 'none' } | { kind: 'pulse'; direction: 'uniform' | 'alternating' | 'axis0' | 'axis1'; strength: number }
-  | { kind: 'tune'; parameter: keyof SustainedActionControls; value: number } | { kind: 'release' } | { kind: 'probe'; vector: number[] };
+  | { kind: 'tune'; parameter: keyof SustainedActionControls; value: number } | { kind: 'release' } | { kind: 'probe'; vector: number[] } | { kind: 'readPeers' };
 export interface SustainedReservoirInput { disposition: 'send' | 'withhold' | 'rejected'; rawDirective: string | null; rejection: string | null }
 export type SustainedInquirySource = 'journal' | 'dynamics' | 'both';
 export type SustainedInquiryRequest = { kind: 'open'; source: SustainedInquirySource; question: string } | { kind: 'continue' } | { kind: 'close' };
@@ -112,7 +112,19 @@ export interface SustainedContinuityState {
 export interface SustainedControlDiagnostic { candidateCount: number; candidate: { line: number; excerpt: string; truncated: boolean } | null; explanation: string }
 export interface SustainedControlDiagnostics { next: SustainedControlDiagnostic; reservoirInput: SustainedControlDiagnostic; inquiry: SustainedControlDiagnostic }
 export interface SustainedActionDecision { body: string; rawTail: string | null; request: SustainedAuthoredRequest | null; rejection: string | null; reservoirInput?: SustainedReservoirInput; inquiry?: SustainedInquiryDecision; diagnostics?: SustainedControlDiagnostics }
+export interface SustainedPeerConfig { version: 'latest-applied-v1'; group: string; participant: string; peers: string[] }
+export interface SustainedPeerEntry {
+  sessionId: string; journalId: string; configuredModel: string | null; providerModel: string | null;
+  observedStep: number; appliedStep: number; checkIn: boolean; manifestSha256: string; checkpointSha256: string;
+  journalObjectSha256: string; rawReplySha256: string; bodySha256: string; bodyBytes: number;
+  excerpt: string; excerptSha256: string; truncated: boolean;
+}
+export interface SustainedPeerRead { journalId: string; appliedStep: number; snapshot: {
+  attemptId: number; observedStep: number; capturedAtMs: string;
+  peers: { participant: string; entry: SustainedPeerEntry | null; unavailable: string | null }[];
+} }
 export interface SustainedActionReceipt {
+  peerRead?: SustainedPeerRead;
   diagnostics?: SustainedControlDiagnostics;
   journalId: string; attemptId: number; observedStep: number; appliedStep: number;
   status: 'applied' | 'unchanged' | 'rejected'; request: SustainedAuthoredRequest | null; rawTail: string | null; rejection: string | null;
@@ -128,10 +140,12 @@ export interface SustainedActionState {
   continuity?: SustainedContinuityState;
 }
 export interface SustainedActions {
+  peerRead?: SustainedPeerRead;
   state: SustainedActionState; durableStep: number;
   pending?: { attemptId: number; entryId: string; observedStep: number; intendedStep?: number | null; phase: 'saving' | 'prepared'; durablePrepared: boolean; decision: Pick<SustainedActionDecision, 'request' | 'rejection' | 'reservoirInput' | 'inquiry' | 'diagnostics'> } | null;
 }
 export interface SustainedConfig {
+  peerReading?: SustainedPeerConfig;
   /** Omission retains the historical policies; explicit choices are immutable per session. */
   textAdmission?: 'utf8-v1';
   controlFeedback?: 'diagnostic-v1';

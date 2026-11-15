@@ -43,6 +43,8 @@ pub struct PendingAction {
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ActionsSummary {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub peer_read: Option<Box<reservoir_core::sustained::SustainedPeerRead>>,
     pub state: SustainedActionState,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub pending: Option<PendingAction>,
@@ -79,6 +81,12 @@ impl SustainedState {
             })
         };
         Some(ActionsSummary {
+            peer_read: a
+                .committed
+                .state
+                .peer_state
+                .as_ref()
+                .and_then(|p| p.latest_read.clone()),
             state,
             pending,
             durable_step: a.committed.state.step,
@@ -108,6 +116,18 @@ impl SustainedState {
             return SCRIPTED_REPLIES[((pending.attempt_id - 1) as usize) % SCRIPTED_REPLIES.len()]
                 .into();
         };
+        let peer_reading = self.lock().ok().is_some_and(|g| {
+            g.active.as_ref().is_some_and(|a| {
+                a.epoch == epoch && a.engine.specification().peer_reading.is_some()
+            })
+        });
+        if peer_reading {
+            return if pending.attempt_id % 2 == 1 {
+                "Example writing: I will read the already-applied entries available from the configured peers.\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: READ_PEERS"
+            } else {
+                "Example writing: The saved peer reading remains available as attributed context. This scripted example does not interpret its contents.\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: NONE"
+            }.into();
+        }
         if mode == SustainedActionMode::AuthoredV3 {
             return match (pending.attempt_id - 1) % 4 {
                 0 => "Example writing: I will retain a question and inspect the recorded consequence of an alternating pulse.\nINQUIRY: OPEN both \"What changes after this pulse, and what does the recent journal record?\"\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: PULSE alternating 0.5",

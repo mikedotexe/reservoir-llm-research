@@ -4,7 +4,7 @@ A desktop app for reading model writing, running a personal reservoir journal,
 and exploring reproducible research examples. Opening it starts no model request.
 You choose when a new session begins.
 
-**Current source: 0.41.0 development preview.** The current app has been checked
+**Current source: 0.48.0 development preview.** The current app has been checked
 locally on Apple-silicon macOS. A second-machine first session is still needed.
 Windows and Linux remain qualification targets.
 

@@ -1,5 +1,7 @@
 //! One backend-owned sustained clock. Provider calls happen outside the state
 //! mutex, and only a durable prepared checkpoint can authorize feedback.
+#[path = "sustained_peers.rs"]
+mod peers;
 use crate::{
     files::AppError,
     records::FrameView,
@@ -50,6 +52,8 @@ fn ce(e: impl std::fmt::Display) -> AppError {
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedConfig {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub peer_reading: Option<reservoir_core::sustained::SustainedPeerConfig>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub text_admission: Option<reservoir_core::sustained::SustainedTextAdmission>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -143,6 +147,7 @@ pub struct SustainedConfig {
 impl Default for SustainedConfig {
     fn default() -> Self {
         Self {
+            peer_reading: None,
             text_admission: None,
             control_feedback: None,
             action_mode: None,
@@ -219,6 +224,7 @@ impl SustainedConfig {
             return Err(err("seed", "Seed must be canonical unsigned decimal"));
         }
         Ok(SustainedSpecification {
+            peer_reading: self.peer_reading.clone(),
             text_admission: self.text_admission,
             control_feedback: self.control_feedback,
             action_mode: self.action_mode,
@@ -1441,6 +1447,19 @@ impl SustainedState {
                 }
                 Err(e) => a.engine.fail_memory(&e.message).map_err(ce)?,
             }
+            a.manifest.revision = next(&a.manifest.revision);
+            self.persist(a)?;
+            if a.manifest.phase == "budgetReached" {
+                return Ok(Work::Done);
+            }
+        }
+        if a.engine.needs_peer_snapshot() {
+            let snapshot = peers::capture(
+                &self.shared.store,
+                &a.manifest,
+                a.engine.pending_language().expect("snapshot due"),
+            );
+            a.engine.capture_peer_snapshot(snapshot).map_err(ce)?;
             a.manifest.revision = next(&a.manifest.revision);
             self.persist(a)?;
             if a.manifest.phase == "budgetReached" {

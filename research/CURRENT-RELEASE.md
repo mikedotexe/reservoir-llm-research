@@ -1,5 +1,12 @@
 # Reservoir Scope · current candidates
 
+**November 15 development note:** the local 0.48.0 preview adds optional explicit
+peer journal reading on top of 0.47.0's control feedback and Unicode admission.
+It preserves earlier session contracts and independent study exports. See
+[peer reading](../desktop/ReservoirScope/PEER-READING.md) and the
+[release record](../desktop/ReservoirScope/RELEASE-0.48.0.md). The sharing candidate
+and frozen instrument below remain unchanged.
+
 **November 14 development note:** the local 0.46.0 preview adds continuing
 inquiries, bounded journal/dynamics evidence and model-designed one-step input
 probes. It follows the completed three-hour local model comparison and preserves

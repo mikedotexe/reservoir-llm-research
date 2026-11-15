@@ -1,3 +1,4 @@
+import { validPeerConfig, validPeerRead } from './peerReading';
 import { sameControlDiagnostics, validControlDiagnostics } from './controlFeedback';
 import { effectivePromptVersion, type SustainedActionControls, type SustainedActionDecision, type SustainedActionReceipt, type SustainedAuthoredRequest, type SustainedConfig, type SustainedJournal, type SustainedPromptVersion, type SustainedSummary } from './myReservoirTypes';
 import { sameInquiryDecision, validContinuityState, validInquiryDecision, validInquiryReceipt, validProbeReceipt, validProbeVector } from './localInquiries';
@@ -12,7 +13,7 @@ export const hasAuthoredActions = (config: SustainedConfig): boolean => config.a
 export const hasReservoirInputChoice = (config: SustainedConfig): boolean => config.actionMode === 'authored-v2' || config.actionMode === 'authored-v3';
 export const hasLocalInquiry = (config: SustainedConfig): boolean => config.actionMode === 'authored-v3';
 
-export const validAuthoredActionConfig = (config: SustainedConfig): boolean => (config.controlFeedback === undefined || config.controlFeedback === 'diagnostic-v1' && hasLocalInquiry(config)) && (config.actionMode === undefined
+export const validAuthoredActionConfig = (config: SustainedConfig): boolean => (config.peerReading === undefined || hasLocalInquiry(config) && config.controlFeedback === 'diagnostic-v1' && validPeerConfig(config.peerReading)) && (config.controlFeedback === undefined || config.controlFeedback === 'diagnostic-v1' && hasLocalInquiry(config)) && (config.actionMode === undefined
   ? !isActionPrompt(effectivePromptVersion(config))
   : config.actionMode === 'authored-v1' && effectivePromptVersion(config) === ACTION_JOURNAL_PROMPT_V1
     || config.actionMode === 'authored-v2' && effectivePromptVersion(config) === ACTION_JOURNAL_PROMPT
@@ -23,14 +24,14 @@ export function withAuthoredActionMode(config: SustainedConfig, mode: NonNullabl
   const language = mode === 'authored-v3' && config.language.backend === 'ollama'
     ? { ...config.language, contextTokens: Math.max(CONTINUITY_CONTEXT_TOKENS, Number.isFinite(config.language.contextTokens) ? config.language.contextTokens! : 0) }
     : config.language;
-  const { controlFeedback: _feedback, ...base } = config;
-  return { ...base, language, ...(mode === 'authored-v3' ? { controlFeedback: 'diagnostic-v1' as const } : {}), actionMode: mode, promptVersion: mode === 'authored-v3' ? CONTINUITY_JOURNAL_PROMPT : mode === 'authored-v2' ? ACTION_JOURNAL_PROMPT : ACTION_JOURNAL_PROMPT_V1 };
+  const { controlFeedback: _feedback, peerReading, ...base } = config;
+  return { ...base, language, ...(mode === 'authored-v3' ? { controlFeedback: 'diagnostic-v1' as const, ...(peerReading ? { peerReading } : {}) } : {}), actionMode: mode, promptVersion: mode === 'authored-v3' ? CONTINUITY_JOURNAL_PROMPT : mode === 'authored-v2' ? ACTION_JOURNAL_PROMPT : ACTION_JOURNAL_PROMPT_V1 };
 }
 
 /** The invitation remembered by the setup form is not serialized into the run. */
 export function withAuthoredActions(config: SustainedConfig, enabled: boolean, priorInvitation: SustainedPromptVersion | undefined): SustainedConfig {
   if (enabled) return withAuthoredActionMode(config, 'authored-v3');
-  const { actionMode: _mode, promptVersion: _prompt, controlFeedback: _feedback, ...ordinary } = config;
+  const { actionMode: _mode, promptVersion: _prompt, controlFeedback: _feedback, peerReading: _peers, ...ordinary } = config;
   const restored = isActionPrompt(priorInvitation) ? 'reservoir-journal-v8' : priorInvitation;
   return restored === undefined ? ordinary : { ...ordinary, promptVersion: restored };
 }
@@ -42,7 +43,7 @@ const nullableText = (value: unknown): value is string | null => value === null 
 const controls = (value: unknown): value is SustainedActionControls => record(value) && scalar(value.leak, 0, 1) && scalar(value.recurrentGain, 0, 2) && scalar(value.feedbackScale, 0, 2);
 function request(value: unknown): value is SustainedAuthoredRequest {
   if (!record(value)) return false;
-  if (value.kind === 'none' || value.kind === 'release') return true;
+  if (value.kind === 'none' || value.kind === 'release' || value.kind === 'readPeers') return true;
   if (value.kind === 'probe') return validProbeVector(value.vector);
   if (value.kind === 'pulse') return ['uniform', 'alternating', 'axis0', 'axis1'].includes(String(value.direction)) && typeof value.strength === 'number' && [.1, .5, 1].includes(Math.abs(value.strength));
   return value.kind === 'tune' && ['leak', 'recurrentGain', 'feedbackScale'].includes(String(value.parameter))
@@ -72,6 +73,7 @@ function validActionChoice(value: unknown): boolean {
 }
 function validChoiceForMode(value: { request: SustainedAuthoredRequest | null; reservoirInput?: unknown; inquiry?: unknown; diagnostics?: unknown }, config: SustainedConfig): boolean {
   return (config.controlFeedback === 'diagnostic-v1' ? validControlDiagnostics(value.diagnostics) : value.diagnostics === undefined)
+    && (value.request?.kind !== 'readPeers' || !!config.peerReading)
     && validInputForMode(value.reservoirInput, config) && (hasLocalInquiry(config) || value.inquiry === undefined && value.request?.kind !== 'probe');
 }
 export function validActionReceipt(value: unknown, durableStep: number, config?: SustainedConfig): value is SustainedActionReceipt {
@@ -82,7 +84,8 @@ export function validActionReceipt(value: unknown, durableStep: number, config?:
     || config !== undefined && !validInputForMode(value.reservoirInput, config)
     || !controls(value.controlsBefore) || !controls(value.controlsAfter) || !scalar(value.stateDeltaL2, 0, 12) || !scalar(value.stateDeltaMaxAbs, 0, 2) || !count(value.clippedCoordinates, 32)
     || value.inquiry !== undefined && (!validInquiryReceipt(value.inquiry, durableStep) || value.inquiry.journalId !== value.journalId || value.inquiry.appliedStep !== value.appliedStep)
-    || !validProbeReceipt(value as unknown as SustainedActionReceipt)) return false;
+    || !validProbeReceipt(value as unknown as SustainedActionReceipt)
+    || (value.request && record(value.request) && value.request.kind === 'readPeers' ? !validPeerRead(value.peerRead, durableStep, config?.peerReading) || value.peerRead.journalId !== value.journalId || value.peerRead.appliedStep !== value.appliedStep || value.peerRead.snapshot.attemptId !== value.attemptId || value.peerRead.snapshot.observedStep !== value.observedStep : value.peerRead !== undefined)) return false;
   if (config && !validChoiceForMode(value as unknown as SustainedActionReceipt, config)) return false;
   if (value.status === 'rejected') return value.request === null && typeof value.rejection === 'string';
   return request(value.request) && value.rejection === null && (value.status === 'unchanged') === (value.request.kind === 'none');
@@ -91,6 +94,7 @@ export function validActionSummary(summary: SustainedSummary): boolean {
   const actions = summary.actions;
   if (!actions) return true;
   if (!hasAuthoredActions(summary.config) || !record(actions.state) || !count(actions.durableStep) || actions.durableStep > summary.durableStep) return false;
+  if (actions.peerRead !== undefined && (!summary.config.peerReading || !validPeerRead(actions.peerRead, actions.durableStep, summary.config.peerReading))) return false;
   const state = actions.state;
   if (!controls(state.controls) || !count(state.decisionCount, 10000) || !count(state.appliedCount, 10000) || !count(state.rejectedCount, 10000) || state.appliedCount + state.rejectedCount > state.decisionCount
     || !Array.isArray(state.recentReceipts) || state.recentReceipts.length > 8 || state.recentReceipts.some(receipt => !validActionReceipt(receipt, actions.durableStep, summary.config))

@@ -148,3 +148,10 @@ old session.
 
 Runtime correctness and model investigation quality are separate questions.
 The [release record](RELEASE-0.46.0.md) identifies the checks actually executed.
+
+## Read peers in a linked experiment
+
+New 0.48.0 sessions can also enable `NEXT: READ_PEERS` with an explicit shared
+group and reciprocal participant lists. This returns each peer's preceding
+applied journal as quoted context for later ordinary writing. It is one NEXT
+action, independent of inquiry and text withholding. See [peer reading](PEER-READING.md).

@@ -14,6 +14,8 @@ mod embedding_recovery;
 mod limits;
 #[path = "sustained_quota_tests.rs"]
 mod natural_quota;
+#[path = "sustained_peer_tests.rs"]
+mod peer_reading;
 #[path = "sustained_prompt_evidence_tests.rs"]
 mod prompt_evidence;
 #[path = "sustained_withhold_tests.rs"]

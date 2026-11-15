@@ -38,6 +38,7 @@ pub enum SustainedTuneParameter {
 #[serde(tag = "kind", rename_all = "camelCase", deny_unknown_fields)]
 pub enum SustainedActionRequest {
     None,
+    ReadPeers,
     Pulse {
         direction: SustainedPulseDirection,
         strength: f64,
@@ -140,6 +141,8 @@ pub enum SustainedActionStatus {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedActionReceipt {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub peer_read: Option<Box<SustainedPeerRead>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub diagnostics: Option<SustainedControlDiagnostics>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -591,6 +594,20 @@ pub(super) fn decision_for(
             Some(SustainedActionMode::AuthoredV3) => parse_authored_action_v3(text),
             _ => parse_authored_action(text),
         };
+        if spec.peer_reading.is_some() {
+            let (fresh, _) = fresh_control_lines(text);
+            let unique_next = fresh.iter().filter(|(_, line)| line.starts_with("NEXT:")).count() == 1;
+            if unique_next {
+                if let Some(tail) = decision.raw_tail.as_deref().and_then(|raw|raw.strip_prefix("NEXT:")).map(str::trim) {
+                    if tail == "READ_PEERS" {
+                        decision.request = Some(SustainedActionRequest::ReadPeers);
+                        decision.rejection = None;
+                    } else if tail.split_whitespace().next() == Some("READ_PEERS") {
+                        decision.rejection = Some("READ_PEERS takes no arguments; it reads the configured peer list. Use NEXT: READ_PEERS.".into());
+                    }
+                }
+            }
+        }
         if spec.control_feedback.is_some() {
             decision.diagnostics = Some(control_feedback::explain(text, &decision));
         }
@@ -683,6 +700,7 @@ pub(super) fn record_receipt(
         None => SustainedActionStatus::Rejected,
     };
     let receipt = SustainedActionReceipt {
+        peer_read: None,
         diagnostics: decision.diagnostics.clone(),
         inquiry: None,
         probe: match &decision.request {
@@ -1022,7 +1040,9 @@ pub(super) fn validate_state(s: &SustainedContinuation) -> Result<()> {
             )?;
         }
         let request = receipt.raw_tail.as_ref().map(|tail| {
-            if s.specification.action_mode == Some(SustainedActionMode::AuthoredV3) {
+            if s.specification.peer_reading.is_some() {
+                decision_for(&s.specification, None, &format!("body\n{tail}")).unwrap()
+            } else if s.specification.action_mode == Some(SustainedActionMode::AuthoredV3) {
                 parse_authored_action_v3(&format!("body\n{tail}"))
             } else {
                 parse_authored_action(&format!("body\n{tail}"))
@@ -1120,6 +1140,7 @@ pub(super) fn validate_one_receipt(
     r: &SustainedActionReceipt,
     s: &SustainedContinuation,
 ) -> Result<()> {
+    peers::validate_receipt(r, s)?;
     control_feedback::validate(r.diagnostics.as_ref(), &s.specification)?;
     for memory in [&s.latest_memory, &s.chosen_memory].into_iter().flatten() {
         if memory.entry.id == r.journal_id {
@@ -1168,7 +1189,9 @@ pub(super) fn validate_one_receipt(
                 .raw_tail
                 .as_ref()
                 .ok_or_else(|| invalid("Retained action lacks its directive"))?;
-            let parsed = if v3 {
+            let parsed = if s.specification.peer_reading.is_some() {
+                decision_for(&s.specification, None, &format!("body\n{raw}")).unwrap()
+            } else if v3 {
                 parse_authored_action_v3(&format!("body\n{raw}"))
             } else {
                 parse_authored_action(&format!("body\n{raw}"))

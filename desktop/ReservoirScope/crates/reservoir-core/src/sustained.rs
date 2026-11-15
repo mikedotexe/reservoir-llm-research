@@ -24,6 +24,9 @@ pub use continuity::*;
 #[path = "sustained_control_feedback.rs"]
 mod control_feedback;
 pub use control_feedback::*;
+#[path = "sustained_peers.rs"]
+mod peers;
+pub use peers::*;
 
 /// Saved admission policy, independent of the numerical text reduction. Omission
 /// preserves the historical Swift-qualified scalar/grapheme gate exactly.
@@ -556,6 +559,8 @@ impl SustainedPromptVersion {
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedSpecification {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub peer_reading: Option<SustainedPeerConfig>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub text_admission: Option<SustainedTextAdmission>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub control_feedback: Option<SustainedControlFeedback>,
@@ -648,6 +653,7 @@ pub struct SustainedSpecification {
 impl Default for SustainedSpecification {
     fn default() -> Self {
         Self {
+            peer_reading: None,
             text_admission: None,
             control_feedback: None,
             action_mode: None,
@@ -715,6 +721,14 @@ impl SustainedSpecification {
         }
     }
     pub fn validate(&self) -> Result<()> {
+        if let Some(peers) = &self.peer_reading {
+            peers.validate()?;
+            ensure(
+                self.action_mode == Some(SustainedActionMode::AuthoredV3)
+                    && self.control_feedback == Some(SustainedControlFeedback::DiagnosticV1),
+                "Peer reading requires continuing inquiry and diagnostic feedback",
+            )?;
+        }
         ensure(self.text_admission.is_none() || !self.codec.is_surface(),
             "UTF-8 admission requires the embedding codec; surface statistics retain their historical Unicode qualification")?;
         ensure(
@@ -1367,6 +1381,8 @@ pub enum SustainedPhase {
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedContinuation {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub peer_state: Option<SustainedPeerState>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub action_state: Option<SustainedActionState>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub check_in_state: Option<SustainedCheckInState>,
@@ -1438,6 +1454,7 @@ impl SustainedCheckpoint {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(tag = "type", content = "data", rename_all = "camelCase")]
 pub enum SustainedEventKind {
+    PeersCaptured(SustainedPeerSnapshot),
     CheckInAdmitted {
         elapsed_millis: u64,
     },
@@ -1555,6 +1572,10 @@ impl SustainedSession {
         let model = ReservoirModel::seeded(specification.seed);
         let field = SensoryField::seeded(specification.seed ^ FIELD_SEED);
         let state = SustainedContinuation {
+            peer_state: specification
+                .peer_reading
+                .as_ref()
+                .map(|_| SustainedPeerState::default()),
             action_state: specification
                 .action_mode
                 .map(|_| SustainedActionState::initial(&specification)),
@@ -1931,6 +1952,7 @@ impl SustainedSession {
             }
             _ => None,
         };
+        peers::record_application(&mut next, &mut action_receipt)?;
         if let SustainedPhase::Prepared(prepared) = &next.phase {
             if let Some(actions) = &mut next.action_state {
                 continuity::record_application(
@@ -2189,6 +2211,10 @@ impl SustainedSession {
     }
     pub fn start_language(&mut self, attempt_id: u64) -> Result<()> {
         self.room()?;
+        ensure(
+            !self.needs_peer_snapshot(),
+            "Freeze peer observations before ordinary generation",
+        )?;
         let p = self
             .pending_language()
             .ok_or_else(|| invalid("No pending language request"))?;
@@ -3225,6 +3251,7 @@ fn render_pending_prompt(
         if state.specification.control_feedback.is_some() {
             prompt.push_str(&control_feedback::guidance());
         }
+        prompt.push_str(&peers::render(state));
         prompt
     } else {
         if state.specification.action_mode == Some(SustainedActionMode::AuthoredV3) {
@@ -3753,6 +3780,17 @@ fn validate_memory(
     )
 }
 fn validate_pending(p: &SustainedPendingLanguage, s: &SustainedContinuation) -> Result<()> {
+    if s.specification.peer_reading.is_some() && p.check_in.is_none() && p.request_started {
+        ensure(
+            s.peer_state
+                .as_ref()
+                .and_then(|s| s.captured.as_ref())
+                .is_some_and(|c| {
+                    c.attempt_id == p.attempt_id && c.observed_step == p.observed_step
+                }),
+            "Started generation lacks its frozen peer snapshot",
+        )?;
+    }
     check_ins::validate_context(p.check_in.as_ref(), s)?;
     validate_observation(&p.observation, &s.specification)?;
     if let Some(m) = &p.memory {
@@ -3925,6 +3963,7 @@ fn validate_difference(s: &SustainedContinuation, f: Option<&SustainedFrame>) ->
     }
 }
 fn validate_state(s: &SustainedContinuation) -> Result<()> {
+    peers::validate_state(s)?;
     s.specification.validate()?;
     check_ins::validate_schedule_state(s)?;
     actions::validate_state(s)?;
@@ -4271,6 +4310,9 @@ impl SustainedSegment {
         let mut journals = Vec::new();
         for expected in &self.events {
             match &expected.kind {
+                SustainedEventKind::PeersCaptured(snapshot) => {
+                    engine.capture_peer_snapshot(snapshot.clone())?
+                }
                 SustainedEventKind::CheckInAdmitted { elapsed_millis } => {
                     ensure(
                         engine.admit_due_check_in(*elapsed_millis)?,

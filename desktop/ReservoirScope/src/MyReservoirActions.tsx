@@ -1,3 +1,4 @@
+import { PeerReadView } from './peerReading';
 import { ControlFeedback } from './controlFeedback';
 import type { SustainedActionControls, SustainedActionDecision, SustainedActionReceipt, SustainedAuthoredRequest, SustainedJournal, SustainedReservoirInput, SustainedSummary } from './myReservoirTypes';
 import { hasReservoirInputChoice } from './authoredActions';
@@ -8,6 +9,7 @@ const number = (value: number) => Number.isFinite(value) ? Number(value.toPrecis
 export function actionDescription(request: SustainedAuthoredRequest | null): string {
   if (!request) return 'No valid action selected';
   switch (request.kind) {
+    case 'readPeers': return 'READ_PEERS · read the frozen preceding peer entries';
     case 'none': return 'NONE · continue without an additional intervention';
     case 'pulse': return `PULSE · ${request.direction} · strength ${number(request.strength)}`;
     case 'tune': return `TUNE · ${parameterNames[request.parameter]} to ${number(request.value)}`;
@@ -51,6 +53,7 @@ export function ActionReceiptView({ receipt, detailed = false }: { receipt: Sust
     {receipt.reservoirInput && <ReservoirInput input={receipt.reservoirInput} appliedStep={receipt.appliedStep}/>}
     {receipt.inquiry && <InquiryReceiptView receipt={receipt.inquiry}/>}
     <ControlFeedback diagnostics={receipt.diagnostics}/>
+    {detailed && receipt.peerRead && <PeerReadView read={receipt.peerRead}/>}
     {receipt.request?.kind === 'release' && <p>The initial control settings were restored. Accumulated state and journal history were retained.</p>}
     {detailed && <>
       <dl className="my-reservoir-data"><dt>Observed / applied step</dt><dd>{receipt.observedStep} / {receipt.appliedStep}</dd><dt>Attempt</dt><dd>{receipt.attemptId}</dd><dt>Immediate action difference · L2</dt><dd>{number(receipt.stateDeltaL2)}</dd><dt>Largest coordinate difference</dt><dd>{number(receipt.stateDeltaMaxAbs)}</dd><dt>Pulse coordinates clipped</dt><dd>{receipt.clippedCoordinates}</dd></dl>
@@ -84,9 +87,10 @@ export default function MyReservoirActions({ summary }: { summary: SustainedSumm
         <p>Entry at step {pending.observedStep}{pending.intendedStep == null ? '' : ` · intended step ${pending.intendedStep}`}. No application has been recorded for this choice.</p>
       </div>}
       {actions.state.latestReceipt ? <><h3>Latest recorded result</h3><ActionReceiptView receipt={actions.state.latestReceipt}/></> : <p>No action result has been recorded yet.</p>}
+      {actions.peerRead && <PeerReadView read={actions.peerRead}/>}
       {actions.state.continuity && <>
         <MyReservoirInquiry continuity={actions.state.continuity}/>
-        {actions.state.continuity.meaningfulReceipts.length > 0 && <details className="my-reservoir-details"><summary>Retained interventions · {actions.state.continuity.meaningfulReceipts.length}</summary><ol className="my-reservoir-action-history">{actions.state.continuity.meaningfulReceipts.map(receipt => <li key={`${receipt.journalId}:${receipt.appliedStep}`}><ActionReceiptView receipt={receipt} detailed/></li>)}</ol><p>These bounded intervention records remain available when newer NONE choices fill the recent results. They are not the complete action archive.</p></details>}
+        {actions.state.continuity.meaningfulReceipts.length > 0 && <details className="my-reservoir-details"><summary>Retained actions · {actions.state.continuity.meaningfulReceipts.length}</summary><ol className="my-reservoir-action-history">{actions.state.continuity.meaningfulReceipts.map(receipt => <li key={`${receipt.journalId}:${receipt.appliedStep}`}><ActionReceiptView receipt={receipt} detailed/></li>)}</ol><p>These bounded action records remain available when newer NONE choices fill the recent results. They are not the complete action archive.</p></details>}
         {actions.state.continuity.inputTransitions.length > 0 && <details className="my-reservoir-details"><summary>Retained text-input changes · {actions.state.continuity.inputTransitions.length}</summary><ol>{actions.state.continuity.inputTransitions.map(input => <li key={`${input.journalId}:${input.appliedStep}`}>Step {input.appliedStep}: {input.disposition === 'rejected' ? 'directive rejected; text input withheld' : input.disposition === 'withhold' ? 'withheld' : 'sent'}</li>)}</ol></details>}
       </>}
       {actions.state.recentReceipts.length > 0 && <details className="my-reservoir-details"><summary>Recent action results · {actions.state.recentReceipts.length}</summary><ol className="my-reservoir-action-history">{actions.state.recentReceipts.map(receipt => <li key={`${receipt.journalId}:${receipt.appliedStep}`}><ActionReceiptView receipt={receipt}/></li>)}</ol><p>The current controls and recent results return to ordinary writing independently of the earlier journal selected as memory.</p></details>}

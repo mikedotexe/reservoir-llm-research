@@ -5,7 +5,7 @@ then read it with some curiosity. You do not need to understand the reservoir's
 math to begin. Plan for **up to 30 minutes of running time**, after installation
 and model setup, plus a few minutes to read.
 
-These instructions describe **0.47.0 source**. If you received the older 0.27.0
+These instructions describe **0.48.0 source**. If you received the older 0.27.0
 candidate 04 package, follow its [install guide](PREVIEW-START.md).
 
 ## 1. Open the app
@@ -308,3 +308,12 @@ Apple-silicon macOS is the platform checked locally. Windows/Linux behavior and 
 first session on a second machine still need their own checks. The optional
 [Activation experiment](ACTIVATION-EXPERIMENT.md) is a separate research mode;
 it is not part of this first-session path.
+
+## Read journals from other local models
+
+Before creating fresh sessions, select **Continuing inquiry**, **Specific correction
+feedback**, and **Allow peer journal reading**. Give each session the same new
+experiment group, a distinct participant name, and reciprocal peer lists. Models
+can then choose `NEXT: READ_PEERS`; their preceding applied entries become labeled
+context for later writing. See [peer journal reading](PEER-READING.md) for the
+timing, sharing scope and how to set up Gemma, GLM and Mistral.
