@@ -63,5 +63,14 @@ three dependent trajectories, not independent samples of a model population.
 
 ## Execution
 
-Preparation is underway; launch and first-entry observations will be recorded
-after they occur. The open endpoint is a deliberate exploratory choice.
+All three sessions started around 23:04:51 UTC (15:04:51 Pacific) on November 15.
+Successful native starts and exact configuration matches are retained in
+`start-receipts.json`. The first three entries per model and an offline leak
+comparison at one saved origin are recorded in the
+[startup account](../../analyses/2026-11-15-sonar-startup-and-leak.md).
+The [selected GLM episode](../../exercises/2026-11-15-glm-zero-input-and-scan.md)
+distinguishes an accepted zero-input probe from a nonzero intervention, and a
+completed scan from a resolved scientific contrast. No live controls or prompt
+contracts were changed during this review. A read-only observer is logging
+subsequent metadata with a 24-hour observation bound and no automatic recovery.
+The open endpoint remains a deliberate exploratory choice.

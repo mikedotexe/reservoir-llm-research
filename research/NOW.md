@@ -1,5 +1,16 @@
 # Current work
 
+**November 15, 15:04 Pacific onward: model-selected reservoir exploration running.**
+Fresh Gemma4, local GLM-4.7-Flash and Ministral-3 native sessions have compact
+scanning, real probes, optional peer reading and hourly conversation with telemetry.
+The endpoint is open, bounded by protective 24-active-hour/512-MiB session caps.
+The [startup review](../analyses/2026-11-15-sonar-startup-and-leak.md) records nine
+early entries and a copied leak comparison; live settings remain unchanged.
+The [GLM case](../exercises/2026-11-15-glm-zero-input-and-scan.md) finds accepted
+zero input followed by an unresolved scan that the prose overstates. Outcome
+labels, footer reliability and short-lag observation are proposals for the next
+phase. [Protocol](studies/2026-11-15-model-led-reservoir-exploration.md).
+
 **November 15: native compact scanner and model-selected questions.** Mike selected
 app integration of the finer numerical instrument. Local 0.50.0 adds fresh-probe
 validation, signed fallback and explicit `SCAN_QUESTION` choices. Native scripted
