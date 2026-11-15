@@ -126,6 +126,27 @@ impl SustainedState {
                 .as_ref()
                 .is_some_and(|a| a.epoch == epoch && a.engine.specification().sonar.is_some())
         });
+        let compact = self.lock().ok().is_some_and(|g| {
+            g.active.as_ref().is_some_and(|a| {
+                a.epoch == epoch
+                    && a.engine.specification().sonar.as_ref().is_some_and(|c| {
+                        c.version == reservoir_core::sustained::SustainedSonarVersion::CompactScanV2
+                    })
+            })
+        });
+        if compact {
+            return match (pending.attempt_id-1)%9 {
+                0=>"Scripted question check: request a question direction, with explicit rejection if unavailable.\nNEXT: PROBE_SCAN question positive",
+                1=>"Scripted compact scan: calibrate and validate using separate fresh probes.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: SCAN",
+                2=>"Scripted question: how does this starting state change input sensitivity compared with zero state?\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: SCAN_QUESTION state",
+                3=>"Scripted intervention: use the measured state-question direction if separately authorized.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: PROBE_SCAN question positive",
+                4=>"Scripted question: how does this held text change input sensitivity?\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: SCAN_QUESTION input",
+                5=>"Scripted intervention: apply the negative question vector with a fresh application forecast.\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: PROBE_SCAN question negative",
+                6=>"Scripted question: how does recurrence alter input sensitivity?\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: SCAN_QUESTION recurrence",
+                7=>"Scripted intervention: try the measured recurrence-question direction.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: PROBE_SCAN question positive",
+                _=>"Scripted example: retain the recorded comparisons without a further intervention.\nNEXT: NONE",
+            }.into();
+        }
         if sonar {
             return match (pending.attempt_id-1)%4 {
                 0=>"Scripted scanner check: request a measured direction; if no scan is cached, expect an explicit rejection.\nNEXT: PROBE_SCAN strongest positive",

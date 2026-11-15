@@ -358,9 +358,13 @@ pub async fn observe_sustained_sonar(
     session_id: String,
     generation: String,
     scan: bool,
+    question: Option<reservoir_core::sustained::SustainedSonarQuestion>,
 ) -> Result<crate::sustained::SonarView, AppError> {
     let s = state.inner().clone();
-    tauri::async_runtime::spawn_blocking(move || s.sonar_view(&session_id, &generation, scan))
-        .await
-        .map_err(worker)?
+    tauri::async_runtime::spawn_blocking(move || match question {
+        Some(q) => s.sonar_question_view(&session_id, &generation, scan, Some(q)),
+        None => s.sonar_view(&session_id, &generation, scan),
+    })
+    .await
+    .map_err(worker)?
 }

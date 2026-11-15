@@ -1,7 +1,10 @@
 # Reservoir response scanning
 
-Implementation contract selected November 15, 2026. Implemented in local 0.49.0;
-qualification and limits are recorded in [the release note](RELEASE-0.49.0.md).
+Local 0.50.0 adds validated compact scanning and model-selected numerical questions.
+See [the v2 guide](SONAR-V2.md) for new-session behavior and
+[qualification](RELEASE-0.50.0.md). The sections below retain the original
+`response-scan-v1` contract from 0.49.0; its saved sessions remain compatible.
+That version's qualification is recorded in [its release note](RELEASE-0.49.0.md).
 
 The scanner asks how a known small input changes this recurrent reservoir from a
 specific saved state. "Sonar" is the interface metaphor; the measured object is
@@ -79,13 +82,15 @@ topological analysis after the simple instrument is qualified.
 The subsequent [offline resolution study](../../analyses/2026-11-15-sonar-resolution.md)
 qualifies smaller probes, unseen-direction prediction and a two-branch method for
 recovering the immediate map with known wiring. It also demonstrates a direction
-selected to distinguish two specified starting states. Those are research tools,
-not additional native actions or a change to this version's stored contract.
+selected to distinguish two specified starting states. The new v2 native contract
+builds on those results without changing this version's stored contract.
 
 ## Use the local instrument
 
 In My reservoir, enable reservoir shaping with continuing inquiry and specific
 correction feedback. Select **Allow the model to scan copies of its reservoir**.
+New selections now create compact v2 sessions; follow the v2 guide above. Existing
+v1 sessions keep the coordinate scanner described here when restored.
 Real probes have a separate checkbox, off by default. Create the session and start
 explicitly. Offline example writing exercises rejection → scan → measured probe
 → NONE; it is a deterministic fixture, not an LLM interpretation.

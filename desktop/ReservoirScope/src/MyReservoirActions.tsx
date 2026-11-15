@@ -10,6 +10,7 @@ const number = (value: number) => Number.isFinite(value) ? Number(value.toPrecis
 export function actionDescription(request: SustainedAuthoredRequest | null): string {
   if (!request) return 'No valid action selected';
   switch (request.kind) {
+    case 'scanQuestion': return `Copied question · ${request.question}`;
     case 'scan': return 'SCAN · experiment on copied recurrent states';
     case 'probeScan': return `Measured input probe · ${request.direction} · ${request.sign}`;
     case 'readPeers': return 'READ_PEERS · read the frozen preceding peer entries';

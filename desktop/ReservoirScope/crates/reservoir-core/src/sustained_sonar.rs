@@ -1,6 +1,9 @@
 //! Read-only recurrent response scans. No model calls, filesystem or ambient RNG.
 use super::*;
 use nalgebra::{linalg::SVD, DMatrix};
+#[path = "sustained_sonar_compact.rs"]
+mod compact;
+pub use compact::*;
 
 pub const SONAR_HORIZON: usize = 64;
 pub const SONAR_HISTORY: usize = 128;
@@ -13,6 +16,8 @@ const RESOLUTION: f64 = 1e-9;
 pub enum SustainedSonarVersion {
     #[serde(rename = "response-scan-v1")]
     ResponseScanV1,
+    #[serde(rename = "compact-scan-v2")]
+    CompactScanV2,
 }
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -26,6 +31,7 @@ pub enum SustainedSonarDirection {
     Strongest,
     Weakest,
     Persistent,
+    Question,
 }
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -36,6 +42,10 @@ pub struct SustainedSonarPoint {
 #[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedSonarState {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub latest_compact_scan: Option<Box<SustainedCompactSonarReport>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub latest_question: Option<Box<SustainedSonarQuestionReport>>,
     pub history: Vec<SustainedSonarPoint>,
     pub latest_scan: Option<Box<SustainedSonarReport>>,
 }
@@ -150,6 +160,17 @@ pub fn sustained_sonar_continuation(
     origin: &SustainedSonarOrigin,
     impulse: &[f64],
 ) -> Result<Vec<SustainedSonarPoint>> {
+    continuation_for(origin, impulse, SONAR_HORIZON)
+}
+fn continuation_for(
+    origin: &SustainedSonarOrigin,
+    impulse: &[f64],
+    horizon: usize,
+) -> Result<Vec<SustainedSonarPoint>> {
+    ensure(
+        (1..=SONAR_HORIZON).contains(&horizon),
+        "Invalid copied horizon",
+    )?;
     validate_origin(origin)?;
     vector(impulse, 48, "sonar impulse")?;
     ensure(
@@ -167,8 +188,8 @@ pub fn sustained_sonar_continuation(
             .parse()
             .map_err(|_| invalid("Invalid sonar RNG state"))?,
     );
-    let mut path = Vec::with_capacity(SONAR_HORIZON);
-    for offset in 1..=SONAR_HORIZON {
+    let mut path = Vec::with_capacity(horizon);
+    for offset in 1..=horizon {
         let step = origin.step + offset as u64;
         let mut input = forcing(step as usize, origin.dt);
         input[18..].copy_from_slice(&scaled_feedback(
@@ -455,7 +476,12 @@ pub(super) fn remember(s: &mut SustainedContinuation) {
             step: s.step,
             state: s.reservoir_state.clone(),
         });
-        if state.history.len() > SONAR_HISTORY {
+        let limit = if compact::enabled(&s.specification) {
+            32
+        } else {
+            SONAR_HISTORY
+        };
+        if state.history.len() > limit {
             state.history.remove(0);
         }
     }
@@ -468,6 +494,7 @@ pub(super) fn validate_state(s: &SustainedContinuation) -> Result<()> {
     )?;
     if let Some(state) = &s.sonar_state {
         validate_history(&state.history)?;
+        compact::validate_cached_state(s, state)?;
         let last = state.history.last().expect("validated history");
         ensure(
             last.step == s.step && last.state == s.reservoir_state,
@@ -508,7 +535,8 @@ pub fn validate_report(report: &SustainedSonarReport) -> Result<()> {
         "Sonar report hash differs",
     )?;
     ensure(
-        report.horizon == SONAR_HORIZON
+        report.version == SustainedSonarVersion::ResponseScanV1
+            && report.horizon == SONAR_HORIZON
             && report.horizons == SONAR_HORIZONS
             && report.epsilon == SONAR_EPSILON,
         "Sonar scan settings differ from version 1",
@@ -604,6 +632,8 @@ pub struct SustainedSonarScanRef {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedSonarProbeReceipt {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub question_forecast: Option<SustainedSonarQuestionForecast>,
     pub direction: SustainedSonarDirection,
     pub sign: SustainedSonarSign,
     pub source_scan: Option<SustainedSonarScanRef>,
@@ -638,11 +668,19 @@ pub(super) fn parse_decision(
     let words: Vec<_> = tail.split_whitespace().collect();
     let parsed = match words.as_slice() {
         ["SCAN"] => Some(SustainedActionRequest::Scan),
+        ["SCAN_QUESTION", question] if compact::enabled(spec) => match *question {
+            "state" => Some(SustainedSonarQuestion::State),
+            "input" => Some(SustainedSonarQuestion::Input),
+            "recurrence" => Some(SustainedSonarQuestion::Recurrence),
+            _ => None,
+        }
+        .map(|question| SustainedActionRequest::ScanQuestion { question }),
         ["PROBE_SCAN", direction, sign] => {
             let direction = match *direction {
                 "strongest" => Some(SustainedSonarDirection::Strongest),
                 "weakest" => Some(SustainedSonarDirection::Weakest),
                 "persistent" => Some(SustainedSonarDirection::Persistent),
+                "question" if compact::enabled(spec) => Some(SustainedSonarDirection::Question),
                 _ => None,
             };
             let sign = match *sign {
@@ -659,6 +697,14 @@ pub(super) fn parse_decision(
     if let Some(request) = parsed {
         d.request = Some(request);
         d.rejection = None;
+    } else if compact::enabled(spec)
+        && matches!(
+            words.first(),
+            Some(&"SCAN" | &"PROBE_SCAN" | &"SCAN_QUESTION")
+        )
+    {
+        d.request = None;
+        d.rejection = Some("Use NEXT: SCAN, NEXT: SCAN_QUESTION <state|input|recurrence>, or NEXT: PROBE_SCAN <strongest|weakest|question> <positive|negative>. Real probes require saved permission and a resolved model-selected direction.".into());
     } else if matches!(words.first(), Some(&"SCAN" | &"PROBE_SCAN")) {
         d.request = None;
         d.rejection=Some("Use NEXT: SCAN without arguments, or NEXT: PROBE_SCAN <strongest|weakest|persistent> <positive|negative>. A real probe also requires saved opt-in and a prior scan.".into());
@@ -685,6 +731,9 @@ pub(super) fn resolve_probe(
     s: &SustainedContinuation,
     request: Option<&SustainedActionRequest>,
 ) -> Result<Option<SustainedSonarProbeReceipt>> {
+    if compact::enabled(&s.specification) {
+        return compact::resolve_compact_probe(s, request);
+    }
     let Some(SustainedActionRequest::ProbeScan { direction, sign }) = request else {
         return Ok(None);
     };
@@ -708,6 +757,7 @@ pub(super) fn resolve_probe(
         None
     };
     let mut receipt = SustainedSonarProbeReceipt {
+        question_forecast: None,
         direction: *direction,
         sign: *sign,
         source_scan: scan.map(|r| SustainedSonarScanRef {
@@ -789,6 +839,9 @@ pub(super) fn apply_scan(
     s: &mut SustainedContinuation,
     receipt: &mut Option<Box<SustainedActionReceipt>>,
 ) -> Result<()> {
+    if compact::enabled(&s.specification) {
+        return compact::apply_compact_scan(s, receipt);
+    }
     if let Some(r) = receipt
         .as_mut()
         .filter(|r| matches!(r.request, Some(SustainedActionRequest::Scan)))
@@ -807,6 +860,7 @@ pub(super) fn validate_receipt(
     r: &SustainedActionReceipt,
     s: &SustainedContinuation,
 ) -> Result<()> {
+    compact::validate_question_receipt(r, s)?;
     match (&r.request, &r.sonar_scan) {
         (Some(SustainedActionRequest::Scan), Some(scan)) => ensure(
             s.specification.sonar.is_some()
@@ -848,7 +902,8 @@ pub(super) fn validate_receipt(
             )?;
             if let Some(reason) = &p.rejection {
                 ensure(
-                    [NO_AUTHORITY, NO_SCAN, NO_DIRECTION].contains(&reason.as_str())
+                    [NO_AUTHORITY, NO_SCAN, NO_DIRECTION, compact::NO_QUESTION]
+                        .contains(&reason.as_str())
                         && r.rejection.as_ref() == Some(reason)
                         && r.status == SustainedActionStatus::Rejected
                         && norm(&p.applied_vector) == 0.0
@@ -880,6 +935,7 @@ pub(super) fn validate_receipt(
                     "Invalid applied scan probe or bound",
                 )?;
             }
+            compact::validate_question_forecast(p)?;
         }
         (Some(SustainedActionRequest::ProbeScan { .. }), None) | (_, Some(_)) => {
             return Err(invalid("Scan probe receipt/request mismatch"))
@@ -889,6 +945,9 @@ pub(super) fn validate_receipt(
     Ok(())
 }
 pub(super) fn render_context(s: &SustainedContinuation) -> String {
+    if compact::enabled(&s.specification) {
+        return compact::render_compact_context(s);
+    }
     let config = s
         .specification
         .sonar

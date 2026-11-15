@@ -1,12 +1,33 @@
 //! Operator observations are read-only and never enter model-selected scan state.
 use super::*;
 use reservoir_core::sustained::{
-    scan_sustained_checkpoint, sustained_sonar_mirror, SustainedSonarMirror, SustainedSonarPoint,
-    SustainedSonarReport,
+    compact_sonar_matrix, question_sustained_checkpoint, scan_compact_sustained_checkpoint,
+    scan_sustained_checkpoint, sustained_sonar_mirror, SustainedCompactSonarReport,
+    SustainedSonarMirror, SustainedSonarPoint, SustainedSonarQuestion,
+    SustainedSonarQuestionReport, SustainedSonarReport, SustainedSonarVersion,
 };
 #[derive(Serialize)]
 #[serde(rename_all = "camelCase")]
+pub struct CompactSonarView {
+    pub report: SustainedCompactSonarReport,
+    pub immediate_response_matrix: Vec<Vec<f64>>,
+}
+impl CompactSonarView {
+    fn new(report: SustainedCompactSonarReport) -> Result<Self, AppError> {
+        let immediate_response_matrix = compact_sonar_matrix(&report).map_err(ce)?;
+        Ok(Self {
+            report,
+            immediate_response_matrix,
+        })
+    }
+}
+#[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct SonarView {
+    pub model_compact: Option<CompactSonarView>,
+    pub operator_compact: Option<CompactSonarView>,
+    pub model_question: Option<Box<SustainedSonarQuestionReport>>,
+    pub operator_question: Option<SustainedSonarQuestionReport>,
     pub session_id: String,
     pub generation: String,
     pub checkpoint_sha256: String,
@@ -24,6 +45,15 @@ impl SustainedState {
         generation: &str,
         scan: bool,
     ) -> Result<SonarView, AppError> {
+        self.sonar_question_view(id, generation, scan, None)
+    }
+    pub fn sonar_question_view(
+        &self,
+        id: &str,
+        generation: &str,
+        scan: bool,
+        question: Option<SustainedSonarQuestion>,
+    ) -> Result<SonarView, AppError> {
         let checkpoint = {
             let mut g = self.lock()?;
             active(&mut g, id, generation)?.committed.clone()
@@ -40,11 +70,44 @@ impl SustainedState {
                 }]
             });
         let mirror = sustained_sonar_mirror(&history).map_err(ce)?;
-        let operator_scan = scan
+        let compact = checkpoint
+            .state
+            .specification
+            .sonar
+            .as_ref()
+            .is_some_and(|c| c.version == SustainedSonarVersion::CompactScanV2);
+        let operator_scan = (scan && !compact)
             .then(|| scan_sustained_checkpoint(&checkpoint))
             .transpose()
             .map_err(ce)?;
+        let operator_compact = (scan && compact)
+            .then(|| scan_compact_sustained_checkpoint(&checkpoint))
+            .transpose()
+            .map_err(ce)?
+            .map(CompactSonarView::new)
+            .transpose()?;
+        let operator_question = question
+            .map(|q| question_sustained_checkpoint(&checkpoint, q))
+            .transpose()
+            .map_err(ce)?;
+        let model_compact = checkpoint
+            .state
+            .sonar_state
+            .as_ref()
+            .and_then(|s| s.latest_compact_scan.as_deref())
+            .cloned()
+            .map(CompactSonarView::new)
+            .transpose()?;
+        let model_question = checkpoint
+            .state
+            .sonar_state
+            .as_ref()
+            .and_then(|s| s.latest_question.clone());
         Ok(SonarView {
+            model_compact,
+            operator_compact,
+            model_question,
+            operator_question,
             session_id: id.into(),
             generation: generation.into(),
             checkpoint_sha256: checkpoint.sha256,

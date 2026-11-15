@@ -1,3 +1,4 @@
+import type { SonarQuestion } from './compactSonar';
 import type { SonarConfig, SonarDirection, SonarSign, SonarScanRef, SonarProbe } from './sonar';
 import type { LanguageConfiguration, SessionFrame } from './freshTypes';
 
@@ -88,7 +89,7 @@ export interface SustainedCheckIns {
 }
 export interface SustainedActionControls { leak: number; recurrentGain: number; feedbackScale: number }
 export type SustainedAuthoredRequest = { kind: 'none' } | { kind: 'pulse'; direction: 'uniform' | 'alternating' | 'axis0' | 'axis1'; strength: number }
-  | { kind: 'tune'; parameter: keyof SustainedActionControls; value: number } | { kind: 'release' } | { kind: 'probe'; vector: number[] } | { kind: 'readPeers' } | { kind: 'scan' } | { kind: 'probeScan'; direction: SonarDirection; sign: SonarSign };
+  | { kind: 'tune'; parameter: keyof SustainedActionControls; value: number } | { kind: 'release' } | { kind: 'probe'; vector: number[] } | { kind: 'readPeers' } | { kind: 'scan' } | {kind:'scanQuestion';question:SonarQuestion} | { kind: 'probeScan'; direction: SonarDirection; sign: SonarSign };
 export interface SustainedReservoirInput { disposition: 'send' | 'withhold' | 'rejected'; rawDirective: string | null; rejection: string | null }
 export type SustainedInquirySource = 'journal' | 'dynamics' | 'both';
 export type SustainedInquiryRequest = { kind: 'open'; source: SustainedInquirySource; question: string } | { kind: 'continue' } | { kind: 'close' };
@@ -125,6 +126,7 @@ export interface SustainedPeerRead { journalId: string; appliedStep: number; sna
   peers: { participant: string; entry: SustainedPeerEntry | null; unavailable: string | null }[];
 } }
 export interface SustainedActionReceipt {
+  sonarQuestion?: SonarScanRef;
   sonarScan?: SonarScanRef;
   sonarProbe?: SonarProbe;
   peerRead?: SustainedPeerRead;

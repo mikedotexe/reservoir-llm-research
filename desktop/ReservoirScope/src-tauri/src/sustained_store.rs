@@ -1071,6 +1071,24 @@ fn read_link(path: &Path, n: u64) -> Result<(Envelope, String), AppError> {
 /// Offline scan of a fully verified bundle; never restores or writes the source.
 pub fn scan_bundle(path: &Path) -> Result<serde_json::Value, AppError> {
     let verified = verify(path)?;
+    if verified
+        .checkpoint
+        .state
+        .specification
+        .sonar
+        .as_ref()
+        .is_some_and(|c| {
+            c.version == reservoir_core::sustained::SustainedSonarVersion::CompactScanV2
+        })
+    {
+        let scan =
+            reservoir_core::sustained::scan_compact_sustained_checkpoint(&verified.checkpoint)
+                .map_err(ce)?;
+        let matrix = reservoir_core::sustained::compact_sonar_matrix(&scan).map_err(ce)?;
+        return Ok(
+            serde_json::json!({"status":"scanned","modelsContacted":false,"source":verified.report,"compactScan":scan,"immediateResponseMatrix":matrix}),
+        );
+    }
     let scan =
         reservoir_core::sustained::scan_sustained_checkpoint(&verified.checkpoint).map_err(ce)?;
     Ok(

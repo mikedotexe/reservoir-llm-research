@@ -1,3 +1,4 @@
+import { sonarQuestion } from './compactSonar';
 import { validSonarConfig, validSonarReceipt, sonarDirection, sonarSign } from './sonar';
 import { validPeerConfig, validPeerRead } from './peerReading';
 import { sameControlDiagnostics, validControlDiagnostics } from './controlFeedback';
@@ -45,6 +46,7 @@ const controls = (value: unknown): value is SustainedActionControls => record(va
 function request(value: unknown): value is SustainedAuthoredRequest {
   if (!record(value)) return false;
   if (value.kind === 'none' || value.kind === 'release' || value.kind === 'readPeers' || value.kind === 'scan') return true;
+  if (value.kind === 'scanQuestion') return sonarQuestion(value.question);
   if (value.kind === 'probeScan') return sonarDirection(value.direction) && sonarSign(value.sign);
   if (value.kind === 'probe') return validProbeVector(value.vector);
   if (value.kind === 'pulse') return ['uniform', 'alternating', 'axis0', 'axis1'].includes(String(value.direction)) && typeof value.strength === 'number' && [.1, .5, 1].includes(Math.abs(value.strength));
@@ -75,7 +77,8 @@ function validActionChoice(value: unknown): boolean {
 }
 function validChoiceForMode(value: { request: SustainedAuthoredRequest | null; reservoirInput?: unknown; inquiry?: unknown; diagnostics?: unknown }, config: SustainedConfig): boolean {
   return (config.controlFeedback === 'diagnostic-v1' ? validControlDiagnostics(value.diagnostics) : value.diagnostics === undefined)
-    && (!['scan','probeScan'].includes(value.request?.kind ?? '') || !!config.sonar)
+    && (value.request?.kind !== 'scanQuestion' && !(value.request?.kind === 'probeScan' && value.request.direction === 'question') || config.sonar?.version === 'compact-scan-v2')
+    && (!['scan','probeScan','scanQuestion'].includes(value.request?.kind ?? '') || !!config.sonar)
     && (value.request?.kind !== 'readPeers' || !!config.peerReading)
     && validInputForMode(value.reservoirInput, config) && (hasLocalInquiry(config) || value.inquiry === undefined && value.request?.kind !== 'probe');
 }

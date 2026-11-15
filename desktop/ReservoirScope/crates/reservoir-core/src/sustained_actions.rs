@@ -40,6 +40,9 @@ pub enum SustainedActionRequest {
     None,
     ReadPeers,
     Scan,
+    ScanQuestion {
+        question: SustainedSonarQuestion,
+    },
     ProbeScan {
         direction: SustainedSonarDirection,
         sign: SustainedSonarSign,
@@ -146,6 +149,8 @@ pub enum SustainedActionStatus {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedActionReceipt {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub sonar_question: Option<SustainedSonarScanRef>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub sonar_scan: Option<SustainedSonarScanRef>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -710,6 +715,7 @@ pub(super) fn record_receipt(
         None => SustainedActionStatus::Rejected,
     };
     let receipt = SustainedActionReceipt {
+        sonar_question: None,
         sonar_scan: None,
         sonar_probe: None,
         peer_read: None,

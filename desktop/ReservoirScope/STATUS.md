@@ -1,5 +1,12 @@
 # Reservoir Scope: current status and next work
 
+**November 15, 2026 · 0.50.0 compact scanning and numerical questions.** The native
+integration adds independent fresh-probe validation, signed-measurement fallback,
+model-selected counterfactual questions and separately authorized question-vector
+application. Historical v1 contracts remain frozen. Qualification is in progress;
+no long model run or live-being deployment is launched.
+[Use and scope](SONAR-V2.md) · [release record](RELEASE-0.50.0.md).
+
 **November 15, 2026 · 0.49.0 response scanner.** Optional copied input scans,
 passive recurrent-state views and separately authorized measured-direction probes
 are implemented on `codex/reservoir-sonar`. Earlier peer runs are paused/exported;

@@ -1592,6 +1592,8 @@ impl SustainedSession {
                     state: vec![0.0; 32],
                 }],
                 latest_scan: None,
+                latest_compact_scan: None,
+                latest_question: None,
             }),
             peer_state: specification
                 .peer_reading
