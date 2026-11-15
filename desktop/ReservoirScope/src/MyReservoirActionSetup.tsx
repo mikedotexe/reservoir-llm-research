@@ -18,6 +18,11 @@ export default function MyReservoirActionSetup({ config, setConfig }: { config: 
         <option value="authored-v2">Earlier actions and input choice</option>
         <option value="authored-v1">Earlier actions only</option>
       </select></label>
+      {hasLocalInquiry(config) && <label>Control feedback<select value={config.controlFeedback ?? 'historical'} onChange={event => {
+        const { controlFeedback: _feedback, ...base } = config;
+        setConfig(event.target.value === 'diagnostic-v1' ? { ...base, controlFeedback: 'diagnostic-v1' } : base);
+      }}><option value="diagnostic-v1">Specific correction feedback</option><option value="historical">Earlier feedback</option></select></label>}
+      {config.controlFeedback === 'diagnostic-v1' && <p>Later entries receive specific formatting and value errors, a short quoted excerpt of the attempted control, and separate action, input and inquiry outcomes. Rejected text never becomes an executable command.</p>}
       <p>Adjustments persist until the model changes or releases them. Each action is saved with the entry, then its actual result returns with later writing. Releasing an adjustment preserves the state and history that developed.</p>
       {hasReservoirInputChoice(config) && <p>The model can also withhold an entry’s numerical text input independently of its action. The entry stays in the journal and can return as memory. Withholding replaces the previous held text input with zero; ordinary dynamics and any chosen action continue.</p>}
       {hasLocalInquiry(config) && <p>The model can send a bounded one-step input probe, keep an open question, and return to bounded evidence from its own reservoir and saved journal history. Meaningful interventions remain available beyond the recent action results. An inquiry is an opportunity to investigate, not a promise that the question has been answered.</p>}

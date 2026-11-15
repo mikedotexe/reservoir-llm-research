@@ -27,7 +27,7 @@ const summary = () => reservoirSummary({ config, step: 4, durableStep: 4, action
 
 describe('versioned continuing local inquiry', () => {
   it('selects v3 for newly enabled actions and keeps both previous baselines selectable', async () => {
-    expect(withAuthoredActions(DEFAULT_SUSTAINED_CONFIG, true, DEFAULT_SUSTAINED_CONFIG.promptVersion)).toEqual(config);
+    expect(withAuthoredActions(DEFAULT_SUSTAINED_CONFIG, true, DEFAULT_SUSTAINED_CONFIG.promptVersion)).toEqual({ ...config, controlFeedback: 'diagnostic-v1' });
     expect(validAuthoredActionConfig(config)).toBe(true);
     for (const [mode, prompt] of [['authored-v1', ACTION_JOURNAL_PROMPT_V1], ['authored-v2', ACTION_JOURNAL_PROMPT]] as const) {
       const earlier = withAuthoredActionMode(config, mode);

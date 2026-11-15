@@ -5,7 +5,7 @@ then read it with some curiosity. You do not need to understand the reservoir's
 math to begin. Plan for **up to 30 minutes of running time**, after installation
 and model setup, plus a few minutes to read.
 
-These instructions describe **0.46.1 source**. If you received the older 0.27.0
+These instructions describe **0.47.0 source**. If you received the older 0.27.0
 candidate 04 package, follow its [install guide](PREVIEW-START.md).
 
 ## 1. Open the app
@@ -149,6 +149,8 @@ reduction** and choose **Embedding, projected to 32 coordinates**. Enter the
 exact name of an installed embedding model, for example `nomic-embed-text:latest`.
 This choice is fixed for the new session. It changes how journal text becomes
 numerical input; it does not train either model or change the reservoir's size.
+
+New embedding selections use **Text admission → Unicode text**, including symbols such as ≤ and ≈. The earlier surface-codec gate remains selectable for comparisons. Existing sessions keep their recorded policy.
 
 Completed writing is retained before encoding starts. If encoding fails, the
 **Completed writing awaiting encoding** panel shows the exact reply.

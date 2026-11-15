@@ -8,6 +8,8 @@ use reservoir_core::sustained::{
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PendingActionDecision {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub diagnostics: Option<reservoir_core::sustained::SustainedControlDiagnostics>,
     pub request: Option<SustainedActionRequest>,
     pub rejection: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -18,6 +20,7 @@ pub struct PendingActionDecision {
 impl From<&SustainedActionDecision> for PendingActionDecision {
     fn from(value: &SustainedActionDecision) -> Self {
         Self {
+            diagnostics: value.diagnostics.clone(),
             request: value.request.clone(),
             rejection: value.rejection.clone(),
             reservoir_input: value.reservoir_input.clone(),

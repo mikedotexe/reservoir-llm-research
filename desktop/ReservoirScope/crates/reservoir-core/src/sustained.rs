@@ -21,6 +21,30 @@ pub use actions::*;
 #[path = "sustained_continuity.rs"]
 mod continuity;
 pub use continuity::*;
+#[path = "sustained_control_feedback.rs"]
+mod control_feedback;
+pub use control_feedback::*;
+
+/// Saved admission policy, independent of the numerical text reduction. Omission
+/// preserves the historical Swift-qualified scalar/grapheme gate exactly.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum SustainedTextAdmission {
+    #[serde(rename = "utf8-v1")]
+    Utf8V1,
+}
+
+fn text_has_content(text: &str, policy: Option<SustainedTextAdmission>) -> Result<bool> {
+    match policy {
+        None => codec::has_non_whitespace(text),
+        // Frozen Unicode White_Space set, not the toolchain's evolving Unicode tables.
+        Some(SustainedTextAdmission::Utf8V1) => Ok(text.chars().any(|c| {
+            !matches!(c,
+            '\u{0009}'..='\u{000d}' | '\u{0020}' | '\u{0085}' | '\u{00a0}' |
+            '\u{1680}' | '\u{2000}'..='\u{200a}' | '\u{2028}' | '\u{2029}' |
+            '\u{202f}' | '\u{205f}' | '\u{3000}')
+        })),
+    }
+}
 
 pub const FORMAT: &str = "reservoir-sustained-segment-v1";
 pub const CHECKPOINT_FORMAT: &str = "reservoir-sustained-checkpoint-v1";
@@ -532,6 +556,10 @@ impl SustainedPromptVersion {
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedSpecification {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub text_admission: Option<SustainedTextAdmission>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub control_feedback: Option<SustainedControlFeedback>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub action_mode: Option<SustainedActionMode>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub check_in_schedule: Option<SustainedCheckInSchedule>,
@@ -620,6 +648,8 @@ pub struct SustainedSpecification {
 impl Default for SustainedSpecification {
     fn default() -> Self {
         Self {
+            text_admission: None,
+            control_feedback: None,
             action_mode: None,
             check_in_schedule: None,
             seed: 20260909,
@@ -685,6 +715,13 @@ impl SustainedSpecification {
         }
     }
     pub fn validate(&self) -> Result<()> {
+        ensure(self.text_admission.is_none() || !self.codec.is_surface(),
+            "UTF-8 admission requires the embedding codec; surface statistics retain their historical Unicode qualification")?;
+        ensure(
+            self.control_feedback.is_none()
+                || self.action_mode == Some(SustainedActionMode::AuthoredV3),
+            "Diagnostic control feedback requires authored-v3",
+        )?;
         ensure(
             match self.action_mode {
                 Some(SustainedActionMode::AuthoredV1) => {
@@ -1043,7 +1080,7 @@ pub struct SustainedJournal {
     pub sha256: String,
 }
 impl SustainedJournal {
-    fn validate(&self) -> Result<()> {
+    fn validate(&self, policy: Option<SustainedTextAdmission>) -> Result<()> {
         ensure(
             self.turn_id > 0
                 && self.attempt_id > 0
@@ -1060,10 +1097,12 @@ impl SustainedJournal {
             "Invalid sustained journal identity",
         )?;
         ensure(
-            codec::has_non_whitespace(&self.text)?,
+            text_has_content(&self.text, policy)?,
             "Empty sustained journal",
         )?;
-        codec::encode(&self.text)?;
+        if policy.is_none() {
+            codec::encode(&self.text)?;
+        }
         if let Some(body) = &self.body {
             ensure(
                 *body == parse_authored_action(&self.text).body
@@ -1071,7 +1110,9 @@ impl SustainedJournal {
                     || *body == parse_authored_action_v3(&self.text).body,
                 "Journal body differs from raw reply",
             )?;
-            codec::encode(body)?;
+            if policy.is_none() {
+                codec::encode(body)?;
+            }
         }
         Ok(())
     }
@@ -2085,7 +2126,7 @@ impl SustainedSession {
                 self.state.latest_memory.clone()
             }
             (None, Some(choice)) => {
-                entry.validate()?;
+                entry.validate(self.state.specification.text_admission)?;
                 actions::validate_journal_body(entry, &self.state.specification)?;
                 ensure(
                     entry.id == choice.entry_id && entry.sha256 == choice.sha256,
@@ -3180,7 +3221,11 @@ fn render_pending_prompt(
     check_in: Option<&SustainedCheckInContext>,
 ) -> String {
     if actions::enabled_for_turn(&state.specification, check_in) {
-        actions::render_prompt(state, observation, memory)
+        let mut prompt = actions::render_prompt(state, observation, memory);
+        if state.specification.control_feedback.is_some() {
+            prompt.push_str(&control_feedback::guidance());
+        }
+        prompt
     } else {
         if state.specification.action_mode == Some(SustainedActionMode::AuthoredV3) {
             if let Some(context) = check_in.filter(|context| context.include_telemetry) {
@@ -3264,6 +3309,7 @@ fn prepare_language_for(
 fn validate_journal_response(
     p: &SustainedPendingLanguage,
     response: &LanguageResponse,
+    spec: &SustainedSpecification,
 ) -> Result<()> {
     ensure(
         p.configuration.backend != LanguageKind::Ollama
@@ -3297,7 +3343,7 @@ fn validate_journal_response(
         "Provider metadata exceeds the accepted journal bound",
     )?;
     ensure(
-        codec::has_non_whitespace(&response.text)?,
+        text_has_content(&response.text, spec.text_admission)?,
         "Journal reply is whitespace only",
     )?;
     Ok(())
@@ -3307,15 +3353,14 @@ fn response_needs_external_feedback(
     response: &LanguageResponse,
     spec: &SustainedSpecification,
 ) -> Result<bool> {
-    validate_journal_response(p, response)?;
+    validate_journal_response(p, response, spec)?;
     if !matches!(spec.codec, SustainedCodec::Embedding { .. }) {
         return Ok(false);
     }
     let action = actions::decision_for(spec, p.check_in.as_ref(), &response.text);
     match action {
-        Some(action) => {
-            Ok(!action.withholds_reservoir_input() && codec::has_non_whitespace(&action.body)?)
-        }
+        Some(action) => Ok(!action.withholds_reservoir_input()
+            && text_has_content(&action.body, spec.text_admission)?),
         None => Ok(true),
     }
 }
@@ -3325,7 +3370,7 @@ fn prepare_journal(
     external: Option<&ExternalFeedback>,
     spec: &SustainedSpecification,
 ) -> Result<SustainedPendingJournal> {
-    validate_journal_response(p, response)?;
+    validate_journal_response(p, response, spec)?;
     let action = actions::decision_for(spec, p.check_in.as_ref(), &response.text);
     let body = action
         .as_ref()
@@ -3333,7 +3378,7 @@ fn prepare_journal(
     let (encoded_features, semantic_vector, feedback_provenance) = if action
         .as_ref()
         .is_some_and(|a| a.withholds_reservoir_input())
-        || (action.is_some() && !codec::has_non_whitespace(body)?)
+        || (action.is_some() && !text_has_content(body, spec.text_admission)?)
     {
         (vec![0.0; 48], vec![0.0; 48], None)
     } else {
@@ -3690,12 +3735,16 @@ fn validate_memory_ledger(s: &SustainedContinuation) -> Result<()> {
         )?,
     }
     if let Some(c) = &s.chosen_memory {
-        validate_memory(c, s.step)?;
+        validate_memory(c, s.step, s.specification.text_admission)?;
     }
     Ok(())
 }
-fn validate_memory(m: &SustainedMemory, step: u64) -> Result<()> {
-    m.entry.validate()?;
+fn validate_memory(
+    m: &SustainedMemory,
+    step: u64,
+    policy: Option<SustainedTextAdmission>,
+) -> Result<()> {
+    m.entry.validate(policy)?;
     ensure(
         m.relative_path == format!("journals/{}.json", m.entry.id)
             && m.applied_step == m.entry.observed_step + 1
@@ -3707,7 +3756,7 @@ fn validate_pending(p: &SustainedPendingLanguage, s: &SustainedContinuation) -> 
     check_ins::validate_context(p.check_in.as_ref(), s)?;
     validate_observation(&p.observation, &s.specification)?;
     if let Some(m) = &p.memory {
-        validate_memory(m, s.step)?;
+        validate_memory(m, s.step, s.specification.text_admission)?;
     }
     ensure(
         p.turn_id == s.turn_cursor
@@ -3928,7 +3977,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
         "Invalid fill/controller continuation",
     )?;
     if let Some(m) = &s.latest_memory {
-        validate_memory(m, s.step)?;
+        validate_memory(m, s.step, s.specification.text_admission)?;
         ensure(
             s.held_journal_id.as_ref() == Some(&m.entry.id),
             "Held feedback and latest eligible memory identities differ",
@@ -4072,7 +4121,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
                 request_started: true,
             };
             validate_pending(&p, s)?;
-            j.entry.validate()?;
+            j.entry.validate(s.specification.text_admission)?;
             ensure(
                 same(
                     j.as_ref(),
@@ -4094,7 +4143,7 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
         }
         SustainedPhase::Prepared(p) => {
             check_ins::validate_context(p.check_in.as_ref(), s)?;
-            p.entry.validate()?;
+            p.entry.validate(s.specification.text_admission)?;
             actions::validate_decision(
                 p.action.as_deref(),
                 &p.entry,
@@ -4108,7 +4157,8 @@ fn validate_state(s: &SustainedContinuation) -> Result<()> {
                 .ok_or_else(|| invalid("Prepared feedback lacks observation"))?;
             let empty_body = match &p.action {
                 Some(action) => {
-                    action.withholds_reservoir_input() || !codec::has_non_whitespace(&action.body)?
+                    action.withholds_reservoir_input()
+                        || !text_has_content(&action.body, s.specification.text_admission)?
                 }
                 None => false,
             };

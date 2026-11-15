@@ -79,6 +79,7 @@ export class MyReservoirController {
     }
     const existing = this.state.summary, matched = same(existing, summary);
     if (!replacement && !matched || matched && BigInt(summary.revision) < BigInt(existing!.revision)) return false;
+    if (matched && (summary.config.controlFeedback !== existing!.config.controlFeedback || summary.config.textAdmission !== existing!.config.textAdmission)) throw new Error('The session changed its saved text admission or control feedback policy.');
     if (matched && summary.config.actionMode !== existing!.config.actionMode) throw new Error('The session changed its reservoir action capability.');
     if (matched && effectivePromptVersion(summary.config) !== effectivePromptVersion(existing!.config)) throw new Error('The session changed its retained journal prompt version.');
     if (matched && (effectiveOutputTokens(summary.config) !== effectiveOutputTokens(existing!.config)

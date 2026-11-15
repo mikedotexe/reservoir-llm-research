@@ -45,6 +45,33 @@ fn prepare_reply(s: &SustainedState, epoch: u64, text: &str) -> u64 {
 
 #[test]
 fn embedding_failure_restart_retry_preserves_one_generation_and_one_action() {
+    encoding_recovery_case(
+        semantic_config(),
+        RAW,
+        "Retain this exact reply, even if encoding fails.",
+    );
+}
+
+#[test]
+fn unicode_admission_and_control_diagnostics_survive_host_retry_and_export() {
+    use reservoir_core::sustained::{SustainedControlFeedback, SustainedTextAdmission};
+    let config = SustainedConfig {
+        action_mode: Some(SustainedActionMode::AuthoredV3),
+        prompt_version: SustainedPromptVersion::ActionJournalV3,
+        text_admission: Some(SustainedTextAdmission::Utf8V1),
+        control_feedback: Some(SustainedControlFeedback::DiagnosticV1),
+        ..semantic_config()
+    };
+    encoding_recovery_case(
+        config,
+        "≤ ≈ 🪨 e\u{301} 日本語\nNEXT: TUNE leak 0.75",
+        "≤ ≈ 🪨 e\u{301} 日本語",
+    );
+}
+
+fn encoding_recovery_case(config: SustainedConfig, raw: &'static str, body: &'static str) {
+    let feedback_policy = config.control_feedback;
+    let admission_policy = config.text_admission;
     let d = tempfile::tempdir().unwrap();
     let root = d.path().join("store");
     let writers = Arc::new(AtomicU64::new(0));
@@ -53,18 +80,14 @@ fn embedding_failure_restart_retry_preserves_one_generation_and_one_action() {
         root.clone(),
         Arc::new(move |_, _, _, _, _, _| {
             calls.fetch_add(1, Ordering::SeqCst);
-            Ok(response(RAW))
+            Ok(response(raw))
         }),
-        Arc::new(|_, _, text, _, _| {
-            assert_eq!(text, "Retain this exact reply, even if encoding fails.");
+        Arc::new(move |_, _, text, _, _| {
+            assert_eq!(text, body);
             Err("owned embedding failure".into())
         }),
     );
-    let m = s
-        .create("create".into(), semantic_config())
-        .unwrap()
-        .summary
-        .unwrap();
+    let m = s.create("create".into(), config).unwrap().summary.unwrap();
     s.start("start".into(), &m.session_id, &m.generation)
         .unwrap();
     settled(&s);
@@ -73,7 +96,7 @@ fn embedding_failure_restart_retry_preserves_one_generation_and_one_action() {
     assert_eq!(before.turn_count, 1);
     assert_eq!(before.journal_count, 0);
     assert!(!before.can_start && !before.can_retry_provider && before.can_retry_embedding);
-    assert_eq!(before.pending_embedding.unwrap().response_text, RAW);
+    assert_eq!(before.pending_embedding.unwrap().response_text, raw);
     assert!(s.start("bad".into(), &m.session_id, &m.generation).is_err());
     let original = s.shared.store.verify(&m.session_id).unwrap();
     assert_eq!(original.received_responses.total, 1);
@@ -85,7 +108,7 @@ fn embedding_failure_restart_retry_preserves_one_generation_and_one_action() {
         Arc::new(|_, _, _, _, _, _| panic!("encoding retry must never regenerate writing")),
         Arc::new(move |_, model, text, _, _| {
             encoded.fetch_add(1, Ordering::SeqCst);
-            assert_eq!(text, "Retain this exact reply, even if encoding fails.");
+            assert_eq!(text, body);
             Ok(embedding(model))
         }),
     );
@@ -130,6 +153,18 @@ fn embedding_failure_restart_retry_preserves_one_generation_and_one_action() {
     assert_eq!(end.actions.unwrap().state.decision_count, 1);
     let verified = resumed.shared.store.verify(&m.session_id).unwrap();
     assert_eq!(verified.checkpoint.state.attempt_cursor, 1);
+    assert_eq!(verified.manifest.config.text_admission, admission_policy);
+    assert_eq!(verified.manifest.config.control_feedback, feedback_policy);
+    let latest = verified
+        .checkpoint
+        .state
+        .action_state
+        .as_ref()
+        .unwrap()
+        .latest_receipt
+        .as_ref()
+        .unwrap();
+    assert_eq!(latest.diagnostics.is_some(), feedback_policy.is_some());
     assert_eq!(
         verified
             .checkpoint

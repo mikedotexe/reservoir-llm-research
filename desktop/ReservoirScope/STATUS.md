@@ -1,5 +1,11 @@
 # Reservoir Scope: current status and next work
 
+**November 15, 2026 · 0.47.0 control feedback and Unicode admission.** New inquiry
+selections provide specific rejection explanations and separate NEXT/input/inquiry
+outcomes. New embedding selections admit Unicode text without passing it through
+the surface codec. Both changes have explicit saved policy versions; omitted
+historical policies retain earlier behavior. [Change record and checks](RELEASE-0.47.0.md).
+
 **November 14, 2026 · 0.46.1 selectable request headroom.** New sessions may
 explicitly choose a request deadline from 60 to 600 seconds. The default remains
 180 seconds, historical omitted deadlines remain 60 seconds, and existing

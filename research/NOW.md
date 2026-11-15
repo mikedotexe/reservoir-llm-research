@@ -1,5 +1,13 @@
 # Current work
 
+**November 15: action-rejection feedback and Unicode admission.** Following the
+completed three-model inquiry comparison, Mike selected these two implementation
+fixes. Local app version 0.47.0 gives new inquiry sessions independent control
+outcomes and bounded explanations, and new semantic sessions a Unicode admission
+policy. Historical sessions keep their saved contracts. This is apparatus work,
+not evidence of improved model behavior; no new long run has been launched.
+[Change record](../desktop/ReservoirScope/RELEASE-0.47.0.md).
+
 **November 13: scheduled conversational check-ins.** Mike selected an editable
 hourly prompt during a continuing local LLM–reservoir session, through hour six,
 with a plain-prompt/context toggle and paused edits. Development version 0.42.0

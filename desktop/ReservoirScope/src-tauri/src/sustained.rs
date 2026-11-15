@@ -50,6 +50,10 @@ fn ce(e: impl std::fmt::Display) -> AppError {
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedConfig {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub text_admission: Option<reservoir_core::sustained::SustainedTextAdmission>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub control_feedback: Option<reservoir_core::sustained::SustainedControlFeedback>,
     /// Immutable, opt-in authority for fresh ordinary writing turns only.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub action_mode: Option<reservoir_core::sustained::SustainedActionMode>,
@@ -139,6 +143,8 @@ pub struct SustainedConfig {
 impl Default for SustainedConfig {
     fn default() -> Self {
         Self {
+            text_admission: None,
+            control_feedback: None,
             action_mode: None,
             check_in_schedule: None,
             seed: "20260909".into(),
@@ -213,6 +219,8 @@ impl SustainedConfig {
             return Err(err("seed", "Seed must be canonical unsigned decimal"));
         }
         Ok(SustainedSpecification {
+            text_admission: self.text_admission,
+            control_feedback: self.control_feedback,
             action_mode: self.action_mode,
             check_in_schedule: self.check_in_schedule.clone(),
             seed,

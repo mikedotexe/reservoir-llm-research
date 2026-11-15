@@ -23,7 +23,7 @@ describe('new-session reservoir action capability', () => {
     const plain = 'reservoir-journal-inert-plain-contract-no-tag-v1';
     const config: SustainedConfig = { ...DEFAULT_SUSTAINED_CONFIG, promptVersion: plain, checkInSchedule: { ...DEFAULT_CHECK_IN_SCHEDULE, includeTelemetry: false } };
     const active = withAuthoredActions(config, true, plain);
-    expect(active).toEqual({ ...config, actionMode: 'authored-v3', promptVersion: CONTINUITY_JOURNAL_PROMPT });
+    expect(active).toEqual({ ...config, controlFeedback: 'diagnostic-v1', actionMode: 'authored-v3', promptVersion: CONTINUITY_JOURNAL_PROMPT });
     expect(validAuthoredActionConfig(active)).toBe(true);
     expect(withAuthoredActions(active, false, plain)).toEqual(config);
     expect(JSON.stringify(withAuthoredActions(active, false, plain))).not.toContain('actionMode');

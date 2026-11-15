@@ -1,3 +1,4 @@
+import { sameControlDiagnostics, validControlDiagnostics } from './controlFeedback';
 import { effectivePromptVersion, type SustainedActionControls, type SustainedActionDecision, type SustainedActionReceipt, type SustainedAuthoredRequest, type SustainedConfig, type SustainedJournal, type SustainedPromptVersion, type SustainedSummary } from './myReservoirTypes';
 import { sameInquiryDecision, validContinuityState, validInquiryDecision, validInquiryReceipt, validProbeReceipt, validProbeVector } from './localInquiries';
 
@@ -11,24 +12,25 @@ export const hasAuthoredActions = (config: SustainedConfig): boolean => config.a
 export const hasReservoirInputChoice = (config: SustainedConfig): boolean => config.actionMode === 'authored-v2' || config.actionMode === 'authored-v3';
 export const hasLocalInquiry = (config: SustainedConfig): boolean => config.actionMode === 'authored-v3';
 
-export const validAuthoredActionConfig = (config: SustainedConfig): boolean => config.actionMode === undefined
+export const validAuthoredActionConfig = (config: SustainedConfig): boolean => (config.controlFeedback === undefined || config.controlFeedback === 'diagnostic-v1' && hasLocalInquiry(config)) && (config.actionMode === undefined
   ? !isActionPrompt(effectivePromptVersion(config))
   : config.actionMode === 'authored-v1' && effectivePromptVersion(config) === ACTION_JOURNAL_PROMPT_V1
     || config.actionMode === 'authored-v2' && effectivePromptVersion(config) === ACTION_JOURNAL_PROMPT
-    || config.actionMode === 'authored-v3' && effectivePromptVersion(config) === CONTINUITY_JOURNAL_PROMPT;
+    || config.actionMode === 'authored-v3' && effectivePromptVersion(config) === CONTINUITY_JOURNAL_PROMPT);
 
 export function withAuthoredActionMode(config: SustainedConfig, mode: NonNullable<SustainedConfig['actionMode']>): SustainedConfig {
   // Apply a new-session preset only on explicit selection, never during restore or validation.
   const language = mode === 'authored-v3' && config.language.backend === 'ollama'
     ? { ...config.language, contextTokens: Math.max(CONTINUITY_CONTEXT_TOKENS, Number.isFinite(config.language.contextTokens) ? config.language.contextTokens! : 0) }
     : config.language;
-  return { ...config, language, actionMode: mode, promptVersion: mode === 'authored-v3' ? CONTINUITY_JOURNAL_PROMPT : mode === 'authored-v2' ? ACTION_JOURNAL_PROMPT : ACTION_JOURNAL_PROMPT_V1 };
+  const { controlFeedback: _feedback, ...base } = config;
+  return { ...base, language, ...(mode === 'authored-v3' ? { controlFeedback: 'diagnostic-v1' as const } : {}), actionMode: mode, promptVersion: mode === 'authored-v3' ? CONTINUITY_JOURNAL_PROMPT : mode === 'authored-v2' ? ACTION_JOURNAL_PROMPT : ACTION_JOURNAL_PROMPT_V1 };
 }
 
 /** The invitation remembered by the setup form is not serialized into the run. */
 export function withAuthoredActions(config: SustainedConfig, enabled: boolean, priorInvitation: SustainedPromptVersion | undefined): SustainedConfig {
   if (enabled) return withAuthoredActionMode(config, 'authored-v3');
-  const { actionMode: _mode, promptVersion: _prompt, ...ordinary } = config;
+  const { actionMode: _mode, promptVersion: _prompt, controlFeedback: _feedback, ...ordinary } = config;
   const restored = isActionPrompt(priorInvitation) ? 'reservoir-journal-v8' : priorInvitation;
   return restored === undefined ? ordinary : { ...ordinary, promptVersion: restored };
 }
@@ -63,16 +65,19 @@ function sameInput(left: SustainedActionReceipt['reservoirInput'], right: Sustai
   return left?.disposition === right?.disposition && left?.rawDirective === right?.rawDirective && left?.rejection === right?.rejection;
 }
 function validActionChoice(value: unknown): boolean {
-  return record(value) && (value.reservoirInput === undefined || validReservoirInput(value.reservoirInput))
+  return record(value) && (value.diagnostics === undefined || validControlDiagnostics(value.diagnostics))
+    && (value.reservoirInput === undefined || validReservoirInput(value.reservoirInput))
     && (value.inquiry === undefined || validInquiryDecision(value.inquiry))
     && nullableText(value.rejection) && (value.request === null ? typeof value.rejection === 'string' : request(value.request) && value.rejection === null);
 }
-function validChoiceForMode(value: { request: SustainedAuthoredRequest | null; reservoirInput?: unknown; inquiry?: unknown }, config: SustainedConfig): boolean {
-  return validInputForMode(value.reservoirInput, config) && (hasLocalInquiry(config) || value.inquiry === undefined && value.request?.kind !== 'probe');
+function validChoiceForMode(value: { request: SustainedAuthoredRequest | null; reservoirInput?: unknown; inquiry?: unknown; diagnostics?: unknown }, config: SustainedConfig): boolean {
+  return (config.controlFeedback === 'diagnostic-v1' ? validControlDiagnostics(value.diagnostics) : value.diagnostics === undefined)
+    && validInputForMode(value.reservoirInput, config) && (hasLocalInquiry(config) || value.inquiry === undefined && value.request?.kind !== 'probe');
 }
 export function validActionReceipt(value: unknown, durableStep: number, config?: SustainedConfig): value is SustainedActionReceipt {
   if (!record(value) || typeof value.journalId !== 'string' || !value.journalId || !count(value.attemptId, 10000) || !count(value.observedStep) || !count(value.appliedStep) || value.appliedStep <= value.observedStep || value.appliedStep > durableStep
     || !['applied', 'unchanged', 'rejected'].includes(String(value.status)) || !nullableText(value.rawTail) || !nullableText(value.rejection)
+    || value.diagnostics !== undefined && !validControlDiagnostics(value.diagnostics)
     || value.reservoirInput !== undefined && !validReservoirInput(value.reservoirInput)
     || config !== undefined && !validInputForMode(value.reservoirInput, config)
     || !controls(value.controlsBefore) || !controls(value.controlsAfter) || !scalar(value.stateDeltaL2, 0, 12) || !scalar(value.stateDeltaMaxAbs, 0, 2) || !count(value.clippedCoordinates, 32)
@@ -118,6 +123,7 @@ export function validJournalAction(journal: SustainedJournal, config: SustainedC
   if (!hasAuthoredActions(config) || journal.checkIn || !validActionDecision(journal.action) || !validChoiceForMode(journal.action, config) || journal.bodySha256 != null && !/^[a-f0-9]{64}$/.test(journal.bodySha256)) return false;
   const receipt = journal.actionReceipt;
   return !receipt || journal.status === 'applied' && journal.firstAppliedStep !== null && validActionReceipt(receipt, journal.firstAppliedStep, config)
+    && sameControlDiagnostics(receipt.diagnostics, journal.action.diagnostics)
     && sameInput(receipt.reservoirInput, journal.action.reservoirInput)
     && sameInquiryDecision(receipt.inquiry?.decision, journal.action.inquiry)
     && receipt.journalId === journal.entryId && receipt.attemptId === journal.attemptId && receipt.observedStep === journal.observedStep && receipt.appliedStep === journal.firstAppliedStep;

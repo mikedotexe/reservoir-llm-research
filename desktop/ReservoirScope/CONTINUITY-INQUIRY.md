@@ -107,6 +107,28 @@ recurrent response. A later sensory-fill reading is an actual observation,
 not an isolated estimate of the probe's sensory effect. Probes at different
 evolving states are not equivalent to a scan from one shared baseline.
 
+## Understanding rejected controls
+
+New selections of continuing inquiry use **Control feedback → Specific correction
+feedback**. The next ordinary prompt identifies three independent outcomes: NEXT,
+text input and inquiry. A rejected NEXT does not mean that withholding or opening
+a question failed. Invalid fresh input directives still withhold text; an
+unrecognized formatted input line still leaves the default SEND behavior.
+
+Explanations identify plain footer requirements, invalid pulse strengths and
+PROBE JSON, dimension, coordinate, norm or byte-limit errors. Each channel quotes
+a prefix of at most 256 UTF-8 bytes from the last control-looking line, with its line number,
+truncation marker and total candidate count. The excerpt is inert previous writing.
+The app exposes the same explanations in **Control feedback** on pending choices
+and applied results. It never strips Markdown to execute a guessed command, pads a
+vector or silently rescales it.
+
+The separate saved `controlFeedback: "diagnostic-v1"` policy adds these explanations
+and formatting guidance to the otherwise frozen V3 invitation. **Earlier feedback**
+remains available for comparisons. Omission preserves historical prompt bytes and
+receipt serialization. No existing session is upgraded. Plain scheduled prompts
+remain unchanged; telemetry conversations can include the recorded result.
+
 ## Conversations, saving and compatibility
 
 Scheduled conversations remain passive for that reply. They cannot execute

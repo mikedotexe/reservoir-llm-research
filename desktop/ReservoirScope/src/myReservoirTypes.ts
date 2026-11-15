@@ -51,7 +51,8 @@ export function validFieldControls(config: SustainedConfig): boolean {
   const noise = effectiveSensoryNoise(config), scale = effectiveFeedbackScale(config);
   const model = config.embeddingModel;
   const seed = config.embeddingProjectionSeed;
-  return Number.isFinite(noise) && noise >= 0 && noise <= 1 && Number.isFinite(scale) && scale >= 0 && scale <= 2
+  return (config.textAdmission === undefined || config.textAdmission === 'utf8-v1' && !!model)
+    && Number.isFinite(noise) && noise >= 0 && noise <= 1 && Number.isFinite(scale) && scale >= 0 && scale <= 2
     && (model == null || model.trim().length > 0 && model === model.trim() && model.length <= 256)
     && (seed == null || seed === '' || /^(0|[1-9][0-9]*)$/.test(seed));
 }
@@ -108,8 +109,11 @@ export interface SustainedContinuityState {
   inputTransitions: { journalId: string; appliedStep: number; disposition: SustainedReservoirInput['disposition'] }[];
   journalWindow: SustainedInquiryJournal[]; activeInquiry: SustainedInquiry | null; latestInquiryReceipt: SustainedInquiryReceipt | null;
 }
-export interface SustainedActionDecision { body: string; rawTail: string | null; request: SustainedAuthoredRequest | null; rejection: string | null; reservoirInput?: SustainedReservoirInput; inquiry?: SustainedInquiryDecision }
+export interface SustainedControlDiagnostic { candidateCount: number; candidate: { line: number; excerpt: string; truncated: boolean } | null; explanation: string }
+export interface SustainedControlDiagnostics { next: SustainedControlDiagnostic; reservoirInput: SustainedControlDiagnostic; inquiry: SustainedControlDiagnostic }
+export interface SustainedActionDecision { body: string; rawTail: string | null; request: SustainedAuthoredRequest | null; rejection: string | null; reservoirInput?: SustainedReservoirInput; inquiry?: SustainedInquiryDecision; diagnostics?: SustainedControlDiagnostics }
 export interface SustainedActionReceipt {
+  diagnostics?: SustainedControlDiagnostics;
   journalId: string; attemptId: number; observedStep: number; appliedStep: number;
   status: 'applied' | 'unchanged' | 'rejected'; request: SustainedAuthoredRequest | null; rawTail: string | null; rejection: string | null;
   reservoirInput?: SustainedReservoirInput;
@@ -125,9 +129,12 @@ export interface SustainedActionState {
 }
 export interface SustainedActions {
   state: SustainedActionState; durableStep: number;
-  pending?: { attemptId: number; entryId: string; observedStep: number; intendedStep?: number | null; phase: 'saving' | 'prepared'; durablePrepared: boolean; decision: Pick<SustainedActionDecision, 'request' | 'rejection' | 'reservoirInput' | 'inquiry'> } | null;
+  pending?: { attemptId: number; entryId: string; observedStep: number; intendedStep?: number | null; phase: 'saving' | 'prepared'; durablePrepared: boolean; decision: Pick<SustainedActionDecision, 'request' | 'rejection' | 'reservoirInput' | 'inquiry' | 'diagnostics'> } | null;
 }
 export interface SustainedConfig {
+  /** Omission retains the historical policies; explicit choices are immutable per session. */
+  textAdmission?: 'utf8-v1';
+  controlFeedback?: 'diagnostic-v1';
   checkInSchedule?: SustainedCheckInSchedule;
   /** Explicit new-session capability. Omitted historical sessions never execute authored actions. */
   actionMode?: 'authored-v1' | 'authored-v2' | 'authored-v3';

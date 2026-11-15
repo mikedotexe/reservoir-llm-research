@@ -422,6 +422,9 @@ pub(super) fn render_context(s: &SustainedContinuation) -> String {
     }
     if let Some(r) = &a.latest_receipt {
         text.push_str(&format!("Latest NEXT at step {}: {}; status {:?}; action-only recurrent endpoint difference {}; rejection {}.\n",r.applied_step,compact_request(&r.request),r.status,fixed8(r.state_delta_l2),r.rejection.as_deref().unwrap_or("none")));
+        if s.specification.control_feedback.is_some() {
+            text.push_str(&control_feedback::render(r));
+        }
     }
     text.push_str("Action-only difference compares actual and action-omitted outcomes at that ONE application step, sharing prior state, new journal input, forcing and noise. It is not movement since the previous observation. NONE has zero additional effect even while the reservoir changes. This paired difference measures recurrence, not sensory fill or later drift.\n\nINPUT TRANSITIONS (last at most 8)\n");
     for t in &c.input_transitions {

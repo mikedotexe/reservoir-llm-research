@@ -78,6 +78,8 @@ impl SustainedReservoirInputDecision {
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedActionDecision {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub diagnostics: Option<SustainedControlDiagnostics>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub inquiry: Option<SustainedInquiryDecision>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub reservoir_input: Option<SustainedReservoirInputDecision>,
@@ -138,6 +140,8 @@ pub enum SustainedActionStatus {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedActionReceipt {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub diagnostics: Option<SustainedControlDiagnostics>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub inquiry: Option<SustainedInquiryReceipt>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -362,6 +366,7 @@ pub fn parse_authored_action(text: &str) -> SustainedActionDecision {
     };
     match parsed {
         Ok(request) => SustainedActionDecision {
+            diagnostics: None,
             inquiry: None,
             reservoir_input: None,
             body,
@@ -370,6 +375,7 @@ pub fn parse_authored_action(text: &str) -> SustainedActionDecision {
             rejection: None,
         },
         Err(rejection) => SustainedActionDecision {
+            diagnostics: None,
             inquiry: None,
             reservoir_input: None,
             body,
@@ -579,10 +585,16 @@ pub(super) fn decision_for(
     check_in: Option<&SustainedCheckInContext>,
     text: &str,
 ) -> Option<SustainedActionDecision> {
-    enabled_for_turn(spec, check_in).then(|| match spec.action_mode {
-        Some(SustainedActionMode::AuthoredV2) => parse_authored_action_v2(text),
-        Some(SustainedActionMode::AuthoredV3) => parse_authored_action_v3(text),
-        _ => parse_authored_action(text),
+    enabled_for_turn(spec, check_in).then(|| {
+        let mut decision = match spec.action_mode {
+            Some(SustainedActionMode::AuthoredV2) => parse_authored_action_v2(text),
+            Some(SustainedActionMode::AuthoredV3) => parse_authored_action_v3(text),
+            _ => parse_authored_action(text),
+        };
+        if spec.control_feedback.is_some() {
+            decision.diagnostics = Some(control_feedback::explain(text, &decision));
+        }
+        decision
     })
 }
 
@@ -671,6 +683,7 @@ pub(super) fn record_receipt(
         None => SustainedActionStatus::Rejected,
     };
     let receipt = SustainedActionReceipt {
+        diagnostics: decision.diagnostics.clone(),
         inquiry: None,
         probe: match &decision.request {
             Some(SustainedActionRequest::Probe { vector }) => Some(SustainedProbeReceipt {
@@ -1107,6 +1120,16 @@ pub(super) fn validate_one_receipt(
     r: &SustainedActionReceipt,
     s: &SustainedContinuation,
 ) -> Result<()> {
+    control_feedback::validate(r.diagnostics.as_ref(), &s.specification)?;
+    for memory in [&s.latest_memory, &s.chosen_memory].into_iter().flatten() {
+        if memory.entry.id == r.journal_id {
+            ensure(
+                decision_for(&s.specification, None, &memory.entry.text)
+                    .is_some_and(|d| d.diagnostics == r.diagnostics),
+                "Control diagnostics differ from retained raw writing",
+            )?;
+        }
+    }
     let v3 = s.specification.action_mode == Some(SustainedActionMode::AuthoredV3);
     ensure(
         v3 || (r.inquiry.is_none()

@@ -1,3 +1,4 @@
+import { ControlFeedback } from './controlFeedback';
 import type { SustainedActionControls, SustainedActionDecision, SustainedActionReceipt, SustainedAuthoredRequest, SustainedJournal, SustainedReservoirInput, SustainedSummary } from './myReservoirTypes';
 import { hasReservoirInputChoice } from './authoredActions';
 import MyReservoirInquiry, { InquiryDecisionView, InquiryReceiptView } from './MyReservoirInquiry';
@@ -38,8 +39,8 @@ function ReservoirInput({ input, appliedStep, skipped = false }: { input: Sustai
     {skipped ? <p>No text-input application was recorded. This entry’s automatic memory exposure was skipped.</p> : input.disposition !== 'send' && <p>{applied ? 'The previous held text input was replaced with zero. The journal body remains eligible for memory.' : 'On application, zero will replace the previous held text input and the journal body will become eligible for memory.'} Other inputs, ordinary dynamics, and separately chosen actions continue.</p>}
   </div>;
 }
-function Decision({ decision, skipped = false }: { decision: Pick<SustainedActionDecision, 'request' | 'rejection' | 'reservoirInput' | 'inquiry'>; skipped?: boolean }) {
-  return <><p>{actionDescription(decision.request)}</p>{decision.rejection && <p className="my-reservoir-action-rejection">{decision.rejection}</p>}{decision.reservoirInput && <ReservoirInput input={decision.reservoirInput} skipped={skipped}/>} {decision.inquiry && <InquiryDecisionView decision={decision.inquiry} skipped={skipped}/>}</>;
+function Decision({ decision, skipped = false }: { decision: Pick<SustainedActionDecision, 'request' | 'rejection' | 'reservoirInput' | 'inquiry' | 'diagnostics'>; skipped?: boolean }) {
+  return <><p>{actionDescription(decision.request)}</p>{decision.rejection && <p className="my-reservoir-action-rejection">{decision.rejection}</p>}{decision.reservoirInput && <ReservoirInput input={decision.reservoirInput} skipped={skipped}/>} {decision.inquiry && <InquiryDecisionView decision={decision.inquiry} skipped={skipped}/>}<ControlFeedback diagnostics={decision.diagnostics}/></>;
 }
 
 export function ActionReceiptView({ receipt, detailed = false }: { receipt: SustainedActionReceipt; detailed?: boolean }) {
@@ -49,6 +50,7 @@ export function ActionReceiptView({ receipt, detailed = false }: { receipt: Sust
     {receipt.rejection && <p className="my-reservoir-action-rejection">{receipt.rejection}</p>}
     {receipt.reservoirInput && <ReservoirInput input={receipt.reservoirInput} appliedStep={receipt.appliedStep}/>}
     {receipt.inquiry && <InquiryReceiptView receipt={receipt.inquiry}/>}
+    <ControlFeedback diagnostics={receipt.diagnostics}/>
     {receipt.request?.kind === 'release' && <p>The initial control settings were restored. Accumulated state and journal history were retained.</p>}
     {detailed && <>
       <dl className="my-reservoir-data"><dt>Observed / applied step</dt><dd>{receipt.observedStep} / {receipt.appliedStep}</dd><dt>Attempt</dt><dd>{receipt.attemptId}</dd><dt>Immediate action difference · L2</dt><dd>{number(receipt.stateDeltaL2)}</dd><dt>Largest coordinate difference</dt><dd>{number(receipt.stateDeltaMaxAbs)}</dd><dt>Pulse coordinates clipped</dt><dd>{receipt.clippedCoordinates}</dd></dl>
