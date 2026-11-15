@@ -7,6 +7,8 @@
 //!
 //! ARM_STORE=<dir> ARM_CONFIG=<SustainedConfig json file> ARM_ENTRIES=<n> ARM_MINUTES=<m>
 //! cargo test --locked -p reservoir-scope-desktop run_arm_from_env -- --ignored --nocapture
+//! ARM_PREPARE_ONLY=1 creates a validated step-zero session without starting its
+//! worker; the native app can then load it and start explicitly.
 use super::*;
 use std::time::{Duration, Instant};
 
@@ -29,6 +31,15 @@ fn run_arm_from_env() {
     let created = s.create("arm-create".into(), config).expect("create");
     let m = created.summary.expect("summary");
     eprintln!("arm session {} created in {store}", m.session_id);
+    if std::env::var("ARM_PREPARE_ONLY").as_deref() == Ok("1") {
+        assert_eq!(m.step, 0);
+        assert_eq!(m.journal_count, 0);
+        println!(
+            "{}",
+            serde_json::json!({"sessionId":m.session_id,"phase":"prepared","step":0,"journals":0,"modelsContacted":false})
+        );
+        return;
+    }
     s.start("arm-start".into(), &m.session_id, &m.generation)
         .expect("start");
     let started = Instant::now();

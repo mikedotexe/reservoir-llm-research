@@ -1,5 +1,11 @@
 # Current work
 
+**November 15: three-model peer-reading run requested.** Fresh Gemma4, GLM and
+Ministral sessions use the same hourly prompt and telemetry for three active
+hours, with optional reciprocal peer reading. The comparison with earlier
+independent runs is descriptive because feedback/admission policies and context
+headroom also changed. [Prospective protocol](studies/2026-11-15-three-model-peer-reading.md).
+
 **November 15: explicit cross-pollination between local models.** Mike selected
 an optional NEXT action for reading the other models' preceding entries. Local
 0.48.0 implements `READ_PEERS` for explicitly joined experiment groups, freezing
