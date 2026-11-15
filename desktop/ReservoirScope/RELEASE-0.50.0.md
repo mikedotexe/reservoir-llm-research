@@ -94,6 +94,18 @@ comparison, not matched experimental arms or a six-hour storage qualification.
 History was bounded at 32 samples. Repeated checkpoints and full prompts still
 have a material storage cost, and fallback reports are larger than compact ones.
 
-The seven historical export verification/scan checks are still running at this
-implementation save point. Their final matrix will be recorded here before
-qualification is closed; earlier source bundles remain preserved.
+All **seven historical bundles** passed both native verification and copied
+scanning: the 0.49.0 native fixture, three independent 0.46.1 exports and three
+paused peer-enabled 0.48.0 exports. Every source file retained its before/after
+hash. The independent runs replayed through steps 3206/4343/3735; paused peer
+runs through 1560/1530/1563. This verifies compatibility, without resuming those
+runs or turning the interrupted peer experiment into a completed comparison.
+Together with the two new fixtures, all **nine bundles** passed both CLI routes.
+The final matrices and exact reports are in `historical-replay/` and `v2-replay/`.
+
+Implementation save point: `537685c` on `codex/reservoir-sonar`. The tested binary
+SHA-256 is `6b5e7de0d4c132058aec9ef9d57ad2472aceaf0b0360ab34a16689acffe49956`.
+The preserved `app/Reservoir Sonar.app` matches the built bundle file for file;
+its signature verification passed. Build receipt, test logs, native UI record,
+fixture audits and file hashes accompany the private evidence. Work is local;
+no new multi-hour model experiment or live-being deployment was started.

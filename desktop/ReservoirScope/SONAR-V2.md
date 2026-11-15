@@ -41,8 +41,9 @@ then measures both signs and records prediction versus measured contrast, with
 random equal-energy comparisons. This action only experiments on copies. It
 returns the stated alternatives and evidence to subsequent ordinary writing.
 
-`NEXT: PROBE_SCAN question positive|negative` selects the most recent resolved
-model-selected question direction. It uses the existing separate real-probe
+`NEXT: PROBE_SCAN question positive|negative` selects the most recent
+model-selected question direction, if resolved. A new unresolved question replaces
+the previous cache and cannot authorize a probe. It uses the existing separate real-probe
 permission and bounds. Application refreshes the forecast and counterfactual at
 the actual origin, with current held input and controls. Only the actual paired
 immediate displacement is an observed live consequence; the alternative remains
@@ -58,7 +59,8 @@ clipping fallback, fresh-direction independence, unresolved contrasts, parser
 admission by version, bounded actual probes, save/retry/restart and replay,
 frontend validation/rendering, historical v1 export replay, native UI and a
 measured storage comparison. This is a local application addition, not a new
-long model study or a deployment to Astrid or Minime.
+long model study or a deployment to Astrid or Minime. The completed local checks
+and their limits are in the [0.50.0 qualification record](RELEASE-0.50.0.md).
 
 ## Reading the evidence
 

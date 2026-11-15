@@ -3,8 +3,11 @@
 **November 15, 2026 · 0.50.0 compact scanning and numerical questions.** The native
 integration adds independent fresh-probe validation, signed-measurement fallback,
 model-selected counterfactual questions and separately authorized question-vector
-application. Historical v1 contracts remain frozen. Qualification is in progress;
-no long model run or live-being deployment is launched.
+application. Historical v1 contracts remain frozen. Core, host, frontend, native
+export/recovery and all nine export replay/scan checks passed. The short scripted
+storage profile retained 28.69 MiB; long-run model/storage qualification remains
+future work. The native app is preserved and its windows closed. No long model
+run or live-being deployment is launched.
 [Use and scope](SONAR-V2.md) · [release record](RELEASE-0.50.0.md).
 
 **November 15, 2026 · 0.49.0 response scanner.** Optional copied input scans,

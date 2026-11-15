@@ -2,10 +2,12 @@
 
 **November 15: native compact scanner and model-selected questions.** Mike selected
 app integration of the finer numerical instrument. Local 0.50.0 adds fresh-probe
-validation, signed fallback and explicit `SCAN_QUESTION` choices. Qualification
-is in progress, including recovery, historical replay and storage. The model sees
-its own selected copied results in subsequent ordinary prompts; operator-only
-research stays separate. [Contract](../desktop/ReservoirScope/SONAR-V2.md)
+validation, signed fallback and explicit `SCAN_QUESTION` choices. Native scripted
+qualification, export/recovery and all nine bundle replay/scan checks passed.
+The short storage profile retained 28.69 MiB for 20 entries; a long model run
+remains future work. The model sees its own selected copied results in subsequent
+ordinary prompts; operator-only research stays separate. The app is preserved
+and its windows closed. [Contract](../desktop/ReservoirScope/SONAR-V2.md)
 · [qualification](../desktop/ReservoirScope/RELEASE-0.50.0.md).
 
 **November 15: finer sonar validation completed.** Six saved endpoints and their
