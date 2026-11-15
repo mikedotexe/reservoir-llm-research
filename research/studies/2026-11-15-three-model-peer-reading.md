@@ -115,3 +115,9 @@ does not discard or retroactively apply those responses. Private
 `operator-pause.json` records the exact manifests and active elapsed times.
 The study's owned model service, observer, completion waiter and keep-awake process
 were stopped after confirming the paused boundaries; unrelated processes remain.
+All three partial sessions were then exported through the native app, which
+verified the complete committed chain before copying and verified the resulting
+bundle. `paused-export-receipts.json` records the exported manifest and file hashes.
+The three windows were closed; Gemma and GLM used **Checkpoint and quit** to
+retain their prepared feedback. The private exports remain in the
+`three-model-peers` worktree's dated output directory.
