@@ -5,6 +5,9 @@ Ministral sessions use the same hourly prompt and telemetry for three active
 hours, with optional reciprocal peer reading. The comparison with earlier
 independent runs is descriptive because feedback/admission policies and context
 headroom also changed. [Prospective protocol](studies/2026-11-15-three-model-peer-reading.md).
+During these runs, Mike selected an offline mapping of the reservoir's geometry
+and perturbation response. The [first numerical atlas](studies/2026-11-15-reservoir-response-mapping.md)
+uses the completed independent exports and leaves the running experiment unchanged.
 
 **November 15: explicit cross-pollination between local models.** Mike selected
 an optional NEXT action for reading the other models' preceding entries. Local

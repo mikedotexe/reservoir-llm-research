@@ -90,3 +90,10 @@ These are three coupled trajectories with repeated observations, not independent
 subjects. Similar vocabulary alone does not prove uptake; seek identifiable source
 ideas and later handling while considering common prompts and measurements. No
 claim about qualia follows from the apparatus or the writing alone.
+
+## Parallel question during the run
+
+Mike asked how to map the topology described by the journals. The separate
+[offline response-mapping study](2026-11-15-reservoir-response-mapping.md) uses
+only the completed independent exports. Its numerical perturbations are local
+counterfactuals; no running peer session or model prompt is changed.
