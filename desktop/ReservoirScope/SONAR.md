@@ -76,6 +76,12 @@ The first product is a small, trustworthy response scanner. Further iterations
 can add waveforms, frequency scans, adaptive question-driven vectors and robust
 topological analysis after the simple instrument is qualified.
 
+The subsequent [offline resolution study](../../analyses/2026-11-15-sonar-resolution.md)
+qualifies smaller probes, unseen-direction prediction and a two-branch method for
+recovering the immediate map with known wiring. It also demonstrates a direction
+selected to distinguish two specified starting states. Those are research tools,
+not additional native actions or a change to this version's stored contract.
+
 ## Use the local instrument
 
 In My reservoir, enable reservoir shaping with continuing inquiry and specific

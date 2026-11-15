@@ -77,3 +77,29 @@ long run is implied. The existing full-report checkpoint storage issue remains.
 Work continues in the clean, previously owned `codex/reservoir-sonar` worktree.
 No live-being service, other checkout, or old export is modified. Board publication
 is not part of this local numerical run; record pending board payloads at closeout.
+
+## Second iteration: two-pulse calibration (specified after first results)
+
+The first six-endpoint run passed native reconstruction and the stated practical
+targets. Its immediate maps agreed closely with the known wiring multiplied by
+32 coordinate-specific gains. This motivates a separate, explicitly subsequent
+test: can a single positive/negative probe pair recover those gains well enough
+to predict fresh directions, replacing the 96 coordinate calibration branches?
+
+Use the same 48 declared endpoint/continuation origins. Choose a unit calibration
+direction from 256 seeded Gaussian candidates (PCG64 20261117), maximizing the
+smallest absolute row projection of the known wiring divided by that row's norm.
+This selection uses wiring only, never test responses. With amplitude 0.001,
+estimate each gain from the signed response divided by its signed wiring drive;
+clip gain estimates to the known interval [0, leak]. Compare against the full
+coordinate calibration using 32 new Gaussian directions and their negatives
+(a separate generator, PCG64 20261118). Keep all cases, especially clipping cases.
+
+The practical target is <=1% aggregate response prediction error at every origin,
+with the sparse calibration no more than twice the full calibration's pooled
+absolute prediction error. Also report full map discrepancy, weakest calibration
+row drive, and true analytic row gains. This method assumes known fixed input
+wiring and matched noise on copies. It is not black-box identification, an
+independent replication, a live probe, or a replacement for multi-step scanning.
+If successful, it supports a compact first-step instrument proposal; it does not
+resolve existing checkpoint storage by itself.

@@ -1,5 +1,14 @@
 # Current work
 
+**November 15: finer sonar validation completed.** Six saved endpoints and their
+copied continuations now have multi-scale response validation, unseen-direction
+controls and question-directed probe measurements. A subsequent two-branch
+calibration recovered first-step sensitivity across 48 origins with fresh test
+error below 0.041%. The result supports predictive local response geometry;
+global topology remains open. [Results and limits](../analyses/2026-11-15-sonar-resolution.md)
+· [protocol](studies/2026-11-15-sonar-resolution.md). No model calls, app deployment
+or restart of the paused sessions; long-run compact storage remains future work.
+
 **November 15: reservoir response scanning selected.** Mike selected full-focus
 work on passive observation, scans on copies and optional bounded interventions.
 Local 0.49.0 now implements the first instrument in a separate checkout, with a
