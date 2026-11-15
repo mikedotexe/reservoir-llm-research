@@ -128,7 +128,7 @@ impl SustainedState {
         });
         if sonar {
             return match (pending.attempt_id-1)%4 {
-                0=>"Scripted scanner check: request a direction before any scan, expecting an explicit rejection.\nNEXT: PROBE_SCAN strongest positive",
+                0=>"Scripted scanner check: request a measured direction; if no scan is cached, expect an explicit rejection.\nNEXT: PROBE_SCAN strongest positive",
                 1=>"Scripted scanner check: measure signed coordinate responses on copies.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: SCAN",
                 2=>"Scripted scanner check: apply the measured strongest direction if saved live-probe authority permits.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: PROBE_SCAN strongest positive",
                 _=>"Scripted scanner check: retain the receipt and let ordinary dynamics continue.\nNEXT: NONE",

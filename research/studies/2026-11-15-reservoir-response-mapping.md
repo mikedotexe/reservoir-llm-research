@@ -215,3 +215,54 @@ from the passive numerical readout. No mirror action has been implemented here.
 
 This distinction connects to [Lall, Marsden and Glavaški's empirical input-output
 analysis of nonlinear systems](https://www.cds.caltech.edu/~marsden/bib/2002/06-LaMaGl2002/).
+
+
+## Later November 15: native response scanner implementation
+
+Mike then selected full-focus instrument development, authorizing a pause of the
+peer cohort. Those three sessions were normally paused at about 98 active minutes,
+exported and closed; the historical paragraphs above describe the earlier work
+while they were still running. The original three-hour comparison is incomplete.
+
+Local version 0.49.0 implements the selected sequence in the native numerical
+core. [The scanner guide](../../desktop/ReservoirScope/SONAR.md) specifies passive
+observation, copied signed coordinate experiments, separately authorized bounded
+real probes, exact receipts and their restrictions. [The qualification
+record](../../desktop/ReservoirScope/RELEASE-0.49.0.md) distinguishes tested
+instrument behavior from model behavior. This implementation is on the isolated
+`codex/reservoir-sonar` branch; it does not deploy to Astrid or Minime.
+
+The native scripted check applied a measured direction and matched the fresh
+first-step forecast to the actual paired recurrent response. This qualifies the
+measurement path; it does not show that a model understands or chooses useful
+experiments. Native plots are specified for all six final saved states from the
+independent and paused peer-enabled cohorts, using the new scanner with no model
+calls. Their inputs, controls and history differ; these endpoint maps are
+exploratory descriptions rather than a matched treatment comparison. No peer
+reading was actually selected in the paused cohort.
+
+Before another long run, reduce repeated scan storage or budget it from measured
+cadence. The 20-entry/601-step scripted profile at one entry per 30 steps used
+69,735,889 bytes (66.51 MiB), with five copied scans and multiple applied real
+probes. New setup selects a 512 MiB cap. This short profile does not establish
+storage sufficiency for a three- or six-hour LLM run.
+
+The next numerical iteration should use matched copies to sweep small probe
+amplitudes and leak/input-update cadence, compare measured directions with random
+vectors of the same norm, and test whether a selected probe separates competing
+predictions. A later writer study can then ask whether a concrete question,
+chosen intervention, returned evidence and revised account remain consistent.
+
+
+The native endpoint pass is now complete. All six source bundles replayed exactly
+and remained byte-identical; the extra native fixture also passed. Six response
+matrices and 36 signed candidate continuations are retained in the private
+`research/outputs/reservoir-sonar-20261115/final-replay-and-scans/` directory.
+`probes/plot_native_sonar.py` produced the response-map and decay PNG/PDF figures
+under `figures/`, with source hashes and exact numerical summaries in its metadata.
+Every candidate met the defined five-boundary return criterion starting at step
+3–5. Source controls differ (independent GLM leak 0.85; independent Ministral gain
+0.8; paused Ministral gain 1.2), so those differences cannot be assigned to model
+identity. These scans describe the recurrence under frozen held input/controls.
+The pending saved Gemma/GLM replies in the paused cohort were not applied by the
+scan; their currently applied held input was retained.

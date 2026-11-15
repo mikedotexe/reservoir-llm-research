@@ -72,3 +72,33 @@ all earlier study apps. See [the scanner guide](SONAR.md) for use and scope.
 Retained-run replay results and the cadence/storage profile are recorded with the
 final qualification receipts. No multi-hour model experiment is claimed by this
 release.
+
+
+Final compatibility matrix: all three independent 0.46.1 exports and all three
+paused 0.48.0 peer-enabled exports passed the native verification CLI and copied
+scan CLI. Every source file's bytes were hashed before and after; all seven
+bundles (including the native scanner fixture) were unchanged. Source steps were
+3206/4343/3735 and 1560/1530/1563 respectively. The matrix, exact reports and input
+hash inventories are in `final-replay-and-scans/` under the private output root.
+The matrix records its exact binary hash from implementation commit `9cec645`.
+The final follow-up adjusts only the repeating scripted example's prose and
+records qualification; numerical scanning and saved contracts are unchanged.
+
+The final UI preset displayed 512 MiB on selection and kept real probes off.
+Native restart/verify/restore retained step 13, all four journal applications and
+the step-7 model scan identity, without advancing execution. All reservoir windows
+were subsequently closed. The saved fixture remains available through recovery.
+
+A separate scripted profile completed 20 entries/601 steps at the usual 30-step
+writing cadence, with no skips or model calls. Its 99 committed segments and
+retained files totaled **69,735,889 bytes (66.51 MiB)**. Full scan retention has a
+material storage cost; this is a short profile, not assurance of a multi-hour
+LLM run. Reduce repeated scan storage before another six-hour experiment.
+
+`probes/plot_native_sonar.py` renders all six prospectively selected endpoint
+reports on shared scales. The PNG/PDF pairs and figure metadata are in `figures/`.
+The 36 signed candidate continuations (six endpoints × three directions × two
+signs) fell below 10% of first-step separation in 3–5 numerical steps for at least
+five consecutive boundaries. This conditional recurrent result does not describe
+sensory-field retention or the full writer/reservoir loop. It is not a matched
+comparison between the language models.

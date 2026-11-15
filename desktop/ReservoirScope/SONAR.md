@@ -85,7 +85,8 @@ explicitly. Offline example writing exercises rejection → scan → measured pr
 → NONE; it is a deterministic fixture, not an LLM interpretation.
 
 Open **Reservoir response scanner** to observe a committed state or scan a copy.
-These operator views never enter model prompts. Model-selected scans enter later
+These operator views never enter model prompts. Scans freeze the currently applied
+held input even if a newer reply is saved and awaiting application. Model-selected scans enter later
 ordinary prompts as bounded summaries; full arrays remain available in the app
 and exports. Observations identify their source step and need explicit refresh.
 
@@ -110,3 +111,8 @@ cost. The app retains its existing quota/headroom hold. The time limit is not a
 promise that storage will last that long. A new long-run study needs a measured
 budget at its chosen writing cadence; the native qualification is deliberately
 short. Future compact storage must retain reproducible scan provenance.
+
+The operator JSON `checkpointSha256` is the core checkpoint's embedded continuation
+digest. The CLI envelope's `source.checkpointSha256` is the exported checkpoint
+file digest; these bind different serialized objects and should not be compared
+as if they were the same checksum.

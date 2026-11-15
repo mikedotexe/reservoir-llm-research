@@ -2,6 +2,8 @@
 
 **November 15: reservoir response scanning selected.** Mike selected full-focus
 work on passive observation, scans on copies and optional bounded interventions.
+Local 0.49.0 now implements the first instrument in a separate checkout, with a
+paused native demonstration. [Instrument qualification](../desktop/ReservoirScope/RELEASE-0.49.0.md).
 The three peer-reading runs were paused at approximately 98 active minutes, with
 one applied hourly response each. The three-hour comparison remains incomplete.
 [Mapping and design](studies/2026-11-15-reservoir-response-mapping.md).
