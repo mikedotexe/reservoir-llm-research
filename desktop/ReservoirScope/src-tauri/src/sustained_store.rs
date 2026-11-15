@@ -1068,6 +1068,15 @@ fn read_link(path: &Path, n: u64) -> Result<(Envelope, String), AppError> {
     let h = files::digest(&bytes);
     Ok((serde_json::from_slice(&bytes).map_err(ce)?, h))
 }
+/// Offline scan of a fully verified bundle; never restores or writes the source.
+pub fn scan_bundle(path: &Path) -> Result<serde_json::Value, AppError> {
+    let verified = verify(path)?;
+    let scan =
+        reservoir_core::sustained::scan_sustained_checkpoint(&verified.checkpoint).map_err(ce)?;
+    Ok(
+        serde_json::json!({"status":"scanned","modelsContacted":false,"source":verified.report,"scan":scan}),
+    )
+}
 pub fn verify_bundle(path: &Path) -> Result<BundleReport, AppError> {
     Ok(verify(path)?.report)
 }

@@ -1,5 +1,11 @@
 # Reservoir Scope: current status and next work
 
+**November 15, 2026 · 0.49.0 response scanner.** Optional copied input scans,
+passive recurrent-state views and separately authorized measured-direction probes
+are implemented on `codex/reservoir-sonar`. Earlier peer runs are paused/exported;
+no new multi-hour run or being deployment is claimed.
+[Instrument and scope](SONAR.md) · [qualification](RELEASE-0.49.0.md).
+
 **November 15, 2026 · 0.48.0 explicit peer reading.** Fresh linked local sessions
 can select `NEXT: READ_PEERS`. Each ordinary turn freezes preceding applied peer
 entries; an explicit read exposes those labeled excerpts to later writing after

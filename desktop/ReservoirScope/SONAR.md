@@ -1,6 +1,7 @@
 # Reservoir response scanning
 
-Implementation contract selected November 15, 2026. Status: in development.
+Implementation contract selected November 15, 2026. Implemented in local 0.49.0;
+qualification and limits are recorded in [the release note](RELEASE-0.49.0.md).
 
 The scanner asks how a known small input changes this recurrent reservoir from a
 specific saved state. "Sonar" is the interface metaphor; the measured object is
@@ -22,11 +23,11 @@ their saved contracts remain unchanged.
    both input norm and the one-step additional recurrent displacement. A real
    probe also reaches the sensory field; it is not a passive measurement.
 
-The first implementation will use the native numerical core, not the preliminary
+The implementation uses the native numerical core, not the preliminary
 Python reconstruction. The latter supplies independently checked numerical
 expectations and examples, not live execution authority.
 
-## Scope and proposed interface
+## Scope and interface
 
 New sessions opt into versioned scanning. Live probes require a separate saved
 opt-in. Earlier sessions omit these fields and keep their original prompts,
@@ -37,7 +38,7 @@ parsing, state hashes and replay behavior.
   existing text-input choice still applies. Its cached result appears in later
   ordinary prompts and the app.
 - `NEXT: PROBE_SCAN strongest positive` (or `negative`) selects a cached measured
-  direction. Other proposed direction names are `weakest` and `persistent`.
+  direction. Other direction names are `weakest` and `persistent`.
   The receipt must retain the source scan and the actual application boundary;
   a cached direction is not a current response prediction. A missing scan or
   absent live-probe authority must produce explicit rejection, never a guessed
@@ -74,3 +75,38 @@ the 48 authored-input slots; the normal semantic codec uses only 32 of those slo
 The first product is a small, trustworthy response scanner. Further iterations
 can add waveforms, frequency scans, adaptive question-driven vectors and robust
 topological analysis after the simple instrument is qualified.
+
+## Use the local instrument
+
+In My reservoir, enable reservoir shaping with continuing inquiry and specific
+correction feedback. Select **Allow the model to scan copies of its reservoir**.
+Real probes have a separate checkbox, off by default. Create the session and start
+explicitly. Offline example writing exercises rejection → scan → measured probe
+→ NONE; it is a deterministic fixture, not an LLM interpretation.
+
+Open **Reservoir response scanner** to observe a committed state or scan a copy.
+These operator views never enter model prompts. Model-selected scans enter later
+ordinary prompts as bounded summaries; full arrays remain available in the app
+and exports. Observations identify their source step and need explicit refresh.
+
+For an immutable exported bundle, the native executable also accepts:
+
+```sh
+reservoir-scope-desktop --scan-sustained /absolute/path/to/export > scan.json
+```
+
+This verifies the entire source first and outputs a source-bound JSON report. It
+neither restores nor writes the source. `probes/qualify_reservoir_sonar.py` records
+native replay/scan results plus before/after hashes for explicitly supplied exports.
+
+To build a separately identified app from this directory:
+
+```sh
+npm run tauri -- build --debug --bundles app --config src-tauri/tauri.sonar.conf.json -- --locked
+```
+
+Scan histories and full cached reports increase checkpoint storage and replay
+cost. The app retains its existing quota/headroom hold. The time limit is not a
+promise that storage will last that long. A new long-run study needs a measured
+budget at its chosen writing cadence; the native qualification is deliberately
+short. Future compact storage must retain reproducible scan provenance.

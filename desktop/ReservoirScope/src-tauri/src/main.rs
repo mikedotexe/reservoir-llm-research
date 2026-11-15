@@ -899,7 +899,30 @@ fn main() {
     }
     // Explicit read-only CLI: no WebView, model transport, restoration or run.
     let mut arguments = std::env::args_os().skip(1);
-    if arguments.next().as_deref() == Some(std::ffi::OsStr::new("--verify-sustained")) {
+    let operation = arguments.next();
+    if operation.as_deref() == Some(std::ffi::OsStr::new("--scan-sustained")) {
+        let Some(path) = arguments.next().filter(|_| arguments.next().is_none()) else {
+            eprintln!("Usage: reservoir-scope-desktop --scan-sustained DIRECTORY");
+            std::process::exit(2);
+        };
+        match sustained_store::scan_bundle(std::path::Path::new(&path)) {
+            Ok(report) => {
+                println!(
+                    "{}",
+                    serde_json::to_string_pretty(&report).expect("scan report")
+                );
+                std::process::exit(0);
+            }
+            Err(error) => {
+                eprintln!(
+                    "{}",
+                    serde_json::json!({"status":"failed","message":error.message,"modelsContacted":false})
+                );
+                std::process::exit(1);
+            }
+        }
+    }
+    if operation.as_deref() == Some(std::ffi::OsStr::new("--verify-sustained")) {
         let Some(path) = arguments.next().filter(|_| arguments.next().is_none()) else {
             eprintln!("Usage: reservoir-scope-desktop --verify-sustained DIRECTORY");
             std::process::exit(2);
@@ -1028,6 +1051,7 @@ fn main() {
             activation_commands::activation_export,
             activation_commands::activation_import,
             activation_commands::activation_annotate,
+            sustained_commands::observe_sustained_sonar,
             sustained_commands::create_sustained,
             sustained_commands::get_sustained,
             sustained_commands::start_sustained,

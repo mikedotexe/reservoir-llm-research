@@ -27,6 +27,9 @@ pub use control_feedback::*;
 #[path = "sustained_peers.rs"]
 mod peers;
 pub use peers::*;
+#[path = "sustained_sonar.rs"]
+mod sonar;
+pub use sonar::*;
 
 /// Saved admission policy, independent of the numerical text reduction. Omission
 /// preserves the historical Swift-qualified scalar/grapheme gate exactly.
@@ -559,6 +562,8 @@ impl SustainedPromptVersion {
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedSpecification {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub sonar: Option<SustainedSonarConfig>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub peer_reading: Option<SustainedPeerConfig>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub text_admission: Option<SustainedTextAdmission>,
@@ -653,6 +658,7 @@ pub struct SustainedSpecification {
 impl Default for SustainedSpecification {
     fn default() -> Self {
         Self {
+            sonar: None,
             peer_reading: None,
             text_admission: None,
             control_feedback: None,
@@ -721,6 +727,12 @@ impl SustainedSpecification {
         }
     }
     pub fn validate(&self) -> Result<()> {
+        if self.sonar.is_some() {
+            ensure(self.action_mode == Some(SustainedActionMode::AuthoredV3)
+                && self.control_feedback == Some(SustainedControlFeedback::DiagnosticV1)
+                && self.difference_gain == 0.0,
+                "Response scanning requires continuing inquiry, diagnostic feedback and the difference channel off")?;
+        }
         if let Some(peers) = &self.peer_reading {
             peers.validate()?;
             ensure(
@@ -1381,6 +1393,8 @@ pub enum SustainedPhase {
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedContinuation {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub sonar_state: Option<SustainedSonarState>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub peer_state: Option<SustainedPeerState>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub action_state: Option<SustainedActionState>,
@@ -1572,6 +1586,13 @@ impl SustainedSession {
         let model = ReservoirModel::seeded(specification.seed);
         let field = SensoryField::seeded(specification.seed ^ FIELD_SEED);
         let state = SustainedContinuation {
+            sonar_state: specification.sonar.as_ref().map(|_| SustainedSonarState {
+                history: vec![SustainedSonarPoint {
+                    step: 0,
+                    state: vec![0.0; 32],
+                }],
+                latest_scan: None,
+            }),
             peer_state: specification
                 .peer_reading
                 .as_ref()
@@ -1919,6 +1940,9 @@ impl SustainedSession {
             &mut input,
             decision.as_ref().and_then(|d| d.request.as_ref()),
         );
+        let sonar_probe =
+            sonar::resolve_probe(&next, decision.as_ref().and_then(|d| d.request.as_ref()))?;
+        sonar::add_probe(&mut input, sonar_probe.as_ref());
         let mut state = engine.step(&input, &noise)?;
         let clipped_coordinates = actions::apply_pulse(
             &mut state,
@@ -1952,6 +1976,7 @@ impl SustainedSession {
             }
             _ => None,
         };
+        sonar::attach_probe(&mut next, &mut action_receipt, sonar_probe);
         peers::record_application(&mut next, &mut action_receipt)?;
         if let SustainedPhase::Prepared(prepared) = &next.phase {
             if let Some(actions) = &mut next.action_state {
@@ -1981,6 +2006,12 @@ impl SustainedSession {
                 continuity::add_probe(
                     &mut silent_input,
                     decision.as_ref().and_then(|d| d.request.as_ref()),
+                );
+                sonar::add_probe(
+                    &mut silent_input,
+                    action_receipt
+                        .as_ref()
+                        .and_then(|r| r.sonar_probe.as_deref()),
                 );
                 let mut silent_state = silent.step(&silent_input, &noise)?;
                 // The text-effect comparison retains the same action on both paths.
@@ -2077,7 +2108,7 @@ impl SustainedSession {
             tail_share: spectral.tail_share,
             fill_percent,
         };
-        let frame = SustainedFrame {
+        let mut frame = SustainedFrame {
             action_receipt: action_receipt.map(Box::new),
             step,
             simulated_time: step as f64 * next.specification.dt,
@@ -2102,6 +2133,8 @@ impl SustainedSession {
         next.reduced_fill = fill.fill;
         next.retention = controller.current_retention;
         next.controller_integral = controller.integral;
+        sonar::remember(&mut next);
+        sonar::apply_scan(&mut next, &mut frame.action_receipt)?;
         next.latest_frame = Some(frame.clone());
         next.phase = SustainedPhase::Ready;
         if step.is_multiple_of(next.specification.turn_every)
@@ -3853,6 +3886,15 @@ fn expected_feedback_slots(s: &SustainedContinuation, f: &SustainedFrame) -> Vec
             *slot += value;
         }
     }
+    if let Some(probe) = f
+        .action_receipt
+        .as_ref()
+        .and_then(|r| r.sonar_probe.as_ref())
+    {
+        for (slot, value) in expected.iter_mut().zip(&probe.applied_vector) {
+            *slot += value;
+        }
+    }
     expected
 }
 /// Difference-channel invariants of a continuation and its latest frame.
@@ -3963,6 +4005,7 @@ fn validate_difference(s: &SustainedContinuation, f: Option<&SustainedFrame>) ->
     }
 }
 fn validate_state(s: &SustainedContinuation) -> Result<()> {
+    sonar::validate_state(s)?;
     peers::validate_state(s)?;
     s.specification.validate()?;
     check_ins::validate_schedule_state(s)?;

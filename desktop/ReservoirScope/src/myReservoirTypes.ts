@@ -1,3 +1,4 @@
+import type { SonarConfig, SonarDirection, SonarSign, SonarScanRef, SonarProbe } from './sonar';
 import type { LanguageConfiguration, SessionFrame } from './freshTypes';
 
 export type SustainedPromptVersion = 'reservoir-journal-v1' | 'reservoir-journal-v2' | 'reservoir-journal-v3' | 'reservoir-journal-v4' | 'reservoir-journal-v5' | 'reservoir-journal-v6' | 'reservoir-journal-v7' | 'reservoir-journal-v8' | 'reservoir-journal-actions-v1' | 'reservoir-journal-actions-v2' | 'reservoir-journal-actions-v3'
@@ -87,7 +88,7 @@ export interface SustainedCheckIns {
 }
 export interface SustainedActionControls { leak: number; recurrentGain: number; feedbackScale: number }
 export type SustainedAuthoredRequest = { kind: 'none' } | { kind: 'pulse'; direction: 'uniform' | 'alternating' | 'axis0' | 'axis1'; strength: number }
-  | { kind: 'tune'; parameter: keyof SustainedActionControls; value: number } | { kind: 'release' } | { kind: 'probe'; vector: number[] } | { kind: 'readPeers' };
+  | { kind: 'tune'; parameter: keyof SustainedActionControls; value: number } | { kind: 'release' } | { kind: 'probe'; vector: number[] } | { kind: 'readPeers' } | { kind: 'scan' } | { kind: 'probeScan'; direction: SonarDirection; sign: SonarSign };
 export interface SustainedReservoirInput { disposition: 'send' | 'withhold' | 'rejected'; rawDirective: string | null; rejection: string | null }
 export type SustainedInquirySource = 'journal' | 'dynamics' | 'both';
 export type SustainedInquiryRequest = { kind: 'open'; source: SustainedInquirySource; question: string } | { kind: 'continue' } | { kind: 'close' };
@@ -124,6 +125,8 @@ export interface SustainedPeerRead { journalId: string; appliedStep: number; sna
   peers: { participant: string; entry: SustainedPeerEntry | null; unavailable: string | null }[];
 } }
 export interface SustainedActionReceipt {
+  sonarScan?: SonarScanRef;
+  sonarProbe?: SonarProbe;
   peerRead?: SustainedPeerRead;
   diagnostics?: SustainedControlDiagnostics;
   journalId: string; attemptId: number; observedStep: number; appliedStep: number;
@@ -145,6 +148,7 @@ export interface SustainedActions {
   pending?: { attemptId: number; entryId: string; observedStep: number; intendedStep?: number | null; phase: 'saving' | 'prepared'; durablePrepared: boolean; decision: Pick<SustainedActionDecision, 'request' | 'rejection' | 'reservoirInput' | 'inquiry' | 'diagnostics'> } | null;
 }
 export interface SustainedConfig {
+  sonar?: SonarConfig;
   peerReading?: SustainedPeerConfig;
   /** Omission retains the historical policies; explicit choices are immutable per session. */
   textAdmission?: 'utf8-v1';

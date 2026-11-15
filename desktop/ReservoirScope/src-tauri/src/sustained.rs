@@ -43,6 +43,10 @@ use check_ins::CheckInSummary;
 mod actions;
 use actions::ActionsSummary;
 
+#[path = "sustained_sonar.rs"]
+mod sonar;
+pub use sonar::SonarView;
+
 fn err(kind: &str, message: impl Into<String>) -> AppError {
     AppError::new("sustained", kind, message)
 }
@@ -52,6 +56,8 @@ fn ce(e: impl std::fmt::Display) -> AppError {
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedConfig {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub sonar: Option<reservoir_core::sustained::SustainedSonarConfig>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub peer_reading: Option<reservoir_core::sustained::SustainedPeerConfig>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -147,6 +153,7 @@ pub struct SustainedConfig {
 impl Default for SustainedConfig {
     fn default() -> Self {
         Self {
+            sonar: None,
             peer_reading: None,
             text_admission: None,
             control_feedback: None,
@@ -224,6 +231,7 @@ impl SustainedConfig {
             return Err(err("seed", "Seed must be canonical unsigned decimal"));
         }
         Ok(SustainedSpecification {
+            sonar: self.sonar.clone(),
             peer_reading: self.peer_reading.clone(),
             text_admission: self.text_admission,
             control_feedback: self.control_feedback,

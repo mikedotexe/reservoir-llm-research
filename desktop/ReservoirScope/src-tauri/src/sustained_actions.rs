@@ -121,6 +121,19 @@ impl SustainedState {
                 a.epoch == epoch && a.engine.specification().peer_reading.is_some()
             })
         });
+        let sonar = self.lock().ok().is_some_and(|g| {
+            g.active
+                .as_ref()
+                .is_some_and(|a| a.epoch == epoch && a.engine.specification().sonar.is_some())
+        });
+        if sonar {
+            return match (pending.attempt_id-1)%4 {
+                0=>"Scripted scanner check: request a direction before any scan, expecting an explicit rejection.\nNEXT: PROBE_SCAN strongest positive",
+                1=>"Scripted scanner check: measure signed coordinate responses on copies.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: SCAN",
+                2=>"Scripted scanner check: apply the measured strongest direction if saved live-probe authority permits.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: PROBE_SCAN strongest positive",
+                _=>"Scripted scanner check: retain the receipt and let ordinary dynamics continue.\nNEXT: NONE",
+            }.into();
+        }
         if peer_reading {
             return if pending.attempt_id % 2 == 1 {
                 "Example writing: I will read the already-applied entries available from the configured peers.\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: READ_PEERS"

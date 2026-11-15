@@ -1,3 +1,4 @@
+import { SonarReceiptView } from './MyReservoirSonar';
 import { PeerReadView } from './peerReading';
 import { ControlFeedback } from './controlFeedback';
 import type { SustainedActionControls, SustainedActionDecision, SustainedActionReceipt, SustainedAuthoredRequest, SustainedJournal, SustainedReservoirInput, SustainedSummary } from './myReservoirTypes';
@@ -9,6 +10,8 @@ const number = (value: number) => Number.isFinite(value) ? Number(value.toPrecis
 export function actionDescription(request: SustainedAuthoredRequest | null): string {
   if (!request) return 'No valid action selected';
   switch (request.kind) {
+    case 'scan': return 'SCAN · experiment on copied recurrent states';
+    case 'probeScan': return `Measured input probe · ${request.direction} · ${request.sign}`;
     case 'readPeers': return 'READ_PEERS · read the frozen preceding peer entries';
     case 'none': return 'NONE · continue without an additional intervention';
     case 'pulse': return `PULSE · ${request.direction} · strength ${number(request.strength)}`;
@@ -52,6 +55,7 @@ export function ActionReceiptView({ receipt, detailed = false }: { receipt: Sust
     {receipt.rejection && <p className="my-reservoir-action-rejection">{receipt.rejection}</p>}
     {receipt.reservoirInput && <ReservoirInput input={receipt.reservoirInput} appliedStep={receipt.appliedStep}/>}
     {receipt.inquiry && <InquiryReceiptView receipt={receipt.inquiry}/>}
+    <SonarReceiptView receipt={receipt}/>
     <ControlFeedback diagnostics={receipt.diagnostics}/>
     {detailed && receipt.peerRead && <PeerReadView read={receipt.peerRead}/>}
     {receipt.request?.kind === 'release' && <p>The initial control settings were restored. Accumulated state and journal history were retained.</p>}

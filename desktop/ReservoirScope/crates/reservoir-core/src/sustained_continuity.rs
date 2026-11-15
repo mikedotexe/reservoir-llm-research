@@ -414,7 +414,7 @@ pub(super) fn render_context(s: &SustainedContinuation) -> String {
     let a = s.action_state.as_ref().expect("v3 action state");
     let c = a.continuity.as_ref().expect("v3 continuity");
     let mut text = format!("ACTIVE CONTROLS\n{}\nTUNE persists; RELEASE restores the initial controls {} while retaining accumulated state and journal history. Input SEND/WITHHOLD is a separate choice.\n\nMEANINGFUL INTERVENTIONS (last at most 8 successfully applied non-NONE choices; not the entire session)\n", serde_json::to_string(&a.controls).unwrap(), serde_json::to_string(&SustainedActionControls::initial(&s.specification)).unwrap());
-    if s.specification.peer_reading.is_some() {
+    if s.specification.peer_reading.is_some() || s.specification.sonar.is_some() {
         text = text.replace(
             "MEANINGFUL INTERVENTIONS",
             "RETAINED ACTIONS (including informational peer reads)",

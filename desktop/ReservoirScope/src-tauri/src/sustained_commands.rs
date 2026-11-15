@@ -351,3 +351,16 @@ pub async fn export_sustained(
     .await
     .map_err(worker)?
 }
+
+#[tauri::command]
+pub async fn observe_sustained_sonar(
+    state: tauri::State<'_, SustainedState>,
+    session_id: String,
+    generation: String,
+    scan: bool,
+) -> Result<crate::sustained::SonarView, AppError> {
+    let s = state.inner().clone();
+    tauri::async_runtime::spawn_blocking(move || s.sonar_view(&session_id, &generation, scan))
+        .await
+        .map_err(worker)?
+}

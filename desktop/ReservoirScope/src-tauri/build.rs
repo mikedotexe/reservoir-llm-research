@@ -17,6 +17,7 @@ fn main() {
             "activation_annotate",
             "activation_export",
             "activation_import",
+            "observe_sustained_sonar",
             "create_sustained",
             "get_sustained",
             "start_sustained",

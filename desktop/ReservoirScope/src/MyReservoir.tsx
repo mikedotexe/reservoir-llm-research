@@ -1,3 +1,4 @@
+import MyReservoirSonar from './MyReservoirSonar';
 import MyReservoirCheckIns from './MyReservoirCheckIns';
 import MyReservoirActions from './MyReservoirActions';
 import { validAuthoredActionConfig } from './authoredActions';
@@ -66,7 +67,7 @@ export default function MyReservoir({ active, controller = myReservoirController
   return <section className="my-reservoir"><header className="my-reservoir-heading"><div><h1>My reservoir</h1><p>Run a reservoir with scripted writing or a local model, read its journal, and watch saved text return as input. The session can continue while this app is open or minimized, within your chosen run and storage bounds.</p></div><label className="my-reservoir-graphics-control"><input type="checkbox" checked={tableOnly} onChange={event => setTableOnly(event.target.checked)}/>Replace 3D with exact values</label></header>
     {state.error && <p role="alert" className="my-reservoir-error">{state.error}</p>}{state.message && <p role="status" className="my-reservoir-message">{state.message}</p>}
     {s ? <>{!blindReading && <MyReservoirStatus state={state}/>}<div className="my-reservoir-actions"><button className="primary-button" disabled={busy || !s.canStart} onClick={() => void controller.action('start')}>{s.step === 0 ? 'Start' : 'Resume'}</button><button disabled={busy || !s.canPause} onClick={() => void controller.action('pause')}>Pause</button><button disabled={busy || !s.canStop} onClick={() => void controller.action('stop')}>{(s.pendingLanguage?.state === 'requesting' && s.config.language.backend === 'ollama' || s.pendingEmbedding?.state === 'requesting') ? 'Cancel request and stop' : 'Stop'}</button>{!blindReading && <span className="my-reservoir-small">Requested pace: {s.config.paceMs} ms per step · writing every {s.config.turnEvery} steps</span>}</div>
-      {!blindReading && <><MyReservoirBoundary state={state} controller={controller}/><MyReservoirLimits state={state} controller={controller}/><MyReservoirActions summary={s}/></>}
+      {!blindReading && <><MyReservoirBoundary state={state} controller={controller}/><MyReservoirLimits state={state} controller={controller}/><MyReservoirActions summary={s}/><MyReservoirSonar key={`${s.sessionId}:${s.generation}`} summary={s}/></>}
       <MyReservoirCheckIns key={`${s.sessionId}:${s.generation}`} state={state} controller={controller} onBlindReadingChange={blind => setBlindReadingIdentity(blind ? `${s.sessionId}:${s.generation}` : null)}/>
       {!blindReading && <><div className="my-reservoir-reading-layout">
         <MyReservoirJournals state={state} controller={controller}/>

@@ -584,3 +584,186 @@ fn encoding_retry_retains_inquiry_and_probe_without_regenerating_or_reapplying()
     );
     resumed.shared.store.verify(&m.session_id).unwrap();
 }
+
+fn sonar_config(live: bool) -> SustainedConfig {
+    SustainedConfig {
+        control_feedback: Some(reservoir_core::sustained::SustainedControlFeedback::DiagnosticV1),
+        sonar: Some(reservoir_core::sustained::SustainedSonarConfig {
+            version: reservoir_core::sustained::SustainedSonarVersion::ResponseScanV1,
+            allow_live_probe: live,
+        }),
+        ..inquiry_config(40, 3)
+    }
+}
+#[test]
+fn sonar_save_retry_current_dose_export_restart_and_exact_replay() {
+    let d = tempfile::tempdir().unwrap();
+    let root = d.path().join("store");
+    let s = SustainedState::new(root.clone());
+    let m = s
+        .create("new".into(), sonar_config(true))
+        .unwrap()
+        .summary
+        .unwrap();
+    let epoch = arm(&s);
+    dispatch(
+        &s,
+        epoch,
+        "Missing scan must not be guessed.\nNEXT: PROBE_SCAN strongest positive",
+    );
+    until(&s, epoch, |a| a.engine.step() == 4);
+    let r = state(&s);
+    assert_eq!(r["state"]["latestReceipt"]["status"], "rejected");
+    assert_eq!(r["state"]["latestReceipt"]["stateDeltaL2"], 0.0);
+    dispatch(
+        &s,
+        epoch,
+        "Scan copied states.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: SCAN",
+    );
+    s.shared.store.fail_next(3);
+    assert!(s.worker_boundary(epoch).is_err());
+    assert!(s
+        .lock()
+        .unwrap()
+        .active
+        .as_ref()
+        .unwrap()
+        .committed
+        .state
+        .sonar_state
+        .as_ref()
+        .unwrap()
+        .latest_scan
+        .is_none());
+    s.retry_save("retry".into(), &m.session_id, &m.generation)
+        .unwrap();
+    let epoch = arm(&s);
+    until(&s, epoch, |a| a.engine.step() == 7);
+    let scan = s
+        .sonar_view(&m.session_id, &m.generation, false)
+        .unwrap()
+        .model_scan
+        .unwrap();
+    assert_eq!(scan.origin.step, 7);
+    assert_eq!(state(&s)["state"]["latestReceipt"]["stateDeltaL2"], 0.0);
+    dispatch(
+        &s,
+        epoch,
+        "Change leak after the cached scan.\nNEXT: TUNE leak 1",
+    );
+    until(&s, epoch, |a| a.engine.step() == 10);
+    let p = next_provider(&s, epoch);
+    assert!(p.prompt.contains(&scan.id));
+    s.settle(epoch,p.attempt_id,Ok(response("Apply a measured direction at the new controls.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: PROBE_SCAN strongest negative")),None,1).unwrap();
+    until(&s, epoch, |a| a.engine.step() == 13);
+    s.pause("pause".into(), &m.session_id, &m.generation)
+        .unwrap();
+    drive(&s, epoch);
+    let a = state(&s);
+    let r = &a["state"]["latestReceipt"];
+    assert_eq!(r["status"], "applied");
+    assert_eq!(r["sonarProbe"]["sourceScan"]["id"], scan.id);
+    assert_eq!(r["sonarProbe"]["forecastOrigin"]["step"], 12);
+    assert_eq!(r["sonarProbe"]["forecastOrigin"]["controls"]["leak"], 1.0);
+    assert!(
+        r["stateDeltaL2"].as_f64().unwrap() > 0.0 && r["stateDeltaL2"].as_f64().unwrap() <= 0.05
+    );
+    assert_eq!(r["sonarProbe"]["forecastResponseL2"][0], r["stateDeltaL2"]);
+    let vector = r["sonarProbe"]["appliedVector"].as_array().unwrap();
+    let norm = vector
+        .iter()
+        .map(|v| v.as_f64().unwrap().powi(2))
+        .sum::<f64>()
+        .sqrt();
+    assert!(norm < scan.maximum_live_input_l2);
+    let saved = s.shared.store.verify(&m.session_id).unwrap();
+    let export = d.path().join("export");
+    fs::create_dir(&export).unwrap();
+    assert_eq!(
+        s.export(&m.session_id, &m.generation, None, &export, &[])
+            .unwrap()
+            .1
+            .checkpoint_sha256,
+        saved.report.checkpoint_sha256
+    );
+    let fresh = SustainedState::new(root);
+    let restored = fresh
+        .resume(
+            "restore".into(),
+            &m.session_id,
+            &saved.manifest.generation,
+            &saved.manifest.revision,
+        )
+        .unwrap()
+        .summary
+        .unwrap();
+    assert_eq!(
+        serde_json::to_value(restored.actions.unwrap()).unwrap()["state"],
+        a["state"]
+    );
+    assert_eq!(
+        fresh
+            .sonar_view(&restored.session_id, &restored.generation, false)
+            .unwrap()
+            .model_scan
+            .unwrap(),
+        scan
+    );
+}
+#[test]
+fn sonar_operator_scans_do_not_write_or_authorize_model_probes() {
+    let d = tempfile::tempdir().unwrap();
+    let s = SustainedState::new(d.path().join("store"));
+    let m = s
+        .create("new".into(), sonar_config(true))
+        .unwrap()
+        .summary
+        .unwrap();
+    let before = s.shared.store.verify(&m.session_id).unwrap();
+    let a = s.sonar_view(&m.session_id, &m.generation, true).unwrap();
+    let b = s.sonar_view(&m.session_id, &m.generation, true).unwrap();
+    assert_eq!(a.operator_scan, b.operator_scan);
+    assert!(a.model_scan.is_none());
+    let after = s.shared.store.verify(&m.session_id).unwrap();
+    assert_eq!(before.report.manifest_sha256, after.report.manifest_sha256);
+    assert_eq!(
+        serde_json::to_value(before.checkpoint).unwrap(),
+        serde_json::to_value(after.checkpoint).unwrap()
+    );
+    let epoch = arm(&s);
+    dispatch(&s,epoch,"Operator observation does not supply a model direction.\nNEXT: PROBE_SCAN strongest positive");
+    until(&s, epoch, |a| a.engine.step() == 4);
+    assert_eq!(state(&s)["state"]["latestReceipt"]["status"], "rejected");
+}
+#[test]
+fn sonar_disabled_or_unresolved_probes_are_explicitly_rejected() {
+    for (live, leak) in [(false, 0.65), (true, 0.0)] {
+        let d = tempfile::tempdir().unwrap();
+        let s = SustainedState::new(d.path().join("store"));
+        let m = s
+            .create(
+                "new".into(),
+                SustainedConfig {
+                    leak,
+                    ..sonar_config(live)
+                },
+            )
+            .unwrap()
+            .summary
+            .unwrap();
+        let epoch = arm(&s);
+        dispatch(&s, epoch, "Scan first.\nNEXT: SCAN");
+        until(&s, epoch, |a| a.engine.step() == 4);
+        dispatch(
+            &s,
+            epoch,
+            "Try a real direction.\nNEXT: PROBE_SCAN strongest positive",
+        );
+        until(&s, epoch, |a| a.engine.step() == 7);
+        let r = state(&s);
+        assert_eq!(r["state"]["latestReceipt"]["status"], "rejected");
+        let reason = r["state"]["latestReceipt"]["rejection"].as_str().unwrap();
+        assert!(reason.contains(if live { "unresolved" } else { "disabled" }));
+        s.shared.store.verify(&m.session_id).unwrap();
+    }
+}

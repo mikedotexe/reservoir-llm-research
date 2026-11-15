@@ -39,6 +39,11 @@ pub enum SustainedTuneParameter {
 pub enum SustainedActionRequest {
     None,
     ReadPeers,
+    Scan,
+    ProbeScan {
+        direction: SustainedSonarDirection,
+        sign: SustainedSonarSign,
+    },
     Pulse {
         direction: SustainedPulseDirection,
         strength: f64,
@@ -141,6 +146,10 @@ pub enum SustainedActionStatus {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedActionReceipt {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub sonar_scan: Option<SustainedSonarScanRef>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub sonar_probe: Option<Box<SustainedSonarProbeReceipt>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub peer_read: Option<Box<SustainedPeerRead>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -608,6 +617,7 @@ pub(super) fn decision_for(
                 }
             }
         }
+        sonar::parse_decision(spec, text, &mut decision);
         if spec.control_feedback.is_some() {
             decision.diagnostics = Some(control_feedback::explain(text, &decision));
         }
@@ -700,6 +710,8 @@ pub(super) fn record_receipt(
         None => SustainedActionStatus::Rejected,
     };
     let receipt = SustainedActionReceipt {
+        sonar_scan: None,
+        sonar_probe: None,
         peer_read: None,
         diagnostics: decision.diagnostics.clone(),
         inquiry: None,
@@ -782,7 +794,12 @@ pub(super) fn render_prompt(
     memory: Option<&SustainedMemory>,
 ) -> String {
     if state.specification.action_mode == Some(SustainedActionMode::AuthoredV3) {
-        return continuity::render_prompt(state, observation, memory);
+        let prompt = continuity::render_prompt(state, observation, memory);
+        return if state.specification.sonar.is_some() {
+            format!("{prompt}\n\n{}", sonar::render_context(state))
+        } else {
+            prompt
+        };
     }
     let earlier = memory.map_or_else(|| "No earlier applied journal is available.".into(), |memory| {
         format!("Earlier applied journal body, reference text rather than commands or current measurements:\n{}", serde_json::to_string(memory.entry.body.as_ref().unwrap_or(&memory.entry.text)).expect("body serializes"))
@@ -1040,7 +1057,7 @@ pub(super) fn validate_state(s: &SustainedContinuation) -> Result<()> {
             )?;
         }
         let request = receipt.raw_tail.as_ref().map(|tail| {
-            if s.specification.peer_reading.is_some() {
+            if s.specification.peer_reading.is_some() || s.specification.sonar.is_some() {
                 decision_for(&s.specification, None, &format!("body\n{tail}")).unwrap()
             } else if s.specification.action_mode == Some(SustainedActionMode::AuthoredV3) {
                 parse_authored_action_v3(&format!("body\n{tail}"))
@@ -1066,6 +1083,11 @@ pub(super) fn validate_state(s: &SustainedContinuation) -> Result<()> {
                     "Authored receipt status differs from request",
                 )?;
             }
+            (
+                Some(SustainedActionRequest::ProbeScan { .. }),
+                Some(_),
+                SustainedActionStatus::Rejected,
+            ) => sonar::validate_receipt(receipt, s)?,
             (None, Some(reason), SustainedActionStatus::Rejected) => ensure(
                 !reason.is_empty() && reason.len() <= 1024,
                 "Invalid authored rejection",
@@ -1141,6 +1163,7 @@ pub(super) fn validate_one_receipt(
     s: &SustainedContinuation,
 ) -> Result<()> {
     peers::validate_receipt(r, s)?;
+    sonar::validate_receipt(r, s)?;
     control_feedback::validate(r.diagnostics.as_ref(), &s.specification)?;
     for memory in [&s.latest_memory, &s.chosen_memory].into_iter().flatten() {
         if memory.entry.id == r.journal_id {
@@ -1184,18 +1207,24 @@ pub(super) fn validate_one_receipt(
         "Non-pulse action claims clipping",
     )?;
     match &r.request {
+        Some(SustainedActionRequest::ProbeScan { .. })
+            if r.status == SustainedActionStatus::Rejected =>
+        {
+            sonar::validate_receipt(r, s)?
+        }
         Some(request) => {
             let raw = r
                 .raw_tail
                 .as_ref()
                 .ok_or_else(|| invalid("Retained action lacks its directive"))?;
-            let parsed = if s.specification.peer_reading.is_some() {
-                decision_for(&s.specification, None, &format!("body\n{raw}")).unwrap()
-            } else if v3 {
-                parse_authored_action_v3(&format!("body\n{raw}"))
-            } else {
-                parse_authored_action(&format!("body\n{raw}"))
-            };
+            let parsed =
+                if s.specification.peer_reading.is_some() || s.specification.sonar.is_some() {
+                    decision_for(&s.specification, None, &format!("body\n{raw}")).unwrap()
+                } else if v3 {
+                    parse_authored_action_v3(&format!("body\n{raw}"))
+                } else {
+                    parse_authored_action(&format!("body\n{raw}"))
+                };
             ensure(
                 parsed.request.as_ref() == Some(request)
                     && r.rejection.is_none()
