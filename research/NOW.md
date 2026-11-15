@@ -1,6 +1,12 @@
 # Current work
 
-**November 15: three-model peer-reading run requested.** Fresh Gemma4, GLM and
+**November 15: reservoir response scanning selected.** Mike selected full-focus
+work on passive observation, scans on copies and optional bounded interventions.
+The three peer-reading runs were paused at approximately 98 active minutes, with
+one applied hourly response each. The three-hour comparison remains incomplete.
+[Mapping and design](studies/2026-11-15-reservoir-response-mapping.md).
+
+**November 15 earlier: three-model peer-reading run requested.** Fresh Gemma4, GLM and
 Ministral sessions use the same hourly prompt and telemetry for three active
 hours, with optional reciprocal peer reading. The comparison with earlier
 independent runs is descriptive because feedback/admission policies and context

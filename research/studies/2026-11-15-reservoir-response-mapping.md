@@ -177,3 +177,41 @@ input-update cadence, with matched drive/noise and a simple linear fading-memory
 baseline, before changing the live experiment's settings. A second stage can
 test which bounded bespoke input best separates two predicted responses, and
 whether returning that evidence lets the writer revise a concrete claim.
+
+## Follow-up: an identity mirror and a light probe
+
+Mike next asked whether a crafted input, perhaps an identity matrix, could reflect
+the internal space without altering it. An identity **readout**, `y = I*x`, copies
+the recurrent state. An identity **input basis**, `epsilon*I_48`, means separate
+small probes along the 48 input coordinates; the measured output columns estimate
+the local input-response matrix. The latter is what the offline impulse analysis
+above does. It is an intervention on each copy, not a neutral live input.
+
+For the known numerical model, a passive mirror can expose state, recent motion,
+principal directions and local input-response derivatives directly from a saved
+checkpoint. Tag the held input, forcing phase and effective controls: the 32
+recurrent coordinates alone are not the complete state of the coupled apparatus.
+The sensory matrix, controller and journal/inquiry memory carry additional history.
+
+Reinjecting `x` is a new feedback law, not the identity readout. Replacing the held
+input with zero also changes the experiment. Isotropic input noise (covariance
+proportional to identity) has no preferred input direction, but the input weights
+and nonlinear activation can make its effect on state strongly directional.
+Equal positive/negative perturbations need not cancel a nonlinear trajectory.
+
+A recurrent-input nullspace can provide a control that leaves the recurrent
+drive unchanged, but that does not imply the separate nonlinear sensory field or
+subsequent LLM loop is unchanged. A direction invisible to the recurrent state
+also cannot reveal its response through that state. Treat any such control as
+channel-specific, not a universal harmless input.
+
+Recommended future interaction: passive observation, then an explicitly labeled
+experiment on a copy, then an optional bounded real intervention. Bound a real
+probe by predicted **state displacement** as well as input norm, and compare its
+actual outcome with the prediction. A small requested input is not automatically
+a small effect. Supplying the mirror in a prompt changes what the writer can see
+and may change its later writing/input; that informational feedback is separate
+from the passive numerical readout. No mirror action has been implemented here.
+
+This distinction connects to [Lall, Marsden and Glavaški's empirical input-output
+analysis of nonlinear systems](https://www.cds.caltech.edu/~marsden/bib/2002/06-LaMaGl2002/).

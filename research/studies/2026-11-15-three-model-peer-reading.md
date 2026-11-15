@@ -97,3 +97,21 @@ Mike asked how to map the topology described by the journals. The separate
 [offline response-mapping study](2026-11-15-reservoir-response-mapping.md) uses
 only the completed independent exports. Its numerical perturbations are local
 counterfactuals; no running peer session or model prompt is changed.
+
+## User-directed pause
+
+At 20:26 UTC on November 15, Mike selected full-focus development of passive
+observation, scans on copies, and optional bounded reservoir interventions,
+explicitly permitting the three runs to stop. All three were paused normally
+after approximately 98 active minutes. Each first-hour conversation is saved and
+applied; the second and third scheduled opportunities were not reached. No model
+had selected READ_PEERS. This cohort is incomplete and is not the requested
+three-hour comparison.
+
+Gemma paused at numerical step 1,560 with 53 saved journals; GLM at 1,530 with
+52; Ministral at 1,563 with 53. Gemma and GLM each retain a final saved response
+prepared for the next numerical step, not yet applied. The new research direction
+does not discard or retroactively apply those responses. Private
+`operator-pause.json` records the exact manifests and active elapsed times.
+The study's owned model service, observer, completion waiter and keep-awake process
+were stopped after confirming the paused boundaries; unrelated processes remain.
