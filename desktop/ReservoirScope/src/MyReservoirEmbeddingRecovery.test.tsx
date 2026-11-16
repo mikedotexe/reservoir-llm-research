@@ -30,8 +30,9 @@ describe('completed writing awaiting semantic encoding', () => {
     expect(html).not.toContain('Retry as a new attempt');
     expect(html).not.toContain('Writing needs attention');
     const journals = renderToStaticMarkup(<MyReservoirJournals state={state} controller={controller}/>);
-    expect(journals).toContain('0 saved journals');
-    expect(journals).toContain('Completed writing at step 30 · awaiting encoding; response retained.');
+    expect(journals).toContain('0 saved entries');
+    expect(journals).not.toContain('my-reservoir-journal-progress');
+    expect(html).toContain('Writing from step 30, attempt 3, is complete and retained for encoding.');
     expect(renderToStaticMarkup(<MyReservoirStatus state={state}/>)).toContain('Encoding needs attention');
   });
 
@@ -45,7 +46,7 @@ describe('completed writing awaiting semantic encoding', () => {
     expect(html).toContain('<button disabled="">Export saved session…</button>');
     expect(html).toContain('Cancel request and stop');
     expect(html).not.toContain('role="alert"');
-    expect(html).toContain('encoding in progress');
+    expect(html).toContain('Encoding completed writing');
   });
 
   it('keeps a paused response visible even when no retry currently fits the budget', () => {

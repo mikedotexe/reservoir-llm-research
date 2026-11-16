@@ -1,5 +1,12 @@
 # Current work
 
+**November 15: desktop reading and layout pass.** Mike selected the journal as
+the primary workspace. Local 0.52.0 adds stable reading, floating compact-width
+controls, a quadrant fill view and collapsed occasional tools. The separate
+preview uses preserved history; the three model sessions below remain on 0.51.0.
+[UI record](../desktop/ReservoirScope/RELEASE-0.52.0.md). Review this interface and
+then the ongoing trajectories before the next integration/release decision.
+
 **November 15, 16:20–16:21 Pacific: three fresh 0.51.0 sessions started.**
 At Mike's request, the compact-scanner cohort was stopped and preserved, and
 Gemma4, GLM and Ministral were started with model-authored experiments, bounded

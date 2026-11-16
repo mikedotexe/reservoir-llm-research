@@ -15,6 +15,7 @@ import { DEFAULT_SUSTAINED_CONFIG, embeddingConfigurationError, validDifferenceC
 import { DEFAULT_CAMERA } from './types';
 import { formatSessionDuration } from './sessionDuration';
 import ActivationExperiment from './ActivationExperiment';
+import UiIcon from './UiIcon';
 import './myReservoir.css';
 
 const phase = (value: string) => ({ ready: 'Ready · not started', running: 'Running', awaitingLanguage: 'Waiting for writing', waitingForEmbedding: 'Encoding completed writing', embeddingBlocked: 'Encoding needs attention', savingJournal: 'Saving journal', paused: 'Paused', stopped: 'Stopped', budgetReached: 'Run limit reached', scheduleComplete: 'Scheduled conversations complete', storageBlocked: 'Storage needs attention', attemptBlocked: 'Writing needs attention', interrupted: 'Interrupted · review needed' })[value] ?? value;
@@ -59,27 +60,53 @@ export default function MyReservoir({ active, controller = myReservoirController
   const [config, setConfig] = useState<SustainedConfig>({ ...DEFAULT_SUSTAINED_CONFIG, language: { backend: 'scripted' } });
   const [pose, setPose] = useState(DEFAULT_CAMERA), [node, setNode] = useState(0), [tableOnly, setTableOnly] = useState(false);
   const [activationOpen, setActivationOpen] = useState(false);
+  const [toolsOpen, setToolsOpen] = useState(false);
+  const toolsButton = useRef<HTMLButtonElement>(null), toolsId = useId();
   const [blindReadingIdentity, setBlindReadingIdentity] = useState<string | null>(null);
   useEffect(() => { controller.setActive(active); if (active) void controller.connect(); return () => controller.setActive(false); }, [controller, active]);
   if (!active) return null;
   const s = state.summary, blindReading = !!s && blindReadingIdentity === `${s.sessionId}:${s.generation}`, busy = !!state.busy, durationValid = Number.isInteger(config.maximumDurationSeconds) && config.maximumDurationSeconds >= 1 && config.maximumDurationSeconds <= 86400, writingValid = validWritingLimits(config), fieldValid = validFieldControls(config), differenceValid = validDifferenceControls(config) && validMemoryPolicy(config) && validMemoryRecentExclusion(config) && validAuthoredActionConfig(config), scheduleError = checkInConfigurationError(config), embeddingError = embeddingConfigurationError(config), createDisabled = busy || !!embeddingError || !!scheduleError || !durationValid || !writingValid || !fieldValid || !differenceValid || !!s && s.phase !== 'stopped';
   const editor = <><MyReservoirConfig config={config} setConfig={setConfig} disabled={busy}/><div className="my-reservoir-actions"><button className="primary-button" disabled={createDisabled} onClick={() => void controller.create(config)}>Create my reservoir</button><p className="my-reservoir-small">{embeddingError || scheduleError || (!durationValid ? 'Choose a duration from 1 second to 24 hours in Advanced settings.' : !writingValid ? 'Review the writing limits in Advanced settings.' : !fieldValid ? 'Review the sensory noise and feedback scale in Advanced settings.' : s && s.phase !== 'stopped' ? 'Stop the current session before creating another.' : 'Create prepares the session. Choose Start when you are ready.')}</p></div></>;
-  return <section className="my-reservoir"><header className="my-reservoir-heading"><div><h1>My reservoir</h1><p>Run a reservoir with scripted writing or a local model, read its journal, and watch saved text return as input. The session can continue while this app is open or minimized, within your chosen run and storage bounds.</p></div><label className="my-reservoir-graphics-control"><input type="checkbox" checked={tableOnly} onChange={event => setTableOnly(event.target.checked)}/>Replace 3D with exact values</label></header>
-    {state.error && <p role="alert" className="my-reservoir-error">{state.error}</p>}{state.message && <p role="status" className="my-reservoir-message">{state.message}</p>}
-    {s ? <>{!blindReading && <MyReservoirStatus state={state}/>}<div className="my-reservoir-actions"><button className="primary-button" disabled={busy || !s.canStart} onClick={() => void controller.action('start')}>{s.step === 0 ? 'Start' : 'Resume'}</button><button disabled={busy || !s.canPause} onClick={() => void controller.action('pause')}>Pause</button><button disabled={busy || !s.canStop} onClick={() => void controller.action('stop')}>{(s.pendingLanguage?.state === 'requesting' && s.config.language.backend === 'ollama' || s.pendingEmbedding?.state === 'requesting') ? 'Cancel request and stop' : 'Stop'}</button>{!blindReading && <span className="my-reservoir-small">Requested pace: {s.config.paceMs} ms per step · writing every {s.config.turnEvery} steps</span>}</div>
-      {!blindReading && <><MyReservoirBoundary state={state} controller={controller}/><MyReservoirLimits state={state} controller={controller}/><MyReservoirActions summary={s}/><MyReservoirSonar key={`${s.sessionId}:${s.generation}`} summary={s}/></>}
-      <MyReservoirCheckIns key={`${s.sessionId}:${s.generation}`} state={state} controller={controller} onBlindReadingChange={blind => setBlindReadingIdentity(blind ? `${s.sessionId}:${s.generation}` : null)}/>
-      {!blindReading && <><div className="my-reservoir-reading-layout">
-        <MyReservoirJournals state={state} controller={controller}/>
-        <MyReservoirVisuals summary={s} frame={state.frame} node={node} onNode={setNode} pose={pose} onPose={setPose} tableOnly={tableOnly}/>
+  const stopLabel = s && (s.pendingLanguage?.state === 'requesting' && s.config.language.backend === 'ollama' || s.pendingEmbedding?.state === 'requesting') ? 'Cancel request and stop' : 'Stop';
+  return <section className="my-reservoir journal-workspace">
+    <header className="my-reservoir-heading"><div><h1>My reservoir</h1>{!s && <p>A local model, a reservoir, and a journal that develops over time.</p>}</div>
+      {s && <button ref={toolsButton} className="reservoir-tools-toggle" aria-expanded={toolsOpen} aria-controls={toolsId} onClick={() => setToolsOpen(!toolsOpen)}><UiIcon name={toolsOpen ? 'close' : 'menu'}/><span>Session controls{phaseNeedsAttention(s) ? ' · review needed' : ''}</span></button>}
+    </header>
+    {state.error && <p role="alert" className="my-reservoir-error">{state.error}</p>}
+    {s ? <>
+      <div className="reservoir-desk">
+        <div className="reservoir-reading-column">
+          {!blindReading && <MyReservoirJournals key={`${s.sessionId}:${s.generation}`} state={state} controller={controller}/>}
+          <MyReservoirCheckIns key={`${s.sessionId}:${s.generation}`} state={state} controller={controller} onBlindReadingChange={blind => setBlindReadingIdentity(blind ? `${s.sessionId}:${s.generation}` : null)}/>
+          {!blindReading && <details className="reservoir-exploration"><summary>Exploration · actions, scans and experiments</summary><MyReservoirActions summary={s}/><MyReservoirSonar key={`${s.sessionId}:${s.generation}`} summary={s}/></details>}
+        </div>
+        <aside id={toolsId} className="reservoir-utility" data-open={toolsOpen} aria-label="Session controls and live state" onKeyDown={event => { if (event.key === 'Escape') { setToolsOpen(false); toolsButton.current?.focus({ preventScroll: true }); } }}>
+          <div className="reservoir-control-card">
+            {!blindReading && <MyReservoirStatus state={state}/>}
+            <div className="my-reservoir-actions reservoir-transport">
+              <button className="primary-button icon-button" title={s.step === 0 ? 'Start' : 'Resume'} aria-label={s.step === 0 ? 'Start' : 'Resume'} disabled={busy || !s.canStart} onClick={() => void controller.action('start')}><UiIcon name="play"/></button>
+              <button className="icon-button" title="Pause" aria-label="Pause" disabled={busy || !s.canPause} onClick={() => void controller.action('pause')}><UiIcon name="pause"/></button>
+              <button className="reservoir-stop" title={stopLabel} disabled={busy || !s.canStop} onClick={() => void controller.action('stop')}><UiIcon name="stop"/><span>{stopLabel}</span></button>
+            </div>
+            {!blindReading && <MyReservoirBoundary state={state} controller={controller}/>}
+            {state.message && <p role="status" className="my-reservoir-message">{state.message}</p>}
+          </div>
+          {!blindReading && <><MyReservoirVisuals summary={s} frame={state.frame} node={node} onNode={setNode} pose={pose} onPose={setPose} tableOnly={tableOnly}/><label className="my-reservoir-graphics-control"><input type="checkbox" checked={tableOnly} onChange={event => setTableOnly(event.target.checked)}/>Use exact values for 3D</label></>}
+        </aside>
       </div>
+      {!blindReading && <details className="reservoir-session-tools"><summary>Session tools · settings, export and recovery</summary>
+        <MyReservoirLimits state={state} controller={controller}/>
+        <p className="my-reservoir-small">Requested pace: {s.config.paceMs} ms per step · writing every {s.config.turnEvery} steps</p>
       {s.diagnostics.length > 0 && <details className="my-reservoir-details"><summary>Session messages · {s.diagnostics.length}</summary><ul>{s.diagnostics.map((diagnostic, index) => <li key={index}>{diagnostic}</li>)}</ul></details>}
-      <div className="my-reservoir-actions"><button disabled={busy || s.canPause || (!!s.pendingLanguage && s.pendingLanguage.state !== 'blocked') || s.pendingEmbedding?.state === 'requesting' || !!s.pendingSave} onClick={() => void controller.export()}>Export saved session…</button><span className="my-reservoir-small">Pause before exporting. To copy earlier saved history while work is unsaved, use Saved sessions and recovery below. Each export creates a separate snapshot.</span></div>
+      <div className="my-reservoir-actions"><button disabled={busy || s.canPause || (!!s.pendingLanguage && s.pendingLanguage.state !== 'blocked') || s.pendingEmbedding?.state === 'requesting' || !!s.pendingSave} onClick={() => void controller.export()}>Export saved session…</button><span className="my-reservoir-small">Pause to export, or inspect a saved snapshot below.</span></div>
       {state.exported && <details className="my-reservoir-details"><summary>Export details · revision {state.exportRevision}</summary><SustainedVerification report={state.exported}/><p>Later session changes are not included in this export.</p></details>}
       <details className="my-reservoir-details"><summary>Session settings and details</summary><dl className="my-reservoir-data"><dt>Session / generation</dt><dd>{s.sessionId} / {s.generation}</dd><dt>Revision</dt><dd>{s.revision}</dd><dt>Saved limit extensions</dt><dd>{s.limitExtensionCount ?? 0}</dd><dt>Exact simulated seconds</dt><dd>{s.simulatedTime}</dd><dt>Exact storage bytes</dt><dd>{s.usedBytes} / {s.config.storageBudgetBytes}</dd></dl><pre>{JSON.stringify(s.config, null, 2)}</pre><p>Original settings. Limits may be extended separately; each change stays in the saved session history. These accepted settings belong to this session. Editing the next-session form cannot change an existing run.</p></details><details className="my-reservoir-details"><summary>Prepare another session</summary>{editor}</details>
-    </>}</> : editor}{!blindReading && <MyReservoirRecovery state={state} controller={controller}/>}
-    {!blindReading && <details className="activation-entry" onToggle={event => setActivationOpen(event.currentTarget.open)}><summary>Activation experiment · optional</summary>{activationOpen && <ActivationExperiment active={active}/>}</details>}
+        <MyReservoirRecovery state={state} controller={controller}/>
+        <details className="activation-entry" onToggle={event => setActivationOpen(event.currentTarget.open)}><summary>Activation experiment · optional</summary>{activationOpen && <ActivationExperiment active={active}/>}</details>
+      </details>}
+    </> : <>{editor}<MyReservoirRecovery state={state} controller={controller}/></>}
   </section>;
+
 }
 export function MyReservoirClosePanel({ controller = myReservoirController }: { controller?: MyReservoirController }) {
   const state = useSyncExternalStore(controller.subscribe, controller.snapshot, controller.snapshot), dialog = useRef<HTMLDialogElement>(null), label = useId();

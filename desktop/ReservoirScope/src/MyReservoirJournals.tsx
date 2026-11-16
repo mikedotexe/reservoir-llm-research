@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+import UiIcon from './UiIcon';
 import { formatSessionDuration } from './sessionDuration';
 import './myReservoirReading.css';
 import ProviderPromptEvidence from './ProviderPromptEvidence';
@@ -110,6 +112,7 @@ export function MyReservoirJournalDetail({ journal, revision, config, onRefreshE
   </article>;
 }
 export default function MyReservoirJournals({ state, controller }: { state: MyReservoirState; controller: MyReservoirController }) {
+  const reader = useRef<HTMLDivElement>(null);
   const summary = state.summary; if (!summary) return null;
   const newCount = Math.max(0, summary.journalCount - state.seenJournalCount), page = state.page;
   const selectedIndex = page?.entries.findIndex(entry => entry.entryId === state.journal?.entryId) ?? -1;
@@ -120,47 +123,39 @@ export default function MyReservoirJournals({ state, controller }: { state: MyRe
     <header className="my-reservoir-journal-header">
       <div>
         <h2>Journal</h2>
-        <p className="my-reservoir-small">{summary.journalCount} saved journals · reading never moves the live clock.</p>
-        {(summary.pendingSave || summary.pendingEmbedding || summary.pendingLanguage || summary.pendingApplication) && <p className="my-reservoir-journal-progress" role="status">{summary.pendingSave
-          ? `Writing at step ${summary.pendingSave.observedStep} · save not yet confirmed.`
-          : summary.pendingEmbedding
-            ? `Completed writing at step ${summary.pendingEmbedding.observedStep} · ${summary.pendingEmbedding.state === 'requesting' ? 'encoding in progress' : 'awaiting encoding; response retained'}.`
-          : summary.pendingLanguage
-            ? `Writing at step ${summary.pendingLanguage.observedStep} · ${summary.pendingLanguage.state === 'blocked' ? 'needs attention' : summary.pendingLanguage.state === 'prepared' ? 'prepared, not yet dispatched' : summary.config.language.backend === 'scripted' ? 'preparing example writing' : 'waiting for the local model'}.`
-            : `Saved writing at step ${summary.pendingApplication!.observedStep} · waiting for application at step ${summary.pendingApplication!.intendedStep}.`}</p>}
+        <p className="my-reservoir-small reader-update-status" role="status">{state.readingJournal ? 'Updating entry…' : `${summary.journalCount} saved entries`}</p>
       </div>
       <div className="my-reservoir-actions">
-        <button disabled={state.openingJournalFolder} onClick={() => void controller.openJournalFolder()}>{state.openingJournalFolder ? 'Opening folder…' : 'Open journal folder'}</button>
-        <button aria-pressed={state.followLatest} disabled={!state.followLatest && state.readingPage} onClick={() => state.followLatest ? controller.pinJournal() : void controller.followLatest()}>{state.followLatest ? 'Pause following' : 'Follow latest'}{!state.followLatest && newCount > 0 ? ` · ${newCount} new` : ''}</button>
-        <button disabled={state.readingPage} onClick={() => void controller.refreshJournals()}>Refresh this page</button>
+        <button className="icon-button" title="Open journal folder" aria-label={state.openingJournalFolder ? 'Opening folder…' : 'Open journal folder'} disabled={state.openingJournalFolder} onClick={() => void controller.openJournalFolder()}><UiIcon name="folder"/></button>
+        <button aria-pressed={state.followLatest} disabled={!state.followLatest && state.readingPage} onClick={() => { if (state.followLatest) controller.pinJournal(); else { if (reader.current) reader.current.scrollTop = 0; void controller.followLatest(); } }}>{state.followLatest ? 'Pause following' : 'Follow latest'}{!state.followLatest && newCount > 0 ? ` · ${newCount} new` : ''}</button>
+        <button className="icon-button" title="Refresh this page" aria-label="Refresh this page" disabled={state.readingPage} onClick={() => void controller.refreshJournals()}><UiIcon name="refresh"/></button>
       </div>
     </header>
     {state.journalError && <p role="alert" className="my-reservoir-error">{state.journalError}</p>}
     <div className="my-reservoir-journal-grid">
       <div>
-        {state.journal && <nav className="my-reservoir-reading-navigation" aria-label="Journal reading position">
+        <nav className="my-reservoir-reading-navigation" aria-label="Journal reading position">
           <div>
-            <strong aria-live="polite" aria-atomic="true">{position === null ? 'Selected journal' : `Journal ${position} of ${total}`}</strong>
-            <p>{position === null ? 'Choose an entry from a history window to establish its reading position.' : state.followLatest ? 'Following latest: new entries open automatically.' : selectedIndex < 0 ? 'Your selected entry is outside this history window. Earlier and Later continue from this entry.' : 'Your selection stays here as new writing arrives.'}</p>
+            <strong aria-live="polite" aria-atomic="true">{position === null ? state.journal ? 'Selected journal' : 'Waiting for the first entry' : `Journal ${position} of ${total}`}</strong>
+            <p>{position === null ? 'Choose an entry from a history window to establish its reading position.' : state.followLatest ? 'Following latest · scroll to hold this entry.' : selectedIndex < 0 ? 'Held entry · outside this history window.' : 'Held here as new writing arrives.'}</p>
           </div>
           <div className="my-reservoir-actions">
-            <button disabled={reading || position === null || position <= 1} onClick={() => void controller.adjacentJournal('earlier')}>Earlier entry</button>
-            <button disabled={reading || position === null || position >= total} onClick={() => void controller.adjacentJournal('later')}>Later entry</button>
+            <button disabled={reading || position === null || position <= 1} onClick={() => void controller.adjacentJournal('earlier')} title="Earlier entry" aria-label="Earlier entry"><UiIcon name="previous"/></button>
+            <button disabled={reading || position === null || position >= total} onClick={() => void controller.adjacentJournal('later')} title="Later entry" aria-label="Later entry"><UiIcon name="next"/></button>
           </div>
-        </nav>}
-        {state.readingJournal && <p role="status">Reading selected journal…</p>}
+        </nav>
+        <div ref={reader} className="journal-reader-pane" tabIndex={0} role="region" aria-label="Journal entry" aria-busy={state.readingJournal} onScroll={event => { if (state.followLatest && event.currentTarget.scrollTop > 8) controller.pinJournal(); }} onPointerDown={() => { if (state.followLatest && state.journal) controller.pinJournal(); }}>
         {state.journal ? <MyReservoirJournalDetail
-          key={`${summary.sessionId}:${summary.generation}:${state.journal.entryId}`}
           journal={state.journal} revision={state.journalRevision} config={summary.config}
           onRefreshEvidence={() => void controller.refreshJournal()} refreshing={state.readingJournal}
         /> : <div className="my-reservoir-empty">
           <h3>{summary.journalCount ? 'Choose a journal to read' : 'No saved journal yet'}</h3>
           <p>Entries appear here after they are saved and checked. Pending or failed writing remains available in the session details.</p>
         </div>}
+        </div>
       </div>
-      <section className="my-reservoir-history" aria-label="Journal history">
-        <p className="my-reservoir-history-order">History window · newest first</p>
-        {state.readingPage && <p role="status">Reading journal history…</p>}
+      <details className="journal-history-disclosure"><summary>Journal history</summary><section className="my-reservoir-history" aria-label="Journal history">
+        <p className="my-reservoir-history-order" role="status">{state.readingPage ? 'Updating history…' : 'History · newest first'}</p>
         <ul className="my-reservoir-journal-list">{page?.entries.map(entry => <li key={entry.entryId}>
           <button aria-pressed={state.journal?.entryId === entry.entryId} onClick={() => void controller.selectJournal(entry.entryId)}>
             <strong>Step {entry.observedStep}</strong>
@@ -174,7 +169,7 @@ export default function MyReservoirJournals({ state, controller }: { state: MyRe
           <span className="my-reservoir-small">{page.total === 0 ? '0 journals' : `${page.offset + 1}–${page.offset + page.entries.length} of ${page.total}`}</span>
           <button disabled={state.readingPage || !page.hasMore} onClick={() => void controller.pageJournals('older')}>Older history</button>
         </div>}
-      </section>
+      </section></details>
     </div>
   </section>;
 }

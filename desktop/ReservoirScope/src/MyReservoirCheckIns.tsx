@@ -49,20 +49,20 @@ export default function MyReservoirCheckIns({ state, controller, onBlindReadingC
   const savedCount = checkIns.slots.filter(slot => slot.entryId).length, next = checkIns.slots.find(slot => slot.status === 'pending'), blind = (loading || answers !== null) && !revealed;
   const read = async () => { setLoading(true); setRevealed(false); onBlindReadingChange?.(true); setError(''); try { const result = await controller.loadCheckInAnswers(); setAnswers(shuffleCheckInAnswers(result)); setRevealed(false); } catch (reason) { setError(errorText(reason)); onBlindReadingChange?.(false); } finally { setLoading(false); } };
   return <section className="my-reservoir-check-ins" aria-label="Scheduled conversations">
-    <header><h2>Scheduled conversations</h2><p>{savedCount} saved answers from {checkIns.slots.length} scheduled check-ins · {checkIns.slots.length - savedCount} without a saved answer.</p>
+    <header><h2>Scheduled conversations</h2><p>{savedCount} of {checkIns.slots.length} answers saved.</p>
       {!blind && <p>{checkIns.complete ? 'The schedule is complete. Every opportunity remains listed below, including those without an applied answer.' : next ? <>Next scheduled at {formatSessionDuration(next.scheduledSeconds)} running time{summary.elapsedSeconds >= next.scheduledSeconds ? ' · waiting for a safe writing boundary' : ` · in ${formatSessionDuration(next.scheduledSeconds - summary.elapsedSeconds)}`}.</> : 'Finishing the final check-in and its feedback.'}</p>}
     </header>
     {!answers && <button disabled={loading || savedCount === 0} onClick={() => void read()}>{loading ? 'Loading saved answers…' : 'Read answers without hour labels'}</button>}
     {error && <p role="alert">{error}</p>}
     {answers && <><p className="my-reservoir-small">This reading holds {answers.length} saved answers from when it was opened. Close and reopen to include later answers.</p><CheckInReading answers={answers} revealed={revealed} onReveal={() => { setRevealed(true); onBlindReadingChange?.(false); }} onClose={() => { setAnswers(null); onBlindReadingChange?.(false); }} onOpen={id => void controller.selectJournal(id)}/></>}
     {!blind && <>
-      <details className="my-reservoir-details"><summary>Schedule and outcomes · {checkIns.slots.length} opportunities</summary><ul className="my-reservoir-check-in-slots">{checkIns.slots.map(slot => <CheckInSlot key={slot.ordinal} slot={slot} controller={controller} reading={state.readingJournal}/>)}</ul></details>
+      <details className="my-reservoir-details" open><summary>Schedule and outcomes · {checkIns.slots.length} opportunities</summary><ul className="my-reservoir-check-in-slots">{checkIns.slots.map(slot => <CheckInSlot key={slot.ordinal} slot={slot} controller={controller} reading={state.readingJournal}/>)}</ul></details>
       <details className="my-reservoir-details"><summary>Edit future check-ins</summary>
         {checkIns.canEdit ? <CheckInEditor key={`${summary.sessionId}:${summary.generation}:${summary.revision}`} state={state} controller={controller}/> : <p>{checkIns.complete ? 'This schedule has finished.' : 'Pause and let any writing or saving settle before editing future check-ins.'}</p>}
         <p className="my-reservoir-small">The interval and final time stay fixed. Original settings and each accepted change remain in the saved history.</p>
       </details>
       <details className="my-reservoir-details"><summary>Prompt and context history · current revision {checkIns.settings.revision}</summary>{(checkIns.settingsHistory ?? [checkIns.settings]).map(settings => <section key={settings.revision}><h3>Revision {settings.revision} · {contextLabel(settings.includeTelemetry)}</h3>{'elapsedMillis' in settings && typeof settings.elapsedMillis === 'number' && <p>Saved at {formatSessionDuration(settings.elapsedMillis / 1000)} running time.</p>}<pre>{settings.prompt}</pre></section>)}</details>
     </>}
-    <p className="my-reservoir-small">This is one developing sequence: earlier replies can affect later writing. Plain prompts receive no session history. Read descriptions of experience with curiosity; these answers alone do not establish subjective experience.</p>
+    <p className="my-reservoir-small">Earlier replies can shape later writing. Plain prompts receive no session history.</p>
   </section>;
 }

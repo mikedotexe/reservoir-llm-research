@@ -26,11 +26,11 @@ describe('My reservoir explicit operation and evidence', () => {
   });
   it('keeps surface state separate from compact sensory fill and preserves exact disclosures', () => {
     const html = renderToStaticMarkup(<MyReservoirVisuals summary={reservoirSummary({ step: 3 })} frame={reservoirFrame(3)} node={0} onNode={() => {}} pose={DEFAULT_CAMERA} onPose={() => {}} tableOnly/>);
-    expect(html).toContain('My reservoir · 32 coordinates'); expect(html).toContain('Separate reduced sensory'); expect(html).toContain('Exact fill values, interpretation and graphics recovery'); expect(html).toContain('Exact retained fill'); expect(html).toContain('Sensory eigenvalues'); expect(html).toContain('0.125'); expect(html).not.toContain('evidence of learned');
+    expect(html).toContain('My reservoir · 32 coordinates'); expect(html).toContain('Separate reduced sensory'); expect(html).toContain('Measurement details'); expect(html).toContain('Exact fill'); expect(html).toContain('Sensory eigenvalues'); expect(html).toContain('0.125'); expect(html).not.toContain('evidence of learned');
   });
   it('does not turn unavailable fill into a zero value or spherical measurement', () => {
     const html = renderToStaticMarkup(<MyReservoirVisuals summary={reservoirSummary({ step: 3 })} frame={{ ...reservoirFrame(3), fillPercent: null }} node={0} onNode={() => {}} pose={DEFAULT_CAMERA} onPose={() => {}} tableOnly/>);
-    expect(html).toContain('No retained fill measurement'); expect(html).not.toContain('Retained fill 0 percent');
+    expect(html).toContain('No valid fill measurement.'); expect(html).not.toContain('Retained fill 0 percent');
     const restored = renderToStaticMarkup(<MyReservoirVisuals summary={reservoirSummary({ step: 30 })} frame={null} node={0} onNode={() => {}} pose={DEFAULT_CAMERA} onPose={() => {}} tableOnly/>);
     expect(restored).toContain('global step 30'); expect(restored).toContain('Current frame unavailable'); expect(restored).not.toContain('Waiting for the first observation');
   });
@@ -46,7 +46,7 @@ describe('My reservoir explicit operation and evidence', () => {
   });
   it('keeps independent reading and labels new journals without moving current selection', async () => {
     const { controller, push } = reservoirFixture(); await controller.create(DEFAULT_SUSTAINED_CONFIG); await settle(); push({ revision: '7', step: 7, journalCount: 2, turnCount: 2 }); await controller.selectJournal('journal-1'); push({ revision: '10', step: 10, journalCount: 3, turnCount: 3 });
-    const html = renderToStaticMarkup(<MyReservoirJournals state={controller.snapshot()} controller={controller}/>); expect(html).toContain('1 new'); expect(html).toContain('Entry at step 3'); expect(html).toContain('reading never moves the live clock');
+    const html = renderToStaticMarkup(<MyReservoirJournals state={controller.snapshot()} controller={controller}/>); expect(html).toContain('1 new'); expect(html).toContain('Entry at step 3'); expect(html).toContain('class="journal-reader-pane"');
   });
   it('labels pending save, explicit retry and skip without inventing successful durability', () => {
     const { controller } = reservoirFixture(), state = { ...controller.snapshot(), summary: reservoirSummary({ phase: 'storageBlocked', canStart: false, canRetrySave: true, canSkipFeedback: true, pendingSave: { entryId: 'pending-j', observedStep: 30, attemptId: 4 } }) };

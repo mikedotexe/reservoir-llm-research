@@ -1,5 +1,12 @@
 # Reservoir Scope: current status and next work
 
+**November 15, 2026 · 0.52.0 journal-first UI.** The local preview puts stable
+journal reading first, groups controls beside it (or behind a compact-width
+menu), and adds a quadrant fill view with an explicitly magnified detail scale.
+Scheduled outcomes start expanded; occasional tools and diagnostics collapse.
+Frontend checks pass. The three running 0.51.0 apps are unchanged.
+[Release and qualification](RELEASE-0.52.0.md).
+
 **November 15, 2026 · 0.51.0 parameterized experiments.** A new opt-in session can
 choose numerical arguments, retain identified results, repeat from saved origins,
 and separately apply a bounded measured impulse. Native scripted execution,

@@ -1,5 +1,4 @@
 import { useLayoutEffect, useRef, useState } from 'react';
-import { version as appVersion } from '../package.json';
 import RecordedExperiments from './RecordedExperiments';
 import GuidedTour from './GuidedTour';
 import CasesWorkspace from './CasesWorkspace';
@@ -20,7 +19,6 @@ export default function App() {
   const [openRequest,setOpenRequest]=useState<RecordOpenRequest|null>(null);
   const [experimentView,setExperimentView]=useState<'library'|'recording'|'fresh'>('library');
   const [workspace, setWorkspace] = useState<Workspace>('Study');
-  const [aboutOpen, setAboutOpen] = useState(false);
   const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
   const [observatoryView, setObservatoryView] = useState<ObservatoryView>('recordings');
   const main = useRef<HTMLElement>(null);
@@ -51,15 +49,8 @@ export default function App() {
     <a className="skip-link" href="#workspace-main">Skip to workspace</a>
     <header className="app-header">
       <div className="brand"><span className="brand-mark" aria-hidden="true">◉</span><div><strong>Reservoir Scope</strong></div></div>
-      <button aria-expanded={aboutOpen} aria-controls="app-information" onClick={()=>{setAboutOpen(!aboutOpen);setDiagnosticsOpen(false)}}>About this app</button>
+      <nav className="workspace-nav" aria-label="Workspaces">{workspaces.map(name => <button key={name} aria-current={workspace === name ? 'page' : undefined} onClick={() => navigate(name)}>{name}</button>)}</nav>
     </header>
-    {aboutOpen&&<section id="app-information" className="app-information" aria-labelledby="app-information-title">
-      <h2 id="app-information-title">About Reservoir Scope</h2>
-      <p>Version {appVersion} · Explore recordings, run experiments and keep a personal reservoir journal.</p>
-      <p>This app has its own storage, separate from the earlier native macOS app. Windows and Linux remain qualification targets; checks on one platform do not qualify another.</p>
-      <details onToggle={event=>setDiagnosticsOpen(event.currentTarget.open)}><summary>Technical checks and app details</summary>{diagnosticsOpen&&<DesktopDiagnostics/>}</details>
-    </section>}
-    <nav className="workspace-nav" aria-label="Workspaces">{workspaces.map(name => <button key={name} aria-current={workspace === name ? 'page' : undefined} onClick={() => navigate(name)}>{name}</button>)}</nav>
     <FreshClosePanel /><SustainedClosePanel />
     <main id="workspace-main" ref={main} tabIndex={-1}>
       <StudyWalkthrough active={workspace === 'Study'} />
@@ -73,6 +64,7 @@ export default function App() {
       <FreshExperiments active={workspace === 'Experiments' && experimentView==='fresh'} onViewLibrary={() => showExperiments('library')} />
       <RecordedExperiments active={workspace === 'Experiments' && experimentView==='recording'} openRequest={openRequest} />
     </main>
+    <details className="app-technical-details" onToggle={event => setDiagnosticsOpen(event.currentTarget.open)}><summary>Technical checks and app details</summary>{diagnosticsOpen && <DesktopDiagnostics/>}</details>
   </div>;
 }
 

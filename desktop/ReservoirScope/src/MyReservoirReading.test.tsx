@@ -1,5 +1,6 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
+import { MyReservoirBoundary } from './MyReservoir';
 import MyReservoirJournals, { MyReservoirJournalDetail } from './MyReservoirJournals';
 import { DEFAULT_SUSTAINED_CONFIG } from './myReservoirTypes';
 import { journal, reservoirFixture, reservoirSummary, settle } from './myReservoirTestFixtures';
@@ -130,9 +131,9 @@ describe('journal prose and optional evidence', () => {
     expect(html).toContain('Follow latest · 1 new');
     expect(html).toContain('Journal 1 of 3');
     expect(html).toContain('<strong aria-live="polite" aria-atomic="true">Journal 1 of 3</strong>');
-    expect(html).toContain('Your selection stays here as new writing arrives.');
-    expect(html).toContain('<button disabled="">Earlier entry</button>');
-    expect(html).toContain('<button>Later entry</button>');
+    expect(html).toContain('Held here as new writing arrives.');
+    expect(html).toContain('<button disabled="" title="Earlier entry" aria-label="Earlier entry">');
+    expect(html).toContain('<button title="Later entry" aria-label="Later entry">');
     expect(html).toContain('Refresh this page');
     expect(html).toContain('Refresh save and feedback details');
     expect(html).toContain('Newer'); expect(html).toContain('Older');
@@ -150,13 +151,13 @@ describe('journal prose and optional evidence', () => {
     await controller.followLatest();
     const following = renderToStaticMarkup(<MyReservoirJournals state={controller.snapshot()} controller={controller}/>);
     expect(following).toContain('<button aria-pressed="true">Pause following</button>');
-    expect(following).toContain('Following latest: new entries open automatically.');
+    expect(following).toContain('Following latest · scroll to hold this entry.');
     expect(following).toContain('Journal 2 of 2');
     const entry = controller.snapshot().journal;
     controller.pinJournal();
     const pinned = renderToStaticMarkup(<MyReservoirJournals state={controller.snapshot()} controller={controller}/>);
     expect(pinned).toContain('<button aria-pressed="false">Follow latest</button>');
-    expect(pinned).toContain('Your selection stays here as new writing arrives.');
+    expect(pinned).toContain('Held here as new writing arrives.');
     expect(controller.snapshot().journal).toBe(entry);
   });
 
@@ -186,11 +187,11 @@ describe('journal prose and optional evidence', () => {
     await controller.pageJournals('older'); await controller.pageJournals('older');
     const action = vi.spyOn(api, 'action');
     const html = renderToStaticMarkup(<MyReservoirJournals state={controller.snapshot()} controller={controller}/>);
-    expect(html).toContain('History window · newest first');
+    expect(html).toContain('History · newest first');
     expect(html).toContain('Journal 26 of 45');
-    expect(html).toContain('Your selected entry is outside this history window');
-    expect(html).toContain('<button>Earlier entry</button>');
-    expect(html).toContain('<button>Later entry</button>');
+    expect(html).toContain('Held entry · outside this history window.');
+    expect(html).toContain('<button title="Earlier entry" aria-label="Earlier entry">');
+    expect(html).toContain('<button title="Later entry" aria-label="Later entry">');
     expect(html).toContain('Entry at step 78');
     expect(controller.snapshot().journal?.entryId).toBe('journal-26');
     expect(action).not.toHaveBeenCalled();
@@ -200,11 +201,14 @@ describe('journal prose and optional evidence', () => {
     const { controller } = reservoirFixture();
     const base = { ...controller.snapshot(), journal: journal(), journalPosition: 1 };
     for (const [pending, expected] of [
-      [{ pendingSave: { entryId: 'waiting', observedStep: 30, attemptId: 2 } }, 'Writing at step 30 · save not yet confirmed.'],
-      [{ pendingApplication: { entryId: 'saved', observedStep: 30, intendedStep: 31, attemptId: 2 } }, 'Saved writing at step 30 · waiting for application at step 31.'],
+      [{ pendingSave: { entryId: 'waiting', observedStep: 30, attemptId: 2 } }, 'Writing at step 30 is waiting for save confirmation.'],
+      [{ pendingApplication: { entryId: 'saved', observedStep: 30, intendedStep: 31, attemptId: 2 } }, 'Writing from step 30 is saved and prepared for step 31.'],
     ] as const) {
       const html = renderToStaticMarkup(<MyReservoirJournals controller={controller} state={{ ...base, summary: reservoirSummary({ step: 30, journalCount: 1, turnCount: 2, ...pending }) }}/>);
-      expect(html).toContain(`<p class="my-reservoir-journal-progress" role="status">${expected}</p>`);
+      const boundary = renderToStaticMarkup(<MyReservoirBoundary controller={controller} state={{ ...base, summary: reservoirSummary({ step: 30, ...pending }) }}/>);
+      expect(boundary).toContain(expected);
+      expect(html).not.toContain('my-reservoir-journal-progress');
+      expect(html).toContain('class="journal-reader-pane"');
       expect(html).toContain('Entry at step 3');
       expect(html).toContain('first applied at step 4');
       expect(html).not.toContain('first applied at step 31');

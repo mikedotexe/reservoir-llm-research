@@ -57,7 +57,7 @@ describe('sustained quota: volatile work and committed-prefix export', () => {
     expect(recovery).toContain('Unsaved numerical steps and writing are excluded');
     expect(recovery).toContain('historical metadata, not current execution status');
     const workspace = renderToStaticMarkup(<MyReservoir active controller={controller}/>);
-    expect(workspace).toContain('To copy earlier saved history while work is unsaved');
+    expect(workspace).toContain('Pause to export, or inspect a saved snapshot below.');
   });
 
   it('binds prefix export to inspected revision/hash while preserving live state and journal selection', async () => {

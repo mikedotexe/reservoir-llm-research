@@ -132,7 +132,7 @@ describe('check-in outcomes and reading', () => {
   it('keeps all six outcomes visible and gives a calm completed status', () => {
     const { controller } = reservoirFixture(); const state = { ...controller.snapshot(), summary: reservoirSummary({ config: config(), checkIns: answeredSchedule(), phase: 'scheduleComplete', canStart: false }) };
     const html = renderToStaticMarkup(<MyReservoirCheckIns state={state} controller={controller}/>);
-    expect(html).toContain('2 saved answers from 6 scheduled check-ins'); expect(html).toContain('Needs attention'); expect(html).toContain('Missed'); expect(html).toContain('Skipped'); expect(html).toContain('Check-in 6');
+    expect(html).toContain('2 of 6 answers saved.'); expect(html).toContain('Needs attention'); expect(html).toContain('Missed'); expect(html).toContain('Skipped'); expect(html).toContain('Check-in 6');
     const status = renderToStaticMarkup(<MyReservoirStatus state={state}/>);
     expect(status).toContain('Scheduled conversations complete'); expect(status).not.toContain('needs-attention');
   });

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import SurfaceView from './SurfaceView';
 import CoordinateInspector from './CoordinateInspector';
-import RecordedFillSphere from './RecordedFillSphere';
+import FillCrossSection from './FillCrossSection';
 import type { SessionFrame } from './freshTypes';
 import type { CameraPose, ReferenceScene } from './types';
 import type { SustainedSummary } from './myReservoirTypes';
@@ -15,11 +15,10 @@ export default function MyReservoirVisuals({ summary, frame, node, onNode, pose,
   const fillSample = useMemo(() => frame && frame.fillPercent !== null ? { fillPercent: frame.fillPercent, provenance: 'Separate reduced sensory active-mode fill · sustained session', sourceTimeLabel: `Global step ${frame.step} · simulated time ${frame.time ?? 'unavailable'}` } : null, [frame]);
   if (!frame || !reference) return <section className="my-reservoir-live-view my-reservoir-empty" aria-label="Current reservoir visuals"><h2>{summary.step === 0 ? 'Waiting for the first observation' : 'Current frame unavailable'}</h2><p>{summary.step === 0 ? 'Measurements appear after the first numerical step.' : `The session is at global step ${summary.step}; its current frame is unavailable.`}</p></section>;
   return <section className="my-reservoir-live-view" aria-label="Current reservoir visuals">
-    <h2>Current state and sensory fill</h2>
-    <p className="my-reservoir-small">Live frame at step {frame.step}, separate from the selected journal.</p>
+    <p className="my-reservoir-small live-frame-caption">Live frame at step {frame.step}, separate from the selected journal.</p>
     <div className="my-reservoir-primary">
-      <RecordedFillSphere sample={fillSample} tableOnly={tableOnly} compact/>
-      <SurfaceView reference={reference} selected={node} onSelect={onNode} pose={pose} onPose={onPose} tableOnly={tableOnly} evidenceLabel="Current backend state"/>
+      <FillCrossSection sample={fillSample}/>
+      <details className="reservoir-state-view"><summary>Recurrent state · 32 coordinates</summary><SurfaceView reference={reference} selected={node} onSelect={onNode} pose={pose} onPose={onPose} tableOnly={tableOnly} evidenceLabel="Current backend state"/></details>
     </div>
     <details className="my-reservoir-details"><summary>Current numerical measurements and exact inputs</summary>
       <p>Sensory fill is a smoothed estimate of active sensory modes, separate from recurrent state and the encoded text-input signal. It is a percentage, not a rate.</p>

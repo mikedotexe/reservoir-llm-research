@@ -1,8 +1,15 @@
 # Reservoir Scope · current candidates
 
+**November 15 UI preview:** local 0.52.0 reorganizes the desktop around stable
+journal reading, compact controls and a finer fill display. Its separate native
+preview uses copied history. The three active 0.51.0 model sessions retain their
+binaries and settings. [Qualification](../desktop/ReservoirScope/RELEASE-0.52.0.md).
+This does not replace the sharing candidate or frozen instrument below.
+
 **November 15 development note:** local 0.51.0 adds opt-in parameterized copied
 experiments and immutable follow-up references. Its distinct native qualification
-app is preserved and closed; the current three-model 0.50.0 cohort is unchanged.
+app is preserved and closed; the then-current 0.50.0 cohort was unchanged during
+qualification and was subsequently stopped for fresh 0.51.0 sessions.
 [Qualification and limits](../desktop/ReservoirScope/RELEASE-0.51.0.md).
 The sharing candidate and frozen instrument below remain unchanged.
 
