@@ -192,7 +192,7 @@ fn validate_prediction(
 }
 fn raw_matrix(r: &SustainedCompactSonarReport) -> Result<Vec<Vec<f64>>> {
     if let Some(f) = &r.fallback {
-        Ok((0..32)
+        Ok((0..r.origin.state.len())
             .map(|row| {
                 (0..48)
                     .map(|col| (f.positive[col][row] - f.negative[col][row]) / (2.0 * r.epsilon))
@@ -536,7 +536,7 @@ pub fn validate_compact_sonar_report(r: &SustainedCompactSonarReport) -> Result<
         &r.calibration_negative,
         &r.row_gains,
     ] {
-        vector(v, 32, "compact calibration")?;
+        vector(v, r.origin.state.len(), "compact calibration")?;
     }
     ensure(
         r.row_gains
@@ -564,7 +564,7 @@ pub fn validate_compact_sonar_report(r: &SustainedCompactSonarReport) -> Result<
             "Invalid signed fallback",
         )?;
         for v in f.positive.iter().chain(&f.negative) {
-            vector(v, 32, "signed fallback response")?;
+            vector(v, r.origin.state.len(), "signed fallback response")?;
             ensure(
                 v.iter().all(|x| x.abs() <= 2.0),
                 "Fallback response out of bounds",
@@ -630,7 +630,7 @@ pub fn validate_sonar_question_report(r: &SustainedSonarQuestionReport) -> Resul
         "Invalid question outcome dimensions",
     )?;
     for v in r.measured_gap.iter().chain(&r.predicted_gap) {
-        vector(v, 32, "question gap")?;
+        vector(v, r.origin.state.len(), "question gap")?;
     }
     let magnitude = r
         .measured_gap
@@ -704,8 +704,8 @@ pub(super) fn validate_question_forecast(p: &SustainedSonarProbeReceipt) -> Resu
             .as_ref()
             .ok_or_else(|| invalid("Missing question application origin"))?;
         validate_origin(&q.alternative_origin)?;
-        vector(&q.actual_delta, 32, "question actual delta")?;
-        vector(&q.alternative_delta, 32, "question alternative delta")?;
+        vector(&q.actual_delta, o.state.len(), "question actual delta")?;
+        vector(&q.alternative_delta, o.state.len(), "question alternative delta")?;
         ensure(
             q.alternative_origin == alternative(o, q.question)
                 && q.difference_l2 == distance(&q.actual_delta, &q.alternative_delta)

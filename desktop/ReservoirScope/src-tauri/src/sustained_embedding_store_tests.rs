@@ -38,6 +38,7 @@ fn setup(
     };
     let engine = SustainedSession::new(config.specification().unwrap()).unwrap();
     let mut manifest = Manifest {
+        configuration_changes: vec![],
         format: "reservoir-sustained-bundle-v1".into(),
         session_id: "embedding-store-test".into(),
         generation: "1".into(),

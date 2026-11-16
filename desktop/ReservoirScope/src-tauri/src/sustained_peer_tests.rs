@@ -32,7 +32,7 @@ fn create(
 fn next(s: &SustainedState, epoch: u64) -> Box<SustainedPendingLanguage> {
     for _ in 0..100 {
         match s.worker_boundary(epoch).unwrap() {
-            Work::Provider(p, _) => return p,
+            Work::Provider(p, _, _permit) => return p,
             Work::Continue(_) => {}
             _ => panic!("expected writing boundary"),
         }

@@ -40,7 +40,7 @@ fn next_provider(
 ) -> Box<reservoir_core::sustained::SustainedPendingLanguage> {
     for _ in 0..5000 {
         match s.worker_boundary(epoch).unwrap() {
-            Work::Provider(p, _) => return p,
+            Work::Provider(p, _, _permit) => return p,
             Work::Continue(_) => {}
             _ => panic!("expected a surface-fixture writing boundary"),
         }

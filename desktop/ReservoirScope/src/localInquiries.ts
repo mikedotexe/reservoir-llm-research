@@ -1,3 +1,4 @@
+import { nodeVector } from './sonar';
 import type { SustainedActionReceipt, SustainedContinuityState, SustainedInquiryDecision, SustainedInquiryJournal, SustainedInquiryReceipt } from './myReservoirTypes';
 
 const record = (value: unknown): value is Record<string, unknown> => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -72,7 +73,7 @@ export function validContinuityState(value: unknown, durableStep: number, validR
     && inquiry.openedAppliedStep > inquiry.openedObservedStep && count(inquiry.lastContinuedStep, durableStep) && inquiry.lastContinuedStep >= inquiry.openedAppliedStep
     && count(inquiry.continuationCount, 10000) && controls(inquiry.openingControls) && record(inquiry.baseline)
     && inquiry.baseline.step === inquiry.openedObservedStep && scalar(inquiry.baseline.rms, 0, 1) && scalar(inquiry.baseline.sensoryFill, 0, 100)
-    && vector(inquiry.baseline.state, 32, 1) && journals(inquiry.history, 4, inquiry.lastContinuedStep - 1);
+    && nodeVector(inquiry.baseline.state, -1, 1) && journals(inquiry.history, 4, inquiry.lastContinuedStep - 1);
 }
 
 export function sameInquiryDecision(left: SustainedInquiryDecision | undefined, right: SustainedInquiryDecision | undefined): boolean {
@@ -85,7 +86,7 @@ export function validProbeReceipt(receipt: SustainedActionReceipt): boolean {
   const probe = receipt.probe, request = receipt.request;
   if (request?.kind !== 'probe') return probe === undefined;
   if (!probe || !validProbeVector(probe.requestedVector) || !validProbeVector(probe.appliedVector)
-    || !vector(probe.stateDeltaVector, 32, 2) || !validProbeVector(request.vector)) return false;
+    || !nodeVector(probe.stateDeltaVector, -2, 2) || !validProbeVector(request.vector)) return false;
   return probe.requestedVector.every((x, i) => x === request.vector[i] && x === probe.appliedVector[i])
     && Math.abs(Math.hypot(...probe.stateDeltaVector) - receipt.stateDeltaL2) <= 1e-8
     && Math.abs(Math.max(...probe.stateDeltaVector.map(Math.abs)) - receipt.stateDeltaMaxAbs) <= 1e-8;

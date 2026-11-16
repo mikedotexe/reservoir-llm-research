@@ -1,5 +1,15 @@
 # Reservoir Scope: current status and next work
 
+**November 15, 2026 · Development: agent research API.** The isolated
+`codex/agent-research-api` branch adds authenticated loopback HTTP, a Python CLI,
+native research controls, independent concurrent runs, recipes, stable journal
+pages, verified exports, and recorded configuration phases. Future interventions
+can grow the reservoir while preserving existing state/connections or admit a
+custom prompt at a step or active-time boundary. Core, host, frontend, CLI, and
+fake-provider workflow checks passed. OS custom-scheme handoff remains unverified
+because the test browser blocked it. This is not a release or a deployment to the
+three existing experiments. [Usage, contract, and qualification](RESEARCH-API.md).
+
 **November 15, 2026 · 0.50.0 compact scanning and numerical questions.** The native
 integration adds independent fresh-probe validation, signed-measurement fallback,
 model-selected counterfactual questions and separately authorized question-vector

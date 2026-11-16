@@ -57,7 +57,7 @@ fn answer() -> LanguageResponse {
 }
 fn drive(s: &SustainedState, epoch: u64) -> bool {
     match s.worker_boundary(epoch).unwrap() {
-        Work::Provider(p, _) => {
+        Work::Provider(p, _, _permit) => {
             s.settle(epoch, p.attempt_id, Ok(answer()), None, 1)
                 .unwrap();
             true
@@ -129,7 +129,7 @@ fn pause_before_dispatch_never_starts_request_and_saved_feedback_waits_for_start
             .request_started
     );
     let epoch = arm(&s);
-    let Work::Provider(p, _) = s.worker_boundary(epoch).unwrap() else {
+    let Work::Provider(p, _, _permit) = s.worker_boundary(epoch).unwrap() else {
         panic!()
     };
     s.pause("pause-inflight".into(), &id, &generation).unwrap();
@@ -191,7 +191,7 @@ fn uncommitted_segment_is_quarantined_when_explicit_skip_changes_pending_history
     let (_d, s, id, generation) = setup(10, 3);
     let epoch = arm(&s);
     until(&s, epoch, |a| a.engine.pending_language().is_some());
-    let Work::Provider(p, _) = s.worker_boundary(epoch).unwrap() else {
+    let Work::Provider(p, _, _permit) = s.worker_boundary(epoch).unwrap() else {
         panic!()
     };
     s.shared.store.fail_next(3);
@@ -521,7 +521,7 @@ fn stop_rejects_late_provider_result_and_subscription_ids_remain_bound() {
     .unwrap();
     let epoch = arm(&s);
     until(&s, epoch, |a| a.engine.pending_language().is_some());
-    let Work::Provider(p, _) = s.worker_boundary(epoch).unwrap() else {
+    let Work::Provider(p, _, _permit) = s.worker_boundary(epoch).unwrap() else {
         panic!()
     };
     s.stop("stop".into(), &id, &generation).unwrap();
@@ -1422,7 +1422,7 @@ fn compact_prompt_memory_and_reader_evidence(version: SustainedPromptVersion) {
     let generation = accepted.generation;
     let epoch = arm(&s);
     until(&s, epoch, |a| a.engine.pending_language().is_some());
-    let Work::Provider(first, _) = s.worker_boundary(epoch).unwrap() else {
+    let Work::Provider(first, _, _permit) = s.worker_boundary(epoch).unwrap() else {
         panic!("expected first explicit scripted response boundary");
     };
     assert!(first.prompt.contains(version.as_str()));
@@ -1445,7 +1445,7 @@ fn compact_prompt_memory_and_reader_evidence(version: SustainedPromptVersion) {
     s.settle(epoch, first.attempt_id, Ok(response), None, 1)
         .unwrap();
     until(&s, epoch, |a| a.engine.pending_memory().is_some());
-    let Work::Provider(second, _) = s.worker_boundary(epoch).unwrap() else {
+    let Work::Provider(second, _, _permit) = s.worker_boundary(epoch).unwrap() else {
         panic!("expected the physically reread journal to prepare the next prompt");
     };
     let memory = second.memory.as_ref().unwrap();
@@ -2606,4 +2606,21 @@ fn journal_directory_refuses_an_unowned_store() {
     let (d, s, id, generation) = setup(10, 2);
     fs::write(d.path().join("store/owner"), b"not this app").unwrap();
     assert!(s.journal_directory(&id, &generation).is_err());
+}
+
+#[test]
+fn configuration_publication_failure_and_ambiguous_success_reconcile_once() {
+    for stage in [1, 3, 4] {
+        let (_d,s,id,_generation)=setup(90,3);
+        let before=s.settings().unwrap();let mut config=s.stored_manifest().unwrap().current_config().clone();config.reservoir_nodes=48;
+        s.shared.store.fail_next(stage);
+        let changed=s.apply_configuration("phase-fault",0,config.clone());
+        if stage==4 {assert!(changed.is_ok());} else {
+            assert!(changed.is_err());assert_eq!(s.settings().unwrap(),before);
+            s.apply_configuration("phase-fault",0,config).unwrap();
+        }
+        let v=s.shared.store.verify(&id).unwrap();assert_eq!(v.manifest.configuration_changes.len(),1);
+        assert_eq!(v.manifest.configuration_changes[0].operation_id,"phase-fault");assert_eq!(v.checkpoint.state.reservoir_state.len(),48);
+        assert_eq!(s.settings().unwrap()["configurationRevision"],1);
+    }
 }

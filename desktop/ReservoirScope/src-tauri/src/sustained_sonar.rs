@@ -58,6 +58,9 @@ impl SustainedState {
             let mut g = self.lock()?;
             active(&mut g, id, generation)?.committed.clone()
         };
+        Self::sonar_checkpoint(id, generation, checkpoint, scan, question)
+    }
+    pub fn sonar_checkpoint(id: &str, generation: &str, checkpoint: SustainedCheckpoint, scan: bool, question: Option<SustainedSonarQuestion>) -> Result<SonarView, AppError> {
         let history = checkpoint
             .state
             .sonar_state

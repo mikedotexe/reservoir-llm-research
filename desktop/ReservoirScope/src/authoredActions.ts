@@ -88,7 +88,7 @@ export function validActionReceipt(value: unknown, durableStep: number, config?:
     || value.diagnostics !== undefined && !validControlDiagnostics(value.diagnostics)
     || value.reservoirInput !== undefined && !validReservoirInput(value.reservoirInput)
     || config !== undefined && !validInputForMode(value.reservoirInput, config)
-    || !controls(value.controlsBefore) || !controls(value.controlsAfter) || !scalar(value.stateDeltaL2, 0, 12) || !scalar(value.stateDeltaMaxAbs, 0, 2) || !count(value.clippedCoordinates, 32)
+    || !controls(value.controlsBefore) || !controls(value.controlsAfter) || !scalar(value.stateDeltaL2, 0, 12) || !scalar(value.stateDeltaMaxAbs, 0, 2) || !count(value.clippedCoordinates, config?.reservoirNodes ?? 32)
     || value.inquiry !== undefined && (!validInquiryReceipt(value.inquiry, durableStep) || value.inquiry.journalId !== value.journalId || value.inquiry.appliedStep !== value.appliedStep)
     || !validSonarReceipt(value as unknown as SustainedActionReceipt, config)
     || !validProbeReceipt(value as unknown as SustainedActionReceipt)

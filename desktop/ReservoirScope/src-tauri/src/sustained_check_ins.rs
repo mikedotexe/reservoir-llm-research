@@ -79,7 +79,7 @@ impl SustainedState {
         // Publish a clone first: an unsuccessful save must not alter future prompts.
         let mut engine = a.engine.clone();
         engine
-            .update_check_in_settings(prompt, include_telemetry, a.manifest.elapsed_millis)
+            .update_check_in_settings(prompt, include_telemetry, a.engine.schedule_elapsed(a.manifest.elapsed_millis))
             .map_err(ce)?;
         let event_id = engine
             .events()
@@ -128,13 +128,13 @@ impl SustainedState {
         Ok(Work::Done)
     }
     pub(super) fn check_in_summary(&self, a: &Active) -> Option<CheckInSummary> {
-        let schedule = a.manifest.config.check_in_schedule.as_ref()?;
+        let schedule = a.manifest.current_config().check_in_schedule.as_ref()?;
         let state = a.engine.check_in_state()?;
         let durable = a.committed.state.check_in_state.as_ref()?;
         let mut history = vec![CheckInSettings {
             revision: 0,
-            prompt: schedule.prompt.clone(),
-            include_telemetry: schedule.include_telemetry,
+            prompt: state.initial_settings.as_ref().unwrap_or(schedule).prompt.clone(),
+            include_telemetry: state.initial_settings.as_ref().unwrap_or(schedule).include_telemetry,
             elapsed_millis: 0,
         }];
         history.extend(state.settings_revisions.iter().map(|r| CheckInSettings {

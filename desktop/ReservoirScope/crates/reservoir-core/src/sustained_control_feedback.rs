@@ -1,7 +1,7 @@
 //! Versioned explanations only. Diagnostic candidates never enter the action parser.
 use super::*;
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize, schemars::JsonSchema)]
 pub enum SustainedControlFeedback {
     #[serde(rename = "diagnostic-v1")]
     DiagnosticV1,

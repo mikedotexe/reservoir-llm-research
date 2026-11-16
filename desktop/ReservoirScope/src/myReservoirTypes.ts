@@ -150,6 +150,7 @@ export interface SustainedActions {
   pending?: { attemptId: number; entryId: string; observedStep: number; intendedStep?: number | null; phase: 'saving' | 'prepared'; durablePrepared: boolean; decision: Pick<SustainedActionDecision, 'request' | 'rejection' | 'reservoirInput' | 'inquiry' | 'diagnostics'> } | null;
 }
 export interface SustainedConfig {
+  reservoirNodes?: number; recurrentGain?: number;
   sonar?: SonarConfig;
   peerReading?: SustainedPeerConfig;
   /** Omission retains the historical policies; explicit choices are immutable per session. */
@@ -187,6 +188,8 @@ export const DEFAULT_SUSTAINED_CONFIG: SustainedConfig = {
 };
 export interface SustainedLimits { maximumSteps: number; maximumTurns: number; maximumDurationSeconds: number }
 export interface SustainedSummary {
+  originalConfig?: SustainedConfig; configurationRevision?: number;
+  configurationHistory?: { revision: number; step: number; config: SustainedConfig }[];
   checkIns?: SustainedCheckIns;
   actions?: SustainedActions;
   effectiveLimits?: SustainedLimits; canExtendLimits?: boolean; limitExtensionCount?: number;

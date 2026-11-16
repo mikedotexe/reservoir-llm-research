@@ -16,7 +16,7 @@ pub const SCRIPTED_REPLIES: [&str; 4] = [
     "A narrow pattern remains while other movements fade. I can compare this moment with the last and try a different thought.",
 ];
 
-#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, schemars::JsonSchema)]
 #[serde(rename_all = "lowercase")]
 pub enum LanguageKind {
     Scripted,
@@ -30,7 +30,7 @@ impl LanguageKind {
         }
     }
 }
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize, schemars::JsonSchema)]
 #[serde(rename_all = "camelCase")]
 pub struct LanguageConfiguration {
     pub backend: LanguageKind,

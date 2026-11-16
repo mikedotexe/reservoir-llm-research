@@ -3,12 +3,12 @@ use super::*;
 
 pub const PEER_EXCERPT_BYTES: usize = 2048;
 pub const MAX_PEERS: usize = 3;
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize, schemars::JsonSchema)]
 pub enum SustainedPeerVersion {
     #[serde(rename = "latest-applied-v1")]
     LatestAppliedV1,
 }
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize, schemars::JsonSchema)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedPeerConfig {
     pub version: SustainedPeerVersion,

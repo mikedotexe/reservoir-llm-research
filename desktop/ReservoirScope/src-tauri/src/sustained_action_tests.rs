@@ -26,7 +26,7 @@ fn reply(text: &str) -> LanguageResponse {
 }
 fn dispatch(s: &SustainedState, epoch: u64, text: &str) {
     until(s, epoch, |a| a.engine.pending_language().is_some());
-    let Work::Provider(p, _) = s.worker_boundary(epoch).unwrap() else {
+    let Work::Provider(p, _, _permit) = s.worker_boundary(epoch).unwrap() else {
         panic!("provider boundary")
     };
     s.settle(epoch, p.attempt_id, Ok(reply(text)), None, 1)
@@ -290,7 +290,7 @@ fn authored_action_plain_and_telemetry_checkins_keep_next_text_inert() {
         let mut received = false;
         for _ in 0..10 {
             match s.worker_boundary(epoch).unwrap() {
-                Work::Provider(p, sampling) => {
+                Work::Provider(p, sampling, _permit) => {
                     assert!(p.check_in.is_some());
                     assert_eq!(s.feedback_text_for(epoch, p.attempt_id, raw).unwrap(), raw);
                     assert!(!s.scripted_reply_for(epoch, &p).contains("NEXT:"));

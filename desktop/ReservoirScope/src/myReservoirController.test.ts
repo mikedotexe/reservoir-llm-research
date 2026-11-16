@@ -1,8 +1,16 @@
 import { describe, expect, it, vi } from 'vitest';
 import { DEFAULT_SUSTAINED_CONFIG, effectivePromptVersion, effectiveOutputTokens, effectiveRequestDeadline, type SustainedConfig, type SustainedPromptVersion } from './myReservoirTypes';
 import { reservoirFixture, reservoirSummary, reservoirFrame, journal, row, bundle, manifest, settle } from './myReservoirTestFixtures';
+import { configurationAt } from './myReservoirController';
 
 describe('sustained owner and independent reading', () => {
+  it('renders a boundary journal with its producing configuration', () => {
+    const original={...DEFAULT_SUSTAINED_CONFIG};
+    const next={...original, reservoirNodes:48, turnEvery:4};
+    const summary=reservoirSummary({config:next,originalConfig:original,configurationRevision:1,configurationHistory:[{revision:1,step:7,config:next}]});
+    expect(configurationAt(summary,7)).toEqual(original);
+    expect(configurationAt(summary,8)).toEqual(next);
+  });
   it('keeps omitted legacy writing ceilings while fresh sessions receive explicit room', async () => {
     expect(effectiveOutputTokens(DEFAULT_SUSTAINED_CONFIG)).toBe(1024);
     expect(effectiveRequestDeadline(DEFAULT_SUSTAINED_CONFIG)).toBe(180);

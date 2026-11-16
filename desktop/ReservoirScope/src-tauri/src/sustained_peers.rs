@@ -104,9 +104,9 @@ fn entry(
     checkpoint.validate().map_err(ce)?;
     if checkpoint.state.step != manifest.durable_step
         || manifest.step != manifest.durable_step
-        || checkpoint.state.specification.peer_reading != manifest.config.peer_reading
+        || checkpoint.state.specification.peer_reading != manifest.current_config().peer_reading
         || serde_json::to_value(&checkpoint.state.specification.language).map_err(ce)?
-            != serde_json::to_value(&manifest.config.language).map_err(ce)?
+            != serde_json::to_value(&manifest.current_config().language).map_err(ce)?
     {
         return Err(err("peers", "Peer manifest and checkpoint differ"));
     }
@@ -118,7 +118,7 @@ fn entry(
     let (journal, object_sha) = store.read_journal_proof(&manifest.session_id, &memory.entry.id)?;
     if serde_json::to_vec(&journal.pending.entry).map_err(ce)?
         != serde_json::to_vec(&memory.entry).map_err(ce)?
-        || journal.configured_model != manifest.config.language.model
+        || journal.configured_model != manifest.configuration_changes.iter().rev().find(|c| c.step < memory.entry.observed_step).map(|c| &c.config).unwrap_or(&manifest.config).language.model
         || journal
             .pending
             .response
@@ -156,7 +156,7 @@ pub(super) fn capture(
     pending: &SustainedPendingLanguage,
 ) -> SustainedPeerSnapshot {
     let config = own
-        .config
+        .current_config()
         .peer_reading
         .as_ref()
         .expect("enabled peer reading");
@@ -203,7 +203,7 @@ pub(super) fn capture(
                     Ok(m) => m,
                     Err(_) => continue,
                 };
-                let Some(peer) = &manifest.config.peer_reading else {
+                let Some(peer) = &manifest.current_config().peer_reading else {
                     continue;
                 };
                 if peer.group != config.group || !config.peers.contains(&peer.participant) {
