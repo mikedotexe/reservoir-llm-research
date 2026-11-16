@@ -1,7 +1,7 @@
 # 0.54.0 · Research integration and experiment preflight
 
-November 15, 2026. Isolated development candidate on `codex/research-integration`.
-This joins the completed journal UI checkpoint `2eb8c48` and research API checkpoint
+November 15, 2026. Locally qualified development package on `codex/research-integration`.
+This joins the completed journal UI/theme checkpoint `2a04436` and research API checkpoint
 `b558a07`, preserving both histories and their separate worktrees. It is not the
 sharing candidate and has not been deployed to the three existing experiments.
 
@@ -36,16 +36,19 @@ writing stays intact; nothing silently repairs or guesses the intended request.
 ## Qualification
 
 [Machine-readable checks](validation/2026-11-15-research-integration/checks.json) and
-[isolated API workflow](validation/2026-11-15-research-integration/black-box.json).
+[final isolated API workflow](validation/2026-11-15-research-integration/black-box-qualified.json),
+[bounded real-model workflow](validation/2026-11-15-research-integration/real-model.json),
+and [initial qualification history](validation/2026-11-15-research-integration/checks-initial.json).
 
 - Core suite: 392 passed. Final affected action/configuration/experiment checks:
   47 passed; compact scanner checks: 6 passed.
 - Frontend: 628 passed, 1 pre-existing skipped; TypeScript and production build passed.
-- Full host run: 341 passed, 3 ignored, one new growth test exceeded its 30-second
-  operation wait under concurrent suite load. The bounded wait is now 90 seconds,
-  and the test counts entries from the actual committed change boundary. All 11
-  affected API, navigation, configuration, recipe, and growth tests passed afterward.
-  The entire host suite was not repeated after that focused correction.
+- The repeated host suite before the final race fix passed all 342 tests (3 ignored).
+  The real-model workflow then exposed a scheduled resize resuming after Pause.
+  Commit `4e5a02e` makes lifecycle intent authoritative under the run gate, also
+  protecting prompt admission and cancellation cleanup. A deterministic regression
+  passed. The final full host suite passed 343 tests, with 3 ignored and
+  zero failures.
 - CLI: 5 passed. Real CLI preflight returned 0 for valid input and 1 for invalid input.
 - The isolated black-box workflow used three fake-provider arms and a separate
   scripted v4 growth arm. It checked prefix-stable pagination, step-scheduled growth,
@@ -55,16 +58,39 @@ writing stays intact; nothing silently repairs or guesses the intended request.
 - Native 0.54 debug bundle built and signed ad hoc. A separate 48-node scripted
   preview saved three entries; its copied measurements loaded by exact identity and
   preflight displayed all malformed-command issues. The preview app was then quit.
-  No real model was called for these checks.
+  The final blue-theme bundle reopened that same retained run and loaded its exact
+  step-6 measurements. The GUI was then closed; this did not dispatch model work.
+- The final bounded model check used the existing laptop loopback service and
+  `ministral-3:8b-instruct-2512-q4_K_M`, in a new app data root. It saved three
+  complete responses, paused and explicitly resumed, grew from 32 to 48 nodes at
+  step 4, admitted an exact passive prompt at step 5, retrieved every journal
+  through the CLI, stopped at step 7, and verified its three-entry export. Two
+  ordinary v4 prompts and one custom prompt reached the model. The earlier attempt
+  saved one entry before detecting the race and was stopped; its data is retained.
+  No model-writing retry or change to the three existing experiments occurred.
 
 The development app is `target/debug/bundle/macos/Reservoir Research Integration.app`
 under this worktree, with identifier `research.reservoir.scope.integration`. Its data
 is separate from the other app profiles. The binary hash is recorded in checks.json.
+
+## Package and source
+
+The local arm64 ZIP includes the ad-hoc-signed debug app, `reservoirctl.pyz`
+(Python 3.12+, standard library only), API guide, this record, and a scripted growth
+recipe. `IDENTITY.json` binds the source checkpoint, binary and CLI. `SHA256SUMS`
+and the adjacent qualification receipt identify the exact archive. The archive is
+extracted again for signature and file-inventory comparison before acceptance.
+The packaging command is `scripts/package_research_api.py --app APP --output NEW_DIR`;
+it never builds, starts models, changes signing, or copies app profiles.
+
+All work is committed and merged locally; no push, release tag, or publication is
+part of this qualification. The package is not notarized for public distribution.
+The existing three model sessions keep their original app binaries and data.
 
 ## Remaining qualification
 
 Warm/cold OS custom-scheme launching remains unqualified: the verification browser
 blocked the earlier handoff. Parsing and in-app navigation are covered. This work
 also makes no claim about model competence with the new prompt or long-run storage
-behavior; that needs an explicitly selected, bounded model study. Existing runs,
+behavior; the three-response check establishes only the software workflow. Existing runs,
 live beings, private study assets, and published refs were not changed.

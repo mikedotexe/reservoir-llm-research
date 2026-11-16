@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "model": {
+    "digest": "1922accd5827ebe6829e536369195db25eaf664528dc66206d646ea3bb386b71",
+    "model": "ministral-3:8b-instruct-2512-q4_K_M",
+    "status": "found"
+  },
+  "runId": "run-bca298e82d1e44679afa74f0b58964b3",
+  "journals": 3,
+  "pauseResume": true,
+  "growthOutcomeAtPause": "completed",
+  "scheduledGrowth": {
+    "from": 32,
+    "to": 48,
+    "revision": 1
+  },
+  "exactCustomPrompt": true,
+  "cliListAndDetail": true,
+  "completeProviderResponses": 3,
+  "verifiedExport": {
+    "checkpointSha256": "0131ff0a5212f264862c463018ff4e79b77748fe79e5495ac48aa0d0fb5dd7ea",
+    "diagnostics": [],
+    "format": "reservoir-sustained-bundle-v1",
+    "journalCount": 3,
+    "manifestSha256": "1463f7f03a94e63d6147a760d5b140a6046cd3a5a28bcca51ea5817df3f8cf2e",
+    "segmentCount": 14,
+    "sessionId": "run-bca298e82d1e44679afa74f0b58964b3",
+    "sizeBytes": 1398813,
+    "step": 7,
+    "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+  },
+  "finalPhase": "stopped",
+  "qualificationScope": "Software workflow only; no model competence or causal inference",
+  "earlierAttempt": {
+    "journals": 1,
+    "outcome": "Pause/resize race detected; isolated run stopped; deterministic regression and fix at 4e5a02e"
+  },
+  "protocolSha256": "55a940fc84907ce3fc415883deda94741badabbddf092718659cdcd08ce651f1"
+}

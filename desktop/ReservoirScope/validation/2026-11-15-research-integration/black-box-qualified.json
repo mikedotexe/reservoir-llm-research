@@ -1,0 +1,77 @@
+{
+  "status": "passed",
+  "runs": 3,
+  "growthExperimentRun": {
+    "nodes": 48,
+    "reportVersion": "parameterized-v2",
+    "journalProjection": true,
+    "verifiedExport": {
+      "checkpointSha256": "b46d8020de310e92970ae3d8e889a8441e10dcd6e916c39ab41a63eb61ec9ce6",
+      "diagnostics": [],
+      "format": "reservoir-sustained-bundle-v1",
+      "journalCount": 8,
+      "manifestSha256": "0a87d88c960cf7e0fd607bc267262ed995c5f79b8993a68423e02de49ec0d336",
+      "segmentCount": 40,
+      "sessionId": "run-517645a120414b7ab2e05625b4066f5b",
+      "sizeBytes": 5758620,
+      "step": 25,
+      "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+    }
+  },
+  "readOnlyPreflight": true,
+  "cliValidationExitCodes": [
+    0,
+    1
+  ],
+  "maximumConcurrentProviderCalls": 1,
+  "providerCalls": 27,
+  "stablePagination": true,
+  "scheduledGrowth": {
+    "from": 32,
+    "to": 48,
+    "boundaryStep": 7
+  },
+  "scheduledCustomPrompt": true,
+  "codecTransition": true,
+  "restartDispatches": 0,
+  "stopSupersedesPendingChange": true,
+  "cliEntries": 8,
+  "verifiedExports": [
+    {
+      "checkpointSha256": "2dc92d9db90f2a2f0079e89e25283e833928155610db88610aaf88e8625b6858",
+      "diagnostics": [],
+      "format": "reservoir-sustained-bundle-v1",
+      "journalCount": 8,
+      "manifestSha256": "8f78d4e7deff7043556521f8af03c16848c56eeae060d0117b17b33a064c3cfc",
+      "segmentCount": 39,
+      "sessionId": "run-3c02690667a74f72a536c80ae618e62c-0",
+      "sizeBytes": 2951173,
+      "step": 22,
+      "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+    },
+    {
+      "checkpointSha256": "80d2d6806671adb33b309f121497f6294482d73b622dd8b14ae48fa2784b5e06",
+      "diagnostics": [],
+      "format": "reservoir-sustained-bundle-v1",
+      "journalCount": 8,
+      "manifestSha256": "ffbdb269cd1d48a329008f4750a0c7c8b98945181d965fc465dc86d9cc1e5a6a",
+      "segmentCount": 41,
+      "sessionId": "run-3c02690667a74f72a536c80ae618e62c-1",
+      "sizeBytes": 2996983,
+      "step": 25,
+      "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+    },
+    {
+      "checkpointSha256": "58dce4a9623554ab0935b1dc51997bdfec67d43f95860430e2c7533b15ae5673",
+      "diagnostics": [],
+      "format": "reservoir-sustained-bundle-v1",
+      "journalCount": 8,
+      "manifestSha256": "c0b988480f92213e2f88e43a890e89abcd1f5365b711e614baf3b26974365daa",
+      "segmentCount": 39,
+      "sessionId": "run-3c02690667a74f72a536c80ae618e62c-2",
+      "sizeBytes": 2878786,
+      "step": 25,
+      "verification": "Exact genesis and contiguous event/numerical replay; journal/save/application consistency. This does not authenticate provider execution or physical power-loss durability."
+    }
+  ]
+}

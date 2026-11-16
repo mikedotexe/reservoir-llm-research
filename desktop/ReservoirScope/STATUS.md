@@ -1,5 +1,12 @@
 # Reservoir Scope: current status and next work
 
+**November 15, 2026 · 0.54.0 local API package.** Agent HTTP/CLI workflows,
+scheduled growth and prompts, verified journal/export access, and the current blue
+journal UI are integrated. Real-model qualification caught and fixed a Pause/resize
+race. The app and standalone Python CLI are packaged with identity and verification
+receipts. OS custom-scheme handoff remains unqualified; this is an ad-hoc-signed
+local build. [Qualification](RELEASE-0.54.0.md) · [Agent guide](RESEARCH-API.md).
+
 **November 15, 2026 · 0.54.0 development integration.** The separate
 `codex/research-integration` worktree joins the completed research API and 0.53
 journal UI checkpoints. New `experiments-v4` runs support growth with preserved

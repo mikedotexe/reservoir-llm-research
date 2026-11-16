@@ -1,5 +1,13 @@
 # Reservoir Scope · current candidates
 
+**November 15 API integration:** local 0.54.0 joins the agent API/CLI with the
+completed 0.53.1 journal theme. Its isolated qualification includes scripted
+multi-run workflows and three real-model responses with pause/resume, scheduled
+growth and an exact prompt, CLI reads and verified export. The ad-hoc-signed macOS
+package includes a standalone Python CLI. OS URL handoff remains unqualified;
+this does not replace the sharing candidate or frozen instrument below.
+[Package qualification](../desktop/ReservoirScope/RELEASE-0.54.0.md).
+
 **November 15 UI preview:** local 0.53.1 adds a blue, line-based theme to the 0.53.0
 model/run identity and entry-linked action strip in the journal-first layout.
 Its separate native preview uses

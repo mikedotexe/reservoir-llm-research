@@ -10,6 +10,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import plistlib
 import shutil
 import subprocess
 import tempfile
@@ -25,6 +26,9 @@ def main():
     a = p.parse_args()
     app = a.app.resolve()
     assert (app / 'Contents/MacOS/reservoir-scope-desktop').is_file(), 'Select a built app'
+    info = plistlib.loads((app / 'Contents/Info.plist').read_bytes())
+    assert info['CFBundleIdentifier'] == 'research.reservoir.scope.integration', 'Select the isolated research profile'
+    assert info['CFBundleShortVersionString'] == json.loads((ROOT / 'desktop/ReservoirScope/package.json').read_text())['version'] == '0.54.0', 'Source and package must both be 0.54.0'
     subprocess.run(['codesign', '--verify', '--deep', '--strict', str(app)], check=True)
     output = a.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
@@ -35,10 +39,15 @@ def main():
         cli_root = Path(temp)
         shutil.copytree(ROOT / 'reservoir_control', cli_root / 'reservoir_control',
                         ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
-        (cli_root / '__main__.py').write_text('from reservoir_control.cli import main\nmain()\n')
+        (cli_root / '__main__.py').write_text('from reservoir_control.cli import main\nraise SystemExit(main())\n')
         zipapp.create_archive(cli_root, package / 'reservoirctl.pyz', compressed=True)
     desktop = ROOT / 'desktop/ReservoirScope'
     shutil.copy2(desktop / 'RESEARCH-API.md', package / 'RESEARCH-API.md')
+    shutil.copy2(desktop / 'RELEASE-0.54.0.md', package / 'RELEASE-0.54.0.md')
+    evidence = Path('validation/2026-11-15-research-integration')
+    (package / evidence).mkdir(parents=True)
+    for name in ['checks.json', 'checks-initial.json', 'black-box-qualified.json', 'real-model.json']:
+        shutil.copy2(desktop / evidence / name, package / evidence / name)
     shutil.copy2(ROOT / 'research/recipes/growth-experiments-v4.json', package / 'growth-experiments-v4.json')
     (package / 'README.txt').write_text('''Reservoir Research 0.54.0 — local development package
 

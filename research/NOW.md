@@ -1,5 +1,14 @@
 # Current work
 
+**November 15: research API packaged for local use.** At Mike's request, the
+completed API and blue journal UI checkpoints are integrated for local merge.
+The bounded real-model qualification exposed a Pause/resize race; lifecycle
+intent now wins, with regression coverage. The final workflow saved three replies,
+performed scheduled growth and a custom prompt, retrieved journals through the
+CLI, and verified its export. This is software qualification, not a model study;
+the three ongoing experiments remain unchanged. OS URL handoff is still an
+explicit qualification limit. [Record](../desktop/ReservoirScope/RELEASE-0.54.0.md).
+
 **November 15: blue desktop styling.** Local 0.53.1 follows Mike's preference for
 blue accents, less rounding and meaningful section lines. Journal reading and
 entry-linked results are unchanged. [UI record](../desktop/ReservoirScope/RELEASE-0.53.1.md).
