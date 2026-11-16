@@ -1,9 +1,11 @@
 # Reservoir Scope · current candidates
 
-**November 15 UI preview:** local 0.53.0 adds model/run identity and an entry-linked
-action strip to the 0.52.0 journal-first layout. Its separate native preview uses
+**November 15 UI preview:** local 0.53.1 adds a blue, line-based theme to the 0.53.0
+model/run identity and entry-linked action strip in the journal-first layout.
+Its separate native preview uses
 copied history. The three active 0.51.0 model sessions retain their binaries and
-settings. [Qualification](../desktop/ReservoirScope/RELEASE-0.53.0.md)
+settings. [Theme qualification](../desktop/ReservoirScope/RELEASE-0.53.1.md)
+· [Action qualification](../desktop/ReservoirScope/RELEASE-0.53.0.md)
 · [Layout qualification](../desktop/ReservoirScope/RELEASE-0.52.0.md).
 This does not replace the sharing candidate or frozen instrument below.
 

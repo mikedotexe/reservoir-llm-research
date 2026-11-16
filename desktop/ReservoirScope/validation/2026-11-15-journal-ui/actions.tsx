@@ -8,6 +8,7 @@ import actions from '../../src/fixtures/experiments/experiment-actions.json';
 import '../../src/styles.css';
 import '../../src/myReservoir.css';
 import '../../src/journalWorkspace.css';
+import '../../src/desktopTheme.css';
 const { controller } = reservoirFixture();
 const retained = actions.state.recentReceipts[1] as SustainedActionReceipt;
 function Preview() {

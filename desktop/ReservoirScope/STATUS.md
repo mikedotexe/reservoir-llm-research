@@ -1,5 +1,9 @@
 # Reservoir Scope: current status and next work
 
+**November 15, 2026 · 0.53.1 blue desktop theme.** Shared chrome and the journal
+workspace use blue accents, minimal rounding and section dividers. Reading and
+action behavior are unchanged. [Styling qualification](RELEASE-0.53.1.md).
+
 **November 15, 2026 · 0.53.0 entry identity and outcomes.** The local preview
 adds model/run identity beside Journal and a compact action strip linked to each
 entry's receipt. Saved measurements load only by matching result identity and

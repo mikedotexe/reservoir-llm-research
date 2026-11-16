@@ -1,0 +1,59 @@
+/* Shared chrome: quiet blue surfaces and dividers, with color reserved for state. */
+:root {
+  --surface: #0b1220;
+  --surface-raised: #101b2d;
+  --surface-reading: #0e1726;
+  --muted: #9aaac0;
+  --line: #2b3a52;
+  --accent: #91baff;
+  --accent-bright: #bdd5ff;
+  --warning: #d9ad78;
+  /* Existing workspaces use these names for their interactive accents. */
+  --mint: var(--accent);
+  --cyan: var(--accent);
+  color: #e0e7f2;
+  background: var(--surface);
+}
+.app-shell { color: #e0e7f2; }
+.app-shell a { color: var(--accent-bright); }
+.app-shell :is(button, input, select, textarea) { border-radius: 3px; }
+.app-shell button { color: #dbe6f6; background: #142138; border-color: #344762; }
+.app-shell button:hover:not(:disabled) { background: #1c2e49; border-color: #6888b5; }
+.app-shell button.primary-button { color: #0b1830; background: var(--accent); border-color: var(--accent); }
+.app-shell button.primary-button:hover:not(:disabled) { background: var(--accent-bright); border-color: var(--accent-bright); }
+.app-shell :is(button, a, summary, select, input, textarea, canvas, pre[tabindex="0"]):focus-visible { outline-color: var(--accent); }
+.app-shell input { accent-color: var(--accent); }
+.app-shell :is(section, article, fieldset, details, pre, dialog, .table-scroll, .study-table-wrap, .scene-card, .info-card, .notice, .upcoming-card) { border-radius: 0; }
+.app-shell .brand-mark { color: var(--accent-bright); }
+.app-shell .workspace-nav { background: var(--surface); }
+.app-shell .workspace-nav button { border-radius: 0; background: none; border-color: transparent; color: var(--muted); }
+.app-shell .workspace-nav button:hover:not(:disabled) { color: #e0e7f2; background: none; border-color: transparent; }
+.app-shell .workspace-nav button[aria-current] { color: var(--accent-bright); border-bottom-color: var(--accent); }
+.app-shell .experiment-tabs button[aria-current] { color: var(--accent-bright); background: #152741; border-color: #668bc0; }
+.app-shell :is(.scene-card, .info-card, .upcoming-card, .study-facts, .study-example-pair article) { border: 0; border-top: 1px solid var(--line); background: transparent; }
+.app-shell :is(.status-ready, .resource-row span, .study-result-label, .study-action, .study-example-pair .study-outcome) { color: var(--accent-bright); }
+.app-shell :is(.study-kicker, .study-step) { color: var(--accent) !important; }
+.app-shell .study-heading nav a { border-color: #49668d; }
+.app-shell :is(.study-finding, .study-replay-message) { background: #11213a; border-color: var(--accent); }
+.app-shell :is(.study-finding strong, .study-replay-message p) { color: var(--accent-bright); }
+.app-shell .study-table-wrap tbody tr:nth-child(2) { background: #15243b; }
+.app-shell .study-replay-error { border-color: var(--warning); background: #292116; }
+.app-shell .study-replay-error p { color: #e7c9a5; }
+.app-shell .my-reservoir { color: #e0e7f2; }
+.app-shell .my-reservoir p { color: #b2c0d4; }
+.app-shell .my-reservoir :is(.my-reservoir-config, .my-reservoir-recovery, .my-reservoir-authored-actions, .my-reservoir-details) { border: 0; border-top: 1px solid var(--line); background: transparent; border-radius: 0; }
+.app-shell .my-reservoir :is(.my-reservoir-config, .my-reservoir-recovery, .my-reservoir-authored-actions) { padding-left: 0; padding-right: 0; }
+.app-shell .my-reservoir .my-reservoir-journal-list button { border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; }
+.app-shell .my-reservoir .my-reservoir-journal-list button[aria-pressed=true] { border-left: 2px solid var(--accent); background: #14243c; }
+.app-shell .my-reservoir :is(.my-reservoir-journal-status, .my-reservoir-history-status) { color: var(--accent-bright); }
+.app-shell .my-reservoir :is(.my-reservoir-journal-evidence, .my-reservoir-journal-measurements) { border-color: var(--line); }
+.app-shell .my-reservoir .my-reservoir-action-receipt { border-left-color: #6b94cd; }
+.app-shell .my-reservoir .my-reservoir-action-receipt.action-rejected { border-left-color: var(--warning); }
+.app-shell .my-reservoir .my-reservoir-action-receipt.action-unchanged { border-left-color: #63718b; }
+.app-shell .my-reservoir :is(input, select, textarea, pre) { background: #0d192c; border-color: #344762; }
+.app-shell .my-reservoir .my-reservoir-error { border: 0; border-left: 2px solid #d2927e; border-radius: 0; background: #221c20; }
+.app-shell .my-reservoir-measurement-scroll:focus-visible { outline-color: var(--accent); }
+.app-shell .my-reservoir-journal-header .icon-button { background: none; border-color: transparent; }
+.app-shell .my-reservoir-journal-header .icon-button:hover:not(:disabled) { background: #17283f; border-color: #344762; }
+.app-shell .my-reservoir-reading-navigation button { background: none; border-color: transparent; }
+.app-shell .my-reservoir-reading-navigation button:hover:not(:disabled) { background: #17283f; border-color: #344762; }
