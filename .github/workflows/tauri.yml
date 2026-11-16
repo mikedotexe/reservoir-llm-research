@@ -11,6 +11,8 @@ on:
       - 'essentials/**'
       - 'visualizations/reservoir-3d/**'
       - 'research/examples/**'
+      - 'reservoir_control/**'
+      - 'tests/test_reservoir_control.py'
       - 'Cargo.toml'
       - 'Cargo.lock'
       - 'rust-toolchain.toml'
@@ -24,6 +26,8 @@ on:
       - 'essentials/**'
       - 'visualizations/reservoir-3d/**'
       - 'research/examples/**'
+      - 'reservoir_control/**'
+      - 'tests/test_reservoir_control.py'
       - 'Cargo.toml'
       - 'Cargo.lock'
       - 'rust-toolchain.toml'
@@ -45,9 +49,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # GitHub currently documents macos-14 as arm64. Assert this below;
-          # an alias change must fail rather than silently qualify another target.
-          - runner: macos-14
+          # macos-14 retired in November 2026; macos-15 uses native arm64.
+          # Assert this below so an alias change cannot silently qualify another target.
+          - runner: macos-15
             target: aarch64-apple-darwin
             architecture: arm64
             bundle: app
@@ -101,8 +105,15 @@ jobs:
         run: |
           python desktop/ReservoirScope/scripts/check_reference.py
           python -m unittest discover -s desktop/ReservoirScope/scripts -p 'test_*.py'
-          python -m unittest discover -s tests -p 'test_*.py'
           python desktop/ReservoirScope/scripts/stage_resources.py
+      - name: Test portable agent CLI
+        run: python -m unittest discover -s tests -p 'test_reservoir_control.py'
+      - name: Test POSIX research toolkit
+        # The corpus/archive toolkit uses fcntl, resource, directory descriptors,
+        # and POSIX permissions. Its full suite remains required on both Unix
+        # hosts; desktop, staging, and agent CLI tests run on Windows too.
+        if: runner.os != 'Windows'
+        run: python -m unittest discover -s tests -p 'test_*.py'
       - name: Stage verified public bootstrap assets
         # These ignored bundle inputs are downloaded without running them. This
         # does not install an activation runtime or qualify it on the CI host.

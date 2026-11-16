@@ -112,6 +112,23 @@ The existing three model sessions keep their original app binaries and data.
 
 ## Remaining qualification
 
+The first published [CI run](https://github.com/mikedotexe/reservoir-llm-research/actions/runs/43906079904)
+exposed three qualification setup issues. The retired macOS 14 runner could not
+start; the workflow now selects native arm64 macOS 15 and retains its architecture
+assertion. Windows was asked to run the separate POSIX corpus/archive toolkit,
+which requires `fcntl`, `resource`, directory descriptors, and Unix permissions;
+that full suite remains required on Linux/macOS, while desktop, staging, and agent
+CLI tests run on all three platforms. The CLI paths now trigger this workflow too.
+Linux reached a Mac-recorded checkpoint's exact feedback recomputation; those two
+checks now join the existing recording-host replay test. Frozen-byte compatibility
+and newly generated zero-gain replay remain checked on every host. The seven
+affected core tests and five CLI tests passed locally after these changes. The
+replacement CI run must finish before cross-platform build success can be claimed.
+
+[GitHub's runner inventory](https://github.com/actions/runner-images#available-images)
+records the macOS 14 retirement and macOS 15 arm64 label. No production numerical
+validation, fixture bytes, app binary, or retained experiment changed in this repair.
+
 The integration profile passed macOS cold/warm custom-scheme dispatch on November
 16. Other platforms and the normal-profile scheme still need separate qualification.
 Notarization awaits the Apple certificate and credentials described above. This work

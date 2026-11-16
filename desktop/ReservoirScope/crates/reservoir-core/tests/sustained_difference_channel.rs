@@ -133,7 +133,8 @@ fn gain_zero_is_byte_for_byte_the_earlier_mechanism() {
     segment(&base, &s).verify().unwrap();
 
     // A segment recorded by the 0.34.0 binary before this channel existed re-serialises
-    // byte for byte and validates under the new code.
+    // byte for byte on every host. Numerical checkpoint validation recomputes
+    // prepared feedback and belongs with exact replay on the recording host below.
     let frozen = include_bytes!("fixtures/sustained-prompts/v34-gain-zero-segment.json");
     assert_eq!(
         hash(frozen),
@@ -141,8 +142,6 @@ fn gain_zero_is_byte_for_byte_the_earlier_mechanism() {
     );
     let witness: SustainedSegment = serde_json::from_slice(frozen).unwrap();
     assert_eq!(bytes(&witness), frozen.to_vec());
-    witness.initial_checkpoint.validate().unwrap();
-    witness.final_checkpoint.validate().unwrap();
     assert_eq!(witness.initial_checkpoint.state.mechanism, V2);
     assert_eq!(witness.final_checkpoint.state.step, 4);
 }
@@ -152,6 +151,8 @@ fn gain_zero_is_byte_for_byte_the_earlier_mechanism() {
 fn the_0_34_0_witness_segment_replays_exactly_on_the_recording_host() {
     let frozen = include_bytes!("fixtures/sustained-prompts/v34-gain-zero-segment.json");
     let witness: SustainedSegment = serde_json::from_slice(frozen).unwrap();
+    witness.initial_checkpoint.validate().unwrap();
+    witness.final_checkpoint.validate().unwrap();
     witness.verify().unwrap();
 }
 
