@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-16",
+  "timezone": "America/Los_Angeles",
+  "status": "passed",
+  "version": "0.54.0",
+  "binarySha256": "33f7bc0fc2434b397582bc3b7a2a0c3389638e0894377c372984b6bc279c91b1",
+  "profile": "research.reservoir.scope.integration",
+  "scheme": "reservoirscope-dev",
+  "appSource": "Extracted from the qualified 0.54.0 ZIP; bytes and strict code signature previously verified",
+  "osDispatch": "macOS LaunchServices via /usr/bin/open; native UI observed with computer-use accessibility state",
+  "defaultHandler": "NSWorkspace.urlForApplication(toOpen:) resolved to the extracted Reservoir Research Integration.app",
+  "checks": [
+    {
+      "case": "cold run link with explicit application",
+      "observed": "Research runs opened with run-6dd35be65da5442694ebd73ca9ce4b9f selected; retained, 3 entries, step 10"
+    },
+    {
+      "case": "warm exact-entry link",
+      "observed": "Step 6, configuration 0, Scripted parameterized comparison; matching action outcome displayed"
+    },
+    {
+      "case": "warm settings link through default handler",
+      "observed": "Model request queue expanded"
+    },
+    {
+      "case": "warm experiment link through default handler",
+      "observed": "Experiment recipes expanded and experiment-6c8861960095462db63c0c6c7fd8cb05 displayed with one prepared run and no entries"
+    },
+    {
+      "case": "cold exact-entry link through default handler",
+      "observed": "Prior PID 10295 exited; new PID 10804 opened the exact step-6 journal entry"
+    },
+    {
+      "case": "mutation-shaped URL",
+      "observed": "/v1/runs/RUN_ID/actions/start ignored; no operation created, selected entry unchanged, retained run remained at step 10"
+    }
+  ],
+  "preservation": {
+    "retainedRunAdvanced": false,
+    "existingExperimentsChanged": false,
+    "modelRequests": 0,
+    "qualificationAppClosed": true
+  },
+  "scope": [
+    "macOS arm64, extracted integration profile only",
+    "Normal-profile reservoirscope scheme and other operating systems were not dispatched",
+    "No browser policy bypass or Gatekeeper settings change"
+  ],
+  "setupNote": "The first experiment preparation used a non-identifier arm name and was rejected before creating a run; the corrected navigation-only recipe created one never-started scripted run."
+}

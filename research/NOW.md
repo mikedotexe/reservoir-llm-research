@@ -1,5 +1,10 @@
 # Current work
 
+**November 16: API finalization.** Mike selected source publication, OS URL
+qualification and notarization. Cold/warm macOS navigation now passes through the
+registered integration handler without advancing retained runs. Apple signing
+setup is the remaining external dependency. [Evidence and handoff](../desktop/ReservoirScope/RELEASE-0.54.0.md#november-16-finalization).
+
 **November 15: research API packaged for local use.** At Mike's request, the
 completed API and blue journal UI checkpoints are integrated for local merge.
 The bounded real-model qualification exposed a Pause/resize race; lifecycle

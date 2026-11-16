@@ -1,5 +1,11 @@
 # Reservoir Scope · current candidates
 
+**November 16 API finalization:** macOS cold/warm deep-link dispatch passed for
+the extracted 0.54.0 integration app; Mike authorized publishing merged `main`.
+Notarization still needs a Developer ID identity and Apple credentials. Ongoing
+experiments and the frozen/sharing candidates below remain unchanged.
+[Finalization record](../desktop/ReservoirScope/RELEASE-0.54.0.md#november-16-finalization).
+
 **November 15 API integration:** local 0.54.0 joins the agent API/CLI with the
 completed 0.53.1 journal theme. Its isolated qualification includes scripted
 multi-run workflows and three real-model responses with pause/resume, scheduled

@@ -1,5 +1,12 @@
 # Reservoir Scope: current status and next work
 
+**November 16 · URL dispatch verified; source publication authorized.** The
+extracted 0.54.0 integration app passed cold/warm macOS deep links through the
+registered handler, including exact-entry selection and rejection of mutation
+URLs. No existing run advanced. Apple notarization remains blocked on certificate
+and credential setup. [Finalization evidence](RELEASE-0.54.0.md#november-16-finalization)
+· [Signing handoff](NOTARIZATION.md).
+
 **November 15, 2026 · 0.54.0 local API package.** Agent HTTP/CLI workflows,
 scheduled growth and prompts, verified journal/export access, and the current blue
 journal UI are integrated. Real-model qualification caught and fixed a Pause/resize

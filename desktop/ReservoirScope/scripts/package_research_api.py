@@ -48,6 +48,11 @@ def main():
     (package / evidence).mkdir(parents=True)
     for name in ['checks.json', 'checks-initial.json', 'black-box-qualified.json', 'real-model.json']:
         shutil.copy2(desktop / evidence / name, package / evidence / name)
+    finalization = Path('validation/2026-11-16-research-finalization')
+    (package / finalization).mkdir(parents=True)
+    for name in ['deep-links.json', 'notarization.json']:
+        shutil.copy2(desktop / finalization / name, package / finalization / name)
+    shutil.copy2(desktop / 'NOTARIZATION.md', package / 'NOTARIZATION.md')
     shutil.copy2(ROOT / 'research/recipes/growth-experiments-v4.json', package / 'growth-experiments-v4.json')
     (package / 'README.txt').write_text('''Reservoir Research 0.54.0 — local development package
 
@@ -64,8 +69,9 @@ in its examples with python3 reservoirctl.pyz. Explicitly select an instance whe
 several are running. The included growth recipe uses scripted writing by default.
 
 This arm64 debug app is signed ad hoc, not notarized for public distribution.
-OS custom-scheme warm/cold dispatch is not yet qualified. Parser and navigation
-tests are covered. This package does not establish long-run model competence,
+The reservoirscope-dev scheme passed cold/warm macOS dispatch on November 16.
+See RELEASE-0.54.0.md and NOTARIZATION.md for evidence and signing prerequisites.
+This package does not establish long-run model competence,
 cross-platform qualification, or a replacement for the frozen research instrument.
 ''')
     identity = {'version': '0.54.0', 'sourceCommit': subprocess.check_output(

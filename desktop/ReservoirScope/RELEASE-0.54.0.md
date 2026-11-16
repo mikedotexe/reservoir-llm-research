@@ -5,6 +5,22 @@ This joins the completed journal UI/theme checkpoint `2a04436` and research API 
 `b558a07`, preserving both histories and their separate worktrees. It is not the
 sharing candidate and has not been deployed to the three existing experiments.
 
+## November 16 finalization
+
+macOS cold and warm URL dispatch is now qualified for the extracted integration
+app and its registered `reservoirscope-dev` handler. Run, exact journal entry,
+experiment and settings links reached their intended native views. A mutation URL
+was ignored without creating an operation or advancing the retained run. The app
+was closed after verification; no models were called and existing experiments
+were unchanged. [Navigation evidence](validation/2026-11-16-research-finalization/deep-links.json).
+
+Mike authorized publication of the merged `main` history. The local signing
+identity check returned zero valid identities, no Apple environment credentials
+were configured, and the repository Actions secret list was empty. Notarization
+has therefore not been submitted. [Signing prerequisite record](validation/2026-11-16-research-finalization/notarization.json)
+· [Notarization handoff](NOTARIZATION.md). Earlier package/check receipts remain
+historical records of what was known on November 15.
+
 ## Result
 
 The API, CLI, and native Research runs workspace now work with parameterized
@@ -85,14 +101,16 @@ extracted again for signature and file-inventory comparison before acceptance.
 The packaging command is `scripts/package_research_api.py --app APP --output NEW_DIR`;
 it never builds, starts models, changes signing, or copies app profiles.
 
-All work is committed and merged locally; no push, release tag, or publication is
-part of this qualification. The package is not notarized for public distribution.
+The November 15 qualification committed and merged the work locally without
+publishing it. Mike authorized publishing `main` on November 16; no release tag is
+part of this finalization. The package is not notarized for public distribution.
 The existing three model sessions keep their original app binaries and data.
 
 ## Remaining qualification
 
-Warm/cold OS custom-scheme launching remains unqualified: the verification browser
-blocked the earlier handoff. Parsing and in-app navigation are covered. This work
-also makes no claim about model competence with the new prompt or long-run storage
+The integration profile passed macOS cold/warm custom-scheme dispatch on November
+16. Other platforms and the normal-profile scheme still need separate qualification.
+Notarization awaits the Apple certificate and credentials described above. This work
+makes no claim about model competence with the new prompt or long-run storage
 behavior; the three-response check establishes only the software workflow. Existing runs,
-live beings, private study assets, and published refs were not changed.
+live beings and private study assets were not changed by qualification.
