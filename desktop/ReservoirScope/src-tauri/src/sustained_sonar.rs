@@ -24,6 +24,7 @@ impl CompactSonarView {
 #[derive(Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct SonarView {
+    pub model_experiments: Vec<reservoir_core::sustained::SustainedExperimentReport>,
     pub model_compact: Option<CompactSonarView>,
     pub operator_compact: Option<CompactSonarView>,
     pub model_question: Option<Box<SustainedSonarQuestionReport>>,
@@ -75,7 +76,12 @@ impl SustainedState {
             .specification
             .sonar
             .as_ref()
-            .is_some_and(|c| c.version == SustainedSonarVersion::CompactScanV2);
+            .is_some_and(|c| {
+                matches!(
+                    c.version,
+                    SustainedSonarVersion::CompactScanV2 | SustainedSonarVersion::ExperimentsV3
+                )
+            });
         let operator_scan = (scan && !compact)
             .then(|| scan_sustained_checkpoint(&checkpoint))
             .transpose()
@@ -104,6 +110,12 @@ impl SustainedState {
             .as_ref()
             .and_then(|s| s.latest_question.clone());
         Ok(SonarView {
+            model_experiments: checkpoint
+                .state
+                .sonar_state
+                .as_ref()
+                .map(|s| s.experiments.clone())
+                .unwrap_or_default(),
             model_compact,
             operator_compact,
             model_question,

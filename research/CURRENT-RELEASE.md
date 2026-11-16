@@ -1,5 +1,11 @@
 # Reservoir Scope · current candidates
 
+**November 15 development note:** local 0.51.0 adds opt-in parameterized copied
+experiments and immutable follow-up references. Its distinct native qualification
+app is preserved and closed; the current three-model 0.50.0 cohort is unchanged.
+[Qualification and limits](../desktop/ReservoirScope/RELEASE-0.51.0.md).
+The sharing candidate and frozen instrument below remain unchanged.
+
 **November 15 development note:** the local 0.48.0 preview adds optional explicit
 peer journal reading on top of 0.47.0's control feedback and Unicode admission.
 It preserves earlier session contracts and independent study exports. See

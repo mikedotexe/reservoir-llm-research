@@ -962,3 +962,118 @@ fn sonar_disabled_or_unresolved_probes_are_explicitly_rejected() {
         s.shared.store.verify(&m.session_id).unwrap();
     }
 }
+
+#[test]
+fn parameterized_experiment_retry_turn_origin_followup_real_probe_export_and_restart() {
+    use reservoir_core::sustained::SustainedSonarVersion;
+    let d = tempfile::tempdir().unwrap();
+    let root = d.path().join("store");
+    let s = SustainedState::new(root.clone());
+    let mut config = compact_sonar_config(true);
+    config.sonar.as_mut().unwrap().version = SustainedSonarVersion::ExperimentsV3;
+    let m = s.create("new".into(), config).unwrap().summary.unwrap();
+    let epoch = arm(&s);
+    dispatch(&s, epoch, "Establish held text.\nNEXT: NONE");
+    until(&s, epoch, |a| a.engine.step() == 4);
+    let mut vector = vec![0.; 48];
+    vector[0] = 1.;
+    let spec = serde_json::json!({"name":"held-input-comparison","question":"Does held text alter this response?","conditions":[{"label":"held"},{"label":"withdrawn","heldInputScale":0.0}],"probe":{"direction":{"kind":"vector","values":vector},"amplitudes":[0.001,0.003]},"observe":{"steps":[1,2,4,8,16,32,64],"coordinates":[0,1]}});
+    dispatch(
+        &s,
+        epoch,
+        &format!(
+            "Measure the state I saw.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: EXPERIMENT {spec}"
+        ),
+    );
+    s.shared.store.fail_next(3);
+    assert!(s.worker_boundary(epoch).is_err());
+    assert!(s
+        .lock()
+        .unwrap()
+        .active
+        .as_ref()
+        .unwrap()
+        .committed
+        .state
+        .sonar_state
+        .as_ref()
+        .unwrap()
+        .experiments
+        .is_empty());
+    s.retry_save("retry".into(), &m.session_id, &m.generation)
+        .unwrap();
+    let epoch = arm(&s);
+    until(&s, epoch, |a| a.engine.step() == 7);
+    let view = s.sonar_view(&m.session_id, &m.generation, false).unwrap();
+    let r = view.model_experiments[0].clone();
+    assert_eq!(r.origin.step, 6);
+    assert!(r.origin.held_vector.iter().any(|v| *v != 0.));
+    assert!(view.held_input.iter().all(|v| *v == 0.));
+    assert_eq!(r.responses.len(), 8);
+    let p = next_provider(&s, epoch);
+    assert!(p.prompt.contains(&r.id) && p.prompt.contains("EXPERIMENT RESULTS"));
+    s.settle(epoch,p.attempt_id,Ok(response(&format!("Apply measured impulse.\nNEXT: PROBE_EXPERIMENT {{\"id\":\"{}\",\"amplitude\":0.001,\"sign\":\"positive\"}}",r.id))),None,1).unwrap();
+    until(&s, epoch, |a| a.engine.step() == 10);
+    let actions = state(&s);
+    let receipt = &actions["state"]["latestReceipt"];
+    assert_eq!(receipt["status"], "applied");
+    assert_eq!(
+        receipt["experimentProbe"]["forecastResponseL2"][0],
+        receipt["stateDeltaL2"]
+    );
+    let follow = serde_json::json!({"name":"closer-amplitude","followUpOf":r.id,"origin":{"kind":"experiment","id":r.id},"conditions":[{"label":"held"}],"probe":{"direction":{"kind":"experiment","id":r.id},"amplitudes":[0.002]}});
+    dispatch(
+        &s,
+        epoch,
+        &format!("Refine the same origin.\nNEXT: EXPERIMENT {follow}"),
+    );
+    until(&s, epoch, |a| a.engine.step() == 13);
+    s.pause("pause".into(), &m.session_id, &m.generation)
+        .unwrap();
+    drive(&s, epoch);
+    let view = s.sonar_view(&m.session_id, &m.generation, false).unwrap();
+    assert_eq!(view.model_experiments.len(), 2);
+    assert_eq!(view.model_experiments[1].origin, r.origin);
+    if let Ok(folder) = std::env::var("EXPERIMENT_FIXTURE_OUT") {
+        let folder = std::path::PathBuf::from(folder);
+        fs::create_dir_all(&folder).unwrap();
+        fs::write(
+            folder.join("experiment-view.json"),
+            serde_json::to_vec_pretty(&view).unwrap(),
+        )
+        .unwrap();
+        fs::write(
+            folder.join("experiment-actions.json"),
+            serde_json::to_vec_pretty(&state(&s)).unwrap(),
+        )
+        .unwrap();
+    }
+    let before = s.shared.store.verify(&m.session_id).unwrap();
+    let export = d.path().join("export");
+    fs::create_dir(&export).unwrap();
+    let (revision, report) = s
+        .export(&m.session_id, &m.generation, None, &export, &[])
+        .unwrap();
+    assert_eq!(report.checkpoint_sha256, before.report.checkpoint_sha256);
+    let scanned = crate::sustained_store::scan_bundle(
+        &export.join(format!("{}-{}-{}", m.session_id, m.generation, revision)),
+    )
+    .unwrap();
+    assert_eq!(scanned["status"], "scanned");
+    drop(s);
+    let restored = SustainedState::new(root);
+    let recovered = restored
+        .resume(
+            "restore".into(),
+            &m.session_id,
+            &before.manifest.generation,
+            &before.manifest.revision,
+        )
+        .unwrap()
+        .summary
+        .unwrap();
+    let view2 = restored
+        .sonar_view(&m.session_id, &recovered.generation, false)
+        .unwrap();
+    assert_eq!(view2.model_experiments, view.model_experiments);
+}

@@ -4,6 +4,9 @@ use nalgebra::{linalg::SVD, DMatrix};
 #[path = "sustained_sonar_compact.rs"]
 mod compact;
 pub use compact::*;
+#[path = "sustained_experiments.rs"]
+pub(super) mod experiments;
+pub use experiments::*;
 
 pub const SONAR_HORIZON: usize = 64;
 pub const SONAR_HISTORY: usize = 128;
@@ -18,6 +21,8 @@ pub enum SustainedSonarVersion {
     ResponseScanV1,
     #[serde(rename = "compact-scan-v2")]
     CompactScanV2,
+    #[serde(rename = "experiments-v3")]
+    ExperimentsV3,
 }
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -42,6 +47,8 @@ pub struct SustainedSonarPoint {
 #[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedSonarState {
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub experiments: Vec<SustainedExperimentReport>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub latest_compact_scan: Option<Box<SustainedCompactSonarReport>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -488,6 +495,7 @@ pub(super) fn remember(s: &mut SustainedContinuation) {
 }
 
 pub(super) fn validate_state(s: &SustainedContinuation) -> Result<()> {
+    experiments::validate_state(s)?;
     ensure(
         s.sonar_state.is_some() == s.specification.sonar.is_some(),
         "Sonar state differs from its saved capability",
@@ -662,9 +670,31 @@ pub(super) fn parse_decision(
     {
         return;
     }
-    let Some(tail) = d.raw_tail.as_deref().and_then(|t| t.strip_prefix("NEXT:")) else {
+    if experiments::enabled(spec) {
+        let (lines, last) = actions::fresh_control_lines(text);
+        if let Some((_, raw)) = lines.iter().find(|(start, raw)| {
+            Some(*start) == last
+                && (raw.starts_with("NEXT: EXPERIMENT ")
+                    || raw.starts_with("NEXT: PROBE_EXPERIMENT "))
+        }) {
+            if raw.len() <= continuity::V3_ACTION_TAIL_BYTES {
+                d.raw_tail = Some((*raw).to_owned());
+                experiments::parse(spec, raw.strip_prefix("NEXT:").unwrap(), d);
+            } else {
+                d.request = None;
+                d.rejection =
+                    Some("Experiment action exceeds 4096 bytes; shorten the request".into());
+            }
+            return;
+        }
+    }
+    let raw_tail = d.raw_tail.clone();
+    let Some(tail) = raw_tail.as_deref().and_then(|t| t.strip_prefix("NEXT:")) else {
         return;
     };
+    if experiments::parse(spec, tail, d) {
+        return;
+    }
     let words: Vec<_> = tail.split_whitespace().collect();
     let parsed = match words.as_slice() {
         ["SCAN"] => Some(SustainedActionRequest::Scan),
@@ -861,6 +891,7 @@ pub(super) fn validate_receipt(
     s: &SustainedContinuation,
 ) -> Result<()> {
     compact::validate_question_receipt(r, s)?;
+    experiments::validate_receipt(r, s)?;
     match (&r.request, &r.sonar_scan) {
         (Some(SustainedActionRequest::Scan), Some(scan)) => ensure(
             s.specification.sonar.is_some()
@@ -946,7 +977,7 @@ pub(super) fn validate_receipt(
 }
 pub(super) fn render_context(s: &SustainedContinuation) -> String {
     if compact::enabled(&s.specification) {
-        return compact::render_compact_context(s);
+        return compact::render_compact_context(s) + &experiments::render(s);
     }
     let config = s
         .specification

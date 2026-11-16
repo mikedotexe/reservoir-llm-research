@@ -1,3 +1,4 @@
+import {ExperimentView,ExperimentReceiptView} from './MyReservoirExperiments';
 import { useEffect, useRef, useState } from 'react';
 import { invoke, isTauri } from '@tauri-apps/api/core';
 import type { SustainedConfig, SustainedSummary, SustainedActionReceipt } from './myReservoirTypes';
@@ -11,6 +12,7 @@ export function SonarSetup({config,setConfig}:{config:SustainedConfig;setConfig:
       setConfig(withSonar(config,e.target.checked));
     }}/>Allow the model to scan copies of its reservoir</label>
     <p>Compact scans measure local sensitivity, then check it with fresh inputs. Failed checks fall back to measured signed responses. The model can choose a question about its starting state, held text input or recurrence and receive a measured comparison on copies. Results return to later ordinary writing; these copied experiments add no numerical input themselves. Selecting scanning sets a 512 MiB storage budget and, for local models, at least 32,768 context tokens, editable in Advanced settings. Storage limits may end a run before its time limit.</p>
+    {config.sonar&&config.sonar.version!=='response-scan-v1'&&<><label><input type="checkbox" checked={config.sonar.version==='experiments-v3'} onChange={e=>setConfig({...config,sonar:{...config.sonar!,version:e.target.checked?'experiments-v3':'compact-scan-v2'}})}/>Allow customized experiments and named follow-ups</label><p>The model can choose vectors, mixtures, amplitudes, pulse timing, comparison conditions and observation windows on copies. It retains four named results. Real application is a separately enabled single impulse; copied pulse trains and oscillations do not become live sequences.</p></>}
     {config.sonar?.version==='response-scan-v1'&&<p>This saved configuration uses the earlier full coordinate scanner; question choices require a new compact-scanner session.</p>}
     {(config.differenceGain??0)!==0&&<p>Response scanning v1 requires the difference channel off.</p>}
     {config.sonar&&<><label><input type="checkbox" checked={config.sonar.allowLiveProbe} onChange={e=>setConfig({...config,sonar:{...config.sonar!,allowLiveProbe:e.target.checked}})}/>Also allow real probes along measured scan directions</label>
@@ -57,7 +59,7 @@ export function ScanView({report,label}:{report:SonarReport;label:string}) {
   </section>;
 }
 export function SonarReceiptView({receipt}:{receipt:SustainedActionReceipt}) {
-  return <>{receipt.sonarScan&&<p>Copied scan saved at step {receipt.sonarScan.step}. Its own additional numerical effect is zero; the entry’s text-input choice still applies. Scan <span className="sonar-id">{receipt.sonarScan.id}</span>.</p>}
+  return <><ExperimentReceiptView receipt={receipt}/>{receipt.sonarScan&&<p>Copied scan saved at step {receipt.sonarScan.step}. Its own additional numerical effect is zero; the entry’s text-input choice still applies. Scan <span className="sonar-id">{receipt.sonarScan.id}</span>.</p>}
     {receipt.sonarQuestion&&<p>Copied question comparison saved at step {receipt.sonarQuestion.step}. Its own additional numerical effect is zero; the entry’s text-input choice still applies. Question <span className="sonar-id">{receipt.sonarQuestion.id}</span>.</p>}
     {receipt.sonarProbe&&<><p>Measured direction from scan step {receipt.sonarProbe.sourceScan?.step??'unavailable'}. {receipt.sonarProbe.rejection?'No probe applied.':`Fresh first-step forecast ${num(receipt.sonarProbe.forecastResponseL2[0])}; observed paired effect ${num(receipt.stateDeltaL2)}; bound ${receipt.sonarProbe.maximumStateL2}.`}</p>
     {!receipt.sonarProbe.rejection&&<p>Later forecast points assume held text and controls remain fixed; they are not observed live consequences. The real impulse also enters the sensory field.</p>}
@@ -113,10 +115,11 @@ export default function MyReservoirSonar({summary}:{summary:SustainedSummary}) {
   return <details className="my-reservoir-details sonar-panel"><summary>Reservoir response scanner</summary>
     <p>Inspect the committed numerical state or experiment on a copy. Operator observations stay outside model prompts and do not replace the model’s cached scan.</p>
     <div className="sonar-buttons"><button disabled={busy} onClick={()=>void observe(false)}>Observe saved state</button><button disabled={busy||(summary.config.differenceGain??0)!==0} onClick={()=>void observe(true)}>Scan a copy</button></div>
-    {summary.config.sonar?.version==='compact-scan-v2'&&<div className="sonar-buttons"><label>Question to test <select value={question} disabled={busy} onChange={e=>setQuestion(e.target.value as SonarQuestion)}><option value="state">Starting state</option><option value="input">Held text input</option><option value="recurrence">Recurrence</option></select></label><button disabled={busy} onClick={()=>void observe(false,question)}>Compare on copies</button></div>}
+    {['compact-scan-v2','experiments-v3'].includes(summary.config.sonar?.version??'')&&<div className="sonar-buttons"><label>Question to test <select value={question} disabled={busy} onChange={e=>setQuestion(e.target.value as SonarQuestion)}><option value="state">Starting state</option><option value="input">Held text input</option><option value="recurrence">Recurrence</option></select></label><button disabled={busy} onClick={()=>void observe(false,question)}>Compare on copies</button></div>}
     {busy&&<p role="status">Computing from a copied committed checkpoint…</p>}{error&&<p role="alert">{error}</p>}
     {(summary.config.differenceGain??0)!==0&&<p>Copied response scans require the difference channel off; passive observation remains available.</p>}
     {view&&<><p>Snapshot at step {view.step}; current committed step {summary.durableStep}. Refresh explicitly for a newer observation.</p><MirrorView mirror={view.mirror}/>
+      {view.modelExperiments?.map(r=><ExperimentView key={r.id} report={r}/>)}
       {view.operatorScan&&<ScanView report={view.operatorScan} label="Operator scan · not supplied to the model"/>}
       {view.modelScan&&<ScanView report={view.modelScan} label="Model-selected cached scan"/>}
       {view.operatorCompact&&<CompactScanView view={view.operatorCompact} label="Operator compact scan · not supplied to the model"/>}

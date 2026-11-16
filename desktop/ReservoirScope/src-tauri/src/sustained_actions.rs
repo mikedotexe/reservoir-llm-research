@@ -130,10 +130,31 @@ impl SustainedState {
             g.active.as_ref().is_some_and(|a| {
                 a.epoch == epoch
                     && a.engine.specification().sonar.as_ref().is_some_and(|c| {
-                        c.version == reservoir_core::sustained::SustainedSonarVersion::CompactScanV2
+                        matches!(
+                            c.version,
+                            reservoir_core::sustained::SustainedSonarVersion::CompactScanV2
+                                | reservoir_core::sustained::SustainedSonarVersion::ExperimentsV3
+                        )
                     })
             })
         });
+        let experiments = self.lock().ok().is_some_and(|g| {
+            g.active.as_ref().is_some_and(|a| {
+                a.epoch == epoch
+                    && a.engine.specification().sonar.as_ref().is_some_and(|c| {
+                        c.version == reservoir_core::sustained::SustainedSonarVersion::ExperimentsV3
+                    })
+            })
+        });
+        if experiments {
+            return match (pending.attempt_id-1)%5 {
+                0 => "Scripted measured direction.\nNEXT: SCAN".into(),
+                1 => "Scripted parameterized comparison.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: EXPERIMENT {\"name\":\"leak-comparison\",\"question\":\"How does leak change response decay?\",\"conditions\":[{\"label\":\"current\"},{\"label\":\"slower\",\"leak\":0.2}],\"probe\":{\"direction\":{\"kind\":\"scan\",\"id\":\"latest\",\"direction\":\"strongest\"},\"amplitudes\":[0.001,0.003]}}".into(),
+                2 => "Scripted measured real impulse.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: PROBE_EXPERIMENT {\"id\":\"latest\",\"amplitude\":0.001,\"sign\":\"positive\"}".into(),
+                3 => "Scripted copied follow-up.\nNEXT: EXPERIMENT {\"name\":\"pulse-follow-up\",\"followUpOf\":\"latest\",\"origin\":{\"kind\":\"experiment\",\"id\":\"latest\"},\"conditions\":[{\"label\":\"current\"}],\"probe\":{\"direction\":{\"kind\":\"experiment\",\"id\":\"latest\"},\"amplitudes\":[0.002],\"waveform\":{\"kind\":\"pulseTrain\",\"spacing\":4,\"count\":3}}}".into(),
+                _ => "Scripted example: leave the retained experiment evidence available.\nNEXT: NONE".into(),
+            };
+        }
         if compact {
             return match (pending.attempt_id-1)%9 {
                 0=>"Scripted question check: request a question direction, with explicit rejection if unavailable.\nNEXT: PROBE_SCAN question positive",

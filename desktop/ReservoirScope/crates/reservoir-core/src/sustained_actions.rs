@@ -40,6 +40,12 @@ pub enum SustainedActionRequest {
     None,
     ReadPeers,
     Scan,
+    Experiment {
+        experiment: Box<SustainedExperimentRequest>,
+    },
+    ProbeExperiment {
+        probe: SustainedExperimentProbeRequest,
+    },
     ScanQuestion {
         question: SustainedSonarQuestion,
     },
@@ -149,6 +155,10 @@ pub enum SustainedActionStatus {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedActionReceipt {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub experiment: Option<SustainedExperimentReceipt>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub experiment_probe: Option<Box<SustainedExperimentProbeReceipt>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub sonar_question: Option<SustainedSonarScanRef>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -715,6 +725,8 @@ pub(super) fn record_receipt(
         None => SustainedActionStatus::Rejected,
     };
     let receipt = SustainedActionReceipt {
+        experiment: None,
+        experiment_probe: None,
         sonar_question: None,
         sonar_scan: None,
         sonar_probe: None,
@@ -1090,7 +1102,11 @@ pub(super) fn validate_state(s: &SustainedContinuation) -> Result<()> {
                 )?;
             }
             (
-                Some(SustainedActionRequest::ProbeScan { .. }),
+                Some(
+                    SustainedActionRequest::ProbeScan { .. }
+                    | SustainedActionRequest::Experiment { .. }
+                    | SustainedActionRequest::ProbeExperiment { .. },
+                ),
                 Some(_),
                 SustainedActionStatus::Rejected,
             ) => sonar::validate_receipt(receipt, s)?,
@@ -1213,11 +1229,11 @@ pub(super) fn validate_one_receipt(
         "Non-pulse action claims clipping",
     )?;
     match &r.request {
-        Some(SustainedActionRequest::ProbeScan { .. })
-            if r.status == SustainedActionStatus::Rejected =>
-        {
-            sonar::validate_receipt(r, s)?
-        }
+        Some(
+            SustainedActionRequest::ProbeScan { .. }
+            | SustainedActionRequest::Experiment { .. }
+            | SustainedActionRequest::ProbeExperiment { .. },
+        ) if r.status == SustainedActionStatus::Rejected => sonar::validate_receipt(r, s)?,
         Some(request) => {
             let raw = r
                 .raw_tail

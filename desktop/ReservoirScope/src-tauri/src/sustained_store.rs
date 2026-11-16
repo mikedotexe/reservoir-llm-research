@@ -1078,7 +1078,11 @@ pub fn scan_bundle(path: &Path) -> Result<serde_json::Value, AppError> {
         .sonar
         .as_ref()
         .is_some_and(|c| {
-            c.version == reservoir_core::sustained::SustainedSonarVersion::CompactScanV2
+            matches!(
+                c.version,
+                reservoir_core::sustained::SustainedSonarVersion::CompactScanV2
+                    | reservoir_core::sustained::SustainedSonarVersion::ExperimentsV3
+            )
         })
     {
         let scan =

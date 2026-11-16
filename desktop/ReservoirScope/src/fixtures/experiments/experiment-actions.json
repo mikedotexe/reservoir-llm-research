@@ -1,0 +1,1325 @@
+{
+  "durableStep": 13,
+  "state": {
+    "appliedCount": 3,
+    "continuity": {
+      "activeInquiry": null,
+      "inputTransitions": [
+        {
+          "appliedStep": 4,
+          "disposition": "send",
+          "journalId": "journal-3-1-5ed9c815018ea4797ee3dc3114592721c8d9b4683ed152677a661e6658e6226e"
+        },
+        {
+          "appliedStep": 7,
+          "disposition": "withhold",
+          "journalId": "journal-6-2-b457e689383b8971ee49a6d6bb7416f2f6224c554d3bc82d9dbe48e46b2d0da9"
+        },
+        {
+          "appliedStep": 10,
+          "disposition": "send",
+          "journalId": "journal-9-3-9f842e1a55cf9045a815a2e02a494feb2564b439978ab00e643f77b954ca2bcd"
+        }
+      ],
+      "journalWindow": [
+        {
+          "appliedStep": 4,
+          "bodyBytes": 20,
+          "bodySha256": "e56d5c858b0dbfebce1d41e14bcdbf38e627c2a26f0b84dd449260b5eb267acd",
+          "checkIn": false,
+          "excerpt": "Establish held text.",
+          "excerptTruncated": false,
+          "journalId": "journal-3-1-5ed9c815018ea4797ee3dc3114592721c8d9b4683ed152677a661e6658e6226e",
+          "observedStep": 3
+        },
+        {
+          "appliedStep": 7,
+          "bodyBytes": 24,
+          "bodySha256": "8979dd88b7b3ae902c8be0056f458050b5a1666be5fd10086f987da1b2bc4dc5",
+          "checkIn": false,
+          "excerpt": "Measure the state I saw.",
+          "excerptTruncated": false,
+          "journalId": "journal-6-2-b457e689383b8971ee49a6d6bb7416f2f6224c554d3bc82d9dbe48e46b2d0da9",
+          "observedStep": 6
+        },
+        {
+          "appliedStep": 10,
+          "bodyBytes": 23,
+          "bodySha256": "b3db61096d83fab9c27a2d8f32da116e4ae620cd40f9e897bba9b0c0bc3683e9",
+          "checkIn": false,
+          "excerpt": "Apply measured impulse.",
+          "excerptTruncated": false,
+          "journalId": "journal-9-3-9f842e1a55cf9045a815a2e02a494feb2564b439978ab00e643f77b954ca2bcd",
+          "observedStep": 9
+        },
+        {
+          "appliedStep": 13,
+          "bodyBytes": 23,
+          "bodySha256": "b2ea54fb69c9e8cf67708e1515f6fdfa2f99177fcc5bc85db70867d53689c1cd",
+          "checkIn": false,
+          "excerpt": "Refine the same origin.",
+          "excerptTruncated": false,
+          "journalId": "journal-12-4-393bfdde39e1ef0512d0aec301158e72e99449db59993ee2fd8e446e6f3b19fe",
+          "observedStep": 12
+        }
+      ],
+      "latestInquiryReceipt": null,
+      "meaningfulReceipts": [
+        {
+          "appliedStep": 7,
+          "attemptId": 2,
+          "clippedCoordinates": 0,
+          "controlsAfter": {
+            "feedbackScale": 0.4,
+            "leak": 0.65,
+            "recurrentGain": 1.0
+          },
+          "controlsBefore": {
+            "feedbackScale": 0.4,
+            "leak": 0.65,
+            "recurrentGain": 1.0
+          },
+          "diagnostics": {
+            "inquiry": {
+              "candidate": null,
+              "candidateCount": 0,
+              "explanation": "No inquiry directive was accepted; the existing inquiry is left unchanged."
+            },
+            "next": {
+              "candidate": {
+                "excerpt": "NEXT: EXPERIMENT {\"conditions\":[{\"label\":\"held\"},{\"heldInputScale\":0.0,\"label\":\"withdrawn\"}],\"name\":\"held-input-comparison\",\"observe\":{\"coordinates\":[0,1],\"steps\":[1,2,4,8,16,32,64]},\"probe\":{\"amplitudes\":[0.001,0.003],\"direction\":{\"kind\":\"vector\",\"values\"",
+                "line": 3,
+                "truncated": true
+              },
+              "candidateCount": 1,
+              "explanation": "NEXT syntax accepted. The application receipt below reports whether and how it took effect."
+            },
+            "reservoirInput": {
+              "candidate": {
+                "excerpt": "WITHHOLD_RESERVOIR_INPUT=true",
+                "line": 2,
+                "truncated": false
+              },
+              "candidateCount": 1,
+              "explanation": "Text withholding was selected independently of NEXT; the journal remains saved."
+            }
+          },
+          "experiment": {
+            "explanation": "Copied response measurements completed. These measurements do not automatically confirm the question or establish global topology.",
+            "outcome": "measured",
+            "reportId": "77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7"
+          },
+          "journalId": "journal-6-2-b457e689383b8971ee49a6d6bb7416f2f6224c554d3bc82d9dbe48e46b2d0da9",
+          "observedStep": 6,
+          "rawTail": "NEXT: EXPERIMENT {\"conditions\":[{\"label\":\"held\"},{\"heldInputScale\":0.0,\"label\":\"withdrawn\"}],\"name\":\"held-input-comparison\",\"observe\":{\"coordinates\":[0,1],\"steps\":[1,2,4,8,16,32,64]},\"probe\":{\"amplitudes\":[0.001,0.003],\"direction\":{\"kind\":\"vector\",\"values\":[1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]}},\"question\":\"Does held text alter this response?\"}",
+          "rejection": null,
+          "request": {
+            "experiment": {
+              "conditions": [
+                {
+                  "heldInputScale": 1.0,
+                  "label": "held",
+                  "startingState": {
+                    "kind": "current"
+                  }
+                },
+                {
+                  "heldInputScale": 0.0,
+                  "label": "withdrawn",
+                  "startingState": {
+                    "kind": "current"
+                  }
+                }
+              ],
+              "name": "held-input-comparison",
+              "observe": {
+                "coordinates": [
+                  0,
+                  1
+                ],
+                "steps": [
+                  1,
+                  2,
+                  4,
+                  8,
+                  16,
+                  32,
+                  64
+                ]
+              },
+              "origin": {
+                "kind": "turnStart"
+              },
+              "probe": {
+                "amplitudes": [
+                  0.001,
+                  0.003
+                ],
+                "direction": {
+                  "kind": "vector",
+                  "values": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                "signs": [
+                  "positive",
+                  "negative"
+                ],
+                "waveform": {
+                  "kind": "impulse"
+                }
+              },
+              "question": "Does held text alter this response?"
+            },
+            "kind": "experiment"
+          },
+          "reservoirInput": {
+            "disposition": "withhold",
+            "rawDirective": "WITHHOLD_RESERVOIR_INPUT=true",
+            "rejection": null
+          },
+          "stateDeltaL2": 0.0,
+          "stateDeltaMaxAbs": 0.0,
+          "status": "applied"
+        },
+        {
+          "appliedStep": 10,
+          "attemptId": 3,
+          "clippedCoordinates": 0,
+          "controlsAfter": {
+            "feedbackScale": 0.4,
+            "leak": 0.65,
+            "recurrentGain": 1.0
+          },
+          "controlsBefore": {
+            "feedbackScale": 0.4,
+            "leak": 0.65,
+            "recurrentGain": 1.0
+          },
+          "diagnostics": {
+            "inquiry": {
+              "candidate": null,
+              "candidateCount": 0,
+              "explanation": "No inquiry directive was accepted; the existing inquiry is left unchanged."
+            },
+            "next": {
+              "candidate": {
+                "excerpt": "NEXT: PROBE_EXPERIMENT {\"id\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"amplitude\":0.001,\"sign\":\"positive\"}",
+                "line": 2,
+                "truncated": false
+              },
+              "candidateCount": 1,
+              "explanation": "NEXT syntax accepted. The application receipt below reports whether and how it took effect."
+            },
+            "reservoirInput": {
+              "candidate": null,
+              "candidateCount": 0,
+              "explanation": "Text input is SEND; no accepted withholding choice was selected."
+            }
+          },
+          "experimentProbe": {
+            "appliedVector": [
+              0.001,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "forecastOrigin": {
+              "controls": {
+                "feedbackScale": 0.4,
+                "leak": 0.65,
+                "recurrentGain": 1.0
+              },
+              "dt": 0.3333333333333333,
+              "heldJournalId": "journal-9-3-9f842e1a55cf9045a815a2e02a494feb2564b439978ab00e643f77b954ca2bcd",
+              "heldVector": [
+                1.9974328767462701,
+                0.7598979245104497,
+                0.1734760210825959,
+                0.0,
+                1.588863900330993,
+                1.3092315836682218,
+                -0.250846009815293,
+                0.0,
+                1.5231883119115297,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -1.618602140403562,
+                0.15137768682032804,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.18501717278040095,
+                0.15137768682032804,
+                0.0,
+                0.0,
+                0.8403882421839142,
+                0.8195350886633012,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "historySha256": "83b95b0ada42d1327121c6f6f5ca424f938a2e3111e22d48c7d7125d2fd78e70",
+              "modelSha256": "d261761bbf09eca0e238ea7faf722a4b180e16cc7dc0c7a168535c8bfe50a2ba",
+              "noiseAmplitude": 0.02,
+              "rngState": "18332167254814757640",
+              "seed": "20260909",
+              "state": [
+                -0.08768798238935846,
+                -0.15146040227496393,
+                0.6615867510997259,
+                0.14474335225133766,
+                0.48340652301317333,
+                0.7529717624996612,
+                0.19036793775140753,
+                0.6411161736465348,
+                -0.7132137155245617,
+                0.5099881837391111,
+                -0.588936856327671,
+                0.8066837918061797,
+                -0.6551229829799728,
+                -0.09838155635198509,
+                0.007013987971876218,
+                0.917944637231539,
+                0.25616255617830685,
+                -0.7310980941940863,
+                0.29653544341938015,
+                -0.3381698311724567,
+                -0.28150267333529777,
+                -0.31946168580866546,
+                -0.13523412794020603,
+                -0.014753770074194377,
+                -0.11548030155679109,
+                -0.533573228285379,
+                -0.7770984175075812,
+                0.5626946642889847,
+                -0.06304885415584213,
+                0.5022318938735828,
+                0.13140526495578986,
+                0.6422794927612722
+              ],
+              "step": 9
+            },
+            "forecastResponseL2": [
+              0.001154164424122315,
+              0.000421134628249244,
+              0.00016234719089147228,
+              0.0000652917594441132,
+              0.000027283199066874092,
+              0.00001165390464391641,
+              5.047548948238599e-6,
+              2.2022168692345425e-6,
+              9.625489949086806e-7,
+              4.199715291512866e-7,
+              1.823617783589311e-7,
+              7.870566259839385e-8,
+              3.375866999409189e-8,
+              1.438138891528697e-8,
+              6.085821891063171e-9,
+              2.5590938095218333e-9,
+              1.069801210248585e-9,
+              4.4476720449495864e-10,
+              1.8400345859103797e-10,
+              7.584162176403237e-11,
+              3.118628020817873e-11,
+              1.2803770191255068e-11,
+              5.257082469819916e-12,
+              2.168284450581591e-12,
+              9.083680591517426e-13,
+              3.9107287142558285e-13,
+              1.742368590893753e-13,
+              8.014962172639354e-14,
+              3.7791257933527914e-14,
+              1.806767523860662e-14,
+              8.649895557215867e-15,
+              4.1657656920383005e-15,
+              2.0168680263071953e-15,
+              1.0126982252310919e-15,
+              7.313212328083572e-16,
+              3.4915808093142e-16,
+              2.237726045655905e-16,
+              1.545365047825326e-16,
+              5.551115123125783e-17,
+              2.7755575615628914e-17,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rejection": null,
+            "requested": {
+              "amplitude": 0.001,
+              "id": "77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7",
+              "sign": "positive"
+            },
+            "sourceId": "77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7"
+          },
+          "journalId": "journal-9-3-9f842e1a55cf9045a815a2e02a494feb2564b439978ab00e643f77b954ca2bcd",
+          "observedStep": 9,
+          "rawTail": "NEXT: PROBE_EXPERIMENT {\"id\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"amplitude\":0.001,\"sign\":\"positive\"}",
+          "rejection": null,
+          "request": {
+            "kind": "probeExperiment",
+            "probe": {
+              "amplitude": 0.001,
+              "id": "77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7",
+              "sign": "positive"
+            }
+          },
+          "reservoirInput": {
+            "disposition": "send",
+            "rawDirective": null,
+            "rejection": null
+          },
+          "stateDeltaL2": 0.001154164424122315,
+          "stateDeltaMaxAbs": 0.0004893290257451388,
+          "status": "applied"
+        },
+        {
+          "appliedStep": 13,
+          "attemptId": 4,
+          "clippedCoordinates": 0,
+          "controlsAfter": {
+            "feedbackScale": 0.4,
+            "leak": 0.65,
+            "recurrentGain": 1.0
+          },
+          "controlsBefore": {
+            "feedbackScale": 0.4,
+            "leak": 0.65,
+            "recurrentGain": 1.0
+          },
+          "diagnostics": {
+            "inquiry": {
+              "candidate": null,
+              "candidateCount": 0,
+              "explanation": "No inquiry directive was accepted; the existing inquiry is left unchanged."
+            },
+            "next": {
+              "candidate": {
+                "excerpt": "NEXT: EXPERIMENT {\"conditions\":[{\"label\":\"held\"}],\"followUpOf\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"name\":\"closer-amplitude\",\"origin\":{\"id\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"kind\":\"experiment",
+                "line": 2,
+                "truncated": true
+              },
+              "candidateCount": 1,
+              "explanation": "NEXT syntax accepted. The application receipt below reports whether and how it took effect."
+            },
+            "reservoirInput": {
+              "candidate": null,
+              "candidateCount": 0,
+              "explanation": "Text input is SEND; no accepted withholding choice was selected."
+            }
+          },
+          "experiment": {
+            "explanation": "Copied response measurements completed. These measurements do not automatically confirm the question or establish global topology.",
+            "outcome": "measured",
+            "reportId": "5942105e8843e21a1e602ff8c7e56418ac71e5ff018ce1459f788c095ba3b398"
+          },
+          "journalId": "journal-12-4-393bfdde39e1ef0512d0aec301158e72e99449db59993ee2fd8e446e6f3b19fe",
+          "observedStep": 12,
+          "rawTail": "NEXT: EXPERIMENT {\"conditions\":[{\"label\":\"held\"}],\"followUpOf\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"name\":\"closer-amplitude\",\"origin\":{\"id\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"kind\":\"experiment\"},\"probe\":{\"amplitudes\":[0.002],\"direction\":{\"id\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"kind\":\"experiment\"}}}",
+          "rejection": null,
+          "request": {
+            "experiment": {
+              "conditions": [
+                {
+                  "heldInputScale": 1.0,
+                  "label": "held",
+                  "startingState": {
+                    "kind": "current"
+                  }
+                }
+              ],
+              "followUpOf": "77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7",
+              "name": "closer-amplitude",
+              "observe": {
+                "coordinates": [],
+                "steps": [
+                  1,
+                  2,
+                  4,
+                  8,
+                  16,
+                  32,
+                  64
+                ]
+              },
+              "origin": {
+                "id": "77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7",
+                "kind": "experiment"
+              },
+              "probe": {
+                "amplitudes": [
+                  0.002
+                ],
+                "direction": {
+                  "id": "77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7",
+                  "kind": "experiment"
+                },
+                "signs": [
+                  "positive",
+                  "negative"
+                ],
+                "waveform": {
+                  "kind": "impulse"
+                }
+              },
+              "question": ""
+            },
+            "kind": "experiment"
+          },
+          "reservoirInput": {
+            "disposition": "send",
+            "rawDirective": null,
+            "rejection": null
+          },
+          "stateDeltaL2": 0.0,
+          "stateDeltaMaxAbs": 0.0,
+          "status": "applied"
+        }
+      ]
+    },
+    "controls": {
+      "feedbackScale": 0.4,
+      "leak": 0.65,
+      "recurrentGain": 1.0
+    },
+    "decisionCount": 4,
+    "latestReceipt": {
+      "appliedStep": 13,
+      "attemptId": 4,
+      "clippedCoordinates": 0,
+      "controlsAfter": {
+        "feedbackScale": 0.4,
+        "leak": 0.65,
+        "recurrentGain": 1.0
+      },
+      "controlsBefore": {
+        "feedbackScale": 0.4,
+        "leak": 0.65,
+        "recurrentGain": 1.0
+      },
+      "diagnostics": {
+        "inquiry": {
+          "candidate": null,
+          "candidateCount": 0,
+          "explanation": "No inquiry directive was accepted; the existing inquiry is left unchanged."
+        },
+        "next": {
+          "candidate": {
+            "excerpt": "NEXT: EXPERIMENT {\"conditions\":[{\"label\":\"held\"}],\"followUpOf\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"name\":\"closer-amplitude\",\"origin\":{\"id\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"kind\":\"experiment",
+            "line": 2,
+            "truncated": true
+          },
+          "candidateCount": 1,
+          "explanation": "NEXT syntax accepted. The application receipt below reports whether and how it took effect."
+        },
+        "reservoirInput": {
+          "candidate": null,
+          "candidateCount": 0,
+          "explanation": "Text input is SEND; no accepted withholding choice was selected."
+        }
+      },
+      "experiment": {
+        "explanation": "Copied response measurements completed. These measurements do not automatically confirm the question or establish global topology.",
+        "outcome": "measured",
+        "reportId": "5942105e8843e21a1e602ff8c7e56418ac71e5ff018ce1459f788c095ba3b398"
+      },
+      "journalId": "journal-12-4-393bfdde39e1ef0512d0aec301158e72e99449db59993ee2fd8e446e6f3b19fe",
+      "observedStep": 12,
+      "rawTail": "NEXT: EXPERIMENT {\"conditions\":[{\"label\":\"held\"}],\"followUpOf\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"name\":\"closer-amplitude\",\"origin\":{\"id\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"kind\":\"experiment\"},\"probe\":{\"amplitudes\":[0.002],\"direction\":{\"id\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"kind\":\"experiment\"}}}",
+      "rejection": null,
+      "request": {
+        "experiment": {
+          "conditions": [
+            {
+              "heldInputScale": 1.0,
+              "label": "held",
+              "startingState": {
+                "kind": "current"
+              }
+            }
+          ],
+          "followUpOf": "77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7",
+          "name": "closer-amplitude",
+          "observe": {
+            "coordinates": [],
+            "steps": [
+              1,
+              2,
+              4,
+              8,
+              16,
+              32,
+              64
+            ]
+          },
+          "origin": {
+            "id": "77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7",
+            "kind": "experiment"
+          },
+          "probe": {
+            "amplitudes": [
+              0.002
+            ],
+            "direction": {
+              "id": "77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7",
+              "kind": "experiment"
+            },
+            "signs": [
+              "positive",
+              "negative"
+            ],
+            "waveform": {
+              "kind": "impulse"
+            }
+          },
+          "question": ""
+        },
+        "kind": "experiment"
+      },
+      "reservoirInput": {
+        "disposition": "send",
+        "rawDirective": null,
+        "rejection": null
+      },
+      "stateDeltaL2": 0.0,
+      "stateDeltaMaxAbs": 0.0,
+      "status": "applied"
+    },
+    "recentReceipts": [
+      {
+        "appliedStep": 4,
+        "attemptId": 1,
+        "clippedCoordinates": 0,
+        "controlsAfter": {
+          "feedbackScale": 0.4,
+          "leak": 0.65,
+          "recurrentGain": 1.0
+        },
+        "controlsBefore": {
+          "feedbackScale": 0.4,
+          "leak": 0.65,
+          "recurrentGain": 1.0
+        },
+        "diagnostics": {
+          "inquiry": {
+            "candidate": null,
+            "candidateCount": 0,
+            "explanation": "No inquiry directive was accepted; the existing inquiry is left unchanged."
+          },
+          "next": {
+            "candidate": {
+              "excerpt": "NEXT: NONE",
+              "line": 2,
+              "truncated": false
+            },
+            "candidateCount": 1,
+            "explanation": "NEXT syntax accepted. The application receipt below reports whether and how it took effect."
+          },
+          "reservoirInput": {
+            "candidate": null,
+            "candidateCount": 0,
+            "explanation": "Text input is SEND; no accepted withholding choice was selected."
+          }
+        },
+        "journalId": "journal-3-1-5ed9c815018ea4797ee3dc3114592721c8d9b4683ed152677a661e6658e6226e",
+        "observedStep": 3,
+        "rawTail": "NEXT: NONE",
+        "rejection": null,
+        "request": {
+          "kind": "none"
+        },
+        "reservoirInput": {
+          "disposition": "send",
+          "rawDirective": null,
+          "rejection": null
+        },
+        "stateDeltaL2": 0.0,
+        "stateDeltaMaxAbs": 0.0,
+        "status": "unchanged"
+      },
+      {
+        "appliedStep": 7,
+        "attemptId": 2,
+        "clippedCoordinates": 0,
+        "controlsAfter": {
+          "feedbackScale": 0.4,
+          "leak": 0.65,
+          "recurrentGain": 1.0
+        },
+        "controlsBefore": {
+          "feedbackScale": 0.4,
+          "leak": 0.65,
+          "recurrentGain": 1.0
+        },
+        "diagnostics": {
+          "inquiry": {
+            "candidate": null,
+            "candidateCount": 0,
+            "explanation": "No inquiry directive was accepted; the existing inquiry is left unchanged."
+          },
+          "next": {
+            "candidate": {
+              "excerpt": "NEXT: EXPERIMENT {\"conditions\":[{\"label\":\"held\"},{\"heldInputScale\":0.0,\"label\":\"withdrawn\"}],\"name\":\"held-input-comparison\",\"observe\":{\"coordinates\":[0,1],\"steps\":[1,2,4,8,16,32,64]},\"probe\":{\"amplitudes\":[0.001,0.003],\"direction\":{\"kind\":\"vector\",\"values\"",
+              "line": 3,
+              "truncated": true
+            },
+            "candidateCount": 1,
+            "explanation": "NEXT syntax accepted. The application receipt below reports whether and how it took effect."
+          },
+          "reservoirInput": {
+            "candidate": {
+              "excerpt": "WITHHOLD_RESERVOIR_INPUT=true",
+              "line": 2,
+              "truncated": false
+            },
+            "candidateCount": 1,
+            "explanation": "Text withholding was selected independently of NEXT; the journal remains saved."
+          }
+        },
+        "experiment": {
+          "explanation": "Copied response measurements completed. These measurements do not automatically confirm the question or establish global topology.",
+          "outcome": "measured",
+          "reportId": "77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7"
+        },
+        "journalId": "journal-6-2-b457e689383b8971ee49a6d6bb7416f2f6224c554d3bc82d9dbe48e46b2d0da9",
+        "observedStep": 6,
+        "rawTail": "NEXT: EXPERIMENT {\"conditions\":[{\"label\":\"held\"},{\"heldInputScale\":0.0,\"label\":\"withdrawn\"}],\"name\":\"held-input-comparison\",\"observe\":{\"coordinates\":[0,1],\"steps\":[1,2,4,8,16,32,64]},\"probe\":{\"amplitudes\":[0.001,0.003],\"direction\":{\"kind\":\"vector\",\"values\":[1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]}},\"question\":\"Does held text alter this response?\"}",
+        "rejection": null,
+        "request": {
+          "experiment": {
+            "conditions": [
+              {
+                "heldInputScale": 1.0,
+                "label": "held",
+                "startingState": {
+                  "kind": "current"
+                }
+              },
+              {
+                "heldInputScale": 0.0,
+                "label": "withdrawn",
+                "startingState": {
+                  "kind": "current"
+                }
+              }
+            ],
+            "name": "held-input-comparison",
+            "observe": {
+              "coordinates": [
+                0,
+                1
+              ],
+              "steps": [
+                1,
+                2,
+                4,
+                8,
+                16,
+                32,
+                64
+              ]
+            },
+            "origin": {
+              "kind": "turnStart"
+            },
+            "probe": {
+              "amplitudes": [
+                0.001,
+                0.003
+              ],
+              "direction": {
+                "kind": "vector",
+                "values": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              "signs": [
+                "positive",
+                "negative"
+              ],
+              "waveform": {
+                "kind": "impulse"
+              }
+            },
+            "question": "Does held text alter this response?"
+          },
+          "kind": "experiment"
+        },
+        "reservoirInput": {
+          "disposition": "withhold",
+          "rawDirective": "WITHHOLD_RESERVOIR_INPUT=true",
+          "rejection": null
+        },
+        "stateDeltaL2": 0.0,
+        "stateDeltaMaxAbs": 0.0,
+        "status": "applied"
+      },
+      {
+        "appliedStep": 10,
+        "attemptId": 3,
+        "clippedCoordinates": 0,
+        "controlsAfter": {
+          "feedbackScale": 0.4,
+          "leak": 0.65,
+          "recurrentGain": 1.0
+        },
+        "controlsBefore": {
+          "feedbackScale": 0.4,
+          "leak": 0.65,
+          "recurrentGain": 1.0
+        },
+        "diagnostics": {
+          "inquiry": {
+            "candidate": null,
+            "candidateCount": 0,
+            "explanation": "No inquiry directive was accepted; the existing inquiry is left unchanged."
+          },
+          "next": {
+            "candidate": {
+              "excerpt": "NEXT: PROBE_EXPERIMENT {\"id\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"amplitude\":0.001,\"sign\":\"positive\"}",
+              "line": 2,
+              "truncated": false
+            },
+            "candidateCount": 1,
+            "explanation": "NEXT syntax accepted. The application receipt below reports whether and how it took effect."
+          },
+          "reservoirInput": {
+            "candidate": null,
+            "candidateCount": 0,
+            "explanation": "Text input is SEND; no accepted withholding choice was selected."
+          }
+        },
+        "experimentProbe": {
+          "appliedVector": [
+            0.001,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "forecastOrigin": {
+            "controls": {
+              "feedbackScale": 0.4,
+              "leak": 0.65,
+              "recurrentGain": 1.0
+            },
+            "dt": 0.3333333333333333,
+            "heldJournalId": "journal-9-3-9f842e1a55cf9045a815a2e02a494feb2564b439978ab00e643f77b954ca2bcd",
+            "heldVector": [
+              1.9974328767462701,
+              0.7598979245104497,
+              0.1734760210825959,
+              0.0,
+              1.588863900330993,
+              1.3092315836682218,
+              -0.250846009815293,
+              0.0,
+              1.5231883119115297,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -1.618602140403562,
+              0.15137768682032804,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.18501717278040095,
+              0.15137768682032804,
+              0.0,
+              0.0,
+              0.8403882421839142,
+              0.8195350886633012,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "historySha256": "83b95b0ada42d1327121c6f6f5ca424f938a2e3111e22d48c7d7125d2fd78e70",
+            "modelSha256": "d261761bbf09eca0e238ea7faf722a4b180e16cc7dc0c7a168535c8bfe50a2ba",
+            "noiseAmplitude": 0.02,
+            "rngState": "18332167254814757640",
+            "seed": "20260909",
+            "state": [
+              -0.08768798238935846,
+              -0.15146040227496393,
+              0.6615867510997259,
+              0.14474335225133766,
+              0.48340652301317333,
+              0.7529717624996612,
+              0.19036793775140753,
+              0.6411161736465348,
+              -0.7132137155245617,
+              0.5099881837391111,
+              -0.588936856327671,
+              0.8066837918061797,
+              -0.6551229829799728,
+              -0.09838155635198509,
+              0.007013987971876218,
+              0.917944637231539,
+              0.25616255617830685,
+              -0.7310980941940863,
+              0.29653544341938015,
+              -0.3381698311724567,
+              -0.28150267333529777,
+              -0.31946168580866546,
+              -0.13523412794020603,
+              -0.014753770074194377,
+              -0.11548030155679109,
+              -0.533573228285379,
+              -0.7770984175075812,
+              0.5626946642889847,
+              -0.06304885415584213,
+              0.5022318938735828,
+              0.13140526495578986,
+              0.6422794927612722
+            ],
+            "step": 9
+          },
+          "forecastResponseL2": [
+            0.001154164424122315,
+            0.000421134628249244,
+            0.00016234719089147228,
+            0.0000652917594441132,
+            0.000027283199066874092,
+            0.00001165390464391641,
+            5.047548948238599e-6,
+            2.2022168692345425e-6,
+            9.625489949086806e-7,
+            4.199715291512866e-7,
+            1.823617783589311e-7,
+            7.870566259839385e-8,
+            3.375866999409189e-8,
+            1.438138891528697e-8,
+            6.085821891063171e-9,
+            2.5590938095218333e-9,
+            1.069801210248585e-9,
+            4.4476720449495864e-10,
+            1.8400345859103797e-10,
+            7.584162176403237e-11,
+            3.118628020817873e-11,
+            1.2803770191255068e-11,
+            5.257082469819916e-12,
+            2.168284450581591e-12,
+            9.083680591517426e-13,
+            3.9107287142558285e-13,
+            1.742368590893753e-13,
+            8.014962172639354e-14,
+            3.7791257933527914e-14,
+            1.806767523860662e-14,
+            8.649895557215867e-15,
+            4.1657656920383005e-15,
+            2.0168680263071953e-15,
+            1.0126982252310919e-15,
+            7.313212328083572e-16,
+            3.4915808093142e-16,
+            2.237726045655905e-16,
+            1.545365047825326e-16,
+            5.551115123125783e-17,
+            2.7755575615628914e-17,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rejection": null,
+          "requested": {
+            "amplitude": 0.001,
+            "id": "77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7",
+            "sign": "positive"
+          },
+          "sourceId": "77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7"
+        },
+        "journalId": "journal-9-3-9f842e1a55cf9045a815a2e02a494feb2564b439978ab00e643f77b954ca2bcd",
+        "observedStep": 9,
+        "rawTail": "NEXT: PROBE_EXPERIMENT {\"id\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"amplitude\":0.001,\"sign\":\"positive\"}",
+        "rejection": null,
+        "request": {
+          "kind": "probeExperiment",
+          "probe": {
+            "amplitude": 0.001,
+            "id": "77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7",
+            "sign": "positive"
+          }
+        },
+        "reservoirInput": {
+          "disposition": "send",
+          "rawDirective": null,
+          "rejection": null
+        },
+        "stateDeltaL2": 0.001154164424122315,
+        "stateDeltaMaxAbs": 0.0004893290257451388,
+        "status": "applied"
+      },
+      {
+        "appliedStep": 13,
+        "attemptId": 4,
+        "clippedCoordinates": 0,
+        "controlsAfter": {
+          "feedbackScale": 0.4,
+          "leak": 0.65,
+          "recurrentGain": 1.0
+        },
+        "controlsBefore": {
+          "feedbackScale": 0.4,
+          "leak": 0.65,
+          "recurrentGain": 1.0
+        },
+        "diagnostics": {
+          "inquiry": {
+            "candidate": null,
+            "candidateCount": 0,
+            "explanation": "No inquiry directive was accepted; the existing inquiry is left unchanged."
+          },
+          "next": {
+            "candidate": {
+              "excerpt": "NEXT: EXPERIMENT {\"conditions\":[{\"label\":\"held\"}],\"followUpOf\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"name\":\"closer-amplitude\",\"origin\":{\"id\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"kind\":\"experiment",
+              "line": 2,
+              "truncated": true
+            },
+            "candidateCount": 1,
+            "explanation": "NEXT syntax accepted. The application receipt below reports whether and how it took effect."
+          },
+          "reservoirInput": {
+            "candidate": null,
+            "candidateCount": 0,
+            "explanation": "Text input is SEND; no accepted withholding choice was selected."
+          }
+        },
+        "experiment": {
+          "explanation": "Copied response measurements completed. These measurements do not automatically confirm the question or establish global topology.",
+          "outcome": "measured",
+          "reportId": "5942105e8843e21a1e602ff8c7e56418ac71e5ff018ce1459f788c095ba3b398"
+        },
+        "journalId": "journal-12-4-393bfdde39e1ef0512d0aec301158e72e99449db59993ee2fd8e446e6f3b19fe",
+        "observedStep": 12,
+        "rawTail": "NEXT: EXPERIMENT {\"conditions\":[{\"label\":\"held\"}],\"followUpOf\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"name\":\"closer-amplitude\",\"origin\":{\"id\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"kind\":\"experiment\"},\"probe\":{\"amplitudes\":[0.002],\"direction\":{\"id\":\"77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7\",\"kind\":\"experiment\"}}}",
+        "rejection": null,
+        "request": {
+          "experiment": {
+            "conditions": [
+              {
+                "heldInputScale": 1.0,
+                "label": "held",
+                "startingState": {
+                  "kind": "current"
+                }
+              }
+            ],
+            "followUpOf": "77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7",
+            "name": "closer-amplitude",
+            "observe": {
+              "coordinates": [],
+              "steps": [
+                1,
+                2,
+                4,
+                8,
+                16,
+                32,
+                64
+              ]
+            },
+            "origin": {
+              "id": "77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7",
+              "kind": "experiment"
+            },
+            "probe": {
+              "amplitudes": [
+                0.002
+              ],
+              "direction": {
+                "id": "77bcadd91a36e042caab8886f09f64a9e922634a479956c4d2a166adc5703bb7",
+                "kind": "experiment"
+              },
+              "signs": [
+                "positive",
+                "negative"
+              ],
+              "waveform": {
+                "kind": "impulse"
+              }
+            },
+            "question": ""
+          },
+          "kind": "experiment"
+        },
+        "reservoirInput": {
+          "disposition": "send",
+          "rawDirective": null,
+          "rejection": null
+        },
+        "stateDeltaL2": 0.0,
+        "stateDeltaMaxAbs": 0.0,
+        "status": "applied"
+      }
+    ],
+    "rejectedCount": 0
+  }
+}

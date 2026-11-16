@@ -105,9 +105,12 @@ pub struct SustainedSonarQuestionForecast {
 }
 
 pub(super) fn enabled(s: &SustainedSpecification) -> bool {
-    s.sonar
-        .as_ref()
-        .is_some_and(|c| c.version == SustainedSonarVersion::CompactScanV2)
+    s.sonar.as_ref().is_some_and(|c| {
+        matches!(
+            c.version,
+            SustainedSonarVersion::CompactScanV2 | SustainedSonarVersion::ExperimentsV3
+        )
+    })
 }
 fn unit(rng: &mut SplitMix64) -> Vec<f64> {
     let mut v: Vec<_> = (0..48).map(|_| rng.signed()).collect();

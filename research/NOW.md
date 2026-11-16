@@ -1,5 +1,15 @@
 # Current work
 
+**November 15: parameterized experiments and spectral motion.** Local 0.51.0 adds
+model-authored arguments, four identified results, saved-origin follow-ups and
+separate bounded real impulses. The scripted native route passed export/recovery
+and historical v1/v2 replay; a full host suite wait-bound failure passed in
+isolation. The ongoing three-model 0.50.0 cohort remains unchanged. A selected
+Gemma case and 300-state visualization distinguish recurrent geometry from the
+separate sensory spectrum and the summaries actually supplied to its prompt.
+[Account](../analyses/2026-11-15-spectral-motion-and-parameterized-experiments.md)
+· [Qualification](../desktop/ReservoirScope/RELEASE-0.51.0.md).
+
 **November 15, 15:04 Pacific onward: model-selected reservoir exploration running.**
 Fresh Gemma4, local GLM-4.7-Flash and Ministral-3 native sessions have compact
 scanning, real probes, optional peer reading and hourly conversation with telemetry.

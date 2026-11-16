@@ -1,3 +1,4 @@
+import {validExperimentRequest,validExperimentProbeRequest,validExperimentReceipt} from './experiments';
 import { sonarQuestion } from './compactSonar';
 import { validSonarConfig, validSonarReceipt, sonarDirection, sonarSign } from './sonar';
 import { validPeerConfig, validPeerRead } from './peerReading';
@@ -46,6 +47,8 @@ const controls = (value: unknown): value is SustainedActionControls => record(va
 function request(value: unknown): value is SustainedAuthoredRequest {
   if (!record(value)) return false;
   if (value.kind === 'none' || value.kind === 'release' || value.kind === 'readPeers' || value.kind === 'scan') return true;
+  if (value.kind === 'experiment') return validExperimentRequest(value.experiment);
+  if (value.kind === 'probeExperiment') return validExperimentProbeRequest(value.probe);
   if (value.kind === 'scanQuestion') return sonarQuestion(value.question);
   if (value.kind === 'probeScan') return sonarDirection(value.direction) && sonarSign(value.sign);
   if (value.kind === 'probe') return validProbeVector(value.vector);
@@ -77,7 +80,8 @@ function validActionChoice(value: unknown): boolean {
 }
 function validChoiceForMode(value: { request: SustainedAuthoredRequest | null; reservoirInput?: unknown; inquiry?: unknown; diagnostics?: unknown }, config: SustainedConfig): boolean {
   return (config.controlFeedback === 'diagnostic-v1' ? validControlDiagnostics(value.diagnostics) : value.diagnostics === undefined)
-    && (value.request?.kind !== 'scanQuestion' && !(value.request?.kind === 'probeScan' && value.request.direction === 'question') || config.sonar?.version === 'compact-scan-v2')
+    && (value.request?.kind !== 'scanQuestion' && !(value.request?.kind === 'probeScan' && value.request.direction === 'question') || ['compact-scan-v2','experiments-v3'].includes(config.sonar?.version??''))
+    && (!['experiment','probeExperiment'].includes(value.request?.kind??'') || config.sonar?.version==='experiments-v3')
     && (!['scan','probeScan','scanQuestion'].includes(value.request?.kind ?? '') || !!config.sonar)
     && (value.request?.kind !== 'readPeers' || !!config.peerReading)
     && validInputForMode(value.reservoirInput, config) && (hasLocalInquiry(config) || value.inquiry === undefined && value.request?.kind !== 'probe');
@@ -90,11 +94,12 @@ export function validActionReceipt(value: unknown, durableStep: number, config?:
     || config !== undefined && !validInputForMode(value.reservoirInput, config)
     || !controls(value.controlsBefore) || !controls(value.controlsAfter) || !scalar(value.stateDeltaL2, 0, 12) || !scalar(value.stateDeltaMaxAbs, 0, 2) || !count(value.clippedCoordinates, 32)
     || value.inquiry !== undefined && (!validInquiryReceipt(value.inquiry, durableStep) || value.inquiry.journalId !== value.journalId || value.inquiry.appliedStep !== value.appliedStep)
+    || !validExperimentReceipt(value as unknown as SustainedActionReceipt, config)
     || !validSonarReceipt(value as unknown as SustainedActionReceipt, config)
     || !validProbeReceipt(value as unknown as SustainedActionReceipt)
     || (value.request && record(value.request) && value.request.kind === 'readPeers' ? !validPeerRead(value.peerRead, durableStep, config?.peerReading) || value.peerRead.journalId !== value.journalId || value.peerRead.appliedStep !== value.appliedStep || value.peerRead.snapshot.attemptId !== value.attemptId || value.peerRead.snapshot.observedStep !== value.observedStep : value.peerRead !== undefined)) return false;
   if (config && !validChoiceForMode(value as unknown as SustainedActionReceipt, config)) return false;
-  if (value.status === 'rejected') return (value.request === null || record(value.request) && value.request.kind === 'probeScan') && typeof value.rejection === 'string';
+  if (value.status === 'rejected') return (value.request === null || record(value.request) && ['probeScan','experiment','probeExperiment'].includes(String(value.request.kind))) && typeof value.rejection === 'string';
   return request(value.request) && value.rejection === null && (value.status === 'unchanged') === (value.request.kind === 'none');
 }
 export function validActionSummary(summary: SustainedSummary): boolean {

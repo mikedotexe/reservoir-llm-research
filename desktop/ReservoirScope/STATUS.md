@@ -1,5 +1,13 @@
 # Reservoir Scope: current status and next work
 
+**November 15, 2026 · 0.51.0 parameterized experiments.** A new opt-in session can
+choose numerical arguments, retain identified results, repeat from saved origins,
+and separately apply a bounded measured impulse. Native scripted execution,
+export/recovery and v1/v2/v3 replay passed; one pre-existing host wait-bound failure
+passed on isolated rerun. This does not qualify model competence. The three
+0.50.0 exploration sessions remain unchanged. [Release](RELEASE-0.51.0.md)
+· [Contract](EXPERIMENTS.md).
+
 **November 15, 2026 · 0.50.0 compact scanning and numerical questions.** The native
 integration adds independent fresh-probe validation, signed-measurement fallback,
 model-selected counterfactual questions and separately authorized question-vector

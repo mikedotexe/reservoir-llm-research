@@ -1591,6 +1591,7 @@ impl SustainedSession {
                     step: 0,
                     state: vec![0.0; 32],
                 }],
+                experiments: Vec::new(),
                 latest_scan: None,
                 latest_compact_scan: None,
                 latest_question: None,
@@ -1837,6 +1838,11 @@ impl SustainedSession {
                 "The language attempt budget is exhausted",
             )?;
         }
+        let prepared_experiment = if self.application_authorized {
+            sonar::experiments::prepare(&self.state)
+        } else {
+            None
+        };
         let mut next = self.state.clone();
         let application = if let SustainedPhase::Prepared(p) = &next.phase {
             ensure(
@@ -1945,6 +1951,11 @@ impl SustainedSession {
         let sonar_probe =
             sonar::resolve_probe(&next, decision.as_ref().and_then(|d| d.request.as_ref()))?;
         sonar::add_probe(&mut input, sonar_probe.as_ref());
+        let experiment_probe = sonar::experiments::resolve_probe(
+            &next,
+            decision.as_ref().and_then(|d| d.request.as_ref()),
+        )?;
+        sonar::experiments::add_probe(&mut input, experiment_probe.as_ref());
         let mut state = engine.step(&input, &noise)?;
         let clipped_coordinates = actions::apply_pulse(
             &mut state,
@@ -1979,7 +1990,9 @@ impl SustainedSession {
             _ => None,
         };
         sonar::attach_probe(&mut next, &mut action_receipt, sonar_probe);
+        sonar::experiments::attach_probe(&mut next, &mut action_receipt, experiment_probe);
         peers::record_application(&mut next, &mut action_receipt)?;
+        sonar::experiments::apply(&mut next, &mut action_receipt, prepared_experiment);
         if let SustainedPhase::Prepared(prepared) = &next.phase {
             if let Some(actions) = &mut next.action_state {
                 continuity::record_application(
@@ -2014,6 +2027,12 @@ impl SustainedSession {
                     action_receipt
                         .as_ref()
                         .and_then(|r| r.sonar_probe.as_deref()),
+                );
+                sonar::experiments::add_probe(
+                    &mut silent_input,
+                    action_receipt
+                        .as_ref()
+                        .and_then(|r| r.experiment_probe.as_deref()),
                 );
                 let mut silent_state = silent.step(&silent_input, &noise)?;
                 // The text-effect comparison retains the same action on both paths.
@@ -3892,6 +3911,15 @@ fn expected_feedback_slots(s: &SustainedContinuation, f: &SustainedFrame) -> Vec
         .action_receipt
         .as_ref()
         .and_then(|r| r.sonar_probe.as_ref())
+    {
+        for (slot, value) in expected.iter_mut().zip(&probe.applied_vector) {
+            *slot += value;
+        }
+    }
+    if let Some(probe) = f
+        .action_receipt
+        .as_ref()
+        .and_then(|r| r.experiment_probe.as_ref())
     {
         for (slot, value) in expected.iter_mut().zip(&probe.applied_vector) {
             *slot += value;

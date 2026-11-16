@@ -1,3 +1,4 @@
+import type {ExperimentRequest, ExperimentProbeRequest, ExperimentReceipt, ExperimentProbeReceipt} from './experiments';
 import type { SonarQuestion } from './compactSonar';
 import type { SonarConfig, SonarDirection, SonarSign, SonarScanRef, SonarProbe } from './sonar';
 import type { LanguageConfiguration, SessionFrame } from './freshTypes';
@@ -88,7 +89,7 @@ export interface SustainedCheckIns {
   settingsHistory?: (SustainedCheckInSettings & { elapsedMillis?: number })[];
 }
 export interface SustainedActionControls { leak: number; recurrentGain: number; feedbackScale: number }
-export type SustainedAuthoredRequest = { kind: 'none' } | { kind: 'pulse'; direction: 'uniform' | 'alternating' | 'axis0' | 'axis1'; strength: number }
+export type SustainedAuthoredRequest = {kind:'experiment';experiment:ExperimentRequest} | {kind:'probeExperiment';probe:ExperimentProbeRequest} | { kind: 'none' } | { kind: 'pulse'; direction: 'uniform' | 'alternating' | 'axis0' | 'axis1'; strength: number }
   | { kind: 'tune'; parameter: keyof SustainedActionControls; value: number } | { kind: 'release' } | { kind: 'probe'; vector: number[] } | { kind: 'readPeers' } | { kind: 'scan' } | {kind:'scanQuestion';question:SonarQuestion} | { kind: 'probeScan'; direction: SonarDirection; sign: SonarSign };
 export interface SustainedReservoirInput { disposition: 'send' | 'withhold' | 'rejected'; rawDirective: string | null; rejection: string | null }
 export type SustainedInquirySource = 'journal' | 'dynamics' | 'both';
@@ -126,6 +127,7 @@ export interface SustainedPeerRead { journalId: string; appliedStep: number; sna
   peers: { participant: string; entry: SustainedPeerEntry | null; unavailable: string | null }[];
 } }
 export interface SustainedActionReceipt {
+  experiment?: ExperimentReceipt; experimentProbe?: ExperimentProbeReceipt;
   sonarQuestion?: SonarScanRef;
   sonarScan?: SonarScanRef;
   sonarProbe?: SonarProbe;
