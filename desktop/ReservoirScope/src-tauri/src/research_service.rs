@@ -116,6 +116,9 @@ struct Page {
 struct Control {
     gate: Mutex<()>,
     epoch: AtomicU64,
+    // A boundary can become due after Pause requests its drain. Its remembered
+    // running state must never override the operator's newer lifecycle intent.
+    resume_suppressed: AtomicBool,
 }
 struct Shared {
     _ownership: fs::File,
@@ -259,6 +262,7 @@ impl ResearchService {
                 Arc::new(Control {
                     gate: Mutex::new(()),
                     epoch: AtomicU64::new(0),
+                    resume_suppressed: AtomicBool::new(false),
                 })
             })
             .clone()
@@ -866,6 +870,7 @@ impl ResearchService {
                     return Err(error("conflict", "A configuration transition is pending"));
                 }
                 control.epoch.fetch_add(1, Ordering::SeqCst);
+                control.resume_suppressed.store(false, Ordering::SeqCst);
                 s.cancel_boundary_pause();
                 self.admit(|| value(s.start(op.id.clone(), run, &m.generation)?))
             }
@@ -874,6 +879,7 @@ impl ResearchService {
                     return Err(error("phase", "The run is already stopped"));
                 }
                 control.epoch.fetch_add(1, Ordering::SeqCst);
+                control.resume_suppressed.store(true, Ordering::SeqCst);
                 self.cancel_pending(run)?;
                 s.disable_target_resume();
                 s.request_boundary_pause();
@@ -886,6 +892,7 @@ impl ResearchService {
             }
             "stop" => {
                 control.epoch.fetch_add(1, Ordering::SeqCst);
+                control.resume_suppressed.store(true, Ordering::SeqCst);
                 self.cancel_pending(run)?;
                 s.cancel_boundary_pause();
                 value(s.stop(op.id.clone(), run, &m.generation)?)
@@ -1000,8 +1007,9 @@ impl ResearchService {
         let control = self.control(run);
         let initial_gate = control.gate.lock().map_err(internal)?;
         let epoch = control.epoch.load(Ordering::SeqCst);
-        let was_running =
-            resume.unwrap_or(s.get("change".into(), None)?.summary.unwrap().can_pause);
+        let was_running = resume
+            .unwrap_or(s.get("change".into(), None)?.summary.unwrap().can_pause)
+            && !control.resume_suppressed.load(Ordering::SeqCst);
         {
             let mut pending = self.0.pending.lock().map_err(internal)?;
             if pending.contains_key(run) {
@@ -1066,12 +1074,14 @@ impl ResearchService {
             Ok(result)
         })();
         self.0.pending.lock().map_err(internal)?.remove(run);
-        if result.is_err() && !applying && control.epoch.load(Ordering::SeqCst) == epoch {
+        if result.is_err() && !applying {
             let _gate = control.gate.lock().map_err(internal)?;
-            s.cancel_boundary_pause();
-            if was_running && s.settled_boundary() && !self.0.closing.load(Ordering::SeqCst) {
-                let m = s.stored_manifest()?;
-                let _ = self.admit(|| s.start(op.id.clone(), run, &m.generation));
+            if control.epoch.load(Ordering::SeqCst) == epoch {
+                s.cancel_boundary_pause();
+                if was_running && s.settled_boundary() && !self.0.closing.load(Ordering::SeqCst) {
+                    let m = s.stored_manifest()?;
+                    let _ = self.admit(|| s.start(op.id.clone(), run, &m.generation));
+                }
             }
         }
         result
@@ -1173,6 +1183,9 @@ impl ResearchService {
                 if self.operation(&op.id)?.status == "cancelled" {
                     return Err(error("cancelled", "Intervention cancelled"));
                 }
+                if control.resume_suppressed.load(Ordering::SeqCst) {
+                    return Err(error("needs-attention", "Run was paused before scheduled prompt admission; explicitly resubmit after resume"));
+                }
                 let admitted = self.admit(|| {
                     s.custom_prompt(
                         &op.id,
@@ -1189,13 +1202,14 @@ impl ResearchService {
             };
             Ok(json!({"requestedBoundary":at,"applied":result}))
         })();
-        let resume = s.boundary_reached(&op.id) == Some(true);
+        let _gate = control.gate.lock().map_err(internal)?;
+        let resume = s.boundary_reached(&op.id) == Some(true)
+            && !control.resume_suppressed.load(Ordering::SeqCst);
         s.disarm_boundary(&op.id);
         if result.as_ref().is_err_and(|e| e.category == "cancelled")
             && resume
             && !self.0.closing.load(Ordering::SeqCst)
         {
-            let _gate = control.gate.lock().map_err(internal)?;
             if s.settled_boundary()
                 && s.get("cancel-intervention".into(), None)?
                     .summary

@@ -52,6 +52,42 @@ fn entries_with_timeout(s: &ResearchService, run: &str, n: u64, seconds: u64) {
 }
 
 #[test]
+fn pause_overrides_stale_scheduled_resume_and_prompt_admission() {
+    let (_dir, s) = setup();
+    let run = create(&s);
+    let route = format!("/v1/runs/{run}");
+    call(&s, "POST", &format!("{route}/actions/start"), json!({}));
+    entries(&s, &run, 1);
+    call(&s, "POST", &format!("{route}/actions/pause"), json!({}));
+    let paused = s.run(&run).unwrap();
+    let step = paused["step"].as_u64().unwrap();
+    // Model the exact race: the intervention captured resume=true before Pause,
+    // but only entered change_settings after the Pause operation completed.
+    let op = Operation {
+        id: id("op"), status: "running".into(), method: "POST".into(),
+        path: format!("{route}/interventions"),
+        request: json!({"expectedConfigurationRevision":0,"patch":{"reservoirNodes":48}}),
+        result: None, error: None,
+    };
+    s.0.db.lock().unwrap().execute("INSERT INTO operations VALUES (?,?,?,?)",
+        params![op.id, "stale-resume-test", "test", serde_json::to_string(&op).unwrap()]).unwrap();
+    s.owner(&run, false).unwrap().arm_boundary(&op.id, Some(step), None).unwrap();
+    s.change_settings(&op, &run, Some(true)).unwrap();
+    assert_eq!(s.run(&run).unwrap()["phase"], "paused");
+    assert_eq!(s.settings(&run).unwrap()["configured"]["reservoirNodes"], 48);
+
+    let prompt = s.submit("POST", &format!("{route}/interventions"), "paused-prompt",
+        json!({"at":{"step":step},"kind":"prompt","prompt":"Must wait for explicit recovery","includeTelemetry":false})).unwrap();
+    assert_eq!(wait(&s, &prompt.id).status, "needsAttention");
+    assert_eq!(s.run(&run).unwrap()["journalCount"], paused["journalCount"]);
+    assert_eq!(s.run(&run).unwrap()["phase"], "paused");
+
+    call(&s, "POST", &format!("{route}/actions/resume"), json!({}));
+    entries(&s, &run, paused["journalCount"].as_u64().unwrap() + 1);
+    call(&s, "POST", &format!("{route}/actions/pause"), json!({}));
+}
+
+#[test]
 fn three_runs_cursor_changes_and_verified_export() {
     let (_dir, s) = setup();
     let runs: Vec<_> = (0..3).map(|_| create(&s)).collect();
