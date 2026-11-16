@@ -74,3 +74,12 @@ completed scan from a resolved scientific contrast. No live controls or prompt
 contracts were changed during this review. A read-only observer is logging
 subsequent metadata with a 24-hour observation bound and no automatic recovery.
 The open endpoint remains a deliberate exploratory choice.
+
+## Stopped for the next instrument phase
+
+Mike subsequently authorized a fresh start on 0.51.0. On November 15 the three
+sessions were explicitly stopped at steps 930/900/900 (Gemma/GLM/Mistral), with
+31/30/30 saved journals. Original stores and byte-verified private snapshots
+remain preserved. The old observer exited and all three old windows closed.
+The [next phase](2026-11-15-model-authored-experiments.md) has fresh sessions and
+the parameterized experiment contract; it does not resume these trajectories.

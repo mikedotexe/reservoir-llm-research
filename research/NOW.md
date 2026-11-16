@@ -1,19 +1,30 @@
 # Current work
 
+**November 15, 16:20–16:21 Pacific: three fresh 0.51.0 sessions started.**
+At Mike's request, the compact-scanner cohort was stopped and preserved, and
+Gemma4, GLM and Ministral were started with model-authored experiments, bounded
+real probes, optional peer reading and the unchanged hourly telemetry prompt.
+Initial leak remains 0.65. The old windows are closed; only the three new native
+windows remain. After startup verification, leave the runs for later review
+and move to Mike's UI work. [Protocol](studies/2026-11-15-model-authored-experiments.md).
+Implementation is committed at `2e19f66`; no push or new release tag is implied.
+
 **November 15: parameterized experiments and spectral motion.** Local 0.51.0 adds
 model-authored arguments, four identified results, saved-origin follow-ups and
 separate bounded real impulses. The scripted native route passed export/recovery
 and historical v1/v2 replay; a full host suite wait-bound failure passed in
-isolation. The ongoing three-model 0.50.0 cohort remains unchanged. A selected
+isolation. The then-ongoing 0.50.0 cohort was unchanged during qualification;
+Mike later selected the fresh phase above. A selected
 Gemma case and 300-state visualization distinguish recurrent geometry from the
 separate sensory spectrum and the summaries actually supplied to its prompt.
 [Account](../analyses/2026-11-15-spectral-motion-and-parameterized-experiments.md)
 · [Qualification](../desktop/ReservoirScope/RELEASE-0.51.0.md).
 
-**November 15, 15:04 Pacific onward: model-selected reservoir exploration running.**
+**November 15, 15:04 Pacific: model-selected reservoir exploration began.**
 Fresh Gemma4, local GLM-4.7-Flash and Ministral-3 native sessions have compact
 scanning, real probes, optional peer reading and hourly conversation with telemetry.
-The endpoint is open, bounded by protective 24-active-hour/512-MiB session caps.
+The endpoint was open, bounded by protective 24-active-hour/512-MiB session caps;
+Mike subsequently stopped this phase for the fresh 0.51.0 cohort above.
 The [startup review](../analyses/2026-11-15-sonar-startup-and-leak.md) records nine
 early entries and a copied leak comparison; live settings remain unchanged.
 The [GLM case](../exercises/2026-11-15-glm-zero-input-and-scan.md) finds accepted
