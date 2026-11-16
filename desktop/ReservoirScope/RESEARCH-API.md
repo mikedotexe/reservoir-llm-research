@@ -1,7 +1,7 @@
 # Research API and scheduled interventions
 
 Development integration on `codex/research-integration`, combining the preserved
-API checkpoint `b558a07` and journal UI checkpoint `2eb8c48`. The app profile uses
+API checkpoint `b558a07` and journal UI/theme checkpoint `2a04436`. The app profile uses
 its own data directory. The three existing model experiments remain unchanged.
 
 Reservoir Scope now exposes the same research service to the native **Research
@@ -22,6 +22,12 @@ open 'target/debug/bundle/macos/Reservoir Research Integration.app'
 Its application identifier is `research.reservoir.scope.integration`; its navigation
 scheme is `reservoirscope-dev`. The normal app profile uses `reservoirscope`.
 Neither profile controls another application's running instances.
+
+The local macOS development package includes `reservoirctl.pyz`, the complete
+standard-library CLI. Run it with Python 3.12 or later: `python3 reservoirctl.pyz
+--help`. Replace `reservoirctl` in the examples below with `python3 reservoirctl.pyz`.
+No repository installation is needed. The package is signed ad hoc, not notarized;
+see [0.54 qualification and remaining limits](RELEASE-0.54.0.md).
 
 For a headless local instance, supply an explicit **new, absolute** data directory:
 
@@ -176,6 +182,12 @@ Up to 32 distinct future boundaries may be armed per run, with at most 64 outsta
 operations per app. Cancellation is accepted only before a configuration or prompt
 has been durably applied. Stop supersedes a pending settings change. Failed provider,
 encoding, or save work remains visible and prevents a conflicting phase change.
+
+Pause also supersedes an in-progress settings transition and suppresses automatic
+resume from a scheduled intervention. A resize already committed remains recorded,
+but cannot restart a paused run. A scheduled prompt that reaches its boundary and
+then loses admission to Pause becomes `needsAttention`; resume and explicitly
+resubmit it when intended. A future boundary not yet reached stays scheduled.
 
 ## Configuration phases and resizing
 
