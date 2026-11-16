@@ -4,7 +4,10 @@ import { formatSessionDuration } from './sessionDuration';
 import './myReservoirReading.css';
 import ProviderPromptEvidence from './ProviderPromptEvidence';
 import JournalMeasurements from './JournalMeasurements';
-import { JournalActionDetails, actionReceiptStatus } from './MyReservoirActions';
+import { actionReceiptStatus } from './MyReservoirActions';
+import JournalActionStrip from './JournalActionStrip';
+import RunIdentity from './RunIdentity';
+import type { JournalSession } from './journalActionResult';
 import type { MyReservoirController, MyReservoirState } from './myReservoirController';
 import { effectiveOutputTokens, effectiveRequestDeadline, type SustainedConfig, type SustainedJournal, type SustainedJournalRow } from './myReservoirTypes';
 
@@ -13,12 +16,13 @@ const status = (journal: Pick<SustainedJournalRow, 'status' | 'actionReceipt'>) 
   ? withheld(journal) ? journal.actionReceipt?.reservoirInput?.disposition === 'rejected' ? 'Saved · input directive rejected; text input withheld' : 'Saved · text input withheld' : 'Saved · feedback applied'
   : journal.status === 'skipped' ? 'Saved · feedback skipped' : 'Saved · waiting for first application';
 const json = (value: unknown) => value == null ? 'Not retained.' : JSON.stringify(value, null, 2);
-export function MyReservoirJournalDetail({ journal, revision, config, onRefreshEvidence, refreshing = false }: { journal: SustainedJournal; revision: string | null; config?: SustainedConfig; onRefreshEvidence?: () => void; refreshing?: boolean }) {
+export function MyReservoirJournalDetail({ journal, revision, config, session, onRefreshEvidence, refreshing = false }: { journal: SustainedJournal; revision: string | null; config?: SustainedConfig; session?: JournalSession; onRefreshEvidence?: () => void; refreshing?: boolean }) {
   const body = journal.action?.body ?? journal.text;
   return <article className="my-reservoir-journal-detail">
     <span className="eyebrow">{journal.checkIn ? `SCHEDULED CHECK-IN ${journal.checkIn.ordinal}` : 'SAVED ENTRY'}</span>
     <h3>Entry at step {journal.observedStep}</h3>
     <p className="my-reservoir-journal-status"><strong>{status(journal)}</strong>{journal.firstAppliedStep !== null ? ` · first applied at step ${journal.firstAppliedStep}` : ' · no first application recorded'}</p>
+    <JournalActionStrip key={journal.entryId} journal={journal} config={config} session={session}/>
     <div className="my-reservoir-journal-prose" style={{ whiteSpace: 'pre-wrap' }}>{body.trim() ? body : <span className="my-reservoir-small">No journal text in this entry.</span>}</div>
     {journal.status !== 'applied' && <p className="my-reservoir-journal-return">
       {journal.status === 'savedPendingApplication' ? 'Saved and checked. This entry is waiting for its first application, so it is not yet eligible to return as memory in a later prompt.' : 'This journal remains readable. Its feedback and automatic prompt-memory exposure were explicitly skipped.'}
@@ -36,7 +40,6 @@ export function MyReservoirJournalDetail({ journal, revision, config, onRefreshE
         <dt>Context mode</dt><dd>{journal.checkIn.includeTelemetry ? 'Telemetry + session context' : 'Plain prompt only'}</dd>
         <dt>Numerical observation supplied</dt><dd>{journal.observationSupplied ? 'Compact readout supplied; full observation retained internally' : 'Not supplied'}</dd>
       </dl><h5>Editable prompt used</h5><pre>{journal.checkIn.prompt}</pre><h5>Exact app-supplied system message</h5>{journal.systemContract ? <pre>{journal.systemContract}</pre> : <p>No app-supplied system message.</p>}</section>}
-      <JournalActionDetails journal={journal}/>
       <h4>Journal and request identity</h4>
       <dl className="my-reservoir-data">
         <dt>{journal.checkIn ? 'Ordinary invitation version' : 'Journal prompt version'}</dt><dd>{journal.promptVersion}{journal.checkIn && ' · this check-in used the scheduled-conversation renderer'}</dd>
@@ -121,8 +124,8 @@ export default function MyReservoirJournals({ state, controller }: { state: MyRe
   const reading = state.readingPage || state.readingJournal;
   return <section className="my-reservoir-journals" aria-label="Independent journal reading">
     <header className="my-reservoir-journal-header">
-      <div>
-        <h2>Journal</h2>
+      <div className="journal-title-group">
+        <div className="journal-title-row"><h2>Journal</h2><RunIdentity summary={summary}/></div>
         <p className="my-reservoir-small reader-update-status" role="status">{state.readingJournal ? 'Updating entry…' : `${summary.journalCount} saved entries`}</p>
       </div>
       <div className="my-reservoir-actions">
@@ -146,7 +149,7 @@ export default function MyReservoirJournals({ state, controller }: { state: MyRe
         </nav>
         <div ref={reader} className="journal-reader-pane" tabIndex={0} role="region" aria-label="Journal entry" aria-busy={state.readingJournal} onScroll={event => { if (state.followLatest && event.currentTarget.scrollTop > 8) controller.pinJournal(); }} onPointerDown={() => { if (state.followLatest && state.journal) controller.pinJournal(); }}>
         {state.journal ? <MyReservoirJournalDetail
-          journal={state.journal} revision={state.journalRevision} config={summary.config}
+          journal={state.journal} revision={state.journalRevision} config={summary.config} session={summary}
           onRefreshEvidence={() => void controller.refreshJournal()} refreshing={state.readingJournal}
         /> : <div className="my-reservoir-empty">
           <h3>{summary.journalCount ? 'Choose a journal to read' : 'No saved journal yet'}</h3>

@@ -19,3 +19,14 @@ sessions are used. Launch the normal Vite development server and open
 The completed checks and native preview are described in
 [the release record](../../RELEASE-0.52.0.md). Detailed local logs and the copied
 journal evidence remain private under `research/outputs/journal-ui-20261115/`.
+
+## Identity and action follow-up
+
+Open `actions.html` for the 0.53.0 follow-up. It uses synthetic prose and retained
+native test receipts; its model/outcome selectors change only the displayed
+fixture. Check all three model identities, unresolved and rejected results,
+keyboard expansion of the action summary, original parameters and 720px layout.
+The measurement-load button deliberately reports that a native app is needed;
+unit tests cover native command arguments and matching against the saved fixture.
+No model or store operation is performed. The [0.53.0 record](../../RELEASE-0.53.0.md)
+owns these results.

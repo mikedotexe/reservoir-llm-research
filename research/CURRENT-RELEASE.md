@@ -1,9 +1,10 @@
 # Reservoir Scope · current candidates
 
-**November 15 UI preview:** local 0.52.0 reorganizes the desktop around stable
-journal reading, compact controls and a finer fill display. Its separate native
-preview uses copied history. The three active 0.51.0 model sessions retain their
-binaries and settings. [Qualification](../desktop/ReservoirScope/RELEASE-0.52.0.md).
+**November 15 UI preview:** local 0.53.0 adds model/run identity and an entry-linked
+action strip to the 0.52.0 journal-first layout. Its separate native preview uses
+copied history. The three active 0.51.0 model sessions retain their binaries and
+settings. [Qualification](../desktop/ReservoirScope/RELEASE-0.53.0.md)
+· [Layout qualification](../desktop/ReservoirScope/RELEASE-0.52.0.md).
 This does not replace the sharing candidate or frozen instrument below.
 
 **November 15 development note:** local 0.51.0 adds opt-in parameterized copied

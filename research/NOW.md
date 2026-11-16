@@ -1,5 +1,11 @@
 # Current work
 
+**November 15: journal identity and action outcomes.** Local 0.53.0 extends the
+UI preview with model/run identity and an entry-linked action strip. Exact saved
+result matching keeps outcomes distinct from prose and from later results.
+[UI follow-up](../desktop/ReservoirScope/RELEASE-0.53.0.md). The live three-model
+0.51.0 cohort remains unchanged while the preview uses preserved history.
+
 **November 15: desktop reading and layout pass.** Mike selected the journal as
 the primary workspace. Local 0.52.0 adds stable reading, floating compact-width
 controls, a quadrant fill view and collapsed occasional tools. The separate

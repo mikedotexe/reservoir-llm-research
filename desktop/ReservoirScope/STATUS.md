@@ -1,5 +1,12 @@
 # Reservoir Scope: current status and next work
 
+**November 15, 2026 · 0.53.0 entry identity and outcomes.** The local preview
+adds model/run identity beside Journal and a compact action strip linked to each
+entry's receipt. Saved measurements load only by matching result identity and
+origin; missing cached results stay explicit. Frontend and native build checks
+pass. The three 0.51.0 experiments remain unchanged.
+[Release and qualification](RELEASE-0.53.0.md).
+
 **November 15, 2026 · 0.52.0 journal-first UI.** The local preview puts stable
 journal reading first, groups controls beside it (or behind a compact-width
 menu), and adds a quadrant fill view with an explicitly magnified detail scale.

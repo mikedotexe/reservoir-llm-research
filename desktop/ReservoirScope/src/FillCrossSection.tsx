@@ -22,7 +22,7 @@ export default function FillCrossSection({ sample }: { sample: RecordedFillSampl
           <path d={quadrant(124)} fill="#15272b" stroke="#4c6569"/>
           {radius > 0 && <path d={quadrant(radius * 124)} fill={`url(#${id}-fill)`} fillOpacity=".65" stroke="#b4f2d9" strokeWidth="1.5"/>}
           {[20, 40, 60, 80].map(percent => <path key={percent} d={quadrant(Math.cbrt(percent / 100) * 124)} fill="none" stroke="#86b1ae" strokeOpacity=".25" strokeDasharray="2 4"/>)}
-          <text x="24" y="17">100%</text><text x="155" y="154">0</text>
+          <text x="24" y="17">100%</text><text x="17" y="165">0</text>
         </svg>
         <p>Quadrant slice<span>Volume ∝ fill<br/>Radius ∝ ∛fill</span></p>
       </div>
