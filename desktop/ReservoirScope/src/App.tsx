@@ -1,4 +1,7 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import ResearchWorkspace from './ResearchWorkspace';
+import { invoke, isTauri } from '@tauri-apps/api/core';
+import { listen } from '@tauri-apps/api/event';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import RecordedExperiments from './RecordedExperiments';
 import GuidedTour from './GuidedTour';
 import CasesWorkspace from './CasesWorkspace';
@@ -11,10 +14,26 @@ import MyReservoir, { SustainedClosePanel } from './MyReservoir';
 import DesktopDiagnostics from './DesktopDiagnostics';
 import StudyWalkthrough from './StudyWalkthrough';
 
-const workspaces = ['Study', 'My reservoir', 'Guided tour', 'Experiments', 'Research cases', 'Geometry bookmarks', 'Observatory'] as const;
+const workspaces = ['Study', 'Research runs', 'My reservoir', 'Guided tour', 'Experiments', 'Research cases', 'Geometry bookmarks', 'Observatory'] as const;
 type Workspace = typeof workspaces[number];
 
 export default function App() {
+  const [researchClosing, setResearchClosing] = useState(false);
+  const [researchRoute, setResearchRoute] = useState<string | null>(null);
+  const [researchRouteRequest, setResearchRouteRequest] = useState(0);
+  useEffect(() => {
+    if (!isTauri()) return;
+    let disposed = false; const handlers: (() => void)[] = [];
+    const route = (value: string) => { if (!disposed) { setResearchRoute(value); setResearchRouteRequest(n => n + 1); setWorkspace('Research runs'); } };
+    void listen<string>('research-deep-link', e => route(e.payload)).then(async unlisten => {
+      if (disposed) { unlisten(); return; }
+      handlers.push(unlisten);
+      const value = await invoke<string | null>('research_deep_link');
+      if (value) route(value);
+    }).catch(error => console.error('Research navigation initialization failed', error));
+    void listen('research-close-requested', () => { setResearchClosing(true); route('/v1/runs'); }).then(unlisten => disposed ? unlisten() : handlers.push(unlisten));
+    return () => { disposed = true; handlers.forEach(unlisten => unlisten()); };
+  }, []);
   const exampleSequence = useRef(0);
   const [openRequest,setOpenRequest]=useState<RecordOpenRequest|null>(null);
   const [experimentView,setExperimentView]=useState<'library'|'recording'|'fresh'>('library');
@@ -53,6 +72,7 @@ export default function App() {
     </header>
     <FreshClosePanel /><SustainedClosePanel />
     <main id="workspace-main" ref={main} tabIndex={-1}>
+      <ResearchWorkspace active={workspace === 'Research runs'} route={researchRoute} routeRequest={researchRouteRequest} closing={researchClosing} onKeepOpen={() => { void invoke("cancel_sustained_close").then(() => setResearchClosing(false)); }} />
       <StudyWalkthrough active={workspace === 'Study'} />
       <GuidedTour active={workspace === 'Guided tour'} onOpenExample={openExample} />
       <CasesWorkspace active={workspace === 'Research cases'} />

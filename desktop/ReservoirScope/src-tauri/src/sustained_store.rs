@@ -178,6 +178,8 @@ fn publish(path: &Path, bytes: &[u8], replace: bool) -> Result<(), AppError> {
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct Manifest {
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub configuration_changes: Vec<super::sustained::ConfigurationRecord>,
     pub format: String,
     pub session_id: String,
     pub generation: String,
@@ -198,11 +200,22 @@ pub struct Manifest {
     pub attempt_timing: Option<AttemptTiming>,
 }
 impl Manifest {
+    pub fn current_config(&self) -> &SustainedConfig {
+        self.configuration_changes
+            .last()
+            .map_or(&self.config, |c| &c.config)
+    }
+
     pub fn effective_limits(&self) -> SustainedRunLimits {
         self.limit_extensions
             .last()
+            .filter(|e| {
+                self.configuration_changes
+                    .last()
+                    .is_none_or(|c| c.event_id < e.event_id)
+            })
             .map(|extension| extension.limits.clone())
-            .unwrap_or_else(|| SustainedRunLimits::from_config(&self.config))
+            .unwrap_or_else(|| SustainedRunLimits::from_config(self.current_config()))
     }
 }
 #[derive(Serialize, Deserialize)]
@@ -307,6 +320,10 @@ fn immutable_allocation(path: &Path, bytes: &[u8]) -> Result<u64, AppError> {
 #[derive(Clone, Serialize, Deserialize, Default)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct AttemptTiming {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub queue_wait_ms: Option<u64>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub embedding_queue_wait_ms: Option<u64>,
     pub attempt_id: u64,
     pub dispatched_at_ms: Option<String>,
     pub received_at_ms: Option<String>,
@@ -461,6 +478,39 @@ pub struct SustainedStore {
     fault: std::sync::Arc<std::sync::atomic::AtomicU8>,
 }
 impl SustainedStore {
+    pub fn manifest(&self, id: &str) -> Result<Manifest, AppError> {
+        typed(&self.path(id)?.join("manifest.json"), OBJECT_LIMIT)
+    }
+    pub fn events(
+        &self,
+        manifest: &Manifest,
+        after: u64,
+        limit: usize,
+    ) -> Result<serde_json::Value, AppError> {
+        if !(1..=200).contains(&limit) {
+            return Err(err("page", "Event page limit must be 1–200"));
+        }
+        let path = self.path(&manifest.session_id)?;
+        let mut events = Vec::new();
+        for n in 1..=manifest.segment_count {
+            let (link, _) = read_link(&path, n)?;
+            for event in link.segment.events {
+                if event.id > after {
+                    events.push(event);
+                }
+                if events.len() == limit {
+                    break;
+                }
+            }
+            if events.len() == limit {
+                break;
+            }
+        }
+        Ok(
+            serde_json::json!({"events":events,"nextAfter":events.last().map(|e|e.id),"snapshot":manifest.checkpoint_sha256}),
+        )
+    }
+
     pub fn new(root: PathBuf) -> Self {
         Self {
             root,
@@ -683,7 +733,7 @@ impl SustainedStore {
                 || objects.saturating_add(new_objects).saturating_add(7) >= MAX_OBJECTS
                 || storage_held(&candidate)
                 || ordinary_peak.saturating_add(RUN_HEADROOM)
-                    > candidate.config.storage_budget_bytes)
+                    > candidate.current_config().storage_budget_bytes)
         {
             hold_storage(&mut candidate);
         }
@@ -696,7 +746,7 @@ impl SustainedStore {
             .saturating_add(manifest_bytes.len() as u64);
         // Every accepted state retains its actual bounded terminal suffix, not
         // an assumption that a reply or a buffered numerical tail is small.
-        if peak.saturating_add(terminal_bytes) > candidate.config.storage_budget_bytes
+        if peak.saturating_add(terminal_bytes) > candidate.current_config().storage_budget_bytes
             || candidate.segment_count.saturating_add(terminal_segments) > MAX_SEGMENTS
             || objects
                 .saturating_add(new_objects)
@@ -956,6 +1006,9 @@ impl SustainedStore {
             complete,
         })
     }
+    pub fn journal_index_at(&self, manifest: &Manifest) -> Result<Vec<JournalIndex>, AppError> {
+        journal_index(&self.path(&manifest.session_id)?, manifest)
+    }
     pub fn journal_index(&self, id: &str) -> Result<Vec<JournalIndex>, AppError> {
         let v = self.verify(id)?;
         journal_index(&self.path(id)?, &v.manifest)
@@ -1082,6 +1135,7 @@ pub fn scan_bundle(path: &Path) -> Result<serde_json::Value, AppError> {
                 c.version,
                 reservoir_core::sustained::SustainedSonarVersion::CompactScanV2
                     | reservoir_core::sustained::SustainedSonarVersion::ExperimentsV3
+                    | reservoir_core::sustained::SustainedSonarVersion::ExperimentsV4
             )
         })
     {
@@ -1151,9 +1205,12 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
         .checkpoint();
     let mut previous = None;
     let mut effective_limits = SustainedRunLimits::from_config(&manifest.config);
+    let mut effective_config = manifest.config.clone();
+    let mut configuration_changes = Vec::new();
     let mut limit_extensions = Vec::new();
     let mut prior_extension_elapsed = 0;
     let mut prior_check_in_elapsed = 0;
+    let mut schedule_origin = 0;
     let mut journal_count = 0;
     let mut received_response_total = 0;
     let mut received_responses = VecDeque::new();
@@ -1175,13 +1232,56 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
         // Retain the newest bounded metadata rows and bounded text previews.
         // Full response bytes remain in the immutable event/checkpoint evidence.
         for event in &link.segment.events {
+            if let SustainedEventKind::ConfigurationChanged(change) = &event.kind {
+                if link.segment.events.len() != 1 {
+                    return Err(err(
+                        "configuration",
+                        "A configuration change requires its own committed boundary",
+                    ));
+                }
+                let config: SustainedConfig =
+                    serde_json::from_value(change.host_configuration.clone()).map_err(ce)?;
+                config.validate()?;
+                if json(&config.specification()?)? != json(&change.specification)?
+                    || change.elapsed_millis > manifest.elapsed_millis
+                {
+                    return Err(err(
+                        "configuration",
+                        "Host configuration differs from replayed phase",
+                    ));
+                }
+                let phase = link
+                    .segment
+                    .final_checkpoint
+                    .state
+                    .configuration_phase
+                    .as_ref()
+                    .ok_or_else(|| err("configuration", "Missing configuration phase"))?;
+                if phase.schedule_origin_millis != schedule_origin {
+                    prior_check_in_elapsed = 0;
+                    schedule_origin = phase.schedule_origin_millis;
+                }
+                configuration_changes.push(super::sustained::ConfigurationRecord {
+                    event_id: event.id,
+                    step: event.step,
+                    elapsed_millis: change.elapsed_millis,
+                    operation_id: change.operation_id.clone(),
+                    revision: phase.revision,
+                    invalidated: phase.invalidated.clone(),
+                    config: config.clone(),
+                });
+                effective_limits = SustainedRunLimits::from_config(&config);
+                effective_config = config;
+            }
             let check_in_elapsed = match &event.kind {
                 SustainedEventKind::CheckInSettingsUpdated { elapsed_millis, .. }
                 | SustainedEventKind::CheckInAdmitted { elapsed_millis } => Some(*elapsed_millis),
                 _ => None,
             };
             if let Some(elapsed) = check_in_elapsed {
-                if elapsed < prior_check_in_elapsed || elapsed > manifest.elapsed_millis {
+                if elapsed < prior_check_in_elapsed
+                    || elapsed.saturating_add(schedule_origin) > manifest.elapsed_millis
+                {
                     return Err(err(
                         "schedule",
                         "Conversation timing differs from the retained running time",
@@ -1284,14 +1384,14 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
                 if !valid_id(&entry.id)
                     || object.format != "reservoir-sustained-journal-v1"
                     || object.request_started
-                        != (manifest.config.language.backend == LanguageKind::Ollama)
+                        != (effective_config.language.backend == LanguageKind::Ollama)
                     || json(&object.pending)? != json(&pending)?
                     || json(entry)? != json(&pending.entry)?
-                    || object.configured_model != manifest.config.language.model
-                    || object.temperature != manifest.config.language.temperature
+                    || object.configured_model != effective_config.language.model
+                    || object.temperature != effective_config.language.temperature
                     || object.sampling_seed
-                        != expected_sampling_seed(&manifest.config, entry.attempt_id)
-                    || object.thinking != manifest.config.language.thinking
+                        != expected_sampling_seed(&effective_config, entry.attempt_id)
+                    || object.thinking != effective_config.language.thinking
                 {
                     return Err(err(
                         "journal",
@@ -1319,6 +1419,7 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
         || manifest.step != checkpoint.state.step
         || manifest.journal_count != journal_count
         || manifest.limit_extensions != limit_extensions
+        || json(&manifest.configuration_changes)? != json(&configuration_changes)?
         || checkpoint.state.specification.maximum_steps != effective_limits.maximum_steps
         || checkpoint.state.specification.maximum_turns != effective_limits.maximum_turns
     {
@@ -1370,7 +1471,7 @@ fn verify(path: &Path) -> Result<Verified, AppError> {
     if extras > 0 {
         diagnostics.push(format!("{extras} uncommitted or incomplete objects retained separately; never promoted to replay history."));
     }
-    if size_bytes > manifest.config.storage_budget_bytes {
+    if size_bytes > effective_config.storage_budget_bytes {
         return Err(err(
             "budget",
             "Retained bundle exceeds its declared storage budget",
@@ -1565,6 +1666,7 @@ mod quota_projection_tests {
         };
         let mut engine = SustainedSession::new(config.specification().unwrap()).unwrap();
         let mut manifest = Manifest {
+            configuration_changes: vec![],
             format: "reservoir-sustained-bundle-v1".into(),
             session_id: "quota-test".into(),
             generation: "1".into(),

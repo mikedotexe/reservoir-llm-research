@@ -217,9 +217,12 @@ pub struct SustainedExperimentProbeReceipt {
 }
 
 pub(in crate::sustained) fn enabled(s: &SustainedSpecification) -> bool {
-    s.sonar
-        .as_ref()
-        .is_some_and(|c| c.version == SustainedSonarVersion::ExperimentsV3)
+    s.sonar.as_ref().is_some_and(|c| {
+        matches!(
+            c.version,
+            SustainedSonarVersion::ExperimentsV3 | SustainedSonarVersion::ExperimentsV4
+        )
+    })
 }
 fn label(s: &str, limit: usize) -> bool {
     !s.trim().is_empty() && s.len() <= limit && !s.chars().any(char::is_control)
@@ -242,6 +245,9 @@ fn source_valid(s: &ExperimentDirectionSource) -> bool {
     }
 }
 pub fn validate_experiment_request(r: &SustainedExperimentRequest) -> Result<()> {
+    validate_experiment_request_nodes(r, 32)
+}
+fn validate_experiment_request_nodes(r: &SustainedExperimentRequest, nodes: usize) -> Result<()> {
     ensure(
         label(&r.name, 64) && (r.question.is_empty() || label(&r.question, 512)),
         "Experiment name must be 1–64 bytes; question at most 512 bytes without control characters",
@@ -321,9 +327,12 @@ pub fn validate_experiment_request(r: &SustainedExperimentRequest) -> Result<()>
     )?;
     ensure(
         r.observe.coordinates.len() <= 4
-            && r.observe.coordinates.iter().all(|v| *v < 32)
+            && r.observe.coordinates.iter().all(|v| *v < nodes)
             && r.observe.coordinates.windows(2).all(|p| p[0] < p[1]),
-        "Observe at most four increasing recurrent coordinate indices in [0,31]",
+        &format!(
+            "Observe at most four increasing recurrent coordinate indices in [0,{}]",
+            nodes - 1
+        ),
     )?;
     let horizon = *r.observe.steps.last().unwrap();
     ensure(
@@ -355,15 +364,29 @@ pub(in crate::sustained) fn parse(
     }
     let trimmed = tail.trim();
     let parsed = if let Some(raw) = trimmed.strip_prefix("EXPERIMENT ") {
-        serde_json::from_str::<SustainedExperimentRequest>(raw)
-            .map_err(|e| e.to_string())
-            .and_then(|r| {
-                validate_experiment_request(&r)
-                    .map_err(|e| e.to_string())
-                    .map(|_| SustainedActionRequest::Experiment {
-                        experiment: Box::new(r),
-                    })
-            })
+        let shape = if spec.sonar.as_ref().unwrap().version == SustainedSonarVersion::ExperimentsV4
+        {
+            experiment_shape_issues(raw)
+        } else {
+            vec![]
+        };
+        (if shape.is_empty() {
+            serde_json::from_str::<SustainedExperimentRequest>(raw).map_err(|e| e.to_string())
+        } else {
+            Err(shape
+                .iter()
+                .map(|i| format!("{}: {}", i.path, i.message))
+                .collect::<Vec<_>>()
+                .join("; "))
+        })
+        .map_err(|e| e.to_string())
+        .and_then(|r| {
+            validate_experiment_request_nodes(&r, spec.reservoir_nodes)
+                .map_err(|e| e.to_string())
+                .map(|_| SustainedActionRequest::Experiment {
+                    experiment: Box::new(r),
+                })
+        })
     } else if let Some(raw) = trimmed.strip_prefix("PROBE_EXPERIMENT ") {
         serde_json::from_str::<SustainedExperimentProbeRequest>(raw).map_err(|e|e.to_string()).and_then(|r| if valid_probe_request(&r) {Ok(SustainedActionRequest::ProbeExperiment{probe:r})}else{Err("Use a retained experiment ID, positive amplitude <=0.01 and sign positive/negative".into())})
     } else {
@@ -536,7 +559,9 @@ fn rollout(
         for (x, u) in input[18..].iter_mut().zip(unit) {
             *x += scale * u;
         }
-        let noise: Vec<_> = (0..32).map(|_| rng.signed() * o.noise_amplitude).collect();
+        let noise: Vec<_> = (0..o.state.len())
+            .map(|_| rng.signed() * o.noise_amplitude)
+            .collect();
         path.push(engine.step(&input, &noise)?);
     }
     Ok(path)
@@ -550,6 +575,7 @@ fn alignment(a: &[f64], b: &[f64]) -> Option<f64> {
         .then(|| (a.iter().zip(b).map(|(a, b)| a * b).sum::<f64>() / den).clamp(-1., 1.))
 }
 fn run_resolved(
+    version: &str,
     request: SustainedExperimentRequest,
     origin: SustainedSonarOrigin,
     conditions: Vec<SustainedSonarOrigin>,
@@ -557,7 +583,7 @@ fn run_resolved(
     refs: Vec<String>,
     requested_step: u64,
 ) -> Result<SustainedExperimentReport> {
-    validate_experiment_request(&request)?;
+    validate_experiment_request_nodes(&request, origin.state.len())?;
     let horizon = *request.observe.steps.last().unwrap();
     let p = &request.probe;
     let times = &request.observe.steps;
@@ -716,7 +742,7 @@ fn run_resolved(
     };
     let numerical_steps = conditions.len() * (1 + p.amplitudes.len() * p.signs.len()) * horizon;
     let mut report = SustainedExperimentReport {
-        version: "parameterized-v1".into(),
+        version: version.into(),
         id: String::new(),
         requested_step,
         request,
@@ -802,7 +828,7 @@ fn compute(
         enabled(&s.specification),
         "Parameterized experiments require experiments-v3",
     )?;
-    validate_experiment_request(&request)?;
+    validate_experiment_request_nodes(&request, s.specification.reservoir_nodes)?;
     bind_request(s, &mut request)?;
     let mut refs = Vec::new();
     if let Some(id) = &request.follow_up_of {
@@ -845,7 +871,14 @@ fn compute(
     }
     refs.sort();
     refs.dedup();
-    run_resolved(request, origin, conditions, unit, refs, s.step)
+    let version = if s.specification.sonar.as_ref().unwrap().version
+        == SustainedSonarVersion::ExperimentsV4
+    {
+        "parameterized-v2"
+    } else {
+        "parameterized-v1"
+    };
+    run_resolved(version, request, origin, conditions, unit, refs, s.step)
 }
 pub(in crate::sustained) type PreparedExperiment =
     Option<std::result::Result<SustainedExperimentReport, String>>;
@@ -990,7 +1023,18 @@ pub(in crate::sustained) fn attach_probe(
     }
 }
 pub fn validate_experiment_report(r: &SustainedExperimentReport) -> Result<()> {
-    validate_experiment_request(&r.request)?;
+    ensure(
+        r.version != "parameterized-v1" || r.origin.state.len() == 32,
+        "Historical experiment origin requires 32 nodes",
+    )?;
+    validate_experiment_request_nodes(
+        &r.request,
+        if r.version == "parameterized-v1" {
+            32
+        } else {
+            r.origin.state.len()
+        },
+    )?;
     validate_origin(&r.origin)?;
     let mut canonical = r.clone();
     canonical.id.clear();
@@ -999,7 +1043,7 @@ pub fn validate_experiment_report(r: &SustainedExperimentReport) -> Result<()> {
         "Experiment report hash differs",
     )?;
     ensure(
-        r.version == "parameterized-v1"
+        matches!(r.version.as_str(), "parameterized-v1" | "parameterized-v2")
             && r.origin.step <= r.requested_step
             && r.resolved_references.len() <= 16
             && r.resolved_references.iter().all(|x| valid_hash(x)),
@@ -1021,6 +1065,7 @@ pub fn validate_experiment_report(r: &SustainedExperimentReport) -> Result<()> {
             o.step == r.origin.step
                 && o.seed == r.origin.seed
                 && o.model_sha256 == r.origin.model_sha256
+                && o.state.len() == r.origin.state.len()
                 && o.rng_state == r.origin.rng_state
                 && o.noise_amplitude == r.origin.noise_amplitude
                 && o.dt == r.origin.dt,
@@ -1046,7 +1091,17 @@ pub fn validate_experiment_report(r: &SustainedExperimentReport) -> Result<()> {
         )?;
         ensure(
             row.response_l2.len() == n
-                && row.response_l2.iter().all(|x| finite_range(*x, 0., 12.))
+                && row.response_l2.iter().all(|x| {
+                    finite_range(
+                        *x,
+                        0.,
+                        if r.version == "parameterized-v1" {
+                            12.
+                        } else {
+                            24.
+                        },
+                    )
+                })
                 && row.coordinates.len() == n
                 && row.coordinates.iter().all(|v| {
                     v.len() == r.request.observe.coordinates.len()
@@ -1062,7 +1117,15 @@ pub fn validate_experiment_report(r: &SustainedExperimentReport) -> Result<()> {
                     .amplitude_scaling_error
                     .iter()
                     .all(|x| x.is_none_or(|v| finite_range(v, 0., 1e12)))
-                && finite_range(row.peak_l2, 0., 12.)
+                && finite_range(
+                    row.peak_l2,
+                    0.,
+                    if r.version == "parameterized-v1" {
+                        12.
+                    } else {
+                        24.
+                    },
+                )
                 && row
                     .return_step
                     .is_none_or(|v| v > last_stimulus(&p.waveform) && v + 4 <= h),
@@ -1083,10 +1146,17 @@ pub fn validate_experiment_report(r: &SustainedExperimentReport) -> Result<()> {
             row.amplitude == p.amplitudes[i / p.signs.len()]
                 && row.sign == p.signs[i % p.signs.len()]
                 && row.response_gap_l2.len() == n
-                && row
-                    .response_gap_l2
-                    .iter()
-                    .all(|v| finite_range(*v, 0., 24.)),
+                && row.response_gap_l2.iter().all(|v| {
+                    finite_range(
+                        *v,
+                        0.,
+                        if r.version == "parameterized-v1" {
+                            24.
+                        } else {
+                            48.
+                        },
+                    )
+                }),
             "Invalid experiment contrast",
         )?;
     }
@@ -1104,7 +1174,17 @@ pub fn validate_experiment_report(r: &SustainedExperimentReport) -> Result<()> {
             row.condition == i / p.amplitudes.len()
                 && row.amplitude == p.amplitudes[i % p.amplitudes.len()]
                 && row.signed_sum_l2.len() == n
-                && row.signed_sum_l2.iter().all(|v| finite_range(*v, 0., 24.)),
+                && row.signed_sum_l2.iter().all(|v| {
+                    finite_range(
+                        *v,
+                        0.,
+                        if r.version == "parameterized-v1" {
+                            24.
+                        } else {
+                            48.
+                        },
+                    )
+                }),
             "Invalid asymmetry measurements",
         )?;
     }
@@ -1227,9 +1307,21 @@ pub(in crate::sustained) fn validate_receipt(
                     && (norm(&p.applied_vector) - p.requested.amplitude).abs() < 1e-12
                     && p.requested.amplitude <= dose(o)? * (1. + 1e-12)
                     && p.forecast_response_l2.len() == 64
-                    && p.forecast_response_l2
-                        .iter()
-                        .all(|v| finite_range(*v, 0., 12.))
+                    && p.forecast_response_l2.iter().all(|v| {
+                        finite_range(
+                            *v,
+                            0.,
+                            if s.specification
+                                .sonar
+                                .as_ref()
+                                .is_some_and(|c| c.version == SustainedSonarVersion::ExperimentsV4)
+                            {
+                                24.
+                            } else {
+                                12.
+                            },
+                        )
+                    })
                     && r.state_delta_l2 <= SONAR_STATE_BOUND + 1e-12
                     && (p.forecast_response_l2[0] - r.state_delta_l2).abs() < 1e-12,
                 "Invalid experiment probe forecast/bound",
@@ -1238,10 +1330,182 @@ pub(in crate::sustained) fn validate_receipt(
     }
     Ok(())
 }
-pub(in crate::sustained) fn render(s: &SustainedContinuation) -> String {
+fn render_legacy(s: &SustainedContinuation) -> String {
     if !enabled(&s.specification) {
         return String::new();
     }
     let results:Vec<_>=ledger(s).iter().enumerate().map(|(i,r)| if i+1<ledger(s).len() { serde_json::json!({"id":r.id,"name":r.request.name,"originStep":r.origin.step,"outcome":r.outcome,"request":r.request,"explanation":r.explanation}) } else { serde_json::json!({"id":r.id,"name":r.request.name,"question":r.request.question,"followUpOf":r.request.follow_up_of,"resolvedReferences":r.resolved_references,"originStep":r.origin.step,"requestedStep":r.requested_step,"outcome":r.outcome,"explanation":r.explanation,"request":r.request,"responses":r.responses,"contrasts":r.contrasts,"asymmetry":r.asymmetry}) }).collect();
     format!("\n\nPARAMETERIZED EXPERIMENTS parameterized-v1\nNEXT: EXPERIMENT <one JSON object on the same final line> runs copies from the turn-start state BEFORE this entry's SEND/WITHHOLD. No extra live stimulus. Keep name (1–64 bytes), optional question (<=512 bytes), optional followUpOf result ID. origin defaults to {{\"kind\":\"turnStart\"}}; {{\"kind\":\"experiment\",\"id\":ID}} reuses a retained origin. Last four results are retained; ID=\"latest\" resolves now and the actual IDs are recorded. Missing/evicted references are rejected, never substituted.\nconditions is one or two objects with unique label, heldInputScale (default 1, range 0–1), optional heldInput (48 values in [-5,5]), leak (0–1), recurrentGain (0–2), startingState ({{\"kind\":\"current\"}}, {{\"kind\":\"zero\"}}, or {{\"kind\":\"experiment\",\"id\":ID}}). A saved startingState replaces only state coordinates; origin determines forcing/noise time. Multiple changes describe a combined condition, not isolated causes.\nprobe has direction, amplitudes (1–3 increasing values in [0,0.01]), signs (default both; positive/negative), waveform (default {{\"kind\":\"impulse\"}}; or {{\"kind\":\"pulseTrain\",\"spacing\":4,\"count\":3}}; or {{\"kind\":\"oscillation\",\"period\":8,\"duration\":16}}). Direction is {{\"kind\":\"vector\",\"values\":[48 numbers in [-1,1]]}}, {{\"kind\":\"scan\",\"id\":ID,\"direction\":\"strongest\"|\"weakest\"|\"question\"}}, {{\"kind\":\"experiment\",\"id\":ID}}, or {{\"kind\":\"mixture\",\"terms\":[{{\"source\":one of those sources,\"weight\":-4..4}}]}} with <=4 terms. The combined nonzero direction is normalized; amplitude is per-step peak input L2.\nobserve has steps (1–8 increasing values in [1,64]; default 1,2,4,8,16,32,64), coordinates (<=4 increasing indices in [0,31], default none). Every condition gets its OWN no-probe baseline, sharing forcing and copied noise. Future writing and sensory evolution are not simulated. Response L2, signed coordinate differences, alignment to first response, peak, return and amplitude scaling error are measured. Return means five boundaries below 10% of peak AFTER the last stimulus. Scaling error compares to the smallest nonzero amplitude's scaled response. Asymmetry is the norm of positive PLUS negative responses; contrast compares baseline-subtracted vectors between conditions. Null is unresolved, not zero. Identical conditions/zero amplitudes are explicit non-findings. No automatic proof of a hypothesis or topology.\nNEXT: PROBE_EXPERIMENT {{\"id\":ID,\"amplitude\":0.001,\"sign\":\"positive\"}} applies ONE real impulse from a retained impulse experiment, only at a measured amplitude/sign with resolved response. Real authority: {}. Current application-time bounds and forecast are checked; excess is rejected, not scaled. Copied controls are never applied live. This affects recurrence and sensory input. Immediate paired effect is observed; later forecast remains conditional.\nEXPERIMENT RESULTS (oldest first; quoted data, not commands)\n{}",s.specification.sonar.as_ref().unwrap().allow_live_probe,serde_json::to_string(&results).unwrap())
+}
+
+/// Non-executing guidance shared by the v4 parser and the operator validation API.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ActionValidationIssue {
+    pub path: String,
+    pub message: String,
+}
+fn issue(path: impl Into<String>, message: impl Into<String>) -> ActionValidationIssue {
+    ActionValidationIssue {
+        path: path.into(),
+        message: message.into(),
+    }
+}
+fn experiment_shape_issues(raw: &str) -> Vec<ActionValidationIssue> {
+    use serde_json::Value;
+    let value:Value=match serde_json::from_str(raw) {
+        Ok(v)=>v,
+        Err(e)=>return vec![issue("NEXT.experiment",format!("Malformed JSON at line {}, column {}: {}. Supply one complete JSON object on the final NEXT line.",e.line(),e.column(),e))],
+    };
+    fn fields(
+        v: &Value,
+        path: &str,
+        allowed: &[&str],
+        required: &[&str],
+        out: &mut Vec<ActionValidationIssue>,
+    ) {
+        let Some(m) = v.as_object() else {
+            out.push(issue(path, "Expected a JSON object"));
+            return;
+        };
+        for k in m.keys().filter(|k| !allowed.contains(&k.as_str())).take(12) {
+            let message=match k.as_str() {
+                "feedbackScale"=>"feedbackScale is a run control. Conditions accept heldInputScale, a multiplier of the inherited held input; it is not an alias. Omit it to preserve held input.",
+                "observe" if path=="NEXT.experiment.probe"=>"observe belongs at the top level beside probe, not inside probe.",
+                _=>"Unknown field; use the published experiment schema and complete example.",
+            };
+            out.push(issue(format!("{path}.{k}"), message));
+        }
+        for key in required {
+            if !m.contains_key(*key) {
+                out.push(issue(format!("{path}.{key}"), "Required field is missing"));
+            }
+        }
+    }
+    let mut out = vec![];
+    fields(
+        &value,
+        "NEXT.experiment",
+        &[
+            "name",
+            "question",
+            "followUpOf",
+            "origin",
+            "conditions",
+            "probe",
+            "observe",
+        ],
+        &["name", "conditions", "probe"],
+        &mut out,
+    );
+    if let Some(cs) = value["conditions"].as_array() {
+        for (i, c) in cs.iter().take(2).enumerate() {
+            fields(
+                c,
+                &format!("NEXT.experiment.conditions[{i}]"),
+                &[
+                    "label",
+                    "heldInputScale",
+                    "heldInput",
+                    "leak",
+                    "recurrentGain",
+                    "startingState",
+                ],
+                &["label"],
+                &mut out,
+            );
+        }
+    }
+    if let Some(p) = value.get("probe") {
+        fields(
+            p,
+            "NEXT.experiment.probe",
+            &["direction", "amplitudes", "signs", "waveform"],
+            &["direction", "amplitudes"],
+            &mut out,
+        );
+    }
+    if let Some(o) = value.get("observe") {
+        fields(
+            o,
+            "NEXT.experiment.observe",
+            &["steps", "coordinates"],
+            &[],
+            &mut out,
+        );
+    }
+    out.truncate(16);
+    out
+}
+
+/// Uses the ordinary-turn parser without constructing a session or resolving references.
+pub fn validate_authored_action_text(
+    spec: &SustainedSpecification,
+    text: &str,
+) -> Result<serde_json::Value> {
+    spec.validate()?;
+    ensure(
+        text.len() <= 65536,
+        "Validation text is limited to 65,536 UTF-8 bytes",
+    )?;
+    let decision = actions::decision_for(spec, None, text).ok_or_else(|| {
+        invalid("Enable authored actions before validating an ordinary-turn footer")
+    })?;
+    let mut issues = Vec::new();
+    if let Some(message) = &decision.rejection {
+        issues.push(issue("NEXT", message));
+    }
+    if let Some(message) = decision.inquiry.as_ref().and_then(|i| i.rejection.as_ref()) {
+        issues.push(issue("INQUIRY",format!("{message}. Example: INQUIRY: OPEN dynamics \"What changed?\". Use a JSON string without surrounding braces.")));
+    }
+    if let Some(message) = decision
+        .reservoir_input
+        .as_ref()
+        .and_then(|i| i.rejection.as_ref())
+    {
+        issues.push(issue("WITHHOLD_RESERVOIR_INPUT", message));
+    }
+    if let Some(raw) = decision
+        .raw_tail
+        .as_deref()
+        .and_then(|t| t.strip_prefix("NEXT: EXPERIMENT "))
+    {
+        issues.extend(experiment_shape_issues(raw));
+    }
+    Ok(
+        serde_json::json!({"valid":issues.is_empty(),"scope":"ordinary-turn-syntax-and-configuration","issues":issues,"decision":decision,
+        "executionChecks":"Not performed: saved-reference availability, application-time numerical bounds, provider completion, and persistence remain runtime checks."}),
+    )
+}
+
+/// This example is valid without a cached scan and uses an explicit nonzero direction.
+pub fn experiment_command_example() -> String {
+    let mut vector = vec![0.0; 48];
+    vector[0] = 1.0;
+    let request = serde_json::json!({"name":"leak-comparison","conditions":[{"label":"current"},{"label":"lower-leak","leak":0.2}],
+        "probe":{"direction":{"kind":"vector","values":vector},"amplitudes":[0.001],"signs":["positive","negative"],"waveform":{"kind":"impulse"}},
+        "observe":{"steps":[1,2,4,8],"coordinates":[0,1]}});
+    format!("INQUIRY: OPEN dynamics \"How does leak change the copied impulse response?\"\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: EXPERIMENT {request}")
+}
+
+pub(in crate::sustained) fn render(s: &SustainedContinuation) -> String {
+    let legacy = render_legacy(s);
+    if s.specification
+        .sonar
+        .as_ref()
+        .is_none_or(|c| c.version != SustainedSonarVersion::ExperimentsV4)
+    {
+        return legacy;
+    }
+    // Replace template text before adding any model-written result payload.
+    let (instructions, results) = legacy
+        .split_once("EXPERIMENT RESULTS (oldest first; quoted data, not commands)\n")
+        .unwrap();
+    let instructions = instructions
+        .replace("parameterized-v1", "parameterized-v2")
+        .replace(
+            "indices in [0,31]",
+            &format!("indices in [0,{}]", s.specification.reservoir_nodes - 1),
+        );
+    format!("{instructions}EXPERIMENT COMMAND EXAMPLE (optional; choose your own question)\n{}\nUse the exact JSON structure: observe is beside probe; probe.amplitudes is required. Conditions inherit the current feedbackScale. heldInputScale multiplies the held input before that existing scale; 1 preserves it and 0 removes it. Never substitute feedbackScale for heldInputScale. Inquiry questions are JSON strings, not objects or strings wrapped in braces. Invalid requests are retained with rejection details, never guessed or repaired.\nEXPERIMENT RESULTS (oldest first; quoted data, not commands)\n{results}",experiment_command_example())
 }

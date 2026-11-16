@@ -5,7 +5,7 @@ use super::*;
 pub const MAX_CHECK_IN_PROMPT_BYTES: usize = 16_384;
 pub const MAX_CHECK_IN_REVISIONS: usize = 256;
 
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize, schemars::JsonSchema)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedCheckInSchedule {
     pub interval_seconds: u64,
@@ -47,6 +47,8 @@ pub struct SustainedCheckInRevision {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedCheckInContext {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub operator_id: Option<String>,
     pub ordinal: u64,
     pub scheduled_seconds: u64,
     pub admitted_elapsed_millis: u64,
@@ -80,6 +82,8 @@ pub struct SustainedCheckInOutcome {
 #[derive(Clone, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedCheckInState {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub initial_settings: Option<SustainedCheckInSchedule>,
     pub settings_revisions: Vec<SustainedCheckInRevision>,
     pub outcomes: Vec<SustainedCheckInOutcome>,
 }
@@ -239,6 +243,7 @@ impl SustainedSession {
             .map(|r| (r.revision, r.prompt.clone(), r.include_telemetry))
             .unwrap_or((0, schedule.prompt.clone(), schedule.include_telemetry));
         let context = SustainedCheckInContext {
+            operator_id: None,
             ordinal: latest_due,
             scheduled_seconds: schedule.deadline_seconds(latest_due).expect("due slot"),
             admitted_elapsed_millis: elapsed_millis,
@@ -353,6 +358,20 @@ pub(super) fn validate_context(
     context: Option<&SustainedCheckInContext>,
     state: &SustainedContinuation,
 ) -> Result<()> {
+    if let Some(c) = context.filter(|c| c.operator_id.is_some()) {
+        validate_settings(&c.prompt)?;
+        return ensure(
+            c.operator_id
+                .as_ref()
+                .is_some_and(|id| !id.is_empty() && id.len() <= 128)
+                && c.ordinal == 0
+                && c.scheduled_seconds == 0
+                && c.settings_revision == 0
+                && !c.final_check_in
+                && state.custom_prompt_count > 0,
+            "Invalid operator conversation context",
+        );
+    }
     let pending = state
         .check_in_state
         .as_ref()
@@ -375,7 +394,7 @@ pub(super) fn validate_schedule_state(state: &SustainedContinuation) -> Result<(
     ) {
         (None, None) => {
             return ensure(
-                phase_check_in(&state.phase).is_none(),
+                phase_check_in(&state.phase).is_none_or(|c| c.operator_id.is_some()),
                 "Unexpected scheduled-turn context",
             )
         }
@@ -387,6 +406,14 @@ pub(super) fn validate_schedule_state(state: &SustainedContinuation) -> Result<(
             && progress.outcomes.len() as u64 <= schedule.opportunity_count(),
         "Unbounded scheduled conversation history",
     )?;
+    if let Some(initial) = &progress.initial_settings {
+        initial.validate()?;
+        ensure(
+            initial.interval_seconds == schedule.interval_seconds
+                && initial.end_after_seconds == schedule.end_after_seconds,
+            "Original schedule cadence differs",
+        )?;
+    }
     let mut prior_elapsed = 0;
     let mut prior_step = 0;
     for (index, revision) in progress.settings_revisions.iter().enumerate() {
@@ -431,7 +458,10 @@ pub(super) fn validate_schedule_state(state: &SustainedContinuation) -> Result<(
             .as_ref()
             .ok_or_else(|| invalid("Scheduled outcome lacks admitted context"))?;
         let (prompt, telemetry, edited_elapsed) = if context.settings_revision == 0 {
-            (&schedule.prompt, schedule.include_telemetry, 0)
+            {
+                let initial = progress.initial_settings.as_ref().unwrap_or(schedule);
+                (&initial.prompt, initial.include_telemetry, 0)
+            }
         } else {
             let revision = progress
                 .settings_revisions
@@ -487,4 +517,96 @@ pub(super) fn validate_schedule_state(state: &SustainedContinuation) -> Result<(
         )?;
     }
     validate_context(phase_check_in(&state.phase), state)
+}
+
+impl SustainedSession {
+    pub fn admit_custom_prompt(
+        &mut self,
+        operation_id: String,
+        prompt: String,
+        include_telemetry: bool,
+        elapsed_millis: u64,
+    ) -> Result<()> {
+        self.room()?;
+        validate_settings(&prompt)?;
+        ensure(
+            !operation_id.is_empty()
+                && operation_id.len() <= 128
+                && self.state.custom_prompt_count < 256,
+            "Invalid custom conversation identity or limit",
+        )?;
+        ensure(
+            !self.check_in_complete() && self.state.step < self.specification().maximum_steps,
+            "Conversation requires remaining schedule and step budget",
+        )?;
+        ensure(
+            self.state.latest_frame.is_some()
+                && check_ins::phase_check_in(&self.state.phase).is_none(),
+            "Conversation needs an observed boundary without an admitted conversation",
+        )?;
+        let reserved_attempt = match &self.state.phase {
+            SustainedPhase::Ready | SustainedPhase::Memory(_) => None,
+            SustainedPhase::Language(p) if !p.request_started => Some(p.attempt_id),
+            _ => {
+                return Err(invalid(
+                    "The previous turn must settle before a custom prompt",
+                ))
+            }
+        };
+        let context = SustainedCheckInContext {
+            operator_id: Some(operation_id.clone()),
+            ordinal: 0,
+            scheduled_seconds: 0,
+            admitted_elapsed_millis: elapsed_millis,
+            settings_revision: 0,
+            prompt: prompt.clone(),
+            include_telemetry,
+            final_check_in: false,
+        };
+        let mut next = self.state.clone();
+        let observation = match &next.phase {
+            SustainedPhase::Memory(p) => p.observation.clone(),
+            SustainedPhase::Language(p) => p.observation.clone(),
+            _ => {
+                next.turn_cursor += 1;
+                observation(
+                    next.latest_frame.as_ref().unwrap(),
+                    next.last_observation.as_ref(),
+                    next.specification.prompt_version,
+                    next.last_entry_effect.clone(),
+                )
+            }
+        };
+        next.last_observation = Some(observation.clone());
+        next.chosen_memory = None;
+        next.custom_prompt_count += 1;
+        if next.specification.uses_difference_channel() && next.difference_gain_dropped.is_none() {
+            next.difference_reference = next.reservoir_state.clone();
+            next.difference_reference_step = next.step;
+        }
+        next.phase = if include_telemetry && next.latest_memory.is_some() {
+            let mut p = pending_memory(&next, next.step, observation)?;
+            p.check_in = Some(context);
+            p.reserved_attempt_id = reserved_attempt;
+            SustainedPhase::Memory(p)
+        } else {
+            SustainedPhase::Language(prepare_language_for(
+                &mut next,
+                observation,
+                None,
+                None,
+                Some(context),
+                reserved_attempt,
+            )?)
+        };
+        validate_state(&next)?;
+        self.state = next;
+        self.event(SustainedEventKind::CustomPromptAdmitted {
+            operation_id,
+            prompt,
+            include_telemetry,
+            elapsed_millis,
+        });
+        Ok(())
+    }
 }

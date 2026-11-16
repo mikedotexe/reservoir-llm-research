@@ -47,9 +47,12 @@ function check(update: SustainedUpdate) {
     || (s.canRetryEmbedding && (!embedding || embedding.state === 'requesting'))) throw new Error('The session has invalid retained encoding state.');
   if (s.effectiveLimits && (!validSessionLimits(s.effectiveLimits) || Object.entries(s.effectiveLimits).some(([key, value]) => value < s.config[key as keyof SustainedLimits]))) throw new Error('The session has invalid extended limits.');
   if (s.limitExtensionCount !== undefined && !bounded(s.limitExtensionCount)) throw new Error('The session has an invalid extension count.');
-  if (f && (f.step !== String(s.step) || !finite(f.state, 32) || !finite(f.input, 66) || !finite(f.noise, 32) || f.eigenvalues !== null && !finite(f.eigenvalues, 32) || f.fillPercent !== null && (!Number.isFinite(f.fillPercent) || f.fillPercent < 0 || f.fillPercent > 100) || f.time !== null && !Number.isFinite(f.time))) throw new Error('The current state does not match the session clock and exact vector sizes.');
+  if (f && (f.step !== String(s.step) || !finite(f.state, s.config.reservoirNodes ?? 32) || !finite(f.input, 66) || !finite(f.noise, s.config.reservoirNodes ?? 32) || f.eigenvalues !== null && !finite(f.eigenvalues, 32) || f.fillPercent !== null && (!Number.isFinite(f.fillPercent) || f.fillPercent < 0 || f.fillPercent > 100) || f.time !== null && !Number.isFinite(f.time))) throw new Error('The current state does not match the session clock and exact vector sizes.');
 }
 function same(s: SustainedSummary | null, other: { sessionId: string; generation: string }) { return !!s && s.sessionId === other.sessionId && s.generation === other.generation; }
+export function configurationAt(summary: SustainedSummary, observedStep: number): SustainedConfig {
+  return summary.configurationHistory?.slice().reverse().find(h => h.step < observedStep)?.config ?? summary.originalConfig ?? summary.config;
+}
 function validRow(row: { entryId: string; turnId: number; attemptId: number; observedStep: number; firstAppliedStep: number | null; status: string; sha256: string; actionReceipt?: SustainedActionReceipt | null }, config: SustainedConfig) {
   return !!row.entryId && bounded(row.turnId, 10000) && bounded(row.attemptId, 10000) && bounded(row.observedStep) && (row.firstAppliedStep === null || bounded(row.firstAppliedStep) && row.firstAppliedStep > row.observedStep) && ['savedPendingApplication', 'applied', 'skipped'].includes(row.status) && /^[a-f0-9]{64}$/.test(row.sha256) && (row.status === 'applied') === (row.firstAppliedStep !== null)
     && (!row.actionReceipt || row.firstAppliedStep !== null && validActionReceipt(row.actionReceipt, row.firstAppliedStep, config) && row.actionReceipt.journalId === row.entryId && row.actionReceipt.appliedStep === row.firstAppliedStep && row.actionReceipt.attemptId === row.attemptId && row.actionReceipt.observedStep === row.observedStep);
@@ -80,17 +83,21 @@ export class MyReservoirController {
     }
     const existing = this.state.summary, matched = same(existing, summary);
     if (!replacement && !matched || matched && BigInt(summary.revision) < BigInt(existing!.revision)) return false;
-    if (matched && JSON.stringify(summary.config.sonar) !== JSON.stringify(existing!.config.sonar)) throw new Error('The session changed its saved response-scanning capability.');
-    if (matched && !samePeerConfig(summary.config.peerReading, existing!.config.peerReading)) throw new Error('The session changed its saved peer-reading group.');
-    if (matched && (summary.config.controlFeedback !== existing!.config.controlFeedback || summary.config.textAdmission !== existing!.config.textAdmission)) throw new Error('The session changed its saved text admission or control feedback policy.');
-    if (matched && summary.config.actionMode !== existing!.config.actionMode) throw new Error('The session changed its reservoir action capability.');
-    if (matched && effectivePromptVersion(summary.config) !== effectivePromptVersion(existing!.config)) throw new Error('The session changed its retained journal prompt version.');
-    if (matched && (effectiveOutputTokens(summary.config) !== effectiveOutputTokens(existing!.config)
+    const revision = summary.configurationRevision ?? 0, previousRevision = existing?.configurationRevision ?? 0;
+    if (matched && revision < previousRevision) return false;
+    const configurationChanged = matched && revision > previousRevision;
+    if (configurationChanged && (!summary.originalConfig || summary.configurationHistory?.length !== revision || summary.configurationHistory.some((h, i) => h.revision !== i + 1 || !bounded(h.step) || h.step > summary.step))) throw new Error('The configuration change lacks its recorded history.');
+    if (matched && !configurationChanged && JSON.stringify(summary.config.sonar) !== JSON.stringify(existing!.config.sonar)) throw new Error('The session changed its saved response-scanning capability.');
+    if (matched && !configurationChanged && !samePeerConfig(summary.config.peerReading, existing!.config.peerReading)) throw new Error('The session changed its saved peer-reading group.');
+    if (matched && !configurationChanged && (summary.config.controlFeedback !== existing!.config.controlFeedback || summary.config.textAdmission !== existing!.config.textAdmission)) throw new Error('The session changed its saved text admission or control feedback policy.');
+    if (matched && !configurationChanged && summary.config.actionMode !== existing!.config.actionMode) throw new Error('The session changed its reservoir action capability.');
+    if (matched && !configurationChanged && effectivePromptVersion(summary.config) !== effectivePromptVersion(existing!.config)) throw new Error('The session changed its retained journal prompt version.');
+    if (matched && !configurationChanged && (effectiveOutputTokens(summary.config) !== effectiveOutputTokens(existing!.config)
       || effectiveRequestDeadline(summary.config) !== effectiveRequestDeadline(existing!.config)
       || (summary.config.language.contextTokens ?? null) !== (existing!.config.language.contextTokens ?? null))) throw new Error('The session changed its retained writing limits.');
-    if (matched && Object.entries(sessionLimits(summary)).some(([key, value]) => value < sessionLimits(existing!)[key as keyof SustainedLimits])) throw new Error('The session reduced a previously accepted run limit.');
+    if (matched && !configurationChanged && Object.entries(sessionLimits(summary)).some(([key, value]) => value < sessionLimits(existing!)[key as keyof SustainedLimits])) throw new Error('The session reduced a previously accepted run limit.');
     this.snapshotSequence = sequence;
-    const changed = !matched, grew = summary.journalCount > (existing?.journalCount ?? 0);
+    const changed = !matched || configurationChanged, grew = summary.journalCount > (existing?.journalCount ?? 0);
     if (changed) { this.identityEpoch++; this.pageEpoch++; this.journalEpoch++; this.selectedId = null; this.lastApplicationRead = ''; }
     // Numerical frames are immutable within an owning generation and step.
     // Watchdog/status updates must not re-upload unchanged GPU buffers. Null is
@@ -201,7 +208,7 @@ export class MyReservoirController {
         const requestId = this.id(), result = await this.api.journal(requestId, summary.sessionId, summary.generation, slot.entryId!);
         const j = result.journal, context = j.checkIn;
         if (epoch !== this.identityEpoch) throw new Error('The session changed while loading the reading. Open it again for the current session.');
-        if (result.requestId !== requestId || !same(summary, result) || !ordinal(result.revision) || BigInt(result.revision) < BigInt(summary.revision) || j.entryId !== slot.entryId || !validRow(j, summary.config) || !validJournalAction(j, summary.config) || !isSustainedPromptVersion(j.promptVersion) || j.promptVersion !== effectivePromptVersion(summary.config) || j.saveReceipt.entryId !== j.entryId || j.saveReceipt.sha256 !== j.sha256 || !context || context.ordinal !== slot.ordinal || context.scheduledSeconds !== slot.scheduledSeconds || context.settingsRevision !== slot.settingsRevision || context.includeTelemetry !== slot.includeTelemetry || context.prompt !== slot.prompt) throw new Error('A check-in answer did not match its saved identity and context.');
+        if (result.requestId !== requestId || !same(summary, result) || !ordinal(result.revision) || BigInt(result.revision) < BigInt(summary.revision) || j.entryId !== slot.entryId || !validRow(j, configurationAt(summary, j.observedStep)) || !validJournalAction(j, configurationAt(summary, j.observedStep)) || !isSustainedPromptVersion(j.promptVersion) || j.promptVersion !== effectivePromptVersion(configurationAt(summary, j.observedStep)) || j.saveReceipt.entryId !== j.entryId || j.saveReceipt.sha256 !== j.sha256 || !context || context.ordinal !== slot.ordinal || context.scheduledSeconds !== slot.scheduledSeconds || context.settingsRevision !== slot.settingsRevision || context.includeTelemetry !== slot.includeTelemetry || context.prompt !== slot.prompt) throw new Error('A check-in answer did not match its saved identity and context.');
         return j;
       }));
       answers.push(...chunk);
@@ -226,7 +233,7 @@ export class MyReservoirController {
     try {
       const result = await this.api.journals(requestId, summary.sessionId, summary.generation, offset, 20);
       if (epoch !== this.pageEpoch || identity !== this.identityEpoch) return;
-      if (result.requestId !== requestId || !same(summary, result) || !ordinal(result.revision) || result.offset !== offset || !bounded(result.total, 10000) || result.entries.length > 20 || new Set(result.entries.map(e => e.entryId)).size !== result.entries.length || result.entries.some(row => !validRow(row, summary.config))) throw new Error('Journal page did not match the selected session and bounded request.');
+      if (result.requestId !== requestId || !same(summary, result) || !ordinal(result.revision) || result.offset !== offset || !bounded(result.total, 10000) || result.entries.length > 20 || new Set(result.entries.map(e => e.entryId)).size !== result.entries.length || result.entries.some(row => !validRow(row, configurationAt(summary, row.observedStep)))) throw new Error('Journal page did not match the selected session and bounded request.');
       this.set({ page: result }); accepted = true;
       if (follow && this.state.followLatest) {
         this.set({ seenJournalCount: result.total });
@@ -282,7 +289,7 @@ export class MyReservoirController {
         const offset = Math.max(0, total - top), requestId = this.id();
         const result = await this.api.journals(requestId, summary.sessionId, summary.generation, offset, 20);
         if (epoch !== this.pageEpoch || identity !== this.identityEpoch) return;
-        if (result.requestId !== requestId || !same(summary, result) || !ordinal(result.revision) || BigInt(result.revision) < BigInt(prior.revision) || result.offset !== offset || !bounded(result.total, 10000) || result.total < prior.total || result.entries.length > 20 || result.offset + result.entries.length > result.total || new Set(result.entries.map(entry => entry.entryId)).size !== result.entries.length || result.entries.some(entry => !validRow(entry, summary.config))) throw new Error('The history window did not match this session. Your page and selected journal are unchanged.');
+        if (result.requestId !== requestId || !same(summary, result) || !ordinal(result.revision) || BigInt(result.revision) < BigInt(prior.revision) || result.offset !== offset || !bounded(result.total, 10000) || result.total < prior.total || result.entries.length > 20 || result.offset + result.entries.length > result.total || new Set(result.entries.map(entry => entry.entryId)).size !== result.entries.length || result.entries.some(entry => !validRow(entry, configurationAt(summary, entry.observedStep)))) throw new Error('The history window did not match this session. Your page and selected journal are unchanged.');
         const index = result.entries.findIndex(entry => entry.entryId === anchor.entryId);
         if (index >= 0 && (result.entries[index].sha256 !== anchor.sha256 || result.total - result.offset - index !== position)) throw new Error('The history anchor did not match its saved identity and position. Your page and selected journal are unchanged.');
         if (result.total - result.offset !== top) {
@@ -315,7 +322,7 @@ export class MyReservoirController {
       const result = await this.api.journal(requestId, summary.sessionId, summary.generation, entryId);
       if (epoch !== this.journalEpoch || identity !== this.identityEpoch || this.selectedId !== entryId) return;
       const j = result.journal;
-      if (result.requestId !== requestId || !same(summary, result) || !ordinal(result.revision) || j.entryId !== entryId || !isSustainedPromptVersion(j.promptVersion) || j.promptVersion !== effectivePromptVersion(summary.config) || !validRow(j, summary.config) || !validJournalAction(j, summary.config) || !finite(j.encodedFeatures) || !finite(j.semanticVector) || j.saveReceipt.entryId !== entryId || j.saveReceipt.sha256 !== j.sha256 || expectedHash !== null && j.sha256 !== expectedHash) throw new Error('Journal detail did not match its identity and saved evidence.');
+      if (result.requestId !== requestId || !same(summary, result) || !ordinal(result.revision) || j.entryId !== entryId || !isSustainedPromptVersion(j.promptVersion) || j.promptVersion !== effectivePromptVersion(configurationAt(summary, j.observedStep)) || !validRow(j, configurationAt(summary, j.observedStep)) || !validJournalAction(j, configurationAt(summary, j.observedStep)) || !finite(j.encodedFeatures) || !finite(j.semanticVector) || j.saveReceipt.entryId !== entryId || j.saveReceipt.sha256 !== j.sha256 || expectedHash !== null && j.sha256 !== expectedHash) throw new Error('Journal detail did not match its identity and saved evidence.');
       this.set({ journal: j, journalRevision: result.revision, journalPosition: position, ...(acceptedPage ? { page: acceptedPage } : {}) });
     } catch (error) { if (epoch === this.journalEpoch && identity === this.identityEpoch) this.set({ journalError: errorText(error) }); }
     finally { if (epoch === this.journalEpoch && identity === this.identityEpoch) this.set({ readingJournal: false }); }

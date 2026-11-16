@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "name": "Copied experiments through reservoir growth",
+  "baseConfig": {
+    "language": {"backend": "scripted"},
+    "turnEvery": 30,
+    "maximumSteps": 10000,
+    "maximumTurns": 1000,
+    "paceMs": 1000,
+    "storageBudgetBytes": 536870912,
+    "promptVersion": "reservoir-journal-actions-v3",
+    "actionMode": "authored-v3",
+    "controlFeedback": "diagnostic-v1",
+    "sonar": {"version": "experiments-v4", "allowLiveProbe": true}
+  },
+  "arms": [{
+    "name": "growing-experiments",
+    "overrides": {},
+    "interventions": [
+      {"kind": "configuration", "at": {"step": 3600}, "patch": {"reservoirNodes": 48}},
+      {"kind": "prompt", "at": {"step": 4000}, "prompt": "What would you like to explore after this change?", "includeTelemetry": true}
+    ]
+  }]
+}

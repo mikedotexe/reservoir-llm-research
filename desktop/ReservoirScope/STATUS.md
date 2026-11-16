@@ -1,5 +1,24 @@
 # Reservoir Scope: current status and next work
 
+**November 15, 2026 · 0.54.0 development integration.** The separate
+`codex/research-integration` worktree joins the completed research API and 0.53
+journal UI checkpoints. New `experiments-v4` runs support growth with preserved
+state and connections, dimension-aware copied results, complete command examples,
+and read-only configuration/recipe/action validation through HTTP, CLI, and the
+native workspace. Research journals share entry identity and matching saved action
+results. Historical v3 contracts remain intact. This is an isolated development
+candidate; the three existing experiments and sharing candidate are unchanged.
+[Integration record](RELEASE-0.54.0.md) · [API usage](RESEARCH-API.md).
+
+**November 15, 2026 · Development: agent research API.** The isolated
+`codex/agent-research-api` branch adds authenticated loopback HTTP, a Python CLI,
+native research controls, independent concurrent runs, recipes, stable journal
+pages, verified exports, and recorded configuration phases. Future interventions
+can grow the reservoir while preserving existing state/connections or admit a
+custom prompt at a step or active-time boundary. Core, host, frontend, CLI, and
+fake-provider workflow checks passed. OS custom-scheme handoff remains unverified
+because the test browser blocked it. This is not a release or a deployment to the
+three existing experiments. [Usage, contract, and qualification](RESEARCH-API.md).
 **November 15, 2026 · 0.53.0 entry identity and outcomes.** The local preview
 adds model/run identity beside Journal and a compact action strip linked to each
 entry's receipt. Saved measurements load only by matching result identity and

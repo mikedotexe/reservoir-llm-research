@@ -435,3 +435,147 @@ fn weighted_directions_saved_state_and_boundaries_remain_explicit() {
     let r = experiment_sustained_checkpoint(&run.session.checkpoint(), req).unwrap();
     assert_eq!(r.numerical_steps, 896);
 }
+
+#[test]
+fn v4_preflight_explains_screenshot_errors_and_example_is_executable() {
+    let mut current = spec(true);
+    current.sonar.as_mut().unwrap().version = SustainedSonarVersion::ExperimentsV4;
+    let good = experiment_command_example();
+    let validation = validate_authored_action_text(&current, &good).unwrap();
+    assert_eq!(validation["valid"], true, "{validation}");
+    let mut value = serde_json::to_value(request()).unwrap();
+    value["conditions"][0]["feedbackScale"] = serde_json::json!(0.4);
+    value["probe"].as_object_mut().unwrap().remove("amplitudes");
+    value["probe"]["observe"] = value["observe"].take();
+    let bad = format!("INQUIRY: OPEN dynamics {{\"question\"}}\nWITHHOLD_RESERVOIR_INPUT=false\nNEXT: EXPERIMENT {value}");
+    let result = validate_authored_action_text(&current, &bad).unwrap();
+    assert_eq!(result["valid"], false);
+    let issues = result["issues"].as_array().unwrap();
+    for expected in [
+        "INQUIRY",
+        "NEXT.experiment.conditions[0].feedbackScale",
+        "NEXT.experiment.probe.amplitudes",
+        "NEXT.experiment.probe.observe",
+    ] {
+        assert!(
+            issues.iter().any(|i| i["path"] == expected),
+            "missing {expected}: {result}"
+        );
+    }
+    let malformed =
+        validate_authored_action_text(&current, "NEXT: EXPERIMENT {\"name\":\"unfinished\"")
+            .unwrap();
+    assert!(malformed.to_string().contains("complete JSON object"));
+    let mut run = Run::new(current);
+    let pending = run.save(&bad);
+    assert_eq!(pending.entry.text, bad);
+    assert!(pending.action.unwrap().request.is_none());
+    run.apply();
+    run.verify();
+    run.turn(&good);
+    assert_eq!(reports(&run).last().unwrap().version, "parameterized-v2");
+    run.verify();
+    // Historical v3 continues to emit its original serde rejection, without new guidance.
+    let historical = validate_authored_action_text(&spec(true), &bad).unwrap();
+    assert!(historical["decision"]["rejection"]
+        .as_str()
+        .unwrap()
+        .contains("unknown field `feedbackScale`"));
+    let mut old = Run::new(spec(true));
+    old.reach();
+    let prompt = &old.session.pending_language().unwrap().prompt;
+    assert!(prompt.contains("PARAMETERIZED EXPERIMENTS parameterized-v1"));
+    assert!(!prompt.contains("EXPERIMENT COMMAND EXAMPLE"));
+}
+
+#[test]
+fn v4_growth_resets_old_references_and_replays_copied_experiments_and_live_probe() {
+    let mut current = spec(true);
+    current.sonar.as_mut().unwrap().version = SustainedSonarVersion::ExperimentsV4;
+    let mut run = Run::new(current);
+    run.turn(&command(&request(), true));
+    let old_id = reports(&run)[0].id.clone();
+    run.verify();
+    let before = run.session.checkpoint();
+    let mut enlarged = run.session.specification().clone();
+    enlarged.reservoir_nodes = 48;
+    run.session
+        .reconfigure(ConfigurationChange {
+            version: 1,
+            operation_id: "grow-experiments".into(),
+            expected_revision: 0,
+            predecessor_sha256: before.sha256.clone(),
+            specification: enlarged,
+            host_configuration: serde_json::json!({}),
+            elapsed_millis: 1000,
+        })
+        .unwrap();
+    let grown = run.session.checkpoint();
+    assert_eq!(
+        grown.state.reservoir_state[..32],
+        before.state.reservoir_state
+    );
+    assert!(grown.state.reservoir_state[32..].iter().all(|x| *x == 0.));
+    assert!(reports(&run).is_empty());
+    run.verify();
+    let rejected = run.turn(&format!("WITHHOLD_RESERVOIR_INPUT=true\nNEXT: PROBE_EXPERIMENT {{\"id\":\"{old_id}\",\"amplitude\":0.001,\"sign\":\"positive\"}}"));
+    assert_eq!(
+        rejected.action_receipt.unwrap().status,
+        SustainedActionStatus::Rejected
+    );
+    run.verify();
+    let mut requested = request();
+    requested.observe.coordinates = vec![0, 31, 47];
+    run.turn(&command(&requested, true));
+    let report = reports(&run).pop().unwrap();
+    assert_eq!(report.origin.state.len(), 48);
+    assert_eq!(report.version, "parameterized-v2");
+    validate_experiment_report(&report).unwrap();
+    let baseline = sustained_sonar_continuation(&report.origin, &[0.; 48]).unwrap();
+    let impulse: Vec<_> = report.unit_input.iter().map(|v| v * 0.001).collect();
+    let stimulated = sustained_sonar_continuation(&report.origin, &impulse).unwrap();
+    for (i, step) in report.request.observe.steps.iter().enumerate() {
+        assert_eq!(
+            report.responses[0].response_l2[i],
+            distance(&baseline[step - 1].state, &stimulated[step - 1].state)
+        );
+    }
+    run.verify();
+    let applied = run.turn(&format!("WITHHOLD_RESERVOIR_INPUT=true\nNEXT: PROBE_EXPERIMENT {{\"id\":\"{}\",\"amplitude\":0.001,\"sign\":\"positive\"}}",report.id));
+    assert_eq!(
+        applied.action_receipt.as_ref().unwrap().status,
+        SustainedActionStatus::Applied
+    );
+    if let Ok(folder) = std::env::var("GROWTH_EXPERIMENT_FIXTURE_OUT") {
+        std::fs::create_dir_all(&folder).unwrap();
+        std::fs::write(
+            std::path::Path::new(&folder).join("experiment-growth.json"),
+            serde_json::to_vec_pretty(
+                &serde_json::json!({"report":report,"receipt":applied.action_receipt}),
+            )
+            .unwrap(),
+        )
+        .unwrap();
+    }
+    run.verify();
+    SustainedSession::restore(run.session.checkpoint()).unwrap();
+}
+
+#[test]
+fn historical_experiments_require_explicit_contract_change_for_growth() {
+    let mut old = spec(false);
+    old.reservoir_nodes = 48;
+    assert!(SustainedSession::new(old.clone()).is_err());
+    old.sonar.as_mut().unwrap().version = SustainedSonarVersion::ExperimentsV4;
+    for nodes in [32, 48, 64, 128] {
+        old.reservoir_nodes = nodes;
+        let cp = SustainedSession::new(old.clone()).unwrap().checkpoint();
+        let mut req = request();
+        req.observe.coordinates = vec![nodes - 1];
+        let report = experiment_sustained_checkpoint(&cp, req.clone()).unwrap();
+        validate_experiment_report(&report).unwrap();
+        assert_eq!(report.origin.state.len(), nodes);
+        req.observe.coordinates = vec![nodes];
+        assert!(experiment_sustained_checkpoint(&cp, req).is_err());
+    }
+}

@@ -2,6 +2,7 @@ import {describe,it,expect} from 'vitest';
 import {renderToStaticMarkup} from 'react-dom/server';
 import view from './fixtures/experiments/experiment-view.json';
 import actions from './fixtures/experiments/experiment-actions.json';
+import growth from './fixtures/experiments/experiment-growth.json';
 import {validExperimentRequest, validExperimentReport, type ExperimentReport} from './experiments';
 import {validSonarView} from './sonar';
 import {validActionReceipt, validAuthoredActionConfig, withAuthoredActionMode} from './authoredActions';
@@ -10,6 +11,16 @@ import {ExperimentView,ExperimentReceiptView} from './MyReservoirExperiments';
 import {SonarSetup} from './MyReservoirSonar';
 const config={...withAuthoredActionMode(DEFAULT_SUSTAINED_CONFIG,'authored-v3'),controlFeedback:'diagnostic-v1' as const,sonar:{version:'experiments-v3' as const,allowLiveProbe:true}};
 describe('native parameterized experiment contract',()=>{
+ it('validates native grown reports and live receipts without accepting mismatched dimensions',()=>{
+  const grown={...config,reservoirNodes:48,sonar:{...config.sonar,version:'experiments-v4' as const}};
+  expect(validExperimentReport(growth.report)).toBe(true);
+  expect(validActionReceipt(growth.receipt,growth.receipt.appliedStep,grown)).toBe(true);
+  expect(validExperimentRequest(growth.report.request)).toBe(false);
+  expect(validExperimentRequest(growth.report.request,48)).toBe(true);
+  expect(validExperimentReport({...growth.report,version:'parameterized-v1'})).toBe(false);
+  expect(validExperimentReport({...growth.report,conditionOrigins:[{...growth.report.conditionOrigins[0],state:Array(32).fill(0)}]})).toBe(false);
+  expect(renderToStaticMarkup(<ExperimentView report={growth.report as ExperimentReport}/>)).toContain('47');
+ });
  it('admits real native reports and receipts with opt-in capability',()=>{
   expect(validAuthoredActionConfig(config)).toBe(true);
   expect(validSonarView(view,view.sessionId,view.generation)).toBe(true);

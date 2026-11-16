@@ -1,6 +1,9 @@
 fn main() {
     tauri_build::try_build(tauri_build::Attributes::new().app_manifest(
         tauri_build::AppManifest::new().commands(&[
+            "research_request",
+            "research_close",
+            "research_deep_link",
             "activation_setup_status",
             "activation_setup_prepare",
             "activation_setup_cancel",

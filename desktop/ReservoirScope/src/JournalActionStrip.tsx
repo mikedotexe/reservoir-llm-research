@@ -6,7 +6,7 @@ import { actionResultReference, loadJournalActionResult, type JournalSession, ty
 import { CompactScanView, QuestionView, ScanView } from './MyReservoirSonar';
 import { ExperimentView } from './MyReservoirExperiments';
 
-export default function JournalActionStrip({ journal, config, session }: { journal: SustainedJournal; config?: SustainedConfig; session?: JournalSession }) {
+export default function JournalActionStrip({ journal, config, session, loadMeasurements = loadJournalActionResult }: { journal: SustainedJournal; config?: SustainedConfig; session?: JournalSession; loadMeasurements?: typeof loadJournalActionResult }) {
   const summary = journalActionSummary(journal, config), reference = actionResultReference(journal.actionReceipt);
   const [result, setResult] = useState<MatchedActionResult | null>(null), [busy, setBusy] = useState(false), [message, setMessage] = useState('');
   const ticket = useRef(0);
@@ -16,7 +16,7 @@ export default function JournalActionStrip({ journal, config, session }: { journ
     const current = ++ticket.current;
     setBusy(true); setMessage('');
     try {
-      const match = await loadJournalActionResult(session, reference);
+      const match = await loadMeasurements(session, reference);
       if (current !== ticket.current) return;
       setResult(match);
       if (!match) setMessage('These measurements are no longer in the retained result cache. The saved receipt and result identity remain below; no newer result has been substituted.');

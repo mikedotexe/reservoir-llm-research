@@ -19,7 +19,11 @@ mod model_readiness;
 mod model_transport;
 mod observatory;
 mod preparation;
+mod provider_scheduler;
 mod records;
+mod research_api;
+mod research_links;
+mod research_service;
 mod resources;
 mod response;
 mod response_commands;
@@ -600,6 +604,7 @@ fn library_cancel_scan(state: tauri::State<'_, library::LibraryState>) -> librar
 // OS close/quit only requests review; no UI timer or frontend claim can approve
 // dropping evidence. The backend atomically authorizes the eventual exit.
 fn reopen_close_gates(app: &tauri::AppHandle) {
+    app.state::<research_service::ResearchService>().reopen();
     app.state::<activation_setup::SetupState>().cancel_close();
     app.state::<activation::ActivationState>().cancel_close();
     app.state::<sessions::SessionState>().cancel_close();
@@ -671,7 +676,8 @@ fn request_session_close_at(app: &tauri::AppHandle, epoch: u64, deferred: bool) 
         let finite = app.state::<sessions::SessionState>();
         let sustained = app.state::<sustained::SustainedState>();
         let finite_ready = finite.authorize_clean_close();
-        let sustained_ready = sustained.authorize_clean_close();
+        let research_ready = app.state::<research_service::ResearchService>().close();
+        let sustained_ready = sustained.authorize_clean_close() && research_ready;
         if finite_ready && sustained_ready {
             close.committed = true;
             return Decision::Exit;
@@ -724,6 +730,7 @@ fn request_session_close_at(app: &tauri::AppHandle, epoch: u64, deferred: bool) 
                         let _ = window.emit("session-close-requested", ());
                     }
                     if sustained {
+                        let _ = window.emit("research-close-requested", ());
                         let _ = window.emit("sustained-close-requested", ());
                     }
                 }
@@ -771,6 +778,49 @@ extern "C" fn cancel_headless_cohort(_signal: libc::c_int) {
 }
 
 fn main() {
+    let research_args: Vec<String> = std::env::args().skip(1).collect();
+    if research_args.first().is_some_and(|a| a == "--research-api") {
+        if research_args.len() != 3
+            || research_args[1] != "--data-root"
+            || !std::path::Path::new(&research_args[2]).is_absolute()
+        {
+            eprintln!(
+                "Usage: reservoir-scope-desktop --research-api --data-root ABSOLUTE_DIRECTORY"
+            );
+            std::process::exit(2);
+        }
+        let data = std::path::PathBuf::from(&research_args[2]);
+        let primary = sustained::SustainedState::new(data.join("sustained-v1"));
+        let service =
+            research_service::ResearchService::new(data, primary).expect("research store");
+        let server = research_api::start(service.clone(), "research.reservoir.scope.headless")
+            .expect("research API");
+        println!(
+            "{}",
+            serde_json::json!({"url":server.address,"instanceId":server.instance,"discoveryFile":service.discovery_directory().join("endpoint.json")})
+        );
+        #[cfg(unix)]
+        unsafe {
+            libc::signal(
+                libc::SIGINT,
+                cancel_headless_cohort as *const () as libc::sighandler_t,
+            );
+            libc::signal(
+                libc::SIGTERM,
+                cancel_headless_cohort as *const () as libc::sighandler_t,
+            );
+        }
+        while !COHORT_CANCEL.load(std::sync::atomic::Ordering::SeqCst) {
+            std::thread::sleep(std::time::Duration::from_millis(100));
+        }
+        service.interrupt("Operator stopped the API process");
+        while !service.close() {
+            std::thread::sleep(std::time::Duration::from_millis(100));
+        }
+        drop(server);
+        return;
+    }
+
     let activation_args: Vec<String> = std::env::args().skip(1).collect();
     if activation_args
         .first()
@@ -965,6 +1015,17 @@ fn main() {
             app.manage(library);
             let sustained = sustained::SustainedState::new(data.join("sustained-v1"));
             app.manage(sustained.clone());
+            let research = research_service::ResearchService::new(data.clone(), sustained.clone())
+                .map_err(|e| std::io::Error::other(e.message))?;
+            research.set_app(app.handle().clone());
+            match research_api::start(research.clone(), &app.config().identifier) {
+                Ok(server) => {
+                    app.manage(server);
+                }
+                Err(e) => eprintln!("Research API unavailable: {}", e.message),
+            }
+            app.manage(research.clone());
+            research_links::install(app.handle())?;
             let packaged_worker = app
                 .path()
                 .resource_dir()?
@@ -1003,7 +1064,7 @@ fn main() {
             #[cfg(target_os = "macos")]
             {
                 macos_termination::install(app.handle())?;
-                macos_lifecycle::install(move |reason| sustained.interrupt(reason))?;
+                macos_lifecycle::install(move |reason| research.interrupt(reason))?;
             }
             Ok(())
         })
@@ -1014,6 +1075,7 @@ fn main() {
                 let _ = window.set_focus();
             }
         }))
+        .plugin(tauri_plugin_deep_link::init())
         .plugin(tauri_plugin_dialog::init())
         .menu(desktop_menu::build)
         .on_menu_event(|app, event| {
@@ -1035,6 +1097,9 @@ fn main() {
             }
         })
         .invoke_handler(tauri::generate_handler![
+            research_api::research_request,
+            research_api::research_close,
+            research_links::research_deep_link,
             activation_setup::activation_setup_status,
             activation_setup::activation_setup_prepare,
             activation_setup::activation_setup_cancel,

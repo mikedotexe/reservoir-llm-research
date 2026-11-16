@@ -35,7 +35,7 @@ fn next_provider(
 ) -> Box<reservoir_core::sustained::SustainedPendingLanguage> {
     for _ in 0..5000 {
         match s.worker_boundary(epoch).unwrap() {
-            Work::Provider(p, _) => return p,
+            Work::Provider(p, _, _permit) => return p,
             Work::Embedding(..) => panic!("surface fixture unexpectedly requested embedding"),
             Work::Continue(_) => {}
             Work::Done => panic!("session held before the next provider boundary"),
@@ -420,7 +420,7 @@ fn checkin_withholding_text_is_inert_and_replaces_held_zero_with_ordinary_feedba
         let mut received = false;
         for _ in 0..10 {
             match s.worker_boundary(epoch).unwrap() {
-                Work::Provider(p, sampling) => {
+                Work::Provider(p, sampling, _permit) => {
                     assert!(p.check_in.is_some());
                     assert_eq!(s.feedback_text_for(epoch, p.attempt_id, raw).unwrap(), raw);
                     assert!(!s

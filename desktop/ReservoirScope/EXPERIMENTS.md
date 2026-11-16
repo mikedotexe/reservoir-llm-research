@@ -1,5 +1,11 @@
 # Parameterized reservoir experiments
 
+The contract below describes historical `experiments-v3` / `parameterized-v1`.
+The 0.54 development integration adds opt-in `experiments-v4` / `parameterized-v2`
+for 32–128 recurrent nodes, complete executable examples, and read-only preflight.
+See [the growth-compatible contract](RESEARCH-API.md#growth-compatible-copied-experiments).
+Existing v3 runs keep their original prompt and parser.
+
 Selected November 15, 2026. Implementation contract for a new, opt-in
 `experiments-v3` scanner session. Existing v1/v2 sessions keep their contracts.
 The current three model runs are evidence sources, not upgrade targets.

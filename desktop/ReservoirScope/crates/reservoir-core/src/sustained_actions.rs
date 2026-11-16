@@ -7,7 +7,7 @@ pub const ACTION_MECHANISM_V3: &str = "essentials32-authored-controls-v3";
 pub const ACTION_RECEIPT_LIMIT: usize = 8;
 pub const MAX_ACTION_TAIL_BYTES: usize = 512;
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize, schemars::JsonSchema)]
 pub enum SustainedActionMode {
     #[serde(rename = "authored-v1")]
     AuthoredV1,
@@ -125,7 +125,7 @@ impl SustainedActionControls {
     pub fn initial(spec: &SustainedSpecification) -> Self {
         Self {
             leak: spec.leak,
-            recurrent_gain: 1.0,
+            recurrent_gain: spec.recurrent_gain,
             feedback_scale: spec.feedback_scale,
         }
     }
@@ -680,11 +680,12 @@ pub(super) fn apply_pulse(state: &mut [f64], request: Option<&SustainedActionReq
         return 0;
     };
     let mut clipped = 0;
+    let nodes = state.len() as f64;
     for (index, value) in state.iter_mut().enumerate() {
         let direction = match direction {
-            SustainedPulseDirection::Uniform => 1.0 / 32.0_f64.sqrt(),
+            SustainedPulseDirection::Uniform => 1.0 / nodes.sqrt(),
             SustainedPulseDirection::Alternating => {
-                (if index % 2 == 0 { 1.0 } else { -1.0 }) / 32.0_f64.sqrt()
+                (if index % 2 == 0 { 1.0 } else { -1.0 }) / nodes.sqrt()
             }
             SustainedPulseDirection::Axis0 => {
                 if index == 0 {
@@ -1124,10 +1125,15 @@ pub(super) fn validate_state(s: &SustainedContinuation) -> Result<()> {
                     receipt.request.as_ref(),
                 )
                 && receipt.state_delta_l2.is_finite()
-                && (0.0..=12.0).contains(&receipt.state_delta_l2)
+                && (0.0..=if s.specification.reservoir_nodes == 32 {
+                    12.0
+                } else {
+                    24.0
+                })
+                    .contains(&receipt.state_delta_l2)
                 && receipt.state_delta_max_abs.is_finite()
                 && (0.0..=2.0).contains(&receipt.state_delta_max_abs)
-                && receipt.clipped_coordinates <= 32
+                && receipt.clipped_coordinates <= s.specification.reservoir_nodes
                 && (matches!(receipt.request, Some(SustainedActionRequest::Pulse { .. }))
                     || receipt.clipped_coordinates == 0),
             "Invalid authored effect/controls",
@@ -1217,10 +1223,15 @@ pub(super) fn validate_one_receipt(
             && r.controls_after
                 == controls_after(&r.controls_before, &s.specification, r.request.as_ref())
             && r.state_delta_l2.is_finite()
-            && (0.0..=12.0).contains(&r.state_delta_l2)
+            && (0.0..=if s.specification.reservoir_nodes == 32 {
+                12.0
+            } else {
+                24.0
+            })
+                .contains(&r.state_delta_l2)
             && r.state_delta_max_abs.is_finite()
             && (0.0..=2.0).contains(&r.state_delta_max_abs)
-            && r.clipped_coordinates <= 32,
+            && r.clipped_coordinates <= s.specification.reservoir_nodes,
         "Invalid retained action receipt",
     )?;
     ensure(
@@ -1274,7 +1285,7 @@ pub(super) fn validate_one_receipt(
                 v3 && continuity::valid_probe(vector)
                     && p.requested_vector == *vector
                     && p.applied_vector == *vector
-                    && p.state_delta_vector.len() == 32
+                    && p.state_delta_vector.len() == s.specification.reservoir_nodes
                     && p.state_delta_vector
                         .iter()
                         .all(|v| v.is_finite() && (-2.0..=2.0).contains(v))

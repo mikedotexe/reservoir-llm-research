@@ -32,7 +32,7 @@ fn settled(s: &SustainedState) {
 fn prepare_reply(s: &SustainedState, epoch: u64, text: &str) -> u64 {
     loop {
         match s.worker_boundary(epoch).unwrap() {
-            Work::Provider(p, _) => {
+            Work::Provider(p, _, _permit) => {
                 s.settle(epoch, p.attempt_id, Ok(response(text)), None, 25)
                     .unwrap();
                 return p.attempt_id;
@@ -206,7 +206,7 @@ fn failed_retention_save_never_dispatches_embedding_and_retry_save_keeps_reply()
             s.worker_boundary(epoch).unwrap(),
             Work::Continue(_)
         ));
-        let Work::Provider(p, _) = s.worker_boundary(epoch).unwrap() else {
+        let Work::Provider(p, _, _permit) = s.worker_boundary(epoch).unwrap() else {
             panic!()
         };
         s.shared.store.fail_next(stage);
@@ -367,7 +367,7 @@ fn final_checkin_encoding_retry_keeps_schedule_and_applies_once() {
         epoch,
         "Conversational body.\nWITHHOLD_RESERVOIR_INPUT=true\nNEXT: TUNE leak 0.75",
     );
-    let Work::Embedding(p, _, _) = s.worker_boundary(epoch).unwrap() else {
+    let Work::Embedding(p, _, _, _permit) = s.worker_boundary(epoch).unwrap() else {
         panic!()
     };
     s.settle_embedding(epoch, attempt, p.request_id, Err("retry me".into()))

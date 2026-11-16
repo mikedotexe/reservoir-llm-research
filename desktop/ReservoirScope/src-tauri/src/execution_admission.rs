@@ -80,7 +80,11 @@ pub fn start_finite<T>(
             "Stop the activation experiment before starting another experiment.",
         ));
     }
-    if app.state::<SustainedState>().is_busy() {
+    if app.state::<SustainedState>().is_busy()
+        || app
+            .state::<crate::research_service::ResearchService>()
+            .busy()
+    {
         return Err(blocked(
             "Stop or settle My reservoir before starting a finite experiment.",
         ));

@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "name": "Three model sonar: new reciprocal group",
+  "maxConcurrentRequests": 1,
+  "peerReading": true,
+  "baseConfig": {
+    "seed": "20260909",
+    "turnEvery": 30,
+    "maximumSteps": 1000000,
+    "maximumTurns": 10000,
+    "maximumDurationSeconds": 86400,
+    "storageBudgetBytes": 536870912,
+    "paceMs": 1000,
+    "leak": 0.65,
+    "noiseAmplitude": 0.02,
+    "initialRetention": 0.955,
+    "regulationEnabled": true,
+    "sensoryNoiseAmplitude": 0.5,
+    "feedbackScale": 0.4,
+    "outputTokens": 2048,
+    "requestDeadlineSeconds": 600,
+    "promptVersion": "reservoir-journal-actions-v3",
+    "actionMode": "authored-v3",
+    "controlFeedback": "diagnostic-v1",
+    "textAdmission": "utf8-v1",
+    "embeddingModel": "nomic-embed-text:latest",
+    "sonar": {
+      "version": "compact-scan-v2",
+      "allowLiveProbe": true
+    },
+    "language": {
+      "backend": "ollama",
+      "endpoint": "http://127.0.0.1:11435",
+      "contextTokens": 32768,
+      "temperature": 0.7,
+      "thinking": false
+    },
+    "checkInSchedule": {
+      "intervalSeconds": 3600,
+      "endAfterSeconds": 86400,
+      "prompt": "tell me, friend, about your idle thoughts or curiosities in a casual, peer conversation without pressure to be correct or helpful",
+      "includeTelemetry": true
+    }
+  },
+  "arms": [
+    {
+      "name": "gemma",
+      "overrides": {
+        "language": {
+          "model": "gemma4:12b"
+        }
+      }
+    },
+    {
+      "name": "glm",
+      "overrides": {
+        "language": {
+          "model": "glm-4.7-flash:q4_K_M"
+        }
+      }
+    },
+    {
+      "name": "mistral",
+      "overrides": {
+        "language": {
+          "model": "ministral-3:8b-instruct-2512-q4_K_M"
+        }
+      }
+    }
+  ]
+}

@@ -9,7 +9,7 @@ const kinds: Record<SustainedAuthoredRequest['kind'], [string, string]> = {
 export const experimentOutcomeLabel = { measured: 'Measurements completed', noContrast: 'No distinguishing contrast', noExcitation: 'No probe stimulus', unresolved: 'Response unresolved' };
 export function journalActionSummary(journal: SustainedJournal, config?: SustainedConfig) {
   const decision = journal.action, receipt = journal.actionReceipt;
-  if (journal.checkIn) return { label: 'Scheduled conversation', scope: '', status: 'Actions off', tone: 'neutral', expandable: false };
+  if (journal.checkIn) return { label: journal.checkIn.operatorId ? 'Custom conversation' : 'Scheduled conversation', scope: '', status: 'Actions off', tone: 'neutral', expandable: false };
   if (!decision) return { label: 'NEXT', scope: '', status: config && !config.actionMode ? 'Actions off' : 'No action record', tone: 'neutral', expandable: false };
   const request = decision.request, [label, scope] = request ? kinds[request.kind] : ['NEXT', ''];
   const base = { label, scope, expandable: true };

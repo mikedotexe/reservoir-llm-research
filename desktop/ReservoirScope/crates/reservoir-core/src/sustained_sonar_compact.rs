@@ -108,7 +108,9 @@ pub(super) fn enabled(s: &SustainedSpecification) -> bool {
     s.sonar.as_ref().is_some_and(|c| {
         matches!(
             c.version,
-            SustainedSonarVersion::CompactScanV2 | SustainedSonarVersion::ExperimentsV3
+            SustainedSonarVersion::CompactScanV2
+                | SustainedSonarVersion::ExperimentsV3
+                | SustainedSonarVersion::ExperimentsV4
         )
     })
 }
@@ -195,7 +197,7 @@ fn validate_prediction(
 }
 fn raw_matrix(r: &SustainedCompactSonarReport) -> Result<Vec<Vec<f64>>> {
     if let Some(f) = &r.fallback {
-        Ok((0..32)
+        Ok((0..r.origin.state.len())
             .map(|row| {
                 (0..48)
                     .map(|col| (f.positive[col][row] - f.negative[col][row]) / (2.0 * r.epsilon))
@@ -539,7 +541,7 @@ pub fn validate_compact_sonar_report(r: &SustainedCompactSonarReport) -> Result<
         &r.calibration_negative,
         &r.row_gains,
     ] {
-        vector(v, 32, "compact calibration")?;
+        vector(v, r.origin.state.len(), "compact calibration")?;
     }
     ensure(
         r.row_gains
@@ -567,7 +569,7 @@ pub fn validate_compact_sonar_report(r: &SustainedCompactSonarReport) -> Result<
             "Invalid signed fallback",
         )?;
         for v in f.positive.iter().chain(&f.negative) {
-            vector(v, 32, "signed fallback response")?;
+            vector(v, r.origin.state.len(), "signed fallback response")?;
             ensure(
                 v.iter().all(|x| x.abs() <= 2.0),
                 "Fallback response out of bounds",
@@ -587,7 +589,15 @@ pub fn validate_compact_sonar_report(r: &SustainedCompactSonarReport) -> Result<
         for v in [&c.positive_response_l2, &c.negative_response_l2] {
             vector(v, 64, "compact candidate curve")?;
             ensure(
-                v.iter().all(|x| *x >= 0.0 && *x <= 12.0),
+                v.iter().all(|x| {
+                    *x >= 0.0
+                        && *x
+                            <= if r.origin.state.len() == 32 {
+                                12.0
+                            } else {
+                                24.0
+                            }
+                }),
                 "Invalid candidate separation",
             )?;
         }
@@ -633,7 +643,7 @@ pub fn validate_sonar_question_report(r: &SustainedSonarQuestionReport) -> Resul
         "Invalid question outcome dimensions",
     )?;
     for v in r.measured_gap.iter().chain(&r.predicted_gap) {
-        vector(v, 32, "question gap")?;
+        vector(v, r.origin.state.len(), "question gap")?;
     }
     let magnitude = r
         .measured_gap
@@ -656,10 +666,24 @@ pub fn validate_sonar_question_report(r: &SustainedSonarQuestionReport) -> Resul
             && r.actual_response_l2
                 .iter()
                 .chain(&r.alternative_response_l2)
-                .all(|v| v.is_finite() && *v >= 0.0 && *v <= 12.0)
+                .all(|v| {
+                    v.is_finite()
+                        && *v >= 0.0
+                        && *v
+                            <= if r.origin.state.len() == 32 {
+                                12.0
+                            } else {
+                                24.0
+                            }
+                })
             && r.random_median_gap_l2.is_finite()
             && r.random_median_gap_l2 >= 0.0
-            && r.random_median_gap_l2 <= 24.0
+            && r.random_median_gap_l2
+                <= if r.origin.state.len() == 32 {
+                    24.0
+                } else {
+                    48.0
+                }
             && r.linear_prediction_valid
                 == (r.unit_input.is_some()
                     && !r.used_signed_fallback
@@ -707,8 +731,12 @@ pub(super) fn validate_question_forecast(p: &SustainedSonarProbeReceipt) -> Resu
             .as_ref()
             .ok_or_else(|| invalid("Missing question application origin"))?;
         validate_origin(&q.alternative_origin)?;
-        vector(&q.actual_delta, 32, "question actual delta")?;
-        vector(&q.alternative_delta, 32, "question alternative delta")?;
+        vector(&q.actual_delta, o.state.len(), "question actual delta")?;
+        vector(
+            &q.alternative_delta,
+            o.state.len(),
+            "question alternative delta",
+        )?;
         ensure(
             q.alternative_origin == alternative(o, q.question)
                 && q.difference_l2 == distance(&q.actual_delta, &q.alternative_delta)

@@ -47,7 +47,7 @@ const controls = (value: unknown): value is SustainedActionControls => record(va
 function request(value: unknown): value is SustainedAuthoredRequest {
   if (!record(value)) return false;
   if (value.kind === 'none' || value.kind === 'release' || value.kind === 'readPeers' || value.kind === 'scan') return true;
-  if (value.kind === 'experiment') return validExperimentRequest(value.experiment);
+  if (value.kind === 'experiment') return validExperimentRequest(value.experiment,128);
   if (value.kind === 'probeExperiment') return validExperimentProbeRequest(value.probe);
   if (value.kind === 'scanQuestion') return sonarQuestion(value.question);
   if (value.kind === 'probeScan') return sonarDirection(value.direction) && sonarSign(value.sign);
@@ -80,8 +80,9 @@ function validActionChoice(value: unknown): boolean {
 }
 function validChoiceForMode(value: { request: SustainedAuthoredRequest | null; reservoirInput?: unknown; inquiry?: unknown; diagnostics?: unknown }, config: SustainedConfig): boolean {
   return (config.controlFeedback === 'diagnostic-v1' ? validControlDiagnostics(value.diagnostics) : value.diagnostics === undefined)
-    && (value.request?.kind !== 'scanQuestion' && !(value.request?.kind === 'probeScan' && value.request.direction === 'question') || ['compact-scan-v2','experiments-v3'].includes(config.sonar?.version??''))
-    && (!['experiment','probeExperiment'].includes(value.request?.kind??'') || config.sonar?.version==='experiments-v3')
+    && (value.request?.kind !== 'scanQuestion' && !(value.request?.kind === 'probeScan' && value.request.direction === 'question') || ['compact-scan-v2','experiments-v3','experiments-v4'].includes(config.sonar?.version??''))
+    && (!['experiment','probeExperiment'].includes(value.request?.kind??'') || ['experiments-v3','experiments-v4'].includes(config.sonar?.version??''))
+    && (value.request?.kind !== 'experiment' || validExperimentRequest(value.request.experiment, config.reservoirNodes ?? 32))
     && (!['scan','probeScan','scanQuestion'].includes(value.request?.kind ?? '') || !!config.sonar)
     && (value.request?.kind !== 'readPeers' || !!config.peerReading)
     && validInputForMode(value.reservoirInput, config) && (hasLocalInquiry(config) || value.inquiry === undefined && value.request?.kind !== 'probe');
@@ -92,7 +93,7 @@ export function validActionReceipt(value: unknown, durableStep: number, config?:
     || value.diagnostics !== undefined && !validControlDiagnostics(value.diagnostics)
     || value.reservoirInput !== undefined && !validReservoirInput(value.reservoirInput)
     || config !== undefined && !validInputForMode(value.reservoirInput, config)
-    || !controls(value.controlsBefore) || !controls(value.controlsAfter) || !scalar(value.stateDeltaL2, 0, 12) || !scalar(value.stateDeltaMaxAbs, 0, 2) || !count(value.clippedCoordinates, 32)
+    || !controls(value.controlsBefore) || !controls(value.controlsAfter) || !scalar(value.stateDeltaL2, 0, config && (config.reservoirNodes ?? 32) === 32 ? 12 : 24) || !scalar(value.stateDeltaMaxAbs, 0, 2) || !count(value.clippedCoordinates, config?.reservoirNodes ?? 32)
     || value.inquiry !== undefined && (!validInquiryReceipt(value.inquiry, durableStep) || value.inquiry.journalId !== value.journalId || value.inquiry.appliedStep !== value.appliedStep)
     || !validExperimentReceipt(value as unknown as SustainedActionReceipt, config)
     || !validSonarReceipt(value as unknown as SustainedActionReceipt, config)

@@ -662,14 +662,16 @@ pub(super) fn validate(s: &SustainedContinuation) -> Result<()> {
                 && q.last_continued_step <= s.step
                 && q.continuation_count <= s.attempt_cursor
                 && q.baseline.step == q.opened_observed_step
-                && q.baseline.state.len() == 32
+                && q.baseline.state.len() == s.specification.reservoir_nodes
                 && q.baseline
                     .state
                     .iter()
                     .all(|x| x.is_finite() && (-1.0..=1.0).contains(x))
                 && q.baseline.rms.is_finite()
                 && (q.baseline.rms
-                    - (q.baseline.state.iter().map(|x| x * x).sum::<f64>() / 32.0).sqrt())
+                    - (q.baseline.state.iter().map(|x| x * x).sum::<f64>()
+                        / s.specification.reservoir_nodes as f64)
+                        .sqrt())
                 .abs()
                     < 1e-12
                 && q.baseline.sensory_fill.is_finite()

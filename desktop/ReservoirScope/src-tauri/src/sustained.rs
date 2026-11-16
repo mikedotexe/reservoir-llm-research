@@ -43,9 +43,14 @@ use check_ins::CheckInSummary;
 mod actions;
 use actions::ActionsSummary;
 
+#[path = "sustained_configuration.rs"]
+mod configuration;
 #[path = "sustained_sonar.rs"]
 mod sonar;
+pub use configuration::{BoundaryTarget, ConfigurationRecord};
 pub use sonar::SonarView;
+
+static NEXT_SESSION_ID: AtomicU64 = AtomicU64::new(1);
 
 fn err(kind: &str, message: impl Into<String>) -> AppError {
     AppError::new("sustained", kind, message)
@@ -53,9 +58,19 @@ fn err(kind: &str, message: impl Into<String>) -> AppError {
 fn ce(e: impl std::fmt::Display) -> AppError {
     err("engine", e.to_string())
 }
-#[derive(Clone, Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize, schemars::JsonSchema)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedConfig {
+    #[serde(
+        default = "reservoir_core::sustained::default_reservoir_nodes",
+        skip_serializing_if = "reservoir_core::sustained::is_default_reservoir_nodes"
+    )]
+    pub reservoir_nodes: usize,
+    #[serde(
+        default = "reservoir_core::sustained::default_recurrent_gain",
+        skip_serializing_if = "reservoir_core::sustained::is_default_recurrent_gain"
+    )]
+    pub recurrent_gain: f64,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub sonar: Option<reservoir_core::sustained::SustainedSonarConfig>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -153,6 +168,8 @@ pub struct SustainedConfig {
 impl Default for SustainedConfig {
     fn default() -> Self {
         Self {
+            reservoir_nodes: 32,
+            recurrent_gain: 1.0,
             sonar: None,
             peer_reading: None,
             text_admission: None,
@@ -231,6 +248,8 @@ impl SustainedConfig {
             return Err(err("seed", "Seed must be canonical unsigned decimal"));
         }
         Ok(SustainedSpecification {
+            reservoir_nodes: self.reservoir_nodes,
+            recurrent_gain: self.recurrent_gain,
             sonar: self.sonar.clone(),
             peer_reading: self.peer_reading.clone(),
             text_admission: self.text_admission,
@@ -392,6 +411,9 @@ pub struct SustainedSummary {
     pub generation: String,
     pub revision: String,
     pub config: SustainedConfig,
+    pub original_config: SustainedConfig,
+    pub configuration_revision: u64,
+    pub configuration_history: Vec<ConfigurationRecord>,
     pub phase: String,
     pub step: u64,
     pub durable_step: u64,
@@ -488,6 +510,10 @@ struct Shared {
     exports: AtomicU64,
     snapshot_sequence: AtomicU64,
     updates: SyncSender<()>,
+    configuration_pause: AtomicBool,
+    configuration_uncertain: AtomicBool,
+    boundary_targets: Mutex<std::collections::BTreeMap<String, BoundaryTarget>>,
+    scheduler: Mutex<Option<crate::provider_scheduler::ProviderScheduler>>,
 }
 #[derive(Clone)]
 pub struct SustainedState {
@@ -531,6 +557,10 @@ impl SustainedState {
                 exports: AtomicU64::new(0),
                 snapshot_sequence: AtomicU64::new(0),
                 updates,
+                configuration_pause: AtomicBool::new(false),
+                configuration_uncertain: AtomicBool::new(false),
+                boundary_targets: Mutex::new(std::collections::BTreeMap::new()),
+                scheduler: Mutex::new(None),
             }),
         };
         let weak = Arc::downgrade(&state.shared);
@@ -548,10 +578,43 @@ impl SustainedState {
             .inner
             .lock()
             .map_err(|_| err("lock", "Sustained state unavailable"))?;
+        if self.shared.configuration_uncertain.load(Ordering::SeqCst) {
+            return Err(err("needs-attention", "Configuration publication is uncertain; reload the verified run before another mutation"));
+        }
         if self.shared.closing.load(Ordering::SeqCst) {
             return Err(err("closing", "Application close has been authorized"));
         }
         Ok(g)
+    }
+    pub fn requires_reload(&self) -> bool {
+        self.shared.configuration_uncertain.load(Ordering::SeqCst)
+    }
+    pub fn set_scheduler(&self, scheduler: crate::provider_scheduler::ProviderScheduler) {
+        *self.shared.scheduler.lock().unwrap() = Some(scheduler);
+    }
+    fn scheduler_permit(
+        &self,
+        a: &Active,
+    ) -> Result<Option<crate::provider_scheduler::Permit>, ()> {
+        if a.manifest.current_config().language.backend == LanguageKind::Scripted {
+            return Ok(None);
+        }
+        let scheduler = self.shared.scheduler.lock().map_err(|_| ())?;
+        match scheduler.as_ref() {
+            None => Ok(None),
+            Some(s) => s
+                .try_acquire(
+                    a.manifest
+                        .current_config()
+                        .language
+                        .endpoint
+                        .as_deref()
+                        .unwrap_or(""),
+                    &a.manifest.session_id,
+                )
+                .map(Some)
+                .ok_or(()),
+        }
     }
     pub fn begin_export(&self) -> Result<ExportGuard, AppError> {
         let _g = self.lock()?;
@@ -666,6 +729,14 @@ impl SustainedState {
         request_id: String,
         config: SustainedConfig,
     ) -> Result<SustainedUpdate, AppError> {
+        self.create_named(request_id, config, None)
+    }
+    pub fn create_named(
+        &self,
+        request_id: String,
+        config: SustainedConfig,
+        selected_id: Option<String>,
+    ) -> Result<SustainedUpdate, AppError> {
         config.validate()?;
         if config.embedding_model.is_some() && config.language.backend != LanguageKind::Ollama {
             return Err(err(
@@ -689,10 +760,12 @@ impl SustainedState {
         let id = format!(
             "sustained-{}-{}",
             crate::session_store::now_ms(),
-            g.generation
+            NEXT_SESSION_ID.fetch_add(1, Ordering::SeqCst)
         );
+        let id = selected_id.unwrap_or(id);
         let committed = engine.checkpoint();
         let mut manifest = Manifest {
+            configuration_changes: vec![],
             format: "reservoir-sustained-bundle-v1".into(),
             session_id: id.clone(),
             generation: g.generation.to_string(),
@@ -1000,7 +1073,7 @@ impl SustainedState {
         if a.manifest.phase == "budgetReached"
             || sustained_store::storage_held(&a.manifest)
             || a.used_bytes.saturating_add(sustained_store::RUN_HEADROOM)
-                > a.manifest.config.storage_budget_bytes
+                > a.manifest.current_config().storage_budget_bytes
         {
             return Err(err("budget", "Storage headroom is reserved for terminal handling; no new provider attempt was admitted."));
         }
@@ -1045,7 +1118,7 @@ impl SustainedState {
         if a.manifest.phase == "storageBlocked"
             || sustained_store::storage_held(&a.manifest)
             || a.used_bytes.saturating_add(sustained_store::RUN_HEADROOM)
-                > a.manifest.config.storage_budget_bytes
+                > a.manifest.current_config().storage_budget_bytes
         {
             return Err(err(
                 "budget",
@@ -1205,7 +1278,7 @@ impl SustainedState {
         let (receipt, readback) = match self.shared.store.commit_journal(
             &a.manifest.session_id,
             &pending,
-            &a.manifest.config,
+            a.manifest.current_config(),
             a.manifest.attempt_timing.as_ref(),
         ) {
             Ok(v) => v,
@@ -1273,7 +1346,7 @@ impl SustainedState {
         loop {
             let outcome = self.worker_boundary(epoch);
             match outcome {
-                Ok(Work::Provider(p, sampling)) => {
+                Ok(Work::Provider(p, sampling, _permit)) => {
                     let transport_start = Instant::now();
                     let response = if p.configuration.backend == LanguageKind::Scripted {
                         Ok(LanguageResponse {
@@ -1305,7 +1378,7 @@ impl SustainedState {
                         break;
                     }
                 }
-                Ok(Work::Embedding(p, model, projection_seed)) => {
+                Ok(Work::Embedding(p, model, projection_seed, _permit)) => {
                     let result = self
                         .external_feedback_for(
                             epoch,
@@ -1353,6 +1426,11 @@ impl SustainedState {
             if let Some(a) = g.active.as_mut() {
                 // Old worker completion may release its in-flight flag, but never mutate a replacement run.
                 if a.epoch == epoch || a.manifest.phase == "stopped" {
+                    if let Ok(s) = self.shared.scheduler.lock() {
+                        if let Some(s) = s.as_ref() {
+                            s.cancel(&a.manifest.session_id);
+                        }
+                    }
                     a.worker_active = false;
                     if a.manifest.phase == "stopped" {
                         self.shared.busy.store(false, Ordering::SeqCst);
@@ -1398,6 +1476,15 @@ impl SustainedState {
             self.persist(a)?;
             return Ok(Work::Done);
         }
+        if (self.target_due(a) || self.shared.configuration_pause.load(Ordering::SeqCst))
+            && a.engine.configuration_ready()
+        {
+            a.run_requested = false;
+            a.manifest.phase = "paused".into();
+            a.manifest.revision = next(&a.manifest.revision);
+            self.persist(a)?;
+            return Ok(Work::Done);
+        }
         if self.shared.pause.load(Ordering::SeqCst) {
             a.run_requested = false;
         }
@@ -1421,7 +1508,7 @@ impl SustainedState {
         if a.run_requested
             && !a.dispatch_once
             && a.engine
-                .admit_due_check_in(a.manifest.elapsed_millis)
+                .admit_due_check_in(a.engine.schedule_elapsed(a.manifest.elapsed_millis))
                 .map_err(ce)?
         {
             a.manifest.revision = next(&a.manifest.revision);
@@ -1481,6 +1568,10 @@ impl SustainedState {
                     "An uncertain dispatched request cannot be sent again",
                 ));
             }
+            let permit = match self.scheduler_permit(a) {
+                Ok(p) => p,
+                Err(()) => return Ok(Work::Continue(20)),
+            };
             a.manifest.phase = "awaitingLanguage".into();
             a.manifest.revision = next(&a.manifest.revision);
             self.persist(a)?;
@@ -1491,6 +1582,7 @@ impl SustainedState {
             a.manifest.revision = next(&a.manifest.revision);
             a.dispatch_once = false;
             a.manifest.attempt_timing = Some(sustained_store::AttemptTiming {
+                queue_wait_ms: permit.as_ref().map(|p| p.queued_millis),
                 attempt_id: p.attempt_id,
                 dispatched_at_ms: if p.configuration.backend == LanguageKind::Ollama {
                     Some(crate::session_store::now_ms().to_string())
@@ -1511,7 +1603,7 @@ impl SustainedState {
                 system: a.engine.pending_system_contract(),
                 thinking: p.configuration.thinking,
             };
-            return Ok(Work::Provider(Box::new(p), sampling));
+            return Ok(Work::Provider(Box::new(p), sampling, permit));
         }
         if let Some(p) = a.engine.pending_feedback().cloned() {
             if let Some(reason) = &p.failure {
@@ -1547,6 +1639,13 @@ impl SustainedState {
                     ))
                 }
             };
+            let permit = match self.scheduler_permit(a) {
+                Ok(p) => p,
+                Err(()) => return Ok(Work::Continue(20)),
+            };
+            if let Some(t) = &mut a.manifest.attempt_timing {
+                t.embedding_queue_wait_ms = permit.as_ref().map(|p| p.queued_millis);
+            }
             a.engine.start_feedback(p.pending.attempt_id).map_err(ce)?;
             a.dispatch_once = false;
             a.manifest.phase = "waitingForEmbedding".into();
@@ -1577,6 +1676,7 @@ impl SustainedState {
                 ),
                 model,
                 projection_seed,
+                permit,
             ));
         }
         if a.engine.pending_journal().is_some() {
@@ -1626,7 +1726,7 @@ impl SustainedState {
         {
             self.persist(a)?;
         }
-        Ok(Work::Continue(a.manifest.config.pace_ms))
+        Ok(Work::Continue(a.manifest.current_config().pace_ms))
     }
     fn settle(
         &self,
@@ -1797,7 +1897,10 @@ impl SustainedState {
             session_id: a.manifest.session_id.clone(),
             generation: a.manifest.generation.clone(),
             revision: a.manifest.revision.clone(),
-            config: a.manifest.config.clone(),
+            config: a.manifest.current_config().clone(),
+            original_config: a.manifest.config.clone(),
+            configuration_revision: a.engine.configuration_revision(),
+            configuration_history: a.manifest.configuration_changes.clone(),
             phase: a.manifest.phase.clone(),
             step: a.engine.step(),
             durable_step: a.committed.state.step,
@@ -1831,7 +1934,7 @@ impl SustainedState {
                 && a.manifest.phase != "storageBlocked"
                 && !sustained_store::storage_held(&a.manifest)
                 && a.used_bytes.saturating_add(sustained_store::RUN_HEADROOM)
-                    <= a.manifest.config.storage_budget_bytes
+                    <= a.manifest.current_config().storage_budget_bytes
                 && a.engine
                     .pending_feedback()
                     .is_some_and(|p| !p.request_started),
@@ -1954,6 +2057,25 @@ impl SustainedState {
                 "Journal object changed since its committed chain anchor",
             ));
         }
+        Self::project_journal(request_id, &a.manifest, index, j, &object_hash)
+    }
+    /// Shared, verified evidence projection for the primary reader and multi-run API.
+    pub fn project_journal(
+        request_id: String,
+        manifest: &sustained_store::Manifest,
+        index: &sustained_store::JournalIndex,
+        j: sustained_store::JournalObject,
+        object_hash: &str,
+    ) -> Result<JournalDetail, AppError> {
+        let id = manifest.session_id.as_str();
+        let generation = manifest.generation.as_str();
+        let entry_id = index.entry_id.as_str();
+        let config = manifest
+            .configuration_changes
+            .iter()
+            .rev()
+            .find(|c| c.step < index.observed_step)
+            .map_or(&manifest.config, |c| &c.config);
         let p = j.pending;
         // This optional display projection must not hide an otherwise readable,
         // verified historical journal. Raw evidence remains available on failure.
@@ -1961,10 +2083,10 @@ impl SustainedState {
             reservoir_core::sustained::measurement_reference(&p.observation).ok();
         let memory = p
             .memory
-            .map(|m| actions::memory_evidence(&m, a.manifest.config.prompt_version));
+            .map(|m| actions::memory_evidence(&m, config.prompt_version));
         let latest_shown = p
             .latest_shown
-            .map(|m| actions::memory_evidence(&m, a.manifest.config.prompt_version));
+            .map(|m| actions::memory_evidence(&m, config.prompt_version));
         let application=index.first_applied_step.map(|s|serde_json::json!({"journalId":entry_id,"observedStep":index.observed_step,"appliedStep":s,"attemptId":index.attempt_id}));
         let provider_prompt_evaluation = p
             .response
@@ -1975,8 +2097,8 @@ impl SustainedState {
             request_id,
             session_id: id.into(),
             generation: generation.into(),
-            revision: a.manifest.revision.clone(),
-            journal: serde_json::json!({"entryId":p.entry.id,"turnId":p.entry.turn_id,"attemptId":p.entry.attempt_id,"observedStep":p.entry.observed_step,"firstAppliedStep":index.first_applied_step,"text":p.entry.text,"sha256":p.entry.sha256,"prompt":p.prompt,"promptVersion":a.manifest.config.prompt_version,"rawReply":p.response.text,"observation":p.observation,"measurementReference":measurement_reference,"memory":memory,"memoryChoice":p.memory_choice,"latestShown":latest_shown,"encodedFeatures":p.encoded_features,"semanticVector":p.semantic_vector,"saveReceipt":{"entryId":entry_id,"sha256":index.sha256,"relativePath":format!("journals/{entry_id}.json")},"providerModel":p.response.provider_model,"stopReason":p.response.stop_reason,"tokenCount":p.response.token_count,"providerComplete":p.response.complete,"configuredModel":j.configured_model,"temperature":j.temperature,"samplingSeed":j.sampling_seed,"thinking":j.thinking,"feedbackProvenance":p.feedback_provenance,"objectSha256":object_hash,"requestStarted":j.request_started,"timing":j.timing,"status":index.status,"application":application}),
+            revision: manifest.revision.clone(),
+            journal: serde_json::json!({"entryId":p.entry.id,"turnId":p.entry.turn_id,"attemptId":p.entry.attempt_id,"observedStep":p.entry.observed_step,"firstAppliedStep":index.first_applied_step,"text":p.entry.text,"sha256":p.entry.sha256,"prompt":p.prompt,"promptVersion":config.prompt_version,"rawReply":p.response.text,"observation":p.observation,"measurementReference":measurement_reference,"memory":memory,"memoryChoice":p.memory_choice,"latestShown":latest_shown,"encodedFeatures":p.encoded_features,"semanticVector":p.semantic_vector,"saveReceipt":{"entryId":entry_id,"sha256":index.sha256,"relativePath":format!("journals/{entry_id}.json")},"providerModel":p.response.provider_model,"stopReason":p.response.stop_reason,"tokenCount":p.response.token_count,"providerComplete":p.response.complete,"configuredModel":j.configured_model,"temperature":j.temperature,"samplingSeed":j.sampling_seed,"thinking":j.thinking,"feedbackProvenance":p.feedback_provenance,"objectSha256":object_hash,"requestStarted":j.request_started,"timing":j.timing,"status":index.status,"application":application}),
         };
         if let Some(action) = &p.action {
             detail.journal["action"] = serde_json::to_value(action).map_err(ce)?;
@@ -1989,8 +2111,7 @@ impl SustainedState {
             detail.journal["checkIn"] = serde_json::to_value(check_in).map_err(ce)?;
             detail.journal["observationSupplied"] = check_in.include_telemetry.into();
             detail.journal["systemContract"] = if check_in.include_telemetry {
-                a.manifest
-                    .config
+                config
                     .prompt_version
                     .system_contract()
                     .map(serde_json::Value::from)
@@ -2201,11 +2322,13 @@ enum Work {
     Provider(
         Box<reservoir_core::sustained::SustainedPendingLanguage>,
         crate::model_transport::Sampling,
+        Option<crate::provider_scheduler::Permit>,
     ),
     Embedding(
         Box<reservoir_core::sustained::SustainedPendingFeedback>,
         String,
         u64,
+        Option<crate::provider_scheduler::Permit>,
     ),
     Continue(u64),
     Done,

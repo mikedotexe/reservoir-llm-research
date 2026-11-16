@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "name": "Scheduled growth and conversation",
+  "baseConfig": {
+    "language": {
+      "backend": "scripted"
+    },
+    "turnEvery": 30,
+    "maximumSteps": 10000,
+    "maximumTurns": 1000,
+    "paceMs": 1000
+  },
+  "arms": [
+    {
+      "name": "growing",
+      "overrides": {},
+      "interventions": [
+        {
+          "kind": "configuration",
+          "at": {
+            "step": 3600
+          },
+          "patch": {
+            "reservoirNodes": 48
+          }
+        },
+        {
+          "kind": "prompt",
+          "at": {
+            "step": 4000
+          },
+          "prompt": "What have you noticed since the reservoir grew?",
+          "includeTelemetry": true
+        }
+      ]
+    }
+  ]
+}

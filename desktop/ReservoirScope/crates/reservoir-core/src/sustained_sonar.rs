@@ -15,7 +15,7 @@ pub const SONAR_STATE_BOUND: f64 = 0.05;
 pub const SONAR_HORIZONS: [usize; 7] = [1, 2, 4, 8, 16, 32, 64];
 const RESOLUTION: f64 = 1e-9;
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize, schemars::JsonSchema)]
 pub enum SustainedSonarVersion {
     #[serde(rename = "response-scan-v1")]
     ResponseScanV1,
@@ -23,8 +23,10 @@ pub enum SustainedSonarVersion {
     CompactScanV2,
     #[serde(rename = "experiments-v3")]
     ExperimentsV3,
+    #[serde(rename = "experiments-v4")]
+    ExperimentsV4,
 }
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize, schemars::JsonSchema)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct SustainedSonarConfig {
     pub version: SustainedSonarVersion,
@@ -153,7 +155,7 @@ fn model_for(origin: &SustainedSonarOrigin) -> Result<ReservoirModel> {
         .seed
         .parse()
         .map_err(|_| invalid("Invalid sonar model seed"))?;
-    let base = ReservoirModel::seeded(seed);
+    let base = reservoir_model(seed, origin.state.len());
     ensure(
         typed_hash(&base) == origin.model_sha256,
         "Sonar model identity differs",
@@ -208,7 +210,7 @@ fn continuation_for(
                 *slot += kick;
             }
         }
-        let noise: Vec<_> = (0..32)
+        let noise: Vec<_> = (0..origin.state.len())
             .map(|_| rng.signed() * origin.noise_amplitude)
             .collect();
         path.push(SustainedSonarPoint {
@@ -222,27 +224,28 @@ fn continuation_for(
 pub fn sustained_sonar_mirror(history: &[SustainedSonarPoint]) -> Result<SustainedSonarMirror> {
     validate_history(history)?;
     let n = history.len();
-    let mut mean = vec![0.0; 32];
+    let nodes = history[0].state.len();
+    let mut mean = vec![0.0; nodes];
     for point in history {
         for (m, x) in mean.iter_mut().zip(&point.state) {
             *m += x / n as f64;
         }
     }
-    let mut covariance = vec![0.0; 1024];
+    let mut covariance = vec![0.0; nodes * nodes];
     if n > 1 {
         for point in history {
-            for i in 0..32 {
-                for j in 0..32 {
-                    covariance[i * 32 + j] +=
+            for i in 0..nodes {
+                for j in 0..nodes {
+                    covariance[i * nodes + j] +=
                         (point.state[i] - mean[i]) * (point.state[j] - mean[j]) / (n - 1) as f64;
                 }
             }
         }
     }
-    let (values, vectors) = eigensystem(&covariance, 32)?;
+    let (values, vectors) = eigensystem(&covariance, nodes)?;
     let total = values.iter().sum::<f64>();
     let axes: Vec<Vec<f64>> = if total > 1e-20 {
-        vectors.chunks(32).take(3).map(|v| v.to_vec()).collect()
+        vectors.chunks(nodes).take(3).map(|v| v.to_vec()).collect()
     } else {
         vec![]
     };
@@ -274,7 +277,7 @@ pub fn sustained_sonar_mirror(history: &[SustainedSonarPoint]) -> Result<Sustain
         principal_axes: axes,
         explained_shares: shares,
         projected_history: projected,
-        current_rms: norm(&latest.state) / 32.0_f64.sqrt(),
+        current_rms: norm(&latest.state) / (nodes as f64).sqrt(),
         current_boundary_coordinates: latest.state.iter().filter(|x| x.abs() >= 1.0).count(),
     })
 }
@@ -285,7 +288,11 @@ fn validate_history(history: &[SustainedSonarPoint]) -> Result<()> {
         "Invalid sonar history length",
     )?;
     for p in history {
-        vector(&p.state, 32, "sonar state")?;
+        ensure(
+            (32..=128).contains(&p.state.len()),
+            "Invalid sonar dimensions",
+        )?;
+        vector(&p.state, history[0].state.len(), "sonar state")?;
         ensure(
             p.step <= MAX_STEPS + SONAR_HORIZON as u64 && p.state.iter().all(|x| x.abs() <= 1.0),
             "Invalid sonar state boundary",
@@ -297,7 +304,11 @@ fn validate_history(history: &[SustainedSonarPoint]) -> Result<()> {
     )
 }
 fn validate_origin(o: &SustainedSonarOrigin) -> Result<()> {
-    vector(&o.state, 32, "sonar origin state")?;
+    ensure(
+        (32..=128).contains(&o.state.len()),
+        "Invalid sonar origin dimensions",
+    )?;
+    vector(&o.state, o.state.len(), "sonar origin state")?;
     vector(&o.held_vector, 48, "sonar held input")?;
     o.controls.validate()?;
     ensure(
@@ -322,7 +333,7 @@ fn validate_origin(o: &SustainedSonarOrigin) -> Result<()> {
 fn decomposition(matrix: &[Vec<f64>]) -> Result<(Vec<f64>, Vec<Vec<f64>>)> {
     let flat: Vec<_> = matrix.iter().flatten().copied().collect();
     let svd = SVD::try_new(
-        DMatrix::from_row_slice(32, 48, &flat),
+        DMatrix::from_row_slice(matrix.len(), 48, &flat),
         false,
         true,
         1e-14,
@@ -332,7 +343,7 @@ fn decomposition(matrix: &[Vec<f64>]) -> Result<(Vec<f64>, Vec<Vec<f64>>)> {
     let right = svd
         .v_t
         .ok_or_else(|| invalid("Sonar SVD has no directions"))?;
-    let rows = (0..32)
+    let rows = (0..matrix.len().min(48))
         .map(|r| {
             let mut row: Vec<_> = (0..48).map(|c| right[(r, c)]).collect();
             let largest = (0..48)
@@ -383,7 +394,7 @@ pub(super) fn scan_state(s: &SustainedContinuation) -> Result<SustainedSonarRepo
         });
     let origin = origin(s, &history);
     let baseline = sustained_sonar_continuation(&origin, &[0.0; 48])?;
-    let mut matrices = vec![vec![vec![0.0; 48]; 32]; SONAR_HORIZONS.len()];
+    let mut matrices = vec![vec![vec![0.0; 48]; origin.state.len()]; SONAR_HORIZONS.len()];
     let mut positive = Vec::new();
     let mut negative = Vec::new();
     for coordinate in 0..48 {
@@ -550,7 +561,7 @@ pub fn validate_report(report: &SustainedSonarReport) -> Result<()> {
         "Sonar scan settings differ from version 1",
     )?;
     ensure(
-        report.immediate_response_matrix.len() == 32
+        report.immediate_response_matrix.len() == report.origin.state.len()
             && report.positive_response_l2.len() == 48
             && report.negative_response_l2.len() == 48
             && report.singular_values.len() == 7
@@ -567,12 +578,18 @@ pub fn validate_report(report: &SustainedSonarReport) -> Result<()> {
     {
         vector(row, 7, "sonar signed response")?;
         ensure(
-            row.iter().all(|v| *v >= 0.0 && *v <= 12.0),
+            row.iter().all(|v| {
+                *v >= 0.0 && *v <= 2.0 * (report.origin.state.len() as f64).sqrt() + 1e-12
+            }),
             "Invalid sonar separation",
         )?;
     }
     for row in &report.singular_values {
-        vector(row, 32, "sonar singular values")?;
+        vector(
+            row,
+            report.origin.state.len().min(48),
+            "sonar singular values",
+        )?;
         ensure(
             row.iter().all(|v| *v >= 0.0) && row.windows(2).all(|p| p[0] >= p[1]),
             "Invalid sonar spectrum",
@@ -596,7 +613,9 @@ pub fn validate_report(report: &SustainedSonarReport) -> Result<()> {
         ] {
             vector(curve, 64, "sonar candidate response")?;
             ensure(
-                curve.iter().all(|v| *v >= 0.0 && *v <= 12.0),
+                curve.iter().all(|v| {
+                    *v >= 0.0 && *v <= 2.0 * (report.origin.state.len() as f64).sqrt() + 1e-12
+                }),
                 "Invalid sonar candidate separation",
             )?;
         }
@@ -958,9 +977,9 @@ pub(super) fn validate_receipt(
                         && o.step == r.observed_step
                         && o.controls == r.controls_after
                         && (norm(&p.applied_vector) - dose(o)?).abs() < 1e-12
-                        && p.forecast_response_l2
-                            .iter()
-                            .all(|v| *v >= 0.0 && *v <= 12.0)
+                        && p.forecast_response_l2.iter().all(|v| {
+                            *v >= 0.0 && *v <= 2.0 * (o.state.len() as f64).sqrt() + 1e-12
+                        })
                         && r.state_delta_l2 <= SONAR_STATE_BOUND + 1e-12
                         && (p.forecast_response_l2[0] - r.state_delta_l2).abs() < 1e-12,
                     "Invalid applied scan probe or bound",

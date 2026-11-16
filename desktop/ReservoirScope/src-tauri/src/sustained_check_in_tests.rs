@@ -204,7 +204,7 @@ fn paused_edit_preserves_prepared_prompt_and_survives_recovery() {
         .is_err());
     let epoch = arm(&s);
     match s.worker_boundary(epoch).unwrap() {
-        Work::Provider(p, sampling) => {
+        Work::Provider(p, sampling, _permit) => {
             assert_eq!(
                 p.prompt,
                 "tell me, friend, about your idle thoughts or curiosities"
@@ -220,7 +220,7 @@ fn paused_edit_preserves_prepared_prompt_and_survives_recovery() {
     until(&s, epoch, |a| check_in_applied(a, 1));
     elapsed(&s, 4000);
     match s.worker_boundary(epoch).unwrap() {
-        Work::Provider(p, _) => {
+        Work::Provider(p, _, _permit) => {
             assert!(p.prompt.contains("What are you curious about now?"));
             assert!(p.prompt.contains("Current local runtime readout:"));
             assert!(p.memory.is_some());
@@ -332,7 +332,7 @@ fn final_failure_holds_and_plain_retry_keeps_frozen_settings() {
     assert!(drive(&s, epoch));
     elapsed(&s, 4000);
     let original = match s.worker_boundary(epoch).unwrap() {
-        Work::Provider(p, sampling) => {
+        Work::Provider(p, sampling, _permit) => {
             assert!(sampling.system.is_none());
             p
         }
@@ -367,7 +367,7 @@ fn final_failure_holds_and_plain_retry_keeps_frozen_settings() {
     }
     let epoch = arm(&s);
     match s.worker_boundary(epoch).unwrap() {
-        Work::Provider(p, sampling) => {
+        Work::Provider(p, sampling, _permit) => {
             assert_eq!(p.prompt, original.prompt);
             assert_eq!(p.check_in, original.check_in);
             assert!(p.memory.is_none() && p.latest_shown.is_none() && p.memory_choice.is_none());
@@ -393,7 +393,7 @@ fn deadline_during_ordinary_request_applies_that_reply_before_final_check_in() {
     // Prepare an ordinary step-triggered opportunity before the deadline.
     until(&s, epoch, |a| a.engine.pending_language().is_some());
     let ordinary = match s.worker_boundary(epoch).unwrap() {
-        Work::Provider(p, _) => p,
+        Work::Provider(p, _, _permit) => p,
         _ => panic!("ordinary"),
     };
     assert!(ordinary.check_in.is_none());
@@ -407,7 +407,7 @@ fn deadline_during_ordinary_request_applies_that_reply_before_final_check_in() {
     assert_eq!(first.entries.len(), 1);
     assert_eq!(first.entries[0].status, "applied");
     let scheduled = match s.worker_boundary(epoch).unwrap() {
-        Work::Provider(p, _) => p,
+        Work::Provider(p, _, _permit) => p,
         _ => panic!("check-in"),
     };
     assert!(scheduled.check_in.as_ref().unwrap().final_check_in);
@@ -431,7 +431,7 @@ fn explicit_final_skip_completes_with_a_visible_gap() {
     assert!(drive(&s, epoch));
     elapsed(&s, 2000);
     let p = match s.worker_boundary(epoch).unwrap() {
-        Work::Provider(p, _) => p,
+        Work::Provider(p, _, _permit) => p,
         _ => panic!("check-in"),
     };
     s.settle(epoch, p.attempt_id, Err("test error".into()), None, 1)
@@ -456,7 +456,7 @@ fn retry_excludes_the_paused_gap_from_running_time() {
     assert!(drive(&s, epoch));
     elapsed(&s, 3_600_000);
     let p = match s.worker_boundary(epoch).unwrap() {
-        Work::Provider(p, _) => p,
+        Work::Provider(p, _, _permit) => p,
         _ => panic!("check-in"),
     };
     s.settle(epoch, p.attempt_id, Err("test error".into()), None, 1)
@@ -487,7 +487,7 @@ fn recovery_holds_an_uncertain_check_in_and_rejects_forged_elapsed_time() {
     assert!(drive(&s, epoch));
     elapsed(&s, 2000);
     let p = match s.worker_boundary(epoch).unwrap() {
-        Work::Provider(p, _) => p,
+        Work::Provider(p, _, _permit) => p,
         _ => panic!("check-in"),
     };
     let saved = s.shared.store.verify(&id).unwrap();
@@ -520,7 +520,7 @@ fn failed_final_application_commit_can_retry_to_durable_completed_state_once() {
     assert!(drive(&s, epoch));
     elapsed(&s, 2000);
     let p = match s.worker_boundary(epoch).unwrap() {
-        Work::Provider(p, _) => p,
+        Work::Provider(p, _, _permit) => p,
         _ => panic!("check-in"),
     };
     s.settle(epoch, p.attempt_id, Ok(answer()), None, 1)

@@ -134,6 +134,7 @@ impl SustainedState {
                             c.version,
                             reservoir_core::sustained::SustainedSonarVersion::CompactScanV2
                                 | reservoir_core::sustained::SustainedSonarVersion::ExperimentsV3
+                                | reservoir_core::sustained::SustainedSonarVersion::ExperimentsV4
                         )
                     })
             })
@@ -142,7 +143,11 @@ impl SustainedState {
             g.active.as_ref().is_some_and(|a| {
                 a.epoch == epoch
                     && a.engine.specification().sonar.as_ref().is_some_and(|c| {
-                        c.version == reservoir_core::sustained::SustainedSonarVersion::ExperimentsV3
+                        matches!(
+                            c.version,
+                            reservoir_core::sustained::SustainedSonarVersion::ExperimentsV3
+                                | reservoir_core::sustained::SustainedSonarVersion::ExperimentsV4
+                        )
                     })
             })
         });

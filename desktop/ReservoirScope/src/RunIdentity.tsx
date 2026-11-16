@@ -13,7 +13,7 @@ export function runIdentity(summary: Pick<SustainedSummary, 'sessionId' | 'confi
   return { model, accent, label: `${summary.config.peerReading?.participant ? `${summary.config.peerReading.participant} · ` : ''}Run ${shortId}` };
 }
 
-export default function RunIdentity({ summary }: { summary: SustainedSummary }) {
+export default function RunIdentity({ summary }: { summary: Pick<SustainedSummary, 'sessionId' | 'generation' | 'config'> }) {
   const identity = runIdentity(summary);
   return <div className="run-identity" data-model-family={identity.accent} aria-label="Run identity">
     <span className="run-model" title={`Configured model: ${identity.model}`}><i aria-hidden="true"/>{identity.model}</span>
