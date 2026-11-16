@@ -11,12 +11,12 @@ main { padding: 26px 28px; }
 .app-technical-details { margin: 20px 28px; padding: 16px 0; border-top: 1px solid var(--line); }
 .journal-workspace { max-width: 1560px; }
 .journal-workspace .my-reservoir-heading { align-items: center; flex-wrap: nowrap; margin: 0 0 14px; min-height: 30px; }
-.journal-workspace .my-reservoir-heading h1 { font-size: 14px; font-weight: 500; letter-spacing: .3px; color: #91adb7; margin: 0; }
+.journal-workspace .my-reservoir-heading h1 { font-size: 14px; font-weight: 500; letter-spacing: .3px; color: #98abc6; margin: 0; }
 .journal-workspace .my-reservoir-heading p { margin: 8px 0; }
 .reservoir-desk { display: grid; grid-template-columns: minmax(0, 1fr) 316px; gap: clamp(24px, 3vw, 48px); align-items: start; }
 .reservoir-reading-column, .reservoir-utility { min-width: 0; }
 .reservoir-utility { display: flex; flex-direction: column; gap: 20px; }
-.reservoir-control-card { background: #122127; border-radius: 14px; padding: 18px; }
+.reservoir-control-card { background: transparent; border-radius: 0; padding: 8px 0 20px; border-bottom: 1px solid var(--line); }
 .reservoir-utility .my-reservoir-status { border: 0; background: none; padding: 0; margin: 0; }
 .reservoir-utility .my-reservoir-status-main { display: block; }
 .reservoir-utility .my-reservoir-status strong { font-size: 16px; line-height: 1.5; }
@@ -26,10 +26,10 @@ main { padding: 26px 28px; }
 .reservoir-utility .my-reservoir-current-fill { display: none; }
 .reservoir-utility .my-reservoir-status-main dl > div:nth-child(2) { display: none; }
 .reservoir-utility .my-reservoir-status dd { margin-top: 3px; font-size: 12px; }
-.reservoir-utility .my-reservoir-status-details { border-color: #30434a; font-size: 11px; margin-top: 0; }
+.reservoir-utility .my-reservoir-status-details { border-color: var(--line); font-size: 11px; margin-top: 0; }
 .reservoir-utility .my-reservoir-status-details dl { display: grid; gap: 12px; }
 .reservoir-utility .my-reservoir-boundary { margin: 12px 0 0; border: 0; padding: 0; background: none; }
-.reservoir-utility .my-reservoir-boundary.needs-attention { padding: 12px; background: #30291c; }
+.reservoir-utility .my-reservoir-boundary.needs-attention { padding: 12px 0 12px 14px; border-left: 2px solid var(--warning); border-radius: 0; background: transparent; }
 .reservoir-utility .my-reservoir-boundary summary { font-size: 11px; }
 .reservoir-transport { margin: 16px 0 0; flex-wrap: nowrap; gap: 8px; }
 .reservoir-transport button { min-height: 38px; }
@@ -45,40 +45,40 @@ main { padding: 26px 28px; }
 .journal-title-group { min-width: 0; flex: 1; }
 .journal-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; }
 .run-identity { --run-accent: #98bfec; min-width: 0; max-width: 100%; display: grid; gap: 2px; }
-.run-identity[data-model-family=gemma] { --run-accent: #b4e6d1; }
+.run-identity[data-model-family=gemma] { --run-accent: #91baff; }
 .run-identity[data-model-family=glm] { --run-accent: #c8b8f1; }
 .run-identity[data-model-family=mistral] { --run-accent: #efc296; }
 .run-identity[data-model-family=scripted] { --run-accent: #acbac5; }
 .run-model { color: var(--run-accent); font-size: 12px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .run-model i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--run-accent); margin-right: 7px; }
-.run-label { color: #99adb5; font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.journal-action-strip { margin: 16px 0 0; font-size: 11px; border: 1px solid #34494e; border-radius: 8px; background: #15272d; }
-.journal-action-strip > summary, .journal-action-passive { padding: 9px 12px; line-height: 1.6; }
+.run-label { color: #9aaac0; font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.journal-action-strip { margin: 16px 0 0; font-size: 11px; border: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; }
+.journal-action-strip > summary, .journal-action-passive { padding: 10px 0; line-height: 1.6; margin-left: 0; }
 .journal-action-strip > summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 9px; list-style: none; }
 .journal-action-strip > summary::-webkit-details-marker { display: none; }
-.journal-action-strip > summary:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; border-radius: 8px; }
-.journal-action-passive { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 9px; color: #9aafb7; }
-.journal-action-strip strong { font-size: 11px; color: #dae7e7; }
-.journal-action-scope { color: #8fa9b2; }
-.journal-action-outcome { color: #b5c5cd; }
-.journal-action-outcome::before { content: '→'; margin-right: 9px; color: #688991; }
-.journal-action-outcome[data-tone=recorded] { color: #b4e6d1; }
+.journal-action-strip > summary:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; border-radius: 0; }
+.journal-action-passive { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 9px; color: #9aaac0; }
+.journal-action-strip strong { font-size: 11px; color: #dce6f5; }
+.journal-action-scope { color: #9aaac0; }
+.journal-action-outcome { color: #b8c7dd; }
+.journal-action-outcome::before { content: '→'; margin-right: 9px; color: #7891b5; }
+.journal-action-outcome[data-tone=recorded] { color: var(--accent-bright); }
 .journal-action-outcome[data-tone=attention], .journal-action-outcome[data-tone=pending] { color: #eec291; }
-.journal-action-open { margin-left: auto; color: #bddcd5; white-space: nowrap; }
+.journal-action-open { margin-left: auto; color: var(--accent-bright); white-space: nowrap; }
 .journal-action-open::after { content: ' +'; }
 .journal-action-strip[open] .journal-action-open::after { content: ' −'; }
-.journal-action-expanded { border-top: 1px solid #34494e; padding: 14px; overflow-wrap: anywhere; }
+.journal-action-expanded { border-top: 1px solid var(--line); padding: 14px 0; overflow-wrap: anywhere; }
 .journal-action-expanded p { font-size: 12px; }
 .journal-action-expanded pre { max-height: 280px; overflow: auto; white-space: pre-wrap; }
 .journal-action-expanded .sonar-report { padding: 0; border: 0; }
 .journal-action-expanded .sonar-report svg { max-width: 100%; }
 .journal-action-expanded .my-reservoir-journal-action { margin-top: 16px; }
 .journal-action-measurements { margin-bottom: 18px; }
-.journal-workspace .my-reservoir-reading-navigation { min-height: 62px; padding: 9px 16px; margin-bottom: 0; border-radius: 12px 12px 0 0; background: #14252c; border-color: #31484d; border-bottom: 0; flex-wrap: nowrap; }
+.journal-workspace .my-reservoir-reading-navigation { min-height: 62px; padding: 9px 16px; margin-bottom: 0; border-radius: 0; background: transparent; border: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); flex-wrap: nowrap; }
 .journal-workspace .my-reservoir-reading-navigation strong { font-size: 12px; }
 .journal-workspace .my-reservoir-reading-navigation p { font-size: 11px; margin-top: 2px; }
 .journal-workspace .my-reservoir-reading-navigation button { width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; padding: 8px; }
-.journal-reader-pane { height: clamp(420px, calc(100dvh - 278px), 860px); overflow: auto; overscroll-behavior: contain; scrollbar-gutter: stable; overflow-anchor: none; border: 1px solid #31484d; border-radius: 0 0 12px 12px; background: #102027; }
+.journal-reader-pane { height: clamp(420px, calc(100dvh - 278px), 860px); overflow: auto; overscroll-behavior: contain; scrollbar-gutter: stable; overflow-anchor: none; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: var(--surface-reading); }
 .journal-reader-pane:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; }
 .journal-reader-pane .my-reservoir-journal-detail { border: 0; border-radius: 0; padding: 26px clamp(22px, 3vw, 46px); background: none; }
 .journal-reader-pane .my-reservoir-journal-detail h3 { font-size: 20px; margin: 4px 0 8px; }
@@ -88,37 +88,37 @@ main { padding: 26px 28px; }
 .journal-workspace .my-reservoir-journal-grid { gap: 14px; }
 .journal-workspace .my-reservoir-history { padding: 0; border: 0; margin: 0; }
 .journal-workspace .my-reservoir-journal-list { max-height: 280px; }
-.journal-workspace .my-reservoir-check-ins { margin: 24px 0 0; padding: 20px 22px; border-color: #2e424b; background: #101d24; border-radius: 12px; }
+.journal-workspace .my-reservoir-check-ins { margin: 24px 0 0; padding: 20px 0; border: 0; border-top: 1px solid var(--line); background: transparent; border-radius: 0; }
 .journal-workspace .my-reservoir-check-ins h2 { font-size: 20px; }
 .journal-workspace .my-reservoir-check-ins header p { margin: 4px 0; }
 .journal-workspace .my-reservoir-check-ins header { margin-bottom: 14px; }
 .journal-workspace .my-reservoir-check-in-slots { max-height: 230px; }
-.journal-workspace .my-reservoir-check-ins .my-reservoir-details { border: 0; border-top: 1px solid #2c424b; border-radius: 0; padding: 12px 0 0; margin: 16px 0; }
-.reservoir-exploration, .reservoir-session-tools { border-top: 1px solid #2c424b; padding: 18px 0; margin-top: 22px; }
+.journal-workspace .my-reservoir-check-ins .my-reservoir-details { border: 0; border-top: 1px solid var(--line); border-radius: 0; padding: 12px 0 0; margin: 16px 0; }
+.reservoir-exploration, .reservoir-session-tools { border-top: 1px solid var(--line); padding: 18px 0; margin-top: 22px; }
 .reservoir-session-tools { margin-top: 30px; }
 .reservoir-session-tools > summary, .reservoir-exploration > summary { font-size: 13px; }
 .reservoir-utility .my-reservoir-primary { display: block; margin: 0; }
 .reservoir-utility .live-frame-caption { font-size: 10px; margin: 0 6px 10px; }
 .reservoir-state-view { margin: 18px 0 0; }
 .reservoir-state-view .scene-card { margin-top: 14px; }
-.reservoir-utility .my-reservoir-details { padding: 14px 0; border: 0; border-top: 1px solid #2c424b; border-radius: 0; }
+.reservoir-utility .my-reservoir-details { padding: 14px 0; border: 0; border-top: 1px solid var(--line); border-radius: 0; }
 .reservoir-utility .my-reservoir-vector-grid { grid-template-columns: 1fr; }
 .reservoir-utility .my-reservoir-graphics-control { font-size: 11px; margin-top: -20px; }
-.fill-cross-section { background: #112127; padding: 18px; border-radius: 14px; }
+.fill-cross-section { background: transparent; padding: 18px 0; border-radius: 0; border-bottom: 1px solid var(--line); }
 .fill-cross-section header { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
 .fill-cross-section h2 { font-size: 16px; letter-spacing: -.2px; }
 .fill-cross-section .eyebrow { font-size: 8px; margin-bottom: 4px; }
-.fill-cross-value { color: #c0efdc; font-size: 25px; font-variant-numeric: tabular-nums; font-weight: 500; white-space: nowrap; }
-.fill-cross-value small { font-size: 12px; margin-left: 2px; color: #8eb2aa; }
+.fill-cross-value { color: var(--accent-bright); font-size: 25px; font-variant-numeric: tabular-nums; font-weight: 500; white-space: nowrap; }
+.fill-cross-value small { font-size: 12px; margin-left: 2px; color: #91a9cd; }
 .fill-cross-graphic { display: flex; align-items: center; gap: 0; padding-top: 10px; }
 .fill-cross-graphic svg { width: 65%; min-width: 0; overflow: visible; }
-.fill-cross-graphic text { fill: #91b3b6; font-size: 10px; }
-.fill-cross-graphic p { font-size: 10px; color: #c1d8d6; }
-.fill-cross-graphic p span { display: block; font-size: 9px; color: #88a5aa; margin-top: 8px; }
-.fill-detail-label, .fill-detail-ticks { display: flex; justify-content: space-between; gap: 12px; font-size: 9px; color: #94b4b8; }
-.fill-detail-track { position: relative; height: 8px; margin: 12px 0 8px; background: repeating-linear-gradient(90deg, #527475 0 1px, transparent 1px 10%), #203c40; border-radius: 4px; }
-.fill-detail-track > span { position: absolute; top: -4px; width: 3px; height: 16px; transform: translateX(-50%); border-radius: 2px; background: #c2f5da; box-shadow: 0 0 10px #9be2ca55; }
-.fill-cross-section details { border-top: 1px solid #2c424b; padding-top: 12px; margin-top: 16px; }
+.fill-cross-graphic text { fill: #9eb7da; font-size: 10px; }
+.fill-cross-graphic p { font-size: 10px; color: #c0d0e7; }
+.fill-cross-graphic p span { display: block; font-size: 9px; color: #91a4c0; margin-top: 8px; }
+.fill-detail-label, .fill-detail-ticks { display: flex; justify-content: space-between; gap: 12px; font-size: 9px; color: #9eb4d1; }
+.fill-detail-track { position: relative; height: 8px; margin: 12px 0 8px; background: repeating-linear-gradient(90deg, #59769f 0 1px, transparent 1px 10%), #1b2e49; border-radius: 0; }
+.fill-detail-track > span { position: absolute; top: -4px; width: 3px; height: 16px; transform: translateX(-50%); border-radius: 0; background: var(--accent-bright); }
+.fill-cross-section details { border-top: 1px solid var(--line); padding-top: 12px; margin-top: 16px; }
 .fill-cross-section summary { font-size: 10px; }
 .fill-cross-section details p, .fill-cross-section dl { font-size: 11px; }
 .fill-unavailable { padding: 25px 0; font-size: 12px; }
@@ -127,7 +127,7 @@ main { padding: 26px 28px; }
   .reservoir-desk { grid-template-columns: minmax(0, 1fr); }
   .reservoir-tools-toggle { display: inline-flex; }
   .reservoir-utility { display: none; }
-  .reservoir-utility[data-open=true] { display: flex; position: fixed; z-index: 40; top: 126px; right: 20px; bottom: 20px; width: min(360px, calc(100vw - 40px)); overflow: auto; overscroll-behavior: contain; background: #0e1a21; padding: 16px; border-radius: 16px; box-shadow: 0 12px 70px #000b; }
+  .reservoir-utility[data-open=true] { display: flex; position: fixed; z-index: 40; top: 126px; right: 20px; bottom: 20px; width: min(360px, calc(100vw - 40px)); overflow: auto; overscroll-behavior: contain; background: var(--surface-raised); padding: 16px; border: 1px solid #3a5173; border-radius: 3px; box-shadow: 0 10px 28px #0007; }
   .journal-reader-pane { height: clamp(420px, calc(100dvh - 278px), 860px); }
   .app-header { padding: 0 20px; gap: 20px; }
   .app-header .workspace-nav { gap: 18px; }
@@ -142,5 +142,5 @@ main { padding: 26px 28px; }
   .journal-workspace .my-reservoir-reading-navigation .my-reservoir-actions { width: auto; flex-wrap: nowrap; }
   .journal-workspace .my-reservoir-reading-navigation p { max-width: 28ch; }
   .journal-reader-pane .my-reservoir-journal-detail { padding: 22px; }
-  .journal-workspace .my-reservoir-check-ins { padding: 18px; }
+  .journal-workspace .my-reservoir-check-ins { padding: 18px 0; }
 }

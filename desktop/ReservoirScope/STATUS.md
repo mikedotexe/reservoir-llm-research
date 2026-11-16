@@ -19,6 +19,10 @@ custom prompt at a step or active-time boundary. Core, host, frontend, CLI, and
 fake-provider workflow checks passed. OS custom-scheme handoff remains unverified
 because the test browser blocked it. This is not a release or a deployment to the
 three existing experiments. [Usage, contract, and qualification](RESEARCH-API.md).
+**November 15, 2026 · 0.53.1 blue desktop theme.** Shared chrome and the journal
+workspace use blue accents, minimal rounding and section dividers. Reading and
+action behavior are unchanged. [Styling qualification](RELEASE-0.53.1.md).
+
 **November 15, 2026 · 0.53.0 entry identity and outcomes.** The local preview
 adds model/run identity beside Journal and a compact action strip linked to each
 entry's receipt. Saved measurements load only by matching result identity and

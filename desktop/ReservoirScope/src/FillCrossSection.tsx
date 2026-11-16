@@ -18,10 +18,10 @@ export default function FillCrossSection({ sample }: { sample: RecordedFillSampl
         <svg viewBox="0 0 180 170" role="img" aria-labelledby={`${id}-title ${id}-description`}>
           <title id={`${id}-title`}>{`Quadrant cross-section · ${sample.fillPercent.toFixed(2)}% fill`}</title>
           <desc id={`${id}-description`}>One quarter of the spherical volume display. Radius is the cube root of fill divided by 100; this is a measurement diagram, not reservoir topology.</desc>
-          <defs><linearGradient id={`${id}-fill`} x1="0" y1="1" x2="1" y2="0"><stop stopColor="#264b4a"/><stop offset="1" stopColor="#9de4ce"/></linearGradient></defs>
-          <path d={quadrant(124)} fill="#15272b" stroke="#4c6569"/>
-          {radius > 0 && <path d={quadrant(radius * 124)} fill={`url(#${id}-fill)`} fillOpacity=".65" stroke="#b4f2d9" strokeWidth="1.5"/>}
-          {[20, 40, 60, 80].map(percent => <path key={percent} d={quadrant(Math.cbrt(percent / 100) * 124)} fill="none" stroke="#86b1ae" strokeOpacity=".25" strokeDasharray="2 4"/>)}
+          <defs><linearGradient id={`${id}-fill`} x1="0" y1="1" x2="1" y2="0"><stop stopColor="#244a78"/><stop offset="1" stopColor="#91bcff"/></linearGradient></defs>
+          <path d={quadrant(124)} fill="#15233a" stroke="#435c80"/>
+          {radius > 0 && <path d={quadrant(radius * 124)} fill={`url(#${id}-fill)`} fillOpacity=".65" stroke="#bdd5ff" strokeWidth="1.5"/>}
+          {[20, 40, 60, 80].map(percent => <path key={percent} d={quadrant(Math.cbrt(percent / 100) * 124)} fill="none" stroke="#7194c4" strokeOpacity=".25" strokeDasharray="2 4"/>)}
           <text x="24" y="17">100%</text><text x="17" y="165">0</text>
         </svg>
         <p>Quadrant slice<span>Volume ∝ fill<br/>Radius ∝ ∛fill</span></p>

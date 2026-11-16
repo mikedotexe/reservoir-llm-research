@@ -7,6 +7,7 @@ import { DEFAULT_SUSTAINED_CONFIG } from '../../src/myReservoirTypes';
 import { DEFAULT_CHECK_IN_SCHEDULE, withCheckInCapacity } from '../../src/checkInSchedule';
 import '../../src/styles.css';
 import '../../src/journalWorkspace.css';
+import '../../src/desktopTheme.css';
 
 const fixture = reservoirFixture();
 const { controller, push, api } = fixture;

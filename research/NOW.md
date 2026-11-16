@@ -1,5 +1,9 @@
 # Current work
 
+**November 15: blue desktop styling.** Local 0.53.1 follows Mike's preference for
+blue accents, less rounding and meaningful section lines. Journal reading and
+entry-linked results are unchanged. [UI record](../desktop/ReservoirScope/RELEASE-0.53.1.md).
+
 **November 15: journal identity and action outcomes.** Local 0.53.0 extends the
 UI preview with model/run identity and an entry-linked action strip. Exact saved
 result matching keeps outcomes distinct from prose and from later results.
