@@ -91,6 +91,10 @@ is separate from the other app profiles. The binary hash is recorded in checks.j
 
 ## Package and source
 
+[November 16 refreshed package and verified extraction](validation/2026-11-16-research-finalization/package.json).
+The app binary is unchanged; the added navigation evidence and signing handoff
+are included in a separately hashed archive. The November 15 archive is preserved.
+
 [Exact archive identity and extraction checks](validation/2026-11-15-research-integration/package.json).
 
 The local arm64 ZIP includes the ad-hoc-signed debug app, `reservoirctl.pyz`
