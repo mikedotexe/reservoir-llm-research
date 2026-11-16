@@ -75,6 +75,8 @@ is separate from the other app profiles. The binary hash is recorded in checks.j
 
 ## Package and source
 
+[Exact archive identity and extraction checks](validation/2026-11-15-research-integration/package.json).
+
 The local arm64 ZIP includes the ad-hoc-signed debug app, `reservoirctl.pyz`
 (Python 3.12+, standard library only), API guide, this record, and a scripted growth
 recipe. `IDENTITY.json` binds the source checkpoint, binary and CLI. `SHA256SUMS`
